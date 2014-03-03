@@ -1,3 +1,3 @@
 $(function() {
-	console.log("FEDU is up and running");
+    console.log("FEDU is up");
 });

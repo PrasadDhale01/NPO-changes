@@ -32,5 +32,7 @@
 
     <!-- Twitter Bootstrap -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js"></script>
+
+    <g:javascript src="fedu.js" />
 </body>
 </html>

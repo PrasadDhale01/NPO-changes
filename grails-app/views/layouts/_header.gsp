@@ -12,26 +12,13 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="#">About</a></li>
-				<li><a href="#">Contact</a></li>
-				<li class="dropdown"><a href="#" class="dropdown-toggle"
-					data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-					<ul class="dropdown-menu">
-						<li><a href="#">Action</a></li>
-						<li><a href="#">Another action</a></li>
-						<li><a href="#">Something else here</a></li>
-						<li class="divider"></li>
-						<li class="dropdown-header">Nav header</li>
-						<li><a href="#">Separated link</a></li>
-						<li><a href="#">One more separated link</a></li>
-					</ul>
-				</li>
+				<li><a href="#">Create Project</a></li>
+                <li><a href="#">Contribute</a></li>
+				<li><a href="#">How it works</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Default</a></li>
-				<li><a href="#">Static top</a></li>
-				<li class="active"><a href="./">Fixed top</a></li>
+				<li><a href="#">Login</a></li>
+				<li><a href="#">Register</a></li>
 			</ul>
 		</div>
 	</div>

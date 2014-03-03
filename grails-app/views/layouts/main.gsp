@@ -8,12 +8,16 @@
     <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
     <title><g:layoutTitle default="FEDU" /></title>
 
-    <!-- Bootstrap -->
+    <!-- Twitter Bootstrap CSS -->
+    <!--
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+    -->
 
-    <!-- Bootstrap Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.css">
-
+    <!-- Bootswatch Slate theme (http://bootswatch.com/slate/) -->
+    <link rel="stylesheet" href="http://bootswatch.com/slate/bootstrap.css">
+    <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/slate/variables.less" />
+    <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/slate/bootswatch.less" />
+    
     <g:layoutHead />
     <r:layoutResources />
 
@@ -27,12 +31,17 @@
 <body>
 	<g:layoutBody />
 
-    <!-- jQuery -->
+    <!-- jQuery JS -->
     <script src="http://code.jquery.com/jquery-2.1.0.js"></script>
 
-    <!-- Twitter Bootstrap -->
+    <!-- Twitter Bootstrap JS -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js"></script>
 
+    <!-- LESS JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js"></script>
+
+    <!-- FEDU JS -->
     <g:javascript src="fedu.js" />
+    <r:layoutResources />
 </body>
 </html>

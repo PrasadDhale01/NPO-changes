@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
     -->
 
+    <!-- FEDU CSS -->
+    <link rel="stylesheet" href="css/fedu.css">
+
     <!-- Bootswatch Slate theme (http://bootswatch.com/slate/) -->
     <link rel="stylesheet" href="http://bootswatch.com/slate/bootstrap.css">
     <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/slate/variables.less" />
@@ -29,7 +32,9 @@
     <![endif]-->
 </head>
 <body>
+    <g:render template="/layouts/header"/>
 	<g:layoutBody />
+    <g:render template="/layouts/footer"/>
 
     <!-- jQuery JS -->
     <script src="http://code.jquery.com/jquery-2.1.0.js"></script>

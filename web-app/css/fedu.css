@@ -1,0 +1,25 @@
+body {
+    padding-top: 70px;
+    /* Margin bottom by footer height */
+    min-height: 1000px;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+/* Footer */
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 190px;
+    padding-bottom: 20px;
+}
+
+ul.unstyled {
+    list-style: none;
+    padding: 0;
+}

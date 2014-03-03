@@ -3,11 +3,11 @@
     <hr/>
     <div class="container">
         <div class="row">
-            <div class="col-sm-2">
+            <div class="col-sm-4">
                 <h6>Copyright &copy; 2014 FEDU</h6>
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <h6>Company</h6>
                 <ul class="unstyled">
                     <li><a href="#">Know Us</a></li>

@@ -8,6 +8,10 @@
     <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
     <title><g:layoutTitle default="FEDU" /></title>
 
+    <!-- LESS JS -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js" type="text/javascript"></script>
+
+
     <!-- Twitter Bootstrap CSS -->
     <!--
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
@@ -55,9 +59,6 @@
 
     <!-- Twitter Bootstrap JS -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js"></script>
-
-    <!-- LESS JS -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js"></script>
 
     <!-- FEDU JS -->
     <g:javascript src="fedu.js" />

@@ -10,7 +10,7 @@
             <div class="col-sm-2">
                 <h6>Company</h6>
                 <ul class="unstyled">
-                    <li><a href="#">Know Us</a></li>
+                    <li><a href="aboutus">Know Us</a></li>
                     <li><a href="#">How it Works</a></li>
                     <li><a href="#">Success Stories</a></li>
                 </ul>

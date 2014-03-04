@@ -4,7 +4,7 @@
 
 <div class="row featurette">
   <div class="col-md-7">
-    <h2 class="featurette-heading">CREATE PROJECT. <span class="text-muted">Ask Recieve & Achieve.</span></h2>
+    <h2 class="featurette-heading">CREATE PROJECT. <span class="text-muted">Ask Receive & Achieve.</span></h2>
     <p class="lead">Three quick steps and your project is published on FEDU. Provide your campaign a brief description, decide how much you want to raise and confirm you are you. You can create any project that support education for yourself or other individuals or groups. You can also nominate and recommend project you feel are important and we would create it for your referral. No matter where you are from, you can start right now with no fee or neither do you have to create or ship rewards to your backers. We do it for you.</p>
   </div>
   <div class="col-md-5">

@@ -9,14 +9,14 @@
     <title><g:layoutTitle default="FEDU" /></title>
 
     <!-- Twitter Bootstrap CSS -->
+    <!--
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+    -->
 
     <!-- Bootswatch Slate theme (http://bootswatch.com/slate/) -->
-    <!--
     <link rel="stylesheet" href="http://bootswatch.com/slate/bootstrap.css">
     <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/slate/variables.less" />
     <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/slate/bootswatch.less" />
-    -->
 
 
     <!-- FEDU CSS -->

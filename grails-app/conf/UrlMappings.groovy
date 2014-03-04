@@ -15,5 +15,11 @@ class UrlMappings {
 
 		/* How it Works */
 		"/howitworks"(view:'/howitworks/index')
+
+		/* Login */
+		"/login"(view:'/login/index')
+
+		/* Register */
+		"/register"(view:'/register/index')
 	}
 }

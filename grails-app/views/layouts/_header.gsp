@@ -17,8 +17,8 @@
 				<li><a href="howitworks">How it works</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="#">Login</a></li>
-				<li><a href="#">Register</a></li>
+				<li><a href="login">Login</a></li>
+				<li><a href="register">Register</a></li>
 			</ul>
 		</div>
 	</div>

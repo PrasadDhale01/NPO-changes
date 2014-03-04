@@ -12,5 +12,8 @@ class UrlMappings {
 
 		/* About Us */
 		"/aboutus"(view:'/aboutus/index')
+
+		/* How it Works */
+		"/howitworks"(view:'/howitworks/index')
 	}
 }

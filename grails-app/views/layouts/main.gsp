@@ -14,10 +14,23 @@
     -->
 
     <!-- Bootswatch Slate theme (http://bootswatch.com/slate/) -->
+    <!--
     <link rel="stylesheet" href="http://bootswatch.com/slate/bootstrap.css">
     <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/slate/variables.less" />
     <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/slate/bootswatch.less" />
+    -->
 
+    <!-- Bootswatch Shamrock theme (http://bootswatch.com/shamrock/) -->
+    <!--
+    <link rel="stylesheet" href="http://bootswatch.com/shamrock/bootstrap.css">
+    <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/shamrock/variables.less" />
+    <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/shamrock/bootswatch.less" />
+    -->
+
+    <!-- Bootswatch Journal theme (http://bootswatch.com/journal/) -->
+    <link rel="stylesheet" href="http://bootswatch.com/journal/bootstrap.css">
+    <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/journal/variables.less" />
+    <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/journal/bootswatch.less" />
 
     <!-- FEDU CSS -->
     <link rel="stylesheet" href="css/fedu.css">

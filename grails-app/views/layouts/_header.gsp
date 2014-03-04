@@ -8,13 +8,13 @@
 				<span class="icon-bar"></span> 
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="#">FEDU</a>
+			<a class="navbar-brand" href="${resource(uri:'/')}">FEDU</a>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="#">Create Project</a></li>
                 <li><a href="#">Contribute</a></li>
-				<li><a href="#">How it works</a></li>
+				<li><a href="howitworks">How it works</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="#">Login</a></li>

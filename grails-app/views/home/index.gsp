@@ -11,7 +11,13 @@
 
     <div class="container marketing">
 
+      <!-- Carousel -->
       <g:render template="carousel"></g:render>
+
+      <!-- Ask/Contribute/Enable grid -->
+      <%--
+      <g:render template="ace"></g:render>
+      --%>
 
       <g:render template="featurettes"></g:render>
 

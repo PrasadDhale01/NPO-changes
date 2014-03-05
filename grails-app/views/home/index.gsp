@@ -3,6 +3,8 @@
    	<meta name="layout" content="main" />
 </head>
 <body>
+    <g:render template="createfund"></g:render>
+
     <g:render template="jumbotron"></g:render>
 
     <!-- Marketing messaging and featurettes

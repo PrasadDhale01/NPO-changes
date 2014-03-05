@@ -16,6 +16,11 @@
 			</div>
 			<!-- /btn-group -->
 			<input type="text" class="form-control">
+			 <span class="input-group-btn">
+				<button class="btn btn-default type="button">
+				    <a href="" class="glyphicon glyphicon-search"></a>
+				</button>
+			</span>
 		</div>
 	</div>
 	<div class="col-md-4">

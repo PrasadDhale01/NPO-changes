@@ -8,7 +8,7 @@
     <blockquote>Three quick steps and your project is published on FEDU. Provide your campaign a brief description, decide how much you want to raise and confirm you are you. You can create any project that support education for yourself or other individuals or groups. You can also nominate and recommend project you feel are important and we would create it for your referral. No matter where you are from, you can start right now with no fee or neither do you have to create or ship rewards to your backers. We do it for you.</blockquote>
   </div>
   <div class="col-md-5">
-    <img class="featurette-image img-responsive" src="http://placehold.it/400/eee" alt="Create Project">
+    <img class="featurette-image img-responsive pull-right" src="images/feduboy.png" alt="Create Project">
   </div>
 </div>
 
@@ -16,7 +16,7 @@
 
 <div class="row featurette">
   <div class="col-md-5">
-    <img class="featurette-image img-responsive" src="http://placehold.it/400/eee" alt="Fund Project">
+    <img class="featurette-image img-responsive pull-left" src="images/fedurayswhite.jpg" alt="Fund Project">
   </div>
   <div class="col-md-7">
     <h2 class="featurette-heading">FUND PROJECT. <span class="text-muted">Connect Contribute & Repeat.</span></h2>
@@ -32,7 +32,7 @@
     <blockquote>You receive your rewards while your backed project is still raising money. Making a contribution and seeing its impact is undoubtedly gratifying, share this experience with others to let them know how you're making a difference in people's lives. You shouldn't think that your contribution only affects one educational project. You are, in fact, contributing to a larger effort to empower education & make it available to everyone, regardless of their geography or economic background. Now multiply the effect by influencing the world around you to make similar impact and help your backed project be successful faster.</blockquote>
   </div>
   <div class="col-md-5">
-    <img class="featurette-image img-responsive" src="http://placehold.it/400/eee" alt="Get Perks to share & motivate">
+    <img class="featurette-image img-responsive pull-right" src="images/fedutdesign.jpg" alt="Get Perks to share & motivate">
   </div>
 </div>
 

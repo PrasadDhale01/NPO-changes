@@ -1,29 +1,24 @@
 <html>
 <head>
-   	<meta name="layout" content="main" />
+<meta name="layout" content="main" />
 </head>
 <body>
-    <g:render template="createfund"></g:render>
+    <!-- Call to action buttons -->
+	<g:render template="createfund"></g:render>
 
-    <g:render template="jumbotron"></g:render>
+    <!-- Big banner -->
+	<g:render template="jumbotron"></g:render>
 
-    <!-- Marketing messaging and featurettes
-    ================================================== -->
-    <!-- Wrap the rest of the page in another container to center all the content. -->
+	<div class="container ">
 
-    <div class="container marketing">
+		<!-- Carousel -->
+		<g:render template="carousel"></g:render>
 
-      <!-- Carousel -->
-      <g:render template="carousel"></g:render>
+		<!-- Ask/Contribute/Enable grid -->
+		<%-- <g:render template="ace"></g:render> --%>
 
-      <!-- Ask/Contribute/Enable grid -->
-      <%--
-      <g:render template="ace"></g:render>
-      --%>
+		<g:render template="featurettes"></g:render>
 
-      <g:render template="featurettes"></g:render>
-
-    </div><!-- /.container -->
-
+	</div>
 </body>
 </html>

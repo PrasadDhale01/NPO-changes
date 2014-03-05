@@ -21,5 +21,8 @@ class UrlMappings {
 
 		/* Register */
 		"/register"(view:'/register/index')
+
+		/* Contribute */
+		"/contribute"(view:'/contribute/index')
 	}
 }

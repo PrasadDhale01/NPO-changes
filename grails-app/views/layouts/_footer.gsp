@@ -19,7 +19,7 @@
             <div class="col-sm-2">
                 <h6>FEDU</h6>
                 <ul class="unstyled">
-                    <li><a href="#">FAQs</a></li>
+                    <li><a href="faq">FAQ</a></li>
                     <li><a href="#">Blog</a></li>
                     <li><a href="#">Empower</a></li>
                     <li><a href="#">Shop FEDU</a></li>

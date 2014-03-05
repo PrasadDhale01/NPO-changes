@@ -24,5 +24,8 @@ class UrlMappings {
 
 		/* Contribute */
 		"/contribute"(view:'/contribute/index')
+
+		/* FAQ */
+		"/faq"(view:'/faq/index')
 	}
 }

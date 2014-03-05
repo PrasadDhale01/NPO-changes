@@ -3,7 +3,7 @@
 	<div class="col-md-8">
 		<div class="input-group">
 			<div class="input-group-btn">
-				<button type="button" class="btn btn-default dropdown-toggle"
+				<button type="button" class="btn btn-primary dropdown-toggle"
 					data-toggle="dropdown">
 					All <span class="caret"></span>
 				</button>

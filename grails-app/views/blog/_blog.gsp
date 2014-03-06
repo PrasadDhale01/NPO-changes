@@ -5,7 +5,7 @@
 		<div class="row">
 			<div class="col-sm-8">
 				<h2>
-					<a href="">I FEDU for the Future</a>
+					<a href="sampleblog">I FEDU for the Future</a>
 				</h2>
 			</div>
 			<div class="col-sm-4">
@@ -20,7 +20,7 @@
 				to hear my students, a group of young women from across South and
 				Southeast Asia, read the personal stories they had worked all
 				semester to create. 
-				<span><a role="button" class="btn btn-link btn-xs" href="">Continue reading</a></span>
+				<span><a role="button" class="btn btn-link btn-xs" href="sampleblog"sampleblog"">Continue reading</a></span>
 			</p>
 		</div>
 	</div>
@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-sm-8">
 				<h2>
-					<a href="">(Semi) Required Reading</a>
+					<a href="sampleblog">(Semi) Required Reading</a>
 				</h2>
 			</div>
 			<div class="col-sm-4">
@@ -42,7 +42,7 @@
 			<p class="text-justify">
 				Here at FEDU, we come across a ton of new and interesting articles.
 				We wanted pass along some of the most recent ones. 
-				<span><a role="button" class="btn btn-link btn-xs" href="">Continue reading</a></span>
+				<span><a role="button" class="btn btn-link btn-xs" href="sampleblog">Continue reading</a></span>
 			</p>
 		</div>
 	</div>
@@ -51,7 +51,7 @@
 		<div class="row">
 			<div class="col-sm-8">
 				<h2>
-					<a href="">The Tricky Issue of Causation</a>
+					<a href="sampleblog">The Tricky Issue of Causation</a>
 				</h2>
 			</div>
 			<div class="col-sm-4">
@@ -64,7 +64,7 @@
 			<p class="text-justify">
 				At FEDU, our focus is on higher education and funding, but those
 				are really just two pieces of the larger education conversation. 
-				<span><a role="button" class="btn btn-link btn-xs" href="">Continue reading</a></span>
+				<span><a role="button" class="btn btn-link btn-xs" href="sampleblog">Continue reading</a></span>
 			</p>
 		</div>
 	</div>
@@ -73,7 +73,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <h2>
-                    <a href="">Day 1 at FEDU</a>
+                    <a href="sampleblog">Day 1 at FEDU</a>
                 </h2>
             </div>
             <div class="col-sm-4">
@@ -89,7 +89,7 @@
 				enough, at my first all-hands meeting at FundEdu, there were
 				jean-wearing, laptop-toting people bounding towards the coffee
 				machines. 
-				<span><a role="button" class="btn btn-link btn-xs" href="">Continue reading</a></span>
+				<span><a role="button" class="btn btn-link btn-xs" href="sampleblog">Continue reading</a></span>
             </p>
         </div>
     </div>
@@ -98,7 +98,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <h2>
-                    <a href="">The Power of In-Person</a>
+                    <a href="sampleblog">The Power of In-Person</a>
                 </h2>
             </div>
             <div class="col-sm-4">
@@ -112,7 +112,7 @@
 				We all live in an online world, attached to the hip to our computers
 				and iPhones. The internet has facilitated communication at an
 				unprecedented level, and we are all better off for this advance. 
-				<span><a role="button" class="btn btn-link btn-xs" href="">Continue reading</a></span>
+				<span><a role="button" class="btn btn-link btn-xs" href="sampleblog">Continue reading</a></span>
             </p>
         </div>
     </div>
@@ -121,7 +121,7 @@
         <div class="row">
             <div class="col-sm-8">
                 <h2>
-                    <a href="">Thank You's</a>
+                    <a href="sampleblog">Thank You's</a>
                 </h2>
             </div>
             <div class="col-sm-4">
@@ -137,7 +137,7 @@
 				grateful to all of the people who have helped make our work up to
 				this point possible. The support, the listening, the time; all of it
 				has made a difference. 
-				<span><a role="button" class="btn btn-link btn-xs" href="">Continue reading</a></span>
+				<span><a role="button" class="btn btn-link btn-xs" href="sampleblog">Continue reading</a></span>
             </p>
         </div>
     </div>

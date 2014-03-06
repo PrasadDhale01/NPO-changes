@@ -30,5 +30,8 @@ class UrlMappings {
 
 		/* Blog */
 		"/blog"(view:'/blog/index')
+
+		/* Sample Blog Post */
+		"/sampleblog"(view:'/sampleblog/index')
 	}
 }

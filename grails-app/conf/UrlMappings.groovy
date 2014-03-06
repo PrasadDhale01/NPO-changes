@@ -27,5 +27,8 @@ class UrlMappings {
 
 		/* FAQ */
 		"/faq"(view:'/faq/index')
+
+		/* Blog */
+		"/blog"(view:'/blog/index')
 	}
 }

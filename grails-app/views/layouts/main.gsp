@@ -24,7 +24,7 @@
     <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/${theme}/bootswatch.less" />
 
     <!-- FEDU CSS -->
-    <link rel="stylesheet" href="css/fedu.css">
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'fedu.css')}">
 
     <g:layoutHead />
     <r:layoutResources />

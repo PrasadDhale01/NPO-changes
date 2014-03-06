@@ -30,8 +30,6 @@ class UrlMappings {
 
 		/* Blogs */
 		"/blogs"(controller:'blog', action:'list')
-
-		/* Sample Blog Post */
-		"/sampleblog"(view:'/sampleblog/index')
+		"/blogs/$id"(controller:'blog', action:'show')
 	}
 }

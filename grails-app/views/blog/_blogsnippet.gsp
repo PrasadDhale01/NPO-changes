@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-sm-8">
             <h2>
-                <a href="sampleblog">${it.title}</a>
+                <a href="blogs/${it.id}">${it.title}</a>
             </h2>
         </div>
         <div class="col-sm-4">
@@ -14,7 +14,7 @@
     <div class="well">
         <p class="text-justify">
             ${it.snippet}
-            <span><a role="button" class="btn btn-link btn-xs" href="sampleblog">Continue reading</a></span>
+            <span><a role="button" class="btn btn-link btn-xs" href="blogs/${it.id}">Continue reading</a></span>
         </p>
     </div>
 </div>

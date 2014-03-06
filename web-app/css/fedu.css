@@ -223,3 +223,10 @@ ul.unstyled {
 .no-top-margin {
 	margin-top: 0px;
 }
+
+/* Blog
+------------------------- */
+.blogpost > .well {
+	background-image: url('http://www.morocco-luxury-camps.com/wp-content/uploads/2012/11/paper-background.jpg');
+	color: black;
+}

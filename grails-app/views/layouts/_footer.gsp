@@ -10,20 +10,16 @@
             <div class="col-sm-2">
                 <h6>Company</h6>
                 <ul class="unstyled">
-                    <li><a href="aboutus">Know Us</a></li>
-                    <li><a href="howitworks">How it Works</a></li>
-                    <li><a href="#">Success Stories</a></li>
+                    <li><a href="${resource(dir: '/aboutus')}">Know Us</a></li>
+                    <li><a href="${resource(dir: '/howitworks')}">How it Works</a></li>
                 </ul>
             </div>
 
             <div class="col-sm-2">
                 <h6>FEDU</h6>
                 <ul class="unstyled">
-                    <li><a href="faq">FAQ</a></li>
-                    <li><a href="blogs">Blog</a></li>
-                    <li><a href="#">Empower</a></li>
-                    <li><a href="#">Shop FEDU</a></li>
-                    <li><a href="#">Connect</a></li>
+                    <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
+                    <li><a href="${resource(dir: '/blogs')}">Blog</a></li>
                 </ul>
             </div>
 

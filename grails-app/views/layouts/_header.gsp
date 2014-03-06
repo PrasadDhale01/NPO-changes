@@ -13,12 +13,12 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><a href="#">Create Project</a></li>
-                <li><a href="contribute">Contribute</a></li>
-				<li><a href="howitworks">How it works</a></li>
+                <li><a href="${resource(dir: '/contribute')}">Contribute</a></li>
+				<li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="login">Login</a></li>
-				<li><a href="register">Register</a></li>
+				<li><a href="${resource(dir: '/login')}">Login</a></li>
+				<li><a href="${resource(dir: '/register')}">Register</a></li>
 			</ul>
 		</div>
 	</div>

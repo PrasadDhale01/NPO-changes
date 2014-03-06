@@ -28,8 +28,8 @@ class UrlMappings {
 		/* FAQ */
 		"/faq"(view:'/faq/index')
 
-		/* Blog */
-		"/blog"(view:'/blog/index')
+		/* Blogs */
+		"/blogs"(controller:'blog', action:'list')
 
 		/* Sample Blog Post */
 		"/sampleblog"(view:'/sampleblog/index')

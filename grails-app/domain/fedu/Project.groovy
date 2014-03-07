@@ -20,10 +20,14 @@ class Project {
 		SCHOOL,
 	}
 
+	/*
 	FundRaisingReason fundRaisingReason
 	int fundRaisingAmount
 	FundRaisingFor fundRaisingFor
+	*/
 
+	String title
+	String amount
 
     static constraints = {
     }

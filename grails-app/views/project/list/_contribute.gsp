@@ -39,6 +39,6 @@
     <div class="col-md-8">
     </div>
     <div class="col-md-4">
-       <g:render template="/contribute/pagination"></g:render>
+       <g:render template="list/pagination"></g:render>
     </div>
 </div>

@@ -22,14 +22,15 @@ class UrlMappings {
 		/* Register */
 		"/register"(view:'/register/index')
 
-		/* Contribute */
-		"/contribute"(view:'/contribute/index')
-
 		/* FAQ */
 		"/faq"(view:'/faq/index')
 
 		/* Blogs */
 		"/blogs"(controller:'blog', action:'list')
 		"/blogs/$id"(controller:'blog', action:'show')
+
+		/* Project */
+		"/projects/create"(controller:'project', action:'create')
+		"/projects"(controller:'project', action:'list')
 	}
 }

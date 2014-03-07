@@ -3,11 +3,11 @@
 <meta name="layout" content="main" />
 </head>
 <body>
-    <!-- Call to action buttons -->
-	<g:render template="createfund"></g:render>
-
     <!-- Big banner -->
 	<g:render template="jumbotron"></g:render>
+
+    <!-- Call to action buttons -->
+    <!-- <g:render template="createfund"></g:render> -->
 
 	<div class="container ">
 

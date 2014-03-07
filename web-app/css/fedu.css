@@ -1,5 +1,5 @@
 body {
-	padding-top: 80px;
+	padding-top: 60px;
 	padding-bottom: 40px;
 	color: #5a5a5a;
 	/* background-image: url('http://www.candiedphotography.co.uk/wp-content/uploads/paper_background.jpg'); */
@@ -7,6 +7,17 @@ body {
 
 html {
 
+}
+
+/* Home
+------------------------- */
+.jumbotron {
+    background: url('../images/heroimage.png') 0% 70%;
+    height: 350px;
+}
+
+.jumbotron h1 {
+    color: white;
 }
 
 /* Footer

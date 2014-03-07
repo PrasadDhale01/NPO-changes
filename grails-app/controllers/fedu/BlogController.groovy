@@ -9,6 +9,6 @@ class BlogController {
 	}
 
 	def show() {
-		[blog: Blog.findById(params.id)]
+		[blog: Blog.get(params.id)]
 	}
 }

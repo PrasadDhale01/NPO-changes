@@ -8,10 +8,10 @@
 		<h1>Contribute</h1>
 
         <!-- Search -->
-        <g:render template="/contribute/search"></g:render>
+        <g:render template="list/search"></g:render>
 
 		<!-- Carousel -->
-		<g:render template="/contribute/contribute"></g:render>
+		<g:render template="list/contribute"></g:render>
 	</div>
 </body>
 </html>

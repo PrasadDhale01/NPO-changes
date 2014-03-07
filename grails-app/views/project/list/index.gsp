@@ -7,6 +7,11 @@
 	<div class="container">
 		<h1>Contribute</h1>
 
+        <%--
+        <g:each in="${projects}">
+        </g:each>
+        --%>
+
         <!-- Search -->
         <g:render template="list/search"></g:render>
 

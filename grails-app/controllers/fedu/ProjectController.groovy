@@ -1,12 +1,20 @@
 package fedu
 
+import grails.converters.JSON
+
 class ProjectController {
 
 	def list = {
-		render (view: 'list/index')
+		render (view: 'list/index', model: [projects: Project.list()])
 	}
 
 	def create = {
 		
+	}
+
+	def publish = {
+		new Project(title: params.title, amount: params.amount).save(failOnError: true)
+
+		render params as JSON
 	}
 }

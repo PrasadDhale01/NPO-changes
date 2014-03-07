@@ -1,8 +1,8 @@
 <div class="container">
+    <h1>How it Works</h1>
     <div>
         <iframe width="100%" height="500" src="//www.youtube.com/embed/W_lME-8P-Dk" frameborder="0" allowfullscreen></iframe>
     </div>
-    <h1>How it Works</h1>
 	<div class="panel panel-default">
 	  <div class="panel-heading">
 	    <h3 class="panel-title">Ask</h3>

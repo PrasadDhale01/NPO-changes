@@ -65,6 +65,9 @@
           <root url="jar://$USER_HOME$/.m2/repository/org/eclipse/jdt/core/compiler/ecj/3.7.2/ecj-3.7.2.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.50/tomcat-embed-jasper-7.0.50.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/tomcat-catalina-ant/7.0.50/tomcat-catalina-ant-7.0.50.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/javax/mail/javax.mail-api/1.5.1/javax.mail-api-1.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/com/sun/mail/javax.mail/1.5.1/javax.mail-1.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

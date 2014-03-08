@@ -20,12 +20,28 @@ class Project {
 		SCHOOL,
 	}
 
+	/* Who */
 	String name
-	String title
-	int amount
 	String email
+	String telephone
+
+	/* Why */
 	FundRaisingReason fundRaisingReason
 	FundRaisingFor fundRaisingFor
+
+	/* How much & when */
+	int amount
+	int days
+
+	/* How */
+	String title
+	String story
+
+	boolean validated = false
+
+	static mapping = {
+		story type: 'text'
+	}
 
     static constraints = {
 		email (email: true)

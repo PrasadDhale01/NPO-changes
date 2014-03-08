@@ -26,12 +26,12 @@
 	                        <input type="email" class="form-control" name="email" placeholder="Email">
 	                    </div>
 	                </div>
-	                <div class="form-group">
-	                    <label for="amount" class="col-sm-2 control-label">Amount</label>
-	                    <div class="col-sm-10">
-	                        <input class="form-control" name="amount" placeholder="Amount">
-	                    </div>
-	                </div>
+                    <div class="form-group">
+                        <label for="telephone" class="col-sm-2 control-label">Telephone</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="telephone" placeholder="Telephone">
+                        </div>
+                    </div>
 				</div>
 			</div>
 
@@ -61,13 +61,39 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    <h3 class="panel-title">How much & When</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="amount" class="col-sm-2 control-label">Amount</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="amount" placeholder="Amount">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="days" class="col-sm-2 control-label">In how many days?</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="days" placeholder="Days">
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <div class="panel panel-default">
+                <div class="panel-heading">
                     <h3 class="panel-title">How</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="projectTitle" class="col-sm-2 control-label">Project title</label>
+                        <label for="title" class="col-sm-2 control-label">Project title</label>
                         <div class="col-sm-10">
                             <input class="form-control" name="title" placeholder="Enter project title">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="story" class="col-sm-2 control-label">Story</label>
+                        <div class="col-sm-10">
+                            <textarea class="form-control" name="story" rows="4"></textarea>
                         </div>
                     </div>
                 </div>

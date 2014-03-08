@@ -15,7 +15,7 @@ class ProjectController {
 		} else {
 			project = null
 		}
-		return [project: project]
+		return [project: project, model: [justcreated: params.justcreated]]
 	}
 
 	def create = {
@@ -49,7 +49,7 @@ class ProjectController {
 		}
 
 		if (project) {
-			redirect (action: 'show', params: [id: project.id])
+			render (view: 'justcreated', model: [project: project])
 		} else {
 			render (view: 'createerror')
 		}

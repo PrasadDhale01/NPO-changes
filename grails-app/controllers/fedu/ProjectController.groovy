@@ -15,7 +15,7 @@ class ProjectController {
 		} else {
 			project = null
 		}
-		return [project: project, model: [justcreated: params.justcreated]]
+		return [project: project]
 	}
 
 	def create = {

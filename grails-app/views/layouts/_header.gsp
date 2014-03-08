@@ -13,7 +13,7 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li><g:link controller="project" action="create">Create Project</g:link></li>
-                <li><a href="${resource(dir: '/contribute')}">Contribute</a></li>
+                <li><a href="${resource(dir: '/projects')}">Contribute</a></li>
 				<li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

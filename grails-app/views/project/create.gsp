@@ -27,6 +27,22 @@
                 </div>
 			</div>
             <div class="form-group">
+                <label for="amount" class="col-sm-2 control-label">Funds towards</label>
+                <div class="col-sm-10">
+					<g:select class="form-control" name="fundRaisingReason"
+                              from="${fundRaisingOptions}"
+                              optionKey="key" optionValue="value"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="amount" class="col-sm-2 control-label">Funds for</label>
+                <div class="col-sm-10">
+                    <g:select class="form-control" name="fundRaisingFor"
+                              from="${raisingForOptions}"
+                              optionKey="key" optionValue="value"/>
+                </div>
+            </div>
+            <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
         			<button type="submit" class="btn btn-default">Create Project</button>
                 </div>

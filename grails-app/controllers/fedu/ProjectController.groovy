@@ -9,7 +9,24 @@ class ProjectController {
 	}
 
 	def create = {
-		
+		def fundRaisingOptions = [
+			(Project.FundRaisingReason.VOCATIONAL_SCHOOL): "Vocation school",
+			(Project.FundRaisingReason.TUITION_FEE): "Tuition fee",
+			(Project.FundRaisingReason.SCHOOL_SUPPLIES): "School supplies",
+			(Project.FundRaisingReason.STUDENT_LOAN): "Student loan",
+
+			/* For raising for other... */
+			(Project.FundRaisingReason.SCHOOL_PROJECT): "School project",
+			(Project.FundRaisingReason.EDUCATE_POOR): "Educating poor"
+		]
+
+		def raisingForOptions = [
+			(Project.FundRaisingFor.MYSELF): "Myself",
+			(Project.FundRaisingFor.NON_PROFIT): "Non-profit",
+			(Project.FundRaisingFor.SCHOOL): "School",
+		]
+
+		[fundRaisingOptions: fundRaisingOptions, raisingForOptions: raisingForOptions]
 	}
 
 	def publish = {

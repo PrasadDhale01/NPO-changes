@@ -1,7 +1,9 @@
 package fedu
 
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['permitAll'])
 class ProjectController {
 
 	def list = {

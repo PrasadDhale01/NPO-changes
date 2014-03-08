@@ -18,7 +18,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a href="${resource(dir: '/login')}">Login</a></li>
-				<li><a href="${resource(dir: '/register')}">Register</a></li>
+				<li><a href="${resource(dir: '/registration')}">Register</a></li>
 			</ul>
 		</div>
 	</div>

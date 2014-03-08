@@ -19,8 +19,8 @@ class UrlMappings {
 		/* Login */
 		"/login"(view:'/login/index')
 
-		/* Register */
-		"/register"(view:'/register/index')
+		/* Registration */
+		"/registration"(view:'/registration/index')
 
 		/* FAQ */
 		"/faq"(view:'/faq/index')

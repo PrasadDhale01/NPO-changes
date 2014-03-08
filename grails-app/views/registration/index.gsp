@@ -3,6 +3,6 @@
     <meta name="layout" content="main" />
 </head>
 <body>
-    <g:render template="/register/register"></g:render>
+    <g:render template="/registration/register"></g:render>
 </body>
 </html>

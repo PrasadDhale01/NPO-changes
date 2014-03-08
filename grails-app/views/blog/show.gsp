@@ -9,8 +9,7 @@
 				<div class="row">
 					<div class="col-sm-8">
 						<h2>
-							<a href="${blog.id}"> ${blog.title}
-							</a>
+							<a href="${blog.id}">${blog.title}</a>
 						</h2>
 					</div>
 					<div class="col-sm-4">

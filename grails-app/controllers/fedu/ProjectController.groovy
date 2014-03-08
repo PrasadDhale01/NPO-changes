@@ -8,6 +8,16 @@ class ProjectController {
 		render (view: 'list/index', model: [projects: Project.list()])
 	}
 
+	def show() {
+		Project project
+		if (params.int('id')) {
+			project = Project.findById(params.id)
+		} else {
+			project = null
+		}
+		return [project: project]
+	}
+
 	def create = {
 		def fundRaisingOptions = [
 			(Project.FundRaisingReason.VOCATIONAL_SCHOOL): "Vocation school",
@@ -23,15 +33,25 @@ class ProjectController {
 		def raisingForOptions = [
 			(Project.FundRaisingFor.MYSELF): "Myself",
 			(Project.FundRaisingFor.NON_PROFIT): "Non-profit",
-			(Project.FundRaisingFor.SCHOOL): "School",
+			(Project.FundRaisingFor.SCHOOL): "School"
 		]
 
 		[fundRaisingOptions: fundRaisingOptions, raisingForOptions: raisingForOptions]
 	}
 
 	def publish = {
-		new Project(params).save(failOnError: true)
+		Project project
 
-		render params as JSON
+		try {
+			project = new Project(params).save(failOnError: true)
+		} catch (Exception e) {
+			project = null
+		}
+
+		if (project) {
+			redirect (action: 'show', params: [id: project.id])
+		} else {
+			render (view: 'createerror')
+		}
 	}
 }

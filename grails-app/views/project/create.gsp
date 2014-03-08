@@ -11,16 +11,16 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Basics</h3>
+					<h3 class="panel-title">Who</h3>
 				</div>
 				<div class="panel-body">
-		            <div class="form-group">
-		                <label for="projectTitle" class="col-sm-2 control-label">Project title</label>
-		                <div class="col-sm-10">
-		                    <input class="form-control" name="title" placeholder="Enter project title">
-		                </div>
-		            </div>
-	                <div class="form-group">
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="name" placeholder="Name">
+                        </div>
+                    </div>
+   	                <div class="form-group">
 	                    <label for="email" class="col-sm-2 control-label">Email</label>
 	                    <div class="col-sm-10">
 	                        <input type="email" class="form-control" name="email" placeholder="Email">
@@ -37,7 +37,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Reason</h3>
+                    <h3 class="panel-title">Why</h3>
                 </div>
                 <div class="panel-body">
 		            <div class="form-group">
@@ -61,7 +61,21 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Reason</h3>
+                    <h3 class="panel-title">How</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label for="projectTitle" class="col-sm-2 control-label">Project title</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="title" placeholder="Enter project title">
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Get set, go</h3>
                 </div>
                 <div class="panel-body">
 		            <div class="form-group">

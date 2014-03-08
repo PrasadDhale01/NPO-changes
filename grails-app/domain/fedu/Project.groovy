@@ -9,7 +9,7 @@ class Project {
 		SCHOOL_SUPPLIES,
 		STUDENT_LOAN,
 
-		/* For raising for other... */
+		/* Fund raising for other... */
 		SCHOOL_PROJECT,
 		EDUCATE_POOR
 	}
@@ -20,8 +20,9 @@ class Project {
 		SCHOOL,
 	}
 
+	String name
 	String title
-	String amount
+	int amount
 	String email
 	FundRaisingReason fundRaisingReason
 	FundRaisingFor fundRaisingFor

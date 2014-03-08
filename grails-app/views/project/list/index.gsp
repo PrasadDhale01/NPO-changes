@@ -8,8 +8,11 @@
 		<h1>Contribute</h1>
 
         <%--
-        <g:each in="${projects}">
-        </g:each>
+        <ul>
+	        <g:each in="${projects}">
+	            <li>${it.title}</li>
+	        </g:each>
+        </ul>
         --%>
 
         <!-- Search -->

@@ -30,7 +30,7 @@
 			</div>
 		</g:if>
 		<g:else>
-			<div class="alert alert-danger">Oh snap! Looks like that blog doesn't exist.</div>
+			<p><div class="alert alert-danger">Oh snap! Looks like that blog doesn't exist.</div></p>
 		</g:else>
 	</div>
 </body>

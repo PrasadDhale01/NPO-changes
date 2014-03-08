@@ -5,4 +5,5 @@ $(function() {
     var text = $('.blogpost h4').html();
     var decoded = $('<div/>').html(text).text();
     $('.blogpost h4').html(decoded);
+
 });

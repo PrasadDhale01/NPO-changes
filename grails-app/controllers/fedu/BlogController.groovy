@@ -5,10 +5,16 @@ import grails.converters.JSON
 class BlogController {
 
 	def list() {
-		[ blogs: Blog.list() ]
+		return [blogs: Blog.list()]
 	}
 
 	def show() {
-		[blog: Blog.get(params.id)]
+		Blog blog
+		if (params.int('id')) {
+			blog = Blog.findById(params.id)
+		} else {
+			blog = null
+		}
+		return [blog: blog]
 	}
 }

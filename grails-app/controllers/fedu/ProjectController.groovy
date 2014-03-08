@@ -13,7 +13,7 @@ class ProjectController {
 	}
 
 	def publish = {
-		new Project(title: params.title, amount: params.amount).save(failOnError: true)
+		new Project(params).save(failOnError: true)
 
 		render params as JSON
 	}

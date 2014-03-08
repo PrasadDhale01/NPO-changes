@@ -12,6 +12,10 @@
 				<label for="projectTitle">Project title</label>
 				<input class="form-control" name="title" placeholder="Enter project title">
 			</div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email" placeholder="Email">
+            </div>
 			<div class="form-group">
 				<label for="amount">Amount</label>
 				<input class="form-control" name="amount" placeholder="Amount">

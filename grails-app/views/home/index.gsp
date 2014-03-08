@@ -9,16 +9,13 @@
     <!-- Call to action buttons -->
     <!-- <g:render template="createfund"></g:render> -->
 
-	<div class="container ">
+    <!-- Carousel -->
+    <g:render template="carousel"></g:render>
 
-		<!-- Carousel -->
-		<g:render template="carousel"></g:render>
+	<!-- Ask/Contribute/Enable grid -->
+	<%-- <g:render template="ace"></g:render> --%>
 
-		<!-- Ask/Contribute/Enable grid -->
-		<%-- <g:render template="ace"></g:render> --%>
+	<g:render template="featurettes"></g:render>
 
-		<g:render template="featurettes"></g:render>
-
-	</div>
 </body>
 </html>

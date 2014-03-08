@@ -28,7 +28,9 @@ class Project {
 
 	String title
 	String amount
+	String email
 
     static constraints = {
+		email (email: true)
     }
 }

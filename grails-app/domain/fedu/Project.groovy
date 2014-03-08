@@ -5,7 +5,7 @@ class Project {
 	enum FundRaisingReason {
 		/* Fund raising for self */
 		VOCATIONAL_SCHOOL,
-		TUITION,
+		TUITION_FEE,
 		SCHOOL_SUPPLIES,
 		STUDENT_LOAN,
 
@@ -20,15 +20,11 @@ class Project {
 		SCHOOL,
 	}
 
-	/*
-	FundRaisingReason fundRaisingReason
-	int fundRaisingAmount
-	FundRaisingFor fundRaisingFor
-	*/
-
 	String title
 	String amount
 	String email
+	FundRaisingReason fundRaisingReason
+	FundRaisingFor fundRaisingFor
 
     static constraints = {
 		email (email: true)

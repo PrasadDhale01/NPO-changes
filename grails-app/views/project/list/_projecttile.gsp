@@ -1,3 +1,4 @@
+
 <div class="col-item">
     <div class="photo">
         <img src="http://placehold.it/350x260/eee" class="img-responsive" alt="a" />
@@ -19,3 +20,5 @@
         </div>
     </div>
 </div>
+
+

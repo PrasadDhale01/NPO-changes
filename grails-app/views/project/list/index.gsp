@@ -11,7 +11,7 @@
         <g:render template="list/search"></g:render>
 
         <!-- Carousel -->
-		<g:render template="list/projectsgrid" model="['projects': projects]"></g:render>
+		<g:render template="list/projectgridnew" model="['projects': projects]"></g:render>
 	</div>
 </body>
 </html>

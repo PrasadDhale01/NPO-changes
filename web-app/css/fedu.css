@@ -72,11 +72,11 @@ ul.unstyled {
 
 /* About us
 ------------------------- */
-.thumbnail {
-	max-width: 200px;
+#aboutus .thumbnail {
+	/*max-width: 200px;*/
 }
 
-.thumbnail img {
+#aboutus .thumbnail img {
 	max-height: 150px;
 	max-width: 150px;
 }

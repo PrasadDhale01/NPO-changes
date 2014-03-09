@@ -1,7 +1,7 @@
 <div class="container">
     <h4>"YOU MUST BE THE CHANGE YOU WISH TO SEE IN THE WORLD"</h4>
 	<h1>The Crew</h1>
-	<div class="row">
+	<div id="aboutus" class="row">
 	  <div class="col-xs-6 col-md-2">
 	    <div class="thumbnail">
 	      <img src="images/aboutus/chetjain.jpg" alt="...">

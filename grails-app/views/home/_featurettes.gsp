@@ -5,7 +5,7 @@
 	<div class="row featurette">
 		<div class="col-md-8">
 			<h2 class="featurette-heading">CREATE PROJECT. <span class="text-muted">Ask Receive & Achieve.</span></h2>
-			<blockquote class="text-justify">Three quick steps and your project is published on FEDU. Provide your campaign a brief description, decide how much you want to raise and confirm you are you. You can create any project that support education for yourself or other individuals or groups. You can also nominate and recommend project you feel are important and we would create it for your referral. No matter where you are from, you can start right now with no fee or neither do you have to create or ship rewards to your backers. We do it for you.</blockquote>
+			<blockquote class="text-justify">Three quick steps and your project is published on FEDU. Provide your campaign a brief description, decide how much you want to raise and confirm who you are. You can create any project that support education for yourself or other individuals or groups. You can also nominate and recommend project you feel are important and we would create it for your referral. No matter where you are from, you can start right now with no fee or neither do you have to create or ship rewards to your backers. We do it for you.</blockquote>
 		</div>
 		<div class="col-md-4">
 			<img class="featurette-image img-responsive pull-right" src="images/feduboy.png" alt="Create Project">

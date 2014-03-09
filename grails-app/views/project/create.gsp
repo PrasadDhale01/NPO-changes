@@ -40,25 +40,24 @@
                     <h3 class="panel-title">Why</h3>
                 </div>
                 <div class="panel-body">
-		            <div class="form-group">
-		                <label for="amount" class="col-sm-2 control-label">Funds towards</label>
-		                <div class="col-sm-10">
-		                    <g:select class="form-control" name="fundRaisingReason"
-		                              from="${fundRaisingOptions}"
-		                              optionKey="key" optionValue="value"/>
-		                </div>
-		            </div>
-		            <div class="form-group">
-		                <label for="amount" class="col-sm-2 control-label">Funds for</label>
-		                <div class="col-sm-10">
-		                    <g:select class="form-control" name="fundRaisingFor"
-		                              from="${raisingForOptions}"
-		                              optionKey="key" optionValue="value"/>
-		                </div>
-		            </div>
+                    <div class="form-group">
+                        <label for="amount" class="col-sm-2 control-label">Funds towards</label>
+                        <div class="col-sm-10">
+                            <g:select class="form-control" name="fundRaisingReason"
+                                      from="${fundRaisingOptions}"
+                                      optionKey="key" optionValue="value"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount" class="col-sm-2 control-label">Funds for</label>
+                        <div class="col-sm-10">
+                            <g:select class="form-control" name="fundRaisingFor"
+                                      from="${raisingForOptions}"
+                                      optionKey="key" optionValue="value"/>
+                        </div>
+                    </div>
                 </div>
             </div>
-
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">How much & When</h3>
@@ -71,14 +70,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="days" class="col-sm-2 control-label">In how many days?</label>
+                        <label for="days" class="col-sm-2 control-label">In days</label>
                         <div class="col-sm-10">
                             <input class="form-control" name="days" placeholder="Days">
                         </div>
                     </div>
                 </div>
             </div>
-                
+
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">How</h3>

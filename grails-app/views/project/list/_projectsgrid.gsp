@@ -1,4 +1,7 @@
-<% rows = 3 %>
+<%
+    nProjects = ${projects}
+    rows = 3
+%>
 <g:each in="${(1..rows).toList()}" var="row" >
 	<div class="row">
 		<g:each in="${1..4}">

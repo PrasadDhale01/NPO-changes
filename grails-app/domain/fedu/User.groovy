@@ -4,8 +4,14 @@ class User {
 
 	transient springSecurityService
 
+    // We enforce username to be an email
 	String username
 	String password
+    String firstName
+    String lastName
+
+    String confirmCode
+
 	boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
@@ -14,8 +20,11 @@ class User {
 	static transients = ['springSecurityService']
 
 	static constraints = {
-		username blank: false, unique: true
+		username blank: false, unique: true, email: true
 		password blank: false
+        confirmCode nullable: true
+        firstName nullable: true
+        lastName nullable: true
 	}
 
 	static mapping = {

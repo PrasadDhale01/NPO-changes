@@ -17,8 +17,20 @@
 				<li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li><a href="${resource(dir: '/login')}">Login</a></li>
-				<li><a href="${resource(dir: '/registration')}">Register</a></li>
+                <sec:ifNotLoggedIn>
+                    <li><g:link controller="login" action="auth">Login</g:link></li>
+                    <li><a href="${resource(dir: '/registration')}">Register</a></li>
+                </sec:ifNotLoggedIn>
+                <sec:ifLoggedIn>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><sec:username/><b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Profile</a></li>
+                            <li class="divider"></li>
+                            <li><g:link controller="logout">Log out</g:link></li>
+                        </ul>
+                    </li>
+                </sec:ifLoggedIn>
 			</ul>
 		</div>
 	</div>

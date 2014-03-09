@@ -68,6 +68,8 @@
           <root url="jar://$USER_HOME$/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/javax/mail/javax.mail-api/1.5.1/javax.mail-api-1.5.1.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/com/sun/mail/javax.mail/1.5.1/javax.mail-1.5.1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/springframework/security/spring-security-web/3.2.0.RC1/spring-security-web-3.2.0.RC1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/springframework/security/spring-security-core/3.2.0.RC1/spring-security-core-3.2.0.RC1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

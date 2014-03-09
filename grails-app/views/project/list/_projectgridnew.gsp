@@ -1,4 +1,3 @@
-
 <%
     def count = projects.size()
     def cols = 4
@@ -6,15 +5,15 @@
     def index = 0
 %>
 
-<g:each in="${(1..rows).toList()}" var="row" >
-	<div class="row">
-	  <ul class="thumbnails list-unstyled">
-		<g:each in="${1..cols}">
-            <% if (index < count) { %>
+<g:each in="${(1..rows).toList()}" var="row">
+    <div class="row">
+        <ul class="thumbnails list-unstyled">
+            <g:each in="${1..cols}">
+                <% if (index < count) { %>
                     <g:render template="list/projecttilenew" bean="${projects.get(index++)}"></g:render>
-            <% } %>
-		</g:each>
-		</ul>
-	</div>
-	<hr/>
+                <% } %>
+            </g:each>
+        </ul>
+    </div>
+    <hr/>
 </g:each>

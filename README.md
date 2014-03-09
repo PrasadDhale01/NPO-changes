@@ -1,4 +1,4 @@
-<h1>Steps to setup on a Mac:</h1>
+<h2>Steps to setup on a Mac:</h2>
 <ol>
     <li>
         git clone https://github.com/atreya/FEDU.git

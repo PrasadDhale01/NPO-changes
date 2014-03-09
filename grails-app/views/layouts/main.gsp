@@ -13,17 +13,16 @@
 
 
     <!-- Twitter Bootstrap CSS -->
-    
+    <!--
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
-    
+    -->
 
     <!-- Bootswatch themes (http://bootswatch.com/) -->
     <% def theme="journal" %>
-  <!-- 
     <link rel="stylesheet" href="http://bootswatch.com/${theme}/bootstrap.css">
     <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/${theme}/variables.less" />
     <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/${theme}/bootswatch.less" />
- -->
+
     <!-- FEDU CSS -->
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'fedu.css')}">
 

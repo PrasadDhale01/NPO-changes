@@ -21,7 +21,7 @@ class UserService {
             user = new User(username: 'user@fedu.org', password: 'password').save(flush: true, failOnError: true)
         }
 
-        UserRole.create(admin, adminRole, true)
-        UserRole.create(user, userRole, true)
+        UserRole.findOrSaveByUserAndRole(admin, adminRole)
+        UserRole.findOrSaveByUserAndRole(user, userRole)
     }
 }

@@ -101,6 +101,7 @@ environments {
     }
     production {
         grails.logging.jul.usebridge = false
+        grails.dbconsole.enabled = true
         grails.dbconsole.urlRoot = '/secured/dbconsole'
         // TODO: grails.serverURL = "http://www.changeme.com"
     }

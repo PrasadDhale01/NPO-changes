@@ -10,7 +10,7 @@
         <ul class="thumbnails list-unstyled">
             <g:each in="${1..cols}">
                 <% if (index < count) { %>
-                    <g:render template="list/projecttilenew" bean="${projects.get(index++)}"></g:render>
+                    <g:render template="list/tile" bean="${projects.get(index++)}"></g:render>
                 <% } %>
             </g:each>
         </ul>

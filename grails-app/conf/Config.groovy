@@ -74,7 +74,7 @@ grails {
     }
 }
 
- 
+
 grails.converters.encoding = "UTF-8"
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
@@ -97,9 +97,11 @@ grails.hibernate.cache.queries = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+        grails.dbconsole.urlRoot = '/secured/dbconsole'
     }
     production {
         grails.logging.jul.usebridge = false
+        grails.dbconsole.urlRoot = '/secured/dbconsole'
         // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }

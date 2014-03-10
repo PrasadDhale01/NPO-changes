@@ -2,6 +2,8 @@ package fedu
 
 class User {
 
+    static hasMany = [projects: Project]
+
 	transient springSecurityService
 
     // We enforce username to be an email

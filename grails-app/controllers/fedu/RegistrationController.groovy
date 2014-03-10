@@ -5,6 +5,7 @@ import grails.plugin.springsecurity.SpringSecurityUtils
 class RegistrationController {
 
     def mailService
+    def userService
     def springSecurityService
 
     /**
@@ -28,6 +29,8 @@ class RegistrationController {
             if (!user.save(flush: true)) {
                 render(view: 'error', model: [message: 'Problem creating user. Please try again.'])
             } else {
+                UserRole.create(user, userService.userRole())
+
                 mailService.sendMail {
                     to user.username
                     from "info@fedu.org"

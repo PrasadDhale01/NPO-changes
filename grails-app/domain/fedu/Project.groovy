@@ -2,6 +2,8 @@ package fedu
 
 class Project {
 
+    static belongsTo = [user: User]
+
 	enum FundRaisingReason {
 		/* Fund raising for self */
 		VOCATIONAL_SCHOOL,

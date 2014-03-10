@@ -6,6 +6,7 @@ import grails.transaction.Transactional
 class ProjectService {
 
     def bootstrap() {
+        User deepshikha = User.findByUsername('info@deepshikha.org')
         new Project(
                 name: 'Anasuya',
                 email: 'info@deepshikha.org',
@@ -16,7 +17,8 @@ class ProjectService {
                 fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
-                validated: true
+                validated: true,
+                user: deepshikha
         ).save(failOnError: true, flush: true)
         new Project(
                 name: 'Roshanbai',
@@ -28,7 +30,8 @@ class ProjectService {
                 fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
-                validated: true
+                validated: true,
+                user: deepshikha
         ).save(failOnError: true, flush: true)
         new Project(
                 name: 'Vandana',
@@ -40,7 +43,8 @@ class ProjectService {
                 fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
-                validated: true
+                validated: true,
+                user: deepshikha
         ).save(failOnError: true, flush: true)
         new Project(
                 name: 'Pushpa',
@@ -52,7 +56,8 @@ class ProjectService {
                 fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
-                validated: true
+                validated: true,
+                user: deepshikha
         ).save(failOnError: true, flush: true)
         new Project(
                 name: 'Sangita',
@@ -64,7 +69,8 @@ class ProjectService {
                 fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
-                validated: true
+                validated: true,
+                user: deepshikha
         ).save(failOnError: true, flush: true)
         new Project(
                 name: 'Sunanda',
@@ -76,7 +82,8 @@ class ProjectService {
                 fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
-                validated: true
+                validated: true,
+                user: deepshikha
         ).save(failOnError: true, flush: true)
         new Project(
                 name: 'Tarabai',
@@ -88,7 +95,8 @@ class ProjectService {
                 fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
-                validated: true
+                validated: true,
+                user: deepshikha
         ).save(failOnError: true, flush: true)
         new Project(
                 name: 'Asha',
@@ -100,7 +108,8 @@ class ProjectService {
                 fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
-                validated: true
+                validated: true,
+                user: deepshikha
         ).save(failOnError: true, flush: true)
         new Project(
                 name: 'Sunita',
@@ -112,7 +121,8 @@ class ProjectService {
                 fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
-                validated: true
+                validated: true,
+                user: deepshikha
         ).save(failOnError: true, flush: true)
         new Project(
                 name: 'Yeshula',
@@ -124,7 +134,8 @@ class ProjectService {
                 fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
-                validated: true
+                validated: true,
+                user: deepshikha
         ).save(failOnError: true, flush: true)
     }
 }

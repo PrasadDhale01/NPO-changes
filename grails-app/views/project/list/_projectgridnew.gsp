@@ -15,5 +15,4 @@
             </g:each>
         </ul>
     </div>
-    <hr/>
 </g:each>

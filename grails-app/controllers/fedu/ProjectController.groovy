@@ -1,8 +1,10 @@
 package fedu
 
-import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
 class ProjectController {
+
+    def springSecurityService
 
 	def list = {
 		render (view: 'list/index', model: [projects: Project.list()])
@@ -18,7 +20,8 @@ class ProjectController {
 		return [project: project]
 	}
 
-	def create = {
+    @Secured(['ROLE_USER'])
+	def create() {
 		def fundRaisingOptions = [
 			(Project.FundRaisingReason.VOCATIONAL_SCHOOL): "Vocation school",
 			(Project.FundRaisingReason.TUITION_FEE): "Tuition fee",
@@ -39,16 +42,21 @@ class ProjectController {
 		[fundRaisingOptions: fundRaisingOptions, raisingForOptions: raisingForOptions]
 	}
 
-	def publish = {
+    @Secured(['ROLE_USER'])
+    def publish() {
+
+        User currentUser = (User)springSecurityService.getCurrentUser()
+
 		Project project
 
 		try {
-			project = new Project(params).save(failOnError: true)
+			project = new Project(params)
+            project.user = currentUser
 		} catch (Exception e) {
 			project = null
 		}
 
-		if (project) {
+		if (project.save(failOnError: true)) {
 			render (view: 'justcreated', model: [project: project])
 		} else {
 			render (view: 'createerror')

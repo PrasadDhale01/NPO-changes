@@ -34,4 +34,8 @@ class BlogController {
 
         redirect (action: 'manage')
     }
+
+    @Secured(['ROLE_AUTHOR', 'ROLE_ADMIN'])
+    def create() {
+    }
 }

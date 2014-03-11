@@ -5,6 +5,8 @@
 <body>
     <div class="container">
         <h1>Manage blogs</h1>
+        <g:link action="create"><button type="button" class="btn btn-success">Create new blog</button></g:link>
+
         <table class="table">
             <thead>
             <tr>

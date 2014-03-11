@@ -25,6 +25,7 @@ class UrlMappings {
 		/* Blogs */
 		"/blogs"(controller:'blog', action:'list')
         "/blogs/manage"(controller:'blog', action:'manage')
+        "/blogs/create"(controller:'blog', action:'create')
 		"/blogs/$id"(controller:'blog', action:'show')
 
 		/* Project */

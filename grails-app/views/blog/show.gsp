@@ -29,7 +29,8 @@
 			</div>
 		</g:if>
 		<g:else>
-			<p><div class="alert alert-danger">Oh snap! Looks like that blog doesn't exist.</div></p>
+            <h1>Blog not found</h1>
+			<p><div class="alert alert-danger">Oh snap! Looks like that blog's not available.</div></p>
 		</g:else>
 	</div>
 </body>

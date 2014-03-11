@@ -1,6 +1,7 @@
 <html>
 <head>
 <meta name="layout" content="main" />
+<r:require modules="create"/>
 </head>
 <body>
 
@@ -97,7 +98,7 @@
                     </div>
                 </div>
             </div>
-                
+
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Get set, go</h3>

@@ -10,7 +10,7 @@
                 $ curl -s get.gvmtool.net | bash
             </li>
             <li>
-                $ source "/Users/atreya/.gvm/bin/gvm-init.sh"
+                $ source "~/.gvm/bin/gvm-init.sh"
             </li>
         </ul>
     </li>

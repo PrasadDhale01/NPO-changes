@@ -7,6 +7,7 @@ class Blog {
 	String date
 	String content
 	String snippet
+    boolean enabled = true
 
 	static mapping = {
 		content type: 'text'

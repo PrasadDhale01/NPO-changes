@@ -2,14 +2,19 @@ package fedu
 
 import grails.transaction.Transactional
 
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+
 @Transactional
 class BlogService {
 
 	def bootstrap() {
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")
+
 		new Blog(
 				title: 'I FEDU for the Future',
 				author: 'Anina Tweed',
-				date: 'Mar 4',
+				date: dateFormat.parse("03/04/2014"),
 				snippet: 'I took up my position in the back of the tiny, sweating room ready to hear my students, a group of young women from across South and Southeast Asia, read the personal stories they had worked all semester to create.',
 				content: """\
 						<p>I took up my position in the back of the tiny, sweating
@@ -61,7 +66,7 @@ class BlogService {
 		new Blog(
 				title: 'The Tricky Issue of Causation',
 				author: 'FEDU Editorial',
-				date: 'Feb 26',
+				date: dateFormat.parse('02/26/2014'),
 				snippet: 'At FEDU, our focus is on higher education and funding, but those are really just two pieces of the larger education conversation.',
 				content: """\
 							<p>At #FEDU, our focus is on higher education and funding, but those are really
@@ -89,7 +94,7 @@ class BlogService {
 		new Blog(
 				title: 'Day 1 at FEDU',
 				author: 'Andrew Koved',
-				date: 'Feb 24',
+				date: dateFormat.parse('02/24/2014'),
 				snippet: 'My idea of the typical startup is jeans, more laptops than known what to do with, and enough coffee to fill a swimming pool. And sure enough, at my first all-hands meeting at FundEdu, there were jean-wearing, laptop-toting people bounding towards the coffee machines.',
 				content: """\
 							<p>My idea of the typical startup is jeans, more laptops than known what to do with,
@@ -139,7 +144,7 @@ class BlogService {
 		new Blog(
 				title: 'The Power of In-Person',
 				author: 'FEDU Editorial',
-				date: 'Feb 23',
+				date: dateFormat.parse('02/23/2014'),
 				snippet: 'We all live in an online world, attached to the hip to our computers and iPhones. The internet has facilitated communication at an unprecedented level, and we are all better off for this advance.',
 				content: """\
 							<p>We all live in an online world, attached to the hip to our computers and iPhones.
@@ -158,7 +163,7 @@ class BlogService {
 		new Blog(
 				title: 'Thank You\'s',
 				author: 'FEDU Editorial',
-				date: 'Feb 20',
+				date: dateFormat.parse('02/20/2014'),
 				snippet: 'Starting a business is hard. Start a business where you are creating a new way of looking at the world? That is even harder. FundEDU is grateful to all of the people who have helped make our work up to this point possible. The support, the listening, the time; all of it has made a difference.',
 				content: """\
 							<p>Starting a business is hard.  Start a business where you are creating a new

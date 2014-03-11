@@ -4,7 +4,7 @@ class Blog {
 
 	String title
 	String author
-	String date
+	Date date
 	String content
 	String snippet
     boolean enabled = true

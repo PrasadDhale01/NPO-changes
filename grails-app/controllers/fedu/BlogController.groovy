@@ -3,6 +3,8 @@ package fedu
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
+import java.text.SimpleDateFormat
+
 class BlogController {
 
 	def list() {
@@ -37,5 +39,13 @@ class BlogController {
 
     @Secured(['ROLE_AUTHOR', 'ROLE_ADMIN'])
     def create() {
+    }
+
+    @Secured(['ROLE_AUTHOR', 'ROLE_ADMIN'])
+    def publish() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd")
+        params.date = dateFormat.parse(params.date)
+        new Blog(params).save(flush: true, failOnError: true)
+        redirect(action: 'manage')
     }
 }

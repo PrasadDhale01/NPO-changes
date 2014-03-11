@@ -1,3 +1,4 @@
+<%@ page import="java.text.SimpleDateFormat" %>
 <html>
 <head>
 <meta name="layout" content="main" />
@@ -19,11 +20,15 @@
             </thead>
             <tbody>
                 <g:each in="${blogs}" var="blog">
+                    <%
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                        def date = dateFormat.format(blog.date)
+                    %>
                     <tr>
                         <td>${blog.id}</td>
                         <td><g:link action="show" id="${blog.id}">${blog.title}</g:link></td>
                         <td>${blog.author}</td>
-                        <td>${blog.date}</td>
+                        <td>${date}</td>
                         <td>
                             <g:form action="togglestatus" role="form" id="${blog.id}">
                                 <g:if test="${blog.enabled}">

@@ -4,9 +4,11 @@ import grails.transaction.Transactional
 
 @Transactional
 class ProjectService {
+    def userService
 
     def bootstrap() {
-        User deepshikha = User.findByUsername('info@deepshikha.org')
+        User deepshikha = userService.bootstrapDeepshikha()
+
         new Project(
                 name: 'Anasuya',
                 email: 'info@deepshikha.org',

@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta name="layout" content="main" />
-<r:require modules="create"/>
+<r:require modules="createjs"/>
 </head>
 <body>
 

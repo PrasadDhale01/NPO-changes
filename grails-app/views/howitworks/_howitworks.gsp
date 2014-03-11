@@ -1,6 +1,6 @@
 <div class="container">
 	<h1>How it Works</h1>
-    <p class="lead">
+    <p class="lead text-justify">
         Education is one of the most effective ways to confront poverty. FEDU’s mission is to create a global connection between contributors like yourself and those with unequal access, providing them the means to claim an education. We have developed a simple platform to make this possible and fast. As a contributor you will create a new future for struggling individuals and families, AND know the education you’re providing is for life.
     </p>
 	<div>
@@ -34,8 +34,8 @@
             <h3 class="panel-title">HAVE YOU HEARD ABOUT OUR REWARDS?</h3>
         </div>
         <div class="panel-body">
-            <p>On behalf of your beneficiary and FEDU's appreciation of you, we give you the option to claim rewards. FEDU believes people are inherently good and want to help, but they need an avenue through which to create impact; help us spread the word to those people. Whether you choose a wristband or one of our trendy shirts, showcasing FEDU gear creates curiosity, awareness and ultimately a multiplier effect to close the education gap faster.</p>
-            <p>Experiencing the impact of the education you made possible is something to be shared. Students are overwhelmingly thankful for your help, and you will have the gratification of leaving this world a little better than you found it. So be proud of your commendable contribution toward education and start showing off that reward!</p>
+            <p class="text-justify">On behalf of your beneficiary and FEDU's appreciation of you, we give you the option to claim rewards. FEDU believes people are inherently good and want to help, but they need an avenue through which to create impact; help us spread the word to those people. Whether you choose a wristband or one of our trendy shirts, showcasing FEDU gear creates curiosity, awareness and ultimately a multiplier effect to close the education gap faster.</p>
+            <p class="text-justify">Experiencing the impact of the education you made possible is something to be shared. Students are overwhelmingly thankful for your help, and you will have the gratification of leaving this world a little better than you found it. So be proud of your commendable contribution toward education and start showing off that reward!</p>
             <button type="button" class="btn btn-success">REQUEST INVITE</button>
         </div>
     </div>

@@ -2,5 +2,7 @@ package fedu
 
 class HomeController {
 
-    def index() { }
+    def index() {
+        return [projects: Project.list()]
+    }
 }

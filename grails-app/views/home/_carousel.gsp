@@ -11,77 +11,43 @@
             </div>
         </div>
     </div>
+    <%
+        def count = projects.size()
+        def cols = 4
+        def pages = (count / cols) + (count % cols > 0 ? 1 : 0)
+        def index = 0
+    %>
+
     <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
-            <div class="item active">
-                <div class="row">
-                    <g:each in="${1..4}">
-                     <div class="col-sm-3">
-                         <div class="col-item">
-                             <div class="photo">
-                                 <img src="http://placehold.it/350x260/eee" class="img-responsive" alt="a" />
-                             </div>
-                             <div class="info">
-                                 <div class="row">
-                                     <div class="price col-md-6">
-                                         <h5>Beneficiary</h5>
-                                         <h5>$199</h5>
-                                     </div>
-                                     <div class="rating hidden-sm col-md-6">
-                                         <i class="glyphicon glyphicon-star"></i>
-                                         <i class="glyphicon glyphicon-star"></i>
-                                         <i class="glyphicon glyphicon-star"></i>
-                                         <i class="glyphicon glyphicon-star"></i>
-                                         <i class="glyphicon glyphicon-star"></i>
-                                     </div>
-                                 </div>
-                                 <div class="separator clear-left">
-                                     <p class="btn-add"><i class="glyphicon glyphicon-tint"></i><a href="" class="hidden-sm">Fund</a></p>
-                                     <p class="btn-details"><i class="glyphicon glyphicon-user"></i><a href="" class="hidden-sm">Details</a></p>
-                                 </div>
-                                 <div class="clearfix">
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                    </g:each>
-                </div>
-            </div>
-            <div class="item">
-                <div class="row">
-                    <g:each in="${1..4}">
-                        <div class="col-sm-3">
-                            <div class="col-item">
-                                <div class="photo">
-                                    <img src="http://placehold.it/350x260/eee" class="img-responsive" alt="a" />
-                                </div>
-                                <div class="info">
-                                    <div class="row">
-                                        <div class="price col-md-6">
-                                            <h5>Beneficiary</h5>
-                                            <h5>$199</h5>
-                                        </div>
-                                        <div class="rating hidden-sm col-md-6">
-                                            <i class="glyphicon glyphicon-star"></i>
-                                            <i class="glyphicon glyphicon-star"></i>
-                                            <i class="glyphicon glyphicon-star"></i>
-                                            <i class="glyphicon glyphicon-star"></i>
-                                            <i class="glyphicon glyphicon-star"></i>
-                                        </div>
-                                    </div>
-                                    <div class="separator clear-left">
-                                        <p class="btn-add"><i class="glyphicon glyphicon-tint"></i><a href="" class="hidden-sm">Fund</a></p>
-                                        <p class="btn-details"><i class="glyphicon glyphicon-user"></i><a href="" class="hidden-sm">Details</a></p>
-                                    </div>
-                                    <div class="clearfix">
-                                    </div>
-                                </div>
-                            </div>
+            <g:each in="${(1..pages).toList()}" var="row">
+                <g:if test="${row == 1}">
+                    <div class="item active">
+                        <div class="row">
+                            <ul class="thumbnails list-unstyled">
+                                <g:each in="${1..cols}">
+                                    <% if (index < count) { %>
+                                    <g:render template="/layouts/tile" bean="${projects.get(index++)}"></g:render>
+                                    <% } %>
+                                </g:each>
+                            </ul>
                         </div>
-                    </g:each>
-                </div>
-            </div>
+                    </div>
+                </g:if><g:else>
+                    <div class="item">
+                        <div class="row">
+                            <ul class="thumbnails list-unstyled">
+                                <g:each in="${1..cols}">
+                                    <% if (index < count) { %>
+                                    <g:render template="/layouts/tile" bean="${projects.get(index++)}"></g:render>
+                                    <% } %>
+                                </g:each>
+                            </ul>
+                        </div>
+                    </div>
+                </g:else>
+            </g:each>
         </div>
     </div>
 </div>

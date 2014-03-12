@@ -58,43 +58,18 @@ class RegistrationController {
         user.lastName = params.lastName
 
         /* Password change is optional */
-        if (params.password)
-        {
-            String password = params.password
-            String newPassword = params.password_new
-            String newPassword2 = params.password_new_2
-            if (!password || !newPassword || !newPassword2 || newPassword != newPassword2) {
-                flash.message = 'Please enter your current password and a valid new password'
-                render view: 'show', model: [user: user]
-                return
-            }
-
-            if (!passwordEncoder.isPasswordValid(user.password, password, null /*salt*/)) {
-                flash.message = 'Current password is incorrect'
-                render view: 'show', model: [user: user]
-                return
-            }
-
-            if (passwordEncoder.isPasswordValid(user.password, newPassword, null /*salt*/)) {
-                flash.message = 'Please choose a different password from your current one'
-                render view: 'show', model: [user: user]
-                return
-            }
-
-            user.password = newPassword
-            user.passwordExpired = false
-        } else if (params.password_new || params.password_new_2)
-        {
-            flash.message = 'Please enter your current password and then a valid new password'
-            render view: 'show', model: [user: user]
-            return
+        if (params.password) {
+//            String salt = saltSource instanceof NullSaltSource ? null : user.username
+//            user.password = springSecurityService.encodePassword(params.password, salt)
         }
 
         if (user.save(flush: true)) {
-            render(view: 'success', model: [message: 'Your profile has been updated successfully.'])
+            flash.message = "Profile updated successfully"
         } else {
-            render(view: 'error', model: [message: 'Error while updating user. Please try again later.'])
+            flash.message = "Error while updating user. Please try again later"
         }
+
+        render(view: 'show', model: [user: user])
     }
 
     def success() {

@@ -5,7 +5,7 @@
         </div>
 
         <div class="caption">
-            <h4>${it.title}</h4>
+            <h4><g:link controller="project" action="show" id="${it.id}">${it.title}</g:link></h4>
             <p>${it.name}</p>
             <!-- <p><i class="icon icon-map-marker"></i>Place, Country</p> -->
         </div>

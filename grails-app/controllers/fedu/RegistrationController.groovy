@@ -47,24 +47,20 @@ class RegistrationController {
     @Secured(['ROLE_USER','ROLE_ADMIN'])
     def show() {
         User user = springSecurityService.currentUser
-        if (user) {
-            return [user: user]
-        } else {
-            render(view: 'error', model: [message: 'User does not exist. Please log in before continuing.'])
-        }
+
+        return [user: user]
     }
 
     @Secured(['ROLE_USER','ROLE_ADMIN'])
     def update() {
         User user = springSecurityService.currentUser
+        user.firstName = params.firstName
+        user.lastName = params.lastName
 
-        if (user) {
-            user.firstName = params.firstName
-            user.lastName = params.lastName
-            user.save(flush: true)
+        if (user.save(flush: true)) {
             render(view: 'success', model: [message: 'Your profile has been updated successfully.'])
         } else {
-            render(view: 'error', model: [message: 'User does not exist. Please log in before continuing.'])
+            render(view: 'error', model: [message: 'Error while updating user. Please try again later.'])
         }
     }
 

@@ -44,14 +44,14 @@ class RegistrationController {
         }
     }
 
-    @Secured(['ROLE_USER','ROLE_ADMIN'])
+    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
     def show() {
         User user = springSecurityService.currentUser
 
         return [user: user]
     }
 
-    @Secured(['ROLE_USER','ROLE_ADMIN'])
+    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
     def update() {
         User user = springSecurityService.currentUser
         user.firstName = params.firstName

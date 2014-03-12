@@ -16,6 +16,7 @@
     <!-- FEDU CSS -->
     <r:require module="feducss"/>
     <r:require module="lessjs"/>
+    <r:require module="googleanalytics"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

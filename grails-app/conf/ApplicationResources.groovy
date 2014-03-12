@@ -9,11 +9,14 @@ modules = {
     }
     appjs {
         dependsOn 'corejs'
-        resource url: '/js/fedu.js'
+        resource url: 'js/fedu.js'
     }
     createjs {
         dependsOn 'appjs'
-        resource url: '/js/create.js'
+        resource url: 'js/create.js'
+    }
+    googleanalytics {
+        resource url: 'js/ga.js'
     }
 
     /* CSS */

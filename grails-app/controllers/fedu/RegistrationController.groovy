@@ -1,6 +1,7 @@
 package fedu
 
 import grails.plugin.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.annotation.Secured
 
 class RegistrationController {
 
@@ -43,6 +44,7 @@ class RegistrationController {
         }
     }
 
+    @Secured(['ROLE_USER','ROLE_ADMIN'])
     def show() {
         User user = springSecurityService.currentUser
         if (user) {
@@ -52,6 +54,7 @@ class RegistrationController {
         }
     }
 
+    @Secured(['ROLE_USER','ROLE_ADMIN'])
     def update() {
         User user = springSecurityService.currentUser
 

@@ -43,6 +43,28 @@ class RegistrationController {
         }
     }
 
+    def show() {
+        User user = springSecurityService.currentUser
+        if (user) {
+            return [user: user]
+        } else {
+            render(view: 'error', model: [message: 'User does not exist. Please log in before continuing.'])
+        }
+    }
+
+    def update() {
+        User user = springSecurityService.currentUser
+
+        if (user) {
+            user.firstName = params.firstName
+            user.lastName = params.lastName
+            user.save(flush: true)
+            render(view: 'success', model: [message: 'Your profile has been updated successfully.'])
+        } else {
+            render(view: 'error', model: [message: 'User does not exist. Please log in before continuing.'])
+        }
+    }
+
     def success() {
         render(view: 'success',
                 model: [message: 'Your account has been created. Please confirm your email address. Confirmation link has been sent to your account.']);

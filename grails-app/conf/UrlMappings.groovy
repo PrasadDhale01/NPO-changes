@@ -13,6 +13,10 @@ class UrlMappings {
         "/login/$action?"(controller: "login")
         "/logout/$action?"(controller: "logout")
 
+        /* User Profile */
+        "/users/show"(controller:'registration', action:'show')
+        "/users/update"(controller:'registration', action:'update')
+
 		/* About Us */
 		"/aboutus"(view:'/aboutus/index')
 

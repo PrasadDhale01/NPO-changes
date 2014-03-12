@@ -5,25 +5,18 @@
 <body>
 	<div class="container">
 		<g:if test="${project}">
-			<div class="row">
-				<div class="col-sm-8">
-					<h2>
-						<a href="${project.id}">
-							${project.title}
-						</a>
-					</h2>
-				</div>
-				<div class="col-sm-4"></div>
-			</div>
+            <h1>
+                <a href="${project.id}">${project.title}</a>
+            </h1>
+            <h4 class="lead">Beneficiary: ${project.name}</h4>
 			<g:if test="${project.validated == false}">
                 <div class="alert alert-warning">This project is not yet published.</div>
 			</g:if>
 
 		</g:if>
 		<g:else>
-			<p>
+            <h1>Project not found</h1>
 			<div class="alert alert-danger">Oh snap! Looks like that project doesn't exist.</div>
-			</p>
 		</g:else>
 	</div>
 </body>

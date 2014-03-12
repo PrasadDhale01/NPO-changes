@@ -4,8 +4,14 @@
 </head>
 <body>
 <div class="container">
+
     <g:form class="form-signin" controller="registration" action="update" role="form">
         <h2 class="form-signin-heading">User Profile</h2>
+
+        <g:if test='${flash.message}'>
+            <div class="alert alert-danger">${flash.message}</div>
+        </g:if>
+
         <input type="fn" name="firstName" class="form-control" value="${user.firstName}" required autofocus>
         <input type="ln" name="lastName" class="form-control" value="${user.lastName}" required>
         <input type="password" name="password" class="form-control" placeholder="Current Password">

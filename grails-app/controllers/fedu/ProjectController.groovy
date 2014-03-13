@@ -56,10 +56,10 @@ class ProjectController {
 			project = null
 		}
 
-		if (project.save(failOnError: true)) {
-			render (view: 'justcreated', model: [project: project])
-		} else {
-			render (view: 'createerror')
-		}
+        if (project.save()) {
+            render (view: 'justcreated', model: [project: project])
+        } else {
+            render (view: 'createerror', model: [project: project])
+        }
 	}
 }

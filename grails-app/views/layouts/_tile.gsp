@@ -1,11 +1,11 @@
 <li class="col-xs-6 col-md-3">
     <div class="thumbnail" style="padding: 0">
-        <div style="width: 250px; height: 150px; overflow: hidden;">
+        <div style="height: 200px; overflow: hidden;">
             <g:if test="${it.image}">
                 <img alt="${it.title}" style="width: 100%;" src="${createLink(controller: 'project', action: 'thumbnail', id: it.id)}">
             </g:if>
             <g:else>
-                <img alt="300x200" style="width: 100%" src="http://lorempixel.com/250/150/abstract">
+                <img style="width: 100%" src="http://lorempixel.com/300/250/abstract">
             </g:else>
 
         </div>

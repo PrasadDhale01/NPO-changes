@@ -36,7 +36,7 @@
         <div class="panel-body">
             <p class="text-justify">On behalf of your beneficiary and FEDU's appreciation of you, we give you the option to claim rewards. FEDU believes people are inherently good and want to help, but they need an avenue through which to create impact; help us spread the word to those people. Whether you choose a wristband or one of our trendy shirts, showcasing FEDU gear creates curiosity, awareness and ultimately a multiplier effect to close the education gap faster.</p>
             <p class="text-justify">Experiencing the impact of the education you made possible is something to be shared. Students are overwhelmingly thankful for your help, and you will have the gratification of leaving this world a little better than you found it. So be proud of your commendable contribution toward education and start showing off that reward!</p>
-            <button type="button" class="btn btn-success">REQUEST INVITE</button>
+            <g:link controller="registration"><button type="button" class="btn btn-success">REGISTER</button></g:link>
         </div>
     </div>
     <div class="panel panel-default">

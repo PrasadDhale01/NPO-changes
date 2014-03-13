@@ -3,6 +3,7 @@ package fedu
 class Project {
 
     static belongsTo = [user: User]
+    static hasOne = [image: Image]
 
 	enum FundRaisingReason {
 		/* Fund raising for self */
@@ -47,5 +48,6 @@ class Project {
 
     static constraints = {
 		email (email: true)
+        image (nullable: true)
     }
 }

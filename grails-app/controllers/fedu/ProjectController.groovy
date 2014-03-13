@@ -1,8 +1,21 @@
 package fedu
 
 import grails.plugin.springsecurity.annotation.Secured
+import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 class ProjectController {
+    def FORMCONSTANTS = [
+            NAME: 'name',
+            EMAIL: 'email',
+            TELEPHONE: 'telephone',
+            FUNDRAISINGREASON: 'fundRaisingReason',
+            FUNDRAISINGFOR: 'fundRaisingFor',
+            AMOUNT: 'amount',
+            DAYS: 'days',
+            TITLE: 'title',
+            STORY: 'story',
+            THUMBNAIL: 'thumbnail'
+    ]
 
     def springSecurityService
 
@@ -17,7 +30,8 @@ class ProjectController {
 		} else {
 			project = null
 		}
-		return [project: project]
+
+        return [project: project]
 	}
 
     @Secured(['ROLE_USER'])
@@ -39,22 +53,31 @@ class ProjectController {
 			(Project.FundRaisingFor.SCHOOL): "School"
 		]
 
-		[fundRaisingOptions: fundRaisingOptions, raisingForOptions: raisingForOptions]
+
+		[fundRaisingOptions: fundRaisingOptions, raisingForOptions: raisingForOptions, FORMCONSTANTS: FORMCONSTANTS]
 	}
 
+    def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
+
     @Secured(['ROLE_USER'])
-    def publish() {
+    def save() {
+        Image thumbnail
+        Project project
+        User user = springSecurityService.getCurrentUser()
 
-        User currentUser = (User)springSecurityService.getCurrentUser()
+        CommonsMultipartFile thumbnailFile = request.getFile(FORMCONSTANTS.THUMBNAIL)
+        // List of OK mime-types
+        if (!thumbnailFile.isEmpty() && !VALID_IMG_TYPES.contains(thumbnailFile.getContentType())) {
+            flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
+            render (view: 'createerror')
+            return
+        } else {
+            thumbnail = new Image(bytes: thumbnailFile.bytes, contentType: thumbnailFile.getContentType())
+        }
 
-		Project project
-
-		try {
-			project = new Project(params)
-            project.user = currentUser
-		} catch (Exception e) {
-			project = null
-		}
+        project = new Project(params)
+        project.user = user
+        project.image = thumbnail
 
         if (project.save()) {
             render (view: 'justcreated', model: [project: project])

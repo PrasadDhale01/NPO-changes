@@ -8,7 +8,7 @@
 	<div class="container">
 		<h1>Create Project</h1>
 
-        <g:form class="form-horizontal" controller="project" action="publish" role="form">
+        <g:uploadForm class="form-horizontal" controller="project" action="save" role="form">
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -18,19 +18,19 @@
                     <div class="form-group">
                         <label for="name" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="name" placeholder="Name">
+                            <input class="form-control" name="${FORMCONSTANTS.NAME}" placeholder="Name">
                         </div>
                     </div>
    	                <div class="form-group">
 	                    <label for="email" class="col-sm-2 control-label">Email</label>
 	                    <div class="col-sm-10">
-	                        <input type="email" class="form-control" name="email" placeholder="Email">
+	                        <input type="email" class="form-control" name="${FORMCONSTANTS.EMAIL}" placeholder="Email">
 	                    </div>
 	                </div>
                     <div class="form-group">
                         <label for="telephone" class="col-sm-2 control-label">Telephone</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="telephone" placeholder="Telephone">
+                            <input class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Telephone">
                         </div>
                     </div>
 				</div>
@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <label for="amount" class="col-sm-2 control-label">Funds towards</label>
                         <div class="col-sm-10">
-                            <g:select class="form-control" name="fundRaisingReason"
+                            <g:select class="form-control" name="${FORMCONSTANTS.FUNDRAISINGREASON}"
                                       from="${fundRaisingOptions}"
                                       optionKey="key" optionValue="value"/>
                         </div>
@@ -52,7 +52,7 @@
                     <div class="form-group">
                         <label for="amount" class="col-sm-2 control-label">Funds for</label>
                         <div class="col-sm-10">
-                            <g:select class="form-control" name="fundRaisingFor"
+                            <g:select class="form-control" name="${FORMCONSTANTS.FUNDRAISINGFOR}"
                                       from="${raisingForOptions}"
                                       optionKey="key" optionValue="value"/>
                         </div>
@@ -67,13 +67,13 @@
                     <div class="form-group">
                         <label for="amount" class="col-sm-2 control-label">Amount</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="amount" placeholder="Amount">
+                            <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" placeholder="Amount">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="days" class="col-sm-2 control-label">In days</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="days" placeholder="Days">
+                            <input class="form-control" name="${FORMCONSTANTS.DAYS}" placeholder="Days">
                         </div>
                     </div>
                 </div>
@@ -87,13 +87,20 @@
                     <div class="form-group">
                         <label for="title" class="col-sm-2 control-label">Project title</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="title" placeholder="Enter project title">
+                            <input class="form-control" name="${FORMCONSTANTS.TITLE}" placeholder="Enter project title">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="story" class="col-sm-2 control-label">Story</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" name="story" rows="4"></textarea>
+                            <textarea class="form-control" name="${FORMCONSTANTS.STORY}" rows="4"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="thumbnail" class="col-sm-2 control-label">Thumbnail image</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}">
+                            <p class="help-block">Please upload a thumbnail image for project.</p>
                         </div>
                     </div>
                 </div>
@@ -113,7 +120,7 @@
                 </div>
             </div>
 
-		</g:form>
+		</g:uploadForm>
 
 	</div>
 </body>

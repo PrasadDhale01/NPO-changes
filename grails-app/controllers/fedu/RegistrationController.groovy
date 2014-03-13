@@ -1,6 +1,7 @@
 package fedu
 
 import grails.plugin.springsecurity.SpringSecurityUtils
+import grails.plugin.springsecurity.annotation.Secured
 
 class RegistrationController {
 
@@ -41,6 +42,34 @@ class RegistrationController {
                 redirect(action: 'success')
             }
         }
+    }
+
+    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
+    def show() {
+        User user = springSecurityService.currentUser
+
+        return [user: user]
+    }
+
+    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
+    def update() {
+        User user = springSecurityService.currentUser
+        user.firstName = params.firstName
+        user.lastName = params.lastName
+
+        /* Password change is optional */
+        if (params.password) {
+//            String salt = saltSource instanceof NullSaltSource ? null : user.username
+//            user.password = springSecurityService.encodePassword(params.password, salt)
+        }
+
+        if (user.save(flush: true)) {
+            flash.message = "Profile updated successfully"
+        } else {
+            flash.message = "Error while updating user. Please try again later"
+        }
+
+        render(view: 'show', model: [user: user])
     }
 
     def success() {

@@ -25,7 +25,7 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><sec:username/><b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Profile</a></li>
+                            <li><g:link controller="users" action="show">Profile</g:link></li>
                             <li class="divider"></li>
                             <li><g:link controller="logout">Log out</g:link></li>
                         </ul>

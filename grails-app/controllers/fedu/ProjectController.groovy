@@ -23,6 +23,22 @@ class ProjectController {
 		render (view: 'list/index', model: [projects: Project.list()])
 	}
 
+    def thumbnail() {
+        Project project
+        if (params.int('id')) {
+            project = Project.findById(params.id)
+        }
+        if (!project || !project.image) {
+            response.sendError(404)
+            return
+        }
+
+        response.contentType = project.image.contentType
+        response.contentLength = project.image.bytes.size()
+        response.outputStream.write(project.image.bytes)
+        response.outputStream.close()
+    }
+
 	def show() {
 		Project project
 		if (params.int('id')) {

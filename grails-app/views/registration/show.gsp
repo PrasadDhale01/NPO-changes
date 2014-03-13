@@ -12,8 +12,8 @@
             <div class="alert alert-success">${flash.message}</div>
         </g:if>
 
-        <input type="fn" name="firstName" class="form-control" value="${user.firstName}" required autofocus>
-        <input type="ln" name="lastName" class="form-control" value="${user.lastName}" required>
+        <input type="fn" name="firstName" class="form-control" value="${user.firstName}" placeholder="New First name" required autofocus>
+        <input type="ln" name="lastName" class="form-control" value="${user.lastName}" placeholder="New Last name" required>
         <input type="password" name="password" class="form-control" placeholder="New Password (Optional)">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
     </g:form>

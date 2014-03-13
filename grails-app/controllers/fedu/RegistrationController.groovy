@@ -59,8 +59,7 @@ class RegistrationController {
 
         /* Password change is optional */
         if (params.password) {
-//            String salt = saltSource instanceof NullSaltSource ? null : user.username
-//            user.password = springSecurityService.encodePassword(params.password, salt)
+              user.password = params.password
         }
 
         if (user.save(flush: true)) {

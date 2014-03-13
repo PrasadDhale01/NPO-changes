@@ -1,3 +1,12 @@
+<%--
+Expects the parent containers to be like so:
+<div class="row">
+    <ul class="thumbnails list-unstyled">
+        ... /layouts/tile ...
+    </ul>
+</div>
+--%>
+
 <li class="col-xs-6 col-md-3">
     <div class="thumbnail" style="padding: 0">
         <div style="height: 200px; overflow: hidden;">

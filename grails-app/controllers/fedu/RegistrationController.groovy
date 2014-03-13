@@ -44,16 +44,16 @@ class RegistrationController {
         }
     }
 
-    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def show() {
-        User user = springSecurityService.currentUser
+        User user = (User)springSecurityService.currentUser
 
         return [user: user]
     }
 
-    @Secured(['ROLE_USER', 'ROLE_ADMIN'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def update() {
-        User user = springSecurityService.currentUser
+        User user = (User)springSecurityService.currentUser
         user.firstName = params.firstName
         user.lastName = params.lastName
 
@@ -82,7 +82,7 @@ class RegistrationController {
         if (!user) {
             render(view: 'error', model: [message: 'Problem activating account. Please check your activation link.'])
         } else {
-            if (user.enabled == true) {
+            if (user.enabled) {
                 render(view: 'success', model: [message: 'Your account is successfully activated. It seems like you were already activated.'])
 
             } else {

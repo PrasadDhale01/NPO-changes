@@ -20,7 +20,7 @@ Expects the parent containers to be like so:
         </div>
 
         <div class="caption">
-            <h4><g:link controller="project" action="show" id="${it.id}">${it.title}</g:link></h4>
+            <h4><g:link controller="project" action="show" id="${it.id}" title="${it.title}"><div>${it.title}</div></g:link></h4>
             <p>${it.name}</p>
             <!-- <p><i class="icon icon-map-marker"></i>Place, Country</p> -->
         </div>

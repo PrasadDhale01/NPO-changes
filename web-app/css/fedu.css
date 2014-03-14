@@ -60,7 +60,7 @@ ul.unstyled {
 /* Featurettes
 ------------------------- */
 .featurette-divider {
-	margin: 80px 0; /* Space out the Bootstrap <hr> more */
+	margin: 20px 0; /* Space out the Bootstrap <hr> more */
 }
 
 /* Thin out the marketing headings */
@@ -232,6 +232,14 @@ ul.unstyled {
 .no-top-margin {
 	margin-top: 0px;
 }
+
+.caption div{
+	white-space: nowrap;
+	width: inherit;
+	overflow: hidden;
+	text-overflow: ellipsis; 
+	min-height: 28px; 
+} 
 
 /* Blog
 ------------------------- */

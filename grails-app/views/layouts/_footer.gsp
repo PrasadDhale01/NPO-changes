@@ -3,11 +3,11 @@
     <hr/>
     <div class="container">
         <div class="row">
-            <div class="col-xs-6 col-sm-4">
+            <div class="col-xs-12 col-sm-4">
                 <h6>Copyright &copy; 2014 FEDU</h6>
             </div>
 
-            <div class="col-xs-6 col-sm-2">
+            <div class="col-xs-4 col-sm-2">
                 <h6>Company</h6>
                 <ul class="unstyled">
                     <li><a href="${resource(dir: '/aboutus')}">Know Us</a></li>
@@ -15,7 +15,7 @@
                 </ul>
             </div>
 
-            <div class="col-xs-6 col-sm-2">
+            <div class="col-xs-4 col-sm-2">
                 <h6>FEDU</h6>
                 <ul class="unstyled">
                     <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
@@ -23,7 +23,7 @@
                 </ul>
             </div>
 
-            <div class="col-xs-6 col-sm-2">
+            <div class="col-xs-4 col-sm-2">
                 <h6>Follow Us</h6>
                 <ul class="unstyled">
                     <li><a href="http://facebook.com/fundedu">Facebook</a></li>
@@ -34,7 +34,7 @@
                 </ul>
             </div>
 
-            <div class="col-xs-6 col-sm-2">
+            <div class="col-xs-4 col-sm-2">
                 <h6>Coded with <span class="glyphicon glyphicon-heart"></span> by Chai</h6>
             </div>
         </div>

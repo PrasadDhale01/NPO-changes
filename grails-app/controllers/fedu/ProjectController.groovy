@@ -69,8 +69,10 @@ class ProjectController {
 			(Project.FundRaisingFor.SCHOOL): "School"
 		]
 
-
-		[fundRaisingOptions: fundRaisingOptions, raisingForOptions: raisingForOptions, FORMCONSTANTS: FORMCONSTANTS]
+        render (view: 'create/index', model: [
+                fundRaisingOptions: fundRaisingOptions,
+                raisingForOptions: raisingForOptions,
+                FORMCONSTANTS: FORMCONSTANTS])
 	}
 
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
@@ -85,7 +87,7 @@ class ProjectController {
         // List of OK mime-types
         if (!thumbnailFile.isEmpty() && !VALID_IMG_TYPES.contains(thumbnailFile.getContentType())) {
             flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
-            render (view: 'createerror')
+            render (view: 'create/createerror')
             return
         } else {
             thumbnail = new Image(bytes: thumbnailFile.bytes, contentType: thumbnailFile.getContentType())
@@ -96,9 +98,9 @@ class ProjectController {
         project.image = thumbnail
 
         if (project.save()) {
-            render (view: 'justcreated', model: [project: project])
+            render (view: 'create/justcreated', model: [project: project])
         } else {
-            render (view: 'createerror', model: [project: project])
+            render (view: 'create/createerror', model: [project: project])
         }
 	}
 }

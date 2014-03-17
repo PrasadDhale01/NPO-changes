@@ -233,13 +233,24 @@ ul.unstyled {
 	margin-top: 0px;
 }
 
-.caption div{
+.caption div {
 	white-space: nowrap;
 	width: inherit;
 	overflow: hidden;
-	text-overflow: ellipsis; 
-	min-height: 28px; 
-} 
+	text-overflow: ellipsis;
+	min-height: 28px;
+}
+
+/* Override bootstrap */
+.progress {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+/* Override bootstrap */
+.thumbnail {
+    border-radius: 0;
+}
 
 /* Blog
 ------------------------- */

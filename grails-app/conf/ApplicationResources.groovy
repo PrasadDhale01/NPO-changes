@@ -21,6 +21,16 @@ modules = {
 
     /* CSS */
     feducss {
+        dependsOn 'bootswatchcss'
         resource url: 'css/fedu.css'
+    }
+    bootstrapcss {
+        resource url: 'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css'
+    }
+    bootswatchcss {
+        dependsOn 'lessjs'
+        resource url: 'http://bootswatch.com/journal/bootstrap.css'
+        resource url: 'http://bootswatch.com/journal/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
+        resource url: 'http://bootswatch.com/journal/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
 }

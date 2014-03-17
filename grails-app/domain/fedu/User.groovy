@@ -2,7 +2,7 @@ package fedu
 
 class User {
 
-    static hasMany = [projects: Project]
+    static hasMany = [projects: Project, contributions: Contribution]
 
 	transient springSecurityService
 

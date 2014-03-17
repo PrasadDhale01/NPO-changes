@@ -4,6 +4,7 @@ class Project {
 
     static belongsTo = [user: User]
     static hasOne = [image: Image]
+    static hasMany = [contributions: Contribution]
 
 	enum FundRaisingReason {
 		/* Fund raising for self */
@@ -27,14 +28,16 @@ class Project {
 	String name
 	String email
 	String telephone
+    Date created
 
 	/* Why */
 	FundRaisingReason fundRaisingReason
 	FundRaisingFor fundRaisingFor
 
 	/* How much & when */
-	int amount
+	double amount
 	int days
+    List contributions
 
 	/* How */
 	String title

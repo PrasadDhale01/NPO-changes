@@ -74,12 +74,13 @@ class ProjectController {
             (Project.Category.AGRICULTURE): "Agriculture",
             (Project.Category.TECHNOLOGY): "Technology",
             (Project.Category.ENTREPRENEURSHIP): "Entrepreneurship",
-            (Project.Category.PRIMARY_EDUCATION): "Primary Education",
-            (Project.Category.WOMEN_EMPOWERMENT): "Women Empowerment",
-            (Project.Category.COLLEGE_ACCESS): "College Access",
             (Project.Category.SCIENCE): "Science",
-            (Project.Category.ARTS_CULTURE): "Arts & Culture",
+            (Project.Category.LITERACY_LANGUAGE): "Literacy & Language",
             (Project.Category.SPORTS): "Sports",
+            (Project.Category.ARTS_CULTURE): "Arts & Culture",
+            (Project.Category.PRIMARY_EDUCATION): "Primary Education",
+            (Project.Category.COLLEGE_ACCESS): "College Access",
+            (Project.Category.WOMEN_EMPOWERMENT): "Women Empowerment",
             (Project.Category.OTHER): "Other"
         ]
 

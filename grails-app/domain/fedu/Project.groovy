@@ -34,6 +34,7 @@ class Project {
         SCIENCE,
         ARTS_CULTURE,
         SPORTS,
+        LITERACY_LANGUAGE,
         OTHER
     }
 

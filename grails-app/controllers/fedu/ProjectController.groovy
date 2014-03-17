@@ -12,6 +12,7 @@ class ProjectController {
             TELEPHONE: 'telephone',
             FUNDRAISINGREASON: 'fundRaisingReason',
             FUNDRAISINGFOR: 'fundRaisingFor',
+            CATEGORY: 'category',
             AMOUNT: 'amount',
             DAYS: 'days',
             TITLE: 'title',
@@ -69,9 +70,23 @@ class ProjectController {
 			(Project.FundRaisingFor.SCHOOL): "School"
 		]
 
+        def categoryOptions = [
+            (Project.Category.AGRICULTURE): "Agriculture",
+            (Project.Category.TECHNOLOGY): "Technology",
+            (Project.Category.ENTREPRENEURSHIP): "Entrepreneurship",
+            (Project.Category.PRIMARY_EDUCATION): "Primary Education",
+            (Project.Category.WOMEN_EMPOWERMENT): "Women Empowerment",
+            (Project.Category.COLLEGE_ACCESS): "College Access",
+            (Project.Category.SCIENCE): "Science",
+            (Project.Category.ARTS_CULTURE): "Arts & Culture",
+            (Project.Category.SPORTS): "Sports",
+            (Project.Category.OTHER): "Other"
+        ]
+
         render (view: 'create/index', model: [
                 fundRaisingOptions: fundRaisingOptions,
                 raisingForOptions: raisingForOptions,
+                categoryOptions: categoryOptions,
                 FORMCONSTANTS: FORMCONSTANTS])
 	}
 

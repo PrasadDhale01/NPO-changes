@@ -24,6 +24,19 @@ class Project {
 		SCHOOL,
 	}
 
+    enum Category {
+        AGRICULTURE,
+        TECHNOLOGY,
+        ENTREPRENEURSHIP,
+        PRIMARY_EDUCATION,
+        WOMEN_EMPOWERMENT,
+        COLLEGE_ACCESS,
+        SCIENCE,
+        ARTS_CULTURE,
+        SPORTS,
+        OTHER
+    }
+
 	/* Who */
 	String name
 	String email
@@ -33,6 +46,7 @@ class Project {
 	/* Why */
 	FundRaisingReason fundRaisingReason
 	FundRaisingFor fundRaisingFor
+    Category category
 
 	/* How much & when */
 	double amount

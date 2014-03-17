@@ -4,6 +4,8 @@ import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 class ProjectController {
+    def springSecurityService
+
     def FORMCONSTANTS = [
             NAME: 'name',
             EMAIL: 'email',
@@ -16,8 +18,6 @@ class ProjectController {
             STORY: 'story',
             THUMBNAIL: 'thumbnail'
     ]
-
-    def springSecurityService
 
 	def list = {
 		render (view: 'list/index', model: [projects: Project.list()])
@@ -96,6 +96,7 @@ class ProjectController {
         project = new Project(params)
         project.user = user
         project.image = thumbnail
+        project.created = new Date()
 
         if (project.save()) {
             render (view: 'create/justcreated', model: [project: project])

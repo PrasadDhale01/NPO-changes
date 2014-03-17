@@ -1,4 +1,5 @@
 import fedu.Blog
+import fedu.Contribution
 import fedu.Project
 
 class BootStrap {

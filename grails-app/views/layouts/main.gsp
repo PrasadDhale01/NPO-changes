@@ -15,8 +15,6 @@
 
     <!-- FEDU CSS -->
     <r:require module="feducss"/>
-    <r:require module="lessjs"/>
-    <r:require module="googleanalytics"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,12 +26,6 @@
     <g:layoutHead />
     <r:layoutResources />
 
-    <!-- Bootswatch themes (http://bootswatch.com/) -->
-    <% def theme="journal" %>
-    <link rel="stylesheet" href="http://bootswatch.com/${theme}/bootstrap.css">
-    <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/${theme}/variables.less" />
-    <link rel="stylesheet/less" type="text/css" href="http://bootswatch.com/${theme}/bootswatch.less" />
-
 </head>
 <body>
     <g:render template="/layouts/header"/>
@@ -42,6 +34,7 @@
 
     <!-- Include all javascript assets -->
     <r:require modules="appjs"/>
+    <r:require module="googleanalytics"/>
 
     <r:layoutResources />
 </body>

@@ -25,7 +25,7 @@ class ContributionService {
         return percentage
     }
 
-    def getFundingCompletedDate(Project project) {
+    def getFundingAchievedDate(Project project) {
         Contribution contribution = project.contributions.last()
         return contribution.date
     }

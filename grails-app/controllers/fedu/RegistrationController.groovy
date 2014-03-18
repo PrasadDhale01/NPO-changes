@@ -95,4 +95,64 @@ class RegistrationController {
             }
         }
     }
+
+    def edit_reset() {
+        render(view: 'edit_reset_email')
+    }
+
+    def send_reset_email() {
+        User user = User.findByUsername(params.username)
+
+        if (!user) {
+            // TBD: We might not want to give any hint on existing users
+            render(view: 'error', model: [message: 'A user with that email does not exist. Please use a registered email.'])
+        } else {
+            user.resetCode = UUID.randomUUID().toString()
+            user.save(flush: true)
+            mailService.sendMail {
+                to params.username
+                from "info@fedu.org"
+                subject "FEDU - Reset Password"
+                html g.render(template: 'resetmailtemplate', model: [code: user.resetCode])
+            }
+
+            render(view: 'success',
+                    model: [message: 'An email was sent to '+ params.username +' describing how to reset your password.']);
+        }
+    }
+
+    def confirm_reset(String id) {
+        User user = User.findByResetCode(id)
+
+        if (!user) {
+            render(view: 'error', model: [message: 'Problem resetting password. Please check your reset link.'])
+        } else {
+            render(view: 'edit_password_reset', model: [code: id])
+        }
+    }
+
+    def reset_password(String id) {
+        User user = User.findByResetCode(id)
+
+        if (!user) {
+            render(view: 'error', model: [message: 'Error resetting password.'])
+        } else {
+            String newPassword = params.new_password
+            String newPassword2 = params.new_password_2
+            if (!newPassword || !newPassword2 || newPassword != newPassword2) {
+                flash.message = 'Passwords do not match! Please enter a valid password.'
+                render view: 'edit_password_reset', model: [code: user.resetCode]
+                return
+            } else {
+                user.password = params.new_password
+                user.resetCode = UUID.randomUUID().toString() // Scramble reset code, to avoid re-use
+            }
+
+            if (user.save(flush: true)) {
+                render(view: 'success', model: [message: 'Password updated successfully. To continue, please login with your new password.'])
+            } else {
+                render(view: 'error', model: [message: 'Error while updating user password. Please try again later.'])
+            }
+        }
+    }
 }

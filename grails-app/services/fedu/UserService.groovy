@@ -4,9 +4,15 @@ import grails.transaction.Transactional
 
 class UserService {
 
+    def springSecurityService
+
     def ROLE_ADMIN = 'ROLE_ADMIN'
     def ROLE_USER = 'ROLE_USER'
     def ROLE_AUTHOR = 'ROLE_AUTHOR'
+
+    def getCurrentUser() {
+        return springSecurityService.getCurrentUser()
+    }
 
     def adminRole() {
         return Role.findByAuthority(ROLE_ADMIN)

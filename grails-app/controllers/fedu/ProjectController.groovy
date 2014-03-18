@@ -1,10 +1,11 @@
 package fedu
 
+import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 class ProjectController {
-    def springSecurityService
+    def userService
 
     def FORMCONSTANTS = [
         NAME: 'name',
@@ -53,6 +54,25 @@ class ProjectController {
 	}
 
     @Secured(['ROLE_USER'])
+    def savecomment() {
+        Project project
+        if (params.int('id')) {
+            project = Project.findById(params.id)
+            if (project && params.comment) {
+                new ProjectComment(
+                    comment: params.comment,
+                    user: userService.getCurrentUser(),
+                    project: project,
+                    date: new Date()).save(flush: true, failOnError: true)
+            }
+        } else {
+            flash.commentmessage = "Something went wrong saving comment. Please try again later."
+        }
+
+        redirect (action: 'show', id: params.id)
+    }
+
+    @Secured(['ROLE_USER'])
 	def create() {
 		def fundRaisingOptions = [
 			(Project.FundRaisingReason.VOCATIONAL_SCHOOL): "Vocation school",
@@ -98,7 +118,7 @@ class ProjectController {
     def save() {
         Image thumbnail
         Project project
-        User user = springSecurityService.getCurrentUser()
+        User user = userService.getCurrentUser()
 
         CommonsMultipartFile thumbnailFile = request.getFile(FORMCONSTANTS.THUMBNAIL)
         // List of OK mime-types

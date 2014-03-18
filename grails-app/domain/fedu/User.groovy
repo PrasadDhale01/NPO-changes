@@ -13,6 +13,7 @@ class User {
     String lastName
 
     String confirmCode
+    String resetCode
 
 	boolean enabled = true
 	boolean accountExpired
@@ -25,6 +26,7 @@ class User {
 		username blank: false, unique: true, email: true
 		password blank: false
         confirmCode nullable: true
+        resetCode nullable: true
         firstName nullable: true
         lastName nullable: true
 	}

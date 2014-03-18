@@ -29,7 +29,9 @@
 </head>
 <body>
     <g:render template="/layouts/header"/>
-	<g:layoutBody />
+    <div class="feducontent">
+        <g:layoutBody />
+    </div>
     <g:render template="/layouts/footer"/>
 
     <!-- Include all javascript assets -->

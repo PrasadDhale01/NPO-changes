@@ -12,7 +12,7 @@
 					</g:link>
 				</h2>
 				<div class="alert alert-success">Awesome. You have successfully created the project.</div>
-				<div class="alert alert-warning">This project is not yet published.</div>
+				<!-- <div class="alert alert-warning">This project is not yet published.</div> -->
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading">

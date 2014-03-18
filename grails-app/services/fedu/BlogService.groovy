@@ -5,9 +5,9 @@ import grails.transaction.Transactional
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
-@Transactional
 class BlogService {
 
+    @Transactional
 	def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")
 

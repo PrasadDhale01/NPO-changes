@@ -2,7 +2,6 @@ package fedu
 
 import grails.transaction.Transactional
 
-@Transactional
 class ContributionService {
 
     def getTotalContributionForProject(Project project) {

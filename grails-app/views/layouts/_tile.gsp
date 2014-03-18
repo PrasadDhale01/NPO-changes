@@ -11,6 +11,10 @@ Expects the parent containers to be like so:
 <g:set var="projectService" bean="projectService"/>
 <%
     def percentage = contributionService.getPercentageContributionForProject(project)
+    def achievedDate
+    if (percentage == 100) {
+        achievedDate = contributionService.getFundingAchievedDate(project)
+    }
     def endDate = projectService.getProjectEndDate(project)
     boolean ended = projectService.isProjectEnded(project)
 
@@ -36,12 +40,17 @@ Expects the parent containers to be like so:
 
         <div class="modal-footer" style="text-align: left; margin-top: 0;">
             <div class="row">
-                <div class="col-md-6"><b>${percentage}%</b><br/><small>FUNDED</small></div>
+                <div class="col-md-6">GOAL<br/><b>$${project.amount}</b></div>
                 <g:if test="${ended}">
-                    <div class="col-md-6"><b>ENDED</b><br><small>${dateFormat.format(endDate.getTime())}</small></div>
+                    <g:if test="${percentage == 100}">
+                        <div class="col-md-6">ACHIEVED<br><b>${dateFormat.format(achievedDate.getTime())}</b></div>
+                    </g:if>
+                    <g:else>
+                        <div class="col-md-6">ENDED<br><b>${dateFormat.format(endDate.getTime())}</b></div>
+                    </g:else>
                 </g:if>
                 <g:else>
-                    <div class="col-md-6"><b>ENDING</b><br><small>${dateFormat.format(endDate.getTime())}</small></div>
+                    <div class="col-md-6">ENDING<br><b>${dateFormat.format(endDate.getTime())}</b></div>
                 </g:else>
             </div>
         </div>

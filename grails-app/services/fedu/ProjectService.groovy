@@ -56,7 +56,7 @@ class ProjectService {
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
-                date: dateFormat.parse("01/26/2014"),
+                date: dateFormat.parse("01/16/2014"),
                 user: sampleContributor
         )).save(failOnError: true)
 
@@ -76,7 +76,7 @@ class ProjectService {
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
-                date: dateFormat.parse("01/26/2014"),
+                date: dateFormat.parse("01/23/2014"),
                 user: sampleContributor
         )).save(failOnError: true)
 
@@ -96,7 +96,7 @@ class ProjectService {
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
-                date: dateFormat.parse("01/26/2014"),
+                date: dateFormat.parse("01/21/2014"),
                 user: sampleContributor
         )).save(failOnError: true)
 
@@ -136,7 +136,7 @@ class ProjectService {
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
-                date: dateFormat.parse("01/26/2014"),
+                date: dateFormat.parse("01/18/2014"),
                 user: sampleContributor
         )).save(failOnError: true)
 
@@ -156,7 +156,7 @@ class ProjectService {
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
-                date: dateFormat.parse("01/26/2014"),
+                date: dateFormat.parse("01/24/2014"),
                 user: sampleContributor
         )).save(failOnError: true)
 
@@ -176,7 +176,7 @@ class ProjectService {
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
-                date: dateFormat.parse("01/26/2014"),
+                date: dateFormat.parse("01/29/2014"),
                 user: sampleContributor
         )).save(failOnError: true)
 
@@ -196,7 +196,7 @@ class ProjectService {
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
-                date: dateFormat.parse("01/26/2014"),
+                date: dateFormat.parse("01/27/2014"),
                 user: sampleContributor
         )).save(failOnError: true)
 
@@ -216,7 +216,7 @@ class ProjectService {
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
-                date: dateFormat.parse("01/26/2014"),
+                date: dateFormat.parse("01/22/2014"),
                 user: sampleContributor
         )).save(failOnError: true)
 
@@ -236,7 +236,7 @@ class ProjectService {
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
-                date: dateFormat.parse("01/26/2014"),
+                date: dateFormat.parse("01/20/2014"),
                 user: sampleContributor
         )).save(failOnError: true)
     }

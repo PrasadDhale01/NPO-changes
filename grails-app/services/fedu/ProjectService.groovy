@@ -53,6 +53,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
+				imageUrl: 'images/projects/Deepshikha/Anusuya.png',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -73,6 +74,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
+				imageUrl: 'images/projects/Deepshikha/Roshanbai.png',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -93,6 +95,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
+				imageUrl: 'images/projects/Deepshikha/Vandana.png',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -113,6 +116,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
+				imageUrl: 'images/projects/Deepshikha/Pushpa.png',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -133,6 +137,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
+				imageUrl: 'images/projects/Deepshikha/Sangita.png',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -153,6 +158,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
+				imageUrl: 'images/projects/Deepshikha/Sunanda.png',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -173,6 +179,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
+				imageUrl: 'images/projects/Deepshikha/Tarabai.png',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -193,6 +200,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
+				imageUrl: 'images/projects/Deepshikha/Asha.png',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -213,6 +221,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
+				imageUrl: 'images/projects/Deepshikha/Sunita.png',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -233,6 +242,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
+				imageUrl: 'images/projects/Deepshikha/Yeshula.png',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',

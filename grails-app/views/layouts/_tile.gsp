@@ -8,26 +8,19 @@ Expects the parent containers to be like so:
 --%>
 <%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="contributionService" bean="contributionService"/>
+<g:set var="projectService" bean="projectService"/>
 <%
-    def percentage = contributionService.getPercentageContributionForProject(it)
-
-    def startDate = Calendar.instance
-    startDate.setTime(it.created)
-
-    def endDate = Calendar.instance
-    endDate.setTime(it.created)
-    endDate.add Calendar.DAY_OF_YEAR, it.days
-
-    def today = Calendar.instance
-    boolean ended = endDate.compareTo(today) < 0 ? true : false
+    def percentage = contributionService.getPercentageContributionForProject(project)
+    def endDate = projectService.getProjectEndDate(project)
+    boolean ended = projectService.isProjectEnded(project)
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 <li class="col-xs-6 col-md-3">
     <div class="thumbnail" style="padding: 0">
         <div style="height: 200px; overflow: hidden;">
-            <g:if test="${it.image}">
-                <img alt="${it.title}" style="width: 100%;" src="${createLink(controller: 'project', action: 'thumbnail', id: it.id)}">
+            <g:if test="${project.image}">
+                <img alt="${project.title}" style="width: 100%;" src="${createLink(controller: 'project', action: 'thumbnail', id: project.id)}">
             </g:if>
             <g:else>
                 <img style="width: 100%" src="http://lorempixel.com/300/250/abstract">
@@ -36,8 +29,8 @@ Expects the parent containers to be like so:
         </div>
 
         <div class="caption">
-            <h4><g:link controller="project" action="show" id="${it.id}" title="${it.title}"><div>${it.title}</div></g:link></h4>
-            <p>${it.name}</p>
+            <h4><g:link controller="project" action="show" id="${project.id}" title="${project.title}"><div>${project.title}</div></g:link></h4>
+            <p>${project.name}</p>
             <!-- <p><i class="icon icon-map-marker"></i>Place, Country</p> -->
         </div>
 

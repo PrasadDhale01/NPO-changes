@@ -5,10 +5,35 @@ import grails.transaction.Transactional
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
-@Transactional
 class ProjectService {
     def userService
 
+    def isProjectEnded(Project project) {
+        def startDate = getProjectStartDate(project)
+        def endDate = getProjectEndDate(project)
+
+        def today = Calendar.instance
+        boolean ended = endDate.compareTo(today) < 0 ? true : false
+
+        return ended
+    }
+
+    def getProjectStartDate(Project project) {
+        def startDate = Calendar.instance
+        startDate.setTime(project.created)
+
+        return startDate
+    }
+
+    def getProjectEndDate(Project project) {
+        def endDate = Calendar.instance
+        endDate.setTime(project.created)
+        endDate.add Calendar.DAY_OF_YEAR, project.days
+
+        return endDate
+    }
+
+    @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")
 

@@ -2,7 +2,6 @@ package fedu
 
 import grails.transaction.Transactional
 
-@Transactional
 class UserService {
 
     def ROLE_ADMIN = 'ROLE_ADMIN'
@@ -21,6 +20,7 @@ class UserService {
         return Role.findByAuthority(ROLE_AUTHOR)
     }
 
+    @Transactional
     def bootstrap() {
         def adminRole = Role.findOrSaveByAuthority(ROLE_ADMIN)
         def userRole = Role.findOrSaveByAuthority(ROLE_USER)
@@ -44,6 +44,7 @@ class UserService {
         UserRole.findOrSaveByUserAndRole(author, authorRole)
     }
 
+    @Transactional
     def bootstrapDeepshikha() {
         def deepshikha = User.findByUsername('info@deepshikha.org')
         if (!deepshikha) {

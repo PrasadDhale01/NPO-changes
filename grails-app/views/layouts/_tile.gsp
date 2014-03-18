@@ -23,13 +23,15 @@ Expects the parent containers to be like so:
 <li class="col-xs-6 col-md-3">
     <div class="thumbnail" style="padding: 0">
         <div style="height: 200px; overflow: hidden;">
-            <g:if test="${project.image}">
-                <img alt="${project.title}" style="width: 100%;" src="${createLink(controller: 'project', action: 'thumbnail', id: project.id)}">
+            <g:if test="${project.imageUrl}">
+                <img alt="${project.title}" style="width: 100%;" src="${project.imageUrl}">
             </g:if>
+            <g:elseif test="${project.image}">
+                <img alt="${project.title}" style="width: 100%;" src="${createLink(controller: 'project', action: 'thumbnail', id: project.id)}">
+            </g:elseif>
             <g:else>
                 <img style="width: 100%" src="http://lorempixel.com/300/250/abstract">
             </g:else>
-
         </div>
 
         <div class="caption">

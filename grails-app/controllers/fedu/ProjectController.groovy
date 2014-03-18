@@ -7,17 +7,18 @@ class ProjectController {
     def springSecurityService
 
     def FORMCONSTANTS = [
-            NAME: 'name',
-            EMAIL: 'email',
-            TELEPHONE: 'telephone',
-            FUNDRAISINGREASON: 'fundRaisingReason',
-            FUNDRAISINGFOR: 'fundRaisingFor',
-            CATEGORY: 'category',
-            AMOUNT: 'amount',
-            DAYS: 'days',
-            TITLE: 'title',
-            STORY: 'story',
-            THUMBNAIL: 'thumbnail'
+        NAME: 'name',
+        EMAIL: 'email',
+        TELEPHONE: 'telephone',
+        FUNDRAISINGREASON: 'fundRaisingReason',
+        FUNDRAISINGFOR: 'fundRaisingFor',
+        CATEGORY: 'category',
+        AMOUNT: 'amount',
+        DAYS: 'days',
+        TITLE: 'title',
+        STORY: 'story',
+        THUMBNAIL: 'thumbnail',
+        IMAGEURL: 'imageUrl'
     ]
 
 	def list = {

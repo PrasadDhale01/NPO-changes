@@ -106,9 +106,13 @@
                     </div>
                     <div class="form-group">
                         <label for="${FORMCONSTANTS.THUMBNAIL}" class="col-sm-2 control-label">Thumbnail image</label>
-                        <div class="col-sm-10">
+                        <div class="col-sm-4">
                             <input type="file" name="${FORMCONSTANTS.THUMBNAIL}">
                             <p class="help-block">Please upload a thumbnail image for project.</p>
+                        </div>
+                        <label for="${FORMCONSTANTS.IMAGEURL}" class="col-sm-2 control-label">or, Image URL</label>
+                        <div class="col-sm-4">
+                            <input class="form-control" name="${FORMCONSTANTS.IMAGEURL}" placeholder="Image URL">
                         </div>
                     </div>
                 </div>

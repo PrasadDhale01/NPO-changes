@@ -57,6 +57,7 @@ class Project {
 	/* How */
 	String title
 	String story
+    String imageUrl
 
 	boolean validated = false
 
@@ -67,5 +68,6 @@ class Project {
     static constraints = {
 		email (email: true)
         image (nullable: true)
+        imageUrl (nullable: true)
     }
 }

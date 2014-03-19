@@ -138,6 +138,12 @@ ul.unstyled {
 	border-top-right-radius: 0;
 }
 
+.form-signin input[type="reset_email"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
 /* Carousel
 ------------------------- */
 @import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);

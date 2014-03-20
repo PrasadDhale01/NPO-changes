@@ -7,8 +7,13 @@ import java.text.SimpleDateFormat
 
 class ProjectService {
     def userService
+    def rewardService
 
     def isProjectEnded(Project project) {
+        if (!project) {
+            return null
+        }
+
         def startDate = getProjectStartDate(project)
         def endDate = getProjectEndDate(project)
 
@@ -19,6 +24,10 @@ class ProjectService {
     }
 
     def getProjectStartDate(Project project) {
+        if (!project) {
+            return null
+        }
+
         def startDate = Calendar.instance
         startDate.setTime(project.created)
 
@@ -26,6 +35,10 @@ class ProjectService {
     }
 
     def getProjectEndDate(Project project) {
+        if (!project) {
+            return null
+        }
+
         def endDate = Calendar.instance
         endDate.setTime(project.created)
         endDate.add Calendar.DAY_OF_YEAR, project.days
@@ -59,7 +72,19 @@ class ProjectService {
                 amount: '100.0',
                 date: dateFormat.parse("01/16/2014"),
                 user: sampleContributor
-        )).save(failOnError: true)
+        )).addToRewards(
+                Reward.findById(1)
+        ).addToRewards(
+                Reward.findById(2)
+        ).addToRewards(
+                Reward.findById(3)
+        ).addToRewards(
+                Reward.findById(4)
+        ).addToRewards(
+                Reward.findById(5)
+        ).addToRewards(
+                Reward.findById(6)
+        ).save(failOnError: true)
 
         new Project(
                 name: 'Roshanbai',
@@ -80,7 +105,19 @@ class ProjectService {
                 amount: '100.0',
                 date: dateFormat.parse("01/23/2014"),
                 user: sampleContributor
-        )).save(failOnError: true)
+        )).addToRewards(
+                Reward.findById(1)
+        ).addToRewards(
+                Reward.findById(3)
+        ).addToRewards(
+                Reward.findById(5)
+        ).addToRewards(
+                Reward.findById(7)
+        ).addToRewards(
+                Reward.findById(9)
+        ).addToRewards(
+                Reward.findById(4)
+        ).save(failOnError: true)
 
         new Project(
                 name: 'Vandana',
@@ -101,7 +138,19 @@ class ProjectService {
                 amount: '100.0',
                 date: dateFormat.parse("01/21/2014"),
                 user: sampleContributor
-        )).save(failOnError: true)
+        )).addToRewards(
+                Reward.findById(2)
+        ).addToRewards(
+                Reward.findById(3)
+        ).addToRewards(
+                Reward.findById(5)
+        ).addToRewards(
+                Reward.findById(7)
+        ).addToRewards(
+                Reward.findById(9)
+        ).addToRewards(
+                Reward.findById(10)
+        ).save(failOnError: true)
 
         new Project(
                 name: 'Pushpa',
@@ -122,7 +171,19 @@ class ProjectService {
                 amount: '100.0',
                 date: dateFormat.parse("01/26/2014"),
                 user: sampleContributor
-        )).save(failOnError: true)
+        )).addToRewards(
+                Reward.findById(1)
+        ).addToRewards(
+                Reward.findById(4)
+        ).addToRewards(
+                Reward.findById(5)
+        ).addToRewards(
+                Reward.findById(6)
+        ).addToRewards(
+                Reward.findById(9)
+        ).addToRewards(
+                Reward.findById(10)
+        ).save(failOnError: true)
 
         new Project(
                 name: 'Sangita',
@@ -143,7 +204,19 @@ class ProjectService {
                 amount: '100.0',
                 date: dateFormat.parse("01/18/2014"),
                 user: sampleContributor
-        )).save(failOnError: true)
+        )).addToRewards(
+                Reward.findById(2)
+        ).addToRewards(
+                Reward.findById(3)
+        ).addToRewards(
+                Reward.findById(4)
+        ).addToRewards(
+                Reward.findById(5)
+        ).addToRewards(
+                Reward.findById(6)
+        ).addToRewards(
+                Reward.findById(7)
+        ).save(failOnError: true)
 
         new Project(
                 name: 'Sunanda',
@@ -164,7 +237,19 @@ class ProjectService {
                 amount: '100.0',
                 date: dateFormat.parse("01/24/2014"),
                 user: sampleContributor
-        )).save(failOnError: true)
+        )).addToRewards(
+                Reward.findById(1)
+        ).addToRewards(
+                Reward.findById(2)
+        ).addToRewards(
+                Reward.findById(3)
+        ).addToRewards(
+                Reward.findById(4)
+        ).addToRewards(
+                Reward.findById(8)
+        ).addToRewards(
+                Reward.findById(10)
+        ).save(failOnError: true)
 
         new Project(
                 name: 'Tarabai',
@@ -185,7 +270,19 @@ class ProjectService {
                 amount: '100.0',
                 date: dateFormat.parse("01/29/2014"),
                 user: sampleContributor
-        )).save(failOnError: true)
+        )).addToRewards(
+                Reward.findById(1)
+        ).addToRewards(
+                Reward.findById(2)
+        ).addToRewards(
+                Reward.findById(3)
+        ).addToRewards(
+                Reward.findById(5)
+        ).addToRewards(
+                Reward.findById(8)
+        ).addToRewards(
+                Reward.findById(10)
+        ).save(failOnError: true)
 
         new Project(
                 name: 'Asha',
@@ -206,7 +303,19 @@ class ProjectService {
                 amount: '100.0',
                 date: dateFormat.parse("01/27/2014"),
                 user: sampleContributor
-        )).save(failOnError: true)
+        )).addToRewards(
+                Reward.findById(1)
+        ).addToRewards(
+                Reward.findById(2)
+        ).addToRewards(
+                Reward.findById(3)
+        ).addToRewards(
+                Reward.findById(4)
+        ).addToRewards(
+                Reward.findById(5)
+        ).addToRewards(
+                Reward.findById(6)
+        ).save(failOnError: true)
 
         new Project(
                 name: 'Sunita',
@@ -227,7 +336,19 @@ class ProjectService {
                 amount: '100.0',
                 date: dateFormat.parse("01/22/2014"),
                 user: sampleContributor
-        )).save(failOnError: true)
+        )).addToRewards(
+                Reward.findById(1)
+        ).addToRewards(
+                Reward.findById(2)
+        ).addToRewards(
+                Reward.findById(3)
+        ).addToRewards(
+                Reward.findById(4)
+        ).addToRewards(
+                Reward.findById(5)
+        ).addToRewards(
+                Reward.findById(6)
+        ).save(failOnError: true)
 
         new Project(
                 name: 'Yeshula',
@@ -248,6 +369,18 @@ class ProjectService {
                 amount: '100.0',
                 date: dateFormat.parse("01/20/2014"),
                 user: sampleContributor
-        )).save(failOnError: true)
+        )).addToRewards(
+                Reward.findById(1)
+        ).addToRewards(
+                Reward.findById(2)
+        ).addToRewards(
+                Reward.findById(3)
+        ).addToRewards(
+                Reward.findById(4)
+        ).addToRewards(
+                Reward.findById(5)
+        ).addToRewards(
+                Reward.findById(6)
+        ).save(failOnError: true)
     }
 }

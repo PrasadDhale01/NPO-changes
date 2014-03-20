@@ -19,7 +19,8 @@ class ProjectController {
         TITLE: 'title',
         STORY: 'story',
         THUMBNAIL: 'thumbnail',
-        IMAGEURL: 'imageUrl'
+        IMAGEURL: 'imageUrl',
+        REWARDS: 'rewards'
     ]
 
 	def list = {
@@ -44,13 +45,25 @@ class ProjectController {
 
 	def show() {
 		Project project
+        def rewardOptions
 		if (params.int('id')) {
 			project = Project.findById(params.id)
+
+            if (project && project.rewards) {
+                rewardOptions = [:]
+                project.rewards.each {
+                    def value = '$' + it.price + ': ' + it.title
+                    rewardOptions.put(it.id, value)
+                }
+            }
 		} else {
 			project = null
 		}
 
-        render (view: 'show/index', model: [project: project])
+        render (view: 'show/index',
+                model: [project: project,
+                        rewardOptions: rewardOptions,
+                        FORMCONSTANTS: FORMCONSTANTS])
 	}
 
     @Secured(['ROLE_USER'])
@@ -105,11 +118,18 @@ class ProjectController {
             (Project.Category.OTHER): "Other"
         ]
 
-        render (view: 'create/index', model: [
-                fundRaisingOptions: fundRaisingOptions,
-                raisingForOptions: raisingForOptions,
-                categoryOptions: categoryOptions,
-                FORMCONSTANTS: FORMCONSTANTS])
+        def rewardOptions = [:]
+        Reward.list().each {
+            def value = '$' + it.price + ': ' + it.title
+            rewardOptions.put(it.id, value)
+        }
+
+        render (view: 'create/index',
+                model: [fundRaisingOptions: fundRaisingOptions,
+                        raisingForOptions: raisingForOptions,
+                        categoryOptions: categoryOptions,
+                        rewardOptions: rewardOptions,
+                        FORMCONSTANTS: FORMCONSTANTS])
 	}
 
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
@@ -127,13 +147,17 @@ class ProjectController {
             render (view: 'create/createerror')
             return
         } else {
-            thumbnail = new Image(bytes: thumbnailFile.bytes, contentType: thumbnailFile.getContentType())
+            thumbnail = new Image(bytes: thumbnailFile.bytes, contentType: thumbnailFile.getContentType()).save()
         }
 
         project = new Project(params)
         project.user = user
         project.image = thumbnail
         project.created = new Date()
+
+        params.rewards.each() { rewardId ->
+            project.addToRewards(Reward.findById(rewardId))
+        }
 
         if (project.save()) {
             render (view: 'create/justcreated', model: [project: project])

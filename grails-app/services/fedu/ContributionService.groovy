@@ -5,6 +5,10 @@ import grails.transaction.Transactional
 class ContributionService {
 
     def getTotalContributionForProject(Project project) {
+        if (!project) {
+            return null
+        }
+
         double total = 0
         project.contributions.each {
             total += it.amount
@@ -13,6 +17,10 @@ class ContributionService {
     }
 
     def getPercentageContributionForProject(Project project) {
+        if (!project) {
+            return null
+        }
+
         double totalContribution = getTotalContributionForProject(project)
         def percentage
         if (totalContribution == 0) {
@@ -26,6 +34,10 @@ class ContributionService {
     }
 
     def getFundingAchievedDate(Project project) {
+        if (!project) {
+            return null
+        }
+
         Contribution contribution = project.contributions.last()
         return contribution.date
     }

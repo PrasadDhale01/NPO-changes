@@ -44,7 +44,7 @@
                     <div class="form-group">
                         <label for="${FORMCONSTANTS.FUNDRAISINGREASON}" class="col-sm-2 control-label">Funds towards</label>
                         <div class="col-sm-10">
-                            <g:select class="form-control" name="${FORMCONSTANTS.FUNDRAISINGREASON}"
+                            <g:select class="selectpicker" name="${FORMCONSTANTS.FUNDRAISINGREASON}"
                                       from="${fundRaisingOptions}"
                                       optionKey="key" optionValue="value"/>
                         </div>
@@ -52,7 +52,7 @@
                     <div class="form-group">
                         <label for="${FORMCONSTANTS.FUNDRAISINGFOR}" class="col-sm-2 control-label">Funds for</label>
                         <div class="col-sm-10">
-                            <g:select class="form-control" name="${FORMCONSTANTS.FUNDRAISINGFOR}"
+                            <g:select class="selectpicker" name="${FORMCONSTANTS.FUNDRAISINGFOR}"
                                       from="${raisingForOptions}"
                                       optionKey="key" optionValue="value"/>
                         </div>
@@ -60,7 +60,7 @@
                     <div class="form-group">
                         <label for="${FORMCONSTANTS.CATEGORY}" class="col-sm-2 control-label">Category</label>
                         <div class="col-sm-10">
-                            <g:select class="form-control" name="${FORMCONSTANTS.CATEGORY}"
+                            <g:select class="selectpicker" name="${FORMCONSTANTS.CATEGORY}"
                                       from="${categoryOptions}"
                                       optionKey="key" optionValue="value"/>
                         </div>

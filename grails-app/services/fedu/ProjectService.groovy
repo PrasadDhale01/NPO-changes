@@ -54,10 +54,6 @@ class ProjectService {
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Anusuya.png',
-                street: 'highway 101',
-                city: 'Nagpur',
-                country: 'India',
-                zipcode: '12345',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -79,10 +75,6 @@ class ProjectService {
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Roshanbai.png',
-                street: 'highway 101',
-                city: 'Nagpur',
-                country: 'India',
-                zipcode: '12345',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -104,10 +96,6 @@ class ProjectService {
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Vandana.png',
-                street: 'highway 101',
-                city: 'San Francisco',
-                country: 'USA',
-                zipcode: '12345',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -129,10 +117,6 @@ class ProjectService {
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Pushpa.png',
-                street: 'highway 101',
-                city: 'San Francisco',
-                country: 'USA',
-                zipcode: '12345',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -154,10 +138,6 @@ class ProjectService {
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Sangita.png',
-                street: 'highway 101',
-                city: 'Nagpur',
-                country: 'India',
-                zipcode: '12345',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -179,10 +159,6 @@ class ProjectService {
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Sunanda.png',
-                street: 'highway 101',
-                city: 'San Jose',
-                country: 'USA',
-                zipcode: '12345',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -204,10 +180,6 @@ class ProjectService {
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Tarabai.png',
-                street: 'highway 101',
-                city: 'Delhi',
-                country: 'India',
-                zipcode: '12345',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -229,10 +201,6 @@ class ProjectService {
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Asha.png',
-                street: 'highway 101',
-                city: 'Mumbai',
-                country: 'India',
-                zipcode: '12345',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -254,10 +222,6 @@ class ProjectService {
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Sunita.png',
-                street: 'highway 101',
-                city: 'Bangalore',
-                country: 'India',
-                zipcode: '12345',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',
@@ -279,10 +243,6 @@ class ProjectService {
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Yeshula.png',
-                street: 'highway 101',
-                city: 'Bangalore',
-                country: 'India',
-                zipcode: '12345',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',

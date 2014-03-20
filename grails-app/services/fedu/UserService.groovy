@@ -34,7 +34,7 @@ class UserService {
 
         def admin = User.findByUsername('admin@fedu.org')
         if (!admin) {
-            admin = new User(username: 'admin@fedu.org', password: 'FundEdu@2014').save(flush: true, failOnError: true)
+            admin = new User(username: 'admin@fedu.org', password: 'P@$$w0rd').save(flush: true, failOnError: true)
         }
         def user = User.findByUsername('user@fedu.org')
         if (!user) {
@@ -42,7 +42,7 @@ class UserService {
         }
         def author = User.findByUsername('author@fedu.org')
         if (!author) {
-            author = new User(username: 'author@fedu.org', password: 'FundEdu@2014').save(flush: true, failOnError: true)
+            author = new User(username: 'author@fedu.org', password: 'P@$$w0rd').save(flush: true, failOnError: true)
         }
 
         UserRole.findOrSaveByUserAndRole(admin, adminRole)

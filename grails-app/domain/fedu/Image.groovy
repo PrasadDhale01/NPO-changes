@@ -4,7 +4,7 @@ class Image {
     byte[] bytes
     String contentType
 
-    static belongsTo = [project: Project]
+    // static belongsTo = [project: Project]
 
     static constraints = {
         // Limit upload file size to 2MB

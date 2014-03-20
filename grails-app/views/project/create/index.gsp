@@ -1,7 +1,7 @@
 <html>
 <head>
 <meta name="layout" content="main" />
-<r:require modules="createjs"/>
+<r:require modules="projectcreatejs"/>
 </head>
 <body>
 
@@ -113,6 +113,15 @@
                         <label for="${FORMCONSTANTS.IMAGEURL}" class="col-sm-2 control-label">or, Image URL</label>
                         <div class="col-sm-4">
                             <input class="form-control" name="${FORMCONSTANTS.IMAGEURL}" placeholder="Image URL">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="${FORMCONSTANTS.REWARDS}" class="col-sm-2 control-label">Rewards</label>
+                        <div class="col-sm-10">
+                            <g:select class="selectpicker" name="${FORMCONSTANTS.REWARDS}"
+                                      from="${rewardOptions}"
+                                      optionKey="key" optionValue="value" multiple="true"
+                                      title="Choose multiple rewards"  data-selected-text-format="count"/>
                         </div>
                     </div>
                 </div>

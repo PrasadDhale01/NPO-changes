@@ -11,15 +11,21 @@ modules = {
         dependsOn 'corejs', 'bootstrapselectjs'
         resource url: 'js/fedu.js'
     }
-    createjs {
-        dependsOn 'fedujs'
-        resource url: 'js/create.js'
-    }
     googleanalytics {
         resource url: 'js/ga.js'
     }
     bootstrapselectjs {
         resource url: 'http://silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js'
+    }
+
+    /* Page-specific JS */
+    projectcreatejs {
+        dependsOn 'fedujs'
+        resource url: 'js/project/create.js'
+    }
+    projectshowjs {
+        dependsOn 'fedujs'
+        resource url: 'js/project/show.js'
     }
 
     /* CSS */

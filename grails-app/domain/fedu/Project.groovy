@@ -3,8 +3,7 @@ package fedu
 class Project {
 
     static belongsTo = [user: User]
-    static hasOne = [image: Image]
-    static hasMany = [contributions: Contribution, comments: ProjectComment]
+    static hasMany = [contributions: Contribution, comments: ProjectComment, rewards: Reward]
 
 	/* Who */
 	String name
@@ -26,6 +25,7 @@ class Project {
 	String title
 	String story
     String imageUrl
+    Image image
 
     /* More */
     List comments
@@ -40,6 +40,7 @@ class Project {
 		email (email: true)
         image (nullable: true)
         imageUrl (nullable: true)
+        rewards (nullable: true)
     }
 
     enum FundRaisingReason {

@@ -1,6 +1,7 @@
 <html>
 <head>
 <meta name="layout" content="main" />
+<r:require modules="projectshowjs"/>
 </head>
 <body>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -37,7 +38,12 @@
                                 <h4>Ended on ${dateFormat.format(endDate.getTime())}</h4>
                             </g:elseif>
                             <g:else>
-                                <button type="button" class="btn btn-primary btn-block">FUND THIS PROJECT</button>
+                                <!-- <button type="button" class="btn btn-primary btn-block">FUND THIS PROJECT</button> -->
+                                <g:select class="selectpicker" name="${FORMCONSTANTS.REWARDS}" data-style="btn-primary"
+                                          from="${rewardOptions}"
+                                          optionKey="key" optionValue="value"
+                                          title="Fund this project"/>
+
                                 <h4>Ends on ${dateFormat.format(endDate.getTime())}</h4>
                             </g:else>
                         </div>

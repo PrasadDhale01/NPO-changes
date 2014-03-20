@@ -35,7 +35,7 @@
     <g:render template="/layouts/footer"/>
 
     <!-- Include all javascript assets -->
-    <r:require modules="appjs"/>
+    <r:require modules="fedujs"/>
     <r:require module="googleanalytics"/>
 
     <r:layoutResources />

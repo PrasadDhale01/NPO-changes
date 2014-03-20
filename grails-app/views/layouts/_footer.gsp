@@ -35,7 +35,7 @@
             </div>
 
             <div class="col-xs-6 col-sm-2">
-                <h6>Coded with <span class="glyphicon glyphicon-heart"></span> by Chai</h6>
+                <h6>Coded with <span class="glyphicon glyphicon-heart"></span> by Fedu Team</h6>
             </div>
         </div>
     </div>

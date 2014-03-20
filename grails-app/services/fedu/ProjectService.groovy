@@ -54,6 +54,38 @@ class ProjectService {
         User sampleContributor = User.findByUsername('user@fedu.org')
 
         new Project(
+                name: 'Machine learning enthusiast',
+                email: 'info@deepshikha.org',
+                created: dateFormat.parse("01/15/2014"),
+                telephone: '+91 12345678',
+                amount: '600.0',
+                days: '100',
+                fundRaisingReason: Project.FundRaisingReason.TUITION_FEE,
+                fundRaisingFor: Project.FundRaisingFor.MYSELF,
+                category: Project.Category.TECHNOLOGY,
+                title: 'Machine Learning',
+                story: 'Maching learning is going to change the world for ever.',
+                validated: true,
+                user: deepshikha
+        ).addToContributions(new Contribution(
+                amount: '100.0',
+                date: dateFormat.parse("01/16/2014"),
+                user: sampleContributor
+        )).addToRewards(
+                Reward.findById(1)
+        ).addToRewards(
+                Reward.findById(2)
+        ).addToRewards(
+                Reward.findById(3)
+        ).addToRewards(
+                Reward.findById(4)
+        ).addToRewards(
+                Reward.findById(5)
+        ).addToRewards(
+                Reward.findById(6)
+        ).save(failOnError: true)
+
+        new Project(
                 name: 'Anasuya',
                 email: 'info@deepshikha.org',
                 created: dateFormat.parse("01/15/2014"),

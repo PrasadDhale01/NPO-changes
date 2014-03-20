@@ -48,14 +48,6 @@ class ProjectController {
         def rewardOptions
 		if (params.int('id')) {
 			project = Project.findById(params.id)
-
-            if (project && project.rewards) {
-                rewardOptions = [:]
-                project.rewards.each {
-                    def value = '$' + it.price + ': ' + it.title
-                    rewardOptions.put(it.id, value)
-                }
-            }
 		} else {
 			project = null
 		}

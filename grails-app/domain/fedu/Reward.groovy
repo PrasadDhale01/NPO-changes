@@ -9,4 +9,8 @@ class Reward {
     static constraints = {
         image (nullable: true)
     }
+
+    static mapping = {
+        sort 'price'
+    }
 }

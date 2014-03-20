@@ -27,10 +27,10 @@
                 <div class="col-md-4">
                     <div class="panel panel-default" style="margin-top: 30px;">
                         <div class="panel-heading">
-                            <h3 class="panel-title">Fund</h3>
+                            <h3 class="panel-title">Fund this project</h3>
                         </div>
                         <div class="panel-body">
-                            <g:if test="${percentage}">
+                            <g:if test="${percentage == 100}">
                                 <button type="button" class="btn btn-success btn-block" disabled>SUCCESSFULLY FUNDED</button>
                             </g:if>
                             <g:elseif test="${ended}">
@@ -38,13 +38,17 @@
                                 <h4>Ended on ${dateFormat.format(endDate.getTime())}</h4>
                             </g:elseif>
                             <g:else>
-                                <!-- <button type="button" class="btn btn-primary btn-block">FUND THIS PROJECT</button> -->
-                                <g:select class="selectpicker" name="${FORMCONSTANTS.REWARDS}" data-style="btn-primary"
-                                          from="${rewardOptions}"
-                                          optionKey="key" optionValue="value"
-                                          title="Fund this project"/>
-
                                 <h4>Ends on ${dateFormat.format(endDate.getTime())}</h4>
+
+                                <div class="list-group">
+                                    <g:each in="${project.rewards}" var="reward">
+                                        <a href="#" class="list-group-item">
+                                            <h4 class="list-group-item-heading">${reward.title}</h4>
+                                            <h5 class="list-group-item-heading lead">$${reward.price}</h5>
+                                            <p class="list-group-item-text text-justify">${reward.description}</p>
+                                        </a>
+                                    </g:each>
+                                </div>
                             </g:else>
                         </div>
                     </div>

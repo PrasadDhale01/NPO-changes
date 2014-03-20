@@ -26,6 +26,7 @@ class Project {
 	String story
     String imageUrl
     Image image
+    List rewards
 
     /* More */
     List comments

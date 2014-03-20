@@ -30,12 +30,6 @@ class Project {
     /* More */
     List comments
 
-    /* Address */
-    String street
-    String city
-    String country
-    String zipcode
-
 	boolean validated = false
 
 	static mapping = {

@@ -50,7 +50,7 @@ class ProjectController {
 			project = null
 		}
 
-        return [project: project]
+        render (view: 'show/index', model: [project: project])
 	}
 
     @Secured(['ROLE_USER'])

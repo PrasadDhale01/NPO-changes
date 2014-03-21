@@ -261,7 +261,7 @@ ul.unstyled {
     border-radius: 0;
 
     /* If any bootswatch theme other than journal, set this to 30px */
-    height: 20px;
+    /* height: 20px; */
 }
 
 /* Override bootstrap */

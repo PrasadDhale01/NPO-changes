@@ -66,6 +66,7 @@ class ProjectService {
                 title: 'Machine Learning',
                 story: 'Maching learning is going to change the world for ever.',
                 validated: true,
+                imageUrl: 'http://1.bp.blogspot.com/-tn9GwuoC45w/TvtQvP6_UFI/AAAAAAAAAHI/ECpLGjyH6AI/s1600/machine_learning_course.png',
                 user: deepshikha
         ).addToContributions(new Contribution(
                 amount: '100.0',

@@ -13,7 +13,7 @@
 
         <input type="password" name="new_password" class="form-control" placeholder="Password" required autofocus>
         <input type="password" name="new_password_2" class="form-control" placeholder="Re-enter Password" required>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+        <button class="btn btn-primary btn-block" type="submit">Update</button>
     </g:form>
 </div>
 </body>

@@ -250,10 +250,18 @@ ul.unstyled {
 	min-height: 28px;
 }
 
+.blacknwhite {
+    position: relative;
+    display: block;
+}
+
 /* Override bootstrap */
 .progress {
     margin-bottom: 0;
     border-radius: 0;
+
+    /* If any bootswatch theme other than journal, set this to 30px */
+    height: 20px;
 }
 
 /* Override bootstrap */

@@ -17,8 +17,16 @@ modules = {
     bootstrapselectjs {
         resource url: 'http://silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js'
     }
+    blacknwhitejs {
+        dependsOn 'jquery'
+        resource url: 'js/jquery.BlackAndWhite.js'
+    }
 
     /* Page-specific JS */
+    homejs {
+        dependsOn 'fedujs', 'blacknwhitejs'
+        resource url: 'js/home/home.js'
+    }
     projectcreatejs {
         dependsOn 'fedujs'
         resource url: 'js/project/create.js'
@@ -27,20 +35,36 @@ modules = {
         dependsOn 'fedujs'
         resource url: 'js/project/show.js'
     }
+    projectlistjs {
+        dependsOn 'fedujs', 'blacknwhitejs'
+        resource url: 'js/project/list.js'
+    }
 
     /* CSS */
     feducss {
-        dependsOn 'bootswatchcss', 'bootstrapselectcss'
+        dependsOn 'bootswatchflatlycss', 'bootstrapselectcss'
         resource url: 'css/fedu.css'
     }
     bootstrapcss {
         resource url: 'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css'
     }
-    bootswatchcss {
+    bootswatchjournalcss {
         dependsOn 'lessjs'
         resource url: 'http://bootswatch.com/journal/bootstrap.css'
         resource url: 'http://bootswatch.com/journal/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
         resource url: 'http://bootswatch.com/journal/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
+    }
+    bootswatchdarklycss {
+        dependsOn 'lessjs'
+        resource url: 'http://bootswatch.com/darkly/bootstrap.css'
+        resource url: 'http://bootswatch.com/darkly/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
+        resource url: 'http://bootswatch.com/darkly/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
+    }
+    bootswatchflatlycss {
+        dependsOn 'lessjs'
+        resource url: 'http://bootswatch.com/flatly/bootstrap.css'
+        resource url: 'http://bootswatch.com/flatly/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
+        resource url: 'http://bootswatch.com/flatly/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
     bootstrapselectcss {
         resource url: 'http://silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css'

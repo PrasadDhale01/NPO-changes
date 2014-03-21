@@ -1,6 +1,8 @@
 <html>
 <head>
 <meta name="layout" content="main" />
+<r:require module="projectlistjs"/>
+
 </head>
 <body>
 

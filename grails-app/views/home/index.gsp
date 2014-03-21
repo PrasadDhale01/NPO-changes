@@ -1,6 +1,7 @@
 <html>
 <head>
 <meta name="layout" content="main" />
+<r:require modules="homejs"/>
 </head>
 <body>
     <!-- Big banner -->

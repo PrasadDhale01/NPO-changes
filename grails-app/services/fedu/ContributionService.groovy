@@ -10,8 +10,8 @@ class ContributionService {
         }
 
         double total = 0
-        project.contributions.each {
-            total += it.amount
+        project.contributions.each { contribution ->
+            total += contribution.reward.price
         }
         return total
     }

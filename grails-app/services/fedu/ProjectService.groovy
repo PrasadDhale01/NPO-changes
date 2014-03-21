@@ -68,11 +68,7 @@ class ProjectService {
                 validated: true,
                 imageUrl: 'http://1.bp.blogspot.com/-tn9GwuoC45w/TvtQvP6_UFI/AAAAAAAAAHI/ECpLGjyH6AI/s1600/machine_learning_course.png',
                 user: deepshikha
-        ).addToContributions(new Contribution(
-                amount: '100.0',
-                date: dateFormat.parse("01/16/2014"),
-                user: sampleContributor
-        )).addToRewards(
+        ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
                 Reward.findById(2)
@@ -84,6 +80,10 @@ class ProjectService {
                 Reward.findById(5)
         ).addToRewards(
                 Reward.findById(6)
+        ).addToContributions(
+                date: dateFormat.parse("01/16/2014"),
+                user: sampleContributor,
+                reward: Reward.findById(3)
         ).save(failOnError: true)
 
         new Project(
@@ -101,11 +101,7 @@ class ProjectService {
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Anusuya.png',
                 user: deepshikha
-        ).addToContributions(new Contribution(
-                amount: '100.0',
-                date: dateFormat.parse("01/16/2014"),
-                user: sampleContributor
-        )).addToRewards(
+        ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
                 Reward.findById(2)
@@ -117,6 +113,10 @@ class ProjectService {
                 Reward.findById(5)
         ).addToRewards(
                 Reward.findById(6)
+        ).addToContributions(
+                reward: Reward.findById(2),
+                date: dateFormat.parse("01/16/2014"),
+                user: sampleContributor
         ).save(failOnError: true)
 
         new Project(
@@ -134,11 +134,7 @@ class ProjectService {
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Roshanbai.png',
                 user: deepshikha
-        ).addToContributions(new Contribution(
-                amount: '100.0',
-                date: dateFormat.parse("01/23/2014"),
-                user: sampleContributor
-        )).addToRewards(
+        ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
                 Reward.findById(3)
@@ -150,6 +146,10 @@ class ProjectService {
                 Reward.findById(9)
         ).addToRewards(
                 Reward.findById(4)
+        ).addToContributions(
+                reward: Reward.findById(7),
+                date: dateFormat.parse("01/23/2014"),
+                user: sampleContributor
         ).save(failOnError: true)
 
         new Project(
@@ -167,11 +167,7 @@ class ProjectService {
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Vandana.png',
                 user: deepshikha
-        ).addToContributions(new Contribution(
-                amount: '100.0',
-                date: dateFormat.parse("01/21/2014"),
-                user: sampleContributor
-        )).addToRewards(
+        ).addToRewards(
                 Reward.findById(2)
         ).addToRewards(
                 Reward.findById(3)
@@ -183,6 +179,10 @@ class ProjectService {
                 Reward.findById(9)
         ).addToRewards(
                 Reward.findById(10)
+        ).addToContributions(
+                reward: Reward.findById(10),
+                date: dateFormat.parse("01/21/2014"),
+                user: sampleContributor
         ).save(failOnError: true)
 
         new Project(
@@ -200,11 +200,7 @@ class ProjectService {
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Pushpa.png',
                 user: deepshikha
-        ).addToContributions(new Contribution(
-                amount: '100.0',
-                date: dateFormat.parse("01/26/2014"),
-                user: sampleContributor
-        )).addToRewards(
+        ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
                 Reward.findById(4)
@@ -216,6 +212,10 @@ class ProjectService {
                 Reward.findById(9)
         ).addToRewards(
                 Reward.findById(10)
+        ).addToContributions(
+                reward: Reward.findById(9),
+                date: dateFormat.parse("01/26/2014"),
+                user: sampleContributor
         ).save(failOnError: true)
 
         new Project(
@@ -233,11 +233,7 @@ class ProjectService {
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Sangita.png',
                 user: deepshikha
-        ).addToContributions(new Contribution(
-                amount: '100.0',
-                date: dateFormat.parse("01/18/2014"),
-                user: sampleContributor
-        )).addToRewards(
+        ).addToRewards(
                 Reward.findById(2)
         ).addToRewards(
                 Reward.findById(3)
@@ -249,6 +245,10 @@ class ProjectService {
                 Reward.findById(6)
         ).addToRewards(
                 Reward.findById(7)
+        ).addToContributions(
+                reward: Reward.findById(5),
+                date: dateFormat.parse("01/18/2014"),
+                user: sampleContributor
         ).save(failOnError: true)
 
         new Project(
@@ -266,11 +266,7 @@ class ProjectService {
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Sunanda.png',
                 user: deepshikha
-        ).addToContributions(new Contribution(
-                amount: '100.0',
-                date: dateFormat.parse("01/24/2014"),
-                user: sampleContributor
-        )).addToRewards(
+        ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
                 Reward.findById(2)
@@ -282,6 +278,10 @@ class ProjectService {
                 Reward.findById(8)
         ).addToRewards(
                 Reward.findById(10)
+        ).addToContributions(
+                reward: Reward.findById(4),
+                date: dateFormat.parse("01/24/2014"),
+                user: sampleContributor
         ).save(failOnError: true)
 
         new Project(
@@ -299,11 +299,7 @@ class ProjectService {
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Tarabai.png',
                 user: deepshikha
-        ).addToContributions(new Contribution(
-                amount: '100.0',
-                date: dateFormat.parse("01/29/2014"),
-                user: sampleContributor
-        )).addToRewards(
+        ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
                 Reward.findById(2)
@@ -315,6 +311,10 @@ class ProjectService {
                 Reward.findById(8)
         ).addToRewards(
                 Reward.findById(10)
+        ).addToContributions(
+                reward: Reward.findById(8),
+                date: dateFormat.parse("01/29/2014"),
+                user: sampleContributor
         ).save(failOnError: true)
 
         new Project(
@@ -332,11 +332,7 @@ class ProjectService {
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Asha.png',
                 user: deepshikha
-        ).addToContributions(new Contribution(
-                amount: '100.0',
-                date: dateFormat.parse("01/27/2014"),
-                user: sampleContributor
-        )).addToRewards(
+        ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
                 Reward.findById(2)
@@ -348,6 +344,10 @@ class ProjectService {
                 Reward.findById(5)
         ).addToRewards(
                 Reward.findById(6)
+        ).addToContributions(
+                reward: Reward.findById(4),
+                date: dateFormat.parse("01/27/2014"),
+                user: sampleContributor
         ).save(failOnError: true)
 
         new Project(
@@ -365,11 +365,7 @@ class ProjectService {
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Sunita.png',
                 user: deepshikha
-        ).addToContributions(new Contribution(
-                amount: '100.0',
-                date: dateFormat.parse("01/22/2014"),
-                user: sampleContributor
-        )).addToRewards(
+        ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
                 Reward.findById(2)
@@ -381,6 +377,10 @@ class ProjectService {
                 Reward.findById(5)
         ).addToRewards(
                 Reward.findById(6)
+        ).addToContributions(
+                reward: Reward.findById(5),
+                date: dateFormat.parse("01/22/2014"),
+                user: sampleContributor
         ).save(failOnError: true)
 
         new Project(
@@ -398,11 +398,7 @@ class ProjectService {
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Yeshula.png',
                 user: deepshikha
-        ).addToContributions(new Contribution(
-                amount: '100.0',
-                date: dateFormat.parse("01/20/2014"),
-                user: sampleContributor
-        )).addToRewards(
+        ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
                 Reward.findById(2)
@@ -414,6 +410,10 @@ class ProjectService {
                 Reward.findById(5)
         ).addToRewards(
                 Reward.findById(6)
+        ).addToContributions(
+                reward: Reward.findById(6),
+                date: dateFormat.parse("01/20/2014"),
+                user: sampleContributor
         ).save(failOnError: true)
     }
 }

@@ -2,9 +2,8 @@ package fedu
 
 class Contribution {
 
-    static belongsTo = [user: User, project: Project]
+    static belongsTo = [user: User, project: Project, reward: Reward]
 
-    double amount
     Date date
 
     static constraints = {

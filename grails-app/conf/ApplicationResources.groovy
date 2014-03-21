@@ -46,7 +46,7 @@ modules = {
 
     /* CSS */
     feducss {
-        dependsOn 'bootswatchdarklycss', 'bootstrapselectcss'
+        dependsOn 'bootswatchjournalcss', 'bootstrapselectcss'
         resource url: 'css/fedu.css'
     }
     bootstrapcss {

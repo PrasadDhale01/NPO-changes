@@ -1,3 +1,4 @@
+<%@ page import="java.text.SimpleDateFormat" %>
 <html>
 <head>
 <meta name="layout" content="main" />
@@ -14,8 +15,11 @@
 					</div>
 					<div class="col-sm-4">
 						<h2>
-							<span class="lead pull-right">By ${blog.author} <span
-								class="small">on ${blog.date}</span></span>
+                            <%
+                                SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+                                def date = dateFormat.format(blog.date)
+                            %>
+                            <span class="lead pull-right">By ${blog.author} <span class="small">on ${date}</span></span>
 						</h2>
 					</div>
 				</div>

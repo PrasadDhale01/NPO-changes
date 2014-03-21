@@ -16,6 +16,10 @@ class ContributionService {
         return total
     }
 
+    def getBackersForProjectByReward(Project project, Reward reward) {
+        return Contribution.findAllByProjectAndReward(project, reward).size()
+    }
+
     def getPercentageContributionForProject(Project project) {
         if (!project) {
             return null

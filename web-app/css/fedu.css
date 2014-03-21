@@ -250,6 +250,14 @@ ul.unstyled {
 	min-height: 28px;
 }
 
+.caption p {
+	white-space: nowrap;
+	width: inherit;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	min-height: 20px;
+}
+
 .blacknwhite {
     position: relative;
     display: block;

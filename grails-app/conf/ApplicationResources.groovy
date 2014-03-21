@@ -7,6 +7,10 @@ modules = {
         resource url: 'http://code.jquery.com/jquery-2.1.0.js'
         resource url: 'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js'
     }
+    jqueryvalidate {
+        dependsOn 'jquery'
+        resource url: 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js'
+    }
     fedujs {
         dependsOn 'corejs', 'bootstrapselectjs'
         resource url: 'js/fedu.js'
@@ -28,7 +32,7 @@ modules = {
         resource url: 'js/home/home.js'
     }
     projectcreatejs {
-        dependsOn 'fedujs'
+        dependsOn 'fedujs', 'jqueryvalidate'
         resource url: 'js/project/create.js'
     }
     projectshowjs {
@@ -42,7 +46,7 @@ modules = {
 
     /* CSS */
     feducss {
-        dependsOn 'bootswatchflatlycss', 'bootstrapselectcss'
+        dependsOn 'bootswatchdarklycss', 'bootstrapselectcss'
         resource url: 'css/fedu.css'
     }
     bootstrapcss {
@@ -65,6 +69,12 @@ modules = {
         resource url: 'http://bootswatch.com/flatly/bootstrap.css'
         resource url: 'http://bootswatch.com/flatly/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
         resource url: 'http://bootswatch.com/flatly/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
+    }
+    bootswatchsimplexcss {
+        dependsOn 'lessjs'
+        resource url: 'http://bootswatch.com/simplex/bootstrap.css'
+        resource url: 'http://bootswatch.com/simplex/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
+        resource url: 'http://bootswatch.com/simplex/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
     bootstrapselectcss {
         resource url: 'http://silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css'

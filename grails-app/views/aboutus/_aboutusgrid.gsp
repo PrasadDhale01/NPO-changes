@@ -28,16 +28,16 @@
       </div>
       <div class="col-xs-6 col-md-2">
         <div class="thumbnail">
-          <img src="images/aboutus/vishpai.png" alt="...">
-          <div class="caption">Vish Pai</div>
-        </div>
-      </div>
-      <div class="col-xs-6 col-md-2">
-        <div class="thumbnail">
           <img src="images/aboutus/nisargsheth.png" alt="...">
           <div class="caption">Nisarg Sheth</div>
         </div>
       </div>
+        <div class="col-xs-6 col-md-2">
+            <div class="thumbnail">
+                <img src="images/aboutus/aninatweed.jpg" alt="...">
+                <div class="caption">Anina Tweed</div>
+            </div>
+        </div>
 	</div>
     <div class="row">
       <div class="col-xs-6 col-md-2">
@@ -50,12 +50,6 @@
         <div class="thumbnail">
           <img src="images/aboutus/jintran.png" alt="...">
           <div class="caption">Jin Tran</div>
-        </div>
-      </div>
-      <div class="col-xs-6 col-md-2">
-        <div class="thumbnail">
-          <img src="images/aboutus/aninatweed.jpg" alt="...">
-          <div class="caption">Anina Tweed</div>
         </div>
       </div>
       <div class="col-xs-6 col-md-2">
@@ -76,6 +70,12 @@
           <div class="caption">Prashant Chaware</div>
         </div>
       </div>
+        <div class="col-xs-6 col-md-2">
+            <div class="thumbnail">
+                <img src="images/aboutus/andrewkoved.jpg" alt="...">
+                <div class="caption">Andrew Koved</div>
+            </div>
+        </div>
     </div>
     <div class="row">
       <div class="col-xs-6 col-md-2">
@@ -88,12 +88,6 @@
         <div class="thumbnail">
           <img src="images/aboutus/kshitijingle.jpg" alt="...">
           <div class="caption">Kshitij Ingle</div>
-        </div>
-      </div>
-      <div class="col-xs-6 col-md-2">
-        <div class="thumbnail">
-          <img src="images/aboutus/andrewkoved.jpg" alt="...">
-          <div class="caption">Andrew Koved</div>
         </div>
       </div>
     </div>
@@ -125,5 +119,5 @@
         </div>
       </div>
     </div>
-	
+
 </div>

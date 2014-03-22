@@ -84,6 +84,10 @@ class ProjectService {
                 date: dateFormat.parse("01/16/2014"),
                 user: sampleContributor,
                 reward: Reward.findById(3)
+        ).addToContributions(
+                date: dateFormat.parse("01/20/2014"),
+                user: sampleContributor,
+                reward: Reward.findById(2)
         ).save(failOnError: true)
 
         new Project(

@@ -16,6 +16,7 @@
                     <p class="text-justify">${project.story}</p>
                 </div>
                 <div class="col-md-4">
+                    <g:render template="show/tile"/>
                     <g:render template="show/rewards"/>
                 </div>
             </div>

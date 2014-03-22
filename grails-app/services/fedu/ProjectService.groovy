@@ -114,8 +114,20 @@ class ProjectService {
         ).addToRewards(
                 Reward.findById(6)
         ).addToContributions(
-                reward: Reward.findById(2),
+                reward: Reward.findById(5),
                 date: dateFormat.parse("01/16/2014"),
+                user: sampleContributor
+        ).addToContributions(
+                reward: Reward.findById(5),
+                date: dateFormat.parse("01/17/2014"),
+                user: sampleContributor
+        ).addToContributions(
+                reward: Reward.findById(5),
+                date: dateFormat.parse("01/20/2014"),
+                user: sampleContributor
+        ).addToContributions(
+                reward: Reward.findById(5),
+                date: dateFormat.parse("01/22/2014"),
                 user: sampleContributor
         ).save(failOnError: true)
 

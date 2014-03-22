@@ -45,7 +45,6 @@ class ProjectController {
 
 	def show() {
 		Project project
-        def rewardOptions
 		if (params.int('id')) {
 			project = Project.findById(params.id)
 		} else {
@@ -54,7 +53,6 @@ class ProjectController {
 
         render (view: 'show/index',
                 model: [project: project,
-                        rewardOptions: rewardOptions,
                         FORMCONSTANTS: FORMCONSTANTS])
 	}
 

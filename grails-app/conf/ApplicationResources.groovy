@@ -46,12 +46,17 @@ modules = {
 
     /* CSS */
     feducss {
-        dependsOn 'bootswatchjournalcss', 'bootstrapselectcss'
+        dependsOn 'bootswatchunitedcss', 'bootstrapselectcss'
         resource url: 'css/fedu.css'
     }
     bootstrapcss {
         resource url: 'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css'
     }
+    bootstrapselectcss {
+        resource url: 'http://silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css'
+    }
+
+    /* Bootswatch themes; use any one. */
     bootswatchjournalcss {
         dependsOn 'lessjs'
         resource url: 'http://bootswatch.com/journal/bootstrap.css'
@@ -76,7 +81,16 @@ modules = {
         resource url: 'http://bootswatch.com/simplex/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
         resource url: 'http://bootswatch.com/simplex/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
-    bootstrapselectcss {
-        resource url: 'http://silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css'
+    bootswatchspacelabcss {
+        dependsOn 'lessjs'
+        resource url: 'http://bootswatch.com/spacelab/bootstrap.css'
+        resource url: 'http://bootswatch.com/spacelab/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
+        resource url: 'http://bootswatch.com/spacelab/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
+    }
+    bootswatchunitedcss {
+        dependsOn 'lessjs'
+        resource url: 'http://bootswatch.com/united/bootstrap.css'
+        resource url: 'http://bootswatch.com/united/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
+        resource url: 'http://bootswatch.com/united/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
 }

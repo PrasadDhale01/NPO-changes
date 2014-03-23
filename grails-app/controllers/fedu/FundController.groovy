@@ -4,6 +4,8 @@ import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
 class FundController {
+    def contributionService
+    def projectService
 
     @Secured(['ROLE_USER'])
     def paydetails() {
@@ -20,7 +22,12 @@ class FundController {
             }
         }
 
-        if (!project || !reward) {
+        boolean fundingAchieved = contributionService.isFundingAchievedForProject(project)
+        boolean ended = projectService.isProjectEnded(project)
+
+        if (fundingAchieved || ended) {
+            redirect(controller: 'project', action: 'show', id: project.id)
+        } else if (!project || !reward) {
             render(view: 'notfound', model: [message: 'This project or reward does not exist.'])
         } else {
             return [project: project, reward: reward]

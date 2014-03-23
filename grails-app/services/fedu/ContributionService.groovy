@@ -4,6 +4,10 @@ import grails.transaction.Transactional
 
 class ContributionService {
 
+    def isFundingAchievedForProject(Project project) {
+        return getPercentageContributionForProject(project) == 100
+    }
+
     def getTotalContributionForProject(Project project) {
         if (!project) {
             return null

@@ -2,3 +2,4 @@ target/
 target-eclipse/
 .idea/workspace.xml
 *.db
+web-app/plugins/

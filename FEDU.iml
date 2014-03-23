@@ -38,7 +38,9 @@
       <excludeFolder url="file://$MODULE_DIR$/target/work/plugin-provided-classes" />
       <excludeFolder url="file://$MODULE_DIR$/target/work/resources" />
       <excludeFolder url="file://$MODULE_DIR$/target/work/scriptCache" />
+      <excludeFolder url="file://$MODULE_DIR$/target/work/ssl" />
       <excludeFolder url="file://$MODULE_DIR$/target/work/tomcat" />
+      <excludeFolder url="file://$MODULE_DIR$/web-app/plugins" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -60,16 +62,15 @@
           <root url="jar://$USER_HOME$/.m2/repository/org/grails/grails-datastore-gorm-hibernate/3.0.0.RELEASE/grails-datastore-gorm-hibernate-3.0.0.RELEASE.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/net/sf/ehcache/ehcache-core/2.4.6/ehcache-core-2.4.6.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/hibernate/hibernate-ehcache/3.6.10.Final/hibernate-ehcache-3.6.10.Final.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/7.0.50/tomcat-embed-core-7.0.50.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/eclipse/jdt/core/compiler/ecj/3.7.2/ecj-3.7.2.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.50/tomcat-embed-jasper-7.0.50.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/tomcat-catalina-ant/7.0.50/tomcat-catalina-ant-7.0.50.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/javax/activation/activation/1.1/activation-1.1.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/javax/mail/javax.mail-api/1.5.1/javax.mail-api-1.5.1.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/com/sun/mail/javax.mail/1.5.1/javax.mail-1.5.1.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/springframework/security/spring-security-web/3.2.0.RC1/spring-security-web-3.2.0.RC1.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/springframework/security/spring-security-core/3.2.0.RC1/spring-security-core-3.2.0.RC1.jar!/" />
           <root url="file://$MODULE_DIR$/lib" />
+          <root url="jar://$USER_HOME$/.m2/repository/com/stripe/stripe-java/1.7.1/stripe-java-1.7.1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/eclipse/jetty/aggregate/jetty-all/7.6.0.v20120127/jetty-all-7.6.0.v20120127.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

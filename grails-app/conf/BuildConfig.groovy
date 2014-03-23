@@ -55,7 +55,8 @@ grails.project.dependency.resolution = {
 
     plugins {
         // plugins for the build system only
-        build ":tomcat:7.0.50.1"
+        // build ":tomcat:7.0.50.1"
+        build ':jetty:2.0.3'
 
         compile ":mail:1.0.4"
         compile ":spring-security-core:2.0-RC2"
@@ -68,7 +69,7 @@ grails.project.dependency.resolution = {
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.8" // or ":hibernate4:4.3.1.1"
         runtime ":database-migration:1.3.8"
-        runtime ":jquery:1.11.0"
+        // runtime ":jquery:1.11.0"
         runtime ":resources:1.2.1"
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"

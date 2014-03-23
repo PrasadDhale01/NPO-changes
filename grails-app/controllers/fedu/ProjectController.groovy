@@ -110,8 +110,7 @@ class ProjectController {
 
         def rewardOptions = [:]
         Reward.list().each {
-            def value = '$' + it.price + ': ' + it.title
-            rewardOptions.put(it.id, value)
+            rewardOptions.put(it.id, it)
         }
 
         render (view: 'create/index',
@@ -132,12 +131,14 @@ class ProjectController {
 
         CommonsMultipartFile thumbnailFile = request.getFile(FORMCONSTANTS.THUMBNAIL)
         // List of OK mime-types
-        if (!thumbnailFile.isEmpty() && !VALID_IMG_TYPES.contains(thumbnailFile.getContentType())) {
-            flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
-            render (view: 'create/createerror')
-            return
-        } else {
-            thumbnail = new Image(bytes: thumbnailFile.bytes, contentType: thumbnailFile.getContentType()).save()
+        if (!thumbnailFile.isEmpty()) {
+            if (!thumbnailFile.isEmpty() && !VALID_IMG_TYPES.contains(thumbnailFile.getContentType())) {
+                flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
+                render (view: 'create/createerror')
+                return
+            } else {
+                thumbnail = new Image(bytes: thumbnailFile.bytes, contentType: thumbnailFile.getContentType()).save()
+            }
         }
 
         project = new Project(params)

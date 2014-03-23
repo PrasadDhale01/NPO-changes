@@ -23,7 +23,11 @@
                 </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-primary btn-lg">Fund</button>
+            <g:form action="authorizepay" role="form">
+                <g:hiddenField name="project" value="${project}"/>
+                <g:hiddenField name="reward" value="${reward}"/>
+                <button type="submit" class="btn btn-primary btn-lg">Fund</button>
+            </g:form>
         </div>
         <div class="col-md-4">
             <g:render template="rewardtile"/>

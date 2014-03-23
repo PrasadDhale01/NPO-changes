@@ -23,21 +23,12 @@ Expects the parent containers to be like so:
 <li class="col-xs-6 col-md-3">
     <div class="thumbnail" style="padding: 0">
         <div style="height: 200px; overflow: hidden;" class="blacknwhite">
-            <g:if test="${project.imageUrl}">
-                <img alt="${project.title}" style="width: 100%;" src="${project.imageUrl}">
-            </g:if>
-            <g:elseif test="${project.image}">
-                <img alt="${project.title}" style="width: 100%;" src="${createLink(controller: 'project', action: 'thumbnail', id: project.id)}">
-            </g:elseif>
-            <g:else>
-                <img alt="${project.title}" style="width: 100%;" src="http://lorempixel.com/400/400/abstract">
-            </g:else>
+            <img alt="${project.title}" style="width: 100%;" src="${projectService.getProjectImageLink(project)}">
         </div>
 
         <div class="caption">
             <h4><g:link controller="project" action="show" id="${project.id}" title="${project.title}"><div>${project.title}</div></g:link></h4>
             <p>${project.name}</p>
-            <!-- <p><i class="icon icon-map-marker"></i>Place, Country</p> -->
         </div>
 
         <div class="modal-footer" style="text-align: left; margin-top: 0;">

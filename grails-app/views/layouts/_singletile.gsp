@@ -14,15 +14,7 @@
 %>
     <div class="thumbnail" style="padding: 0; margin-top: 30px;">
         <div style="height: 200px; overflow: hidden;" class="blacknwhite">
-            <g:if test="${project.imageUrl}">
-                <img alt="${project.title}" style="width: 100%;" src="${project.imageUrl}">
-            </g:if>
-            <g:elseif test="${project.image}">
-                <img alt="${project.title}" style="width: 100%;" src="${createLink(controller: 'project', action: 'thumbnail', id: project.id)}">
-            </g:elseif>
-            <g:else>
-                <img alt="${project.title}" style="width: 100%;" src="http://lorempixel.com/400/400/abstract">
-            </g:else>
+            <img alt="${project.title}" style="width: 100%;" src="${projectService.getProjectImageLink(project)}">
         </div>
 
         <div class="modal-footer" style="text-align: left; margin-top: 0;">

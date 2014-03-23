@@ -7,7 +7,21 @@ import java.text.SimpleDateFormat
 
 class ProjectService {
     def userService
-    def rewardService
+    def grailsLinkGenerator
+
+    def getProjectImageLink(Project project) {
+        if (project.imageUrl) {
+            if (project.imageUrl.startsWith('http')) {
+                return project.imageUrl
+            } else {
+                return grailsLinkGenerator.resource(file: project.imageUrl)
+            }
+        } else if (project.image) {
+            return grailsLinkGenerator.link(controller: 'project', action: 'thumbnail', id: project.id)
+        } else {
+            return 'http://lorempixel.com/400/400/abstract'
+        }
+    }
 
     def isProjectEnded(Project project) {
         if (!project) {

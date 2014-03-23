@@ -3,9 +3,9 @@
 	<div class="container">
 		<div class="navbar-header">
 			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="sr-only">Toggle navigation</span> 
-				<span class="icon-bar"></span> 
-				<span class="icon-bar"></span> 
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
 			<a class="navbar-brand" href="${resource(dir: '/')}">FEDU</a>
@@ -26,6 +26,9 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><sec:username/><b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><g:link controller="users" action="show">Profile</g:link></li>
+                            <sec:ifAllGranted roles="ROLE_AUTHOR">
+                                <li><g:link controller="blog" action="manage">Manage blogs</g:link></li>
+                            </sec:ifAllGranted>
                             <li class="divider"></li>
                             <li><g:link controller="logout">Log out</g:link></li>
                         </ul>

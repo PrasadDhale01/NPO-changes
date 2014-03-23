@@ -1,15 +1,15 @@
 modules = {
     /* JS */
     lessjs {
-        resource url: 'http://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js', disposition: 'head'
+        resource url: 'https://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js', disposition: 'head'
     }
     corejs {
-        resource url: 'http://code.jquery.com/jquery-2.1.0.js'
-        resource url: 'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js'
+        resource url: 'https://code.jquery.com/jquery-2.1.0.js'
+        resource url: 'https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js'
     }
     jqueryvalidate {
         dependsOn 'corejs'
-        resource url: 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js'
+        resource url: 'https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js'
     }
     fedujs {
         dependsOn 'corejs', 'bootstrapselectjs'
@@ -19,7 +19,7 @@ modules = {
         resource url: 'js/ga.js'
     }
     bootstrapselectjs {
-        resource url: 'http://silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js'
+        resource url: 'https://silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js'
     }
     blacknwhitejs {
         dependsOn 'corejs'
@@ -46,14 +46,14 @@ modules = {
 
     /* CSS */
     feducss {
-        dependsOn 'bootswatchunitedcss', 'bootstrapselectcss'
+        dependsOn 'bootswatchyeticss', 'bootstrapselectcss'
         resource url: 'css/fedu.css'
     }
     bootstrapcss {
-        resource url: 'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css'
+        resource url: 'https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css'
     }
     bootstrapselectcss {
-        resource url: 'http://silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css'
+        resource url: 'https://silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css'
     }
 
     /* Bootswatch themes; use any one. */
@@ -92,5 +92,11 @@ modules = {
         resource url: 'http://bootswatch.com/united/bootstrap.css'
         resource url: 'http://bootswatch.com/united/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
         resource url: 'http://bootswatch.com/united/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
+    }
+    bootswatchyeticss {
+        dependsOn 'lessjs'
+        resource url: 'bootswatch-yeti/bootstrap.css'
+        resource url: 'bootswatch-yeti/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
+        resource url: 'bootswatch-yeti/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
 }

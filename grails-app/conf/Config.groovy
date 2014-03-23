@@ -98,12 +98,18 @@ environments {
     development {
         grails.logging.jul.usebridge = true
         grails.dbconsole.urlRoot = '/secured/dbconsole'
+
+        grails.plugins.stripe.secretKey = 'pOmNeOMlKUCaVezCCrLCrwjz26v3e73s'
+        grails.plugins.stripe.publishableKey = 'pk_8LmhSf3ExwtOr7SVWYnnS2MJNZs15'
     }
     production {
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true
         grails.dbconsole.urlRoot = '/secured/dbconsole'
         // TODO: grails.serverURL = "http://www.changeme.com"
+
+        grails.plugins.stripe.secretKey = ''
+        grails.plugins.stripe.publishableKey = ''
     }
 }
 

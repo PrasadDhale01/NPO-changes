@@ -3,6 +3,9 @@ package fedu
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
+import com.stripe.model.Charge
+import com.stripe.exception.CardException;
+
 @Secured(['ROLE_USER'])
 class FundController {
     def contributionService
@@ -36,7 +39,7 @@ class FundController {
         }
     }
 
-    def authorizepay() {
+    def charge(String stripeToken) {
         Project project
         Reward reward
 
@@ -49,7 +52,22 @@ class FundController {
             }
         }
 
+        def amountInCents = (reward.price * 100) as Integer
+        def chargeParams = [
+            'amount': amountInCents,
+            'currency': 'usd',
+            'card': stripeToken,
+            'description': userService.getCurrentUser().username
+        ]
+
         if (project && reward) {
+            try {
+                Charge.create(chargeParams)
+            } catch(CardException) {
+                render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged. Please try again.']
+                return
+            }
+
             project.addToContributions(
                     date: new Date(),
                     user: userService.getCurrentUser(),

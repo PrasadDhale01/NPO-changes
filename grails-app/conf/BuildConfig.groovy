@@ -58,7 +58,8 @@ grails.project.dependency.resolution = {
         build ":tomcat:7.0.50.1"
 
         compile ":mail:1.0.4"
-        compile ':spring-security-core:2.0-RC2'
+        compile ":spring-security-core:2.0-RC2"
+        compile ":stripe:2.6"
 
         // plugins for the compile step
         compile ":scaffolding:2.0.2"

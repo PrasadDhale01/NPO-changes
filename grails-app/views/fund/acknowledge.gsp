@@ -1,3 +1,4 @@
+<g:set var="userService" bean="userService"/>
 <html>
 <head>
     <meta name="layout" content="main" />
@@ -6,7 +7,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <h1>Payment details</h1>
+            <h1>Thank you!</h1>
+            <p>You have funded this project. You will receive your chosen reward soon.</p>
+
+            <h3>Funding confirmation.</h3>
             <table class="table table-bordered table-hover table-condensed">
                 <tbody>
                 <tr>
@@ -23,11 +27,7 @@
                 </tr>
                 </tbody>
             </table>
-            <g:form action="authorizepay" role="form">
-                <g:hiddenField name="projectId" value="${project.id}"/>
-                <g:hiddenField name="rewardId" value="${reward.id}"/>
-                <button type="submit" class="btn btn-primary btn-lg">Fund</button>
-            </g:form>
+            <div class="alert alert-success">Receipt has been sent over email to ${userService.getCurrentUser().username}</div>
         </div>
         <div class="col-md-4">
             <g:render template="rewardtile"/>

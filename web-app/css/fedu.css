@@ -242,27 +242,6 @@ ul.unstyled {
 	margin-top: 0px;
 }
 
-.caption div {
-	white-space: nowrap;
-	width: inherit;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	min-height: 28px;
-}
-
-.caption p {
-	white-space: nowrap;
-	width: inherit;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	min-height: 20px;
-}
-
-.blacknwhite {
-    position: relative;
-    display: block;
-}
-
 /* Override bootstrap */
 .progress {
     margin-bottom: 0;
@@ -272,10 +251,44 @@ ul.unstyled {
     /* height: 20px; */
 }
 
-/* Override bootstrap */
-.thumbnail {
+/* Override thumbnail */
+.fedu.thumbnail {
     border-radius: 0;
 }
+
+.fedu.thumbnail > .modal-footer {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.fedu.thumbnail > .caption {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.fedu.thumbnail > .caption h4 {
+    white-space: nowrap;
+    width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 28px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.fedu.thumbnail > .caption p {
+    white-space: nowrap;
+    width: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 20px;
+}
+
+.blacknwhite {
+    position: relative;
+    display: block;
+}
+
 
 /* Blog
 ------------------------- */

@@ -28,12 +28,12 @@
                     <%
                         def backers = contributionService.getBackersForProjectByReward(project, reward);
                     %>
-                    <a href="#" class="list-group-item">
+                    <g:link absolute="true" uri="/projects/${project.id}/fund/${reward.id}" class="list-group-item">
                         <h4 class="list-group-item-heading">${reward.title}</h4>
                         <h5 class="list-group-item-heading lead">$${reward.price}</h5>
                         <p class="list-group-item-text text-justify">${reward.description}</p>
                         <p class="list-group-item-text text-justify">${backers} backer(s)</p>
-                    </a>
+                    </g:link>
                 </g:each>
             </div>
         </g:else>

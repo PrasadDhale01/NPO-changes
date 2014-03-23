@@ -2,6 +2,7 @@ $(function() {
 });
 
 $(window).load(function() {
+    /*
     $('.blacknwhite').BlackAndWhite({
         hoverEffect: true, // default true
         // set the path to BnWWorker.js for a superfast implementation
@@ -20,4 +21,5 @@ $(window).load(function() {
             // this callback gets executed anytime an image is converted
         }
     });
+    */
 });

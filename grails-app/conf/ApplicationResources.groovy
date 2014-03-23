@@ -8,7 +8,7 @@ modules = {
         resource url: 'http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js'
     }
     jqueryvalidate {
-        dependsOn 'jquery'
+        dependsOn 'corejs'
         resource url: 'http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js'
     }
     fedujs {
@@ -22,7 +22,7 @@ modules = {
         resource url: 'http://silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js'
     }
     blacknwhitejs {
-        dependsOn 'jquery'
+        dependsOn 'corejs'
         resource url: 'js/jquery.BlackAndWhite.js'
     }
 

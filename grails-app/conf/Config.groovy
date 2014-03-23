@@ -108,8 +108,8 @@ environments {
         grails.dbconsole.urlRoot = '/secured/dbconsole'
         // TODO: grails.serverURL = "http://www.changeme.com"
 
-        grails.plugins.stripe.secretKey = ''
-        grails.plugins.stripe.publishableKey = ''
+        grails.plugins.stripe.secretKey = 'pOmNeOMlKUCaVezCCrLCrwjz26v3e73s'
+        grails.plugins.stripe.publishableKey = 'pk_8LmhSf3ExwtOr7SVWYnnS2MJNZs15'
     }
 }
 

@@ -8,7 +8,7 @@ class FundController {
     def projectService
 
     @Secured(['ROLE_USER'])
-    def paydetails() {
+    def paymentdetails() {
         Project project
         Reward reward
 
@@ -32,5 +32,9 @@ class FundController {
         } else {
             return [project: project, reward: reward]
         }
+    }
+
+    def authorizepay() {
+        render params as JSON
     }
 }

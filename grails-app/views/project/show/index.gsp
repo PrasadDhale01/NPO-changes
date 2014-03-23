@@ -1,4 +1,3 @@
-<%@ page import="java.text.SimpleDateFormat" %>
 <html>
 <head>
 <meta name="layout" content="main" />
@@ -16,7 +15,7 @@
                     <p class="text-justify">${project.story}</p>
                 </div>
                 <div class="col-md-4">
-                    <g:render template="show/tile"/>
+                    <g:render template="/layouts/singletile"/>
                     <g:render template="show/rewards"/>
                 </div>
             </div>

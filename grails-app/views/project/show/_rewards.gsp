@@ -21,7 +21,7 @@
             <h4>Ended on ${dateFormat.format(endDate.getTime())}</h4>
         </g:elseif>
         <g:else>
-            <h4>Ends on ${dateFormat.format(endDate.getTime())}</h4>
+            <%-- <h4>Ends on ${dateFormat.format(endDate.getTime())}</h4> --%>
 
             <div class="list-group">
                 <g:each in="${project.rewards}" var="reward">

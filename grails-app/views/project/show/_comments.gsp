@@ -11,6 +11,9 @@
         <button type="submit" class="btn btn-default pull-right">Post comment</button>
     </g:form>
 </sec:ifLoggedIn>
+<sec:ifNotLoggedIn>
+    <div class="alert alert-warning">Please login to comment.</div>
+</sec:ifNotLoggedIn>
 
 <g:if test="${!project.comments.empty}">
     <h4 class="lead">Comments</h4>

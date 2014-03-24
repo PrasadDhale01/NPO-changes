@@ -27,8 +27,8 @@ footer {
 	width: 100%;
 	/* Set the fixed height of the footer here */
 	padding-bottom: 20px;
-    background-color: #333333;
-    color: white;
+    /* background-color: #333333; */
+    /* color: white; */
 }
 
 ul.unstyled {

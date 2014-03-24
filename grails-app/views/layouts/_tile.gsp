@@ -23,7 +23,9 @@ Expects the parent containers to be like so:
 <li class="col-xs-6 col-md-3">
     <div class="fedu thumbnail" style="padding: 0">
         <div style="height: 200px; overflow: hidden;" class="blacknwhite">
-            <img alt="${project.title}" style="width: 100%;" src="${projectService.getProjectImageLink(project)}">
+            <g:link controller="project" action="show" id="${project.id}" title="${project.title}">
+                <img alt="${project.title}" style="width: 100%;" src="${projectService.getProjectImageLink(project)}">
+            </g:link>
         </div>
 
         <div class="caption">

@@ -71,6 +71,7 @@
           <root url="file://$MODULE_DIR$/lib" />
           <root url="jar://$USER_HOME$/.m2/repository/com/stripe/stripe-java/1.7.1/stripe-java-1.7.1.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/eclipse/jetty/aggregate/jetty-all/7.6.0.v20120127/jetty-all-7.6.0.v20120127.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/mysql/mysql-connector-java/5.1.27/mysql-connector-java-5.1.27.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

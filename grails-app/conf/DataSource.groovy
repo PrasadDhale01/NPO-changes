@@ -1,7 +1,6 @@
 dataSource {
     pooled = true
     jmxExport = true
-    driverClassName = "com.mysql.jdbc.Driver"
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -25,7 +24,10 @@ environments {
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/fedudb"
+            url = "jdbc:mysql://localhost:3306/fedudb?useUnicode=yes&characterEncoding=UTF-8"
+            driverClassName = "com.mysql.jdbc.Driver"
+            dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+
             username = 'fedudbmaster'
             password = 'fedudbpassword'
         }
@@ -33,7 +35,10 @@ environments {
     production {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://fedudbbeta.cvblatijndiw.us-east-1.rds.amazonaws.com:3306"
+            url = "jdbc:mysql://fedudbbeta.cvblatijndiw.us-east-1.rds.amazonaws.com:3306/fedudb"
+            driverClassName = "com.mysql.jdbc.Driver"
+            dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
+
             username = 'fedudbmaster'
             password = 'fedudbpassword'
 

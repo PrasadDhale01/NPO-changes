@@ -1,9 +1,7 @@
 dataSource {
     pooled = true
     jmxExport = true
-    driverClassName = "org.h2.Driver"
-    username = "sa"
-    password = ""
+    driverClassName = "com.mysql.jdbc.Driver"
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -19,21 +17,26 @@ environments {
             dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:h2:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
             // url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            driverClassName = "org.h2.Driver"
+            username = "sa"
+            password = ""
         }
     }
     test {
         dataSource {
-            // dbCreate = "update"
-            dbCreate = "create-drop"
-            url = "jdbc:h2:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
-            // url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            dbCreate = "update"
+            url = "jdbc:mysql://localhost:3306/fedudb"
+            username = 'fedudbmaster'
+            password = 'fedudbpassword'
         }
     }
     production {
         dataSource {
-            // dbCreate = "update"
-            dbCreate = "create-drop"
-            url = "jdbc:h2:prodDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            dbCreate = "update"
+            url = "jdbc:mysql://fedudbbeta.cvblatijndiw.us-east-1.rds.amazonaws.com:3306"
+            username = 'fedudbmaster'
+            password = 'fedudbpassword'
+
             properties {
                // Documentation for Tomcat JDBC Pool
                // http://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html#Common_Attributes

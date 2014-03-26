@@ -99,16 +99,18 @@ environments {
         grails.logging.jul.usebridge = true
         grails.dbconsole.urlRoot = '/secured/dbconsole'
 
-        grails.plugins.stripe.secretKey = 'pOmNeOMlKUCaVezCCrLCrwjz26v3e73s'
-        grails.plugins.stripe.publishableKey = 'pk_8LmhSf3ExwtOr7SVWYnnS2MJNZs15'
+        /* Stripe test keys */
+        grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
+        grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
     }
     test {
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true
         grails.dbconsole.urlRoot = '/secured/dbconsole'
 
-        grails.plugins.stripe.secretKey = 'pOmNeOMlKUCaVezCCrLCrwjz26v3e73s'
-        grails.plugins.stripe.publishableKey = 'pk_8LmhSf3ExwtOr7SVWYnnS2MJNZs15'
+        /* Stripe test keys */
+        grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
+        grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
     }
     production {
         grails.logging.jul.usebridge = false
@@ -116,8 +118,9 @@ environments {
         grails.dbconsole.urlRoot = '/secured/dbconsole'
         // TODO: grails.serverURL = "http://www.changeme.com"
 
-        grails.plugins.stripe.secretKey = 'pOmNeOMlKUCaVezCCrLCrwjz26v3e73s'
-        grails.plugins.stripe.publishableKey = 'pk_8LmhSf3ExwtOr7SVWYnnS2MJNZs15'
+        /* Stripe live keys */
+        grails.plugins.stripe.secretKey = 'sk_live_UJc8cRZYdv4AasXP3whR6xfX'
+        grails.plugins.stripe.publishableKey = 'pk_live_dABB1ahq9wrYlnUl1fN5wl1j'
     }
 }
 

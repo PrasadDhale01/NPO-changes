@@ -3,8 +3,11 @@ modules = {
     lessjs {
         resource url: 'https://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js', disposition: 'head'
     }
-    corejs {
+    jquery {
         resource url: 'https://code.jquery.com/jquery-2.1.0.js'
+    }
+    corejs {
+        dependsOn 'jquery'
         resource url: 'https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js'
     }
     jqueryvalidate {

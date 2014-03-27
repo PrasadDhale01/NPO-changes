@@ -9,9 +9,14 @@ class UserService {
     def ROLE_ADMIN = 'ROLE_ADMIN'
     def ROLE_USER = 'ROLE_USER'
     def ROLE_AUTHOR = 'ROLE_AUTHOR'
+    def ROLE_FACEBOOK = 'ROLE_FACEBOOK'
 
     def getCurrentUser() {
         return springSecurityService.getCurrentUser()
+    }
+
+    def isLoggedIn() {
+        return springSecurityService.isLoggedIn()
     }
 
     def adminRole() {
@@ -26,11 +31,16 @@ class UserService {
         return Role.findByAuthority(ROLE_AUTHOR)
     }
 
+    def facebookRole() {
+        return Role.findByAuthority(ROLE_FACEBOOK)
+    }
+
     @Transactional
     def bootstrap() {
         def adminRole = Role.findOrSaveByAuthority(ROLE_ADMIN)
         def userRole = Role.findOrSaveByAuthority(ROLE_USER)
         def authorRole = Role.findOrSaveByAuthority(ROLE_AUTHOR)
+        def facebookRole = Role.findOrSaveByAuthority(ROLE_FACEBOOK)
 
         def admin = User.findByUsername('admin@fedu.org')
         if (!admin) {

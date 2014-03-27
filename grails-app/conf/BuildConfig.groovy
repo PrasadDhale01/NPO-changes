@@ -50,27 +50,29 @@ grails.project.dependency.resolution = {
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
         runtime 'mysql:mysql-connector-java:5.1.27'
-        // runtime 'org.postgresql:postgresql:9.3-1100-jdbc41'
     }
 
     plugins {
         // plugins for the build system only
-        // build ":tomcat:7.0.50.1"
-        build ':jetty:2.0.3'
-
-        compile ":mail:1.0.4"
-        compile ":spring-security-core:2.0-RC2"
-        compile ":stripe:2.6"
+        build ":tomcat:7.0.50.1"
+        // build ':jetty:2.0.3'
 
         // plugins for the compile step
         compile ":scaffolding:2.0.2"
         compile ':cache:1.1.1'
+        compile ":rest:0.8"
+        compile ":mail:1.0.4"
+        compile ":spring-security-core:2.0-RC2"
+        compile "org.grails.plugins:spring-security-facebook:0.15.2-CORE2"
+        compile ":stripe:2.6"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.8" // or ":hibernate4:4.3.1.1"
         runtime ":database-migration:1.3.8"
-        // runtime ":jquery:1.11.0"
         runtime ":resources:1.2.1"
+        runtime ":facebook-sdk:0.5.0"
+
+        // runtime ":jquery:1.11.0"
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0.1"
         //runtime ":cached-resources:1.1"

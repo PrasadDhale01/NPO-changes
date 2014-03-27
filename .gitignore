@@ -3,3 +3,4 @@ target-eclipse/
 .idea/workspace.xml
 *.db
 web-app/plugins/
+fedu.log

@@ -1,6 +1,7 @@
 <html>
 <head>
     <meta name='layout' content='main'/>
+    <r:require modules="loginjs"/>
 </head>
 <body>
 <div class="container">
@@ -11,8 +12,14 @@
             <div class="alert alert-danger">${flash.message}</div>
         </g:if>
 
-        <input type="email" class="form-control" placeholder="Email address" name="j_username" id="username" required autofocus>
-        <input type="password" class="form-control" placeholder="Password" name="j_password" id="password" required>
+        <div class="form-group">
+            <input type="email" class="form-control" name="j_username" id="username" placeholder="Email address" autofocus>
+        </div>
+
+        <div class="form-group">
+            <input type="password" class="form-control" placeholder="Password" name="j_password" id="password">
+        </div>
+
         <label class="checkbox">
             <input type="checkbox" value="remember-me" id="remember_me" name='${rememberMeParameter}' <g:if test='${hasCookie}'>checked='checked'</g:if> />
             Remember me

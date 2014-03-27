@@ -10,6 +10,9 @@
           <root url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC2/grails-app/views" relative="/" />
           <root url="file://$MODULE_DIR$/target/work/plugins/stripe-2.6/web-app" relative="/" />
           <root url="file://$MODULE_DIR$/target/work/plugins/stripe-2.6/grails-app/views" relative="/" />
+          <root url="file://$MODULE_DIR$/target/work/plugins/spring-security-facebook-0.15.2-CORE2/web-app" relative="/" />
+          <root url="file://$MODULE_DIR$/target/work/plugins/facebook-sdk-0.5.0/web-app" relative="/" />
+          <root url="file://$MODULE_DIR$/target/work/plugins/facebook-sdk-0.5.0/grails-app/views" relative="/" />
         </webroots>
         <sourceRoots />
       </configuration>
@@ -27,13 +30,16 @@
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/database-migration-1.3.8/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/database-migration-1.3.8/grails-app/controllers" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/target/work/plugins/facebook-sdk-0.5.0">
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/facebook-sdk-0.5.0/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/facebook-sdk-0.5.0/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/facebook-sdk-0.5.0/grails-app/controllers" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/facebook-sdk-0.5.0/grails-app/taglib" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/hibernate-3.6.10.8">
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/hibernate-3.6.10.8/src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/hibernate-3.6.10.8/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/hibernate-3.6.10.8/grails-app/i18n" isTestSource="false" />
-    </content>
-    <content url="file://$MODULE_DIR$/target/work/plugins/jetty-2.0.3">
-      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/jetty-2.0.3/src/groovy" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.4">
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.4/src/groovy" isTestSource="false" />
@@ -47,6 +53,9 @@
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/resources-1.2.1/grails-app/i18n" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/resources-1.2.1/grails-app/taglib" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/target/work/plugins/rest-0.8">
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/rest-0.8/src/groovy" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/scaffolding-2.0.2">
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/scaffolding-2.0.2/src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/scaffolding-2.0.2/src/groovy" isTestSource="false" />
@@ -59,8 +68,17 @@
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC2/grails-app/services" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/spring-security-core-2.0-RC2/grails-app/taglib" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/target/work/plugins/spring-security-facebook-0.15.2-CORE2">
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/spring-security-facebook-0.15.2-CORE2/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/spring-security-facebook-0.15.2-CORE2/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/spring-security-facebook-0.15.2-CORE2/grails-app/taglib" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/stripe-2.6">
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/stripe-2.6/grails-app/taglib" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/target/work/plugins/tomcat-7.0.50.1">
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/tomcat-7.0.50.1/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/tomcat-7.0.50.1/src/groovy" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/webxml-1.4.1">
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/webxml-1.4.1/src/groovy" isTestSource="false" />
@@ -93,8 +111,20 @@
           <root url="jar://$USER_HOME$/.m2/repository/org/springframework/security/spring-security-web/3.2.0.RC1/spring-security-web-3.2.0.RC1.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/springframework/security/spring-security-core/3.2.0.RC1/spring-security-core-3.2.0.RC1.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/com/stripe/stripe-java/1.7.1/stripe-java-1.7.1.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/eclipse/jetty/aggregate/jetty-all/7.6.0.v20120127/jetty-all-7.6.0.v20120127.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/mysql/mysql-connector-java/5.1.27/mysql-connector-java-5.1.27.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/7.0.50/tomcat-embed-core-7.0.50.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.50/tomcat-embed-jasper-7.0.50.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/tomcat-catalina-ant/7.0.50/tomcat-catalina-ant-7.0.50.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/net/sourceforge/nekohtml/nekohtml/1.9.16/nekohtml-1.9.16.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/net/sf/ezmorph/ezmorph/1.0.6/ezmorph-1.0.6.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/net/sf/json-lib/json-lib/2.3/json-lib-2.3-jdk15.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/httpcomponents/httpcore/4.2.1/httpcore-4.2.1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/httpcomponents/httpclient/4.2.1/httpclient-4.2.1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/codehaus/groovy/modules/http-builder/http-builder/0.6/http-builder-0.6.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/com/restfb/restfb/1.6.14/restfb-1.6.14.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

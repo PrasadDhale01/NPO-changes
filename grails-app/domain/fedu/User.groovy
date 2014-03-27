@@ -1,16 +1,18 @@
 package fedu
 
+import org.apache.commons.validator.EmailValidator
+
 class User {
 
     static hasMany = [projects: Project, contributions: Contribution, comments: ProjectComment]
 
 	transient springSecurityService
 
-    // We enforce username to be an email
 	String username
 	String password
     String firstName
     String lastName
+    String email
 
     String confirmCode
     String resetCode
@@ -23,12 +25,13 @@ class User {
 	static transients = ['springSecurityService']
 
 	static constraints = {
-		username blank: false, unique: true, email: true
+		username blank: false, unique: true
 		password blank: false
         confirmCode nullable: true
         resetCode nullable: true
         firstName nullable: true
         lastName nullable: true
+        email blank: false, email: true, nullable: true
 	}
 
 	static mapping = {
@@ -42,6 +45,15 @@ class User {
 	def beforeInsert() {
 		encodePassword()
 	}
+
+    def beforeValidate() {
+        if (!email) {
+            EmailValidator emailValidator = EmailValidator.getInstance()
+            if (emailValidator.isValid(username)) {
+                email = username
+            }
+        }
+    }
 
 	def beforeUpdate() {
 		if (isDirty('password')) {

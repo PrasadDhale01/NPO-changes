@@ -94,6 +94,10 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+grails.plugin.springsecurity.facebook.domain.classname = 'fedu.FacebookUser'
+grails.plugin.springsecurity.facebook.domain.appUserConnectionPropertyName = 'user'
+grails.plugin.springsecurity.facebook.filter.redirect.failureHandler='facebookRedirectFailureHandler'
+
 environments {
     development {
         grails.logging.jul.usebridge = true
@@ -102,6 +106,14 @@ environments {
         /* Stripe test keys */
         grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
         grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+
+        /* FundEdu_dev */
+        grails.plugin.springsecurity.facebook.appId = '641152155950617'
+        grails.plugin.springsecurity.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
+
+        mandrill {
+            apiKey = "R28ZHu6_5IkJWLFunpsJbw"
+        }
     }
     test {
         grails.logging.jul.usebridge = false
@@ -111,6 +123,14 @@ environments {
         /* Stripe test keys */
         grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
         grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+
+        /* FundEdu_dev */
+        grails.plugin.springsecurity.facebook.appId = '641152155950617'
+        grails.plugin.springsecurity.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
+
+        mandrill {
+            apiKey = "R28ZHu6_5IkJWLFunpsJbw"
+        }
     }
     production {
         grails.logging.jul.usebridge = false
@@ -121,16 +141,31 @@ environments {
         /* Stripe live keys */
         grails.plugins.stripe.secretKey = 'sk_live_UJc8cRZYdv4AasXP3whR6xfX'
         grails.plugins.stripe.publishableKey = 'pk_live_dABB1ahq9wrYlnUl1fN5wl1j'
+
+        /* FundEdu */
+        grails.plugin.springsecurity.facebook.appId = '354215177926850'
+        grails.plugin.springsecurity.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
+
+        mandrill {
+            apiKey = "R28ZHu6_5IkJWLFunpsJbw"
+        }
     }
 }
 
 // log4j configuration
 log4j = {
     // Example of changing the log pattern for the default console appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+
+    appenders {
+        console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
+        file name:'file', file:'fedu.log'
+    }
+
+    root {
+        info 'stdout', 'file'
+    }
+
+    info   'fedu'
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP

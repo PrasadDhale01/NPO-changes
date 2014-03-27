@@ -2,6 +2,8 @@
 
     <g:form class="form-signin" controller="registration" action="create" role="form">
         <h2 class="form-signin-heading">Please register</h2>
+        <facebookAuth:connect/>
+        <hr/>
         <div class="form-group">
             <input type="fn" name="firstName" class="form-control" placeholder="First name" autofocus>
         </div>

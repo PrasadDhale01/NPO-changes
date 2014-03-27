@@ -8,6 +8,8 @@
 
     <form class="form-signin" role="form" action="${postUrl}" method="POST" id="loginForm">
         <h2 class="form-signin-heading">Please sign in</h2>
+        <facebookAuth:connect/>
+        <hr/>
         <g:if test='${flash.message}'>
             <div class="alert alert-danger">${flash.message}</div>
         </g:if>

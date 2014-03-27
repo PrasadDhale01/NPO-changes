@@ -1,6 +1,6 @@
 <div class="container">
 
-    <g:form class="form-signin" controller="registration" action="create" role="form">
+    <g:form class="form-signin" controller="login" action="create" role="form">
         <h2 class="form-signin-heading">Please register</h2>
         <facebookAuth:connect/>
         <hr/>

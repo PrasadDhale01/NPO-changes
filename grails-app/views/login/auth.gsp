@@ -27,7 +27,7 @@
             Remember me
         </label>
         <button class="btn btn-primary btn-block" type="submit" id="submit">Sign in</button>
-        <g:link controller="registration" action="edit_reset">Forgot your password?</g:link>
+        <g:link controller="login" action="edit_reset">Forgot your password?</g:link>
     </form>
 
 </div>

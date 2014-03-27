@@ -10,12 +10,7 @@ class UrlMappings {
         "/"(controller: 'home', action: 'index')
         "500"(view:'/error')
 
-        "/login/$action?"(controller: "login")
         "/logout/$action?"(controller: "logout")
-
-        /* User Profile */
-        "/users/show"(controller:'registration', action:'show')
-        "/users/update"(controller:'registration', action:'update')
 
         /* About Us */
         "/aboutus"(view:'/aboutus/index')
@@ -40,6 +35,6 @@ class UrlMappings {
         "/projects/$projectId/fund/$rewardId"(controller:'fund', action:'paymentdetails')
 
         /* Facebook login */
-        "/facebookauthfailure"(controller:'registration', action:'facebook_user_denied')
+        "/facebookauthfailure"(controller:'login', action:'facebook_user_denied')
     }
 }

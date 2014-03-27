@@ -22,7 +22,7 @@
 			<ul class="nav navbar-nav navbar-right">
                 <sec:ifNotLoggedIn>
                     <li><g:link controller="login" action="auth">Login</g:link></li>
-                    <li><a href="${resource(dir: '/registration')}">Register</a></li>
+                    <li><a href="${resource(dir: '/login/register')}">Register</a></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <li class="dropdown">
@@ -34,7 +34,7 @@
                         %>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">${name}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><g:link controller="users" action="show">Profile</g:link></li>
+                            <li><g:link controller="login" action="profile">Profile</g:link></li>
                             <sec:ifAllGranted roles="ROLE_AUTHOR">
                                 <li><g:link controller="blog" action="manage">Manage blogs</g:link></li>
                             </sec:ifAllGranted>

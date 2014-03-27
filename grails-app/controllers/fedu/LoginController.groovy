@@ -3,7 +3,7 @@ package fedu
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.annotation.Secured
 
-class RegistrationController {
+class LoginController {
 
     def mailService
     def mandrillService
@@ -28,7 +28,7 @@ class RegistrationController {
     }
 
     private def sendMandrillEmail(User user) {
-        def link = grailsLinkGenerator.link(controller: 'registration', action: 'confirm', id: user.confirmCode, absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm', id: user.confirmCode, absolute: true)
 
         def globalMergeVars = [[
             'name': 'LINK',
@@ -61,26 +61,16 @@ class RegistrationController {
 
                 sendMandrillEmail(user)
 
-                /*
-                mailService.sendMail {
-                    async true
-                    to user.username
-                    from "info@fedu.org"
-                    subject "FEDU - New user confirmation"
-                    html g.render(template: 'mailtemplate', model: [code: user.confirmCode])
-                }
-                */
-
                 redirect(action: 'success')
             }
         }
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
-    def show() {
+    def profile() {
         User user = (User)userService.getCurrentUser()
 
-        return [user: user]
+        render view: 'profile/index', model: [user: user]
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -100,7 +90,7 @@ class RegistrationController {
             flash.message = "Error while updating user. Please try again later"
         }
 
-        render(view: 'show', model: [user: user])
+        redirect (action: 'profile')
     }
 
     def success() {
@@ -129,9 +119,12 @@ class RegistrationController {
     }
 
     def edit_reset() {
-        render(view: 'edit_reset_email')
+        render(view: 'forgot/edit_reset_email')
     }
 
+    def register() {
+        render view: 'register/index'
+    }
     def send_reset_email() {
         User user = User.findByUsername(params.username)
 
@@ -146,7 +139,7 @@ class RegistrationController {
                 to params.username
                 from "info@fedu.org"
                 subject "FEDU - Reset Password"
-                html g.render(template: 'resetmailtemplate', model: [code: user.resetCode])
+                html g.render(template: 'forgot/forgotpasswordmailtemplate', model: [code: user.resetCode])
             }
 
             render(view: 'success',
@@ -160,7 +153,7 @@ class RegistrationController {
         if (!user) {
             render(view: 'error', model: [message: 'Problem resetting password. Please check your reset link.'])
         } else {
-            render(view: 'edit_password_reset', model: [code: id])
+            render(view: 'forgot/edit_password_reset', model: [code: id])
         }
     }
 
@@ -174,7 +167,7 @@ class RegistrationController {
             String newPassword2 = params.new_password_2
             if (!newPassword || !newPassword2 || newPassword != newPassword2) {
                 flash.message = 'Passwords do not match! Please enter a valid password.'
-                render view: 'edit_password_reset', model: [code: user.resetCode]
+                render view: 'forgot/edit_password_reset', model: [code: user.resetCode]
                 return
             } else {
                 user.password = params.new_password

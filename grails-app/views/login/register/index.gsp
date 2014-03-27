@@ -4,6 +4,6 @@
     <r:require modules="registrationjs"/>
 </head>
 <body>
-    <g:render template="/registration/register"></g:render>
+    <g:render template="register/register"></g:render>
 </body>
 </html>

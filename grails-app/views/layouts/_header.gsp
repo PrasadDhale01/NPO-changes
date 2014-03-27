@@ -21,19 +21,7 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
                 <sec:ifNotLoggedIn>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><g:link controller="login" action="auth">
-                                <span class="glyphicon glyphicon-envelope"></span> Login with Email</g:link>
-                            </li>
-                            <li class="divider"></li>
-                            <li><g:link absolute="true" uri="${facebookAuthService.getFacebookLoginRedirectUrl()}">
-                                <span class="glyphicon glyphicon-thumbs-up"></span> Login with Facebook</g:link>
-                            </li>
-                        </ul>
-                    </li>
-
+                    <li><g:link controller="login" action="auth">Login</g:link></li>
                     <li><a href="${resource(dir: '/registration')}">Register</a></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>

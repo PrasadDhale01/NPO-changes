@@ -1,36 +1,15 @@
 $(function() {
-    console.log("create.js initialized");
-
-    $('.selectpicker').selectpicker();
+    console.log("login.js initialized");
 
     $('form').validate({
         rules: {
-            name: {
+            j_username: {
                 minlength: 2,
-                required: true
-            },
-            email: {
                 required: true,
                 email: true
             },
-            telephone: {
-                required: true,
-            },
-            amount: {
-                required: true,
-                number: true
-            },
-            days: {
-                required: true,
-                number: true
-            },
-            title: {
-                required: true,
-                minlength: 5
-            },
-            story: {
-                required: true,
-                minlength: 10
+            j_password: {
+                required: true
             }
         },
         highlight: function (element) {

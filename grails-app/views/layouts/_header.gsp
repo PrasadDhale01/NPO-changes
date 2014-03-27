@@ -1,4 +1,7 @@
 <!-- Fixed navbar -->
+<g:set var="facebookAuthService" bean="facebookAuthService"/>
+<g:set var="userService" bean="userService"/>
+
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container">
 		<div class="navbar-header">
@@ -18,12 +21,30 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
                 <sec:ifNotLoggedIn>
-                    <li><g:link controller="login" action="auth">Login</g:link></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><g:link controller="login" action="auth">
+                                <span class="glyphicon glyphicon-envelope"></span> Login with Email</g:link>
+                            </li>
+                            <li class="divider"></li>
+                            <li><g:link absolute="true" uri="${facebookAuthService.getFacebookLoginRedirectUrl()}">
+                                <span class="glyphicon glyphicon-thumbs-up"></span> Login with Facebook</g:link>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li><a href="${resource(dir: '/registration')}">Register</a></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><sec:username/><b class="caret"></b></a>
+                        <%
+                            def name = userService.getCurrentUser().firstName
+                            if (!name) {
+                                name = userService.getCurrentUser().email
+                            }
+                        %>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">${name}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><g:link controller="users" action="show">Profile</g:link></li>
                             <sec:ifAllGranted roles="ROLE_AUTHOR">

@@ -31,6 +31,14 @@ modules = {
         dependsOn 'fedujs', 'blacknwhitejs'
         resource url: 'js/home/home.js'
     }
+    loginjs {
+        dependsOn 'fedujs', 'jqueryvalidate'
+        resource url: 'js/home/login.js'
+    }
+    registrationjs {
+        dependsOn 'fedujs', 'jqueryvalidate'
+        resource url: 'js/home/registration.js'
+    }
     projectcreatejs {
         dependsOn 'fedujs', 'jqueryvalidate'
         resource url: 'js/project/create.js'
@@ -57,6 +65,7 @@ modules = {
     }
 
     /* Bootswatch themes; use any one. */
+    /*
     bootswatchjournalcss {
         dependsOn 'lessjs'
         resource url: 'http://bootswatch.com/journal/bootstrap.css'
@@ -93,6 +102,7 @@ modules = {
         resource url: 'http://bootswatch.com/united/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
         resource url: 'http://bootswatch.com/united/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
+    */
     bootswatchyeticss {
         dependsOn 'lessjs'
         resource url: 'bootswatch-yeti/bootstrap.css'

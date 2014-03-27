@@ -6,17 +6,44 @@ import grails.plugin.springsecurity.annotation.Secured
 class RegistrationController {
 
     def mailService
+    def mandrillService
+
     def userService
-    def springSecurityService
+    def grailsLinkGenerator
 
     /**
      * Default action; redirects to 'defaultTargetUrl' if logged in.
      * Look at LoginController.groovy for example.
      */
     def index() {
-        if (springSecurityService.isLoggedIn()) {
+
+        if (userService.isLoggedIn()) {
             redirect uri: SpringSecurityUtils.securityConfig.successHandler.defaultTargetUrl
         }
+    }
+
+    /* User canceled during Facebook connect */
+    def facebook_user_denied() {
+        render(view: 'error', model: [message: "Can't authenticate using Facebook. Seems like you've canceled Facebook authentication."])
+    }
+
+    private def sendMandrillEmail(User user) {
+        def link = grailsLinkGenerator.link(controller: 'registration', action: 'confirm', id: user.confirmCode, absolute: true)
+
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+        ], [
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ], [
+            'name': 'EMAIL',
+            'content': user.email
+        ]]
+
+        def tags = ['registration']
+
+        mandrillService.sendTemplate(user, 'new_user_confirmation', globalMergeVars, tags)
     }
 
     def create() {
@@ -32,12 +59,17 @@ class RegistrationController {
             } else {
                 UserRole.create(user, userService.userRole())
 
+                sendMandrillEmail(user)
+
+                /*
                 mailService.sendMail {
+                    async true
                     to user.username
                     from "info@fedu.org"
                     subject "FEDU - New user confirmation"
                     html g.render(template: 'mailtemplate', model: [code: user.confirmCode])
                 }
+                */
 
                 redirect(action: 'success')
             }
@@ -46,14 +78,14 @@ class RegistrationController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def show() {
-        User user = (User)springSecurityService.currentUser
+        User user = (User)userService.getCurrentUser()
 
         return [user: user]
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def update() {
-        User user = (User)springSecurityService.currentUser
+        User user = (User)userService.getCurrentUser()
         user.firstName = params.firstName
         user.lastName = params.lastName
 
@@ -110,6 +142,7 @@ class RegistrationController {
             user.resetCode = UUID.randomUUID().toString()
             user.save(flush: true)
             mailService.sendMail {
+                async true
                 to params.username
                 from "info@fedu.org"
                 subject "FEDU - Reset Password"

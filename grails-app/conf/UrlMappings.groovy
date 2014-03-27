@@ -38,5 +38,8 @@ class UrlMappings {
         "/projects/$id"(controller:'project', action:'show')
         "/projects/$id/thumbnail"(controller:'project', action:'thumbnail')
         "/projects/$projectId/fund/$rewardId"(controller:'fund', action:'paymentdetails')
+
+        /* Facebook login */
+        "/facebookauthfailure"(controller:'registration', action:'facebook_user_denied')
     }
 }

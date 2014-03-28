@@ -14,7 +14,7 @@ $(function() {
                 email: true
             },
             telephone: {
-                required: true,
+                required: true
             },
             amount: {
                 required: true,
@@ -32,6 +32,11 @@ $(function() {
                 required: true,
                 minlength: 10
             }
+            /*
+            imageUrl: {
+                url: true
+            }
+            */
         },
         highlight: function (element) {
             $(element).closest('.form-group').addClass('has-error');
@@ -49,4 +54,21 @@ $(function() {
             }
         }
     });
+
+    var showPopover = function () {
+            $(this).popover('show');
+        },
+        hidePopover = function () {
+            $(this).popover('hide');
+        };
+
+    /* Initialize pop-overs */
+    $("input[name='days']").popover({
+        content: 'Number of days to raise the funds by.',
+        trigger: 'manual',
+        placement: 'auto left'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
 });

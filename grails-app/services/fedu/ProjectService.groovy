@@ -65,7 +65,7 @@ class ProjectService {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")
 
         User deepshikha = userService.bootstrapDeepshikha()
-        User sampleContributor = User.findByUsername('user@fedu.org')
+        User sampleUser = User.findByUsername('user@fedu.org')
 
         new Project(
                 name: 'Machine learning enthusiast',
@@ -81,7 +81,7 @@ class ProjectService {
                 story: 'Maching learning is going to change the world for ever.',
                 validated: true,
                 imageUrl: 'http://1.bp.blogspot.com/-tn9GwuoC45w/TvtQvP6_UFI/AAAAAAAAAHI/ECpLGjyH6AI/s1600/machine_learning_course.png',
-                user: deepshikha
+                user: sampleUser
         ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
@@ -96,11 +96,11 @@ class ProjectService {
                 Reward.findById(6)
         ).addToContributions(
                 date: dateFormat.parse("01/16/2014"),
-                user: sampleContributor,
+                user: sampleUser,
                 reward: Reward.findById(3)
         ).addToContributions(
                 date: dateFormat.parse("01/20/2014"),
-                user: sampleContributor,
+                user: sampleUser,
                 reward: Reward.findById(2)
         ).save(failOnError: true)
 
@@ -134,19 +134,19 @@ class ProjectService {
         ).addToContributions(
                 reward: Reward.findById(5),
                 date: dateFormat.parse("01/16/2014"),
-                user: sampleContributor
+                user: sampleUser
         ).addToContributions(
                 reward: Reward.findById(5),
                 date: dateFormat.parse("01/17/2014"),
-                user: sampleContributor
+                user: sampleUser
         ).addToContributions(
                 reward: Reward.findById(5),
                 date: dateFormat.parse("01/20/2014"),
-                user: sampleContributor
+                user: sampleUser
         ).addToContributions(
                 reward: Reward.findById(5),
                 date: dateFormat.parse("01/22/2014"),
-                user: sampleContributor
+                user: sampleUser
         ).save(failOnError: true)
 
         new Project(
@@ -179,7 +179,7 @@ class ProjectService {
         ).addToContributions(
                 reward: Reward.findById(7),
                 date: dateFormat.parse("01/23/2014"),
-                user: sampleContributor
+                user: sampleUser
         ).save(failOnError: true)
 
         new Project(
@@ -212,7 +212,7 @@ class ProjectService {
         ).addToContributions(
                 reward: Reward.findById(10),
                 date: dateFormat.parse("01/21/2014"),
-                user: sampleContributor
+                user: sampleUser
         ).save(failOnError: true)
 
         new Project(
@@ -245,7 +245,7 @@ class ProjectService {
         ).addToContributions(
                 reward: Reward.findById(9),
                 date: dateFormat.parse("01/26/2014"),
-                user: sampleContributor
+                user: sampleUser
         ).save(failOnError: true)
 
         new Project(
@@ -278,7 +278,7 @@ class ProjectService {
         ).addToContributions(
                 reward: Reward.findById(5),
                 date: dateFormat.parse("01/18/2014"),
-                user: sampleContributor
+                user: sampleUser
         ).save(failOnError: true)
 
         new Project(
@@ -311,7 +311,7 @@ class ProjectService {
         ).addToContributions(
                 reward: Reward.findById(4),
                 date: dateFormat.parse("01/24/2014"),
-                user: sampleContributor
+                user: sampleUser
         ).save(failOnError: true)
 
         new Project(
@@ -344,7 +344,7 @@ class ProjectService {
         ).addToContributions(
                 reward: Reward.findById(8),
                 date: dateFormat.parse("01/29/2014"),
-                user: sampleContributor
+                user: sampleUser
         ).save(failOnError: true)
 
         new Project(
@@ -377,7 +377,7 @@ class ProjectService {
         ).addToContributions(
                 reward: Reward.findById(4),
                 date: dateFormat.parse("01/27/2014"),
-                user: sampleContributor
+                user: sampleUser
         ).save(failOnError: true)
 
         new Project(
@@ -410,7 +410,7 @@ class ProjectService {
         ).addToContributions(
                 reward: Reward.findById(5),
                 date: dateFormat.parse("01/22/2014"),
-                user: sampleContributor
+                user: sampleUser
         ).save(failOnError: true)
 
         new Project(
@@ -443,7 +443,7 @@ class ProjectService {
         ).addToContributions(
                 reward: Reward.findById(6),
                 date: dateFormat.parse("01/20/2014"),
-                user: sampleContributor
+                user: sampleUser
         ).save(failOnError: true)
     }
 }

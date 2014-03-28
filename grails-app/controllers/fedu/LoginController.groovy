@@ -67,13 +67,6 @@ class LoginController {
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
-    def profile() {
-        User user = (User)userService.getCurrentUser()
-
-        render view: 'profile/index', model: [user: user]
-    }
-
-    @Secured(['IS_AUTHENTICATED_FULLY'])
     def update() {
         User user = (User)userService.getCurrentUser()
         user.firstName = params.firstName
@@ -90,7 +83,7 @@ class LoginController {
             flash.message = "Error while updating user. Please try again later"
         }
 
-        redirect (action: 'profile')
+        redirect (controller: 'user', action: 'profile')
     }
 
     def success() {

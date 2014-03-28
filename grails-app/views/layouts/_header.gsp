@@ -34,7 +34,7 @@
                         %>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">${name}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><g:link controller="login" action="profile">Profile</g:link></li>
+                            <li><g:link controller="user" action="profile">Profile</g:link></li>
                             <sec:ifAllGranted roles="ROLE_AUTHOR">
                                 <li><g:link controller="blog" action="manage">Manage blogs</g:link></li>
                             </sec:ifAllGranted>

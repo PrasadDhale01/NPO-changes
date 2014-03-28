@@ -66,7 +66,7 @@ $(function() {
     $("input[name='days']").popover({
         content: 'Number of days to raise the funds by.',
         trigger: 'manual',
-        placement: 'auto left'
+        placement: 'top'
     })
     .focus(showPopover)
     .blur(hidePopover)

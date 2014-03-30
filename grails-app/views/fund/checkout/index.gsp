@@ -47,13 +47,13 @@
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
-                            <input class="card-cvc form-control" type="text" placeholder="CVC" data-stripe="cvc">
+                            <input class="form-control" type="text" placeholder="CVC" data-stripe="cvc">
 
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
-                            <input class="card-expiry-month form-control" type="text" placeholder="MM" data-stripe="exp-month">
+                            <input class="form-control" type="text" placeholder="MM" data-stripe="exp-month">
 
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
-                            <input class="card-expiry-year form-control" type="text" placeholder="YYYY" data-stripe="exp-year">
+                            <input class="form-control" type="text" placeholder="YYYY" data-stripe="exp-year">
                         </div>
                     </div>
 

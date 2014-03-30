@@ -1,4 +1,3 @@
-<g:set var="userService" bean="userService"/>
 <html>
 <head>
     <meta name="layout" content="main" />

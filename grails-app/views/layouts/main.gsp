@@ -29,7 +29,7 @@
 </head>
 <body>
     <g:render template="/layouts/header"/>
-    <div class="feducontent">
+    <div class="feduoutercontent">
         <g:layoutBody />
     </div>
     <g:render template="/layouts/footer"/>

@@ -3,6 +3,7 @@
 <meta name="layout" content="main" />
 </head>
 <body>
+<div class="feducontent">
 	<div class="container">
 		<g:if test="${project}">
 			<div>
@@ -32,5 +33,6 @@
 			<div class="alert alert-danger">Oh snap! Looks like that project doesn't exist.</div>
 		</g:else>
 	</div>
+</div>
 </body>
 </html>

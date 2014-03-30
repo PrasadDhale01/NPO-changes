@@ -4,6 +4,7 @@
 <meta name="layout" content="main" />
 </head>
 <body>
+<div class="feducontent">
 	<div class="container">
 		<g:if test="${blog}">
 			<div>
@@ -37,5 +38,6 @@
 			<p><div class="alert alert-danger">Oh snap! Looks like that blog's not available.</div></p>
 		</g:else>
 	</div>
+</div>
 </body>
 </html>

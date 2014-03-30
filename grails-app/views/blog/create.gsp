@@ -3,6 +3,7 @@
 <meta name="layout" content="main" />
 </head>
 <body>
+<div class="feducontent">
     <div class="container">
         <h1>Create new blog</h1>
         <g:form action="publish" role="form">
@@ -35,5 +36,6 @@
             <button type="submit" class="btn btn-default">Submit</button>
         </g:form>
     </div>
+</div>
 </body>
 </html>

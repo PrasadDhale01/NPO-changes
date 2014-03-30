@@ -4,6 +4,7 @@
 <meta name="layout" content="main" />
 </head>
 <body>
+<div class="feducontent">
     <div class="container">
         <h1>Manage blogs</h1>
         <g:link action="create"><button type="button" class="btn btn-success">Create new blog</button></g:link>
@@ -45,5 +46,6 @@
             </tbody>
         </table>
     </div>
+</div>
 </body>
 </html>

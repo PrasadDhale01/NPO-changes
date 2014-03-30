@@ -3,6 +3,7 @@
 <meta name="layout" content="main" />
 </head>
 <body>
+<div class="feducontent">
     <div class="container">
         <h2>Error</h2>
         <div class="alert alert-danger">
@@ -18,5 +19,6 @@
             <g:renderErrors bean="${project}"/>
         </g:if>
     </div>
+</div>
 </body>
 </html>

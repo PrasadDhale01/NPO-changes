@@ -8,7 +8,7 @@
 	<g:render template="jumbotron"></g:render>
 
     <!-- Call to action buttons -->
-    <!-- <g:render template="createfund"></g:render> -->
+    <%-- <g:render template="createfund"></g:render> --%>
 
     <!-- Carousel -->
     <g:render template="carousel"></g:render>

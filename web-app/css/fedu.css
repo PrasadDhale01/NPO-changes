@@ -22,6 +22,14 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 15px;
 }
 
+.navbar-brand
+{
+    margin-left: 15px;
+    background: url('/images/logo.png') no-repeat left center;
+    /* height: 40px; */
+    width: 100px;
+}
+
 /* Home
 ------------------------- */
 .jumbotron {

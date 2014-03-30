@@ -32,7 +32,7 @@ class UrlMappings {
         "/projects"(controller:'project', action:'list')
         "/projects/$id"(controller:'project', action:'show')
         "/projects/$id/thumbnail"(controller:'project', action:'thumbnail')
-        "/projects/$projectId/fund"(controller:'fund', action:'paymentdetails')
+        "/projects/$projectId/fund"(controller:'fund', action:'fund')
 
         /* Facebook login */
         "/facebookauthfailure"(controller:'login', action:'facebook_user_denied')

@@ -4,7 +4,6 @@ import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
 import com.stripe.model.Charge
-import com.stripe.exception.CardException;
 
 @Secured(['ROLE_USER'])
 class FundController {
@@ -14,19 +13,11 @@ class FundController {
     def mailService
     def rewardService
 
-    def paymentdetails() {
+    def fund() {
         Project project
-        // Reward reward
 
         if (params.int('projectId')) {
             project = Project.findById(params.int('projectId'))
-            /*
-            if (project) {
-                reward = project.rewards.find {
-                    it.id == params.int('rewardId')
-                }
-            }
-            */
         }
 
         boolean fundingAchieved = contributionService.isFundingAchievedForProject(project)
@@ -37,8 +28,39 @@ class FundController {
         } else if (fundingAchieved || ended) {
             redirect(controller: 'project', action: 'show', id: project.id)
         } else {
-            render view: 'index', model: [project: project]
+            render view: 'fund/index', model: [project: project]
         }
+    }
+
+    def checkout() {
+        Project project
+        Reward reward
+
+        if (params.int('projectId')) {
+            project = Project.findById(params.int('projectId'))
+        }
+        if (project) {
+            if (params.int('rewardId')) {
+                reward = project.rewards.find {
+                    it.id == params.int('rewardId')
+                }
+            } else {
+                reward = rewardService.getNoReward()
+            }
+        }
+
+        def amount = params.double(('amount'))
+        if (amount < reward.price) {
+            render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
+            return
+        }
+
+        if (project && reward) {
+            render view: 'checkout/index', model: [project: project, reward: reward, amount: amount]
+        } else {
+            render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
+        }
+
     }
 
     def charge(String stripeToken) {
@@ -60,11 +82,6 @@ class FundController {
         }
 
         def amount = params.double(('amount'))
-        if (amount < reward.price) {
-            render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
-            return
-        }
-
         def amountInCents = (amount * 100) as Integer
         def chargeParams = [
             'amount': amountInCents,
@@ -91,13 +108,13 @@ class FundController {
 
             mailService.sendMail {
                 async true
-                to userService.getCurrentUser().username
+                to userService.getCurrentUser().email
                 from "info@fedu.org"
                 subject "FEDU - Thank you for funding"
-                html g.render(template: 'ackfundingemailtemplate', model: [project: project, reward: reward])
+                html g.render(template: 'acknowledge/ackemailtemplate', model: [project: project, reward: reward])
             }
 
-            render view: 'acknowledge', model: [project: project, reward: reward, contribution: contribution]
+            render view: 'acknowledge/acknowledge', model: [project: project, reward: reward, contribution: contribution]
         } else {
             render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
         }

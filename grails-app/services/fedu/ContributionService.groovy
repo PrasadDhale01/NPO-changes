@@ -1,7 +1,5 @@
 package fedu
 
-import grails.transaction.Transactional
-
 class ContributionService {
 
     def isFundingAchievedForProject(Project project) {

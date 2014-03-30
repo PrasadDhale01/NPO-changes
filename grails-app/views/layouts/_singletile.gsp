@@ -8,7 +8,7 @@
         achievedDate = contributionService.getFundingAchievedDate(project)
     }
     def endDate = projectService.getProjectEndDate(project)
-    boolean ended = projectService.isProjectEnded(project)
+    boolean ended = projectService.isProjectDeadlineCrossed(project)
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>

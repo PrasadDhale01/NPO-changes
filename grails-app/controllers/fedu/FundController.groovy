@@ -1,6 +1,5 @@
 package fedu
 
-import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
 import com.stripe.model.Charge
@@ -21,7 +20,7 @@ class FundController {
         }
 
         boolean fundingAchieved = contributionService.isFundingAchievedForProject(project)
-        boolean ended = projectService.isProjectEnded(project)
+        boolean ended = projectService.isProjectDeadlineCrossed(project)
 
         if (!project) {
             render(view: 'error', model: [message: 'This project does not exist.'])

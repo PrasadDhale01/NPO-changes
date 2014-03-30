@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat
 
 class ProjectService {
     def userService
+    def contributionService
     def grailsLinkGenerator
 
     def getProjectImageLink(Project project) {
@@ -23,7 +24,15 @@ class ProjectService {
         }
     }
 
-    def isProjectEnded(Project project) {
+    def isFundingOpen(Project project) {
+        if (isProjectDeadlineCrossed(project) || contributionService.isFundingAchievedForProject(project)) {
+            return false
+        } else {
+            return true
+        }
+    }
+
+    def isProjectDeadlineCrossed(Project project) {
         if (!project) {
             return null
         }

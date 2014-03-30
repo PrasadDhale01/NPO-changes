@@ -22,6 +22,10 @@ class UserService {
         return friendlyName
     }
 
+    def isFacebookUser() {
+        return isFacebookUser(getCurrentUser())
+    }
+
     def isFacebookUser(User user) {
         if (FacebookUser.findByUser(user)) {
             return true;

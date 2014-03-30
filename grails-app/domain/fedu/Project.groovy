@@ -2,6 +2,8 @@ package fedu
 
 class Project {
 
+    def rewardService
+
     static belongsTo = [user: User]
     static hasMany = [contributions: Contribution, comments: ProjectComment, rewards: Reward]
 
@@ -42,6 +44,17 @@ class Project {
         image (nullable: true)
         imageUrl (nullable: true)
         rewards (nullable: true)
+    }
+
+    def beforeInsert() {
+        /* If the $0 reward (which has id 1) isn't in the list, add it. */
+        Reward reward = rewards.find {
+            it.id == 1
+        }
+        if (!reward) {
+            // Insert as the first element, since this is the lowest value.
+            rewards.add(0, rewardService.getNoReward())
+        }
     }
 
     enum FundRaisingReason {

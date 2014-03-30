@@ -267,41 +267,6 @@ ul.unstyled {
     display: block;
 }
 
-/* Checkout */
-.amount.input-group-addon
-{
-    border-bottom-left-radius: 0;
-}
-
-.cardnumber.input-group-addon
-{
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-}
-
-.cvc.input-group-addon
-{
-    border-top-left-radius: 0;
-}
-
-.amount.form-control
-{
-    border-bottom-right-radius: 0;
-    margin-bottom: -1px;
-}
-
-.cardnumber.form-control
-{
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    margin-bottom: -1px;
-}
-
-.yyyy.form-control
-{
-    border-top-right-radius: 0;
-}
-
 /* Blog
 ------------------------- */
 .blogpost > .well {

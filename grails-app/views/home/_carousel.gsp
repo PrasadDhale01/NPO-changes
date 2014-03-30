@@ -28,8 +28,9 @@
                             <ul class="thumbnails list-unstyled">
                                 <g:each in="${1..cols}">
                                     <% if (index < count) { %>
-                                    <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
-
+                                    <li class="col-xs-6 col-md-3">
+                                        <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
+                                    </li>
                                     <% } %>
                                 </g:each>
                             </ul>
@@ -41,7 +42,9 @@
                             <ul class="thumbnails list-unstyled">
                                 <g:each in="${1..cols}">
                                     <% if (index < count) { %>
-                                    <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
+                                    <li class="col-xs-6 col-md-3">
+                                        <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
+                                    </li>
                                     <% } %>
                                 </g:each>
                             </ul>

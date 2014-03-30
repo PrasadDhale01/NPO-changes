@@ -54,6 +54,10 @@ modules = {
         dependsOn 'fedujs', 'blacknwhitejs'
         resource url: 'js/project/list.js'
     }
+    fundjs {
+        dependsOn 'fedujs', 'jqueryvalidate'
+        resource url: 'js/fund.js'
+    }
 
     /* CSS */
     feducss {

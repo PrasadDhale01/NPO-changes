@@ -30,10 +30,19 @@
                             <g:if test="${userService.isFacebookUser()}">
                                 <i class="fa fa-facebook-square"></i>
                             </g:if>
+                            <g:elseif test="${userService.isAdmin()}">
+                                <i class="fa fa-unlock"></i>
+                            </g:elseif>
+                            <g:elseif test="${userService.isAuthor()}">
+                                <span class="glyphicon glyphicon-book"></span>
+                            </g:elseif>
+                            <g:elseif test="${userService.isCommunityManager()}">
+                                <i class="fa fa-users"></i>
+                            </g:elseif>
                             <g:else>
                                 <span class="glyphicon glyphicon-user"></span>
                             </g:else>
-                            ${userService.getFriendlyName(userService.getCurrentUser())}
+                            ${userService.getFriendlyName()}
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">

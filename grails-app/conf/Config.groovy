@@ -140,9 +140,15 @@ environments {
         grails.dbconsole.urlRoot = '/secured/dbconsole'
         // TODO: grails.serverURL = "http://www.changeme.com"
 
+        /* Stripe test keys */
+        grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
+        grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+
         /* Stripe live keys */
+        /*
         grails.plugins.stripe.secretKey = 'sk_live_UJc8cRZYdv4AasXP3whR6xfX'
         grails.plugins.stripe.publishableKey = 'pk_live_dABB1ahq9wrYlnUl1fN5wl1j'
+        */
 
         /* FundEdu */
         grails.plugin.springsecurity.facebook.appId = '354215177926850'

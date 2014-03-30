@@ -6,11 +6,7 @@ import org.apache.commons.validator.EmailValidator
 class UserService {
 
     def springSecurityService
-
-    def ROLE_ADMIN = 'ROLE_ADMIN'
-    def ROLE_USER = 'ROLE_USER'
-    def ROLE_AUTHOR = 'ROLE_AUTHOR'
-    def ROLE_FACEBOOK = 'ROLE_FACEBOOK'
+    def roleService
 
     def getEmail() {
         EmailValidator emailValidator = EmailValidator.getInstance()
@@ -23,6 +19,10 @@ class UserService {
         } else {
             return null
         }
+    }
+
+    def getFriendlyName() {
+        return getFriendlyName(getCurrentUser())
     }
 
     def getFriendlyName(User user) {
@@ -38,6 +38,30 @@ class UserService {
 
     def isFacebookUser() {
         return isFacebookUser(getCurrentUser())
+    }
+
+    def isCommunityManager() {
+        if (UserRole.findByUserAndRole(getCurrentUser(), roleService.communityManagerRole())) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    def isAdmin() {
+        if (UserRole.findByUserAndRole(getCurrentUser(), roleService.adminRole())) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    def isAuthor() {
+        if (UserRole.findByUserAndRole(getCurrentUser(), roleService.authorRole())) {
+            return true
+        } else {
+            return false
+        }
     }
 
     def isFacebookUser(User user) {
@@ -56,45 +80,31 @@ class UserService {
         return springSecurityService.isLoggedIn()
     }
 
-    def adminRole() {
-        return Role.findByAuthority(ROLE_ADMIN)
-    }
-
-    def userRole() {
-        return Role.findByAuthority(ROLE_USER)
-    }
-
-    def authorRole() {
-        return Role.findByAuthority(ROLE_AUTHOR)
-    }
-
-    def facebookRole() {
-        return Role.findByAuthority(ROLE_FACEBOOK)
-    }
-
     @Transactional
     def bootstrap() {
-        def adminRole = Role.findOrSaveByAuthority(ROLE_ADMIN)
-        def userRole = Role.findOrSaveByAuthority(ROLE_USER)
-        def authorRole = Role.findOrSaveByAuthority(ROLE_AUTHOR)
-        def facebookRole = Role.findOrSaveByAuthority(ROLE_FACEBOOK)
-
         def admin = User.findByUsername('admin@fedu.org')
         if (!admin) {
             admin = new User(username: 'admin@fedu.org', password: 'P@$$w0rd').save(flush: true, failOnError: true)
         }
-        def user = User.findByUsername('user@fedu.org')
+        UserRole.findOrSaveByUserAndRole(admin, roleService.adminRole())
+
+        def user = User.findByUsername('user@example.com')
         if (!user) {
-            user = new User(username: 'user@fedu.org', password: 'password').save(flush: true, failOnError: true)
+            user = new User(username: 'user@example.com', password: 'password').save(flush: true, failOnError: true)
         }
+        UserRole.findOrSaveByUserAndRole(user, roleService.userRole())
+
         def author = User.findByUsername('author@fedu.org')
         if (!author) {
             author = new User(username: 'author@fedu.org', password: 'P@$$w0rd').save(flush: true, failOnError: true)
         }
+        UserRole.findOrSaveByUserAndRole(author, roleService.authorRole())
 
-        UserRole.findOrSaveByUserAndRole(admin, adminRole)
-        UserRole.findOrSaveByUserAndRole(user, userRole)
-        UserRole.findOrSaveByUserAndRole(author, authorRole)
+        def samplecommunitymgr = User.findByUsername('communitymgr@example.com')
+        if (!samplecommunitymgr) {
+            samplecommunitymgr = new User(username: 'communitymgr@example.com', password: 'password').save(flush: true, failOnError: true)
+        }
+        UserRole.findOrSaveByUserAndRole(samplecommunitymgr, roleService.communityManagerRole())
     }
 
     @Transactional
@@ -103,7 +113,7 @@ class UserService {
         if (!deepshikha) {
             deepshikha = new User(username: 'info@deepshikha.org', password: 'password').save(flush: true, failOnError: true)
         }
-        UserRole.findOrSaveByUserAndRole(deepshikha, userRole())
+        UserRole.findOrSaveByUserAndRole(deepshikha, roleService.userRole())
         return deepshikha
     }
 }

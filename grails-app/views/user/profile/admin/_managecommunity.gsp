@@ -7,6 +7,7 @@
         <th>Email</th>
         <th># of users in community</th>
         <th>Outstanding credit ($)</th>
+        <th>Add credits ($)</th>
     </tr>
     </thead>
     <tbody>
@@ -16,6 +17,16 @@
             <td>${communitymgr.email}</td>
             <td></td>
             <td></td>
+            <td>
+                <form class="form-inline" role="form">
+                    <div class="input-group" style="max-width: 200px; min-width: 180px;">
+                        <input type="text" class="form-control" placeholder="Amount">
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Add credit ($)</button>
+                        </span>
+                    </div>
+                </form>
+            </td>
         </tr>
     </g:each>
     </tbody>
@@ -23,10 +34,10 @@
 </div>
 <form class="form-inline" role="form">
     <label>Authorize a user to be a community manager</label>
-    <div class="form-group">
-        <label class="sr-only" for="username">Username</label>
-        <input class="form-control" id="username" placeholder="Enter username">
+    <div class="input-group">
+        <input type="text" class="form-control" placeholder="Enter username" name="username">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Add user as community manager</button>
+        </span>
     </div>
-    <button type="submit" class="btn btn-default btn-sm">Submit</button>
 </form>
-

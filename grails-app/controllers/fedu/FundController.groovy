@@ -12,30 +12,32 @@ class FundController {
     def projectService
     def userService
     def mailService
+    def rewardService
 
     def paymentdetails() {
         Project project
-        Reward reward
+        // Reward reward
 
-        if (params.int('projectId') && params.int('rewardId')) {
-
+        if (params.int('projectId')) {
             project = Project.findById(params.int('projectId'))
+            /*
             if (project) {
                 reward = project.rewards.find {
                     it.id == params.int('rewardId')
                 }
             }
+            */
         }
 
         boolean fundingAchieved = contributionService.isFundingAchievedForProject(project)
         boolean ended = projectService.isProjectEnded(project)
 
-        if (fundingAchieved || ended) {
+        if (!project) {
+            render(view: 'error', model: [message: 'This project does not exist.'])
+        } else if (fundingAchieved || ended) {
             redirect(controller: 'project', action: 'show', id: project.id)
-        } else if (!project || !reward) {
-            render(view: 'error', model: [message: 'This project or reward does not exist.'])
         } else {
-            return [project: project, reward: reward]
+            render view: 'index', model: [project: project]
         }
     }
 
@@ -43,16 +45,27 @@ class FundController {
         Project project
         Reward reward
 
-        if (params.int('projectId') && params.int('rewardId')) {
+        if (params.int('projectId')) {
             project = Project.findById(params.int('projectId'))
-            if (project) {
+        }
+
+        if (project) {
+            if (params.int('rewardId')) {
                 reward = project.rewards.find {
                     it.id == params.int('rewardId')
                 }
+            } else {
+                reward = rewardService.getNoReward()
             }
         }
 
-        def amountInCents = (reward.price * 100) as Integer
+        def amount = params.double(('amount'))
+        if (amount < reward.price) {
+            render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
+            return
+        }
+
+        def amountInCents = (amount * 100) as Integer
         def chargeParams = [
             'amount': amountInCents,
             'currency': 'usd',
@@ -68,11 +81,13 @@ class FundController {
                 return
             }
 
-            project.addToContributions(
+            Contribution contribution = new Contribution(
                     date: new Date(),
                     user: userService.getCurrentUser(),
-                    reward: reward
-            ).save(failOnError: true)
+                    reward: reward,
+                    amount: amount
+            )
+            project.addToContributions(contribution).save(failOnError: true)
 
             mailService.sendMail {
                 async true
@@ -82,7 +97,7 @@ class FundController {
                 html g.render(template: 'ackfundingemailtemplate', model: [project: project, reward: reward])
             }
 
-            render view: 'acknowledge', model: [project: project, reward: reward]
+            render view: 'acknowledge', model: [project: project, reward: reward, contribution: contribution]
         } else {
             render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
         }

@@ -5,6 +5,10 @@ import grails.transaction.Transactional
 class ContributionService {
 
     def isFundingAchievedForProject(Project project) {
+        if (!project) {
+            return null
+        }
+
         return getPercentageContributionForProject(project) == 100
     }
 
@@ -21,6 +25,10 @@ class ContributionService {
     }
 
     def getBackersForProjectByReward(Project project, Reward reward) {
+        if (!project || !reward) {
+            return null
+        }
+
         return Contribution.findAllByProjectAndReward(project, reward).size()
     }
 

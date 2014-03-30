@@ -23,7 +23,7 @@
                 </tr>
                 <tr>
                     <td>Amount</td>
-                    <td>$${reward.price}</td>
+                    <td>$${contribution.amount}</td>
                 </tr>
                 </tbody>
             </table>

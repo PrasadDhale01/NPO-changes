@@ -4,8 +4,18 @@ import grails.transaction.Transactional
 
 class RewardService {
 
+    def getNoReward() {
+        return Reward.findById(1)
+    }
+
     @Transactional
     def bootstrap() {
+        new Reward(
+                title: 'No reward',
+                description: 'No reward. I just want to contribute',
+                price: 0.0,
+                image: null
+        ).save(failOnError: true)
         new Reward(
                 title: 'Personal thank you Email',
                 description: 'Personal thank you email from beneficiary',

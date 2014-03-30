@@ -26,13 +26,10 @@
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <li class="dropdown">
-                        <%
-                            def name = userService.getCurrentUser().firstName
-                            if (!name) {
-                                name = userService.getCurrentUser().email
-                            }
-                        %>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">${name}<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            ${userService.getFriendlyName(userService.getCurrentUser())}
+                            <b class="caret"></b>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><g:link controller="user" action="profile">Profile</g:link></li>
                             <sec:ifAllGranted roles="ROLE_AUTHOR">

@@ -71,8 +71,11 @@ modules = {
     }
 
     /* CSS */
+    fontawesomecss {
+        resource url: 'https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'
+    }
     feducss {
-        dependsOn 'bootswatchyeticss', 'bootstrapselectcss'
+        dependsOn 'bootswatchyeticss', 'bootstrapselectcss', 'fontawesomecss'
         resource url: 'css/fedu.css'
     }
     bootstrapcss {

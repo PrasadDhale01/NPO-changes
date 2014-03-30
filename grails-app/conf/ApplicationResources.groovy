@@ -15,7 +15,7 @@ modules = {
         resource url: 'https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js'
     }
     fedujs {
-        dependsOn 'corejs', 'bootstrapselectjs'
+        dependsOn 'corejs', 'bootstrapselectjs', 'jqueryvalidate'
         resource url: 'js/fedu.js'
     }
     googleanalytics {
@@ -35,15 +35,15 @@ modules = {
         resource url: 'js/home/home.js'
     }
     loginjs {
-        dependsOn 'fedujs', 'jqueryvalidate'
+        dependsOn 'fedujs'
         resource url: 'js/home/login.js'
     }
     registrationjs {
-        dependsOn 'fedujs', 'jqueryvalidate'
+        dependsOn 'fedujs'
         resource url: 'js/home/registration.js'
     }
     projectcreatejs {
-        dependsOn 'fedujs', 'jqueryvalidate'
+        dependsOn 'fedujs'
         resource url: 'js/project/create.js'
     }
     projectshowjs {
@@ -55,8 +55,8 @@ modules = {
         resource url: 'js/project/list.js'
     }
     fundjs {
-        dependsOn 'fedujs', 'jqueryvalidate'
-        resource url: 'js/fund.js'
+        dependsOn 'fedujs'
+        resource url: 'js/fund/fund.js'
     }
 
     /* CSS */

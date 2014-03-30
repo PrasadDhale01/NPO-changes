@@ -2,7 +2,9 @@
 Expects the parent containers to be like so:
 <div class="row">
     <ul class="thumbnails list-unstyled">
-        ... /layouts/tile ...
+        <li class="col-xs-6 col-md-3">
+            ... /layouts/tile ...
+        </li>
     </ul>
 </div>
 --%>
@@ -10,13 +12,15 @@ Expects the parent containers to be like so:
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
 <%
+    def isFundingAchieved = contributionService.isFundingAchievedForProject(project)
     def percentage = contributionService.getPercentageContributionForProject(project)
     def achievedDate
-    if (percentage == 100) {
+    if (isFundingAchieved) {
         achievedDate = contributionService.getFundingAchievedDate(project)
     }
     def endDate = projectService.getProjectEndDate(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
+    def isFundingOpen = projectService.isFundingOpen(project)
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
@@ -38,7 +42,7 @@ Expects the parent containers to be like so:
                 <h5 class="text-center">GOAL<br/><span class="lead">$${project.amount}</span></h5>
             </div>
             <g:if test="${ended}">
-                <g:if test="${percentage == 100}">
+                <g:if test="${isFundingAchieved}">
                     <div class="col-md-6">
                         <h5 class="text-center">ACHIEVED<br><span class="lead">${dateFormat.format(achievedDate.getTime())}</span></h5>
                     </div>
@@ -56,10 +60,18 @@ Expects the parent containers to be like so:
             </g:else>
         </div>
     </div>
-    <div class="progress">
-        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage}%;">
-            <!-- <span class="sr-only">${percentage}% Complete</span> -->
-            ${percentage}%
+    <g:if test="${isFundingOpen}">
+        <div class="progress progress-striped active">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage}%;">
+                ${percentage}%
+            </div>
         </div>
-    </div>
+    </g:if>
+    <g:else>
+        <div class="progress">
+            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage}%;">
+                ${percentage}%
+            </div>
+        </div>
+    </g:else>
 </div>

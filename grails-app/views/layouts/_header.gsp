@@ -27,6 +27,12 @@
                 <sec:ifLoggedIn>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <g:if test="${userService.isFacebookUser()}">
+                                <i class="fa fa-facebook-square"></i>
+                            </g:if>
+                            <g:else>
+                                <span class="glyphicon glyphicon-user"></span>
+                            </g:else>
                             ${userService.getFriendlyName(userService.getCurrentUser())}
                             <b class="caret"></b>
                         </a>

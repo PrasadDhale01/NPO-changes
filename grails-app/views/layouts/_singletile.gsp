@@ -9,6 +9,7 @@
     }
     def endDate = projectService.getProjectEndDate(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
+    def isFundingOpen = projectService.isFundingOpen(project)
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
@@ -41,10 +42,18 @@
                 </g:else>
             </div>
         </div>
-        <div class="progress">
-            <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage}%;">
-                <!-- <span class="sr-only">${percentage}% Complete</span> -->
-                ${percentage}%
+        <g:if test="${isFundingOpen}">
+            <div class="progress progress-striped active">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage}%;">
+                    ${percentage}%
+                </div>
             </div>
-        </div>
+        </g:if>
+        <g:else>
+            <div class="progress">
+                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage}%;">
+                    ${percentage}%
+                </div>
+            </div>
+        </g:else>
     </div>

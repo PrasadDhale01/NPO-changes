@@ -6,8 +6,15 @@ modules = {
     jquery {
         resource url: 'https://code.jquery.com/jquery-2.1.0.js'
     }
+    handlebarsjs {
+        resource url: 'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.2/handlebars.min.js'
+    }
+    underscorejs {
+        resource url: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'
+        resource url: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.string/2.3.3/underscore.string.min.js'
+    }
     corejs {
-        dependsOn 'jquery'
+        dependsOn 'jquery', 'handlebarsjs'
         resource url: 'https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js'
     }
     jqueryvalidate {
@@ -55,8 +62,12 @@ modules = {
         resource url: 'js/project/list.js'
     }
     fundjs {
-        dependsOn 'fedujs'
+        dependsOn 'underscorejs', 'fedujs'
         resource url: 'js/fund/fund.js'
+    }
+    checkoutjs {
+        dependsOn 'fedujs'
+        resource url: 'js/fund/checkout.js'
     }
 
     /* CSS */

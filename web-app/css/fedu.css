@@ -1,11 +1,20 @@
 body {
-	padding-top: 40px;
+	margin-top: 45px;
 	/* padding-bottom: 40px; */
 	color: #5a5a5a;
 	/* background-image: url('http://www.candiedphotography.co.uk/wp-content/uploads/paper_background.jpg'); */
 }
 
+.feduoutercontent {
+    margin-top: inherit;
+}
+
 .feducontent {
+    padding-top: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 0;
 }
 
 .navbar {
@@ -95,7 +104,6 @@ ul.unstyled {
 ------------------------- */
 .form-signin {
 	max-width: 330px;
-	padding: 15px;
 	margin: 0 auto;
 }
 
@@ -224,6 +232,7 @@ ul.unstyled {
 .progress {
     margin-bottom: 0;
     border-radius: 0;
+    height: 26px;
 
     /* If any bootswatch theme other than journal, set this to 30px */
     /* height: 20px; */

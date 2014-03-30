@@ -4,10 +4,12 @@
 </head>
 
 <body>
-<div class="container">
-    <h1>Error</h1>
-    <div class="alert alert-danger">
-        ${message}
+<div class="feducontent">
+    <div class="container">
+        <h1>Error</h1>
+        <div class="alert alert-danger">
+            ${message}
+        </div>
     </div>
 </div>
 </body>

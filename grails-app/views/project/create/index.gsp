@@ -4,7 +4,7 @@
 <r:require modules="projectcreatejs"/>
 </head>
 <body>
-
+<div class="feducontent">
 	<div class="container">
 		<h1>Create Project</h1>
 
@@ -150,7 +150,7 @@
             </div>
 
 		</g:uploadForm>
-
 	</div>
+</div>
 </body>
 </html>

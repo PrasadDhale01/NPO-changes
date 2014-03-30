@@ -4,6 +4,7 @@
 <r:require modules="projectshowjs"/>
 </head>
 <body>
+<div class="feducontent">
 	<div class="container">
 		<g:if test="${project}">
             <div class="row">
@@ -38,6 +39,7 @@
 
                 </div>
                 <div class="col-md-4">
+                    <a href="/projects/${project.id}/fund" class="btn btn-primary btn-lg btn-block" role="button">Fund this project</a>
                     <g:render template="/layouts/singletile"/>
                 </div>
             </div>
@@ -52,5 +54,6 @@
 			<div class="alert alert-danger">Oh snap! Looks like that project doesn't exist.</div>
 		</g:else>
 	</div>
+</div>
 </body>
 </html>

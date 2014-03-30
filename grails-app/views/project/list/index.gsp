@@ -5,7 +5,7 @@
 
 </head>
 <body>
-
+<div class="feducontent">
 	<div class="container">
 		<h1>Contribute</h1>
 
@@ -15,5 +15,6 @@
         <!-- Carousel -->
 		<g:render template="list/grid" model="['projects': projects]"></g:render>
 	</div>
+</div>
 </body>
 </html>

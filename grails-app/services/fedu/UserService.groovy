@@ -80,6 +80,11 @@ class UserService {
         return springSecurityService.isLoggedIn()
     }
 
+    def getAllCommunityMgrs() {
+        Set<User> communitymgrs = UserRole.findAllByRole(roleService.communityManagerRole()).collect {it.user} as Set
+        return communitymgrs
+    }
+
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

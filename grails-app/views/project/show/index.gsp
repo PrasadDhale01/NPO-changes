@@ -1,3 +1,10 @@
+<%@ page import="java.text.SimpleDateFormat" %>
+<g:set var="contributionService" bean="contributionService"/>
+<g:set var="projectService" bean="projectService"/>
+<%
+    def percentage = contributionService.getPercentageContributionForProject(project)
+    boolean ended = projectService.isProjectDeadlineCrossed(project)
+%>
 <html>
 <head>
 <meta name="layout" content="main" />
@@ -39,7 +46,16 @@
 
                 </div>
                 <div class="col-md-4">
-                    <a href="/projects/${project.id}/fund" class="btn btn-primary btn-lg btn-block" role="button">Fund this project</a>
+                    <g:if test="${percentage == 100}">
+                        <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
+                    </g:if>
+                    <g:elseif test="${ended}">
+                        <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
+                    </g:elseif>
+                    <g:else>
+                        <a href="/projects/${project.id}/fund" class="btn btn-primary btn-lg btn-block" role="button">Fund this project</a>
+                    </g:else>
+
                     <g:render template="/layouts/singletile"/>
                 </div>
             </div>

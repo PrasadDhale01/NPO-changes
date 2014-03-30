@@ -11,6 +11,22 @@ class UserService {
     def ROLE_AUTHOR = 'ROLE_AUTHOR'
     def ROLE_FACEBOOK = 'ROLE_FACEBOOK'
 
+    def getFriendlyName(User user) {
+        def friendlyName = user.firstName
+        if (!friendlyName) {
+            friendlyName = user.email
+        }
+        return friendlyName
+    }
+
+    def isFacebookUser(User user) {
+        if (FacebookUser.findByUser(user)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     def getCurrentUser() {
         return springSecurityService.getCurrentUser()
     }

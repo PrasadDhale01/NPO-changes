@@ -16,6 +16,9 @@ class UserService {
         if (!friendlyName) {
             friendlyName = user.email
         }
+        if (!friendlyName) {
+            friendlyName = user.username
+        }
         return friendlyName
     }
 

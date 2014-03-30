@@ -1,6 +1,7 @@
 package fedu
 
 import grails.transaction.Transactional
+import org.apache.commons.validator.EmailValidator
 
 class UserService {
 
@@ -10,6 +11,19 @@ class UserService {
     def ROLE_USER = 'ROLE_USER'
     def ROLE_AUTHOR = 'ROLE_AUTHOR'
     def ROLE_FACEBOOK = 'ROLE_FACEBOOK'
+
+    def getEmail() {
+        EmailValidator emailValidator = EmailValidator.getInstance()
+
+        User user = getCurrentUser()
+        if (user.email) {
+            return user.email
+        } else if (emailValidator.isValid(user.username)) {
+            return user.username
+        } else {
+            return null
+        }
+    }
 
     def getFriendlyName(User user) {
         def friendlyName = user.firstName

@@ -105,12 +105,15 @@ class FundController {
             )
             project.addToContributions(contribution).save(failOnError: true)
 
-            mailService.sendMail {
-                async true
-                to userService.getCurrentUser().email
-                from "info@fedu.org"
-                subject "FEDU - Thank you for funding"
-                html g.render(template: 'acknowledge/ackemailtemplate', model: [project: project, reward: reward, amount: amount])
+            def email = userService.getEmail()
+            if (email) {
+                mailService.sendMail {
+                    async true
+                    to userService.getCurrentUser().email
+                    from "info@fedu.org"
+                    subject "FEDU - Thank you for funding"
+                    html g.render(template: 'acknowledge/ackemailtemplate', model: [project: project, reward: reward, amount: amount])
+                }
             }
 
             render view: 'acknowledge/acknowledge', model: [project: project, reward: reward, contribution: contribution]

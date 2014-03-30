@@ -74,7 +74,7 @@ class ProjectService {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")
 
         User deepshikha = userService.bootstrapDeepshikha()
-        User sampleUser = User.findByUsername('user@fedu.org')
+        User sampleUser = User.findByUsername('user@example.com')
 
         new Project(
                 name: 'Machine learning enthusiast',

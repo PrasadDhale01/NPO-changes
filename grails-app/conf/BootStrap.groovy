@@ -6,11 +6,15 @@ import fedu.Reward
 class BootStrap {
     def blogService
     def userService
+    def roleService
     def projectService
     def rewardService
 
 	def init = { servletContext ->
-        // Bootstrap users and roles
+        // Bootstrap roles
+        roleService.bootstrap()
+
+        // Bootstrap users
         userService.bootstrap()
 
 		// Check whether blogs already exist, and create otherwise.

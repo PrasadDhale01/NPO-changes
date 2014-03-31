@@ -2,6 +2,7 @@ import fedu.Blog
 import fedu.Contribution
 import fedu.Project
 import fedu.Reward
+import fedu.Community
 
 class BootStrap {
     def blogService
@@ -9,6 +10,7 @@ class BootStrap {
     def roleService
     def projectService
     def rewardService
+    def communityService
 
 	def init = { servletContext ->
         // Bootstrap roles
@@ -31,7 +33,13 @@ class BootStrap {
         if (Project.count() == 0) {
             projectService.bootstrap()
         }
-	}
+
+        // Check whether communities already exist, and create otherwise.
+        if (Community.count() == 0) {
+            communityService.bootstrap()
+        }
+
+    }
 
 	def destroy = {
 	}

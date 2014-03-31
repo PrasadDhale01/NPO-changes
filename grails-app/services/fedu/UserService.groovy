@@ -40,12 +40,25 @@ class UserService {
         return isFacebookUser(getCurrentUser())
     }
 
-    def isCommunityManager() {
-        if (UserRole.findByUserAndRole(getCurrentUser(), roleService.communityManagerRole())) {
+    def isFacebookUser(User user) {
+        if (FacebookUser.findByUser(user)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    def isCommunityManager(User user) {
+        def something = UserRole.findByUserAndRole(user, roleService.communityManagerRole())
+        if (UserRole.findByUserAndRole(user, roleService.communityManagerRole())) {
             return true
         } else {
             return false
         }
+    }
+
+    def isCommunityManager() {
+        return isCommunityManager(getCurrentUser())
     }
 
     def isAdmin() {
@@ -61,14 +74,6 @@ class UserService {
             return true
         } else {
             return false
-        }
-    }
-
-    def isFacebookUser(User user) {
-        if (FacebookUser.findByUser(user)) {
-            return true;
-        } else {
-            return false;
         }
     }
 
@@ -104,12 +109,6 @@ class UserService {
             author = new User(username: 'author@fedu.org', password: 'P@$$w0rd').save(flush: true, failOnError: true)
         }
         UserRole.findOrSaveByUserAndRole(author, roleService.authorRole())
-
-        def samplecommunitymgr = User.findByUsername('communitymgr@example.com')
-        if (!samplecommunitymgr) {
-            samplecommunitymgr = new User(username: 'communitymgr@example.com', password: 'password').save(flush: true, failOnError: true)
-        }
-        UserRole.findOrSaveByUserAndRole(samplecommunitymgr, roleService.communityManagerRole())
     }
 
     @Transactional

@@ -50,6 +50,9 @@
                             <sec:ifAllGranted roles="ROLE_AUTHOR">
                                 <li><g:link controller="blog" action="manage">Manage blogs</g:link></li>
                             </sec:ifAllGranted>
+                            <sec:ifAllGranted roles="ROLE_ADMIN">
+                                <li><g:link controller="community" action="manage">Manage communities</g:link></li>
+                            </sec:ifAllGranted>
                             <li class="divider"></li>
                             <li><g:link controller="logout">Log out</g:link></li>
                         </ul>

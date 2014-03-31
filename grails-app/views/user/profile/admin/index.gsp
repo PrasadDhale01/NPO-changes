@@ -11,6 +11,9 @@
             <li class="active"><a href="#manage-community" data-toggle="tab">
                 <i class="fa fa-users"></i></span> Manage Communities
             </a></li>
+            <li><a href="#manage-roles" data-toggle="tab">
+                <span class="glyphicon glyphicon-filter"></span> Manage Roles
+            </a></li>
             <li><a href="#account-settings" data-toggle="tab">
                 <span class="glyphicon glyphicon-user"></span> Account
             </a></li>
@@ -19,7 +22,18 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane active" id="manage-community">
-                <g:render template="profile/admin/managecommunity"/>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        Please go to <g:link controller="community" action="manage">Manage Communities</g:link>
+                    </div>
+                </div>
+            </div>
+            <div class="tab-pane" id="manage-roles">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        You can manage roles here.
+                    </div>
+                </div>
             </div>
             <div class="tab-pane" id="account-settings">
                 <g:render template="profile/accountsettings"/>

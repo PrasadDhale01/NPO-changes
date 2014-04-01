@@ -54,7 +54,7 @@ class LoginController {
             user.enabled = false
             user.confirmCode = UUID.randomUUID().toString()
 
-            if (!user.save(flush: true)) {
+            if (!user.save()) {
                 render(view: 'error', model: [message: 'Problem creating user. Please try again.'])
             } else {
                 UserRole.create(user, userService.userRole())
@@ -77,7 +77,7 @@ class LoginController {
               user.password = params.password
         }
 
-        if (user.save(flush: true)) {
+        if (user.save()) {
             flash.message = "Profile updated successfully"
         } else {
             flash.message = "Error while updating user. Please try again later"
@@ -102,7 +102,7 @@ class LoginController {
 
             } else {
                 user.enabled = true
-                if (!user.save(flush: true)) {
+                if (!user.save()) {
                     render(view: 'error', model: [message: 'Problem activating account. Please contact the administrator.'])
                 } else {
                     render(view: 'success', model: [message: 'Your account is successfully activated.'])
@@ -126,7 +126,7 @@ class LoginController {
             render(view: 'error', model: [message: 'A user with that email does not exist. Please use a registered email.'])
         } else {
             user.resetCode = UUID.randomUUID().toString()
-            user.save(flush: true)
+            user.save()
             mailService.sendMail {
                 async true
                 to params.username
@@ -167,7 +167,7 @@ class LoginController {
                 user.resetCode = UUID.randomUUID().toString() // Scramble reset code, to avoid re-use
             }
 
-            if (user.save(flush: true)) {
+            if (user.save()) {
                 render(view: 'success', model: [message: 'Password updated successfully. To continue, please login with your new password.'])
             } else {
                 render(view: 'error', model: [message: 'Error while updating user password. Please try again later.'])

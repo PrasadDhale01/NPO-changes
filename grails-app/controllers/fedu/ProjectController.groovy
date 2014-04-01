@@ -66,7 +66,7 @@ class ProjectController {
                     comment: params.comment,
                     user: userService.getCurrentUser(),
                     project: project,
-                    date: new Date()).save(flush: true, failOnError: true)
+                    date: new Date()).save(failOnError: true)
             }
         } else {
             flash.commentmessage = "Something went wrong saving comment. Please try again later."

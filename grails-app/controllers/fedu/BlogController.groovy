@@ -31,7 +31,7 @@ class BlogController {
         if (params.int('id')) {
             Blog blog = Blog.findById(params.id)
             blog.enabled = !blog.enabled
-            blog.save(flush: true, failOnError: true)
+            blog.save(failOnError: true)
         }
 
         redirect (action: 'manage')
@@ -45,7 +45,7 @@ class BlogController {
     def publish() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd")
         params.date = dateFormat.parse(params.date)
-        new Blog(params).save(flush: true, failOnError: true)
+        new Blog(params).save(failOnError: true)
         redirect(action: 'manage')
     }
 }

@@ -94,19 +94,19 @@ class UserService {
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')
         if (!admin) {
-            admin = new User(username: 'admin@fedu.org', password: 'P@$$w0rd').save(flush: true, failOnError: true)
+            admin = new User(username: 'admin@fedu.org', password: 'P@$$w0rd').save(failOnError: true)
         }
         UserRole.findOrSaveByUserAndRole(admin, roleService.adminRole())
 
         def user = User.findByUsername('user@example.com')
         if (!user) {
-            user = new User(username: 'user@example.com', password: 'password').save(flush: true, failOnError: true)
+            user = new User(username: 'user@example.com', password: 'password').save(failOnError: true)
         }
         UserRole.findOrSaveByUserAndRole(user, roleService.userRole())
 
         def author = User.findByUsername('author@fedu.org')
         if (!author) {
-            author = new User(username: 'author@fedu.org', password: 'P@$$w0rd').save(flush: true, failOnError: true)
+            author = new User(username: 'author@fedu.org', password: 'P@$$w0rd').save(failOnError: true)
         }
         UserRole.findOrSaveByUserAndRole(author, roleService.authorRole())
     }
@@ -115,7 +115,7 @@ class UserService {
     def bootstrapDeepshikha() {
         def deepshikha = User.findByUsername('info@deepshikha.org')
         if (!deepshikha) {
-            deepshikha = new User(username: 'info@deepshikha.org', password: 'password').save(flush: true, failOnError: true)
+            deepshikha = new User(username: 'info@deepshikha.org', password: 'password').save(failOnError: true)
         }
         UserRole.findOrSaveByUserAndRole(deepshikha, roleService.userRole())
         return deepshikha

@@ -13,11 +13,14 @@ class CommunityController {
     }
 
     def addcredit() {
-        if (params.double('amount')) {
-            if (params.int('id')) {
-                Community community = Community.findById(params.id)
-                community.credit += params.double('amount')
-                community.save(failOnError: true)
+        if (params.double('amount') && params.int('id')) {
+            Community community = Community.findById(params.int('id'))
+            if (community) {
+                new Credit(
+                    amount: params.double('amount'),
+                    community: community,
+                    date: new Date()
+                ).save(failOnError: true)
             }
         }
 

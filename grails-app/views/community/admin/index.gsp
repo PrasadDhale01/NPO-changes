@@ -8,9 +8,12 @@
 <body>
 <div class="feducontent">
     <div class="container">
+        <div class="alert alert-danger">Be careful. You are handling sensitive data. This is admin-only zone.</div>
+
         <h2>Manage Communities</h2>
 
         <label>List of communities</label>
+
         <div class="table-responsive">
             <table class="table table-bordered">
                 <thead>

@@ -21,11 +21,19 @@
                     </h1>
                     <h4 class="lead">Beneficiary: ${project.name}</h4>
 
-                    <ul class="nav nav-tabs" style="margin-bottom: 10px;">
-                        <li class="active"><a href="#essentials" data-toggle="tab">Essentials</a></li>
-                        <li><a href="#rewards" data-toggle="tab">Rewards</a></li>
-                        <li><a href="#contributions" data-toggle="tab">Contributions</a></li>
-                        <li><a href="#comments" data-toggle="tab">Comments</a></li>
+                    <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
+                        <li class="active"><a href="#essentials" data-toggle="tab">
+                            <span class="glyphicon glyphicon-home"></span> Essentials
+                        </a></li>
+                        <li><a href="#rewards" data-toggle="tab">
+                            <i class="fa fa-gift fa-lg"></i> Rewards
+                        </a></li>
+                        <li><a href="#contributions" data-toggle="tab">
+                            <span class="glyphicon glyphicon-tint"></span> Contributions
+                        </a></li>
+                        <li><a href="#comments" data-toggle="tab">
+                            <span class="glyphicon glyphicon-comment"></span> Comments
+                        </a></li>
                     </ul>
 
                     <!-- Tab panes -->

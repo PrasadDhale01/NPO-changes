@@ -7,10 +7,9 @@ class Community {
 	String title
 	String description
 	Date dateCreated
-    double credit = 0
 
     static belongsTo = [manager: User]
-    static hasMany = [members: User]
+    static hasMany = [members: User, credits: Credit]
 
 	static mapping = {
 	}

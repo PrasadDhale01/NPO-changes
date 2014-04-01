@@ -1,6 +1,6 @@
 <g:set var="userService" bean="userService"/>
 <g:set var="communityService" bean="communityService"/>
-
+<g:set var="creditService" bean="creditService"/>
 <html>
 <head>
     <meta name="layout" content="main" />
@@ -28,7 +28,7 @@
                         <td>${community.title}</td>
                         <td>${userService.getFriendlyName(community.manager)}</td>
                         <td>${communityService.getNumberofMembersInCommunity(community)}</td>
-                        <td>$${new Double(community.credit).trunc(2)}</td>
+                        <td>$${creditService.getTotalCreditForCommunity(community)}</td>
                         <td>
                             <g:form action="addcredit" class="form-inline" role="form" id="${community.id}">
                                 <div class="input-group" style="max-width: 200px; min-width: 180px;">

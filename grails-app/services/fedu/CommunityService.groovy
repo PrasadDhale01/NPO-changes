@@ -5,6 +5,14 @@ import grails.transaction.Transactional
 class CommunityService {
     def roleService
 
+    def getMembersInCommunity(Community community) {
+        return community.getMembers()
+    }
+
+    def getNumberofMembersInCommunity(Community community) {
+        return getMembersInCommunity(community).size()
+    }
+
     @Transactional
     def bootstrap() {
 

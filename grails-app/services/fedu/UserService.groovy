@@ -36,6 +36,16 @@ class UserService {
         return friendlyName
     }
 
+    def getFriendlyFullName(User user) {
+        def friendlyFullName
+        if (user.firstName && user.lastName) {
+            friendlyFullName = user.firstName + ' ' + user.lastName
+        } else {
+            friendlyFullName = getFriendlyName(user)
+        }
+        return friendlyFullName
+    }
+
     def isFacebookUser() {
         return isFacebookUser(getCurrentUser())
     }

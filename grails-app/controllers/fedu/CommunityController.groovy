@@ -2,11 +2,11 @@ package fedu
 
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['ROLE_ADMIN'])
 class CommunityController {
     def userService
     def roleService
 
+    @Secured(['ROLE_ADMIN'])
     def manage() {
         User user = (User)userService.getCurrentUser()
 
@@ -17,6 +17,7 @@ class CommunityController {
         ]
     }
 
+    @Secured(['ROLE_ADMIN'])
     def addcredit() {
         if (params.double('amount') && params.int('id')) {
             Community community = Community.findById(params.int('id'))
@@ -32,6 +33,7 @@ class CommunityController {
         redirect (action: 'manage')
     }
 
+    @Secured(['ROLE_ADMIN'])
     def addcommunitymgr() {
         if (params.email) {
             User user = User.findByEmail(params.email)

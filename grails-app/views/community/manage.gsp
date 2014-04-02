@@ -1,3 +1,4 @@
+<%@ page import="fedu.DateHelper" %>
 <g:set var="userService" bean="userService"/>
 <g:set var="communityService" bean="communityService"/>
 <g:set var="creditService" bean="creditService"/>
@@ -27,13 +28,21 @@
                         <tr>
                             <td>${community.title}</td>
                             <td>
+                                <p># of members: ${communityService.getNumberofMembersInCommunity(community)}</p>
                                 <ul>
                                 <g:each in="${communityService.getMembersInCommunity(community)}" var="member">
                                     <li>${userService.getFriendlyName(member)}</li>
                                 </g:each>
                                 </ul>
                             </td>
-                            <td>$${creditService.getTotalCreditForCommunity(community)}</td>
+                            <td>
+                                <p>$${creditService.getTotalCreditForCommunity(community)}</p>
+                                <ul>
+                                    <g:each in="${creditService.getAllCreditsForCommunity(community)}" var="credit">
+                                        <li>$${credit.amount} credit posted on ${DateHelper.format(credit.date)}</li>
+                                    </g:each>
+                                </ul>
+                            </td>
                         </tr>
                     </g:each>
                     </tbody>

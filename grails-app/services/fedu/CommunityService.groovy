@@ -9,6 +9,10 @@ class CommunityService {
         return community.getMembers()
     }
 
+    def getCommunitiesOwnedByManager(User manager) {
+        return Community.findByManager(manager)
+    }
+
     def getNumberofMembersInCommunity(Community community) {
         return getMembersInCommunity(community).size()
     }

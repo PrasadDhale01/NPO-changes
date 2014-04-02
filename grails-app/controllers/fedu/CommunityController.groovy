@@ -5,9 +5,17 @@ import grails.plugin.springsecurity.annotation.Secured
 class CommunityController {
     def userService
     def roleService
+    def communityService
+
+    @Secured(['ROLE_COMMUNITY_MGR'])
+    def manage() {
+        return [
+            communities: communityService.getCommunitiesOwnedByManager(userService.getCurrentUser())
+        ]
+    }
 
     @Secured(['ROLE_ADMIN'])
-    def manage() {
+    def manageall() {
         User user = (User)userService.getCurrentUser()
 
         render view: 'admin/index', model: [
@@ -30,7 +38,7 @@ class CommunityController {
             }
         }
 
-        redirect (action: 'manage')
+        redirect (action: 'manageall')
     }
 
     @Secured(['ROLE_ADMIN'])
@@ -44,6 +52,6 @@ class CommunityController {
                 flash.error = 'User with email "' + params.email + '" not found.'
             }
         }
-        redirect (action: 'manage')
+        redirect (action: 'manageall')
     }
 }

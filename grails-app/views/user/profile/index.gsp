@@ -35,7 +35,7 @@
             </div>
             <g:if test="${userService.isCommunityManager()}">
                 <div class="tab-pane" id="my-community">
-                    <g:render template="profile/mycommunity"/>
+                    Please go to <g:link controller="community" action="manage">Manage Communities</g:link>
                 </div>
             </g:if>
             <div class="tab-pane" id="account-settings">

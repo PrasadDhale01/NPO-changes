@@ -24,7 +24,7 @@
             <div class="tab-pane active" id="manage-community">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        Please go to <g:link controller="community" action="manage">Manage Communities</g:link>
+                        Please go to <g:link controller="community" action="manageall">Manage Communities</g:link>
                     </div>
                 </div>
             </div>

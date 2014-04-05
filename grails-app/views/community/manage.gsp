@@ -5,6 +5,7 @@
 <html>
 <head>
     <meta name="layout" content="main" />
+    <r:require modules="communityjs"/>
 </head>
 <body>
 <div class="feducontent">

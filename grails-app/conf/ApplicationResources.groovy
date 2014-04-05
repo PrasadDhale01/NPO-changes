@@ -35,12 +35,20 @@ modules = {
         dependsOn 'corejs'
         resource url: 'js/jquery.BlackAndWhite.js'
     }
+    tableclothjs {
+        dependsOn 'corejs'
+        resource url: 'tablecloth/js/jquery.metadata.js'
+        resource url: 'tablecloth/js/jquery.tablesorter.js'
+        resource url: 'tablecloth/js/jquery.tablecloth.js'
+    }
 
     /* Page-specific JS */
+    /* Home */
     homejs {
         dependsOn 'fedujs', 'blacknwhitejs'
         resource url: 'js/home/home.js'
     }
+    /* Login */
     loginjs {
         dependsOn 'fedujs'
         resource url: 'js/home/login.js'
@@ -49,6 +57,7 @@ modules = {
         dependsOn 'fedujs'
         resource url: 'js/home/registration.js'
     }
+    /* Project */
     projectcreatejs {
         dependsOn 'fedujs'
         resource url: 'js/project/create.js'
@@ -61,6 +70,7 @@ modules = {
         dependsOn 'fedujs', 'blacknwhitejs'
         resource url: 'js/project/list.js'
     }
+    /* Fund */
     fundjs {
         dependsOn 'underscorejs', 'fedujs'
         resource url: 'js/fund/fund.js'
@@ -68,6 +78,11 @@ modules = {
     checkoutjs {
         dependsOn 'fedujs'
         resource url: 'js/fund/checkout.js'
+    }
+    /* Community */
+    communityjs {
+        dependsOn 'fedujs'
+        resource url: 'js/community.js'
     }
 
     /* CSS */
@@ -84,8 +99,19 @@ modules = {
     bootstrapselectcss {
         resource url: 'https://silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css'
     }
+    tableclothcss {
+        dependsOn 'bootswatchyeticss'
+        resource url: 'tablecloth/css/bootstrap-tables.css'
+        resource url: 'tablecloth/css/tablecloth.css'
+    }
 
     /* Bootswatch themes; use any one. */
+    bootswatchyeticss {
+        dependsOn 'lessjs'
+        resource url: 'bootswatch-yeti/bootstrap.css'
+        resource url: 'bootswatch-yeti/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
+        resource url: 'bootswatch-yeti/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
+    }
     /*
     bootswatchjournalcss {
         dependsOn 'lessjs'
@@ -124,10 +150,4 @@ modules = {
         resource url: 'http://bootswatch.com/united/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
     */
-    bootswatchyeticss {
-        dependsOn 'lessjs'
-        resource url: 'bootswatch-yeti/bootstrap.css'
-        resource url: 'bootswatch-yeti/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
-        resource url: 'bootswatch-yeti/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
-    }
 }

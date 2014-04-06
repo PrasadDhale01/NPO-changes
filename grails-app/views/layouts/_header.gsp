@@ -15,9 +15,9 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><g:link controller="project" action="create">Create Project</g:link></li>
-                <li><a href="${resource(dir: '/projects')}">Contribute</a></li>
-				<li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
+				<li><g:link controller="project" action="create"><span class="glyphicon glyphicon-leaf"></span> Create Project</g:link></li>
+                <li><a href="${resource(dir: '/projects')}"><span class="glyphicon glyphicon-tint"></span> Contribute</a></li>
+				<li><a href="${resource(dir: '/howitworks')}"><span class="glyphicon glyphicon-info-sign"></span> How it works</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
                 <sec:ifNotLoggedIn>

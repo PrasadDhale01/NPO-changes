@@ -10,7 +10,7 @@
         <h2>User Profile</h2>
         <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
             <li class="active"><a href="#myprojects" data-toggle="tab">
-                <span class="glyphicon glyphicon-home"></span> My Projects
+                <span class="glyphicon glyphicon-leaf"></span> My Projects
             </a></li>
             <li><a href="#my-contributions" data-toggle="tab">
                 <span class="glyphicon glyphicon-tint"></span> My Contributions

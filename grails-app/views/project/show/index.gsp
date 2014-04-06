@@ -23,7 +23,7 @@
 
                     <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
                         <li class="active"><a href="#essentials" data-toggle="tab">
-                            <span class="glyphicon glyphicon-home"></span> Essentials
+                            <span class="glyphicon glyphicon-leaf"></span> Essentials
                         </a></li>
                         <li><a href="#rewards" data-toggle="tab">
                             <i class="fa fa-gift fa-lg"></i> Rewards

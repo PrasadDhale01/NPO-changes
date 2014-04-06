@@ -14,4 +14,4 @@ echo "Starting Jetty server"
 cd ~/Programs/jetty
 rm nohup.out
 nohup java -jar start.jar &
-
+nohup java -jar start.jar --module=https,deploy &

@@ -13,5 +13,5 @@ cp ~/Projects/FEDU/target/FEDU-0.1.war ~/Programs/jetty/webapps/root.war
 echo "Starting Jetty server"
 cd ~/Programs/jetty
 rm nohup.out
-nohup java -jar start.jar &
+# nohup java -jar start.jar &
 nohup java -jar start.jar --module=https,deploy &

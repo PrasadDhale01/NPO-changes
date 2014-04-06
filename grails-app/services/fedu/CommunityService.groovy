@@ -80,7 +80,7 @@ class CommunityService {
             manager: manager
         )
         def communityMembers = [user1, user2, user3, user4, user5, user6] as Set
-        if (!community.getMembers().containsAll(communityMembers)) {
+        if (!community.getMembers() || !community.getMembers().containsAll(communityMembers)) {
             community.setMembers(communityMembers)
         }
         community.save()

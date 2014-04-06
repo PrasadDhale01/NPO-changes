@@ -102,6 +102,10 @@ grails.plugin.springsecurity.facebook.filter.redirect.failureHandler='facebookRe
 
 environments {
     development {
+        /* FundEdu_dev */
+        fedu.facebook.appId = '641152155950617'
+        fedu.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
+
         grails.logging.jul.usebridge = true
         grails.dbconsole.urlRoot = '/secured/dbconsole'
 
@@ -110,14 +114,18 @@ environments {
         grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
 
         /* FundEdu_dev */
-        grails.plugin.springsecurity.facebook.appId = '641152155950617'
-        grails.plugin.springsecurity.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
+        grails.plugin.springsecurity.facebook.appId = '${fedu.facebook.appId}'
+        grails.plugin.springsecurity.facebook.secret = '${fedu.facebook.secret}'
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
         }
     }
     test {
+        /* FundEdu_dev */
+        fedu.facebook.appId = '641152155950617'
+        fedu.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
+
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true
         grails.dbconsole.urlRoot = '/secured/dbconsole'
@@ -127,14 +135,18 @@ environments {
         grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
 
         /* FundEdu_dev */
-        grails.plugin.springsecurity.facebook.appId = '641152155950617'
-        grails.plugin.springsecurity.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
+        grails.plugin.springsecurity.facebook.appId = '${fedu.facebook.appId}'
+        grails.plugin.springsecurity.facebook.secret = '${fedu.facebook.secret}'
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
         }
     }
     production {
+        /* FundEdu */
+        fedu.facebook.appId = '354215177926850'
+        fedu.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
+
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true
         grails.dbconsole.urlRoot = '/secured/dbconsole'
@@ -151,8 +163,8 @@ environments {
         */
 
         /* FundEdu */
-        grails.plugin.springsecurity.facebook.appId = '354215177926850'
-        grails.plugin.springsecurity.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
+        grails.plugin.springsecurity.facebook.appId = '${fedu.facebook.appId}'
+        grails.plugin.springsecurity.facebook.secret = '${fedu.facebook.secret}'
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"

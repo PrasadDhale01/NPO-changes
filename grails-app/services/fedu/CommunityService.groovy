@@ -79,7 +79,10 @@ class CommunityService {
             description: "A community for community.com employees",
             manager: manager
         )
-        community.setMembers([user1, user2, user3, user4, user5, user6] as Set)
+        def communityMembers = [user1, user2, user3, user4, user5, user6] as Set
+        if (!community.getMembers().containsAll(communityMembers)) {
+            community.setMembers(communityMembers)
+        }
         community.save()
 
     }

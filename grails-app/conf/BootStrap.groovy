@@ -34,10 +34,8 @@ class BootStrap {
             projectService.bootstrap()
         }
 
-        // Check whether communities already exist, and create otherwise.
-        if (Community.count() == 0) {
-            communityService.bootstrap()
-        }
+        // Bootstrap communities.
+        communityService.bootstrap()
 
     }
 

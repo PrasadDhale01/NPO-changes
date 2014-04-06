@@ -25,13 +25,11 @@
 
             <div class="col-xs-4 col-sm-2">
                 <h6>Follow Us</h6>
-                <ul class="unstyled">
-                    <li><a href="http://facebook.com/fundedu">Facebook</a></li>
-                    <li><a href="http://twitter.com/fundedu">Twitter</a></li>
-                    <li><a href="https://plus.google.com/116453541678585726545">Google Plus</a></li>
-                    <li><a href="http://www.linkedin.com/company/fedu">LinkedIn</a></li>
-                    <li><a href="mailto:info@fedu.org?Subject=Hello%20FEDU">Email</a></li>
-                </ul>
+                <a href="http://facebook.com/fundedu"><i class="fa fa-facebook-square fa-lg"></i></a>
+                <a href="http://twitter.com/fundedu"><i class="fa fa-twitter-square fa-lg"></i></a>
+                <a href="https://plus.google.com/116453541678585726545"><i class="fa fa-google-plus-square fa-lg"></i></a>
+                <a href="http://www.linkedin.com/company/fedu"><i class="fa fa-linkedin-square fa-lg"></i></a>
+                <a href="mailto:info@fedu.org?Subject=Hello%20FEDU"><i class="fa fa-envelope fa-lg"></i></a>
             </div>
 
             <div class="col-xs-4 col-sm-2">

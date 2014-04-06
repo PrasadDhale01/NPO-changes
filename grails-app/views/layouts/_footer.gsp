@@ -25,10 +25,10 @@
 
             <div class="col-xs-4 col-sm-2">
                 <h6>Follow Us</h6>
-                <a href="http://facebook.com/fundedu" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
-                <a href="http://twitter.com/fundedu" target="_blank"><i class="fa fa-twitter-square fa-lg"></i></a>
+                <a href="https://www.facebook.com/FundEdu" target="_blank"><i class="fa fa-facebook-square fa-lg"></i></a>
+                <a href="https://twitter.com/fundedu" target="_blank"><i class="fa fa-twitter-square fa-lg"></i></a>
                 <a href="https://plus.google.com/116453541678585726545" target="_blank"><i class="fa fa-google-plus-square fa-lg"></i></a>
-                <a href="http://www.linkedin.com/company/fedu" target="_blank"><i class="fa fa-linkedin-square fa-lg"></i></a>
+                <a href="https://www.linkedin.com/company/fedu" target="_blank"><i class="fa fa-linkedin-square fa-lg"></i></a>
                 <a href="mailto:info@fedu.org?Subject=Hello%20FEDU"><i class="fa fa-envelope fa-lg"></i></a>
             </div>
 

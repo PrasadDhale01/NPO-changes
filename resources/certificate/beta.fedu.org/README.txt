@@ -34,6 +34,13 @@ $ vim $JETTY_HOME/etc/jetty-ssl.xml
   <Set name="TrustStorePath"><Property name="jetty.base" default="." />/<Property name="jetty.truststore" default="etc/beta_fedu_org.keystore.jks"/></Set>
   <Set name="TrustStorePassword"><Property name="jetty.truststore.password" default="OBF:1v2j1uum1xtv1zej1zer1xtn1uvk1v1v"/></Set>
 
-6. Start Jetty with https module as follows:
+6. Change default port from 443 to 8443
+NOTE: Without this change there will be a permission error at startup since in non-sudo mode jetty cannot bind to 443
+NOTE: Separately a port forward of 443 to 8443 should be done (see setup-ubuntu.txt file)
+
+$ vim $JETTY_HOME/etc/jetty-https.xml
+          <Set name="port"><Property name="https.port" default="8443" /></Set>
+
+7. Start Jetty with https module as follows:
 $ java -jar start.jar --module=https,deploy
 

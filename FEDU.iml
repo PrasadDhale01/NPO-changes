@@ -72,9 +72,6 @@
           <root url="file://$MODULE_DIR$/lib" />
           <root url="jar://$USER_HOME$/.m2/repository/com/stripe/stripe-java/1.7.1/stripe-java-1.7.1.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/mysql/mysql-connector-java/5.1.27/mysql-connector-java-5.1.27.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/7.0.50/tomcat-embed-core-7.0.50.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.50/tomcat-embed-jasper-7.0.50.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/tomcat-catalina-ant/7.0.50/tomcat-catalina-ant-7.0.50.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/xerces/xercesImpl/2.9.1/xercesImpl-2.9.1.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/net/sourceforge/nekohtml/nekohtml/1.9.16/nekohtml-1.9.16.jar!/" />
@@ -87,6 +84,12 @@
           <root url="jar://$USER_HOME$/.m2/repository/com/restfb/restfb/1.6.14/restfb-1.6.14.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/c3p0/c3p0/0.9.1.1/c3p0-0.9.1.1.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-core/7.0.52/tomcat-embed-core-7.0.52.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-websocket/7.0.52/tomcat-embed-websocket-7.0.52.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-logging-log4j/7.0.52/tomcat-embed-logging-log4j-7.0.52.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/7.0.52/tomcat-embed-el-7.0.52.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.52/tomcat-embed-jasper-7.0.52.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/tomcat-catalina-ant/7.0.52/tomcat-catalina-ant-7.0.52.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

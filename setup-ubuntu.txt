@@ -1,0 +1,52 @@
+# Install JDK
+$ sudo add-apt-repository ppa:webupd8team/java
+$ sudo apt-get update
+$ sudo apt-get install oracle-java7-installer
+$ sudo apt-get install oracle-java7-set-default
+$ JAVA_HOME=/usr/lib/jvm/java-7-oracle
+$ export JAVA_HOME
+
+# Install unzip (GVM needs this)
+$ sudo apt-get install unzip
+
+# Install GVM
+$ curl -s get.gvmtool.net | bash
+$ source "/home/ubuntu/.gvm/bin/gvm-init.sh"
+
+# Install Groovy and Grails
+$ gvm install groovy
+$ gvm install grails
+
+# Install Git
+$ sudo apt-get install git-core
+
+# Download & build FEDU code
+$ mkdir ~/Projects
+$ cd ~/Projects
+$ git clone https://github.com/atreya/FEDU.git
+$ cd FEDU
+$ grails compile
+$ grails war
+
+# Redirect port 80 to 8080
+$ sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+# Redirect port 443 to 8443
+$ sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443
+# List (verify) redirects:
+$ sudo iptables -L -t nat
+
+# Download Jetty
+$ cd ~/Programs
+$ wget http://www.gtlib.gatech.edu/pub/eclipse/jetty/stable-9/dist/jetty-distribution-9.1.2.v20140210.tar.gz
+$ gunzip jetty-distribution-9.1.2.v20140210.tar.gz
+$ tar -xvf jetty-distribution-9.1.2.v20140210.tar
+$ mv jetty-distribution-9.1.2.v20140210 jetty
+$ cd jetty
+$ cp ~/Projects/FEDU/target/FEDU-0.1.war ~/Programs/jetty/webapps/root.war
+$ nohup java -jar start.jar &
+
+# Don't forget to put these lines in ~/.bashrc
+JAVA_HOME=/usr/lib/jvm/java-7-oracle
+export JAVA_HOME
+source "/home/ubuntu/.gvm/bin/gvm-init.sh"
+

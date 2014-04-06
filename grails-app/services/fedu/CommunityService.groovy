@@ -9,6 +9,17 @@ class CommunityService {
         return community.getMembers()
     }
 
+    def getPendingMembersInCommunity(Community community) {
+        def members = getMembersInCommunity(community)
+        def pendingMembers = []
+        members.each { member ->
+            if (!member.enabled) {
+                pendingMembers.add(member)
+            }
+        }
+        return pendingMembers
+    }
+
     def getCommunitiesOwnedByManager(User manager) {
         return Community.findByManager(manager)
     }
@@ -44,6 +55,18 @@ class CommunityService {
         }
         UserRole.findOrSaveByUserAndRole(user4, roleService.userRole())
 
+        def user5 = User.findByUsername('user5@community.com')
+        if (!user5) {
+            user5 = new User(username: 'user5@community.com', password: 'password', enabled: false).save(failOnError: true)
+        }
+        UserRole.findOrSaveByUserAndRole(user4, roleService.userRole())
+
+        def user6 = User.findByUsername('user6@community.com')
+        if (!user6) {
+            user6 = new User(username: 'user6@community.com', password: 'password', enabled: false).save(failOnError: true)
+        }
+        UserRole.findOrSaveByUserAndRole(user4, roleService.userRole())
+
         def manager = User.findByUsername('manager@community.com')
         if (!manager) {
             manager = new User(username: 'manager@community.com', password: 'password').save(failOnError: true)
@@ -56,7 +79,7 @@ class CommunityService {
             description: "A community for community.com employees",
             manager: manager
         )
-        community.setMembers([user1, user2, user3, user4] as Set)
+        community.setMembers([user1, user2, user3, user4, user5, user6] as Set)
         community.save()
 
     }

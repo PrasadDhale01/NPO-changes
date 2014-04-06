@@ -35,6 +35,14 @@
                                     <li>${userService.getFriendlyName(member)}</li>
                                 </g:each>
                                 </ul>
+
+                                <p>Pending members</p>
+                                <ul>
+                                    <g:each in="${communityService.getPendingMembersInCommunity(community)}" var="member">
+                                        <li>${userService.getFriendlyName(member)}</li>
+                                    </g:each>
+                                </ul>
+
                             </td>
                             <td>
                                 <p>$${creditService.getTotalCreditForCommunity(community)}</p>

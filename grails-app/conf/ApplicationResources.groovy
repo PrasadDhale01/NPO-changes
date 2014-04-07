@@ -90,7 +90,7 @@ modules = {
         resource url: 'https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'
     }
     feducss {
-        dependsOn 'bootswatchyeticss', 'bootstrapselectcss', 'fontawesomecss'
+        dependsOn 'bootswatchcss', 'bootstrapselectcss', 'fontawesomecss'
         resource url: 'css/fedu.css'
     }
     bootstrapcss {
@@ -100,11 +100,15 @@ modules = {
         resource url: 'https://silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css'
     }
     bootstrapsocialcss {
-        dependsOn 'bootswatchyeticss', 'fontawesomecss'
+        /* http://lipis.github.io/bootstrap-social/ */
+        dependsOn 'bootswatchcss', 'fontawesomecss'
         resource url: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.2.1/bootstrap-social.min.css'
     }
-    tableclothcss {
+    bootswatchcss {
         dependsOn 'bootswatchyeticss'
+    }
+    tableclothcss {
+        dependsOn 'bootswatchcss'
         resource url: 'tablecloth/css/bootstrap-tables.css'
         resource url: 'tablecloth/css/tablecloth.css'
     }

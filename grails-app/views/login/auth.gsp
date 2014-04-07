@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name='layout' content='main'/>
-    <r:require modules="loginjs"/>
+    <r:require modules="bootstrapsocialcss, loginjs"/>
 </head>
 <body>
 <div class="feducontent">
@@ -9,7 +9,14 @@
 
         <form class="form-signin" role="form" action="${postUrl}" method="POST" id="loginForm">
             <h2 class="form-signin-heading">Please sign in</h2>
+            <%--
             <facebookAuth:connect/>
+            --%>
+            <a class="btn btn-block btn-social btn-facebook"
+               href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
+                <i class="fa fa-facebook" style="padding-top: 10px;"></i> Sign in with Facebook
+            </a>
+
             <hr/>
             <g:if test='${flash.message}'>
                 <div class="alert alert-danger">${flash.message}</div>

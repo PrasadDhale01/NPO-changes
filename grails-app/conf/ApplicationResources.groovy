@@ -99,6 +99,10 @@ modules = {
     bootstrapselectcss {
         resource url: 'https://silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css'
     }
+    bootstrapsocialcss {
+        dependsOn 'bootswatchyeticss', 'fontawesomecss'
+        resource url: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.2.1/bootstrap-social.min.css'
+    }
     tableclothcss {
         dependsOn 'bootswatchyeticss'
         resource url: 'tablecloth/css/bootstrap-tables.css'

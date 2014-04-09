@@ -20,6 +20,10 @@ class CommunityService {
         return pendingMembers
     }
 
+    def getNumberofPendingMembersInCommunity(Community community) {
+        return getPendingMembersInCommunity(community).size()
+    }
+
     def getCommunitiesOwnedByManager(User manager) {
         return Community.findByManager(manager)
     }

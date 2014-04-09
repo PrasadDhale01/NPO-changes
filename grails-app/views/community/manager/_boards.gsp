@@ -1,7 +1,7 @@
 <g:set var="communityService" bean="communityService"/>
 <g:set var="creditService" bean="creditService"/>
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-md-4">
         <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="row">
@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-md-4">
         <div class="panel panel-success">
             <div class="panel-heading">
                 <div class="row">
@@ -35,7 +35,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-md-4">
         <div class="panel panel-warning">
             <div class="panel-heading">
                 <div class="row">

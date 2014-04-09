@@ -9,7 +9,7 @@ class CommunityController {
 
     @Secured(['ROLE_COMMUNITY_MGR'])
     def manage() {
-        return [
+        render view: 'manager/manage', model: [
             communities: communityService.getCommunitiesOwnedByManager(userService.getCurrentUser())
         ]
     }

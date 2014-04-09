@@ -5,10 +5,10 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-xs-4">
                         <i class="fa fa-money fa-5x"></i>
                     </div>
-                    <div class="col-xs-6 text-right">
+                    <div class="col-xs-8 text-right">
                         <p class="announcement-heading">$${creditService.getTotalCreditForCommunity(community)}</p>
                     </div>
                 </div>

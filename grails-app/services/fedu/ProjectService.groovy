@@ -10,6 +10,10 @@ class ProjectService {
     def contributionService
     def grailsLinkGenerator
 
+    def getNumberOfProjects() {
+        return Project.count()
+    }
+
     def getProjectImageLink(Project project) {
         if (project.imageUrl) {
             if (project.imageUrl.startsWith('http')) {

@@ -7,6 +7,9 @@
     <div class="container">
 
         <h2>Admin Dashboard</h2>
+
+        <g:render template="profile/admin/boards"/>
+
         <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
             <li class="active"><a href="#manage-community" data-toggle="tab">
                 <i class="fa fa-users"></i></span> Manage Communities

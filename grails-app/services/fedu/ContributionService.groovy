@@ -2,6 +2,16 @@ package fedu
 
 class ContributionService {
 
+    def getTotalContribution() {
+        def c = Contribution.createCriteria()
+        def totalContribution = c.get {
+            projections {
+                sum "amount"
+            }
+        }
+        return totalContribution
+    }
+
     def isFundingAchievedForProject(Project project) {
         if (!project) {
             return null

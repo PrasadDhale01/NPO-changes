@@ -8,6 +8,10 @@ class UserService {
     def springSecurityService
     def roleService
 
+    def getNumberOfUsers() {
+        return User.count()
+    }
+
     def getEmail() {
         EmailValidator emailValidator = EmailValidator.getInstance()
 

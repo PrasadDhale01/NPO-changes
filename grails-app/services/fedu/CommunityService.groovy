@@ -5,6 +5,10 @@ import grails.transaction.Transactional
 class CommunityService {
     def roleService
 
+    def getNumberOfCommunities() {
+        return Community.count()
+    }
+
     def getMembersInCommunity(Community community) {
         return community.getMembers()
     }

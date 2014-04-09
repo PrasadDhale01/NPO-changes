@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="col-lg-3">
-        <div class="panel panel-success">
+        <div class="panel panel-warning">
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">

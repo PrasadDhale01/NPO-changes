@@ -8,7 +8,7 @@
 
         <h2>Admin Dashboard</h2>
 
-        <g:render template="profile/admin/boards"/>
+        <g:render template="profile/admin/vitals"/>
 
         <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
             <li class="active"><a href="#manage-community" data-toggle="tab">

@@ -292,3 +292,15 @@ ul.unstyled {
     background-color: #f7f6f2;
 	color: black;
 }
+
+/* Nav Announcements */
+
+.announcement-heading {
+    font-size: 50px;
+    margin: 0;
+}
+
+.announcement-text {
+    margin: 0;
+}
+

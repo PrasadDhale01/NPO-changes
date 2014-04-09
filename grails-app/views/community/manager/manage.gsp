@@ -12,7 +12,7 @@
             <div class="panel panel-primary">
                 <div class="panel-heading"><i class="fa fa-users"></i> ${community.title}</div>
                 <div class="panel-body">
-                    <g:render template="manager/boards" model="[community: community]"/>
+                    <g:render template="manager/vitals" model="[community: community]"/>
 
                     <div class="row">
                         <div class="col-md-6">

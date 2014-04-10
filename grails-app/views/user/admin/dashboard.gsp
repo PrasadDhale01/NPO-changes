@@ -6,7 +6,7 @@
 <div class="feducontent">
     <div class="container">
 
-        <h2>Admin Dashboard</h2>
+        <h2><i class="fa fa-unlock"></i> Admin Dashboard</h2>
 
         <h4>Vital Stats</h4>
         <g:render template="admin/vitals"/>
@@ -33,7 +33,9 @@
                         <i class="fa fa-gift fa-lg"></i> Manage all the rewards here.
                     </div>
                     <div class="panel-footer">
-                        <button class="btn btn-block btn-primary"><i class="fa fa-gift fa-lg"></i> Manage Rewards</button>
+                        <g:link controller="reward" action="list">
+                            <button class="btn btn-block btn-primary"><i class="fa fa-gift fa-lg"></i> Manage Rewards</button>
+                        </g:link>
                     </div>
                 </div>
             </div>

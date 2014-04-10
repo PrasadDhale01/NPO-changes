@@ -1,5 +1,5 @@
 <div class="container">
-	<h1>How it Works</h1>
+	<h1><span class="glyphicon glyphicon-info-sign"></span> How it Works</h1>
     <p class="lead text-justify">
         Education is one of the most effective ways to confront poverty. FEDU’s mission is to create a global connection between contributors like yourself and those with unequal access, providing them the means to claim an education. We have developed a simple platform to make this possible and fast. As a contributor you will create a new future for struggling individuals and families, AND know the education you’re providing is for life.
     </p>

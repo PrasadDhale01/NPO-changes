@@ -6,7 +6,7 @@
 <body>
 <div class="feducontent">
 	<div class="container">
-		<h1>Create Project</h1>
+		<h1><span class="glyphicon glyphicon-leaf"></span> Create Project</h1>
 
         <g:uploadForm class="form-horizontal" controller="project" action="save" role="form">
 

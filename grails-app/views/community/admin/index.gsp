@@ -8,7 +8,7 @@
 <body>
 <div class="feducontent">
     <div class="container">
-        <h2>Manage Communities</h2>
+        <h2><i class="fa fa-users"></i> Manage Communities</h2>
         <div class="alert alert-warning">Be careful. You are handling sensitive data. This is admin-only zone.</div>
 
         <div class="panel panel-default">

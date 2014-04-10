@@ -28,10 +28,10 @@
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane active" id="myprojects">
-                <g:render template="profile/myprojects"/>
+                <g:render template="user/myprojects"/>
             </div>
             <div class="tab-pane" id="my-contributions">
-                <g:render template="profile/mycontributions"/>
+                <g:render template="user/mycontributions"/>
             </div>
             <g:if test="${userService.isCommunityManager()}">
                 <div class="tab-pane" id="my-community">
@@ -39,7 +39,7 @@
                 </div>
             </g:if>
             <div class="tab-pane" id="account-settings">
-                <g:render template="profile/accountsettings"/>
+                <g:render template="common/accountsettings"/>
             </div>
         </div>
     </div>

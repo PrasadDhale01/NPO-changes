@@ -46,12 +46,9 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><g:link controller="user" action="profile">Profile</g:link></li>
+                            <li><g:link controller="user" action="dashboard">Settings</g:link></li>
                             <sec:ifAllGranted roles="ROLE_AUTHOR">
                                 <li><g:link controller="blog" action="manage">Manage blogs</g:link></li>
-                            </sec:ifAllGranted>
-                            <sec:ifAllGranted roles="ROLE_ADMIN">
-                                <li><g:link controller="community" action="manageall">Manage communities</g:link></li>
                             </sec:ifAllGranted>
                             <li class="divider"></li>
                             <li><g:link controller="logout">Log out</g:link></li>

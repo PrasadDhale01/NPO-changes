@@ -3,10 +3,8 @@
     <p class="lead text-justify">
         Education is one of the most effective ways to confront poverty. FEDU’s mission is to create a global connection between contributors like yourself and those with unequal access, providing them the means to claim an education. We have developed a simple platform to make this possible and fast. As a contributor you will create a new future for struggling individuals and families, AND know the education you’re providing is for life.
     </p>
-	<div>
-		<iframe width="100%" height="500"
-			src="//www.youtube.com/embed/W_lME-8P-Dk" frameborder="0"
-			allowfullscreen></iframe>
+	<div class="video-container">
+        <iframe src="//www.youtube.com/embed/W_lME-8P-Dk" frameborder="0" allowfullscreen></iframe>
 	</div>
 	<div class="panel panel-default">
 		<div class="panel-heading">

@@ -2,26 +2,25 @@ package fedu
 
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['IS_AUTHENTICATED_FULLY'])
 class UserController {
     def userService
 
     @Secured(['ROLE_ADMIN'])
-    def adminprofile() {
+    def admindashboard() {
         User user = (User)userService.getCurrentUser()
-        render view: 'profile/admin/index', model: [user: user]
+        render view: 'admin/dashboard', model: [user: user]
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
-    def profile() {
+    def dashboard() {
         User user = (User)userService.getCurrentUser()
         if (userService.isAdmin()) {
-            redirect action: 'adminprofile'
+            redirect action: 'admindashboard'
         } else {
             def projects = Project.findAllByUser(user)
             def contributions = Contribution.findAllByUser(user)
 
-            render view: 'profile/index', model: [user: user, projects: projects, contributions: contributions]
+            render view: 'user/dashboard', model: [user: user, projects: projects, contributions: contributions]
         }
     }
 }

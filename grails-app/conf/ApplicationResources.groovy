@@ -33,7 +33,7 @@ modules = {
     }
     blacknwhitejs {
         dependsOn 'corejs'
-        resource url: 'js/jquery.BlackAndWhite.js'
+        resource url: 'js/external/jquery.BlackAndWhite.js'
     }
     tableclothjs {
         dependsOn 'corejs'

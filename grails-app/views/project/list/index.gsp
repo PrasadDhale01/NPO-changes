@@ -7,7 +7,7 @@
 <body>
 <div class="feducontent">
 	<div class="container">
-		<h1>Contribute</h1>
+		<h1> <span class="glyphicon glyphicon-tint"></span> Contribute</h1>
 
         <!-- Search -->
         <%-- <g:render template="list/search"></g:render> --%>

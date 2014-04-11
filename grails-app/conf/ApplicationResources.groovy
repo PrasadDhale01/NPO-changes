@@ -84,6 +84,11 @@ modules = {
         dependsOn 'fedujs'
         resource url: 'js/community.js'
     }
+    /* Rewards */
+    rewardjs {
+        dependsOn 'fedujs'
+        resource url: 'js/reward.js'
+    }
 
     /* CSS */
     fontawesomecss {

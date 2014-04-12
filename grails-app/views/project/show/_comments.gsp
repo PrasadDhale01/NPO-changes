@@ -20,7 +20,7 @@
     <dl class="dl">
         <g:each in="${project.comments}" var="comment">
             <hr>
-            <dt>${comment.user.username}</dt>
+            <dt>${userService.getFriendlyFullName(comment.user)}</dt>
             <dd>${comment.comment}</dd>
         </g:each>
     </dl>

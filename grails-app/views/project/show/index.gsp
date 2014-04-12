@@ -1,6 +1,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
+<g:set var="userService" bean="userService"/>
 <%
     def percentage = contributionService.getPercentageContributionForProject(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)

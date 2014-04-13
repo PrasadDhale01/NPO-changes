@@ -247,6 +247,13 @@ ul.unstyled {
     /* height: 20px; */
 }
 
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+    color: #ffffff;
+    background-color: #008cba;
+}
+
 /* Override thumbnail */
 .fedu.thumbnail {
     border-radius: 0;

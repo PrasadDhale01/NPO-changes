@@ -98,6 +98,10 @@ modules = {
         dependsOn 'bootswatchcss', 'bootstrapselectcss', 'fontawesomecss'
         resource url: 'css/fedu.css'
     }
+    timelinecss {
+        dependsOn 'feducss'
+        resource url: 'css/timeline.css'
+    }
     bootstrapcss {
         resource url: 'https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css'
     }

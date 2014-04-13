@@ -22,7 +22,7 @@
                     </h1>
                     <h4 class="lead">Beneficiary: ${project.name}</h4>
 
-                    <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
+                    <ul class="nav nav-pills nav-justified" style="margin-bottom: 10px;">
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span> Essentials
                         </a></li>

@@ -72,7 +72,7 @@ class ProjectController {
             flash.commentmessage = "Something went wrong saving comment. Please try again later."
         }
 
-        redirect (action: 'show', id: params.id)
+        redirect (action: 'show', id: params.id, fragment: 'comments')
     }
 
     @Secured(['ROLE_USER'])

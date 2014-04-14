@@ -40,6 +40,12 @@ $(function() {
         }
     });
 
+    /* Initialize Handlebars */
+    var source   = $("#for-someoneiknow").html();
+    var template = Handlebars.compile(source);
+    var html    = template({});
+    $('#beneficiary-is').html(html);
+
     var showPopover = function () {
             $(this).popover('show');
         },
@@ -47,7 +53,7 @@ $(function() {
             $(this).popover('hide');
         };
 
-    /* Initialize pop-overs */
+    /* Initialize pop-overs (tooltips) */
     $("input[name='days']").popover({
         content: 'Number of days to raise the funds by.',
         trigger: 'manual',

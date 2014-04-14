@@ -9,7 +9,7 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-4">
-                        <i class="fa fa-tint fa-5x"></i>
+                        <i class="fa fa-tint fa-2x"></i>
                     </div>
                     <div class="col-xs-8 text-right">
                         <p class="announcement-heading">$${contributionService.getTotalContribution()}</p>
@@ -26,7 +26,7 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <i class="fa fa-user fa-5x"></i>
+                        <i class="fa fa-user fa-2x"></i>
                     </div>
                     <div class="col-xs-6 text-right">
                         <p class="announcement-heading">${userService.getNumberOfUsers()}</p>
@@ -43,7 +43,7 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <i class="fa fa-leaf fa-5x"></i>
+                        <i class="fa fa-leaf fa-2x"></i>
                     </div>
                     <div class="col-xs-6 text-right">
                         <p class="announcement-heading">${projectService.getNumberOfProjects()}</p>
@@ -60,7 +60,7 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-xs-6">
-                        <i class="fa fa-users fa-5x"></i>
+                        <i class="fa fa-users fa-2x"></i>
                     </div>
                     <div class="col-xs-6 text-right">
                         <p class="announcement-heading">${communityService.getNumberOfCommunities()}</p>

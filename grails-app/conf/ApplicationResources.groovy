@@ -59,7 +59,7 @@ modules = {
     }
     /* Project */
     projectcreatejs {
-        dependsOn 'fedujs'
+        dependsOn 'fedujs', 'handlebarsjs'
         resource url: 'js/project/create.js'
     }
     projectshowjs {

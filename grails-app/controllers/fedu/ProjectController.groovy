@@ -8,6 +8,7 @@ class ProjectController {
     def userService
 
     def FORMCONSTANTS = [
+        BENEFICIARY: 'beneficiary',
         NAME: 'name',
         EMAIL: 'email',
         TELEPHONE: 'telephone',
@@ -106,6 +107,10 @@ class ProjectController {
             (Project.Category.COLLEGE_ACCESS): "College Access",
             (Project.Category.WOMEN_EMPOWERMENT): "Women Empowerment",
             (Project.Category.OTHER): "Other"
+        ]
+
+        def beneficiaryOptions = [
+
         ]
 
         def rewardOptions = [:]

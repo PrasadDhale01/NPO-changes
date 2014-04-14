@@ -1,7 +1,32 @@
 <html>
 <head>
-<meta name="layout" content="main" />
-<r:require modules="projectcreatejs"/>
+    <meta name="layout" content="main" />
+    <r:require modules="projectcreatejs"/>
+
+    <script id="for-myself" type="text/x-handlebars-template">
+        template content
+    </script>
+    <script id="for-someoneiknow" type="text/x-handlebars-template">
+        <div class="form-group">
+            <label for="${FORMCONSTANTS.NAME}" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input class="form-control" name="${FORMCONSTANTS.NAME}" placeholder="Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="${FORMCONSTANTS.EMAIL}" class="col-sm-2 control-label">Email</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" name="${FORMCONSTANTS.EMAIL}" placeholder="Email">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="${FORMCONSTANTS.TELEPHONE}" class="col-sm-2 control-label">Telephone</label>
+            <div class="col-sm-10">
+                <input class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Telephone">
+            </div>
+        </div>
+    </script>
+
 </head>
 <body>
 <div class="feducontent">
@@ -15,23 +40,19 @@
 					<h3 class="panel-title">Who</h3>
 				</div>
 				<div class="panel-body">
+                    <%--
                     <div class="form-group">
-                        <label for="${FORMCONSTANTS.NAME}" class="col-sm-2 control-label">Name</label>
+                        <label for="${FORMCONSTANTS.BENEFICIARY}" class="col-sm-2 control-label">Beneficiary is:</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="${FORMCONSTANTS.NAME}" placeholder="Name">
+                            <g:select class="selectpicker" name="${FORMCONSTANTS.BENEFICIARY}"
+                                      from="${fundRaisingOptions}"
+                                      optionKey="key" optionValue="value"/>
                         </div>
                     </div>
-   	                <div class="form-group">
-	                    <label for="${FORMCONSTANTS.EMAIL}" class="col-sm-2 control-label">Email</label>
-	                    <div class="col-sm-10">
-	                        <input type="email" class="form-control" name="${FORMCONSTANTS.EMAIL}" placeholder="Email">
-	                    </div>
-	                </div>
-                    <div class="form-group">
-                        <label for="${FORMCONSTANTS.TELEPHONE}" class="col-sm-2 control-label">Telephone</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Telephone">
-                        </div>
+                    --%>
+
+                    <div id="beneficiary-is">
+                        <!-- Content filled dynamically by Handlebars -->
                     </div>
 				</div>
 			</div>

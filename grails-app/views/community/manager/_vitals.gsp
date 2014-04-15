@@ -5,10 +5,10 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-4">
-                        <i class="fa fa-money fa-5x"></i>
+                    <div class="col-xs-2">
+                        <i class="fa fa-money fa-2x"></i>
                     </div>
-                    <div class="col-xs-8 text-right">
+                    <div class="col-xs-10 text-right">
                         <p class="announcement-heading">$${creditService.getTotalCreditForCommunity(community)}</p>
                     </div>
                 </div>
@@ -22,10 +22,10 @@
         <div class="panel panel-success">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-6">
-                        <i class="fa fa-user fa-5x"></i>
+                    <div class="col-xs-2">
+                        <i class="fa fa-user fa-2x"></i>
                     </div>
-                    <div class="col-xs-6 text-right">
+                    <div class="col-xs-10 text-right">
                         <p class="announcement-heading">${communityService.getNumberofMembersInCommunity(community)}</p>
                     </div>
                 </div>
@@ -39,10 +39,10 @@
         <div class="panel panel-warning">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-6">
-                        <i class="fa fa-question fa-5x"></i>
+                    <div class="col-xs-2">
+                        <i class="fa fa-question fa-2x"></i>
                     </div>
-                    <div class="col-xs-6 text-right">
+                    <div class="col-xs-10 text-right">
                         <p class="announcement-heading">${communityService.getNumberofPendingMembersInCommunity(community)}</p>
                     </div>
                 </div>

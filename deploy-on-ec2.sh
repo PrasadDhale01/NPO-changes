@@ -14,4 +14,4 @@ echo "Starting Jetty server"
 cd ~/Programs/jetty
 rm nohup.out
 # nohup java -jar start.jar &
-nohup java -javaagent:/home/ubuntu/Programs/jetty/newrelic/newrelic.jar -jar start.jar --module=https,deploy &
+nohup java -Xms1024m -Xmx2048m -javaagent:/home/ubuntu/Programs/jetty/newrelic/newrelic.jar -jar start.jar --module=https,deploy &

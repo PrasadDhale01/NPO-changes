@@ -65,7 +65,7 @@
                         <a href="/projects/${project.id}/fund" class="btn btn-primary btn-lg btn-block" role="button">Fund this project</a>
                     </g:else>
 
-                    <g:render template="/layouts/singletile"/>
+                    <g:render template="/layouts/tilesanstitle"/>
                 </div>
             </div>
             <%--

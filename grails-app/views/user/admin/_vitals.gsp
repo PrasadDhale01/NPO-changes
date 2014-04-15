@@ -8,10 +8,10 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-4">
+                    <div class="col-xs-2">
                         <i class="fa fa-tint fa-2x"></i>
                     </div>
-                    <div class="col-xs-8 text-right">
+                    <div class="col-xs-10 text-right">
                         <p class="announcement-heading">$${contributionService.getTotalContribution()}</p>
                     </div>
                 </div>
@@ -25,10 +25,10 @@
         <div class="panel panel-success">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-xs-2">
                         <i class="fa fa-user fa-2x"></i>
                     </div>
-                    <div class="col-xs-6 text-right">
+                    <div class="col-xs-10 text-right">
                         <p class="announcement-heading">${userService.getNumberOfUsers()}</p>
                     </div>
                 </div>
@@ -42,10 +42,10 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-xs-2">
                         <i class="fa fa-leaf fa-2x"></i>
                     </div>
-                    <div class="col-xs-6 text-right">
+                    <div class="col-xs-10 text-right">
                         <p class="announcement-heading">${projectService.getNumberOfProjects()}</p>
                     </div>
                 </div>
@@ -59,10 +59,10 @@
         <div class="panel panel-warning">
             <div class="panel-heading">
                 <div class="row">
-                    <div class="col-xs-6">
+                    <div class="col-xs-2">
                         <i class="fa fa-users fa-2x"></i>
                     </div>
-                    <div class="col-xs-6 text-right">
+                    <div class="col-xs-10 text-right">
                         <p class="announcement-heading">${communityService.getNumberOfCommunities()}</p>
                     </div>
                 </div>

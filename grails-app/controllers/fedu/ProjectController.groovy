@@ -1,6 +1,5 @@
 package fedu
 
-import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
@@ -8,10 +7,19 @@ class ProjectController {
     def userService
 
     def FORMCONSTANTS = [
-        BENEFICIARY: 'beneficiary',
-        NAME: 'name',
+        /* Beneficiary */
+        FIRSTNAME: 'firstName',
+        LASTNAME: 'lastName',
         EMAIL: 'email',
         TELEPHONE: 'telephone',
+        GENDER: 'gender',
+        ADDRESSLINE1: 'addressLine1',
+        ADDRESSLINE2: 'addressLine2',
+        CITY: 'city',
+        STATEORPROVINCE: 'stateOrProvince',
+        POSTALCODE: 'postalCode',
+        COUNTRY: 'country',
+
         FUNDRAISINGREASON: 'fundRaisingReason',
         FUNDRAISINGFOR: 'fundRaisingFor',
         CATEGORY: 'category',
@@ -90,9 +98,8 @@ class ProjectController {
 		]
 
 		def raisingForOptions = [
-			(Project.FundRaisingFor.MYSELF): "Myself",
-			(Project.FundRaisingFor.NON_PROFIT): "Non-profit",
-			(Project.FundRaisingFor.SCHOOL): "School"
+            (Project.FundRaisingFor.OTHER): "Someone I know",
+			(Project.FundRaisingFor.MYSELF): "Myself"
 		]
 
         def categoryOptions = [
@@ -109,8 +116,10 @@ class ProjectController {
             (Project.Category.OTHER): "Other"
         ]
 
-        def beneficiaryOptions = [
-
+        def genderOptions = [
+            "MALE": (Beneficiary.Gender.MALE),
+            "FEMALE": (Beneficiary.Gender.FEMALE),
+            "UNSPECIFIED": (Beneficiary.Gender.UNSPECIFIED)
         ]
 
         def rewardOptions = [:]
@@ -123,6 +132,7 @@ class ProjectController {
                         raisingForOptions: raisingForOptions,
                         categoryOptions: categoryOptions,
                         rewardOptions: rewardOptions,
+                        genderOptions: genderOptions,
                         FORMCONSTANTS: FORMCONSTANTS])
 	}
 
@@ -132,6 +142,7 @@ class ProjectController {
     def save() {
         Image thumbnail
         Project project
+        Beneficiary beneficiary
         User user = userService.getCurrentUser()
 
         CommonsMultipartFile thumbnailFile = request.getFile(FORMCONSTANTS.THUMBNAIL)
@@ -147,9 +158,20 @@ class ProjectController {
         }
 
         project = new Project(params)
+        beneficiary = new Beneficiary(params)
+
+        if (project.fundRaisingFor == Project.FundRaisingFor.OTHER) {
+            /* Nothing to do here. */
+        } else if (project.fundRaisingFor == Project.FundRaisingFor.MYSELF) {
+            beneficiary.firstName = user.firstName
+            beneficiary.lastName = user.lastName
+            beneficiary.email = user.email
+        }
+
         project.user = user
         project.image = thumbnail
         project.created = new Date()
+        project.beneficiary = beneficiary
 
         params.rewards.each() { rewardId ->
             project.addToRewards(Reward.findById(rewardId))

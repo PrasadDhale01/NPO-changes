@@ -20,7 +20,7 @@
                     <h1>
                         <a href="${project.id}">${project.title}</a>
                     </h1>
-                    <h4 class="lead">Beneficiary: ${project.name}</h4>
+                    <h4 class="lead">Beneficiary: ${projectService.getBeneficiaryName(project)}</h4>
 
                     <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
                         <li class="active"><a href="#essentials" data-toggle="tab">

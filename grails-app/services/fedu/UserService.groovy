@@ -50,6 +50,10 @@ class UserService {
         return friendlyFullName
     }
 
+    def getFriendlyFullName() {
+        return getFriendlyFullName(getCurrentUser())
+    }
+
     def isFacebookUser() {
         return isFacebookUser(getCurrentUser())
     }

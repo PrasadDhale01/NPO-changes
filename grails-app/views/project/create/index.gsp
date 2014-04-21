@@ -1,32 +1,8 @@
+<g:set var="userService" bean="userService"/>
 <html>
 <head>
     <meta name="layout" content="main" />
     <r:require modules="projectcreatejs"/>
-
-    <script id="for-myself" type="text/x-handlebars-template">
-        template content
-    </script>
-    <script id="for-someoneiknow" type="text/x-handlebars-template">
-        <div class="form-group">
-            <label for="${FORMCONSTANTS.NAME}" class="col-sm-2 control-label">Name</label>
-            <div class="col-sm-10">
-                <input class="form-control" name="${FORMCONSTANTS.NAME}" placeholder="Name">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="${FORMCONSTANTS.EMAIL}" class="col-sm-2 control-label">Email</label>
-            <div class="col-sm-10">
-                <input type="email" class="form-control" name="${FORMCONSTANTS.EMAIL}" placeholder="Email">
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="${FORMCONSTANTS.TELEPHONE}" class="col-sm-2 control-label">Telephone</label>
-            <div class="col-sm-10">
-                <input class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Telephone">
-            </div>
-        </div>
-    </script>
-
 </head>
 <body>
 <div class="feducontent">
@@ -40,19 +16,98 @@
 					<h3 class="panel-title">Who</h3>
 				</div>
 				<div class="panel-body">
-                    <%--
                     <div class="form-group">
-                        <label for="${FORMCONSTANTS.BENEFICIARY}" class="col-sm-2 control-label">Beneficiary is:</label>
+                        <label class="col-sm-2 control-label">For</label>
                         <div class="col-sm-10">
-                            <g:select class="selectpicker" name="${FORMCONSTANTS.BENEFICIARY}"
-                                      from="${fundRaisingOptions}"
+                            <g:select class="selectpicker" name="${FORMCONSTANTS.FUNDRAISINGFOR}"
+                                      from="${raisingForOptions}"
                                       optionKey="key" optionValue="value"/>
                         </div>
                     </div>
-                    --%>
+                    <hr>
+                    <div class="row">
+                        <div class="col col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">First Name</label>
+                                <div class="col-sm-8">
+                                    <input id="firstName" class="form-control" name="${FORMCONSTANTS.FIRSTNAME}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Last Name</label>
+                                <div class="col-sm-8">
+                                    <input id="lastName" class="form-control" name="${FORMCONSTANTS.LASTNAME}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Gender</label>
+                                <div class="col-sm-8">
+                                    <div class="btn-group btn-group-sm" data-toggle="buttons">
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="${FORMCONSTANTS.GENDER}" value="${genderOptions.MALE}"> Male
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="${FORMCONSTANTS.GENDER}" value="${genderOptions.FEMALE}"> Female
+                                        </label>
+                                        <label class="btn btn-default">
+                                            <input type="radio" name="${FORMCONSTANTS.GENDER}" value="${genderOptions.UNSPECIFIED}"> Unspecified
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Email</label>
+                                <div class="col-sm-8">
+                                    <input id="email" type="email" class="form-control" name="${FORMCONSTANTS.EMAIL}">
+                                </div>
 
-                    <div id="beneficiary-is">
-                        <!-- Content filled dynamically by Handlebars -->
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Telephone</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Telephone">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Address</label>
+                                <div class="col-sm-10">
+                                    <input type="text" placeholder="Line 1" name="${FORMCONSTANTS.ADDRESSLINE1}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Address</label>
+                                <div class="col-sm-10">
+                                    <input type="text" placeholder="Line 2" name="${FORMCONSTANTS.ADDRESSLINE2}" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">City</label>
+                                <div class="col-sm-10">
+                                    <input type="text" placeholder="City" name="${FORMCONSTANTS.CITY}" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">State</label>
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="State" name="${FORMCONSTANTS.STATEORPROVINCE}" class="form-control">
+                                </div>
+
+                                <label class="col-sm-2 control-label">Postcode</label>
+                                <div class="col-sm-4">
+                                    <input type="text" placeholder="Postcode" name="${FORMCONSTANTS.POSTALCODE}" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label">Country</label>
+                                <div class="col-sm-10">
+                                    <input type="text" placeholder="Country" name="${FORMCONSTANTS.COUNTRY}" class="form-control">
+                                </div>
+                            </div>
+                        </div>
                     </div>
 				</div>
 			</div>
@@ -63,7 +118,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="${FORMCONSTANTS.FUNDRAISINGREASON}" class="col-sm-2 control-label">Funds towards</label>
+                        <label class="col-sm-2 control-label">Funds towards</label>
                         <div class="col-sm-10">
                             <g:select class="selectpicker" name="${FORMCONSTANTS.FUNDRAISINGREASON}"
                                       from="${fundRaisingOptions}"
@@ -71,15 +126,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="${FORMCONSTANTS.FUNDRAISINGFOR}" class="col-sm-2 control-label">Funds for</label>
-                        <div class="col-sm-10">
-                            <g:select class="selectpicker" name="${FORMCONSTANTS.FUNDRAISINGFOR}"
-                                      from="${raisingForOptions}"
-                                      optionKey="key" optionValue="value"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="${FORMCONSTANTS.CATEGORY}" class="col-sm-2 control-label">Category</label>
+                        <label class="col-sm-2 control-label">Category</label>
                         <div class="col-sm-10">
                             <g:select class="selectpicker" name="${FORMCONSTANTS.CATEGORY}"
                                       from="${categoryOptions}"
@@ -94,13 +141,13 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="${FORMCONSTANTS.AMOUNT}" class="col-sm-2 control-label">Amount</label>
+                        <label class="col-sm-2 control-label">Amount</label>
                         <div class="col-sm-10">
                             <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" placeholder="Amount">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="${FORMCONSTANTS.DAYS}" class="col-sm-2 control-label">In days</label>
+                        <label class="col-sm-2 control-label">In days</label>
                         <div class="col-sm-10">
                             <input class="form-control" name="${FORMCONSTANTS.DAYS}" placeholder="Days">
                         </div>
@@ -114,37 +161,31 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label for="${FORMCONSTANTS.TITLE}" class="col-sm-2 control-label">Project title</label>
+                        <label class="col-sm-2 control-label">Project title</label>
                         <div class="col-sm-10">
                             <input class="form-control" name="${FORMCONSTANTS.TITLE}" placeholder="Enter project title">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="${FORMCONSTANTS.STORY}" class="col-sm-2 control-label">Story</label>
+                        <label class="col-sm-2 control-label">Story</label>
                         <div class="col-sm-10">
                             <textarea class="form-control" name="${FORMCONSTANTS.STORY}" rows="4"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="${FORMCONSTANTS.THUMBNAIL}" class="col-sm-2 control-label">Thumbnail image</label>
+                        <label class="col-sm-2 control-label">Thumbnail image</label>
                         <div class="col-sm-4">
                             <input type="file" name="${FORMCONSTANTS.THUMBNAIL}">
                             <p class="help-block">Please upload a thumbnail image for project.</p>
                         </div>
-                        <label for="${FORMCONSTANTS.IMAGEURL}" class="col-sm-2 control-label">or, Image URL</label>
+                        <label class="col-sm-2 control-label">or, Image URL</label>
                         <div class="col-sm-4">
                             <input class="form-control" name="${FORMCONSTANTS.IMAGEURL}" placeholder="Image URL">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="${FORMCONSTANTS.REWARDS}" class="col-sm-2 control-label">Rewards</label>
+                        <label class="col-sm-2 control-label">Rewards</label>
                         <div class="col-sm-10">
-                            <%--
-                            <g:select class="selectpicker" name="${FORMCONSTANTS.REWARDS}"
-                                      from="${rewardOptions}"
-                                      optionKey="key" optionValue="value" multiple="true"
-                                      title="Choose multiple rewards"  data-selected-text-format="count"/>
-                            --%>
                             <select class="selectpicker" name="${FORMCONSTANTS.REWARDS}" multiple="true"
                                     title="Choose multiple rewards"  data-selected-text-format="count">
                                 <g:each in="${rewardOptions}" var="rewardOption">
@@ -173,5 +214,6 @@
 		</g:uploadForm>
 	</div>
 </div>
+
 </body>
 </html>

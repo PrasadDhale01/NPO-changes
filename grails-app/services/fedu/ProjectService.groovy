@@ -14,6 +14,23 @@ class ProjectService {
         return Project.count()
     }
 
+    def getBeneficiaryName(Project project) {
+        def name
+        if (project.fundRaisingFor == Project.FundRaisingFor.MYSELF) {
+            name = userService.getFriendlyFullName(project.user)
+        } else {
+            if (project.beneficiary.firstName && project.beneficiary.lastName) {
+                name = project.beneficiary.firstName + ' ' + project.beneficiary.lastName
+            } else {
+                name = project.beneficiary.firstName
+                if (!name) {
+                    name = project.beneficiary.email
+                }
+            }
+        }
+        return name
+    }
+
     def getProjectImageLink(Project project) {
         if (project.imageUrl) {
             if (project.imageUrl.startsWith('http')) {
@@ -81,20 +98,18 @@ class ProjectService {
         User sampleUser = User.findByUsername('user@example.com')
 
         new Project(
-                name: 'Machine learning enthusiast',
-                email: 'info@deepshikha.org',
                 created: dateFormat.parse("01/15/2014"),
-                telephone: '+91 12345678',
-                amount: '600.0',
-                days: '100',
+                amount: 600,
+                days: 100,
                 fundRaisingReason: Project.FundRaisingReason.TUITION_FEE,
                 fundRaisingFor: Project.FundRaisingFor.MYSELF,
                 category: Project.Category.TECHNOLOGY,
                 title: 'Machine Learning',
-                story: 'Maching learning is going to change the world for ever.',
+                story: 'Machine learning is going to change the world for ever.',
                 validated: true,
                 imageUrl: 'https://1.bp.blogspot.com/-tn9GwuoC45w/TvtQvP6_UFI/AAAAAAAAAHI/ECpLGjyH6AI/s1600/machine_learning_course.png',
-                user: sampleUser
+                user: sampleUser,
+                beneficiary: new Beneficiary()
         ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
@@ -118,20 +133,21 @@ class ProjectService {
         ).save(failOnError: true)
 
         new Project(
-                name: 'Anasuya',
-                email: 'info@deepshikha.org',
                 created: dateFormat.parse("01/15/2014"),
-                telephone: '+91 12345678',
-                amount: '100.0',
-                days: '15',
+                amount: 100,
+                days: 15,
                 fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
+                fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.WOMEN_EMPOWERMENT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Anusuya.png',
-                user: deepshikha
+                user: deepshikha,
+                beneficiary: new Beneficiary(
+                    firstName: 'Anasuya',
+                    email: 'info@deepshikha.org'
+                )
         ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
@@ -163,20 +179,21 @@ class ProjectService {
         ).save(failOnError: true)
 
         new Project(
-                name: 'Roshanbai',
-                email: 'info@deepshikha.org',
                 created: dateFormat.parse("01/15/2014"),
-                telephone: '+91 12345678',
-                amount: '100.0',
-                days: '15',
+                amount: 100,
+                days: 15,
                 fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
+                fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.WOMEN_EMPOWERMENT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Roshanbai.png',
-                user: deepshikha
+                user: deepshikha,
+                beneficiary: new Beneficiary(
+                    firstName: 'Roshanbai',
+                    email: 'info@deepshikha.org'
+                )
         ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
@@ -196,20 +213,21 @@ class ProjectService {
         ).save(failOnError: true)
 
         new Project(
-                name: 'Vandana',
-                email: 'info@deepshikha.org',
                 created: dateFormat.parse("01/15/2014"),
-                telephone: '+91 12345678',
-                amount: '100.0',
-                days: '15',
+                amount: 100,
+                days: 15,
                 fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
+                fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.WOMEN_EMPOWERMENT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Vandana.png',
-                user: deepshikha
+                user: deepshikha,
+                beneficiary: new Beneficiary(
+                    firstName: 'Vandana',
+                    email: 'info@deepshikha.org'
+                )
         ).addToRewards(
                 Reward.findById(2)
         ).addToRewards(
@@ -229,20 +247,21 @@ class ProjectService {
         ).save(failOnError: true)
 
         new Project(
-                name: 'Pushpa',
-                email: 'info@deepshikha.org',
                 created: dateFormat.parse("01/15/2014"),
-                telephone: '+91 12345678',
-                amount: '100.0',
-                days: '15',
+                amount: 100,
+                days: 15,
                 fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
+                fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.WOMEN_EMPOWERMENT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Pushpa.png',
-                user: deepshikha
+                user: deepshikha,
+                beneficiary: new Beneficiary(
+                    firstName: 'Pushpa',
+                    email: 'info@deepshikha.org'
+                )
         ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
@@ -262,20 +281,21 @@ class ProjectService {
         ).save(failOnError: true)
 
         new Project(
-                name: 'Sangita',
-                email: 'info@deepshikha.org',
                 created: dateFormat.parse("01/15/2014"),
-                telephone: '+91 12345678',
-                amount: '100.0',
-                days: '15',
+                amount: 100,
+                days: 15,
                 fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
+                fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.WOMEN_EMPOWERMENT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Sangita.png',
-                user: deepshikha
+                user: deepshikha,
+                beneficiary: new Beneficiary(
+                    firstName: 'Sangita',
+                    email: 'info@deepshikha.org'
+                )
         ).addToRewards(
                 Reward.findById(2)
         ).addToRewards(
@@ -295,20 +315,21 @@ class ProjectService {
         ).save(failOnError: true)
 
         new Project(
-                name: 'Sunanda',
-                email: 'info@deepshikha.org',
                 created: dateFormat.parse("01/15/2014"),
-                telephone: '+91 12345678',
-                amount: '100.0',
-                days: '15',
+                amount: 100,
+                days: 15,
                 fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
+                fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.WOMEN_EMPOWERMENT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Sunanda.png',
-                user: deepshikha
+                user: deepshikha,
+                beneficiary: new Beneficiary(
+                    firstName: 'Sunanda',
+                    email: 'info@deepshikha.org'
+                )
         ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
@@ -328,20 +349,21 @@ class ProjectService {
         ).save(failOnError: true)
 
         new Project(
-                name: 'Tarabai',
-                email: 'info@deepshikha.org',
                 created: dateFormat.parse("01/15/2014"),
-                telephone: '+91 12345678',
-                amount: '100.0',
-                days: '15',
+                amount: 100,
+                days: 15,
                 fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
+                fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.WOMEN_EMPOWERMENT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Tarabai.png',
-                user: deepshikha
+                user: deepshikha,
+                beneficiary: new Beneficiary(
+                    firstName: 'Tarabai',
+                    email: 'info@deepshikha.org'
+                )
         ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
@@ -361,20 +383,21 @@ class ProjectService {
         ).save(failOnError: true)
 
         new Project(
-                name: 'Asha',
-                email: 'info@deepshikha.org',
                 created: dateFormat.parse("01/15/2014"),
-                telephone: '+91 12345678',
-                amount: '100.0',
-                days: '15',
+                amount: 100,
+                days: 15,
                 fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
+                fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.WOMEN_EMPOWERMENT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Asha.png',
-                user: deepshikha
+                user: deepshikha,
+                beneficiary: new Beneficiary(
+                    firstName: 'Asha',
+                    email: 'info@deepshikha.org'
+                )
         ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
@@ -394,20 +417,21 @@ class ProjectService {
         ).save(failOnError: true)
 
         new Project(
-                name: 'Sunita',
-                email: 'info@deepshikha.org',
                 created: dateFormat.parse("01/15/2014"),
-                telephone: '+91 12345678',
-                amount: '100.0',
-                days: '15',
+                amount: 100,
+                days: 15,
                 fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
+                fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.WOMEN_EMPOWERMENT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Sunita.png',
-                user: deepshikha
+                user: deepshikha,
+                beneficiary: new Beneficiary(
+                    firstName: 'Sunita',
+                    email: 'info@deepshikha.org'
+                )
         ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(
@@ -427,20 +451,21 @@ class ProjectService {
         ).save(failOnError: true)
 
         new Project(
-                name: 'Yeshula',
-                email: 'info@deepshikha.org',
                 created: dateFormat.parse("01/15/2014"),
-                telephone: '+91 12345678',
-                amount: '100.0',
-                days: '15',
+                amount: 100,
+                days: 15,
                 fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.NON_PROFIT,
+                fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.WOMEN_EMPOWERMENT,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
 				imageUrl: 'images/projects/Deepshikha/Yeshula.png',
-                user: deepshikha
+                user: deepshikha,
+                beneficiary: new Beneficiary(
+                    firstName: 'Yeshula',
+                    email: 'info@deepshikha.org'
+                )
         ).addToRewards(
                 Reward.findById(1)
         ).addToRewards(

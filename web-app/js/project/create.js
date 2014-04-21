@@ -1,9 +1,13 @@
 $(function() {
     console.log("create.js initialized");
 
-    $('.selectpicker').selectpicker();
+    /* Apply selectpicker to selects. */
+    $('.selectpicker').selectpicker({
+        style: 'btn btn-sm btn-default'
+    });
 
-    $('form').validate({
+    /* Validate form on submit. */
+    var validator = $('form').validate({
         rules: {
             name: {
                 minlength: 2,
@@ -40,12 +44,35 @@ $(function() {
         }
     });
 
-    /* Initialize Handlebars */
-    var source   = $("#for-someoneiknow").html();
-    var template = Handlebars.compile(source);
-    var html    = template({});
-    $('#beneficiary-is').html(html);
+    /* Click handler for Myself/Someone I Know. */
+    /*
+    $('#fundRaisingFor').change(function(event) {
+        var optionChosen = $(this).val(),
+            nameEl = $('#name'),
+            emailEl = $('#email');
 
+        if (optionChosen == 'MYSELF') {
+            validator.resetForm();
+
+            nameEl.closest('.form-group').removeClass('has-error');
+            nameEl.val(function() {
+                return $(this).attr('value');
+            });
+            nameEl.prop('disabled', true);
+
+            emailEl.closest('.form-group').removeClass('has-error');
+            emailEl.val(function() {
+                return $(this).attr('value');
+            });
+            emailEl.prop('disabled', true);
+        } else if (optionChosen == 'OTHER') {
+            nameEl.prop('disabled', false);
+            emailEl.prop('disabled', false);
+        }
+    });
+    */
+
+    /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {
             $(this).popover('show');
         },

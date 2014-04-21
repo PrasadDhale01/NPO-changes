@@ -7,10 +7,8 @@ class Project {
     static belongsTo = [user: User]
     static hasMany = [contributions: Contribution, comments: ProjectComment, rewards: Reward]
 
-	/* Who */
-	String name
-	String email
-	String telephone
+    Beneficiary beneficiary
+
     Date created
 
 	/* Why */
@@ -40,7 +38,6 @@ class Project {
 	}
 
     static constraints = {
-		email (email: true)
         image (nullable: true)
         imageUrl (nullable: true)
         rewards (nullable: true)
@@ -71,8 +68,7 @@ class Project {
 
     enum FundRaisingFor {
         MYSELF,
-        NON_PROFIT,
-        SCHOOL,
+        OTHER
     }
 
     enum Category {

@@ -33,7 +33,7 @@ Expects the parent containers to be like so:
 
     <div class="caption">
         <h4><g:link controller="project" action="show" id="${project.id}" title="${project.title}">${project.title}</g:link></h4>
-        <p>${project.name}</p>
+        <p>${projectService.getBeneficiaryName(project)}</p>
     </div>
 
     <div class="modal-footer" style="text-align: left; margin-top: 0;">

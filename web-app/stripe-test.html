@@ -1,0 +1,221 @@
+<!-- Copy from here -->
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="application/javascript" src="http://beta.fedu.org/static/js/mandrill.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.2/handlebars.min.js"></script>
+
+<script id="thankyou-template" type="text/x-handlebars-template">
+    <div class="alert alert-success" style="margin-top: 5px;">
+        Success! Thanks for your contribution of ${{amount}}.
+    </div>
+</script>
+
+<script id="email-template-to-fedu" type="text/x-handlebars-template">
+    <div>
+        <h3>A funding was just made</h3>
+        <table style="border: dotted;">
+            <tr>
+                <td>Project</td>
+                <td>{{project}}</td>
+            </tr>
+            <tr>
+                <td>Amount</td>
+                <td>${{amount}}</td>
+            </tr>
+            <tr>
+                <td>Token</td>
+                <td>{{token.id}}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{token.email}}</td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>{{token.card.name}}</td>
+            </tr>
+            <tr>
+                <td>Last 4</td>
+                <td>{{token.card.last4}}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>
+                    {{token.card.address_line1}}<br>
+                    {{token.card.address_city}} {{token.card.address_state}} {{token.card.address_zip}} {{token.card.address_country}} <br>
+                </td>
+            </tr>
+        </table>
+        <h3>Look up this token in Stripe account.</h3>
+
+    </div>
+</script>
+
+<script id="email-template-to-contributor" type="text/x-handlebars-template">
+    <div>
+        <div>
+            <h1>Thank you for supporting education with FEDU!</h1>
+            <h3>You’ve just impacted a person's life, allowing them to further their education and improve their livelihood. Your contribution has been deposited to our Stripe account. You will see a charge to your credit card within 5-7 business days.</h3>
+
+            <p>What Should You Do Next?</p>
+
+            <p> 1. First and foremost, give yourself a hug, pat on the back, or a moment to appreciate your act of kindness.</p>
+            <p>
+                2.Tell the World! Share the project you supported on your social media of choice; the more people that hear your beneficiary's amazing story, the better. Be sure to tag us as @FEDU on Facebook, @FundEdu on Twitter, and #FEDU on Instagram!</p>
+
+            <p>3. Watch your inbox for notifications from the FEDU team informing you of your beneficiary's progress as well as new projects posted.</p>
+
+            <p>4. Stay tuned for an invitation to our full website once it's launched.</p>
+
+            <table style="border: dotted;">
+                <tbody>
+                <tr>
+                    <td>Project</td>
+                    <td><a href="{{project}}">{{project}}</a></td>
+                </tr>
+                <tr>
+                    <td>Amount</td>
+                    <td>${{amount}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <p>With Gratitude and Knowledge for All -
+                The FEDU Team</p>
+        </div>
+    </div>
+</script>
+
+
+<div class="input-group">
+    <span class="input-group-addon">$</span>
+
+    <input type="text" id="contributeAmount" class="form-control">
+      <span class="input-group-btn">
+        <button id="contributeButton" class="btn btn-primary" type="button">Contribute Now!</button>
+      </span>
+</div>
+
+<script>
+    var sendEmailToFEDU = function(token, amount) {
+        var template = Handlebars.compile($("#email-template-to-fedu").html());
+        var html    = template({
+            project: location.href,
+            token: token,
+            amount: amount
+        });
+
+        var message = {
+            "html": html,
+            "subject": "Funding confirmation for a project",
+            "from_email": "info@fedu.org",
+            "from_name": "Weebly funding page",
+            "to": [{
+                "email": "admin@fedu.org",
+                "type": "to"
+            }, {
+                "email": "anina@fedu.org",
+                "type": "to"
+            }, {
+                "email": "atreya@fedu.org",
+                "type": "to"
+            }]
+        };
+
+        mandrill_client.messages.send({
+            "message": message,
+            "async": true
+        }, function(result) {
+            console.log('Successful');
+        }, function(e) {
+            console.log('Failure');
+        });
+    }
+
+    var sendEmailToContributor = function(token, amount) {
+        var template = Handlebars.compile($("#email-template-to-contributor").html());
+        var html    = template({
+            project: location.href,
+            amount: amount
+        });
+
+        var message = {
+            "html": html,
+            "subject": "FEDU - Thank you for funding",
+            "from_email": "info@fedu.org",
+            "from_name": "FEDU Team",
+            "to": [{
+                "email": token.email,
+                "type": "to"
+            }, {
+                "email": "admin@fedu.org",
+                "type": "bcc"
+            }, {
+                "email": "anina@fedu.org",
+                "type": "bcc"
+            }, {
+                "email": "atreya@fedu.org",
+                "type": "bcc"
+            }]
+        };
+
+        mandrill_client.messages.send({
+            "message": message,
+            "async": true
+        }, function(result) {
+            console.log('Successful');
+        }, function(e) {
+            console.log('Failure');
+        });
+    }
+
+
+    var mandrill_client = new mandrill.Mandrill('R28ZHu6_5IkJWLFunpsJbw');
+
+    var handler = StripeCheckout.configure({
+        /* test public key: "pk_test_AygHVMpXYROmU9H9hvz7HY3p" */
+        /* live public key: "pk_live_dABB1ahq9wrYlnUl1fN5wl1j" */
+        key: 'pk_live_dABB1ahq9wrYlnUl1fN5wl1j',
+        image: 'http://www.fedu.org/uploads/1/9/7/5/1975566/3564358_orig.png',
+        token: function(token, args) {
+            var amount = $('#contributeAmount').val();
+            sendEmailToFEDU(token, amount);
+
+            sendEmailToContributor(token, amount);
+
+            var template = Handlebars.compile($("#thankyou-template").html());
+            var thankyouhtml     = template({
+                amount: amount
+            });
+            $(thankyouhtml).insertAfter($('.input-group'));
+
+            setTimeout(function () {
+                window.location.href = "thank-you.html";
+            }, 2000); //will call the function after 2 secs.
+
+        }
+    });
+
+    document.getElementById('contributeButton').addEventListener('click', function(e) {
+        // var amount = parseInt($('#contributeAmount').val());
+        var amount = $('#contributeAmount').val();
+        if (amount == "" || isNaN(amount)) {
+            alert("Amount should be a valid integer");
+            return;
+        }
+
+        // Open Checkout with further options
+        handler.open({
+            name: 'FundEdu, Inc',
+            description: 'Powered by Stripe',
+            amount: amount * 100,
+            billingAddress: true,
+            shippingAddress: true,
+            panelLabel: 'Fund {{amount}}'
+        });
+        e.preventDefault();
+    });
+</script>
+<!-- Copy till here -->

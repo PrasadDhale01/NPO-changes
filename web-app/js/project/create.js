@@ -9,7 +9,11 @@ $(function() {
     /* Validate form on submit. */
     var validator = $('form').validate({
         rules: {
-            name: {
+            firstName: {
+                minlength: 2,
+                required: true
+            },
+            lastName: {
                 minlength: 2,
                 required: true
             },
@@ -18,6 +22,27 @@ $(function() {
                 email: true
             },
             telephone: {
+                required: true
+            },
+            addressLine1: {
+                required: true
+            },
+            addressLine2: {
+                required: true
+            },
+            city: {
+                required: true
+            },
+            stateOrProvince: {
+                required: true
+            },
+            postalCode: {
+                required: true
+            },
+            country: {
+                required: true
+            },
+            gender: {
                 required: true
             },
             amount: {

@@ -23,7 +23,7 @@ environments {
     }
     test {
         dataSource {
-            dbCreate = "update"
+            // dbCreate = "update"
             url = "jdbc:mysql://localhost:3306/fedudb?useUnicode=yes&characterEncoding=UTF-8"
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
@@ -34,7 +34,7 @@ environments {
     }
     production {
         dataSource {
-            dbCreate = "update"
+            // dbCreate = "update"
             url = "jdbc:mysql://fedudbbeta.cvblatijndiw.us-east-1.rds.amazonaws.com:3306/fedudb"
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"

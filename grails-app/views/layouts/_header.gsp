@@ -50,7 +50,10 @@
                                 <span class="glyphicon glyphicon-cog"></span> Settings
                             </g:link></li>
                             <sec:ifAllGranted roles="ROLE_AUTHOR">
-                                <li><g:link controller="blog" action="manage">Manage blogs</g:link></li>
+                                <li><g:link controller="blog" action="manage"><span class="glyphicon glyphicon-book"></span> Manage blogs</g:link></li>
+                            </sec:ifAllGranted>
+                            <sec:ifAllGranted roles="ROLE_COMMUNITY_MGR">
+                                <li><g:link controller="community" action="manage"><i class="fa fa-users"></i> Manage communities</g:link></li>
                             </sec:ifAllGranted>
                             <li class="divider"></li>
                             <li><g:link controller="logout">

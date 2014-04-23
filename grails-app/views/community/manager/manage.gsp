@@ -5,9 +5,10 @@
 <body>
 <div class="feducontent">
     <div class="container">
-        <h2>Manage Communities</h2>
+        <h2><i class="fa fa-users"></i> Manage Communities</h2>
+        <g:link action="create"><button type="button" class="btn btn-default">Create new Community</button></g:link>
 
-        <div class="panel-group" id="accordion">
+        <div class="panel-group top-buffer" id="accordion">
             <%
                 def index = 0
             %>
@@ -19,7 +20,7 @@
                     <div class="panel-heading">
                         <h4 class="panel-title">
                             <a data-toggle="collapse" data-parent="#accordion" href="#collapse-${index}">
-                                <i class="fa fa-users"></i> ${index}: ${community.title}
+                                ${index}: ${community.title}
                             </a>
                         </h4>
                     </div>

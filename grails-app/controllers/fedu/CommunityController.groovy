@@ -7,6 +7,30 @@ class CommunityController {
     def roleService
     def communityService
 
+    def FORMCONSTANTS = [
+        TITLE: 'title',
+        DESCRIPTION: 'description',
+    ]
+
+
+    @Secured(['ROLE_COMMUNITY_MGR'])
+    def create() {
+        render view: 'create/index', model: [FORMCONSTANTS: FORMCONSTANTS]
+    }
+
+    @Secured(['ROLE_COMMUNITY_MGR'])
+    def save() {
+        Community community = new Community(
+            title: params.title,
+            description: params.description,
+            manager: userService.getCurrentUser())
+        if (!community.save(failOnError: true)) {
+            render (view: '/error')
+        } else {
+            redirect(action: 'manage')
+        }
+    }
+
     @Secured(['ROLE_COMMUNITY_MGR'])
     def manage() {
         render view: 'manager/manage', model: [

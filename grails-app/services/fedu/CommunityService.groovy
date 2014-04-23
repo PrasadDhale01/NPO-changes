@@ -29,7 +29,7 @@ class CommunityService {
     }
 
     def getCommunitiesOwnedByManager(User manager) {
-        return Community.findByManager(manager)
+        return Community.findAllByManager(manager)
     }
 
     def getNumberofMembersInCommunity(Community community) {

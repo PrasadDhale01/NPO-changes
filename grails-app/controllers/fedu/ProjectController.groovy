@@ -163,7 +163,15 @@ class ProjectController {
             'K': 'createdBy',
             'L': 'firstName',
             'M': 'lastName',
-            'N': 'email'
+            'N': 'email',
+            'O': 'telephone',
+            'P': 'gender',
+            'Q': 'addressLine1',
+            'R': 'addressLine2',
+            'S': 'city',
+            'T': 'stateOrProvince',
+            'U': 'postalCode',
+            'V': 'country'
         ]
     ]
 

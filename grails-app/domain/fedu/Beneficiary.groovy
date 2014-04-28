@@ -4,7 +4,7 @@ class Beneficiary {
 
     /*
      * It might sound counter-intuitive that Beneficiary belongsTo Project.
-     * Since a Beneficiary is only created "when" a Project is created, it
+     * But, since a Beneficiary is only created "when" a Project is created, it
      * is right that Beneficiary belongsTo Project.
      */
     static belongsTo = [

@@ -142,7 +142,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-				imageUrl: 'images/projects/Deepshikha/Anusuya.png',
+				imageUrl: 'https://s3.amazonaws.com/fedu-beneficiaries/Anusuya.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Anasuya',
@@ -188,7 +188,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-				imageUrl: 'images/projects/Deepshikha/Roshanbai.png',
+				imageUrl: 'https://s3.amazonaws.com/fedu-beneficiaries/Roshanbai.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Roshanbai',
@@ -222,7 +222,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-				imageUrl: 'images/projects/Deepshikha/Vandana.png',
+				imageUrl: 'https://s3.amazonaws.com/fedu-beneficiaries/Vandana.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Vandana',
@@ -256,7 +256,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-				imageUrl: 'images/projects/Deepshikha/Pushpa.png',
+				imageUrl: 'https://s3.amazonaws.com/fedu-beneficiaries/Pushpa.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Pushpa',
@@ -290,7 +290,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-				imageUrl: 'images/projects/Deepshikha/Sangita.png',
+				imageUrl: 'https://s3.amazonaws.com/fedu-beneficiaries/Sangita.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Sangita',
@@ -324,7 +324,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-				imageUrl: 'images/projects/Deepshikha/Sunanda.png',
+				imageUrl: 'https://s3.amazonaws.com/fedu-beneficiaries/Sunanda.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Sunanda',
@@ -358,7 +358,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-				imageUrl: 'images/projects/Deepshikha/Tarabai.png',
+				imageUrl: 'https://s3.amazonaws.com/fedu-beneficiaries/Tarabai.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Tarabai',
@@ -392,7 +392,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-				imageUrl: 'images/projects/Deepshikha/Asha.png',
+				imageUrl: 'https://s3.amazonaws.com/fedu-beneficiaries/Asha.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Asha',
@@ -426,7 +426,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-				imageUrl: 'images/projects/Deepshikha/Sunita.png',
+				imageUrl: 'https://s3.amazonaws.com/fedu-beneficiaries/Sunita.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Sunita',
@@ -460,7 +460,7 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-				imageUrl: 'images/projects/Deepshikha/Yeshula.png',
+				imageUrl: 'https://s3.amazonaws.com/fedu-beneficiaries/Yeshula.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Yeshula',

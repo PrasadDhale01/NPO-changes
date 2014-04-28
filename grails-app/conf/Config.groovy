@@ -207,6 +207,7 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'fedu.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'fedu.UserRole'
 grails.plugin.springsecurity.authority.className = 'fedu.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
+    '/secured/**':                    ['ROLE_ADMIN'],
 	'/**':                            ['permitAll']
 //	'/index':                         ['permitAll'],
 //	'/index.gsp':                     ['permitAll'],

@@ -1,10 +1,14 @@
 package fedu
 
 import grails.plugin.springsecurity.annotation.Secured
+import org.apache.poi.ss.usermodel.WorkbookFactory
+import org.apache.poi.ss.usermodel.Workbook
 import org.springframework.web.multipart.commons.CommonsMultipartFile
+import org.grails.plugins.excelimport.ExcelImportService
 
 class ProjectController {
     def userService
+    def excelImportService
 
     def FORMCONSTANTS = [
         /* Beneficiary */
@@ -29,7 +33,8 @@ class ProjectController {
         STORY: 'story',
         THUMBNAIL: 'thumbnail',
         IMAGEURL: 'imageUrl',
-        REWARDS: 'rewards'
+        REWARDS: 'rewards',
+        PROJECTSEXCEL: 'projectsExcel'
     ]
 
 	def list = {
@@ -135,6 +140,133 @@ class ProjectController {
                         genderOptions: genderOptions,
                         FORMCONSTANTS: FORMCONSTANTS])
 	}
+
+    @Secured(['ROLE_ADMIN'])
+    def importprojects() {
+        render view: 'import/index'
+    }
+
+    static Map CONFIG_BOOK_COLUMN_MAP = [
+        sheet: 'Sheet1',
+        startRow: 1,
+        columnMap:  [
+            'A': 'createdDate',
+            'B': 'amount',
+            'C': 'days',
+            'D': 'fundRaisingReason',
+            'E': 'fundRaisingFor',
+            'F': 'category',
+            'G': 'title',
+            'H': 'story',
+            'I': 'validated',
+            'J': 'imageUrl',
+            'K': 'createdBy',
+            'L': 'firstName',
+            'M': 'lastName',
+            'N': 'email'
+        ]
+    ]
+
+    @Secured(['ROLE_ADMIN'])
+    def bulkimport() {
+        CommonsMultipartFile projectSpreadsheet = request.getFile(FORMCONSTANTS.PROJECTSEXCEL)
+
+        if (projectSpreadsheet.isEmpty()) {
+            flash.message = "Please choose a file and try again."
+            redirect(action: 'importprojects')
+            return
+        }
+
+        List projectParamsList
+        try {
+            Workbook workbook = WorkbookFactory.create(projectSpreadsheet.getInputStream())
+            projectParamsList = excelImportService.columns(workbook, CONFIG_BOOK_COLUMN_MAP)
+        } catch (Exception e) {
+            flash.message = "Error while importing file: " + e.getMessage()
+            redirect(action: 'importprojects')
+            return
+        }
+
+        /* Collect all the successfully created projects. */
+        def projects = []
+
+        projectParamsList.each { Map projectParams ->
+
+            User createdBy = User.findByUsername(projectParams.createdBy)
+            if (!createdBy) {
+                flash.projecterror = [
+                    'title': projectParams.title,
+                    'error': "Couldn't find user with email: " + projectParams.createdBy
+                ]
+                redirect(action: 'importprojects')
+                return
+            }
+
+            Project project = new Project(projectParams)
+            if (project.hasErrors()) {
+                flash.projecterror = [
+                    'title': projectParams.title,
+                    'error': "Error mapping project: " + project.errors.toString()
+                ]
+                redirect(action: 'importprojects')
+                return
+            }
+
+            Beneficiary beneficiary = new Beneficiary(projectParams)
+            if (beneficiary.hasErrors()) {
+                flash.projecterror = [
+                    'title': projectParams.title,
+                    'error': "Error mapping beneficiary: " + beneficiary.errors.toString()
+                ]
+                redirect(action: 'importprojects')
+                return
+            }
+
+            project.beneficiary = beneficiary
+            project.user = createdBy
+
+            try {
+                project.created = projectParams.createdDate.toDate()
+            } catch (Exception e) {
+                flash.projecterror = [
+                    'title': projectParams.title,
+                    'error': "Error with createdDate: " + e.getMessage()
+                ]
+                redirect(action: 'importprojects')
+                return
+            }
+
+
+            if (project.validate()) {
+                projects.add(project)
+            } else {
+                flash.projecterror = [
+                    'title': projectParams.title,
+                    'error': "Error validating project: " + project.errors.toString()
+                ]
+                redirect(action: 'importprojects')
+                return
+            }
+        }
+
+        if (!projects.isEmpty()) {
+            projects.each { Project project ->
+                if (!project.save()) {
+                    flash.projecterror = [
+                        'title': project.title,
+                        'error': "Error while saving: " + project.errors.toString(),
+                        'note': "None of the projects after this one would be imported."
+                    ]
+                    redirect(action: 'importprojects')
+                    return
+                }
+            }
+
+            flash.success = "All projects successfully imported"
+            redirect(action: 'importprojects')
+            return
+        }
+    }
 
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
 

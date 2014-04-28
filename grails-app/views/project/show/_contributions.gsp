@@ -26,5 +26,5 @@
     </dl>
 </g:if>
 <g:else>
-    <div class="alert alert-warning">No contributions yet. Yours can be the first one.</div>
+    <div class="alert alert-info">No contributions yet. Yours can be the first one.</div>
 </g:else>

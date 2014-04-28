@@ -39,6 +39,18 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <i class="fa fa-leaf fa-lg"></i> Bulk import projects here.
+                    </div>
+                    <div class="panel-footer">
+                        <g:link controller="project" action="importprojects">
+                            <button class="btn btn-block btn-primary"><i class="fa fa-gift fa-lg"></i> Bulk Import Projects</button>
+                        </g:link>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

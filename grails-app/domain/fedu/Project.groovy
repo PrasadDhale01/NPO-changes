@@ -49,8 +49,7 @@ class Project {
             it.id == 1
         }
         if (!reward) {
-            // Insert as the first element, since this is the lowest value.
-            rewards.add(0, rewardService.getNoReward())
+            addToRewards(rewardService.getNoReward())
         }
     }
 

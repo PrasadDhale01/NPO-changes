@@ -13,6 +13,8 @@
           <root url="file://$MODULE_DIR$/target/work/plugins/spring-security-facebook-0.15.2-CORE2/web-app" relative="/" />
           <root url="file://$MODULE_DIR$/target/work/plugins/facebook-sdk-0.5.0/web-app" relative="/" />
           <root url="file://$MODULE_DIR$/target/work/plugins/facebook-sdk-0.5.0/grails-app/views" relative="/" />
+          <root url="file://$MODULE_DIR$/target/work/plugins/excel-import-1.0.0/web-app" relative="/" />
+          <root url="file://$MODULE_DIR$/target/work/plugins/joda-time-1.4/grails-app/views" relative="/" />
         </webroots>
         <sourceRoots />
       </configuration>
@@ -30,6 +32,11 @@
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/database-migration-1.3.8/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/database-migration-1.3.8/grails-app/controllers" isTestSource="false" />
     </content>
+    <content url="file://$MODULE_DIR$/target/work/plugins/excel-import-1.0.0">
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/excel-import-1.0.0/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/excel-import-1.0.0/grails-app/i18n" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/excel-import-1.0.0/grails-app/services" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/facebook-sdk-0.5.0">
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/facebook-sdk-0.5.0/src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/facebook-sdk-0.5.0/src/groovy" isTestSource="false" />
@@ -40,6 +47,10 @@
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/hibernate-3.6.10.8/src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/hibernate-3.6.10.8/src/groovy" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/hibernate-3.6.10.8/grails-app/i18n" isTestSource="false" />
+    </content>
+    <content url="file://$MODULE_DIR$/target/work/plugins/joda-time-1.4">
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/joda-time-1.4/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/joda-time-1.4/grails-app/taglib" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.4">
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.4/src/groovy" isTestSource="false" />
@@ -95,6 +106,8 @@
     <orderEntry type="module-library" exported="">
       <library name="Grails User Library (FEDU-grailsPlugins)">
         <CLASSES>
+          <root url="file://$MODULE_DIR$/target/work/plugins/excel-import-1.0.0/lib" />
+          <root url="file://$MODULE_DIR$/target/work/plugins/joda-time-1.4/lib" />
           <root url="jar://$USER_HOME$/.m2/repository/org/liquibase/liquibase-core/2.0.5/liquibase-core-2.0.5.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/hibernate/hibernate-commons-annotations/3.2.0.Final/hibernate-commons-annotations-3.2.0.Final.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/hibernate/hibernate-entitymanager/3.6.10.Final/hibernate-entitymanager-3.6.10.Final.jar!/" />
@@ -135,9 +148,17 @@
           <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/7.0.52/tomcat-embed-el-7.0.52.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.52/tomcat-embed-jasper-7.0.52.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/tomcat-catalina-ant/7.0.52/tomcat-catalina-ant-7.0.52.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/geronimo/specs/geronimo-stax-api_1.0_spec/1.0/geronimo-stax-api_1.0_spec-1.0.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/stax/stax-api/1.0.1/stax-api-1.0.1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/xmlbeans/xmlbeans/2.3.0/xmlbeans-2.3.0.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/poi/poi-ooxml-schemas/3.7/poi-ooxml-schemas-3.7.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/poi/poi-ooxml/3.7/poi-ooxml-3.7.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/apache/poi/poi/3.7/poi-3.7.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/target/work/plugins/excel-import-1.0.0/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/target/work/plugins/joda-time-1.4/lib" recursive="false" />
       </library>
     </orderEntry>
   </component>

@@ -41,6 +41,10 @@ class ProjectController {
 		render (view: 'list/index', model: [projects: Project.list()])
 	}
 
+    def listwidget = {
+        render (view: 'list/index-no-headerfooter', model: [projects: Project.list()])
+    }
+
     def thumbnail() {
         Project project
         if (params.int('id')) {

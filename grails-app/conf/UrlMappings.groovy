@@ -28,6 +28,7 @@ class UrlMappings {
         /* Project */
         "/projects/create"(controller:'project', action:'create')
         "/projects"(controller:'project', action:'list')
+        "/projects-widget"(controller:'project', action:'listwidget')
         "/projects/$id"(controller:'project', action:'show')
         "/projects/$id/thumbnail"(controller:'project', action:'thumbnail')
         "/projects/$projectId/fund"(controller:'fund', action:'fund')

@@ -24,7 +24,12 @@
                             </a>
                         </h4>
                     </div>
-                    <div id="collapse-${index}" class="panel-collapse collapse">
+                    <g:if test="${index == 1}">
+                        <div id="collapse-${index}" class="panel-collapse">
+                    </g:if>
+                    <g:else>
+                        <div id="collapse-${index}" class="panel-collapse collapse">
+                    </g:else>
                         <div class="panel-body">
                             <g:render template="manager/vitals" model="[community: community]"/>
 

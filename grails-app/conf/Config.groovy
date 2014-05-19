@@ -200,6 +200,10 @@ log4j = {
            'net.sf.ehcache.hibernate'
 }
 
+quartz {
+    autoStartup = false
+    jdbcStore = false
+}
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.logout.postOnly = false

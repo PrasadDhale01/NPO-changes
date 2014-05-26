@@ -508,5 +508,4 @@ databaseChangeLog = {
 		addForeignKeyConstraint(baseColumnNames: "user_id", baseTableName: "user_role", baseTableSchemaName: "fedudb", constraintName: "FK143BF46A7A9C9B98", deferrable: "false", initiallyDeferred: "false", onDelete: "NO ACTION", onUpdate: "NO ACTION", referencedColumnNames: "id", referencedTableName: "user", referencedTableSchemaName: "fedudb", referencesUniqueColumn: "false")
 	}
 
-	include file: '2014-04-21-initial-database.groovy'
 }

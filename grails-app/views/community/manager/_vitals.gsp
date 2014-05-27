@@ -1,4 +1,5 @@
 <g:set var="communityService" bean="communityService"/>
+<g:set var="communityInviteService" bean="communityInviteService"/>
 <g:set var="creditService" bean="creditService"/>
 <div class="row">
     <div class="col-md-4">
@@ -43,12 +44,12 @@
                         <i class="fa fa-question fa-2x"></i>
                     </div>
                     <div class="col-xs-10 text-right">
-                        <p class="announcement-heading">${communityService.getNumberofPendingMembersInCommunity(community)}</p>
+                        <p class="announcement-heading">${communityInviteService.getNumberOfPendingInviteesForCommunity(community)}</p>
                     </div>
                 </div>
             </div>
             <div class="panel-footer announcement-bottom">
-                # of pending members
+                # of pending invites
             </div>
         </div>
     </div>

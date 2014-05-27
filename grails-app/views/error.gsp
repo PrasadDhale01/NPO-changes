@@ -12,14 +12,21 @@
 	<body>
         <div class="feducontent">
             <div class="container">
-                <g:if env="development">
+                <g:if env="development" test="${exception}">
                     <g:renderException exception="${exception}" />
                 </g:if>
                 <g:else>
                     <h2>Error</h2>
-                    <div class="alert alert-danger">
-                        Oh snap! Something went wrong. Please try again.
-                    </div>
+                    <g:if test="${flash.error}">
+                        <div class="alert alert-danger">
+                            ${flash.error}
+                        </div>
+                    </g:if>
+                    <g:else>
+                        <div class="alert alert-danger">
+                            Oh snap! Something went wrong. Please try again.
+                        </div>
+                    </g:else>
                 </g:else>
             </div>
         </div>

@@ -13,19 +13,13 @@ class CommunityService {
         return community.getMembers()
     }
 
-    def getPendingMembersInCommunity(Community community) {
+    def isMemberInCommunity(Community community, User user) {
         def members = getMembersInCommunity(community)
-        def pendingMembers = []
-        members.each { member ->
-            if (!member.enabled) {
-                pendingMembers.add(member)
-            }
+        if (members.contains(user)) {
+            return true
+        } else {
+            return false
         }
-        return pendingMembers
-    }
-
-    def getNumberofPendingMembersInCommunity(Community community) {
-        return getPendingMembersInCommunity(community).size()
     }
 
     def getCommunitiesOwnedByManager(User manager) {

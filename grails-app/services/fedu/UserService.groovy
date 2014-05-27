@@ -12,6 +12,10 @@ class UserService {
         return User.count()
     }
 
+    def findUserByEmail(String email) {
+        return User.findByEmail(email)
+    }
+
     def getEmail() {
         EmailValidator emailValidator = EmailValidator.getInstance()
 

@@ -34,10 +34,13 @@
                             <g:render template="manager/vitals" model="[community: community]"/>
 
                             <div class="row top-buffer">
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <g:render template="manager/members" model="[community: community]"/>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
+                                    <g:render template="manager/invitees" model="[community: community]"/>
+                                </div>
+                                <div class="col-md-4">
                                     <g:render template="manager/transactions" model="[community: community]"/>
                                 </div>
                             </div>

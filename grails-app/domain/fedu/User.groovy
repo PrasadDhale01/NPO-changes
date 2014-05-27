@@ -31,7 +31,7 @@ class User {
         resetCode nullable: true
         firstName nullable: true
         lastName nullable: true
-        email blank: false, email: true, nullable: true
+        email blank: false, email: true, nullable: true, unique: true
 	}
 
 	static mapping = {

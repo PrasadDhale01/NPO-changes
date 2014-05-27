@@ -9,6 +9,7 @@ class LoginController {
     def mandrillService
 
     def userService
+    def roleService
     def grailsLinkGenerator
 
     /**
@@ -57,7 +58,7 @@ class LoginController {
             if (!user.save()) {
                 render(view: 'error', model: [message: 'Problem creating user. Please try again.'])
             } else {
-                UserRole.create(user, userService.userRole())
+                UserRole.create(user, roleService.userRole())
 
                 sendMandrillEmail(user)
 

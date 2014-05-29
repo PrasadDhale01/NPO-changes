@@ -80,9 +80,13 @@ modules = {
         resource url: 'js/fund/checkout.js'
     }
     /* Community */
-    communityjs {
+    communitycreatejs {
         dependsOn 'fedujs'
-        resource url: 'js/community.js'
+        resource url: 'js/community/create.js'
+    }
+    communitymanagejs {
+        dependsOn 'fedujs'
+        resource url: 'js/community/manage.js'
     }
     /* Rewards */
     rewardjs {

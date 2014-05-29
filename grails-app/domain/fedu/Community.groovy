@@ -8,6 +8,8 @@ class Community {
 	String description
 	Date dateCreated
 
+    double suggestedCredit = 50
+
     static belongsTo = [manager: User]
     static hasMany = [members: User, credits: Credit]
 

@@ -1,5 +1,5 @@
 $(function() {
-    console.log('community.js initialized');
+    console.log('create.js initialized');
 
     var validator = $('form').validate({
         rules: {
@@ -10,6 +10,10 @@ $(function() {
             description: {
                 required: true,
                 minlength: 10
+            },
+            suggestedCredit: {
+                required: true,
+                number: true
             }
         }
     });

@@ -13,6 +13,7 @@ class CommunityController {
     def FORMCONSTANTS = [
         TITLE: 'title',
         DESCRIPTION: 'description',
+        SUGGESTEDCREDIT: 'suggestedCredit'
     ]
 
 
@@ -23,10 +24,9 @@ class CommunityController {
 
     @Secured(['ROLE_COMMUNITY_MGR'])
     def save() {
-        Community community = new Community(
-            title: params.title,
-            description: params.description,
-            manager: userService.getCurrentUser())
+        Community community = new Community(params)
+        community.manager = userService.getCurrentUser()
+
         if (!community.save(failOnError: true)) {
             render (view: '/error')
         } else {
@@ -37,8 +37,30 @@ class CommunityController {
     @Secured(['ROLE_COMMUNITY_MGR'])
     def manage() {
         render view: 'manager/manage', model: [
-            communities: communityService.getCommunitiesOwnedByManager(userService.getCurrentUser())
+            communities: communityService.getCommunitiesOwnedByManager(userService.getCurrentUser()),
+            FORMCONSTANTS: FORMCONSTANTS
         ]
+    }
+
+    @Secured(['ROLE_COMMUNITY_MGR'])
+    def updateSuggestedCredit() {
+        Community community = Community.findById(params.int('communityId'))
+        double suggestedCredit
+
+        try {
+            suggestedCredit = params.double(FORMCONSTANTS.SUGGESTEDCREDIT)
+        } catch (Exception e) {
+            flash.invalidsuggestedcredit = params[FORMCONSTANTS.SUGGESTEDCREDIT]
+            redirect(action: 'manage')
+            return
+        }
+
+        community.suggestedCredit = suggestedCredit
+        if (!community.save(failOnError: true)) {
+            render (view: '/error')
+        } else {
+            redirect(action: 'manage')
+        }
     }
 
     @Secured(['ROLE_COMMUNITY_MGR'])

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main" />
-    <r:require modules="communityjs"/>
+    <r:require modules="communitycreatejs"/>
 </head>
 <body>
 <div class="feducontent">
@@ -25,6 +25,15 @@
                         <label class="col-sm-2 control-label">Description</label>
                         <div class="col-sm-10">
                             <textarea class="form-control" rows="4" name="${FORMCONSTANTS.DESCRIPTION}" placeholder="Community description"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Suggested credit amount</label>
+                        <div class="col-sm-10">
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                <input type="text" name="${FORMCONSTANTS.SUGGESTEDCREDIT}" class="form-control" placeholder="50">
+                            </div>
                         </div>
                     </div>
 

@@ -33,8 +33,12 @@
                         <div id="collapse-${index}" class="panel-collapse collapse">
                     </g:else>
                         <div class="panel-body">
-                            <g:render template="manager/vitals" model="[community: community]"/>
-
+                            <div>
+                                <g:render template="manager/prefs" model="[community: community]"/>
+                            </div>
+                            <div class="top-buffer">
+                                <g:render template="manager/vitals" model="[community: community]"/>
+                            </div>
                             <div class="row top-buffer">
                                 <div class="col-md-4">
                                     <g:render template="manager/members" model="[community: community]"/>

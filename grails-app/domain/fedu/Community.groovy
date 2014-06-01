@@ -9,6 +9,7 @@ class Community {
 	Date dateCreated
 
     double suggestedCredit = 50
+    boolean allowReward = false
 
     static belongsTo = [manager: User]
     static hasMany = [members: User, credits: Credit]

@@ -96,7 +96,7 @@ modules = {
 
     /* CSS */
     fontawesomecss {
-        resource url: 'https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css'
+        resource url: 'https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css'
     }
     feducss {
         dependsOn 'bootswatchcss', 'bootstrapselectcss', 'fontawesomecss'

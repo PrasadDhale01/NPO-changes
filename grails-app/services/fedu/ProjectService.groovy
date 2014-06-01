@@ -100,7 +100,7 @@ class ProjectService {
         new Project(
                 created: dateFormat.parse("01/15/2014"),
                 amount: 600,
-                days: 100,
+                days: 600,
                 fundRaisingReason: Project.FundRaisingReason.TUITION_FEE,
                 fundRaisingFor: Project.FundRaisingFor.MYSELF,
                 category: Project.Category.TECHNOLOGY,

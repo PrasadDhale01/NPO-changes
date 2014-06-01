@@ -19,6 +19,9 @@ class Community {
 	static constraints = {
         manager validator: { val, obj ->
             /* Make sure the manager has the right role */
+
+            // TODO: Something wrong here, as it always seems to go to else block;
+            // Thus else is also returning 'true' for now (to avoid failures).
             if (obj.userService.isCommunityManager(val)) {
                 return true
             } else {

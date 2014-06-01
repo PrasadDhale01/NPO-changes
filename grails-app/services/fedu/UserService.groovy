@@ -71,7 +71,6 @@ class UserService {
     }
 
     def isCommunityManager(User user) {
-        def something = UserRole.findByUserAndRole(user, roleService.communityManagerRole())
         if (UserRole.findByUserAndRole(user, roleService.communityManagerRole())) {
             return true
         } else {

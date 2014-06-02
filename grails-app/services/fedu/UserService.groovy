@@ -16,6 +16,19 @@ class UserService {
         return User.findByEmail(email)
     }
 
+    def getCommunitiesUserIn() {
+        return getCommunitiesUserIn(getCurrentUser())
+    }
+
+    def getCommunitiesUserIn(User user) {
+        def communities = Community.findAll {
+            members {
+                id == user.id
+            }
+        }
+        return communities
+    }
+
     def getEmail() {
         EmailValidator emailValidator = EmailValidator.getInstance()
 

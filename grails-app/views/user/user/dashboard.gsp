@@ -1,4 +1,8 @@
 <g:set var="userService" bean="userService"/>
+<g:set var="dateService" bean="dateService"/>
+<%
+    def userCommunities = userService.getCommunitiesUserIn()
+%>
 <html>
 <head>
     <meta name="layout" content="main" />
@@ -17,6 +21,11 @@
                 <span class="glyphicon glyphicon-tint"></span> My Contributions
             </a></li>
             <g:if test="${userService.isCommunityManager()}">
+                <li><a href="#manage-community" data-toggle="tab">
+                    <i class="fa fa-users"></i></span> Manage Community
+                </a></li>
+            </g:if>
+            <g:if test="${userCommunities}">
                 <li><a href="#my-community" data-toggle="tab">
                     <i class="fa fa-users"></i></span> My Community
                 </a></li>
@@ -35,8 +44,29 @@
                 <g:render template="user/mycontributions"/>
             </div>
             <g:if test="${userService.isCommunityManager()}">
+                <div class="tab-pane" id="manage-community">
+                    You are a community manager. Please go to <g:link controller="community" action="manage">Manage Communities</g:link>
+                </div>
+            </g:if>
+            <g:if test="${userCommunities}">
                 <div class="tab-pane" id="my-community">
-                    Please go to <g:link controller="community" action="manage">Manage Communities</g:link>
+                    <g:each in="${userCommunities}" var="community">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">${community.title}</div>
+                            <div class="panel-body">
+                                <dl class="dl-horizontal">
+                                    <dt>Description:</dt>
+                                    <dd>${community.description}</dd>
+                                    <dt>Manager:</dt>
+                                    <dd>${userService.getFriendlyFullName(community.manager)}</dd>
+                                    <dt>Community since:</dt>
+                                    <dd>
+                                        <g:formatDate date="${community.dateCreated}" type="date" style="MEDIUM"/>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </g:each>
                 </div>
             </g:if>
             <div class="tab-pane" id="account-settings">

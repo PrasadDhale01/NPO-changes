@@ -10,7 +10,7 @@
                         <i class="fa fa-money fa-2x"></i>
                     </div>
                     <div class="col-xs-10 text-right">
-                        <p class="announcement-heading">$${creditService.getTotalCreditForCommunity(community)}</p>
+                        <p class="announcement-heading">$${creditService.getRemainingCreditForCommunity(community)}</p>
                     </div>
                 </div>
             </div>

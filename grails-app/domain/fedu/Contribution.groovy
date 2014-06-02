@@ -10,6 +10,7 @@ class Contribution {
 
     static constraints = {
         credit nullable: true
+        reward nullable: true
     }
 
     def beforeValidate() {

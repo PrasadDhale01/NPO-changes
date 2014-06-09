@@ -2,6 +2,17 @@ package fedu
 
 class CreditService {
 
+    def getAllNonExpiredCreditsForCommunity(Community community) {
+        def credits = Credit.findAllByCommunity(community)
+
+        Date today = new Date()
+        def creditsNonExpired = credits.findAll { Credit credit ->
+            credit.date.getTime() + (credit.daysValid * 24 * 60 * 60 * 1000) < today.getTime()
+        }
+
+        return creditsNonExpired
+    }
+
     def getAllCreditsForCommunity(Community community) {
         if (!community) {
             return null

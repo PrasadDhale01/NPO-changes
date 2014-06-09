@@ -1,5 +1,4 @@
 <g:set var="userService" bean="userService"/>
-<g:set var="dateService" bean="dateService"/>
 <%
     def userCommunities = userService.getCommunitiesUserIn()
 %>

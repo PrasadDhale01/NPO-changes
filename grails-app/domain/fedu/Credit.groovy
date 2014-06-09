@@ -7,6 +7,7 @@ class Credit {
     static hasMany = [contributions: Contribution]
 
     Date date
+    int daysValid = 30
 
     static constraints = {
     }

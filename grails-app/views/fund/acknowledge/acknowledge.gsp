@@ -1,4 +1,5 @@
 <g:set var="userService" bean="userService"/>
+<g:set var="projectService" bean="projectService"/>
 <html>
 <head>
     <meta name="layout" content="main" />
@@ -20,7 +21,7 @@
                     </tr>
                     <tr>
                         <td>Beneficiary</td>
-                        <td>${project.name}</td>
+                        <td>${projectService.getBeneficiaryName(project)}</td>
                     </tr>
                     <tr>
                         <td>Amount</td>

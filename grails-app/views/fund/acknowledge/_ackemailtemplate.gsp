@@ -1,3 +1,4 @@
+<g:set var="projectService" bean="projectService"/>
 <div>
     <h1>FEDU</h1>
 
@@ -12,7 +13,7 @@
         </tr>
         <tr>
             <td>Beneficiary</td>
-            <td>${project.name}</td>
+            <td>${projectService.getBeneficiaryName(project)}</td>
         </tr>
         <tr>
             <td>Amount</td>

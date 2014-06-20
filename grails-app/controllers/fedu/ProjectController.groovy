@@ -277,6 +277,10 @@ class ProjectController {
             flash.success = "All projects successfully imported"
             redirect(action: 'importprojects')
             return
+        } else {
+            flash.message = "Nothing to import. Please make sure the file contains some valid rows."
+            redirect(action: 'importprojects')
+            return
         }
     }
 

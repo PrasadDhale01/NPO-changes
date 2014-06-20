@@ -35,7 +35,6 @@ environments {
     production {
         dataSource {
             // dbCreate = "update"
-            dbCreate = "create-drop"
             url = "jdbc:mysql://fedudbbeta.cvblatijndiw.us-east-1.rds.amazonaws.com:3306/fedudb"
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"

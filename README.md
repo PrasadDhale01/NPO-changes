@@ -1,7 +1,7 @@
 <h2>Steps to setup on a Mac:</h2>
 <ol>
     <li>
-        git clone https://github.com/atreya/FEDU.git
+        git clone https://github.com/FundEdu/FEDU.git
     </li>
     <li>
         Install GVM (the Groovy enVironment Manager): http://gvmtool.net/
@@ -31,7 +31,7 @@
         </ul>
     </li>
     <li>
-        Test in browser @ http://localhost:8080/FEDU
+        Test in browser @ http://localhost:8080/
     </li>
 </ol>
 

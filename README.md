@@ -15,10 +15,10 @@
         </ul>
     </li>
     <li>
-        Install Grails (2.3.6 at the time of writing)
+        Install Grails
         <ul>
             <li>
-                $ gvm install grails
+                $ gvm install grails 2.3.6
             </li>
         </ul>
     </li>

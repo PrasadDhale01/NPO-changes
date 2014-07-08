@@ -22,13 +22,13 @@ $(function() {
                 email: true
             },
             telephone: {
-                required: true
+                required: false
             },
             addressLine1: {
                 required: true
             },
             addressLine2: {
-                required: true
+                required: false
             },
             city: {
                 required: true

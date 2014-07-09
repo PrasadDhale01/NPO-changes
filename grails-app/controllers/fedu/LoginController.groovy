@@ -25,7 +25,7 @@ class LoginController {
 
     /* User canceled during Facebook connect */
     def facebook_user_denied() {
-        render(view: 'error', model: [message: "Can't authenticate using Facebook. Seems like you've canceled Facebook authentication."])
+        render(view: 'error', model: [message: "Can't authenticate using Facebook. Seems like you've cancelled Facebook authentication."])
     }
 
     private def sendMandrillEmail(User user) {
@@ -79,7 +79,7 @@ class LoginController {
         }
 
         if (user.save()) {
-            flash.message = "Profile updated successfully"
+            flash.message = "Profile updated successfully.Congratulations!"
         } else {
             flash.message = "Error while updating user. Please try again later"
         }
@@ -89,7 +89,7 @@ class LoginController {
 
     def success() {
         render(view: 'success',
-                model: [message: 'Your account has been created. Please confirm your email address. Confirmation link has been sent to your account.']);
+                model: [message: 'Your account has been created. Please confirm by clicking the  link  sent to your email account.']);
     }
 
     def confirm(String id) {
@@ -171,7 +171,7 @@ class LoginController {
             if (user.save()) {
                 render(view: 'success', model: [message: 'Password updated successfully. To continue, please login with your new password.'])
             } else {
-                render(view: 'error', model: [message: 'Error while updating user password. Please try again later.'])
+                render(view: 'error', model: [message: 'Error while updating user password. Please try again later.....'])
             }
         }
     }

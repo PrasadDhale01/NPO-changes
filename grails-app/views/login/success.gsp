@@ -6,7 +6,7 @@
 <body>
 <div class="feducontent">
     <div class="container">
-        <h1>Success</h1>
+        <h1>Successfully login</h1>
         <div class="alert alert-success">
             ${message}
         </div>

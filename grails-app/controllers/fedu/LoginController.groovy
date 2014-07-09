@@ -49,7 +49,7 @@ class LoginController {
 
     def create() {
         if (User.findByUsername(params.username)) {
-            render(view: 'error', model: [message: 'A user with that email already exists. Please use a different email.'])
+            render(view: 'error', model: [message: 'A user with the same  email already exists. Please use a different email.'])
         } else {
             def user = new User(params)
             user.enabled = false

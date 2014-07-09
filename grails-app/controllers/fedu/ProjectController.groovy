@@ -87,7 +87,7 @@ class ProjectController {
                     date: new Date()).save(failOnError: true)
             }
         } else {
-            flash.commentmessage = "Something went wrong saving comment. Please try again later."
+            flash.commentmessage = "Sorry,Something went wrong saving comment. Please try again later."
         }
 
         redirect (action: 'show', id: params.id, fragment: 'comments')
@@ -194,7 +194,7 @@ class ProjectController {
             Workbook workbook = WorkbookFactory.create(projectSpreadsheet.getInputStream())
             projectParamsList = excelImportService.columns(workbook, CONFIG_BOOK_COLUMN_MAP)
         } catch (Exception e) {
-            flash.message = "Error while importing file: " + e.getMessage()
+            flash.message = "Error observed while importing file: " + e.getMessage()
             redirect(action: 'importprojects')
             return
         }

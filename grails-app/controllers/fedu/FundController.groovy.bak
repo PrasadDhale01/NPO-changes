@@ -48,23 +48,17 @@ class FundController {
             }
         }
 
-        def projectAmount=params.double('projectAmount')
-        def amount = params.double('amount')
-	if(projectAmount >= amount) {
-            if (amount < reward.price) {
-                render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
-                return
-            }
-            if (project && reward) {
-                render view: 'checkout/index', model: [project: project, reward: reward, amount: amount]
-            } else {
-                render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
-            }
+        def amount = params.double(('amount'))
+        if (amount < reward.price) {
+            render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
+            return
+        }
+
+        if (project && reward) {
+            render view: 'checkout/index', model: [project: project, reward: reward, amount: amount]
         } else {
-	    flash.error="Enter amount less than the project amount"
-            render view: 'fund/index', model:[project:project]
-	    return
-	}
+            render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
+        }
 
     }
 

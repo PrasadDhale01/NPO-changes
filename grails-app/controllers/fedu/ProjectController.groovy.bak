@@ -334,7 +334,7 @@ class ProjectController {
             }
 	} else {
 	    render (view: 'create/createerror', model: [project: project])
-	} 
+	    } 
     }
 
 }

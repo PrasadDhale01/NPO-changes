@@ -25,7 +25,7 @@ $(function() {
                 required: false
             },
             addressLine1: {
-                required: true
+                required: false
             },
             addressLine2: {
                 required: false
@@ -59,7 +59,8 @@ $(function() {
             },
             story: {
                 required: true,
-                minlength: 10
+                minlength: 10,
+				maxlength: 5000
             }
             /*
             imageUrl: {

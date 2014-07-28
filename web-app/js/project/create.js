@@ -60,7 +60,7 @@ $(function() {
             story: {
                 required: true,
                 minlength: 10,
-				maxlength: 5000
+		maxlength: 5000
             }
             /*
             imageUrl: {

@@ -47,10 +47,12 @@ class FundController {
                 reward = rewardService.getNoReward()
             }
         }
-
+         
+        def contributedSoFar = contributionService.getTotalContributionForProject(project)
         def projectAmount=params.double('projectAmount')
         def amount = params.double('amount')
-	if(projectAmount >= amount) {
+	
+	if (contributedSoFar + amount <= projectAmount) {
             if (amount < reward.price) {
                 render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
                 return
@@ -61,11 +63,11 @@ class FundController {
                 render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
             }
         } else {
-	    flash.error="Enter amount less than the project amount"
-            render view: 'fund/index', model:[project:project]
+	    flash.error=" Funding amount cannot exceed project target : ${projectAmount-contributedSoFar}"
+	    render view: 'fund/index', model:[project:project]
 	    return
 	}
-
+	return 
     }
 
     def charge(String stripeToken) {

@@ -24,13 +24,13 @@
                             <input class="amount form-control" <%-- value="${reward.price}" --%> id="amount" name="amount">
                         </div>
                     </div>
+		     	    
 		    <g:if test="${flash.error}">
                         <div class="alert alert-danger">
                             <h5>${flash.error}</h5>
                         </div>
 		    </g:if>
-
-
+		    
                     <button type="submit" class="btn btn-primary btn-lg">Continue</button>
                 </g:form>
 

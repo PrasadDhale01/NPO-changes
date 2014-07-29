@@ -25,7 +25,7 @@ $(function() {
                 required: false
             },
             addressLine1: {
-                required: false
+                required: true
             },
             addressLine2: {
                 required: false

@@ -87,7 +87,7 @@ class ProjectController {
                     date: new Date()).save(failOnError: true)
             }
         } else {
-            flash.commentmessage = "Sorry,Something went wrong saving comment. Please try again later."
+            flash.commentmessage = "Something went wrong saving comment. Please try again later."
         }
 
         redirect (action: 'show', id: params.id, fragment: 'comments')

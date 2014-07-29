@@ -11,7 +11,7 @@ class RewardController {
 
     def save() {
         new Reward(params).save(failOnError: true)
-        flash.message = 'Congratulations! A new reward has been created successfully'
+        flash.message = 'Successfully created a new reward'
         redirect action: 'list'
     }
 }

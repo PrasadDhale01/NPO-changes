@@ -59,7 +59,8 @@ $(function() {
             },
             story: {
                 required: true,
-                minlength: 10
+                minlength: 10,
+                maxlength: 5000
             }
             /*
             imageUrl: {

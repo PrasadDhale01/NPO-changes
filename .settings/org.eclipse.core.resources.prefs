@@ -1,27 +1,4 @@
 eclipse.preferences.version=1
-<<<<<<< HEAD
-encoding//.link_to_grails_plugins/excel-import-1.0.0/grails-app/i18n=UTF-8
-encoding//.link_to_grails_plugins/excel-import-1.0.0/grails-app/i18n/messages.properties=UTF-8
-encoding//.link_to_grails_plugins/hibernate-3.6.10.8/grails-app/i18n=UTF-8
-encoding//.link_to_grails_plugins/hibernate-3.6.10.8/grails-app/i18n/messages.properties=UTF-8
-encoding//.link_to_grails_plugins/mail-1.0.4/grails-app/i18n=UTF-8
-encoding//.link_to_grails_plugins/mail-1.0.4/grails-app/i18n/messages.properties=UTF-8
-encoding//.link_to_grails_plugins/mail-1.0.4/grails-app/i18n/messages_fr.properties=UTF-8
-encoding//.link_to_grails_plugins/resources-1.2.1/grails-app/i18n=UTF-8
-encoding//.link_to_grails_plugins/resources-1.2.1/grails-app/i18n/messages.properties=UTF-8
-encoding//.link_to_grails_plugins/spring-security-core-2.0-RC2/grails-app/i18n=UTF-8
-encoding//.link_to_grails_plugins/spring-security-core-2.0-RC2/grails-app/i18n/spring-security-core.properties=UTF-8
-encoding//.link_to_grails_plugins/spring-security-core-2.0-RC2/grails-app/i18n/spring-security-core_de.properties=UTF-8
-encoding//.link_to_grails_plugins/spring-security-core-2.0-RC2/grails-app/i18n/spring-security-core_fr.properties=UTF-8
-encoding//.link_to_grails_plugins/spring-security-core-2.0-RC2/grails-app/i18n/spring-security-core_it.properties=UTF-8
-encoding//.link_to_grails_plugins/spring-security-core-2.0-RC2/grails-app/i18n/spring-security-core_nb.properties=UTF-8
-encoding//.link_to_grails_plugins/spring-security-core-2.0-RC2/grails-app/i18n/spring-security-core_pt_BR.properties=UTF-8
-encoding//.link_to_grails_plugins/spring-security-core-2.0-RC2/grails-app/i18n/spring-security-core_ru.properties=UTF-8
-encoding//.link_to_grails_plugins/spring-security-core-2.0-RC2/grails-app/i18n/spring-security-core_sv.properties=UTF-8
-encoding//.link_to_grails_plugins/spring-security-facebook-0.15.2-CORE2/grails-app/i18n=UTF-8
-encoding//.link_to_grails_plugins/spring-security-facebook-0.15.2-CORE2/grails-app/i18n/messages.properties=UTF-8
-=======
->>>>>>> 2c7055fc7bd9d162f708c6090c61b51dcdc41bb6
 encoding//grails-app/conf/BootStrap.groovy=UTF-8
 encoding//grails-app/i18n=UTF-8
 encoding//grails-app/i18n/messages.properties=UTF-8

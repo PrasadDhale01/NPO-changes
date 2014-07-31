@@ -25,7 +25,7 @@ $(function() {
                 required: false
             },
             addressLine1: {
-                required: true
+                required: false
             },
             addressLine2: {
                 required: false
@@ -51,7 +51,8 @@ $(function() {
             },
             days: {
                 required: true,
-                number: true
+                number: true,
+                max: 365
             },
             title: {
                 required: true,

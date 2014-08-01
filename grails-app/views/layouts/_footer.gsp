@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-4">
-                <h6>Copyright &copy; 2014 FEDU</h6>
+                <h6>Copyright &copy; 2014 CrowdEra</h6>
             </div>
 
             <div class="col-xs-4 col-sm-2">
@@ -16,7 +16,7 @@
             </div>
 
             <div class="col-xs-4 col-sm-2">
-                <h6>FEDU</h6>
+                <h6>CrowdEra</h6>
                 <ul class="unstyled">
                     <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
                     <li><a href="${resource(dir: '/blogs')}">Blog</a></li>

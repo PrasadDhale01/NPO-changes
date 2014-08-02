@@ -15,7 +15,7 @@ $(function() {
         rules: {
         	comment: {
         	    required:true,
-        		maxlength:5000
+        	    maxlength:5000
         	}
         }
     });

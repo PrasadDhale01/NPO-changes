@@ -47,7 +47,8 @@ $(function() {
             },
             amount: {
                 required: true,
-                number: true
+                number: true,
+				max:5000
             },
             days: {
                 required: true,

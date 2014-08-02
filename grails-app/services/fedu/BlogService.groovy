@@ -12,7 +12,7 @@ class BlogService {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")
 
 		new Blog(
-				title: 'I FEDU for the Future',
+				title: 'I CrowdEra for the Future',
 				author: 'Anina Tweed',
 				date: dateFormat.parse("03/04/2014"),
 				snippet: 'I took up my position in the back of the tiny, sweating room ready to hear my students, a group of young women from across South and Southeast Asia, read the personal stories they had worked all semester to create.',
@@ -53,11 +53,11 @@ class BlogService {
 							with grand plans to found their own NGOs, become
 							parliamentarians, and create economic opportunity in their
 							communities.</p>
-						<p>I FEDU for them. I FEDU so that no one fears for their
+						<p>I CrowdEra for them. I CrowdEra so that no one fears for their
 							futures or imagines a life they could have had if they’d just
 							been given the chance. After witnessing firsthand the impact
 							education has on those determined to receive it, I’m excited to
-							join FEDU in connecting new students to the education they need.
+							join CrowdEra in connecting new students to the education they need.
 							While we may not all be born with equal access to opportunity, we
 							can certainly work together to lower those barriers and empower
 							education for all.</p>"""
@@ -65,11 +65,11 @@ class BlogService {
 
 		new Blog(
 				title: 'The Tricky Issue of Causation',
-				author: 'FEDU Editorial',
+				author: 'CrowdEra Editorial',
 				date: dateFormat.parse('02/26/2014'),
-				snippet: 'At FEDU, our focus is on higher education and funding, but those are really just two pieces of the larger education conversation.',
+				snippet: 'At CrowdEra, our focus is on higher education and funding, but those are really just two pieces of the larger education conversation.',
 				content: """\
-							<p>At #FEDU, our focus is on higher education and funding, but those are really
+							<p>At #CrowdEra, our focus is on higher education and funding, but those are really
 							just two pieces of the larger education conversation.</p>
 
 							<p>As we all know, education is rife with problems, from those that FEDU tackles,
@@ -86,13 +86,13 @@ class BlogService {
 							When tackling such messy issues as education, never assume too much.  The rationale for one
 							action may be wholly unrelated to its preceding or next action.</p>
 
-							<p>FEDU is working towards drawing really strong connections between two actions:
+							<p>CrowdEra is working towards drawing really strong connections between two actions:
 							The lack of funding and a reduced access to higher education.  We do know though that plenty
 							of other factors exist in this ecosystem and we are trying to address them simultaneously.</p>"""
 				).save(failOnError: true)
 
 		new Blog(
-				title: 'Day 1 at FEDU',
+				title: 'Day 1 at CrowdEra',
 				author: 'Andrew Koved',
 				date: dateFormat.parse('02/24/2014'),
 				snippet: 'My idea of the typical startup is jeans, more laptops than known what to do with, and enough coffee to fill a swimming pool. And sure enough, at my first all-hands meeting at FundEdu, there were jean-wearing, laptop-toting people bounding towards the coffee machines.',
@@ -104,8 +104,8 @@ class BlogService {
 
 							<p>I did get one piece wrong though, this is not just a typical startup, this is a group
 							of workers building a company that is actually going places.  Amongst all of the
-							Silicon Valley ambition, the engineers and developers at FundEDU are dreaming bigger and brighter.
-							FundEDU, conveniently shortened to FEDU, is a site for crowdfunding of education, allowing people
+							Silicon Valley ambition, the engineers and developers at CrowdEra are dreaming bigger and brighter.
+							FundEDU, conveniently shortened to CrowdEra, is a site for crowdfunding of education, allowing people
 							from across the globe to support a fellow denizen’s dream of learning.</p>
 
 							<p>The promise and zeal towards creating change was evident just by talking with my coworkers,

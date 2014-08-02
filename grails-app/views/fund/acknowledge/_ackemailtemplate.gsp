@@ -1,6 +1,6 @@
 <g:set var="projectService" bean="projectService"/>
 <div>
-    <h1>FEDU</h1>
+    <h1>CrowdEra</h1>
 
     <h3>A global platform to create and fund indigenous educational projects</h3>
 
@@ -22,5 +22,5 @@
         </tbody>
     </table>
 
-    <p>~FEDU Team~</p>
+    <p>~CrowdEra Team~</p>
 </div>

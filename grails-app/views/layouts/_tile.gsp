@@ -21,6 +21,7 @@ Expects the parent containers to be like so:
     def endDate = projectService.getProjectEndDate(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def isFundingOpen = projectService.isFundingOpen(project)
+    def contributedSoFar = contributionService.getTotalContributionForProject(project)
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
@@ -38,24 +39,28 @@ Expects the parent containers to be like so:
 
     <div class="modal-footer" style="text-align: left; margin-top: 0;">
         <div class="row">
-            <div class="col-md-6">
-                <h5 class="text-center">GOAL<br/><span class="lead">$${project.amount}</span></h5>
+            <div class="col-md-4">
+                <h6 class="text-center">GOAL<br/><span class="lead">$${project.amount}</span></h6>
             </div>
+	    <div class="col-md-4">
+                <h6 class="text-center">Achieved<br/><span class="lead">$${contributedSoFar}</span></h6>
+            </div>
+
             <g:if test="${ended}">
                 <g:if test="${isFundingAchieved}">
-                    <div class="col-md-6">
-                        <h5 class="text-center">ACHIEVED<br><span class="lead">${dateFormat.format(achievedDate.getTime())}</span></h5>
+                    <div class="col-md-4">
+                        <h6 class="text-center">ACHIEVED<br><span class="lead">${dateFormat.format(achievedDate.getTime())}</span></h6>
                     </div>
                 </g:if>
                 <g:else>
-                    <div class="col-md-6">
-                        <h5 class="text-center">ENDED<br><span class="lead">${dateFormat.format(endDate.getTime())}</span></h5>
+                    <div class="col-md-4">
+                        <h6 class="text-center">ENDED<br><span class="lead">${dateFormat.format(endDate.getTime())}</span></h6>
                     </div>
                 </g:else>
             </g:if>
             <g:else>
-                <div class="col-md-6">
-                    <h5 class="text-center">ENDING<br><span class="lead">${dateFormat.format(endDate.getTime())}</span></h5>
+                <div class="col-md-4">
+                    <h6 class="text-center">ENDING<br><span class="lead">${dateFormat.format(endDate.getTime())}</span></h6>
                 </div>
             </g:else>
         </div>

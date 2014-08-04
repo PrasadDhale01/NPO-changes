@@ -14,6 +14,4 @@ class RewardController {
         flash.message = 'Successfully created a new reward'
         redirect action: 'list'
     }
-    def delete () {
-    }
 }

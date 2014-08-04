@@ -43,7 +43,7 @@ Expects the parent containers to be like so:
                 <h6 class="text-center">GOAL<br/><span class="lead">$${project.amount}</span></h6>
             </div>
 	    <div class="col-md-4">
-                <h6 class="text-center">Achieved<br/><span class="lead">$${contributedSoFar}</span></h6>
+                <h6 class="text-center">ACHIEVED<br/><span class="lead">$${contributedSoFar}</span></h6>
             </div>
 
             <g:if test="${ended}">

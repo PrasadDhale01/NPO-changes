@@ -186,12 +186,10 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Rewards</label>
                         <div class="col-sm-10">
-                            <select class="selectpicker" name="${FORMCONSTANTS.REWARDS}" multiple="true"
-                                    title="Choose multiple rewards"  data-selected-text-format="count">
-                                <g:each in="${rewardOptions}" var="rewardOption">
-                                    <option value="${rewardOption.key}" data-subtext="${rewardOption.value.title}">$${rewardOption.value.price}</option>
+                            Choose multiple rewards:<br>
+				<g:each in="${rewardOptions}" var="rewardOption">
+                                    &nbsp;&nbsp;<g:checkBox name="${FORMCONSTANTS.REWARDS}" checked="false" data-selected-text-format="count" value="${rewardOption.key}" />&nbsp;$${rewardOption.value.price}
                                 </g:each>
-                            </select>
                         </div>
                     </div>
                 </div>

@@ -1,3 +1,16 @@
+<html>
+   <body>
+   
+  <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.0";
+        fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
 <%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
@@ -56,4 +69,8 @@
                 </div>
             </div>
         </g:else>
-    </div>
+            <div class="fb-like" data-href="http://192.168.0.105/projects/${project.id}"  data-layout="standard" data-action="like" data-show-faces="false" data-share="true">
+           </div>
+      </div>
+   </body>
+</html>

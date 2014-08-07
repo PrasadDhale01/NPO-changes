@@ -19,7 +19,7 @@
         
     <!-- Call to action buttons -->
     <%-- <g:render template="createfund"></g:render> --%>
-    <div class="fb-like" data-href="https://www.facebook.com/FundEdu/" data-layout="standard" data-action="like" data-show-faces="false" data-share="false">
+    <div class="fb-like" data-href="https://beta.fedu.org" data-layout="standard" data-action="like" data-show-faces="false" data-share="false">
     </div>
     <!-- Carousel -->
     <g:render template="carousel"></g:render>

@@ -69,7 +69,7 @@
                 </div>
             </div>
         </g:else>
-            <div class="fb-like" data-href="http://192.168.0.105/projects/${project.id}"  data-layout="standard" data-action="like" data-show-faces="false" data-share="true">
+            <div class="fb-like" data-href="http://beta.fedu.org/projects/${project.id}"  data-layout="standard" data-action="like" data-show-faces="false" data-share="true">
            </div>
       </div>
    </body>

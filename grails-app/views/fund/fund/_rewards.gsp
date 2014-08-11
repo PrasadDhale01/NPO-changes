@@ -11,15 +11,13 @@
                 <%
                     def backers = contributionService.getBackersForProjectByReward(project, reward);
                 %>
-	        <g:if test="${reward.disabled == false}">
-                    <a href="#" class="list-group-item" data-rewardid="${reward.id}" data-rewardprice="${reward.price}">
-                        <h4 class="list-group-item-heading">${reward.title}</h4>
-                        <h5 class="list-group-item-heading lead">$${reward.price}</h5>
-                        <p class="list-group-item-text text-justify">${reward.description}</p>
-                        <p class="list-group-item-text text-justify">${backers} backer(s)</p>
-                    </a>
-		</g:if>
-            </g:each>
+	        <a href="#" class="list-group-item" data-rewardid="${reward.id}" data-rewardprice="${reward.price}">
+                    <h4 class="list-group-item-heading">${reward.title}</h4>
+                    <h5 class="list-group-item-heading lead">$${reward.price}</h5>
+                    <p class="list-group-item-text text-justify">${reward.description}</p>
+                    <p class="list-group-item-text text-justify">${backers} backer(s)</p>
+                </a>
+	    </g:each>
         </div>
     </div>
 </div>

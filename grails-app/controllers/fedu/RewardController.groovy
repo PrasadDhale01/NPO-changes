@@ -11,7 +11,6 @@ class RewardController {
 	        reward.each {
 		    def rewardId = it.id
 		    def rewardDelete = it.delete
-		    def rewardDisabled = it.disabled
 		    int result = 0
 			
 		    if (rewardDelete == false) {
@@ -29,14 +28,6 @@ class RewardController {
 			        id == rewardId
 			    }
 			    int total = update.updateAll(delete: true)
-			}
-		    }
-		    if (rewardDisabled == false) {
-			if (result == 1) {
-			    def update = Reward.where {
-				id == rewardId
-			    }
-			    int total = update.updateAll(disabled: true)
 			}
 		    }
 		}

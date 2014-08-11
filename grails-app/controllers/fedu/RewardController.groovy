@@ -8,29 +8,29 @@ class RewardController {
     def list() {
         def projects = Project.list()
 	def reward = Reward.list()
-	        reward.each {
-		    def rewardId = it.id
-		    def rewardDelete = it.delete
-		    int result = 0
+	    reward.each {
+		def rewardId = it.id
+		def rewardDelete = it.delete
+		int result = 0
 			
-		    if (rewardDelete == false) {
-		        projects.each {
-			    def projectReward = it.rewards
-			    projectReward.each {
-			        def projectRewardId = it.id
-				    if (rewardId == projectRewardId) {
-				        result = 1	 
-				    }
-				}
+		if (rewardDelete == false) {
+		    projects.each {
+			def projectReward = it.rewards
+			projectReward.each {
+			    def projectRewardId = it.id
+			    if (rewardId == projectRewardId) {
+				    result = 1	 
 			    }
-			    if (result == 0) {
-			        def update = Reward.where {
-			        id == rewardId
-			    }
-			    int total = update.updateAll(delete: true)
 			}
 		    }
+		    if (result == 0) {
+			def update = Reward.where {
+			    id == rewardId
+			}
+			int total = update.updateAll(delete: true)
+		    }
 		}
+	    }
         render (view: 'list/index', model: [reward: reward])
     }
 

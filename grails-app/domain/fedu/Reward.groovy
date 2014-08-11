@@ -5,6 +5,8 @@ class Reward {
     String description
     double price
     Image image
+    boolean delete = false
+    boolean disabled = false
 
     static constraints = {
         image (nullable: true)

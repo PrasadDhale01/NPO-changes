@@ -187,7 +187,7 @@
                         <label class="col-sm-2 control-label">Rewards</label>
                         <div class="col-sm-10">
                             Choose multiple rewards:<br>
-				<g:each in="${rewardOptions}" var="rewardOption">
+		                <g:each in="${rewardOptions}" var="rewardOption">
                                     &nbsp;&nbsp;<g:checkBox name="${FORMCONSTANTS.REWARDS}" checked="false" data-selected-text-format="count" value="${rewardOption.key}" />&nbsp;$${rewardOption.value.price}
                                 </g:each>
                         </div>

@@ -37,7 +37,7 @@ class ProjectController {
         PROJECTSEXCEL: 'projectsExcel'
     ]
 
-	def list = {
+    def list = {
 		render (view: 'list/index', model: [projects: Project.list()])
 	}
 
@@ -72,6 +72,44 @@ class ProjectController {
         render (view: 'show/index',
                 model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])
+	}
+
+	def validateshow(){
+	    def projects = params.int('id')
+	    if (params.int('id')) {
+	        projects = Project.findById(params.id)
+	        if(projects.validated == false){
+	            render (view: 'validate/validateshow', model: [projects: projects])
+	        }
+ 	    }
+	}
+
+	def update(){
+	    if (params.int('id')) {
+		def project = params.long('id')
+		def query = Project.where {   
+		    id == project 
+		} 
+		int total = query.updateAll(validated: true) 
+	    }
+	    render (view: 'list/index', model: [projects: Project.list()])
+	}
+	
+	def validate() {
+	    Project project
+	    if (params.int('id')) {
+		project = Project.findById(params.id)
+		if(project.validated == true){
+		    redirect (action:'show')
+		}
+		else{
+		    render (view: 'validate/validateerror', model: [projects: project])
+		}		
+	     }
+    	}
+
+	def validateList() {
+	    render (view: 'validate/index', model: [projects: Project.list()])
 	}
 
     @Secured(['ROLE_USER'])

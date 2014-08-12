@@ -11,6 +11,7 @@ Expects the parent containers to be like so:
 <%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
+<g:set var="projectValidate" value="${project.validated}"/>
 <%
     def isFundingAchieved = contributionService.isFundingAchievedForProject(project)
     def percentage = contributionService.getPercentageContributionForProject(project)
@@ -24,6 +25,7 @@ Expects the parent containers to be like so:
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
+<% if (projectValidate == true){ %>
 <div class="fedu thumbnail grow" style="padding: 0">
     <div style="height: 200px; overflow: hidden;" class="blacknwhite">
         <g:link controller="project" action="show" id="${project.id}" title="${project.title}">
@@ -75,3 +77,4 @@ Expects the parent containers to be like so:
         </div>
     </g:else>
 </div>
+<%}%>

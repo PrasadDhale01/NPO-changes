@@ -186,18 +186,15 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Rewards</label>
                         <div class="col-sm-10">
-                            <ul>  
-                                <li class="dropdown" id="dropdown">
-				    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-gift" >&nbsp;<b>Choose multiple rewards:<strong class="caret"></strong></b></a>
-			            <ul class="dropdown-menu">
-			                <g:each in="${rewardOptions}" var="rewardOption">
-				            <li>
-					        <a href="#" class="make-switch switch-mini toggle-state-switch"><input type ="checkbox" name="${FORMCONSTANTS.REWARDS}" class="row-select" value="${rewardOption.key}" >&nbsp;&nbsp;$${rewardOption.value.price}</a>
-				            </li>
-				        </g:each> 
-				    </ul>
-			        </li>
-			    </ul>
+                             <class="dropdown" id="dropdown">
+		             <button href="#" class="dropdown-toggle" data-toggle="dropdown">Choose multiple rewards:<strong class="caret"></strong></button>
+			     <ul class="dropdown-menu">
+			         <g:each in="${rewardOptions}" var="rewardOption">
+				     <li>
+			                 <a href="#" class="make-switch switch-mini toggle-state-switch"><input type ="checkbox" name="${FORMCONSTANTS.REWARDS}" class="row-select" value="${rewardOption.key}" >&nbsp;&nbsp;$${rewardOption.value.price}&nbsp;&nbsp;<small>${rewardOption.value.title}</small></a>				            
+				     </li>
+				 </g:each> 
+		             </ul>
                         </div>
                     </div>
                 </div>

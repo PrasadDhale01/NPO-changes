@@ -45,6 +45,16 @@
                     </div>
                 </g:else>
             </div>
+            <div class="row">
+                <% if(!(percentage == 100)) { %>
+                <form action="edit" method="post" >
+                    <g:hiddenField name="projectId" value="${project.id}"/>               
+	            <button class="edit close"  aria-label="Edit project">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </button>
+                </form>
+                <% } %>
+            </div>
         </div>
         <g:if test="${isFundingOpen}">
             <div class="progress progress-striped active">

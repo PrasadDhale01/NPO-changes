@@ -94,22 +94,22 @@ class ProjectController {
     }
 
     @Secured(['ROLE_USER'])
-	def create() {
-		def fundRaisingOptions = [
-			(Project.FundRaisingReason.VOCATIONAL_SCHOOL): "Vocation school",
-			(Project.FundRaisingReason.TUITION_FEE): "Tuition fee",
-			(Project.FundRaisingReason.SCHOOL_SUPPLIES): "School supplies",
-			(Project.FundRaisingReason.STUDENT_LOAN): "Student loan",
+    def create() {
+	def fundRaisingOptions = [
+	    (Project.FundRaisingReason.VOCATIONAL_SCHOOL): "Vocation school",
+	    (Project.FundRaisingReason.TUITION_FEE): "Tuition fee",
+	    (Project.FundRaisingReason.SCHOOL_SUPPLIES): "School supplies",
+	    (Project.FundRaisingReason.STUDENT_LOAN): "Student loan",
+ 
+            /* For raising for other... */
+	    (Project.FundRaisingReason.SCHOOL_PROJECT): "School project",
+	    (Project.FundRaisingReason.EDUCATE_POOR): "Educating poor"
+	]
 
-			/* For raising for other... */
-			(Project.FundRaisingReason.SCHOOL_PROJECT): "School project",
-			(Project.FundRaisingReason.EDUCATE_POOR): "Educating poor"
-		]
-
-		def raisingForOptions = [
+	def raisingForOptions = [
             (Project.FundRaisingFor.OTHER): "Someone I know",
-			(Project.FundRaisingFor.MYSELF): "Myself"
-		]
+	    (Project.FundRaisingFor.MYSELF): "Myself"
+	]
 
         def categoryOptions = [
             (Project.Category.AGRICULTURE): "Agriculture",
@@ -143,6 +143,119 @@ class ProjectController {
                         rewardOptions: rewardOptions,
                         genderOptions: genderOptions,
                         FORMCONSTANTS: FORMCONSTANTS])
+	}
+
+        @Secured(['ROLE_USER'])
+        def edit() {
+	    def fundRaisingOptions = [
+		(Project.FundRaisingReason.VOCATIONAL_SCHOOL): "Vocation school",
+		(Project.FundRaisingReason.TUITION_FEE): "Tuition fee",
+		(Project.FundRaisingReason.SCHOOL_SUPPLIES): "School supplies",
+		(Project.FundRaisingReason.STUDENT_LOAN): "Student loan",
+
+		/* For raising for other... */
+		(Project.FundRaisingReason.SCHOOL_PROJECT): "School project",
+		(Project.FundRaisingReason.EDUCATE_POOR): "Educating poor"
+	    ]
+
+	    def raisingForOptions = [
+		(Project.FundRaisingFor.OTHER): "Someone I know",
+		(Project.FundRaisingFor.MYSELF): "Myself"
+	    ]
+
+	    def categoryOptions = [
+		(Project.Category.AGRICULTURE): "Agriculture",
+		(Project.Category.TECHNOLOGY): "Technology",
+		(Project.Category.ENTREPRENEURSHIP): "Entrepreneurship",
+		(Project.Category.SCIENCE): "Science",
+		(Project.Category.LITERACY_LANGUAGE): "Literacy & Language",
+		(Project.Category.SPORTS): "Sports",
+		(Project.Category.ARTS_CULTURE): "Arts & Culture",
+		(Project.Category.PRIMARY_EDUCATION): "Primary Education",
+		(Project.Category.COLLEGE_ACCESS): "College Access",
+		(Project.Category.WOMEN_EMPOWERMENT): "Women Empowerment",
+		(Project.Category.OTHER): "Other"
+	    ]
+
+	    def genderOptions = [
+		"MALE": (Beneficiary.Gender.MALE),
+		"FEMALE": (Beneficiary.Gender.FEMALE),
+		"UNSPECIFIED": (Beneficiary.Gender.UNSPECIFIED)
+	    ]
+
+	    def project = Project.get(params.projectId)
+	    def beneficiary = project.beneficiary
+	    def reward= project.rewards
+	    def rewardOptions = [:]
+	    Reward.list().each {
+	        def rewardId = it.id
+		def result = 0
+		reward.each {
+		    if(it.id == rewardId) {
+			result = 1
+		    }
+		}
+		if(!(result == 1)) {
+		    rewardOptions.put(it.id, it)
+		}
+	    }
+	    render (view: 'edit/index',
+                    model: [project: project,
+                            reward: reward,
+                            beneficiary: beneficiary,
+                            fundRaisingOptions: fundRaisingOptions,
+                            raisingForOptions: raisingForOptions,
+                            categoryOptions: categoryOptions,
+                            rewardOptions: rewardOptions,
+                            genderOptions: genderOptions,
+                            FORMCONSTANTS: FORMCONSTANTS])
+	}
+	
+	@Secured(['ROLE_USER'])
+	def update() {
+	    Image thumbnail
+	    def project = Project.get(params.projectId)
+	    def beneficiary = project.beneficiary
+		
+	    CommonsMultipartFile thumbnailFile = request.getFile(FORMCONSTANTS.THUMBNAIL)
+		
+	    if (!thumbnailFile.isEmpty()) {
+                if (!thumbnailFile.isEmpty() && !VALID_IMG_TYPES.contains(thumbnailFile.getContentType())) {
+                    flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
+                    render (view: 'edit/editerror')
+                    return
+                } else {
+                    thumbnail = new Image(bytes: thumbnailFile.bytes, contentType: thumbnailFile.getContentType()).save()
+	    	    project.image = thumbnail
+                }
+            }
+			
+	    if(!(params.imageUrl == null)) {
+		project.imageUrl = params.imageUrl
+	    }
+		
+	    if (!(params.gender == null)) {
+		beneficiary.gender = params.gender
+	    }
+		
+	    beneficiary.telephone = params.telephone
+	    beneficiary.city = params.city
+	    beneficiary.addressLine1 = params.addressLine1
+	    beneficiary.addressLine2 = params.addressLine2
+	    beneficiary.postalCode = params.postalCode
+	    project.amount = params.double('amount')
+	    project.days = params.int('days')
+	    project.title = params.title
+	    project.story = params.story
+	    project.fundRaisingFor = params.fundRaisingFor
+	    project.category = params.category
+	    project.fundRaisingReason = params.fundRaisingReason
+	    params.rewards.each() { rewardId ->
+	    	project.addToRewards(Reward.findById(rewardId))
+	    }
+	    	
+	    render (view: 'show/index', 
+		    model: [ project:project ])	
 	}
 
     @Secured(['ROLE_ADMIN'])

@@ -8,7 +8,7 @@
         <p>${reward.description}</p> 
         <form action="delete/${reward.id}" method="post" >
             <input type="hidden" name="_method" value="DELETE" id="_method" />
-            <button class="rewarddelete close" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure want to Delete this reward?&#39;);">
+            <button class="rewarddelete close" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to Delete this reward?&#39;);">
                 <i class="fa fa-trash-o" >
                 </i>
             </button>

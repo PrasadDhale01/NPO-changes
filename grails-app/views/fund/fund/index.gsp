@@ -15,8 +15,7 @@
                 <g:form action="checkout" method="POST" role="form">
 
                     <g:hiddenField name="projectId" value="${project.id}"/>
-                    <g:hiddenField name="projectAmount" value="${project.amount}"/>
-		    <g:hiddenField name="rewardId"/> <!-- Value set by Javascript -->
+                    <g:hiddenField name="rewardId"/> <!-- Value set by Javascript -->
 
                     <div class="form-group">
                         <div class="input-group">
@@ -24,13 +23,7 @@
                             <input class="amount form-control" <%-- value="${reward.price}" --%> id="amount" name="amount">
                         </div>
                     </div>
-		     	    
-		    <g:if test="${flash.error}">
-                        <div class="alert alert-danger">
-                            <h5>${flash.error}</h5>
-                        </div>
-		    </g:if>
-		    
+
                     <button type="submit" class="btn btn-primary btn-lg">Continue</button>
                 </g:form>
 

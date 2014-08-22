@@ -6,13 +6,7 @@ $(function() {
         style: 'btn btn-sm btn-default'
     });
 
-	$('#dropdown .dropdown-menu').on({
-        "click":function(e){
-          e.stopPropagation();
-        }
-    });
-
-    /* Validate form on submit. */
+	/* Validate form on submit. */
     var validator = $('form').validate({
         rules: {
             firstName: {
@@ -54,8 +48,7 @@ $(function() {
             amount: {
                 required: true,
                 number: true,
-				max:5000
-            },
+			},
             days: {
                 required: true,
                 number: true

@@ -60,8 +60,8 @@
                                 <div class="col-sm-8">
                                     <input id="email" type="email" class="form-control" name="${FORMCONSTANTS.EMAIL}">
                                 </div>
-                            </div>
 
+                            </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Telephone</label>
                                 <div class="col-sm-8">
@@ -186,15 +186,12 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Rewards</label>
                         <div class="col-sm-10">
-                             <class="dropdown" id="dropdown">
-		             <button href="#" class="dropdown-toggle" data-toggle="dropdown">Choose multiple rewards:<strong class="caret"></strong></button>
-			     <ul class="dropdown-menu">
-			         <g:each in="${rewardOptions}" var="rewardOption">
-				     <li>
-			                 <a href="#" class="make-switch switch-mini toggle-state-switch"><input type ="checkbox" name="${FORMCONSTANTS.REWARDS}" class="row-select" value="${rewardOption.key}" >&nbsp;&nbsp;$${rewardOption.value.price}&nbsp;&nbsp;<small>${rewardOption.value.title}</small></a>				            
-				     </li>
-				 </g:each> 
-		             </ul>
+                            <select class="selectpicker" name="${FORMCONSTANTS.REWARDS}" multiple="true"
+                                    title="Choose multiple rewards"  data-selected-text-format="count">
+                                <g:each in="${rewardOptions}" var="rewardOption">
+                                    <option value="${rewardOption.key}" data-subtext="${rewardOption.value.title}">$${rewardOption.value.price}</option>
+                                </g:each>
+                            </select>
                         </div>
                     </div>
                 </div>
@@ -205,16 +202,17 @@
                     <h3 class="panel-title">Get set, go</h3>
                 </div>
                 <div class="panel-body">
-		    <div class="form-group">
+		            <div class="form-group">
                         <label class="col-sm-2 control-label">All cool?</label>
-		            <div class="col-sm-10">
+		                <div class="col-sm-10">
 		                    <button type="submit" class="btn btn-primary">Create Project</button>
-		             </div>
-		    </div>
+		                </div>
+		            </div>
                 </div>
             </div>
-        </g:uploadForm>
-     </div>
+
+		</g:uploadForm>
+	</div>
 </div>
 
 </body>

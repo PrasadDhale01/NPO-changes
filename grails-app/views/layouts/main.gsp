@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'Favicon.png')}" type="image/x-icon">
-    <title><g:layoutTitle default="CrowdEra" /></title>
+    <link rel="shortcut icon" href="${resource(dir: 'images', file: 'favicon.ico')}" type="image/x-icon">
+    <title><g:layoutTitle default="FEDU" /></title>
 
     <!-- Twitter Bootstrap CSS -->
     <!--
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
     -->
 
-    <!-- fedu CSS -->
+    <!-- FEDU CSS -->
     <r:require module="feducss"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

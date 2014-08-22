@@ -20,24 +20,24 @@
 
         <div class="modal-footer" style="text-align: left; margin-top: 0;">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-6">
                     <h5 class="text-center">GOAL<br/><span class="lead">$${project.amount}</span></h5>
                 </div>
                 <g:if test="${ende
 d}">
                     <g:if test="${percentage == 100}">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <h5 class="text-center">ACHIEVED<br><span class="lead">${dateFormat.format(achievedDate.getTime())}</span></h5>
                         </div>
                     </g:if>
                     <g:else>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <h5 class="text-center">ENDED<br><span class="lead">${dateFormat.format(endDate.getTime())}</span></h5>
                         </div>
                     </g:else>
                 </g:if>
                 <g:else>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <h5 class="text-center">ENDING<br><span class="lead">${dateFormat.format(endDate.getTime())}</span></h5>
                     </div>
                 </g:else>

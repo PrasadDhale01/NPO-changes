@@ -40,7 +40,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
-                            <input type="text" class="card-number form-control" placeholder="Card Number"  data-bv-cvv-ccfield="true" data-stripe="number">
+                            <input type="text" class="card-number form-control" placeholder="Card Number" data-stripe="number">
                         </div>
                     </div>
 

@@ -10,13 +10,5 @@ $(function() {
         window.location.hash = this.hash;
         $('html,body').scrollTop(scrollmem);
     });
-    
-    $('form').validate({
-        rules: {
-        	comment: {
-        	    required:true,
-        	    maxlength:5000
-        	}
-        }
-    });
+
 });

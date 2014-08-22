@@ -11,7 +11,7 @@
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def isFundingOpen = projectService.isFundingOpen(project)
 
-    SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM y");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
     <div class="fedu thumbnail" style="padding: 0; margin-top: 30px;">
         <div style="height: 200px; overflow: hidden;" class="blacknwhite">

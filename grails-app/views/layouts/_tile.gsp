@@ -22,7 +22,7 @@ Expects the parent containers to be like so:
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def isFundingOpen = projectService.isFundingOpen(project)
 
-    SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM y");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 <div class="fedu thumbnail grow" style="padding: 0">
     <div style="height: 200px; overflow: hidden;" class="blacknwhite">

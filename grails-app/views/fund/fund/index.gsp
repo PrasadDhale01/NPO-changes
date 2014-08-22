@@ -4,7 +4,6 @@
     <r:require modules="fundjs"/>
 </head>
 <body>
-<g:form action="checkout" method="POST" role="form">
 <div class="feducontent">
     <div class="container">
         <div class="row">
@@ -12,6 +11,8 @@
             <div class="col-md-4">
 
                 <h1>Amount</h1>
+
+                <g:form action="checkout" method="POST" role="form">
 
                     <g:hiddenField name="projectId" value="${project.id}"/>
                     <g:hiddenField name="rewardId"/> <!-- Value set by Javascript -->
@@ -22,6 +23,10 @@
                             <input class="amount form-control" <%-- value="${reward.price}" --%> id="amount" name="amount">
                         </div>
                     </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg">Continue</button>
+                </g:form>
+
             </div>
 
             <div class="col-md-4">
@@ -30,11 +35,9 @@
 
             <div class="col-md-4">
                 <g:render template="/layouts/tile"/>
-		<button type="submit" class="btn btn-primary btn-lg">Continue</button>
             </div>
         </div>
     </div>
 </div>
-</g:form>
 </body>
 </html>

@@ -6,7 +6,7 @@ $(function() {
         style: 'btn btn-sm btn-default'
     });
 
-	/* Validate form on submit. */
+    /* Validate form on submit. */
     var validator = $('form').validate({
         rules: {
             firstName: {

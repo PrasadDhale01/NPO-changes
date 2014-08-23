@@ -1,5 +1,5 @@
 <%
-    def count = reward.size()
+    def count = rewards.size()
     def cols = 3
     def rows = (count / cols) + (count % cols > 0 ? 1 : 0)
     def index = 0
@@ -11,7 +11,7 @@
             <g:each in="${1..cols}">
                 <% if (index < count) { %>
                 <li class=" col-sm-4">
-                    <g:render template="list/rewardtile" model="['reward': reward.get(index++)]"></g:render>
+                    <g:render template="list/rewardtile" model="['reward': rewards.get(index++)]"></g:render>
                 </li>
                 <% } %>
             </g:each>

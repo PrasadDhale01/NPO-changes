@@ -27,7 +27,6 @@ class UrlMappings {
 
         /* Project */
         "/projects/create"(controller:'project', action:'create')
-	"/projects/edit"(controller:'project', action:'edit')
         "/projects"(controller:'project', action:'list')
         "/projects-widget"(controller:'project', action:'listwidget')
         "/projects/$id"(controller:'project', action:'show')

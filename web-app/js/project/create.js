@@ -48,7 +48,7 @@ $(function() {
             amount: {
                 required: true,
                 number: true,
-           },
+            },
             days: {
                 required: true,
                 number: true

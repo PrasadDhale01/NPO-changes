@@ -3,7 +3,6 @@ package fedu
 import grails.plugin.springsecurity.annotation.Secured
 import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.apache.poi.ss.usermodel.Workbook
-import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.grails.plugins.excelimport.ExcelImportService
 
@@ -182,9 +181,8 @@ class ProjectController {
 
     @Secured(['ROLE_ADMIN'])
     def bulkimport() {
-        MultipartHttpServletRequest multipartRequest = request
-        CommonsMultipartFile projectSpreadsheet = multipartRequest.getFile(FORMCONSTANTS.PROJECTSEXCEL)
-
+        CommonsMultipartFile projectSpreadsheet = request.getFile(FORMCONSTANTS.PROJECTSEXCEL)
+        
         if (projectSpreadsheet.isEmpty()) {
             flash.message = "Please choose a file and try again."
             redirect(action: 'importprojects')

@@ -3,7 +3,7 @@
     <div class="form-signin">
         <h2><i class="fa fa-facebook-square"></i> Facebook user</h2>
         <div class="alert alert-success">
-            As a Facebook user, you cannot update your profile details on FEDU.
+            As a Facebook user, you cannot update your profile details on Crowdera.
         </div>
     </div>
 </g:if>

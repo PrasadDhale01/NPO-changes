@@ -132,7 +132,7 @@ class LoginController {
                 async true
                 to params.username
                 from "info@fedu.org"
-                subject "FEDU - Reset Password"
+                subject "Crowdera - Reset Password"
                 html g.render(template: 'forgot/forgotpasswordmailtemplate', model: [code: user.resetCode])
             }
 

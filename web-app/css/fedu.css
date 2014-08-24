@@ -30,16 +30,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-    border-top: 5px solid #F67D41;
+    border-top: 3px solid #0074cc;
     font-size: 15px;
 }
 
 .navbar-brand
 {
     margin-left: 15px;
-    background: url('/images/logo.png') no-repeat left center;
+    background: url('/images/logo_umojawa.png') no-repeat left center;
     /* height: 40px; */
-    width: 100px;
+    width: 120px;
 }
 
 /* Home
@@ -260,7 +260,7 @@ ul.unstyled {
     margin-bottom: 0;
     border-radius: 0;
 
-    /* For 'journal' theme, set this to 26px */
+    /* For 'yeti' theme, set this to 26px */
     /* height: 26px; */
 }
 

@@ -10,6 +10,7 @@ import org.grails.plugins.excelimport.ExcelImportService
 class ProjectController {
     def userService
     def excelImportService
+    def rewardService
 
     def FORMCONSTANTS = [
         /* Beneficiary */
@@ -133,7 +134,8 @@ class ProjectController {
         ]
 
         def rewardOptions = [:]
-        Reward.list().each {
+        def rewards = rewardService.getNonObsoleteRewards()
+        rewards.each {
             rewardOptions.put(it.id, it)
         }
 

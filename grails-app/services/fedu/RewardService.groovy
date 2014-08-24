@@ -8,6 +8,26 @@ class RewardService {
         return Reward.findById(1)
     }
 
+    def isRewardUnused(Reward reward) {
+        if (reward.projects == null) {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    def numProjectsUsingReward(Reward reward) {
+        return reward.projects.size()
+    }
+
+    def getNonObsoleteRewards() {
+        return Reward.findAllWhere(obsolete: false)
+    }
+
+    def getObsoleteRewards() {
+        return Reward.findAllWhere(obsolete: true)
+    }
+
     @Transactional
     def bootstrap() {
         new Reward(

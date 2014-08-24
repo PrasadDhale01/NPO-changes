@@ -259,10 +259,9 @@ ul.unstyled {
 .progress {
     margin-bottom: 0;
     border-radius: 0;
-    height: 26px;
 
-    /* If any bootswatch theme other than journal, set this to 30px */
-    /* height: 20px; */
+    /* For 'journal' theme, set this to 26px */
+    /* height: 26px; */
 }
 
 .nav-tabs > li.active > a,

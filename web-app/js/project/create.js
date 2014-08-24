@@ -7,6 +7,8 @@ $(function() {
     });
 
     $('.multiselect').multiselect({
+        numberDisplayed: 1,
+        nonSelectedText: 'Choose multiple rewards'
     });
 
     /* Validate form on submit. */

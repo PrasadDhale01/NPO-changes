@@ -186,10 +186,9 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Rewards</label>
                         <div class="col-sm-10">
-                            <select class="selectpicker" name="${FORMCONSTANTS.REWARDS}" multiple="true"
-                                    title="Choose multiple rewards"  data-selected-text-format="count">
+                            <select class="multiselect" name="${FORMCONSTANTS.REWARDS}" multiple="multiple">
                                 <g:each in="${rewardOptions}" var="rewardOption">
-                                    <option value="${rewardOption.key}" data-subtext="${rewardOption.value.title}">$${rewardOption.value.price}</option>
+                                    <option value="${rewardOption.key}">${rewardOption.value.title} ($${rewardOption.value.price})</option>
                                 </g:each>
                             </select>
                         </div>

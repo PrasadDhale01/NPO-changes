@@ -6,6 +6,9 @@ $(function() {
         style: 'btn btn-sm btn-default'
     });
 
+    $('.multiselect').multiselect({
+    });
+
     /* Validate form on submit. */
     var validator = $('form').validate({
         rules: {

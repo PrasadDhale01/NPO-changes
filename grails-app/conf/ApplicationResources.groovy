@@ -22,7 +22,7 @@ modules = {
         resource url: 'https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js'
     }
     fedujs {
-        dependsOn 'corejs', 'bootstrapselectjs', 'jqueryvalidate'
+        dependsOn 'corejs', 'bootstrapselectjs', 'bootstrapmultiselectjs', 'jqueryvalidate'
         resource url: 'js/fedu.js'
     }
     googleanalytics {
@@ -30,6 +30,9 @@ modules = {
     }
     bootstrapselectjs {
         resource url: 'https://silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js'
+    }
+    bootstrapmultiselectjs {
+        resource url: 'http://davidstutz.github.io/bootstrap-multiselect/js/bootstrap-multiselect.js'
     }
     blacknwhitejs {
         dependsOn 'corejs'
@@ -99,7 +102,7 @@ modules = {
         resource url: 'https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css'
     }
     feducss {
-        dependsOn 'bootswatchcss', 'bootstrapselectcss', 'fontawesomecss'
+        dependsOn 'bootswatchcss', 'bootstrapselectcss', 'bootstrapmultiselectcss', 'fontawesomecss'
         resource url: 'css/fedu.css'
     }
     timelinecss {
@@ -111,6 +114,9 @@ modules = {
     }
     bootstrapselectcss {
         resource url: 'https://silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css'
+    }
+    bootstrapmultiselectcss {
+        resource url: 'http://davidstutz.github.io/bootstrap-multiselect/css/bootstrap-multiselect.css'
     }
     bootstrapsocialcss {
         /* http://lipis.github.io/bootstrap-social/ */

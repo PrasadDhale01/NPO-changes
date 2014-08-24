@@ -16,7 +16,7 @@
 
 	<div class="row featurette">
 		<div class="col-md-4">
-			<img class="featurette-image img-responsive pull-left" src="images/fedurayswhite.jpg" alt="Fund Project">
+			<img class="featurette-image img-responsive pull-left" src="images/crowdera.jpg" alt="Fund Project">
 		</div>
 		<div class="col-md-8">
 			<h2 class="featurette-heading">FUND PROJECT. <span class="text-muted">Connect Contribute & Repeat.</span></h2>

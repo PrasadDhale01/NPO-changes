@@ -45,11 +45,11 @@ h1, h2, h3, h4, h5, h6 {
 /* Home
 ------------------------- */
 .jumbotron {
-    background: url(http://spring.io/img/homepage-bg.jpg);
+    background: url(http://www.freevector.com/site_media/preview_images/FreeVector-Diamond-Blur-Background-Image.jpg);
     /* height: 350px; */
-    min-height: 400px;
-    background-color: #530031;
-    color: white;
+    min-height: 200px;
+    background-color: #ffffff;
+    color: #000000;
 }
 
 .jumbotron h1 {

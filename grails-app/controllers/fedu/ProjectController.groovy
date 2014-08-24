@@ -325,10 +325,6 @@ class ProjectController {
         project.created = new Date()
         project.beneficiary = beneficiary
 
-        params.rewards.each() { rewardId ->
-            project.addToRewards(Reward.findById(rewardId))
-        }
-
         if (project.save()) {
             render (view: 'create/justcreated', model: [project: project])
         } else {

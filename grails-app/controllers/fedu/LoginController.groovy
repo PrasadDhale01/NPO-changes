@@ -79,7 +79,7 @@ class LoginController {
         }
 
         if (user.save()) {
-            flash.message = "Profile updated successfully"
+            flash.message = "Profile updated successfully!"
         } else {
             flash.message = "Error while updating user. Please try again later"
         }

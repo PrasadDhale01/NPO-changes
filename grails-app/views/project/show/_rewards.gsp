@@ -35,7 +35,7 @@
                         <p class="list-group-item-text text-justify">${backers} backer(s)</p>
                     </div>
                 </g:else>
-            </g:each>
+	    </g:each>
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 <div>
-    <h1>FEDU</h1>
+    <h1>Crowdera</h1>
 
     <h3>A global platform to create and fund indigenous educational projects</h3>
 
@@ -7,5 +7,5 @@
             id="${code}">Click this link to reset your password</g:link>
 
     <p>If you didn't ask to create your password, don't worry! Your account is still safe and you can delete this email.</p>
-    <p>~FEDU Team~</p>
+    <p>~Crowdera Team~</p>
 </div>

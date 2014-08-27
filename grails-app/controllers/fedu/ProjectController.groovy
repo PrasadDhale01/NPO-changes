@@ -182,7 +182,7 @@ class ProjectController {
     @Secured(['ROLE_ADMIN'])
     def bulkimport() {
         CommonsMultipartFile projectSpreadsheet = request.getFile(FORMCONSTANTS.PROJECTSEXCEL)
-
+        
         if (projectSpreadsheet.isEmpty()) {
             flash.message = "Please choose a file and try again."
             redirect(action: 'importprojects')

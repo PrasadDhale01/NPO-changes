@@ -37,7 +37,7 @@ class ProjectController {
         PROJECTSEXCEL: 'projectsExcel'
     ]
 
-	def list = {
+    def list = {
 		render (view: 'list/index', model: [projects: Project.list()])
 	}
 

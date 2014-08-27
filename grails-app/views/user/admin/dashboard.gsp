@@ -52,6 +52,21 @@
                 </div>
             </div>
         </div>
+        
+	<div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <i class="fa fa-gift fa-lg"></i> Manage all the shipping pending items here.
+                    </div>
+                    <div class="panel-footer">
+                        <g:link controller="reward" action="shipping">
+                            <button class="btn btn-block btn-primary"><i class="fa fa-gift fa-lg"></i> Manage shipping pending items</button>
+                        </g:link>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>

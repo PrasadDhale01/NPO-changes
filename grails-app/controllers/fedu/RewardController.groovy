@@ -5,6 +5,7 @@ import grails.plugin.springsecurity.annotation.Secured
 @Secured(['ROLE_ADMIN'])
 class RewardController {
     def rewardService
+    def contributionService
 
     def list() {
         def rewards = rewardService.getNonObsoleteRewards()
@@ -32,5 +33,18 @@ class RewardController {
             flash.error = "Couldn't find that reward"
         }
         redirect action: 'list'
+    }
+
+    def shipping() {
+        def contributions = contributionService.getShippingDoneItems()
+        def contribution = contributionService.getShippingPendingItems()
+        render (view: 'shipping/index', model: [contribution: contribution, contributions: contributions])
+    }
+
+    def update() {
+        def contribution = Contribution.get(params.contributionId)
+        contribution.shippingDone = params.shippingdone
+        flash.message= "shipping done successfully"
+        redirect action: 'shipping'
     }
 }

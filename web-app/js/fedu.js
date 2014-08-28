@@ -1,5 +1,5 @@
 $(function() {
-    console.log("FEDU is up");
+    console.log("Crowdera is up");
 
     // Decode the blog post HTML so that <p></p> gets recognized.
     var text = $('.blogpost h4').html();

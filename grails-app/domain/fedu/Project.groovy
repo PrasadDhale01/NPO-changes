@@ -41,6 +41,7 @@ class Project {
         image (nullable: true)
         imageUrl (nullable: true)
         rewards (nullable: true)
+        amount (max: 5000 as double)
     }
 
     def beforeInsert() {

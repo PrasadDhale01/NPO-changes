@@ -6,6 +6,11 @@ $(function() {
         style: 'btn btn-sm btn-default'
     });
 
+    $('.multiselect').multiselect({
+        numberDisplayed: 1,
+        nonSelectedText: 'Choose multiple rewards'
+    });
+
     /* Validate form on submit. */
     var validator = $('form').validate({
         rules: {
@@ -25,7 +30,7 @@ $(function() {
                 required: false
             },
             addressLine1: {
-                required: true
+                required: false
             },
             addressLine2: {
                 required: false
@@ -47,11 +52,13 @@ $(function() {
             },
             amount: {
                 required: true,
-                number: true
+                number: true,
+                max: 5000
             },
             days: {
                 required: true,
-                number: true
+                number: true,
+                max: 365
             },
             title: {
                 required: true,
@@ -59,7 +66,8 @@ $(function() {
             },
             story: {
                 required: true,
-                minlength: 10
+                minlength: 10,
+                maxlength: 5000
             }
             /*
             imageUrl: {

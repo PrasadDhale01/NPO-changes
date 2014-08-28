@@ -61,18 +61,18 @@ class ProjectController {
         response.outputStream.close()
     }
 
-	def show() {
-		Project project
-		if (params.int('id')) {
-			project = Project.findById(params.id)
-		} else {
-			project = null
-		}
+    def show() {
+	Project project
+	if (params.int('id')) {
+		project = Project.findById(params.id)
+	} else {
+		project = null
+	}
 
         render (view: 'show/index',
                 model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])
-	}
+    }
 
     @Secured(['ROLE_USER'])
     def savecomment() {
@@ -182,7 +182,6 @@ class ProjectController {
     @Secured(['ROLE_ADMIN'])
     def bulkimport() {
         CommonsMultipartFile projectSpreadsheet = request.getFile(FORMCONSTANTS.PROJECTSEXCEL)
-        
         if (projectSpreadsheet.isEmpty()) {
             flash.message = "Please choose a file and try again."
             redirect(action: 'importprojects')

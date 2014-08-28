@@ -22,7 +22,7 @@ modules = {
         resource url: 'https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js'
     }
     fedujs {
-        dependsOn 'corejs', 'bootstrapselectjs', 'jqueryvalidate'
+        dependsOn 'corejs', 'bootstrapselectjs', 'bootstrapmultiselectjs', 'jqueryvalidate'
         resource url: 'js/fedu.js'
     }
     googleanalytics {
@@ -30,6 +30,9 @@ modules = {
     }
     bootstrapselectjs {
         resource url: 'https://silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js'
+    }
+    bootstrapmultiselectjs {
+        resource url: 'http://davidstutz.github.io/bootstrap-multiselect/js/bootstrap-multiselect.js'
     }
     blacknwhitejs {
         dependsOn 'corejs'
@@ -99,7 +102,7 @@ modules = {
         resource url: 'https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css'
     }
     feducss {
-        dependsOn 'bootswatchcss', 'bootstrapselectcss', 'fontawesomecss'
+        dependsOn 'bootswatchcss', 'bootstrapselectcss', 'bootstrapmultiselectcss', 'fontawesomecss'
         resource url: 'css/fedu.css'
     }
     timelinecss {
@@ -112,13 +115,16 @@ modules = {
     bootstrapselectcss {
         resource url: 'https://silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css'
     }
+    bootstrapmultiselectcss {
+        resource url: 'http://davidstutz.github.io/bootstrap-multiselect/css/bootstrap-multiselect.css'
+    }
     bootstrapsocialcss {
         /* http://lipis.github.io/bootstrap-social/ */
         dependsOn 'bootswatchcss', 'fontawesomecss'
         resource url: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.2.1/bootstrap-social.min.css'
     }
     bootswatchcss {
-        dependsOn 'bootswatchyeticss'
+        dependsOn 'bootswatchsimplexcss'
     }
     tableclothcss {
         dependsOn 'bootswatchcss'
@@ -132,6 +138,12 @@ modules = {
         resource url: 'bootswatch-yeti/bootstrap.css'
         resource url: 'bootswatch-yeti/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
         resource url: 'bootswatch-yeti/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
+    }
+    bootswatchsimplexcss {
+        dependsOn 'lessjs'
+        resource url: 'http://bootswatch.com/simplex/bootstrap.css'
+        resource url: 'http://bootswatch.com/simplex/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
+        resource url: 'http://bootswatch.com/simplex/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
     /*
     bootswatchjournalcss {
@@ -151,12 +163,6 @@ modules = {
         resource url: 'http://bootswatch.com/flatly/bootstrap.css'
         resource url: 'http://bootswatch.com/flatly/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
         resource url: 'http://bootswatch.com/flatly/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
-    }
-    bootswatchsimplexcss {
-        dependsOn 'lessjs'
-        resource url: 'http://bootswatch.com/simplex/bootstrap.css'
-        resource url: 'http://bootswatch.com/simplex/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
-        resource url: 'http://bootswatch.com/simplex/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
     bootswatchspacelabcss {
         dependsOn 'lessjs'

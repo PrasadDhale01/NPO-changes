@@ -146,7 +146,7 @@ class CommunityController {
             async true
             to user.email
             from "info@fedu.org"
-            subject "FEDU - Invitation to join community"
+            subject "Crowdera - Invitation to join community"
             html g.render(template: 'manager/communityinviteemailtemplate',
                 model: [code: invite.inviteCode, community: community, user: user])
         }

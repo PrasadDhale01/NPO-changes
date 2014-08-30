@@ -205,6 +205,13 @@ quartz {
     jdbcStore = false
 }
 
+aws {
+    domain = "s3.amazonaws.com"
+    accessKey = "AKIAIAZDDDNXF3WLSRXQ"
+    secretKey = "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"
+    bucketName = "crowdera"
+}
+
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'fedu.User'

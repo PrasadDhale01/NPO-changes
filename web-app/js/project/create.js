@@ -6,6 +6,11 @@ $(function() {
         style: 'btn btn-sm btn-default'
     });
 
+    $('.multiselect').multiselect({
+        numberDisplayed: 1,
+        nonSelectedText: 'Choose multiple rewards'
+    });
+
     /* Validate form on submit. */
     var validator = $('form').validate({
         rules: {
@@ -47,7 +52,8 @@ $(function() {
             },
             amount: {
                 required: true,
-                number: true
+                number: true,
+                max: 5000
             },
             days: {
                 required: true,

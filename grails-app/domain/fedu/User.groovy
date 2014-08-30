@@ -17,7 +17,10 @@ class User {
     String confirmCode
     String resetCode
 
-	boolean enabled = true
+    Date dateCreated
+    Date lastUpdated
+
+    boolean enabled = true
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired

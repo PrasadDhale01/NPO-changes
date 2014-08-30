@@ -5,7 +5,7 @@
 		<img class="img-circle" src="http://placehold.it/140&text=A" alt="Generic placeholder image">
 		<h2>Ask</h2>
 		<p>If you or someone you know wants to learn, you can create a
-			profile and connect with a FEDU representative to complete the
+			profile and connect with a Crowdera representative to complete the
 			validation process.</p>
 		<p>
 			<a class="btn btn-default" href="#" role="button">View details &raquo;</a>

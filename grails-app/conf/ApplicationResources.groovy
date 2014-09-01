@@ -133,12 +133,6 @@ modules = {
     }
 
     /* Bootswatch themes; use any one. */
-    bootswatchyeticss {
-        dependsOn 'lessjs'
-        resource url: 'bootswatch-yeti/bootstrap.css'
-        resource url: 'bootswatch-yeti/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
-        resource url: 'bootswatch-yeti/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
-    }
     bootswatchsimplexcss {
         dependsOn 'lessjs'
         resource url: 'http://bootswatch.com/simplex/bootstrap.css'
@@ -146,11 +140,23 @@ modules = {
         resource url: 'http://bootswatch.com/simplex/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
     /*
+    bootswatchyeticss {
+        dependsOn 'lessjs'
+        resource url: 'bootswatch-yeti/bootstrap.css'
+        resource url: 'bootswatch-yeti/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
+        resource url: 'bootswatch-yeti/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
+    }
     bootswatchjournalcss {
         dependsOn 'lessjs'
         resource url: 'http://bootswatch.com/journal/bootstrap.css'
         resource url: 'http://bootswatch.com/journal/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
         resource url: 'http://bootswatch.com/journal/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
+    }
+    bootswatchceruleancss {
+        dependsOn 'lessjs'
+        resource url: 'http://bootswatch.com/cerulean/bootstrap.css'
+        resource url: 'http://bootswatch.com/cerulean/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
+        resource url: 'http://bootswatch.com/cerulean/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
     bootswatchdarklycss {
         dependsOn 'lessjs'

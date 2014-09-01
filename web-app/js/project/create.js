@@ -63,9 +63,9 @@ $(function() {
                 minlength: 10,
                 maxlength: 5000
             },
-		    thumbnail: {
+            thumbnail: {
                 required: true
-			}
+            }
             /*
             imageUrl: {
                 url: true

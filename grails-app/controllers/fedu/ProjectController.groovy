@@ -3,12 +3,14 @@ package fedu
 import grails.plugin.springsecurity.annotation.Secured
 import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.apache.poi.ss.usermodel.Workbook
+import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.grails.plugins.excelimport.ExcelImportService
 
 class ProjectController {
     def userService
     def excelImportService
+    def rewardService
 
     def FORMCONSTANTS = [
         /* Beneficiary */
@@ -37,7 +39,7 @@ class ProjectController {
         PROJECTSEXCEL: 'projectsExcel'
     ]
 
-    def list = {
+	def list = {
 		render (view: 'list/index', model: [projects: Project.list()])
 	}
 
@@ -61,18 +63,18 @@ class ProjectController {
         response.outputStream.close()
     }
 
-    def show() {
-	Project project
-	if (params.int('id')) {
-		project = Project.findById(params.id)
-	} else {
-		project = null
-	}
+	def show() {
+		Project project
+		if (params.int('id')) {
+			project = Project.findById(params.id)
+		} else {
+			project = null
+		}
 
         render (view: 'show/index',
                 model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])
-    }
+	}
 
     @Secured(['ROLE_USER'])
     def savecomment() {
@@ -132,7 +134,8 @@ class ProjectController {
         ]
 
         def rewardOptions = [:]
-        Reward.list().each {
+        def rewards = rewardService.getNonObsoleteRewards()
+        rewards.each {
             rewardOptions.put(it.id, it)
         }
 
@@ -181,7 +184,9 @@ class ProjectController {
 
     @Secured(['ROLE_ADMIN'])
     def bulkimport() {
-        CommonsMultipartFile projectSpreadsheet = request.getFile(FORMCONSTANTS.PROJECTSEXCEL)
+        MultipartHttpServletRequest multipartRequest = request
+        CommonsMultipartFile projectSpreadsheet = multipartRequest.getFile(FORMCONSTANTS.PROJECTSEXCEL)
+
         if (projectSpreadsheet.isEmpty()) {
             flash.message = "Please choose a file and try again."
             redirect(action: 'importprojects')
@@ -319,10 +324,6 @@ class ProjectController {
         project.image = thumbnail
         project.created = new Date()
         project.beneficiary = beneficiary
-
-        params.rewards.each() { rewardId ->
-            project.addToRewards(Reward.findById(rewardId))
-        }
 
         if (project.save()) {
             render (view: 'create/justcreated', model: [project: project])

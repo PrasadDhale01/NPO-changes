@@ -13,9 +13,14 @@ class RewardController {
     }
 
     def save() {
-        new Reward(params).save(failOnError: true)
-        flash.message = 'Successfully created a new reward'
-        redirect action: 'list'
+        def reward = new Reward(params)
+
+        if(reward.save()) {
+            flash.message = 'Successfully created a new reward'
+            redirect action: 'list'
+        } else {
+            render(view: 'list/rewarderror', model: [reward: reward])
+        }
     }
 
     def delete() {

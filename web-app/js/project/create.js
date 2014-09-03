@@ -53,6 +53,7 @@ $(function() {
             amount: {
                 required: true,
                 number: true,
+                maxlength: 4,
                 max: 5000
             },
             days: {

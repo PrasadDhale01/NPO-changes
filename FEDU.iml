@@ -94,6 +94,11 @@
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi-ooxml-schemas/3.7/poi-ooxml-schemas-3.7.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi-ooxml/3.7/poi-ooxml-3.7.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/apache/poi/poi/3.7/poi-3.7.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-simple/3.0.0.RELEASE/grails-datastore-simple-3.0.0.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-gorm/3.0.0.RELEASE/grails-datastore-gorm-3.0.0.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/javassist/javassist/3.17.1-GA/javassist-3.17.1-GA.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-core/3.0.0.RELEASE/grails-datastore-core-3.0.0.RELEASE.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

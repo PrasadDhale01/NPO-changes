@@ -18,7 +18,7 @@
         Install Grails
         <ul>
             <li>
-                $ gvm install grails 2.3.6
+                $ gvm install grails 2.3.8
             </li>
         </ul>
     </li>

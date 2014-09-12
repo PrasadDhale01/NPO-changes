@@ -4,5 +4,5 @@
     </div>
 </g:if>
 <g:else>
-    <g:render template="/project/list/grid" model="['projects': projects]"></g:render>
+    <g:render template="/user/user/grid" model="['projects': projects]"></g:render>
 </g:else>

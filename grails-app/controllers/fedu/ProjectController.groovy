@@ -331,4 +331,35 @@ class ProjectController {
             render (view: 'create/createerror', model: [project: project])
         }
 	}
+
+    @Secured(['ROLE_USER'])
+    def manageproject() {
+        Project project
+        if (params.int('id')) {
+            project = Project.findById(params.id)
+        } else {
+            project = null
+        }
+
+        render (view: 'manageproject/index',
+                model: [project: project,
+                        FORMCONSTANTS: FORMCONSTANTS])
+    }
+
+    @Secured(['ROLE_USER'])
+    def customrewardsave() {
+        def reward = new Reward(params)
+
+        if(reward.save()) {
+            def project= Project.get(params.id)
+            project.addToRewards(reward)
+            reward.obsolete = true
+            flash.message = 'Successfully created a new reward'
+            render (view: 'manageproject/index',
+                    model: [project: project,
+                            FORMCONSTANTS: FORMCONSTANTS])
+        } else {
+            render (view: 'manageproject/error', model: [reward: reward])
+        }
+    }
 }

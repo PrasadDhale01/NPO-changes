@@ -261,7 +261,7 @@ ul.unstyled {
     border-radius: 0;
 
     /* For 'yeti' theme, set this to 26px */
-    /* height: 26px; */
+    height: 26px;
 }
 
 .nav-tabs > li.active > a,

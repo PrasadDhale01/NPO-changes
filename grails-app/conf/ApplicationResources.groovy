@@ -124,7 +124,7 @@ modules = {
         resource url: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.2.1/bootstrap-social.min.css'
     }
     bootswatchcss {
-        dependsOn 'bootswatchsimplexcss'
+        dependsOn 'bootswatchyeticss'
     }
     tableclothcss {
         dependsOn 'bootswatchcss'
@@ -132,19 +132,19 @@ modules = {
         resource url: 'tablecloth/css/tablecloth.css'
     }
 
-    /* Bootswatch themes; use any one. */
-    bootswatchsimplexcss {
-        dependsOn 'lessjs'
-        resource url: 'http://bootswatch.com/simplex/bootstrap.css'
-        resource url: 'http://bootswatch.com/simplex/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
-        resource url: 'http://bootswatch.com/simplex/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
-    }
-    /*
     bootswatchyeticss {
         dependsOn 'lessjs'
         resource url: 'bootswatch-yeti/bootstrap.css'
         resource url: 'bootswatch-yeti/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
         resource url: 'bootswatch-yeti/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
+    }
+    /* Bootswatch themes; use any one. */
+    /*
+    bootswatchsimplexcss {
+        dependsOn 'lessjs'
+        resource url: 'http://bootswatch.com/simplex/bootstrap.css'
+        resource url: 'http://bootswatch.com/simplex/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
+        resource url: 'http://bootswatch.com/simplex/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
     bootswatchjournalcss {
         dependsOn 'lessjs'

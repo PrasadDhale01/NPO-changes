@@ -1,25 +1,25 @@
 modules = {
     /* JS */
     lessjs {
-        resource url: 'https://cdnjs.cloudflare.com/ajax/libs/less.js/1.7.0/less.min.js', disposition: 'head'
+        resource url: 'vendor/less/less.min.js', disposition: 'head'
     }
     jquery {
-        resource url: 'https://code.jquery.com/jquery-2.1.0.js'
+        resource url: 'vendor/jquery/jquery-2.1.0.js'
     }
     handlebarsjs {
-        resource url: 'https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.2/handlebars.min.js'
+        resource url: 'vendor/handlebars/handlebars.min.js'
     }
     underscorejs {
-        resource url: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'
-        resource url: 'https://cdnjs.cloudflare.com/ajax/libs/underscore.string/2.3.3/underscore.string.min.js'
+        resource url: 'vendor/underscore/underscore-min.js'
+        resource url: 'vendor/underscore/underscore.string.min.js'
     }
     corejs {
         dependsOn 'jquery', 'handlebarsjs'
-        resource url: 'https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js'
+        resource url: 'vendor/bootstrap-3.2.0-dist/js/bootstrap.min.js'
     }
     jqueryvalidate {
         dependsOn 'corejs'
-        resource url: 'https://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.js'
+        resource url: 'vendor/jquery.validate/jquery.validate.js'
     }
     fedujs {
         dependsOn 'corejs', 'bootstrapselectjs', 'bootstrapmultiselectjs', 'jqueryvalidate'
@@ -29,10 +29,10 @@ modules = {
         resource url: 'js/ga.js'
     }
     bootstrapselectjs {
-        resource url: 'https://silviomoreto.github.io/bootstrap-select/javascripts/bootstrap-select.js'
+        resource url: 'vendor/bootstrap-select/bootstrap-select.js'
     }
     bootstrapmultiselectjs {
-        resource url: 'http://davidstutz.github.io/bootstrap-multiselect/js/bootstrap-multiselect.js'
+        resource url: 'vendor/bootstrap-multiselect/bootstrap-multiselect.js'
     }
     blacknwhitejs {
         dependsOn 'corejs'
@@ -99,7 +99,7 @@ modules = {
 
     /* CSS */
     fontawesomecss {
-        resource url: 'https://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.css'
+        resource url: 'vendor/font-awesome-4.2.0/css/font-awesome.min.css'
     }
     feducss {
         dependsOn 'bootswatchcss', 'bootstrapselectcss', 'bootstrapmultiselectcss', 'fontawesomecss'
@@ -110,18 +110,18 @@ modules = {
         resource url: 'css/timeline.css'
     }
     bootstrapcss {
-        resource url: 'https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css'
+        resource url: 'vendor/bootstrap-3.2.0-dist/css/bootstrap.min.css'
     }
     bootstrapselectcss {
-        resource url: 'https://silviomoreto.github.io/bootstrap-select/stylesheets/bootstrap-select.css'
+        resource url: 'vendor/bootstrap-select/bootstrap-select.css'
     }
     bootstrapmultiselectcss {
-        resource url: 'http://davidstutz.github.io/bootstrap-multiselect/css/bootstrap-multiselect.css'
+        resource url: 'vendor/bootstrap-multiselect/bootstrap-multiselect.css'
     }
     bootstrapsocialcss {
         /* http://lipis.github.io/bootstrap-social/ */
         dependsOn 'bootswatchcss', 'fontawesomecss'
-        resource url: 'https://cdnjs.cloudflare.com/ajax/libs/bootstrap-social/4.2.1/bootstrap-social.min.css'
+        resource url: 'vendor/bootstrap-social/bootstrap-social.min.css'
     }
     bootswatchcss {
         dependsOn 'bootswatchyeticss'

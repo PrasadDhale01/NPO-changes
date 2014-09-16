@@ -198,7 +198,7 @@ class ProjectController {
             Workbook workbook = WorkbookFactory.create(projectSpreadsheet.getInputStream())
             projectParamsList = excelImportService.columns(workbook, CONFIG_BOOK_COLUMN_MAP)
         } catch (Exception e) {
-            flash.message = "Error  while importing file: " + e.getMessage()
+            flash.message = "Error while importing file: " + e.getMessage()
             redirect(action: 'importprojects')
             return
         }

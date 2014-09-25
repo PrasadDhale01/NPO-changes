@@ -23,6 +23,7 @@ class Project {
 
 	/* How */
 	String title
+    String sstory
 	String story
     String imageUrl
     Image image
@@ -34,6 +35,7 @@ class Project {
 	boolean validated = false
 
 	static mapping = {
+        sstory type: 'text'
 		story type: 'text'
 	}
 
@@ -42,6 +44,7 @@ class Project {
         imageUrl (nullable: true)
         rewards (nullable: true)
         amount (max: 5000 as double)
+        sstory (nullable: true)
     }
 
     def beforeInsert() {

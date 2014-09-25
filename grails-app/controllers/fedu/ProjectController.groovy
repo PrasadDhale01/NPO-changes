@@ -32,6 +32,7 @@ class ProjectController {
         AMOUNT: 'amount',
         DAYS: 'days',
         TITLE: 'title',
+        SSTORY: 'sstory',
         STORY: 'story',
         THUMBNAIL: 'thumbnail',
         IMAGEURL: 'imageUrl',
@@ -178,7 +179,8 @@ class ProjectController {
             'S': 'city',
             'T': 'stateOrProvince',
             'U': 'postalCode',
-            'V': 'country'
+            'V': 'country',
+            'W': 'sstory'
         ]
     ]
 

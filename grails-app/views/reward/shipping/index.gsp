@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <g:render template="shipping/shippinggrid" model="['contribution': contribution]"></g:render>
+                    <g:render template="shipping/shippinggrid" model="['contribution': shippingPendingItems]"></g:render>
                 </tbody>
             </table>
         </div>
@@ -44,7 +44,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <g:render template="shipping/shippinggrid" model="['contribution': contributions]"></g:render>
+                    <g:render template="shipping/shippinggrid" model="['contribution': shippingDoneItems]"></g:render>
                 </tbody>
             <table>
         </div>

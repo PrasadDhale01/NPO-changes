@@ -36,9 +36,9 @@ class RewardController {
     }
 
     def shipping() {
-        def contributions = contributionService.getShippingDoneItems()
-        def contribution = contributionService.getShippingPendingItems()
-        render (view: 'shipping/index', model: [contribution: contribution, contributions: contributions])
+        def shippingDoneItems = contributionService.getShippingDoneItems()
+        def shippingPendingItems = contributionService.getShippingPendingItems()
+        render (view: 'shipping/index', model: [shippingPendingItems: shippingPendingItems, shippingDoneItems: shippingDoneItems])
     }
 
     def update() {

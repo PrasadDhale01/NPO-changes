@@ -172,6 +172,15 @@
                             <textarea class="form-control" name="${FORMCONSTANTS.STORY}" rows="4"></textarea>
                         </div>
                     </div>
+                     <div class="form-group">
+                        <label class="col-sm-2 control-label">Story</label>
+                        <div class="col-sm-10">
+                            <input type="hidden" class="form-control">  
+                            <ckeditor:editor   name="${FORMCONSTANTS.STORY}"  toolbar="custom" height="200px" width="100%">
+                                ${initialValue}
+                            </ckeditor:editor>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Thumbnail image</label>
                         <div class="col-sm-4">

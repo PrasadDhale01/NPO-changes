@@ -14,20 +14,20 @@ class Project {
 	/* Why */
 	FundRaisingReason fundRaisingReason
 	FundRaisingFor fundRaisingFor
-    Category category
+        Category category
 
 	/* How much & when */
 	double amount
 	int days
-    List contributions
+        List contributions 
 
 	/* How */
 	String title
-    String sstory
+        String sstory
 	String story
-    String imageUrl
-    Image image
-    List rewards
+        String imageUrl
+        Image image
+        List rewards
 
     /* More */
     List comments
@@ -36,7 +36,7 @@ class Project {
 
 	static mapping = {
         sstory type: 'text'
-		story type: 'text'
+	story type: 'text'
 	}
 
     static constraints = {

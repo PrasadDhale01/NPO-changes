@@ -53,6 +53,7 @@ $(function() {
             amount: {
                 required: true,
                 number: true,
+                maxlength: 7,
                 max: 5000
             },
             days: {
@@ -68,6 +69,9 @@ $(function() {
                 required: true,
                 minlength: 10,
                 maxlength: 5000
+            },
+            thumbnail: {
+                required: true
             }
             /*
             imageUrl: {

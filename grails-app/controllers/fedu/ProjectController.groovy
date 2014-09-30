@@ -11,6 +11,7 @@ class ProjectController {
     def userService
     def excelImportService
     def rewardService
+    def projectService
 
     def FORMCONSTANTS = [
         /* Beneficiary */
@@ -45,22 +46,6 @@ class ProjectController {
 
     def listwidget = {
         render (view: 'list/index-no-headerfooter', model: [projects: Project.list()])
-    }
-
-    def thumbnail() {
-        Project project
-        if (params.int('id')) {
-            project = Project.findById(params.id)
-        }
-        if (!project || !project.image) {
-            response.sendError(404)
-            return
-        }
-
-        response.contentType = project.image.contentType
-        response.contentLength = project.image.bytes.size()
-        response.outputStream.write(project.image.bytes)
-        response.outputStream.close()
     }
 
 	def show() {
@@ -292,10 +277,11 @@ class ProjectController {
 
     @Secured(['ROLE_USER'])
     def save() {
-        Image thumbnail
         Project project
         Beneficiary beneficiary
         User user = userService.getCurrentUser()
+        project = new Project(params)
+        beneficiary = new Beneficiary(params)
 
         CommonsMultipartFile thumbnailFile = request.getFile(FORMCONSTANTS.THUMBNAIL)
         // List of OK mime-types
@@ -305,12 +291,10 @@ class ProjectController {
                 render (view: 'create/createerror')
                 return
             } else {
-                thumbnail = new Image(bytes: thumbnailFile.bytes, contentType: thumbnailFile.getContentType()).save()
+                def url = projectService.getImageUrl(thumbnailFile)
+                project.imageUrl = url
             }
         }
-
-        project = new Project(params)
-        beneficiary = new Beneficiary(params)
 
         if (project.fundRaisingFor == Project.FundRaisingFor.OTHER) {
             /* Nothing to do here. */
@@ -321,7 +305,6 @@ class ProjectController {
         }
 
         project.user = user
-        project.image = thumbnail
         project.created = new Date()
         project.beneficiary = beneficiary
 

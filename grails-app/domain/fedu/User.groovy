@@ -13,6 +13,7 @@ class User {
     String firstName
     String lastName
     String email
+    String userImageUrl
 
     String confirmCode
     String resetCode
@@ -35,6 +36,7 @@ class User {
         firstName nullable: true
         lastName nullable: true
         email blank: false, email: true, nullable: true, unique: true
+        userImageUrl nullable: true
 	}
 
 	static mapping = {

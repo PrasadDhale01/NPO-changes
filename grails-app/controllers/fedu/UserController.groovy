@@ -23,4 +23,22 @@ class UserController {
             render view: 'user/dashboard', model: [user: user, projects: projects, contributions: contributions]
         }
     }
+
+    def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
+    def upload_avatar() {
+        def avatarUser = User.get(params.id)
+        def imageFile = request.getFile('avatar')
+
+        if (!imageFile.isEmpty()) {
+            if (!imageFile.isEmpty() && !VALID_IMG_TYPES.contains(imageFile.getContentType())) {
+                flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
+                render (view: 'user/usererror')
+                return
+            } else {
+                def url = userService.getImageUrl(imageFile)
+                avatarUser.userImageUrl = url
+            }
+        }
+        redirect(action:'dashboard') 
+    }
 }

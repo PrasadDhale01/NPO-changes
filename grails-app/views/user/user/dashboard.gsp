@@ -1,6 +1,7 @@
 <g:set var="userService" bean="userService"/>
 <%
     def userCommunities = userService.getCommunitiesUserIn()
+    def imageUrl = user.userImageUrl
 %>
 <html>
 <head>
@@ -11,9 +12,12 @@
 <div class="feducontent">
     <div class="container">
 
-        <h2>User Profile</h2>
+        <h2>User Setting</h2>
         <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
-            <li class="active"><a href="#myprojects" data-toggle="tab">
+            <li class="active"><a href="#myprofile" data-toggle="tab">
+                <span class="glyphicon glyphicon-user"></span> My Profile
+            </a></li>
+            <li><a href="#myprojects" data-toggle="tab">
                 <span class="glyphicon glyphicon-leaf"></span> My Projects
             </a></li>
             <li><a href="#my-contributions" data-toggle="tab">
@@ -30,18 +34,39 @@
                 </a></li>
             </g:if>
             <li><a href="#account-settings" data-toggle="tab">
-                <span class="glyphicon glyphicon-user"></span> Account
+                <span class="fa fa-info-circle"></span> Change Password
             </a></li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
-            <div class="tab-pane active" id="myprojects">
+            <div class="tab-pane active" id="myprofile">
+                <legend>${user.firstName}&nbsp;${user.lastName}</legend>
+                <legend>Email:  ${user.email}</legend>
+                <g:if test="${imageUrl != null}">
+                    <div style="height: 200px; width:200px; overflow: hidden;" class="blacknwhite">
+                        <img alt="Profile Image" style="width: 100%;" src="${imageUrl}">
+                    </div>
+                </g:if>
+                <g:else>
+                    <div style="height: 200px; width:200px; overflow: hidden;" class="blacknwhite">
+                        <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" style="padding: 0; width: 100%;" alt="Upload Photo"/>
+                    </div> 
+                    <g:uploadForm controller="user" action="upload_avatar" id="${user.id}">
+                        <input type="file" name="avatar" id="avatar">
+                        <input type="submit" class="buttons" value="Upload"/>
+                    </g:uploadForm>
+                </g:else>
+            </div>
+            
+            <div class="tab-pane" id="myprojects">
                 <g:render template="user/myprojects"/>
             </div>
+           
             <div class="tab-pane" id="my-contributions">
                 <g:render template="user/mycontributions"/>
             </div>
+           
             <g:if test="${userService.isCommunityManager()}">
                 <div class="tab-pane" id="manage-community">
                     You are a community manager. Please go to <g:link controller="community" action="manage">Manage Communities</g:link>
@@ -68,6 +93,7 @@
                     </g:each>
                 </div>
             </g:if>
+           
             <div class="tab-pane" id="account-settings">
                 <g:render template="common/accountsettings"/>
             </div>

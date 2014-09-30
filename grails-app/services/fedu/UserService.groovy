@@ -2,9 +2,14 @@ package fedu
 
 import grails.transaction.Transactional
 import org.apache.commons.validator.EmailValidator
+import org.springframework.web.multipart.commons.CommonsMultipartFile
+import org.jets3t.service.impl.rest.httpclient.RestS3Service
+import org.jets3t.service.security.AWSCredentials
+import org.jets3t.service.model.*
 
 class UserService {
 
+    def imageFile
     def springSecurityService
     def roleService
 
@@ -27,6 +32,33 @@ class UserService {
             }
         }
         return communities
+    }
+
+    def getImageUrl(CommonsMultipartFile imageFile) {
+        this.imageFile = imageFile
+        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+        def awsSecretKey = "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"
+        def bucketName = "crowdera"
+        def folder = "user-images"
+
+        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+        def s3Service = new RestS3Service(awsCredentials);
+        def s3Bucket = new S3Bucket(bucketName)
+
+        def file = new File("${imageFile.getOriginalFilename()}")
+        def key = "${folder}/${imageFile.getOriginalFilename()}"
+
+        if (!imageFile?.empty && imageFile.size < 1024*1024){
+            imageFile.transferTo(file)
+        }
+
+        def object = new S3Object(file)
+        object.key = key
+        s3Service.putObject(s3Bucket, object)
+        file.delete()
+        def imageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+
+        return imageUrl
     }
 
     def getEmail() {

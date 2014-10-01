@@ -65,6 +65,9 @@ $(function() {
                 required: true,
                 minlength: 5
             },
+            sstory: {
+                required: true
+            },
             story: {
                 required: true,
                 minlength: 10,

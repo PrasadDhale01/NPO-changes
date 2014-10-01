@@ -14,19 +14,20 @@ class Project {
 	/* Why */
 	FundRaisingReason fundRaisingReason
 	FundRaisingFor fundRaisingFor
-    Category category
+        Category category
 
 	/* How much & when */
 	double amount
 	int days
-    List contributions
+        List contributions 
 
 	/* How */
 	String title
+        String sstory
 	String story
-    String imageUrl
-    Image image
-    List rewards
+        String imageUrl
+        Image image
+        List rewards
 
     /* More */
     List comments
@@ -34,7 +35,8 @@ class Project {
 	boolean validated = false
 
 	static mapping = {
-		story type: 'text'
+        sstory type: 'text'
+	story type: 'text'
 	}
 
     static constraints = {
@@ -42,6 +44,7 @@ class Project {
         imageUrl (nullable: true)
         rewards (nullable: true)
         amount (max: 5000 as double)
+        sstory (nullable: true)
     }
 
     def beforeInsert() {

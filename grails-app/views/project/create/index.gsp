@@ -167,9 +167,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Story</label>
+                        <label class="col-sm-2 control-label">Description</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" name="${FORMCONSTANTS.STORY}" rows="4"></textarea>
+                            <textarea class="form-control" name="${FORMCONSTANTS.SSTORY}" rows="2" placeholder="Enter project description"></textarea>
                         </div>
                     </div>
                      <div class="form-group">

@@ -3,6 +3,7 @@ package fedu
 class Contribution {
 
     double amount
+    boolean shippingDone = false
 
     static belongsTo = [user: User, project: Project, reward: Reward, credit: Credit]
 

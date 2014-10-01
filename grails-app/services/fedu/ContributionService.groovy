@@ -12,6 +12,14 @@ class ContributionService {
         return totalContribution
     }
 
+    def getShippingPendingItems() {
+        return Contribution.findAllWhere(shippingDone: false)
+    }
+
+    def getShippingDoneItems() {
+        return Contribution.findAllWhere(shippingDone: true)
+    }
+
     def isFundingAchievedForProject(Project project) {
         if (!project) {
             return null

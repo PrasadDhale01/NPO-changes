@@ -66,6 +66,19 @@ class ProjectService {
 
         return ended
     }
+    def getRemainingDay(Project project) {
+       if (!project) {
+            return null
+       }
+        def day
+        if ((getProjectEndDate(project))>(Calendar.instance)) {
+            day =(getProjectEndDate(project)-Calendar.instance)
+        }
+        else {
+            day =(Calendar.instance-getProjectEndDate(project))
+        }
+        return day
+    }
 
     def getProjectStartDate(Project project) {
         if (!project) {

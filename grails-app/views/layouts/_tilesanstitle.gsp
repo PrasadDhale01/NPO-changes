@@ -11,6 +11,7 @@
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def isFundingOpen = projectService.isFundingOpen(project)
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
+    def day= projectService.getRemainingDay(project)
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
@@ -36,13 +37,13 @@
                     </g:if>
                     <g:else>
                         <div class="col-md-4">
-                            <h6 class="text-center">ENDED<br><span class="lead">${dateFormat.format(endDate.getTime())}</span></h6>
+                            <h6 class="text-center">ENDED</h6>
                         </div>
                     </g:else>
                 </g:if>
                 <g:else>
                     <div class="col-md-4">
-                        <h6 class="text-center">ENDING<br><span class="lead">${dateFormat.format(endDate.getTime())}</span></h6>
+                        <h6 class="text-center">DAYS TO GO<br><span class="lead">${day}</span><br></h6>
                     </div>
                 </g:else>
             </div>

@@ -3,6 +3,7 @@
 <head>
     <meta name="layout" content="main" />
     <r:require modules="projectcreatejs"/>
+    <ckeditor:resources/>
 </head>
 <body>
 <div class="feducontent">

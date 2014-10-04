@@ -285,7 +285,7 @@ class ProjectController {
 
         CommonsMultipartFile thumbnailFile = request.getFile(FORMCONSTANTS.THUMBNAIL)
         // List of OK mime-types
-        if (!thumbnailFile.isEmpty()) {
+        if (!thumbnailFile.isEmpty() && thumbnailFile.size < 1024*1024) {
             if (!thumbnailFile.isEmpty() && !VALID_IMG_TYPES.contains(thumbnailFile.getContentType())) {
                 flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
                 render (view: 'create/createerror')
@@ -294,6 +294,9 @@ class ProjectController {
                 def url = projectService.getImageUrl(thumbnailFile)
                 project.imageUrl = url
             }
+        } else {
+            flash.message = "Size of the image must be less than 1024 * 1024"
+            render (view: 'create/createerror')
         }
 
         if (project.fundRaisingFor == Project.FundRaisingFor.OTHER) {

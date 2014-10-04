@@ -73,10 +73,7 @@ class ProjectService {
         def file = new File("${imageFile.getOriginalFilename()}")
         def key = "${folder}/${imageFile.getOriginalFilename()}"
 
-        if (!imageFile?.empty && imageFile.size < 1024*1024){
-            imageFile.transferTo(file)
-        }
-
+        imageFile.transferTo(file)
         def object = new S3Object(file)
         object.key = key
 

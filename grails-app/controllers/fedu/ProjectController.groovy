@@ -286,7 +286,7 @@ class ProjectController {
         CommonsMultipartFile thumbnailFile = request.getFile(FORMCONSTANTS.THUMBNAIL)
         // List of OK mime-types
         if (!thumbnailFile.isEmpty() && thumbnailFile.size < 1024*1024) {
-            if (!thumbnailFile.isEmpty() && !VALID_IMG_TYPES.contains(thumbnailFile.getContentType())) {
+            if (!VALID_IMG_TYPES.contains(thumbnailFile.getContentType())) {
                 flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
                 render (view: 'create/createerror')
                 return

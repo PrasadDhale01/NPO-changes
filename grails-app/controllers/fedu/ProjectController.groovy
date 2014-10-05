@@ -297,6 +297,7 @@ class ProjectController {
         } else {
             flash.message = "Size of the image must be less than 1024 * 1024"
             render (view: 'create/createerror')
+            return
         }
 
         if (project.fundRaisingFor == Project.FundRaisingFor.OTHER) {

@@ -48,12 +48,10 @@ class UserService {
         def file = new File("${imageFile.getOriginalFilename()}")
         def key = "${folder}/${imageFile.getOriginalFilename()}"
 
-        if (!imageFile?.empty && imageFile.size < 1024*1024){
-            imageFile.transferTo(file)
-        }
-
+        imageFile.transferTo(file)
         def object = new S3Object(file)
         object.key = key
+
         s3Service.putObject(s3Bucket, object)
         file.delete()
         def imageUrl = "https://s3.amazonaws.com/crowdera/${key}"

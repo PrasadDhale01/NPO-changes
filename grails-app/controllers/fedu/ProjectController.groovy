@@ -11,6 +11,7 @@ class ProjectController {
     def userService
     def excelImportService
     def rewardService
+    def projectService
 
     def FORMCONSTANTS = [
         /* Beneficiary */
@@ -46,22 +47,6 @@ class ProjectController {
 
     def listwidget = {
         render (view: 'list/index-no-headerfooter', model: [projects: Project.list()])
-    }
-
-    def thumbnail() {
-        Project project
-        if (params.int('id')) {
-            project = Project.findById(params.id)
-        }
-        if (!project || !project.image) {
-            response.sendError(404)
-            return
-        }
-
-        response.contentType = project.image.contentType
-        response.contentLength = project.image.bytes.size()
-        response.outputStream.write(project.image.bytes)
-        response.outputStream.close()
     }
 
 	def show() {
@@ -294,25 +279,28 @@ class ProjectController {
 
     @Secured(['ROLE_USER'])
     def save() {
-        Image thumbnail
         Project project
         Beneficiary beneficiary
         User user = userService.getCurrentUser()
+        project = new Project(params)
+        beneficiary = new Beneficiary(params)
 
         CommonsMultipartFile thumbnailFile = request.getFile(FORMCONSTANTS.THUMBNAIL)
         // List of OK mime-types
-        if (!thumbnailFile.isEmpty()) {
-            if (!thumbnailFile.isEmpty() && !VALID_IMG_TYPES.contains(thumbnailFile.getContentType())) {
+        if (!thumbnailFile.isEmpty() && thumbnailFile.size < 1024*1024) {
+            if (!VALID_IMG_TYPES.contains(thumbnailFile.getContentType())) {
                 flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
                 render (view: 'create/createerror')
                 return
             } else {
-                thumbnail = new Image(bytes: thumbnailFile.bytes, contentType: thumbnailFile.getContentType()).save()
+                def url = projectService.getImageUrl(thumbnailFile)
+                project.imageUrl = url
             }
+        } else {
+            flash.message = "Size of the image must be less than 1024 * 1024"
+            render (view: 'create/createerror')
+            return
         }
-
-        project = new Project(params)
-        beneficiary = new Beneficiary(params)
 
         if (project.fundRaisingFor == Project.FundRaisingFor.OTHER) {
             /* Nothing to do here. */
@@ -323,7 +311,6 @@ class ProjectController {
         }
 
         project.user = user
-        project.image = thumbnail
         project.created = new Date()
         project.beneficiary = beneficiary
 

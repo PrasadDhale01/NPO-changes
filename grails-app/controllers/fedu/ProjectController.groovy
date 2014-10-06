@@ -201,7 +201,7 @@ class ProjectController {
                     'title': projectParams.title,
                     'error': "Couldn't find user with email: " + projectParams.createdBy
                 ]
-                redirect(action: 'importprojects')
+                render (view: 'import/importerror')
                 return
             }
 
@@ -270,7 +270,7 @@ class ProjectController {
             return
         } else {
             flash.message = "Nothing to import. Please make sure the file contains some valid rows."
-            redirect(action: 'importprojects')
+            render (view: 'import/importerror')
             return
         }
     }

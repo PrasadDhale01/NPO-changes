@@ -20,6 +20,10 @@ class UserService {
         return getCommunitiesUserIn(getCurrentUser())
     }
 
+     def getRequesteUsers() {
+        return User.findAllWhere(enabled:false,confirmed:false)
+    }
+
     def getCommunitiesUserIn(User user) {
         def communities = Community.findAll {
             members {

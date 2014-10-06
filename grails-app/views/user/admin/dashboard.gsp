@@ -3,15 +3,27 @@
     <meta name="layout" content="main" />
 </head>
 <body>
+<g:if test="${flash.message}">
+    <div class="alert alert-info">
+        ${flash.message}
+    </div>
+</g:if>
 <div class="feducontent">
     <div class="container">
 
         <h2><i class="fa fa-unlock"></i> Admin Dashboard</h2>
 
         <h4>Vital Stats</h4>
-        <g:render template="admin/vitals"/>
+        <g:render template="/user/admin/vitals"/>
 
         <hr>
+
+        <div class="btn-group btn-toggle"> 
+            <g:link class="btn btn-primary" action="invite" controller="login">Invite only mode</g:link>
+            <g:link class="btn btn-default active" action="openRegister" controller="login">Open Registration</g:link>
+        </div>
+        
+       <hr>
 
         <h4>Control Panel</h4>
         <div class="row">
@@ -47,6 +59,21 @@
                     <div class="panel-footer">
                         <g:link controller="project" action="importprojects">
                             <button class="btn btn-block btn-primary"><i class="fa fa-gift fa-lg"></i> Bulk Import Projects</button>
+                        </g:link>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <i class="glyphicon glyphicon-user"></i> Manage all the user request's here.
+                    </div>
+                    <div class="panel-footer">
+                        <g:link controller="login" action="list">
+                            <button class="btn btn-block btn-primary"><span class="fa fa-user fa-lg"></span> User Request</button>
                         </g:link>
                     </div>
                 </div>

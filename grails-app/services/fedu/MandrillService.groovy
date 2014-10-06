@@ -7,6 +7,7 @@ import grails.converters.JSON
 
 class MandrillService {
     def grailsApplication
+    def grailsLinkGenerator
 
     def BASE_URL = "https://mandrillapp.com/api/1.0/"
 
@@ -47,5 +48,24 @@ class MandrillService {
         }
 
         return ret
+    }
+
+    private def sendMail(User user) {
+        def link = grailsLinkGenerator.link(controller: 'login', action: 'confirmUser', id: user.inviteCode, absolute: true)
+
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+        ], [
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ], [
+            'name': 'EMAIL',
+            'content': user.email
+        ]]
+
+        def tags = ['admin-invite']
+
+        sendTemplate(user, 'admin_invitation', globalMergeVars, tags)
     }
 }

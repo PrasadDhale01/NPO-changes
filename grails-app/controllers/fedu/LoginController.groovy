@@ -12,6 +12,8 @@ class LoginController {
     def roleService
     def grailsLinkGenerator
 
+    boolean invite_user = false
+
     /**
      * Default action; redirects to 'defaultTargetUrl' if logged in.
      * Look at LoginController.groovy for example.
@@ -27,6 +29,51 @@ class LoginController {
     def facebook_user_denied() {
         render(view: 'error', model: [message: "Can't authenticate using Facebook. Seems like you've canceled Facebook authentication."])
     }
+
+    def user_request(){
+        if (User.findByUsername(params.username)) {
+            render(view: 'error', model: [message: 'A user with that email already exists. Please use a different email.'])
+        } else {
+            def user = new User(params)
+            user.enabled = false
+            user.confirmed = false
+            user.inviteCode = UUID.randomUUID().toString()
+            
+            if (!user.save()) {
+                render(view: 'error', model: [message: 'Problem in saving your details'])
+           } else {
+                render(view: 'success', model: [message: 'Your request has been send to admin.'])
+
+                mailService.sendMail { 
+                async true
+                to user.email
+                from "info@crowdera.org"
+                subject "Crowdera - Registration Request"
+                html g.render(template: 'register/acknowledgetemplate')
+                }
+            }
+        }           
+    } 
+
+    def list() {
+        def users = userService.getRequesteUsers()
+        render(view: 'register/adminViewIndex', model: [users:users])
+    }
+
+    def invite() {
+        invite_user = true
+        flash.message = "You have now switched the registration procedure to invite only mode "
+        render(view: '/user/admin/dashboard')
+        return (invite_user)
+    }
+    
+    def openRegister(){
+        invite_user = false
+        flash.message = "You have switched the registration procedure to open registration mode"
+        render(view: '/user/admin/dashboard')
+        return (invite_user)
+    }  
+
 
     private def sendMandrillEmail(User user) {
         def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm', id: user.confirmCode, absolute: true)
@@ -117,8 +164,68 @@ class LoginController {
     }
 
     def register() {
-        render view: 'register/index'
+        if (invite_user == true){
+            render view: 'register/inviteOnlyMode'
+        } else {
+            render view: 'register/index'
+        }
     }
+
+    def request_accept(){
+        def users = User.get(params.id)
+            users.enabled = true
+            mandrillService.sendMail(users)
+            flash.message = "User Invited"
+            redirect (action:'list')
+        }
+    
+    def delete(){
+        if (params.int('id')) {
+            def users = params.long('id')
+            def query = User.where {
+                id == users
+            }
+            int total = query.deleteAll()
+        }
+        flash.message= "User deleted successfully"
+            redirect (action:'list')
+        }
+
+    def confirmUser(String id) {
+        User users = User.findByInviteCode(id)
+        if (!users) {
+            render(view: 'error', model: [message: 'Problem activating account. Please check your activation link.'])
+        } else {
+            if (users.confirmed) {
+                render(view: 'success', model: [message: 'Your account is successfully activated. It seems like you were already activated.'])
+
+            } else {
+                if (!users.save()) {
+                    render(view: 'error', model: [message: 'Problem activating account. Please contact the administrator.'])
+                } else {
+                    render(view:'register/inviteRegister', model:[users:users])
+                }
+            }
+        }
+    }
+
+    def createAccount() {
+        def users = User.get(params.long('id'))
+         users.password = params.password
+         if (params.firstName || params.lastName) {
+             users.firstName = params.firstName
+             users.lastName = params.lastName
+        }
+        if (users.save()) {
+            users.confirmed = true
+            UserRole.create(users, roleService.userRole())
+            render(view: 'success', model: [message: 'You have successfully registerd'])
+        } else {
+            render(view: 'error', model: [message: 'Problem creating user. Please try again.'])
+        }
+    }
+
+
     def send_reset_email() {
         User user = User.findByUsername(params.username)
 

@@ -14,6 +14,7 @@ class User {
     String lastName
     String email
 
+    String inviteCode
     String confirmCode
     String resetCode
 
@@ -21,6 +22,7 @@ class User {
     Date lastUpdated
 
     boolean enabled = true
+    boolean confirmed = true
 	boolean accountExpired
 	boolean accountLocked
 	boolean passwordExpired
@@ -31,6 +33,7 @@ class User {
 		username blank: false, unique: true
 		password blank: false
         confirmCode nullable: true
+        inviteCode nullable: true
         resetCode nullable: true
         firstName nullable: true
         lastName nullable: true

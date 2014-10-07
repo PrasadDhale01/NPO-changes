@@ -6,7 +6,7 @@
             <h3 class="panel-title">Project Story</h3>
         </div>
         <div class="panel-body">
-            <p>${project.story}</p>
+            <p>${raw(project.story)}</p>
         </div>
     </div>
 </div>

@@ -23,4 +23,27 @@ class UserController {
             render view: 'user/dashboard', model: [user: user, projects: projects, contributions: contributions]
         }
     }
+
+    def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
+    def upload_avatar() {
+        def avatarUser = User.get(params.id)
+        def imageFile = request.getFile('avatar')
+
+        if (!imageFile.isEmpty() && imageFile.size < 1024*1024) {
+            if (!VALID_IMG_TYPES.contains(imageFile.getContentType())) {
+                flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
+                render (view: 'user/usererror')
+                return
+            } else {
+                def url = userService.getImageUrl(imageFile)
+                avatarUser.userImageUrl = url
+            }
+        } else {
+            flash.message = "Size of the image must be less than [1024 * 1024]"
+            render (view: 'user/usererror')
+            return
+        }
+
+        redirect(action:'dashboard') 
+    }
 }

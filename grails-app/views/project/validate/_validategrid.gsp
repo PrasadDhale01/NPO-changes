@@ -18,7 +18,7 @@
                     <% if (index < count) { %>
 	                <li class="col-xs-6 col-md-3">
 			    <g:render template="validate/validatetile" model="['projects': projects.get(index++)]"></g:render>
-                        </li>
+                       </li>
 		    <% } %>
                 </g:each>     
             </ul>       

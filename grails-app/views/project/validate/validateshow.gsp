@@ -56,10 +56,10 @@
                 </div>
             </div>
         </g:if>
-	<g:else>
+ 	 <g:else>
             <h1>Project not found</h1>
 	    <div class="alert alert-danger">Oh snap! Looks like that project doesn't exist.</div>
-	</g:else>
+	 </g:else>
     </div>
 </div>
 </body>

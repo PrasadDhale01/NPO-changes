@@ -42,11 +42,13 @@ class ProjectController {
     ]
 
 	def list = {
-		render (view: 'list/index', model: [projects: Project.list()])
+        def projects = projectService.getValidatedProjects()
+		render (view: 'list/index', model: [projects: projects])
 	}
 
     def listwidget = {
-        render (view: 'list/index-no-headerfooter', model: [projects: Project.list()])
+        def projects = projectService.getValidatedProjects()
+        render (view: 'list/index-no-headerfooter', model: [projects: projects])
     }
 
 	def show() {
@@ -61,6 +63,58 @@ class ProjectController {
                 model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])
 	}
+
+    def validateshow() {
+        def projects = params.int('id')
+        if (params.int('id')) {         
+            projects = Project.findById(params.id)
+            if(projects.validated == false) {
+                render (view: 'validate/validateshow', model: [projects: projects])
+            }
+        }
+    }
+
+    def update() {
+        if (params.int('id')) {
+            def project = params.long('id')
+            def query = Project.where {   
+                id == project 
+            } 
+            int total = query.updateAll(validated: true) 
+        }
+        flash.message= "Project validated successfully"
+        redirect (action:'validateList')
+    }
+
+    def delete() {
+        if (params.int('id')) {
+            def project = params.long('id')
+            def query = Project.where {   
+                id == project 
+            } 
+            int total = query.deleteAll() 
+        }
+        flash.message= "Project deleted successfully"
+        redirect (action:'validateList')
+    }
+   
+    def validate() {
+        Project project
+        if (params.int('id')) {
+            project = Project.findById(params.id)
+            if(project.validated == true){
+                redirect (action:'show')
+            } else {
+                render (view: 'validate/validateerror', model: [projects: project])
+            }       
+        }
+    }  
+    
+    def validateList() {
+        def projects = projectService.getNonValidatedProjects()
+        render(view: 'validate/index', model: [projects: projects])
+    }
+
 
     @Secured(['ROLE_USER'])
     def savecomment() {

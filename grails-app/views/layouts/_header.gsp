@@ -22,7 +22,7 @@
 			<ul class="nav navbar-nav navbar-right">
                 <sec:ifNotLoggedIn>
                     <li><g:link controller="login" action="auth">Login</g:link></li>
-                    <li><a href="${resource(dir: '/login/register')}">Register</a></li>
+                    <li><g:link controller="login" action="register">Register</g:link></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <li class="dropdown">

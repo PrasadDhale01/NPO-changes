@@ -35,10 +35,10 @@
             </g:if>
 
             <div class="form-group">
-                <input type="fn" name="firstName" class="form-control" value="${user.firstName}" placeholder="New First name" autofocus>
+                <input type="fn" name="firstName" required class="form-control" value="${user.firstName}" placeholder="New First name" autofocus>
             </div>
             <div class="form-group">
-                <input type="ln" name="lastName" class="form-control" value="${user.lastName}" placeholder="New Last name">
+                <input type="ln" name="lastName" required class="form-control" value="${user.lastName}" placeholder="New Last name">
             </div>
             <div class="form-group">
                 <input type="password" name="password" class="form-control" placeholder="New Password (Optional)">

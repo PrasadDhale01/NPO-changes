@@ -8,34 +8,33 @@ class Project {
     static hasMany = [contributions: Contribution, comments: ProjectComment, rewards: Reward]
 
     Beneficiary beneficiary
-
     Date created
 
 	/* Why */
-	FundRaisingReason fundRaisingReason
 	FundRaisingFor fundRaisingFor
-        Category category
+    Category category
 
 	/* How much & when */
 	double amount
 	int days
-        List contributions 
+    List contributions 
 
 	/* How */
 	String title
-        String sstory
+    String description
 	String story
-        String imageUrl
-        Image image
-        List rewards
+    String imageUrl
+    Image image
+    List rewards
 
     /* More */
     List comments
+    String charitableId
 
 	boolean validated = false
 
 	static mapping = {
-        sstory type: 'text'
+    description type: 'text'
 	story type: 'text'
 	}
 
@@ -44,7 +43,8 @@ class Project {
         imageUrl (nullable: true)
         rewards (nullable: true)
         amount (max: 5000 as double)
-        sstory (nullable: true)
+        description (nullable: true)
+        charitableId (nullable: true)
     }
 
     def beforeInsert() {
@@ -57,34 +57,22 @@ class Project {
         }
     }
 
-    enum FundRaisingReason {
-        /* Fund raising for self */
-        VOCATIONAL_SCHOOL,
-        TUITION_FEE,
-        SCHOOL_SUPPLIES,
-        STUDENT_LOAN,
-
-        /* Fund raising for other... */
-        SCHOOL_PROJECT,
-        EDUCATE_POOR
-    }
-
     enum FundRaisingFor {
         MYSELF,
         OTHER
     }
 
     enum Category {
-        AGRICULTURE,
-        TECHNOLOGY,
-        ENTREPRENEURSHIP,
-        PRIMARY_EDUCATION,
-        WOMEN_EMPOWERMENT,
-        COLLEGE_ACCESS,
-        SCIENCE,
-        ARTS_CULTURE,
-        SPORTS,
-        LITERACY_LANGUAGE,
+        ANIMALS,
+        ARTS,
+        CHILDREN,
+        COMMUNITY,
+        EDUCATION,
+        ELDERLY,
+        ENVIRONMENT,
+        HEALTH,
+        PUBLIC_SERVICES,
+        RELIGION,
         OTHER
     }
 }

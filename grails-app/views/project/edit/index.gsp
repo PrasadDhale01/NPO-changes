@@ -1,4 +1,7 @@
-<g:set var="userService" bean="userService"/>
+<g:set var="contributionService" bean="contributionService"/>
+<%
+    def percentage = contributionService.getPercentageContributionForProject(project)
+%>
 <html>
 <head>
     <meta name="layout" content="main" />
@@ -8,28 +11,27 @@
 <body>
 <div class="feducontent">
 	<div class="container">
-		<h1><span class="glyphicon glyphicon-leaf"></span> Create Project</h1>
+		<h1><span class="glyphicon glyphicon-edit"></span> Edit Project</h1>
 
-        <g:uploadForm class="form-horizontal" controller="project" action="save" role="form">
+        <g:uploadForm class="form-horizontal" controller="project" action="update" method="post">
+            <input type="hidden" name="_method" value="PUT" id="_method" />
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h3 class="panel-title">Who</h3>
 				</div>
 				<div class="panel-body">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">For</label>
-                        <div class="col-sm-10">
-                            <g:select class="selectpicker" name="${FORMCONSTANTS.FUNDRAISINGFOR}"
-                                      from="${raisingForOptions}"
-                                      optionKey="key" optionValue="value"/>
+				    <div class="form-group">
+                    <label class="col-sm-2 control-label">For</label>
+                        <div class="col-sm-4">
+                            <input id="firstName" class="form-control" name="${FORMCONSTANTS.FUNDRAISINGFOR}" value="${project.fundRaisingFor}" disabled>          
                         </div>
                     </div>
                     <hr>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Charitable ID</label>
                         <div class="col-sm-4">
-                            <input id="charitableId" class="form-control" name="${FORMCONSTANTS.CHARITABLE}">
+                            <input id="charitableId" class="form-control" name="${FORMCONSTANTS.CHARITABLE}" value="${project.charitableId}" disabled>
                          </div>
                     </div>
                     <hr>
@@ -38,42 +40,32 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">First Name</label>
                                 <div class="col-sm-8">
-                                    <input id="firstName" class="form-control" name="${FORMCONSTANTS.FIRSTNAME}">
+                                    <input id="firstName" class="form-control" name="${FORMCONSTANTS.FIRSTNAME}" value="${project.beneficiary.firstName}" disabled>
+                                    <g:hiddenField name="projectId" value="${project.id}"/>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Last Name</label>
                                 <div class="col-sm-8">
-                                    <input id="lastName" class="form-control" name="${FORMCONSTANTS.LASTNAME}">
+                                    <input id="lastName" class="form-control" name="${FORMCONSTANTS.LASTNAME}" value="${project.beneficiary.lastName}" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Gender</label>
                                 <div class="col-sm-8">
-                                    <div class="btn-group btn-group-sm" data-toggle="buttons">
-                                        <label class="btn btn-default">
-                                            <input type="radio" name="${FORMCONSTANTS.GENDER}" value="${genderOptions.MALE}"> Male
-                                        </label>
-                                        <label class="btn btn-default">
-                                            <input type="radio" name="${FORMCONSTANTS.GENDER}" value="${genderOptions.FEMALE}"> Female
-                                        </label>
-                                        <label class="btn btn-default">
-                                            <input type="radio" name="${FORMCONSTANTS.GENDER}" value="${genderOptions.UNSPECIFIED}"> Unspecified
-                                        </label>
-                                    </div>
+                                    <input class="form-control" name="${FORMCONSTANTS.GENDER}" value="${project.beneficiary.gender}" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Email</label>
                                 <div class="col-sm-8">
-                                    <input id="email" type="email" class="form-control" name="${FORMCONSTANTS.EMAIL}">
+                                    <input id="email" type="email" class="form-control" name="${FORMCONSTANTS.EMAIL}" value="${project.beneficiary.email}" disabled>
                                 </div>
-
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Telephone</label>
                                 <div class="col-sm-8">
-                                    <input class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Telephone">
+                                    <input class="form-control" name="${FORMCONSTANTS.TELEPHONE}" value="${project.beneficiary.telephone}" disabled>
                                 </div>
                             </div>
                         </div>
@@ -81,38 +73,37 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Address</label>
                                 <div class="col-sm-10">
-                                    <input type="text" placeholder="Line 1" name="${FORMCONSTANTS.ADDRESSLINE1}" class="form-control">
+                                    <input type="text" name="${FORMCONSTANTS.ADDRESSLINE1}" value="${project.beneficiary.addressLine1}" class="form-control" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Address</label>
                                 <div class="col-sm-10">
-                                    <input type="text" placeholder="Line 2" name="${FORMCONSTANTS.ADDRESSLINE2}" class="form-control">
+                                    <input type="text" name="${FORMCONSTANTS.ADDRESSLINE2}" value="${project.beneficiary.addressLine2}" class="form-control" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">City</label>
                                 <div class="col-sm-10">
-                                    <input type="text" placeholder="City" name="${FORMCONSTANTS.CITY}" class="form-control">
+                                    <input type="text" name="${FORMCONSTANTS.CITY}" value="${project.beneficiary.city}" class="form-control" disabled>
                                 </div>
                             </div>
-
+                            
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">State</label>
                                 <div class="col-sm-4">
-                                    <input type="text" placeholder="State" name="${FORMCONSTANTS.STATEORPROVINCE}" class="form-control">
+                                    <input type="text" name="${FORMCONSTANTS.STATEORPROVINCE}" value="${project.beneficiary.stateOrProvince}" class="form-control" disabled>
                                 </div>
-
                                 <label class="col-sm-2 control-label">Postcode</label>
                                 <div class="col-sm-4">
-                                    <input type="text" placeholder="Postcode" name="${FORMCONSTANTS.POSTALCODE}" class="form-control">
+                                    <input type="text" name="${FORMCONSTANTS.POSTALCODE}" value="${project.beneficiary.postalCode}" class="form-control" disabled>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-2 control-label">Country</label>
                                 <div class="col-sm-10">
-                                    <input type="text" placeholder="Country" name="${FORMCONSTANTS.COUNTRY}" class="form-control">
+                                    <input type="text" name="${FORMCONSTANTS.COUNTRY}" value="${project.beneficiary.country}" class="form-control" disabled>
                                 </div>
                             </div>
                         </div>
@@ -127,10 +118,8 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Category</label>
-                        <div class="col-sm-10">
-                            <g:select class="selectpicker" name="${FORMCONSTANTS.CATEGORY}"
-                                      from="${categoryOptions}"
-                                      optionKey="key" optionValue="value"/>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="${FORMCONSTANTS.CATEGORY}" value="${project.category}" disabled/>
                         </div>
                     </div>
                 </div>
@@ -143,13 +132,13 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Amount</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" placeholder="Amount">
+                            <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" value="${project.amount}" disabled>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">In days</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="${FORMCONSTANTS.DAYS}" placeholder="Days">
+                            <input class="form-control" name="${FORMCONSTANTS.DAYS}" value="${project.days}" disabled>
                         </div>
                     </div>
                 </div>
@@ -163,44 +152,34 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Project title</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="${FORMCONSTANTS.TITLE}" placeholder="Enter project title">
+                            <input class="form-control" name="${FORMCONSTANTS.TITLE}" value="${project.title}" disabled>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Description</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Enter project description"></textarea>
+                            <textarea class="form-control" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Enter project description"> ${project.description} </textarea>
                         </div>
                     </div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <label class="col-sm-2 control-label">Story</label>
                         <div class="col-sm-10">
                             <input type="hidden" class="form-control">  
-                            <ckeditor:editor   name="${FORMCONSTANTS.STORY}"  toolbar="custom" height="200px" width="100%">
-                                ${initialValue}
+                            <ckeditor:editor   name="${FORMCONSTANTS.STORY}" toolbar="custom" height="200px" width="100%">
+                                ${project.story}
                             </ckeditor:editor>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Thumbnail image</label>
                         <div class="col-sm-4">
-                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}">
+                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}" disabled>
                             <p class="help-block">Please upload a thumbnail image for project.</p>
                         </div>
                         <div class="col-sm-4">
                             <input class="hidden" name="${FORMCONSTANTS.IMAGEURL}" placeholder="Image URL">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Rewards</label>
-                        <div class="col-sm-10">
-                            <select class="multiselect" name="${FORMCONSTANTS.REWARDS}" multiple="multiple">
-                                <g:each in="${rewardOptions}" var="rewardOption">
-                                    <option value="${rewardOption.key}">${rewardOption.value.title} ($${rewardOption.value.price})</option>
-                                </g:each>
-                            </select>
-                        </div>
-                    </div>
+                    </div>                
                 </div>
             </div>
 
@@ -210,9 +189,9 @@
                 </div>
                 <div class="panel-body">
 		            <div class="form-group">
-                        <label class="col-sm-2 control-label">All cool?</label>
+                        <label class="col-sm-2 control-label">Save changes?</label>
 		                <div class="col-sm-10">
-		                    <button type="submit" class="btn btn-primary">Create Project</button>
+		                    <button type="submit" name="_action_update" value="Update" class="btn btn-primary">Save</button>
 		                </div>
 		            </div>
                 </div>

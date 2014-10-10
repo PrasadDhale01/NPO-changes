@@ -65,11 +65,11 @@
             </div>
         </div>
         
-	<div class="row">
+	    <div class="row">
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <i class="fa fa-gift fa-lg"></i> Manage all the shipping pending items here.
+                        <i class="fa fa-gift fa-lg"></i> Manage all shipping pending items here.
                     </div>
                     <div class="panel-footer">
                         <g:link controller="reward" action="shipping">
@@ -78,9 +78,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row">
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
@@ -89,6 +86,18 @@
                     <div class="panel-footer">
                         <g:link controller="login" action="list">
                             <button class="btn btn-block btn-primary"><span class="fa fa-user fa-lg"></span> User Request</button>
+                        </g:link>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <i class="glyphicon glyphicon-check"></i> Validate all projects here.
+                    </div>
+                    <div class="panel-footer">
+                        <g:link controller="project" action="validateList">
+                            <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-check"></i> Validate Project </button>
                         </g:link>
                     </div>
                 </div>

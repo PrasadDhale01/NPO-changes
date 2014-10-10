@@ -25,6 +25,7 @@ Expects the parent containers to be like so:
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
+<g:if test="${project.validated}">
 <div class="fedu thumbnail grow" style="padding: 0">
     <div style="height: 200px; overflow: hidden;" class="blacknwhite">
         <g:link controller="project" action="show" id="${project.id}" title="${project.title}">
@@ -80,3 +81,4 @@ Expects the parent containers to be like so:
         </div>
     </g:else>
 </div>
+</g:if>

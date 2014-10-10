@@ -19,6 +19,14 @@ class ProjectService {
         return Project.count()
     }
 
+    def getValidatedProjects() {
+        return Project.findAllWhere(validated: true)
+    }
+
+    def getNonValidatedProjects() {
+        return Project.findAllWhere(validated: false)
+    }
+
     def getBeneficiaryName(Project project) {
         def name
         if (project.fundRaisingFor == Project.FundRaisingFor.MYSELF) {

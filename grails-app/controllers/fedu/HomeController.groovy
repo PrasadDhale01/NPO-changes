@@ -1,8 +1,10 @@
 package fedu
 
 class HomeController {
+	def projectService
 
     def index() {
-        return [projects: Project.list()]
+    	def projects = projectService.getValidatedProjects()
+        return [projects: projects]
     }
 }

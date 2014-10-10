@@ -154,7 +154,7 @@ class ProjectService {
                 amount: 600,
                 days: 600,
                 fundRaisingFor: Project.FundRaisingFor.MYSELF,
-                category: Project.Category.EDUCATION,
+                category: Project.Category.ENVIRONMENT,
                 title: 'Machine Learning',
                 story: 'Machine learning is going to change the world for ever.',
                 validated: true,

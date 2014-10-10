@@ -26,11 +26,10 @@
 		        <tbody>
 			    <tr class="active">	
 			        <td class="text-justify">${projectService.getBeneficiaryName(projects)}</td>
-				<td class="text-justify">${projects.sstory}</td>
-				<td class="text-justify">${projects.story}</td>
-				<td class="text-justify">${projects.created}</td>  
-				<td class="text-justify">${projects.fundRaisingFor}</td>
-			        <td class="text-justify">${projects.fundRaisingReason}</td>  
+                    <td class="text-justify">${raw(projects.description)}</td>
+                    <td class="text-justify">${raw(projects.story)}</td>
+                    <td class="text-justify">${projects.created}</td>
+                    <td class="text-justify">${projects.fundRaisingFor}</td>
 			        <td class="text-justify">${projects.category}</td>
 			    </tr>
 		       </tbody>
@@ -44,7 +43,7 @@
 		    </div>
 		    <div class="row">
 		        <div class="col-md-6">
-		            <g:link controller="project" action="update" id="${projects.id}" class="btn btn-primary btn-lg btn-block" role="button"><i class="glyphicon glyphicon-check" style="width:175"></i>&nbsp;Validate</g:link>  
+		            <g:link controller="project" action="updateValidation" id="${projects.id}" class="btn btn-primary btn-lg btn-block" role="button"><i class="glyphicon glyphicon-check" style="width:175"></i>&nbsp;Validate</g:link>
 		        </div>
 		        <div class="col-md-6">
 		             <g:form action="delete" controller="project" id="${projects.id}" method="post" >

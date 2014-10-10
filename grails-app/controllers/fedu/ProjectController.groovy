@@ -74,7 +74,7 @@ class ProjectController {
         }
     }
 
-    def update() {
+    def updateValidation() {
         if (params.int('id')) {
             def project = params.long('id')
             def query = Project.where {   

@@ -50,14 +50,14 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Gender</label>
                                 <div class="col-sm-8">
-                                    <div class="btn-group btn-group-sm" data-toggle="buttons">
-                                        <label class="btn btn-default">
+                                    <div>
+                                        <label>
                                             <input type="radio" name="${FORMCONSTANTS.GENDER}" value="${genderOptions.MALE}"> Male
                                         </label>
-                                        <label class="btn btn-default">
+                                        <label>
                                             <input type="radio" name="${FORMCONSTANTS.GENDER}" value="${genderOptions.FEMALE}"> Female
                                         </label>
-                                        <label class="btn btn-default">
+                                        <label>
                                             <input type="radio" name="${FORMCONSTANTS.GENDER}" value="${genderOptions.UNSPECIFIED}"> Unspecified
                                         </label>
                                     </div>

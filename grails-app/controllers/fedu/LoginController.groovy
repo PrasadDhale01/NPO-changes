@@ -117,9 +117,13 @@ class LoginController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def update() {
         User user = (User)userService.getCurrentUser()
-        user.firstName = params.firstName
-        user.lastName = params.lastName
-
+        if(params.firstName){ 
+            user.firstName = params.firstName
+        }
+        if(params.lastName){
+            user.lastName = params.lastName
+        }
+        
         /* Password change is optional */
         if (params.password) {
               user.password = params.password
@@ -127,11 +131,10 @@ class LoginController {
 
         if (user.save()) {
             flash.message = "Profile updated successfully!"
+            redirect (controller: 'user', action: 'dashboard')
         } else {
-            flash.message = "Error while updating user. Please try again later"
+           render(view: 'error', model: [message: "Error while updating user. Please try again later."])
         }
-
-        redirect (controller: 'user', action: 'profile')
     }
 
     def success() {

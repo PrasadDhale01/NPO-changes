@@ -19,6 +19,17 @@ class ProjectService {
         return Project.count()
     }
 
+    def search(String query) {
+        List result = []
+        def project = Project.list()
+        project.each { 
+            if( it.title.toLowerCase().contains(query.toLowerCase()) || it.story.toLowerCase().contains(query.toLowerCase()) ){
+                result.add(it)
+            }
+        }
+        return result
+    }
+
     def getBeneficiaryName(Project project) {
         def name
         if (project.fundRaisingFor == Project.FundRaisingFor.MYSELF) {

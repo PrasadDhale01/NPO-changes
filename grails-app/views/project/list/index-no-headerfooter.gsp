@@ -10,7 +10,7 @@
 		<h1> <span class="glyphicon glyphicon-tint"></span> Contribute</h1>
 
         <!-- Search -->
-        <%-- <g:render template="list/search"></g:render> --%>
+        <g:render template="list/search"></g:render>
 
         <!-- Carousel -->
 		<g:render template="list/grid" model="['projects': projects]"></g:render>

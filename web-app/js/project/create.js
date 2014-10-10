@@ -14,6 +14,9 @@ $(function() {
     /* Validate form on submit. */
     var validator = $('form').validate({
         rules: {
+            charitableId: {
+                required: true
+            },
             firstName: {
                 minlength: 2,
                 required: true
@@ -65,8 +68,9 @@ $(function() {
                 required: true,
                 minlength: 5
             },
-            sstory: {
-                required: true
+            description: {
+                required: true,
+                minlength: 10,
             },
             story: {
                 required: true,

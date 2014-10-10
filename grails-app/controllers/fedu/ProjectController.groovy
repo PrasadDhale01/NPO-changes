@@ -26,15 +26,15 @@ class ProjectController {
         STATEORPROVINCE: 'stateOrProvince',
         POSTALCODE: 'postalCode',
         COUNTRY: 'country',
+        CHARITABLE: 'charitableId',
 
-        FUNDRAISINGREASON: 'fundRaisingReason',
         FUNDRAISINGFOR: 'fundRaisingFor',
         CATEGORY: 'category',
         AMOUNT: 'amount',
         DAYS: 'days',
         TITLE: 'title',
-        SSTORY: 'sstory',
         STORY: 'story',
+        DESCRIPTION: 'description',
         THUMBNAIL: 'thumbnail',
         IMAGEURL: 'imageUrl',
         REWARDS: 'rewards',
@@ -83,34 +83,23 @@ class ProjectController {
 
     @Secured(['ROLE_USER'])
 	def create() {
-		def fundRaisingOptions = [
-			(Project.FundRaisingReason.VOCATIONAL_SCHOOL): "Vocation school",
-			(Project.FundRaisingReason.TUITION_FEE): "Tuition fee",
-			(Project.FundRaisingReason.SCHOOL_SUPPLIES): "School supplies",
-			(Project.FundRaisingReason.STUDENT_LOAN): "Student loan",
-
-			/* For raising for other... */
-			(Project.FundRaisingReason.SCHOOL_PROJECT): "School project",
-			(Project.FundRaisingReason.EDUCATE_POOR): "Educating poor"
-		]
-
 		def raisingForOptions = [
             (Project.FundRaisingFor.OTHER): "Someone I know",
 			(Project.FundRaisingFor.MYSELF): "Myself"
 		]
 
         def categoryOptions = [
-            (Project.Category.AGRICULTURE): "Agriculture",
-            (Project.Category.TECHNOLOGY): "Technology",
-            (Project.Category.ENTREPRENEURSHIP): "Entrepreneurship",
-            (Project.Category.SCIENCE): "Science",
-            (Project.Category.LITERACY_LANGUAGE): "Literacy & Language",
-            (Project.Category.SPORTS): "Sports",
-            (Project.Category.ARTS_CULTURE): "Arts & Culture",
-            (Project.Category.PRIMARY_EDUCATION): "Primary Education",
-            (Project.Category.COLLEGE_ACCESS): "College Access",
-            (Project.Category.WOMEN_EMPOWERMENT): "Women Empowerment",
-            (Project.Category.OTHER): "Other"
+            (Project.Category.ANIMALS): "Animals",
+            (Project.Category.ARTS): "Arts",
+            (Project.Category.CHILDREN): "Children",
+            (Project.Category.COMMUNITY): "community",
+            (Project.Category.EDUCATION): "Education",
+            (Project.Category.ELDERLY): "Elderly",
+            (Project.Category.ENVIRONMENT): "Environment",
+            (Project.Category.HEALTH): "Health",
+            (Project.Category.PUBLIC_SERVICES): "Public Services",
+            (Project.Category.RELIGION): "Religion",
+            (Project.Category.OTHER): "Other",
         ]
 
         def genderOptions = [
@@ -126,13 +115,49 @@ class ProjectController {
         }
 
         render (view: 'create/index',
-                model: [fundRaisingOptions: fundRaisingOptions,
-                        raisingForOptions: raisingForOptions,
+                model: [raisingForOptions: raisingForOptions,
                         categoryOptions: categoryOptions,
                         rewardOptions: rewardOptions,
                         genderOptions: genderOptions,
                         FORMCONSTANTS: FORMCONSTANTS])
 	}
+
+    @Secured(['ROLE_USER'])
+    def edit() {
+        def project = Project.get(params.projectId)
+        
+        if (project) {
+            def beneficiary = project.beneficiary
+            render (view: 'edit/index',
+                model: [project: project,
+                        beneficiary: beneficiary,
+                        FORMCONSTANTS: FORMCONSTANTS])
+        } else {
+            flash.message = "project not found."
+            render (view: 'edit/editerror')
+            return
+        }
+    }
+
+    @Secured(['ROLE_USER'])
+    def update() {
+        def project = Project.get(params.projectId)
+        
+        if(project) {
+
+            project.description = params.description
+            project.story = params.story
+        
+            flash.message = "Successfully saved the changes"
+            render (view: 'manageproject/index',
+                    model: [project: project,
+                            FORMCONSTANTS: FORMCONSTANTS])
+        } else {
+            flash.message = "project not found."
+            render (view: 'edit/editerror')
+            return
+        }
+    }
 
     @Secured(['ROLE_ADMIN'])
     def importprojects() {
@@ -146,7 +171,7 @@ class ProjectController {
             'A': 'createdDate',
             'B': 'amount',
             'C': 'days',
-            'D': 'fundRaisingReason',
+            'D': 'description',
             'E': 'fundRaisingFor',
             'F': 'category',
             'G': 'title',
@@ -165,7 +190,6 @@ class ProjectController {
             'T': 'stateOrProvince',
             'U': 'postalCode',
             'V': 'country',
-            'W': 'sstory'
         ]
     ]
 

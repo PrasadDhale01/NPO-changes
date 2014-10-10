@@ -338,7 +338,14 @@ class ProjectController {
     @Secured(['ROLE_USER'])
     def customrewardsave() {
         def reward = new Reward(params)
-
+		int price = Integer.parseInt(params.price)
+		int amount = Double.parseDouble(params.amount)
+		if(price >= amount) {
+			flash.message = "Enter a price less than project amount: ${amount}"
+			render (view: 'manageproject/error', model: [reward: reward])
+			return
+		}
+		
         if(reward.save()) {
             def project= Project.get(params.id)
             project.addToRewards(reward)

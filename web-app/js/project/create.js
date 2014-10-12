@@ -56,7 +56,7 @@ $(function() {
             amount: {
                 required: true,
                 number: true,
-                maxlength: 7,
+                maxlength: 5,
                 max: 50000
             },
             days: {
@@ -85,6 +85,9 @@ $(function() {
                 url: true
             }
             */
+        },
+        messages:{
+            thumbnail:"Please upload a thumbnail image for project"
         },
         errorPlacement: function(error, element) {
         	if ( element.is(":radio") || element.is(":checkbox")) {

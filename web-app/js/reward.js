@@ -1,7 +1,7 @@
 $(function() {
     console.log('reward.js initialized');
 
-    $('form').validate({
+    $('#createRewardModal').find('form').validate({
         rules: {
             title: {
                 minlength: 2,

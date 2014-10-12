@@ -42,7 +42,7 @@ class Project {
         image (nullable: true)
         imageUrl (nullable: true)
         rewards (nullable: true)
-        amount (max: 5000 as double)
+        amount (max: 50000 as double)
         description (nullable: true)
         charitableId (nullable: true)
     }

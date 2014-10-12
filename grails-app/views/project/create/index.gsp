@@ -185,7 +185,6 @@
                         <label class="col-sm-2 control-label">Thumbnail image</label>
                         <div class="col-sm-4">
                             <input type="file" name="${FORMCONSTANTS.THUMBNAIL}">
-                            <p class="help-block">Please upload a thumbnail image for project.</p>
                         </div>
                         <div class="col-sm-4">
                             <input class="hidden" name="${FORMCONSTANTS.IMAGEURL}" placeholder="Image URL">

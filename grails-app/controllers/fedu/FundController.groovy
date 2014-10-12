@@ -4,7 +4,6 @@ import grails.plugin.springsecurity.annotation.Secured
 
 import com.stripe.model.Charge
 
-@Secured(['ROLE_USER'])
 class FundController {
     def contributionService
     def projectService

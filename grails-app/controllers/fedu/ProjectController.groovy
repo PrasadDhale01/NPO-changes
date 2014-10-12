@@ -51,6 +51,22 @@ class ProjectController {
         render (view: 'list/index-no-headerfooter', model: [projects: projects])
     }
 
+    def search () {
+        def query = params.query
+        if(query) {
+            def searchResults = projectService.search(query)
+            if (searchResults.size == 0){
+                flash.message = "No result found.Please check the spelling and try again."
+                redirect(action:list)
+            } else {
+                searchResults.sort{x,y -> x.title<=>y.title ?: x.story<=>y.story}
+                render(view: "list/index", model:[projects: searchResults])
+            }
+        } else {
+            redirect(action: "list")
+        }
+     }
+
 	def show() {
 		Project project
 		if (params.int('id')) {

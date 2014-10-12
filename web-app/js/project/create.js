@@ -85,7 +85,15 @@ $(function() {
                 url: true
             }
             */
-        }
+        },
+        errorPlacement: function(error, element) {
+        	if ( element.is(":radio") || element.is(":checkbox")) {
+        		error.appendTo(element.parent().parent());
+        	}else{
+        		error.insertAfter(element);
+        	}
+        }//end error Placement
+        
     });
 
     /* Click handler for Myself/Someone I Know. */

@@ -50,7 +50,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Gender</label>
                                 <div class="col-sm-8">
-                                    <div class="btn-group btn-group-sm" data-toggle="buttons">
+                                    <div class="btn-group btn-group-sm">
                                         <label class="btn btn-default">
                                             <input type="radio" name="${FORMCONSTANTS.GENDER}" value="${genderOptions.MALE}"> Male
                                         </label>

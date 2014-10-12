@@ -56,7 +56,7 @@ class ProjectController {
         if(query) {
             def searchResults = projectService.search(query)
             if (searchResults.size == 0){
-                flash.message = "No result found.Please check the spelling and try again."
+                flash.message = "No project found matching your input."
                 redirect(action:list)
             } else {
                 searchResults.sort{x,y -> x.title<=>y.title ?: x.story<=>y.story}

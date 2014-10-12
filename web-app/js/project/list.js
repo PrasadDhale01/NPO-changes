@@ -1,4 +1,14 @@
 $(function() {
+    console.log("list.js initialized");
+    
+    var validator = $('form').validate({
+        rules: {
+            query: {
+                minlength: 3,
+                required: true
+            }
+        }
+    });
 });
 
 $(window).load(function() {

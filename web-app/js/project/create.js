@@ -57,7 +57,7 @@ $(function() {
                 required: true,
                 number: true,
                 maxlength: 7,
-                max: 5000
+                max: 50000
             },
             days: {
                 required: true,

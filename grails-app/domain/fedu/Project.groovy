@@ -20,6 +20,7 @@ class Project {
     List contributions 
 
 	/* How */
+	String id
 	String title
     String description
 	String story
@@ -34,7 +35,8 @@ class Project {
 	boolean validated = false
 
 	static mapping = {
-    description type: 'text'
+	id(generator: "uuid")
+	description type: 'text'
 	story type: 'text'
 	}
 

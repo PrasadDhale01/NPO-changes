@@ -10,19 +10,19 @@ class Project {
     Beneficiary beneficiary
     Date created
 
-	/* Why */
-	FundRaisingFor fundRaisingFor
+    /* Why */
+    FundRaisingFor fundRaisingFor
     Category category
 
-	/* How much & when */
-	double amount
-	int days
+    /* How much & when */
+    double amount
+    int days
     List contributions 
 
-	/* How */
-	String title
+    /* How */
+    String title
     String description
-	String story
+    String story
     String imageUrl
     Image image
     List rewards
@@ -31,12 +31,13 @@ class Project {
     List comments
     String charitableId
 
-	boolean validated = false
+    boolean validated = false
 
-	static mapping = {
+    static mapping = {
     description type: 'text'
-	story type: 'text'
-	}
+    story type: 'text'
+    }
+
 
     static constraints = {
         image (nullable: true)

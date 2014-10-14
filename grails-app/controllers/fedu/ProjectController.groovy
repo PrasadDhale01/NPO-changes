@@ -378,7 +378,7 @@ class ProjectController {
         User user = userService.getCurrentUser()
         project = new Project(params)
         beneficiary = new Beneficiary(params)
-
+      
         CommonsMultipartFile thumbnailFile = request.getFile(FORMCONSTANTS.THUMBNAIL)
         // List of OK mime-types
         if (!thumbnailFile.isEmpty() && thumbnailFile.size < 1024*1024) {

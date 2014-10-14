@@ -14,8 +14,8 @@ class FundController {
     def fund() {
         Project project
 
-        if (params.int('projectId')) {
-            project = Project.findById(params.int('projectId'))
+        if (params.projectId) {
+            project = Project.findById(params.projectId)
         }
 
         boolean fundingAchieved = contributionService.isFundingAchievedForProject(project)
@@ -34,8 +34,8 @@ class FundController {
         Project project
         Reward reward
 
-        if (params.int('projectId')) {
-            project = Project.findById(params.int('projectId'))
+        if (params.projectId) {
+            project = Project.findById(params.projectId)
         }
         if (project) {
             if (params.int('rewardId')) {
@@ -65,8 +65,8 @@ class FundController {
         Project project
         Reward reward
 
-        if (params.int('projectId')) {
-            project = Project.findById(params.int('projectId'))
+        if (params.projectId) {
+            project = Project.findById(params.projectId)
         }
 
         if (project) {

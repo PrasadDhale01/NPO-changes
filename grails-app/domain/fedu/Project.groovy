@@ -35,9 +35,8 @@ class Project {
 
 	static mapping = {
     description type: 'text'
-    story type: 'text'
-    }
-
+	story type: 'text'
+	}
 
     static constraints = {
         image (nullable: true)

@@ -32,10 +32,11 @@ class Project {
     String charitableId
 
     boolean validated = false
+    boolean inactive = false
 
     static mapping = {
-    description type: 'text'
-    story type: 'text'
+        description type: 'text'
+        story type: 'text'
     }
 
 

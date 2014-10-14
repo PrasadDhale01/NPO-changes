@@ -4,6 +4,7 @@ import grails.plugin.springsecurity.annotation.Secured
 
 class UserController {
     def userService
+    def projectService
 
     @Secured(['ROLE_ADMIN'])
     def admindashboard() {
@@ -18,9 +19,10 @@ class UserController {
             redirect action: 'admindashboard'
         } else {
             def projects = Project.findAllByUser(user)
+            def project = projectService.getProjects(projects)
             def contributions = Contribution.findAllByUser(user)
-
-            render view: 'user/dashboard', model: [user: user, projects: projects, contributions: contributions]
+            
+            render view: 'user/dashboard', model: [user: user, projects: project, contributions: contributions]
         }
     }
 

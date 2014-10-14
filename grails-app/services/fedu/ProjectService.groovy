@@ -20,11 +20,21 @@ class ProjectService {
     }
 
     def getValidatedProjects() {
-        return Project.findAllWhere(validated: true)
+        return Project.findAllWhere(validated: true,inactive: false)
+    }
+    
+    def getProjects(def projects) {
+        def list = []
+        projects.each {
+            if(it.inactive == false) {
+                list.add(it)           
+            }
+        }
+        return list
     }
 
     def getNonValidatedProjects() {
-        return Project.findAllWhere(validated: false)
+        return Project.findAllWhere(validated: false,inactive: false)
     }
 
     def search(String query) {

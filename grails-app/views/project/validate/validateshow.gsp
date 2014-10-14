@@ -9,7 +9,7 @@
     <div class="container">
         <g:if test="${projects}">
             <div class="row">
-	        <div class="col-md-8">
+	        <div class="col-md-9">
 		    <h1><a href="${projects.id}">${projects.title}</a></h1>
 		    <table class="table table-bordered" style="width:100%">
 		        <thead>
@@ -19,7 +19,6 @@
 			        <th>STORY</th>
 			        <th>CREATED AT</th>
 			        <th>FOR</th>
-			        <th>REASON</th>
 			        <th>CATEGORY</th>
 			    </tr>	
 		        </thead>
@@ -35,7 +34,7 @@
 		       </tbody>
 		   </table>
                 </div>  
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="row">
             	        <div class="col-md-12">
 		            <g:render template="validate/validatetile"/>
@@ -43,11 +42,11 @@
 		    </div>
 		    <div class="row">
 		        <div class="col-md-6">
-		            <g:link controller="project" action="updateValidation" id="${projects.id}" class="btn btn-primary btn-lg btn-block" role="button"><i class="glyphicon glyphicon-check" style="width:175"></i>&nbsp;Validate</g:link>
+		            <g:link controller="project" action="updateValidation" id="${projects.id}" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-check" style="width:175"></i>&nbsp;Validate</g:link>
 		        </div>
 		        <div class="col-md-6">
 		             <g:form action="delete" controller="project" id="${projects.id}" method="post" >
-                                 <button class="btn btn-danger btn-lg btn-block" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to Delete this project?&#39;);" style="width:180"><i class="fa fa-trash-o" ></i>&nbsp;Discard
+                                 <button class="btn btn-danger" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to Delete this project?&#39;);" style="width:180"><i class="fa fa-trash-o" ></i>&nbsp;Discard
                 	         </button>
            		     </g:form>
 		        </div>	

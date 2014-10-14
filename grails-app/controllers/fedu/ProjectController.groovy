@@ -69,7 +69,7 @@ class ProjectController {
 
 	def show() {
 		Project project
-		if (params.int('id')) {
+		if (params.id) {
 			project = Project.findById(params.id)
 		} else {
 			project = null
@@ -81,8 +81,8 @@ class ProjectController {
 	}
 
     def validateshow() {
-        def projects = params.int('id')
-        if (params.int('id')) {         
+        def projects = params.id
+        if (params.id) {         
             projects = Project.findById(params.id)
             if(projects.validated == false) {
                 render (view: 'validate/validateshow', model: [projects: projects])
@@ -91,8 +91,8 @@ class ProjectController {
     }
 
     def updateValidation() {
-        if (params.int('id')) {
-            def project = params.long('id')
+        if (params.id) {
+            def project = params.id
             def query = Project.where {   
                 id == project 
             } 
@@ -116,7 +116,7 @@ class ProjectController {
    
     def validate() {
         Project project
-        if (params.int('id')) {
+        if (params.id) {
             project = Project.findById(params.id)
             if(project.validated == true){
                 redirect (action:'show')
@@ -418,7 +418,7 @@ class ProjectController {
     @Secured(['ROLE_USER'])
     def manageproject() {
         Project project
-        if (params.int('id')) {
+        if (params.id) {
             project = Project.findById(params.id)
         } else {
             project = null

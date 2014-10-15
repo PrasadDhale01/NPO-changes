@@ -129,7 +129,7 @@
                         <label class="col-sm-2 control-label">Category</label>
                         <div class="col-sm-10">
                             <g:select class="selectpicker" name="${FORMCONSTANTS.CATEGORY}"
-                                      from="${categoryOptions}"
+                                      from="${categoryOptions}" value="${FORMCONSTANTS.DEFAULT_CATEGORY}"
                                       optionKey="key" optionValue="value"/>
                         </div>
                     </div>

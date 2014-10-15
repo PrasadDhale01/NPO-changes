@@ -66,11 +66,13 @@ $(function() {
             },
             title: {
                 required: true,
-                minlength: 5
+                minlength: 5,
+                maxlength: 140
             },
             description: {
                 required: true,
                 minlength: 10,
+                maxlength: 140
             },
             story: {
                 required: true,

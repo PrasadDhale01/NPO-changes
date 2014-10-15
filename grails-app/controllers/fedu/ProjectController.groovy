@@ -30,6 +30,7 @@ class ProjectController {
 
         FUNDRAISINGFOR: 'fundRaisingFor',
         CATEGORY: 'category',
+        DEFAULT_CATEGORY: Project.Category.EDUCATION,
         AMOUNT: 'amount',
         DAYS: 'days',
         TITLE: 'title',
@@ -158,7 +159,7 @@ class ProjectController {
             (Project.Category.ANIMALS): "Animals",
             (Project.Category.ARTS): "Arts",
             (Project.Category.CHILDREN): "Children",
-            (Project.Category.COMMUNITY): "community",
+            (Project.Category.COMMUNITY): "Community",
             (Project.Category.EDUCATION): "Education",
             (Project.Category.ELDERLY): "Elderly",
             (Project.Category.ENVIRONMENT): "Environment",

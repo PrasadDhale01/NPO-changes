@@ -92,25 +92,21 @@ class ProjectController {
 
     def updateValidation() {
         if (params.id) {
-            def project = params.id
-            def query = Project.where {   
-                id == project 
-            } 
-            int total = query.updateAll(validated: true) 
-        }
+            def id = params.id
+            def project = Project.get(id)
+            project.validated = true
+        }   
         flash.message= "Project validated successfully"
         redirect (action:'validateList')
     }
 
     def delete() {
         if (params.int('id')) {
-            def project = params.long('id')
-            def query = Project.where {   
-                id == project 
-            } 
-            int total = query.deleteAll() 
+            def id = params.long('id')
+            def project = Project.get(id)
+            project.inactive = true
         }
-        flash.message= "Project deleted successfully"
+        flash.message= "Project discarded successfully"
         redirect (action:'validateList')
     }
    
@@ -378,7 +374,7 @@ class ProjectController {
         User user = userService.getCurrentUser()
         project = new Project(params)
         beneficiary = new Beneficiary(params)
-
+      
         CommonsMultipartFile thumbnailFile = request.getFile(FORMCONSTANTS.THUMBNAIL)
         // List of OK mime-types
         if (!thumbnailFile.isEmpty() && thumbnailFile.size < 1024*1024) {

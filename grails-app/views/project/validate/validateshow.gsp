@@ -46,7 +46,7 @@
 		        </div>
 		        <div class="col-md-6">
 		             <g:form action="delete" controller="project" id="${projects.id}" method="post" >
-                                 <button class="btn btn-danger" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to Delete this project?&#39;);" style="width:180"><i class="fa fa-trash-o" ></i>&nbsp;Discard
+                                 <button class="btn btn-danger" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to discard this project?&#39;);" style="width:180"><i class="fa fa-trash-o" ></i>&nbsp;Discard
                 	         </button>
            		     </g:form>
 		        </div>	

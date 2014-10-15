@@ -81,6 +81,9 @@ $(function() {
             },
             thumbnail: {
                 required: true
+            },
+            videoUrl: {
+                isYoutubeVideo: true
             }
             /*
             imageUrl: {
@@ -100,6 +103,15 @@ $(function() {
         }//end error Placement
         
     });
+
+     $.validator.addMethod('isYoutubeVideo', function (value, element) {
+        if(value && value.length !=0){
+           var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+           return (value.match(p)) ? RegExp.$1 : false;
+        }
+        return false;
+
+     }, "Please upload a url of Youtube video");
 
     /* Click handler for Myself/Someone I Know. */
     /*

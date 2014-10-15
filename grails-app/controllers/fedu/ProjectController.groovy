@@ -39,7 +39,8 @@ class ProjectController {
         THUMBNAIL: 'thumbnail',
         IMAGEURL: 'imageUrl',
         REWARDS: 'rewards',
-        PROJECTSEXCEL: 'projectsExcel'
+        PROJECTSEXCEL: 'projectsExcel',
+        VIDEO:'videoUrl'
     ]
 
 	def list = {

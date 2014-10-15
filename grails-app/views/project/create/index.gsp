@@ -182,15 +182,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Thumbnail image</label>
-                        <div class="col-sm-4">
-                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}">
-                        </div>
-                        <div class="col-sm-4">
-                            <input class="hidden" name="${FORMCONSTANTS.IMAGEURL}" placeholder="Image URL">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-sm-2 control-label">Rewards</label>
                         <div class="col-sm-10">
                             <select class="multiselect" name="${FORMCONSTANTS.REWARDS}" multiple="multiple">
@@ -205,13 +196,35 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
+                    <h3 class="panel-title">Project Images and Video</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Thumbnail image</label>
+                        <div class="col-sm-4">
+                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}">
+                        </div>
+                        <div class="col-sm-4">
+                            <input class="hidden" name="${FORMCONSTANTS.IMAGEURL}" placeholder="Image URL">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Video URL</label>
+                        <div class="col-sm-4">
+                            <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}">
+                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
                     <h3 class="panel-title">Get set, go</h3>
                 </div>
                 <div class="panel-body">
 		            <div class="form-group">
                         <label class="col-sm-2 control-label">All cool?</label>
 		                <div class="col-sm-10">
-		                    <button type="submit" class="btn btn-primary">Create Project</button>
+		                    <button type="submit" class="btn btn-primary">Submit Project</button>
 		                </div>
 		            </div>
                 </div>

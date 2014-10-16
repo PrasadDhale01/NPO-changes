@@ -1,5 +1,7 @@
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-10">
+    </div>
+    <div class="col-md-2">
 	    <div class="input-group">
 		<!--<div class="input-group-btn">
 				<button type="button" class="btn btn-primary dropdown-toggle"
@@ -15,18 +17,10 @@
 			</div> -->
 			<!-- /btn-group -->
 			<g:form action="search" controller="project" id="searchableForm" name="searchableForm">
-			    <div class="row">
-			        <div class="col-md-6">
-			            <input type="text" class="form-control" id="query"  name="query" value="${params.query}"> 
-			        </div>
-			        <div class="col-md-6">
-			            <span class="input-group-btn">
-				        <button class="btn btn-default">
-				            <i class="glyphicon glyphicon-search"></i>
-				        </button>
-			            </span>
-			        </div>
-			    </div>
+			<div class="inner-addon right-addon">
+			    <i class="glyphicon glyphicon-search"></i>
+			    <input type="search" class="search" id="query"  name="query" value="${params.query}" placeholder="Search"> 
+			</div>
 			</g:form>
 		</div>
 	</div>

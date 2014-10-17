@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FEDU.iml" filepath="$PROJECT_DIR$/FEDU.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FEDU-grailsPlugins.iml" filepath="$PROJECT_DIR$/FEDU-grailsPlugins.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Crowdera.iml" filepath="$PROJECT_DIR$/Crowdera.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Crowdera-grailsPlugins.iml" filepath="$PROJECT_DIR$/Crowdera-grailsPlugins.iml" />
     </modules>
   </component>
 </project>

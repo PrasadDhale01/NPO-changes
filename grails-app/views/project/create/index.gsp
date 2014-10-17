@@ -202,7 +202,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Thumbnail image</label>
                         <div class="col-sm-4">
-                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}">
+                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}" multiple="multiple">
                         </div>
                         <div class="col-sm-4">
                             <input class="hidden" name="${FORMCONSTANTS.IMAGEURL}" placeholder="Image URL">

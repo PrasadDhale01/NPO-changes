@@ -14,6 +14,7 @@ class ProjectService {
     def contributionService
     def grailsLinkGenerator
     def imageFile
+	def imageUrlService
 
     def getNumberOfProjects() {
         return Project.count()
@@ -170,7 +171,7 @@ class ProjectService {
         User deepshikha = userService.bootstrapDeepshikha()
         User sampleUser = User.findByUsername('user@example.com')
 
-        new Project(
+        /*new Project(
                 created: dateFormat.parse("01/15/2014"),
                 amount: 600,
                 days: 600,
@@ -203,7 +204,7 @@ class ProjectService {
                 date: dateFormat.parse("01/20/2014"),
                 user: sampleUser,
                 reward: Reward.findById(2)
-        ).save(failOnError: true)
+		).save(failOnError: true)
 
         new Project(
                 created: dateFormat.parse("01/15/2014"),
@@ -555,6 +556,6 @@ class ProjectService {
                 reward: Reward.findById(6),
                 date: dateFormat.parse("01/20/2014"),
                 user: sampleUser
-        ).save(failOnError: true)
+        ).save(failOnError: true)*/
     }
 }

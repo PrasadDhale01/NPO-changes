@@ -7,6 +7,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.grails.plugins.excelimport.ExcelImportService
 
+import org.springframework.web.multipart.MultipartFile;
+import org.jets3t.service.impl.rest.httpclient.RestS3Service
+import org.jets3t.service.model.S3Bucket
+import org.jets3t.service.model.S3Object
+import org.jets3t.service.security.AWSCredentials
+
 class ProjectController {
     def userService
     def excelImportService
@@ -376,23 +382,38 @@ class ProjectController {
         User user = userService.getCurrentUser()
         project = new Project(params)
         beneficiary = new Beneficiary(params)
-      
-        CommonsMultipartFile thumbnailFile = request.getFile(FORMCONSTANTS.THUMBNAIL)
-        // List of OK mime-types
-        if (!thumbnailFile.isEmpty() && thumbnailFile.size < 1024*1024) {
-            if (!VALID_IMG_TYPES.contains(thumbnailFile.getContentType())) {
-                flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
-                render (view: 'create/createerror')
-                return
-            } else {
-                def url = projectService.getImageUrl(thumbnailFile)
-                project.imageUrl = url
-            }
-        } else {
-            flash.message = "Size of the image must be less than 1024 * 1024"
-            render (view: 'create/createerror')
-            return
-        }
+		
+		def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+		def awsSecretKey = "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"
+
+		def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+		def s3Service = new RestS3Service(awsCredentials);
+
+		def bucketName = "crowdera"
+		def s3Bucket = new S3Bucket(bucketName)
+		
+		def Folder = "project-images"
+		
+		List<MultipartFile> files = request.multiFileMap.collect { it.value }.flatten()
+		def tempImageUrl
+		files.each {
+			def imageUrl = new ImageUrl()
+			def imageFile= it
+			def file= new File("${imageFile.getOriginalFilename()}")
+			def key = "${Folder}/${it.getOriginalFilename()}"
+			if (!imageFile?.empty && imageFile.size < 1024*1024)
+			{
+				imageFile.transferTo(file)
+			}
+			def object=new S3Object(file)
+			object.key=key
+			tempImageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+			s3Service.putObject(s3Bucket, object)
+			imageUrl.url = tempImageUrl
+			print tempImageUrl
+			project.addToImageUrl(imageUrl)
+			file.delete()
+		}
 
         if (project.fundRaisingFor == Project.FundRaisingFor.OTHER) {
             /* Nothing to do here. */

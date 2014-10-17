@@ -1,61 +1,43 @@
 <div class="container">
-	<h1><span class="glyphicon glyphicon-info-sign"></span> How it Works</h1>
-    <p class="lead text-justify">
-        Education is one of the most effective ways to confront poverty. Crowdera’s mission is to create a global connection between contributors like yourself and those with unequal access, providing them the means to claim an education. We have developed a simple platform to make this possible and fast. As a contributor you will create a new future for struggling individuals and families, AND know the education you’re providing is for life.
-    </p>
+    <!--
 	<div class="video-container">
         <iframe src="//www.youtube.com/embed/W_lME-8P-Dk" frameborder="0" allowfullscreen></iframe>
 	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">CREATE</h3>
-		</div>
-		<div class="panel-body"><p class="lead">ASK, RECEIVE & ACHIEVE</p>
-            Create your campaign, decide how much you want to raise and confirm you are you. If you or someone you know wants to learn, you can create a profile and connect with a Crowdera representative to complete the qualification process, OR you can choose to contribute towards an existing student.</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">CONTRIBUTE</h3>
-		</div>
-		<div class="panel-body"><p class="lead">CONNECT, FUND & REPEAT</p>
-            Once you've selected a student, select a contribution option. We understand that everyone has a budget, small or large, and every cent makes a difference. Your contribution is valuable and we ask that you please choose what is within your means.</div>
-	</div>
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">ENABLE</h3>
-		</div>
-		<div class="panel-body"><p class="lead">REWARDS, SHARE & INFLUENCE</p>
-            As an educational ally, your contribution affects more than one student and you’re contributing to a larger effort. You are "Enabling Education for All”. Crowdera is on a mission to globally confront the social inequality within education. And with your shared belief in the power of education, this has become possible.</div>
-	</div>
+	-->
     <div class="panel panel-success">
         <div class="panel-heading">
-            <h3 class="panel-title">HAVE YOU HEARD ABOUT OUR REWARDS?</h3>
+            <h3 class="panel-title">TIPS FOR SUCCESS</h3>
         </div>
         <div class="panel-body">
-            <p class="text-justify">On behalf of your beneficiary and Crowdera's appreciation of you, we give you the option to claim rewards. Crowdera believes people are inherently good and want to help, but they need an avenue through which to create impact; help us spread the word to those people. Whether you choose a wristband or one of our trendy shirts, showcasing Crowdera gear creates curiosity, awareness and ultimately a multiplier effect to close the education gap faster.</p>
-            <p class="text-justify">Experiencing the impact of the education you made possible is something to be shared. Students are overwhelmingly thankful for your help, and you will have the gratification of leaving this world a little better than you found it. So be proud of your commendable contribution toward education and start showing off that reward!</p>
-            <g:link controller="login" action="register"><button type="button" class="btn btn-success">REGISTER</button></g:link>
-        </div>
-    </div>
-    <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">WHAT DO I DO NEXT?</h3>
-        </div>
-        <div class="panel-body">
-            <h4>FOR BENEFICIARIES</h4>
-            <ol>
-                <li>Request an invite to join the Crowdera community (request invite button)</li>
-                <li>Create a project and share it with your family, friends, peers, school and social media. Click here for Crowdera’s “Best Practices & Recommendations” towards successfully funding a project</li>
-                <li>Retain funding from your associated Community Partner</li>
-                <li>Achieve your goals and come back to create another</li>
-            </ol>
-            <h4>FOR CONTRIBUTORS</h4>
-            <ol>
-                <li>Request an invite to join the Crowdera community (request invite button)</li>
-                <li>Connect with a beneficiary and make your first contribution</li>
-                <li>Choose a reward, then wear & share them via social media</li>
-                <li>Track the progress of your chosen project and be inspired to fund another</li>
-            </ol>
+            <h4>01/ Set Your Funding Goal</h4>
+            <h5>
+                Before you begin, you and your team should decide how much money you'd like to raise and the length of your campaign, considering all the fundraising activities of your organization. We suggest your campaign to run no less than 30 days but it cannot exceed 90 days. Read more on our <a href="http://crowdera.tumblr.com">blog</a>!
+            </h5>
+            <hr/>
+            <h4>02/ Build your project page</h4>
+            <h5>
+                Your project page is your opportunity to share your ideas and engage potential supporters. Here you will post a description of the project, the beginning and end dates of the campaign and your funding goal. Make sure it is well written with a clear objective, and include pictures and video! To get started, click <a href="/projects/create">here</a>.
+            </h5>
+            <hr/>
+            <h4>03/ Reach out to family and friends</h4>
+            <h5>
+                Family and friends are going to be the greatest source of support for your campaign, so be sure to get them involved! Once your campaign is approved and you plan to go live, send an email to your network of family and friends asking for their support. Don't be shy, make the "ask". Read more on our <a href="http://crowdera.tumblr.com">blog</a>.
+            </h5>
+            <hr/>
+            <h4>04/ Include video</h4>
+            <h5>
+                Crowdfunding campaigns succeed because they appeal to people's passions and interests, whether it's to raise money for a new playground, class trip or to help provide clean water to a community in need. Campaigns which include short videos, less than 3 minutes long, are nearly 50 percent more successful than those without. Grab your digital camera or smartphone and tell your story! Read more on our <a href="http://crowdera.tumblr.com">blog</a>.
+            </h5>
+            <hr/>
+            <h4>05/ Appoint a Chief Enthusiasm Officer</h4>
+            <h5>
+                After the initial burst of activity you will need to keep up the momentum. Staying engaged for the duration of the campaign is key! Appoint a Chief Enthusiasm Officer to make sure frequent updates are sent to your network and supporters. Include pictures, video and project updates. Campaigns with more than 25 updates have raised upward of 400 percent more funding than those with less than 5 updates. Read more on our <a href="http://crowdera.tumblr.com">blog</a>!
+            </h5>
+            <hr/>
+            <h4>06/ Add rewards</h4>
+            <h5>
+                Reward-based crowdfunding campaigns offer you an opportunity to thank your supporters. Rewards can be as simple as two free tickets to a school sponsored event or an original piece of student artwork. Keep in mind that the average contribution is $70, but the most common is $25.
+            </h5>
         </div>
     </div>
 

@@ -33,6 +33,7 @@ $ grails war
 $ sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
 # Redirect port 443 to 8443
 $ sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443
+# Put the above commands in /etc/rc.local so that it runs automatically on system startup.
 # List (verify) redirects:
 $ sudo iptables -L -t nat
 

@@ -181,7 +181,6 @@ class ProjectService {
                 title: 'Machine Learning',
                 story: 'Machine learning is going to change the world for ever.',
                 validated: true,
-//                imageUrl: 'https://1.bp.blogspot.com/-tn9GwuoC45w/TvtQvP6_UFI/AAAAAAAAAHI/ECpLGjyH6AI/s1600/machine_learning_course.png',
                 user: sampleUser,
                 beneficiary: new Beneficiary()
         ).addToRewards(
@@ -204,6 +203,8 @@ class ProjectService {
                 date: dateFormat.parse("01/20/2014"),
                 user: sampleUser,
                 reward: Reward.findById(2)
+		).addToImageUrl(
+				url: 'https://1.bp.blogspot.com/-tn9GwuoC45w/TvtQvP6_UFI/AAAAAAAAAHI/ECpLGjyH6AI/s1600/machine_learning_course.png'
 		).save(failOnError: true)
 
         new Project(
@@ -216,7 +217,6 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-//				imageUrl: 'https://s3.amazonaws.com/crowdera/project-images/Anusuya.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Anasuya',
@@ -250,6 +250,8 @@ class ProjectService {
                 reward: Reward.findById(5),
                 date: dateFormat.parse("01/22/2014"),
                 user: sampleUser
+		).addToImageUrl(
+				url: 'https://s3.amazonaws.com/crowdera/project-images/Anusuya.png'
         ).save(failOnError: true)
 
         new Project(
@@ -262,7 +264,6 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-//				imageUrl: 'https://s3.amazonaws.com/crowdera/project-images/Roshanbai.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Roshanbai',
@@ -284,6 +285,8 @@ class ProjectService {
                 reward: Reward.findById(7),
                 date: dateFormat.parse("01/23/2014"),
                 user: sampleUser
+		).addToImageUrl(
+			url: 'https://s3.amazonaws.com/crowdera/project-images/Roshanbai.png'
         ).save(failOnError: true)
 
         new Project(
@@ -296,7 +299,6 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-//				imageUrl: 'https://s3.amazonaws.com/crowdera/project-images/Vandana.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Vandana',
@@ -318,6 +320,8 @@ class ProjectService {
                 reward: Reward.findById(10),
                 date: dateFormat.parse("01/21/2014"),
                 user: sampleUser
+		).addToImageUrl(
+				url: 'https://s3.amazonaws.com/crowdera/project-images/Vandana.png'
         ).save(failOnError: true)
 
         new Project(
@@ -330,7 +334,6 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-//				imageUrl: 'https://s3.amazonaws.com/crowdera/project-images/Pushpa.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Pushpa',
@@ -352,6 +355,8 @@ class ProjectService {
                 reward: Reward.findById(9),
                 date: dateFormat.parse("01/26/2014"),
                 user: sampleUser
+		).addToImageUrl(
+				url: 'https://s3.amazonaws.com/crowdera/project-images/Pushpa.png'
         ).save(failOnError: true)
 
         new Project(
@@ -364,7 +369,6 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-//				imageUrl: 'https://s3.amazonaws.com/crowdera/project-images/Sangita.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Sangita',
@@ -386,6 +390,8 @@ class ProjectService {
                 reward: Reward.findById(5),
                 date: dateFormat.parse("01/18/2014"),
                 user: sampleUser
+		).addToImageUrl(
+				url: 'https://s3.amazonaws.com/crowdera/project-images/Sangita.png'
         ).save(failOnError: true)
 
         new Project(
@@ -398,7 +404,6 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-//				imageUrl: 'https://s3.amazonaws.com/crowdera/project-images/Sunanda.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Sunanda',
@@ -420,6 +425,8 @@ class ProjectService {
                 reward: Reward.findById(4),
                 date: dateFormat.parse("01/24/2014"),
                 user: sampleUser
+		).addToImageUrl(
+				url: 'https://s3.amazonaws.com/crowdera/project-images/Sunanda.png'
         ).save(failOnError: true)
 
         new Project(
@@ -432,7 +439,6 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-//				imageUrl: 'https://s3.amazonaws.com/crowdera/project-images/Tarabai.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Tarabai',
@@ -454,6 +460,8 @@ class ProjectService {
                 reward: Reward.findById(8),
                 date: dateFormat.parse("01/29/2014"),
                 user: sampleUser
+		).addToImageUrl(
+				url: 'https://s3.amazonaws.com/crowdera/project-images/Tarabai.png'
         ).save(failOnError: true)
 
         new Project(
@@ -466,7 +474,6 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-//				imageUrl: 'https://s3.amazonaws.com/crowdera/project-images/Asha.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Asha',
@@ -488,6 +495,8 @@ class ProjectService {
                 reward: Reward.findById(4),
                 date: dateFormat.parse("01/27/2014"),
                 user: sampleUser
+		).addToImageUrl(
+				url: 'https://s3.amazonaws.com/crowdera/project-images/Asha.png'
         ).save(failOnError: true)
 
         new Project(
@@ -500,7 +509,6 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-//				imageUrl: 'https://s3.amazonaws.com/crowdera/project-images/Sunita.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Sunita',
@@ -522,6 +530,8 @@ class ProjectService {
                 reward: Reward.findById(5),
                 date: dateFormat.parse("01/22/2014"),
                 user: sampleUser
+		).addToImageUrl(
+				url: 'https://s3.amazonaws.com/crowdera/project-images/Sunita.png'
         ).save(failOnError: true)
 
         new Project(
@@ -534,7 +544,6 @@ class ProjectService {
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
                 validated: true,
-//				imageUrl: 'https://s3.amazonaws.com/crowdera/project-images/Yeshula.png',
                 user: deepshikha,
                 beneficiary: new Beneficiary(
                     firstName: 'Yeshula',
@@ -556,6 +565,8 @@ class ProjectService {
                 reward: Reward.findById(6),
                 date: dateFormat.parse("01/20/2014"),
                 user: sampleUser
+		).addToImageUrl(
+				url: 'https://s3.amazonaws.com/crowdera/project-images/Yeshula.png'
         ).save(failOnError: true)
     }
 }

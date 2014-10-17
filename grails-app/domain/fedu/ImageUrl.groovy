@@ -11,6 +11,5 @@ class ImageUrl {
 		
 	}
     static constraints = {
-		
     }
 }

@@ -1,11 +1,11 @@
 #!/bin/sh
 
 echo "Pulling code from GitHub"
-cd ~/Projects/FEDU
+cd ~/Projects/Crowdera
 git pull
-echo "Building FEDU project"
+echo "Building Crowdera project"
 grails war
-cp ~/Projects/FEDU/target/FEDU-0.1.war ~/Programs/jetty/webapps/root.war
+cp ~/Projects/Crowdera/target/Crowdera-0.1.war ~/Programs/jetty/webapps/root.war
 
 echo "Killing running Jetty"
 killall java
@@ -17,7 +17,7 @@ NEWRELIC_JAR=$JETTY_HOME/newrelic/newrelic.jar
 NEWRELIC_OPTIONS=-javaagent:$NEWRELIC_JAR
 
 # Inform New Relic of a deployment
-# curl -H "x-api-key:d9bd0ead04e2cd242884c8009232ecbec39578a118fec0e" -d "deployment[app_name]=FEDU" https://api.newrelic.com/deployments.xml
+# curl -H "x-api-key:d9bd0ead04e2cd242884c8009232ecbec39578a118fec0e" -d "deployment[app_name]=Crowdera" https://api.newrelic.com/deployments.xml
 java -jar $NEWRELIC_JAR deployment
 
 echo "Starting Jetty server"

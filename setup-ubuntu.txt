@@ -21,11 +21,11 @@ $ gvm default grails 2.3.8
 # Install Git
 $ sudo apt-get install git-core
 
-# Download & build FEDU code
+# Download & build Crowdera code
 $ mkdir ~/Projects
 $ cd ~/Projects
-$ git clone https://github.com/atreya/FEDU.git
-$ cd FEDU
+$ git clone https://github.com/atreya/Crowdera.git
+$ cd Crowdera
 $ grails compile
 $ grails war
 
@@ -44,7 +44,7 @@ $ gunzip jetty-distribution-9.1.2.v20140210.tar.gz
 $ tar -xvf jetty-distribution-9.1.2.v20140210.tar
 $ mv jetty-distribution-9.1.2.v20140210 jetty
 $ cd jetty
-$ cp ~/Projects/FEDU/target/FEDU-0.1.war ~/Programs/jetty/webapps/root.war
+$ cp ~/Projects/Crowdera/target/Crowdera-0.1.war ~/Programs/jetty/webapps/root.war
 $ nohup java -jar start.jar &
 
 # Don't forget to put these lines in ~/.bashrc

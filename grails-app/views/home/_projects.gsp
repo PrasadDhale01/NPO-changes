@@ -18,7 +18,7 @@
         def index = 0
     %>
 
-    <div id="carousel-example" class="carousel slide hidden-xs" data-ride="carousel">
+    <div id="carousel-example" class="carousel slide hidden-xs" >
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <g:each in="${(1..pages).toList()}" var="row">

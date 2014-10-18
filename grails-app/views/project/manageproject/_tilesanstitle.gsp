@@ -55,15 +55,23 @@
             </g:else>
         </div>
         <div class="row">
-            <% if(percentage <= 100) { %>
-            <g:form controller="project" action="edit" method="post"  id="${project.id}">
-                <g:hiddenField name="projectId" value="${project.id}"/>               
-                <button class="projectedit close"  aria-label="Edit project">
-                    <i class="glyphicon glyphicon-edit" >
-                    </i>
+            <div class="col-sm-10" align="right" style="right-padding: 0px">
+                <% if(percentage <= 100) { %>
+            	    <g:form controller="project" action="edit" method="post"  id="${project.id}">
+                        <g:hiddenField name="projectId" value="${project.id}"/>               
+                        <button class="projectedit close"  aria-label="Edit project" id="editproject">
+                            <i class="glyphicon glyphicon-edit" ></i>
+               	        </button>
+                    </g:form>
+                <% } %>
+            </div>
+            <div class="col-sm-2">
+            <g:form controller="project" action="projectdelete" method="post"  id="${project.id}">
+                <button class="projectedit close" aria-label="Edit project" id="projectdelete" onclick="return confirm(&#39;Are you sure you want to delete this project?&#39;);">
+                    <i class="glyphicon glyphicon-trash" ></i>
                 </button>
             </g:form>
-            <% } %>
+            </div>
         </div>
     </div>
     <g:if test="${isFundingOpen}">

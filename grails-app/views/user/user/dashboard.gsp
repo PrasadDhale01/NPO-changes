@@ -12,6 +12,11 @@
     <div class="container">
 
         <h2>User Profile</h2>
+        <g:if test="${flash}">
+            <div class="alert alert-success">
+                <li>${flash.message}</li>
+            </div>
+        </g:if>
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">

@@ -30,10 +30,6 @@
     </g:if>
     <g:else>
         <g:form class="form-signin" controller="login" action="update" role="form">
-            <g:if test='${flash.message}'>
-                <div class="alert alert-success">${flash.message}</div>
-            </g:if>
-
             <div class="form-group">
                 <input type="fn" name="firstName" required class="form-control" value="${user.firstName}" placeholder="New First name" autofocus>
             </div>

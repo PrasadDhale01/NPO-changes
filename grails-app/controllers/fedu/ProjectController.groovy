@@ -383,37 +383,9 @@ class ProjectController {
         project = new Project(params)
         beneficiary = new Beneficiary(params)
 		
-		def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
-		def awsSecretKey = "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"
-
-		def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
-		def s3Service = new RestS3Service(awsCredentials);
-
-		def bucketName = "crowdera"
-		def s3Bucket = new S3Bucket(bucketName)
-		
-		def Folder = "project-images"
-		
 		List<MultipartFile> files = request.multiFileMap.collect { it.value }.flatten()
-		def tempImageUrl
-		files.each {
-			def imageUrl = new ImageUrl()
-			def imageFile= it
-			def file= new File("${imageFile.getOriginalFilename()}")
-			def key = "${Folder}/${it.getOriginalFilename()}"
-			if (!imageFile?.empty && imageFile.size < 1024*1024)
-			{
-				imageFile.transferTo(file)
-			}
-			def object=new S3Object(file)
-			object.key=key
-			tempImageUrl = "https://s3.amazonaws.com/crowdera/${key}"
-			s3Service.putObject(s3Bucket, object)
-			imageUrl.url = tempImageUrl
-			print tempImageUrl
-			project.addToImageUrl(imageUrl)
-			file.delete()
-		}
+		
+		projectService.getMultipleImageUrls(files, project)
 
         if (project.fundRaisingFor == Project.FundRaisingFor.OTHER) {
             /* Nothing to do here. */

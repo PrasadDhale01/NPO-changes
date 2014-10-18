@@ -4,6 +4,8 @@ import grails.transaction.Transactional
 
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
@@ -113,6 +115,39 @@ class ProjectService {
 
         return imageUrl
     }
+	
+	def getMultipleImageUrls(List<MultipartFile> files, Project project){
+		def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+		def awsSecretKey = "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"
+
+		def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+		def s3Service = new RestS3Service(awsCredentials);
+
+		def bucketName = "crowdera"
+		def s3Bucket = new S3Bucket(bucketName)
+		
+		def Folder = "project-images"
+		
+		def tempImageUrl
+		files.each {
+			def imageUrl = new ImageUrl()
+			def imageFile= it
+			def file= new File("${imageFile.getOriginalFilename()}")
+			def key = "${Folder}/${it.getOriginalFilename()}"
+			if (!imageFile?.empty && imageFile.size < 1024*1024)
+			{
+				imageFile.transferTo(file)
+			}
+			def object=new S3Object(file)
+			object.key=key
+			tempImageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+			s3Service.putObject(s3Bucket, object)
+			imageUrl.url = tempImageUrl
+			print tempImageUrl
+			project.addToImageUrl(imageUrl)
+			file.delete()
+		}
+	}
 
     def isProjectDeadlineCrossed(Project project) {
         if (!project) {

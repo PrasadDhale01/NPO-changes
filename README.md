@@ -1,7 +1,7 @@
 <h2>Steps to setup on a Mac:</h2>
 <ol>
     <li>
-        git clone https://github.com/FundEdu/FEDU.git
+        git clone https://github.com/FundEdu/Crowdera.git
     </li>
     <li>
         Install GVM (the Groovy enVironment Manager): http://gvmtool.net/

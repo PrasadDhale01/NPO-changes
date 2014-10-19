@@ -1,11 +1,11 @@
 $(function() {
     console.log("checkout.js initialized");
 
-    var source   = $("#credit-error-template").html();
-    var template = Handlebars.compile(source);
+    /*var source   = $("#credit-error-template").html();
+    var template = Handlebars.compile(source);*/
 
     /* Stripe initializations */
-    var stripeResponseHandler = function(status, response) {
+    /*var stripeResponseHandler = function(status, response) {
         var $form = $('#payment-form');
 
         if (response.error) {
@@ -22,18 +22,62 @@ $(function() {
             // and submit
             $form.get(0).submit();
         }
-    };
+    };*/
 
-    $('#payment-form').submit(function(event) {
+    /*$('#payment-form').submit(function(event) {
         var $form = $(this);
 
         // Disable the submit button to prevent repeated clicks
         $form.find('button').prop('disabled', true);
 
-        Stripe.card.createToken($form, stripeResponseHandler);
+        //Stripe.card.createToken($form, stripeResponseHandler);
 
         // Prevent the form from submitting with the default action
-        return false;
+        //return false;
+    });*/
+
+    $('form').validate({
+        rules: {
+            ccNumber: {
+                required: true
+            },
+            ccType: {
+                required: true
+            },
+            ccExpDateYear: {
+                required: true
+            },
+            ccExpDateMonth: {
+                required: true
+            },
+            ccCardValidationNum: {
+                required: true
+            },
+            billToFirstName: {
+                required: true
+            },
+            billToLastName: {
+                required: true
+            },
+            billToAddressLine1: {
+                required: true
+            },
+            billToCity: {
+                required: true
+            },
+            billToEmail: {
+                required: true
+            },
+            billToCountry: {
+                required: true
+            },
+            description: {
+                required: true
+            },
+            billToState: {
+                required: true
+            }
+        }
     });
 
 });

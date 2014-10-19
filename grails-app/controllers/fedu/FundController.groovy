@@ -1,6 +1,10 @@
 package fedu
 
 import grails.plugin.springsecurity.annotation.Secured
+import groovyx.net.http.ContentType
+import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.Method
+import groovy.util.XmlParser
 
 import com.stripe.model.Charge
 
@@ -78,44 +82,87 @@ class FundController {
                 reward = rewardService.getNoReward()
             }
         }
-
-        def amount = params.double(('amount'))
-        def amountInCents = (amount * 100) as Integer
-        def chargeParams = [
-            'amount': amountInCents,
-            'currency': 'usd',
-            'card': stripeToken,
-            'description': userService.getCurrentUser().username
-        ]
-
         if (project && reward) {
-            try {
-                Charge.create(chargeParams)
-            } catch(CardException) {
-                render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged. Please try again.']
-                return
-            }
+            def BASE_URL = "http://usapisandbox.fgdev.net"
 
-            Contribution contribution = new Contribution(
-                    date: new Date(),
-                    user: userService.getCurrentUser(),
-                    reward: reward,
-                    amount: amount
-            )
-            project.addToContributions(contribution).save(failOnError: true)
+            def http = new HTTPBuilder(BASE_URL)
+            def amount = 10;
 
-            def email = userService.getEmail()
-            if (email) {
-                mailService.sendMail {
-                    async true
-                    to userService.getCurrentUser().email
-                    from "info@fedu.org"
-                    subject "Crowdera - Thank you for funding"
-                    html g.render(template: 'acknowledge/ackemailtemplate', model: [project: project, reward: reward, amount: amount])
+            def result = null
+            def transactionId = null
+
+            http.request(Method.POST, ContentType.URLENC) {
+                uri.path = '/donation/creditcard'
+                headers.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
+                headers.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
+                body =  [ccNumber:params.ccNumber,
+                         ccType:params.ccType,
+                         ccExpDateYear:params.ccExpDateYear,
+                         ccExpDateMonth:params.ccExpDateMonth,
+                         ccCardValidationNum:params.ccCardValidationNum,
+                         billToFirstName:params.billToFirstName,
+                         billToLastName:params.billToLastName,
+                         billToAddressLine1:params.billToAddressLine1,
+                         billToCity:params.billToCity,
+
+                         billToZip:params.billToZip,
+                         billToCountry:params.billToCountry,
+                         billToEmail:params.billToEmail,
+
+                         remoteAddr:params.remoteAddr,
+                         amount:params.amount,
+                         currencyCode:params.currencyCode,
+                         charityId:"dummyid",
+                         description:params.description,
+                         billToState:params.billToState]
+
+                // response handler for a success response code
+                response.success = { resp, reader ->
+                    result = true
+                    //TODO: fix this logic
+                    def responseXML
+                    reader.each{
+                        key, value -> print key;
+                            if(reader[key]) {
+                                responseXML =key +":"+reader[key]
+                            }
+                    }
+                    def firstGivingXML = responseXML.substring(responseXML.indexOf('<firstGivingResponse'),responseXML.indexOf('</firstGivingResponse>')+22)
+                    def xmlParsef=  new XmlParser().parseText(firstGivingXML)
+                    transactionId = xmlParsef.transactionId.text()
+                }
+
+                // response handler for a failure response code
+                response.failure = { resp, reader ->
+                    result = false
+                    print reader
                 }
             }
 
-            render view: 'acknowledge/acknowledge', model: [project: project, reward: reward, contribution: contribution]
+            if(result){
+                Contribution contribution = new Contribution(
+                        date: new Date(),
+                        user: userService.getCurrentUser(),
+                        reward: reward,
+                        amount: amount
+                )
+                project.addToContributions(contribution).save(failOnError: true)
+
+                def email = userService.getEmail()
+                if (email) {
+                    mailService.sendMail {
+                        async true
+                        to userService.getCurrentUser().email
+                        from "info@fedu.org"
+                        subject "Crowdera - Thank you for funding"
+                        html g.render(template: 'acknowledge/ackemailtemplate', model: [project: project, reward: reward, amount: amount])
+                    }
+                }
+
+                render view: 'acknowledge/acknowledge', model: [project: project, reward: reward, contribution: contribution]
+            } else {
+                render view: 'error', model: [message: 'There was an error charging. Don\\\'t worry, your card was not charged. Please try again.']
+            }
         } else {
             render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
         }

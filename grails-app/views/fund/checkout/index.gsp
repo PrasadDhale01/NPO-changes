@@ -36,28 +36,88 @@
                     <g:hiddenField name="projectId" value="${project.id}"/>
                     <g:hiddenField name="rewardId" value="${reward.id}"/>
                     <g:hiddenField name="amount" value="${amount}"/>
+                    <g:hiddenField name="currencyCode" value="USD"/>
+                    <g:hiddenField name="charityId" value="${project.charitableId}"/>
+                    <!-- TDODO-->
+                    <g:hiddenField name="remoteAddr" value="192.168.1.1"/>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="First Name" name="billToFirstName">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Last Name" name="billToLastName">
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
-                            <input type="text" class="card-number form-control" placeholder="Card Number" data-stripe="number">
+                            <input type="text" class="card-number form-control" placeholder="Card Number" data-stripe="number" name="ccNumber">
+
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
+                            <input type="text" class="card-number form-control" placeholder="Card Type"  name="ccType">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
-                            <input class="form-control" type="text" placeholder="CVC" data-stripe="cvc">
+                            <input class="form-control" type="text" placeholder="CVC" data-stripe="cvc" name="ccCardValidationNum">
 
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
-                            <input class="form-control" type="text" placeholder="MM" data-stripe="exp-month">
+                            <input class="form-control" type="text" placeholder="MM" data-stripe="exp-month"  name="ccExpDateMonth">
 
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
-                            <input class="form-control" type="text" placeholder="YYYY" data-stripe="exp-year">
+                            <input class="form-control" type="text" placeholder="YYYY" data-stripe="exp-year" name="ccExpDateYear">
                         </div>
                     </div>
 
-                    <div class="help-block">Powered by Stripe</div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Address Line 1" name="billToAddressLine1">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="City" name="billToCity">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="State" name="billToState">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Zip" name="billToZip">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Country" name="billToCountry">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Email" name="billToEmail">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" type="text" placeholder="Description" name="description">
+                        </div>
+                    </div>
+
                     <button type="submit" class="btn btn-primary btn-lg">Fund this project</button>
                 </g:form>
             </div>

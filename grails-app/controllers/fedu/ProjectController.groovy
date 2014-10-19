@@ -7,6 +7,12 @@ import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.grails.plugins.excelimport.ExcelImportService
 
+import org.springframework.web.multipart.MultipartFile;
+import org.jets3t.service.impl.rest.httpclient.RestS3Service
+import org.jets3t.service.model.S3Bucket
+import org.jets3t.service.model.S3Object
+import org.jets3t.service.security.AWSCredentials
+
 class ProjectController {
     def userService
     def excelImportService
@@ -376,23 +382,10 @@ class ProjectController {
         User user = userService.getCurrentUser()
         project = new Project(params)
         beneficiary = new Beneficiary(params)
-      
-        CommonsMultipartFile thumbnailFile = request.getFile(FORMCONSTANTS.THUMBNAIL)
-        // List of OK mime-types
-        if (!thumbnailFile.isEmpty() && thumbnailFile.size < 1024*1024) {
-            if (!VALID_IMG_TYPES.contains(thumbnailFile.getContentType())) {
-                flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
-                render (view: 'create/createerror')
-                return
-            } else {
-                def url = projectService.getImageUrl(thumbnailFile)
-                project.imageUrl = url
-            }
-        } else {
-            flash.message = "Size of the image must be less than 1024 * 1024"
-            render (view: 'create/createerror')
-            return
-        }
+		
+		List<MultipartFile> files = request.multiFileMap.collect { it.value }.flatten()
+		
+		projectService.getMultipleImageUrls(files, project)
 
         if (project.fundRaisingFor == Project.FundRaisingFor.OTHER) {
             /* Nothing to do here. */

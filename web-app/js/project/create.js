@@ -1,5 +1,7 @@
 $(function() {
     console.log("create.js initialized");
+    $("#updatereward").hide();
+    $("#rewardTemplate").hide();
 
     /* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
@@ -84,6 +86,9 @@ $(function() {
             },
             videoUrl: {
                 isYoutubeVideo: true
+            },
+            answer: {
+            	required: true
             }
             /*
             imageUrl: {
@@ -109,9 +114,31 @@ $(function() {
            var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
            return (value.match(p)) ? RegExp.$1 : false;
         }
-        return false;
+        return true;
 
      }, "Please upload a url of Youtube video");
+     
+     $("input[name='answer']").change(function(){
+     	if($(this).val()=="yes") {
+     		$("#rewardTemplate").show();
+     	    $("#updatereward").show();
+     	} else {
+     	    $("#updatereward").hide();
+     	    $("#rewardTemplate").hide();
+     	}
+     });
+     
+     $('#createreward').click(function(){
+         var rewardsTemplateObj = $('.rewardsTemplate').last().clone();
+         $('#addNewRewards').append(rewardsTemplateObj);
+         $('#addNewRewards').find('.rewardsTemplate').last().find('input').val('').focus();
+     });
+     
+     $('#removereward').click(function(){
+         if ($('#addNewRewards').find('.rewardsTemplate').length > 1) {
+    		 $('#addNewRewards').find('.rewardsTemplate').last().remove();
+    	 }
+     });
 
     /* Click handler for Myself/Someone I Know. */
     /*

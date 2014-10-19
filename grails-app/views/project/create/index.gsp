@@ -176,12 +176,12 @@
                         <label class="col-sm-2 control-label">Story</label>
                         <div class="col-sm-10">
                             <input type="hidden" class="form-control">  
-                            <ckeditor:editor   name="${FORMCONSTANTS.STORY}"  toolbar="custom" height="200px" width="100%">
+                            <ckeditor:editor name="${FORMCONSTANTS.STORY}" toolbar="custom" height="200px" width="100%">
                                 ${initialValue}
                             </ckeditor:editor>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <%--<div class="form-group">
                         <label class="col-sm-2 control-label">Rewards</label>
                         <div class="col-sm-10">
                             <select class="multiselect" name="${FORMCONSTANTS.REWARDS}" multiple="multiple">
@@ -190,7 +190,7 @@
                                 </g:each>
                             </select>
                         </div>
-                    </div>
+                    </div>--%>
                 </div>
             </div>
 
@@ -216,6 +216,69 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Rewards</h3>
+                </div>
+                <div class="panel-body">
+		            <div class="form-group">
+                    	<label class="col-sm-2 control-label">Do You Want Rewards??</label>
+                    	<div class="col-sm-10">
+                    	    <div class="btn-group btn-group-sm">
+                    		    <label class="btn btn-default">
+                                    <input type="radio" name="answer" value="yes"> Yes
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="answer" value="no"> No
+                                </label>
+                    	    </div>
+                        </div>
+                        
+                        <div id="addNewRewards"><hr>
+                            <div class="rewardsTemplate" id="rewardTemplate">
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <label class="col-sm-4 control-label">Reward Title</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" placeholder="Title" name="rewardTitle" class="form-control rewardTitle">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="col-sm-3 control-label">Reward Price</label>
+                                        <div class="col-sm-9">
+                                            <input type="number" placeholder="Price" name="rewardPrice" class="form-control rewardPrice">
+                                        </div>
+                                    </div>
+                                </div><br>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <label class="col-sm-2 control-label">Reward Description</label>
+                                        <div class="col-sm-10" style="left-padding: 0px;">
+                                            <textarea class="form-control rewardDescription" name="rewardDescription" rows="2" placeholder="Description" style="left-padding: 0px"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><br>
+                        
+                        <div class="row">
+                            <div class="col-sm-12" id="updatereward">    
+                                <div class="col-sm-12" align="right" style="right-padding: 0px">
+                                    <div class="btn btn-primary btn-circle" id="createreward" style="padding: 3px 6px;">
+                                        <i class="glyphicon glyphicon-plus"></i>
+                                    </div>
+                                    <div class="btn btn-primary btn-circle" id="removereward" style="padding: 3px 6px;">
+                                        <i class="glyphicon glyphicon-trash" ></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Get set, go</h3>

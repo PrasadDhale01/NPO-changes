@@ -382,9 +382,23 @@ class ProjectController {
         User user = userService.getCurrentUser()
         project = new Project(params)
         beneficiary = new Beneficiary(params)
-		
+
+        def rewardTitle = params.rewardTitle
+        def rewardPrice = params.rewardPrice
+        def rewardDescription = params.rewardDescription
+        print rewardTitle.size()
+
+        for(int i=0; i<rewardTitle.size();i++ ) {
+            Reward reward = new Reward()
+            reward.title = rewardTitle[i]
+            reward.price = Integer.parseInt(rewardPrice[i])
+            reward.description = rewardDescription[i]
+            reward.obsolete = true
+            project.addToRewards(reward)
+        }
+
 		List<MultipartFile> files = request.multiFileMap.collect { it.value }.flatten()
-		
+
 		projectService.getMultipleImageUrls(files, project)
 
         if (project.fundRaisingFor == Project.FundRaisingFor.OTHER) {

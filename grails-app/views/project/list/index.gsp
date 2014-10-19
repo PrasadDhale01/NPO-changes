@@ -7,11 +7,13 @@
 <body>
 <div class="feducontent">
 	<div class="container">
-		<h1> <span class="glyphicon glyphicon-tint"></span> Contribute</h1>
-
-        <!-- Search -->
-        <g:render template="list/search"></g:render>
-
+		<div class="row">
+		    <div class="col-md-6">
+		        <h1> <span class="glyphicon glyphicon-tint"></span> Contribute</h1>
+		    </div>
+            <!-- Search -->
+            <g:render template="list/search"></g:render>
+		</div>
         <g:if test="${flash.message}">
             <div class="alert alert-danger">
                 ${flash.message}

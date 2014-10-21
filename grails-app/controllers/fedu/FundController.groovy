@@ -91,8 +91,7 @@ class FundController {
 
             def result = null
             def transactionId = null
-            def projectAmount = params.double('projectAmount')
-
+            
             http.request(Method.POST, ContentType.URLENC) {
                 uri.path = '/donation/creditcard'
                 headers.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
@@ -161,6 +160,7 @@ class FundController {
                     }
                 }
 
+                def projectAmount = params.double('projectAmount')
                 def totalContribution = contributionService.getTotalContributionForProject(project)
                 if(totalContribution >= projectAmount){
                     if(project.send_mail == false){

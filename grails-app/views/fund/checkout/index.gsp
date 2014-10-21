@@ -38,6 +38,7 @@
                     <g:hiddenField name="amount" value="${amount}"/>
                     <g:hiddenField name="currencyCode" value="USD"/>
                     <g:hiddenField name="charityId" value="${project.charitableId}"/>
+                    <g:hiddenField name="projectAmount" value="${project.amount}"/>
                     <!-- TDODO-->
                     <g:hiddenField name="remoteAddr" value="192.168.1.1"/>
 

@@ -68,4 +68,31 @@ class MandrillService {
 
         sendTemplate(user, 'admin_invitation', globalMergeVars, tags)
     }
+
+    private def sendEmail(User user) {
+        def globalMergeVars = [[
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ], [
+            'name': 'EMAIL',
+            'content': user.email
+        ]]
+        
+        def projects = Project.findAllByUser(user)
+        
+        if (projects.size()!= 0) {
+            
+            def tags = ['fund-confirmation']
+            
+            sendTemplate(user, 'funding_confirmation', globalMergeVars, tags)
+            
+        } else {
+        
+            def tags = ['thanking-contributors']
+            
+            sendTemplate(user, 'thanks_to_contributors', globalMergeVars, tags)
+        }
+       
+        
+   }
 }

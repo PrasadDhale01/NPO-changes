@@ -22,6 +22,7 @@
                             <span class="amount input-group-addon"><span class="glyphicon glyphicon-usd"></span> </span>
                             <input class="amount form-control" <%-- value="${reward.price}" --%> id="amount" name="amount">
                         </div>
+                        <span id="errormsg"></span>
                     </div>
 
                     <button type="submit" class="btn btn-primary btn-lg">Continue</button>

@@ -433,7 +433,7 @@ class ProjectController {
         def project = Project.get(params.id)
         if (project) {
             project.inactive = true
-            flash.message= "Project Deleted Successfully"
+            flash.message= "Project Discarded Successfully"
             redirect (action:'dashboard' , controller:'user')
         } else {
             flash.message = 'Project Not Found'

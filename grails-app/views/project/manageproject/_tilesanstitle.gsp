@@ -67,7 +67,7 @@
             </div>
             <div class="col-sm-2">
             <g:form controller="project" action="projectdelete" method="post"  id="${project.id}">
-                <button class="projectedit close" aria-label="Edit project" id="projectdelete" onclick="return confirm(&#39;Are you sure you want to delete this project?&#39;);">
+                <button class="projectedit close" aria-label="Edit project" id="projectdelete" onclick="return confirm(&#39;Are you sure you want to discard this project?&#39;);">
                     <i class="glyphicon glyphicon-trash" ></i>
                 </button>
             </g:form>

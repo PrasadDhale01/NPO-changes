@@ -109,15 +109,17 @@ class ProjectController {
     }
 
     def delete() {
-        if (params.int('id')) {
-            def id = params.long('id')
-            def project = Project.get(id)
+        def project = Project.get(params.id)
+        if (project) {
             project.inactive = true
+            flash.message= "Project discarded successfully"
+            redirect (action:'validateList')
+        } else {
+            flash.message = 'Project Not Found'
+            render (view: 'validate/validateerror', model: [project: project])
         }
-        flash.message= "Project discarded successfully"
-        redirect (action:'validateList')
     }
-   
+
     def validate() {
         Project project
         if (params.id) {
@@ -128,7 +130,7 @@ class ProjectController {
                 render (view: 'validate/validateerror', model: [projects: project])
             }       
         }
-    }  
+    }
     
     def validateList() {
         def projects = projectService.getNonValidatedProjects()
@@ -426,6 +428,18 @@ class ProjectController {
         render (view: 'manageproject/index',
                 model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])
+    }
+    
+    def projectdelete() {
+        def project = Project.get(params.id)
+        if (project) {
+            project.inactive = true
+            flash.message= "Project Discarded Successfully"
+            redirect (action:'dashboard' , controller:'user')
+        } else {
+            flash.message = 'Project Not Found'
+            render (view: 'manageproject/error', model: [project: project])
+        }
     }
 
     @Secured(['ROLE_USER'])

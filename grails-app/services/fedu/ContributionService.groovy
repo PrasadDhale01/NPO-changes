@@ -12,6 +12,14 @@ class ContributionService {
         return totalContribution
     }
 
+    def getTotalContributors (Project project){
+        def user = []
+        project.contributions.each { 
+            user.add(it.userId)
+        }
+        return user
+    }
+
     def getShippingPendingItems() {
         return Contribution.findAllWhere(shippingDone: false)
     }

@@ -25,6 +25,10 @@ class ProjectService {
     def getValidatedProjects() {
         return Project.findAllWhere(validated: true,inactive: false)
     }
+
+    def getBeneficiaryId(Project project) {
+        return( project.beneficiaryId )
+    }
     
     def getProjects(def projects) {
         def list = []

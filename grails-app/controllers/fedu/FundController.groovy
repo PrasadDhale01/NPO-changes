@@ -14,6 +14,7 @@ class FundController {
     def userService
     def mailService
     def rewardService
+    def mandrillService
 
     def fund() {
         Project project
@@ -90,7 +91,7 @@ class FundController {
 
             def result = null
             def transactionId = null
-
+            
             http.request(Method.POST, ContentType.URLENC) {
                 uri.path = '/donation/creditcard'
                 headers.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
@@ -156,6 +157,27 @@ class FundController {
                         from "info@fedu.org"
                         subject "Crowdera - Thank you for funding"
                         html g.render(template: 'acknowledge/ackemailtemplate', model: [project: project, reward: reward, amount: amount])
+                    }
+                }
+
+                def projectAmount = params.double('projectAmount')
+                def totalContribution = contributionService.getTotalContributionForProject(project)
+                if(totalContribution >= projectAmount){
+                    if(project.send_mail == false){
+                        def contributor = contributionService.getTotalContributors(project)
+                        contributor.each {
+                            def user = User.get(it)
+                            mandrillService.sendEmail(user)
+                        }
+                        def beneficiaryId = projectService.getBeneficiaryId(project)
+                        def beneficiary = Beneficiary.get(beneficiaryId)
+                        def user = User.list()
+                        user.each{
+                            if(it.email == beneficiary.email){
+                                mandrillService.sendEmail(it)
+                            }
+                        }
+                        project.send_mail = true
                     }
                 }
 

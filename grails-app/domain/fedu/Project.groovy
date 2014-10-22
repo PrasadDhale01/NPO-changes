@@ -34,6 +34,7 @@ class Project {
 
     boolean validated = false
     boolean inactive = false
+    boolean send_mail = false
 
     static mapping = {
         id(generator: "uuid")

@@ -24,6 +24,7 @@ class Project {
     String title
     String description
     String story
+    String videoUrl
     Image image
 	List imageUrl
     List rewards
@@ -46,10 +47,12 @@ class Project {
     static constraints = {
         image (nullable: true)
         imageUrl (nullable: true)
+        videoUrl (nullable:true)
         rewards (nullable: true)
         amount (max: 50000 as double)
         description (nullable: true)
         charitableId (nullable: true)
+        story (nullable: true)
     }
 
     def beforeInsert() {

@@ -27,7 +27,30 @@ class RewardService {
     def getObsoleteRewards() {
         return Reward.findAllWhere(obsolete: true)
     }
-
+    
+    def getMultipleRewards(def project, def rewardTitle ,def rewardPrice ,def rewardDescription) {
+        
+        if(rewardTitle instanceof String) {
+            Reward reward = new Reward()
+            reward.title = rewardTitle
+            reward.price = Integer.parseInt(rewardPrice)
+            reward.description = rewardDescription
+            reward.obsolete = true
+            project.addToRewards(reward)
+        
+        } else {
+            for(int i=0; i<rewardTitle.size();i++ ) {
+                Reward reward = new Reward()
+                reward.title = rewardTitle[i]
+                reward.price = Integer.parseInt(rewardPrice[i])
+                reward.description = rewardDescription[i]
+                reward.obsolete = true
+                project.addToRewards(reward)
+            }
+        }
+        return
+    }
+    
     @Transactional
     def bootstrap() {
         new Reward(

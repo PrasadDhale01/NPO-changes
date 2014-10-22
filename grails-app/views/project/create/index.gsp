@@ -176,22 +176,20 @@
                      <div class="form-group">
                         <label class="col-sm-2 control-label">Story</label>
                         <div class="col-sm-10">
-                            <input type="hidden" class="form-control">  
-                            <ckeditor:editor name="${FORMCONSTANTS.STORY}" toolbar="custom" height="200px" width="100%">
+                            <ckeditor:config var="toolbar_Mytoolbar">
+                                [
+                                    ['Bold', 'Italic', 'Underline','Strike','Subscript', 'Superscript','-', 'RemoveFormat',],
+                                    ['Link','Unlink','Anchor'],
+                                    ['Styles','Format','Font','FontSize'],
+                                    ['Maximize'],['TextColor'],['Smiley']
+                                ]
+                            </ckeditor:config>
+                            
+                            <ckeditor:editor toolbar="Mytoolbar" name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" height="200px" width="100%">
                                 ${initialValue}
                             </ckeditor:editor>
                         </div>
                     </div>
-                    <%--<div class="form-group">
-                        <label class="col-sm-2 control-label">Rewards</label>
-                        <div class="col-sm-10">
-                            <select class="multiselect" name="${FORMCONSTANTS.REWARDS}" multiple="multiple">
-                                <g:each in="${rewardOptions}" var="rewardOption">
-                                    <option value="${rewardOption.key}">${rewardOption.value.title} ($${rewardOption.value.price})</option>
-                                </g:each>
-                            </select>
-                        </div>
-                    </div>--%>
                 </div>
             </div>
 

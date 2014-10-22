@@ -386,15 +386,9 @@ class ProjectController {
         def rewardTitle = params.rewardTitle
         def rewardPrice = params.rewardPrice
         def rewardDescription = params.rewardDescription
-        print rewardTitle.size()
-
-        for(int i=0; i<rewardTitle.size();i++ ) {
-            Reward reward = new Reward()
-            reward.title = rewardTitle[i]
-            reward.price = Integer.parseInt(rewardPrice[i])
-            reward.description = rewardDescription[i]
-            reward.obsolete = true
-            project.addToRewards(reward)
+        
+        if(rewardTitle) {
+            rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
         }
 
 		List<MultipartFile> files = request.multiFileMap.collect { it.value }.flatten()

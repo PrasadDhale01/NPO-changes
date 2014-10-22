@@ -40,7 +40,7 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="essentials">
-                            <p class="text-justify">${raw(project.story)}</p>
+                            <g:render template="show/essentials"/>
                         </div>
                         <div class="tab-pane" id="rewards">
                             <g:render template="show/rewards"/>

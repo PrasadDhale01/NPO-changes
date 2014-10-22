@@ -105,8 +105,9 @@ $(function() {
         	}else{
         		error.insertAfter(element);
         	}
-        }//end error Placement
+        },//end error Placement
         
+        ignore: []
     });
 
      $.validator.addMethod('isYoutubeVideo', function (value, element) {

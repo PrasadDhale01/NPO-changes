@@ -26,9 +26,6 @@
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span> Essentials
                         </a></li>
-                        <li><a href="#rewards" data-toggle="tab">
-                            <i class="fa fa-gift fa-lg"></i> Rewards
-                        </a></li>
                         <li><a href="#contributions" data-toggle="tab">
                             <span class="glyphicon glyphicon-tint"></span> Contributions
                         </a></li>
@@ -41,9 +38,6 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="essentials">
                             <g:render template="show/essentials"/>
-                        </div>
-                        <div class="tab-pane" id="rewards">
-                            <g:render template="show/rewards"/>
                         </div>
                         <div class="tab-pane" id="contributions">
                             <g:render template="show/contributions"/>
@@ -66,6 +60,7 @@
                     </g:else>
 
                     <g:render template="/layouts/tilesanstitle"/>
+                    <g:render template="show/rewards"/>
                 </div>
             </div>
             <%--

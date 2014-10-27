@@ -8,7 +8,7 @@
 	<g:if test="${project}">
 	    <div>
 	        <h2>
-		    <g:link controller="project" action="validate" id="${project.id}">
+	        <g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">
 		        ${project.title}
 		    </g:link>
 		</h2>

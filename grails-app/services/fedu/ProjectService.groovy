@@ -57,16 +57,12 @@ class ProjectService {
 
     def getBeneficiaryName(Project project) {
         def name
-        if (project.fundRaisingFor == Project.FundRaisingFor.MYSELF) {
-            name = userService.getFriendlyFullName(project.user)
+        if (project.beneficiary.firstName && project.beneficiary.lastName) {
+            name = project.beneficiary.firstName + ' ' + project.beneficiary.lastName
         } else {
-            if (project.beneficiary.firstName && project.beneficiary.lastName) {
-                name = project.beneficiary.firstName + ' ' + project.beneficiary.lastName
-            } else {
-                name = project.beneficiary.firstName
-                if (!name) {
-                    name = project.beneficiary.email
-                }
+            name = project.beneficiary.firstName
+            if (!name) {
+                name = project.beneficiary.email
             }
         }
         return name
@@ -94,7 +90,7 @@ class ProjectService {
         }
     }
 
-    def getImageUrl(CommonsMultipartFile imageFile) {
+    /*def getImageUrl(CommonsMultipartFile imageFile) {
         this.imageFile = imageFile
         def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
         def awsSecretKey = "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"
@@ -118,8 +114,60 @@ class ProjectService {
         def imageUrl = "https://s3.amazonaws.com/crowdera/${key}"
 
         return imageUrl
+    }*/
+
+    def getfileUrl(CommonsMultipartFile textFile) {
+        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+        def awsSecretKey = "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"
+        def bucketName = "crowdera"
+        def folder = "project-document"
+
+        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+        def s3Service = new RestS3Service(awsCredentials);
+        def myBucket = s3Service.listAllBuckets();
+        def s3Bucket = new S3Bucket(bucketName)
+
+        def tempFile = new File("${textFile.getOriginalFilename()}")
+        def key = "${folder}/${textFile.getOriginalFilename()}"
+
+        textFile.transferTo(tempFile)
+        def object = new S3Object(tempFile)
+        object.key = key
+
+        s3Service.putObject(s3Bucket, object)
+        tempFile.delete()
+        def fileUrl = "https://s3.amazonaws.com/crowdera/${key}"
+
+        return fileUrl
+    }
+
+    def getorganizationIconUrl(CommonsMultipartFile iconFile) {
+        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+        def awsSecretKey = "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"
+        def bucketName = "crowdera"
+        def folder = "project-icon"
+
+        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+        def s3Service = new RestS3Service(awsCredentials);
+        def myBucket = s3Service.listAllBuckets();
+        def s3Bucket = new S3Bucket(bucketName)
+        
+        def tempFile = new File("${iconFile.getOriginalFilename()}")
+        def key = "${folder}/${iconFile.getOriginalFilename()}"
+        iconFile.transferTo(tempFile)
+        def object = new S3Object(tempFile)
+        object.key = key
+
+        s3Service.putObject(s3Bucket, object)
+        tempFile.delete()
+        
+        def organizationIconUrl = "https://s3.amazonaws.com/crowdera/${key}"
+
+        return organizationIconUrl
     }
 	
+    def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
+
 	def getMultipleImageUrls(List<MultipartFile> files, Project project){
 		def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
 		def awsSecretKey = "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"
@@ -134,24 +182,32 @@ class ProjectService {
 		
 		def tempImageUrl
 		files.each {
-			def imageUrl = new ImageUrl()
-			def imageFile= it
-			def file= new File("${imageFile.getOriginalFilename()}")
-			def key = "${Folder}/${it.getOriginalFilename()}"
-			if (!imageFile?.empty && imageFile.size < 1024*1024)
-			{
-				imageFile.transferTo(file)
-			}
-			def object=new S3Object(file)
-			object.key=key
-			tempImageUrl = "https://s3.amazonaws.com/crowdera/${key}"
-			s3Service.putObject(s3Bucket, object)
-			imageUrl.url = tempImageUrl
-			print tempImageUrl
-			project.addToImageUrl(imageUrl)
-			file.delete()
-		}
-	}
+            def imageUrl = new ImageUrl()
+            def imageFile= it
+            
+            if (!imageFile?.empty && imageFile.size < 1024*1024) {
+                
+                if (VALID_IMG_TYPES.contains(imageFile.getContentType())) {
+                    try{
+                        def file= new File("${imageFile.getOriginalFilename()}")
+                        def key = "${Folder}/${it.getOriginalFilename()}"
+                        imageFile.transferTo(file)
+                        def object=new S3Object(file)
+                        object.key=key
+                    
+                        tempImageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+                        s3Service.putObject(s3Bucket, object)
+                        imageUrl.url = tempImageUrl
+                        project.addToImageUrl(imageUrl)
+                        file.delete()
+                    }catch(IllegalStateException e){
+                        e.printStackTrace()
+                    }
+                }
+                
+            }
+        }
+    }
 
     def isProjectDeadlineCrossed(Project project) {
         if (!project) {
@@ -215,7 +271,7 @@ class ProjectService {
                 amount: 600,
                 days: 600,
                 //fundRaisingReason: Project.FundRaisingReason.TUITION_FEE,
-                fundRaisingFor: Project.FundRaisingFor.MYSELF,
+                //fundRaisingFor: Project.FundRaisingFor.MYSELF,
                 category: Project.Category.ENVIRONMENT,
                 title: 'Machine Learning',
                 story: 'Machine learning is going to change the world for ever.',
@@ -251,7 +307,7 @@ class ProjectService {
                 amount: 100,
                 days: 15,
                 //fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.OTHER,
+                //fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.PUBLIC_SERVICES,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
@@ -298,7 +354,7 @@ class ProjectService {
                 amount: 100,
                 days: 15,
                 //fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.OTHER,
+                //fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.PUBLIC_SERVICES,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
@@ -333,7 +389,7 @@ class ProjectService {
                 amount: 100,
                 days: 15,
                 //fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.OTHER,
+                //fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.PUBLIC_SERVICES,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
@@ -368,7 +424,7 @@ class ProjectService {
                 amount: 100,
                 days: 15,
                 //fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.OTHER,
+                //fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.PUBLIC_SERVICES,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
@@ -403,7 +459,7 @@ class ProjectService {
                 amount: 100,
                 days: 15,
                 //fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.OTHER,
+                //fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.PUBLIC_SERVICES,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
@@ -438,7 +494,7 @@ class ProjectService {
                 amount: 100,
                 days: 15,
                 //fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.OTHER,
+                //fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.PUBLIC_SERVICES,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
@@ -473,7 +529,7 @@ class ProjectService {
                 amount: 100,
                 days: 15,
                 //fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.OTHER,
+                //fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.PUBLIC_SERVICES,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
@@ -508,7 +564,7 @@ class ProjectService {
                 amount: 100,
                 days: 15,
                 //fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.OTHER,
+                //fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.PUBLIC_SERVICES,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
@@ -543,7 +599,7 @@ class ProjectService {
                 amount: 100,
                 days: 15,
                 //fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.OTHER,
+                //fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.PUBLIC_SERVICES,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',
@@ -578,7 +634,7 @@ class ProjectService {
                 amount: 100,
                 days: 15,
                 //fundRaisingReason: Project.FundRaisingReason.VOCATIONAL_SCHOOL,
-                fundRaisingFor: Project.FundRaisingFor.OTHER,
+                //fundRaisingFor: Project.FundRaisingFor.OTHER,
                 category: Project.Category.PUBLIC_SERVICES,
                 title: 'Cooperative dairy farming',
                 story: 'These women are from extremely impoverished and  rural areas of Maharashtra, India. Their husbands are farm owners or workers who are dependent upon the monsoon season to cultivate their produce. Inflation and poverty is making their lives unpredictable, unstable and strenuous. These women want to help their families by getting trained in cooperative dairy farming by Deepshikha and start their micro business.',

@@ -11,7 +11,6 @@ class Project {
     Date created
 
     /* Why */
-    FundRaisingFor fundRaisingFor
     Category category
 
     /* How much & when */
@@ -27,11 +26,15 @@ class Project {
     String videoUrl
     Image image
 	List imageUrl
+    String fileUrl
+    String organizationIconUrl
     List rewards
 
     /* More */
     List comments
     String charitableId
+    String organizationName
+    String webAddress
 
     boolean validated = false
     boolean inactive = false
@@ -53,6 +56,10 @@ class Project {
         description (nullable: true)
         charitableId (nullable: true)
         story (nullable: true)
+        organizationName (nullable: true)
+        webAddress (blank: false, email: true, nullable: true)
+        fileUrl (nullable: true)
+        organizationIconUrl (nullable: true)
     }
 
     def beforeInsert() {
@@ -63,11 +70,6 @@ class Project {
         if (!reward) {
             addToRewards(rewardService.getNoReward())
         }
-    }
-
-    enum FundRaisingFor {
-        MYSELF,
-        OTHER
     }
 
     enum Category {

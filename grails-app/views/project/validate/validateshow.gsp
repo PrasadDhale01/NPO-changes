@@ -28,8 +28,7 @@
                     <td class="text-justify">${raw(projects.description)}</td>
                     <td class="text-justify">${raw(projects.story)}</td>
                     <td class="text-justify">${projects.created}</td>
-                    <td class="text-justify">${projects.fundRaisingFor}</td>
-			        <td class="text-justify">${projects.category}</td>
+                    <td class="text-justify">${projects.category}</td>
 			    </tr>
 		       </tbody>
 		   </table>

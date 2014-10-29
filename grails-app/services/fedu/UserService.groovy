@@ -168,7 +168,7 @@ class UserService {
 
         def user = User.findByUsername('user@example.com')
         if (!user) {
-            user = new User(username: 'user@example.com', password: 'password').save(failOnError: true)
+            user = new User(username: 'user@example.com', password: 'password',firstName: 'userFirstName', lastName:'userLastName', email: 'user@example.com').save(failOnError: true)
         }
         UserRole.findOrSaveByUserAndRole(user, roleService.userRole())
 

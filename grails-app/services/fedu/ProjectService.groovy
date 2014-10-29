@@ -82,6 +82,60 @@ class ProjectService {
         }
     }
 
+    def getProjectImageLinks(Project project) {
+        def imageUrls = []
+        for (imgUrl in project.imageUrl) {
+            if (imgUrl) {
+                if (imgUrl.getUrl().startsWith('http')) {
+                    imageUrls.add(imgUrl.getUrl())
+                } else {
+                    imageUrls.add(grailsLinkGenerator.resource(file: imgUrl.getUrl()))
+                }
+            } else if (project.image) {
+                return grailsLinkGenerator.link(controller: 'project', action: 'thumbnail', id: project.id)
+            } else {
+                return 'http://lorempixel.com/400/400/abstract'
+            }
+        }
+        return imageUrls
+    }
+
+    def getMultipleImageUrls(List<MultipartFile> files, Project project){
+        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+        def awsSecretKey = "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"
+
+        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+        def s3Service = new RestS3Service(awsCredentials);
+
+        def bucketName = "crowdera"
+        def s3Bucket = new S3Bucket(bucketName)
+
+        def Folder = "project-images"
+
+        def tempImageUrl
+        files.each {
+            def imageUrl = new ImageUrl()
+            def imageFile= it
+            if (!imageFile?.empty && imageFile.size < 1024*1024) {
+                try{
+                    def file= new File("${imageFile.getOriginalFilename()}")
+                    def key = "${Folder}/${it.getOriginalFilename()}"
+                    imageFile.transferTo(file)
+                    def object=new S3Object(file)
+                    object.key=key
+
+                    tempImageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+                    s3Service.putObject(s3Bucket, object)
+                    imageUrl.url = tempImageUrl
+                    project.addToImageUrl(imageUrl)
+                    file.delete()
+                }catch(IllegalStateException e){
+                    e.printStackTrace()
+                }
+            }
+        }
+    }
+
     def isFundingOpen(Project project) {
         if (isProjectDeadlineCrossed(project) || contributionService.isFundingAchievedForProject(project)) {
             return false
@@ -168,7 +222,7 @@ class ProjectService {
 	
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
 
-	def getMultipleImageUrls(List<MultipartFile> files, Project project){
+    def getImageUrls(Project project){
 		def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
 		def awsSecretKey = "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"
 

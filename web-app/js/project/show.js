@@ -1,6 +1,5 @@
 $(function() {
     console.log('show.js initialized');
-
     var hash = window.location.hash;
     hash && $('ul.nav a[href="' + hash + '"]').tab('show');
 
@@ -21,3 +20,13 @@ $(function() {
     });
 
 });
+
+function showNavigation(){
+	document.getElementById('indicators').style.display = 'block';
+	document.getElementById('navigators').style.display = 'block';
+}
+
+function hideNavigation(){
+	document.getElementById('indicators').style.display = 'none';
+	document.getElementById('navigators').style.display = 'none';
+}

@@ -3,6 +3,9 @@ $(function() {
     $("#updatereward").hide();
     $("#rewardTemplate").hide();
 
+    $("#charitableId").hide();
+    $("#textfile").hide();
+
     /* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
@@ -89,6 +92,22 @@ $(function() {
             },
             answer: {
             	required: true
+            },
+             wel:{
+                required: true
+            },
+             organizationName: {
+                required: true
+            },
+            webAddress: {
+                required: true,
+                email: true
+            },
+            textfile: {
+                required: true
+            },
+            iconfile: {
+                required: true
             }
             /*
             imageUrl: {
@@ -97,7 +116,13 @@ $(function() {
             */
         },
         messages:{
-            thumbnail:"Please upload a thumbnail image for project"
+            thumbnail: "Please upload a thumbnail image for project"
+        },
+        messages:{
+            textfile: "Please upload your Letter of Determination "
+        },
+        messages:{
+            iconfile: "Please upload your Organizations icon"
         },
         errorPlacement: function(error, element) {
         	if ( element.is(":radio") || element.is(":checkbox")) {
@@ -107,7 +132,7 @@ $(function() {
         	}
         },//end error Placement
         
-        ignore: []
+        //ignore: []
     });
 
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
@@ -127,6 +152,16 @@ $(function() {
      	    $("#updatereward").hide();
      	    $("#rewardTemplate").hide();
      	}
+     });
+
+     $("input[name='wel']").change(function(){
+        if($(this).val()=="yes") {
+            $("#charitableId").show();
+            $("#textfile").hide();
+        } else {
+            $("#charitableId").hide(); 
+            $("#textfile").show();
+        }
      });
      
      $('#createreward').click(function(){

@@ -1,4 +1,5 @@
 <g:set var="userService" bean="userService"/>
+<% def user = userService.getCurrentUser() %>
 <html>
 <head>
     <meta name="layout" content="main" />
@@ -17,34 +18,19 @@
 					<h3 class="panel-title">Who</h3>
 				</div>
 				<div class="panel-body">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">For</label>
-                        <div class="col-sm-10">
-                            <g:select class="selectpicker" name="${FORMCONSTANTS.FUNDRAISINGFOR}"
-                                      from="${raisingForOptions}"
-                                      optionKey="key" optionValue="value"/>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Charitable ID</label>
-                        <div class="col-sm-4">
-                            <input id="charitableId" class="form-control" name="${FORMCONSTANTS.CHARITABLE}">
-                         </div>
-                    </div>
-                    <hr>
+
                     <div class="row">
                         <div class="col col-sm-6">
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">First Name</label>
                                 <div class="col-sm-8">
-                                    <input id="firstName" class="form-control" name="${FORMCONSTANTS.FIRSTNAME}">
+                                    <input id="firstName" class="form-control" name="${FORMCONSTANTS.FIRSTNAME}" value="${user.firstName}" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Last Name</label>
                                 <div class="col-sm-8">
-                                    <input id="lastName" class="form-control" name="${FORMCONSTANTS.LASTNAME}">
+                                    <input id="lastName" class="form-control" name="${FORMCONSTANTS.LASTNAME}" value="${user.lastName}" disabled>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -66,7 +52,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Email</label>
                                 <div class="col-sm-8">
-                                    <input id="email" type="email" class="form-control" name="${FORMCONSTANTS.EMAIL}">
+                                    <input id="email" type="email" class="form-control" name="${FORMCONSTANTS.EMAIL}" value="${user.email}" disabled>
                                 </div>
 
                             </div>
@@ -119,6 +105,64 @@
                     </div>
 				</div>
 			</div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Organizations</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Do you have Charitable ID ?</label>
+                        <div class="col-sm-8">
+                            <div class="btn-group btn-group-sm">
+                                <label class="btn btn-default">
+                                    <input type="radio" name="wel" value="yes"> Yes
+                                </label>
+                                <label class="btn btn-default">
+                                    <input type="radio" name="wel" value="no"> No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group" id="charitableId">
+                        <label class="col-sm-2 control-label">Charitable ID</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="${FORMCONSTANTS.CHARITABLE}">
+                        </div>
+                    </div>
+                    <div class="form-group" id="textfile">
+                        <label class="col-sm-2 control-label">Upload your Letter of Determination</label>
+                        <div class="col-sm-4">
+                            <input  type="file" name="textfile">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" id="organizationName">Organization Name</label>
+                                <div class="col-sm-8">
+                                    <input  class="form-control" name="${FORMCONSTANTS.ORGANIZATIONNAME}" placeholder="Organization Name">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" id="iconfile">Organization Icon</label>
+                                <div class="col-sm-8">
+                                    <input type="file" name="iconfile">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" id="webAddress">Web Address</label>
+                                <div class="col-sm-8">
+                                    <input  class="form-control" name="${FORMCONSTANTS.WEBADDRESS }" placeholder="Web Address">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
 
             <div class="panel panel-default">
                 <div class="panel-heading">

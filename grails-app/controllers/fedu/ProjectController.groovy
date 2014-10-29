@@ -33,8 +33,9 @@ class ProjectController {
         POSTALCODE: 'postalCode',
         COUNTRY: 'country',
         CHARITABLE: 'charitableId',
+        ORGANIZATIONNAME: 'organizationName',
+        WEBADDRESS: 'webAddress',
 
-        FUNDRAISINGFOR: 'fundRaisingFor',
         CATEGORY: 'category',
         DEFAULT_CATEGORY: Project.Category.EDUCATION,
         AMOUNT: 'amount',
@@ -159,11 +160,6 @@ class ProjectController {
 
     @Secured(['ROLE_USER'])
 	def create() {
-		def raisingForOptions = [
-            (Project.FundRaisingFor.OTHER): "Someone I know",
-			(Project.FundRaisingFor.MYSELF): "Myself"
-		]
-
         def categoryOptions = [
             (Project.Category.ANIMALS): "Animals",
             (Project.Category.ARTS): "Arts",
@@ -191,8 +187,7 @@ class ProjectController {
         }
 
         render (view: 'create/index',
-                model: [raisingForOptions: raisingForOptions,
-                        categoryOptions: categoryOptions,
+                model: [categoryOptions: categoryOptions,
                         rewardOptions: rewardOptions,
                         genderOptions: genderOptions,
                         FORMCONSTANTS: FORMCONSTANTS])
@@ -393,17 +388,19 @@ class ProjectController {
             rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
         }
 
+        def textFile = request.getFile('textfile')
+        if(!textFile.isEmpty()) {
+            def uploadedFileUrl = projectService.getfileUrl(textFile)
+            project.fileUrl = uploadedFileUrl
+        }
+
+        def iconFile = request.getFile('iconfile')
+        def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
+        project.organizationIconUrl = uploadedFileUrl
+
 		List<MultipartFile> files = request.multiFileMap.collect { it.value }.flatten()
 
 		projectService.getMultipleImageUrls(files, project)
-
-        if (project.fundRaisingFor == Project.FundRaisingFor.OTHER) {
-            /* Nothing to do here. */
-        } else if (project.fundRaisingFor == Project.FundRaisingFor.MYSELF) {
-            beneficiary.firstName = user.firstName
-            beneficiary.lastName = user.lastName
-            beneficiary.email = user.email
-        }
 
         project.user = user
         project.created = new Date()

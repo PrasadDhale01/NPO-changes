@@ -243,7 +243,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Thumbnail image</label>
+                        <label class="col-sm-2 control-label">Pictures</label>
                         <div class="col-sm-4">
                             <input type="file" name="${FORMCONSTANTS.THUMBNAIL}" multiple="multiple">
                         </div>

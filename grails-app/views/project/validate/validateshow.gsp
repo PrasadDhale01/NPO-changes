@@ -18,7 +18,6 @@
 			        <th>DESCRIPTION</th>
 			        <th>STORY</th>
 			        <th>CREATED AT</th>
-			        <th>FOR</th>
 			        <th>CATEGORY</th>
 			    </tr>	
 		        </thead>

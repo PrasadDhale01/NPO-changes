@@ -27,9 +27,6 @@
     <g:elseif test="${ended}">
         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
     </g:elseif>
-    <g:else>
-        <a href="/projects/${project.id}/fund" class="btn btn-primary btn-lg btn-block" role="button">Fund this project</a>
-    </g:else>
     
     <g:render template="/project/manageproject/tilesanstitle"/>
 </div>

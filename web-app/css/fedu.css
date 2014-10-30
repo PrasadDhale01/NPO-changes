@@ -371,3 +371,22 @@ ul.unstyled {
 .rewarddelete {
     font-size: small;
 }
+
+/*Checkout page */
+#billToTitle {
+	margin-left: 15px;
+	width: 67px;
+	margin-right: 8px;
+}
+
+#billToFirstName {
+	width: 227px;
+}
+
+#description{
+	height: 85px;
+}
+
+.box {
+    padding: 0 30px 0 30px;
+}

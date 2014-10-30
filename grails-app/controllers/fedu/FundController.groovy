@@ -38,6 +38,12 @@ class FundController {
     def checkout() {
         Project project
         Reward reward
+        
+        def user = userService.getCurrentUser()
+        def country = projectService.getCountry()
+        def cardTypes = projectService.getcardtypes()
+        def title = projectService.getTitle()
+        def state = projectService.getState()
 
         if (params.projectId) {
             project = Project.findById(params.projectId)
@@ -59,7 +65,7 @@ class FundController {
         }
 
         if (project && reward) {
-            render view: 'checkout/index', model: [project: project, reward: reward, amount: amount]
+            render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state]
         } else {
             render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
         }
@@ -69,7 +75,7 @@ class FundController {
     def charge(String stripeToken) {
         Project project
         Reward reward
-
+            
         if (params.projectId) {
             project = Project.findById(params.projectId)
         }
@@ -87,10 +93,17 @@ class FundController {
             def BASE_URL = "http://usapisandbox.fgdev.net"
 
             def http = new HTTPBuilder(BASE_URL)
-            def amount = 10;
-
+            def amount = params.double('amount');
+           
             def result = null
             def transactionId = null
+            def state
+            
+            if(params.billToState == 'other'){
+                state = params.otherState
+            } else {
+                state = params.billToState
+            }
             
             http.request(Method.POST, ContentType.URLENC) {
                 uri.path = '/donation/creditcard'
@@ -101,21 +114,25 @@ class FundController {
                          ccExpDateYear:params.ccExpDateYear,
                          ccExpDateMonth:params.ccExpDateMonth,
                          ccCardValidationNum:params.ccCardValidationNum,
+                         billToTitle:params.billToTitle,
                          billToFirstName:params.billToFirstName,
                          billToLastName:params.billToLastName,
                          billToAddressLine1:params.billToAddressLine1,
+                         billToAddressLine1:params.billToAddressLine2,
+                         billToAddressLine1:params.billToAddressLine3,
                          billToCity:params.billToCity,
 
                          billToZip:params.billToZip,
                          billToCountry:params.billToCountry,
                          billToEmail:params.billToEmail,
+                         billToPhone:params.billToPhone,
 
                          remoteAddr:params.remoteAddr,
                          amount:params.amount,
                          currencyCode:params.currencyCode,
                          charityId:"dummyid",
                          description:params.description,
-                         billToState:params.billToState]
+                         billToState:state]
 
                 // response handler for a success response code
                 response.success = { resp, reader ->

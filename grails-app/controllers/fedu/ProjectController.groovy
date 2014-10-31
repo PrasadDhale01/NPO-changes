@@ -43,7 +43,7 @@ class ProjectController {
         TITLE: 'title',
         STORY: 'story',
         DESCRIPTION: 'description',
-        THUMBNAIL: 'thumbnail[]',
+        THUMBNAIL: 'thumbnail',
         IMAGEURL: 'imageUrl',
         REWARDS: 'rewards',
         PROJECTSEXCEL: 'projectsExcel',

@@ -101,7 +101,7 @@ $(function() {
             },
             webAddress: {
                 required: true,
-                email: true
+                url: true
             },
             textfile: {
                 required: true

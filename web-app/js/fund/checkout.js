@@ -1,5 +1,28 @@
 $(function() {
     console.log("checkout.js initialized");
+    $("#otherState").hide();
+    
+    /* Apply selectpicker to selects. */
+    $('.selectpicker').selectpicker({
+        style: 'btn btn-sm btn-default'
+    });
+    
+    var optionChosen;
+    
+    $('#ccType').change(function(event) {
+    	optionChosen = $(this).val();
+    });
+    
+    $('#billToState').change(function(event) {
+    	var option = $(this).val();
+    	if(option == 'other'){
+    		$("#otherState").show();
+    	} else {
+    		$("#otherState").hide();
+    	}
+    		
+    });
+    
 
     /*var source   = $("#credit-error-template").html();
     var template = Handlebars.compile(source);*/
@@ -45,28 +68,56 @@ $(function() {
                 required: true
             },
             ccExpDateYear: {
-                required: true
+                required: true,
+                maxlength:4
             },
             ccExpDateMonth: {
-                required: true
+                required: true,
+                maxlength:2
             },
             ccCardValidationNum: {
-                required: true
+                required: true,
+                maxlength: function(){
+                    if (optionChosen == 'AX') {
+                        return 4;
+                    } else {
+                        return 3;
+                    }
+                }
+            },
+            billToTitle: {
+            	required:true,
+            	maxlength:10
             },
             billToFirstName: {
-                required: true
+                required: true,
+                maxlength:100
             },
             billToLastName: {
-                required: true
+                required: true,
+                maxlength:100
             },
             billToAddressLine1: {
-                required: true
+                required: true,
+                maxlength:255
+            },
+            billToAddressLine2: {
+            	maxlength:255
+            },
+            billToAddressLine3: {
+                maxlength:255
             },
             billToCity: {
-                required: true
+                required: true,
+                maxlength:35
+            },
+            billToPhone: {
+            	 number: true,
+            	 maxlength:100
             },
             billToEmail: {
-                required: true
+                required: true,
+                maxlength:100
             },
             billToCountry: {
                 required: true

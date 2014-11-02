@@ -18,6 +18,7 @@ class ProjectController {
     def excelImportService
     def rewardService
     def projectService
+    def mandrillService
 
     def FORMCONSTANTS = [
         /* Beneficiary */
@@ -142,7 +143,7 @@ class ProjectController {
     @Secured(['ROLE_USER'])
     def savecomment() {
         Project project
-        if (params.int('id')) {
+        if (params.id) {
             project = Project.findById(params.id)
             if (project && params.comment) {
                 new ProjectComment(
@@ -461,5 +462,22 @@ class ProjectController {
         } else {
             render (view: 'manageproject/error', model: [reward: reward])
         }
+    }
+    
+    def sendemail() {
+        def project = Project.get(params.id)
+        String emails = params.emails
+        String name = params.name
+        String message = params.message
+        
+        def emailList = emails.split(',')
+        emailList = emailList.collect { it.trim() }
+        
+        mandrillService.shareProject(emailList, name, message, project)
+
+        flash.sentmessage= "Email Send Successfully!!"
+        render (view: 'show/index',
+                model: [project: project,
+                        FORMCONSTANTS: FORMCONSTANTS])
     }
 }

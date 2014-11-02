@@ -63,6 +63,3 @@
             </div>
         </g:else>
     </div>
-
-    <div class="fb-like" data-href="http://beta.fedu.org/projects/${project.id}" data-layout="standard" data-action="like" data-show-faces="false" data-share="true">
-    </div>

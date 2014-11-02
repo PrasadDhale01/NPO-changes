@@ -21,6 +21,11 @@
                         <a href="${project.id}">${project.title}</a>
                     </h1>
                     <h4 class="lead">Beneficiary: ${projectService.getBeneficiaryName(project)}</h4>
+                    <g:if test="${flash.sentmessage}">
+                        <div class="alert alert-success">
+                            ${flash.sentmessage}
+                        </div>
+                    </g:if>
 
                     <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
                         <li class="active"><a href="#essentials" data-toggle="tab">
@@ -46,8 +51,57 @@
                             <g:render template="show/comments"/>
                         </div>
                     </div>
-
+                    
+                    <%-- Social features --%>
+                    <div class="row">
+				        <div class="col-sm-12">
+				            <a class="share-mail pull-right" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail" data-url="http://beta.fedu.org/projects/${project.id}" data-name="${project.title}">
+				                <img src="${resource(dir: 'images', file: 'mail-share@2x.png')}" style="padding: 0; width:30px; bottom-margin:4px; margin:2px;" alt="Mail Share"/>
+				            </a>
+				            <a class="twitter-share pull-right" href="https://twitter.com/share?text=Hey check this project at crowdera.co!"  data-url="https://beta.fedu.org/projects/${project.id}" target="_blank">
+				                <img src="${resource(dir: 'images', file: 'tw-share@2x.png')}" style="padding: 0; width:30px; bottom-margin:4px; margin:2px;" alt="Twitter Share"/>
+				            </a>
+				            <a class="fb-share pull-right" href="http://www.facebook.com/sharer.php?s=100&p[url]=http://beta.fedu.org/projects/${project.id}&p[images][0]=${project.imageUrl[0].getUrl()} &p[title]=${project.title} &p[summary]=${project.story}" data-url="http://beta.fedu.org/projects/${project.id}" target="_blank">
+				                <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" style="padding: 0; width:30px; bottom-margin:4px; margin:2px;" alt="Facebook Share"/>
+				            </a>
+				            <span style="float:right; margin:5px;"><b>share this project</b></span>
+				        </div>
+				        
+				        <!-- Modal -->
+				        <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
+				            <g:form action="sendemail" id="${project.id}" role="form">
+				                <div class="modal-dialog">
+				                    <div class="modal-content">
+				                        <div class="modal-header">
+				                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				                            <h4 class="modal-title">Recipient Email ID's</h4>
+				                        </div>
+				                        <div class="modal-body">
+				                            <g:hiddenField name="amount" value="${project.amount}"/>
+				                            <div class="form-group">
+				                                <label for="title">Your Name</label>
+				                                <input type="text" class="form-control" name="name" placeholder="Name"/>
+				                            </div>
+				                            <div class="form-group">
+				                                <label for="emailAddress">Email ID's (separated by comma)</label>
+				                                <textarea class="form-control" name="emails" rows="4" placeholder="Email ID's"></textarea>
+				                            </div>
+				                            <div class="form-group">
+				                                <label for="message">Message(Optional)</label>
+				                                <textarea class="form-control" name="message" rows="4" placeholder="Message"></textarea>
+				                            </div>
+				                        </div>
+				                        <div class="modal-footer">
+				                            <button type="submit" class="btn btn-primary btn-block">Send Email</button>
+				                        </div>
+				                    </div>
+				                </div>
+				            </g:form>
+				        </div>
+				    </div>
+				    
                 </div>
+                
                 <div class="col-md-4">
                     <g:if test="${percentage == 100}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>

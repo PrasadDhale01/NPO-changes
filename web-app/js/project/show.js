@@ -18,6 +18,44 @@ $(function() {
             }
         }
     });
+    
+    $('#sendmailmodal').find('form').validate({
+        rules: {
+        	name: {
+        		required: true
+        	},
+            emails: {
+                required: true,
+                validateMultipleEmailsCommaSeparated: true
+            }
+        }
+    });
+    
+    function validateEmail(field) {
+        var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
+        return (regex.test(field)) ? true : false;
+    }
+
+    $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value, element) {
+        var result = value.split(",");
+        for(var i = 0;i < result.length;i++)
+        if(!validateEmail(result[i])) 
+                return false;    		
+        return true;
+    },"please add valid emails only");
+    
+    $('#youtubeVideoUrl').html(function(i, html) {
+    	
+    	var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    	var url= html.trim();
+    	var match = url.match(regExp);
+    	$("#youtubeVideoUrl").hide();
+    	
+    	if (match && match[2].length == 11) {
+            var value = match[2];
+            $('#youtube').html('<iframe width="560" height="315" src="//www.youtube.com/embed/' + value + '" frameborder="0" allowfullscreen></iframe>');
+        }
+    });
 
 });
 

@@ -7,7 +7,7 @@
                 <h3 class="panel-title">Project Description</h3>
             </div>
             <div class="panel-body">
-                <p class="text-left">${raw(project.description)}</p>
+                <span class="text-left">${raw(project.description)}</span>
             </div>
         </div>
         <div class="panel panel-default" style="margin-top: 30px;">
@@ -15,7 +15,7 @@
                 <h3 class="panel-title">Project Story</h3>
             </div>
             <div class="panel-body">
-                <p class="text-centre">${raw(project.story)}</p>
+                <span class="text-centre">${raw(project.story)}</span>
             </div>
         </div>  
     </div>

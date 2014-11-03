@@ -7,3 +7,9 @@ target-eclipse/
 *.db
 web-app/plugins/
 fedu.log
+
+.settings/org.eclipse.core.resources.prefs
+
+.settings/org.eclipse.jdt.groovy.core.prefs
+
+.classpath

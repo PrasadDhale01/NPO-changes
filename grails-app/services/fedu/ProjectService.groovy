@@ -369,8 +369,45 @@ class ProjectService {
     }
 
     def getValidatedProjects() {
-        return Project.findAllWhere(validated: true,inactive: false)
+		def criteria = Project.createCriteria()
+		def results = criteria.list {
+			eq("validated", true)
+			eq("inactive", false)
+			order("id", "desc")
+		}
+		def popularProjectsList = getPopularProjects()
+		print popularProjectsList
+		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
+//        return Project.findAllWhere(validated: true,inactive: false)
+		print finalList
+		return finalList
     }
+	
+	def getPopularProjects(){
+		def criteria = Project.createCriteria()
+		def results = criteria.list {
+			eq("validated", true)
+			eq("inactive", false)
+			maxResults(5)
+			order("id", "desc")
+		}
+		return results
+	}
+	
+	def showProjects(){
+		/* Logic to fetch the latest comes first out of the validated projects.*/
+		//TO DO
+		/* Later on the criteria will be modified in order to display the admin selected projects as the popular projects*/
+		def criteria = Project.createCriteria()
+		def results = criteria.list {
+			eq("validated", true)
+			eq("inactive", false)
+			order("id", "desc")
+		}
+		def popularProjectsList = getPopularProjects()
+		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
+		return finalList
+	}
 
 	def getPopularProjects(){
 		def criteria = Project.createCriteria()

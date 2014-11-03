@@ -7,7 +7,7 @@
                 <h3 class="panel-title">Project Description</h3>
             </div>
             <div class="panel-body">
-                <p class="text-left">${raw(project.description)}</p>
+                <span class="text-left">${raw(project.description)}</span>
             </div>
         </div>
         <div class="panel panel-default" style="margin-top: 30px;">
@@ -15,7 +15,7 @@
                 <h3 class="panel-title">Project Story</h3>
             </div>
             <div class="panel-body">
-                <p class="text-centre">${raw(project.story)}</p>
+                <span class="text-centre">${raw(project.story)}</span>
             </div>
         </div>  
     </div>
@@ -27,9 +27,6 @@
     <g:elseif test="${ended}">
         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
     </g:elseif>
-    <g:else>
-        <a href="/projects/${project.id}/fund" class="btn btn-primary btn-lg btn-block" role="button">Fund this project</a>
-    </g:else>
     
     <g:render template="/project/manageproject/tilesanstitle"/>
 </div>

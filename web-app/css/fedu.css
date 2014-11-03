@@ -272,12 +272,6 @@ ul.unstyled {
 .left-addon input  { padding-left:  30px; }
 .right-addon input { padding-right: 30px; }
 
-.grow:hover {
-    -webkit-transform: scale(1.05);
-    -ms-transform: scale(1.05);
-    transform: scale(1.05);
-}
-
 /* Override bootstrap */
 .progress {
     margin-bottom: 0;

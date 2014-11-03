@@ -21,20 +21,6 @@
 					<h3 class="panel-title">Who</h3>
 				</div>
 				<div class="panel-body">
-				    <div class="form-group">
-                    <label class="col-sm-2 control-label">For</label>
-                        <div class="col-sm-4">
-                            <input id="firstName" class="form-control" name="${FORMCONSTANTS.FUNDRAISINGFOR}" value="${project.fundRaisingFor}" disabled>          
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Charitable ID</label>
-                        <div class="col-sm-4">
-                            <input id="charitableId" class="form-control" name="${FORMCONSTANTS.CHARITABLE}" value="${project.charitableId}" disabled>
-                         </div>
-                    </div>
-                    <hr>
                     <div class="row">
                         <div class="col col-sm-6">
                             <div class="form-group">
@@ -164,8 +150,16 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Story</label>
                         <div class="col-sm-10">
-                            <input type="hidden" class="form-control">  
-                            <ckeditor:editor   name="${FORMCONSTANTS.STORY}" toolbar="custom" height="200px" width="100%">
+                            <ckeditor:config var="toolbar_Mytoolbar">
+                                [
+                                    ['Bold', 'Italic', 'Underline','Strike','Subscript', 'Superscript','-', 'RemoveFormat',],
+                                    ['Link','Unlink','Anchor'],
+                                    ['Styles','Format','Font','FontSize'],
+                                    ['Maximize'],['TextColor'],['Smiley']
+                                ]
+                            </ckeditor:config>
+                            
+                            <ckeditor:editor toolbar="Mytoolbar" name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" height="200px" width="100%">
                                 ${project.story}
                             </ckeditor:editor>
                         </div>

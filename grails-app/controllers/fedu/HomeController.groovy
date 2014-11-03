@@ -4,7 +4,7 @@ class HomeController {
 	def projectService
 
     def index() {
-    	def projects = projectService.getValidatedProjects()
+    	def projects = projectService.showProjects()
         return [projects: projects]
     }
 }

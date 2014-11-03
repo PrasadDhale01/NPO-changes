@@ -399,9 +399,9 @@ class ProjectController {
         def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
         project.organizationIconUrl = uploadedFileUrl
 
-		List<MultipartFile> files = request.multiFileMap.collect { it.value }.flatten()
+		def imageFiles = request.getFiles('thumbnail[]') 
 
-		projectService.getMultipleImageUrls(files, project)
+		projectService.getMultipleImageUrls(imageFiles, project)
 
         project.user = user
         project.created = new Date()

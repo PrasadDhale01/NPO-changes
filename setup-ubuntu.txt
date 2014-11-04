@@ -40,10 +40,10 @@ $ sudo iptables -L -t nat
 # Download Jetty
 $ mkdir ~/Programs
 $ cd ~/Programs
-$ wget <path-to-jetty-9.1.2>
-$ gunzip jetty-distribution-9.1.2.v20140210.tar.gz
-$ tar -xvf jetty-distribution-9.1.2.v20140210.tar
-$ mv jetty-distribution-9.1.2.v20140210 jetty
+$ wget http://eclipse.tsl.gr/jetty/9.2.4.v20141103/dist/jetty-distribution-9.2.4.v20141103.tar.gz
+$ gunzip jetty-distribution-9.2.4.v20141103.tar.gz
+$ tar -xvf jetty-distribution-9.2.4.v20141103.tar
+$ mv jetty-distribution-9.2.4.v20141103 jetty
 $ cd jetty
 $ cp ~/Projects/Crowdera/target/Crowdera-0.1.war ~/Programs/jetty/webapps/root.war
 $ nohup java -jar start.jar &

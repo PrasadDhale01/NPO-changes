@@ -35,7 +35,7 @@ environments {
     production {
         dataSource {
             dbCreate = "create-drop"
-            url = "jdbc:mysql://crowderadb.c5qkqnx9x4ca.us-west-2.rds.amazonaws.com:3306/fedudb"
+            url = "jdbc:mysql://crowderadb.c5qkqnx9x4ca.us-west-2.rds.amazonaws.com:3306/crowderadb"
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
 

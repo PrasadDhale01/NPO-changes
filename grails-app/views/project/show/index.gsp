@@ -64,7 +64,7 @@
 				            <a class="fb-share pull-right" href="http://www.facebook.com/sharer.php?s=100&p[url]=http://beta.fedu.org/projects/${project.id}&p[images][0]=${project.imageUrl[0].getUrl()} &p[title]=${project.title} &p[summary]=${project.story}" data-url="http://beta.fedu.org/projects/${project.id}" target="_blank">
 				                <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" style="padding: 0; width:30px; bottom-margin:4px; margin:2px;" alt="Facebook Share"/>
 				            </a>
-				            <span style="float:right; margin:5px;"><b>share this project</b></span>
+				            <span style="float:right; margin:5px;"><label>Share this project</label></span>
 				        </div>
 				        
 				        <!-- Modal -->
@@ -79,15 +79,15 @@
 				                        <div class="modal-body">
 				                            <g:hiddenField name="amount" value="${project.amount}"/>
 				                            <div class="form-group">
-				                                <label for="title">Your Name</label>
+				                                <label>Your Name</label>
 				                                <input type="text" class="form-control" name="name" placeholder="Name"/>
 				                            </div>
 				                            <div class="form-group">
-				                                <label for="emailAddress">Email ID's (separated by comma)</label>
+				                                <label>Email ID's (separated by comma)</label>
 				                                <textarea class="form-control" name="emails" rows="4" placeholder="Email ID's"></textarea>
 				                            </div>
 				                            <div class="form-group">
-				                                <label for="message">Message(Optional)</label>
+				                                <label>Message(Optional)</label>
 				                                <textarea class="form-control" name="message" rows="4" placeholder="Message"></textarea>
 				                            </div>
 				                        </div>

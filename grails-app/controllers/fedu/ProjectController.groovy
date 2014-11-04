@@ -475,7 +475,7 @@ class ProjectController {
         
         mandrillService.shareProject(emailList, name, message, project)
 
-        flash.sentmessage= "Email Send Successfully!!"
+        flash.sentmessage= "Email sent successfully."
         render (view: 'show/index',
                 model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])

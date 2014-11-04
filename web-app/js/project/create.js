@@ -2,6 +2,7 @@ $(function() {
     console.log("create.js initialized");
     $("#updatereward").hide();
     $("#rewardTemplate").hide();
+    $("#charityTextBox").show();
 
     $("#charitableId").hide();
     $("#textfile").hide();
@@ -152,6 +153,10 @@ $(function() {
      	    $("#updatereward").hide();
      	    $("#rewardTemplate").hide();
      	}
+     });
+     
+     $('#saveButton').click(function(){
+    	 $("#charityTextBox").hide();
      });
 
      $("input[name='wel']").change(function(){

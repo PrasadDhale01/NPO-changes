@@ -24,7 +24,7 @@ $ sudo apt-get install git-core
 # Download & build Crowdera code
 $ mkdir ~/Projects
 $ cd ~/Projects
-$ git clone https://github.com/atreya/Crowdera.git
+$ git clone https://github.com/FundEdu/Crowdera.git
 $ cd Crowdera
 $ grails compile
 $ grails war
@@ -38,8 +38,9 @@ $ sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 443 -j REDIRECT --to
 $ sudo iptables -L -t nat
 
 # Download Jetty
+$ mkdir ~/Programs
 $ cd ~/Programs
-$ wget http://www.gtlib.gatech.edu/pub/eclipse/jetty/stable-9/dist/jetty-distribution-9.1.2.v20140210.tar.gz
+$ wget <path-to-jetty-9.1.2>
 $ gunzip jetty-distribution-9.1.2.v20140210.tar.gz
 $ tar -xvf jetty-distribution-9.1.2.v20140210.tar
 $ mv jetty-distribution-9.1.2.v20140210 jetty

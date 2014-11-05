@@ -2,7 +2,6 @@ $(function() {
     console.log("create.js initialized");
     $("#updatereward").hide();
     $("#rewardTemplate").hide();
-    $("#charityTextBox").show();
 
     $("#charitableId").hide();
     $("#textfile").hide();
@@ -54,9 +53,6 @@ $(function() {
                 required: true
             },
             country: {
-                required: true
-            },
-            gender: {
                 required: true
             },
             amount: {
@@ -154,10 +150,7 @@ $(function() {
      	    $("#rewardTemplate").hide();
      	}
      });
-     
-     $('#saveButton').click(function(){
-    	 $("#charityTextBox").hide();
-     });
+
 
      $("input[name='wel']").change(function(){
         if($(this).val()=="yes") {

@@ -35,22 +35,6 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">Gender</label>
-                                <div class="col-sm-8">
-                                    <div class="btn-group btn-group-sm">
-                                        <label class="btn btn-default">
-                                            <input type="radio" name="${FORMCONSTANTS.GENDER}" value="${genderOptions.MALE}"> Male
-                                        </label>
-                                        <label class="btn btn-default">
-                                            <input type="radio" name="${FORMCONSTANTS.GENDER}" value="${genderOptions.FEMALE}"> Female
-                                        </label>
-                                        <label class="btn btn-default">
-                                            <input type="radio" name="${FORMCONSTANTS.GENDER}" value="${genderOptions.UNSPECIFIED}"> Unspecified
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <label class="col-sm-4 control-label">Email</label>
                                 <div class="col-sm-8">
                                     <input id="email" type="email" class="form-control" name="${FORMCONSTANTS.EMAIL}" value="${user.email}" disabled>
@@ -113,7 +97,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Do you have Charitable ID ?</label>
+                        <label class="col-sm-2 control-label">Is your organization registered with FirstGiving?</label>
                         <div class="col-sm-8">
                             <div class="btn-group btn-group-sm">
                                 <label class="btn btn-default">
@@ -130,18 +114,18 @@
                     		<div class="col-sm-8" >
                     			<label class="col-sm-3 control-label">Charitable ID</label>
                     			<div class="col-sm-9" id="charitable">
-                    				<input type="text" style="width:400px" id="charityTextBox">
+                    				<input type="text" style="width:400px" disabled>
                         		</div>
                             </div>
                         	<div class="col-sm-4">
-                        		<a data-toggle="modal" href="#myModal" class="charitableLink">Browse To Charitable Id</a>
+                        		<a data-toggle="modal" href="#myModal" class="charitableLink">Find your organization</a>
                         	</div>
                         	<div class="modal" id="myModal">
 								<div class="modal-dialog">
       								<div class="modal-content">
         								<div class="modal-header">
           									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-          									<h4 class="modal-title">Modal title</h4>
+          									<h4 class="modal-title">Find your charity organization</h4>
         								</div>
         							<div class="modal-body">
         							<div id="fgGraphWidgetContainer"></div>
@@ -149,22 +133,22 @@
         							<script>
         							var FG_GRAPHWIDGET_PARAMS = {
         									results : {
-        									selectaction : function(uuid) {
-        									document.getElementById("uuid").value=uuid;
+        									    selectaction : function(uuid) {
+        									        document.getElementById("uuid").value=uuid;
+        									    }
         									}
-        									}
-        									};
+        						    };
 
-        							function myfunction(){
+        							function setOrganization(){
         							   	 var value= document.getElementById("uuid").value;
-        							$('#charitable').html('<input type="text" name="${FORMCONSTANTS.CHARITABLE}" style="width:400px" value="'+value+'"></input>');
+        							   	 $('#charitable').find('input').val(value);
         							}
       								</script>
 									<script src="http://assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
         							</div>
         							<div class="modal-footer">
           								<button href="#" data-dismiss="modal" class="btn btn-primary">Close</button>
-          								<button class="btn btn-primary" href="#" data-dismiss="modal" onclick="myfunction()" id="saveButton">Save</button>
+          								<button class="btn btn-primary" href="#" data-dismiss="modal" onclick="setOrganization()" id="saveButton">Save</button>
         							</div>
       							</div>
     						</div>

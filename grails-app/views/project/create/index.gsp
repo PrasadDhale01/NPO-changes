@@ -127,32 +127,31 @@
           									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
           									<h4 class="modal-title">Find your charity organization</h4>
         								</div>
-        							<div class="modal-body">
-        							<div id="fgGraphWidgetContainer"></div>
-        							
-        							<script>
-        							var FG_GRAPHWIDGET_PARAMS = {
-        									results : {
-        									    selectaction : function(uuid) {
-        									        document.getElementById("uuid").value=uuid;
-        									    }
-        									}
-        						    };
-
-        							function setOrganization(){
-        							   	 var value= document.getElementById("uuid").value;
-        							   	 $('#charitable').find('input').val(value);
-        							}
-      								</script>
-									<script src="http://assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
-        							</div>
-        							<div class="modal-footer">
-          								<button href="#" data-dismiss="modal" class="btn btn-primary">Close</button>
-          								<button class="btn btn-primary" href="#" data-dismiss="modal" onclick="setOrganization()" id="saveButton">Save</button>
-        							</div>
-      							</div>
-    						</div>
-				        </div>
+        								<div class="modal-body">
+        									<div id="fgGraphWidgetContainer"></div>
+        									<script>
+        										var FG_GRAPHWIDGET_PARAMS = {
+        											results : {
+        									    		selectaction : function(uuid) {
+        									        		document.getElementById("uuid").value=uuid;
+        									    		}
+        											}
+        						    			};
+        										function setOrganization(){
+        							   	 			var value= document.getElementById("uuid").value;
+        							   	 			$('#charitable').find('input').val(value);
+        										}
+      										</script>
+											<script src="http://assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
+        								</div>
+        								<div class="modal-footer">
+          									<button href="#" data-dismiss="modal" class="btn btn-primary">Close</button>
+          									<button class="btn btn-primary" href="#" data-dismiss="modal" onclick="setOrganization()" id="saveButton">Save</button>
+        								</div>
+      								</div>
+    							</div>
+				        	</div>
+                    	</div>
                     </div>
                     <div class="form-group" id="textfile">
                         <label class="col-sm-2 control-label">Upload your Letter of Determination</label>

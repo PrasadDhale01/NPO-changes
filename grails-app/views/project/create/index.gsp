@@ -7,6 +7,7 @@
     <ckeditor:resources/>
 </head>
 <body>
+<input type="hidden" name="uuid" id="uuid"/> 
 <div class="feducontent">
 	<div class="container">
 		<h1><span class="glyphicon glyphicon-leaf"></span> Create Project</h1>
@@ -125,10 +126,49 @@
                         </div>
                     </div>
                     <div class="form-group" id="charitableId">
-                        <label class="col-sm-2 control-label">Charitable ID</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" name="${FORMCONSTANTS.CHARITABLE}">
-                        </div>
+                    	<div class="row">
+                    		<div class="col-sm-8" >
+                    			<label class="col-sm-3 control-label">Charitable ID</label>
+                    			<div class="col-sm-9" id="charitable">
+                    				<input type="text" style="width:400px" id="charityTextBox">
+                        		</div>
+                            </div>
+                        	<div class="col-sm-4">
+                        		<a data-toggle="modal" href="#myModal" class="charitableLink">Browse To Charitable Id</a>
+                        	</div>
+                        	<div class="modal" id="myModal">
+								<div class="modal-dialog">
+      								<div class="modal-content">
+        								<div class="modal-header">
+          									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          									<h4 class="modal-title">Modal title</h4>
+        								</div>
+        							<div class="modal-body">
+        							<div id="fgGraphWidgetContainer"></div>
+        							
+        							<script>
+        							var FG_GRAPHWIDGET_PARAMS = {
+        									results : {
+        									selectaction : function(uuid) {
+        									document.getElementById("uuid").value=uuid;
+        									}
+        									}
+        									};
+
+        							function myfunction(){
+        							   	 var value= document.getElementById("uuid").value;
+        							$('#charitable').html('<input type="text" name="${FORMCONSTANTS.CHARITABLE}" style="width:400px" value="'+value+'"></input>');
+        							}
+      								</script>
+									<script src="http://assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
+        							</div>
+        							<div class="modal-footer">
+          								<button href="#" data-dismiss="modal" class="btn btn-primary">Close</button>
+          								<button class="btn btn-primary" href="#" data-dismiss="modal" onclick="myfunction()" id="saveButton">Save</button>
+        							</div>
+      							</div>
+    						</div>
+				        </div>
                     </div>
                     <div class="form-group" id="textfile">
                         <label class="col-sm-2 control-label">Upload your Letter of Determination</label>

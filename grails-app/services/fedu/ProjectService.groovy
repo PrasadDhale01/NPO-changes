@@ -378,6 +378,8 @@ class ProjectService {
 		def popularProjectsList = getPopularProjects()
 		print popularProjectsList
 		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
+//        return Project.findAllWhere(validated: true,inactive: false)
+		print finalList
 		return finalList
     }
 	

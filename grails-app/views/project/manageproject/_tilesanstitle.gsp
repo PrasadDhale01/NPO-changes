@@ -15,6 +15,7 @@
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
+<g:render template="/layouts/organizationdetails"/>
 <div class="fedu thumbnail grow" style="padding: 0">
     <div style="height: 200px; overflow: hidden;" class="blacknwhite" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
         <g:link controller="project" action="show" id="${project.id}" title="${project.title}">

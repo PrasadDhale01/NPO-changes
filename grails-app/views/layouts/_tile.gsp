@@ -34,39 +34,58 @@ Expects the parent containers to be like so:
     </div>
 
     <div class="caption">
-        <h4><g:link controller="project" action="show" id="${project.id}" title="${project.title}">${project.title}</g:link></h4>
-        <p>${projectService.getBeneficiaryName(project)}</p>
+        <h4><strong>${project.title}</strong></h4><hr>
+        <%--<h4><strong><g:link controller="project" action="show" color="black" id="${project.id}" title="${project.title}">${project.title}</g:link></strong></h4>--%>
+        <p>${project.description}</p>
     </div>
 
-    <div class="modal-footer" style="text-align: left; margin-top: 0;">
+    <div class="modal-footer tile-footer" style="text-align: left; margin-bottom: 2px;">
+        <div class="row">
+            <div class="col-sm-6 progress-pie-chart" data-percent="43">
+				<div class="c100 p${percentage} small text-center">
+                    <span>${percentage}%</span>
+                    <div class="slice">
+                        <div class="bar"></div>
+                        <div class="fill"></div>
+                    </div>
+                </div>
+            </div>
+<%--            <div class="col-md-6">--%>
+<%--                <h6 class="text-center">progress bar<br/></h6>--%>
+<%--            </div>--%>
+            <div class="col-md-6">
+                <h6 class="text-center"><span class="lead">$${contributedSoFar}</span><br/>ACHIEVED</h6>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer tile-footer" style="text-align: left; margin-top: 0;">
         <div class="row">
             <div class="col-md-6">
-                <h6 class="text-center">ACHIEVED<br/><span class="lead">$${contributedSoFar}</span></h6>
+                <h6 class="text-center"><span class="lead">$${project.amount}</span><br/>GOAL</h6>
             </div>
-
             <g:if test="${ended}">
                 <g:if test="${isFundingAchieved}">
                     <!-- Funding achieved in time. -->
                     <div class="col-md-6">
-                        <h6 class="text-center">ACHIEVED<br><span class="lead">${dateFormat.format(achievedDate.getTime())}</span></h6>
+                        <h6 class="text-center"><span class="lead">${dateFormat.format(achievedDate.getTime())}</span><br>ACHIEVED</h6>
                     </div>
                 </g:if>
                 <g:else>
                     <!-- Funding not achieved in time. -->
                     <div class="col-md-6">
-                        <h6 class="text-center">ENDED<br><span class="lead">${dateFormat.format(endDate.getTime())}</span></h6>
+                        <h6 class="text-center"><span class="lead">${dateFormat.format(endDate.getTime())}</span><br>ENDED</h6>
                     </div>
                 </g:else>
             </g:if>
             <g:else>
                 <!-- Time left till end date. -->
                 <div class="col-md-6">
-                    <h6 class="text-center">ENDING<br><span class="lead">${dateFormat.format(endDate.getTime())}</span></h6>
+                    <h6 class="text-center"><span class="lead">${projectService.getRemainingDay()}</span><br>DAYS TO GO</h6>
                 </div>
             </g:else>
         </div>
     </div>
-    <g:if test="${isFundingOpen}">
+    <%--<g:if test="${isFundingOpen}">
         <div class="progress progress-striped active">
             <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage}%;">
                 ${percentage}%
@@ -80,5 +99,5 @@ Expects the parent containers to be like so:
             </div>
         </div>
     </g:else>
-</div>
+--%></div>
 </g:if>

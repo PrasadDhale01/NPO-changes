@@ -1,4 +1,4 @@
-<div class="container">
+<%--<div class="container">
 <!-- Three columns of text below the carousel -->
 <div class="row">
 	<div class="col-lg-4">
@@ -37,4 +37,38 @@
 
 </div>
 <!-- /.row -->
+</div>--%>
+
+<div class="modal-footer tile-footer" style="text-align: left; margin-top: 0; height: 300px;">
+	<div class="row">
+		<div class="col-md-4 text-center">
+			<h2>How it Works</h2>
+			<br>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="col-md-4">
+				<h3 class="text-center">Start Your Campaign</h3>
+				<p class="text-center">Crowdera helps people engage their
+					community to make a difference</p>
+				<p class="text-center">
+					New to Crowdera, <a href="#">learn more</a>
+				</p>
+			</div>
+			<div class="col-md-4">
+				<h3 class="text-center">Engage Your Contributors</h3>
+				<p class="text-center">Share your campaign using social sharing
+					tools to reach your contributors. Successful campaigns take effort
+					and we're here to help you every step of the way
+				<p>
+			</div>
+			<div class="col-md-4">
+				<h3 class="text-center">Be The Change</h3>
+				<p class="text-center">Crowdera is a online platform that
+					nonprofits and social innovators and social innovators raise funds
+					for the things that matter.</p>
+			</div>
+		</div>
+	</div>
 </div>

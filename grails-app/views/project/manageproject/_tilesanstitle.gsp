@@ -17,13 +17,13 @@
 %>
 <g:render template="/layouts/organizationdetails"/>
 <div class="fedu thumbnail grow" style="padding: 0">
-    <div style="height: 200px; overflow: hidden;" class="blacknwhite" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
-        <g:link controller="project" action="show" id="${project.id}" title="${project.title}">
-            <div style="height: 200px; overflow: hidden; width: 100%;" class="blacknwhite" >
-                <g:render template="/project/manageproject/projectimagescarousel"/>
-            </div>
-        </g:link>
-    </div>
+<%--    <div style="height: 200px; overflow: hidden;" class="blacknwhite" onmouseover="showNavigation()" onmouseleave="hideNavigation()">--%>
+<%--        <g:link controller="project" action="show" id="${project.id}" title="${project.title}">--%>
+<%--            <div style="height: 200px; overflow: hidden; width: 100%;" class="blacknwhite" >--%>
+<%--                <g:render template="/project/manageproject/projectimagescarousel"/>--%>
+<%--            </div>--%>
+<%--        </g:link>--%>
+<%--    </div>--%>
 
     <div class="caption">
         <h4><g:link controller="project" action="show" id="${project.id}" title="${project.title}">${project.title}</g:link></h4>

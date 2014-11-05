@@ -1,5 +1,10 @@
 <!-- Comments -->
 
+<div class="col-md-12">
+	<div style="overflow: hidden; width: 100%;" class="blacknwhite" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
+        <g:render template="/project/manageproject/projectimagescarousel"/>
+    </div>
+</div>
 <div class="col-md-8">
     <div class="row">
         <div class="panel panel-default" style="margin-top: 30px;">
@@ -27,6 +32,5 @@
     <g:elseif test="${ended}">
         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
     </g:elseif>
-    
     <g:render template="/project/manageproject/tilesanstitle"/>
 </div>

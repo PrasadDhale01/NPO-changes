@@ -272,7 +272,7 @@
                             <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" multiple="multiple">
                         </div>
                         <div class="col-sm-4">
-                            <input class="hidden" name="${FORMCONSTANTS.IMAGEURL}[]" placeholder="Image URL">
+                            <input class="hidden" name="${FORMCONSTANTS.IMAGEURL}" placeholder="Image URL">
                         </div>
                     </div>
                     <div class="form-group">

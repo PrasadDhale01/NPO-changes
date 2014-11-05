@@ -23,20 +23,16 @@
         <g:each in="${images}" var="img" status="count">
         	<g:if test="${count == 1}">
         		<div class="item active">
-		        	<div style="height: 200px; overflow: hidden;" class="blacknwhite">
-			            <a href="${ img }"><img alt="" style="width: 100%;" src="${img}"></a>
+		        	<div style="overflow: hidden;" class="blacknwhite">
+			            <a href="${ img }"><img alt="" style="width: 100%;height: 400px;" src="${img}"></a>
 				    </div>
-		            <div class="carousel-caption">
-		            </div>
         		</div>
         	</g:if>
         	<g:else>
 	        	<div class="item">
-		        	<div style="height: 200px; overflow: hidden;" class="blacknwhite">
-			            <a herf="${ img }"><img alt="" style="width: 100%;" src="${img}"></a>
+		        	<div style="overflow: hidden;" class="blacknwhite">
+			            <a herf="${ img }"><img alt="" style="width: 100%;height: 400px;" src="${img}"></a>
 				    </div>
-		            <div class="carousel-caption">
-		            </div>
 	        	</div>
         	</g:else>
         </g:each>

@@ -1,4 +1,9 @@
 <div class="col-md-12">
+	<div class="row">
+		<div style="overflow: hidden; width: 100%;" class="blacknwhite" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
+	        <g:render template="/project/manageproject/projectimagescarousel"/>
+	    </div>
+	</div>
     <div class="row">
         <div class="panel panel-default" style="margin-top: 30px;">
             <div class="panel-heading">

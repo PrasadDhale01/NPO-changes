@@ -112,7 +112,7 @@
                     <g:else>
                         <a href="/projects/${project.id}/fund" class="btn btn-primary btn-lg btn-block" role="button">Fund this project</a>
                     </g:else>
-
+					<g:render template="/layouts/organizationdetails"/>
                     <g:render template="/layouts/tilesanstitle"/>
                     <g:render template="show/rewards"/>
                 </div>

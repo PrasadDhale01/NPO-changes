@@ -378,20 +378,16 @@ class ProjectService {
 		def popularProjectsList = getPopularProjects()
 		print popularProjectsList
 		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
-//        return Project.findAllWhere(validated: true,inactive: false)
-		print finalList
 		return finalList
     }
 	
 	def getPopularProjects(){
-		def criteria = Project.createCriteria()
-		def results = criteria.list {
-			eq("validated", true)
-			eq("inactive", false)
-			maxResults(5)
-			order("id", "desc")
+		def results = PopularProject.getAll()
+		def popularProjectsList = []
+		results.each {
+			popularProjectsList.add(it.getProject())
 		}
-		return results
+		return popularProjectsList
 	}
 	
 	def showProjects(){

@@ -80,6 +80,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Home
 ------------------------- */
+#carousel-example{
+    width: 100%;
+    margin-left: 0px;
+}
 .jumbotron {
     background: url(http://www.freevector.com/site_media/preview_images/FreeVector-Diamond-Blur-Background-Image.jpg);
     /* height: 350px; */
@@ -417,9 +421,10 @@ ul.unstyled {
     background-color: #ffffff;
 }
 
-.navbar-brand-footer {
+/*No need fo this padding*/
+/*.navbar-brand-footer {
 	padding-left: 120px;
-}
+}*/
 
 /****************************************************************
  * CSS Percentage Circle

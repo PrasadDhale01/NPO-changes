@@ -39,7 +39,7 @@
 <!-- /.row -->
 </div>--%>
 
-<div class="modal-footer tile-footer" style="text-align: left; margin-top: 0; height: 350px;">
+<div class="container modal-footer tile-footer" style="text-align: left; margin-top: 0; height: 350px;">
 	<div class="row">
 		<div class="col-md-4 text-center">
 			<h2>How it Works</h2>

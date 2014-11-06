@@ -4,7 +4,9 @@
 <r:require modules="homejs"/>
 </head>
 <body>
-    <g:render template="jumbotron"></g:render><br>
+	<div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
+    	<g:render template="jumbotron"></g:render><br>
+    </div>
 
     <!-- Call to action buttons -->
     <%-- <g:render template="createfund"></g:render> --%>

@@ -23,3 +23,13 @@ $(window).load(function() {
     });
     */
 });
+
+function showNavigation(){
+	document.getElementById('indicators').style.display = 'block';
+	document.getElementById('navigators').style.display = 'block';
+}
+
+function hideNavigation(){
+	document.getElementById('indicators').style.display = 'none';
+	document.getElementById('navigators').style.display = 'none';
+}

@@ -7,7 +7,8 @@
     <ckeditor:resources/>
 </head>
 <body>
-<input type="hidden" name="uuid" id="uuid"/> 
+<input type="hidden" name="uuid" id="uuid"/>
+<input type="hidden" name="charity_name" id="charity_name"/>
 <div class="feducontent">
 	<div class="container">
 		<h1><span class="glyphicon glyphicon-leaf"></span> Create Project</h1>
@@ -111,13 +112,13 @@
                     </div>
                     <div class="form-group" id="charitableId">
                     	<div class="row">
-                    	    <div class="col-sm-8" >
-                    		<label class="col-sm-3 control-label">Charitable ID</label>
-                    		    <div class="col-sm-9" id="charitable">
-                    			<input type="text" style="width:400px" disabled>
+                    	    <div class="col-sm-6" >
+                    		<label class="col-sm-4 control-label">Charitable ID</label>
+                    		    <div class="col-sm-8" id="charitable">
+                    			<input type="text"  class="form-control" disabled>
                         	    </div>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <a data-toggle="modal" href="#myModal" class="charitableLink">Find your organization</a>
                             </div>
                             <div class="modal" id="myModal">
@@ -132,14 +133,17 @@
         				    <script>
         					var FG_GRAPHWIDGET_PARAMS = {
         					    results : {
-        					        selectaction : function(uuid) {
-                                                            document.getElementById("uuid").value=uuid;
+        					        selectaction : function(uuid,charity_name) {
+                                        document.getElementById("uuid").value=uuid;
+                                        document.getElementById("charity_name").value=charity_name;
         					        }
         					    }
         					};
         					function setOrganization() {
-        					    var value= document.getElementById("uuid").value;        							   	 			                                                                                                                                                                            $('#charitable').find('input').val(value);
+        					    $('#charitable').find('input').val(document.getElementById("uuid").value);
+        					    $('#organizationName').find('input').val(document.getElementById("charity_name").value);
         					}
+
       					    </script>
 					    <script src="http://assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
         				</div>
@@ -161,7 +165,7 @@
                     <hr>
                     <div class="row">
                         <div class="col col-sm-6">
-                            <div class="form-group">
+                            <div class="form-group" id="organizationName">
                                 <label class="col-sm-4 control-label" id="organizationName">Organization Name</label>
                                 <div class="col-sm-8">
                                     <input  class="form-control" name="${FORMCONSTANTS.ORGANIZATIONNAME}" placeholder="Organization Name">

@@ -61,7 +61,7 @@
 	        <a href="#" style="margin:6px"><font size="2px" color="#787878">Privacy</font></a>
 	        <a href="#" style="margin:6px"><font size="2px" color="#787878">Policy</font></a>
 	        <a href="#" style="margin:6px"><font size="2px" color="#787878">Terms of Use</font></a>
-	        <a href="#" style="margin:6px"><font size="2px" color="#787878">2014 Crowdera,inc.</font></a>
+	        <a href="#" style="margin:6px"><font size="2px" color="#787878"><span class="glyphicon glyphicon-copyright-mark"></span>&nbsp;2014 Crowdera,inc.</font></a>
         </div>
     </div>
 </footer>

@@ -1,7 +1,7 @@
 <!-- Footer -->
 <footer>
     <hr/>
-    <div class="container footer" style="height:20px;">
+    <div class="container footer">
         <div class="row">
             <div class="col-xs-12 col-sm-3">
                 <a class="navbar-brand-footer" style="bottom-margin:10px;"><img src="/images/logo_umojawa.png"></img></a>
@@ -54,5 +54,14 @@
                 <h6>Coded with <span class="glyphicon glyphicon-heart"></span> by Crowdera team</h6>
             </div>
         --%></div>
+    </div>
+    <hr/>
+    <div class="row">
+        <div class="text-center">
+	        <a href="#" style="margin:6px"><font size="2px" color="#787878">Privacy</font></a>
+	        <a href="#" style="margin:6px"><font size="2px" color="#787878">Policy</font></a>
+	        <a href="#" style="margin:6px"><font size="2px" color="#787878">Terms of Use</font></a>
+	        <a href="#" style="margin:6px"><font size="2px" color="#787878">2014 Crowdera,inc.</font></a>
+        </div>
     </div>
 </footer>

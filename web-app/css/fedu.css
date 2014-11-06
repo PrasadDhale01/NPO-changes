@@ -30,8 +30,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-    border-top: 3px solid #ffffff;
+    border-top: 2px solid;
     font-size: 15px;
+    border-bottom: 2px solid;
 }
 
 .navbar-brand
@@ -57,12 +58,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-default {
     background-color: #ffffff;
-    border-color: #000;
+    border-color: #E8E8E8;
 }
 
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus {
-    color: #000;
+    color: #ffffff;
     text-decoration: none;
     background-color: #66CCFF;  /*change color of links in drop down here*/
 }
@@ -93,6 +94,11 @@ h1, h2, h3, h4, h5, h6 {
 
 #errormsg {
     color: red;
+}
+
+//making carousel width 100%
+.carousel-inner > .item > img {
+  width:100%;
 }
 
 /* Footer
@@ -406,6 +412,7 @@ ul.unstyled {
 }
 
 .footer {
+	height: 20px;
     border-bottom: 3px;
     background-color: #ffffff;
 }
@@ -413,7 +420,6 @@ ul.unstyled {
 .navbar-brand-footer {
 	padding-left: 120px;
 }
-
 
 /****************************************************************
  * CSS Percentage Circle

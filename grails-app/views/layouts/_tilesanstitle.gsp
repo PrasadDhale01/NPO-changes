@@ -16,10 +16,6 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 <div class="fedu thumbnail" style="padding: 0; margin-top: 30px;">
-	<div style="height: 200px; overflow: hidden; width: 100%;" class="blacknwhite" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
-	    <g:render template="/project/manageproject/projectimagescarousel"/>
-	</div>
-	   
 	<div class="modal-footer tile-footer" style="text-align: left; margin-bottom: 2px;">
 	    <div class="row">
 	        <div class="col-sm-5 col-sm-offset-1 progress-pie-chart" data-percent="43">

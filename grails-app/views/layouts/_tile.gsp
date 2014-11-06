@@ -50,11 +50,8 @@ Expects the parent containers to be like so:
                     </div>
                 </div>
             </div>
-<%--            <div class="col-md-6">--%>
-<%--                <h6 class="text-center">progress bar<br/></h6>--%>
-<%--            </div>--%>
             <div class="col-md-6">
-                <h6 class="text-center"><span class="lead">$${contributedSoFar}</span><br/>ACHIEVED</h6>
+                <h6 class="text-center" style="margin-top: 10px;"><span class="lead">$${contributedSoFar}</span><br/>ACHIEVED</h6>
             </div>
         </div>
     </div>

@@ -1,10 +1,12 @@
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
-    <ol class="carousel-indicators">
-        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    </ol>
+    <div id="indicators" style="display:none;">
+	    <ol class="carousel-indicators">
+	        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+	        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+	        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+	    </ol>
+    </div>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
@@ -52,10 +54,12 @@
     </div>
 
     <!-- Controls -->
-    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left"></span>
-    </a>
-    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right"></span>
-    </a>
+    <div id="navigators" style="display: none">
+	    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+	        <span class="glyphicon glyphicon-chevron-left"></span>
+	    </a>
+	    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+	        <span class="glyphicon glyphicon-chevron-right"></span>
+	    </a>
+    </div>
 </div>

@@ -97,8 +97,8 @@ $(function() {
                 required: true
             },
             webAddress: {
-                required: true,
-                url: true
+            	isWebUrl: true,
+            	required: true
             },
             textfile: {
                 required: true
@@ -138,8 +138,15 @@ $(function() {
            return (value.match(p)) ? RegExp.$1 : false;
         }
         return true;
-
      }, "Please upload a url of Youtube video");
+     
+     $.validator.addMethod('isWebUrl', function(value, element){
+    	 if(value && value.length !=0){
+	    	var regexp = /(http(s)?:\\)?([\w-]+\.)+[\w-]?[.com|.in|.org]+(\[\?%&=]*)?/;
+	    	return (value.match(regexp))
+    	 }
+    	 return true;
+     }, "Please provide the proper url");
      
      $("input[name='answer']").change(function(){
      	if($(this).val()=="yes") {
@@ -150,7 +157,6 @@ $(function() {
      	    $("#rewardTemplate").hide();
      	}
      });
-
 
      $("input[name='wel']").change(function(){
         if($(this).val()=="yes") {

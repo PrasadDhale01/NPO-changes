@@ -95,7 +95,7 @@ class ProjectController {
         if (params.id) {         
             projects = Project.findById(params.id)
             if(projects.validated == false) {
-                render (view: 'validate/validateshow', model: [projects: projects])
+                render (view: 'validate/validateshow', model: [project: projects])
             }
         }
     }

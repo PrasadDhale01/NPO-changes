@@ -16,7 +16,7 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 <g:render template="/layouts/organizationdetails"/>
-<div class="fedu thumbnail grow" style="padding: 0">
+<div class="fedu thumbnail grow" style="padding: 0; margin-top: 10px;">
 <%--    <div style="height: 200px; overflow: hidden;" class="blacknwhite" onmouseover="showNavigation()" onmouseleave="hideNavigation()">--%>
 <%--        <g:link controller="project" action="show" id="${project.id}" title="${project.title}">--%>
 <%--            <div style="height: 200px; overflow: hidden; width: 100%;" class="blacknwhite" >--%>
@@ -25,7 +25,7 @@
 <%--        </g:link>--%>
 <%--    </div>--%>
 
-    <div class="modal-footer tile-footer" style="text-align: left; margin-top: 0; margin-bottom: 2px;">
+    <div class="modal-footer tile-footer" style="text-align: left; margin-top: 0px; margin-bottom: 2px;">
         <div class="row">
             <div class="col-sm-5 col-sm-offset-1 progress-pie-chart" data-percent="43">
 				<div class="c100 p${percentage} small text-center">
@@ -63,7 +63,7 @@
             <g:else>
                 <!-- Time left till end date. -->
                 <div class="col-md-6">
-                    <h6 class="text-center"><span class="lead">${projectService.getRemainingDay()}</span><br>DAYS TO GO</h6>
+                    <h6 class="text-center"><span class="lead">${projectService.getRemainingDay(project)}</span><br>DAYS TO GO</h6>
                 </div>
             </g:else>
         </div>

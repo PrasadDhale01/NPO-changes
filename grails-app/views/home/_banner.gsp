@@ -12,7 +12,7 @@
     <h1>Join the Giving Movement and Raise More for Your Cause</h1>
     <h3>Crowdera is free to help you do more good!</h3><br>
     
-    <g:form class="form-horizontal" role="form">
+    <g:form class="form-horizontal" controller="project" action="create" role="form">
         <div class="form-group">
             <div class="col-sm-12">
                 <button type="submit" class="btn btn-primary">Start Fundraising</button>

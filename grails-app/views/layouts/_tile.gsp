@@ -33,15 +33,15 @@ Expects the parent containers to be like so:
         </g:link>
     </div>
 
-    <div class="caption">
-        <h4><strong>${project.title}</strong></h4><hr>
-        <%--<h4><strong><g:link controller="project" action="show" color="black" id="${project.id}" title="${project.title}">${project.title}</g:link></strong></h4>--%>
-        <p>${project.description}</p>
+    <div class="caption" style="margin-bottom:0;">
+    <h4 style="margin-top: 10px; margin-bottom:0px;"><strong>${project.title}</strong></h4>
+    <hr class="tile-separator">
+    <span>${project.description}</span>
     </div>
 
     <div class="modal-footer tile-footer" style="text-align: left; margin-bottom: 2px;">
         <div class="row">
-            <div class="col-sm-6 progress-pie-chart" data-percent="43">
+            <div class="col-sm-5 col-sm-offset-1 progress-pie-chart" data-percent="43">
 				<div class="c100 p${percentage} small text-center">
                     <span>${percentage}%</span>
                     <div class="slice">
@@ -77,7 +77,7 @@ Expects the parent containers to be like so:
             <g:else>
                 <!-- Time left till end date. -->
                 <div class="col-md-6">
-                    <h6 class="text-center"><span class="lead">${projectService.getRemainingDay()}</span><br>DAYS TO GO</h6>
+                    <h6 class="text-center"><span class="lead">${projectService.getRemainingDay(project)}</span><br>DAYS TO GO</h6>
                 </div>
             </g:else>
         </div>

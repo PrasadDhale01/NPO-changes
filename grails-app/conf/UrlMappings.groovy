@@ -17,6 +17,9 @@ class UrlMappings {
 
         /* How it Works */
         "/howitworks"(view:'/howitworks/index')
+        
+        /*Terms of Use*/
+        "/termsofuse"(view:'/termsofuse/index')
 
         /* FAQ */
         "/faq"(view:'/faq/index')

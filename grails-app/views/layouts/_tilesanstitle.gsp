@@ -16,7 +16,7 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 <div class="fedu thumbnail" style="padding: 0; margin-top: 30px;">
-	<div class="modal-footer tile-footer" style="text-align: left; margin-bottom: 2px;">
+	<div class="modal-footer tile-footer" style="text-align: left; margin-bottom: 2px; margin-top:0;">
 	    <div class="row">
 	        <div class="col-sm-5 col-sm-offset-1 progress-pie-chart" data-percent="43">
 	            <div class="c100 p${percentage} small text-center">
@@ -55,7 +55,7 @@
 	        <g:else>
 	            <!-- Time left till end date. -->
 	            <div class="col-md-6">
-	                <h6 class="text-center"><span class="lead">${projectService.getRemainingDay()}</span><br>DAYS TO GO</h6>
+	                <h6 class="text-center"><span class="lead">${projectService.getRemainingDay(project)}</span><br>DAYS TO GO</h6>
 	            </div>
 	        </g:else>
 	    </div>

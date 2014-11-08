@@ -65,7 +65,7 @@
             <g:else>
                 <!-- Time left till end date. -->
                 <div class="col-md-6">
-                    <h6 class="text-center"><span class="lead">${projectService.getRemainingDay()}</span><br>DAYS TO GO</h6>
+                    <h6 class="text-center"><span class="lead">${projectService.getRemainingDay(project)}</span><br>DAYS TO GO</h6>
                 </div>
             </g:else>
         </div>

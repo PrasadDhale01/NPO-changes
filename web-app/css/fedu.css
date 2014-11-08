@@ -345,6 +345,11 @@ ul.unstyled {
 .fedu.thumbnail > .caption {
     padding-top: 0;
     padding-bottom: 0;
+    min-height:9.5em; /*In acordance with 140 characters description*/
+    hr {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
 }
 
 .fedu.thumbnail > .caption h4 {
@@ -355,6 +360,11 @@ ul.unstyled {
     min-height: 28px;
     margin-top: 10px;
     margin-bottom: 0;
+}
+
+.fedu.thumbnail > .caption hr{
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .fedu.thumbnail > .caption p {
@@ -421,6 +431,28 @@ ul.unstyled {
     background-color: #ffffff;
 }
 
+.termsofuse {
+    line-height: 180%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color: #000000;
+}
+
+.footerlink {
+	color: #787878;
+	size: 1px;
+	margin:6px;
+}
+
+.socialfeature {
+	color:#787878;
+	margin:8px;
+}
+
+.unorderedlist {
+	margin: 10px;
+	color: #000000;
+}
 /*No need fo this padding*/
 /*.navbar-brand-footer {
 	padding-left: 120px;

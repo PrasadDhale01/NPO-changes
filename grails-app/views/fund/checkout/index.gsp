@@ -53,7 +53,7 @@
                         		<input type="text" class="card-number form-control" placeholder="Card Number" data-stripe="number" name="ccNumber">
 
                         		<span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
-                        		<g:select class="selectpicker card-number form-control" name="ccType" id="ccType"
+                        		<g:select class="selectpicker card-number" name="ccType" id="ccType"
                            			from="${cardTypes}" optionKey="key" optionValue="value"/>
                      		</div>
                      	</div>
@@ -83,8 +83,7 @@
                         	    <div class="form-group">
                                 	<div class="input-group col-md-11">
                                 		<div class="row">
-                                			<g:select class="selectpicker form-control" name="billToTitle" id="billToTitle" 
-                           						from="${title}" optionKey="key" optionValue="value"/>
+                                			<input class="form-control" type="text" placeholder="Title" name="billToTitle" id="billToTitle" >
                                 		<% if (user!=null){%>	
                                     			<input class="form-control" type="text" placeholder="First Name" name="billToFirstName" id="billToFirstName" value="${user.firstName}">
                                     	</div>
@@ -154,23 +153,23 @@
 
                             	<div class="form-group">
                                 	<div class="input-group col-md-12">
-                                		<input class="form-control" type="text" placeholder="City" name="billToCity">
+                                		<div class="row">
+                                			<div class="col-sm-6">
+                                				<input class="form-control" type="text" placeholder="City" name="billToCity">
+                                			</div>
+                                			<div class="col-sm-6">
+                                    			<input class="form-control" type="text" placeholder="Zip" name="billToZip"> 
+                                			</div>
+                                		</div>
                                 	</div>
                             	</div>
                             
                             	<div class="form-group">
                             		<div class="input-group col-md-12">
-                                    	<div class="row">
-                                			<div class="col-sm-6">
-                                				<g:select class="selectpicker form-control" name="billToState" 
+                                    	<g:select class="selectpicker" name="billToState" id="billToState"
                                       				from="${state}" 
                                       				optionKey="key" optionValue="value"/>
-                                			</div>
-                                			<div class="col-sm-6">
-                                    			<input class="form-control" type="text" placeholder="Zip" name="billToZip"> 
-                                			</div>
-                                   		</div>
-                            		</div>
+                                	</div>
                             	</div>
                             	
                             	<div class="form-group" id="otherState">
@@ -181,8 +180,8 @@
                             
                             	<div class="form-group">
                                 	<div class="input-group col-md-12">
-                                		<g:select class="selectpicker form-control" name="billToCountry" 
-                                      		from="${country}" 
+                                		<g:select class="selectpicker" name="billToCountry" 
+                                      		from="${country}" value="${defaultCountry}"
                                       		optionKey="key" optionValue="value"/>
                                 	</div>
                             	</div>

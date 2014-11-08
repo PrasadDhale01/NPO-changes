@@ -380,6 +380,20 @@ ul.unstyled {
     display: block;
 }
 
+#billToTitle {
+	width:50px;
+	margin-left:15px;
+	margin-right:15px;
+}
+
+#billToFirstName {
+	width:250px;
+}
+
+#description {
+	height:95px;
+}
+
 /* Blog
 ------------------------- */
 .blogpost > .well {

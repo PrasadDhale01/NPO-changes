@@ -12,7 +12,10 @@ $(function() {
     $('form').validate({
         submitHandler: function(form) {
             if (getSelectedRewardId() == undefined) {
-                $('.choose-error').html("<div class='alert alert-danger'>Please choose a reward</div>");
+            	var rewardId = 1;
+                $('form input[name="rewardId"]').val(rewardId);
+
+                form.submit();
             } else {
                 var rewardId = getSelectedRewardId();
                 $('form input[name="rewardId"]').val(rewardId);
@@ -27,9 +30,9 @@ $(function() {
                 min: function() {
                     var rewardPrice = getSelectedRewardPrice();
                     if (rewardPrice == undefined) {
-                        return 10;
+                        return 1;
                     } else {
-                        return _.max([10, Number(rewardPrice)]);
+                        return _.max([1, Number(rewardPrice)]);
                     }
                 }
             }

@@ -61,6 +61,15 @@
             <h1>Project not found</h1>
 	        <div class="alert alert-danger">Oh snap! Looks like that project doesn't exist.</div>
 	    </g:else>
+	    <div class="col-md-9">
+        	<g:if test="${project.videoUrl}">
+            	<div id="youtubeVideoUrl">
+                	${project.videoUrl}
+	            </div>
+	            <div class="video-container" id="youtube">
+	            </div>
+            </g:if>
+        </div>
     </div>
 </div>
 </body>

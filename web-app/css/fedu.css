@@ -440,16 +440,23 @@ ul.unstyled {
 }
 
 .footer {
-	height: 20px;
+	height: 40px;
     border-bottom: 3px;
     background-color: #ffffff;
+    width: 100%;
 }
 
-.termsofuse {
-    line-height: 180%;
-	margin-top: 20px;
-	margin-bottom: 20px;
-	color: #000000;
+footer{
+	border-top: solid #3399CC 5px;
+}
+
+footer .footertopsection{
+	padding-top:20px;
+	font-size: 14px;
+}
+
+footer .footerbottomsection{
+	font-size: 12px;
 }
 
 .footerlink {
@@ -458,14 +465,71 @@ ul.unstyled {
 	margin:6px;
 }
 
+footer .container{ 
+	width:1170px !important
+}
+
 .socialfeature {
 	color:#787878;
 	margin:8px;
 }
 
-.unorderedlist {
-	margin: 10px;
-	color: #000000;
+.static-content h1 {
+	font-family: "Lato", sans-serif;
+	font-size: 24px;
+	font-weight: 300;
+	line-height: 24px;
+	color: #59C5EB;
+	padding: 0px;
+	margin: 0px 0px 10px;
+}
+
+.static-content h2 {
+	font-family: "Lato", sans-serif;
+	font-size: 20px;
+	font-weight: 300;
+	line-height: 24px;
+	color: #4D5F6A;
+	padding: 0px;
+	margin: 0px 0px 10px;
+}
+
+.static-content p {
+	line-height: 180%;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.static-content {
+	width: 90%;
+	margin-left: 5%;
+	margin-right: 5%;
+	font-family: "Lato", sans-serif;
+	font-size: 15px;
+	font-weight: 300;
+	color: #4D5F6A;
+}
+.static-page-li {
+	list-style-type: circle;
+	padding-left: 0px;
+	padding-bottom: 15px;
+}
+.static-page-ul {
+	padding-left: 25px;
+}
+.static-page-li-order {
+	list-style-type: lower-alpha;
+}
+.static-page-li-order {
+	list-style-type: lower-alpha;
+	padding-left: 0px;
+	padding-bottom: 15px;
+}
+
+.wrapper {
+	width:1000px;
+	margin:0 auto;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px
 }
 /*No need fo this padding*/
 /*.navbar-brand-footer {

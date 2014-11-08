@@ -12,7 +12,7 @@
         <div style="height: 200px; width:200px; overflow: hidden;" class="blacknwhite">
             <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" style="padding: 0; width: 100%;" alt="Upload Photo"/>
         </div>
-        <g:uploadForm controller="user" action="upload_avatar" id="${user.id}">
+        <g:uploadForm controller="user" action="upload_avatar" id="${user.id}" role="form">
             <input type="file" name="avatar" id="avatar">
             <input type="submit" class="buttons" value="Upload"/>
         </g:uploadForm>

@@ -96,6 +96,11 @@ modules = {
         dependsOn 'fedujs'
         resource url: 'js/reward.js'
     }
+    /* User */
+    userjs {
+        dependsOn 'fedujs'
+        resource url: 'js/user.js'
+    }
 
     /* CSS */
     fontawesomecss {

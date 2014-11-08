@@ -75,7 +75,7 @@ class FundController {
     def charge(String stripeToken) {
         Project project
         Reward reward
-            
+                    
         if (params.projectId) {
             project = Project.findById(params.projectId)
         }
@@ -95,8 +95,8 @@ class FundController {
             def http = new HTTPBuilder(BASE_URL)
             def amount = params.double('amount');
            
-            def result = null
             def transactionId = null
+            def result = null
             def state
             
             if(params.billToState == 'other'){
@@ -148,6 +148,14 @@ class FundController {
                     def firstGivingXML = responseXML.substring(responseXML.indexOf('<firstGivingResponse'),responseXML.indexOf('</firstGivingResponse>')+22)
                     def xmlParsef=  new XmlParser().parseText(firstGivingXML)
                     transactionId = xmlParsef.transactionId.text()
+                    
+                    Transaction transaction = new Transaction(
+                        transactionId:transactionId,
+                        user:userService.getCurrentUser(),
+                        project:project
+                        )
+                    transaction.save(failOnError: true)
+                   
                 }
 
                 // response handler for a failure response code
@@ -176,7 +184,7 @@ class FundController {
                         html g.render(template: 'acknowledge/ackemailtemplate', model: [project: project, reward: reward, amount: amount])
                     }
                 }
-
+                
                 def projectAmount = params.double('projectAmount')
                 def totalContribution = contributionService.getTotalContributionForProject(project)
                 if(totalContribution >= projectAmount){

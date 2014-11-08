@@ -7,10 +7,10 @@
 <g:set var="projectService" bean="projectService"/>
 <div class="feducontent">
     <div class="container">
-        <g:if test="${projects}">
+        <g:if test="${project}">
             <div class="row">
 	            <div class="col-md-9">
-                    <h1><a href="${projects.id}">${projects.title}</a></h1>
+                    <h1><a href="${project.id}">${project.title}</a></h1>
                     <table class="table table-bordered" style="width:100%">
                         <thead>
 							<tr class="info">
@@ -23,27 +23,32 @@
                         </thead>
                         <tbody>
 							<tr class="active">	
-							    <td class="text-justify">${projectService.getBeneficiaryName(projects)}</td>
-						             <td class="text-justify" style="word-break:break-all;">${raw(projects.description)}</td>
-						             <td class="text-justify" style="word-break:break-all;">${raw(projects.story)}</td>
-						             <td class="text-justify">${projects.created}</td>
-							    <td class="text-justify">${projects.category}</td>
+							    <td class="text-justify">${projectService.getBeneficiaryName(project)}</td>
+						             <td class="text-justify" style="word-break:break-all;">${raw(project.description)}</td>
+						             <td class="text-justify" style="word-break:break-all;">${raw(project.story)}</td>
+						             <td class="text-justify">${project.created}</td>
+							    <td class="text-justify">${project.category}</td>
 							</tr>
 		                </tbody>
 		            </table>
+		            <div class="col-md-12">
+	                    <div style="overflow: hidden; width: 100%;" class="blacknwhite" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
+                            <g:render template="/project/manageproject/projectimagescarousel"/>
+                       </div>
+                   </div>
                 </div>
                 <div class="col-md-3">
-                    <div class="row">
+                     <div class="row">
             	        <div class="col-md-12">
-		                    <g:render template="validate/validatetile"/>
+		                    <g:render template="/project/manageproject/tilesanstitle"/>
 		                </div>
 		            </div>
 		            <div class="row">
 		                <div class="col-md-6">
-		                    <g:link controller="project" action="updateValidation" id="${projects.id}" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-check" style="width:175"></i>&nbsp;Validate</g:link>
+		                    <g:link controller="project" action="updateValidation" id="${project.id}" class="btn btn-primary" role="button"><i class="glyphicon glyphicon-check" style="width:175"></i>&nbsp;Validate</g:link>
 		                </div>
 		                <div class="col-md-6">
-		                    <g:form action="delete" controller="project" id="${projects.id}" method="post" >
+		                    <g:form action="delete" controller="project" id="${project.id}" method="post" >
                                 <button class="btn btn-danger" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to discard this project?&#39;);" style="width:180"><i class="fa fa-trash-o" ></i>&nbsp;Discard
                 	            </button>
            		            </g:form>

@@ -367,7 +367,7 @@ class ProjectService {
         ]
         return state
     }
-
+    
     def getValidatedProjects() {
 		def criteria = Project.createCriteria()
 		def results = criteria.list {

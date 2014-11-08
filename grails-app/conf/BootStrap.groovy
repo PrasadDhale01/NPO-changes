@@ -30,9 +30,11 @@ class BootStrap {
         }
 
         // Check whether projects already exist, and create otherwise.
+        /*
         if (Project.count() == 0) {
             projectService.bootstrap()
         }
+        */
 
         // Bootstrap communities.
         communityService.bootstrap()

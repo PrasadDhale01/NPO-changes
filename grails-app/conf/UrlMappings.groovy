@@ -20,6 +20,9 @@ class UrlMappings {
         
         /*Terms of Use*/
         "/termsofuse"(view:'/termsofuse/index')
+        
+        /*privacy policy*/
+        "/privacypolicy"(view:'/privacypolicy/index')
 
         /* FAQ */
         "/faq"(view:'/faq/index')

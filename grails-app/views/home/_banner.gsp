@@ -15,7 +15,7 @@
     <g:form class="form-horizontal" controller="project" action="create" role="form">
         <div class="form-group">
             <div class="col-sm-12">
-                <button type="submit" class="btn btn-primary">Start Fundraising</button>
+                <a href="${resource(dir: '/projects/create')}" target="_blank"><img src="/images/StartFundrising-Button.jpg"></a>
             </div>
         </div>
     </g:form>

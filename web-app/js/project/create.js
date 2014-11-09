@@ -97,7 +97,7 @@ $(function() {
                 required: true
             },
             webAddress: {
-            	isWebUrl: true,
+            	url: true,
             	required: true
             },
             textfile: {

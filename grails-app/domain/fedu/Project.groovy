@@ -57,7 +57,7 @@ class Project {
         charitableId (nullable: true)
         story (nullable: true)
         organizationName (nullable: true)
-        webAddress (blank: false, url: true, nullable: true)
+        webAddress (blank: false, nullable: true)
         fileUrl (nullable: true)
         organizationIconUrl (nullable: true)
     }

@@ -97,7 +97,7 @@ $(function() {
                 required: true
             },
             webAddress: {
-            	url: true,
+            	isWebUrl: true,
             	required: true
             },
             textfile: {
@@ -149,7 +149,7 @@ $(function() {
 	    	return (value.match(regexp))
     	 }
     	 return true;
-     }, "Please provide the proper url");
+     }, "Please provide valid url");
      
      $("input[name='answer']").change(function(){
      	if($(this).val()=="yes") {

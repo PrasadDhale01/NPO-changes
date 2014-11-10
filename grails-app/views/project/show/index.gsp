@@ -61,7 +61,7 @@
 				            <a class="twitter-share pull-right" href="https://twitter.com/share?text=Hey check this project at crowdera.co!"  data-url="https://beta.fedu.org/projects/${project.id}" target="_blank">
 				                <img src="${resource(dir: 'images', file: 'tw-share@2x.png')}" style="padding: 0; width:30px; bottom-margin:4px; margin:2px;" alt="Twitter Share"/>
 				            </a>
-				            <a class="fb-share pull-right" href="http://www.facebook.com/sharer.php?s=100&p[url]=http://beta.fedu.org/projects/${project.id}&p[images][0]=${project.imageUrl[0].getUrl()} &p[title]=${project.title} &p[summary]=${project.story}" data-url="http://beta.fedu.org/projects/${project.id}" target="_blank">
+				            <a class="fb-share pull-right" href="http://www.facebook.com/sharer.php?s=100&p[url]=http://beta.fedu.org/projects/${project.id}&p[title]=${project.title} &p[summary]=${project.story}" data-url="http://beta.fedu.org/projects/${project.id}" target="_blank">
 				                <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" style="padding: 0; width:30px; bottom-margin:4px; margin:2px;" alt="Facebook Share"/>
 				            </a>
 				            <span style="float:right; margin:5px;"><label>Share this project</label></span>

@@ -113,13 +113,9 @@ $(function() {
             */
         },
         messages:{
-            thumbnail: "Please upload a thumbnail image for project"
-        },
-        messages:{
-            textfile: "Please upload your Letter of Determination "
-        },
-        messages:{
-            iconfile: "Please upload your Organizations icon"
+            thumbnail: "Please upload a thumbnail image for project",
+            textfile: "Please upload your Letter of Determination",
+            iconfile: "Please upload your Organization icon"
         },
         errorPlacement: function(error, element) {
         	if ( element.is(":radio") || element.is(":checkbox")) {
@@ -130,6 +126,13 @@ $(function() {
         },//end error Placement
         
         //ignore: []
+    });
+
+    $( "#projectImageFile" ).rules( "add", {
+      required: true,
+      messages: {
+        required: "Please upload at least one project image"
+      }
     });
 
      $.validator.addMethod('isYoutubeVideo', function (value, element) {

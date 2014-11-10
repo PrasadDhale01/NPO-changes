@@ -20,7 +20,7 @@
                 <h3 class="panel-title">Project Story</h3>
             </div>
             <div class="panel-body">
-                <span class="text-centre">${raw(project.story)}</span>
+                <span class="text-centre project-story-span">${raw(project.story)}</span>
             </div>
         </div>  
     </div>

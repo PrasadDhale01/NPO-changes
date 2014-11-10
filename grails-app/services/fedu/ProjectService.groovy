@@ -474,9 +474,11 @@ class ProjectService {
                 }
             } else if (project.image) {
                 return grailsLinkGenerator.link(controller: 'project', action: 'thumbnail', id: project.id)
-            } else {
-                return 'http://lorempixel.com/400/400/abstract'
             }
+        }
+        // if no project image, set the default project url
+        if(imageUrls == []){
+            imageUrls.add('http://lorempixel.com/400/400/abstract')
         }
         return imageUrls
     }

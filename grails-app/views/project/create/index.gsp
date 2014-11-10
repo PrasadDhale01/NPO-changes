@@ -271,7 +271,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Pictures</label>
                         <div class="col-sm-4">
-                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" multiple="multiple">
+                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" multiple="multiple">
                         </div>
                         <div class="col-sm-4">
                             <input class="hidden" name="${FORMCONSTANTS.IMAGEURL}" placeholder="Image URL">
@@ -292,7 +292,7 @@
                 </div>
                 <div class="panel-body">
 		            <div class="form-group">
-                    	<label class="col-sm-2 control-label">Do You Want Rewards??</label>
+                    	<label class="col-sm-2 control-label">Do you want rewards?</label>
                     	<div class="col-sm-10">
                     	    <div class="btn-group btn-group-sm">
                     		    <label class="btn btn-default">

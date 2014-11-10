@@ -120,6 +120,11 @@ ul.unstyled {
 	padding: 0;
 }
 
+/* MANAGE PROJECT
+-------------------------------------------------- */
+.project-story-span{
+    word-break: break-all;
+}
 /* MARKETING CONTENT
 -------------------------------------------------- */
 

@@ -53,7 +53,13 @@ class ProjectController {
 
 	def list = {
         def projects = projectService.getValidatedProjects()
-		render (view: 'list/index', model: [projects: projects])
+		if(projects.size<1) {
+            flash.message="There are no projects"
+            render (view: 'list/index')
+        }
+        else {
+            render (view: 'list/index', model: [projects: projects])
+        }
 	}
 
     def listwidget = {

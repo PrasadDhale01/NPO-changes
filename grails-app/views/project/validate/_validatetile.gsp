@@ -16,7 +16,9 @@
             </g:link>
         </div>
 	<div class="caption">
-        <h4><strong>${project.title}</strong></h4>
+        <strong style="margin-top: 10px; margin-bottom: 0px; text-align: justify; overflow: hidden;">
+            ${project.title}
+        </strong>
         <p>${project.description}</p>
     </div>
 	<div class="modal-footer tile-footer" style="text-align: left; margin-bottom: 2px;">

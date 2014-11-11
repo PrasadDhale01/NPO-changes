@@ -34,7 +34,9 @@ Expects the parent containers to be like so:
     </div>
 
     <div class="caption" style="margin-bottom:0;">
-    <h4 style="margin-top: 10px; margin-bottom:0px;"><strong>${project.title}</strong></h4>
+        <strong style="margin-top: 10px; margin-bottom: 0px; text-align: justify; overflow: hidden;">
+            ${project.title}
+        </strong>
     <hr class="tile-separator">
     <span>${project.description}</span>
     </div>

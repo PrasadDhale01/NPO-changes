@@ -50,7 +50,7 @@
 				<h3 style="margin-top: 15px">Start Your Campaign</h3>
 				<p class="text-justify">Crowdera helps people engage their community to make a difference.</p>
 				<p class="text-justify">
-					New to Crowdera, <a href="#">learn more</a>.
+					New to Crowdera, <a href="${resource(dir: '/howitworks')}">learn more</a>.
 				</p>
 			</div>
 			<div class="col-md-4 text-center">

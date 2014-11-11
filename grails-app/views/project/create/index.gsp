@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Telephone</label>
                                 <div class="col-sm-8">
-                                    <input class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Telephone">
+                                    <input type="tel" class="form-control" name="${FORMCONSTANTS.TELEPHONE}"  placeholder="Telephone">
                                 </div>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                     	    <div class="col-sm-6" >
                     		<label class="col-sm-4 control-label">Charitable ID</label>
                     		    <div class="col-sm-8" id="charitable">
-                    			<input type="text"  class="form-control" disabled>
+                    			<input type="text"  class="form-control" name="${FORMCONSTANTS.CHARITABLE}" placeholder="CharitableId" readonly>
                         	    </div>
                             </div>
                             <div class="col-sm-6">
@@ -168,7 +168,7 @@
                             <div class="form-group" id="organizationName">
                                 <label class="col-sm-4 control-label" id="organizationName">Organization Name</label>
                                 <div class="col-sm-8">
-                                    <input  class="form-control" name="${FORMCONSTANTS.ORGANIZATIONNAME}" placeholder="Organization Name">
+                                    <input  class="form-control" name="${FORMCONSTANTS.ORGANIZATIONNAME}" id="organizationname" placeholder="Organization Name">
                                 </div>
                             </div>
                             <div class="form-group">

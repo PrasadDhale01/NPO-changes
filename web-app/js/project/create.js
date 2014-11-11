@@ -35,7 +35,8 @@ $(function() {
                 email: true
             },
             telephone: {
-                required: false
+                required: false,
+                isValidTelephoneNumber: true
             },
             addressLine1: {
                 required: false
@@ -143,6 +144,15 @@ $(function() {
         return true;
      }, "Please upload a url of Youtube video");
      
+     $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
+     	  
+         if(value && value.length !=0){
+             var reg = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
+             return (value.match(reg)) ? RegExp.$1 : false;
+         }
+         return true;
+     }, "Please provide valid Telephone number");
+     
      $.validator.addMethod('isWebUrl', function(value, element){
     	 if(value && value.length !=0){
 	    	var regexp = /(http(s)?:\\)?([\w-]+\.)+[\w-]?[.com|.in|.org]+(\[\?%&=]*)?/;
@@ -165,9 +175,11 @@ $(function() {
         if($(this).val()=="yes") {
             $("#charitableId").show();
             $("#textfile").hide();
+            $('input[id="organizationname"]').prop('readonly', true);
         } else {
             $("#charitableId").hide(); 
             $("#textfile").show();
+            $('input[id="organizationname"]').prop('readonly', false);
         }
      });
      

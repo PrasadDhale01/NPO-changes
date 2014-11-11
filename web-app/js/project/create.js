@@ -35,7 +35,8 @@ $(function() {
                 email: true
             },
             telephone: {
-                required: false
+                required: false,
+                isValidTelephoneNumber: true
             },
             addressLine1: {
                 required: false
@@ -142,6 +143,15 @@ $(function() {
         }
         return true;
      }, "Please upload a url of Youtube video");
+     
+     $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
+     	  
+         if(value && value.length !=0){
+             var reg = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
+             return (value.match(reg)) ? RegExp.$1 : false;
+         }
+         return true;
+     }, "Please provide valid Telephone number");
      
      $.validator.addMethod('isWebUrl', function(value, element){
     	 if(value && value.length !=0){

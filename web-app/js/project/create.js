@@ -175,9 +175,11 @@ $(function() {
         if($(this).val()=="yes") {
             $("#charitableId").show();
             $("#textfile").hide();
+            $('input[id="organizationname"]').prop('readonly', true);
         } else {
             $("#charitableId").hide(); 
             $("#textfile").show();
+            $('input[id="organizationname"]').prop('readonly', false);
         }
      });
      

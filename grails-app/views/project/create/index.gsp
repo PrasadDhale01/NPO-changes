@@ -168,7 +168,7 @@
                             <div class="form-group" id="organizationName">
                                 <label class="col-sm-4 control-label" id="organizationName">Organization Name</label>
                                 <div class="col-sm-8">
-                                    <input  class="form-control" name="${FORMCONSTANTS.ORGANIZATIONNAME}" placeholder="Organization Name">
+                                    <input  class="form-control" name="${FORMCONSTANTS.ORGANIZATIONNAME}" id="organizationname" placeholder="Organization Name">
                                 </div>
                             </div>
                             <div class="form-group">

@@ -19,9 +19,10 @@
                 ${flash.message}
             </div>
         </g:if>
-
-        <!-- Carousel -->
-		<g:render template="list/grid" model="['projects': projects]"></g:render>
+        <g:else>
+        	<!-- Carousel -->
+			<g:render template="list/grid" model="['projects': projects]"></g:render>
+		</g:else>
 	</div>
 </div>
 </body>

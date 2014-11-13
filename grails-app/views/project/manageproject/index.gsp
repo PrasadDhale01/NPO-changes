@@ -18,6 +18,11 @@
 		<g:if test="${project}">
             <div class="row">
                 <div class="col-md-12">
+                	<g:if test="${flash.message}">
+    					<div class="alert alert-info">
+        					${flash.message}
+    					</div>
+					</g:if>
                     <h1>
                         <g:link controller="project" action="show" id="${project.id}" title="${project.title}">${project.title}</g:link>
                     </h1>

@@ -354,9 +354,12 @@
                 </div>
                 <div class="panel-body">
 		            <div class="form-group">
-                        <label class="col-sm-2 control-label">All cool?</label>
-		                <div class="col-sm-10">
-		                    <button type="submit" class="btn btn-primary">Submit Project</button>
+		            	<label class="col-sm-2 control-label">All Cool!</label>
+                        <div class="col-sm-2-offset col-sm-4">
+		                    <button type="submit" class="btn btn-primary" name="button" value="submitProject">Submit Project</button>
+		                </div>
+		                <div class="col-sm-4">
+		                    <button type="submit" class="btn btn-primary" name="button" value="draft">Save as draft</button>
 		                </div>
 		            </div>
                 </div>

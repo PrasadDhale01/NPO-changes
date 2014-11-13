@@ -140,6 +140,17 @@ class ProjectController {
         }
     }
     
+    def saveasdraft(){
+        def projectId = params.projectId
+        def project = Project.get(projectId)
+        project.draft = false
+        flash.message="Project send to admin for approval"
+        
+        render (view: 'manageproject/index',
+                model: [project: project,
+                        FORMCONSTANTS: FORMCONSTANTS])
+    }
+    
     def validateList() {
         def projects = projectService.getNonValidatedProjects()
         render(view: 'validate/index', model: [projects: projects])
@@ -386,6 +397,11 @@ class ProjectController {
         User user = userService.getCurrentUser()
         project = new Project(params)
         beneficiary = new Beneficiary(params)
+        
+        def button = params.button
+        if(button == 'draft'){
+            project.draft = true
+        }
 
         def rewardTitle = params.rewardTitle
         def rewardPrice = params.rewardPrice
@@ -414,12 +430,17 @@ class ProjectController {
         project.beneficiary = beneficiary
 
         if (project.save()) {
-            render (view: 'create/justcreated', model: [project: project])
+             if(button == 'draft'){
+                 render (view: 'create/saveasdraft', model: [project: project])
+             } else {
+                 render (view: 'create/justcreated', model: [project: project])
+             }
         } else {
             render (view: 'create/createerror', model: [project: project])
         }
 	}
-
+    
+    
     @Secured(['ROLE_USER'])
     def manageproject() {
         Project project
@@ -486,4 +507,6 @@ class ProjectController {
                 model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])
     }
+    
+    
 }

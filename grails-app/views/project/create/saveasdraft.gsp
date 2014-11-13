@@ -11,8 +11,7 @@
 	        <g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">
 		        ${project.title}
 		    </g:link>
-		    Project.draft: ${project.draft}
-		</h2>
+		  	</h2>
 		<div class="alert alert-success">Your Project has been saved as draft.</div>
 		<!-- <div class="alert alert-warning">This project is not yet published.</div> -->
 	    </div>

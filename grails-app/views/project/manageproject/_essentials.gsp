@@ -33,4 +33,10 @@
         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
     </g:elseif>
     <g:render template="/project/manageproject/tilesanstitle"/>
+    <g:if test="${project.draft}">
+    	<g:form controller="project" action="saveasdraft">
+    		<g:hiddenField name="projectId" value="${project.id}"/>
+        	<button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-check"></i>&nbsp;Send to admin for approval</button>
+        </g:form>
+    </g:if><br>
 </div>

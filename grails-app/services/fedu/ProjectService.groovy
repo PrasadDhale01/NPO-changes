@@ -422,7 +422,7 @@ class ProjectService {
     }
 
     def getNonValidatedProjects() {
-        return Project.findAllWhere(validated: false,inactive: false)
+        return Project.findAllWhere(validated: false, inactive: false, draft:false)
     }
 
     def search(String query) {

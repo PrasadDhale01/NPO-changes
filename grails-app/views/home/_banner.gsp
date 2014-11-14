@@ -6,18 +6,20 @@
         </div>
     </div>
 </div> --%>
-
+<div class="greenbg">
+<div class="container">
+		<div class="row">
 <div class="text-center">
     <br>
     <h1>Join the Giving Movement and Raise More for Your Cause</h1>
-    <h3>Crowdera is free to help you do more good!</h3><br>
+    <h3>Crowdera is free to help you do more good!</h3>
     
-    <g:form class="form-horizontal" controller="project" action="create" role="form">
+    <!--<g:form class="form-horizontal" controller="project" action="create" role="form">
         <div class="form-group">
             <div class="col-sm-12">
                 <a href="${resource(dir: '/projects/create')}" target="_blank"><img src="/images/StartFundrising-Button.jpg"></a>
             </div>
         </div>
-    </g:form>
+    </g:form>-->
     <br>
-</div>
+</div></div></div></div>

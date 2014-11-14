@@ -15,11 +15,16 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-				<li><g:link controller="project" action="create"><span class="glyphicon glyphicon-leaf"></span> Create Project</g:link></li>
-                <li><a href="${resource(dir: '/projects')}"><span class="glyphicon glyphicon-tint"></span> Contribute</a></li>
-				<li><a href="${resource(dir: '/howitworks')}"><span class="glyphicon glyphicon-info-sign"></span> How it works</a></li>
+			    <li><a href="/">Home</a></li>
+				<li><g:link controller="project" action="create">Explore <span>Projects</span></g:link></li>
+                <li><a href="${resource(dir: '/projects')}">Create <span>a fundraiser</span></a></li>
+				<li><a href="${resource(dir: '/howitworks')}"> See How <span>it works</span></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
+			    <div class="searchbox"><form name="" action="" method="post">
+		          <input type="text" name="serach" />
+		          <input type="image" src="images/serach-icon.jpg" />
+		        </form></div>
                 <sec:ifNotLoggedIn>
                     <li><g:link controller="login" action="auth">Login</g:link></li>
                     <li><g:link controller="login" action="register">Register</g:link></li>

@@ -21,8 +21,8 @@
 		</div>
 		<div class="panel-body">
 		    <ul>
-			<li>It is now not send to admin for approval</li>
-			<li>When you want you can send it for admin approval from User setting page.</li>
+			<li>You project has been saved as draft.</li>
+			<li>You can review your project and send it for admin approval from User Settings page.</li>
 		    </ul>
 		</div>
 	    </div>

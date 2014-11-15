@@ -151,6 +151,15 @@ h1, h2, h3, h4, h5, h6 {
    color: #dfe2e6; /*Change active text color here*/
 }
 
+.navbar-default .dropdown-menu {
+  background-color: #4D6785 !important;
+}
+.navbar-nav li.dropdown span {display:inline !important}
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background-color: #4D6785 !important;
+    color: #FFF;
+}
+
 .searchbox { 
 	position:relative; 
 	height:30px;

@@ -11,6 +11,10 @@ $(function() {
             password: {
                 required: true
             },
+            confirmPassword: {
+                required: true,
+                isEqualToPassword: true
+            },
             firstName: {
                 minlength: 2,
                 required: true
@@ -21,4 +25,12 @@ $(function() {
             }
         }
     });
+     $.validator.addMethod('isEqualToPassword', function (value, element) {
+        var confirmpassword = value;
+        var password = $("#password").val();
+        if(confirmpassword != password) {
+            return (confirmpassword == password) ? password : false;
+        }
+        return true;
+    }, "Passwords do not match! Please enter a valid password.");
 });

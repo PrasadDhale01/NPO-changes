@@ -94,6 +94,25 @@ class MandrillService {
         }
        
     }
+
+    private def sendResetPassword(User user) {
+        def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm_reset', id: user.resetCode, absolute: true)
+
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+        ], [
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ], [
+            'name': 'EMAIL',
+            'content': user.email
+        ]]
+
+        def tags = ['reset-password']
+
+        sendTemplate(user, 'reset-password', globalMergeVars, tags)
+    }
     
     private def inviteToShare(String email, String templateName, List globalMergeVars, List tags) {
         def query =  [

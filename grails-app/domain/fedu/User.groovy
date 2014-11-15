@@ -14,6 +14,7 @@ class User {
     String lastName
     String email
     String userImageUrl
+    String confirmPassword
 
     String inviteCode
     String confirmCode
@@ -28,7 +29,7 @@ class User {
 	boolean accountLocked
 	boolean passwordExpired
 
-	static transients = ['springSecurityService']
+	static transients = ['springSecurityService','confirmPassword']
 
 	static constraints = {
 		username blank: false, unique: true

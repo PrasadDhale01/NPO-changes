@@ -238,13 +238,8 @@ class LoginController {
         } else {
             user.resetCode = UUID.randomUUID().toString()
             user.save()
-            mailService.sendMail {
-                async true
-                to params.username
-                from "info@fedu.org"
-                subject "Crowdera - Reset Password"
-                html g.render(template: 'forgot/forgotpasswordmailtemplate', model: [code: user.resetCode])
-            }
+           
+            mandrillService.sendResetPassword(user)
 
             render(view: 'success',
                     model: [message: 'An email was sent to '+ params.username +' describing how to reset your password.']);
@@ -267,16 +262,8 @@ class LoginController {
         if (!user) {
             render(view: 'error', model: [message: 'Error resetting password.'])
         } else {
-            String newPassword = params.new_password
-            String newPassword2 = params.new_password_2
-            if (!newPassword || !newPassword2 || newPassword != newPassword2) {
-                flash.message = 'Passwords do not match! Please enter a valid password.'
-                render view: 'forgot/edit_password_reset', model: [code: user.resetCode]
-                return
-            } else {
-                user.password = params.new_password
+                user.password = params.password
                 user.resetCode = UUID.randomUUID().toString() // Scramble reset code, to avoid re-use
-            }
 
             if (user.save()) {
                 render(view: 'success', model: [message: 'Password updated successfully. To continue, please login with your new password.'])

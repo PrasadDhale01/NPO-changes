@@ -129,12 +129,12 @@ $(function() {
         //ignore: []
     });
 
-    /*$( "#projectImageFile" ).rules( "add", {
+    $( "#projectImageFile" ).rules( "add", {
       required: true,
       messages: {
         required: "Please upload at least one project image"
       }
-    });*/
+    });
 
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){

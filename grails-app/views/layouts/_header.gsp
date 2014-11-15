@@ -21,10 +21,11 @@
 				<li><a href="${resource(dir: '/howitworks')}"> See How <span>it works</span></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-			    <div class="searchbox"><form name="" action="" method="post">
+			    <!-- Dont use form action here as its header file, it messes with other forms in the body part-->
+			    <!--<div class="searchbox"><form name="" action="" method="post">
 		          <input type="text" name="serach" />
 		          <input type="image" src="images/serach-icon.jpg" />
-		        </form></div>
+		        </form></div>-->
                 <sec:ifNotLoggedIn>
                     <li><g:link controller="login" action="auth">Login</g:link></li>
                     <li><g:link controller="login" action="register">Register</g:link></li>

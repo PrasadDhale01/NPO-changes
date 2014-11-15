@@ -7,7 +7,6 @@
       <auto-commit>false</auto-commit>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
-      <user-name>root</user-name>
       <default-dialect>TEXT</default-dialect>
       <driver-properties>
         <property name="zeroDateTimeBehavior" value="convertToNull" />
@@ -17,4 +16,3 @@
     </data-source>
   </component>
 </project>
-

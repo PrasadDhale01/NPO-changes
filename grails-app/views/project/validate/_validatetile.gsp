@@ -19,7 +19,7 @@
         <strong style="margin-top: 10px; margin-bottom: 0px; text-align: justify; overflow: hidden;">
             ${project.title}
         </strong>
-        <p>${project.description}</p>
+        <span class="project-story-span">${project.description}</span>
     </div>
 	<div class="modal-footer tile-footer" style="text-align: left; margin-bottom: 2px;">
         <div class="row">

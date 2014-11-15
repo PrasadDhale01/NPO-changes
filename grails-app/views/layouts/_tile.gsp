@@ -38,7 +38,7 @@ Expects the parent containers to be like so:
             ${project.title}
         </strong>
     <hr class="tile-separator">
-    <span>${project.description}</span>
+    <span class="project-story-span">${project.description}</span>
     </div>
 
     <div class="modal-footer tile-footer" style="text-align: left; margin-bottom: 2px;">

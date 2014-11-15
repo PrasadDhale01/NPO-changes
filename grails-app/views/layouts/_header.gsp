@@ -15,7 +15,7 @@
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
-			    <li><a href="/">Home</a></li>
+<%--			    <li><a href="/">Home</a></li>--%>
 				<li><g:link controller="project" action="create">Create <span>a fundraiser</span></g:link></li>
                 <li><a href="${resource(dir: '/projects')}">Explore <span>Projects</span></a></li>
 				<li><a href="${resource(dir: '/howitworks')}"> See How <span>it works</span></a></li>

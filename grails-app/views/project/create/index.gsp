@@ -26,19 +26,19 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">First Name</label>
                                 <div class="col-sm-8">
-                                    <input id="firstName" class="form-control" name="${FORMCONSTANTS.FIRSTNAME}" value="${user.firstName}" disabled>
+                                    <input id="firstName" class="form-control" name="${FORMCONSTANTS.FIRSTNAME}" value="${user.firstName}" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Last Name</label>
                                 <div class="col-sm-8">
-                                    <input id="lastName" class="form-control" name="${FORMCONSTANTS.LASTNAME}" value="${user.lastName}" disabled>
+                                    <input id="lastName" class="form-control" name="${FORMCONSTANTS.LASTNAME}" value="${user.lastName}" readonly>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Email</label>
                                 <div class="col-sm-8">
-                                    <input id="email" type="email" class="form-control" name="${FORMCONSTANTS.EMAIL}" value="${user.email}" disabled>
+                                    <input id="email" type="email" class="form-control" name="${FORMCONSTANTS.EMAIL}" value="${user.email}" readonly>
                                 </div>
 
                             </div>
@@ -91,7 +91,7 @@
                     </div>
 				</div>
 			</div>
-
+			
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Organizations</h3>
@@ -189,7 +189,38 @@
                     </div>
                </div>
             </div>
-
+            
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Add Admins for Project</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-sm-6">
+	                    <div class="form-group">
+	                        <label class="col-sm-4 control-label">First Admin</label>
+	                        <div class="col-sm-8">
+	                            <input type="text" class="form-control" name="email1" id="firstadmin" placeholder="Email ID"></input>
+					        </div>
+	                    </div>
+	                    <div class="form-group">
+	                        <label class="col-sm-4 control-label">Second Admin</label>
+	                        <div class="col-sm-8">
+	                            <input type="text" class="form-control" name="email2" id="secondadmin" placeholder="Email ID"></input>
+					        </div>
+	                    </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+	                    <div class="form-group">
+	                        <label class="col-sm-4 control-label">Third Admin</label>
+	                        <div class="col-sm-8">
+	                            <input type="text" class="form-control" name="email3" id="thirdadmin" placeholder="Email ID"></input>
+					        </div>
+	                    </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Why</h3>
@@ -205,6 +236,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">How much & When</h3>
@@ -262,7 +294,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Project Images and Video</h3>
@@ -325,7 +357,7 @@
                                     <div class="col-sm-12">
                                         <label class="col-sm-2 control-label">Reward Description</label>
                                         <div class="col-sm-10" style="left-padding: 0px;">
-                                            <textarea class="form-control rewardDescription" name="rewardDescription" rows="2" placeholder="Description" style="left-padding: 0px"></textarea>
+                                            <textarea class="form-control rewardDescription" name="rewardDescription" id="rewardDescription" rows="2" placeholder="Description" style="left-padding: 0px"></textarea>
                                         </div>
                                     </div>
                                 </div>

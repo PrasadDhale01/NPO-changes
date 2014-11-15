@@ -5,7 +5,7 @@ class Project {
     def rewardService
 
     static belongsTo = [user: User]
-    static hasMany = [contributions: Contribution, comments: ProjectComment, rewards: Reward, imageUrl: ImageUrl]
+    static hasMany = [contributions: Contribution, comments: ProjectComment, rewards: Reward, imageUrl: ImageUrl, projectAdmins: ProjectAdmin]
 
     Beneficiary beneficiary
     Date created
@@ -17,6 +17,7 @@ class Project {
     double amount
     int days
     List contributions 
+    List projectAdmins
 
     /* How */
     String id
@@ -61,6 +62,7 @@ class Project {
         webAddress (blank: false, nullable: true)
         fileUrl (nullable: true)
         organizationIconUrl (nullable: true)
+        projectAdmins(nullable: true)
     }
 
     def beforeInsert() {

@@ -17,6 +17,7 @@ class ProjectService {
     def grailsLinkGenerator
     def imageFile
 	def imageUrlService
+    def mandrillService
 
     def getNumberOfProjects() {
         return Project.count()
@@ -368,6 +369,34 @@ class ProjectService {
         return state
     }
     
+    def getAdminForProjects(String adminEmail, Project project, User user) {
+                
+        def fullName = user.firstName + ' ' + user.lastName
+        if (adminEmail) {
+            mandrillService.inviteAdmin(adminEmail, fullName, project)
+            ProjectAdmin projectAdmin = new ProjectAdmin()
+            projectAdmin.email = adminEmail
+            project.addToProjectAdmins(projectAdmin)
+        }
+    }
+    
+    def getCategoryList() {
+        def categoryOptions = [
+            (Project.Category.ANIMALS): "Animals",
+            (Project.Category.ARTS): "Arts",
+            (Project.Category.CHILDREN): "Children",
+            (Project.Category.COMMUNITY): "Community",
+            (Project.Category.EDUCATION): "Education",
+            (Project.Category.ELDERLY): "Elderly",
+            (Project.Category.ENVIRONMENT): "Environment",
+            (Project.Category.HEALTH): "Health",
+            (Project.Category.PUBLIC_SERVICES): "Public Services",
+            (Project.Category.RELIGION): "Religion",
+            (Project.Category.OTHER): "Other",
+        ]
+        return categoryOptions
+    }
+    
     def getValidatedProjects() {
 		def criteria = Project.createCriteria()
 		def results = criteria.list {
@@ -376,10 +405,8 @@ class ProjectService {
 			order("id", "desc")
 		}
 		def popularProjectsList = getPopularProjects()
-		print popularProjectsList
 		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
 //        return Project.findAllWhere(validated: true,inactive: false)
-		print finalList
 		return finalList
     }
 	
@@ -411,11 +438,18 @@ class ProjectService {
         return( project.beneficiaryId )
     }
     
-    def getProjects(def projects) {
+    def getProjects(def projects, def projectAdmins) {
         def list = []
         projects.each {
             if(it.inactive == false) {
                 list.add(it)           
+            }
+        }
+        
+        projectAdmins.each {
+            def project = Project.findById(it.projectId)
+            if(project.inactive == false) {
+                list.add(project)
             }
         }
         return list

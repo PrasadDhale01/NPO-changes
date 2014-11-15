@@ -178,19 +178,7 @@ class ProjectController {
 
     @Secured(['ROLE_USER'])
 	def create() {
-        def categoryOptions = [
-            (Project.Category.ANIMALS): "Animals",
-            (Project.Category.ARTS): "Arts",
-            (Project.Category.CHILDREN): "Children",
-            (Project.Category.COMMUNITY): "Community",
-            (Project.Category.EDUCATION): "Education",
-            (Project.Category.ELDERLY): "Elderly",
-            (Project.Category.ENVIRONMENT): "Environment",
-            (Project.Category.HEALTH): "Health",
-            (Project.Category.PUBLIC_SERVICES): "Public Services",
-            (Project.Category.RELIGION): "Religion",
-            (Project.Category.OTHER): "Other",
-        ]
+        def categoryOptions = projectService.getCategoryList()
 
         def genderOptions = [
             "MALE": (Beneficiary.Gender.MALE),
@@ -214,12 +202,13 @@ class ProjectController {
     @Secured(['ROLE_USER'])
     def edit() {
         def project = Project.get(params.projectId)
-        
+        def categoryOptions = projectService.getCategoryList()
         if (project) {
             def beneficiary = project.beneficiary
             render (view: 'edit/index',
                 model: [project: project,
                         beneficiary: beneficiary,
+                        categoryOptions: categoryOptions,
                         FORMCONSTANTS: FORMCONSTANTS])
         } else {
             flash.message = "project not found."
@@ -231,12 +220,38 @@ class ProjectController {
     @Secured(['ROLE_USER'])
     def update() {
         def project = Project.get(params.projectId)
+        User user = userService.getCurrentUser()
         
         if(project) {
-
+            
+            def iconFile = request.getFile('iconfile')
+            if(!iconFile.isEmpty()) {
+                def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
+                project.organizationIconUrl = uploadedFileUrl
+            }
+            
+            def imageFiles = request.getFiles('thumbnail[]')
+            if(!imageFiles.isEmpty()) {
+                projectService.getMultipleImageUrls(imageFiles, project)
+            }
+            
             project.description = params.description
             project.story = params.story
-        
+            project.amount = Double.parseDouble(params.amount)
+            project.title = params.title
+            project.days = Integer.parseInt(params.days)
+            project.category = params.category
+            project.webAddress = params.webAddress
+            project.videoUrl = params.videoUrl
+            
+            String email1 = params.email1
+            String email2 = params.email2
+            String email3 = params.email3
+            
+            projectService.getAdminForProjects(email1, project, user)
+            projectService.getAdminForProjects(email2, project, user)
+            projectService.getAdminForProjects(email3, project, user)
+            
             flash.message = "Successfully saved the changes"
             render (view: 'manageproject/index',
                     model: [project: project,
@@ -397,12 +412,13 @@ class ProjectController {
         User user = userService.getCurrentUser()
         project = new Project(params)
         beneficiary = new Beneficiary(params)
+        ProjectAdmin projectAdmin = new ProjectAdmin()
         
         def button = params.button
         if(button == 'draft'){
             project.draft = true
         }
-
+        
         def rewardTitle = params.rewardTitle
         def rewardPrice = params.rewardPrice
         def rewardDescription = params.rewardDescription
@@ -410,25 +426,36 @@ class ProjectController {
         if(rewardTitle) {
             rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
         }
-
+        
         def textFile = request.getFile('textfile')
         if(!textFile.isEmpty()) {
             def uploadedFileUrl = projectService.getfileUrl(textFile)
             project.fileUrl = uploadedFileUrl
         }
-
+        
         def iconFile = request.getFile('iconfile')
-        def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
-        project.organizationIconUrl = uploadedFileUrl
-
-		def imageFiles = request.getFiles('thumbnail[]') 
-
-		projectService.getMultipleImageUrls(imageFiles, project)
-
+        if(!iconFile.isEmpty()) {
+            def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
+            project.organizationIconUrl = uploadedFileUrl
+        }
+        
+        def imageFiles = request.getFiles('thumbnail[]')
+        if(!imageFiles.isEmpty()) {
+            projectService.getMultipleImageUrls(imageFiles, project)
+        }
+        
+        String email1 = params.email1
+        String email2 = params.email2
+        String email3 = params.email3
+        
+        projectService.getAdminForProjects(email1, project, user)
+        projectService.getAdminForProjects(email2, project, user)
+        projectService.getAdminForProjects(email3, project, user)
+        
         project.user = user
         project.created = new Date()
         project.beneficiary = beneficiary
-
+        
         if (project.save()) {
              if(button == 'draft'){
                  render (view: 'create/saveasdraft', model: [project: project])

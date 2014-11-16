@@ -3,8 +3,6 @@
     <meta name="layout" content="main" />
 </head>
 <body>
-<div class="feducontent">
     <g:render template="/aboutus/aboutusgrid"></g:render>
-</div>
 </body>
 </html>

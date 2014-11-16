@@ -52,7 +52,7 @@
 				<h3 class="headingtext">Start Your Campaign</h3>
 				<p class="how-it-content">Crowdera helps people engage their community to make a difference.</p>
 				<p class="how-it-content">
-					New to Crowdera, <a href="#">learn more</a>.
+					New to Crowdera, <a href="http://new.crowdera.co/howitworks">learn more</a>.
 				</p>
 			</div>
 			<div class="col-md-3 text-center">
@@ -86,9 +86,8 @@
 	<div class="row">
 		<div class="col-md-12">
     <h2>No fees to help you do more good,<br />
-      Its true we promice!</h2>
+      Its true we promise!</h2>
     <h3>Crowdera charges no fees to supporter or fundraiser: no commision fees, no fees to start, no monthly fees and no hidden fees<br />
       There will never be a fee, so you can more good. It's really that simple, and that's the way we like it!</h3>
   </div> </div> </div>
 </div>
-

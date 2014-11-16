@@ -12,7 +12,7 @@
                 <input type="password" name="password" id="password" class="form-control" placeholder="Password" autofocus>
             </div>
             <div class="form-group">
-                <input type="password" name="confirmPassword"  class="form-control" placeholder="Confirm-Password">
+                <input type="password" name="confirmPassword"  class="form-control" placeholder="Confirm Password">
             </div>
             <button class="btn btn-primary btn-block" type="submit">Update</button>
         </g:form>

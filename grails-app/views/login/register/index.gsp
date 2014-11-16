@@ -29,7 +29,10 @@
                 <input type="email" name="username" class="form-control" placeholder="Email address">
             </div>
             <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="Password">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password">
             </div>
             <button class="btn btn-primary btn-block" type="submit">Register</button>
         </g:form>

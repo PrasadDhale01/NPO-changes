@@ -19,7 +19,9 @@ class UserController {
             redirect action: 'admindashboard'
         } else {
             def projects = Project.findAllByUser(user)
-            def project = projectService.getProjects(projects)
+            def email = user.email
+            def projectAdmins = ProjectAdmin.findAllByEmail(email)
+            def project = projectService.getProjects(projects, projectAdmins)
             def contributions = Contribution.findAllByUser(user)
             
             render view: 'user/dashboard', model: [user: user, projects: project, contributions: contributions]

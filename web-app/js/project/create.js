@@ -106,6 +106,15 @@ $(function() {
             },
             iconfile: {
                 required: true
+            },
+            email1: {
+            	validateMultipleEmailsCommaSeparated: true
+            },
+            email2: {
+            	validateMultipleEmailsCommaSeparated: true
+            },
+            email3: {
+            	validateMultipleEmailsCommaSeparated: true
             }
             /*
             imageUrl: {
@@ -129,12 +138,12 @@ $(function() {
         //ignore: []
     });
 
-    /*$( "#projectImageFile" ).rules( "add", {
+    $( "#projectImageFile" ).rules( "add", {
       required: true,
       messages: {
         required: "Please upload at least one project image"
       }
-    });*/
+    });
 
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
@@ -161,11 +170,22 @@ $(function() {
     	 return true;
      }, "Please provide valid url");
      
+	 $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value, element) {
+    	  
+         if(value && value.length !=0){
+        	 var reg=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
+             return (value.match(reg))
+         }
+         return true;
+     }, "Please provide valid Email Id");
+     
      $("input[name='answer']").change(function(){
      	if($(this).val()=="yes") {
      		$("#rewardTemplate").show();
      	    $("#updatereward").show();
      	} else {
+     		$('#addNewRewards').find('.rewardsTemplate').find('input').val('');
+     		$('#addNewRewards').find('.rewardsTemplate').find('#rewardDescription').val('');
      	    $("#updatereward").hide();
      	    $("#rewardTemplate").hide();
      	}

@@ -73,6 +73,10 @@ modules = {
         dependsOn 'fedujs', 'blacknwhitejs'
         resource url: 'js/project/list.js'
     }
+    projecteditjs {
+        dependsOn 'fedujs', 'blacknwhitejs'
+        resource url: 'js/project/edit.js'
+    }
     /* Fund */
     fundjs {
         dependsOn 'underscorejs', 'fedujs'

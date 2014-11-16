@@ -250,4 +250,36 @@ class MandrillService {
 
         inviteToAdmin(email, 'invite-admin-for-project', globalMergeVars, tags)
     }
+
+    def sendUpdateEmailToAdmin(def email, String name, Project project) {
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageproject', id: project.id, absolute: true)
+        def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', absolute: true)
+        def imageUrl
+        if(project.imageUrl[0].getUrl()) {
+            imageUrl = project.imageUrl[0].getUrl()
+        }
+        def globalMergeVars = [[
+            'name': 'LINK',
+           'content': link
+        ], [
+            'name':'REGISTER_LINK',
+            'content':registerLink
+        ],[
+            'name': 'NAME',
+            'content': name
+        ], [
+            'name': 'EMAIL',
+            'content': email
+        ], [
+            'name': 'TITLE',
+            'content': project.title
+        ], [
+            'name': 'IMAGEURL',
+            'content': imageUrl
+        ]]
+
+        def tags = ['project-update-email']
+
+        inviteToAdmin(email, 'project-update-email', globalMergeVars, tags)
+    }
 }

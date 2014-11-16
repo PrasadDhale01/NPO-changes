@@ -379,6 +379,85 @@ class ProjectService {
             project.addToProjectAdmins(projectAdmin)
         }
     }
+
+    def updateAdminsForProjects(def email1, def email2, def email3, def project, def user) {
+        
+        def projectadmins = project.projectAdmins
+        def firstAdmin = projectadmins[0]
+        def secondAdmin = projectadmins[1]
+        def thirdAdmin = projectadmins[2]
+        def fullName = user.firstName + ' ' + user.lastName
+        
+        if (email1) {
+            def adminAlreadyCreated = false
+            projectadmins.each{ 
+                if (email1 == it.getEmail()) {
+                    adminAlreadyCreated = true
+                }
+            }
+            if (!adminAlreadyCreated) {
+                if (firstAdmin != null) {
+                    firstAdmin.email = email1
+                    mandrillService.inviteAdmin(email1, fullName, project)
+                } else {
+                    getAdminForProjects(email1, project, user)
+                }
+            }
+        }
+        
+        if (email2) {
+            def adminAlreadyCreated = false
+            projectadmins.each{ 
+                if (email2 == it.getEmail()) {
+                    adminAlreadyCreated = true
+                }
+            }
+            if (!adminAlreadyCreated) {
+                if (secondAdmin != null) {
+                    secondAdmin.email = email2
+                    mandrillService.inviteAdmin(email2, fullName, project)
+                } else {
+                    getAdminForProjects(email2, project, user)
+                }
+            }
+        }
+        
+        if (email3) {
+            def adminAlreadyCreated = false
+            projectadmins.each{
+                if (email3 == it.getEmail()) {
+                    adminAlreadyCreated = true
+                }
+            }
+            if (!adminAlreadyCreated) {
+                if (thirdAdmin != null) {
+                    thirdAdmin.email = email3
+                    mandrillService.inviteAdmin(email3, fullName, project)
+                } else {
+                    getAdminForProjects(email3, project, user)
+                }
+            }    
+        }
+    }
+    
+    def sendEmailToAdminForProjectUpdate(def project, def user) {
+        def projectadmins = project.projectAdmins
+        def fullName = user.firstName + ' ' + user.lastName
+        
+        projectadmins.each{
+            def projectadmin = it
+            if (projectadmin) {
+                def email = projectadmin.getEmail()
+                mandrillService.sendUpdateEmailToAdmin(email, fullName, project)
+            }
+        }
+        def projectOwner = project.user 
+        
+        if (projectOwner) {
+            def projectOwnerEmail = projectOwner.getEmail()
+            mandrillService.sendUpdateEmailToAdmin(projectOwnerEmail, fullName, project)
+        }
+    }
     
     def getCategoryList() {
         def categoryOptions = [

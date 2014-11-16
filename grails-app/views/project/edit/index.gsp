@@ -200,7 +200,7 @@
 	                    <div class="form-group">
 	                        <label class="col-sm-4 control-label">First Admin</label>
 	                        <div class="col-sm-8">
-	                            <input type="text" class="form-control" name="email1" value="${email1}" id="firstadmin" placeholder="Email ID" disabled></input>
+	                            <input type="text" class="form-control" name="email1" value="${email1}" id="firstadmin" placeholder="Email ID" ></input>
 					        </div>
 	                    </div>
 	                    <div class="form-group">

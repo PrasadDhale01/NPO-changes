@@ -5,18 +5,6 @@ $(function() {
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
     });
-	
-	if($('input[id="firstadmin"]').val()) {
-    	$('input[id="firstadmin"]').prop('disabled', true);
-    };
-    
-    if($('input[id="secondadmin"]').val()) {
-    	$('input[id="secondadmin"]').prop('disabled', true);
-    };
-    
-    if($('input[id="thirdadmin"]').val()) {
-    	$('input[id="thirdadmin"]').prop('disabled', true);
-    };
     
     /* Validate form on submit. */
     var validator = $('form').validate({
@@ -58,13 +46,13 @@ $(function() {
             	required: true
             },
             email1: {
-            	validateMultipleEmailsCommaSeparated: true
+            	email: true
             },
             email2: {
-            	validateMultipleEmailsCommaSeparated: true
+            	email: true
             },
             email3: {
-            	validateMultipleEmailsCommaSeparated: true
+            	email: true
             }
         },
         messages:{
@@ -81,13 +69,13 @@ $(function() {
         }//end error Placement
     });
     
-    $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value, element) {
+    //$.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value, element) {
     	  
-        if(value && value.length !=0){
-       	 var reg=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
-            return (value.match(reg))
-        }
-        return true;
-    }, "Please provide valid Email Id");
+    //    if(value && value.length !=0){
+    //   	 var reg=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
+    //        return (value.match(reg))
+    //    }
+    //    return true;
+    // }, "Please provide valid Email Id");
     
 });

@@ -207,12 +207,18 @@ class FundController {
                     }
                 }
 
-                render view: 'acknowledge/acknowledge', model: [project: project, reward: reward, contribution: contribution]
+                 redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [project: project, reward: reward.id, contribution: contribution.id])
             } else {
                 render view: 'error', model: [message: 'There was an error charging. Don\\\'t worry, your card was not charged. Please try again.']
             }
         } else {
             render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
         }
+    }
+    def acknowledge() { 
+        def project = Project.get(params.id)
+        def reward = Reward.get(params.reward)
+        def contribution = Contribution.get(params.contribution)        
+        render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution]
     }
 }

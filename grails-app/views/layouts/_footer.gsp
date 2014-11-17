@@ -10,7 +10,7 @@
                 <a href="${resource(dir: '/projects')}" >Discover</a>
                 <a href="${resource(dir: '/projects/create')}">Start a Project</a>
                 <a href="${resource(dir: '/howitworks')}">How it works</a>
-                <a href="#">Contact</a>
+                <a href="mailto:info@crowdera.co">Contact</a>
                 <a href="http://crowdera.tumblr.com">Blog</a>
             </div>
             <div class="col-sm-7 flinks">

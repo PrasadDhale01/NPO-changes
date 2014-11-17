@@ -16,11 +16,13 @@
 	<div class="container">
 		<g:if test="${project}">
             <div class="row">
+	            <div class="col-md-12 text-center">
+	            	<h1 class="green-heading">
+	                	<a href="${project.id}">${project.title}</a>
+	                </h1>
+	            </div>
                 <div class="col-md-8">
-                    <h1>
-                        <a href="${project.id}">${project.title}</a>
-                    </h1>
-                    <h4 class="lead">Beneficiary: ${projectService.getBeneficiaryName(project)}</h4>
+<%--                    <h4 class="lead">Beneficiary: ${projectService.getBeneficiaryName(project)}</h4>--%>
                     <g:if test="${flash.sentmessage}">
                         <div class="alert alert-success">
                             ${flash.sentmessage}
@@ -101,8 +103,9 @@
 				    </div>
 				    
                 </div>
-                
                 <div class="col-md-4">
+					<g:render template="/layouts/organizationdetails"/>
+                    <g:render template="/layouts/tilesanstitle"/>
                     <g:if test="${percentage == 100}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
                     </g:if>
@@ -110,10 +113,8 @@
                         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
                     </g:elseif>
                     <g:else>
-                        <a href="/projects/${project.id}/fund" class="btn btn-primary btn-lg btn-block" role="button">Fund this project</a>
+                        <a href="/projects/${project.id}/fund" class="btn btn-success btn-lg btn-block" role="button">Fund this project</a>
                     </g:else>
-					<g:render template="/layouts/organizationdetails"/>
-                    <g:render template="/layouts/tilesanstitle"/>
                     <g:render template="show/rewards"/>
                 </div>
             </div>

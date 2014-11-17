@@ -5,9 +5,9 @@
 	    </div>
 	</div>
     <div class="row">
-        <div class="panel panel-default" style="margin-top: 30px;">
+        <div class="panel panel-default campaign-description">
             <div class="panel-heading">
-                <h3 class="panel-title">Project Description</h3>
+                <h3 class="panel-title">Campaign Description</h3>
             </div>
             <div class="panel-body">
                 <span class="text-left">${raw(project.description)}</span>

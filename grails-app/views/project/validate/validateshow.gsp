@@ -9,8 +9,10 @@
     <div class="container">
         <g:if test="${project}">
             <div class="row">
+            	<div class="col-md-12 text-center">
+					<h1 class="green-heading"><a href="${project.id}">${project.title}</a></h1>            		
+            	</div>
 	            <div class="col-md-9">
-                    <h1><a href="${project.id}">${project.title}</a></h1>
                     <table class="table table-bordered" style="width:100%">
                         <thead>
 							<tr class="info">

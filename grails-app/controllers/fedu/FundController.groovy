@@ -91,7 +91,7 @@ class FundController {
             }
         }
         if (project && reward) {
-            def BASE_URL = "http://usapisandbox.fgdev.net"
+            def BASE_URL = grailsApplication.config.crowdera.firstgiving.BASE_URL
 
             def http = new HTTPBuilder(BASE_URL)
             def amount = params.double('amount');
@@ -105,11 +105,11 @@ class FundController {
             } else {
                 state = params.billToState
             }
-            
+
             http.request(Method.POST, ContentType.URLENC) {
-                uri.path = '/donation/creditcard'
-                headers.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
-                headers.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
+                uri.path = grailsApplication.config.crowdera.firstgiving.uriPath
+                headers.JG_APPLICATIONKEY = grailsApplication.config.crowdera.firstgiving.JG_APPLICATIONKEY
+                headers.JG_SECURITYTOKEN = grailsApplication.config.crowdera.firstgiving.JG_SECURITYTOKEN
                 body =  [ccNumber:params.ccNumber,
                          ccType:params.ccType,
                          ccExpDateYear:params.ccExpDateYear,
@@ -119,8 +119,8 @@ class FundController {
                          billToFirstName:params.billToFirstName,
                          billToLastName:params.billToLastName,
                          billToAddressLine1:params.billToAddressLine1,
-                         billToAddressLine1:params.billToAddressLine2,
-                         billToAddressLine1:params.billToAddressLine3,
+                         billToAddressLine2:params.billToAddressLine2,
+                         billToAddressLine3:params.billToAddressLine3,
                          billToCity:params.billToCity,
 
                          billToZip:params.billToZip,
@@ -131,7 +131,7 @@ class FundController {
                          remoteAddr:params.remoteAddr,
                          amount:params.amount,
                          currencyCode:params.currencyCode,
-                         charityId:"dummyid",
+                         charityId:project.charitableId,
                          description:params.description,
                          billToState:state]
 

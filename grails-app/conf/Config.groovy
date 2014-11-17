@@ -117,6 +117,13 @@ environments {
         grails.plugin.springsecurity.facebook.appId = '${fedu.facebook.appId}'
         grails.plugin.springsecurity.facebook.secret = '${fedu.facebook.secret}'
 
+        /* FirstGivig Details*/
+        crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
+        crowdera.firstgiving.uriPath= '/donation/creditcard'
+        crowdera.firstgiving.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
+        crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
+
+
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
         }
@@ -138,6 +145,12 @@ environments {
         grails.plugin.springsecurity.facebook.appId = '${fedu.facebook.appId}'
         grails.plugin.springsecurity.facebook.secret = '${fedu.facebook.secret}'
 
+        /* FirstGivig Details*/
+        crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
+        crowdera.firstgiving.uriPath= '/donation/creditcard'
+        crowdera.firstgiving.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
+        crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
+
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
         }
@@ -155,6 +168,16 @@ environments {
         /* Stripe test keys */
         grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
         grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+
+        /* FirstGivig Details*/
+        /* Production Tokens
+        crowdera.firstgiving.JG_APPLICATIONKEY = '7d2ba10c-b005-4115-a6e4-8336c5071c9d'
+        crowdera.firstgiving.JG_SECURITYTOKEN = '8724ab81-a4ba-4d52-8374-1e2f6f2311ca'
+         */
+        crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
+        crowdera.firstgiving.uriPath= '/donation/creditcard'
+        crowdera.firstgiving.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
+        crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
 
         /* Stripe live keys */
         /*

@@ -108,13 +108,13 @@ $(function() {
                 required: true
             },
             email1: {
-            	validateMultipleEmailsCommaSeparated: true
+            	email: true
             },
             email2: {
-            	validateMultipleEmailsCommaSeparated: true
+            	email: true
             },
             email3: {
-            	validateMultipleEmailsCommaSeparated: true
+            	email: true
             }
             /*
             imageUrl: {
@@ -169,15 +169,6 @@ $(function() {
     	 }
     	 return true;
      }, "Please provide valid url");
-     
-	 $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value, element) {
-    	  
-         if(value && value.length !=0){
-        	 var reg=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
-             return (value.match(reg))
-         }
-         return true;
-     }, "Please provide valid Email Id");
      
      $("input[name='answer']").change(function(){
      	if($(this).val()=="yes") {

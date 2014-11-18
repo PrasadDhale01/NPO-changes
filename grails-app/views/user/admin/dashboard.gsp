@@ -18,14 +18,17 @@
 
         <hr>
 
+        <%--
         <div class="btn-group btn-toggle"> 
             <g:link class="btn btn-primary" action="invite" controller="login">Invite only mode</g:link>
             <g:link class="btn btn-default active" action="openRegister" controller="login">Open Registration</g:link>
         </div>
+        <hr>
+        --%>
         
-       <hr>
 
         <h4>Control Panel</h4>
+        <%--
         <div class="row">
             <div class="col-sm-4">
                 <div class="panel panel-default">
@@ -54,21 +57,6 @@
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <i class="fa fa-leaf fa-lg"></i> Bulk import projects here.
-                    </div>
-                    <div class="panel-footer">
-                        <g:link controller="project" action="importprojects">
-                            <button class="btn btn-block btn-primary"><i class="fa fa-gift fa-lg"></i> Bulk Import Projects</button>
-                        </g:link>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-	    <div class="row">
-            <div class="col-sm-4">
-                <div class="panel panel-default">
-                    <div class="panel-body">
                         <i class="fa fa-gift fa-lg"></i> Manage all shipping pending items here.
                     </div>
                     <div class="panel-footer">
@@ -78,14 +66,18 @@
                     </div>
                 </div>
             </div>
+        </div>
+        --%>
+
+	    <div class="row">
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <i class="glyphicon glyphicon-user"></i> Manage all the user request's here.
+                        <i class="glyphicon glyphicon-check"></i> Validate projects here.
                     </div>
                     <div class="panel-footer">
-                        <g:link controller="login" action="list">
-                            <button class="btn btn-block btn-primary"><span class="fa fa-user fa-lg"></span> User Request</button>
+                        <g:link controller="project" action="validateList">
+                            <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-check"></i> Validate Projects</button>
                         </g:link>
                     </div>
                 </div>
@@ -93,11 +85,23 @@
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <i class="glyphicon glyphicon-check"></i> Validate all projects here.
+                        <i class="glyphicon glyphicon-user"></i> Manage all the invite requests here.
                     </div>
                     <div class="panel-footer">
-                        <g:link controller="project" action="validateList">
-                            <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-check"></i> Validate Project </button>
+                        <g:link controller="login" action="list">
+                            <button class="btn btn-block btn-primary"><span class="fa fa-user fa-lg"></span> Manage Invites</button>
+                        </g:link>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <i class="fa fa-leaf fa-lg"></i> Bulk import projects here.
+                    </div>
+                    <div class="panel-footer">
+                        <g:link controller="project" action="importprojects">
+                            <button class="btn btn-block btn-primary"><i class="fa fa-gift fa-lg"></i> Bulk Import Projects</button>
                         </g:link>
                     </div>
                 </div>

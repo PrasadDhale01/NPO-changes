@@ -17,7 +17,8 @@ class MandrillService {
             template_name: templateName,
             message: [
                 tags: tags,
-                to: [[
+                to: [
+                    [
                         email: user.email,
                         name: user.firstName + ' ' + user.lastName
                     ]
@@ -53,74 +54,105 @@ class MandrillService {
     private def sendMail(User user) {
         def link = grailsLinkGenerator.link(controller: 'login', action: 'confirmUser', id: user.inviteCode, absolute: true)
 
-        def globalMergeVars = [[
-            'name': 'LINK',
-            'content': link
-        ], [
-            'name': 'NAME',
-            'content': user.firstName + ' ' + user.lastName
-        ], [
-            'name': 'EMAIL',
-            'content': user.email
-        ]]
+        def globalMergeVars = [
+            [
+                'name': 'LINK',
+                'content': link
+            ],
+            [
+                'name': 'NAME',
+                'content': user.firstName + ' ' + user.lastName
+            ],
+            [
+                'name': 'EMAIL',
+                'content': user.email
+            ]
+        ]
 
         def tags = ['admin-invite']
 
         sendTemplate(user, 'admin_invitation', globalMergeVars, tags)
     }
 
-    private def sendEmail(User user) {
-        def globalMergeVars = [[
-            'name': 'NAME',
-            'content': user.firstName + ' ' + user.lastName
-        ], [
-            'name': 'EMAIL',
-            'content': user.email
-        ]]
-        
-        def projects = Project.findAllByUser(user)
-        
-        if (projects.size()!= 0) {
-            
-            def tags = ['fund-confirmation']
-            
-            sendTemplate(user, 'funding_confirmation', globalMergeVars, tags)
-            
-        } else {
-        
-            def tags = ['thanking-contributors']
-            
-            sendTemplate(user, 'thanks_to_contributors', globalMergeVars, tags)
-        }
-       
+    private def sendBeneficiaryEmail(User user) {
+        def link = grailsLinkGenerator.link(controller: 'fund', action: 'fundingConfirmation',id:user.id, absolute: true)
+
+        def globalMergeVars = [
+            [
+                'name': 'LINK',
+                'content': link
+            ],
+            [
+                'name': 'NAME',
+                'content': user.firstName + ' ' + user.lastName
+            ],
+            [
+                'name': 'EMAIL',
+                'content': user.email
+            ]
+        ]
+
+        def tags = ['fund-confirmation']
+
+        sendTemplate(user, 'funding_confirmation', globalMergeVars, tags)
+
+    }
+
+    private def sendContributorEmail(User user, Project project){
+
+        def link = grailsLinkGenerator.link(controller: 'fund', action: 'thankingContributors',id:project.id ,absolute: true)
+
+        def globalMergeVars = [
+            [
+                'name': 'LINK',
+                'content': link
+            ],
+            [
+                'name': 'NAME',
+                'content': user.firstName + ' ' + user.lastName
+            ],
+            [
+                'name': 'EMAIL',
+                'content': user.email
+            ]
+        ]
+
+        def tags = ['thanking-contributors']
+
+        sendTemplate(user, 'thanks_to_contributors', globalMergeVars, tags)
     }
 
     private def sendResetPassword(User user) {
         def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm_reset', id: user.resetCode, absolute: true)
 
-        def globalMergeVars = [[
-            'name': 'LINK',
-            'content': link
-        ], [
-            'name': 'NAME',
-            'content': user.firstName + ' ' + user.lastName
-        ], [
-            'name': 'EMAIL',
-            'content': user.email
-        ]]
+        def globalMergeVars = [
+            [
+                'name': 'LINK',
+                'content': link
+            ],
+            [
+                'name': 'NAME',
+                'content': user.firstName + ' ' + user.lastName
+            ],
+            [
+                'name': 'EMAIL',
+                'content': user.email
+            ]
+        ]
 
         def tags = ['reset-password']
 
         sendTemplate(user, 'reset-password', globalMergeVars, tags)
     }
-    
+
     private def inviteToShare(String email, String templateName, List globalMergeVars, List tags) {
         def query =  [
             key: grailsApplication.config.mandrill.apiKey,
             template_name: templateName,
             message: [
                 tags: tags,
-                to: [[
+                to: [
+                    [
                         email: email
                     ]
                 ],
@@ -151,43 +183,51 @@ class MandrillService {
 
         return ret
     }
-    
+
     def shareProject(def emailList, String name, String message, Project project) {
         emailList.each { email ->
             def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, absolute: true)
-            def globalMergeVars = [[
-                'name': 'LINK',
-                'content': link
-            ], [
-                'name': 'NAME',
-                'content': name
-            ], [
-                'name': 'EMAIL',
-                'content': email
-            ], [
-                'name': 'TITLE',
-                'content': project.title
-            ], [
-                'name': 'MESSAGE',
-                'content': message
-            ], [
-                'name': 'IMAGEURL',
-                'content': project.imageUrl[0].getUrl()
-            ]]
+            def globalMergeVars = [
+                [
+                    'name': 'LINK',
+                    'content': link
+                ],
+                [
+                    'name': 'NAME',
+                    'content': name
+                ],
+                [
+                    'name': 'EMAIL',
+                    'content': email
+                ],
+                [
+                    'name': 'TITLE',
+                    'content': project.title
+                ],
+                [
+                    'name': 'MESSAGE',
+                    'content': message
+                ],
+                [
+                    'name': 'IMAGEURL',
+                    'content': project.imageUrl[0].getUrl()
+                ]
+            ]
 
             def tags = ['invite-to-share']
-            
+
             inviteToShare(email, 'invite-to-share', globalMergeVars, tags)
         }
     }
-    
+
     private def inviteToAdmin(String email, String templateName, List globalMergeVars, List tags) {
         def query =  [
             key: grailsApplication.config.mandrill.apiKey,
             template_name: templateName,
             message: [
                 tags: tags,
-                to: [[
+                to: [
+                    [
                         email: email
                     ]
                 ],
@@ -226,25 +266,32 @@ class MandrillService {
         if(project.imageUrl[0].getUrl()) {
             imageUrl = project.imageUrl[0].getUrl()
         }
-        def globalMergeVars = [[
-            'name': 'LINK',
-           'content': link
-        ], [
-            'name':'REGISTER_LINK',
-            'content':registerLink
-        ],[
-            'name': 'NAME',
-            'content': name
-        ], [
-            'name': 'EMAIL',
-            'content': email
-        ], [
-            'name': 'TITLE',
-            'content': project.title
-        ], [
-            'name': 'IMAGEURL',
-            'content': imageUrl
-        ]]
+        def globalMergeVars = [
+            [
+                'name': 'LINK',
+                'content': link
+            ],
+            [
+                'name':'REGISTER_LINK',
+                'content':registerLink
+            ],
+            [
+                'name': 'NAME',
+                'content': name
+            ],
+            [
+                'name': 'EMAIL',
+                'content': email
+            ],
+            [
+                'name': 'TITLE',
+                'content': project.title
+            ],
+            [
+                'name': 'IMAGEURL',
+                'content': imageUrl
+            ]
+        ]
 
         def tags = ['invite-admin-for-project']
 

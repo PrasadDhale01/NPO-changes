@@ -7,7 +7,7 @@
 <div class="panel panel-default" style="margin-top: 30px;">
     <div class="panel-heading">
         <g:if test="${isFundingOpen}">
-            <h3 class="panel-title">Fund this project</h3>
+            <h3 class="panel-title">Rewards</h3>
         </g:if>
         <g:else>
             <h3 class="panel-title">Funding closed</h3>

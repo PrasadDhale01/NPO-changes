@@ -18,10 +18,10 @@
 		<g:if test="${project}">
             <div class="row">
                 <div class="col-md-12">
-                	<h1>
+                	<h1 class="green-heading text-center">
                         <g:link controller="project" action="show" id="${project.id}" title="${project.title}">${project.title}</g:link>
                     </h1>
-                    <h4 class="lead">Beneficiary: ${projectService.getBeneficiaryName(project)}</h4>
+<%--                    <h4 class="lead">Beneficiary: ${projectService.getBeneficiaryName(project)}</h4>--%>
                     <g:if test="${flash}">
                         <div class="alert alert-success">
                             <li>${flash.message}</li>

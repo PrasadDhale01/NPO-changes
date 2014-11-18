@@ -1744,3 +1744,24 @@ footer .footerbottomsection{
     background-color: #4D6785 !important;
     color: #FFF;
 }
+.green-heading a {
+	color:#83ab30
+}
+.organization-details h4 {
+	margin-top:10px;
+}
+.organization-details img {
+	margin-bottom:10px;
+}
+.campaign-description {
+	margin-top: 66px;
+}
+.btn-success {
+color: #ffffff;
+background-color: #83ab30;
+border-color: #83ab30;
+}
+/* .organization-details label{ */
+/* 	float:left; */
+/* 	width:50% */
+/* } */

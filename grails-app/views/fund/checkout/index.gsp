@@ -59,15 +59,19 @@
                      	</div>
                                     
                      	<div class="form-group">
-                        	<div class="input-group">
-                            	<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
-                            	<input class="form-control" type="text" placeholder="CVC" data-stripe="cvc" name="ccCardValidationNum">
-
-                            	<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
-                            	<input class="form-control" type="text" placeholder="MM" data-stripe="exp-month"  name="ccExpDateMonth">
-
-                            	<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
-                            	<input class="form-control" type="text" placeholder="YYYY" data-stripe="exp-year" name="ccExpDateYear">
+                        	<div class="input-group cvc-details">
+                        		<div class="col-md-4">
+	                            	<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
+	                            	<input class="form-control" type="text" placeholder="CVC" data-stripe="cvc" name="ccCardValidationNum">
+								</div>
+								<div class="col-md-4">
+                            		<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
+	                            	<input class="form-control" type="text" placeholder="MM" data-stripe="exp-month"  name="ccExpDateMonth">
+	                            </div>
+								<div class="col-md-4">
+	                            	<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
+	                            	<input class="form-control" type="text" placeholder="YYYY" data-stripe="exp-year" name="ccExpDateYear">
+	                            </div>
                         	</div>
                     	</div>
                     </div>
@@ -79,66 +83,59 @@
 					</div>
 					<div class="panel-body">  
                     	<div class="row">
+                    	<input class="form-control" type="hidden" value="Mr/Mrs/Ms" name="billToTitle" id="billToTitle" />
                         	<div class="col-md-6">
+                        	<% if (user!=null){ %>	
                         	    <div class="form-group">
-                                	<div class="input-group col-md-11">
-                                		<div class="row">
-                                			<input class="form-control" type="text" placeholder="Title" name="billToTitle" id="billToTitle" >
-                                		<% if (user!=null){%>	
-                                    			<input class="form-control" type="text" placeholder="First Name" name="billToFirstName" id="billToFirstName" value="${user.firstName}">
-                                    	</div>
+                                	<div class="input-group col-md-12">
+                                    	<input class="form-control" type="text" placeholder="First Name" name="billToFirstName" id="billToFirstName" value="${user.firstName}">
                                 	</div>
                             	</div>
-                            
-                            	<div class="form-group">
-                                	<div class="input-group col-md-11">
-                                    	<input class="form-control" type="text" placeholder="Last Name" name="billToLastName" value="${user.lastName}">
-                                	</div>
-                            	</div>
-
-                            	<div class="form-group">
-                                	<div class="input-group col-md-11">
-                                    	<input class="form-control" type="text" placeholder="Email" name="billToEmail" value="${user.email}">
-                            		</div>
-                            	</div>
-                            <% } else { %>
-                                      	  	<input class="form-control" type="text" placeholder="First Name" name="billToFirstName" id="billToFirstName" >
-                                    	</div>
-                            		</div>
-                        		</div>
-                                
-                        		<div class="form-group">
-                            		<div class="input-group col-md-11">
-                            			<input class="form-control" type="text" placeholder="Last Name" name="billToLastName">
-                    				</div>
-                				</div>
-
-                				<div class="form-group">
-                    				<div class="input-group col-md-11">
-                        				<input class="form-control" type="text" placeholder="Email" name="billToEmail">
-                            		</div>
-                        		</div>
-                           	<%}%> 
-                        		<div class="form-group">
-                        			<div class="input-group col-md-11">
-                           				<input class="form-control" type="text" placeholder="Phone Number" name="billToPhone">
-                            		</div>
-                        		</div>
-
-                            	<div class="form-group">
-                                	<div class="input-group col-md-11">
-                                    	<textarea class="form-control" placeholder="Description" name="description" id="description"></textarea>
+								<div class="form-group">
+									<div class="input-group col-md-12">
+										<input class="form-control" type="text" placeholder="Last Name" name="billToLastName" value="${user.lastName}">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group col-md-12">
+										<input class="form-control" type="text" placeholder="Email" name="billToEmail" value="${user.email}">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group col-md-12">
+										<input class="form-control" type="text" placeholder="Email" name="billToEmail" value="${user.email}">
+									</div>
+								</div>
+								<% } else { %>
+								<div class="form-group">
+									<div class="input-group col-md-12">
+										<input class="form-control" type="text" placeholder="First Name" name="billToFirstName" id="billToFirstName" >
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group col-md-12">
+										<input class="form-control" type="text" placeholder="Last Name" name="billToLastName">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group col-md-12">
+										<input class="form-control" type="text" placeholder="Email" name="billToEmail">
+									</div>
+								</div>
+								<%}%>
+								<div class="form-group">
+									<div class="input-group col-md-12">
+										<input class="form-control" type="text" placeholder="Phone Number" name="billToPhone">
+									</div>
+								</div>
+								<div class="form-group">
+                                	<div class="input-group col-md-12">
+                                    	<input class="form-control" type="text" placeholder="Address Line 1" name="billToAddressLine1">
                                 	</div>
                             	</div>
                             </div>
 
                         	<div class="col-md-6">
-                        		<div class="form-group">
-                                	<div class="input-group col-md-12">
-                                    	<input class="form-control" type="text" placeholder="Address Line 1" name="billToAddressLine1">
-                                	</div>
-                            	</div>
-                            
                         		<div class="form-group">
                                 	<div class="input-group col-md-12">
                                     	<input class="form-control" type="text" placeholder="Address Line 2" name="billToAddressLine2">
@@ -199,7 +196,7 @@
                 	<g:render template="/layouts/tile"/>
                 </div>
                  <div class="row" align="center">
-                	<button type="submit" class="btn btn-primary btn-block btn-lg">Fund this project</button>
+                	<button class="btn btn-primary btn-block btn-lg" name="fund-button">Fund this project</button>
                 </div>
             </div>
         </div>

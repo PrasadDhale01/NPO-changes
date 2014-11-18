@@ -457,15 +457,22 @@ class ProjectController {
         project.beneficiary = beneficiary
         
         if (project.save()) {
-             if(button == 'draft'){
-                 render (view: 'create/saveasdraft', model: [project: project])
-             } else {
-                 render (view: 'create/justcreated', model: [project: project])
-             }
+            redirect(controller: 'project', action: 'saveRedirect', id: project.id, params: [button: button])
         } else {
             render (view: 'create/createerror', model: [project: project])
         }
 	}
+
+    def saveRedirect() {
+        def button = params.button
+        def project = Project.get(params.id)
+        
+        if(button == 'draft'){
+            render (view: 'create/saveasdraft', model: [project: project])
+        } else {
+            render (view: 'create/justcreated', model: [project: project])
+        }
+    }
     
     
     @Secured(['ROLE_USER'])

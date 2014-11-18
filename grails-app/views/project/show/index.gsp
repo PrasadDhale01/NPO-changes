@@ -115,7 +115,9 @@
                     <g:else>
                         <a href="/projects/${project.id}/fund" class="btn btn-success btn-lg btn-block" role="button">Fund this project</a>
                     </g:else>
-                    <g:render template="show/rewards"/>
+                    <g:if test="${project.rewards.size()>1}">
+                    	<g:render template="show/rewards"/>
+                    </g:if>
                 </div>
             </div>
             <%--

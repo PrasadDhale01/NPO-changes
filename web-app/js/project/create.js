@@ -5,6 +5,10 @@ $(function() {
 
     $("#charitableId").hide();
     $("#textfile").hide();
+    
+    $("#payopt").show(); // paypal option
+    $("#paypalemail").hide(); // paypal button
+    $("#organisation").hide(); // organisation for firstgiving
 
     /* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
@@ -115,7 +119,11 @@ $(function() {
             },
             email3: {
             	email: true
-            }
+            },
+            paypalEmail:{
+            	required: true,
+            	email:true
+            } 
             /*
             imageUrl: {
                 url: true
@@ -184,15 +192,35 @@ $(function() {
 
      $("input[name='wel']").change(function(){
         if($(this).val()=="yes") {
+            $('#organizationName').find('input').val('');
             $("#charitableId").show();
             $("#textfile").hide();
-            $('input[id="organizationname"]').prop('readonly', true);
+            $("#paypalemail").hide();
         } else {
+            $('#organizationName').find('input').val('');
             $("#charitableId").hide(); 
             $("#textfile").show();
-            $('input[id="organizationname"]').prop('readonly', false);
+            $("#paypalemail").hide();
         }
      });
+     
+     $("input[name='pay']").change(function(){
+  	    if($(this).val()=="paypal") {
+  	        $('#organizationName').find('input').val('');
+  	       	$("#paypalemail").show();
+  	        $("#charitableId").hide();
+  	        $("#textfile").hide();
+  	        $("#organisation").hide();
+  	        $('#charitableId').find('input').val('');
+  	     } else if($(this).val()=="firstgiving") {
+   	         $('#organizationName').find('input').val('');
+  	      	 $("#organisation").show();  
+  	       	 $("#charitableId").hide(); 
+  	         $("#paypalemail").hide();
+  	         $("#textfile").hide();
+   	         $('#paypalemail').find('input').val('');
+  	      }
+  	 });
      
      $('#createreward').click(function(){
          var rewardsTemplateObj = $('.rewardsTemplate').last().clone();

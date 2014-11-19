@@ -48,5 +48,8 @@ class UrlMappings {
 
         /* Facebook login */
         "/facebookauthfailure"(controller:'login', action:'facebook_user_denied')
+        
+        /*Paypal*/
+        "/fund/paypalReturn"(controller: 'fund', action: 'paypalReturn')
     }
 }

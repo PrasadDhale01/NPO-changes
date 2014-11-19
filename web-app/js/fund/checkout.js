@@ -102,11 +102,9 @@ $(function() {
                 maxlength:255
             },
             billToAddressLine2: {
-            	required: true,
             	maxlength:255
             },
             billToAddressLine3: {
-            	required: true,
                 maxlength:255
             },
             billToCity: {
@@ -115,8 +113,7 @@ $(function() {
             },
             billToPhone: {
             	 number: true,
-            	 maxlength:100,
-            	 required: true
+            	 maxlength:20
             },
             billToEmail: {
                 required: true,

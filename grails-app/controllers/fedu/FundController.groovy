@@ -131,7 +131,7 @@ class FundController {
                     amount:params.amount,
                     currencyCode:params.currencyCode,
                     charityId:project.charitableId,
-                    description:params.description,
+                    description:'Donating towards project : ' + project.title,
                     billToState:state]
 
                 // response handler for a success response code

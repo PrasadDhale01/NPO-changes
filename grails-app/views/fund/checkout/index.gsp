@@ -101,11 +101,6 @@
 										<input class="form-control" type="text" placeholder="Email" name="billToEmail" value="${user.email}">
 									</div>
 								</div>
-								<div class="form-group">
-									<div class="input-group col-md-12">
-										<input class="form-control" type="text" placeholder="Email" name="billToEmail" value="${user.email}">
-									</div>
-								</div>
 								<% } else { %>
 								<div class="form-group">
 									<div class="input-group col-md-12">

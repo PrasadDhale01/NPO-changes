@@ -32,7 +32,9 @@
                 <div class="alert alert-success">Receipt has been sent over email to ${userService.getCurrentUser().email}</div>
             </div>
             <div class="col-md-4">
-                <g:render template="rewardtile"/>
+                <g:if test="${project.rewards.size()>1 }">
+                    <g:render template="rewardtile"/>
+                </g:if>
                 <g:render template="/layouts/tile"/>
             </div>
         </div>

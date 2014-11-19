@@ -23,13 +23,13 @@ environments {
     }
     test {
         dataSource {
-            // dbCreate = "update"
-            url = "jdbc:mysql://localhost:3306/fedudb?useUnicode=yes&characterEncoding=UTF-8"
+            dbCreate = "update"
+            url = "jdbc:mysql://crowderadb-staging.c5qkqnx9x4ca.us-west-2.rds.amazonaws.com:3306/crowderadbstaging"
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
 
-            username = 'fedudbmaster'
-            password = 'fedudbpassword'
+            username = 'crowderadbmaster'
+            password = 'crowderadbpass'
         }
     }
     production {

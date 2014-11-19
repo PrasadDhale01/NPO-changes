@@ -32,7 +32,10 @@
     <g:elseif test="${ended}">
         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
     </g:elseif>
-    <g:render template="/project/manageproject/tilesanstitle"/>
+    <div class="essentials-tiles">
+    	<g:render template="/project/manageproject/tilesanstitle"/>
+    </div>
+    
     <g:if test="${project.draft}">
     	<g:form controller="project" action="saveasdraft">
     		<g:hiddenField name="projectId" value="${project.id}"/>

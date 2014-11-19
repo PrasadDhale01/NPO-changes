@@ -587,19 +587,16 @@ ul.unstyled {
     display: block;
 }
 
-#billToTitle {
+/*#billToTitle {
 	width:50px;
-	margin-left:15px;
+	
 	margin-right:15px;
 }
 
 #billToFirstName {
-	width:250px;
-}
-
-#description {
-	height:95px;
-}
+	width:315px;
+	margin-left:15px;
+}*/
 
 /* Blog
 ------------------------- */
@@ -1756,10 +1753,26 @@ footer .footerbottomsection{
 .campaign-description {
 	margin-top: 66px;
 }
+.essentials-tiles {
+	margin-top: 66px;
+}
 .btn-success {
 color: #ffffff;
 background-color: #83ab30;
 border-color: #83ab30;
+}
+.cvc-details span.input-group-addon{
+width: 50px;
+float: left;
+height: 35px;
+}
+.cvc-details input.form-control{
+float: left;
+width:79%;
+}
+.cvc-details .col-md-4{
+margin: 0px;
+padding: 0px;
 }
 /* .organization-details label{ */
 /* 	float:left; */

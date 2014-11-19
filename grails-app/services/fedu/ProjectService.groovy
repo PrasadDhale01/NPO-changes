@@ -386,57 +386,29 @@ class ProjectService {
         def firstAdmin = projectadmins[0]
         def secondAdmin = projectadmins[1]
         def thirdAdmin = projectadmins[2]
+        
+        isAdminCreated (email1, project, firstAdmin, user)
+        isAdminCreated (email2, project, secondAdmin, user)
+        isAdminCreated (email3, project, thirdAdmin, user)
+    }
+    
+    private def isAdminCreated(def email, def project, def projectAdmin, User user ) {
+        
         def fullName = user.firstName + ' ' + user.lastName
-        
-        if (email1) {
-            def adminAlreadyCreated = false
-            projectadmins.each{ 
-                if (email1 == it.getEmail()) {
-                    adminAlreadyCreated = true
-                }
-            }
-            if (!adminAlreadyCreated) {
-                if (firstAdmin != null) {
-                    firstAdmin.email = email1
-                    mandrillService.inviteAdmin(email1, fullName, project)
-                } else {
-                    getAdminForProjects(email1, project, user)
-                }
+        def projectadmins = project.projectAdmins
+        def adminAlreadyCreated = false
+        projectadmins.each{
+            if (email == it.getEmail()) {
+                adminAlreadyCreated = true
             }
         }
-        
-        if (email2) {
-            def adminAlreadyCreated = false
-            projectadmins.each{ 
-                if (email2 == it.getEmail()) {
-                    adminAlreadyCreated = true
-                }
+        if (!adminAlreadyCreated) {
+            if (projectAdmin != null) {
+                projectAdmin.email = email
+                mandrillService.inviteAdmin(email, fullName, project)
+            } else {
+                getAdminForProjects(email, project, user)
             }
-            if (!adminAlreadyCreated) {
-                if (secondAdmin != null) {
-                    secondAdmin.email = email2
-                    mandrillService.inviteAdmin(email2, fullName, project)
-                } else {
-                    getAdminForProjects(email2, project, user)
-                }
-            }
-        }
-        
-        if (email3) {
-            def adminAlreadyCreated = false
-            projectadmins.each{
-                if (email3 == it.getEmail()) {
-                    adminAlreadyCreated = true
-                }
-            }
-            if (!adminAlreadyCreated) {
-                if (thirdAdmin != null) {
-                    thirdAdmin.email = email3
-                    mandrillService.inviteAdmin(email3, fullName, project)
-                } else {
-                    getAdminForProjects(email3, project, user)
-                }
-            }    
         }
     }
     

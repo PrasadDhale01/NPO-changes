@@ -180,8 +180,10 @@ environments {
         /* FundEdu */
         fedu.facebook.appId = '354215177926850'
         fedu.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
-        
-        crowdera.BASE_URL = 'http://crowdera.co'
+
+        /*Until we go live with crowder.co domain*/
+        //crowdera.BASE_URL = 'http://crowdera.co'
+        crowdera.BASE_URL = 'http://new.crowdera.co'
 
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true

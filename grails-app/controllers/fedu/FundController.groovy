@@ -218,8 +218,8 @@ class FundController {
     }
 
     def payByPaypal(def params,Project project,Reward reward){
-        def successUrl = "http://localhost:8080/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&paypalemail=${project.paypalEmail}"
-        def failureUrl = "http://localhost:8080/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&paypalemail=${project.paypalEmail}"
+        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&paypalemail=${project.paypalEmail}"
+        def failureUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&paypalemail=${project.paypalEmail}"
 
         def BASE_URL = grailsApplication.config.crowdera.paypal.BASE_URL
 

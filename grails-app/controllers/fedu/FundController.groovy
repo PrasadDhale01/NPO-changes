@@ -85,7 +85,6 @@ class FundController {
     def charge(String stripeToken) {
         Project project
         Reward reward
-        println "hi krishna"
 
         if (params.projectId) {
             project = Project.findById(params.projectId)

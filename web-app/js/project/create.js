@@ -1,5 +1,35 @@
 $(function() {
     console.log("create.js initialized");
+
+    /********************* Create page Session timeout ***************************/
+  var SessionTime = 60* 1000; //set for 1 minute
+  var tickDuration = 1000;
+  var myInterval = setInterval(function() {
+    SessionTime = SessionTime - tickDuration
+  }, 1000);
+
+  var myTimeOut = setTimeout(SessionExpireEvent, SessionTime);
+  function SessionExpireEvent() {
+    clearInterval(myInterval);
+  }
+
+  function SessionTimeout() {
+    if (SessionTime <= 0) {
+      alert("Your session has expired. Please login again.");
+      window.location.href =$("#b_url").val()+"/logout";
+      
+    }
+
+  }
+
+  $("#submitProject").click(function() {
+
+    SessionTimeout();
+
+  });
+  
+  /*********************************************************************/
+
     $("#updatereward").hide();
     $("#rewardTemplate").hide();
 

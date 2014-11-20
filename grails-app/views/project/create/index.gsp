@@ -1,5 +1,8 @@
 <g:set var="userService" bean="userService" />
-<% def user = userService.getCurrentUser() %>
+<g:set var="contributionService" bean="contributionService"/>
+<% def user = userService.getCurrentUser() 
+def base_url = grailsApplication.config.crowdera.BASE_URL
+%>
 <html>
 <head>
 <meta name="layout" content="main" />
@@ -7,6 +10,7 @@
 <ckeditor:resources />
 </head>
 <body>
+	<input type="hidden" id="b_url" value="<%=base_url%>" /> 
 	<input type="hidden" name="uuid" id="uuid" />
 	<input type="hidden" name="charity_name" id="charity_name" />
 	<div class="feducontent">
@@ -477,7 +481,7 @@
 							<label class="col-sm-2 control-label">All Cool!</label>
 							<div class="col-sm-2-offset col-sm-4">
 								<button type="submit" class="btn btn-primary" name="button"
-									value="submitProject">Submit Project</button>
+									id="submitProject" value="submitProject">Submit Project</button>
 							</div>
 							<div class="col-sm-4">
 								<button type="submit" class="btn btn-primary" name="button"

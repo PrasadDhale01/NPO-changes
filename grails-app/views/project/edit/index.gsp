@@ -283,7 +283,8 @@
                                     ['Bold', 'Italic', 'Underline','Strike','Subscript', 'Superscript','-', 'RemoveFormat',],
                                     ['Link','Unlink','Anchor'],
                                     ['Styles','Format','Font','FontSize'],
-                                    ['Maximize'],['TextColor'],['Smiley']
+                                    ['Maximize'],['TextColor'],
+                                    [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ]
                                 ]
                             </ckeditor:config>
                             

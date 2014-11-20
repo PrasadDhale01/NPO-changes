@@ -185,7 +185,9 @@
             
             <div class="col-md-4 box">
                 <div class="row">
-                	<g:render template="rewardtile"/>
+                	<g:if test="${project.rewards.size()>1}">
+                        <g:render template="rewardtile"/>
+                    </g:if>
                 </div>
                  <div class="row">
                 	<g:render template="/layouts/tile"/>

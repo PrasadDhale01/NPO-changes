@@ -105,6 +105,8 @@ environments {
         /* FundEdu_dev */
         fedu.facebook.appId = '641152155950617'
         fedu.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
+        
+        crowdera.BASE_URL = 'http://localhost:8080'
 
         grails.logging.jul.usebridge = true
         grails.dbconsole.urlRoot = '/secured/dbconsole'
@@ -132,6 +134,8 @@ environments {
         /* FundEdu_dev */
         fedu.facebook.appId = '641152155950617'
         fedu.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
+        
+        crowdera.BASE_URL = 'http://new.crowdera.co'
 
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true
@@ -159,6 +163,8 @@ environments {
         /* FundEdu */
         fedu.facebook.appId = '354215177926850'
         fedu.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
+        
+        crowdera.BASE_URL = 'http://crowdera.co'
 
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true

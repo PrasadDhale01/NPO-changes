@@ -6,7 +6,6 @@
 <head>
     <meta name="layout" content="main" />
     <r:require module="timelinecss"/>
-    <r:require modules="userjs"/>
 </head>
 <body>
 <div class="feducontent">

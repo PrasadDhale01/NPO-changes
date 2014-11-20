@@ -13,8 +13,8 @@
             <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" style="padding: 0; width: 100%;" alt="Upload Photo"/>
         </div>
         <g:uploadForm controller="user" action="upload_avatar" id="${user.id}" role="form">
-            <input type="file" name="avatar" id="avatar">
-            <input type="submit" class="buttons" value="Upload"/>
+            <input type="file" name="avatar" id="avatar" required>
+            <input type="submit" class="buttons" value="Upload" id="uploadbutton"/>
         </g:uploadForm>
     </g:else>
 </div>

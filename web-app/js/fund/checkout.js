@@ -122,9 +122,6 @@ $(function() {
             billToCountry: {
                 required: true
             },
-            /*description: {
-                required: true
-            },*/
             billToState: {
                 required: true
             },
@@ -134,11 +131,11 @@ $(function() {
             }
         }
     });
+    
+    $('form').submit(function() {
+        if($("#payment-form").valid()) {
+            $(this).find("button[type='submit']").prop('disabled',true);
+        }
+    });
 
-});
-
-$('form').submit(function() {
-    if($("#payment-form").valid()) {
-      $(this).find("button[type='submit']").prop('disabled',true);
-    }
 });

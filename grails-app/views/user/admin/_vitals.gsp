@@ -12,7 +12,12 @@
                         <i class="fa fa-tint fa-2x"></i>
                     </div>
                     <div class="col-xs-10 text-right">
-                        <p class="announcement-heading">$${contributionService.getTotalContribution()}</p>
+                        <g:if test="${contributionService.getTotalContribution()}">
+                            <p class="announcement-heading">$${contributionService.getTotalContribution()}</p>
+                        </g:if>
+                        <g:else>
+                            <p class="announcement-heading">$0</p>
+                        </g:else>
                     </div>
                 </div>
             </div>

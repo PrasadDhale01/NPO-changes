@@ -136,3 +136,9 @@ $(function() {
     });
 
 });
+
+$('form').submit(function() {
+    if($("#payment-form").valid()) {
+      $(this).find("button[type='submit']").prop('disabled',true);
+    }
+});

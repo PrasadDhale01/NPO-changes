@@ -36,6 +36,7 @@ class Project {
     String charitableId
     String organizationName
     String webAddress
+    String paypalEmail 
 
     boolean validated = false
     boolean inactive = false
@@ -63,6 +64,7 @@ class Project {
         fileUrl (nullable: true)
         organizationIconUrl (nullable: true)
         projectAdmins(nullable: true)
+        paypalEmail(nullable: true)
     }
 
     def beforeInsert() {

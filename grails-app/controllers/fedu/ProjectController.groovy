@@ -48,7 +48,8 @@ class ProjectController {
         IMAGEURL: 'imageUrl',
         REWARDS: 'rewards',
         PROJECTSEXCEL: 'projectsExcel',
-        VIDEO:'videoUrl'
+        VIDEO:'videoUrl',
+        PAYPALEMAIL:'paypalEmail'
     ]
 
 	def list = {

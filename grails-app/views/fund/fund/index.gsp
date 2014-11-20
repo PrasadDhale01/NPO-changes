@@ -53,10 +53,11 @@
 					</g:else>
 
 				</div>
-
 				<div class="col-md-4">
-					<g:render template="fund/rewards" />
-				</div>
+                    <g:if test="${project.rewards.size()>1}">
+                        <g:render template="fund/rewards"/>
+                    </g:if>
+                </div>
 
 				<div class="col-md-4">
 					<g:render template="/layouts/tile" />

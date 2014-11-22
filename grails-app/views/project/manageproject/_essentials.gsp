@@ -24,6 +24,15 @@
             </div>
         </div>  
     </div>
+    <div class="row">
+        <g:if test="${project.videoUrl}">
+            <div id="youtubeVideoUrl">
+                ${project.videoUrl}
+            </div>
+            <div class="video-container" id="youtube">
+            </div>
+        </g:if>
+    </div>
 </div>
 <div class="col-md-4">
     <g:if test="${percentage == 100}">

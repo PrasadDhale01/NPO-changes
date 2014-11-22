@@ -225,6 +225,52 @@ $(function() {
   	      }
   	 });
      
+      /** *************************Multiple Image Selection*************** */
+     
+     $("#add_img_btn").click(function() {
+         
+         $("#projectImageFile").click()
+     });
+
+  $('#projectImageFile')
+      .change(
+          function(event) {
+            var files = event.target.files; // FileList object
+            var output = document.getElementById("result");
+            for ( var i = 0; i < files.length; i++) {
+              var file = files[i];
+              var filename = file.name;
+
+              // Only pics
+              if (!file.type.match('image'))
+                continue;
+              var picReader = new FileReader();
+              picReader
+                  .addEventListener(
+                      "load",
+                      function(event) {
+                        var picFile = event.target;
+
+                        var div = document
+                            .createElement("div");
+                        div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail\"><img  class=' thumbnail' src='"
+                          + picFile.result
+                          + "'"
+                          + "title='"
+                          + file.name
+                          + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"/images/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"
+                         + "</div>";
+
+                        output.insertBefore(div, null);
+                      });
+              // Read the image
+              picReader.readAsDataURL(file);
+            }
+
+
+          });
+     
+     
      $('#createreward').click(function(){
          var rewardsTemplateObj = $('.rewardsTemplate').last().clone();
          $('#addNewRewards').append(rewardsTemplateObj);

@@ -377,14 +377,19 @@
 					<div class="panel-body">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Pictures</label>
-							<div class="col-sm-4">
-								<input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]"
+							<div class="col-sm-2">
+							    <button class="btnAddImage btn-circle" type="button" id="add_img_btn">Add Image&nbsp;<span class="fa fa-plus-circle"></span></button>
+								<input type="file" class="hidden" name="${FORMCONSTANTS.THUMBNAIL}[]"
 									id="projectImageFile" multiple="multiple">
 							</div>
-							<div class="col-sm-4">
+							<!--<div class="col-sm-2">
 								<input class="hidden" name="${FORMCONSTANTS.IMAGEURL}"
 									placeholder="Image URL">
-							</div>
+							</div>-->
+							<div class="col-sm-8">
+							    <output id="result"></output>	
+							</div>						
+						</div>
 						</div>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Video URL</label>

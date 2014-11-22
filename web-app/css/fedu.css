@@ -1778,3 +1778,24 @@ padding: 0px;
 /* 	float:left; */
 /* 	width:50% */
 /* } */
+/*Multiple Images*/
+.thumbnail {
+	width:50px;
+	height: 50px;
+	margin:5px;
+}
+.pr-thumbnail{
+	position:relative;
+	width:50px;
+	height: 50px;
+	margin:5px;
+	float:left;
+}
+.pr-thumbnail .deleteicon{
+	position:absolute;
+	top:0; right:0;
+}
+.pr-thumbnail .img{
+	position:absolute;
+	top:0; left:0;
+}

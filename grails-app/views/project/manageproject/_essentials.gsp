@@ -22,7 +22,24 @@
             <div class="panel-body">
                 <span class="text-centre project-story-span">${raw(project.story)}</span>
             </div>
-        </div>  
+        </div>
+        <div class="panel panel-default" style="margin-top: 30px;">
+            <div class="panel-heading">
+                <h3 class="panel-title">Amount Accepted through</h3>
+            </div>
+            <div class="panel-body">
+            	<g:if test="${project.charitableId}">
+            		<h4>First Giving :-<br></h4>
+                	<span class="text-left">Charitable Id: ${project.charitableId}</span><br>
+                	<span class="text-left">Organisation Name: ${project.organizationName}</span>
+                </g:if>
+                <g:else>
+                	<h4>Paypal :-<br></h4>
+                	<span class="text-left">Paypal Email: ${project.paypalEmail}</span><br>
+                	<span class="text-left">Organisation Name: ${project.organizationName}</span>
+                </g:else>
+            </div>
+        </div> 
     </div>
 </div>
 <div class="col-md-4">

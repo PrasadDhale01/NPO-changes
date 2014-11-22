@@ -21,7 +21,7 @@
 <body>
 <div class="feducontent">
     <div class="container">
-    <g:form action="charge" method="POST" name="payment-form" role="form">
+    <g:form action="charge" method="POST" name="payment-form" role="form" id="payment-form">
         <div class="row">
             <div class="col-md-8">
                 <div class="panel panel-default">
@@ -76,7 +76,7 @@
                     	</div>
                     </div>
                 </div><br>
-    
+                
                 <div class="panel panel-default">
 					<div class="panel-heading">
 						<h3 class="panel-title">Personal Details</h3>
@@ -193,7 +193,7 @@
                 	<g:render template="/layouts/tile"/>
                 </div>
                  <div class="row" align="center">
-                	<button class="btn btn-primary btn-block btn-lg" name="fund-button">Fund this project</button>
+                	<button type="submit" class="btn btn-primary btn-block btn-lg" name="fund-button" id="paypalsubmitbutton">Fund this project</button>
                 </div>
             </div>
         </div>

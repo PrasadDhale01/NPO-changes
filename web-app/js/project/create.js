@@ -123,7 +123,10 @@ $(function() {
             paypalEmail:{
             	required: true,
             	email:true
-            } 
+            },
+            pay:{
+            	required: true
+            }
             /*
             imageUrl: {
                 url: true

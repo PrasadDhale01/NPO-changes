@@ -253,7 +253,7 @@ $(function() {
 
                         var div = document
                             .createElement("div");
-                        div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail\"><img  class=' thumbnail' src='"
+                        div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"
                           + picFile.result
                           + "'"
                           + "title='"

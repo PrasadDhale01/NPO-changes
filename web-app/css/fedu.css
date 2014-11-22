@@ -1779,23 +1779,23 @@ padding: 0px;
 /* 	width:50% */
 /* } */
 /*Multiple Images*/
-.thumbnail {
+.pr-thumbnail {
 	width:50px;
 	height: 50px;
 	margin:5px;
 }
-.pr-thumbnail{
+.pr-thumbnail-div{
 	position:relative;
 	width:50px;
 	height: 50px;
 	margin:5px;
 	float:left;
 }
-.pr-thumbnail .deleteicon{
+.pr-thumbnail-div .deleteicon{
 	position:absolute;
 	top:0; right:0;
 }
-.pr-thumbnail .img{
+.pr-thumbnail-div .img{
 	position:absolute;
 	top:0; left:0;
 }

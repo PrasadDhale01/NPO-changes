@@ -90,7 +90,7 @@
 				                                <textarea class="form-control" name="emails" rows="4" placeholder="Email ID's"></textarea>
 				                            </div>
 				                            <div class="form-group">
-				                                <label>Message(Optional)</label>
+				                                <label>Message (Optional)</label>
 				                                <textarea class="form-control" name="message" rows="4" placeholder="Message"></textarea>
 				                            </div>
 				                        </div>

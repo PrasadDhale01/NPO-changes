@@ -110,8 +110,11 @@ modules = {
     fontawesomecss {
         resource url: 'vendor/font-awesome-4.2.0/css/font-awesome.min.css'
     }
+    piecss {
+        resource url: 'css/pie.css'
+    }
     feducss {
-        dependsOn 'bootswatchcss', 'bootstrapselectcss', 'bootstrapmultiselectcss', 'fontawesomecss'
+        dependsOn 'bootswatchcss', 'bootstrapselectcss', 'bootstrapmultiselectcss', 'fontawesomecss', 'piecss'
         resource url: 'css/fedu.css'
     }
     timelinecss {

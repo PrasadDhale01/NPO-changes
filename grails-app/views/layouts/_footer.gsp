@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <a class="navbar-brand-footer pull-center" class="footerimage"><img src="/images/flogo.jpg"></a>
+                <a class="navbar-brand-footer pull-center" class="footerimage"><img src="/images/logo-small.png"></a>
             </div>
             <div class="col-sm-2 flinks">
                 <a href="${resource(dir: '/aboutus')}">Crowdera Crew</a>

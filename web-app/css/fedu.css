@@ -6,7 +6,7 @@ body {
 }
 
 .feduoutercontent {
-    margin-top: 96px;
+    margin-top: 64px;
 }
 
 h1.headingtext { 
@@ -83,13 +83,13 @@ h1, h2, h3, h4, h5, h6 {
 .navbar-brand
 {
     margin-left: 15px;
-    background: url('../images/logo.jpg') no-repeat left center;
+    background: url('../images/logo-small.png') no-repeat left center;
     width: 232px;
     float: left;
     padding: 0 !important;
     font-size: 19px;
     line-height: 21px;
-    height: 96px;
+    height: 64px;
 }
 
 .navbar-collapse {
@@ -118,12 +118,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-nav {
-	margin-top:30px;
+	margin-top: 8px;
+}
+
+.navbar-right {
+	margin-top: 16px;
 }
 
 .navbar-default {
     background-color:#4d6785; 
-    height:96px;
+    height:64px;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
@@ -138,7 +142,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav > li > a { 
-	padding:7px 21px;
+	padding: 7px 21px;
 }
 
 .nav > li > a:hover,
@@ -252,9 +256,10 @@ footer .flinks a {
 
 .testimonial-content {
 	padding:30px 45px;
-	font-size:32px; 
+	font-size:30px;
 	text-align:left; 
 	line-height:34px;
+	font-weight: 200;
 }
 
 .customer-details { 
@@ -552,11 +557,7 @@ ul.unstyled {
 .fedu.thumbnail > .caption {
     padding-top: 0;
     padding-bottom: 0;
-    min-height:9.5em; /*In acordance with 140 characters description*/
-    hr {
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
+    min-height:9.5em; /* In accordance with 140 characters description. */
 }
 
 .fedu.thumbnail > .caption h4 {

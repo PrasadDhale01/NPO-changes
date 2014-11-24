@@ -1,3 +1,4 @@
+<%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="projectService" bean="projectService"/>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectValidate" value="${project.validated}"/>
@@ -5,7 +6,18 @@
 <!-- Projects to be validated -->
 
 <%
+    def isFundingAchieved = contributionService.isFundingAchievedForProject(project)
     def percentage = contributionService.getPercentageContributionForProject(project)
+    def achievedDate
+    if (isFundingAchieved) {
+        achievedDate = contributionService.getFundingAchievedDate(project)
+    }
+    def endDate = projectService.getProjectEndDate(project)
+    boolean ended = projectService.isProjectDeadlineCrossed(project)
+    def isFundingOpen = projectService.isFundingOpen(project)
+    def contributedSoFar = contributionService.getTotalContributionForProject(project)
+
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 
 <g:if test="${!projectValidate}">
@@ -19,6 +31,7 @@
         <strong style="margin-top: 10px; margin-bottom: 0px; text-align: justify; overflow: hidden;">
             ${project.title}
         </strong>
+         <hr class="tile-separator">
         <span class="project-story-span">${project.description}</span>
     </div>
 	<div class="modal-footer tile-footer" style="text-align: left; margin-bottom: 2px;">
@@ -59,7 +72,7 @@
             <g:else>
                 <!-- Time left till end date. -->
                 <div class="col-md-6">
-                    <h6 class="text-center"><span class="lead">${projectService.getRemainingDay()}</span><br>DAYS TO GO</h6>
+                    <h6 class="text-center"><span class="lead">${projectService.getRemainingDay(project)}</span><br>DAYS TO GO</h6>
                 </div>
             </g:else>
         </div>

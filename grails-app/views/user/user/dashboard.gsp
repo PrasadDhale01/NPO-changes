@@ -20,14 +20,14 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
-                    <li class="active"><a href="#account-settings" data-toggle="tab">
-                        <span class="fa fa-info-circle"></span> My Profile
-                    </a></li>
-                    <li><a href="#myprojects" data-toggle="tab">
+                    <li class="active"><a href="#myprojects" data-toggle="tab">
                         <span class="glyphicon glyphicon-leaf"></span> My Projects
                     </a></li>
                     <li><a href="#my-contributions" data-toggle="tab">
                         <span class="glyphicon glyphicon-tint"></span> My Contributions
+                    </a></li>
+                    <li><a href="#account-settings" data-toggle="tab">
+                        <span class="fa fa-info-circle"></span> My Profile
                     </a></li>
                     <g:if test="${userService.isCommunityManager()}">
                         <li><a href="#manage-community" data-toggle="tab">
@@ -43,12 +43,12 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane active" id="account-settings">
-                        <g:render template="common/accountsettings"/>
+                    <div class="tab-pane active" id="myprojects">
+                        <g:render template="user/myprojects"/>
                     </div>
 
-                    <div class="tab-pane" id="myprojects">
-                        <g:render template="user/myprojects"/>
+                    <div class="tab-pane" id="account-settings">
+                        <g:render template="common/accountsettings"/>
                     </div>
 
                     <div class="tab-pane" id="my-contributions">

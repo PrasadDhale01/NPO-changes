@@ -35,7 +35,7 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Who</h3>${projectadmins }
+					<h3 class="panel-title">Campaign Creator</h3>${projectadmins }
 				</div>
 				<div class="panel-body">
                     <div class="row">
@@ -193,7 +193,7 @@
             
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Add Admins for Project</h3>
+                    <h3 class="panel-title">Campaign Co-Creators</h3>
                 </div>
                 <div class="panel-body">
                     <div class="col-sm-6">
@@ -224,7 +224,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Why</h3>
+                    <h3 class="panel-title">Select Your Cause</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
@@ -240,7 +240,7 @@
             
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">How much & When</h3>
+                    <h3 class="panel-title">Funding Goal and Campaign End Date</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
@@ -250,9 +250,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">In days</label>
+                        <label class="col-sm-2 control-label"># of Days Campaign Runs</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="${FORMCONSTANTS.DAYS}" value="${project.days}">
+                            <input class="form-control" name="${FORMCONSTANTS.DAYS}" value="${project.days}" placeholder="Recommend: 30, 45, or 90">
                         </div>
                     </div>
                 </div>
@@ -260,7 +260,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">How</h3>
+                    <h3 class="panel-title">Tell Us About Your Campaign</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
@@ -270,9 +270,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Description</label>
+                        <label class="col-sm-2 control-label">Brief Description</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Enter project description"> ${project.description} </textarea>
+                            <textarea class="form-control" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Make it catchy, and no more than 140 characters"> ${project.description} </textarea>
                         </div>
                     </div>
                     <div class="form-group">

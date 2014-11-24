@@ -24,7 +24,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Who</h3>
+						<h3 class="panel-title">Campaign Creator</h3>
 					</div>
 					<div class="panel-body">
 
@@ -259,7 +259,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Add Admins for Project</h3>
+						<h3 class="panel-title">Campaign Co-Creators</h3>
 					</div>
 					<div class="panel-body">
 						<div class="col-sm-6">
@@ -293,7 +293,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Why</h3>
+						<h3 class="panel-title">Select Your Cause</h3>
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
@@ -310,7 +310,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">How much & When</h3>
+						<h3 class="panel-title">Funding Goal and Campaign End Date</h3>
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
@@ -322,10 +322,10 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">In days</label>
+							<label class="col-sm-2 control-label"># of Days Campaign Runs</label>
 							<div class="col-sm-10">
 								<input class="form-control" name="${FORMCONSTANTS.DAYS}"
-									placeholder="Days">
+									placeholder="Recommend: 30, 45, or 90">
 							</div>
 						</div>
 					</div>
@@ -333,7 +333,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">How</h3>
+						<h3 class="panel-title">Tell Us About Your Campaign</h3>
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
@@ -344,11 +344,11 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Description</label>
+							<label class="col-sm-2 control-label">Brief Description</label>
 							<div class="col-sm-10">
 								<textarea class="form-control"
 									name="${FORMCONSTANTS.DESCRIPTION}" rows="2"
-									placeholder="Enter project description"></textarea>
+									placeholder="Make it catchy, and no more than 140 characters"></textarea>
 							</div>
 						</div>
 						<div class="form-group">
@@ -376,7 +376,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Project Images and Video</h3>
+						<h3 class="panel-title">Campaign Images and Video</h3>
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
@@ -410,8 +410,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Do you want
-								rewards?</label>
+							<label class="col-sm-2 control-label">Will you offer rewards?</label>
 							<div class="col-sm-10">
 								<div class="btn-group btn-group-sm">
 									<label class="btn btn-default"> <input type="radio"
@@ -485,7 +484,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 							<label class="col-sm-2 control-label">All Cool!</label>
 							<div class="col-sm-2-offset col-sm-4">
 								<button type="submit" class="btn btn-primary" name="button"
-									id="submitProject" value="submitProject">Submit Project</button>
+									id="submitProject" value="submitProject">Submit Campaign</button>
 							</div>
 							<div class="col-sm-4">
 								<button type="submit" class="btn btn-primary" name="button"

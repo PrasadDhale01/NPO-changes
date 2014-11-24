@@ -17,6 +17,12 @@
 	<div class="container">
 		<g:if test="${project}">
             <div class="row">
+             	<g:if test="${flash.sentmessage}">
+                    <div class="alert alert-success" align="center">
+                        ${flash.sentmessage}
+                    </div>
+                </g:if>
+
 	            <div class="col-md-12 text-center">
 	            	<h1 class="green-heading">
 	                	<a href="${project.id}">${project.title}</a>
@@ -24,12 +30,7 @@
 	            </div>
                 <div class="col-md-8">
 <%--                    <h4 class="lead">Beneficiary: ${projectService.getBeneficiaryName(project)}</h4>--%>
-                    <g:if test="${flash.sentmessage}">
-                        <div class="alert alert-success">
-                            ${flash.sentmessage}
-                        </div>
-                    </g:if>
-
+               
                     <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span> Essentials

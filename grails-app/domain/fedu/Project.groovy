@@ -86,7 +86,7 @@ class Project {
         ELDERLY,
         ENVIRONMENT,
         HEALTH,
-        PUBLIC_SERVICES,
+        SOCIAL_INNOVATION,
         RELIGION,
         OTHER
     }

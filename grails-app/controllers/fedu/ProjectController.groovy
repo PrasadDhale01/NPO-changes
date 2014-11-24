@@ -145,7 +145,7 @@ class ProjectController {
         def projectId = params.projectId
         def project = Project.get(projectId)
         project.draft = false
-        flash.message="Project send to admin for approval"
+        flash.message="Project has been submitted for approval."
         
         render (view: 'manageproject/index',
                 model: [project: project,

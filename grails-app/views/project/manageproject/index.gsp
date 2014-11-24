@@ -24,7 +24,7 @@
 <%--                    <h4 class="lead">Beneficiary: ${projectService.getBeneficiaryName(project)}</h4>--%>
                     <g:if test="${flash}">
                         <div class="alert alert-success">
-                            <li>${flash.message}</li>
+                            ${flash.message}
                         </div>
                     </g:if>
 

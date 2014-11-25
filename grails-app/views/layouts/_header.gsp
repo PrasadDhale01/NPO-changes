@@ -52,6 +52,15 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
+                            <li><g:link class="myprojects" controller="user"
+                                    action="myproject">
+                                    <span class="glyphicon glyphicon-off"></span> My Projects
+                            </g:link></li>
+
+                            <li><g:link class="mycontributions" controller="user"
+                                    action="mycontribution">
+                                    <span class="glyphicon glyphicon-off"></span> My Contributions
+                            </g:link></li>
                             <li><g:link controller="user" action="dashboard">
                                 <span class="glyphicon glyphicon-cog"></span> Settings
                             </g:link></li>

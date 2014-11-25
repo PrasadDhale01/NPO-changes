@@ -14,6 +14,13 @@ class UserController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def dashboard() {
+       userprofile('user/dashboard')
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def userprofile(String userViews )
+    {
+        
         User user = (User)userService.getCurrentUser()
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
@@ -24,8 +31,18 @@ class UserController {
             def project = projectService.getProjects(projects, projectAdmins)
             def contributions = Contribution.findAllByUser(user)
             
-            render view: 'user/dashboard', model: [user: user, projects: project, contributions: contributions]
+            render view: userViews, model: [user: user, projects: project, contributions: contributions]
         }
+        
+    }
+    def myproject()
+    {
+         userprofile('user/myproject')
+    }
+    
+    def mycontribution()
+    {
+        userprofile('user/mycontribution')
     }
 
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']

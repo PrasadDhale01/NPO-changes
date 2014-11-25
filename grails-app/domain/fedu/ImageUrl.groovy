@@ -3,7 +3,7 @@ package fedu
 class ImageUrl {
 	String url
 
-	static belongsTo = Project
+	static belongsTo = Project, ProjectUpdate
 
 	static hasMany = [projects: Project]
 

@@ -154,16 +154,16 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 						</div>
 						<div class="form-group" id="charitableId">
 							<div class="row">
-								<div class="col-sm-6">
-									<label class="col-sm-4 control-label">Charitable ID</label>
-									<div class="col-sm-8" id="charitable">
-										<input type="text" class="form-control"
-											name="${FORMCONSTANTS.CHARITABLE}" placeholder="CharitableId">
+								<div class="col-sm-12">
+									<label class="col-sm-2 control-label">Charitable ID</label>
+									<div class="col-sm-2">
+										<a data-toggle="modal" href="#myModal" class="charitableLink">Find
+											your organization</a>
 									</div>
-								</div>
-								<div class="col-sm-6">
-									<a data-toggle="modal" href="#myModal" class="charitableLink">Find
-										your organization</a>
+									<div class="col-sm-6" id="charitable">
+										<label class="control-label" id="charitable"></label>
+										
+									</div>
 								</div>
 								<div class="modal" id="myModal">
 									<div class="modal-dialog">
@@ -190,8 +190,8 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 													};
 													function setOrganization() {
 														$('#charitable')
-																.find('input')
-																.val(
+																.find('label')
+																.text(
 																		document
 																				.getElementById("uuid").value);
 														$('#organizationName')

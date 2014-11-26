@@ -991,3 +991,22 @@ footer .footerbottomsection {
     top: 0;
     left: 0;
 }
+
+.imageWithTag{
+	positon: relative;
+	height:261px;
+	width:261px;
+}
+
+.under{
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+.over{
+	position:absolute;
+	bottom:0;
+	right:0;
+}
+

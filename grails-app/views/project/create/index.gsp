@@ -162,6 +162,8 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 									</div>
 									<div class="col-sm-6" id="charitable">
 										<label class="control-label" id="charitable"></label>
+										<input type="hidden" class="form-control"
+											name="${FORMCONSTANTS.CHARITABLE}" placeholder="charitableId">
 										
 									</div>
 								</div>
@@ -194,6 +196,10 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 																.text(
 																		document
 																				.getElementById("uuid").value);
+														$('#charitable')
+															.find('input')
+																.val(document
+																	.getElementById("uuid").value);
 														$('#organizationName')
 																.find('input')
 																.val(

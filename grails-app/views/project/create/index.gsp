@@ -346,9 +346,10 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Brief Description</label>
 							<div class="col-sm-10">
-								<textarea class="form-control"
+								<textarea class="form-control" id="descarea"
 									name="${FORMCONSTANTS.DESCRIPTION}" rows="2"
-									placeholder="Make it catchy, and no more than 140 characters"></textarea>
+									placeholder="Make it catchy, and no more than 140 characters" maxlength="139"></textarea>
+									<label class="pull-right " id="desclength">0 </label>
 							</div>
 						</div>
 						<div class="form-group">

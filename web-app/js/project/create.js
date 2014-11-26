@@ -254,6 +254,22 @@ $(function() {
    	         $('#paypalemail').find('input').val('');
   	      }
   	 });
+
+
+     /*******************************Description text length******************** */
+      var counter = 1;
+     $('#descarea').on('keydown', function(event) {
+         var currentString = $('#descarea').val().length;
+         var text = currentString + 1;
+        if (counter!= 0) {
+              currentString++;
+              $('#desclength').text(text);
+      
+        } else if (event.which < 0x20) {
+                currentString--;
+        $('#desclength').text(text);
+        }
+    });
      
       /** *************************Multiple Image Selection*************** */
      

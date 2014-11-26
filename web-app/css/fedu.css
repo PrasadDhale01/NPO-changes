@@ -991,3 +991,7 @@ footer .footerbottomsection {
     top: 0;
     left: 0;
 }
+/*****************Description length error*************************************/
+.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline {
+    float: left;
+}

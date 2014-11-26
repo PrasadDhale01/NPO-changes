@@ -4,18 +4,27 @@
 %>
 <div class="col-md-4">
     <g:if test="${imageUrl != null}">
-        <div style="height: 200px; width:200px; overflow: hidden;" class="blacknwhite">
-            <img alt="Profile Image" style="width: 100%;" src="${imageUrl}">
+        <div class="profileavatar" class="blacknwhite">
+            <img alt="Profile Image" class="profileimage" src="${imageUrl}">
+            <div class="deleteavatar">
+               <g:link action="deleteavatar" controller="user" id="${user.id}"><img src="/images/delete.ico"></g:link>
+            </div>
         </div>
+	    <g:uploadForm controller="user" action="edit_avatar" id="${user.id}" role="form">
+	        <button class="btn btn-primary btn-sm" type="button" id="editavatarbutton">Edit Avatar</button>
+            <input class="hidden" type="file" name="profile" id="editavatar"/>
+            <input type="submit" class="hidden buttons" value="Upload" id="editbutton"/>
+        </g:uploadForm>
     </g:if>
     <g:else>
-        <div style="height: 200px; width:200px; overflow: hidden;" class="blacknwhite">
-            <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" style="padding: 0; width: 100%;" alt="Upload Photo"/>
+        <div class="uploadimage" class="blacknwhite">
+            <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="profileimage" alt="Upload Photo"/>
         </div>
         <g:uploadForm controller="user" action="upload_avatar" id="${user.id}" role="form">
-            <input type="file" name="avatar" id="avatar" required>
-            <input type="submit" class="buttons" value="Upload" id="uploadbutton"/>
-        </g:uploadForm>
+            <button class="btn btn-primary btn-sm" type="button" id="uploadavatar">Upload Avatar</button>
+            <input class="hidden" type="file" name="avatar" id="avatar"/>
+            <input type="submit" class="hidden buttons" value="Upload" id="uploadbutton"/>
+        </g:uploadForm> 
     </g:else>
 </div>
 

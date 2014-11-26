@@ -1014,3 +1014,42 @@ footer .footerbottomsection {
 .has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline {
     float: left;
 }
+
+#uploadavatar {
+	margin-top: 10px;
+}
+
+#editavatarbutton {
+	margin-top: 10px;
+}
+
+.profileimage {
+	height: 200px;
+	width: 200px;
+}
+
+.profileavatar {
+	overflow: hidden;
+	position: relative;
+	height: 200px;
+	width: 200px;
+	
+}
+
+.profileavatar img {
+    position: absolute;
+    top: 0;
+    left: 0;	
+}
+
+.deleteavatar {
+    position: absolute;
+    top: 0;
+    right: 15px;
+}
+
+.uploadimage {
+	overflow: hidden;
+	height: 200px;
+	width: 200px;
+}

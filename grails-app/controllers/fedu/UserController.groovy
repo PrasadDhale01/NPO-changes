@@ -35,13 +35,11 @@ class UserController {
         }
         
     }
-    def myproject()
-    {
+    def myproject() {
          userprofile('user/myproject')
     }
     
-    def mycontribution()
-    {
+    def mycontribution() {
         userprofile('user/mycontribution')
     }
 
@@ -64,7 +62,41 @@ class UserController {
             render (view: 'user/usererror')
             return
         }
-
+        flash.message = "Avatar added successfully"
         redirect(action:'dashboard') 
+    }
+    
+    def edit_avatar() {
+        def avatarUser = User.get(params.id)
+        def imageFile = request.getFile('profile')
+        
+        if (!imageFile.isEmpty() && imageFile.size < 1024*1024) {
+            if (!VALID_IMG_TYPES.contains(imageFile.getContentType())) {
+                flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
+                render (view: 'user/usererror')
+                return
+            } else {
+                def url = userService.getImageUrl(imageFile)
+                avatarUser.userImageUrl = url
+            }
+        } else {
+            flash.message = "Size of the image must be less than [1024 * 1024]"
+            render (view: 'user/usererror')
+            return
+        }
+        flash.message = "Avatar updated successfully"
+        redirect(action:'dashboard')
+    }
+    
+    def deleteavatar() {
+        def avatarUser = User.get(params.id)
+        if(avatarUser) {
+            avatarUser.userImageUrl = null
+            flash.message = "Avatar deleted successfully"
+            redirect(action:'dashboard')
+        } else {
+            flash.message = "User not found"
+            render (view: 'user/usererror')
+        }
     }
 }

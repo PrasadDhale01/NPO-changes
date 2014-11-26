@@ -69,13 +69,32 @@ $(function() {
         }//end error Placement
     });
     
-    //$.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value, element) {
-    	  
-    //    if(value && value.length !=0){
-    //   	 var reg=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
-    //        return (value.match(reg))
-    //    }
-    //    return true;
-    // }, "Please provide valid Email Id");
+    $("#addProjectImage").click(function() {
+        $("#updateImageFile").click()
+    });
     
+    $('#updateImageFile').change( function(event) {
+        var files = event.target.files;
+        var output = document.getElementById("result");
+        for ( var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var filename = file.name;
+
+            if (!file.type.match('image'))
+              continue;
+            var picReader = new FileReader();
+            picReader.addEventListener("load",function(event) {
+                var picFile = event.target;
+                var div = document.createElement("div");
+               div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div pull-left\"><img  class='pr-thumbnail' src='"+ picFile.result+ "'"+ "title='"+ file.name
+                    + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"/images/delete.ico\" style=\"width:10px;height:10px;\"/></div>"
+                    + "</div>";
+
+                output.insertBefore(div, null);
+            });
+            // Read the image
+            picReader.readAsDataURL(file);
+        }
+    });
+
 });

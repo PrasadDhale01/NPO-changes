@@ -543,5 +543,39 @@ class ProjectController {
                         FORMCONSTANTS: FORMCONSTANTS])
     }
     
+    def projectupdate() {
+        def project = Project.get(params.id)
+        if(project) {
+            render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+        } else {
+            render (view: 'manageproject/error', model: [project: project])
+        }
+    }
     
+    def updatesave() {
+        def project = Project.get(params.id)
+        def projectUpdate = new ProjectUpdate()
+
+        if(project) {
+            projectUpdate.story = params.story
+            def imageFiles = request.getFiles('thumbnail[]')
+
+            if(!imageFiles.empty) {
+                projectService.getUpdatedImageUrls(imageFiles, projectUpdate)
+            }
+            project.addToProjectUpdates(projectUpdate)
+            
+            redirect (action:'updatesaverender' , controller:'project', id: project.id)
+               
+        } else {
+            render (view: 'manageproject/error', model: [project: project])
+        }
+    }
+    
+    def updatesaverender() {
+        def project = Project.get(params.id)
+        
+        flash.message= "Updates added successfully."
+        render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+    }
 }

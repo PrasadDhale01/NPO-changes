@@ -603,6 +603,38 @@ class ProjectService {
             }
         }
     }
+    
+    def getUpdatedImageUrls(List<MultipartFile> files, ProjectUpdate projectUpdate){
+        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+        def awsSecretKey = "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"
+
+        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+        def s3Service = new RestS3Service(awsCredentials);
+
+        def bucketName = "crowdera"
+        def s3Bucket = new S3Bucket(bucketName)
+
+        def Folder = "project-images"
+ 
+        def tempImageUrl
+        files.each {
+            def imageUrl = new ImageUrl()
+            def imageFile= it
+             if (!imageFile?.empty && imageFile.size < 1024*1024) {
+                def file= new File("${imageFile.getOriginalFilename()}")
+                def key = "${Folder}/${it.getOriginalFilename()}"
+                imageFile.transferTo(file)
+                def object=new S3Object(file)
+                object.key=key
+
+                imageUrl.url = "https://s3.amazonaws.com/crowdera/${key}"
+                s3Service.putObject(s3Bucket, object)
+                imageUrl.save()
+                projectUpdate.addToImageUrls(imageUrl)
+                file.delete()
+            }
+        }
+    }
 
     def isFundingOpen(Project project) {
         if (isProjectDeadlineCrossed(project) || contributionService.isFundingAchievedForProject(project)) {

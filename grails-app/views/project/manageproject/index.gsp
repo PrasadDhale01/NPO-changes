@@ -11,6 +11,7 @@
 <meta name="layout" content="main" />
 <r:require modules="projectshowjs"/>
 <r:require modules="rewardjs"/>
+<ckeditor:resources />
 </head>
 <body>
 <div class="feducontent">
@@ -18,19 +19,21 @@
 		<g:if test="${project}">
             <div class="row">
                 <div class="col-md-12">
-                	<h1 class="green-heading text-center">
-                        <g:link controller="project" action="show" id="${project.id}" title="${project.title}">${project.title}</g:link>
-                    </h1>
-<%--                    <h4 class="lead">Beneficiary: ${projectService.getBeneficiaryName(project)}</h4>--%>
                     <g:if test="${flash}">
                         <div class="alert alert-success">
                             ${flash.message}
                         </div>
                     </g:if>
+                	<h1 class="green-heading text-center">
+                        <g:link controller="project" action="show" id="${project.id}" title="${project.title}">${project.title}</g:link>
+                    </h1>
 
                     <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="fa fa-leaf"></span> Essentials
+                        </a></li>
+                        <li><a href="#projectupdates" data-toggle="tab">
+                            <span class="glyphicon glyphicon-leaf"></span> Updates
                         </a></li>
                         <li><a href="#rewards" data-toggle="tab">
                             <i class="fa fa-gift fa-lg"></i> Manage rewards
@@ -47,6 +50,9 @@
                     <div class="tab-content">
                         <div class="tab-pane active" id="essentials">
                             <g:render template="/project/manageproject/essentials"/>
+                        </div>
+                        <div class="tab-pane" id="projectupdates">
+                            <g:render template="/project/manageproject/projectupdates"/>
                         </div>
                         <div class="tab-pane" id="rewards">
                             <g:render template="/project/manageproject/rewards"/>

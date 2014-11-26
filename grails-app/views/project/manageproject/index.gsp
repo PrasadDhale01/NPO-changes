@@ -19,6 +19,11 @@
 		<g:if test="${project}">
             <div class="row">
                 <div class="col-md-12">
+                	<g:if test="${project.draft}">
+                		<div class="alert alert-info">
+                           <h2 class="text-center">It is still in draft</h2>
+                        </div>
+                    </g:if>
                     <g:if test="${flash}">
                         <div class="alert alert-success">
                             ${flash.message}

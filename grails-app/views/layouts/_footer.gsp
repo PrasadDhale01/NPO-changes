@@ -16,7 +16,7 @@
             <div class="col-sm-7 flinks">
 			    <a href="https://twitter.com/CrowderaInc">Twitter</a>
 			    <a href="https://www.facebook.com/crowderainc?ref=hl">Facebook</a>
-			    <a href="https://www.linkedin.com/company/fedu">Linkedin</a>
+			    <!-- <a href="https://www.linkedin.com/company/fedu">Linkedin</a> -->
 			    <a href="http://instagram.com/crowderacrew">Instagram</a>                
             </div>
         </div>

@@ -338,6 +338,7 @@ ul.unstyled {
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     hyphens: auto;
+    height:80px;
 }
 
 /* MARKETING CONTENT
@@ -1052,4 +1053,20 @@ footer .footerbottomsection {
 	overflow: hidden;
 	height: 200px;
 	width: 200px;
+}
+
+.project-title{
+     margin-top: 10px; 
+     margin-bottom: 0px; 
+     text-align: justify; 
+     overflow: hidden;
+     height:42px;
+     word-wrap: break-word;
+     font-weight:bold;
+}
+
+.project-img {
+    max-height:194px;
+    min-height:194px;
+    width:100%;
 }

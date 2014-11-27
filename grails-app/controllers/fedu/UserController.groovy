@@ -44,6 +44,8 @@ class UserController {
     }
 
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
+    
+    @Secured(['ROLE_USER'])
     def upload_avatar() {
         def avatarUser = User.get(params.id)
         def imageFile = request.getFile('avatar')
@@ -66,6 +68,7 @@ class UserController {
         redirect(action:'dashboard') 
     }
     
+    @Secured(['ROLE_USER'])
     def edit_avatar() {
         def avatarUser = User.get(params.id)
         def imageFile = request.getFile('profile')
@@ -88,6 +91,7 @@ class UserController {
         redirect(action:'dashboard')
     }
     
+    @Secured(['ROLE_USER'])
     def deleteavatar() {
         def avatarUser = User.get(params.id)
         if(avatarUser) {

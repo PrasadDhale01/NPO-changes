@@ -97,6 +97,7 @@ class ProjectController {
                         FORMCONSTANTS: FORMCONSTANTS])
 	}
 
+    @Secured(['ROLE_ADMIN'])
     def validateshow() {
         def projects = params.id
         if (params.id) {         
@@ -107,6 +108,7 @@ class ProjectController {
         }
     }
 
+    @Secured(['ROLE_ADMIN'])
     def updateValidation() {
         if (params.id) {
             def id = params.id
@@ -117,6 +119,7 @@ class ProjectController {
         redirect (action:'validateList')
     }
 
+    @Secured(['ROLE_ADMIN'])
     def delete() {
         def project = Project.get(params.id)
         if (project) {
@@ -129,6 +132,7 @@ class ProjectController {
         }
     }
 
+    @Secured(['ROLE_USER'])
     def validate() {
         Project project
         if (params.id) {
@@ -141,6 +145,7 @@ class ProjectController {
         }
     }
     
+    @Secured(['ROLE_USER'])
     def saveasdraft(){
         def projectId = params.projectId
         def project = Project.get(projectId)
@@ -152,6 +157,7 @@ class ProjectController {
                         FORMCONSTANTS: FORMCONSTANTS])
     }
     
+    @Secured(['ROLE_ADMIN'])
     def validateList() {
         def projects = projectService.getNonValidatedProjects()
         render(view: 'validate/index', model: [projects: projects])
@@ -464,6 +470,7 @@ class ProjectController {
         }
 	}
 
+    @Secured(['ROLE_USER'])
     def saveRedirect() {
         def button = params.button
         def project = Project.get(params.id)
@@ -490,6 +497,7 @@ class ProjectController {
                         FORMCONSTANTS: FORMCONSTANTS])
     }
     
+    @Secured(['ROLE_USER'])
     def projectdelete() {
         def project = Project.get(params.id)
         if (project) {
@@ -543,6 +551,7 @@ class ProjectController {
                         FORMCONSTANTS: FORMCONSTANTS])
     }
     
+    @Secured(['ROLE_USER'])
     def projectupdate() {
         def project = Project.get(params.id)
         if(project) {
@@ -552,6 +561,7 @@ class ProjectController {
         }
     }
     
+    @Secured(['ROLE_USER'])
     def updatesave() {
         def project = Project.get(params.id)
         def projectUpdate = new ProjectUpdate()
@@ -572,6 +582,7 @@ class ProjectController {
         }
     }
     
+    @Secured(['ROLE_USER'])
     def updatesaverender() {
         def project = Project.get(params.id)
         

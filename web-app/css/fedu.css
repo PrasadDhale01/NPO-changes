@@ -1053,3 +1053,7 @@ footer .footerbottomsection {
 	height: 200px;
 	width: 200px;
 }
+
+.lead,.tile-footer h6 {
+color: #000 !important;
+}

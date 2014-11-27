@@ -224,22 +224,6 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Select Your Cause</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label">Category</label>
-                        <div class="col-sm-10">
-                            <g:select class="selectpicker" name="${FORMCONSTANTS.CATEGORY}"
-                                      from="${categoryOptions}" value="${project.category}"
-                                      optionKey="key" optionValue="value"/>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="panel panel-default">
-                <div class="panel-heading">
                     <h3 class="panel-title">Funding Goal and Campaign End Date</h3>
                 </div>
                 <div class="panel-body">
@@ -263,6 +247,14 @@
                     <h3 class="panel-title">Tell Us About Your Campaign</h3>
                 </div>
                 <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Category</label>
+                        <div class="col-sm-10">
+                            <g:select class="selectpicker" name="${FORMCONSTANTS.CATEGORY}"
+                                      from="${categoryOptions}" value="${project.category}"
+                                      optionKey="key" optionValue="value"/>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Project title</label>
                         <div class="col-sm-10">

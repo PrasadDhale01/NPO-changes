@@ -104,5 +104,42 @@
 				</div>
 			</g:else>
 		</div>
+
+		<div class="modal-footer tile-footer"
+			style="text-align: left; margin-top: 0;">
+			<div class="row">
+				<div class="col-sm-8" align="right" style="right-padding: 0px">
+					<g:form controller="project" action="edit" method="post"
+						id="${project.id}">
+						<g:hiddenField name="projectId" value="${project.id}" />
+						<button class="projectedit close " aria-label="Edit project"
+							id="editproject">
+							<i class="glyphicon glyphicon-edit"></i>
+						</button>
+					</g:form>
+				</div>
+				<div class="col-sm-2">
+					<g:form controller="project" action="manageproject" method="post"
+						id="${project.id}">
+						<button class="projectpreview close" aria-label="Preview project"
+							id="projectpreview">
+							<i class="glyphicon glyphicon-picture"></i>
+						</button>
+					</g:form>
+
+				</div>
+				
+				<div class="col-sm-2">
+					<g:form controller="project" action="projectdelete" method="post"
+						id="${project.id}">
+						<button class="projectdelete close pull-right" aria-label="Delete project"
+							id="projectdelete">
+							<i class="glyphicon glyphicon-trash"></i>
+						</button>
+					</g:form>
+
+				</div>
+			</div>
+		</div>
 	</div>
 </div>

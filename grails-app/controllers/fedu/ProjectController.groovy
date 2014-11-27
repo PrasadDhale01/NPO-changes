@@ -495,7 +495,7 @@ class ProjectController {
         if (project) {
             project.inactive = true
             flash.message= "Project Discarded Successfully"
-            redirect (action:'dashboard' , controller:'user')
+            redirect (action:'myproject' , controller:'user')
         } else {
             flash.message = 'Project Not Found'
             render (view: 'manageproject/error', model: [project: project])

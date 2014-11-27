@@ -173,7 +173,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label" id="iconfile">Organization Icon</label>
+                                <label class="col-sm-4 control-label" id="iconfile">Organization Logo</label>
                                 <div class="col-sm-8">
                                     <input type="file" name="iconfile">
                                 </div>

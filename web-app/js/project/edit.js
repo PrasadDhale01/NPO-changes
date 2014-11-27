@@ -58,7 +58,7 @@ $(function() {
         messages:{
             thumbnail: "Please upload a thumbnail image for project",
             textfile: "Please upload your Letter of Determination",
-            iconfile: "Please upload your Organization icon"
+            iconfile: "Please upload your organization logo"
         },
         errorPlacement: function(error, element) {
         	if ( element.is(":radio") || element.is(":checkbox")) {

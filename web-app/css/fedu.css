@@ -1053,3 +1053,15 @@ footer .footerbottomsection {
 	height: 200px;
 	width: 200px;
 }
+
+.btn-primary {
+color: #ffffff;
+background-color: #4d6785 !important;
+border-color: #0079a1;
+}
+
+.btn-facebook {
+color: #fff;
+background-color: #4d6785;
+border-color: rgba(0,0,0,0.2);
+}

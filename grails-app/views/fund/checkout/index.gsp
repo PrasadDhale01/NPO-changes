@@ -193,7 +193,7 @@
                 	<g:render template="/layouts/tile"/>
                 </div>
                  <div class="row" align="center">
-                	<button type="submit" class="btn btn-primary btn-block btn-lg" name="fund-button" id="paypalsubmitbutton">Fund this project</button>
+                	<button type="submit" class="btn btn-primary btn-block btn-lg" name="fund-button" id="paypalsubmitbutton">Contribute now</button>
                 </div>
             </div>
         </div>

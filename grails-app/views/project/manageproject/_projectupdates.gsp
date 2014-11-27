@@ -5,11 +5,8 @@
 <div class="feducontent">
 	<div class="row">
 	    <div class="col-xs-12">
-	        <h1 class="text-success text-center">Recent Updates</h1>
-	    </div>
-	    <div class="col-xs-12">
 	        <g:uploadForm class="form-horizontal" controller="project" action="projectupdate" id="${project.id}" role="form">
-	            <button type="submit" class="btn btn-primary pull-right" name="button" value="draft"><i class="fa fa-plus-circle"></i> Updates</button>
+	            <button type="submit" class="btn btn-primary pull-right" name="button" value="draft"><i class="fa fa-plus-circle"></i> Create Update</button>
 	        </g:uploadForm>
 	    </div>
 	</div>

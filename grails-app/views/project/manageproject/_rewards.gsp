@@ -6,10 +6,7 @@
 %>
 <br>
 <div class="row">
-    <div class="col-xs-6">
-        <h1><i class="fa fa-gift fa-lg"></i> Rewards</h1>
-    </div>
-    <div class="col-xs-6">
+    <div class="col-xs-12">
         <!-- Button trigger modal -->
         <a href="#" class="btn btn-primary btn-circle pull-right" data-toggle="modal" data-target="#createRewardModal" model="['project': project]">
             <i class="fa fa-plus-circle"></i> Create Reward

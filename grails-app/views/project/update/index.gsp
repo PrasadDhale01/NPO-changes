@@ -53,9 +53,9 @@
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Save Updates</label>
+							<label class="col-sm-2 control-label">Save Update</label>
 							<div class="col-sm-2-offset col-sm-4">
-								<button type="submit" class="btn btn-primary btn-sm" name="button" id="updatesubmitbutton">Submit Updates</button>
+								<button type="submit" class="btn btn-primary btn-sm" name="button" id="updatesubmitbutton">Submit Update</button>
 							</div>
 						</div>
 					</div>

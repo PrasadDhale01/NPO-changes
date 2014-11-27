@@ -137,19 +137,6 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 										name="${FORMCONSTANTS.PAYPALEMAIL}">
 								</div>
 							</div>
-							<div id="organisation">
-								<label class="col-sm-2 control-label">Is your
-									organization registered with FirstGiving?</label>
-								<div class="col-sm-8">
-									<div class="btn-group btn-group-sm">
-										<label class="btn btn-default"> <input type="radio"
-											name="wel" value="yes"> Yes
-										</label> <label class="btn btn-default"> <input type="radio"
-											name="wel" value="no"> No
-										</label>
-									</div>
-								</div>
-							</div>
 						</div>
 						<div class="form-group" id="charitableId">
 							<div class="row">
@@ -179,31 +166,16 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 												<script>
 													var FG_GRAPHWIDGET_PARAMS = {
 														results : {
-															selectaction : function(
-																	uuid,
-																	charity_name) {
-																document
-																		.getElementById("uuid").value = uuid;
-																document
-																		.getElementById("charity_name").value = charity_name;
+															selectaction : function(uuid,charity_name) {	
+																document.getElementById("uuid").value = uuid;
+																document.getElementById("charity_name").value = charity_name;
 															}
 														}
 													};
 													function setOrganization() {
-														$('#charitable')
-																.find('label')
-																.text(
-																		document
-																				.getElementById("uuid").value);
-														$('#charitable')
-															.find('input')
-																.val(document
-																	.getElementById("uuid").value);
-														$('#organizationName')
-																.find('input')
-																.val(
-																		document
-																				.getElementById("charity_name").value);
+														$('#charitable').find('label').text(document.getElementById("uuid").value);
+														$('#charitable').find('input').val(document.getElementById("uuid").value);
+														$('#organizationName').find('input').val(document.getElementById("charity_name").value);
 													}
 												</script>
 												<script
@@ -219,13 +191,6 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 										</div>
 									</div>
 								</div>
-							</div>
-						</div>
-						<div class="form-group" id="textfile">
-							<label class="col-sm-2 control-label">Upload your Letter
-								of Determination</label>
-							<div class="col-sm-4">
-								<input type="file" name="textfile">
 							</div>
 						</div>
 						<hr>

@@ -45,7 +45,7 @@ $(window).load(function() {
     $("input[name='query']").popover({
         content: 'Searches in title and story of project.',
         trigger: 'manual',
-        placement: 'top'
+        placement: 'left'
     })
     .focus(showPopover)
     .blur(hidePopover)

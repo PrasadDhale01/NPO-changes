@@ -21,7 +21,7 @@
 			title="${project.title}">
 			<div class="imageWithTag">
 				<div class="under">
-					<img alt="${project.title}" style="width: 100%;"
+					<img alt="${project.title}" class="project-img"
 						src="${projectService.getProjectImageLink(project)}">
 				</div>
 				<g:if test="${project.draft}">
@@ -34,12 +34,13 @@
 	</div>
 
 	<div class="caption">
-		<strong
-			style="margin-top: 10px; margin-bottom: 0px; text-align: justify; overflow: hidden;">
-			${project.title}
-		</strong> <span class="project-story-span">
-			${project.description}
-		</span>
+		<div class="project-title">
+            ${project.title}
+        </div>
+		<hr class="tile-separator">
+        <div class="project-story-span">
+            ${project.description}
+        </div>
 	</div>
 
 	<div class="modal-footer tile-footer"

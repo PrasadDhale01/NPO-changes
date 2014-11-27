@@ -24,15 +24,17 @@
     <div class="fedu thumbnail grow" style="padding: 0">
         <div style="height: 200px; overflow: hidden;" class="blacknwhite">
             <g:link controller="project" action="validateshow" id="${project.id}" title="${project.title}">
-                <img alt="${project.title}" style="width: 100%; height: 100%;" src="${projectService.getProjectImageLink(project)}">
+                <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
             </g:link>
         </div>
 	<div class="caption">
-        <strong style="margin-top: 10px; margin-bottom: 0px; text-align: justify; overflow: hidden;">
+        <div class="project-title">
             ${project.title}
-        </strong>
-         <hr class="tile-separator">
-        <span class="project-story-span">${project.description}</span>
+        </div>
+        <hr class="tile-separator">
+        <div class="project-story-span">
+            ${project.description}
+        </div>
     </div>
 	<div class="modal-footer tile-footer" style="text-align: left; margin-bottom: 2px;">
         <div class="row">

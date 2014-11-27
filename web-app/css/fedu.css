@@ -338,6 +338,7 @@ ul.unstyled {
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
     hyphens: auto;
+    height:80px;
 }
 
 /* MARKETING CONTENT
@@ -1068,5 +1069,21 @@ border-color: #0079a1;
 color: #fff;
 background-color: #4d6785;
 border-color: rgba(0,0,0,0.2);
+}
+
+.project-title{
+     margin-top: 10px; 
+     margin-bottom: 0px; 
+     text-align: justify; 
+     overflow: hidden;
+     height:42px;
+     word-wrap: break-word;
+     font-weight:bold;
+}
+
+.project-img {
+    max-height:194px;
+    min-height:194px;
+    width:100%;
 }
 

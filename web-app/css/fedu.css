@@ -991,3 +991,42 @@ footer .footerbottomsection {
     top: 0;
     left: 0;
 }
+
+#uploadavatar {
+	margin-top: 10px;
+}
+
+#editavatarbutton {
+	margin-top: 10px;
+}
+
+.profileimage {
+	height: 200px;
+	width: 200px;
+}
+
+.profileavatar {
+	overflow: hidden;
+	position: relative;
+	height: 200px;
+	width: 200px;
+	
+}
+
+.profileavatar img {
+    position: absolute;
+    top: 0;
+    left: 0;	
+}
+
+.deleteavatar {
+    position: absolute;
+    top: 0;
+    right: 15px;
+}
+
+.uploadimage {
+	overflow: hidden;
+	height: 200px;
+	width: 200px;
+}

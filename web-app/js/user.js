@@ -1,12 +1,19 @@
 $(function() {
     console.log("user.js initialized");
-
-    $('form').validate({
-        rules: {
-            avatar: {
-                required: true
-            }
-        }
+    
+    $("#uploadavatar").click(function() {
+        $("#avatar").click();
     });
     
+    $('#avatar').change( function(event) {
+    	$("#uploadbutton").click();
+    });
+    
+    $("#editavatarbutton").click(function() {
+        $("#editavatar").click();
+    });
+    
+    $('#editavatar').change( function(event) {
+    	$("#editbutton").click();
+    });
 });

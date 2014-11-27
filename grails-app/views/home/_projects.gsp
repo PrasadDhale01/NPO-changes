@@ -56,6 +56,12 @@
     </div>
 </div>--%>
 
+<script type="text/javascript">
+    $('#carousel-example').carousel({
+        interval: 1000
+    });
+</script>
+
 <div class="container">
     <%
         def count = projects.size()
@@ -64,7 +70,7 @@
         def index = 0
     %>
       
-    <div id="carousel-example" class="col-md-10 col-md-offset-1 carousel slide hidden-xs" >
+    <div id="carousel-example" class="col-md-10 col-md-offset-1 carousel slide hidden-xs" data-ride="carousel">
 	    <div class="row">
 	        <div class="col-md-12 hidden-xs">
 	            <h1 class="text-center headingtext">Featured Campaigns</h1><br>

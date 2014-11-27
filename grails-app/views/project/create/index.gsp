@@ -117,8 +117,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">How do you like to
-								get amount?</label>
+							<label class="col-sm-2 control-label">Preferred payment gateway</label>
 							<div class="form-group" id="payopt">
 								<label class="col-sm-2 control-label"></label>
 								<div class="col-sm-8">

@@ -52,6 +52,26 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
+
+                            <g:if test="${userService.isAdmin()}">
+
+                                <li><g:link controller="user" action="dashboard">
+                                        <span class="glyphicon glyphicon-cog"></span> Settings
+                                </g:link></li>
+                                <sec:ifAllGranted roles="ROLE_AUTHOR">
+                                    <li><g:link controller="blog" action="manage">
+                                            <span class="glyphicon glyphicon-book"></span> Manage blogs</g:link></li>
+                                </sec:ifAllGranted>
+                                <sec:ifAllGranted roles="ROLE_COMMUNITY_MGR">
+                                    <li><g:link controller="community" action="manage">
+                                            <i class="fa fa-users"></i> Manage communities</g:link></li>
+                                </sec:ifAllGranted>
+                                <li class="divider"></li>
+                                <li><g:link controller="logout">
+                                        <span class="glyphicon glyphicon-off"></span> Log out
+                            </g:link></li>
+                            </g:if>
+                            <g:else>
                             <li><g:link class="myprojects" controller="user"
                                     action="myproject">
                                     <span class="glyphicon glyphicon-off"></span> My Projects
@@ -74,6 +94,7 @@
                             <li><g:link controller="logout">
                                 <span class="glyphicon glyphicon-off"></span> Log out
                             </g:link></li>
+                            </g:else>
                         </ul>
                     </li>
                 </sec:ifLoggedIn>

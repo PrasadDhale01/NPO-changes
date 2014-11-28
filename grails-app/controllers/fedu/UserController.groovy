@@ -35,10 +35,13 @@ class UserController {
         }
         
     }
+    
+    @Secured(['ROLE_USER'])
     def myproject() {
          userprofile('user/myproject')
     }
     
+    @Secured(['ROLE_USER'])
     def mycontribution() {
         userprofile('user/mycontribution')
     }

@@ -258,18 +258,75 @@ $(function() {
 
      /*******************************Description text length******************** */
       var counter = 1;
-     $('#descarea').on('keydown', function(event) {
-         var currentString = $('#descarea').val().length;
-         var text = currentString + 1;
-        if (counter!= 0) {
-              currentString++;
-              $('#desclength').text(text);
+  $('#descarea').on('keydown', function(event) {
+    
+    event.altKey==true;
+    var currentString = $('#descarea').val().length;
+    var text = currentString + 1;
+    if (event.keyCode > 31) {
+      if(event.altKey==true){
+        setDescriptionText();
+      }
+      else{
+          currentString++;
+          $('#desclength').text(text);
+      }
+
+    } else {
+          currentString--;
+          $('#desclength').text(text);
+      }
+  }).keyup(function(e) {
       
-        } else if (event.which < 0x20) {
-                currentString--;
-        $('#desclength').text(text);
-        }
-    });
+    if(e.altKey==true){
+        setDescriptionText();
+        return false;
+    }
+
+    switch (e.keyCode) {
+
+      case 13:      //Enter
+      case 8:       //backspace
+      case 46:      //delete
+      case 17:      
+      case 27:      //escape
+      case 10:      //new line
+      case 20:      
+      case 9:       //horizontal TAB
+      case 11:      //vertical tab
+      case 33:      //page up  
+      case 34:      //page  down
+      case 35:      //End 
+      case 36:      //Home
+      case 37:      //Left arrow
+      case 38:      //up arrow
+      case 39:      //Right arrow
+      case 40:      //Down arrow
+      case 45:      //Insert
+      case 12:      //vertical tab
+        setDescriptionText();
+        break;
+      case 16:      //shift
+       setDescriptionText();
+       break;
+    }
+  }).focus(function(){
+        setDescriptionText();
+    }).focusout(function(){
+        setDescriptionText();
+  });
+  
+  function setDescriptionText(){
+     
+    var currentString = $('#descarea').val().length;
+    if (currentString == 0) {
+      $('#desclength').text("0");
+    } 
+    else {
+      currentString = currentString;
+      $('#desclength').text(currentString);
+    }
+  }
      
       /** *************************Multiple Image Selection*************** */
      

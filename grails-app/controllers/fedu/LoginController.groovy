@@ -55,11 +55,13 @@ class LoginController {
         }           
     } 
 
+    @Secured(['ROLE_ADMIN'])
     def list() {
         def users = userService.getRequesteUsers()
         render(view: 'register/adminViewIndex', model: [users:users])
     }
 
+    @Secured(['ROLE_ADMIN'])
     def invite() {
         invite_user = true
         flash.message = "You have now switched the registration procedure to invite only mode "
@@ -67,6 +69,7 @@ class LoginController {
         return (invite_user)
     }
     
+    @Secured(['ROLE_ADMIN'])
     def openRegister(){
         invite_user = false
         flash.message = "You have switched the registration procedure to open registration mode"
@@ -182,6 +185,7 @@ class LoginController {
             redirect (action:'list')
         }
     
+    @Secured(['ROLE_ADMIN'])
     def delete(){
         if (params.int('id')) {
             def users = params.long('id')

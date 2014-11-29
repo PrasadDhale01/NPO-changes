@@ -68,6 +68,67 @@ $(function() {
         	}
         }//end error Placement
     });
+
+    /** ********************Organization Icon*************************** */
+
+    $('#chooseFile').click(function(event) {
+        event.preventDefault();
+        $('#iconfile').trigger('click');
+    });
+
+    $("#iconfile").on("change", function() {
+        var file = this.files[0];
+        var fileName = file.name;
+        var fileSize = file.size;
+
+        var picReader = new FileReader();
+        picReader.addEventListener("load", function(event) {
+            var picFile = event.target;
+            $('#imgIcon').attr('src', picFile.result);
+            $('#delIcon').attr('src', "/images/delete.ico");
+
+        });
+        // Read the image
+        picReader.readAsDataURL(file);
+
+    });
+
+    /***************************Multiple Image Selection*************** */
+
+    $("#add_img_btn").click(function() {
+        $("#projectImageFile").click()
+    });
+
+    $('#projectImageFile').change(function(event) {
+                        var files = event.target.files; // FileList object
+                        var output = document.getElementById("result");
+                        for ( var i = 0; i < files.length; i++) {
+                            var file = files[i];
+                            var filename = file.name;
+
+                            // Only pics
+                            if (!file.type.match('image'))
+                                continue;
+                            var picReader = new FileReader();
+                            picReader.addEventListener("load",function(event) {
+                                                var picFile = event.target;
+
+                                                var div = document
+                                                        .createElement("div");
+                                                div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"
+                                                        + picFile.result
+                                                        + "'"
+                                                        + "title='"
+                                                        + file.name
+                                                        + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"/images/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"
+                                                        + "</div>";
+
+                                                output.insertBefore(div, null);
+                            });
+                            // Read the image
+                            picReader.readAsDataURL(file);
+                        }
+    });
     
     $("#addProjectImage").click(function() {
         $("#updateImageFile").click()

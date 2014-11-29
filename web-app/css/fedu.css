@@ -977,14 +977,14 @@ footer .footerbottomsection {
     position: relative;
     width: 50px;
     height: 50px;
-    margin: 5px;
+    margin: -10px 10px 25px 0px;
     float: left;
 }
 
 .pr-thumbnail-div .deleteicon {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: -1px;
+    right: -5px;
 }
 
 .pr-thumbnail-div .img {
@@ -1009,6 +1009,37 @@ footer .footerbottomsection {
 	position:absolute;
 	bottom:0;
 	right:0;
+}
+
+/*************************************Organization logo***********************/
+.pr-icon-thumbnail {
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+
+.pr-icon-thumbnail-div {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: -4px;
+    float: left;
+}
+
+.pr-icon-thumbnail-div .deleteicon {
+    position: absolute;
+    top: -1px;
+    right: -19px;
+}
+
+.pr-icon-thumbnail-div .img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#iconfile {
+    display:none;
 }
 
 /*****************Description length error*************************************/

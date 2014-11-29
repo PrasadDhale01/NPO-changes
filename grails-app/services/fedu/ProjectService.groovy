@@ -670,31 +670,6 @@ class ProjectService {
         return imageUrl
     }*/
 
-    def getfileUrl(CommonsMultipartFile textFile) {
-        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
-        def awsSecretKey = "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"
-        def bucketName = "crowdera"
-        def folder = "project-document"
-
-        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
-        def s3Service = new RestS3Service(awsCredentials);
-        def myBucket = s3Service.listAllBuckets();
-        def s3Bucket = new S3Bucket(bucketName)
-
-        def tempFile = new File("${textFile.getOriginalFilename()}")
-        def key = "${folder}/${textFile.getOriginalFilename()}"
-
-        textFile.transferTo(tempFile)
-        def object = new S3Object(tempFile)
-        object.key = key
-
-        s3Service.putObject(s3Bucket, object)
-        tempFile.delete()
-        def fileUrl = "https://s3.amazonaws.com/crowdera/${key}"
-
-        return fileUrl
-    }
-
     def getorganizationIconUrl(CommonsMultipartFile iconFile) {
         def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
         def awsSecretKey = "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"

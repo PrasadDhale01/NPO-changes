@@ -173,9 +173,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-4 control-label" id="iconfile">Organization Logo</label>
-                                <div class="col-sm-8">
-                                    <input type="file" name="iconfile">
+                                <label class="col-sm-4 control-label" id="iconfiles">Organization Logo</label>
+                                <div class="col-sm-4">
+                                    <input type="file" id="iconfile" name="iconfile">
+                                    <button id="chooseFile" class="btn btn-primary" type="button">
+                                            <i class="icon-file"></i> Choose File
+                                     </button>
+                                </div>
+                                <div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
+                                        <img id="imgIcon" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
                                 </div>
                             </div>
                         </div>
@@ -296,15 +302,23 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Pictures</label>
-                        <div class="col-sm-4">
-                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" multiple="multiple">
+                        <div class="col-sm-2">
+                            <button id="add_img_btn" class="btn btn-primary btnAddImage"type="button">
+                                    <i class="icon-file"></i> Add Image
+                            </button>
+                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" multiple="multiple" class="hidden">
+                        </div>
+                        <div class="col-sm-8">
+                                <g:each var="imgurl" in="${project.imageUrl}">
+                                    <img src="${imgurl.url }" style="width:50px;height:50px;"/>
+                                </g:each>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Video URL</label>
                         <div class="col-sm-4">
                             <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}">
-                         </div>
+                        </div>
                     </div>
                 </div>
             </div>

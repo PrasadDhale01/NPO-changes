@@ -418,12 +418,11 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 									<br>
 									<div class="row">
 										<div class="col-sm-12">
-											<label class="col-sm-2 control-label">Reward
-												Description</label>
-											<div class="col-sm-10" style="left-padding: 0px;">
+											<label class="col-sm-2 control-label">Reward Description</label>
+											<div class="col-sm-10">
 												<textarea class="form-control rewardDescription"
 													name="rewardDescription" id="rewardDescription" rows="2"
-													placeholder="Description" style="left-padding: 0px"></textarea>
+													placeholder="Description"></textarea>
 											</div>
 										</div>
 									</div>

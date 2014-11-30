@@ -28,7 +28,6 @@ class Project {
     String videoUrl
     Image image
 	List imageUrl
-    String fileUrl
     String organizationIconUrl
     List rewards
 
@@ -62,7 +61,6 @@ class Project {
         story (nullable: true)
         organizationName (nullable: true)
         webAddress (blank: false, nullable: true)
-        fileUrl (nullable: true)
         organizationIconUrl (nullable: true)
         projectAdmins(nullable: true)
         paypalEmail(nullable: true)

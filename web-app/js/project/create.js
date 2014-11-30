@@ -235,6 +235,29 @@ $(function() {
   	      }
   	 });
 
+     /** ********************Organization Icon*************************** */
+
+  $('#chooseFile').click(function(event) {
+    event.preventDefault();
+    $('#iconfile').trigger('click');
+  });
+
+  $("#iconfile").on("change",function() {
+            var file = this.files[0];
+            var fileName = file.name;
+            var fileSize = file.size;
+            
+            var picReader = new FileReader();
+            picReader.addEventListener("load",function(event) {
+                      var picFile = event.target;
+                      $('#imgIcon').attr('src',picFile.result);
+                      $('#delIcon').attr('src',"/images/delete.ico");
+                    
+            });
+            // Read the image
+            picReader.readAsDataURL(file);
+  });
+
 
      /*******************************Description text length******************** */
       var counter = 1;

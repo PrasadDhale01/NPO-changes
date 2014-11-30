@@ -433,13 +433,7 @@ class ProjectController {
         if(rewardTitle) {
             rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
         }
-        
-        def textFile = request.getFile('textfile')
-        if(!textFile.isEmpty()) {
-            def uploadedFileUrl = projectService.getfileUrl(textFile)
-            project.fileUrl = uploadedFileUrl
-        }
-        
+               
         def iconFile = request.getFile('iconfile')
         if(!iconFile.isEmpty()) {
             def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)

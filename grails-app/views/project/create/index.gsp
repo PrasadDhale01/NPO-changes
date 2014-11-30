@@ -206,9 +206,19 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-sm-4 control-label" id="iconfile">Organization Logo</label>
-									<div class="col-sm-8">
-										<input type="file" name="iconfile">
+									<label class="col-sm-4 control-label" id="iconfiles">Organization Logo</label>
+									<div class="col-sm-4">
+										<input type="file" id="iconfile" name="iconfile">
+										<button id="chooseFile" class="btn btn-primary" type="button">
+											<i class="icon-file"></i> Choose File
+										</button>
+									</div>
+									<div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
+									<img id="imgIcon" class="pr-icon-thumbnail"/>
+										<div class="deleteicon">
+											<img onClick="$(this).parents('#icondiv').remove();"
+												id="delIcon" style="margin: 2px; width: 10px; height: 10px;" />
+										</div>
 									</div>
 								</div>
 							</div>
@@ -344,7 +354,9 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Pictures</label>
 							<div class="col-sm-2">
-							    <button class="btnAddImage btn-circle" type="button" id="add_img_btn">Add Image&nbsp;<span class="fa fa-plus-circle"></span></button>
+							    <button id="add_img_btn" class="btn btn-primary btnAddImage" type="button">
+											<i class="icon-file"></i> Add Image
+								</button>
 								<input type="file" class="hidden" name="${FORMCONSTANTS.THUMBNAIL}[]"
 									id="projectImageFile" multiple="multiple">
 							</div>

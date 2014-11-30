@@ -5,8 +5,7 @@
 <g:set var="userService" bean="userService"/>
 <div class="panel panel-default">
     <div class="panel-heading">
-   		${user.firstName + " " + user.lastName +"'s"}<br>
-    	Campaign Supporting
+   		Project by
 <%--        <g:if test="${isFundingOpen}">--%>
 <%--            <h3 class="panel-title">Fund this project</h3>--%>
 <%--        </g:if>--%>

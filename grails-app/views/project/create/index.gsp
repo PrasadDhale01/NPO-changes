@@ -113,6 +113,40 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
+						<h3 class="panel-title">Campaign Co-Creators</h3>
+					</div>
+					<div class="panel-body">
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="col-sm-4 control-label">First Admin</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="email1"
+										   id="firstadmin" placeholder="Email ID"></input>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-4 control-label">Second Admin</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="email2"
+										   id="secondadmin" placeholder="Email ID"></input>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-sm-6">
+							<div class="form-group">
+								<label class="col-sm-4 control-label">Third Admin</label>
+								<div class="col-sm-8">
+									<input type="text" class="form-control" name="email3"
+										   id="thirdadmin" placeholder="Email ID"></input>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="panel panel-default">
+					<div class="panel-heading">
 						<h3 class="panel-title">Organization</h3>
 					</div>
 					<div class="panel-body">
@@ -230,40 +264,6 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 										<input class="form-control"
 											name="${FORMCONSTANTS.WEBADDRESS }" placeholder="Web Address">
 									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Campaign Co-Creators</h3>
-					</div>
-					<div class="panel-body">
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label class="col-sm-4 control-label">First Admin</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" name="email1"
-										id="firstadmin" placeholder="Email ID"></input>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-4 control-label">Second Admin</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" name="email2"
-										id="secondadmin" placeholder="Email ID"></input>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-sm-6">
-							<div class="form-group">
-								<label class="col-sm-4 control-label">Third Admin</label>
-								<div class="col-sm-8">
-									<input type="text" class="form-control" name="email3"
-										id="thirdadmin" placeholder="Email ID"></input>
 								</div>
 							</div>
 						</div>

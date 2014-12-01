@@ -12,11 +12,8 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 tinymce.init({
 	mode : "specific_textareas",
     editor_selector : "mceEditor",
-    external_plugins: {
-          "moxiemanager": "http://www.tinymce.com/js/moxiemanager/plugin.min.js"
-    },
 	plugins: [
-          "moxiemanager advlist autolink lists link image charmap print preview hr anchor pagebreak emoticons",
+          "advlist autolink lists link image charmap print preview hr anchor pagebreak emoticons",
       ],
       toolbar: "| insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image forecolor backcolor emoticons",
       image_advtab: true,

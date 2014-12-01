@@ -16,7 +16,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	<div class="feducontent">
 		<div class="container">
 			<h1>
-				<span class="glyphicon glyphicon-leaf"></span> Create Project
+				<span class="glyphicon glyphicon-leaf"></span> Create Campaign
 			</h1>
 
 			<g:uploadForm class="form-horizontal" controller="project"
@@ -308,10 +308,10 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Project title</label>
+							<label class="col-sm-2 control-label">Campaign title</label>
 							<div class="col-sm-10">
 								<input class="form-control" name="${FORMCONSTANTS.TITLE}"
-									placeholder="Enter project title">
+									placeholder="Enter Campaign title">
 							</div>
 						</div>
 						<div class="form-group">

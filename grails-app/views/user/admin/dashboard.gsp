@@ -73,11 +73,11 @@
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <i class="glyphicon glyphicon-check"></i> Validate projects here.
+                        <i class="glyphicon glyphicon-check"></i> Validate Campaigns here.
                     </div>
                     <div class="panel-footer">
                         <g:link controller="project" action="validateList">
-                            <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-check"></i> Validate Projects</button>
+                            <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-check"></i> Validate Campaigns</button>
                         </g:link>
                     </div>
                 </div>
@@ -97,11 +97,11 @@
             <div class="col-sm-4">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <i class="fa fa-leaf fa-lg"></i> Bulk import projects here.
+                        <i class="fa fa-leaf fa-lg"></i> Bulk import Campaigns here.
                     </div>
                     <div class="panel-footer">
                         <g:link controller="project" action="importprojects">
-                            <button class="btn btn-block btn-primary"><i class="fa fa-gift fa-lg"></i> Bulk Import Projects</button>
+                            <button class="btn btn-block btn-primary"><i class="fa fa-gift fa-lg"></i> Bulk Import Campaigns</button>
                         </g:link>
                     </div>
                 </div>

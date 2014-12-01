@@ -10,13 +10,13 @@
         <div class="row">
             <div class="col-md-8">
                 <h1>Thank you!</h1>
-                <p>You have funded this project. You will receive your chosen reward soon.</p>
+                <p>You have funded this campaign. You will receive your chosen reward soon.</p>
 
                 <h3>Funding confirmation.</h3>
                 <table class="table table-bordered table-hover table-condensed">
                     <tbody>
                     <tr>
-                        <td>Project</td>
+                        <td>Campaign</td>
                         <td><g:link controller="project" action="show" id="${project.id}">${project.title}</g:link></td>
                     </tr>
                     <tr>

@@ -7,10 +7,10 @@
     <div class="container">
         <h2>Error</h2>
         <div class="alert alert-danger">
-            Oh snap! Something went wrong importing the projects.
+            Oh snap! Something went wrong importing the campaigns.
             <g:if test="${flash && flash.projecterror}">
                 <div class="alert alert-danger">
-                    <p>Error while validating project with title: ${flash.projecterror.title}</p>
+                    <p>Error while validating campaign with title: ${flash.projecterror.title}</p>
                     <p>${flash.projecterror.error}</p>
                     <g:if test="${flash.projecterror.note}">
                         <p>NOTE: ${flash.projecterror.error}</p>

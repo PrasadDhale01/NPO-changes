@@ -162,7 +162,7 @@ $(function() {
             */
         },
         messages:{
-            thumbnail: "Please upload a thumbnail image for project",
+            thumbnail: "Please upload a thumbnail image for campaign",
             textfile: "Please upload your Letter of Determination",
             iconfile: "Please upload your organization logo"
         },
@@ -180,7 +180,7 @@ $(function() {
     $( "#projectImageFile" ).rules( "add", {
       required: true,
       messages: {
-        required: "Please upload at least one project image"
+        required: "Please upload at least one campaign image"
       }
     });
 

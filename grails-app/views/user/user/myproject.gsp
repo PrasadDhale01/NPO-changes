@@ -12,7 +12,7 @@
 <div class="feducontent">
     <div class="container">
 
-        <h2>My Projects</h2>
+        <h2>My Campaigns</h2>
         <g:if test="${flash}">
             <div class="alert alert-success">
                 <li>${flash.message}</li>

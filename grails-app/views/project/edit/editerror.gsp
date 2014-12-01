@@ -7,7 +7,7 @@
     <div class="container">
         <h2>Error</h2>
         <div class="alert alert-danger">
-            Oh snap! Something went wrong editing the project.
+            Oh snap! Something went wrong editing the Campaign.
             <g:if test="${flash}">
                 <ul>
                     <li>${flash.message}</li>

@@ -12,7 +12,7 @@
 		        ${project.title}
 		    </g:link>
 		  	</h2>
-		<div class="alert alert-success">Your Project has been saved as draft.</div>
+		<div class="alert alert-success">Your Campaign has been saved as draft.</div>
 		<!-- <div class="alert alert-warning">This project is not yet published.</div> -->
 	    </div>
 	    <div class="panel panel-default">
@@ -21,15 +21,15 @@
 		</div>
 		<div class="panel-body">
 		    <ul>
-			<li>You project has been saved as draft.</li>
-			<li>You can review your project and send it for admin approval from User Settings page.</li>
+			<li>You campaign has been saved as draft.</li>
+			<li>You can review your campaign and send it for admin approval from User Settings page.</li>
 		    </ul>
 		</div>
 	    </div>
 	</g:if>
 	<g:else>
 	    <h2>Error</h2>
-	    <div class="alert alert-danger">Oh snap! Looks like that project doesn't exist.</div>
+	    <div class="alert alert-danger">Oh snap! Looks like that campaign doesn't exist.</div>
 	</g:else>
     </div>
 </div>

@@ -15,7 +15,7 @@
         </div>
         <div class="panel panel-default" style="margin-top: 30px;">
             <div class="panel-heading">
-                <h3 class="panel-title">Project Story</h3>
+                <h3 class="panel-title">Campaign Story</h3>
             </div>
             <div class="panel-body">
                 <span class="text-centre project-story-span">${raw(project.story)}</span>

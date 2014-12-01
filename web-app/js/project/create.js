@@ -34,6 +34,7 @@ $(function() {
     $("#rewardTemplate").hide();
 
     $("#charitableId").hide();
+    $("#icondiv").hide();
         
     $("#payopt").show(); // paypal option
     $("#paypalemail").hide(); // paypal button
@@ -243,6 +244,7 @@ $(function() {
   });
 
   $("#iconfile").on("change",function() {
+            $('#icondiv').show();
             var file = this.files[0];
             var fileName = file.name;
             var fileSize = file.size;

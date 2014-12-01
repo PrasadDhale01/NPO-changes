@@ -43,7 +43,7 @@ $(window).load(function() {
         
     /* Initialize pop-overs (tooltips) */
     $("input[name='query']").popover({
-        content: 'Searches in title and story of project.',
+        content: 'Searches in title and story of campaign.',
         trigger: 'manual',
         placement: 'left'
     })

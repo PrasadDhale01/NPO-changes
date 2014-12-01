@@ -74,7 +74,7 @@
                             <g:else>
                             <li><g:link class="myprojects" controller="user"
                                     action="myproject">
-                                    <span class="glyphicon glyphicon-off"></span> My Projects
+                                    <span class="glyphicon glyphicon-off"></span> My Campaign
                             </g:link></li>
 
                             <li><g:link class="mycontributions" controller="user"

@@ -47,7 +47,7 @@
 											id="${project.id}" method="post">
 											<button class="btn btn-danger" name="_action_delete"
 												value="Delete"
-												onclick="return confirm(&#39;Are you sure you want to discard this project?&#39;);"
+												onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);"
 												style="width: 180">
 												<i class="fa fa-trash-o"></i>&nbsp;Discard
 											</button>
@@ -93,14 +93,14 @@
 				</div>
 				<%--
 			<g:if test="${project.validated == false}">
-                <div class="alert alert-warning">This project is not yet published.</div>
+                <div class="alert alert-warning">This Campaign is not yet published.</div>
 			</g:if>
 			--%>
 			</g:if>
 			<g:else>
 				<h1>Project not found</h1>
 				<div class="alert alert-danger">Oh snap! Looks like that
-					project doesn't exist.</div>
+					Campaign doesn't exist.</div>
 			</g:else>
 		</div>
 	</div>

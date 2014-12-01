@@ -5,7 +5,7 @@
 <body>
 <div class="feducontent">
 	<div class="container">
-		<h1><span class="glyphicon glyphicon-leaf"></span> Bulk Import Projects</h1>
+		<h1><span class="glyphicon glyphicon-leaf"></span> Bulk Import Campaigns</h1>
 
         <g:if test="${flash && flash.message}">
             <div class="alert alert-danger">
@@ -22,11 +22,11 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Import projects from Spreadsheet</h3>
+                    <h3 class="panel-title">Import Campaigns from Spreadsheet</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Projects spreadsheet</label>
+                        <label class="col-sm-2 control-label">Campaigns spreadsheet</label>
                         <div class="col-sm-10">
                             <input type="file" name="${FORMCONSTANTS.PROJECTSEXCEL}">
                             <p class="help-block">
@@ -38,7 +38,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Import</label>
                         <div class="col-sm-10">
-                            <button type="submit" class="btn btn-default">Import Projects from Spreadsheet</button>
+                            <button type="submit" class="btn btn-default">Import Campaigns from Spreadsheet</button>
 
                         </div>
                     </div>

@@ -8,7 +8,7 @@
             <div class="col-sm-2 flinks">
                 <a href="${resource(dir: '/aboutus')}">Crowdera Crew</a>
                 <a href="${resource(dir: '/projects')}" >Discover</a>
-                <a href="${resource(dir: '/projects/create')}">Start a Project</a>
+                <a href="${resource(dir: '/projects/create')}">Start a Campaign</a>
                 <a href="${resource(dir: '/howitworks')}">How it works</a>
                 <a href="mailto:info@crowdera.co">Contact</a>
             </div>

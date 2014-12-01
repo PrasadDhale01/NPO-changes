@@ -55,7 +55,7 @@ class ProjectController {
 	def list = {
         def projects = projectService.getValidatedProjects()
 		if(projects.size<1) {
-            flash.message="There are no projects"
+            flash.message="There are no campaigns"
             render (view: 'list/index')
         }
         else {
@@ -73,7 +73,7 @@ class ProjectController {
         if(query) {
             def searchResults = projectService.search(query)
             if (searchResults.size == 0){
-                flash.message = "No project found matching your input."
+                flash.message = "No Campaign found matching your input."
                 redirect(action:list)
             } else {
                 searchResults.sort{x,y -> x.title<=>y.title ?: x.story<=>y.story}
@@ -115,7 +115,7 @@ class ProjectController {
             def project = Project.get(id)
             project.validated = true
         }   
-        flash.message= "Project validated successfully"
+        flash.message= "Campaign validated successfully"
         redirect (action:'validateList')
     }
 
@@ -124,10 +124,10 @@ class ProjectController {
         def project = Project.get(params.id)
         if (project) {
             project.inactive = true
-            flash.message= "Project discarded successfully"
+            flash.message= "Campaign discarded successfully"
             redirect (action:'validateList')
         } else {
-            flash.message = 'Project Not Found'
+            flash.message = 'Campaign Not Found'
             render (view: 'validate/validateerror', model: [project: project])
         }
     }
@@ -150,7 +150,7 @@ class ProjectController {
         def projectId = params.projectId
         def project = Project.get(projectId)
         project.draft = false
-        flash.message="Project has been submitted for approval."
+        flash.message="Campaign has been submitted for approval."
         
         render (view: 'manageproject/index',
                 model: [project: project,
@@ -218,7 +218,7 @@ class ProjectController {
                         categoryOptions: categoryOptions,
                         FORMCONSTANTS: FORMCONSTANTS])
         } else {
-            flash.message = "project not found."
+            flash.message = "Campaign not found."
             render (view: 'edit/editerror')
             return
         }
@@ -264,7 +264,7 @@ class ProjectController {
                     model: [project: project,
                             FORMCONSTANTS: FORMCONSTANTS])
         } else {
-            flash.message = "project not found."
+            flash.message = "Campaign not found."
             render (view: 'edit/editerror')
             return
         }
@@ -393,14 +393,14 @@ class ProjectController {
                     flash.projecterror = [
                         'title': project.title,
                         'error': "Error while saving: " + project.errors.toString(),
-                        'note': "None of the projects after this one would be imported."
+                        'note': "None of the Campaigns after this one would be imported."
                     ]
                     redirect(action: 'importprojects')
                     return
                 }
             }
 
-            flash.success = "All projects successfully imported"
+            flash.success = "All Campaigns successfully imported"
             redirect(action: 'importprojects')
             return
         } else {
@@ -496,10 +496,10 @@ class ProjectController {
         def project = Project.get(params.id)
         if (project) {
             project.inactive = true
-            flash.message= "Project Discarded Successfully"
+            flash.message= "Campaign Discarded Successfully"
             redirect (action:'myproject' , controller:'user')
         } else {
-            flash.message = 'Project Not Found'
+            flash.message = 'Campaign Not Found'
             render (view: 'manageproject/error', model: [project: project])
         }
     }
@@ -510,7 +510,7 @@ class ProjectController {
 		int price = Integer.parseInt(params.price)
 		int amount = Double.parseDouble(params.amount)
 		if(price >= amount) {
-			flash.message = "Enter a price less than project amount: ${amount}"
+			flash.message = "Enter a price less than Campaign amount: ${amount}"
 			render (view: 'manageproject/error', model: [reward: reward])
 			return
 		}

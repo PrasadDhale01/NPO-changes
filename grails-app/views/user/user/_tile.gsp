@@ -134,7 +134,7 @@
 					<g:form controller="project" action="projectdelete" method="post"
 						id="${project.id}">
 						<button class="projectdelete close pull-right" aria-label="Delete project"
-							id="projectdelete" onclick="return confirm(&#39;Are you sure you want to discard this project?&#39;);">
+							id="projectdelete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
 							<i class="glyphicon glyphicon-trash"></i>
 						</button>
 					</g:form>

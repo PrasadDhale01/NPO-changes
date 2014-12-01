@@ -28,7 +28,7 @@
 <input type="hidden" name="charity_name" id="charity_name"/>
 <div class="feducontent">
 	<div class="container">
-		<h1><span class="glyphicon glyphicon-edit"></span> Edit Project</h1>
+		<h1><span class="glyphicon glyphicon-edit"></span> Edit Campaign</h1>
 
         <g:uploadForm class="form-horizontal" controller="project" action="update" method="post" role="form">
             <input type="hidden" name="_method" value="PUT" id="_method" />
@@ -262,7 +262,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Project title</label>
+                        <label class="col-sm-2 control-label">Campaign title</label>
                         <div class="col-sm-10">
                             <input class="form-control" name="${FORMCONSTANTS.TITLE}" value="${project.title}">
                         </div>
@@ -297,7 +297,7 @@
             
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Project Images and Video</h3>
+                    <h3 class="panel-title">Campaign Images and Video</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">

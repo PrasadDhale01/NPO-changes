@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="panel-footer announcement-bottom">
-                Total # of projects
+                Total # of campaigns
             </div>
         </div>
     </div>

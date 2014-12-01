@@ -2,13 +2,13 @@
 <div>
     <h1>Crowdera</h1>
 
-    <h3>A global platform to create and fund indigenous educational projects</h3>
+    <h3>A global platform to create and fund indigenous educational campaigns</h3>
 
-    <p>You have successfully funded a project</p>
+    <p>You have successfully funded a campaign</p>
     <table style="border: dotted;">
         <tbody>
         <tr>
-            <td>Project</td>
+            <td>Campaign</td>
             <td><g:link absolute="true" controller="project" action="show" id="${project.id}">${project.title}</g:link></td>
         </tr>
         <tr>

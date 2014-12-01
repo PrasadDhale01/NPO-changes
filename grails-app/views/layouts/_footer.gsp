@@ -11,13 +11,13 @@
                 <a href="${resource(dir: '/projects/create')}">Start a Project</a>
                 <a href="${resource(dir: '/howitworks')}">How it works</a>
                 <a href="mailto:info@crowdera.co">Contact</a>
-                <a href="http://crowdera.tumblr.com">Blog</a>
             </div>
             <div class="col-sm-7 flinks">
 			    <a href="https://twitter.com/CrowderaInc">Twitter</a>
 			    <a href="https://www.facebook.com/crowderainc?ref=hl">Facebook</a>
 			    <!-- <a href="https://www.linkedin.com/company/fedu">Linkedin</a> -->
-			    <a href="http://instagram.com/crowderacrew">Instagram</a>                
+			    <a href="http://instagram.com/crowderacrew">Instagram</a>
+                <a href="http://crowdera.tumblr.com">Blog</a>
             </div>
         </div>
     </div>

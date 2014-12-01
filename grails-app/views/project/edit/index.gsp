@@ -312,6 +312,7 @@
                                 <g:each var="imgurl" in="${project.imageUrl}">
                                     <img src="${imgurl.url }" style="width:50px;height:50px;"/>
                                 </g:each>
+                                <output id="result"></output>
                         </div>
                     </div>
                     <div class="form-group">

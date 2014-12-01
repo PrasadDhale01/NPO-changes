@@ -59,19 +59,15 @@
                      	</div>
                                     
                      	<div class="form-group">
-                        	<div class="input-group cvc-details">
-                        		<div class="col-md-4">
-	                            	<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
-	                            	<input class="form-control" type="text" placeholder="CVC" data-stripe="cvc" name="ccCardValidationNum">
-								</div>
-								<div class="col-md-4">
-                            		<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
-	                            	<input class="form-control" type="text" placeholder="MM" data-stripe="exp-month"  name="ccExpDateMonth">
-	                            </div>
-								<div class="col-md-4">
-	                            	<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
-	                            	<input class="form-control" type="text" placeholder="YYYY" data-stripe="exp-year" name="ccExpDateYear">
-	                            </div>
+                        	<div class="input-group">
+	                           	<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
+	                           	<input class="form-control" type="text" placeholder="CVC" data-stripe="cvc" name="ccCardValidationNum">
+	                           	
+                          		<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
+                          		<g:select class="selectpicker" name="ccExpDateMonth" from="${month}" optionKey="key" data-stripe="exp-month" optionValue="value"/>
+                          		
+	                           	<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
+	                           	<g:select class="selectpicker" name="ccExpDateYear" from="${year}" optionKey="key" data-stripe="exp-year" optionValue="value"/>
                         	</div>
                     	</div>
                     </div>

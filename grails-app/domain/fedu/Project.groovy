@@ -42,6 +42,7 @@ class Project {
     boolean inactive = false
     boolean send_mail = false
     boolean draft = false
+    boolean rejected = false
 
     static mapping = {
         id(generator: "uuid")

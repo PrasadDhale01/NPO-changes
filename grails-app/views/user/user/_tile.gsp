@@ -29,18 +29,28 @@
 						<img src="/images/draft.png" width="100">
 					</div>
 				</g:if>
+				<g:elseif test="${project.rejected}">
+					<div class="over">
+						<img src="/images/rejected.png" width="100">
+					</div>
+				</g:elseif>
+				<g:elseif test="${!project.validated}">
+					<div class="over">
+						<img src="/images/pending.png" width="100">
+					</div>
+				</g:elseif>
 			</div>
 		</g:link>
 	</div>
 
 	<div class="caption">
 		<div class="project-title">
-            ${project.title}
-        </div>
+			${project.title}
+		</div>
 		<hr class="tile-separator">
-        <div class="project-story-span">
-            ${project.description}
-        </div>
+		<div class="project-story-span">
+			${project.description}
+		</div>
 	</div>
 
 	<div class="modal-footer tile-footer"
@@ -48,8 +58,7 @@
 		<div class="row">
 			<div class="col-sm-6 progress-pie-chart" data-percent="43">
 				<div class="c100 p${percentage} small text-center">
-					<span>
-						${percentage}%
+					<span> ${percentage}%
 					</span>
 					<div class="slice">
 						<div class="bar"></div>
@@ -77,8 +86,7 @@
 					<!-- Funding achieved in time. -->
 					<div class="col-md-6">
 						<h6 class="text-center">
-							<span class="lead">
-								${dateFormat.format(achievedDate.getTime())}
+							<span class="lead"> ${dateFormat.format(achievedDate.getTime())}
 							</span><br>ACHIEVED
 						</h6>
 					</div>
@@ -87,8 +95,7 @@
 					<!-- Funding not achieved in time. -->
 					<div class="col-md-6">
 						<h6 class="text-center">
-							<span class="lead">
-								${dateFormat.format(endDate.getTime())}
+							<span class="lead"> ${dateFormat.format(endDate.getTime())}
 							</span><br>ENDED
 						</h6>
 					</div>
@@ -98,8 +105,7 @@
 				<!-- Time left till end date. -->
 				<div class="col-md-6">
 					<h6 class="text-center">
-						<span class="lead">
-							${projectService.getRemainingDay(project)}
+						<span class="lead"> ${projectService.getRemainingDay(project)}
 						</span><br>DAYS TO GO
 					</h6>
 				</div>
@@ -129,12 +135,13 @@
 					</g:form>
 
 				</div>
-				
+
 				<div class="col-sm-2">
 					<g:form controller="project" action="projectdelete" method="post"
 						id="${project.id}">
-						<button class="projectdelete close pull-right" aria-label="Delete project"
-							id="projectdelete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
+						<button class="projectdelete close pull-right"
+							aria-label="Delete project" id="projectdelete"
+							onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
 							<i class="glyphicon glyphicon-trash"></i>
 						</button>
 					</g:form>

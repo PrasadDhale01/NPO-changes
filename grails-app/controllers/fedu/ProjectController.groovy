@@ -123,7 +123,7 @@ class ProjectController {
     def delete() {
         def project = Project.get(params.id)
         if (project) {
-            project.inactive = true
+            project.rejected = true
             flash.message= "Campaign discarded successfully"
             redirect (action:'validateList')
         } else {

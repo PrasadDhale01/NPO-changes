@@ -147,14 +147,20 @@ class ProjectController {
     
     @Secured(['ROLE_USER'])
     def saveasdraft(){
-        def projectId = params.projectId
-        def project = Project.get(projectId)
-        project.draft = false
-        flash.message="Campaign has been submitted for approval."
-        
-        render (view: 'manageproject/index',
-                model: [project: project,
-                        FORMCONSTANTS: FORMCONSTANTS])
+        def project = Project.get(params.id)
+        if(project.draft) {
+            project.draft = false
+            flash.message="Project has been submitted for approval."
+            
+            render (view: 'manageproject/index',
+                    model: [project: project,
+                            FORMCONSTANTS: FORMCONSTANTS])
+        } else {
+            flash.message="This project has already been submitted for approval, and under review."
+            render (view: 'manageproject/index',
+                    model: [project: project,
+                            FORMCONSTANTS: FORMCONSTANTS])
+        }
     }
     
     @Secured(['ROLE_ADMIN'])

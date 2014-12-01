@@ -46,8 +46,7 @@
     </div>
     
     <g:if test="${project.draft}">
-    	<g:form controller="project" action="saveasdraft">
-    		<g:hiddenField name="projectId" value="${project.id}"/>
+    	<g:form controller="project" action="saveasdraft" id="${project.id}">
         	<button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval</button>
         </g:form>
     </g:if><br>

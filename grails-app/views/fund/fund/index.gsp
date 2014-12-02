@@ -27,7 +27,7 @@
 								</div>
 								<span id="errormsg"></span>
 							</div>
-
+							<div class="clear"></div>
 							<button type="submit" class="btn btn-primary btn-lg">Continue</button>
 						</g:form>
 					</g:if>
@@ -47,7 +47,7 @@
 								</div>
 								<span id="errormsg"></span>
 							</div>
-
+							<div class="clear"></div>
 							<button type="submit" class="btn btn-primary btn-lg">Continue</button>
 						</g:form>
 					</g:else>

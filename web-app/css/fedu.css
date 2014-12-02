@@ -1157,4 +1157,11 @@ text-decoration: none !important;
     height:200px;
     }
 }
-
+@media only screen and (max-width: 768px){
+.nav > li > a {
+    padding: 7px 17px;
+}
+}
+.rewarddesc{
+    margin-left:-5px;
+}

@@ -428,7 +428,7 @@ tinymce.init({
 									<div class="row">
 										<div class="col-sm-12">
 											<label class="col-sm-2 control-label">Reward Description</label>
-											<div class="col-sm-10">
+											<div class="col-sm-10 rewarddesc">
 												<textarea class="form-control rewardDescription"
 													name="rewardDescription" id="rewardDescription" rows="2"
 													placeholder="Description"></textarea>

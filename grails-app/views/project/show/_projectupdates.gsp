@@ -1,5 +1,3 @@
-<div class="feducontent">
-    <h1 class="text-success text-center">Recent Updates</h1>
 
     <g:if test="${!project.projectUpdates.empty}">
 	    <%
@@ -13,7 +11,5 @@
 	    </g:each>
 	</g:if>
 	<g:else>
-	    <br/>
 	    <div class="alert alert-info">No updates yet.</div>
 	</g:else>
-</div>

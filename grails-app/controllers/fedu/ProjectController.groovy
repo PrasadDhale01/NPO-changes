@@ -451,6 +451,8 @@ class ProjectController {
             projectService.getMultipleImageUrls(imageFiles, project)
         }
         
+        projectService.getdefaultAdmin(project, user)
+        
         String email1 = params.email1
         String email2 = params.email2
         String email3 = params.email3

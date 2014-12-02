@@ -192,6 +192,8 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
 	def create() {
         def categoryOptions = projectService.getCategoryList()
+        def country = projectService.getCountry()
+        def state = projectService.getState()
 
         def genderOptions = [
             "MALE": (Beneficiary.Gender.MALE),
@@ -209,7 +211,9 @@ class ProjectController {
                 model: [categoryOptions: categoryOptions,
                         rewardOptions: rewardOptions,
                         genderOptions: genderOptions,
-                        FORMCONSTANTS: FORMCONSTANTS])
+                        FORMCONSTANTS: FORMCONSTANTS,
+                        country:country,
+                        state:state])
 	}
 
     @Secured(['ROLE_USER'])

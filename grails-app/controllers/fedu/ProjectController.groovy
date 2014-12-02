@@ -189,7 +189,7 @@ class ProjectController {
         redirect (action: 'show', id: params.id, fragment: 'comments')
     }
 
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
 	def create() {
         def categoryOptions = projectService.getCategoryList()
 

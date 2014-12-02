@@ -1165,3 +1165,9 @@ text-decoration: none !important;
 .rewarddesc{
     margin-left:-5px;
 }
+.validate-btn-margin{
+    margin-bottom:25px
+}
+.nav-tabs.nav-justified > li > a {
+    font-size:13px;
+}

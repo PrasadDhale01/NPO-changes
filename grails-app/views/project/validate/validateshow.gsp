@@ -17,9 +17,9 @@
 		<div class="container">
 			<g:if test="${project}">
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-8">
 						<div class="row">
-							<div class="col-md-8">
+							<div class="col-md-12">
 								<h1 class="green-heading text-center">
 									<g:link controller="project" action="show" id="${project.id}"
 										title="${project.title}">
@@ -34,26 +34,6 @@
 										</li>
 									</div>
 								</g:if>
-							</div>
-							<div class="col-md-4">
-								<div class="row">
-									<div class="col-md-6">
-										<g:link controller="project" action="updateValidation"
-											id="${project.id}" class="btn btn-primary" role="button">
-											<i class="glyphicon glyphicon-check" style="width: 175"></i>&nbsp;Validate</g:link>
-									</div>
-									<div class="col-md-6">
-										<g:form action="delete" controller="project"
-											id="${project.id}" method="post">
-											<button class="btn btn-danger" name="_action_delete"
-												value="Delete"
-												onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);"
-												style="width: 180">
-												<i class="fa fa-trash-o"></i>&nbsp;Discard
-											</button>
-										</g:form>
-									</div>
-								</div>
 							</div>
 						</div><br>
 
@@ -90,7 +70,30 @@
 						</div>
 
 					</div>
-				</div>
+
+					<div  class="col-md-4">
+						<div class="row validate-btn-margin">
+							<div class="col-md-6 text-center">
+								<g:link controller="project" action="updateValidation"
+									id="${project.id}" class="btn btn-primary" role="button">
+									<i class="glyphicon glyphicon-check" style="width: 175"></i>&nbsp;Validate</g:link>
+							</div>
+							<div class="col-md-6 text-center">
+								<g:form action="delete" controller="project"
+									id="${project.id}" method="post">
+									<button class="btn btn-danger" name="_action_delete"
+										value="Delete"
+										onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);"
+										style="width: 180">
+										<i class="fa fa-trash-o"></i>&nbsp;Discard
+									</button>
+								</g:form>
+							</div>
+						</div>
+						<div class="row">
+							<g:render template="/project/manageproject/tilesanstitle" /></div>
+						</div>
+					</div>
 				<%--
 			<g:if test="${project.validated == false}">
                 <div class="alert alert-warning">This Campaign is not yet published.</div>

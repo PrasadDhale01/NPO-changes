@@ -162,7 +162,7 @@ class UserService {
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')
         if (!admin) {
-            admin = new User(username: 'admin@fedu.org', password: 'P@$$w0rd').save(failOnError: true)
+            admin = new User(username: 'admin@fedu.org', password: 'P@$$w0rd',firstName: 'adminFirstName', lastName:'adminLastName').save(failOnError: true)
         }
         UserRole.findOrSaveByUserAndRole(admin, roleService.adminRole())
 

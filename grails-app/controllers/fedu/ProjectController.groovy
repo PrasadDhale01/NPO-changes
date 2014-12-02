@@ -418,7 +418,7 @@ class ProjectController {
 
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
 
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def save() {
         Project project
         Beneficiary beneficiary
@@ -470,7 +470,7 @@ class ProjectController {
         }
 	}
 
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def saveRedirect() {
         def button = params.button
         def project = Project.get(params.id)

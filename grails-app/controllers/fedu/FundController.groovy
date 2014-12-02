@@ -54,6 +54,8 @@ class FundController {
         def cardTypes = projectService.getcardtypes()
         def title = projectService.getTitle()
         def state = projectService.getState()
+        def month = contributionService.getMonth()
+        def year = contributionService.getYear()
         def defaultCountry = 'US'
 
         if (params.projectId) {
@@ -76,7 +78,7 @@ class FundController {
         }
 
         if (project && reward) {
-            render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry]
+            render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year]
         } else {
             render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
         }

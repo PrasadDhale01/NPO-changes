@@ -33,6 +33,8 @@ $(function() {
     $("#updatereward").hide();
     $("#rewardTemplate").hide();
 
+    $('#val1').hide();
+
     $("#charitableId").hide();
     $("#icondiv").hide();
         
@@ -238,6 +240,20 @@ $(function() {
    	         $('#paypalemail').find('input').val('');
   	      }
   	 });
+
+     $('#val3').change(function(){
+        var c = $('#val3').val();
+        if(c=='US'){
+          $('#val1').show();
+          $('#val2').hide();
+        }
+       else
+        {
+          $('#val1').hide();
+          $('#val2').show();
+        }  
+    });
+
 
      /** ********************Organization Icon*************************** */
 

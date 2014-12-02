@@ -1,5 +1,6 @@
 <g:set var="userService" bean="userService" />
 <g:set var="contributionService" bean="contributionService"/>
+<g:set var="projectService" bean="projectService"/>
 <% def user = userService.getCurrentUser() 
 def base_url = grailsApplication.config.crowdera.BASE_URL
 %>
@@ -96,19 +97,11 @@ tinymce.init({
 								</div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label">City</label>
-									<div class="col-sm-10">
+									<div class="col-sm-4">
 										<input type="text" placeholder="City"
 											name="${FORMCONSTANTS.CITY}" class="form-control">
 									</div>
-								</div>
-
-								<div class="form-group">
-									<label class="col-sm-2 control-label">State</label>
-									<div class="col-sm-4">
-										<input type="text" placeholder="State"
-											name="${FORMCONSTANTS.STATEORPROVINCE}" class="form-control">
-									</div>
-
+									
 									<label class="col-sm-2 control-label">Postcode</label>
 									<div class="col-sm-4">
 										<input type="text" placeholder="Postcode"
@@ -117,10 +110,20 @@ tinymce.init({
 								</div>
 
 								<div class="form-group">
+									<label class="col-sm-2 control-label">State</label>
+									<div class="col-sm-2" id="val1">
+										<g:select  class="selectpicker" type="text" name="${FORMCONSTANTS.STATEORPROVINCE}" from="${state}" optionKey="key" optionValue="value"/>	
+									</div>
+									<div class="col-sm-4" id="val2">
+										<input type="text" placeholder="State"
+											name="${FORMCONSTANTS.STATEORPROVINCE}" class="form-control">
+									</div>
+								</div>
+
+								<div class="form-group">
 									<label class="col-sm-2 control-label">Country</label>
 									<div class="col-sm-10">
-										<input type="text" placeholder="Country"
-											name="${FORMCONSTANTS.COUNTRY}" class="form-control">
+										<g:select type="text" id="val3" class="selectpicker" name="${FORMCONSTANTS.COUNTRY}" from="${country}" optionKey="key" optionValue="value"/>
 									</div>
 								</div>
 

@@ -60,6 +60,9 @@
 							<li><a href="#contributions" data-toggle="tab"> <span
 									class="glyphicon glyphicon-tint"></span> Contributions
 							</a></li>
+							<li><a href="#rewards" data-toggle="tab"> <i
+									class="fa fa-gift fa-lg"></i> Rewards
+							</a></li>
 							<li><a href="#comments" data-toggle="tab"> <span
 									class="glyphicon glyphicon-comment"></span> Comments
 							</a></li>
@@ -153,9 +156,6 @@
 					</div>
 					<div class="col-md-4">
 						<g:render template="/project/manageproject/tilesanstitle" />
-						<g:if test="${project.rewards.size()>1}">
-							<g:render template="show/rewards" />
-						</g:if>
 						<g:if test="${project.draft}">
 							<g:form controller="project" action="saveasdraft"
 								id="${project.id}">

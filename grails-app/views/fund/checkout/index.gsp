@@ -185,10 +185,15 @@
                         <g:render template="rewardtile"/>
                     </g:if>
                 </div>
-                 <div class="row">
+                <div class="row">
                 	<g:render template="/layouts/tile"/>
                 </div>
-                 <div class="row" align="center">
+                <div class="row">
+                    <label class="checkbox control-label">
+                        <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse">By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
+                    </label>
+                </div>
+                <div class="row" align="center">
                 	<button type="submit" class="btn btn-primary btn-block btn-lg" name="fund-button" id="paypalsubmitbutton">Contribute now</button>
                 </div>
             </div>

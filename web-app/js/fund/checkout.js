@@ -128,6 +128,19 @@ $(function() {
             billToZip: {
             	number: true,
             	required: true
+            },
+            agreetoTermsandUse: {
+                required: true
+            }
+        },
+        messages:{
+            agreetoTermsandUse: "Kindly confirm and then proceed to contribute"
+        },
+        errorPlacement: function(error, element) {
+            if ( element.is(":radio") || element.is(":checkbox")) {
+                error.appendTo(element.parent().parent());
+            } else{
+                error.insertAfter(element);
             }
         }
     });

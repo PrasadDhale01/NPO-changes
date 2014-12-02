@@ -18,17 +18,29 @@
 		<div class="container">
 			<g:if test="${project}">
 				<div class="row">
-					<g:if test="${project.draft}">
-						<div class="alert alert-info">
-							<h2 class="text-center">It is still in draft</h2>
-						</div>
-					</g:if>
-
 					<g:if test="${flash}">
 						<div class="alert alert-success">
 							${flash.message}
 						</div>
 					</g:if>
+
+					<g:if test="${project.draft}">
+						<div class="alert alert-info">
+							<h2 class="text-center">It is still in draft</h2>
+						</div>
+					</g:if>
+					<g:elseif test="${project.rejected}">
+						<div class="alert alert-info">
+							<h2 class="text-center">Sorry, but this project is not
+								validated by admin</h2>
+						</div>
+					</g:elseif>
+					<g:elseif test="${!project.validated}">
+						<div class="alert alert-info">
+							<h2 class="text-center">It is still pending</h2>
+						</div>
+					</g:elseif>
+
 					<h1 class="green-heading text-center">
 						<g:link controller="project" action="show" id="${project.id}"
 							title="${project.title}">
@@ -145,7 +157,8 @@
 							<g:render template="show/rewards" />
 						</g:if>
 						<g:if test="${project.draft}">
-							<g:form controller="project" action="saveasdraft" id="${project.id}">
+							<g:form controller="project" action="saveasdraft"
+								id="${project.id}">
 								<button class="btn btn-block btn-primary">
 									<i class="glyphicon glyphicon-check"></i>&nbsp;Submit for
 									approval

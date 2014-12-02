@@ -453,6 +453,7 @@ class ProjectService {
 		def results = criteria.list {
 			eq("validated", true)
 			eq("inactive", false)
+            eq("rejected", false)
 			order("id", "desc")
 		}
 		def popularProjectsList = getPopularProjects()
@@ -478,6 +479,7 @@ class ProjectService {
 		def results = criteria.list {
 			eq("validated", true)
 			eq("inactive", false)
+            eq("rejected", false)
 			order("id", "desc")
 		}
 		def popularProjectsList = getPopularProjects()
@@ -507,7 +509,7 @@ class ProjectService {
     }
 
     def getNonValidatedProjects() {
-        return Project.findAllWhere(validated: false, inactive: false, draft:false)
+        return Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false)
     }
 
     def search(String query) {

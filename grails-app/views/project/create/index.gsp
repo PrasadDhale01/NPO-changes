@@ -7,7 +7,26 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 <head>
 <meta name="layout" content="main" />
 <r:require modules="projectcreatejs" />
-<ckeditor:resources />
+<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+<script>
+tinymce.init({
+	mode : "specific_textareas",
+    editor_selector : "mceEditor",
+    external_plugins: {
+          "moxiemanager": "http://www.tinymce.com/js/moxiemanager/plugin.min.js"
+    },
+	plugins: [
+          "moxiemanager advlist autolink lists link image charmap print preview hr anchor pagebreak emoticons",
+      ],
+      toolbar: "| insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image forecolor backcolor emoticons",
+      image_advtab: true,
+      templates: [
+          {title: 'Test template 1', content: 'Test 1'},
+          {title: 'Test template 2', content: 'Test 2'}
+      ]
+});
+</script>
+
 </head>
 <body>
 	<input type="hidden" id="b_url" value="<%=base_url%>" /> 
@@ -334,21 +353,8 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Story</label>
 							<div class="col-sm-10">
-								<ckeditor:config var="toolbar_Mytoolbar">
-                                [
-                                    ['Bold', 'Italic', 'Underline','Strike','Subscript', 'Superscript','-', 'RemoveFormat',],
-                                    ['Link','Unlink','Anchor'],
-                                    ['Styles','Format','Font','FontSize'],
-                                    ['Maximize'],['TextColor'],
-                                    [ 'Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak','Iframe' ]
-                                ]
-                            </ckeditor:config>
-
-								<ckeditor:editor toolbar="Mytoolbar"
-									name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}"
-									height="200px" width="100%">
-									${initialValue}
-								</ckeditor:editor>
+								<textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="mceEditor">
+									${initialValue}</textarea>
 							</div>
 						</div>
 					</div>

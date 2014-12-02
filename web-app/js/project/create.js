@@ -155,6 +155,9 @@ $(function() {
             },
             pay:{
             	required: true
+            },
+            checkBox:{
+              required: true
             }
             /*
             imageUrl: {

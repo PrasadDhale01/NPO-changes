@@ -61,15 +61,16 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 											name="${FORMCONSTANTS.TELEPHONE}" placeholder="Telephone">
 									</div>
 								</div>
-							</div>
-							<div class="col col-sm-6">
+
 								<div class="form-group">
-									<label class="col-sm-2 control-label">Address</label>
-									<div class="col-sm-10">
+									<label class="col-sm-4 control-label">Address</label>
+									<div class="col-sm-8">
 										<input type="text" placeholder="Line 1"
 											name="${FORMCONSTANTS.ADDRESSLINE1}" class="form-control">
 									</div>
 								</div>
+							</div>
+							<div class="col col-sm-6">
 								<div class="form-group">
 									<label class="col-sm-2 control-label">Address</label>
 									<div class="col-sm-10">
@@ -106,6 +107,13 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 											name="${FORMCONSTANTS.COUNTRY}" class="form-control">
 									</div>
 								</div>
+
+								<div class="form-group">
+                             		<label class="col-sm-2 control-label">&nbsp;</label>
+         							<div class="col-sm-10">
+          								<input type="checkbox" name="checkBox" > I confirm I am over the age of 13.
+         							</div>
+        						</div>
 							</div>
 						</div>
 					</div>
@@ -347,36 +355,34 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 				</div>
 
 				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Campaign Images and Video</h3>
-					</div>
-					<div class="panel-body">
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Pictures</label>
-							<div class="col-sm-2">
-							    <button id="add_img_btn" class="btn btn-primary btnAddImage" type="button">
-											<i class="icon-file"></i> Add Image
-								</button>
-								<input type="file" class="hidden" name="${FORMCONSTANTS.THUMBNAIL}[]"
-									id="projectImageFile" multiple="multiple">
-							</div>
-							<!--<div class="col-sm-2">
-								<input class="hidden" name="${FORMCONSTANTS.IMAGEURL}"
-									placeholder="Image URL">
-							</div>-->
-							<div class="col-sm-8">
-							    <output id="result"></output>	
-							</div>						
-						</div>
-						</div>
-						<div class="form-group">
-							<label class="col-sm-2 control-label">Video URL</label>
-							<div class="col-sm-4">
-								<input id="videoUrl" class="form-control"
-									name="${FORMCONSTANTS.VIDEO}">
-							</div>
-						</div>
-					</div>
+  					<div class="panel-heading">
+    					<h3 class="panel-title">Campaign Images and Video</h3>
+  					</div>
+  					<div class="panel-body">
+    					<div class="form-group">
+      						<label class="col-sm-2 control-label">Pictures</label>
+      						<div class="col-sm-2">
+        						<button id="add_img_btn" class="btn btn-primary btnAddImage" type="button"> <i class="icon-file"></i> Add Image </button>
+        						<input type="file" class="hidden" name="${FORMCONSTANTS.THUMBNAIL}[]"
+         							id="projectImageFile" multiple="multiple">
+      						</div>
+      						<!--<div class="col-sm-2">
+        						<input class="hidden" name="${FORMCONSTANTS.IMAGEURL}"
+         							placeholder="Image URL">
+       						</div>-->
+      						<div class="col-sm-8">
+        						<output id="result"></output>
+      						</div>
+    					</div>
+    					<div class="form-group">
+      						<label class="col-sm-2 control-label">Video URL</label>
+      						<div class="col-sm-4">
+        						<input id="videoUrl" class="form-control"
+         							name="${FORMCONSTANTS.VIDEO}">
+      						</div>
+    					</div>
+  					</div>
+				</div>
 
 				<div class="panel panel-default">
 					<div class="panel-heading">

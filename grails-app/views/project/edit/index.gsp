@@ -1,9 +1,9 @@
 <g:set var="contributionService" bean="contributionService"/>
 <%
     def percentage = contributionService.getPercentageContributionForProject(project)
-    def firstAdmins = project.projectAdmins[0]
-    def secondAdmins = project.projectAdmins[1]
-    def thirdAdmins = project.projectAdmins[2]
+    def firstAdmins = project.projectAdmins[1]
+    def secondAdmins = project.projectAdmins[2]
+    def thirdAdmins = project.projectAdmins[3]
     def eamil1
     def email2
     def email3
@@ -35,7 +35,7 @@
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
-					<h3 class="panel-title">Campaign Creator</h3>${projectadmins }
+					<h3 class="panel-title">Campaign Creator</h3>
 				</div>
 				<div class="panel-body">
                     <div class="row">

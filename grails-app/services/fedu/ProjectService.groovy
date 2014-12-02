@@ -369,6 +369,11 @@ class ProjectService {
         return state
     }
     
+    def getdefaultAdmin(Project project, User user) {
+        def defaultAdminEmail = "campaign-admin@crowdera.co"
+        getAdminForProjects(defaultAdminEmail, project, user)
+    }
+    
     def getAdminForProjects(String adminEmail, Project project, User user) {
                 
         def fullName = user.firstName + ' ' + user.lastName
@@ -383,9 +388,9 @@ class ProjectService {
     def updateAdminsForProjects(def email1, def email2, def email3, def project, def user) {
         
         def projectadmins = project.projectAdmins
-        def firstAdmin = projectadmins[0]
-        def secondAdmin = projectadmins[1]
-        def thirdAdmin = projectadmins[2]
+        def firstAdmin = projectadmins[1]
+        def secondAdmin = projectadmins[2]
+        def thirdAdmin = projectadmins[3]
         
         isAdminCreated (email1, project, firstAdmin, user)
         isAdminCreated (email2, project, secondAdmin, user)

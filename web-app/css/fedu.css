@@ -1170,3 +1170,9 @@ text-decoration: none !important;
 .country-create-project .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
     width: 100% !important;
 }
+@media only screen and (max-width: 480px){
+    .glyphicon { margin-right: 10px;}
+    .featured-non-profits{
+        display: none;
+    }
+}

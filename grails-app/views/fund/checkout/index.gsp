@@ -52,21 +52,21 @@
                     			<span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
                         		<input type="text" class="card-number form-control" placeholder="Card Number" data-stripe="number" name="ccNumber">
 
-                        		<span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
+                        		<span class="input-group-addon card-details"><span class="glyphicon glyphicon-credit-card"></span> </span>
                         		<g:select class="selectpicker card-number" name="ccType" id="ccType"
                            			from="${cardTypes}" optionKey="key" optionValue="value"/>
                      		</div>
                      	</div>
-                                    
+                        <div class="clear"></div>
                      	<div class="form-group">
                         	<div class="input-group">
 	                           	<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
 	                           	<input class="form-control" type="text" placeholder="CVC" data-stripe="cvc" name="ccCardValidationNum">
 	                           	
-                          		<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
+                          		<span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
                           		<g:select class="selectpicker" name="ccExpDateMonth" from="${month}" optionKey="key" data-stripe="exp-month" optionValue="value"/>
                           		
-	                           	<span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span> </span>
+	                           	<span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
 	                           	<g:select class="selectpicker" name="ccExpDateYear" from="${year}" optionKey="key" data-stripe="exp-year" optionValue="value"/>
                         	</div>
                     	</div>
@@ -124,6 +124,7 @@
                                     	<input class="form-control" type="text" placeholder="Address Line 1" name="billToAddressLine1">
                                 	</div>
                             	</div>
+                            	<div class="clear"></div>
                             </div>
 
                         	<div class="col-md-6">

@@ -139,6 +139,8 @@ $(function() {
         errorPlacement: function(error, element) {
             if ( element.is(":radio") || element.is(":checkbox")) {
                 error.appendTo(element.parent().parent());
+            } else if(element.parent('.input-group').length) {
+                error.insertAfter(element.parent());
             } else{
                 error.insertAfter(element);
             }

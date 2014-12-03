@@ -1176,3 +1176,9 @@ text-decoration: none !important;
         display: none;
     }
 }
+
+.has-error .card-details {
+    color: #6f6f6f !important;
+    border-color: #cccccc;
+    background-color: #eeeeee;
+}

@@ -25,15 +25,17 @@
                             <g:hiddenField name="amount" value="${project.amount}"/>
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control" name="title" placeholder="Title" required/>
+                                <input type="text" class="form-control" name="title" placeholder="Title"/>
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea class="form-control" name="description" rows="4" placeholder="Description" required></textarea>
+                                <textarea class="form-control" name="description" rows="4" placeholder="Description"></textarea>
                             </div>
+                            <div class="clear"></div>
                             <div class="form-group">
+                            
                                 <label for="price">Price ($)</label>
-                                <input type="number" class="form-control" name="price" placeholder="Price" required/>
+                                <input type="number" class="form-control" name="price" placeholder="Price"/>
                             </div>
                         </div>
                         <div class="modal-footer">

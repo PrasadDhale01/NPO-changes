@@ -4,8 +4,7 @@ $(function() {
     $('#createRewardModal').find('form').validate({
         rules: {
             title: {
-                minlength: 2,
-                required: true
+                minlength: 2
             },
             description: {
                 required: true,

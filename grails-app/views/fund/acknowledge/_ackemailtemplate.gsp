@@ -1,6 +1,8 @@
 <g:set var="projectService" bean="projectService"/>
 <div>
     <h1>Crowdera</h1>
+    <% 	Double amt = Double.parseDouble(amount)
+    	def contributedAmount = projectService.getDataType(amt) %>
 
     <h3>A global platform to create and fund indigenous educational campaigns</h3>
 
@@ -17,7 +19,7 @@
         </tr>
         <tr>
             <td>Amount</td>
-            <td>$${amount}</td>
+            <td>$${contributedAmount}</td>
         </tr>
         </tbody>
     </table>

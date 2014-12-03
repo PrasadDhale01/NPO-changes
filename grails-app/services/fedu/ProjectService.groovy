@@ -512,6 +512,16 @@ class ProjectService {
         }
         return list
     }
+    
+    def getDataType(Double amount){
+        def price
+        if(((int)amount) == amount){
+            price = (int)amount
+        } else {
+            price = amount
+        }
+        return price
+    }
 
     def getNonValidatedProjects() {
         return Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false)

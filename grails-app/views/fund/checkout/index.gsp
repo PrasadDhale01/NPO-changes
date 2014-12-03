@@ -21,12 +21,13 @@
 <body>
 <div class="feducontent">
     <div class="container">
+    <% def contributedAmount = projectService.getDataType(amount) %>
     <g:form action="charge" method="POST" name="payment-form" role="form" id="payment-form">
         <div class="row">
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h3>Your contribution: <span class="pull-right">$${amount}</span></h3>
+                        <h3>Your contribution: <span class="pull-right">$${contributedAmount}</span></h3>
                         <h4>Your reward: <span class="pull-right">${reward.title}</span></h4>
                     </div>
                 </div>

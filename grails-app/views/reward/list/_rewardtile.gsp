@@ -1,4 +1,5 @@
 <g:set var="rewardService" bean="rewardService"/>
+<g:set var="projectService" bean="projectService"/>
 <g:if test="${!reward.obsolete}">
     <div class="panel panel-primary">
         <div class="panel-heading">
@@ -15,7 +16,8 @@
             </form>
         </div>
         <div class="panel-footer">
-            $${reward.price}
+        	<% def price = projectService.getDataType(reward.price); %>
+            $${price}
             <div class="pull-right" title="# of projects using this reward">
                 (${rewardService.numProjectsUsingReward(reward)})
             </div>

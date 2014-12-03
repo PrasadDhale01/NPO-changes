@@ -56,12 +56,6 @@
     </div>
 </div>--%>
 
-<script type="text/javascript">
-    $('#carousel-example').carousel({
-        interval: 1000
-    });
-</script>
-
 <div class="container">
     <%
         def count = projects.size()

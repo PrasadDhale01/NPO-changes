@@ -1,4 +1,5 @@
 <g:set var="contributionService" bean="contributionService"/>
+<g:set var="projectService" bean="projectService"/>
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Choose a reward</h3>
@@ -10,10 +11,11 @@
             <g:each in="${project.rewards}" var="reward">
                 <%
                     def backers = contributionService.getBackersForProjectByReward(project, reward);
+            		def price = projectService.getDataType(reward.price);
                 %>
                 <a href="#" class="list-group-item" data-rewardid="${reward.id}" data-rewardprice="${reward.price}">
                     <h4 class="list-group-item-heading">${reward.title}</h4>
-                    <h5 class="list-group-item-heading lead">$${reward.price}</h5>
+                    <h5 class="list-group-item-heading lead">$${price}</h5>
                     <p class="list-group-item-text text-justify">${reward.description}</p>
                     <p class="list-group-item-text text-justify">${backers} backer(s)</p>
                 </a>

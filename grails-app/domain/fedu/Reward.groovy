@@ -13,6 +13,9 @@ class Reward {
 
     static constraints = {
         image (nullable: true)
+        title nullable: true
+        description nullable: true
+        price nullable: true
     }
 
     static mapping = {

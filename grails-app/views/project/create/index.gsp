@@ -78,16 +78,15 @@ tinymce.init({
 											name="${FORMCONSTANTS.TELEPHONE}" placeholder="Telephone">
 									</div>
 								</div>
-
+							</div>
+							<div class="col col-sm-6">
 								<div class="form-group">
-									<label class="col-sm-4 control-label">Address</label>
-									<div class="col-sm-8">
+									<label class="col-sm-2 control-label">Address</label>
+									<div class="col-sm-10">
 										<input type="text" placeholder="Line 1"
 											name="${FORMCONSTANTS.ADDRESSLINE1}" class="form-control">
 									</div>
 								</div>
-							</div>
-							<div class="col col-sm-6">
 								<div class="form-group">
 									<label class="col-sm-2 control-label">Address</label>
 									<div class="col-sm-10">
@@ -109,18 +108,18 @@ tinymce.init({
 									</div>
 								</div>
 
-								<div class="form-group">
+								<div class="form-group country-create-project">
 									<label class="col-sm-2 control-label">State</label>
-									<div class="col-sm-2" id="val1">
+									<div class="col-sm-10" id="val1">
 										<g:select  class="selectpicker" type="text" name="${FORMCONSTANTS.STATEORPROVINCE}" from="${state}" optionKey="key" optionValue="value"/>	
 									</div>
-									<div class="col-sm-4" id="val2">
+									<div class="col-sm-10" id="val2">
 										<input type="text" placeholder="State"
 											name="${FORMCONSTANTS.STATEORPROVINCE}" class="form-control">
 									</div>
 								</div>
 
-								<div class="form-group">
+								<div class="form-group country-create-project">
 									<label class="col-sm-2 control-label">Country</label>
 									<div class="col-sm-10">
 										<g:select type="text" id="val3" class="selectpicker" name="${FORMCONSTANTS.COUNTRY}" from="${country}" optionKey="key" optionValue="value"/>

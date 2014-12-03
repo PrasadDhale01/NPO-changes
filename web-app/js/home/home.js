@@ -24,6 +24,10 @@ $(window).load(function() {
     */
 });
 
+$('#carousel-example').carousel({
+    interval: 5000
+});
+
 function showNavigation(){
 	document.getElementById('indicators').style.display = 'block';
 	document.getElementById('navigators').style.display = 'block';

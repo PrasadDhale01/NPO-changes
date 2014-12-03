@@ -5,6 +5,7 @@
     <meta name="layout" content="main" />
 </head>
 <body>
+<% def contribution = projectService.getDataType(contribution.amount) %>
 <div class="feducontent">
     <div class="container">
         <div class="row">
@@ -25,7 +26,7 @@
                     </tr>
                     <tr>
                         <td>Amount</td>
-                        <td>$${contribution.amount}</td>
+                        <td>$${contribution}</td>
                     </tr>
                     </tbody>
                 </table>

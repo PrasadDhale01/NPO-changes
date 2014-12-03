@@ -12,6 +12,8 @@
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def isFundingOpen = projectService.isFundingOpen(project)
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
+    def contribution = projectService.getDataType(contributedSoFar)
+    def amount = projectService.getDataType(project.amount)
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
@@ -37,14 +39,14 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <h6 class="text-center" style="margin-top: 10px;"><span class="lead">$${contributedSoFar}</span><br/>ACHIEVED</h6>
+                <h6 class="text-center" style="margin-top: 10px;"><span class="lead">$${contribution}</span><br/>ACHIEVED</h6>
             </div>
         </div>
     </div>
     <div class="modal-footer tile-footer" style="text-align: left; margin-top: 0; margin-bottom: 2px;">
         <div class="row">
             <div class="col-md-6">
-                <h6 class="text-center"><span class="lead">$${project.amount}</span><br/>GOAL</h6>
+                <h6 class="text-center"><span class="lead">$${amount}</span><br/>GOAL</h6>
             </div>
             <g:if test="${ended}">
                 <g:if test="${isFundingAchieved}">

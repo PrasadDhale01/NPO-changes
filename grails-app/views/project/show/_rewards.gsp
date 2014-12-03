@@ -17,16 +17,17 @@
         <g:each in="${project.rewards}" var="reward">
             <%
                 def backers = contributionService.getBackersForProjectByReward(project, reward);
+        		def price = projectService.getDataType(reward.price);
             %>
             <div class="rewardsection-row">
             <g:if test="${isFundingOpen}">
-                <h4>CONTRIBUTE $${reward.price} OR MORE</h4>
+                <h4>CONTRIBUTE $${price} OR MORE</h4>
                 <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
                 <p class="rewarddescription">${reward.description}</p>
                 <g:link absolute="true" uri="/projects/${project.id}/fund">SELECT THIS REWARD</g:link>
             </g:if>
             <g:else>
-                <h4>CONTRIBUTE $${reward.price} OR MORE</h4>
+                <h4>CONTRIBUTE $${price} OR MORE</h4>
                 <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
                 <p class="rewarddescription">${reward.description}</p>
             </g:else>

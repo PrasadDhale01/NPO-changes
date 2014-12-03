@@ -15,10 +15,13 @@
 							<div class="panel panel-default">
 								<div class="panel-body">
 									<h3>
-										Your contribution: <span class="pull-right">$${amount}</span>
+										<% def contributedAmount = projectService.getDataType(amount) %>
+										Your contribution: <span class="pull-right">$${contributedAmount}</span>
 									</h3>
 									<h4>
-										Your Reward: <span class="pull-right">${reward.title}</span>
+										Your Reward: <span class="pull-right">
+											${reward.title}
+										</span>
 									</h4>
 								</div>
 							</div>

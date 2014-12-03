@@ -1,9 +1,13 @@
+<g:set var="projectService" bean="projectService" />
 <div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Your chosen reward</h3>
-    </div>
-    <div class="panel-body">
-        <h4>${reward.title}</h4>
-        <p>Worth $${reward.price}</p>
-    </div>
+	<div class="panel-heading">
+		<h3 class="panel-title">Your chosen reward</h3>
+	</div>
+	<div class="panel-body">
+		<% def price = projectService.getDataType(reward.price) %>
+		<h4>
+			${reward.title}
+		</h4>
+		<p>Worth $${price}</p>
+	</div>
 </div>

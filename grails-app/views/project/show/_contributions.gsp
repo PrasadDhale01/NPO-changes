@@ -1,6 +1,7 @@
 <!-- Contributions -->
 <g:set var="userService" bean="userService"/>
 <g:set var="facebookService" bean="facebookService"/>
+<g:set var="projectService" bean="projectService" />
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
@@ -13,8 +14,9 @@
                 def friendlyName = userService.getFriendlyName(contribution.user)
                 def isFacebookUser = userService.isFacebookUser(contribution.user)
                 def userFacebookUrl = facebookService.getUserFacebookUrl(contribution.user)
+                def amount = projectService.getDataType(contribution.amount)
             %>
-            <dt>$${contribution.amount}</dt>
+            <dt>$${amount}</dt>
             <g:if test="${isFacebookUser}">
                 <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>
             </g:if>

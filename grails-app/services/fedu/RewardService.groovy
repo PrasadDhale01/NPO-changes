@@ -33,7 +33,7 @@ class RewardService {
         if(rewardTitle instanceof String) {
             Reward reward = new Reward()
             reward.title = rewardTitle
-            reward.price = Integer.parseInt(rewardPrice)
+            reward.price = Double.parseDouble(rewardPrice)
             reward.description = rewardDescription
             reward.obsolete = true
             project.addToRewards(reward)
@@ -42,7 +42,7 @@ class RewardService {
             for(int i=0; i<rewardTitle.size();i++ ) {
                 Reward reward = new Reward()
                 reward.title = rewardTitle[i]
-                reward.price = Integer.parseInt(rewardPrice[i])
+                reward.price = Double.parseDouble(rewardPrice[i])
                 reward.description = rewardDescription[i]
                 reward.obsolete = true
                 project.addToRewards(reward)

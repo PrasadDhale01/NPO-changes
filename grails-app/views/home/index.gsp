@@ -59,7 +59,7 @@
 <div class="full-image2"><img src="images/img-3.jpg" /></div>
 
 <div class="container">
-	<div class="row">
+	<div class="row featured-non-profits">
 		<div class="col-md-12">
 		<h1 class="text-center headingtext">Featured Non-profits</h1>
 			<div class="col-md-3">

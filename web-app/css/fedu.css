@@ -1043,10 +1043,6 @@ footer .footerbottomsection {
 }
 
 /*****************Description length error*************************************/
-.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline {
-    float: left;
-}
-
 #uploadavatar {
 	margin-top: 10px;
 }
@@ -1170,4 +1166,7 @@ text-decoration: none !important;
 }
 .nav-tabs.nav-justified > li > a {
     font-size:13px;
+}
+.country-create-project .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+    width: 100% !important;
 }

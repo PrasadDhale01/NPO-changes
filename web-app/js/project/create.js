@@ -173,11 +173,13 @@ $(function() {
             iconfile: "Please upload your organization logo"
         },
         errorPlacement: function(error, element) {
-        	if ( element.is(":radio") || element.is(":checkbox")) {
-        		error.appendTo(element.parent().parent());
-        	}else{
-        		error.insertAfter(element);
-        	}
+        	if ( element.is(":radio") ) {
+            error.appendTo(element.parent().parent());
+          } else if(element.is(":checkbox")) {
+            error.appendTo(element.parent());
+          } else{ 
+            error.insertAfter(element);
+          }
         },//end error Placement
         
         //ignore: []

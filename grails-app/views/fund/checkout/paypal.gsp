@@ -19,16 +19,16 @@
 										Your contribution: <span class="pull-right">$${contributedAmount}</span>
 									</h3>
 									<h4>
-										Your Reward: <span class="pull-right">
-											${reward.title}
-										</span>
+										<g:if test="${project.rewards.size()>1}">
+											Your Reward: <span class="pull-right">${reward.title}</span>
+										</g:if>
 									</h4>
 								</div>
 							</div>
 						</div>
 						<div class="row">
 							<button class="btn btn-primary btn-lg" name="fund-button">Fund
-								this project</button>
+								this Campaign</button>
 						</div>
 					</div>
 					<span class="payment-errors"></span>

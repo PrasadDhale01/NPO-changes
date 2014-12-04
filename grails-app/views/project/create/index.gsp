@@ -385,6 +385,7 @@ tinymce.init({
         						<input id="videoUrl" class="form-control"
          							name="${FORMCONSTANTS.VIDEO}">
       						</div>
+      						<div class="col-sm-4" id="ytVideo"></div>
     					</div>
   					</div>
 				</div>

@@ -21,6 +21,9 @@
 <body>
 <div class="feducontent">
     <div class="container">
+    <div class="alert alert-title">
+		<h1>Powered by Firstgiving</h1>
+	</div>
     <% def contributedAmount = projectService.getDataType(amount) %>
     <g:form action="charge" method="POST" name="payment-form" role="form" id="payment-form">
         <div class="row">
@@ -196,7 +199,7 @@
                     </label>
                 </div>
                 <div class="row" align="center">
-                	<button type="submit" class="btn btn-primary btn-block btn-lg" name="fund-button" id="paypalsubmitbutton">Contribute now</button>
+                	<button type="submit" class="btn btn-primary btn-block btn-lg" name="fund-button" id="paypalsubmitbutton">Pay now</button>
                 </div>
             </div>
         </div>

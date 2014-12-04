@@ -7,6 +7,9 @@
 <body>
 	<div class="feducontent">
 		<div class="container">
+			<div class="alert alert-title">
+				<h1>Powered by Paypal</h1>
+			</div>
 			<g:form action="paypalurl" method="POST" name="payment-form"
 				role="form">
 				<div class="row">
@@ -27,8 +30,7 @@
 							</div>
 						</div>
 						<div class="row">
-							<button class="btn btn-primary btn-lg" name="fund-button">Fund
-								this project</button>
+							<button class="btn btn-primary btn-lg" name="fund-button">Pay by Paypal</button>
 						</div>
 					</div>
 					<span class="payment-errors"></span>

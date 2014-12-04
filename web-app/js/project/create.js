@@ -256,6 +256,21 @@ $(function() {
         }  
     });
 
+      /******************************Video Thumbnail***************************************/
+     
+     $('#videoUrl').focus(function(){
+       
+     }).change(function(){
+          var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+          var url= $('#videoUrl').val().trim();
+          var match = url.match(regExp);
+        
+          if (match && match[2].length == 11) {
+              var vurl=url.replace("watch?v=", "v/");
+              $('#ytVideo').html('<iframe style="width:200px;height:100px; display:block;" src='+ vurl +'></iframe>');
+          }
+     });
+
 
      /** ********************Organization Icon*************************** */
 

@@ -24,6 +24,7 @@ class FundController {
     def ack
     def paykey
     def paypalemail
+    def userId
     String str
 
     def fund() {
@@ -49,7 +50,6 @@ class FundController {
         Project project
         Reward reward
 
-        def user = userService.getCurrentUser()
         def country = projectService.getCountry()
         def cardTypes = projectService.getcardtypes()
         def title = projectService.getTitle()
@@ -57,6 +57,10 @@ class FundController {
         def month = contributionService.getMonth()
         def year = contributionService.getYear()
         def defaultCountry = 'US'
+        def user = userService.getCurrentUser()
+        if (user == null){
+            user = User.findByUsername('anonymous@example.com')
+        }
 
         if (params.projectId) {
             project = Project.findById(params.projectId)
@@ -91,6 +95,11 @@ class FundController {
         if (params.projectId) {
             project = Project.findById(params.projectId)
         }
+        
+        def user = User.get(params.userId)
+        if (user == null){
+            user = User.findByUsername('anonymous@example.com')
+        }
 
         if (project) {
             if (params.int('rewardId')) {
@@ -110,12 +119,12 @@ class FundController {
 
         if (project && reward) {
             if (project.paypalEmail){
-                payByPaypal(params,project,reward)
+                payByPaypal(params,project,reward,user)
                 if(ack.equals("Success")){
                     render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, paykey:paykey]
                 }
             } else {
-                payByFirstGiving(params,project,reward)
+                payByFirstGiving(params,project,reward,user)
             }
         } else {
             render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
@@ -124,8 +133,9 @@ class FundController {
     def acknowledge() {
         def project = Project.get(params.id)
         def reward = Reward.get(params.reward)
+        def user = User.get(params.user)
         def contribution = Contribution.get(params.contribution)
-        render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution]
+        render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user]
     }
 
     def fundingConfirmation(){
@@ -147,11 +157,13 @@ class FundController {
         }
     }
 
-    def payByFirstGiving(def params, Project project,Reward reward){
+    def payByFirstGiving(def params, Project project,Reward reward,User user){
         def BASE_URL = grailsApplication.config.crowdera.firstgiving.BASE_URL
 
         def http = new HTTPBuilder(BASE_URL)
         def amount = params.double('amount')
+        
+        String ipAddress =  request.getRemoteAddr();
         
         def transactionId = null
         def result = null
@@ -185,7 +197,7 @@ class FundController {
                 billToEmail:params.billToEmail,
                 billToPhone:params.billToPhone,
 
-                remoteAddr:params.remoteAddr,
+                remoteAddr:ipAddress,
                 amount:params.amount,
                 currencyCode:params.currencyCode,
                 charityId:project.charitableId,
@@ -207,7 +219,7 @@ class FundController {
                 def xmlParsef=  new XmlParser().parseText(firstGivingXML)
                 transactionId = xmlParsef.transactionId.text()
 
-                userContribution(project,reward,amount,transactionId)
+                userContribution(project,reward,amount,transactionId,user)
             }
 
             // response handler for a failure response code
@@ -219,9 +231,9 @@ class FundController {
         }
     }
 
-    def payByPaypal(def params,Project project,Reward reward){
-        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&paypalemail=${project.paypalEmail}"
-        def failureUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&paypalemail=${project.paypalEmail}"
+    def payByPaypal(def params,Project project,Reward reward,User user){
+        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&paypalemail=${project.paypalEmail}&userId=${user.id}"
+        def failureUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&paypalemail=${project.paypalEmail}&userId=${user.id}"
 
         def BASE_URL = grailsApplication.config.crowdera.paypal.BASE_URL
 
@@ -269,10 +281,10 @@ class FundController {
         paykeytemp.save(failOnError: true)
     }
     
-    def userContribution(Project project,Reward reward, def amount,String transactionId){
+    def userContribution(Project project,Reward reward, def amount,String transactionId,User users){
         Contribution contribution = new Contribution(
                 date: new Date(),
-                user: userService.getCurrentUser(),
+                user: users,
                 reward: reward,
                 amount: amount
                 )
@@ -280,19 +292,19 @@ class FundController {
 
         Transaction transaction = new Transaction(
                 transactionId:transactionId,
-                user:userService.getCurrentUser(),
+                user:users,
                 project:project
                 )
         transaction.save(failOnError: true)
 
-        def email = userService.getEmail()
+        def email = users.email
         if (email) {
             mailService.sendMail {
                 async true
-                to userService.getCurrentUser().email
+                to users.email
                 from "info@fedu.org"
                 subject "Crowdera - Thank you for funding"
-                html g.render(template: 'acknowledge/ackemailtemplate', model: [project: project, reward: reward, amount: amount])
+                html g.render(template: 'acknowledge/ackemailtemplate', model: [project: project, reward: reward, amount: amount, users:users])
             }
         }
 
@@ -316,7 +328,7 @@ class FundController {
                 project.send_mail = true
             }
         }
-        redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [project: project, reward: reward.id, contribution: contribution.id])
+        redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [project: project, reward: reward.id, contribution: contribution.id, user:users.id])
     }
 
     def paypalurl(){
@@ -329,9 +341,10 @@ class FundController {
         def projectId = request.getParameter('projectId')
         def amount = request.getParameter('amount')
         def paypalemail = request.getParameter('paypalemail')
-        def test = request.getParameter('test')
+        def userid = request.getParameter('userId')
 
         Project project = Project.get(projectId)
+        User user = User.get(userid)
         Reward reward = Reward.get(rewardId)
 
         PaykeyTemp paykeytemp = PaykeyTemp.findByPaypalEmail(paypalemail)
@@ -339,7 +352,7 @@ class FundController {
         paykeytemp.delete()
         
         if (result){
-            userContribution(project,reward,amount,payKey)
+            userContribution(project,reward,amount,payKey,user)
         } else {
             render view: 'fund/index', model: [project: project]
         }

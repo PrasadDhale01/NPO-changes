@@ -7,6 +7,7 @@ class RoleService {
     /* Constants */
     def ROLE_ADMIN = 'ROLE_ADMIN'
     def ROLE_USER = 'ROLE_USER'
+    def ROLE_ANONYMOUS= 'ROLE_ANONYMOUS'
     def ROLE_AUTHOR = 'ROLE_AUTHOR'
     def ROLE_FACEBOOK = 'ROLE_FACEBOOK'
     def ROLE_COMMUNITY_MGR = 'ROLE_COMMUNITY_MGR'
@@ -22,6 +23,10 @@ class RoleService {
 
     def authorRole() {
         return Role.findByAuthority(ROLE_AUTHOR)
+    }
+    
+    def anonymousRole() {
+        return Role.findByAuthority(ROLE_ANONYMOUS)
     }
 
     def facebookRole() {
@@ -40,5 +45,6 @@ class RoleService {
         def authorRole = Role.findOrSaveByAuthority(ROLE_AUTHOR)
         def facebookRole = Role.findOrSaveByAuthority(ROLE_FACEBOOK)
         def communityManagerRole = Role.findOrSaveByAuthority(ROLE_COMMUNITY_MGR)
+        def anonymousRole = Role.findOrSaveByAuthority(ROLE_ANONYMOUS)
     }
 }

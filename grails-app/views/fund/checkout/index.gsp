@@ -1,4 +1,5 @@
 <g:set var="projectService" bean="projectService"/>
+<g:set var="userService" bean="userService"/>
 <html>
 <head>
     <meta name="layout" content="main" />
@@ -38,13 +39,13 @@
                 	<span class="payment-errors"></span>
 
                     <g:hiddenField name="projectId" value="${project.id}"/>
+                    <g:hiddenField name="userId" value="${user.id}"/>
                     <g:hiddenField name="rewardId" value="${reward.id}"/>
                     <g:hiddenField name="amount" value="${amount}"/>
                     <g:hiddenField name="currencyCode" value="USD"/>
                     <g:hiddenField name="charityId" value="${project.charitableId}"/>
                     <g:hiddenField name="projectAmount" value="${project.amount}"/>
                     <!-- TDODO-->
-                    <g:hiddenField name="remoteAddr" value="192.168.1.1"/>
 
                     <div class="panel panel-default">
 			        <div class="panel-heading">
@@ -85,28 +86,12 @@
                     	<div class="row">
                     	<input class="form-control" type="hidden" value="Mr/Mrs/Ms" name="billToTitle" id="billToTitle" />
                         	<div class="col-md-6">
-                        	<% if (user!=null){ %>	
+                        	<g:if test="${userService.isAnonymous(user)}">
                         	    <div class="form-group">
                                 	<div class="input-group col-md-12">
-                                    	<input class="form-control" type="text" placeholder="First Name" name="billToFirstName" id="billToFirstName" value="${user.firstName}">
+                                    	<input class="form-control" type="text" placeholder="First Name" name="billToFirstName" id="billToFirstName">
                                 	</div>
                             	</div>
-								<div class="form-group">
-									<div class="input-group col-md-12">
-										<input class="form-control" type="text" placeholder="Last Name" name="billToLastName" value="${user.lastName}">
-									</div>
-								</div>
-								<div class="form-group">
-									<div class="input-group col-md-12">
-										<input class="form-control" type="text" placeholder="Email" name="billToEmail" value="${user.email}">
-									</div>
-								</div>
-								<% } else { %>
-								<div class="form-group">
-									<div class="input-group col-md-12">
-										<input class="form-control" type="text" placeholder="First Name" name="billToFirstName" id="billToFirstName" >
-									</div>
-								</div>
 								<div class="form-group">
 									<div class="input-group col-md-12">
 										<input class="form-control" type="text" placeholder="Last Name" name="billToLastName">
@@ -117,7 +102,24 @@
 										<input class="form-control" type="text" placeholder="Email" name="billToEmail">
 									</div>
 								</div>
-								<%}%>
+							</g:if>
+							<g:else>
+								<div class="form-group">
+									<div class="input-group col-md-12">
+										<input class="form-control" type="text" placeholder="First Name" name="billToFirstName" id="billToFirstName" value="${user.firstName}">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group col-md-12">
+										<input class="form-control" type="text" placeholder="Last Name" name="billToLastName" value="${user.lastName}">
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group col-md-12">
+										<input class="form-control" type="text" placeholder="Email" name="billToEmail" value="${user.email}">
+									</div>
+								</div>
+							</g:else>
 								<div class="form-group">
 									<div class="input-group col-md-12">
 										<input class="form-control" type="text" placeholder="Phone Number" name="billToPhone">

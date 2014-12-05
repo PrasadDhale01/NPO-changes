@@ -107,6 +107,20 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+        	<div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <i class="fa fa-users"></i> Manage User
+                    </div>
+                    <div class="panel-footer">
+                        <g:link controller="user" action="list">
+                            <button class="btn btn-block btn-primary"><i class="fa fa-users"></i> Manage User</button>
+                        </g:link>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
 </div>

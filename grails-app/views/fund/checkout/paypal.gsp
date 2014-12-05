@@ -14,7 +14,7 @@
 				role="form">
 				<div class="row">
 					<div class="col-md-8">
-						<div class="row">
+						<div>
 							<div class="panel panel-default">
 								<div class="panel-body">
 									<h3>
@@ -29,7 +29,7 @@
 								</div>
 							</div>
 						</div>
-						<div class="row">
+						<div >
 							<button class="btn btn-primary btn-lg" name="fund-button">Fund this Campaign</button>
 						</div>
 					</div>

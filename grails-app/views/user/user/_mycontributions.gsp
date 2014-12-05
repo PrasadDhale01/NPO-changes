@@ -12,7 +12,6 @@
     <ul class="timeline">
         <%
             def index = 0
-            def amount = projectService.getDataType(contribution.amount)
         %>
         <g:each in="${contributions}" var="contribution">
             <g:if test="${index++ % 2 == 0}">
@@ -24,7 +23,7 @@
                 <div class="timeline-badge info"><i class="glyphicon glyphicon-credit-card"></i></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
-                        <h4 class="timeline-title">You contributed <b>$${amount}</b></h4>
+                        <h4 class="timeline-title">You contributed <b>$${projectService.getDataType(contribution.amount)}</b></h4>
                         <p><small class="text-muted">
                             <i class="glyphicon glyphicon-time"></i> on ${dateFormat.format(contribution.date)}, towards
                         </small></p>

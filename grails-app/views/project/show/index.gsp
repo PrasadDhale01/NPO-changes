@@ -33,16 +33,16 @@
                
                     <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
                         <li class="active"><a href="#essentials" data-toggle="tab">
-                            <span class="glyphicon glyphicon-leaf"></span> Essentials
+                            <span class="glyphicon glyphicon-leaf"></span><span class="tab-text"> Essentials</span>
                         </a></li>
                         <li><a href="#projectupdates" data-toggle="tab">
-                            <span class="glyphicon glyphicon-leaf"></span> Updates
+                            <span class="glyphicon glyphicon-leaf"></span><span class="tab-text"> Updates</span>
                         </a></li>
                         <li><a href="#contributions" data-toggle="tab">
-                            <span class="glyphicon glyphicon-tint"></span> Contributions
+                            <span class="glyphicon glyphicon-tint"></span><span class="tab-text"> Contributions</span>
                         </a></li>
                         <li><a href="#comments" data-toggle="tab">
-                            <span class="glyphicon glyphicon-comment"></span> Comments
+                            <span class="glyphicon glyphicon-comment"></span><span class="tab-text"> Comments</span>
                         </a></li>
                     </ul>
 

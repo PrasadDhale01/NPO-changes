@@ -30,7 +30,12 @@
                     </tr>
                     </tbody>
                 </table>
-                <div class="alert alert-success">Receipt has been sent over email to ${userService.getCurrentUser().email}</div>
+                <g:if test ="${userService.isAnonymous(user)}">
+                	<div class="alert alert-success">Receipt has been sent over to your email</div>
+                </g:if>
+                <g:else>
+                	<div class="alert alert-success">Receipt has been sent over email to ${user.email}</div>
+                </g:else>
             </div>
             <div class="col-md-4">
                 <g:if test="${project.rewards.size()>1 }">

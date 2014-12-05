@@ -136,6 +136,15 @@ class UserService {
             return false
         }
     }
+    
+    def isAnonymous(User user) {
+        if (UserRole.findByUserAndRole(user, roleService.anonymousRole())) {
+            return true
+        } else {
+            return false
+        }
+    }
+
 
     def isAuthor() {
         if (UserRole.findByUserAndRole(getCurrentUser(), roleService.authorRole())) {
@@ -171,6 +180,12 @@ class UserService {
             user = new User(username: 'user@example.com', password: 'password',firstName: 'userFirstName', lastName:'userLastName', email: 'user@example.com').save(failOnError: true)
         }
         UserRole.findOrSaveByUserAndRole(user, roleService.userRole())
+        
+        def anonymous = User.findByUsername('anonymous@example.com')
+        if (!anonymous) {
+            anonymous = new User(username: 'anonymous@example.com', password: 'password',firstName: 'anonymousFirstName', lastName:'anonymousLastName', email: 'anonymous@example.com').save(failOnError: true)
+        }
+        UserRole.findOrSaveByUserAndRole(anonymous, roleService.anonymousRole())
 
         def author = User.findByUsername('author@fedu.org')
         if (!author) {

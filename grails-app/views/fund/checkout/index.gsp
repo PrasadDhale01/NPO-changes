@@ -199,7 +199,7 @@
                     </label>
                 </div>
                 <div class="row" align="center">
-                	<button type="submit" class="btn btn-primary btn-block btn-lg" name="fund-button" id="paypalsubmitbutton">Pay now</button>
+                	<button type="submit" class="btn btn-primary btn-block btn-lg" name="fund-button" id="paypalsubmitbutton">Fund this Campaign</button>
                 </div>
             </div>
         </div>

@@ -32,6 +32,8 @@ $(function() {
 
     $("#updatereward").hide();
     $("#rewardTemplate").hide();
+    
+    $("#paypalcheckbox").hide();
 
     $('#val1').hide();
 
@@ -160,7 +162,10 @@ $(function() {
             },
             checkBox:{
               required: true
-            }
+            },
+            checkBox2:{
+              required: true
+            },
             /*
             imageUrl: {
                 url: true
@@ -235,10 +240,12 @@ $(function() {
   	       	$("#paypalemail").show();
   	        $("#charitableId").hide();
   	        $('#charitableId').find('label').text('');
+  	        $("#paypalcheckbox").show();
   	     } else if($(this).val()=="firstgiving") {
    	         $('#organizationName').find('input').val('');
   	       	 $("#charitableId").show(); 
   	         $("#paypalemail").hide();
+  	         $("#paypalcheckbox").hide();
    	         $('#paypalemail').find('input').val('');
   	      }
   	 });

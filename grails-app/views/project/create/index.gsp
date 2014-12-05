@@ -197,6 +197,12 @@ tinymce.init({
 										name="${FORMCONSTANTS.PAYPALEMAIL}">
 								</div>
 							</div>
+							<div class="form-group" id="paypalcheckbox">
+                             	<label class="col-sm-2 control-label">&nbsp;</label>
+         						<div class="col-sm-10">
+          							<input type="checkbox" name="checkBox2" > I attest that this is a verified non-profit.
+         						</div>
+        					</div>
 						</div>
 						<div class="form-group" id="charitableId">
 							<div class="row">

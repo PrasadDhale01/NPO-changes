@@ -11,6 +11,13 @@ class UserController {
         User user = (User)userService.getCurrentUser()
         render view: 'admin/dashboard', model: [user: user]
     }
+    
+    @Secured(['ROLE_ADMIN'])
+    def list() {
+        def users = User.list()
+        render(view: 'admin/userList', model: [users:users])
+    }
+
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def dashboard() {

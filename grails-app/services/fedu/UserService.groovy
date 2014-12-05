@@ -20,6 +20,18 @@ class UserService {
     def findUserByEmail(String email) {
         return User.findByEmail(email)
     }
+    
+    def getUserRole(User users){
+        def userRole = UserRole.list()
+        def roletype
+        userRole.each {
+            if(it.user.id == users.id){
+                def userrole = UserRole.findByUser(users)
+                roletype = userrole.role.authority
+            }
+        }
+        return roletype
+    }
 
     def getCommunitiesUserIn() {
         return getCommunitiesUserIn(getCurrentUser())

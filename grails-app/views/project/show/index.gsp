@@ -28,6 +28,22 @@
 	                	<a href="${project.id}">${project.title}</a>
 	                </h1>
 	            </div>
+	            <div class="col-md-4 mobileview-top">
+					<g:render template="/layouts/organizationdetails"/>
+                    <g:render template="/layouts/tilesanstitle"/>
+                    <g:if test="${percentage == 100}">
+                        <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
+                    </g:if>
+                    <g:elseif test="${ended}">
+                        <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
+                    </g:elseif>
+                    <g:else>
+                        <a href="/projects/${project.id}/fund" class="btn btn-success btn-lg btn-block" role="button">Contribute now</a>
+                    </g:else>
+                    <g:if test="${project.rewards.size()>1}">
+                    	<g:render template="show/rewards"/>
+                    </g:if>
+                </div>
                 <div class="col-md-8">
 <%--                    <h4 class="lead">Beneficiary: ${projectService.getBeneficiaryName(project)}</h4>--%>
                
@@ -111,7 +127,7 @@
 				    </div>
 				    
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4 mobileview-bottom">
 					<g:render template="/layouts/organizationdetails"/>
                     <g:render template="/layouts/tilesanstitle"/>
                     <g:if test="${percentage == 100}">

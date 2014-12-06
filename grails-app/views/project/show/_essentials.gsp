@@ -17,7 +17,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Campaign Story</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body project-description">
                 <span class="text-centre project-story-span">${raw(project.story)}</span>
             </div>
         </div>  

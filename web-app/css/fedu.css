@@ -1181,10 +1181,48 @@ text-decoration: none !important;
 	color: white;
     background-color: #4d6785;
 }
+h1.green-heading{
+    text-transform: uppercase;
+}
+.mobileview-top{
+    display:none;
+}
+.project-pie-chart{
+    width:50%;
+    float:left;
+    padding-left:40px;
+}
+
+.project-end-date{
+     width:50%;
+    float:left;
+}
+.project-goal{
+    width:50%;
+    float:left;
+}
+.project-achieved{
+    float:left;
+    width:50%;
+}
 @media only screen and (max-width: 480px){
     .glyphicon { margin-right: 10px;}
     .featured-non-profits{
         display: none;
+    }
+    h1.green-heading{
+        font-size:15px;
+        text-transform: uppercase;
+   }
+   .mobileview-top{
+        display:block;
+        margin-bottom: 15px;
+   }
+   .mobileview-bottom{
+        display:none;
+   }
+   .project-description img{
+        max-width: 100%;
     }
     .clear.mobile-view-clear{
         display:none;

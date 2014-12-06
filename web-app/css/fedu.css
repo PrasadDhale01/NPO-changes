@@ -1171,13 +1171,6 @@ text-decoration: none !important;
 .country-create-project .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
     width: 100% !important;
 }
-@media only screen and (max-width: 480px){
-    .glyphicon { margin-right: 10px;}
-    .featured-non-profits{
-        display: none;
-    }
-}
-
 .has-error .card-details {
     color: #6f6f6f !important;
     border-color: #cccccc;
@@ -1187,4 +1180,25 @@ text-decoration: none !important;
 .alert-title{
 	color: white;
     background-color: #4d6785;
+}
+@media only screen and (max-width: 480px){
+    .glyphicon { margin-right: 10px;}
+    .featured-non-profits{
+        display: none;
+    }
+    .clear.mobile-view-clear{
+        display:none;
+   }
+   .amount-field input[type="text"]{ 
+    height:54px;
+   }
+   .amount-field{
+        width:52%;
+        float:left;
+        margin-right:10px;
+   }
+   .amount-button{
+        width:37%;
+        float:left;
+   }
 }

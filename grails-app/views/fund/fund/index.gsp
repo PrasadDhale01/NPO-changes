@@ -19,17 +19,18 @@
 							<g:hiddenField name="rewardId" />
 							<!-- Value set by Javascript -->
 
-							<div class="form-group">
+							<div class="form-group amount-field">
 								<div class="input-group">
 									<span class="amount input-group-addon"><span
 										class="glyphicon glyphicon-usd"></span> </span> <input
 										class="amount form-control"
-										<%-- value="${reward.price}" --%> id="amount" name="amount">
+										<%-- value="${reward.price}" --%> id="amount" name="amount" type="text">
 								</div>
 								<span id="errormsg"></span>
 							</div>
+							<div class="clear mobile-view-clear"></div>
+							<div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg">Continue</button></div>
 							<div class="clear"></div>
-							<button type="submit" class="btn btn-primary btn-lg">Continue</button>
 						</g:form>
 					</div>
 				</g:if>
@@ -45,17 +46,18 @@
 							<g:hiddenField name="rewardId" />
 							<!-- Value set by Javascript -->
 
-							<div class="form-group">
+							<div class="form-group amount-field">
 								<div class="input-group">
 									<span class="amount input-group-addon"><span
 										class="glyphicon glyphicon-usd"></span> </span> <input
 										class="amount form-control"
-										<%-- value="${reward.price}" --%> id="amount" name="amount">
+										<%-- value="${reward.price}" --%> id="amount" name="amount" type="text">
 								</div>
 								<span id="errormsg"></span>
 							</div>
+							<div class="clear mobile-view-clear"></div>
+							<div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg">Continue</button></div>
 							<div class="clear"></div>
-							<button type="submit" class="btn btn-primary btn-lg">Continue</button>
 						</g:form>
 					</div>
 				</g:else>

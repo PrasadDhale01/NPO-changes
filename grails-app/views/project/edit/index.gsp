@@ -116,10 +116,18 @@
                     <div class="form-group" id="charitableId">
                     	<div class="row">
                     	    <div class="col-sm-6" >
-	                    		<label class="col-sm-4 control-label">Charitable ID</label>
-	                   		    <div class="col-sm-8" id="charitable">
-	                                <input type="text"  class="form-control" name="${FORMCONSTANTS.CHARITABLE}" value="${project.charitableId}" placeholder="CharitableId" readonly>
-	                       	    </div>
+                    	    	<g:if test="${project.charitableId}">
+	                    			<label class="col-sm-4 control-label">Charitable ID</label>
+	                   		    	<div class="col-sm-8" id="charitable">
+	                                	<input type="text"  class="form-control" name="${FORMCONSTANTS.CHARITABLE}" value="${project.charitableId}" placeholder="CharitableId" readonly>
+	                       	    	</div>
+	                       	    </g:if>
+	                       	    <g:else>
+	                       	    	<label class="col-sm-4 control-label">PaypalEmail ID</label>
+	                   		    	<div class="col-sm-8" id="charitable">
+	                                	<input type="text"  class="form-control" name="${FORMCONSTANTS.PAYPALEMAIL}" value="${project.paypalEmail}" placeholder="PaypalEmail Id" readonly>
+	                       	    	</div>
+	                       	    </g:else>
                             </div>
                             
                             <div class="modal" id="myModal">
@@ -154,13 +162,6 @@
                                     </div>
                                 </div>
                             </div>        
-                        </div>
-                    </div>
-                    
-                    <div class="form-group" id="textfile">
-                        <label class="col-sm-2 control-label">Upload your Letter of Determination</label>
-                        <div class="col-sm-4">
-                            <input  type="file" name="textfile" disabled>
                         </div>
                     </div>
                     <hr>

@@ -265,9 +265,9 @@ class ProjectController {
             String email2 = params.email2
             String email3 = params.email3
 
-            projectService.updateAdminsForProjects(email1, email2, email3, project, user)
+            projectService.updateAdminsAndSendUpdateEmail(email1, email2, email3, project, user)
 
-            projectService.sendEmailToAdminForProjectUpdate(project, user)
+            //projectService.sendEmailToAdminForProjectUpdate(project, user)
             
             flash.message = "Successfully saved the changes"
             render (view: 'manageproject/index',

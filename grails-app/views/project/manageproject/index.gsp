@@ -49,22 +49,22 @@
 					</h1>
 
 					<div class="col-md-8">
-						<ul class="nav nav-tabs nav-justified"
+						<ul class="nav nav-tabs manage-projects nav-justified"
 							style="margin-bottom: 10px;">
 							<li class="active"><a href="#essentials" data-toggle="tab">
-									<span class="glyphicon glyphicon-leaf"></span> Essentials
+									<span class="glyphicon glyphicon-leaf"></span></span> <span class="tab-text"> Essentials</span>
 							</a></li>
 							<li><a href="#projectupdates" data-toggle="tab"> <span
-									class="glyphicon glyphicon-leaf"></span> Updates
+									class="glyphicon glyphicon-leaf"></span></span> <span class="tab-text"> Updates</span>
 							</a></li>
 							<li><a href="#contributions" data-toggle="tab"> <span
-									class="glyphicon glyphicon-tint"></span> Contributions
+									class="glyphicon glyphicon-tint"></span></span> <span class="tab-text"> Contributions</span>
 							</a></li>
 							<li><a href="#rewards" data-toggle="tab"> <i
-									class="fa fa-gift fa-lg"></i> Rewards
+									class="fa fa-gift fa-lg"></i> <span class="tab-text">Rewards</span>
 							</a></li>
 							<li><a href="#comments" data-toggle="tab"> <span
-									class="glyphicon glyphicon-comment"></span> Comments
+									class="glyphicon glyphicon-comment"></span></span> <span class="tab-text"> Comments</span>
 							</a></li>
 						</ul>
 

@@ -7,25 +7,57 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 <g:if test="${!project.contributions.empty}">
-    <dl class="dl">
-        <g:each in="${project.contributions}" var="contribution">
-            <%
-                def date = dateFormat.format(contribution.date)
-                def friendlyName = userService.getFriendlyName(contribution.user)
-                def isFacebookUser = userService.isFacebookUser(contribution.user)
-                def userFacebookUrl = facebookService.getUserFacebookUrl(contribution.user)
-                def amount = projectService.getDataType(contribution.amount)
-            %>
-            <dt>$${contribution.amount}</dt>
-            <g:if test="${isFacebookUser}">
-                <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>
+    <g:each in="${project.contributions}" var="contribution">
+        <%
+            def date = dateFormat.format(contribution.date)
+            def friendlyName = userService.getFriendlyName(contribution.user)
+            def isFacebookUser = userService.isFacebookUser(contribution.user)
+            def userFacebookUrl = facebookService.getUserFacebookUrl(contribution.user)
+            def reward = contribution.reward
+        %>
+        
+        <div class="modal-body tile-footer" style="text-align: left;">
+	        <b>$${contribution.amount}</b>
+	        <g:if test="${isFacebookUser}">
+	            <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>
+	        </g:if>
+	        <g:else>
+            <p>By ${friendlyName}, on ${date}</p>
+	        </g:else>
+	        <g:if test="${reward.id == 1}">
+	            <b>No reward</b>
             </g:if>
             <g:else>
-                <dd>By ${friendlyName}, on ${date}</dd>
+                <b>Reward</b>
+	            <div class="rewardsection">
+			        <p>${reward.description}</p>
+			        <a href="#" data-id="${contribution}" data-toggle="modal" data-target="#rewarddetails${contribution.id}" model="['contribution': contribution]">Shipping Details</a>
+			    </div>
             </g:else>
-            <hr>
-        </g:each>
-    </dl>
+        </div>
+        <br/>
+        
+        <!-- Modal -->
+		<div class="modal fade" id="rewarddetails${contribution.id}" tabindex="-1" role="dialog" aria-labelledby="rewarddetails" aria-hidden="true">
+	        <div class="modal-dialog">
+	            <div class="modal-content">
+	                <div class="modal-header">
+	                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	                    <h4 class="modal-title">Shipping Details</h4>
+	                </div>
+	                <div class="modal-body">
+	                    <div class="form-group">
+	                        <label for="name">Name: &nbsp; ${contribution.user.firstName}&nbsp; ${contribution.user.lastName}</label>
+	                    </div>
+	                    <div class="form-group">
+	                        <label for="email">Email: &nbsp; ${contribution.user.email}</label>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+		</div>
+
+    </g:each>
 </g:if>
 <g:else>
     <div class="alert alert-info">No contributions yet.</div>

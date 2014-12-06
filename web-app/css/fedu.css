@@ -1205,6 +1205,9 @@ h1.green-heading{
     float:left;
     width:50%;
 }
+.project-story-span img{
+    max-width: 100%;
+}
 @media only screen and (max-width: 480px){
     .glyphicon { margin-right: 10px;}
     .featured-non-profits{

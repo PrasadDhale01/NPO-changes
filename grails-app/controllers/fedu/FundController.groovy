@@ -332,7 +332,7 @@ class FundController {
     }
 
     def paypalurl(){
-        redirect (url:"https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey="+paykey)
+        redirect (url:grailsApplication.config.crowdera.paypal.PAYPAL_URL+paykey)
     }
 
     def paypalReturn(){

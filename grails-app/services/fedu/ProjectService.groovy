@@ -385,9 +385,12 @@ class ProjectService {
         }
     }
 
-    def updateAdminsForProjects(def email1, def email2, def email3, def project, def user) {
+    def updateAdminsAndSendUpdateEmail(def email1, def email2, def email3, def project, def user) {
         
+        def fullName = user.firstName + ' ' + user.lastName
         def projectadmins = project.projectAdmins
+        
+        def campaignCoCreator = projectadmins[0]
         def firstAdmin = projectadmins[1]
         def secondAdmin = projectadmins[2]
         def thirdAdmin = projectadmins[3]
@@ -395,6 +398,13 @@ class ProjectService {
         isAdminCreated (email1, project, firstAdmin, user)
         isAdminCreated (email2, project, secondAdmin, user)
         isAdminCreated (email3, project, thirdAdmin, user)
+        
+        def campaignCoCreatorEmail = campaignCoCreator.getEmail()
+        mandrillService.sendUpdateEmailToAdmin(campaignCoCreatorEmail, fullName, project)
+        
+        def projectOwner = project.user
+        def projectOwnerEmail = projectOwner.getEmail()
+        mandrillService.sendUpdateEmailToAdmin(projectOwnerEmail, fullName, project)
     }
     
     private def isAdminCreated(def email, def project, def projectAdmin, User user ) {
@@ -414,10 +424,13 @@ class ProjectService {
             } else {
                 getAdminForProjects(email, project, user)
             }
+        } else {
+            def adminEmail= projectAdmin.getEmail()
+            mandrillService.sendUpdateEmailToAdmin(adminEmail, fullName, project)
         }
     }
     
-    def sendEmailToAdminForProjectUpdate(def project, def user) {
+    /*def sendEmailToAdminForProjectUpdate(def project, def user) {
         def projectadmins = project.projectAdmins
         def fullName = user.firstName + ' ' + user.lastName
         
@@ -434,7 +447,7 @@ class ProjectService {
             def projectOwnerEmail = projectOwner.getEmail()
             mandrillService.sendUpdateEmailToAdmin(projectOwnerEmail, fullName, project)
         }
-    }
+    }*/
     
     def getCategoryList() {
         def categoryOptions = [

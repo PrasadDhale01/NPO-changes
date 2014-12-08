@@ -41,12 +41,16 @@
 						</div>
 					</g:elseif>
 
-					<h1 class="green-heading text-center">
-						<g:link controller="project" action="show" id="${project.id}"
-							title="${project.title}">
-							${project.title}
-						</g:link>
-					</h1>
+					<g:if test="${!project.validated}">
+					    <h1 class="green-heading text-center">
+							<g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">${project.title}</g:link>
+						</h1>
+					</g:if>
+					<g:else>
+					    <h1 class="green-heading text-center">
+						    <g:link controller="project" action="show" id="${project.id}" title="${project.title}">${project.title}</g:link>
+					    </h1>
+					</g:else>
 
 					<div class="col-md-8">
 						<ul class="nav nav-tabs manage-projects nav-justified"

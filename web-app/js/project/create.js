@@ -145,13 +145,20 @@ $(function() {
                 required: true
             },
             email1: {
-            	email: true
+                email: true,
+                iscampaigncreator: true
             },
             email2: {
-            	email: true
+                email: true,
+                iscampaigncreator: true,
+                isequaltofirstadmin: true,
+                isequaltothirdadmin: true
             },
             email3: {
-            	email: true
+                email: true,
+                iscampaigncreator: true,
+                isequaltofirstadmin: true,
+                isequaltosecondadmin: true
             },
             paypalEmail:{
             	required: true,
@@ -433,6 +440,38 @@ $(function() {
     		 $('#addNewRewards').find('.rewardsTemplate').last().remove();
     	 }
      });
+     
+     $.validator.addMethod('isequaltofirstadmin', function(value, element){
+    	 var emailId = $('#firstadmin').val();
+ 	     if(emailId.length !=0) {
+ 	         return (!value.match(emailId))
+ 	     }
+     	 return true; 
+     }, "This Co-creator is already added");
+     
+     $.validator.addMethod('isequaltosecondadmin', function(value, element){
+    	 var emailId = $('#secondadmin').val();
+     	 if(emailId.length !=0) {
+     	     return (!value.match(emailId))
+     	 } 
+     	 return true; 
+     }, "This Co-creator is already added");
+     
+     $.validator.addMethod('isequaltothirdadmin', function(value, element){
+    	 var emailId = $('#thirdadmin').val();
+ 	     if(emailId.length !=0) {
+ 	         return (!value.match(emailId))
+ 	     } 
+     	 return true; 
+     }, "This Co-creator is already added");
+     
+     $.validator.addMethod('iscampaigncreator', function(value, element){
+    	 var emailId = $('#email').val();
+    	 if(value && value.length != 0) {
+    		 return (!value.match(emailId))
+    	 }
+    	 return true;
+     }, "Campaign creator cannot be added as a Co-creator");
 
     /* Click handler for Myself/Someone I Know. */
     /*

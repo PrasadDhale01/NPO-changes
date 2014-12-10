@@ -5,6 +5,7 @@
 <%
     def percentage = contributionService.getPercentageContributionForProject(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
+    def base_url = grailsApplication.config.crowdera.BASE_URL
 %>
 <html>
 <head>
@@ -14,6 +15,7 @@
 <ckeditor:resources />
 </head>
 <body>
+	<input type="hidden" id="b_url" value="<%=base_url%>" />
 	<div class="feducontent">
 		<div class="container">
 			<g:if test="${project}">

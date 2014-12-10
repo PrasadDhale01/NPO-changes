@@ -19,9 +19,11 @@
     <h4 class="lead">Comments</h4>
     <dl class="dl">
         <g:each in="${project.comments}" var="comment">
+            <g:if test="${!comment.status}">
             <hr>
             <dt>${userService.getFriendlyFullName(comment.user)}</dt>
             <dd>${comment.comment}</dd>
+            </g:if>
         </g:each>
     </dl>
 </g:if>

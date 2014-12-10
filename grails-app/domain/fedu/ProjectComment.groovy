@@ -6,6 +6,7 @@ class ProjectComment {
 
     String comment
     Date date
+    boolean status=false
 
     static mapping = {
         comment type: 'text'

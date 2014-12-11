@@ -1,6 +1,7 @@
 $(function() {
 	console.log("create.js initialized");
 	
+    $('#ytVideo').hide();
 	/* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
@@ -91,6 +92,32 @@ $(function() {
         picReader.readAsDataURL(file);
 
     });
+
+    $('#videoUrl').focus(function(){
+       var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+          var url= $('#videoUrl').val().trim();
+          var match = url.match(regExp);
+        
+          if (match && match[2].length == 11) {
+              $('#ytVideo').show();
+              var vurl=url.replace("watch?v=", "v/");
+              $('#ytVideo').attr('src',vurl);
+          }else if($(this).val('')){
+              $('#ytVideo').hide();
+          }
+     }).change(function(){
+          var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+          var url= $('#videoUrl').val().trim();
+          var match = url.match(regExp);
+        
+          if (match && match[2].length == 11) {
+              $('#ytVideo').show();
+              var vurl=url.replace("watch?v=", "v/");
+              $('#ytVideo').attr('src',vurl);
+          }else if($(this).val('')){
+              $('#ytVideo').hide();
+          }
+     });
 
     /***************************Multiple Image Selection*************** */
 

@@ -24,6 +24,14 @@ tinymce.init({
       ]
 });
 </script>
+<script>
+	function removeLogo(){
+ 			$('#delIcon').removeAttr('src');
+			$('#imgIcon').removeAttr('src');
+			$('#icondiv').hide();
+			$('#iconfile').val(''); 
+	}
+</script>
 
 </head>
 <body>
@@ -280,7 +288,7 @@ tinymce.init({
 									<div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
 									<img id="imgIcon" class="pr-icon-thumbnail"/>
 										<div class="deleteicon">
-											<img onClick="$(this).parents('#icondiv').remove();"
+											<img onClick="removeLogo();"
 												id="delIcon" style="margin: 2px; width: 10px; height: 10px;" />
 										</div>
 									</div>

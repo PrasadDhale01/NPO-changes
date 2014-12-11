@@ -189,6 +189,19 @@ class ProjectController {
         redirect (action: 'show', id: params.id, fragment: 'comments')
     }
 
+    @Secured(['ROLE_USER'])
+    def updatecomment(){
+        def checkid= request.getParameter('checkID')
+        def proComment=ProjectComment.get(checkid)
+        def status = request.getParameter('status')
+        if(status=='false'){
+            proComment.status=false
+        }else{
+            proComment.status=true
+        }
+        render ""
+    }
+
     @Secured(['IS_AUTHENTICATED_FULLY'])
 	def create() {
         def categoryOptions = projectService.getCategoryList()

@@ -11,6 +11,9 @@
                     <div class="list-group-item">
                         <dt>${userService.getFriendlyFullName(comment.user)}</dt>
                         <dd>${comment.comment}</dd>
+                        <input type="checkbox" name="link" id="${comment.id}" value="${comment.id}" 
+                            <g:if test="${comment.status }">checked="checked"</g:if>><span id="check${comment.id}"> Hide</span>
+                        </input>
                     </div>
                 </g:each>
             </div>
@@ -20,3 +23,4 @@
 <g:else>
     <div class="alert alert-info">No comments yet</div>
 </g:else>
+<div id="test"></div>

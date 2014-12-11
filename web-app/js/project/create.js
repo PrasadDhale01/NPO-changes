@@ -280,8 +280,11 @@ $(function() {
           var match = url.match(regExp);
         
           if (match && match[2].length == 11) {
+              $('#ytVideo').show();
               var vurl=url.replace("watch?v=", "v/");
               $('#ytVideo').html('<iframe style="width:200px;height:100px; display:block;" src='+ vurl +'></iframe>');
+          }else if($(this).val('')){
+              $('#ytVideo').hide();
           }
      });
 

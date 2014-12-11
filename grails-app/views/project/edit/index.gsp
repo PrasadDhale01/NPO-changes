@@ -321,6 +321,7 @@
                         <div class="col-sm-4">
                             <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}">
                         </div>
+                        <iframe id="ytVideo" style="width:200px;height:100px; display:block;" src="${project.videoUrl}"></iframe>
                     </div>
                 </div>
             </div>

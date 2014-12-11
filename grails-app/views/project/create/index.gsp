@@ -24,6 +24,14 @@ tinymce.init({
       ]
 });
 </script>
+<script>
+	function removeLogo(){
+ 			$('#delIcon').removeAttr('src');
+			$('#imgIcon').removeAttr('src');
+			$('#icondiv').hide();
+			$('#iconfile').val(''); 
+	}
+</script>
 
 </head>
 <body>
@@ -207,16 +215,14 @@ tinymce.init({
 						<div class="form-group" id="charitableId">
 							<div class="row">
 								<div class="col-sm-12">
-									<label class="col-sm-2 control-label">Charitable ID</label>
+									<label class="col-sm-2 control-label" style="padding-top:1px;">Charitable ID</label>
 									<div class="col-sm-2">
 										<a data-toggle="modal" href="#myModal" class="charitableLink">Find
 											your organization</a>
 									</div>
 									<div class="col-sm-6" id="charitable">
-										<label class="control-label" id="charitable"></label>
-										<input type="hidden" class="form-control"
+										<input type="text" style="border-style:none;height:26px;width:100%;" readonly
 											name="${FORMCONSTANTS.CHARITABLE}" placeholder="charitableId">
-										
 									</div>
 								</div>
 								<div class="modal" id="myModal">
@@ -282,7 +288,7 @@ tinymce.init({
 									<div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
 									<img id="imgIcon" class="pr-icon-thumbnail"/>
 										<div class="deleteicon">
-											<img onClick="$(this).parents('#icondiv').remove();"
+											<img onClick="removeLogo();"
 												id="delIcon" style="margin: 2px; width: 10px; height: 10px;" />
 										</div>
 									</div>

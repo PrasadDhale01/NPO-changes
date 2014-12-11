@@ -411,13 +411,14 @@ class ProjectService {
         
         def fullName = user.firstName + ' ' + user.lastName
         def projectadmins = project.projectAdmins
+        
         def adminAlreadyCreated = false
         projectadmins.each{
             if (email == it.getEmail()) {
                 adminAlreadyCreated = true
             }
         }
-        if (!adminAlreadyCreated) {
+        if (!adminAlreadyCreated && email) {
             if (projectAdmin != null) {
                 projectAdmin.email = email
                 mandrillService.inviteAdmin(email, fullName, project)
@@ -425,8 +426,10 @@ class ProjectService {
                 getAdminForProjects(email, project, user)
             }
         } else {
-            def adminEmail= projectAdmin.getEmail()
-            mandrillService.sendUpdateEmailToAdmin(adminEmail, fullName, project)
+            if(projectAdmin != null) {
+                def adminEmail= projectAdmin.getEmail()
+                mandrillService.sendUpdateEmailToAdmin(adminEmail, fullName, project)
+            }
         }
     }
     

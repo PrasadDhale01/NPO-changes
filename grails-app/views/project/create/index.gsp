@@ -207,16 +207,14 @@ tinymce.init({
 						<div class="form-group" id="charitableId">
 							<div class="row">
 								<div class="col-sm-12">
-									<label class="col-sm-2 control-label">Charitable ID</label>
+									<label class="col-sm-2 control-label" style="padding-top:1px;">Charitable ID</label>
 									<div class="col-sm-2">
 										<a data-toggle="modal" href="#myModal" class="charitableLink">Find
 											your organization</a>
 									</div>
 									<div class="col-sm-6" id="charitable">
-										<label class="control-label" id="charitable"></label>
-										<input type="hidden" class="form-control"
+										<input type="text" style="border-style:none;height:26px;width:100%;" readonly
 											name="${FORMCONSTANTS.CHARITABLE}" placeholder="charitableId">
-										
 									</div>
 								</div>
 								<div class="modal" id="myModal">

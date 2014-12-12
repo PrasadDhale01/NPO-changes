@@ -144,7 +144,7 @@ environments {
         fedu.facebook.appId = '641152155950617'
         fedu.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
         
-        crowdera.BASE_URL = 'http://new.crowdera.co'
+        crowdera.BASE_URL = 'http://staging.crowdera.co'
 
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true

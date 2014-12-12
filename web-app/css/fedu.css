@@ -1256,3 +1256,6 @@ h1.green-heading{
    float:left;
    }
 }
+.enddate .glyphicon {
+    right: 5px;
+}

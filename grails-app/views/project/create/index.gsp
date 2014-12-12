@@ -9,6 +9,16 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 <meta name="layout" content="main" />
 <r:require modules="projectcreatejs" />
 <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+<link rel="stylesheet" href="/css/bootstrap.css">
+<link rel="stylesheet" href="/css/datepicker.css">
+<script src="/js/main.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script>
+	var j = jQuery.noConflict();
+		j(function(){
+			j('.datepicker').datepicker();
+		});
+	</script>
 <script>
 tinymce.init({
 	mode : "specific_textareas",
@@ -322,10 +332,12 @@ tinymce.init({
 							</div>
 						</div>
 						<div class="form-group">
-							<label class="col-sm-2 control-label"># of Days Campaign Runs</label>
+							<label class="col-sm-2 control-label">Campaign end date</label>
 							<div class="col-sm-10">
-								<input class="form-control" name="${FORMCONSTANTS.DAYS}"
-									placeholder="Recommend: 30, 45, or 90">
+								<div class="input-group enddate">
+									<input class="datepicker pull-left" name="${FORMCONSTANTS.DAYS}" placeholder="Campaign end date"> 
+									<span class="input-group-addon pull-left"><span class="glyphicon glyphicon-calendar"></span> </span>
+							    </div>
 							</div>
 						</div>
 					</div>

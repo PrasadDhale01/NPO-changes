@@ -2,10 +2,10 @@ package fedu
 
 class PaykeyTemp {
     String paykey
-    String paypalEmail
+    String timestamp
 
     static constraints = {
         paykey(nullable: true)
-        paypalEmail(nullable: true)
+        timestamp(nullable: true,unique:true)
     }
 }

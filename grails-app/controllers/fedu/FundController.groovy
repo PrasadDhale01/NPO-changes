@@ -23,7 +23,6 @@ class FundController {
 
     def ack
     def paykey
-    def paypalemail
     def userId
     String str
 
@@ -232,8 +231,9 @@ class FundController {
     }
 
     def payByPaypal(def params,Project project,Reward reward,User user){
-        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&paypalemail=${project.paypalEmail}&userId=${user.id}"
-        def failureUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&paypalemail=${project.paypalEmail}&userId=${user.id}"
+        String timestamp = UUID.randomUUID().toString()
+        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}"
+        def failureUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&userId=${user.id}&timestamp=${timestamp}"
 
         def BASE_URL = grailsApplication.config.crowdera.paypal.BASE_URL
 
@@ -263,11 +263,11 @@ class FundController {
             }
         }
         if(!str.equals("")){
-            paypalSecondCall(params, project, str ,reward)
+            paypalSecondCall(params, project, str ,reward, timestamp)
         }
     }
 
-    def paypalSecondCall(def params,Project project,String str,Reward reward){
+    def paypalSecondCall(def params,Project project,String str,Reward reward,String timestamp){
         //After fetching response paykey will be fetched by this method
         def json = new JsonSlurper().parseText(str)
 
@@ -275,7 +275,7 @@ class FundController {
         paykey = json.payKey
         
         PaykeyTemp paykeytemp = new PaykeyTemp(
-                paypalEmail: project.paypalEmail,
+                timestamp: timestamp,
                 paykey:paykey,
                 )
         paykeytemp.save(failOnError: true)
@@ -340,14 +340,14 @@ class FundController {
         def rewardId = request.getParameter('rewardId')
         def projectId = request.getParameter('projectId')
         def amount = request.getParameter('amount')
-        def paypalemail = request.getParameter('paypalemail')
+        def timestamp = request.getParameter('timestamp')
         def userid = request.getParameter('userId')
 
         Project project = Project.get(projectId)
         User user = User.get(userid)
         Reward reward = Reward.get(rewardId)
 
-        PaykeyTemp paykeytemp = PaykeyTemp.findByPaypalEmail(paypalemail)
+        PaykeyTemp paykeytemp = PaykeyTemp.findByTimestamp(timestamp)
         def payKey = paykeytemp.paykey
         paykeytemp.delete()
         

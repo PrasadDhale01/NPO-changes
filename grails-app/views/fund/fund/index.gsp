@@ -6,6 +6,7 @@
 <body>
 	<div class="feducontent">
 		<div class="container">
+		<% def base_url = grailsApplication.config.crowdera.BASE_URL %>
 			<div class="row">
 				<g:if test="${project.paypalEmail}">
 					<div class="alert alert-title">
@@ -17,6 +18,8 @@
 							<g:hiddenField name="stripeToken" value="123456"/>
 							<g:hiddenField name="projectId" value="${project.id}" />
 							<g:hiddenField name="rewardId" />
+							<g:hiddenField name="url" value="${base_url}" id="url"/>
+							
 							<!-- Value set by Javascript -->
 
 							<div class="form-group amount-field">
@@ -28,6 +31,15 @@
 								</div>
 								<span id="errormsg"></span>
 							</div>
+							<% if (user != null){ %>
+                            	<g:hiddenField name="tempValue" id="tempValue" value="${user.id}"/>
+                            	<g:hiddenField name="userId"  id="userId" value="${user.id}"/>
+               					<div>
+                    				<label class="checkbox control-label">
+                        				<input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
+                    				</label>
+                				</div>
+                			<% } %>
 							<div class="clear mobile-view-clear"></div>
 							<div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg">Continue</button></div>
 							<div class="clear"></div>
@@ -44,6 +56,7 @@
 
 							<g:hiddenField name="projectId" value="${project.id}" />
 							<g:hiddenField name="rewardId" />
+							<g:hiddenField name="url" value="${base_url}" id="url"/>
 							<!-- Value set by Javascript -->
 
 							<div class="form-group amount-field">
@@ -55,6 +68,15 @@
 								</div>
 								<span id="errormsg"></span>
 							</div>
+							<% if (user != null){ %>
+                                <g:hiddenField name="tempValue" id="tempValue" value="${user.id}"/>
+                            	<g:hiddenField name="userId"  id="userId" value="${user.id}"/>
+                				<div>
+                    				<label class="checkbox control-label">
+                        				<input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
+                    				</label>
+                				</div>
+                			<% } %>
 							<div class="clear mobile-view-clear"></div>
 							<div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg">Continue</button></div>
 							<div class="clear"></div>

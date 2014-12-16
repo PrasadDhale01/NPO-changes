@@ -2,17 +2,14 @@
 <footer>
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
-                <a class="navbar-brand-footer pull-center" class="footerimage"><img src="/images/logo-small.png"></a>
-            </div>
-            <div class="col-sm-2 flinks">
+            <div class="col-xs-6 flinks">
                 <a href="${resource(dir: '/aboutus')}">Crowdera Crew</a>
                 <a href="${resource(dir: '/projects')}" >Discover</a>
                 <a href="${resource(dir: '/projects/create')}">Start a Campaign</a>
                 <a href="${resource(dir: '/howitworks')}">How it works</a>
                 <a href="mailto:info@crowdera.co">Contact</a>
             </div>
-            <div class="col-sm-7 flinks">
+            <div class="col-xs-6 flinks">
 			    <a href="https://twitter.com/CrowderaInc">Twitter</a>
 			    <a href="https://www.facebook.com/crowderainc?ref=hl">Facebook</a>
 			    <!-- <a href="https://www.linkedin.com/company/fedu">Linkedin</a> -->
@@ -23,9 +20,9 @@
     </div>
     <div class="container"><div class="row"><div class="col-md-12">
         <div class="footerbottomsection">
-	        <a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy</a>
-	        <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms of Use</a>
-	        <a href="#" class="footerlink">&copy;&nbsp;2014 Crowdera,inc.</a>
+	        <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+	        <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
+	        <a href="#">&copy;&nbsp;2014 Crowdera,inc.</a>
         </div></div></div>
     </div>
 </footer>

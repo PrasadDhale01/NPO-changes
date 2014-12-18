@@ -24,6 +24,18 @@
                         <td>Beneficiary</td>
                         <td>${projectService.getBeneficiaryName(project)}</td>
                     </tr>
+                    <g:if test ="${userService.isAnonymous(user)}">
+                    <tr>
+                        <td>Contributor</td>
+                        <td>Anonymous</td>
+                    </tr>
+                    </g:if>
+                    <g:else>
+                    <tr>
+                        <td>Contributor</td>
+                        <td>${user.firstName} ${user.lastName}</td>
+                    </tr>
+                    </g:else>
                     <tr>
                         <td>Amount</td>
                         <td>$${contribution}</td>

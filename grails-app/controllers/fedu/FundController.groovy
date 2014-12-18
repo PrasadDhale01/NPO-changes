@@ -28,6 +28,7 @@ class FundController {
 
     def fund() {
         Project project
+        User user = userService.getCurrentUser()
 
         if (params.projectId) {
             project = Project.findById(params.projectId)
@@ -41,7 +42,7 @@ class FundController {
         } else if (fundingAchieved || ended) {
             redirect(controller: 'project', action: 'show', id: project.id)
         } else {
-            render view: 'fund/index', model: [project: project]
+            render view: 'fund/index', model: [project: project, user:user]
         }
     }
 
@@ -56,7 +57,7 @@ class FundController {
         def month = contributionService.getMonth()
         def year = contributionService.getYear()
         def defaultCountry = 'US'
-        def user = userService.getCurrentUser()
+        def user = User.get(params.userId)
         if (user == null){
             user = User.findByUsername('anonymous@example.com')
         }
@@ -356,5 +357,10 @@ class FundController {
         } else {
             render view: 'fund/index', model: [project: project]
         }
+    }
+    
+    def makeUserAnonymous(){
+        def user = User.findByUsername('anonymous@example.com')
+        render user.id
     }
 }

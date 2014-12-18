@@ -58,4 +58,23 @@ $(function() {
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
     });
+    
+    $('#anonymousUser').click(function(){
+    	
+    	if($(this).prop("checked") == true){
+    		$.ajax({
+    			type:'post',
+    			url:$('#url').val()+'/fund/makeUserAnonymous',
+    			success: function(data){
+    				$('#userId').val(data);
+    			}
+    		}).error(function(){
+    			alert('An error occured');
+    		});
+    	} else if ($(this).prop("checked") == false){
+    		var user = $('#tempValue').val();
+    		$('#userId').val(user);
+    	}
+    	
+    });
 });

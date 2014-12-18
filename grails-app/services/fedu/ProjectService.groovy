@@ -432,6 +432,14 @@ class ProjectService {
             }
         }
     }
+
+    def getNumberofDays(def endingdate, Project project) {
+        def endDate = Date.parse('MM/dd/yyyy', endingdate)
+        def currentDate = new Date()
+        def numberOfDays = endDate - currentDate
+        project.days = numberOfDays
+        project.created = currentDate
+    }
     
     /*def sendEmailToAdminForProjectUpdate(def project, def user) {
         def projectadmins = project.projectAdmins

@@ -479,7 +479,10 @@ class ProjectController {
         projectService.getAdminForProjects(email3, project, user)
         
         project.user = user
-        project.created = new Date()
+       
+        def days = params.days
+        projectService.getNumberofDays(days, project)
+
         project.beneficiary = beneficiary
         
         if (project.save()) {

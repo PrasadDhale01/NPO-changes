@@ -196,51 +196,46 @@ tinymce.init({
 					<div class="panel-body">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Preferred payment gateway</label>
-							<div class="form-group" id="payopt">
-								<label class="col-sm-2 control-label"></label>
+							<div class="col-sm-10 form-group" id="payopt">
 								<div class="col-sm-8">
 									<div class="btn-group btn-group-sm">
-										<label class="btn btn-default"> <input type="radio"
-											name="pay" value="paypal">&nbsp;Paypal
-										</label> <label class="btn btn-default"> <input type="radio"
-											name="pay" value="firstgiving">&nbsp;First Giving
-										</label>
+										<label class="btn btn-default"> <input type="radio" name="pay" value="paypal">&nbsp;Paypal</label>
+										<label class="btn btn-default"> <input type="radio" name="pay" value="firstgiving">&nbsp;First Giving</label>
 									</div>
 								</div>
 							</div>
-							<div class="form-group" id="paypalemail">
-								<label class="col-sm-2 control-label">PayPal Email ID </label>
-								<div class="col-sm-3">
-									<input id="email" type="email" class="form-control"
-										name="${FORMCONSTANTS.PAYPALEMAIL}">
+							<div class="col-sm-12" id="paypalemail">
+                                <div class="form-group">
+									<label class="col-sm-2 control-label">PayPal Email ID </label>
+									<div class="col-sm-4">
+										<input id="email" type="email" class="form-control" name="${FORMCONSTANTS.PAYPALEMAIL}">
+									</div>
 								</div>
-							</div>
-							<div class="form-group" id="paypalcheckbox">
-                             	<label class="col-sm-2 control-label">&nbsp;</label>
-         						<div class="col-sm-10">
-          							<input type="checkbox" name="checkBox2" > I attest that this is a verified non-profit.
-         						</div>
-        					</div>
-						</div>
-						<div class="form-group" id="charitableId">
-							<div class="row">
-								<div class="col-sm-12">
-									<label class="col-sm-2 control-label" style="padding-top:1px;">Charitable ID</label>
+ 							</div>
+							<div class="col-sm-12" id="paypalcheckbox">
+							    <div class="form-group">
+	                             	<label class="col-sm-2 control-label">&nbsp;</label>
+	         						<div class="col-sm-10">
+	          						    <input type="checkbox" name="checkBox2" > I attest that this is a verified non-profit.
+	         						</div>
+          						</div>
+         					</div>
+         					
+							<div class="col-sm-12" id="charitableId">							
+								<div class="form-group">
+								    <label class="col-sm-2 control-label">Charitable ID</label>
 									<div class="col-sm-2">
-										<a data-toggle="modal" href="#myModal" class="charitableLink">Find
-											your organization</a>
+										<a data-toggle="modal" href="#myModal" class="charitableLink">Find your organization</a>
 									</div>
 									<div class="col-sm-6" id="charitable">
-										<input type="text" style="border-style:none;height:26px;width:100%;" readonly
-											name="${FORMCONSTANTS.CHARITABLE}" placeholder="charitableId">
+										<input type="text" id="hiddencharId" name="${FORMCONSTANTS.CHARITABLE}" placeholder="charitableId" readonly>
 									</div>
 								</div>
 								<div class="modal" id="myModal">
 									<div class="modal-dialog">
 										<div class="modal-content">
 											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal"
-													aria-hidden="true">×</button>
+												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 												<h4 class="modal-title">Find your charity organization</h4>
 											</div>
 											<div class="modal-body">
@@ -260,15 +255,11 @@ tinymce.init({
 														$('#organizationName').find('input').val(document.getElementById("charity_name").value);
 													}
 												</script>
-												<script
-													src="http://assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
+												<script src="http://assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
 											</div>
 											<div class="modal-footer">
-												<button href="#" data-dismiss="modal"
-													class="btn btn-primary">Close</button>
-												<button class="btn btn-primary" href="#"
-													data-dismiss="modal" onclick="setOrganization()"
-													id="saveButton">Save</button>
+												<button href="#" data-dismiss="modal" class="btn btn-primary">Close</button>
+												<button class="btn btn-primary" href="#" data-dismiss="modal" onclick="setOrganization()" id="saveButton">Save</button>
 											</div>
 										</div>
 									</div>

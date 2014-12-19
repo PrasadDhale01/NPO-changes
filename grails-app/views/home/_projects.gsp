@@ -64,17 +64,17 @@
         def index = 0
     %>
       
-    <div id="carousel-example" class="col-md-10 col-md-offset-1 carousel slide hidden-xs" data-ride="carousel">
+    <div id="carousel-example" class="col-md-10 col-md-offset-1 carousel slide" data-ride="carousel">
 	    <div class="row">
-	        <div class="col-md-12 hidden-xs">
+	        <div class="col-md-12">
 	            <h1 class="text-center headingtext">Featured Campaigns</h1><br>
 	        </div>
-	        <div class="col-md-9 hidden-xs">
+	        <div class="col-md-9">
 	            &nbsp;
 	        </div>
             <div class="col-md-3">
                 <!-- Controls -->
-                <div class="controls pull-right hidden-xs">
+                <div class="controls pull-right">
 	                <a class="left glyphicon glyphicon-chevron-left btn btn-link btn-xs" href="#carousel-example" data-slide="prev"></a>
 	                <a class="right glyphicon glyphicon-chevron-right btn btn-link btn-xs" href="#carousel-example" data-slide="next"></a>
                 </div>
@@ -90,7 +90,7 @@
                             <ul class="thumbnails list-unstyled">
                                 <g:each in="${1..cols}">
                                     <% if (index < count) { %>
-                                    <li class="col-xs-6 col-md-4">
+                                    <li class="col-md-4 col-xs-12 col-sm-6">
                                         <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
                                     </li>
                                     <% } %>
@@ -104,7 +104,7 @@
                             <ul class="thumbnails list-unstyled">
                                 <g:each in="${1..cols}">
                                     <% if (index < count) { %>
-                                    <li class="col-xs-6 col-md-4">
+                                    <li class="col-md-4 col-xs-12 col-sm-6">
                                         <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
                                     </li>
                                     <% } %>

@@ -16,10 +16,10 @@
             <ul class="thumbnails list-unstyled">
                 <g:each in="${1..cols}">
                     <% if (index < count) { %>
-	                <li class="col-xs-6 col-md-3">
-			    <g:render template="validate/validatetile" model="['project': projects.get(index++)]"></g:render>
-                       </li>
-		    <% } %>
+                    <li class="col-md-3 col-sm-6 col-xs-12">
+                        <g:render template="validate/validatetile" model="['project': projects.get(index++)]"></g:render>
+                    </li>
+                    <% } %>
                 </g:each>     
             </ul>       
         </div>

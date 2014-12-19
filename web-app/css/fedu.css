@@ -1003,7 +1003,7 @@ footer .footerbottomsection {
 	position:absolute;
     left:0;
     top:0;
-    max-width:260px;
+    max-width:100%;
     width:100%;
 }
 
@@ -1195,18 +1195,6 @@ h1.green-heading{
     padding-left:40px;
 }
 
-.project-end-date{
-     width:50%;
-    float:left;
-}
-.project-goal{
-    width:50%;
-    float:left;
-}
-.project-achieved{
-    float:left;
-    width:50%;
-}
 .project-story-span img{
     max-width: 100%;
 }
@@ -1258,4 +1246,93 @@ h1.green-heading{
 }
 .enddate .glyphicon {
     right: 5px;
+}
+
+@media only screen and (max-width: 800px){
+    .nav > li > a {
+        padding: 7px 14px;
+    }
+}
+
+.charitableLink {
+	margin-top: 5px;
+	display: block;
+}
+
+#hiddencharId {
+	border-style:none;
+	height:26px;
+	width:100%;
+	margin-top: 5px;
+	display: block;
+}
+
+#saveButton {
+	margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 414px) {
+    #fgGraphWidgetContainer #fgNameStart {
+	    width: 330px !important;
+	}
+	#fgGraphWidgetContainer #fgSearchForm {
+	    width: 365px !important;
+	}
+	#fgGraphWidgetContainer ul {
+        margin-left: 2px !important;
+    }
+    #fgGraphWidgetContainer #fgResults li {
+        width: 320px;
+    }
+    #fgGraphWidgetContainer #fg-logo {
+        float: none !important;
+    }
+    
+    #charitableId .modal-body {
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width: 375px) {
+    #fgGraphWidgetContainer #fgNameStart {
+	    width: 280px !important;
+	}
+	#fgGraphWidgetContainer #fgSearchForm {
+	    width: 320px !important;
+	}
+	#fgGraphWidgetContainer ul {
+        margin-left: 2px !important;
+    }
+    #fgGraphWidgetContainer #fgResults li {
+        width: 290px !important;
+    }
+    #fgGraphWidgetContainer #fg-logo {
+        float: none !important;
+    }
+    
+    #charitableId .modal-body {
+        padding: 5px;
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    #fgGraphWidgetContainer #fgNameStart {
+	    width: 250px !important;
+	}
+	#fgGraphWidgetContainer #fgSearchForm {
+	    width: 270px !important;
+	}
+	#fgGraphWidgetContainer ul {
+        margin-left: 2px !important;
+    }
+    #fgGraphWidgetContainer #fgResults li {
+        width: 245px !important;
+    }
+    #fgGraphWidgetContainer #fg-logo {
+        float: none !important;
+    }
+    
+    #charitableId .modal-body {
+        padding: 5px;
+    }
 }

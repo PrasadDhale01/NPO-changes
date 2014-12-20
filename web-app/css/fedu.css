@@ -1336,3 +1336,15 @@ h1.green-heading{
         padding: 5px;
     }
 }
+
+@media only screen and (max-width: 800px) {
+    .validatebutton {
+        float: right;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .validatebutton {
+        float: right;
+    }
+}

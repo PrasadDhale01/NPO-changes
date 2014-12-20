@@ -16,40 +16,43 @@
 	<div class="feducontent">
 		<div class="container">
 			<g:if test="${project}">
+			    <div class="row">
+					<div class="col-md-12">
+					    <div class="col-md-8">
+						<h1 class="green-heading text-center">
+							<g:link controller="project" action="show" id="${project.id}" title="${project.title}"> ${project.title} </g:link>
+						</h1>
+						</div>
+						<div class="col-md-4">
+							<div class="col-md-6 col-sm-6 col-xs-6">
+								<g:link controller="project" action="updateValidation" id="${project.id}" class="btn btn-primary validatebutton" role="button">
+									<i class="glyphicon glyphicon-check" style="width: 175"></i>&nbsp;Validate
+								</g:link>
+							</div>
+							<div class="col-md-6 col-sm-6 col-xs-6">
+								<g:form action="delete" controller="project" id="${project.id}" method="post">
+									<button class="btn btn-danger" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);" style="width: 180">
+										<i class="fa fa-trash-o"></i>&nbsp;Discard
+									</button>
+								</g:form>
+							</div>
+						</div>
+					</div>
+				</div><br/>
 				<div class="row">
 					<div class="col-md-8">
-						<div class="row">
-							<div class="col-md-12">
-								<h1 class="green-heading text-center">
-									<g:link controller="project" action="show" id="${project.id}"
-										title="${project.title}">
-										${project.title}
-									</g:link>
-								</h1>
-								<%--                    <h4 class="lead">Beneficiary: ${projectService.getBeneficiaryName(project)}</h4>--%>
-								<g:if test="${flash}">
-									<div class="alert alert-success">
-										<li>
-											${flash.message}
-										</li>
-									</div>
-								</g:if>
-							</div>
-						</div><br>
-
-						<ul class="nav nav-tabs nav-justified"
-							style="margin-bottom: 10px;">
+						<ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
 							<li class="active"><a href="#essentials" data-toggle="tab">
-									<span class="fa fa-leaf"></span> Essentials
+									<span class="fa fa-leaf"></span><span class="tab-text"> Essentials</span>
 							</a></li>
-							<li><a href="#rewards" data-toggle="tab"> <i
-									class="fa fa-gift fa-lg"></i> Manage rewards
+							<li><a href="#rewards" data-toggle="tab"> <span
+									class="fa fa-gift fa-lg"></span><span class="tab-text"> Manage rewards</span>
 							</a></li>
 							<li><a href="#contributions" data-toggle="tab"> <span
-									class="fa fa-tint"></span> Contributions
+									class="fa fa-tint"></span><span class="tab-text"> Contributions</span>
 							</a></li>
 							<li><a href="#comments" data-toggle="tab"> <span
-									class="fa fa-comments"></span> Comments
+									class="fa fa-comments"></span><span class="tab-text"> Comments</span>
 							</a></li>
 						</ul>
 
@@ -72,24 +75,6 @@
 					</div>
 
 					<div  class="col-md-4">
-						<div class="row validate-btn-margin">
-							<div class="col-md-6 text-center">
-								<g:link controller="project" action="updateValidation"
-									id="${project.id}" class="btn btn-primary" role="button">
-									<i class="glyphicon glyphicon-check" style="width: 175"></i>&nbsp;Validate</g:link>
-							</div>
-							<div class="col-md-6 text-center">
-								<g:form action="delete" controller="project"
-									id="${project.id}" method="post">
-									<button class="btn btn-danger" name="_action_delete"
-										value="Delete"
-										onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);"
-										style="width: 180">
-										<i class="fa fa-trash-o"></i>&nbsp;Discard
-									</button>
-								</g:form>
-							</div>
-						</div>
 						<div class="row">
 							<g:render template="/project/manageproject/tilesanstitle" /></div>
 						</div>

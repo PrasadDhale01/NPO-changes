@@ -13,35 +13,44 @@
 						<h1>Powered by Paypal</h1>
 					</div>
 					<div class="col-md-4">
-						<h1>Amount</h1>
+					    <div class="row">
+					        <div class="col-md-12 col-sm-12 col-xs-12">
+						        <h1>Amount</h1>
+						    </div>
+						</div>
 						<g:form action="charge" method="POST" role="form">
 							<g:hiddenField name="projectId" value="${project.id}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
 							
 							<!-- Value set by Javascript -->
-
-							<div class="form-group amount-field">
-								<div class="input-group">
-									<span class="amount input-group-addon"><span
-										class="glyphicon glyphicon-usd"></span> </span> <input
-										class="amount form-control"
-										<%-- value="${reward.price}" --%> id="amount" name="amount" type="text">
-								</div>
-								<span id="errormsg"></span>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+									<div class="form-group">
+										<div class="input-group">
+											<span class="amount input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
+											<input class="amount form-control" <%-- value="${reward.price}" --%> id="amount" name="amount" type="text">
+										</div>
+										<span id="errormsg"></span>
+									</div>
+							    </div>
 							</div>
-							<% if (user != null){ %>
-                            	                            <g:hiddenField name="tempValue" id="tempValue" value="${user.id}"/>
-                            				    <g:hiddenField name="userId"  id="userId" value="${user.id}"/>
-               						    <div>
-                    						<label class="checkbox control-label">
-                        					    <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
-                    						</label>
-                					    </div>
-                					<% } %>
-							<div class="clear mobile-view-clear"></div>
-							<div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg">Continue</button></div>
-							<div class="clear"></div>
+							<div class="row">
+							    <div class="col-md-12 col-sm-12 col-xs-12">
+									<% if (user != null){ %>
+		                                <g:hiddenField name="tempValue" id="tempValue" value="${user.id}"/>
+		                                <g:hiddenField name="userId"  id="userId" value="${user.id}"/>
+		                                <label class="checkbox control-label">
+		                                    <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
+		                                </label>
+		                            <% } %>
+	                            </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+							        <div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg">Continue</button></div>
+							    </div>
+							</div>
 						</g:form>
 					</div>
 				</g:if>
@@ -50,35 +59,44 @@
 						<h1>Powered by Firstgiving</h1>
 					</div>
 					<div class="col-md-4">
-						<h1>Amount</h1>
+					    <div class="row">
+					        <div class="col-md-12 col-sm-12 col-xs-12">
+						        <h1>Amount</h1>
+						    </div>
+						</div>
 						<g:form action="checkout" method="POST" role="form">
 
 							<g:hiddenField name="projectId" value="${project.id}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
 							<!-- Value set by Javascript -->
-
-							<div class="form-group amount-field">
-								<div class="input-group">
-									<span class="amount input-group-addon"><span
-										class="glyphicon glyphicon-usd"></span> </span> <input
-										class="amount form-control"
-										<%-- value="${reward.price}" --%> id="amount" name="amount" type="text">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+								<div class="form-group">
+									<div class="input-group">
+										<span class="amount input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
+										<input class="amount form-control" <%-- value="${reward.price}" --%> id="amount" name="amount" type="text">
+									</div>
+									<span id="errormsg"></span>
 								</div>
-								<span id="errormsg"></span>
+								</div>
 							</div>
-							<% if (user != null){ %>
-                                		 	    <g:hiddenField name="tempValue" id="tempValue" value="${user.id}"/>
-                            				    <g:hiddenField name="userId"  id="userId" value="${user.id}"/>
-                					    <div>
-                    					        <label class="checkbox control-label">
-                        					    <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
-                    					        </label>
-                					    </div>
-                					<% } %>
-							<div class="clear mobile-view-clear"></div>
-							<div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg">Continue</button></div>
-							<div class="clear"></div>
+							<div class="row">
+							    <div class="col-md-12 col-sm-12 col-xs-12">
+								<% if (user != null){ %>
+	                                <g:hiddenField name="tempValue" id="tempValue" value="${user.id}"/>
+	                            	<g:hiddenField name="userId"  id="userId" value="${user.id}"/>
+	                    			<label class="checkbox">
+	                        	        <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
+	                    			</label>
+	                			<% } %>
+	                			</div>
+                			</div>
+                			<div class="row">
+                			    <div class="col-md-12 col-sm-12 col-xs-12">
+								    <div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg">Continue</button></div>
+							    </div>
+							</div>
 						</g:form>
 					</div>
 				</g:else>

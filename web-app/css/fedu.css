@@ -1162,7 +1162,7 @@ text-decoration: none !important;
 }
 }
 .rewarddesc{
-    margin-left:-5px;
+    margin-left:-21px;
 }
 .validate-btn-margin{
     margin-bottom:25px
@@ -1198,6 +1198,17 @@ h1.green-heading{
 .project-story-span img{
     max-width: 100%;
 }
+.help-block{
+    color: #ff0000;
+    font-size: 12px;
+    font-weight: normal;
+}
+.form-control.rewardprice{
+    width:100%;
+}
+textarea.form-control {
+    width: 97.5%;
+}  
 @media only screen and (max-width: 480px){
     .glyphicon { margin-right: 10px;}
     .featured-non-profits{
@@ -1243,6 +1254,17 @@ h1.green-heading{
    width:20%;
    float:left;
    }
+   .form-control.rewardprice{
+    margin-left:0px;
+    width:100%;
+   }
+   .rewarddesc {
+    width: 114%;
+    margin-left: -14px;
+   }
+   .rewarddesctitle{
+    margin-left: -12px;
+   }   
 }
 .enddate .glyphicon {
     right: 5px;

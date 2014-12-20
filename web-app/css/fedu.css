@@ -1348,3 +1348,6 @@ h1.green-heading{
         float: right;
     }
 }
+.enddate{ position: relative;}
+.enddate imput[type="text"]{ position: absolute; top: 0; left: 0}
+.enddate .input-group-addon{ position: absolute;top: 2px; right: 2px}

@@ -269,10 +269,12 @@ class ProjectController {
             project.story = params.story
             project.amount = Double.parseDouble(params.amount)
             project.title = params.title
-            project.days = Integer.parseInt(params.days)
             project.category = params.category
             project.webAddress = params.webAddress
             project.videoUrl = params.videoUrl
+
+            def days = params.days
+            projectService.getUpdatedNumberofDays(days, project)
             
             String email1 = params.email1
             String email2 = params.email2

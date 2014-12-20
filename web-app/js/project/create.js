@@ -99,11 +99,9 @@ $(function() {
                 maxlength: 5,
                 max: 50000
             },
-            /*days: {
-                required: true,
-                number: true,
-                max: 365
-            },*/
+            days: {
+                required: true
+            },
             title: {
                 required: true,
                 minlength: 5,

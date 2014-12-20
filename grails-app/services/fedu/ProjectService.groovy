@@ -440,6 +440,13 @@ class ProjectService {
         project.days = numberOfDays
         project.created = currentDate
     }
+
+    def getUpdatedNumberofDays(def endingdate, Project project){
+        def endDate = Date.parse('MM/dd/yyyy', endingdate)
+        def createdDate = project.created
+        def numberOfDays = endDate - createdDate
+        project.days = numberOfDays
+    }
     
     /*def sendEmailToAdminForProjectUpdate(def project, def user) {
         def projectadmins = project.projectAdmins

@@ -17,9 +17,7 @@ $(function() {
                 max: 50000
             },
             days: {
-                required: true,
-                number: true,
-                max: 365
+                required: true
             },
             title: {
                 required: true,

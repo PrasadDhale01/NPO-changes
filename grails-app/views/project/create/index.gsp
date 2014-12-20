@@ -325,9 +325,8 @@ tinymce.init({
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Campaign end date</label>
 							<div class="col-sm-10">
-								<div class="input-group enddate">
+								<div class="input-group enddate"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 									<input class="datepicker pull-left" name="${FORMCONSTANTS.DAYS}" placeholder="Campaign end date"> 
-									<span class="input-group-addon pull-left"><span class="glyphicon glyphicon-calendar"></span> </span>
 							    </div>
 							</div>
 						</div>

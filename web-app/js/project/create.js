@@ -244,7 +244,7 @@ $(function() {
   	        $('#organizationName').find('input').val('');
   	       	$("#paypalemail").show();
   	        $("#charitableId").hide();
-  	        $('#charitableId').find('label').text('');
+  	        $('#charitable').find('input').val('');
   	        $("#paypalcheckbox").show();
   	     } else if($(this).val()=="firstgiving") {
    	         $('#organizationName').find('input').val('');
@@ -429,18 +429,49 @@ $(function() {
 
           });
      
-     
-     $('#createreward').click(function(){
-         var rewardsTemplateObj = $('.rewardsTemplate').last().clone();
-         $('#addNewRewards').append(rewardsTemplateObj);
-         $('#addNewRewards').find('.rewardsTemplate').last().find('input').val('').focus();
-     });
-     
-     $('#removereward').click(function(){
-         if ($('#addNewRewards').find('.rewardsTemplate').length > 1) {
-    		 $('#addNewRewards').find('.rewardsTemplate').last().remove();
-    	 }
-     });
+  var count=2;
+  $('#createreward').click(function(){
+     $('#addNewRewards').append(
+         '<div class="rewardsTemplate" id="rewardTemplate">'+
+           '<div class="row">'+
+             '<div class="form-group rewardTitles col-sm-6">'+
+                '<label class="col-sm-4 control-label">Reward Title</label>'+
+                '<div class="col-sm-8">'+
+                   '<input type="text" placeholder="Title" name="rewardTitle'+count+'" id="rewardTitle'+count+
+                      '"  class="form-control required rewardTitle">'+
+                '</div>'+
+              '</div>'+
+              '<div class="form-group col-sm-6">'+
+                 '<label class="col-sm-3 control-label" id="lblrPrice">Reward Price</label>'+
+                 '<div class="col-sm-9">'+
+                   '<input type="number" placeholder="Enter digits only"  name="rewardPrice'+count+'" id="rewardPrice'+count+
+                      ' style="width:100%;" class="form-control  rewardprice " required min="0" >'+
+                  '</div>'+
+              '</div>'+
+            '</div>'+
+            '<div class="form-group row">'+
+                '<div class="col-sm-12">'+
+                   '<label class="col-sm-2 control-label rewarddesctitle">Reward Description</label>'+
+                    '<div class="col-sm-10 rewarddesc">'+
+                      '<textarea class="form-control required rewardDescription" name="rewardDescription'+count+
+                         '" id="rewardDesc'+count+'" rows="2" placeholder="Description"></textarea>'+
+                    '</div>'+
+                '</div>'+
+            '</div><hr>'+
+          '</div>'
+      );
+          count++;
+  });
+    
+  $('#removereward').click(function(){
+    if($('#addNewRewards').find('.rewardsTemplate').length > 1) {
+         $('#addNewRewards').find('.rewardsTemplate').last().remove();
+    }else{
+         $('.rewardTitle').val('');
+         $('.rewardDescription').val('');
+         $('.rewardPrice').val('');
+    }
+  });
      
      $.validator.addMethod('isequaltofirstadmin', function(value, element){
     	 var emailId = $('#firstadmin').val();

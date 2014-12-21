@@ -1,4 +1,5 @@
 <g:set var="contributionService" bean="contributionService"/>
+<g:set var="projectService" bean="projectService"/>
 <%
     def percentage = contributionService.getPercentageContributionForProject(project)
     def firstAdmins = project.projectAdmins[1]
@@ -16,12 +17,25 @@
     if (thirdAdmins) {
         email3 = thirdAdmins.getEmail()
     }
+
+    def endDate = projectService.getProjectEndDate(project)
+    def campaigndate = endDate.getTime().format('MM/dd/yyyy')
 %>
 <html>
 <head>
     <meta name="layout" content="main" />
     <r:require modules="projecteditjs"/>
     <ckeditor:resources/>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/datepicker.css">
+    <script src="/js/main.js"></script>
+    <script src="/js/bootstrap-datepicker.js"></script>
+    <script>
+    var j = jQuery.noConflict();
+        j(function(){
+            j('.datepicker').datepicker();
+        });
+    </script>
 </head>
 <body>
 <input type="hidden" name="uuid" id="uuid"/>
@@ -241,9 +255,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2 control-label"># of Days Campaign Runs</label>
+                        <label class="col-sm-2 control-label">Campaign end date</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="${FORMCONSTANTS.DAYS}" value="${project.days}" placeholder="Recommend: 30, 45, or 90">
+                            <div class="input-group enddate"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                <input class="datepicker pull-left" name="${FORMCONSTANTS.DAYS}" value="${campaigndate}" placeholder="Campaign end date"> 
+                            </div>
                         </div>
                     </div>
                 </div>

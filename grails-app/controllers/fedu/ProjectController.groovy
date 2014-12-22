@@ -54,19 +54,20 @@ class ProjectController {
 
 	def list = {
         def projects = projectService.getValidatedProjects()
+        def selectedCategory = "All"
 		if(projects.size<1) {
             flash.message="There are no campaigns"
             render (view: 'list/index')
         }
         else {
-            render (view: 'list/index', model: [projects: projects])
+            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory ])
         }
 	}
 
     def listwidget = {
         def projects = projectService.getValidatedProjects()
-        render (view: 'list/index-no-headerfooter', model: [projects: projects])
-    }
+        render (view: 'list/index', model: [projects: projects])
+        }
 
     def search () {
         def query = params.query
@@ -610,5 +611,16 @@ class ProjectController {
         
         flash.message= "Updates added successfully."
         render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+    }
+    
+    def categoyFilter (){
+        def category = params.id
+        def project
+        if (category == "Social Innovation"){
+            project = projectService.filterByCategory("SOCIAL_INNOVATION")
+        } else {
+            project = projectService.filterByCategory(category)
+        }
+        render (view: 'list/index', model: [projects: project,selectedCategory:category])
     }
 }

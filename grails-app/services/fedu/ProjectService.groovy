@@ -828,6 +828,23 @@ class ProjectService {
 
         return endDate
     }
+    
+    def filterByCategory(def categories){
+        def projects = getValidatedProjects()
+        List list =[]
+        if (categories == "All"){
+            return projects
+        } else {
+            projects.each{
+                String str = it.category
+                if (str.equalsIgnoreCase(categories)){
+                   list.add(it)
+                }
+            }
+            return list
+           
+        }
+    }
 
     @Transactional
     def bootstrap() {

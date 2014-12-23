@@ -16,19 +16,19 @@
             <div class="table table-responsive">
             	<table class="table table-bordered">
             	    <thead>
-                		<tr class="alert alert-title ">
-                    		<th>Id</th>
-                    		<th>Email</th>
-                    		<th>First Name</th>
-                    		<th>Last Name</th>
-                    		<th>Role</th>
-                    		<th>Date Created</th>
-                    		<th>Last Updated</th>            
-                		</tr>
-            		</thead>
-            		<tbody>
-                 		<g:render template="admin/userListGrid" model="['users': users]"></g:render>
-            		</tbody>
+                	<tr class="alert alert-title ">
+                    	    <th>Id</th>
+                    	    <th>Email</th>
+                    	    <th>First Name</th>
+                    	    <th>Last Name</th>
+                    	    <th>Role</th>
+                    	    <th>Date Created</th>
+                    	    <th>Last Updated</th>            
+                	</tr>
+            	    </thead>
+            	    <tbody>
+                 	<g:render template="admin/userListGrid" model="['users': users]"></g:render>
+            	    </tbody>
             	</table>
             </div>
         </div>

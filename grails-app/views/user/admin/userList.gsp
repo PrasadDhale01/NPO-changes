@@ -15,7 +15,7 @@
             </g:if>
             <div class="table table-responsive">
             	<table class="table table-bordered">
-            		<thead>
+            	    <thead>
                 		<tr class="alert alert-title ">
                     		<th>Id</th>
                     		<th>Email</th>

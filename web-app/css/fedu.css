@@ -1376,6 +1376,9 @@ textarea.form-control {
     .validatebutton {
         float: right;
     }
+    .input-group[class*="col-"] {
+	    width: 100%;
+	}
 }
 
 @media only screen and (max-width: 320px){

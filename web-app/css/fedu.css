@@ -387,8 +387,8 @@ ul.unstyled {
 }
 
 #aboutus .thumbnail img {
-    max-height: 150px;
-    max-width: 150px;
+    max-height: 120px;
+    max-width: 120px;
 }
 
 /* Login
@@ -723,9 +723,7 @@ footer .footerbottomsection {
 }
 
 .static-content {
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    width: 100%;
     font-family: "Lato", sans-serif;
     font-size: 15px;
     font-weight: 300;
@@ -892,8 +890,8 @@ footer .footerbottomsection {
 
 .crewpage img {
     float: left;
-    width: 100px;
-    height: 100px;
+    width: 180px;
+    height: 180px;
     border-radius: 5px;
 }
 
@@ -1212,7 +1210,32 @@ h1.green-heading{
 }
 textarea.form-control {
     width: 97.5%;
-}  
+}
+.enddate{ 
+	position: relative;
+}
+.enddate imput[type="text"]{ 
+	position: absolute; 
+	top: 0; 
+	left: 0;
+}
+.enddate .input-group-addon{ 
+	position: absolute;
+	top: 2px; 
+	right: 2px;
+}
+#aboutus .caption { 
+	font-size:14px;
+}
+#aboutus .caption span{ 
+	display:block; 
+	font-weight:normal; 
+	color:#666;
+	word-wrap: break-word;
+	font-size:13px !important;
+	font-style:italic !important;
+}
+
 @media only screen and (max-width: 480px){
     .glyphicon { margin-right: 10px;}
     .featured-non-profits{
@@ -1341,7 +1364,21 @@ textarea.form-control {
     }
 }
 
-@media only screen and (max-width: 320px) {
+
+
+@media only screen and (max-width: 800px) {
+    .validatebutton {
+        float: right;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .validatebutton {
+        float: right;
+    }
+}
+
+@media only screen and (max-width: 320px){
     #fgGraphWidgetContainer #fgNameStart {
 	    width: 250px !important;
 	}
@@ -1361,19 +1398,10 @@ textarea.form-control {
     #charitableId .modal-body {
         padding: 5px;
     }
-}
-
-@media only screen and (max-width: 800px) {
-    .validatebutton {
-        float: right;
+    .crew-content {
+        widh:100% !important;
     }
+    .crew-content h1 {
+	    font-size: 35px !important;
+	}
 }
-
-@media only screen and (max-width: 768px) {
-    .validatebutton {
-        float: right;
-    }
-}
-.enddate{ position: relative;}
-.enddate imput[type="text"]{ position: absolute; top: 0; left: 0}
-.enddate .input-group-addon{ position: absolute;top: 2px; right: 2px}

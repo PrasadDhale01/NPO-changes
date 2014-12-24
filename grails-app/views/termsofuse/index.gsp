@@ -4,7 +4,7 @@
 </head>
 
 <body>
-<div class="wrapper">
+<div class="container">
   <div class="static-content">
     </br>
     <h1 >TERMS AND CONDITIONS</h1>

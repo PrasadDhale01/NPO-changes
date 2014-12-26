@@ -804,7 +804,7 @@ footer .footerbottomsection {
 }
 
 .squarebox {
-    width: 180px;
+    width: 170px;
     height: 180px;
     float: left;
     margin-right: 1px;
@@ -843,7 +843,7 @@ footer .footerbottomsection {
 .achivegoal h3.green {
     color: #83ab30;
     text-align: center;
-    font-size: 38px;
+    font-size: 30px;
 
 }
 
@@ -854,7 +854,7 @@ footer .footerbottomsection {
 
 .achivegoal h3.gray {
     text-align: center;
-    font-size: 38px;
+    font-size: 30px;
 }
 
 .greenbg-img {
@@ -1297,9 +1297,30 @@ textarea.form-control {
     right: 5px;
 }
 
+/* Media 970px */
+@media only screen and (max-width: 970px) {
+    .nav > li > a {
+        padding: 7px 19px;
+    }
+    .squarebox {
+        width: 180px;
+        height: 180px;
+        float: center;
+        margin-right: -7px;
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
 @media only screen and (max-width: 800px){
     .nav > li > a {
         padding: 7px 14px;
+    }
+    .squarebox {
+        width: 180px;
+        height: 180px;
+        float: center;
+        text-align: center;
     }
 }
 
@@ -1407,4 +1428,21 @@ textarea.form-control {
     .crew-content h1 {
 	    font-size: 35px !important;
 	}
+    .achivegoal .leftcol {
+        width: 49.7% !important;
+        float: left !important;
+    }
+    .achivegoal h3.green {
+        font-size: 16px !important;
+    }
+    .achivegoal h3.gray {
+        font-size: 16px !important;
+    }
+    .squarebox {
+        width: 135px !important;
+        height: 142px ;
+    }
+    .squarebox img {
+        width:100% ;
+    }
 }

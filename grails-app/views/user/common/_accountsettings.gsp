@@ -2,7 +2,7 @@
 <%
     def imageUrl = user.userImageUrl
 %>
-<div class="col-md-4">
+<div class="col-sm-4">
     <g:if test="${imageUrl != null}">
         <div class="profileavatar" class="blacknwhite">
             <img alt="Profile Image" class="profileimage" src="${imageUrl}">
@@ -28,7 +28,7 @@
     </g:else>
 </div>
 
-<div class="col-md-4">
+<div class="col-sm-8">
     <g:if test="${userService.isFacebookUser()}">
         <div class="form-signin">
             <h2><i class="fa fa-facebook-square"></i> Facebook user</h2>

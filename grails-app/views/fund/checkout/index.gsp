@@ -150,7 +150,7 @@
                                 	<div class="input-group col-md-12">
                                 		<div class="row">
                                 			<div class="col-sm-6">
-                                				<input class="form-control" type="text" placeholder="City" name="billToCity">
+                                				<input class="form-control" type="text" placeholder="City" name="billToCity" id="billToCity">
                                 			</div>
                                 			<div class="col-sm-6">
                                     			<input class="form-control" type="text" placeholder="Zip" name="billToZip"> 

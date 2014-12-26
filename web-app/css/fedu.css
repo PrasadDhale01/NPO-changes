@@ -1142,6 +1142,33 @@ text-decoration: none !important;
 	margin-top: 0px;
 	font-size: 25px;
 }
+@media only screen and (max-width: 1199px){
+	.nav.manage-projects > li > a {
+	    padding: 7px 20px;
+	}
+}	
+@media only screen and (max-width: 991px){
+  	.nav > li > a {
+	    padding: 7px 17px;
+	}
+	.input-group[class*="col-"] {
+	    width:100%;
+	}	
+}
+@media only screen and (max-width: 891px){
+    .testimonial {
+	    max-width: 100%;
+	    width: 100%;
+	}
+	.testimonial-content {
+	    padding: 20px;
+	    font-size: 14px;
+	    text-align: left;
+	    line-height: 24px;
+	    border: 1px solid #CCC;
+	    margin-bottom: 20px;
+	}
+}	
 @media only screen and (max-width: 640px){
  .greenbg h1{
      font-size:20px;

@@ -363,4 +363,9 @@ class FundController {
         def user = User.findByUsername('anonymous@example.com')
         render user.id
     }
+	
+    def transaction(){
+        def transaction = Transaction.list();
+        render view: '/user/admin/transactionIndex', model: [transaction: transaction]
+    }
 }

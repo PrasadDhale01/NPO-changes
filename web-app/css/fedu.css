@@ -77,7 +77,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-    font-size: 15px;
+    font-size: 13px;
 }
 
 .navbar-brand {
@@ -387,8 +387,8 @@ ul.unstyled {
 }
 
 #aboutus .thumbnail img {
-    max-height: 150px;
-    max-width: 150px;
+    max-height: 120px;
+    max-width: 120px;
 }
 
 /* Login
@@ -723,9 +723,7 @@ footer .footerbottomsection {
 }
 
 .static-content {
-    width: 90%;
-    margin-left: 5%;
-    margin-right: 5%;
+    width: 100%;
     font-family: "Lato", sans-serif;
     font-size: 15px;
     font-weight: 300;
@@ -806,7 +804,7 @@ footer .footerbottomsection {
 }
 
 .squarebox {
-    width: 180px;
+    width: 170px;
     height: 180px;
     float: left;
     margin-right: 1px;
@@ -845,7 +843,7 @@ footer .footerbottomsection {
 .achivegoal h3.green {
     color: #83ab30;
     text-align: center;
-    font-size: 38px;
+    font-size: 30px;
 
 }
 
@@ -856,7 +854,7 @@ footer .footerbottomsection {
 
 .achivegoal h3.gray {
     text-align: center;
-    font-size: 38px;
+    font-size: 30px;
 }
 
 .greenbg-img {
@@ -892,8 +890,8 @@ footer .footerbottomsection {
 
 .crewpage img {
     float: left;
-    width: 100px;
-    height: 100px;
+    width: 180px;
+    height: 180px;
     border-radius: 5px;
 }
 
@@ -1144,6 +1142,33 @@ text-decoration: none !important;
 	margin-top: 0px;
 	font-size: 25px;
 }
+@media only screen and (max-width: 1199px){
+	.nav.manage-projects > li > a {
+	    padding: 7px 20px;
+	}
+}	
+@media only screen and (max-width: 991px){
+  	.nav > li > a {
+	    padding: 7px 17px;
+	}
+	.input-group[class*="col-"] {
+	    width:100%;
+	}	
+}
+@media only screen and (max-width: 891px){
+    .testimonial {
+	    max-width: 100%;
+	    width: 100%;
+	}
+	.testimonial-content {
+	    padding: 20px;
+	    font-size: 14px;
+	    text-align: left;
+	    line-height: 24px;
+	    border: 1px solid #CCC;
+	    margin-bottom: 20px;
+	}
+}	
 @media only screen and (max-width: 640px){
  .greenbg h1{
      font-size:20px;
@@ -1162,7 +1187,7 @@ text-decoration: none !important;
 }
 }
 .rewarddesc{
-    margin-left:-5px;
+    margin-left:-21px;
 }
 .validate-btn-margin{
     margin-bottom:25px
@@ -1177,6 +1202,10 @@ text-decoration: none !important;
     color: #6f6f6f !important;
     border-color: #cccccc;
     background-color: #eeeeee;
+}
+
+.categorylink {
+	color:red;
 }
 
 .alert-title{
@@ -1198,6 +1227,42 @@ h1.green-heading{
 .project-story-span img{
     max-width: 100%;
 }
+.help-block{
+    color: #ff0000;
+    font-size: 12px;
+    font-weight: normal;
+}
+.form-control.rewardprice{
+    width:100%;
+}
+textarea.form-control {
+    width: 97.5%;
+}
+.enddate{ 
+	position: relative;
+}
+.enddate imput[type="text"]{ 
+	position: absolute; 
+	top: 0; 
+	left: 0;
+}
+.enddate .input-group-addon{ 
+	position: absolute;
+	top: 2px; 
+	right: 2px;
+}
+#aboutus .caption { 
+	font-size:14px;
+}
+#aboutus .caption span{ 
+	display:block; 
+	font-weight:normal; 
+	color:#666;
+	word-wrap: break-word;
+	font-size:13px !important;
+	font-style:italic !important;
+}
+
 @media only screen and (max-width: 480px){
     .glyphicon { margin-right: 10px;}
     .featured-non-profits{
@@ -1243,14 +1308,49 @@ h1.green-heading{
    width:20%;
    float:left;
    }
+   .form-control.rewardprice{
+    margin-left:0px;
+    width:100%;
+   }
+   .rewarddesc {
+    width: 114%;
+    margin-left: -14px;
+   }
+   .rewarddesctitle{
+    margin-left: -12px;
+   } 
+   #billToCity {
+    margin-bottom: 15px !important;
+   }    
 }
 .enddate .glyphicon {
     right: 5px;
 }
 
+/* Media 970px */
+@media only screen and (max-width: 970px) {
+    .nav > li > a {
+        padding: 7px 19px;
+    }
+    .squarebox {
+        width: 180px;
+        height: 180px;
+        float: center;
+        margin-right: -7px;
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
 @media only screen and (max-width: 800px){
     .nav > li > a {
         padding: 7px 14px;
+    }
+    .squarebox {
+        width: 180px;
+        height: 180px;
+        float: center;
+        text-align: center;
     }
 }
 
@@ -1315,7 +1415,24 @@ h1.green-heading{
     }
 }
 
-@media only screen and (max-width: 320px) {
+
+
+@media only screen and (max-width: 800px) {
+    .validatebutton {
+        float: right;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .validatebutton {
+        float: right;
+    }
+    .input-group[class*="col-"] {
+	    width: 100%;
+	}
+}
+
+@media only screen and (max-width: 320px){
     #fgGraphWidgetContainer #fgNameStart {
 	    width: 250px !important;
 	}
@@ -1335,16 +1452,27 @@ h1.green-heading{
     #charitableId .modal-body {
         padding: 5px;
     }
-}
-
-@media only screen and (max-width: 800px) {
-    .validatebutton {
-        float: right;
+    .crew-content {
+        widh:100% !important;
     }
-}
-
-@media only screen and (max-width: 768px) {
-    .validatebutton {
-        float: right;
+    .crew-content h1 {
+	    font-size: 35px !important;
+	}
+    .achivegoal .leftcol {
+        width: 49.7% !important;
+        float: left !important;
+    }
+    .achivegoal h3.green {
+        font-size: 16px !important;
+    }
+    .achivegoal h3.gray {
+        font-size: 16px !important;
+    }
+    .squarebox {
+        width: 135px !important;
+        height: 142px ;
+    }
+    .squarebox img {
+        width:100% ;
     }
 }

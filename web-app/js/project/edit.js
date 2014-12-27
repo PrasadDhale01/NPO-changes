@@ -17,9 +17,7 @@ $(function() {
                 max: 50000
             },
             days: {
-                required: true,
-                number: true,
-                max: 365
+                required: true
             },
             title: {
                 required: true,
@@ -31,14 +29,14 @@ $(function() {
                 minlength: 10,
                 maxlength: 140
             },
-            story: {
+            /*story: {
                 required: true,
                 minlength: 10,
                 maxlength: 5000
-            },
-            videoUrl: {
+            },*/
+            /*videoUrl: {
                 isYoutubeVideo: true
-            },
+            },*/
             organizationName: {
                 required: true
             },
@@ -125,6 +123,14 @@ $(function() {
               $('#ytVideo').hide();
           }
      });
+
+     $.validator.addMethod('isWebUrl', function(value, element){
+         if(value && value.length !=0){
+            var regexp = /(http(s)?:\\)?([\w-]+\.)+[\w-]?[.com|.in|.org]+(\[\?%&=]*)?/;
+            return (value.match(regexp))
+         }
+         return true;
+     }, "Please provide valid url");
 
     /***************************Multiple Image Selection*************** */
 

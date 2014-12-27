@@ -7,7 +7,7 @@
 <div class="feducontent">
     <div class="container">
         <div class="row">
-        <h1>User List</h1><br>
+        <h1>Transaction List</h1><br>
             <g:if test="${flash.message}">
                 <div class="alert alert-success">
                     ${flash.message}
@@ -17,17 +17,16 @@
             	<table class="table table-bordered">
             	    <thead>
                 	<tr class="alert alert-title ">
-                    	    <th>Id</th>
-                    	    <th>Email</th>
-                    	    <th>First Name</th>
-                    	    <th>Last Name</th>
-                    	    <th>Role</th>
-                    	    <th>Date Created</th>
-                    	    <th>Last Updated</th>            
+                        <th>Id</th>
+                        <th>Transaction Id</th>
+                    	<th>Project</th>
+                    	<th>User</th>
+                    	<th>Project Amount</th>
+                    	<th>Contributed Amount</th>
                 	</tr>
             	    </thead>
             	    <tbody>
-                 	<g:render template="admin/userListGrid" model="['users': users]"></g:render>
+                 	    <g:render template="/user/admin/transactionGrid" model="['transaction': transaction]"></g:render>
             	    </tbody>
             	</table>
             </div>

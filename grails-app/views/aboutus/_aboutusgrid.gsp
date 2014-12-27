@@ -12,43 +12,43 @@
 
     <div id="aboutus" class="row">
       <div class="row">
-        <div class="col-xs-4 col-md-3">
+        <div class="col-sm-3">
             <div class="thumbnail">
-                <img src="images/aboutus/chetjain.jpg" alt="...">
+                <img src="images/aboutus/chet.jpg" alt="...">
 
-                <div class="caption">Chet Jain</div>
+                <div class="caption">Chet Jain<span>Founder</span></div>
                 <div class="clear"></div>
             </div>
         </div>
 
-        <div class="col-xs-4 col-md-3">
+        <div class="col-sm-3">
             <div class="thumbnail">
-                <img src="images/aboutus/chaiatreya.jpg" alt="...">
+                <img src="images/aboutus/stepheni.jpg" alt="...">
 
-                <div class="caption">Chai Atreya</div>
+                <div class="caption">Stephanie Jelley<span>Co-founder and CMO</span></div>
                 <div class="clear"></div>
             </div>
         </div>
 
-        <div class="col-xs-4 col-md-3">
+        <div class="col-sm-3">
             <div class="thumbnail">
-                <img src="images/aboutus/reecesoltani.png" alt="...">
+                <img src="images/aboutus/rich.jpg" alt="...">
 
-                <div class="caption">Reece Soltani</div>
+                <div class="caption">Rich Matsuura<span>CEO</span></div>
                 <div class="clear"></div>
             </div>
         </div>
 
-        <div class="col-xs-4 col-md-3">
+        <div class="col-sm-3">
             <div class="thumbnail">
-                <img src="images/aboutus/divyagrewal.jpg" alt="...">
+                <img src="images/aboutus/chai.jpg" alt="...">
 
-                <div class="caption">Divya Grewal</div>
+                <div class="caption">Chai Atreya<span>Product Team <br/>At Crowdera</span></div>
                 <div class="clear"></div>
             </div>
         </div>
 
-        <div class="col-xs-4 col-md-3">
+        <!--<div class="col-xs-4 col-md-3">
             <div class="thumbnail">
                 <img src="images/aboutus/nisargsheth.png" alt="...">
 
@@ -138,9 +138,9 @@
                 <div class="caption">Kshitij Ingle</div>
                 <div class="clear"></div>
             </div>
-        </div>
+        </div>-->
       </div>  
-    <div class="row">
+    <div class="row" style="display:none">
 	    <h1>Advisors</h1>
 	
 	    <div class="row">

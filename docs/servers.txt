@@ -1,0 +1,5 @@
+Production server:
+$ ssh -i ~/path/to/Crowdera.pem ubuntu@ec2-54-201-115-207.us-west-2.compute.amazonaws.com
+
+Staging server:
+$ ssh -i ~/path/to/Crowdera.pem ubuntu@ec2-54-69-109-97.us-west-2.compute.amazonaws.com

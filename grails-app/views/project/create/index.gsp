@@ -250,7 +250,6 @@ tinymce.init({
 														}
 													};
 													function setOrganization() {
-														$('#charitable').find('label').text(document.getElementById("uuid").value);
 														$('#charitable').find('input').val(document.getElementById("uuid").value);
 														$('#organizationName').find('input').val(document.getElementById("charity_name").value);
 													}
@@ -325,9 +324,8 @@ tinymce.init({
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Campaign end date</label>
 							<div class="col-sm-10">
-								<div class="input-group enddate">
+								<div class="input-group enddate"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
 									<input class="datepicker pull-left" name="${FORMCONSTANTS.DAYS}" placeholder="Campaign end date"> 
-									<span class="input-group-addon pull-left"><span class="glyphicon glyphicon-calendar"></span> </span>
 							    </div>
 							</div>
 						</div>
@@ -421,44 +419,44 @@ tinymce.init({
 									</label>
 								</div>
 							</div>
+						</div>
 
 							<div id="addNewRewards">
-								<hr>
 								<div class="rewardsTemplate" id="rewardTemplate">
 									<hr>
 									<div class="row">
-										<div class="col-sm-6">
+										<div class="form-group rewardTitles col-sm-6">
 											<label class="col-sm-4 control-label">Reward Title</label>
 											<div class="col-sm-8">
-												<input type="text" placeholder="Title" name="rewardTitle"
-													class="form-control rewardTitle">
+												<input type="text" placeholder="Title" name="rewardTitle1"
+													class="form-control rewardTitle required" id="rewardTitle1">
 											</div>
 										</div>
-										<div class="col-sm-6">
+										<div class="form-group col-sm-6">
 											<label class="col-sm-3 control-label">Reward Price</label>
 											<div class="col-sm-9">
-												<input type="number" placeholder="Price" name="rewardPrice"
-													class="form-control rewardPrice">
+												<input type="number" placeholder="Enter digits only" name="rewardPrice1"
+													class="form-control rewardPrice required" id="rewardPrice1" min="0">
 											</div>
 										</div>
 									</div>
-									<br>
-									<div class="row">
+									
+									<div class="form-group row">
 										<div class="col-sm-12">
-											<label class="col-sm-2 control-label">Reward Description</label>
+											<label class="col-sm-2 control-label rewarddesctitle" >Reward Description</label>
 											<div class="col-sm-10 rewarddesc">
-												<textarea class="form-control rewardDescription"
-													name="rewardDescription" id="rewardDescription" rows="2"
+												<textarea class="form-control rewardDescription required"
+													name="rewardDescription1" id="rewardDesc1" rows="2"
 													placeholder="Description"></textarea>
 											</div>
 										</div>
 									</div>
-								</div>
+								</div><hr>
 							</div>
-							<br>
+						
 
 							<div class="row">
-								<div class="col-sm-12" id="updatereward">
+								<div class="col-sm-12" id="updatereward" style="margin-left:-43px;">
 									<div class="col-sm-12" align="right" style="right-padding: 0px">
 										<div class="btn btn-primary btn-circle" id="createreward"
 											style="padding: 3px 6px;">
@@ -473,7 +471,7 @@ tinymce.init({
 							</div>
 						</div>
 					</div>
-				</div>
+				
 
 				<div class="panel panel-default">
 					<div class="panel-heading">

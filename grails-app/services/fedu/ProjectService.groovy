@@ -440,6 +440,13 @@ class ProjectService {
         project.days = numberOfDays
         project.created = currentDate
     }
+
+    def getUpdatedNumberofDays(def endingdate, Project project){
+        def endDate = Date.parse('MM/dd/yyyy', endingdate)
+        def createdDate = project.created
+        def numberOfDays = endDate - createdDate
+        project.days = numberOfDays
+    }
     
     /*def sendEmailToAdminForProjectUpdate(def project, def user) {
         def projectadmins = project.projectAdmins
@@ -644,6 +651,11 @@ class ProjectService {
             }
         }
     }
+	
+    def getContributedAmount (Transaction transaction){
+	def contribution = Contribution.findWhere(user: transaction.user,project: transaction.project)
+	return contribution.amount
+    }
     
     def getUpdatedImageUrls(List<MultipartFile> files, ProjectUpdate projectUpdate){
         def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
@@ -827,6 +839,23 @@ class ProjectService {
         endDate.add Calendar.DAY_OF_YEAR, project.days
 
         return endDate
+    }
+    
+    def filterByCategory(def categories){
+        def projects = getValidatedProjects()
+        List list =[]
+        if (categories == "All"){
+            return projects
+        } else {
+            projects.each{
+                String str = it.category
+                if (str.equalsIgnoreCase(categories)){
+                   list.add(it)
+                }
+            }
+            return list
+           
+        }
     }
 
     @Transactional

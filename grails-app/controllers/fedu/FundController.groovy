@@ -364,8 +364,8 @@ class FundController {
         render user.id
     }
 	
-	def transaction(){
-	    def transaction = Transaction.list();
-	    render view: '/user/admin/transactionIndex', model: [transaction: transaction]
-	}
+    def transaction(){
+        def transaction = Transaction.list();
+        render view: '/user/admin/transactionIndex', model: [transaction: transaction]
+    }
 }

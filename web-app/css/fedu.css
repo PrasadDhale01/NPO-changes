@@ -1291,7 +1291,10 @@ textarea.form-control {
    }
    .rewarddesctitle{
     margin-left: -12px;
-   }   
+   } 
+   #billToCity {
+    margin-bottom: 15px !important;
+   }    
 }
 .enddate .glyphicon {
     right: 5px;

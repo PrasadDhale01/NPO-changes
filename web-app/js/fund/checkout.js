@@ -116,6 +116,7 @@ $(function() {
             	 maxlength:20
             },
             billToEmail: {
+                email: true,
                 required: true,
                 maxlength:100
             },

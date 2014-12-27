@@ -26,23 +26,13 @@
 						</div>
 					</g:if>
 
-					<g:if test="${project.draft}">
-						<div class="alert alert-info">
-							<h2 class="text-center">It is still in draft</h2>
-						</div>
-					</g:if>
-					<g:elseif test="${project.rejected}">
+					<g:if test="${project.rejected}">
 						<div class="alert alert-info">
 							<h2 class="text-center">Sorry, but this project is not
 								validated by admin</h2>
 						</div>
-					</g:elseif>
-					<g:elseif test="${!project.validated}">
-						<div class="alert alert-info">
-							<h2 class="text-center">It is still pending</h2>
-						</div>
-					</g:elseif>
-
+					</g:if>
+					
 					<g:if test="${!project.validated}">
 					    <h1 class="green-heading text-center">
 							<g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">${project.title}</g:link>

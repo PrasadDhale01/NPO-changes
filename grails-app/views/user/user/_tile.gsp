@@ -37,7 +37,7 @@
 				</g:elseif>
 				<g:elseif test="${!project.validated}">
 					<div class="over">
-						<img src="/images/pending.png" width="100">
+						<img src="/images/PENDING.png" width="100">
 					</div>
 				</g:elseif>
 			</div>

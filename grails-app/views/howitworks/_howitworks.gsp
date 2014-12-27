@@ -54,7 +54,7 @@
 		            <span>02/</span><br/>Share with Family & Friends
 		            </div>
 		            <div class="squarebox greenbg">
-		            <img alt="" src="images/square-box.jpg" width="180" height="180">
+		            <img alt="" src="images/square-box.jpg" width="130" height="130">
 		            </div>
 		        </div>   
 		        <div class="leftcol"> 
@@ -66,7 +66,7 @@
 		            <span>02/</span><br/>Choose A Reward
 		            </div>
 		            <div class="squarebox graybg">
-		            <img alt="" src="images/square-box-gray.jpg" width="180" height="180">
+		            <img alt="" src="images/square-box-gray.jpg" width="130" height="130">
 		            </div>
 		        </div>    
 	        </div>

@@ -38,7 +38,7 @@
                         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
                     </g:elseif>
                     <g:else>
-                        <a href="/projects/${project.id}/fund" class="btn btn-success btn-lg btn-block" role="button">Contribute now</a>
+                        <a href="/projects/${project.id}/fund" class="btn btn-success btn-lg btn-block" role="button">Fund this Campaign</a>
                     </g:else>
                     <g:if test="${project.rewards.size()>1}">
                     	<g:render template="show/rewards"/>

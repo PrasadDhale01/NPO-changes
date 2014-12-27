@@ -22,7 +22,12 @@
 	            <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>
 	        </g:if>
 	        <g:else>
-            <p>By ${friendlyName}, on ${date}</p>
+	            <g:if test="${userService.isAnonymous(contribution.user)}">
+	                <p>By Anonymous, on ${date}</p>
+	            </g:if>
+	            <g:else>
+                    <p>By ${friendlyName}, on ${date}</p>
+                </g:else>
 	        </g:else>
 	        <g:if test="${reward.id == 1}">
 	            <b>No reward</b>

@@ -120,6 +120,18 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <i class="fa fa-credit-card"></i> Manage Transactions
+                    </div>
+                    <div class="panel-footer">
+                        <g:link controller="fund" action="transaction">
+                            <button class="btn btn-block btn-primary"><i class="fa fa-credit-card"></i> Manage Transactions</button>
+                        </g:link>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

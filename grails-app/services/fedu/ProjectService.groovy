@@ -651,6 +651,11 @@ class ProjectService {
             }
         }
     }
+	
+	def getContributedAmount (Transaction transaction){
+		def contribution = Contribution.findWhere(user: transaction.user,project: transaction.project)
+		return contribution.amount
+	}
     
     def getUpdatedImageUrls(List<MultipartFile> files, ProjectUpdate projectUpdate){
         def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"

@@ -926,9 +926,15 @@ footer .footerbottomsection {
     margin-top: 10px;
 }
 
-.organization-details img {
-    margin-bottom: 10px;
+.tilesanstitletag {
+	right:0;
+	bottom:0;
+	position:absolute;
 }
+
+.organization-details {
+	position:relative;
+ }
 
 .campaign-description {
     margin-top: 66px;

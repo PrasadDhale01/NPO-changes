@@ -20,6 +20,7 @@
 
     def endDate = projectService.getProjectEndDate(project)
     def campaigndate = endDate.getTime().format('MM/dd/yyyy')
+	def amount = projectService.getDataType(project.amount)
 %>
 <html>
 <head>
@@ -251,7 +252,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Amount</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" value="${project.amount}">
+                            <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" value="${amount}">
                         </div>
                     </div>
                     <div class="form-group">

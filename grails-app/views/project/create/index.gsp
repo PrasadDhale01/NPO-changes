@@ -140,7 +140,7 @@ tinymce.init({
 								<div class="form-group country-create-project">
 									<label class="col-sm-2 control-label">Country</label>
 									<div class="col-sm-10">
-										<g:select type="text" id="val3" class="selectpicker" name="${FORMCONSTANTS.COUNTRY}" from="${country}" optionKey="key" optionValue="value"/>
+										<g:select type="text" id="val3" class="selectpicker" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="US" optionKey="key" optionValue="value"/>
 									</div>
 								</div>
 

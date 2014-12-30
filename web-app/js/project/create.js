@@ -35,7 +35,7 @@ $(function() {
     
     $("#paypalcheckbox").hide();
 
-    $('#val1').hide();
+    $('#val2').hide();
 
     $("#charitableId").hide();
     $("#icondiv").hide();

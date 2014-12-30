@@ -1278,8 +1278,9 @@ textarea.form-control {
         display: none;
     }
     h1.green-heading{
-        font-size:15px;
+        font-size:25px;
         text-transform: uppercase;
+        line-height:22px;
    }
    .mobileview-top{
         display:block;

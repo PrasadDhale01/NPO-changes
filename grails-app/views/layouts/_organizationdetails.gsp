@@ -15,7 +15,9 @@
 <%--	<label class="col-sm-12" style="margin-top:10px"><h3>Project By</h3></label>--%>
    	<div class="organization-details text-center">
    	    <label class="col-sm-12"><h4><b>${project.organizationName}</b></h4></label>
-   	    <img alt="" src="${project.organizationIconUrl}" style="height:100px; width:100px; margin: 50px; border:2px">
+   	    <div class="col-sm-12">
+   	        <img alt="" src="${project.organizationIconUrl}" class="org-logo">
+        </div>
         <label class="col-sm-12">WEB: <a href="${project.webAddress}">${project.webAddress}</a></label>
         <div class="clear"></div>
             <g:if test="${project.draft}">

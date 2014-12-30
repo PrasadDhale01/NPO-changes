@@ -1162,6 +1162,9 @@ text-decoration: none !important;
 	}	
 }
 @media only screen and (max-width: 891px){
+	.nav > li > a {
+	    padding: 7px 17px;
+	}
     .testimonial {
 	    max-width: 100%;
 	    width: 100%;

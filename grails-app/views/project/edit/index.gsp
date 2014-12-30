@@ -26,7 +26,7 @@
     <meta name="layout" content="main" />
     <r:require modules="projecteditjs"/>
     <ckeditor:resources/>
-    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
     <link rel="stylesheet" href="/css/datepicker.css">
     <script src="/js/main.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>

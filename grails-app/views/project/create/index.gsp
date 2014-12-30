@@ -358,8 +358,8 @@ tinymce.init({
 							<div class="col-sm-10">
 								<textarea class="form-control" id="descarea"
 									name="${FORMCONSTANTS.DESCRIPTION}" rows="2"
-									placeholder="Make it catchy, and no more than 140 characters" maxlength="139"></textarea>
-									<label class="pull-right " id="desclength">0 </label>
+									placeholder="Make it catchy, and no more than 140 characters" maxlength="140"></textarea>
+									<label class="pull-right " id="desclength"></label>
 							</div>
 						</div>
 						<div class="form-group">

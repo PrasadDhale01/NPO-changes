@@ -556,13 +556,12 @@ ul.unstyled {
     height: 26px;
 }
 
-/* .nav-tabs > li.active > a, */
-/* .nav-tabs > li.active > a:hover, */
-/* .nav-tabs > li.active > a:focus { */
-/*     color: #ffffff; */
-/*     background-color: #008cba; */
-/* } */
-
+.nav-tabs > li > a:hover {
+     color: #ffffff !important; 
+} 
+.nav-tabs > li.active > a:hover {
+     color: #2a2a2a !important; 
+} 
 /* Override thumbnail */
 .fedu.thumbnail {
     border-radius: 0;
@@ -1162,6 +1161,9 @@ text-decoration: none !important;
 	}	
 }
 @media only screen and (max-width: 891px){
+	.nav > li > a {
+	    padding: 7px 17px;
+	}
     .testimonial {
 	    max-width: 100%;
 	    width: 100%;
@@ -1275,8 +1277,9 @@ textarea.form-control {
         display: none;
     }
     h1.green-heading{
-        font-size:15px;
+        font-size:25px;
         text-transform: uppercase;
+        line-height:22px;
    }
    .mobileview-top{
         display:block;
@@ -1481,4 +1484,9 @@ textarea.form-control {
     .squarebox img {
         width:100% ;
     }
+}
+.org-logo{
+	 height:100px; 
+	 width:100px; 
+	 margin: 10px;
 }

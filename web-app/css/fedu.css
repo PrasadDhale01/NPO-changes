@@ -1481,4 +1481,17 @@ textarea.form-control {
     .squarebox img {
         width:100% ;
     }
+    .nav.nav-tabs li{
+	   width:100%;
+	   float:none;
+	}
+	.timeline:before {
+	    background-color: none !important;
+	}
+	ul.timeline > li > .timeline-badge {
+	    display:none !important
+	}
+	ul.timeline > li > .timeline-panel {
+	    width:100% !important;
+	}
 }

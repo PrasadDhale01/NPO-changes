@@ -145,54 +145,6 @@ modules = {
     }
 
     bootswatchyeticss {
-        dependsOn 'lessjs'
         resource url: 'bootswatch-yeti/bootstrap.css'
-        resource url: 'bootswatch-yeti/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
-        resource url: 'bootswatch-yeti/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
     }
-    /* Bootswatch themes; use any one. */
-    /*
-    bootswatchsimplexcss {
-        dependsOn 'lessjs'
-        resource url: 'http://bootswatch.com/simplex/bootstrap.css'
-        resource url: 'http://bootswatch.com/simplex/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
-        resource url: 'http://bootswatch.com/simplex/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
-    }
-    bootswatchjournalcss {
-        dependsOn 'lessjs'
-        resource url: 'http://bootswatch.com/journal/bootstrap.css'
-        resource url: 'http://bootswatch.com/journal/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
-        resource url: 'http://bootswatch.com/journal/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
-    }
-    bootswatchceruleancss {
-        dependsOn 'lessjs'
-        resource url: 'http://bootswatch.com/cerulean/bootstrap.css'
-        resource url: 'http://bootswatch.com/cerulean/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
-        resource url: 'http://bootswatch.com/cerulean/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
-    }
-    bootswatchdarklycss {
-        dependsOn 'lessjs'
-        resource url: 'http://bootswatch.com/darkly/bootstrap.css'
-        resource url: 'http://bootswatch.com/darkly/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
-        resource url: 'http://bootswatch.com/darkly/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
-    }
-    bootswatchflatlycss {
-        dependsOn 'lessjs'
-        resource url: 'http://bootswatch.com/flatly/bootstrap.css'
-        resource url: 'http://bootswatch.com/flatly/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
-        resource url: 'http://bootswatch.com/flatly/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
-    }
-    bootswatchspacelabcss {
-        dependsOn 'lessjs'
-        resource url: 'http://bootswatch.com/spacelab/bootstrap.css'
-        resource url: 'http://bootswatch.com/spacelab/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
-        resource url: 'http://bootswatch.com/spacelab/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
-    }
-    bootswatchunitedcss {
-        dependsOn 'lessjs'
-        resource url: 'http://bootswatch.com/united/bootstrap.css'
-        resource url: 'http://bootswatch.com/united/variables.less', attrs: [rel: 'stylesheet/less', type: 'css']
-        resource url: 'http://bootswatch.com/united/bootswatch.less', attrs: [rel: 'stylesheet/less', type: 'css']
-    }
-    */
 }

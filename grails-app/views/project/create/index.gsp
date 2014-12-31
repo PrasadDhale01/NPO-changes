@@ -9,7 +9,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 <meta name="layout" content="main" />
 <r:require modules="projectcreatejs" />
 <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-<link rel="stylesheet" href="/css/bootstrap.css">
+<link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
 <link rel="stylesheet" href="/css/datepicker.css">
 <script src="/js/main.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
@@ -18,7 +18,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 		j(function(){
 			j('.datepicker').datepicker();
 		});
-	</script>
+</script>
 <script>
 tinymce.init({
 	mode : "specific_textareas",

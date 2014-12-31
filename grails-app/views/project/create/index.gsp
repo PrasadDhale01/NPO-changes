@@ -379,7 +379,7 @@ tinymce.init({
   					<div class="panel-body">
     					<div class="form-group">
       						<label class="col-sm-2 control-label">Pictures</label>
-      						<div class="col-sm-2">
+      						<div class="col-sm-4">
         						<button id="add_img_btn" class="btn btn-primary btnAddImage" type="button"> <i class="icon-file"></i> Add Image </button>
         						<input type="file" class="hidden" name="${FORMCONSTANTS.THUMBNAIL}[]"
          							id="projectImageFile" multiple="multiple">
@@ -388,7 +388,7 @@ tinymce.init({
         						<input class="hidden" name="${FORMCONSTANTS.IMAGEURL}"
          							placeholder="Image URL">
        						</div>-->
-      						<div class="col-sm-8">
+      						<div class="col-sm-6">
         						<output id="result"></output>
       						</div>
     					</div>

@@ -560,7 +560,7 @@ class ProjectService {
 
     def search(String query) {
         List result = []
-        def project = Project.list()
+        def project = getValidatedProjects()
         project.each { 
             if( it.title.toLowerCase().contains(query.toLowerCase()) || it.story.toLowerCase().contains(query.toLowerCase()) ){
                 result.add(it)

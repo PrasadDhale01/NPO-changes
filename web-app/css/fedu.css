@@ -1500,6 +1500,15 @@ textarea.form-control {
 	ul.timeline > li > .timeline-panel {
 	    width:100% !important;
 	}
+	.crew-content {
+	    width:100%;
+	}
+	.crew-content h1 {
+	    font-size: 31px !important;
+	}
+	#aboutus .thumbnail {
+	    padding-left: 20px;
+	}
 }
 .org-logo{
 	 height:100px; 

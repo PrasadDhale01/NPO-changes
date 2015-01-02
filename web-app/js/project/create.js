@@ -35,7 +35,7 @@ $(function() {
     
     $("#paypalcheckbox").hide();
 
-    $('#val1').hide();
+    $('#val2').hide();
 
     $("#charitableId").hide();
     $("#icondiv").hide();
@@ -313,17 +313,20 @@ $(function() {
 
 
      /*******************************Description text length******************** */
-      var counter = 1;
-  $('#descarea').on('keydown', function(event) {
+    var counter = 1;
+    $('#descarea').on('keydown', function(event) {
     
     event.altKey==true;
     var currentString = $('#descarea').val().length;
-    var text = currentString + 1;
+    if(currentString <=139) {
+        var text = currentString + 1;
+    }
     if (event.keyCode > 31) {
       if(event.altKey==true){
         setDescriptionText();
       }
       else{
+    	  if(currentString <139)
           currentString++;
           $('#desclength').text(text);
       }
@@ -545,7 +548,7 @@ $(function() {
      });
    });
 
-
+/*Javascript error raised due to tooltip is resolved*/
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {
             $(this).popover('show');
@@ -555,12 +558,12 @@ $(function() {
         };
 
     /* Initialize pop-overs (tooltips) */
-    $("input[name='days']").popover({
+   /* $("input[name='days']").popover({
         content: 'Number of days to raise the funds by.',
         trigger: 'manual',
         placement: 'top'
     })
     .focus(showPopover)
     .blur(hidePopover)
-    .hover(showPopover, hidePopover);
+    .hover(showPopover, hidePopover);*/
 });

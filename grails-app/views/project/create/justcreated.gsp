@@ -20,12 +20,7 @@
 		    <h3 class="panel-title">Next steps</h3>
 		</div>
 		<div class="panel-body">
-		    <ul>
-			<li>Campaign will be validated.</li>
-			<li>Once validated, Campaign will be published.</li>
-			<li>Share your Campaign and get funded.</li>
-		    </ul>
-		</div>
+			Your campaign has been submitted for review and will be published within 24 hours. Once published, share your campaign with family and friends across your social networks and get funded!		</div>
 	    </div>
 	</g:if>
 	<g:else>

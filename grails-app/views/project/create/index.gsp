@@ -9,7 +9,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 <meta name="layout" content="main" />
 <r:require modules="projectcreatejs" />
 <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-<link rel="stylesheet" href="/css/bootstrap.css">
+<link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
 <link rel="stylesheet" href="/css/datepicker.css">
 <script src="/js/main.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
@@ -18,7 +18,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 		j(function(){
 			j('.datepicker').datepicker();
 		});
-	</script>
+</script>
 <script>
 tinymce.init({
 	mode : "specific_textareas",
@@ -140,7 +140,7 @@ tinymce.init({
 								<div class="form-group country-create-project">
 									<label class="col-sm-2 control-label">Country</label>
 									<div class="col-sm-10">
-										<g:select type="text" id="val3" class="selectpicker" name="${FORMCONSTANTS.COUNTRY}" from="${country}" optionKey="key" optionValue="value"/>
+										<g:select type="text" id="val3" class="selectpicker" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="US" optionKey="key" optionValue="value"/>
 									</div>
 								</div>
 
@@ -358,8 +358,8 @@ tinymce.init({
 							<div class="col-sm-10">
 								<textarea class="form-control" id="descarea"
 									name="${FORMCONSTANTS.DESCRIPTION}" rows="2"
-									placeholder="Make it catchy, and no more than 140 characters" maxlength="139"></textarea>
-									<label class="pull-right " id="desclength">0 </label>
+									placeholder="Make it catchy, and no more than 140 characters" maxlength="140"></textarea>
+									<label class="pull-right " id="desclength"></label>
 							</div>
 						</div>
 						<div class="form-group">
@@ -379,7 +379,7 @@ tinymce.init({
   					<div class="panel-body">
     					<div class="form-group">
       						<label class="col-sm-2 control-label">Pictures</label>
-      						<div class="col-sm-2">
+      						<div class="col-sm-4">
         						<button id="add_img_btn" class="btn btn-primary btnAddImage" type="button"> <i class="icon-file"></i> Add Image </button>
         						<input type="file" class="hidden" name="${FORMCONSTANTS.THUMBNAIL}[]"
          							id="projectImageFile" multiple="multiple">
@@ -388,7 +388,7 @@ tinymce.init({
         						<input class="hidden" name="${FORMCONSTANTS.IMAGEURL}"
          							placeholder="Image URL">
        						</div>-->
-      						<div class="col-sm-8">
+      						<div class="col-sm-6">
         						<output id="result"></output>
       						</div>
     					</div>

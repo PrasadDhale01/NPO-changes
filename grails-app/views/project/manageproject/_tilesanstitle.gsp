@@ -72,17 +72,18 @@
     </div>
     <div class="modal-footer tile-footer" style="text-align: left; margin-top: 0;">
         <div class="row">
-            <div class="col-sm-10" align="right" style="right-padding: 0px">
-                <% if(percentage <= 100) { %>
+            <div class="col-sm-10" align="right" style="margin-left: 10px">
+                &nbsp;
+            </div>
+            <div class="col-sm-2">
+            <% if(percentage <= 100) { %>
             	    <g:form controller="project" action="edit" method="post"  id="${project.id}">
                         <g:hiddenField name="projectId" value="${project.id}"/>               
                         <button class="projectedit close"  aria-label="Edit project" id="editproject">
                             <i class="glyphicon glyphicon-edit" ></i>
                	        </button>
                     </g:form>
-                <% } %>
-            </div>
-            <div class="col-sm-2">
+            <% } %>
             <g:form controller="project" action="projectdelete" method="post"  id="${project.id}">
                 <button class="projectedit close" aria-label="Edit project" id="projectdelete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
                     <i class="glyphicon glyphicon-trash" ></i>

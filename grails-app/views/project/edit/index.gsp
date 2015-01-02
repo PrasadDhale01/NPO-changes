@@ -20,13 +20,14 @@
 
     def endDate = projectService.getProjectEndDate(project)
     def campaigndate = endDate.getTime().format('MM/dd/yyyy')
+	def amount = projectService.getDataType(project.amount)
 %>
 <html>
 <head>
     <meta name="layout" content="main" />
     <r:require modules="projecteditjs"/>
     <ckeditor:resources/>
-    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
     <link rel="stylesheet" href="/css/datepicker.css">
     <script src="/js/main.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>
@@ -251,7 +252,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Amount</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" value="${project.amount}">
+                            <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" value="${amount}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -287,7 +288,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Brief Description</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Make it catchy, and no more than 140 characters"> ${project.description} </textarea>
+                            <textarea class="form-control" name="${FORMCONSTANTS.DESCRIPTION}" id="descarea" maxlength="140" rows="2" placeholder="Make it catchy, and no more than 140 characters"> ${project.description} </textarea>
+                            <label class="pull-right " id="desclength">1</label>
                         </div>
                     </div>
                     <div class="form-group">

@@ -1403,6 +1403,9 @@ textarea.form-control {
     #charitableId .modal-body {
         padding: 5px;
     }
+    h1, .h1 {
+	    font-size: 25px;
+	}
 }
 
 @media only screen and (max-width: 375px) {

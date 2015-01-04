@@ -43,6 +43,20 @@
 						    <g:link controller="project" action="show" id="${project.id}" title="${project.title}">${project.title}</g:link>
 					    </h1>
 					</g:else>
+					
+					<div class="col-md-4 mobileview-top">
+						<g:render template="/project/manageproject/tilesanstitle" />
+						<g:if test="${project.draft}">
+							<g:form controller="project" action="saveasdraft"
+								id="${project.id}">
+								<button class="btn btn-block btn-primary">
+									<i class="glyphicon glyphicon-check"></i>&nbsp;Submit for
+									approval
+								</button>
+							</g:form>
+						</g:if>
+						<br>
+	                </div>
 
 					<div class="col-md-8">
 						<ul class="nav nav-tabs manage-projects nav-justified"
@@ -152,7 +166,7 @@
 						</div>
 
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-4 mobileview-bottom">
 						<g:render template="/project/manageproject/tilesanstitle" />
 						<g:if test="${project.draft}">
 							<g:form controller="project" action="saveasdraft"

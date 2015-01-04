@@ -334,7 +334,7 @@ tinymce.init({
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Tell Us About Your Campaign</h3>
+						<h3 class="panel-title">Tell us about your Campaign</h3>
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
@@ -423,7 +423,6 @@ tinymce.init({
 
 							<div id="addNewRewards">
 								<div class="rewardsTemplate" id="rewardTemplate">
-									<hr>
 									<div class="row">
 										<div class="form-group rewardTitles col-sm-6">
 											<label class="col-sm-4 control-label">Reward Title</label>
@@ -450,8 +449,8 @@ tinymce.init({
 													placeholder="Description"></textarea>
 											</div>
 										</div>
-									</div>
-								</div><hr>
+									</div><hr>
+								</div>
 							</div>
 						
 

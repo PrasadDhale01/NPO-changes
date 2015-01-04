@@ -1192,6 +1192,11 @@ text-decoration: none !important;
     height:200px;
     }
 }
+@media only screen and (max-width: 767px){
+	.rewarddesc,.rewarddesctitle {
+	    margin-left: -14px !important;
+	}
+}   
 @media only screen and (max-width: 768px){
 .nav > li > a {
     padding: 7px 17px;
@@ -1247,7 +1252,7 @@ h1.green-heading{
     width:100%;
 }
 textarea.form-control {
-    width: 97.5%;
+    width: 100%;
 }
 .enddate{ 
 	position: relative;
@@ -1325,7 +1330,6 @@ textarea.form-control {
     width:100%;
    }
    .rewarddesc {
-    width: 114%;
     margin-left: -14px;
    }
    .rewarddesctitle{
@@ -1403,6 +1407,9 @@ textarea.form-control {
     #charitableId .modal-body {
         padding: 5px;
     }
+    h1, .h1 {
+	    font-size: 25px;
+	}
 }
 
 @media only screen and (max-width: 375px) {
@@ -1514,6 +1521,7 @@ textarea.form-control {
 	 height:100px; 
 	 width:100px; 
 	 margin: 10px;
+	 margin-bottom:20px;
 }
 button.projectedit.close{
 	margin-left:15px;

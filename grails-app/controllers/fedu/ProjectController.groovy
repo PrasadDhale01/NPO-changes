@@ -54,7 +54,7 @@ class ProjectController {
 
 	def list = {
         def projects = projectService.getValidatedProjects()
-        def selectedCategory = "All"
+        def selectedCategory = "All Categories"
 		if(projects.size<1) {
             flash.message="There are no campaigns"
             render (view: 'list/index')
@@ -601,7 +601,6 @@ class ProjectController {
             project.addToProjectUpdates(projectUpdate)
             
             redirect (action:'updatesaverender' , controller:'project', id: project.id)
-               
         } else {
             render (view: 'manageproject/error', model: [project: project])
         }
@@ -615,12 +614,15 @@ class ProjectController {
         render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
     }
     
-    def categoyFilter (){
-        def category = params.id
+    def category (){
+//        def category = params.id
+		def category = request.getParameter("category")
         def project
         if (category == "Social Innovation"){
             project = projectService.filterByCategory("SOCIAL_INNOVATION")
-        } else {
+        } else if (category == "All Categories"){
+		    project = projectService.filterByCategory("All")
+		} else {
             project = projectService.filterByCategory(category)
         }
         render (view: 'list/index', model: [projects: project,selectedCategory:category])

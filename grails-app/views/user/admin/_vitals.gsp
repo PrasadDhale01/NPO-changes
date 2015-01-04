@@ -2,7 +2,9 @@
 <g:set var="userService" bean="userService"/>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
-
+<%
+    def amount = contributionService.getTotalContribution()
+%>
 <div class="row">
     <div class="col-md-3">
         <div class="panel panel-info">
@@ -13,7 +15,7 @@
                     </div>
                     <div class="col-xs-10 text-right">
                         <g:if test="${contributionService.getTotalContribution()}">
-                            <p class="announcement-heading">$${contributionService.getTotalContribution()}</p>
+                            <p class="announcement-heading">$${projectService.getDataType(amount)}</p>
                         </g:if>
                         <g:else>
                             <p class="announcement-heading">$0</p>

@@ -483,6 +483,24 @@ class ProjectService {
         ]
         return categoryOptions
     }
+	
+   def getCategory(){
+	   def categoryOptions = [
+		   ALL: "All Categories",
+		   ANIMALS: "Animals",
+		   ARTS: "Arts",
+		   CHILDREN: "Children",
+		   COMMUNITY: "Community",
+		   EDUCATION: "Education",
+		   ELDERLY: "Elderly",
+		   ENVIRONMENT: "Environment",
+		   HEALTH: "Health",
+		   SOCIAL_INNOVATION: "Social Innovation",
+		   RELIGION: "Religion",
+		   OTHER: "Other",
+	   ]
+	   return categoryOptions
+	   }
     
     def getValidatedProjects() {
 		def criteria = Project.createCriteria()

@@ -75,9 +75,7 @@
 					</div>
 
 					<div  class="col-md-4">
-						<div class="row">
-							<g:render template="/project/manageproject/tilesanstitle" /></div>
-						</div>
+						<g:render template="/project/manageproject/tilesanstitle"/></div>
 					</div>
 				<%--
 			<g:if test="${project.validated == false}">

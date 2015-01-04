@@ -478,32 +478,32 @@ $(function() {
      
      $.validator.addMethod('isequaltofirstadmin', function(value, element){
     	 var emailId = $('#firstadmin').val();
- 	     if(emailId.length !=0) {
- 	         return (!value.match(emailId))
+ 	     if(value.length != 0 && value == emailId) {
+ 	         return (!value == emailId)
  	     }
-     	 return true; 
+     	 return true;
      }, "This Co-creator is already added");
      
      $.validator.addMethod('isequaltosecondadmin', function(value, element){
     	 var emailId = $('#secondadmin').val();
-     	 if(emailId.length !=0) {
-     	     return (!value.match(emailId))
+     	 if(value.length != 0 && value == emailId) {
+     	     return (!value == emailId)
      	 } 
-     	 return true; 
+     	 return true;
      }, "This Co-creator is already added");
      
      $.validator.addMethod('isequaltothirdadmin', function(value, element){
     	 var emailId = $('#thirdadmin').val();
- 	     if(emailId.length !=0) {
- 	         return (!value.match(emailId))
+ 	     if(value.length != 0 && value == emailId) {
+ 	         return (!value == emailId)
  	     } 
-     	 return true; 
+     	 return true;
      }, "This Co-creator is already added");
      
      $.validator.addMethod('iscampaigncreator', function(value, element){
     	 var emailId = $('#email').val();
-    	 if(value && value.length != 0) {
-    		 return (!value.match(emailId))
+    	 if(value.length != 0 && value == emailId) {
+    		 return (!value == emailId)
     	 }
     	 return true;
      }, "Campaign creator cannot be added as a Co-creator");

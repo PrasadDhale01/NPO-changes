@@ -1521,6 +1521,7 @@ textarea.form-control {
 	 height:100px; 
 	 width:100px; 
 	 margin: 10px;
+	 margin-bottom:20px;
 }
 button.projectedit.close{
 	margin-left:15px;

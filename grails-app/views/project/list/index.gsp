@@ -1,14 +1,17 @@
 <g:set var="projectService" bean="projectService"/>
+<% 
+    def category = projectService.getCategory() 
+	def base_url = grailsApplication.config.crowdera.BASE_URL
+	def base = "/project/category?"
+%>
 <html>
 <head>
 <meta name="layout" content="main" />
 <r:require module="projectlistjs"/>
-
 </head>
 <body>
     <div class="feducontent">
 	<div class="container">
-	<% def category = projectService.getCategoryList() %>
 	    <div class="row">
 		<div class="col-md-6">
 		    <h1> <span class="glyphicon glyphicon-tint"></span> Contribute</h1>
@@ -18,10 +21,13 @@
             </div>
 	    <div class="row">
 		<div class="col-sm-2">
-	            <h4>Categories</h4><br>
-		    <a href="/project/categoyFilter/All" <g:if test="${selectedCategory == "All"}">class="categorylink"</g:if>>All Categories</a><br>
+	        <h4>Categories</h4><br>
 		    <g:each in="${category}" var="categories">
-		        <a href="/project/categoyFilter/${categories.value}"<g:if test="${selectedCategory == categories.value}">class="categorylink"</g:if>>${categories.value}</a><br>
+		        <% 
+				   def params = [category:"${categories.value}"]
+				   def url = base_url + base + params.collect { k,v -> "$k=$v" }.join('&')
+				%>
+		        <a href="${url}"<g:if test="${selectedCategory == categories.value}">class="categorylink"</g:if>>${categories.value}</a><br>
 		    </g:each>
 		</div>
 		<div class="col-sm-10">

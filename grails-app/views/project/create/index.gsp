@@ -423,7 +423,6 @@ tinymce.init({
 
 							<div id="addNewRewards">
 								<div class="rewardsTemplate" id="rewardTemplate">
-									<hr>
 									<div class="row">
 										<div class="form-group rewardTitles col-sm-6">
 											<label class="col-sm-4 control-label">Reward Title</label>
@@ -450,8 +449,8 @@ tinymce.init({
 													placeholder="Description"></textarea>
 											</div>
 										</div>
-									</div>
-								</div><hr>
+									</div><hr>
+								</div>
 							</div>
 						
 

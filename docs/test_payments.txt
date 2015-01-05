@@ -1,0 +1,4 @@
+Paypal - Test payment account:
+Email-id: tushar14830@gmail.com
+Password: tush@r@p@yp@l
+

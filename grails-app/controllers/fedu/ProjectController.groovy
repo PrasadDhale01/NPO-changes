@@ -610,7 +610,7 @@ class ProjectController {
     def updatesaverender() {
         def project = Project.get(params.id)
         
-        flash.message= "Updates added successfully."
+        flash.message= "Update added successfully."
         render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
     }
     

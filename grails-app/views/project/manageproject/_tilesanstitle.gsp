@@ -72,10 +72,7 @@
     </div>
     <div class="modal-footer tile-footer" style="text-align: left; margin-top: 0;">
         <div class="row">
-            <div class="col-sm-10" align="right" style="margin-left: 10px">
-                &nbsp;
-            </div>
-            <div class="col-sm-2">
+            <div class="fullwidth pull-right">
             <% if(percentage <= 100) { %>
             	    <g:form controller="project" action="edit" method="post"  id="${project.id}">
                         <g:hiddenField name="projectId" value="${project.id}"/>               

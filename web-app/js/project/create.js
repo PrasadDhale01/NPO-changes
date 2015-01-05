@@ -235,7 +235,7 @@ $(function() {
      		$('#addNewRewards').find('.rewardsTemplate').find('input').val('');
      		$('#addNewRewards').find('.rewardsTemplate').find('#rewardDescription').val('');
      	    $("#updatereward").hide();
-     	    $("#rewardTemplate").hide();
+          $('#addNewRewards').find('.rewardsTemplate').hide();
      	}
      });
 

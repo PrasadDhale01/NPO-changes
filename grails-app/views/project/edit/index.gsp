@@ -197,7 +197,12 @@
                                      </button>
                                 </div>
                                 <div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
+                                        <g:if test="${project.organizationIconUrl}">
                                         <img id="imgIcon" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
+                                        </g:if>
+                                        <g:else>
+                                        <img id="imgIcon" class="pr-icon-thumbnail" style="display:none;" />
+                                        </g:else>
                                 </div>
                             </div>
                         </div>

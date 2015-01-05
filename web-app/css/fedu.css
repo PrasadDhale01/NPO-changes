@@ -1526,3 +1526,6 @@ textarea.form-control {
 button.projectedit.close{
 	margin-left:15px;
 }
+.fullwidth{
+	width:100%;
+}

@@ -9,9 +9,6 @@
 		<% def base_url = grailsApplication.config.crowdera.BASE_URL %>
 			<div class="row">
 				<g:if test="${project.paypalEmail}">
-					<div class="alert alert-title">
-						<h1>Powered by Paypal</h1>
-					</div>
 					<div class="col-md-4">
 					    <div class="row">
 					        <div class="col-md-12 col-sm-12 col-xs-12">
@@ -55,9 +52,6 @@
 					</div>
 				</g:if>
 				<g:else>
-					<div class="alert alert-title">
-						<h1>Powered by Firstgiving</h1>
-					</div>
 					<div class="col-md-4">
 					    <div class="row">
 					        <div class="col-md-12 col-sm-12 col-xs-12">

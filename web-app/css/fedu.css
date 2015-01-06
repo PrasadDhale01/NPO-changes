@@ -1410,6 +1410,15 @@ textarea.form-control {
     h1,.h1 {
 	    font-size: 25px;
 	}
+	.crew-content {
+        width: 96%;
+	}
+	.crew-content h1 {
+	    font-size: 32px;
+	}
+	#aboutus.row{
+	    padding:0 25px;
+	}
 }
 
 @media only screen and (max-width: 375px) {

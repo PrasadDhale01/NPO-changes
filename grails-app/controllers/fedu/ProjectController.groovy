@@ -451,6 +451,10 @@ class ProjectController {
         if(button == 'draft'){
             project.draft = true
         }
+
+        if(params.(FORMCONSTANTS.COUNTRY) != "US"){
+            beneficiary.stateOrProvince = params.otherstate
+        }
         
         def rewardTitle = params.rewardTitle
         def rewardPrice = params.rewardPrice

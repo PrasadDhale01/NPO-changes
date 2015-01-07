@@ -1146,9 +1146,72 @@ text-decoration: none !important;
 	margin-top: 0px;
 	font-size: 25px;
 }
+.leftcard-column{
+	width:88.5%; 
+	float:left;
+}
+.leftcard-column .input-group-addon{
+	width:40px; 
+	height:36px; 
+	float:left;
+}
+.leftcard-column .form-control{ 
+	width: 93.7%;
+    float: left;
+    height: 36px;
+}
+.rightcard-column{ 
+	width:11%; 
+	float:left;
+}
+.rightcard-column .input-group-addon{
+	width:40px; 
+	height:36px; 
+	float:left;
+}
+.rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 35px !important;
+    float:left;
+}
+
+.leftcard-column-one{width:77.5%; float:left}
+.leftcard-column-two{width:11%; float:left}
+.leftcard-column-three{width:11%; float:left}
+.leftcard-column-one .input-group-addon,.leftcard-column-two .input-group-addon,.leftcard-column-three .input-group-addon{
+	width:40px; 
+	height:36px; 
+	float:left;
+}
+.leftcard-column-one .form-control{ 
+	width: 92.8%;
+    float: left;
+    height: 36px;
+}
+.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 35px !important;
+    float:left;
+}
 @media only screen and (max-width: 1199px){
 	.nav.manage-projects > li > a {
 	    padding: 7px 20px;
+	}
+	.leftcard-column {
+	    width: 85.5%;
+	}
+	.leftcard-column .form-control {
+	    width: 92%;
+	}
+	.rightcard-column {
+	    width: 14%;
+	}
+	.leftcard-column-one {
+	    width: 71.5%;
+	}
+	.leftcard-column-one .form-control {
+	    width: 90.43%;
+	}
+	.leftcard-column-two,.leftcard-column-three {
+	    width: 14%;
 	}
 }	
 @media only screen and (max-width: 991px){
@@ -1158,6 +1221,24 @@ text-decoration: none !important;
 	.input-group[class*="col-"] {
 	    width:100%;
 	}	
+	.leftcard-column {
+	    width: 88%;
+	}	
+	.leftcard-column .form-control {
+	    width: 93.35%;
+	}
+	.rightcard-column {
+	    width: 12%;
+	}
+	.leftcard-column-one {
+	    width: 76%;
+	}
+	.leftcard-column-one .form-control {
+	    width: 92.3%;
+	}
+	.leftcard-column-two, .leftcard-column-three {
+	    width: 12%;
+	}
 }
 @media only screen and (max-width: 891px){
 	.nav > li > a {
@@ -1178,7 +1259,12 @@ text-decoration: none !important;
 	.input-group[class*="col-"] {
 	    width:100%;
 	}
-}	
+}
+@media only screen and (max-width: 745px){
+	.leftcard-column .form-control {
+	    width: 93.3%;
+	}
+}
 @media only screen and (max-width: 640px){
  .greenbg h1{
      font-size:20px;
@@ -1190,6 +1276,24 @@ text-decoration: none !important;
     .carousel-inner > .item > img {
     height:200px;
     }
+    .leftcard-column {
+	    width: 85.5%;
+	}
+	.leftcard-column .form-control {
+	    width: 91.8%;
+	}
+	.rightcard-column {
+	    width: 14%;
+	}
+	.leftcard-column-one {
+	    width: 72.5%;
+	}
+	.leftcard-column-one .form-control {
+	    width: 90.4%;
+	}
+	.leftcard-column-two, .leftcard-column-three {
+	    width: 13%;
+	}
 }
 @media only screen and (max-width: 767px){
 	.rewarddesc,.rewarddesctitle {
@@ -1336,7 +1440,43 @@ textarea.form-control {
    } 
    #billToCity {
     margin-bottom: 15px !important;
-   }    
+   }   
+   .leftcard-column {
+	    width: 100% !important;
+	    float: none;
+	    margin-bottom:10px;
+	}
+	.leftcard-column .form-control {
+	    width: 83.9%;
+	}
+	.rightcard-column {
+	    width: 100%;
+	    float:none;
+	}
+	.rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 84% !important;
+	    float: left;
+	}
+	.leftcard-column-one,.leftcard-column-two,.leftcard-column-three{
+	   float:none;
+	   width:100%;
+	   
+	}
+	.leftcard-column-one
+	{
+	    margin-bottom:10px;
+	}
+	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 84% !important;
+	    float: left;
+	}
+	.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 84% !important;
+	    float: left;
+	}
+	.leftcard-column-one .form-control {
+	    width: 83.4%;
+	}
 }
 .enddate .glyphicon {
     right: 5px;
@@ -1460,6 +1600,39 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 320px){
+	.leftcard-column {
+	    width: 100% !important;
+	    float: none;
+	    margin-bottom:10px;
+	}
+	.leftcard-column .form-control {
+	    width: 83.9%;
+	}
+	.rightcard-column {
+	    width: 100%;
+	    float:none;
+	}
+	.rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 84% !important;
+	    float: left;
+	}
+	.leftcard-column-one,.leftcard-column-two,.leftcard-column-three{
+	   float:none;
+	   width:100%;
+	   
+	}
+	.leftcard-column-one
+	{
+	    margin-bottom:10px;
+	}
+	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 84% !important;
+	    float: left;
+	}
+	.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 84% !important;
+	    float: left;
+	}
     #fgGraphWidgetContainer #fgNameStart {
 	    width: 250px !important;
 	}

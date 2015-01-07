@@ -1147,7 +1147,7 @@ text-decoration: none !important;
 	font-size: 25px;
 }
 .leftcard-column{
-	width:88.5%; 
+	width:70%; 
 	float:left;
 }
 .leftcard-column .input-group-addon{
@@ -1156,12 +1156,12 @@ text-decoration: none !important;
 	float:left;
 }
 .leftcard-column .form-control{ 
-	width: 93.7%;
+	width: 92%;
     float: left;
     height: 36px;
 }
 .rightcard-column{ 
-	width:11%; 
+	width:30%; 
 	float:left;
 }
 .rightcard-column .input-group-addon{
@@ -1170,25 +1170,25 @@ text-decoration: none !important;
 	float:left;
 }
 .rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-    width: 35px !important;
-    float:left;
+    float: left;
+    width: 80% !important;
 }
 
-.leftcard-column-one{width:77.5%; float:left}
-.leftcard-column-two{width:11%; float:left}
-.leftcard-column-three{width:11%; float:left}
+.leftcard-column-one{width:64%; float:left}
+.leftcard-column-two{width:17.5%; float:left}
+.leftcard-column-three{width:18%; float:left}
 .leftcard-column-one .input-group-addon,.leftcard-column-two .input-group-addon,.leftcard-column-three .input-group-addon{
 	width:40px; 
 	height:36px; 
 	float:left;
 }
 .leftcard-column-one .form-control{ 
-	width: 92.8%;
+	width: 91.2%;
     float: left;
     height: 36px;
 }
 .leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-    width: 35px !important;
+    width: 68.1% !important;
     float:left;
 }
 @media only screen and (max-width: 1199px){

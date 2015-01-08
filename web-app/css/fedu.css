@@ -1719,3 +1719,8 @@ button.projectedit.close{
 .mce-edit-area{
 	border-bottom: 1px solid #ccc !important;
 }
+.datepicker {
+    border: solid #ccc 1px;
+    padding: 5px;
+    border-radius:0px;
+}

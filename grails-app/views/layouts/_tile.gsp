@@ -29,9 +29,18 @@ Expects the parent containers to be like so:
 %>
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow" style="padding: 0">
-    <div style="height: 200px; overflow: hidden;" class="blacknwhite">
+    <div class="blacknwhite">
         <g:link controller="project" action="show" id="${project.id}" title="${project.title}">
-            <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
+            <div class="imageWithTag">
+                <div class="under">
+                    <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
+                </div>
+                <g:if test="${ended}">
+				    <div class="over">
+						<img src="/images/ended.gif" width="100">
+					</div>
+				</g:if>
+            </div>
         </g:link>
     </div>
 

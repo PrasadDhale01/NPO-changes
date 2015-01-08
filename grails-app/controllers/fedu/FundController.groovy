@@ -65,6 +65,20 @@ class FundController {
         if (params.projectId) {
             project = Project.findById(params.projectId)
         }
+
+        def totalContribution= contributionService.getTotalContributionForProject(project)
+        def contPrice = params.double(('amount'))
+        def amt =project.amount
+        def reqAmt=(999/100)*amt
+        def remainAmt=reqAmt- totalContribution
+        def percentage=((totalContribution + contPrice)/ amt)*100
+        if(percentage>999)
+        {
+            flash.sentmessage= "Amount should not exceed more than \$"+remainAmt
+             render view: 'fund/index', model: [project: project, user:user]
+            
+        }
+        else{
         if (project) {
             if (params.int('rewardId')) {
                 reward = project.rewards.find {
@@ -86,6 +100,7 @@ class FundController {
         } else {
             render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
         }
+        }   
     }
 
     def charge(String stripeToken) {

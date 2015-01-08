@@ -1,9 +1,9 @@
 package fedu
 
+import grails.converters.JSON
 import groovyx.net.http.ContentType
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.Method
-import grails.converters.JSON
 
 class MandrillService {
     def grailsApplication
@@ -329,4 +329,46 @@ class MandrillService {
 
         inviteToAdmin(email, 'project-update-email', globalMergeVars, tags)
     }
+    
+    def sendUpdateEmailsToContributors(Project project,ProjectUpdate projectUpdate, User currentUser){
+        def contributors=project.contributions
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, absolute: true)
+        List imageUrls = projectUpdate.imageUrls
+        def url
+        if(imageUrls) {
+            url = imageUrls[0].getUrl()            
+        }
+        contributors.each {contributor ->
+            def user = contributor.user
+            if (!user.email.equalsIgnoreCase('anonymous@example.com')) {
+                def globalMergeVars = [[
+                   'name': 'LINK',
+                   'content': link
+                ],[
+                    'name': 'NAME',
+                    'content': user.firstName+" "+user.lastName
+                ],[
+                    'name': 'STORY',
+                    'content': projectUpdate.story
+                ],[
+                    'name': 'userName',
+                    'content': currentUser.firstName+" "+currentUser.lastName
+                ],[
+                    'name': 'EMAIL',
+                    'content': user.email
+                ], [
+                    'name': 'TITLE',
+                    'content': project.title
+                ], [
+                    'name': 'IMAGEURL',
+                    'content': url
+                ]]
+                
+                def tags = ['campaign-update']
+                
+                inviteToAdmin(user.email, 'campaign-update', globalMergeVars, tags)
+            }
+        }
+    }
+    
 }

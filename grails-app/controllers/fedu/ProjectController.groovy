@@ -594,15 +594,15 @@ class ProjectController {
     def updatesave() {
         def project = Project.get(params.id)
         def projectUpdate = new ProjectUpdate()
-
+        User user = userService.getCurrentUser()
         if(project) {
             projectUpdate.story = params.story
             def imageFiles = request.getFiles('thumbnail[]')
-
-            if(!imageFiles.empty) {
-                projectService.getUpdatedImageUrls(imageFiles, projectUpdate)
-            }
+            projectService.getUpdatedImageUrls(imageFiles, projectUpdate)
+            
             project.addToProjectUpdates(projectUpdate)
+            
+            mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user)
             
             redirect (action:'updatesaverender' , controller:'project', id: project.id)
         } else {

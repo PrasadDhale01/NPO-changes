@@ -891,7 +891,6 @@ footer .footerbottomsection {
     float: left;
     width: 180px;
     height: 180px;
-    border-radius: 5px;
 }
 
 .crewpage .caption {
@@ -1537,4 +1536,13 @@ button.projectedit.close{
 }
 .fullwidth{
 	width:100%;
+}
+.mce-panel {
+    border: 0px solid #ccc !important;
+}
+.mce-tinymce{
+	border: 1px solid #ccc !important;
+}
+.mce-edit-area{
+	border-bottom: 1px solid #ccc !important;
 }

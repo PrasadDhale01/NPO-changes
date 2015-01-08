@@ -18,7 +18,7 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 <div class="fedu thumbnail grow" style="padding: 0">
-	<div style="height: 200px; overflow: hidden;" class="blacknwhite">
+	<div class="blacknwhite">
 		<g:link controller="project" action="manageproject" id="${project.id}"
 			title="${project.title}">
 			<div class="imageWithTag">
@@ -38,6 +38,11 @@
 				<g:elseif test="${!project.validated}">
 					<div class="over">
 						<img src="/images/PENDING.png" width="100">
+					</div>
+				</g:elseif>
+				<g:elseif test="${ended}">
+				    <div class="over">
+						<img src="/images/ended.gif" width="100">
 					</div>
 				</g:elseif>
 			</div>

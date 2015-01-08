@@ -1,6 +1,9 @@
-<% def user = project.user %>
 <g:set var="projectService" bean="projectService"/>
 <g:set var="userService" bean="userService"/>
+<% 
+    def user = project.user
+	boolean ended = projectService.isProjectDeadlineCrossed(project)
+%>
 <div class="panel panel-default">
     <div class="panel-heading">
    		Campaign by
@@ -40,6 +43,11 @@
         <g:elseif test="${!project.validated}">
 	        <div class="tilesanstitletag">
 	            <img src="/images/PENDING1.png" width="100">
+	        </div>
+	    </g:elseif>
+	    <g:elseif test="${ended}">
+	        <div class="tilesanstitletag">
+	            <img src="/images/ended1.gif" width="100">
 	        </div>
 	    </g:elseif>
     </div>

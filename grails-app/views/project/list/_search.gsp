@@ -1,5 +1,5 @@
 <div class="col-md-3 col-md-offset-3">
-    <div class="input-group">
+    <div class="input-group pull-right">
     <!--<div class="input-group-btn">
             <button type="button" class="btn btn-primary dropdown-toggle"
                 data-toggle="dropdown">

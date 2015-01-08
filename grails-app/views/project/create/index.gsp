@@ -133,7 +133,7 @@ tinymce.init({
 									</div>
 									<div class="col-sm-10" id="val2">
 										<input type="text" placeholder="State"
-											name="${FORMCONSTANTS.STATEORPROVINCE}" class="form-control">
+											name="otherstate" class="form-control">
 									</div>
 								</div>
 

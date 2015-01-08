@@ -237,7 +237,7 @@ $('#descarea').on('keydown', function(event) {
   event.altKey==true;
   var currentString = $('#descarea').val().length;
   if(currentString <=139) {
-      var text = currentString;
+      var text = currentString + 1;
   }
   if (event.keyCode > 31) {
     if(event.altKey==true){

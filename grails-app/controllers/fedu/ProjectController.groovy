@@ -451,6 +451,10 @@ class ProjectController {
         if(button == 'draft'){
             project.draft = true
         }
+
+        if(params.(FORMCONSTANTS.COUNTRY) != "US"){
+            beneficiary.stateOrProvince = params.otherstate
+        }
         
         def rewardTitle = params.rewardTitle
         def rewardPrice = params.rewardPrice
@@ -590,15 +594,15 @@ class ProjectController {
     def updatesave() {
         def project = Project.get(params.id)
         def projectUpdate = new ProjectUpdate()
-
+        User user = userService.getCurrentUser()
         if(project) {
             projectUpdate.story = params.story
             def imageFiles = request.getFiles('thumbnail[]')
-
-            if(!imageFiles.empty) {
-                projectService.getUpdatedImageUrls(imageFiles, projectUpdate)
-            }
+            projectService.getUpdatedImageUrls(imageFiles, projectUpdate)
+            
             project.addToProjectUpdates(projectUpdate)
+            
+            mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user)
             
             redirect (action:'updatesaverender' , controller:'project', id: project.id)
         } else {
@@ -610,7 +614,7 @@ class ProjectController {
     def updatesaverender() {
         def project = Project.get(params.id)
         
-        flash.message= "Updates added successfully."
+        flash.message= "Update added successfully."
         render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
     }
     

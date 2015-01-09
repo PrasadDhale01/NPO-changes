@@ -545,7 +545,7 @@ class ProjectService {
         return( project.beneficiaryId )
     }
     
-    def getProjects(def projects, def projectAdmins) {
+    def getProjects(def projects, def projectAdmins, def fundRaisers) {
         def list = []
         projects.each {
             if(it.inactive == false) {
@@ -556,6 +556,19 @@ class ProjectService {
         projectAdmins.each {
             def project = Project.findById(it.projectId)
             if(project.inactive == false) {
+                list.add(project)
+            }
+        }
+        
+        fundRaisers.each { fundRaiser ->
+            def project = fundRaiser.project
+            def isProjectexist = false
+            list.each {
+                if (project == it) {
+                    isProjectexist = true
+                }
+            }
+            if(!isProjectexist) {
                 list.add(project)
             }
         }
@@ -874,6 +887,34 @@ class ProjectService {
             return list
            
         }
+    }
+    
+    def getFundRaisersForTeam(Project project) {
+        User user = userService.getCurrentUser()
+        def teams = project.teams
+        def isTeamExist = false
+        String message
+        teams.each {
+            if(user.id == it.user.id) {
+                isTeamExist = true
+            }
+        }
+        if(!isTeamExist) {
+            Team team = new Team(
+                amount: 0,
+                user: user
+            )
+
+            project.addToTeams(team).save(failOnError: true)
+            if (project.teams.size()==1) {
+                message= "You have Successfully Created the Team"
+            } else {
+                message= "You have Successfully Joined the Team"
+            }
+        } else {
+            message = "You Already have a Team"
+        }
+        return message
     }
 
     @Transactional

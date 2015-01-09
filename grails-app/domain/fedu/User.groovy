@@ -4,7 +4,7 @@ import org.apache.commons.validator.EmailValidator
 
 class User {
 
-    static hasMany = [projects: Project, contributions: Contribution, comments: ProjectComment]
+    static hasMany = [projects: Project, contributions: Contribution, comments: ProjectComment, teams: Team]
 
 	transient springSecurityService
 

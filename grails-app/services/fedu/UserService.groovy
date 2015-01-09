@@ -178,6 +178,21 @@ class UserService {
         Set<User> communitymgrs = UserRole.findAllByRole(roleService.communityManagerRole()).collect {it.user} as Set
         return communitymgrs
     }
+    
+    def isTeamAlreadyExist(def project, def user) {
+        def isFundRaiserExist = false
+        def fundRaisers = project.teams
+        if (user) {
+            fundRaisers.each {
+                if(user.id == it.user.id) {
+                    isFundRaiserExist = true
+                }
+            }
+            return isFundRaiserExist
+        } else {
+            return isFundRaiserExist
+        }
+    }
 
     @Transactional
     def bootstrap() {

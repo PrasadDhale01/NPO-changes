@@ -58,23 +58,25 @@
 						<br>
 	                </div>
 
-					<div class="col-md-8">
+					<div class="col-md-12">
 						<ul class="nav nav-tabs manage-projects nav-justified"
 							style="margin-bottom: 10px;">
 							<li class="active"><a href="#essentials" data-toggle="tab">
-									<span class="glyphicon glyphicon-leaf"></span></span> <span class="tab-text"> Essentials</span>
+									<span class="glyphicon glyphicon-leaf"></span> <span class="tab-text"> Essentials</span>
 							</a></li>
 							<li><a href="#projectupdates" data-toggle="tab"> <span
-									class="glyphicon glyphicon-leaf"></span></span> <span class="tab-text"> Updates</span>
+									class="glyphicon glyphicon-asterisk"></span> <span class="tab-text">Manage Updates</span>
+							</a></li>
+							<li><a href="#manageTeam" data-toggle="tab"> <span class="fa fa-users"></span><span class="tab-text"> Manage Team</span>
+ 							</a></li>
+ 							<li><a href="#rewards" data-toggle="tab"> <i
+									class="fa fa-gift fa-lg"></i> <span class="tab-text">Manage Rewards</span>
 							</a></li>
 							<li><a href="#contributions" data-toggle="tab"> <span
-									class="glyphicon glyphicon-tint"></span></span> <span class="tab-text"> Contributions</span>
-							</a></li>
-							<li><a href="#rewards" data-toggle="tab"> <i
-									class="fa fa-gift fa-lg"></i> <span class="tab-text">Rewards</span>
+									class="glyphicon glyphicon-tint"></span> <span class="tab-text"> Contributions</span>
 							</a></li>
 							<li><a href="#comments" data-toggle="tab"> <span
-									class="glyphicon glyphicon-comment"></span></span> <span class="tab-text"> Comments</span>
+									class="glyphicon glyphicon-comment"></span> <span class="tab-text"> Comments</span>
 							</a></li>
 						</ul>
 
@@ -85,6 +87,9 @@
 							</div>
 							<div class="tab-pane" id="projectupdates">
 								<g:render template="/project/manageproject/projectupdates" />
+							</div>
+							<div class="tab-pane" id="manageTeam">
+								<g:render template="/project/manageproject/manageteam" />
 							</div>
 							<div class="tab-pane" id="rewards">
 								<g:render template="/project/manageproject/rewards" />
@@ -97,87 +102,6 @@
 							</div>
 						</div>
 
-						<%-- Social features --%>
-						<div class="row">
-						 	<g:if test="${project.validated}">
-								<div class="col-sm-12">
-									<a class="share-mail pull-right" href="#" data-toggle="modal"
-										data-target="#sendmailmodal" target="_blank" id="share-mail"
-										data-url="${base_url}/projects/${project.id}"
-										data-name="${project.title}"> <img
-										src="${resource(dir: 'images', file: 'mail-share@2x.png')}"
-										style="padding: 0; width: 30px; bottom-margin: 4px; margin: 2px;"
-										alt="Mail Share" />
-									</a> <a class="twitter-share pull-right"
-										href="https://twitter.com/share?text=Hey check this project at crowdera.co!"
-										data-url="${base_url}/projects/${project.id}" target="_blank">
-										<img src="${resource(dir: 'images', file: 'tw-share@2x.png')}"
-										style="padding: 0; width: 30px; bottom-margin: 4px; margin: 2px;"
-										alt="Twitter Share" />
-									</a> <a class="fb-like pull-right"
-										href="http://www.facebook.com/sharer.php?s=100&p[url]=${base_url}/projects/${project.id}&p[title]=${project.title} &p[summary]=${project.story}"
-										data-url="${base_url}/projects/${project.id}" data-share="true">
-										<img src="${resource(dir: 'images', file: 'fb-share@2x.png')}"
-										style="padding: 0; width: 30px; bottom-margin: 4px; margin: 2px;"
-										alt="Facebook Share" />
-									</a> <span style="float: right; margin: 5px;"><label>Share
-											this project</label></span>
-								</div>
-							</g:if>
-							
-							<!-- Modal -->
-							<div class="modal fade" id="sendmailmodal" tabindex="-1"
-								role="dialog" aria-hidden="true">
-								<g:form action="sendemail" id="${project.id}" role="form">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="modal-header">
-												<button type="button" class="close" data-dismiss="modal">
-													<span aria-hidden="true">&times;</span><span
-														class="sr-only">Close</span>
-												</button>
-												<h4 class="modal-title">Recipient Email ID's</h4>
-											</div>
-											<div class="modal-body">
-												<g:hiddenField name="amount" value="${project.amount}" />
-												<div class="form-group">
-													<label>Your Name</label> <input type="text"
-														class="form-control" name="name" placeholder="Name" />
-												</div>
-												<div class="form-group">
-													<label>Email ID's (separated by comma)</label>
-													<textarea class="form-control" name="emails" rows="4"
-														placeholder="Email ID's"></textarea>
-												</div>
-												<div class="form-group">
-													<label>Message (Optional)</label>
-													<textarea class="form-control" name="message" rows="4"
-														placeholder="Message"></textarea>
-												</div>
-											</div>
-											<div class="modal-footer">
-												<button type="submit" class="btn btn-primary btn-block">Send
-													Email</button>
-											</div>
-										</div>
-									</div>
-								</g:form>
-							</div>
-						</div>
-
-					</div>
-					<div class="col-md-4 mobileview-bottom">
-						<g:render template="/project/manageproject/tilesanstitle" />
-						<g:if test="${project.draft}">
-							<g:form controller="project" action="saveasdraft"
-								id="${project.id}">
-								<button class="btn btn-block btn-primary">
-									<i class="glyphicon glyphicon-check"></i>&nbsp;Submit for
-									approval
-								</button>
-							</g:form>
-						</g:if>
-						<br>
 					</div>
 				</div>
 				<%--

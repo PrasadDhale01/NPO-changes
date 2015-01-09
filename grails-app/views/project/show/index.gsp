@@ -52,8 +52,11 @@
                             <span class="glyphicon glyphicon-leaf"></span><span class="tab-text"> Essentials</span>
                         </a></li>
                         <li><a href="#projectupdates" data-toggle="tab">
-                            <span class="glyphicon glyphicon-leaf"></span><span class="tab-text"> Updates</span>
+							<span class="glyphicon glyphicon-asterisk"></span><span class="tab-text"> Updates</span>
                         </a></li>
+                        <li><a href="#manageTeam" data-toggle="tab">
+                            <span class="fa fa-users"></span><span class="tab-text"> Team</span>
+						</a></li>
                         <li><a href="#contributions" data-toggle="tab">
                             <span class="glyphicon glyphicon-tint"></span><span class="tab-text"> Contributions</span>
                         </a></li>
@@ -70,6 +73,9 @@
                         <div class="tab-pane" id="projectupdates">
                             <g:render template="show/projectupdates"/>
                         </div>
+                        <div class="tab-pane" id="manageTeam">
+							<g:render template="show/manageteam" />
+						</div>
                         <div class="tab-pane" id="contributions">
                             <g:render template="show/contributions"/>
                         </div>

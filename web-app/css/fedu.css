@@ -1552,6 +1552,9 @@ textarea.form-control {
     h1,.h1 {
 	    font-size: 25px;
 	}
+	h2, .h2 {
+	    font-size: 25px;
+	}
 	.crew-content {
         width: 96%;
 	}

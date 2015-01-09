@@ -27,7 +27,8 @@ h3.headingtext {
 .greenbg {
     min-height: 140px;
     background-color: #83ab30;
-    color: #fff
+    color: #fff;
+    padding:0 15px;
 }
 
 .tagline {
@@ -776,7 +777,7 @@ footer .footerbottomsection {
 }
 
 .successtips h2 {
-    background: url(../images/sucess-icon.jpg) center left no-repeat;
+    background: url(../images/sucess-icon.png) center left no-repeat;
     padding-left: 100px;
     display: inline-block;
     text-align: center;
@@ -1549,6 +1550,9 @@ textarea.form-control {
         padding: 5px;
     }
     h1,.h1 {
+	    font-size: 25px;
+	}
+	h2, .h2 {
 	    font-size: 25px;
 	}
 	.crew-content {

@@ -70,7 +70,7 @@ class ProjectController {
         }
 
     def search () {
-        def query = params.query
+        def query = params.q
         if(query) {
             def searchResults = projectService.search(query)
             if (searchResults.size == 0){

@@ -13,12 +13,12 @@
             </ul>
         </div> -->
         <!-- /btn-group -->
-        <g:form action="search" controller="project" id="searchableForm" name="searchableForm">
+        <form action="/campaigns" id="<g:javascript>document.getElementById('q').value()</g:javascript>" name="searchableForm">
         <div class="inner-addon right-addon">
             <i class="glyphicon glyphicon-search"></i>
-            <input type="search" class="search" id="query"  name="query" value="${params.query}" placeholder="Search">
+            <input type="search" class="search" id="q"  name="q" value="${params.q}" placeholder="Search">
         </div>
-        </g:form>
+        </form>
     </div>
 </div>
 <!--<div class="col-md-4">

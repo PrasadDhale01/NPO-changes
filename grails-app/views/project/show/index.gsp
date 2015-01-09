@@ -31,7 +31,7 @@
 	            <div class="col-md-4 mobileview-top">
 					<g:render template="/layouts/organizationdetails"/>
                     <g:render template="/layouts/tilesanstitle"/>
-                    <g:if test="${percentage == 100}">
+                    <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
                     </g:if>
                     <g:elseif test="${ended}">
@@ -136,7 +136,7 @@
                 <div class="col-md-4 mobileview-bottom">
 					<g:render template="/layouts/organizationdetails"/>
                     <g:render template="/layouts/tilesanstitle"/>
-                    <g:if test="${percentage == 100}">
+                    <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
                     </g:if>
                     <g:elseif test="${ended}">

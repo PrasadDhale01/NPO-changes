@@ -71,6 +71,8 @@ class ContributionService {
             percentage = totalContribution / project.amount * 100
             if (percentage <= 1) {
                 percentage = 1
+            }else if(percentage>999){
+                percentage=999
             } else {
                 percentage = percentage.intValue()
             }

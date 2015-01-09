@@ -27,7 +27,8 @@ h3.headingtext {
 .greenbg {
     min-height: 140px;
     background-color: #83ab30;
-    color: #fff
+    color: #fff;
+    padding:0 15px;
 }
 
 .tagline {

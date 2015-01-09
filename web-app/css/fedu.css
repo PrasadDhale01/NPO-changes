@@ -28,7 +28,6 @@ h3.headingtext {
     min-height: 140px;
     background-color: #83ab30;
     color: #fff;
-    padding:0 15px;
 }
 
 .tagline {
@@ -1564,6 +1563,14 @@ textarea.form-control {
 	#aboutus.row{
 	    padding:0 25px;
 	}
+	.squarebox {
+	    width: 150px;
+	    height: 150px;
+	}
+	.crewpage img {
+	    width: 150px;
+	    height: 150px;
+	}
 }
 
 @media only screen and (max-width: 375px) {
@@ -1675,8 +1682,8 @@ textarea.form-control {
         font-size: 16px !important;
     }
     .squarebox {
-        width: 135px !important;
-        height: 142px ;
+        width: 121px !important;
+        height: 147px ;
     }
     .squarebox img {
         width:100% ;
@@ -1779,4 +1786,7 @@ button.projectedit.close{
 }
 .teamtileseperator {
 	margin-top: 10px;
+}
+.greenbg h1,.greenbg h3{
+	padding:0 15px;
 }

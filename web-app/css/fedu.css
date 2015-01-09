@@ -1726,3 +1726,53 @@ button.projectedit.close{
     padding: 5px;
     border-radius:0px;
 }
+
+.team-footer {
+    background-color: #E8E8E8;
+	margin-top: 15px;
+	padding: 10px 20px 14px;
+	border-top: 1px solid #e5e5e5;
+}
+
+.team-footer > h4, .team-footer > h5 {
+	margin-bottom: 0px;
+} 
+.divider {
+	padding: 0px 28px;
+}
+
+.activitydropdown{
+	margin-top: 15px;
+}
+.inviteteammember {
+	margin-top: 15px;
+	padding: 18px 28px;
+}
+.activitydropdown .btn{
+	padding: 18px 28px;
+}
+.activitydropdown .dropdown-menu {
+	left: 15px;
+	width: 90%;
+	background-color: #4D6785;
+	margin-bottom: 0px;
+}
+.activitydropdown .dropdown-menu > li > a {
+	color: #FFFFFF;
+}
+.activitydropdown .btn-primary {
+	margin-bottom: -1px;
+}
+.teamtile .modal-footer {
+	margin-top: 1px;
+	padding: 19px 20px 20px;
+	border-top: 1px solid #e5e5e5;
+}
+.teamtile .project-img {
+	max-height: 200px;
+	min-height: 200px;
+	width: 100%;
+}
+.teamtileseperator {
+	margin-top: 10px;
+}

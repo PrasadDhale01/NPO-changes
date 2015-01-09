@@ -486,7 +486,7 @@ class ProjectController {
         projectService.getAdminForProjects(email3, project, user)
         
         project.user = user
-       
+
         def days = params.days
         projectService.getNumberofDays(days, project)
 
@@ -630,5 +630,33 @@ class ProjectController {
             project = projectService.filterByCategory(category)
         }
         render (view: 'list/index', model: [projects: project,selectedCategory:category])
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def addFundRaiser() {
+        def project = Project.get(params.id)
+        def message = projectService.getFundRaisersForTeam(project)
+        flash.message = message
+        render (view: 'manageproject/index',
+            model: [project: project,
+                    FORMCONSTANTS: FORMCONSTANTS])
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def inviteTeamMember() {
+        def project = Project.get(params.id)
+        String emails = params.emailIds
+        String name = params.username
+        String message = params.message
+
+        def emailList = emails.split(',')
+        emailList = emailList.collect { it.trim() }
+
+        mandrillService.sendInvitationForTeam(emailList, name, message, project)
+
+        flash.sentmessage= "Email sent successfully."
+        render (view: 'show/index',
+                model: [project: project,
+                        FORMCONSTANTS: FORMCONSTANTS])
     }
 }

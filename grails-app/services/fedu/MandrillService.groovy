@@ -371,4 +371,35 @@ class MandrillService {
         }
     }
     
+    def sendInvitationForTeam(def emailList, String name, String message, Project project) {
+        emailList.each { email ->
+            def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, absolute: true)
+            def globalMergeVars = [
+                [
+                    'name': 'LINK',
+                    'content': link
+                ],[
+                    'name': 'NAME',
+                    'content': name
+                ],[
+                    'name': 'EMAIL',
+                    'content': email
+                ],[
+                    'name': 'TITLE',
+                    'content': project.title
+                ],[
+                    'name': 'MESSAGE',
+                    'content': message
+                ],[
+                    'name': 'IMAGEURL',
+                    'content': project.imageUrl[0].getUrl()
+                ]
+            ]
+
+            def tags = ['invite-to-team']
+
+            inviteToAdmin(email, 'invite-to-team', globalMergeVars, tags)
+        }
+    }
+    
 }

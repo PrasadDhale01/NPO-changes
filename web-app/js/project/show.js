@@ -34,6 +34,18 @@ $(function() {
         }
     });
     
+    $('#inviteTeamMember').find('form').validate({
+    	rules: {
+    		userName: {
+    			required: true
+    		},
+   		emailIds: {
+    			required: true,
+    			validateMultipleEmailsCommaSeparated: true
+    		}
+    	}
+    });
+    
     function validateEmail(field) {
         var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
         return (regex.test(field)) ? true : false;

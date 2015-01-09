@@ -35,7 +35,8 @@ class UserController {
             def projects = Project.findAllByUser(user)
             def email = user.email
             def projectAdmins = ProjectAdmin.findAllByEmail(email)
-            def project = projectService.getProjects(projects, projectAdmins)
+            def teams = Team.findAllByUser(user)
+            def project = projectService.getProjects(projects, projectAdmins, teams)
             def contributions = Contribution.findAllByUser(user)
             
             render view: userViews, model: [user: user, projects: project, contributions: contributions]

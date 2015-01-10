@@ -133,6 +133,24 @@ class ProjectController {
         }
     }
 
+    
+    def deleteProjectImage(){
+        def imageUrlId = ImageUrl.get(request.getParameter("imgst"))
+        def projectId = Project.get(request.getParameter("projectId"))
+        List imageUrl = projectId.imageUrl
+        imageUrl.remove(imageUrlId)
+        imageUrlId.delete()
+        render ''
+    }
+
+    
+    def deleteOrganizationLogo(){
+        
+        def projectId = Project.get(request.getParameter("projectId"))
+        projectId.organizationIconUrl=null
+        render '' 
+    }
+
     @Secured(['ROLE_USER'])
     def validate() {
         Project project

@@ -1571,6 +1571,9 @@ textarea.form-control {
 	    width: 150px;
 	    height: 150px;
 	}
+	.organization-details {
+	    padding-bottom:30px;
+	}
 }
 
 @media only screen and (max-width: 375px) {
@@ -1709,6 +1712,9 @@ textarea.form-control {
 	}
 	#aboutus .thumbnail {
 	    padding-left: 20px;
+	}
+	h1, .h1 {
+	    font-size: 21px;
 	}
 }
 .org-logo{

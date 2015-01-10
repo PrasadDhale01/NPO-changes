@@ -1713,6 +1713,9 @@ textarea.form-control {
 	h1, .h1 {
 	    font-size: 21px;
 	}
+	h3, .h3 {
+	    font-size: 20px;
+	}
 }
 .org-logo{
 	 height:100px; 

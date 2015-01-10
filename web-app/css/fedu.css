@@ -1710,6 +1710,9 @@ textarea.form-control {
 	#aboutus .thumbnail {
 	    padding-left: 20px;
 	}
+	h1, .h1 {
+	    font-size: 21px;
+	}
 }
 .org-logo{
 	 height:100px; 

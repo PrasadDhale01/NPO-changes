@@ -6,6 +6,8 @@
     def percentage = contributionService.getPercentageContributionForProject(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def base_url = grailsApplication.config.crowdera.BASE_URL
+    def user = userService.getCurrentUser()
+    def username = user.username
 %>
 <html>
 <head>
@@ -40,7 +42,7 @@
 					</g:if>
 					<g:else>
 					    <h1 class="green-heading text-center">
-						    <g:link controller="project" action="show" id="${project.id}" title="${project.title}">${project.title}</g:link>
+						    <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fundRaiser': username]">${project.title}</g:link>
 					    </h1>
 					</g:else>
 					

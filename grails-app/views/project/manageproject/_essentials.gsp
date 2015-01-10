@@ -1,9 +1,12 @@
 <!-- Comments -->
+<%
+	def projectimages = projectService.getProjectImageLinks(project)
+%>
 
 <div class="col-md-8">
     <div class="row">
-		<div style="overflow: hidden; width: 100%;" class="blacknwhite" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
-	        <g:render template="/project/manageproject/projectimagescarousel"/>
+		<div class="blacknwhite campaignupdatedimages" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
+	        <g:render template="/project/manageproject/projectimagescarousel" model="['images': projectimages]"/>
 	    </div>
     </div>
     

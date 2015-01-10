@@ -87,6 +87,7 @@ class ProjectController {
 
 	def show() {
 		Project project
+        User user = User.findByUsername(params.fundRaiser)
 		if (params.id) {
 			project = Project.findById(params.id)
 		} else {
@@ -94,7 +95,7 @@ class ProjectController {
 		}
 
         render (view: 'show/index',
-                model: [project: project,
+                model: [project: project, user: user,
                         FORMCONSTANTS: FORMCONSTANTS])
 	}
 

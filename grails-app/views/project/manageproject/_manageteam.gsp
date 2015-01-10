@@ -30,11 +30,11 @@
 			    </div>
 				<div class="col-md-3 col-sm-3 col-xs-3 activitydropdown">
 					<button type="button" class="col-md-12 col-sm-12 col-xs-12 btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-					      Campaign Statistics <span class="caret"></span>
+					      Activity <span class="caret"></span>
 					</button>
 					<ul class="dropdown-menu" role="menu">
-						<li><a class="text-center" href="#"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;Team Message</a></li>
-						<li><a class="text-center" href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;&nbsp;Manager</a></li>
+						<li><a class="text-center" href="#"><span class="glyphicon glyphicon-envelope"></span> Team Message </a></li>
+						<li><a class="text-center" href="#"><span class="glyphicon glyphicon-list-alt"></span> Campaign Statistics </a></li>
 					</ul>
 				</div>
 			</div>

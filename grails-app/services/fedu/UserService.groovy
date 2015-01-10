@@ -194,6 +194,20 @@ class UserService {
         }
     }
 
+    def isCampaignBeneficiaryOrAdmin(def project, def user) {
+        def projectAdmins = project.projectAdmins
+        def isAdmin = false
+        projectAdmins.each { projectAdmin ->
+            if(user.email == projectAdmin.email) {
+                isAdmin = true
+            }
+        }
+        if (project.user == user) {
+            isAdmin = true
+        }
+        return isAdmin
+    }
+    
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

@@ -1571,6 +1571,9 @@ textarea.form-control {
 	    width: 150px;
 	    height: 150px;
 	}
+	.organization-details {
+	    padding-bottom:30px;
+	}
 }
 
 @media only screen and (max-width: 375px) {

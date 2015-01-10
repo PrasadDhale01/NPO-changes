@@ -6,6 +6,13 @@
     def percentage = contributionService.getPercentageContributionForProject(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def base_url = grailsApplication.config.crowdera.BASE_URL
+    def fundRaiserName
+    def username
+    if (user) {
+	    def fundRaiser = user.firstName + " " + user.lastName
+	    fundRaiserName = fundRaiser.toUpperCase()
+	    username = user.username
+    }
 %>
 <html>
 <head>
@@ -22,16 +29,25 @@
                         ${flash.sentmessage}
                     </div>
                 </g:if>
-
-	            <div class="col-md-12 text-center">
-	            	<h1 class="green-heading">
-	                	<a href="${project.id}">${project.title}</a>
-	                </h1>
+                <g:if test="${flash.teammessage}">
+                    <div class="alert alert-success" align="center">
+                        ${flash.teammessage}
+                    </div>
+                </g:if>
+                <g:if test="${user}">
+	                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+	                	<h4 class="green-heading"> FUNDRAISER: ${fundRaiserName}</h4>
+	                </div>
+                </g:if>
+	            <div class="col-md-12 green-heading text-center">
+	                <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fundRaiser': username]">
+		            	<h1> ${project.title} </h1>
+	                </g:link>
 	            </div>
 	            <div class="col-md-4 mobileview-top">
 					<g:render template="/layouts/organizationdetails"/>
                     <g:render template="/layouts/tilesanstitle"/>
-                    <g:if test="${percentage == 100}">
+                    <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
                     </g:if>
                     <g:elseif test="${ended}">
@@ -52,8 +68,11 @@
                             <span class="glyphicon glyphicon-leaf"></span><span class="tab-text"> Essentials</span>
                         </a></li>
                         <li><a href="#projectupdates" data-toggle="tab">
-                            <span class="glyphicon glyphicon-leaf"></span><span class="tab-text"> Updates</span>
+							<span class="glyphicon glyphicon-asterisk"></span><span class="tab-text"> Updates</span>
                         </a></li>
+                        <li><a href="#manageTeam" data-toggle="tab">
+                            <span class="fa fa-users"></span><span class="tab-text"> Team</span>
+						</a></li>
                         <li><a href="#contributions" data-toggle="tab">
                             <span class="glyphicon glyphicon-tint"></span><span class="tab-text"> Contributions</span>
                         </a></li>
@@ -70,6 +89,9 @@
                         <div class="tab-pane" id="projectupdates">
                             <g:render template="show/projectupdates"/>
                         </div>
+                        <div class="tab-pane" id="manageTeam">
+							<g:render template="show/manageteam" />
+						</div>
                         <div class="tab-pane" id="contributions">
                             <g:render template="show/contributions"/>
                         </div>
@@ -130,7 +152,7 @@
                 <div class="col-md-4 mobileview-bottom">
 					<g:render template="/layouts/organizationdetails"/>
                     <g:render template="/layouts/tilesanstitle"/>
-                    <g:if test="${percentage == 100}">
+                    <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
                     </g:if>
                     <g:elseif test="${ended}">

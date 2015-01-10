@@ -2,7 +2,7 @@ $(function() {
     console.log("create.js initialized");
 
     /********************* Create page Session timeout ***************************/
-  var SessionTime = 60* 1000; //set for 1 minute
+  var SessionTime = 60*1000*5; //set for 1 minute
   var tickDuration = 1000;
   var myInterval = setInterval(function() {
     SessionTime = SessionTime - tickDuration
@@ -463,6 +463,7 @@ $(function() {
             '</div><hr>'+
           '</div>'
       );
+          $('#rewardCount').attr('value',count);
           count++;
   });
     

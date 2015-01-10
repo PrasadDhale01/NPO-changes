@@ -91,6 +91,8 @@ $(function() {
             var picFile = event.target;
             $('#imgIcon').attr('src', picFile.result);
             $('#delIcon').attr('src', "/images/delete.ico");
+            $('#imgIcon').show();
+            $('#logoDelete').show();
 
         });
         // Read the image

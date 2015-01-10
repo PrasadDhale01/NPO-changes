@@ -21,6 +21,7 @@
     def endDate = projectService.getProjectEndDate(project)
     def campaigndate = endDate.getTime().format('MM/dd/yyyy')
 	def amount = projectService.getDataType(project.amount)
+    def base_url = grailsApplication.config.crowdera.BASE_URL
 %>
 <html>
 <head>
@@ -39,6 +40,7 @@
     </script>
 </head>
 <body>
+<input type="hidden" id="b_url" value="<%=base_url%>" />
 <input type="hidden" name="uuid" id="uuid"/>
 <input type="hidden" name="charity_name" id="charity_name"/>
 <div class="feducontent">
@@ -198,12 +200,38 @@
                                 </div>
                                 <div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
                                         <g:if test="${project.organizationIconUrl}">
-                                        <img id="imgIcon" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
+                                            <img id="imgIcon" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
+                                            <div class="deleteicon">
+                                                <img onClick="deleteOrganizationLogo(this,'${project.id}');"
+                                                src="/images/delete.ico" id="logoDelete" style="margin:2px;width:10px;height:10px;" />
+                                            </div>
                                         </g:if>
                                         <g:else>
-                                        <img id="imgIcon" class="pr-icon-thumbnail" style="display:none;" />
+                                            <img id="imgIcon" class="pr-icon-thumbnail" style="display:none;" />
+                                            <div class="deleteicon">
+                                                 <img onClick="deleteOrganizationLogo(this,'${project.id}');"
+                                                 id="logoDelete" style="margin:2px;width:10px;height:10px;display:none;" />
+                                            </div>
                                         </g:else>
                                 </div>
+                                <script>
+                                   function deleteOrganizationLogo(current, projectId) {
+                                       $('#imgIcon').removeAttr('src');
+                                        $('#imgIcon').hide();
+                                        $('#logoDelete').hide();
+                                        $('#iconfile').val(''); 
+                                        $.ajax({
+                                            type:'post',
+                                            url:$("#b_url").val()+'/project/deleteOrganizationLogo',
+                                            data:'projectId='+projectId,
+                                            success: function(data){
+                                            $('#test').html(data);
+                                        }
+                                        }).error(function(){
+                                            alert('An error occured');
+                                        });
+                                    }
+                             </script>
                             </div>
                         </div>
                         <div class="col col-sm-6">
@@ -334,9 +362,32 @@
                         </div>
                         <div class="col-sm-8">
                                 <g:each var="imgurl" in="${project.imageUrl}">
-                                    <img src="${imgurl.url }" style="width:50px;height:50px;"/>
+                                    <div id="imgdiv" class="pr-thumbnail-div">
+                                        <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}"/>
+                                        <div class="deleteicon">
+                                            <img onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}'
+                                            src="/images/delete.ico" id="imageDelete" style="margin:2px;width:10px;height:10px;" />
+                                        </div>
+                                    </div> 
                                 </g:each>
+                                <script>
+                                   function deleteProjectImage(current,imgst, projectId) {
+                                        $(current).parents('#imgdiv').remove();
+                                        $('#projectImageFile').val('');
+                                        $.ajax({
+                                            type:'post',
+                                            url:$("#b_url").val()+'/project/deleteProjectImage',
+                                            data:'imgst='+imgst+'&projectId='+projectId,
+                                            success: function(data){
+                                            $('#test').html(data);
+                                        }
+                                        }).error(function(){
+                                            alert('An error occured');
+                                        });
+                                    }
+                             </script>
                                 <output id="result"></output>
+                                <div id="test"></div>
                         </div>
                     </div>
                     <div class="form-group">

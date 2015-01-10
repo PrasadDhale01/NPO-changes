@@ -45,9 +45,12 @@
 							<li class="active"><a href="#essentials" data-toggle="tab">
 									<span class="fa fa-leaf"></span><span class="tab-text"> Essentials</span>
 							</a></li>
-							<li><a href="#rewards" data-toggle="tab"> <span
-									class="fa fa-gift fa-lg"></span><span class="tab-text"> Manage rewards</span>
+							<li><a href="#projectupdates" data-toggle="tab">
+								<span class="glyphicon glyphicon-asterisk"></span><span class="tab-text"> Updates</span>
 							</a></li>
+							<li><a href="#manageTeam" data-toggle="tab">
+                            	<span class="fa fa-users"></span><span class="tab-text"> Team</span>
+ 							</a></li>
 							<li><a href="#contributions" data-toggle="tab"> <span
 									class="fa fa-tint"></span><span class="tab-text"> Contributions</span>
 							</a></li>
@@ -59,10 +62,13 @@
 						<!-- Tab panes -->
 						<div class="tab-content">
 							<div class="tab-pane active" id="essentials">
-								<g:render template="/project/manageproject/essentials" />
+								<g:render template="/project/show/essentials" />
 							</div>
-							<div class="tab-pane" id="rewards">
-								<g:render template="/project/manageproject/rewards" />
+							<div class="tab-pane" id="projectupdates">
+                            	<g:render template="show/projectupdates"/>
+                         	</div>
+                         	<div class="tab-pane" id="manageTeam">
+								<g:render template="show/manageteam" />
 							</div>
 							<div class="tab-pane" id="contributions">
 								<g:render template="/project/manageproject/contributions" />

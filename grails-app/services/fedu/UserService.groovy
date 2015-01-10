@@ -178,7 +178,36 @@ class UserService {
         Set<User> communitymgrs = UserRole.findAllByRole(roleService.communityManagerRole()).collect {it.user} as Set
         return communitymgrs
     }
+    
+    def isTeamAlreadyExist(def project, def user) {
+        def isFundRaiserExist = false
+        def fundRaisers = project.teams
+        if (user) {
+            fundRaisers.each {
+                if(user.id == it.user.id) {
+                    isFundRaiserExist = true
+                }
+            }
+            return isFundRaiserExist
+        } else {
+            return isFundRaiserExist
+        }
+    }
 
+    def isCampaignBeneficiaryOrAdmin(def project, def user) {
+        def projectAdmins = project.projectAdmins
+        def isAdmin = false
+        projectAdmins.each { projectAdmin ->
+            if(user.email == projectAdmin.email) {
+                isAdmin = true
+            }
+        }
+        if (project.user == user) {
+            isAdmin = true
+        }
+        return isAdmin
+    }
+    
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

@@ -70,7 +70,7 @@ class ProjectController {
         }
 
     def search () {
-        def query = params.query
+        def query = params.q
         if(query) {
             def searchResults = projectService.search(query)
             if (searchResults.size == 0){
@@ -87,6 +87,7 @@ class ProjectController {
 
 	def show() {
 		Project project
+        User user = User.findByUsername(params.fundRaiser)
 		if (params.id) {
 			project = Project.findById(params.id)
 		} else {
@@ -94,7 +95,7 @@ class ProjectController {
 		}
 
         render (view: 'show/index',
-                model: [project: project,
+                model: [project: project, user: user,
                         FORMCONSTANTS: FORMCONSTANTS])
 	}
 
@@ -131,6 +132,24 @@ class ProjectController {
             flash.message = 'Campaign Not Found'
             render (view: 'validate/validateerror', model: [project: project])
         }
+    }
+
+    
+    def deleteProjectImage(){
+        def imageUrlId = ImageUrl.get(request.getParameter("imgst"))
+        def projectId = Project.get(request.getParameter("projectId"))
+        List imageUrl = projectId.imageUrl
+        imageUrl.remove(imageUrlId)
+        imageUrlId.delete()
+        render ''
+    }
+
+    
+    def deleteOrganizationLogo(){
+        
+        def projectId = Project.get(request.getParameter("projectId"))
+        projectId.organizationIconUrl=null
+        render '' 
     }
 
     @Secured(['ROLE_USER'])
@@ -456,9 +475,16 @@ class ProjectController {
             beneficiary.stateOrProvince = params.otherstate
         }
         
-        def rewardTitle = params.rewardTitle
-        def rewardPrice = params.rewardPrice
-        def rewardDescription = params.rewardDescription
+        def rewardLength=Integer.parseInt(params.rewardCount)
+        def rewardTitle = new Object[rewardLength]
+        def rewardPrice = new Object[rewardLength]
+        def rewardDescription = new Object[rewardLength]
+
+        for(def icount=0;icount<rewardLength;icount++){
+            rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
+            rewardPrice[icount] = params.("rewardPrice"+(icount+1))
+            rewardDescription[icount] = params.("rewardDescription"+(icount+1))
+        }
         
         if(rewardTitle) {
             rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
@@ -486,7 +512,7 @@ class ProjectController {
         projectService.getAdminForProjects(email3, project, user)
         
         project.user = user
-       
+
         def days = params.days
         projectService.getNumberofDays(days, project)
 
@@ -630,5 +656,37 @@ class ProjectController {
             project = projectService.filterByCategory(category)
         }
         render (view: 'list/index', model: [projects: project,selectedCategory:category])
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def addFundRaiser() {
+        def project = Project.get(params.id)
+        User user = userService.getCurrentUser()
+        def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
+        def message = projectService.getFundRaisersForTeam(project, user)
+        flash.teammessage = message
+        if (iscampaignAdmin) {
+            render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+        } else {
+            render (view: 'show/index', model: [project: project, user: user, FORMCONSTANTS: FORMCONSTANTS])
+        }
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def inviteTeamMember() {
+        def project = Project.get(params.id)
+        String emails = params.emailIds
+        String name = params.username
+        String message = params.message
+
+        def emailList = emails.split(',')
+        emailList = emailList.collect { it.trim() }
+
+        mandrillService.sendInvitationForTeam(emailList, name, message, project)
+
+        flash.sentmessage= "Email sent successfully."
+        render (view: 'show/index',
+                model: [project: project,
+                        FORMCONSTANTS: FORMCONSTANTS])
     }
 }

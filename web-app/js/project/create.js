@@ -232,6 +232,7 @@ $(function() {
      		$("#rewardTemplate").show();
      	    $("#updatereward").show();
      	} else {
+        $('#rewardCount').attr('value','1');
      		$('#addNewRewards').find('.rewardsTemplate').find('input').val('');
      		$('#addNewRewards').find('.rewardsTemplate').find('#rewardDescription').val('');
      	    $("#updatereward").hide();
@@ -432,8 +433,9 @@ $(function() {
 
           });
      
-  var count=2;
+  var count=1;
   $('#createreward').click(function(){
+      count++;
      $('#addNewRewards').append(
          '<div class="rewardsTemplate" id="rewardTemplate">'+
            '<div class="row">'+
@@ -464,11 +466,12 @@ $(function() {
           '</div>'
       );
           $('#rewardCount').attr('value',count);
-          count++;
   });
     
   $('#removereward').click(function(){
     if($('#addNewRewards').find('.rewardsTemplate').length > 1) {
+         count--;
+         $('#rewardCount').attr('value',count);
          $('#addNewRewards').find('.rewardsTemplate').last().remove();
     }else{
          $('.rewardTitle').val('');

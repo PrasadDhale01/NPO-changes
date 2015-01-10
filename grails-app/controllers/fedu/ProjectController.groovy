@@ -475,9 +475,16 @@ class ProjectController {
             beneficiary.stateOrProvince = params.otherstate
         }
         
-        def rewardTitle = params.rewardTitle
-        def rewardPrice = params.rewardPrice
-        def rewardDescription = params.rewardDescription
+        def rewardLength=Integer.parseInt(params.rewardCount)
+        def rewardTitle = new Object[rewardLength]
+        def rewardPrice = new Object[rewardLength]
+        def rewardDescription = new Object[rewardLength]
+
+        for(def icount=0;icount<rewardLength;icount++){
+            rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
+            rewardPrice[icount] = params.("rewardPrice"+(icount+1))
+            rewardDescription[icount] = params.("rewardDescription"+(icount+1))
+        }
         
         if(rewardTitle) {
             rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)

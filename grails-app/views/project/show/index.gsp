@@ -6,6 +6,13 @@
     def percentage = contributionService.getPercentageContributionForProject(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def base_url = grailsApplication.config.crowdera.BASE_URL
+    def fundRaiserName
+    def username
+    if (user) {
+	    def fundRaiser = user.firstName + " " + user.lastName
+	    fundRaiserName = fundRaiser.toUpperCase()
+	    username = user.username
+    }
 %>
 <html>
 <head>
@@ -22,11 +29,20 @@
                         ${flash.sentmessage}
                     </div>
                 </g:if>
-
-	            <div class="col-md-12 text-center">
-	            	<h1 class="green-heading">
-	                	<a href="${project.id}">${project.title}</a>
-	                </h1>
+                <g:if test="${flash.teammessage}">
+                    <div class="alert alert-success" align="center">
+                        ${flash.teammessage}
+                    </div>
+                </g:if>
+                <g:if test="${user}">
+	                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+	                	<h4 class="green-heading"> FUNDRAISER: ${fundRaiserName}</h4>
+	                </div>
+                </g:if>
+	            <div class="col-md-12 green-heading text-center">
+	                <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fundRaiser': username]">
+		            	<h1> ${project.title} </h1>
+	                </g:link>
 	            </div>
 	            <div class="col-md-4 mobileview-top">
 					<g:render template="/layouts/organizationdetails"/>

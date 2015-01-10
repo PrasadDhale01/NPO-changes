@@ -374,6 +374,10 @@ class MandrillService {
     def sendInvitationForTeam(def emailList, String name, String message, Project project) {
         emailList.each { email ->
             def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, absolute: true)
+            def imageUrl = project.imageUrl
+            if (imageUrl) {
+                imageUrl = project.imageUrl[0].getUrl()
+            }
             def globalMergeVars = [
                 [
                     'name': 'LINK',
@@ -392,7 +396,7 @@ class MandrillService {
                     'content': message
                 ],[
                     'name': 'IMAGEURL',
-                    'content': project.imageUrl[0].getUrl()
+                    'content': imageUrl
                 ]
             ]
 

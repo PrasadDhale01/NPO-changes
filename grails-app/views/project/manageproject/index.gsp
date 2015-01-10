@@ -6,6 +6,8 @@
     def percentage = contributionService.getPercentageContributionForProject(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def base_url = grailsApplication.config.crowdera.BASE_URL
+    def user = userService.getCurrentUser()
+    def username = user.username
 %>
 <html>
 <head>
@@ -20,7 +22,12 @@
 		<div class="container">
 			<g:if test="${project}">
 				<div class="row">
-					<g:if test="${flash}">
+				    <g:if test="${flash.teammessage}">
+		                <div class="alert alert-success" align="center">
+		                    ${flash.teammessage}
+		                </div>
+                    </g:if>
+					<g:if test="${flash.message}">
 						<div class="alert alert-success">
 							${flash.message}
 						</div>
@@ -40,24 +47,10 @@
 					</g:if>
 					<g:else>
 					    <h1 class="green-heading text-center">
-						    <g:link controller="project" action="show" id="${project.id}" title="${project.title}">${project.title}</g:link>
+						    <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fundRaiser': username]">${project.title}</g:link>
 					    </h1>
 					</g:else>
 					
-					<div class="col-md-4 mobileview-top">
-						<g:render template="/project/manageproject/tilesanstitle" />
-						<g:if test="${project.draft}">
-							<g:form controller="project" action="saveasdraft"
-								id="${project.id}">
-								<button class="btn btn-block btn-primary">
-									<i class="glyphicon glyphicon-check"></i>&nbsp;Submit for
-									approval
-								</button>
-							</g:form>
-						</g:if>
-						<br>
-	                </div>
-
 					<div class="col-md-12">
 						<ul class="nav nav-tabs manage-projects nav-justified"
 							style="margin-bottom: 10px;">

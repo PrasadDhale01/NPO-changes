@@ -87,6 +87,7 @@ class ProjectController {
 
 	def show() {
 		Project project
+        User user = User.findByUsername(params.fundRaiser)
 		if (params.id) {
 			project = Project.findById(params.id)
 		} else {
@@ -94,7 +95,7 @@ class ProjectController {
 		}
 
         render (view: 'show/index',
-                model: [project: project,
+                model: [project: project, user: user,
                         FORMCONSTANTS: FORMCONSTANTS])
 	}
 
@@ -653,11 +654,15 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def addFundRaiser() {
         def project = Project.get(params.id)
-        def message = projectService.getFundRaisersForTeam(project)
-        flash.message = message
-        render (view: 'manageproject/index',
-            model: [project: project,
-                    FORMCONSTANTS: FORMCONSTANTS])
+        User user = userService.getCurrentUser()
+        def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
+        def message = projectService.getFundRaisersForTeam(project, user)
+        flash.teammessage = message
+        if (iscampaignAdmin) {
+            render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+        } else {
+            render (view: 'show/index', model: [project: project, user: user, FORMCONSTANTS: FORMCONSTANTS])
+        }
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])

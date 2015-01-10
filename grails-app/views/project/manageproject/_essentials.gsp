@@ -1,9 +1,26 @@
 <!-- Comments -->
+<%
+	def projectimages = projectService.getProjectImageLinks(project)
+%>
+
+<div class="col-md-4 mobileview-top">
+	<g:render template="/project/manageproject/tilesanstitle" />
+	<g:if test="${project.draft}">
+		<g:form controller="project" action="saveasdraft"
+			id="${project.id}">
+			<button class="btn btn-block btn-primary">
+				<i class="glyphicon glyphicon-check"></i>&nbsp;Submit for
+				approval
+			</button>
+		</g:form>
+	</g:if>
+	<br>
+</div>
 
 <div class="col-md-8">
     <div class="row">
-		<div style="overflow: hidden; width: 100%;" class="blacknwhite" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
-	        <g:render template="/project/manageproject/projectimagescarousel"/>
+		<div class="blacknwhite campaignupdatedimages" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
+	        <g:render template="/project/manageproject/projectimagescarousel" model="['images': projectimages]"/>
 	    </div>
     </div>
     
@@ -102,7 +119,7 @@
 	
 </div>
 
-<div class="col-md-4">
+<div class="col-md-4 mobileview-bottom">
 	<g:render template="/project/manageproject/tilesanstitle" />
 	<g:if test="${project.draft}">
 		<g:form controller="project" action="saveasdraft"
@@ -114,4 +131,3 @@
 	</g:if>
 	<br>
 </div>
- 

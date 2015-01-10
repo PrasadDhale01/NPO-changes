@@ -647,6 +647,16 @@ class ProjectService {
         return imageUrls
     }
 
+    def getProjectUpdatedImageLink(def projectUpdate) {
+        def imageUrls = []
+        def imagelinks = projectUpdate.imageUrls
+        imagelinks.each {
+            def link = it.url
+            imageUrls.add(link)
+        }
+        return imageUrls
+    }
+    
     def getMultipleImageUrls(List<MultipartFile> files, Project project){
         def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
         def awsSecretKey = "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"
@@ -889,8 +899,7 @@ class ProjectService {
         }
     }
     
-    def getFundRaisersForTeam(Project project) {
-        User user = userService.getCurrentUser()
+    def getFundRaisersForTeam(Project project, User user) {
         def teams = project.teams
         def isTeamExist = false
         String message

@@ -475,18 +475,28 @@ class ProjectController {
         }
         
         def rewardLength=Integer.parseInt(params.rewardCount)
-        def rewardTitle = new Object[rewardLength]
-        def rewardPrice = new Object[rewardLength]
-        def rewardDescription = new Object[rewardLength]
+        if(rewardLength>1) {
+            def rewardTitle = new Object[rewardLength]
+            def rewardPrice = new Object[rewardLength]
+            def rewardDescription = new Object[rewardLength]
 
-        for(def icount=0;icount<rewardLength;icount++){
-            rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
-            rewardPrice[icount] = params.("rewardPrice"+(icount+1))
-            rewardDescription[icount] = params.("rewardDescription"+(icount+1))
-        }
+            for(def icount=0;icount<rewardLength;icount++){
+                rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
+                rewardPrice[icount] = params.("rewardPrice"+(icount+1))
+                rewardDescription[icount] = params.("rewardDescription"+(icount+1))
+            }
         
-        if(rewardTitle) {
-            rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
+            if(rewardTitle) {
+                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
+            }
+        }else{
+            def rewardTitle = params.rewardTitle1
+            def rewardPrice = params.rewardPrice1
+            def rewardDescription =params.rewardDescription1
+            
+            if(rewardTitle){
+                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
+            }
         }
                
         def iconFile = request.getFile('iconfile')

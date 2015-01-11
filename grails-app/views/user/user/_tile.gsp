@@ -47,7 +47,7 @@
 					</g:elseif>
 					<g:elseif test="${ended}">
 					    <div class="over">
-							<img src="/images/ended.gif" width="100">
+							<img src="/images/ended.png" width="100">
 						</div>
 					</g:elseif>
 				</div>
@@ -76,7 +76,7 @@
 					</g:elseif>
 					<g:elseif test="${ended}">
 					    <div class="over">
-							<img src="/images/ended.gif" width="100">
+							<img src="/images/ended.png" width="100">
 						</div>
 					</g:elseif>
 				</div>

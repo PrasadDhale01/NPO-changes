@@ -899,8 +899,7 @@ class ProjectService {
         }
     }
     
-    def getFundRaisersForTeam(Project project) {
-        User user = userService.getCurrentUser()
+    def getFundRaisersForTeam(Project project, User user) {
         def teams = project.teams
         def isTeamExist = false
         String message

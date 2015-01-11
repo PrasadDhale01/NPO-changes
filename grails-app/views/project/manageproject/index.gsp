@@ -22,7 +22,12 @@
 		<div class="container">
 			<g:if test="${project}">
 				<div class="row">
-					<g:if test="${flash}">
+				    <g:if test="${flash.teammessage}">
+		                <div class="alert alert-success" align="center">
+		                    ${flash.teammessage}
+		                </div>
+                    </g:if>
+					<g:if test="${flash.message}">
 						<div class="alert alert-success">
 							${flash.message}
 						</div>
@@ -46,20 +51,6 @@
 					    </h1>
 					</g:else>
 					
-					<div class="col-md-4 mobileview-top">
-						<g:render template="/project/manageproject/tilesanstitle" />
-						<g:if test="${project.draft}">
-							<g:form controller="project" action="saveasdraft"
-								id="${project.id}">
-								<button class="btn btn-block btn-primary">
-									<i class="glyphicon glyphicon-check"></i>&nbsp;Submit for
-									approval
-								</button>
-							</g:form>
-						</g:if>
-						<br>
-	                </div>
-
 					<div class="col-md-12">
 						<ul class="nav nav-tabs manage-projects nav-justified"
 							style="margin-bottom: 10px;">

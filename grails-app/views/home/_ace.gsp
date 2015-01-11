@@ -52,7 +52,7 @@
 				<h3 class="headingtext">Start Your Campaign</h3>
 				<p class="how-it-content">Crowdera is a free online crowdfunding platform for nonprofits and social innovators. Start your campaign, and start raising money!</p>
 				<p class="how-it-content">
-					New to Crowdera, <a href="http://new.crowdera.co/howitworks">learn more</a>.
+					New to Crowdera, <a href="/howitworks">learn more</a>.
 				</p>
 			</div>
 			<div class="col-md-3 text-center">
@@ -64,12 +64,12 @@
 			<div class="col-md-3 text-center">
 			    <span class="navbar-brand-footer"><img src="/images/icon-3.jpg"></span>
 				<h3 class="headingtext">Be The Change</h3>
-				<p class="how-it-content">Be a catalyst in your community. Bring people together, raise awareness for our global future and fundraise to help provide assistance and resources to those in need while creating opportunities for service for those wanting to help.</p>
+				<p class="how-it-content">Be a catalyst in your community by brining people together to raise awareness and funds for individuals, nonprofits and social innovators. Need help getting started? <a href="/howitworks">Learn more</a></p>
 			</div>
 			<div class="col-md-3 text-center">
 			    <span class="navbar-brand-footer"><img src="/images/icon-4.jpg"></span>
 				<h3 class="headingtext">Say Thank You</h3>
-				<p class="how-it-content">Find creative ways to say thank you to your supporters! Social Media is a great way to share your thanks shortly after the campaign ends. Nonprofits and social innovators are using video to say thank you across the globe. It’s a great way to show your gratitude and celebrate the impact of the crowd.</p>
+				<p class="how-it-content">Find creative ways to say thank you to your supporters! It’s a great way to show your gratitude and celebrate the impact your crowd has made on the world. Need help? Visit our <a href="http://crowdera.tumblr.com/">blog</a> for inspiration.</p>
 			</div>
 			<div style="clear:both"></div>
 		</div>

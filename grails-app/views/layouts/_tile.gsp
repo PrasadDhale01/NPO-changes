@@ -37,7 +37,7 @@ Expects the parent containers to be like so:
                 </div>
                 <g:if test="${ended}">
 				    <div class="over">
-						<img src="/images/ended.gif" width="100">
+						<img src="/images/ended.png" width="100">
 					</div>
 				</g:if>
             </div>

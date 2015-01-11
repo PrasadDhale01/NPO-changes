@@ -183,37 +183,3 @@
     </div>
 
 </div>
-<div class="achivegoal">
-	<div class="container">
-	   <div class="row">
-	        <div class="col-lg-12">
-	            <div class="leftcol">
-	            <h3 class="green">Achieve your Goal in 3 Steps</h3>
-		            <div class="squarebox greenbg">
-		             <span> 01/</span><br/>Tell Your Story    
-		            </div>
-		            <div class="squarebox greenbg">
-		            <span>02/</span><br/>Share with Family & Friends
-		            </div>
-		            <div class="squarebox greenbg">
-		            <img alt="" src="images/square-box.jpg" width="180" height="180">
-		            </div>
-		        </div>   
-		        <div class="leftcol"> 
-		            <h3 class="gray">Support a Project in 3 Steps</h3>
-		            <div class="squarebox graybg">
-		              <span>01/</span><br/>Choose Project    
-		            </div>
-		            <div class="squarebox graybg">
-		            <span>02/</span><br/>Choose A Reward
-		            </div>
-		            <div class="squarebox graybg">
-		            <img alt="" src="images/square-box-gray.jpg" width="180" height="180">
-		            </div>
-		        </div>    
-	        </div>
-	
-	    </div>
-	    <!-- /.row -->
-	</div>
-</div>

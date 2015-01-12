@@ -1613,6 +1613,30 @@ textarea.form-control {
     .input-group[class*="col-"] {
 	    width: 100%;
 	}
+	.leftcard-column {
+	    width: 70%;
+	}
+	.leftcard-column .form-control {
+	    width: 91.68%;
+	}
+	.rightcard-column {
+	    width: 30%;
+	}
+	.rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 80% !important;
+	}
+	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn), .leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 70.3% !important;
+	}
+	.leftcard-column-two, .leftcard-column-three {
+	    width: 20%;
+	}
+	.leftcard-column-one {
+	    width: 60%;
+	}
+	.leftcard-column-one .form-control {
+	    width: 90.3%;
+	}
 }
 
 @media only screen and (max-width: 320px){

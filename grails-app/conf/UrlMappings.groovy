@@ -39,6 +39,7 @@ class UrlMappings {
         "/projects/$id/thumbnail"(controller:'project', action:'thumbnail')
         "/projects/$projectId/fund"(controller:'fund', action:'fund')
         "/campaigns"(controller:'project' , action:'search')
+		"/project"(controller:'project' , action:'categoryFilter')
 
         /* Admin */
         "/admin/dashboard"(controller:'user', action:'admindashboard')

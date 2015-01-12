@@ -654,7 +654,7 @@ class ProjectController {
         render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
     }
     
-    def category (){
+    def categoryFilter (){
 //        def category = params.id
 		def category = request.getParameter("category")
         def project

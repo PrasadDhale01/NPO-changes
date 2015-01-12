@@ -12,31 +12,36 @@
 	<g:if test="${!teams.isEmpty()}">
 		<g:if test="${project.user == user}">
 			<div class="row manageTeam">
-			    <div class="col-md-3 col-sm-3 col-xs-3">
-			        <div class="team-footer">
-			            <h4 class="text-center">${teams.size()}</h4>
-				    	<h5 class="text-center"> Team </h5>
-				    </div>
-			    </div>
-			    <div class="col-md-3 col-sm-3 col-xs-3">
-			        <div class="team-footer">
-			            <h4 class="text-center">$${contribution}</h4>
-			            <h5 class="text-center">Team Contribution</h5>
-			        </div>
-			    </div>
-			    
-			    <div class="col-md-3 col-sm-3 col-xs-3">
-					<a href="#" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-primary" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">Invite Members</a>
-			    </div>
-				<div class="col-md-3 col-sm-3 col-xs-3 activitydropdown">
-					<button type="button" class="col-md-12 col-sm-12 col-xs-12 btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+			    <ul class="nav nav-pills">
+			        <li role="presentation" class="active col-md-3 col-sm-3 col-xs-3">
+			           <div class="team-footer">
+			           <a href="#">
+			               <h4 class="text-center">${teams.size()}</h4><br>
+				           <h5 class="text-center"> Team </h5>
+				       </a>
+				       </div>
+				    </li>
+                    <li role="presentation" class="team-footer">
+                        <a href="#">
+                            <h4 class="text-center">$${contribution}</h4>
+			                <h5 class="text-center">Team Contribution</h5>
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-primary" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
+                           Invite Members
+                        </a>
+                    </li>
+                    <li role="presentation">
+                        <button type="button" class="col-md-12 col-sm-12 col-xs-12 btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 					      Activity <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu">
-						<li><a class="text-center" href="#"><span class="glyphicon glyphicon-envelope"></span> Team Message </a></li>
-						<li><a class="text-center" href="#"><span class="glyphicon glyphicon-list-alt"></span> Campaign Statistics </a></li>
-					</ul>
-				</div>
+					    </button>
+					    <ul class="dropdown-menu" role="menu">
+						    <li><a class="text-center" href="#"><span class="glyphicon glyphicon-envelope"></span> Team Message </a></li>
+						    <li><a class="text-center" href="#"><span class="glyphicon glyphicon-list-alt"></span> Campaign Statistics </a></li>
+					    </ul>
+                    </li>
+			    </ul>
 			</div>
 		</g:if>
 		<g:else>

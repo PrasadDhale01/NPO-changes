@@ -47,7 +47,7 @@
 	    </g:elseif>
 	    <g:elseif test="${ended}">
 	        <div class="tilesanstitletag">
-	            <img src="/images/ended1.gif" width="100">
+	            <img src="/images/ended1.png" width="100">
 	        </div>
 	    </g:elseif>
     </div>

@@ -420,7 +420,7 @@ tinymce.init({
 								</div>
 							</div>
 						</div>
-
+							<input type="hidden" name="rewardCount" id="rewardCount" value='1'/>
 							<div id="addNewRewards">
 								<div class="rewardsTemplate" id="rewardTemplate">
 									<div class="row">

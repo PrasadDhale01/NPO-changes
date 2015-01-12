@@ -4,6 +4,7 @@
 <g:set var="userService" bean="userService"/>
 <%
     def user = team.user
+    def username = user.username
     def userImageUrl = user.userImageUrl
     def userName = user.firstName
     def goal = projectService.getDataType(project.amount)
@@ -13,9 +14,9 @@
 
 <div class="fedu thumbnail grow teamtile" style="padding: 0">
 	<div style="height: 200px; overflow: hidden;" class="blacknwhite">
-		<g:link controller="project" action="manageproject" id="${project.id}">
+		<g:link controller="project" action="show" id="${project.id}" params="['fundRaiser': username]">
 		    <g:if test="${userImageUrl != null}">
-				<img alt="${project.title}" class="project-img" src="${userImageUrl}">
+				<img alt="${userName}" class="project-img" src="${userImageUrl}">
 			</g:if>
 			<g:else>
 			    <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>

@@ -70,7 +70,7 @@ class ProjectController {
         }
 
     def search () {
-        def query = params.query
+        def query = params.q
         if(query) {
             def searchResults = projectService.search(query)
             if (searchResults.size == 0){
@@ -87,6 +87,7 @@ class ProjectController {
 
 	def show() {
 		Project project
+        User user = User.findByUsername(params.fundRaiser)
 		if (params.id) {
 			project = Project.findById(params.id)
 		} else {
@@ -94,7 +95,7 @@ class ProjectController {
 		}
 
         render (view: 'show/index',
-                model: [project: project,
+                model: [project: project, user: user,
                         FORMCONSTANTS: FORMCONSTANTS])
 	}
 
@@ -474,12 +475,29 @@ class ProjectController {
             beneficiary.stateOrProvince = params.otherstate
         }
         
-        def rewardTitle = params.rewardTitle
-        def rewardPrice = params.rewardPrice
-        def rewardDescription = params.rewardDescription
+        def rewardLength=Integer.parseInt(params.rewardCount)
+        if(rewardLength>1) {
+            def rewardTitle = new Object[rewardLength]
+            def rewardPrice = new Object[rewardLength]
+            def rewardDescription = new Object[rewardLength]
+
+            for(def icount=0;icount<rewardLength;icount++){
+                rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
+                rewardPrice[icount] = params.("rewardPrice"+(icount+1))
+                rewardDescription[icount] = params.("rewardDescription"+(icount+1))
+            }
         
-        if(rewardTitle) {
-            rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
+            if(rewardTitle) {
+                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
+            }
+        }else{
+            def rewardTitle = params.rewardTitle1
+            def rewardPrice = params.rewardPrice1
+            def rewardDescription =params.rewardDescription1
+            
+            if(rewardTitle){
+                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
+            }
         }
                
         def iconFile = request.getFile('iconfile')
@@ -653,11 +671,15 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def addFundRaiser() {
         def project = Project.get(params.id)
-        def message = projectService.getFundRaisersForTeam(project)
-        flash.message = message
-        render (view: 'manageproject/index',
-            model: [project: project,
-                    FORMCONSTANTS: FORMCONSTANTS])
+        User user = userService.getCurrentUser()
+        def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
+        def message = projectService.getFundRaisersForTeam(project, user)
+        flash.teammessage = message
+        if (iscampaignAdmin) {
+            render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+        } else {
+            render (view: 'show/index', model: [project: project, user: user, FORMCONSTANTS: FORMCONSTANTS])
+        }
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])

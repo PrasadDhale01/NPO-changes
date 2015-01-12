@@ -24,20 +24,20 @@ Expects the parent containers to be like so:
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
     def amount = projectService.getDataType(project.amount)
-
+    def username = project.user.username
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow" style="padding: 0">
     <div class="blacknwhite">
-        <g:link controller="project" action="show" id="${project.id}" title="${project.title}">
+        <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fundRaiser': username]">
             <div class="imageWithTag">
                 <div class="under">
                     <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
                 </div>
                 <g:if test="${ended}">
 				    <div class="over">
-						<img src="/images/ended.gif" width="100">
+						<img src="/images/ended.png" width="100">
 					</div>
 				</g:if>
             </div>

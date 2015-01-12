@@ -1,7 +1,5 @@
 <g:set var="projectService" bean="projectService"/>
-<%
-	def images = projectService.getProjectImageLinks(project)
-%>
+
 <g:if test="${images.size()>1}">
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -24,14 +22,14 @@
         	<g:if test="${count == 1}">
         		<div class="item active">
 		        	<div style="overflow: hidden;" class="blacknwhite">
-			            <a href="${ img }"><img alt="" style="width: 100%;height: 400px;" src="${img}"></a>
+			            <a href="${ img }"><img alt="" class="imagestyle" src="${img}"></a>
 				    </div>
         		</div>
         	</g:if>
         	<g:else>
 	        	<div class="item">
 		        	<div style="overflow: hidden;" class="blacknwhite">
-			            <a herf="${ img }"><img alt="" style="width: 100%;height: 400px;" src="${img}"></a>
+			            <a herf="${ img }"><img alt="" class="imagestyle" src="${img}"></a>
 				    </div>
 	        	</div>
         	</g:else>
@@ -49,5 +47,5 @@
 </div>
 </g:if>
 <g:else>
-	<img alt="${project.title}" style="width: 100%;"  src="${images.get(0)}">
+	<img alt="${project.title}" class="imagestyle"  src="${images.get(0)}">
 </g:else>

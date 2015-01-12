@@ -3,7 +3,7 @@ $(function() {
     
     var validator = $('form').validate({
         rules: {
-            query: {
+            q: {
                 minlength: 3,
                 required: true
             }

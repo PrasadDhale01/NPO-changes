@@ -2,7 +2,7 @@ $(function() {
     console.log("create.js initialized");
 
     /********************* Create page Session timeout ***************************/
-  var SessionTime = 60* 1000; //set for 1 minute
+  var SessionTime = 60*1000*5; //set for 1 minute
   var tickDuration = 1000;
   var myInterval = setInterval(function() {
     SessionTime = SessionTime - tickDuration
@@ -232,6 +232,7 @@ $(function() {
      		$("#rewardTemplate").show();
      	    $("#updatereward").show();
      	} else {
+        $('#rewardCount').attr('value','1');
      		$('#addNewRewards').find('.rewardsTemplate').find('input').val('');
      		$('#addNewRewards').find('.rewardsTemplate').find('#rewardDescription').val('');
      	    $("#updatereward").hide();
@@ -432,8 +433,9 @@ $(function() {
 
           });
      
-  var count=2;
+  var count=1;
   $('#createreward').click(function(){
+      count++;
      $('#addNewRewards').append(
          '<div class="rewardsTemplate" id="rewardTemplate">'+
            '<div class="row">'+
@@ -463,11 +465,13 @@ $(function() {
             '</div><hr>'+
           '</div>'
       );
-          count++;
+          $('#rewardCount').attr('value',count);
   });
     
   $('#removereward').click(function(){
     if($('#addNewRewards').find('.rewardsTemplate').length > 1) {
+         count--;
+         $('#rewardCount').attr('value',count);
          $('#addNewRewards').find('.rewardsTemplate').last().remove();
     }else{
          $('.rewardTitle').val('');

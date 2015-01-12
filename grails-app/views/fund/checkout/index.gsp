@@ -22,9 +22,13 @@
 <body>
 <div class="feducontent">
     <div class="container">
-    <div class="alert alert-title">
-		<h1>Powered by Firstgiving</h1>
-	</div>
+    <div class="row">
+      <div class="col-md-12">
+	    <div class="alert alert-title">
+			<h1>Powered by Firstgiving</h1>
+		</div>
+	  </div>	
+	</div>	
     <% def contributedAmount = projectService.getDataType(amount) %>
     <g:form action="charge" method="POST" name="payment-form" role="form" id="payment-form">
         <div class="row">
@@ -221,20 +225,16 @@
             </div>
             
             <div class="col-md-4 box">
-                <div class="row">
                 	<g:if test="${project.rewards.size()>1}">
                         <g:render template="rewardtile"/>
                     </g:if>
-                </div>
-                <div class="row">
                 	<g:render template="/layouts/tile"/>
-                </div>
-                <div class="row">
+                <div>
                     <label class="checkbox control-label">
                         <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse">By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
                     </label>
                 </div>
-                <div class="row" align="center">
+                <div align="center">
                 	<button type="submit" class="btn btn-primary btn-block btn-lg" name="fund-button" id="paypalsubmitbutton">Fund this Campaign</button>
                 </div>
             </div>

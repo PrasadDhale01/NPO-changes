@@ -61,7 +61,7 @@
 <div class="container">
 	<div class="row featured-non-profits">
 		<div class="col-md-12">
-		<h1 class="text-center headingtext">Featured Non-profits</h1>
+		<h1 class="text-center headingtext">Featured Partners</h1>
 			<div class="col-md-3">
 				<img src="images/client-3.jpg" />
 			</div>

@@ -15,38 +15,73 @@
     def contribution = projectService.getDataType(contributedSoFar)
     def amount = projectService.getDataType(project.amount)
 
+    def user = userService.getCurrentUser()
+    def username = user.username
+    def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
+    
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 <div class="fedu thumbnail grow" style="padding: 0">
 	<div class="blacknwhite">
-		<g:link controller="project" action="manageproject" id="${project.id}"
-			title="${project.title}">
-			<div class="imageWithTag">
-				<div class="under">
-					<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
+	    <g:if test="${iscampaignAdmin}">
+			<g:link controller="project" action="manageproject" id="${project.id}"
+				title="${project.title}">
+				<div class="imageWithTag">
+					<div class="under">
+						<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
+					</div>
+					<g:if test="${project.draft}">
+						<div class="over">
+							<img src="/images/draft.png" width="100">
+						</div>
+					</g:if>
+					<g:elseif test="${project.rejected}">
+						<div class="over">
+							<img src="/images/rejected.png" width="100">
+						</div>
+					</g:elseif>
+					<g:elseif test="${!project.validated}">
+						<div class="over">
+							<img src="/images/PENDING.png" width="100">
+						</div>
+					</g:elseif>
+					<g:elseif test="${ended}">
+					    <div class="over">
+							<img src="/images/ended.png" width="100">
+						</div>
+					</g:elseif>
 				</div>
-				<g:if test="${project.draft}">
-					<div class="over">
-						<img src="/images/draft.png" width="100">
+			</g:link>
+		</g:if>
+		<g:else>
+		    <g:link controller="project" action="show" id="${project.id}" params="['fundRaiser': username]" title="${project.title}">
+				<div class="imageWithTag">
+					<div class="under">
+						<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
 					</div>
-				</g:if>
-				<g:elseif test="${project.rejected}">
-					<div class="over">
-						<img src="/images/rejected.png" width="100">
-					</div>
-				</g:elseif>
-				<g:elseif test="${!project.validated}">
-					<div class="over">
-						<img src="/images/PENDING.png" width="100">
-					</div>
-				</g:elseif>
-				<g:elseif test="${ended}">
-				    <div class="over">
-						<img src="/images/ended.gif" width="100">
-					</div>
-				</g:elseif>
-			</div>
-		</g:link>
+					<g:if test="${project.draft}">
+						<div class="over">
+							<img src="/images/draft.png" width="100">
+						</div>
+					</g:if>
+					<g:elseif test="${project.rejected}">
+						<div class="over">
+							<img src="/images/rejected.png" width="100">
+						</div>
+					</g:elseif>
+					<g:elseif test="${!project.validated}">
+						<div class="over">
+							<img src="/images/PENDING.png" width="100">
+						</div>
+					</g:elseif>
+					<g:elseif test="${ended}">
+					    <div class="over">
+							<img src="/images/ended.png" width="100">
+						</div>
+					</g:elseif>
+				</div>
+			</g:link>
+		</g:else>
 	</div>
 
 	<div class="caption">

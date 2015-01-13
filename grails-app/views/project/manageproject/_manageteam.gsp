@@ -8,6 +8,7 @@
     def contribution = projectService.getDataType(contributedSoFar)
 %>
 <div class="col-md-12 col-sm-12 col-xs-12 btn btn-primary divider"></div>
+<div class="pill-buttons">
 <g:if test="${project.validated}">
 	<g:if test="${!teams.isEmpty()}">
 		<g:if test="${project.user == user}">
@@ -25,17 +26,17 @@
                         </a>
                     </li>
                     <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
-                        <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-primary btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
+                        <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
                            Invite Members
                         </button>
                     </li>
                     <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
-                        <button class="col-md-12 col-sm-12 col-xs-12 btn btn-primary btn-md inviteteammember dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                        <button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
 					      Activity <span class="caret"></span>
 					    </button>
 					    <ul class="dropdown-menu" role="menu">
-						    <li><a class="text-center" href="#teamMessage"><span class="glyphicon glyphicon-envelope"></span> Team Message </a></li>
-						    <li><a class="text-center" href="#campaignStatistics"><span class="glyphicon glyphicon-list-alt"></span> Campaign Statistics </a></li>
+						    <li><a class="text-center list" href="#teamMessage"><span class="glyphicon glyphicon-envelope"></span> Team Message </a></li>
+						    <li><a class="text-center list" href="#campaignStatistics"><span class="glyphicon glyphicon-list-alt"></span> Campaign Statistics </a></li>
 					    </ul>
                     </li>
 			    </ul>
@@ -55,7 +56,7 @@
                     </a>
                 </li>
                 <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 button-team-footer">
-                   <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-primary btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
+                   <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
                       Invite Members
                    </button>
                 </li>
@@ -74,6 +75,7 @@
 <g:else>
     <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">You can create team after the project is published.</div>
 </g:else>
+</div>
 
 <div class="teamtileseperator"></div>
 

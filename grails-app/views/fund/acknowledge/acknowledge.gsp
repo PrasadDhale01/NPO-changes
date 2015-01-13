@@ -24,22 +24,28 @@
                         <td>Beneficiary</td>
                         <td>${projectService.getBeneficiaryName(project)}</td>
                     </tr>
+                    <g:if test="${fundraiser != project.user}">
+                        <tr>
+                            <td>Fundraiser</td>
+                            <td>${fundraiser.firstName} ${fundraiser.lastName}</td>
+                        </tr>
+                    </g:if>
                     <g:if test ="${userService.isAnonymous(user)}">
-                    <tr>
-                        <td>Contributor</td>
-                        <td>Anonymous</td>
-                    </tr>
+                        <tr>
+                            <td>Contributor</td>
+                            <td>Anonymous</td>
+                        </tr>
                     </g:if>
                     <g:else>
-                    <tr>
-                        <td>Contributor</td>
-                        <td>${user.firstName} ${user.lastName}</td>
-                    </tr>
+                        <tr>
+                            <td>Contributor</td>
+                            <td>${user.firstName} ${user.lastName}</td>
+                        </tr>
                     </g:else>
-                    <tr>
-                        <td>Amount</td>
-                        <td>$${contribution}</td>
-                    </tr>
+                        <tr>
+                            <td>Amount</td>
+                            <td>$${contribution}</td>
+                        </tr>
                     </tbody>
                 </table>
                 <g:if test ="${userService.isAnonymous(user)}">

@@ -603,7 +603,10 @@ ul.unstyled {
 .blacknwhite {
     position: relative;
     display: block;
-    height: 200px; 
+}
+
+.tile {
+	height: 200px; 
     overflow: hidden;
 }
 
@@ -1795,6 +1798,7 @@ button.projectedit.close{
 	padding: 18px 28px;
 	height: 72px;
 }
+
 .activitydropdown .btn{
 	padding: 18px 28px;
 }
@@ -1841,6 +1845,17 @@ button.projectedit.close{
 	width: 100%;
 	height: 400px;
 }
-.nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+.pill-buttons .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
   background-color: #4d6785 !important ;
+  color: white !important;
+}
+
+.pill-buttons .btn-default:hover,
+.btn-default:focus,
+.btn-default.focus,
+.btn-default:active,
+.btn-default.active,
+.open > .dropdown-toggle.btn-default {
+    background-color: #4d6785 !important ;
+    color: white !important;
 }

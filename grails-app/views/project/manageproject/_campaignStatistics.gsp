@@ -16,7 +16,6 @@
 	<td>${dateFormat.format(joiningDate.getTime())}</td>
 	<td></td>
 	<td>${dateFormat.format(endDate.getTime())}</td>
-	<td>$${projectAmount}</td>
 	<td>$${teamAmount}</td>
 	<td>$${achievedAmount}</td>
 	<td>$${amountLeft}</td>

@@ -22,6 +22,7 @@
 						</div>
 						<g:form action="charge" method="POST" role="form">
 							<g:hiddenField name="projectId" value="${project.id}" />
+							<g:hiddenField name="fundraiserUsername" value="${fundraiserUsername}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
 							
@@ -71,6 +72,7 @@
 						<g:form action="checkout" method="POST" role="form">
 
 							<g:hiddenField name="projectId" value="${project.id}" />
+							<g:hiddenField name="fundraiserUsername" value="${fundraiserUsername}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
 							<!-- Value set by Javascript -->

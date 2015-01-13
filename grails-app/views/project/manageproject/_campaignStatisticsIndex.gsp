@@ -16,7 +16,6 @@
 					<th>Official Team Member</th>
 					<th>Contribution Deadline</th>
 					<th>Amount Authorized</th>
-					<th>$ Raised</th>
 					<th>$ Achieved</th>
 					<th>Need to hit minimum</th>
 				</tr>

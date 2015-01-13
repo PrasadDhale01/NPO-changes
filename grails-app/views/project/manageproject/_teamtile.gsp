@@ -8,7 +8,8 @@
     def userImageUrl = user.userImageUrl
     def userName = user.firstName
     def goal = projectService.getDataType(project.amount)
-    def amount = projectService.getDataType(team.amount)
+	def contributedAmount = contributionService.getTotalContributionForUser(team.contributions)
+    def amount = projectService.getDataType(contributedAmount)
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 

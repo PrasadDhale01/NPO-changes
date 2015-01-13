@@ -10,7 +10,7 @@
     def contribution = projectService.getDataType(contributedSoFar)
 %>
 <div class="col-md-12 col-sm-12 col-xs-12 btn btn-primary divider"></div>
-
+<div class="pill-buttons">
 <g:if test="${!teams.isEmpty()}">
 	<ul class="nav nav-pills">
 		<li data-toggle="tab" class="active show-team col-md-4 col-sm-4 col-xs-4">
@@ -28,13 +28,13 @@
 		<g:if test="${!isTeamExist}">
 		    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button ">
 		        <form action="/project/addFundRaiser/${project.id}">
-				    <g:submitButton name="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-primary btn-md"/>
+				    <g:submitButton name="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md"/>
 				</form>
 		    </li>
 		</g:if>
 		<g:else>
             <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
-                <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-primary btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
+                <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
                    Invite Members
                 </button>		    
             </li>
@@ -44,6 +44,7 @@
 <g:else>
     <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">Team is yet to create</div>
 </g:else>
+</div>
 
 <div class="teamtileseperator"></div>
 

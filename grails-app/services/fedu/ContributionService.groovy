@@ -19,6 +19,18 @@ class ContributionService {
         }
         return user
     }
+	
+	def getTotalContributionForUser(def contribution) {
+	    if (!contribution) {
+		   return 0
+		}
+		
+		double total = 0
+		contribution.each {
+		   total += it.amount
+		}
+		return total
+	}
 
     def getShippingPendingItems() {
         return Contribution.findAllWhere(shippingDone: false)

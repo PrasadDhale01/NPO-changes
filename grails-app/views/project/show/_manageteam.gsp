@@ -12,30 +12,34 @@
 <div class="col-md-12 col-sm-12 col-xs-12 btn btn-primary divider"></div>
 
 <g:if test="${!teams.isEmpty()}">
-	<div class="row manageTeam">
-	    <div class="col-md-4 col-sm-4 col-xs-4">
-	        <div class="team-footer">
-	            <h4 class="text-center">${teams.size()}</h4>
-		    	<h5 class="text-center"> Team </h5>
-		    </div>
-	    </div>
-	    <div class="col-md-4 col-sm-4 col-xs-4">
-	        <div class="team-footer">
-	            <h4 class="text-center">$${contribution}</h4>
-	            <h5 class="text-center">Team Contribution</h5>
-	        </div>
-	    </div>
+	<ul class="nav nav-pills">
+		<li data-toggle="tab" class="active show-team col-md-4 col-sm-4 col-xs-4">
+		   <a href="#team">
+		      <h4 class="text-center">${teams.size()}</h4>
+		      <h5 class="text-center"> Team </h5>
+		   </a>
+		</li>
+        <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team">
+           <a href="#teamContribution">
+              <h4 class="text-center">$${contribution}</h4> 
+		      <h5 class="text-center">Team Contribution</h5>
+           </a>
+        </li>
 		<g:if test="${!isTeamExist}">
-		    <div class="col-md-4 col-sm-4 col-xs-4 pull-right">
-				<g:link controller="project" action="addFundRaiser" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-primary" id="${project.id}">Join Us</g:link>
-		    </div>
+		    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button ">
+		        <form action="/project/addFundRaiser/${project.id}">
+				    <g:submitButton name="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-primary btn-md"/>
+				</form>
+		    </li>
 		</g:if>
 		<g:else>
-		    <div class="col-md-4 col-sm-4 col-xs-4 pull-right">
-				<a href="#" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-primary" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">Invite Members</a>
-		    </div>
+            <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
+                <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-primary btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
+                   Invite Members
+                </button>		    
+            </li>
 		</g:else>
-	</div>
+	</ul>
 </g:if>
 <g:else>
     <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">Team is yet to create</div>
@@ -43,10 +47,13 @@
 
 <div class="teamtileseperator"></div>
 
-<div class="row">
-	<div class="col-md-12 col-sm-12 col-xs-12">
+<div class="tab-content">
+    <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
 	    <g:render template="show/teamgrid"/>
 	</div>
+<%--	<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamContribution">--%>
+<%--	    <g:render template=""/>--%>
+<%--	</div>--%>
 </div>
 
 <!-- Modal -->

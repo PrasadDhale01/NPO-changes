@@ -10,6 +10,8 @@ class Team {
     
     List contributions
     Double amount
+	
+	Date joiningDate
     
     static constraints = {
         contributions nullable: true

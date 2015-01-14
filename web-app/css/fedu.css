@@ -1849,12 +1849,12 @@ button.projectedit.close{
   background-color: #4d6785 !important ;
   color: white !important;
 }
-
+.team-footer h4,.team-footer h5{ font-weight:normal !important}
+.pill-buttons a{ color:#333;}
+.pill-buttons .nav a:hover{ color:#fff !important}
 .pill-buttons .btn-default:hover,
-.btn-default:focus,
-.btn-default.focus,
-.btn-default:active,
-.btn-default.active,
+.pill-buttons .btn-default:focus,
+.pill-buttons .active .btn-default,
 .open > .dropdown-toggle.btn-default {
     background-color: #4d6785 !important ;
     color: white !important;

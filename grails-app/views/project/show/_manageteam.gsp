@@ -4,8 +4,12 @@
 <%
     def teams = project.teams
     def percentage = contributionService.getPercentageContributionForProject(project)
-    def user = userService.getCurrentUser()
-    def isTeamExist = userService.isTeamAlreadyExist(project, user)
+    def currentUser = userService.getCurrentUser()
+	def username
+	if (currentUser) {
+	    username = currentUser.username
+	} 
+    def isTeamExist = userService.isTeamAlreadyExist(project, currentUser)
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
 %>
@@ -19,17 +23,16 @@
 		      <h5 class="text-center"> Team </h5>
 		   </a>
 		</li>
-        <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team">
-           <a href="#teamContribution">
-              <h4 class="text-center">$${contribution}</h4> 
-		      <h5 class="text-center">Team Contribution</h5>
-           </a>
+        <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
+            <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-target="#teamComment" data-toggle="tab">
+               Team Comments
+            </button>
         </li>
 		<g:if test="${!isTeamExist}">
 		    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button ">
-		        <form action="/project/addFundRaiser/${project.id}">
-				    <g:submitButton name="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md"/>
-				</form>
+		        <g:form controller="project" action="addFundRaiser" id="${project.id}" params="['fundRaiser':username]">
+				    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md"/>
+				</g:form> 
 		    </li>
 		</g:if>
 		<g:else>
@@ -40,21 +43,21 @@
             </li>
 		</g:else>
 	</ul>
+	<div class="teamtileseperator"></div>
+
+	<div class="tab-content">
+	    <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
+		    <g:render template="show/teamgrid"/>
+		</div>
+		<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamComment">
+		    <g:render template="show/teamcomment"/>
+		</div>
+	</div>
+	
 </g:if>
 <g:else>
     <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">Team is yet to create</div>
 </g:else>
-</div>
-
-<div class="teamtileseperator"></div>
-
-<div class="tab-content">
-    <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
-	    <g:render template="show/teamgrid"/>
-	</div>
-<%--	<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamContribution">--%>
-<%--	    <g:render template=""/>--%>
-<%--	</div>--%>
 </div>
 
 <!-- Modal -->

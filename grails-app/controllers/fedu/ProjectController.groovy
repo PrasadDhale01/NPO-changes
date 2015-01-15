@@ -669,7 +669,7 @@ class ProjectController {
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
-    def addFundRaiser() {
+    def addFundRaiser(){
         def project = Project.get(params.id)
         User user = userService.getCurrentUser()
         def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
@@ -699,4 +699,24 @@ class ProjectController {
                 model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def saveteamcomment() {
+		def fundRaiser = params.fundRaiser
+		User user = User.findByUsername(fundRaiser)
+		Project project = Project.get(params.id)
+		Team team = Team.findByUser(user, project)
+		if (team) {
+			TeamComment teamComment = new TeamComment(
+				comment: params.comment,
+				user: userService.getCurrentUser(),
+				team: team,
+				date: new Date())
+	        team.addToComments(teamComment).save(failOnError: true)
+		} else {
+			flash.teamcommentmessage = "Something went wrong saving comment. Please try again later."
+		}
+
+		redirect (action: 'show', id: params.id, params:[fundRaiser: fundRaiser], fragment: 'manageTeam')
+	}
 }

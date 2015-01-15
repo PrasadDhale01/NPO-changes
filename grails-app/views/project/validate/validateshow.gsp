@@ -68,7 +68,7 @@
                             	<g:render template="show/projectupdates"/>
                          	</div>
                          	<div class="tab-pane" id="manageTeam">
-								<g:render template="show/manageteam" />
+								<g:render template="manageproject/manageteam"/>
 							</div>
 							<div class="tab-pane" id="contributions">
 								<g:render template="/project/manageproject/contributions" />

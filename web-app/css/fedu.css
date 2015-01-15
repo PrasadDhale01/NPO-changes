@@ -1825,7 +1825,7 @@ button.projectedit.close{
 	width: 100%;
 }
 .teamtileseperator {
-	margin-top: 10px;
+	margin-top: 20px;
 }
 .greenbg h1,.greenbg h3{
 	padding:0 15px;
@@ -1858,4 +1858,10 @@ button.projectedit.close{
 .open > .dropdown-toggle.btn-default {
     background-color: #4d6785 !important ;
     color: white !important;
+}
+
+.pill-buttons .btn-primary {
+	background-color: #4d6785 !important ;
+    color: white !important;
+}
 }

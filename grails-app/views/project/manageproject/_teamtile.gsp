@@ -20,7 +20,21 @@
 				<img alt="${userName}" class="project-img" src="${userImageUrl}">
 			</g:if>
 			<g:else>
-			    <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
+			    <div class="imageWithTag">
+                <div class="under">
+			        <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
+                </div>
+                <g:if test="${user == project.user}">
+				    <div class="over">
+						<img src="/images/OWNER.png" width="100">
+					</div>
+				</g:if>
+				<g:else>
+				    <div class="over">
+						<img src="/images/TEAM.png" width="100">
+					</div>
+				</g:else>
+            </div>
 			</g:else>
 		</g:link>
 	</div>

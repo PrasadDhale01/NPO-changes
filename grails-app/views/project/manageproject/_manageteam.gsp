@@ -19,11 +19,10 @@
 				           <h5 class="text-center"> Team </h5>
 				       </a>
 				    </li>
-                    <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 team-footer">
-                        <a href="#teamContribution">
-                            <h4 class="text-center">$${contribution}</h4> 
-			                <h5 class="text-center">Team Contribution</h5>
-                        </a>
+                    <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
+                        <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-target="#teamComment" data-toggle="tab">
+                            Team Comments
+                        </button>
                     </li>
                     <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
                         <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
@@ -31,7 +30,7 @@
                         </button>
                     </li>
                     <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
-                        <button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+                        <button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 					      Activity <span class="caret"></span>
 					    </button>
 					    <ul class="dropdown-menu" role="menu">
@@ -49,19 +48,35 @@
 				     <h5 class="text-center"> Team </h5>
 				  </a>
 				</li>
-                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 team-footer">
-                    <a href="#teamContribution">
-                       <h4 class="text-center">$${contribution}</h4> 
-			           <h5 class="text-center">Team Contribution</h5>
-                    </a>
+                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
+                   <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-target="#teamComment">
+                      Team Comment 
+                   </button>
                 </li>
-                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 button-team-footer">
+                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
                    <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
                       Invite Members
                    </button>
                 </li>
             </ul>
 		</g:else>
+		<div class="teamtileseperator"></div>
+
+		<div class="tab-content">
+		    <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
+			    <g:render template="manageproject/teamgrid"/>
+			</div>
+			<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamComment">
+			    <g:render template="manageproject/teamcomment"/>
+			</div>
+		<%--	<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamMessage">--%>
+		<%--	    <g:render template=""/>--%>
+		<%--	</div>--%>
+			<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="campaignStatistics">
+			    <g:render template="manageproject/campaignStatisticsIndex" model="[team:teams, project:project]"/>
+			</div>
+		</div>
+		
 	</g:if>
 	<g:else>
 	    <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">Team is yet to create.</div>
@@ -75,23 +90,6 @@
 <g:else>
     <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">You can create team after the project is published.</div>
 </g:else>
-</div>
-
-<div class="teamtileseperator"></div>
-
-<div class="tab-content">
-    <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
-	    <g:render template="manageproject/teamgrid"/>
-	</div>
-<%--	<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamContribution">--%>
-<%--	    <g:render template=""/>--%>
-<%--	</div>--%>
-<%--	<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamMessage">--%>
-<%--	    <g:render template=""/>--%>
-<%--	</div>--%>
-	<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="campaignStatistics">
-	    <g:render template="manageproject/campaignStatisticsIndex" model="[team:teams, project:project]"/>
-	</div>
 </div>
 
 <!-- Modal -->

@@ -1882,4 +1882,7 @@ button.projectedit.close{
 	background-color: #4d6785 !important ;
     color: white !important;
 }
+.validatebtn.btn-danger {
+    border: none !important;
+    margin-top: -10px;
 }

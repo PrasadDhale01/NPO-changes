@@ -25,13 +25,13 @@
 						</div>
 						<div class="col-md-4">
 							<div class="col-md-6 col-sm-6 col-xs-6">
-								<g:link controller="project" action="updateValidation" id="${project.id}" class="btn btn-primary validatebutton" role="button">
+								<g:link controller="project" action="updateValidation" id="${project.id}" class="btn-sm btn-primary validatebutton" role="button">
 									<i class="glyphicon glyphicon-check" style="width: 175"></i>&nbsp;Validate
 								</g:link>
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6">
 								<g:form action="delete" controller="project" id="${project.id}" method="post">
-									<button class="btn btn-danger" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);" style="width: 180">
+									<button class="validatebtn btn-sm btn-danger" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);" style="width: 180">
 										<i class="fa fa-trash-o"></i>&nbsp;Discard
 									</button>
 								</g:form>

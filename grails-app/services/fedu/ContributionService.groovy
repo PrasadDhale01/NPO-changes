@@ -45,7 +45,7 @@ class ContributionService {
             return null
         }
 
-        return getPercentageContributionForProject(project) == 100
+        return getPercentageContributionForProject(project) == 999
     }
 
     def getTotalContributionForProject(Project project) {

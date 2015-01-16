@@ -18,13 +18,10 @@
 </div>
 
 <div class="col-md-8">
-    <div class="row">
-		<div class="blacknwhite campaignupdatedimages" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
+    	<div class="blacknwhite campaignupdatedimages" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
 	        <g:render template="/project/manageproject/projectimagescarousel" model="['images': projectimages]"/>
 	    </div>
-    </div>
     
-    <div class="row">
         <div class="panel panel-default campaign-description">
             <div class="panel-heading">
                 <h3 class="panel-title">Campaign Description</h3>
@@ -41,8 +38,6 @@
                 <span class="text-centre project-story-span">${raw(project.story)}</span>
             </div>
         </div>  
-    </div>
-    <div class="row">
         <g:if test="${project.videoUrl}">
             <div id="youtubeVideoUrl">
                 ${project.videoUrl}
@@ -50,10 +45,8 @@
             <div class="video-container" id="youtube">
             </div>
         </g:if>
-    </div>
     
     <%-- Social features --%>
-	<div class="row">
 		<div class="col-sm-12">
 			<a class="share-mail pull-right" href="#" data-toggle="modal"
 				data-target="#sendmailmodal" target="_blank" id="share-mail"
@@ -76,8 +69,7 @@
 				alt="Facebook Share" />
 			</a> <span style="float: right; margin: 5px;"><label>Share
 					this project</label></span>
-		</div>
-
+	
 		<!-- Modal -->
 		<div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
 			<g:form action="sendemail" id="${project.id}" role="form">

@@ -1422,16 +1422,13 @@ textarea.form-control {
         width:37%;
         float:left;
    }
-   .tab-text{
-        display:none;
-   }
    .nav.nav-tabs li{
    width:25%;
    float:left;
    }
    .nav.nav-tabs.manage-projects li{
-   width:20%;
-   float:left;
+   width:100%;
+   float:none;
    }
    .form-control.rewardprice{
     margin-left:0px;
@@ -1718,10 +1715,7 @@ textarea.form-control {
     .squarebox img {
         width:100% ;
     }
-    .nav.nav-tabs li{
-	   width:100%;
-	   float:none;
-	}
+    
 	.timeline:before {
 	    background-color: none !important;
 	}

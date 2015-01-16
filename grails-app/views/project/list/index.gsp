@@ -2,7 +2,7 @@
 <% 
     def category = projectService.getCategory() 
 	def base_url = grailsApplication.config.crowdera.BASE_URL
-	def base = "/project/category?"
+	def base = "/project?"
 %>
 <html>
 <head>

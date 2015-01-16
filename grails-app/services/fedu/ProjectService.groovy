@@ -901,6 +901,7 @@ class ProjectService {
     
     def getFundRaisersForTeam(Project project, User user) {
         def teams = project.teams
+		def amount = project.amount
         def isTeamExist = false
         String message
         teams.each {
@@ -910,8 +911,9 @@ class ProjectService {
         }
         if(!isTeamExist) {
             Team team = new Team(
-                amount: 0,
-                user: user
+                amount: amount,
+                user: user,
+				joiningDate: new Date()
             )
 
             project.addToTeams(team).save(failOnError: true)

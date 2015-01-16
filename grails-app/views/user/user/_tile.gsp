@@ -22,7 +22,7 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 <div class="fedu thumbnail grow" style="padding: 0">
-	<div class="blacknwhite">
+	<div class="blacknwhite tile">
 	    <g:if test="${iscampaignAdmin}">
 			<g:link controller="project" action="manageproject" id="${project.id}"
 				title="${project.title}">

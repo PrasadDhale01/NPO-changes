@@ -7,12 +7,17 @@
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def fundRaiserName
+	def beneficiary = project.user
     def username
     if (user) {
 	    def fundRaiser = user.firstName + " " + user.lastName
 	    fundRaiserName = fundRaiser.toUpperCase()
 	    username = user.username
-    }
+    } else {
+	    def fundRaiser = beneficiary.firstName + " " + beneficiary.lastName
+	    fundRaiserName = fundRaiser.toUpperCase()
+	    username = beneficiary.username
+	}
 %>
 <html>
 <head>
@@ -34,7 +39,7 @@
                         ${flash.teammessage}
                     </div>
                 </g:if>
-                <g:if test="${user}">
+                <g:if test="${user || beneficiary}">
 	                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
 	                	<h4 class="green-heading"> FUNDRAISER: ${fundRaiserName}</h4>
 	                </div>
@@ -159,7 +164,10 @@
                         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
                     </g:elseif>
                     <g:else>
-                        <a href="/projects/${project.id}/fund" class="btn btn-success btn-lg btn-block" role="button">Fund this Campaign</a>
+                        <form action="/projects/${project.id}/fund">
+                            <g:hiddenField name="fundraiserUsername" value="${username}" />
+                            <g:submitButton name="submit" value="Fund this Campaign" class="btn btn-success btn-lg btn-block"/>
+                        </form>                    
                     </g:else>
                     <g:if test="${project.rewards.size()>1}">
                     	<g:render template="show/rewards"/>

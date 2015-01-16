@@ -8,56 +8,75 @@
     def contribution = projectService.getDataType(contributedSoFar)
 %>
 <div class="col-md-12 col-sm-12 col-xs-12 btn btn-primary divider"></div>
+<div class="pill-buttons">
 <g:if test="${project.validated}">
 	<g:if test="${!teams.isEmpty()}">
 		<g:if test="${project.user == user}">
-			<div class="row manageTeam">
-			    <div class="col-md-3 col-sm-3 col-xs-3">
-			        <div class="team-footer">
-			            <h4 class="text-center">${teams.size()}</h4>
-				    	<h5 class="text-center"> Team </h5>
-				    </div>
-			    </div>
-			    <div class="col-md-3 col-sm-3 col-xs-3">
-			        <div class="team-footer">
-			            <h4 class="text-center">$${contribution}</h4>
-			            <h5 class="text-center">Team Contribution</h5>
-			        </div>
-			    </div>
-			    
-			    <div class="col-md-3 col-sm-3 col-xs-3">
-					<a href="#" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-primary" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">Invite Members</a>
-			    </div>
-				<div class="col-md-3 col-sm-3 col-xs-3 activitydropdown">
-					<button type="button" class="col-md-12 col-sm-12 col-xs-12 btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
+			    <ul class="nav nav-pills">
+			        <li data-toggle="tab" class="active team-footer col-md-3 col-sm-3 col-xs-3">
+			           <a href="#team">
+			               <h4 class="text-center">${teams.size()}</h4>
+				           <h5 class="text-center"> Team </h5>
+				       </a>
+				    </li>
+                    <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
+                        <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-target="#teamComment" data-toggle="tab">
+                            Team Comments
+                        </button>
+                    </li>
+                    <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
+                        <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
+                           Invite Members
+                        </button>
+                    </li>
+                    <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
+                        <button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 					      Activity <span class="caret"></span>
-					</button>
-					<ul class="dropdown-menu" role="menu">
-						<li><a class="text-center" href="#"><span class="glyphicon glyphicon-envelope"></span> Team Message </a></li>
-						<li><a class="text-center" href="#"><span class="glyphicon glyphicon-list-alt"></span> Campaign Statistics </a></li>
-					</ul>
-				</div>
-			</div>
+					    </button>
+					    <ul class="dropdown-menu" role="menu">
+						    <li><a class="text-center list" href="#teamMessage"><span class="glyphicon glyphicon-envelope"></span> Team Message </a></li>
+						    <li><a class="text-center list" href="#campaignStatistics"><span class="glyphicon glyphicon-list-alt"></span> Campaign Statistics </a></li>
+					    </ul>
+                    </li>
+			    </ul>
 		</g:if>
 		<g:else>
-			<div class="row manageTeam">
-			    <div class="col-md-4 col-sm-4 col-xs-4">
-			        <div class="team-footer">
-			            <h4 class="text-center">${teams.size()}</h4>
-				    	<h5 class="text-center"> Team </h5>
-				    </div>
-			    </div>
-			    <div class="col-md-4 col-sm-4 col-xs-4">
-			        <div class="team-footer">
-			            <h4 class="text-center">$${contribution}</h4>
-		            <h5 class="text-center">Team Contribution</h5>
-			        </div>
-			    </div>
-			    <div class="col-md-4 col-sm-4 col-xs-4">
-					<a href="#" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-primary" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">Invite Members</a>
-				</div>
-			</div>
+			<ul class="nav nav-pills">
+			   <li data-toggle="tab" class="active team-footer col-md-4 col-sm-4 col-xs-4">
+			      <a href="#team">
+			         <h4 class="text-center">${teams.size()}</h4>
+				     <h5 class="text-center"> Team </h5>
+				  </a>
+				</li>
+                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
+                   <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-target="#teamComment">
+                      Team Comment 
+                   </button>
+                </li>
+                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
+                   <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
+                      Invite Members
+                   </button>
+                </li>
+            </ul>
 		</g:else>
+		<div class="teamtileseperator"></div>
+
+		<div class="tab-content">
+		    <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
+			    <g:render template="manageproject/teamgrid"/>
+			</div>
+			<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamComment">
+			    <g:render template="manageproject/teamcomment"/>
+			</div>
+		<%--	<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamMessage">--%>
+		<%--	    <g:render template=""/>--%>
+		<%--	</div>--%>
+			<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="campaignStatistics">
+			    <g:render template="manageproject/campaignStatisticsIndex" model="[team:teams, project:project]"/>
+			</div>
+		</div>
+		
 	</g:if>
 	<g:else>
 	    <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">Team is yet to create.</div>
@@ -71,13 +90,6 @@
 <g:else>
     <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">You can create team after the project is published.</div>
 </g:else>
-
-<div class="teamtileseperator"></div>
-
-<div class="row">
-	<div class="col-md-12 col-sm-12 col-xs-12">
-	    <g:render template="manageproject/teamgrid"/>
-	</div>
 </div>
 
 <!-- Modal -->

@@ -56,7 +56,7 @@ class ProjectController {
         def projects = projectService.getValidatedProjects()
         def selectedCategory = "All Categories"
 		if(projects.size<1) {
-            flash.message="There are no campaigns"
+            flash.catmessage="There are no campaigns"
             render (view: 'list/index')
         }
         else {

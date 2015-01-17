@@ -2,6 +2,8 @@ $(function() {
 	console.log("create.js initialized");
 	
     $('#ytVideo').hide();
+    $('#imgmsg').hide();
+    $('#imgupdatemsg').hide();
 	/* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
@@ -82,6 +84,10 @@ $(function() {
     });
 
     $("#iconfile").on("change", function() {
+        var file =this.files[0];
+        if(!file.type.match('image')){
+           this.value=null;
+        }else{
         var file = this.files[0];
         var fileName = file.name;
         var fileSize = file.size;
@@ -97,6 +103,7 @@ $(function() {
         });
         // Read the image
         picReader.readAsDataURL(file);
+        }
 
     });
 
@@ -141,15 +148,18 @@ $(function() {
     });
 
     $('#projectImageFile').change(function(event) {
+                        var file =this.files[0];
+                        if(!file.type.match('image')){
+                            $('#imgmsg').show();
+                            $('.pr-thumbnail-div').hide();
+                            this.value=null;
+                        }else{
+                        $('#imgmsg').hide();
                         var files = event.target.files; // FileList object
                         var output = document.getElementById("result");
                         for ( var i = 0; i < files.length; i++) {
                             var file = files[i];
                             var filename = file.name;
-
-                            // Only pics
-                            if (!file.type.match('image'))
-                                continue;
                             var picReader = new FileReader();
                             picReader.addEventListener("load",function(event) {
                                                 var picFile = event.target;
@@ -168,6 +178,7 @@ $(function() {
                             });
                             // Read the image
                             picReader.readAsDataURL(file);
+                          }
                         }
     });
     
@@ -176,6 +187,13 @@ $(function() {
     });
     
     $('#updateImageFile').change( function(event) {
+      var file= this.files[0];
+      if(!file.type.match('image')){
+        $('#imgupdatemsg').show();
+        $('.pr-thumbnail-div').hide();
+        this.value=null;
+      }else{
+        $('#imgupdatemsg').hide();
         var files = event.target.files;
         var output = document.getElementById("result");
         for ( var i = 0; i < files.length; i++) {
@@ -197,6 +215,7 @@ $(function() {
             // Read the image
             picReader.readAsDataURL(file);
         }
+      }
     });
     
     /*Validation for campaign admin*/

@@ -12,8 +12,8 @@
         </div>
 	    <g:uploadForm controller="user" action="edit_avatar" id="${user.id}" role="form">
 	        <button class="btn btn-primary btn-sm" type="button" id="editavatarbutton">Edit Avatar</button>
-            <input class="hidden" type="file" name="profile" id="editavatar"/>
-            <input type="submit" class="hidden buttons" value="Upload" id="editbutton"/>
+            <input class="hidden" type="file" name="profile" id="editavatar" accept="image/*"/>
+            <input type="submit" class="hidden buttons" value="Upload" id="editbutton" accept="image/*"/>
         </g:uploadForm>
     </g:if>
     <g:else>
@@ -22,8 +22,8 @@
         </div>
         <g:uploadForm controller="user" action="upload_avatar" id="${user.id}" role="form">
             <button class="btn btn-primary btn-sm" type="button" id="uploadavatar">Upload Avatar</button>
-            <input class="hidden" type="file" name="avatar" id="avatar"/>
-            <input type="submit" class="hidden buttons" value="Upload" id="uploadbutton"/>
+            <input class="hidden" type="file" name="avatar" id="avatar" accept="image/*"/>
+            <input type="submit" class="hidden buttons" value="Upload" id="uploadbutton" accept="image/*"/>
         </g:uploadForm> 
     </g:else>
 </div>

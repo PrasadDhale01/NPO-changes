@@ -984,7 +984,14 @@ footer .footerbottomsection {
     position: relative;
     width: 50px;
     height: 50px;
-    margin: -6px 10px 27px -5px;
+    margin: -15px 10px 27px -5px;
+    float: left;
+}
+.pr-thumb-div {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: -8px 10px 27px 1px;
     float: left;
 }
 
@@ -993,8 +1000,18 @@ footer .footerbottomsection {
     top: -1px;
     right: -5px;
 }
+.pr-thumb-div .deleteicon {
+    position: absolute;
+    top: -1px;
+    right: -5px;
+}
 
 .pr-thumbnail-div .img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.pr-thumb-div .img {
     position: absolute;
     top: 0;
     left: 0;

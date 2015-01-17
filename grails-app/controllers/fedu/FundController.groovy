@@ -1,5 +1,6 @@
 package fedu
 
+import grails.plugin.springsecurity.annotation.Secured
 import groovy.json.JsonSlurper
 import groovyx.net.http.ContentType
 import groovyx.net.http.HTTPBuilder
@@ -423,6 +424,7 @@ class FundController {
         render user.id
     }
 	
+    @Secured(['ROLE_ADMIN'])
     def transaction(){
         def transaction = Transaction.list();
         render view: '/user/admin/transactionIndex', model: [transaction: transaction]

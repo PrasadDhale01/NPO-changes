@@ -927,6 +927,16 @@ class ProjectService {
         }
         return message
     }
+    
+    def getWebUrl(def project) {
+        if (project.webAddress) {
+            if (project.webAddress.startsWith('http')) {
+                return project.webAddress
+            } else {
+                return "http://"+project.webAddress
+            }
+        }
+    }
 
     @Transactional
     def bootstrap() {

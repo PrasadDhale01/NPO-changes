@@ -5,6 +5,7 @@
 	boolean ended = projectService.isProjectDeadlineCrossed(project)
 	def currentUser = userService.getCurrentUser()
 	def isteamexist = userService.isTeamAlreadyExist(project, currentUser)
+    def webUrl = projectService.getWebUrl(project)
 %>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -30,7 +31,7 @@
    	            <img alt="Upload Icon" src="/images/uploadIcon.jpg" class="org-logo">
             </div>
         </g:else>
-        <label class="col-sm-12">WEB: <a href="${project.webAddress}">${project.webAddress}</a></label>
+        <label class="col-sm-12">WEB: <a href="${webUrl}">${project.webAddress}</a></label>
         <div class="clear"></div>
         <g:if test="${project.draft}">
             <div class="tilesanstitletag">

@@ -401,7 +401,14 @@ ul.unstyled {
 .form-signin .form-signin-heading, .form-signin .checkbox {
     margin-bottom: 10px;
 }
-
+.form-signin .form-signin-heading.signin{
+	background:url('../images/sign-in.png') center left no-repeat;
+	padding:15px 0 15px 70px; 
+}
+.form-signin .form-signin-heading.register{
+	background:url('../images/register.png') center left no-repeat;
+	padding:15px 0 15px 70px; 
+}
 .form-signin .checkbox {
     font-weight: normal;
 }

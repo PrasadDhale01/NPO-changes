@@ -75,10 +75,10 @@
 
 						<!-- Tab panes -->
 						<div class="tab-content">
-							<div class="tab-pane active" id="essentials">
+							<div class="tab-pane active row" id="essentials">
 								<g:render template="/project/manageproject/essentials" />
 							</div>
-							<div class="tab-pane" id="projectupdates">
+							<div class="tab-pane row" id="projectupdates">
 								<g:render template="/project/manageproject/projectupdates" />
 							</div>
 							<div class="tab-pane" id="manageTeam">

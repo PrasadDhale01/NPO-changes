@@ -1899,3 +1899,9 @@ button.projectedit.close{
 .sett input[type="text"]{
      margin-left: 0px; 
 }
+.text-center{
+    word-wrap: break-word;
+}
+.container .wrap{
+    word-wrap: break-word;
+}

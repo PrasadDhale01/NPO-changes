@@ -6,7 +6,7 @@
 <div class="feducontent">
     <div class="container">
 	<g:if test="${project}">
-	    <div>
+	    <div class="wrap">
 	        <h2>
 	        <g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">
 		        ${project.title}

@@ -165,12 +165,29 @@ class FundController {
         }
     }
     def acknowledge() {
-        def project = Project.get(params.id)
-        def reward = Reward.get(params.reward)
-        def user = User.get(params.user)
-		def fundraiser = User.get(params.fundraiser)
-        def contribution = Contribution.get(params.contribution)
+        def contribution = Contribution.get(params.cb)
+        def project = contribution.project
+        def reward = contribution.reward
+        def user = contribution.user
+		def fundraiser = User.get(params.fr)
         render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
+    }
+
+    def sendemail() {
+        def project = Project.get(params.id)
+        def contribution =Contribution.get(params.cb)
+        def fundraiser =User.get(params.fr)
+        String emails = params.emails
+        String name = params.name
+        String message = params.message
+        
+        def emailList = emails.split(',')
+        emailList = emailList.collect { it.trim() }
+        
+        mandrillService.shareProject(emailList, name, message,project)
+
+        flash.sentmessage= "Email sent successfully."
+        redirect(controller:'fund',action: 'acknowledge',id: project.id, params:[cb : contribution.id, fr:fundraiser.id])
     }
 
     def fundingConfirmation(){
@@ -369,7 +386,7 @@ class FundController {
                 project.send_mail = true
             }
         }
-        redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [project: project, reward: reward.id, contribution: contribution.id, user:users.id, fundraiser:fundraiser.id ])
+        redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [cb: contribution.id, fr:fundraiser.id])
     }
 
     def paypalurl(){

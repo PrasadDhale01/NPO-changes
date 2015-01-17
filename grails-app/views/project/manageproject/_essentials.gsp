@@ -26,7 +26,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Campaign Description</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body descript">
                 <span class="text-left">${raw(project.description)}</span>
             </div>
         </div>

@@ -88,7 +88,8 @@ $(function() {
                 required: true
             },
             postalCode: {
-                required: true
+                required: true,
+                number: true
             },
             country: {
                 required: true

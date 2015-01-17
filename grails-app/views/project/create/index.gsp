@@ -112,20 +112,26 @@ tinymce.init({
 											name="${FORMCONSTANTS.ADDRESSLINE2}" class="form-control">
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">City</label>
-									<div class="col-sm-4">
-										<input type="text" placeholder="City"
-											name="${FORMCONSTANTS.CITY}" class="form-control">
-									</div>
-									
-									<label class="col-sm-2 control-label">Postcode</label>
-									<div class="col-sm-4">
-										<input type="text" placeholder="Postcode"
-											name="${FORMCONSTANTS.POSTALCODE}" class="form-control">
+								<div class="floo">
+									<div class="form-group">
+										<label class="col-sm-4 control-label">City</label>
+										<div class="col-sm-8">
+											<input type="text" placeholder="City"
+												name="${FORMCONSTANTS.CITY}" class="form-control">
+										</div>
 									</div>
 								</div>
-
+								<div class="floo sett">
+									<div class="form-group">	
+										<label class="col-sm-4 control-label">Postcode</label>
+										<div class="col-sm-8">
+											<input type="text" placeholder="Postcode"
+												name="${FORMCONSTANTS.POSTALCODE}" class="form-control">
+										</div>
+									</div>
+								</div>
+								
+								<div class="clear"></div>
 								<div class="form-group country-create-project">
 									<label class="col-sm-2 control-label">State</label>
 									<div class="col-sm-10" id="val1">

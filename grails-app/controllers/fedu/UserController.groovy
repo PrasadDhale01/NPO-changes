@@ -44,19 +44,19 @@ class UserController {
         
     }
     
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def myproject() {
          userprofile('user/myproject')
     }
     
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def mycontribution() {
         userprofile('user/mycontribution')
     }
 
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
     
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def upload_avatar() {
         def avatarUser = User.get(params.id)
         def imageFile = request.getFile('avatar')
@@ -79,7 +79,7 @@ class UserController {
         redirect(action:'dashboard') 
     }
     
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def edit_avatar() {
         def avatarUser = User.get(params.id)
         def imageFile = request.getFile('profile')
@@ -102,7 +102,7 @@ class UserController {
         redirect(action:'dashboard')
     }
     
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def deleteavatar() {
         def avatarUser = User.get(params.id)
         if(avatarUser) {

@@ -1889,3 +1889,13 @@ button.projectedit.close{
 .descript .text-left{
     word-wrap: break-word;
 }
+.floo{
+     width: 50%;
+    float: left;
+}
+.floo input[type="text"]{
+     margin-left: -5px; 
+}
+.sett input[type="text"]{
+     margin-left: 0px; 
+}

@@ -1886,3 +1886,6 @@ button.projectedit.close{
     border: none !important;
     margin-top: -10px;
 }
+.descript .text-left{
+    word-wrap: break-word;
+}

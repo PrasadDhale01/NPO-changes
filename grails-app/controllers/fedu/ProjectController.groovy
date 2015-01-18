@@ -476,28 +476,26 @@ class ProjectController {
         }
         
         def rewardLength=Integer.parseInt(params.rewardCount)
-        if(rewardLength>1) {
+        if(rewardLength >= 1) {
             def rewardTitle = new Object[rewardLength]
             def rewardPrice = new Object[rewardLength]
             def rewardDescription = new Object[rewardLength]
+            def mailingAddress = new Object[rewardLength]
+            def emailAddress = new Object[rewardLength]
+            def twitter = new Object[rewardLength]
+            def custom = new Object[rewardLength]
 
-            for(def icount=0;icount<rewardLength;icount++){
+            for(def icount=0; icount< rewardLength; icount++){
                 rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
                 rewardPrice[icount] = params.("rewardPrice"+(icount+1))
                 rewardDescription[icount] = params.("rewardDescription"+(icount+1))
+                mailingAddress[icount] = params.("mailingAddress"+(icount+1))
+                emailAddress[icount] = params.("emailAddress"+(icount+1))
+                twitter[icount] = params.("twitter"+(icount+1))
+                custom[icount] = params.("custom"+(icount+1))
             }
-        
-            if(rewardTitle) {
-                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
-            }
-        }else{
-            def rewardTitle = params.rewardTitle1
-            def rewardPrice = params.rewardPrice1
-            def rewardDescription =params.rewardDescription1
             
-            if(rewardTitle){
-                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
-            }
+            rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
         }
                
         def iconFile = request.getFile('iconfile')
@@ -580,6 +578,7 @@ class ProjectController {
         def reward = new Reward(params)
 		int price = Double.parseDouble(params.price)
 		int amount = Double.parseDouble(params.amount)
+        RewardShipping shippingInfo = new RewardShipping(params)
 		if(price >= amount) {
 			flash.message = "Enter a price less than Campaign amount: ${amount}"
 			render (view: 'manageproject/error', model: [reward: reward])
@@ -588,10 +587,12 @@ class ProjectController {
 		
         if(reward.save()) {
             def project= Project.get(params.id)
+            shippingInfo.reward = reward
+            shippingInfo.save(failOnError: true)
             project.addToRewards(reward)
             reward.obsolete = true
             flash.message = 'Successfully created a new reward'
-            render (view: 'manageproject/index',
+            render (view: 'manageproject/index', fragment: 'rewards',
                     model: [project: project,
                             FORMCONSTANTS: FORMCONSTANTS])
         } else {

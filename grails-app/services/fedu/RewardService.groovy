@@ -28,27 +28,29 @@ class RewardService {
         return Reward.findAllWhere(obsolete: true)
     }
     
-    def getMultipleRewards(def project, def rewardTitle ,def rewardPrice ,def rewardDescription) {
-        
-        if(rewardTitle instanceof String) {
+    def getMultipleRewards(def project, def rewardTitle ,def rewardPrice ,def rewardDescription, def mailingAddress, def emailAddress, def twitter, def custom) {
+        def amount
+        for(int i=0; i<rewardTitle.size();i++ ) {
             Reward reward = new Reward()
-            reward.title = rewardTitle
-            reward.price = Double.parseDouble(rewardPrice)
-            reward.description = rewardDescription
-            reward.obsolete = true
-            project.addToRewards(reward)
-        
-        } else {
-            for(int i=0; i<rewardTitle.size();i++ ) {
-                Reward reward = new Reward()
-                reward.title = rewardTitle[i]
+            RewardShipping shippingInfo = new RewardShipping()
+            reward.title = rewardTitle[i]
+            amount = rewardPrice[i]
+            if(!amount.isAllWhitespace()) {
                 reward.price = Double.parseDouble(rewardPrice[i])
-                reward.description = rewardDescription[i]
-                reward.obsolete = true
-                project.addToRewards(reward)
             }
+            reward.description = rewardDescription[i]
+            reward.obsolete = true
+            reward.save(failOnError: true)
+            
+            shippingInfo.email = emailAddress[i]
+            shippingInfo.address = mailingAddress[i]
+            shippingInfo.twitter = twitter[i]
+            shippingInfo.custom = custom[i]
+            shippingInfo.reward = reward
+            shippingInfo.save(failOnError: true)
+            
+            project.addToRewards(reward)
         }
-        return
     }
     
     @Transactional

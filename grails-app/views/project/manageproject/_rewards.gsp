@@ -33,9 +33,17 @@
                             </div>
                             <div class="clear"></div>
                             <div class="form-group">
-                            
                                 <label for="price">Price ($)</label>
-                                <input type="number" class="form-control" name="price" placeholder="Price"/>
+                                <input type="number" class="form-control" name="price" min="0" placeholder="Price"/>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Which of the following is necessary to ship this reward:</label>
+                                <div class="shippingreward">
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="address" value="true" id="mailaddcheckbox">Mailing address</label>
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="email" value="true" id="emailcheckbox">Email address</label>
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="twitter" value="true" id="twittercheckbox">Twitter handle</label>
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="custom" value="true" id="customcheckbox">Custom</label>
+                                </div>
                             </div>
                         </div>
                         <div class="modal-footer">

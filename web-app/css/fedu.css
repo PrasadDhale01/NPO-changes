@@ -1922,3 +1922,13 @@ button.projectedit.close{
 .container .wrap{
     word-wrap: break-word;
 }
+
+.shippingreward .checkbox input[type="checkbox"],.checkbox-inline input[type="checkbox"]
+{
+	margin-left: -10px !important;
+	margin-right: 3px;
+}
+
+.rewardTitle {
+	padding-left: 20px;
+}

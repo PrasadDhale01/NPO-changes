@@ -112,20 +112,26 @@ tinymce.init({
 											name="${FORMCONSTANTS.ADDRESSLINE2}" class="form-control">
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-sm-2 control-label">City</label>
-									<div class="col-sm-4">
-										<input type="text" placeholder="City"
-											name="${FORMCONSTANTS.CITY}" class="form-control">
-									</div>
-									
-									<label class="col-sm-2 control-label">Postcode</label>
-									<div class="col-sm-4">
-										<input type="text" placeholder="Postcode"
-											name="${FORMCONSTANTS.POSTALCODE}" class="form-control">
+								<div class="floo">
+									<div class="form-group">
+										<label class="col-sm-4 control-label">City</label>
+										<div class="col-sm-8">
+											<input type="text" placeholder="City"
+												name="${FORMCONSTANTS.CITY}" class="form-control">
+										</div>
 									</div>
 								</div>
-
+								<div class="floo sett">
+									<div class="form-group">	
+										<label class="col-sm-4 control-label">Postcode</label>
+										<div class="col-sm-8">
+											<input type="text" placeholder="Postcode"
+												name="${FORMCONSTANTS.POSTALCODE}" class="form-control">
+										</div>
+									</div>
+								</div>
+								
+								<div class="clear"></div>
 								<div class="form-group country-create-project">
 									<label class="col-sm-2 control-label">State</label>
 									<div class="col-sm-10" id="val1">
@@ -196,7 +202,7 @@ tinymce.init({
 					<div class="panel-body">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Preferred payment gateway</label>
-							<div class="col-sm-10 form-group" id="payopt">
+							<div class="col-sm-10" id="payopt">
 								<div class="col-sm-8">
 									<div class="btn-group btn-group-sm">
 										<label class="btn btn-default"> <input type="radio" name="pay" value="paypal">&nbsp;Paypal</label>
@@ -280,10 +286,11 @@ tinymce.init({
 								<div class="form-group">
 									<label class="col-sm-4 control-label" id="iconfiles">Organization Logo</label>
 									<div class="col-sm-4">
-										<input type="file" id="iconfile" name="iconfile">
+										<input type="file" id="iconfile" name="iconfile" accept="image/*">
 										<button id="chooseFile" class="btn btn-primary" type="button">
 											<i class="icon-file"></i> Choose File
 										</button>
+										<label  id="logomsg" style="color:red;dispaly:none;" >Select image file.</label>
 									</div>
 									<div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
 									<img id="imgIcon" class="pr-icon-thumbnail"/>
@@ -381,8 +388,9 @@ tinymce.init({
       						<label class="col-sm-2 control-label">Pictures</label>
       						<div class="col-sm-4">
         						<button id="add_img_btn" class="btn btn-primary btnAddImage" type="button"> <i class="icon-file"></i> Add Image </button>
+        						<label id="imgmsg" style="color:red;" >Select image file.</label>
         						<input type="file" class="hidden" name="${FORMCONSTANTS.THUMBNAIL}[]"
-         							id="projectImageFile" multiple="multiple">
+         							id="projectImageFile" multiple="multiple" accept="image/*">
       						</div>
       						<!--<div class="col-sm-2">
         						<input class="hidden" name="${FORMCONSTANTS.IMAGEURL}"

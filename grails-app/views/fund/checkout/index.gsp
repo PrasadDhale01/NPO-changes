@@ -37,6 +37,9 @@
                     <div class="panel-body">
                         <h3>Your contribution: <span class="pull-right">$${contributedAmount}</span></h3>
                         <h4>Your reward: <span class="pull-right">${reward.title}</span></h4>
+                        <g:if test="${fundraiser != project.user}">
+					        <h4>Fundraiser: <span class="pull-right">${fundraiser.firstName} ${fundraiser.lastName}</span></h4>
+						</g:if>
                     </div>
                 </div>
                 
@@ -45,6 +48,7 @@
                     <g:hiddenField name="projectId" value="${project.id}"/>
                     <g:hiddenField name="userId" value="${user.id}"/>
                     <g:hiddenField name="rewardId" value="${reward.id}"/>
+                    <g:hiddenField name="fundraiserUsername" value="${fundraiser.username}"/>
                     <g:hiddenField name="amount" value="${amount}"/>
                     <g:hiddenField name="currencyCode" value="USD"/>
                     <g:hiddenField name="charityId" value="${project.charitableId}"/>

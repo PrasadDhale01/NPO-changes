@@ -603,7 +603,10 @@ ul.unstyled {
 .blacknwhite {
     position: relative;
     display: block;
-    height: 200px; 
+}
+
+.tile {
+	height: 200px; 
     overflow: hidden;
 }
 
@@ -981,7 +984,14 @@ footer .footerbottomsection {
     position: relative;
     width: 50px;
     height: 50px;
-    margin: -6px 10px 27px -5px;
+    margin: -15px 10px 27px -5px;
+    float: left;
+}
+.pr-thumb-div {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: -8px 10px 27px 1px;
     float: left;
 }
 
@@ -990,8 +1000,18 @@ footer .footerbottomsection {
     top: -1px;
     right: -5px;
 }
+.pr-thumb-div .deleteicon {
+    position: absolute;
+    top: -1px;
+    right: -5px;
+}
 
 .pr-thumbnail-div .img {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.pr-thumb-div .img {
     position: absolute;
     top: 0;
     left: 0;
@@ -1419,16 +1439,13 @@ textarea.form-control {
         width:37%;
         float:left;
    }
-   .tab-text{
-        display:none;
-   }
    .nav.nav-tabs li{
    width:25%;
    float:left;
    }
    .nav.nav-tabs.manage-projects li{
-   width:20%;
-   float:left;
+   width:100%;
+   float:none;
    }
    .form-control.rewardprice{
     margin-left:0px;
@@ -1613,6 +1630,30 @@ textarea.form-control {
     .input-group[class*="col-"] {
 	    width: 100%;
 	}
+	.leftcard-column {
+	    width: 70%;
+	}
+	.leftcard-column .form-control {
+	    width: 91.68%;
+	}
+	.rightcard-column {
+	    width: 30%;
+	}
+	.rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 80% !important;
+	}
+	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn), .leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	    width: 70.3% !important;
+	}
+	.leftcard-column-two, .leftcard-column-three {
+	    width: 20%;
+	}
+	.leftcard-column-one {
+	    width: 60%;
+	}
+	.leftcard-column-one .form-control {
+	    width: 90.3%;
+	}
 }
 
 @media only screen and (max-width: 320px){
@@ -1691,10 +1732,7 @@ textarea.form-control {
     .squarebox img {
         width:100% ;
     }
-    .nav.nav-tabs li{
-	   width:100%;
-	   float:none;
-	}
+    
 	.timeline:before {
 	    background-color: none !important;
 	}
@@ -1750,8 +1788,34 @@ button.projectedit.close{
 .team-footer {
     background-color: #E8E8E8;
 	margin-top: 15px;
-	padding: 10px 20px 14px;
+	padding: 0;
 	border-top: 1px solid #e5e5e5;
+	width:24%;
+	margin-right: 15px;
+}
+
+.button-team-footer{
+	padding:0;
+	margin:0;
+	width:23%;
+	margin-right: 15px;
+}
+
+.show-team{
+	background-color: #E8E8E8;
+	margin-top: 15px;
+	padding: 0;
+	border-top: 1px solid #e5e5e5;
+	width:30%;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+
+.show-team-button{
+	padding:0;
+	margin:0;
+	width:30%;
+	margin-right: 15px;
 }
 
 .team-footer > h4, .team-footer > h5 {
@@ -1767,7 +1831,9 @@ button.projectedit.close{
 .inviteteammember {
 	margin-top: 15px;
 	padding: 18px 28px;
+	height: 72px;
 }
+
 .activitydropdown .btn{
 	padding: 18px 28px;
 }
@@ -1794,7 +1860,7 @@ button.projectedit.close{
 	width: 100%;
 }
 .teamtileseperator {
-	margin-top: 10px;
+	margin-top: 20px;
 }
 .greenbg h1,.greenbg h3{
 	padding:0 15px;
@@ -1813,4 +1879,46 @@ button.projectedit.close{
 .imagestyle {
 	width: 100%;
 	height: 400px;
+}
+.pill-buttons .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
+  background-color: #4d6785 !important ;
+  color: white !important;
+}
+.team-footer h4,.team-footer h5{ font-weight:normal !important}
+.pill-buttons a{ color:#333;}
+.pill-buttons .nav a:hover{ color:#fff !important}
+.pill-buttons .btn-default:hover,
+.pill-buttons .btn-default:focus,
+.pill-buttons .active .btn-default,
+.open > .dropdown-toggle.btn-default {
+    background-color: #4d6785 !important ;
+    color: white !important;
+}
+
+.pill-buttons .btn-primary {
+	background-color: #4d6785 !important ;
+    color: white !important;
+}
+.validatebtn.btn-danger {
+    border: none !important;
+    margin-top: -10px;
+}
+.descript .text-left{
+    word-wrap: break-word;
+}
+.floo{
+     width: 50%;
+    float: left;
+}
+.floo input[type="text"]{
+     margin-left: -5px; 
+}
+.sett input[type="text"]{
+     margin-left: 0px; 
+}
+.text-center{
+    word-wrap: break-word;
+}
+.container .wrap{
+    word-wrap: break-word;
 }

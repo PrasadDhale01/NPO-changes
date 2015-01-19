@@ -56,7 +56,7 @@ class ProjectController {
         def projects = projectService.getValidatedProjects()
         def selectedCategory = "All Categories"
 		if(projects.size<1) {
-            flash.message="There are no campaigns"
+            flash.catmessage="There are no campaigns"
             render (view: 'list/index')
         }
         else {
@@ -134,7 +134,7 @@ class ProjectController {
         }
     }
 
-    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def deleteProjectImage(){
         def imageUrlId = ImageUrl.get(request.getParameter("imgst"))
         def projectId = Project.get(request.getParameter("projectId"))
@@ -144,7 +144,7 @@ class ProjectController {
         render ''
     }
 
-    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def deleteOrganizationLogo(){
         
         def projectId = Project.get(request.getParameter("projectId"))
@@ -152,7 +152,7 @@ class ProjectController {
         render '' 
     }
 
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def validate() {
         Project project
         if (params.id) {
@@ -165,7 +165,7 @@ class ProjectController {
         }
     }
     
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def saveasdraft(){
         def project = Project.get(params.id)
         if(project.draft) {
@@ -190,7 +190,7 @@ class ProjectController {
     }
 
 
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def savecomment() {
         Project project
         if (params.id) {
@@ -209,7 +209,7 @@ class ProjectController {
         redirect (action: 'show', id: params.id, fragment: 'comments')
     }
 
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def updatecomment(){
         def checkid= request.getParameter('checkID')
         def proComment=ProjectComment.get(checkid)
@@ -249,7 +249,7 @@ class ProjectController {
                         state:state])
 	}
 
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def edit() {
         def project = Project.get(params.projectId)
         def categoryOptions = projectService.getCategoryList()
@@ -267,7 +267,7 @@ class ProjectController {
         }
     }
 
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def update() {
         def project = Project.get(params.projectId)
         User user = userService.getCurrentUser()
@@ -548,7 +548,7 @@ class ProjectController {
     }
     
     
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def manageproject() {
         Project project
         if (params.id) {
@@ -562,7 +562,7 @@ class ProjectController {
                         FORMCONSTANTS: FORMCONSTANTS])
     }
     
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def projectdelete() {
         def project = Project.get(params.id)
         if (project) {
@@ -575,7 +575,7 @@ class ProjectController {
         }
     }
 
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def customrewardsave() {
         def reward = new Reward(params)
 		int price = Double.parseDouble(params.price)
@@ -616,7 +616,7 @@ class ProjectController {
                         FORMCONSTANTS: FORMCONSTANTS])
     }
     
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def projectupdate() {
         def project = Project.get(params.id)
         if(project) {
@@ -626,7 +626,7 @@ class ProjectController {
         }
     }
     
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def updatesave() {
         def project = Project.get(params.id)
         def projectUpdate = new ProjectUpdate()
@@ -646,7 +646,7 @@ class ProjectController {
         }
     }
     
-    @Secured(['ROLE_USER'])
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def updatesaverender() {
         def project = Project.get(params.id)
         
@@ -654,8 +654,7 @@ class ProjectController {
         render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
     }
     
-    def category (){
-//        def category = params.id
+    def categoryFilter (){
 		def category = request.getParameter("category")
         def project
         if (category == "Social Innovation"){
@@ -669,7 +668,7 @@ class ProjectController {
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
-    def addFundRaiser() {
+    def addFundRaiser(){
         def project = Project.get(params.id)
         User user = userService.getCurrentUser()
         def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
@@ -699,4 +698,24 @@ class ProjectController {
                 model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def saveteamcomment() {
+		def fundRaiser = params.fundRaiser
+		User user = User.findByUsername(fundRaiser)
+		Project project = Project.get(params.id)
+		Team team = Team.findByUser(user, project)
+		if (team) {
+			TeamComment teamComment = new TeamComment(
+				comment: params.comment,
+				user: userService.getCurrentUser(),
+				team: team,
+				date: new Date())
+	        team.addToComments(teamComment).save(failOnError: true)
+		} else {
+			flash.teamcommentmessage = "Something went wrong saving comment. Please try again later."
+		}
+
+		redirect (action: 'show', id: params.id, params:[fundRaiser: fundRaiser], fragment: 'manageTeam')
+	}
 }

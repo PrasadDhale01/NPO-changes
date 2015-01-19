@@ -207,6 +207,11 @@ class UserService {
         }
         return isAdmin
     }
+	
+	def getTeamByUser(User user, Project project) {
+		Team team = Team.findByUserAndProject(user, project)
+		return team
+	}
     
     @Transactional
     def bootstrap() {

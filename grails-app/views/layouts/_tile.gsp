@@ -29,7 +29,7 @@ Expects the parent containers to be like so:
 %>
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow" style="padding: 0">
-    <div class="blacknwhite">
+    <div class="blacknwhite tile">
         <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fundRaiser': username]">
             <div class="imageWithTag">
                 <div class="under">

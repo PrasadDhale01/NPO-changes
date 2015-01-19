@@ -5,7 +5,10 @@
     <meta name="layout" content="main" />
 </head>
 <body>
-<% def contribution = projectService.getDataType(contribution.amount) %>
+<% 
+    def contributionId= contribution.id
+    def fundraiserId= fundraiser.id
+    def contribution = projectService.getDataType(contribution.amount) %>
 <div class="feducontent">
     <div class="container">
         <div class="row">
@@ -24,30 +27,89 @@
                         <td>Beneficiary</td>
                         <td>${projectService.getBeneficiaryName(project)}</td>
                     </tr>
+                    <g:if test="${fundraiser != project.user}">
+                        <tr>
+                            <td>Fundraiser</td>
+                            <td>${fundraiser.firstName} ${fundraiser.lastName}</td>
+                        </tr>
+                    </g:if>
                     <g:if test ="${userService.isAnonymous(user)}">
-                    <tr>
-                        <td>Contributor</td>
-                        <td>Anonymous</td>
-                    </tr>
+                        <tr>
+                            <td>Contributor</td>
+                            <td>Anonymous</td>
+                        </tr>
                     </g:if>
                     <g:else>
-                    <tr>
-                        <td>Contributor</td>
-                        <td>${user.firstName} ${user.lastName}</td>
-                    </tr>
+                        <tr>
+                            <td>Contributor</td>
+                            <td>${user.firstName} ${user.lastName}</td>
+                        </tr>
                     </g:else>
-                    <tr>
-                        <td>Amount</td>
-                        <td>$${contribution}</td>
-                    </tr>
+                        <tr>
+                            <td>Amount</td>
+                            <td>$${contribution}</td>
+                        </tr>
                     </tbody>
                 </table>
                 <g:if test ="${userService.isAnonymous(user)}">
                 	<div class="alert alert-success">Receipt has been sent over to your email</div>
                 </g:if>
+                <g:elseif test="${flash.sentmessage}">
+                            <div class="alert alert-success">
+                                ${flash.sentmessage}
+                            </div>
+                </g:elseif>
                 <g:else>
                 	<div class="alert alert-success">Receipt has been sent over email to ${user.email}</div>
                 </g:else>
+                <div class="row">
+                        <div class="col-sm-12">
+                            <a class="share-mail pull-right" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail" data-url="${base_url}/projects/${project.id}" data-name="${project.title}">
+                                <img src="${resource(dir: 'images', file: 'mail-share@2x.png')}" style="padding: 0; width:30px; bottom-margin:4px; margin:2px;" alt="Mail Share"/>
+                            </a>
+                            <a class="twitter-share pull-right" href="https://twitter.com/share?text=Hey check this project at crowdera.co!"  data-url="${base_url}/fund/acknowledge/${project.id}" target="_blank">
+                                <img src="${resource(dir: 'images', file: 'tw-share@2x.png')}" style="padding: 0; width:30px; bottom-margin:4px; margin:2px;" alt="Twitter Share"/>
+                            </a>
+                            <a class="fb-like pull-right" href="http://www.facebook.com/sharer.php?s=100&p[url]=${base_url}/projects/${project.id}&p[title]=${project.title} &p[summary]=${project.story}" data-url="${base_url}/projects/${project.id}" data-share="true">
+                                <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" style="padding: 0; width:30px; bottom-margin:4px; margin:2px;" alt="Facebook Share"/>
+                            </a>
+                            <span style="float:right; margin:5px;"><label>Share this Campaign</label></span>
+                        </div>
+                        
+                        <!-- Modal -->
+                        <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <g:form action="sendemail" controller="fund" id="${project.id}" role="form">
+                              <input type="hidden" name="cb" id="${contributionId }" value="${contributionId }"/>
+                              <input type="hidden" name="fr" id="${fundraiserId }" value="${fundraiserId }"/>
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">Recipient Email ID's</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <g:hiddenField name="amount" value="${project.amount}"/>
+                                            <div class="form-group">
+                                                <label>Your Name</label>
+                                                <input type="text" class="form-control" name="name" placeholder="Name"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email ID's (separated by comma)</label>
+                                                <textarea class="form-control" name="emails" rows="4" placeholder="Email ID's"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Message (Optional)</label>
+                                                <textarea class="form-control" name="message" rows="4" placeholder="Message"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary btn-block">Send Email</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </g:form>
+                        </div>
+                    </div>
             </div>
             <div class="col-md-4">
                 <g:if test="${project.rewards.size()>1 }">

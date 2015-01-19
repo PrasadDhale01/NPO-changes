@@ -193,7 +193,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label" id="iconfiles">Organization Logo</label>
                                 <div class="col-sm-4">
-                                    <input type="file" id="iconfile" name="iconfile">
+                                    <input type="file" id="iconfile" name="iconfile" accept="image/*">
                                     <button id="chooseFile" class="btn btn-primary" type="button">
                                             <i class="icon-file"></i> Choose File
                                      </button>
@@ -358,11 +358,12 @@
                             <button id="add_img_btn" class="btn btn-primary btnAddImage"type="button">
                                     <i class="icon-file"></i> Add Image
                             </button>
-                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" multiple="multiple" class="hidden">
+                            <label id="imgmsg" style="color:red;" >Select image file.</label>
+                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" multiple="multiple" class="hidden" accept="image/*">
                         </div>
                         <div class="col-sm-8">
                                 <g:each var="imgurl" in="${project.imageUrl}">
-                                    <div id="imgdiv" class="pr-thumbnail-div">
+                                    <div id="imgdiv" class="pr-thumb-div">
                                         <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}"/>
                                         <div class="deleteicon">
                                             <img onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}'

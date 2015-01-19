@@ -2,7 +2,7 @@
 <% 
     def category = projectService.getCategory() 
 	def base_url = grailsApplication.config.crowdera.BASE_URL
-	def base = "/project/category?"
+	def base = "/project?"
 %>
 <html>
 <head>
@@ -34,9 +34,9 @@
 		    <h4>Explore
 			<g:if test="${selectedCategory != "All"}">${selectedCategory}</g:if>
 		    </h4><br>
-        	    <g:if test="${flash.message}">
+        	    <g:if test="${flash.catmessage}">
             		<div class="alert alert-danger">
-                	    ${flash.message}
+                	    ${flash.catmessage}
             		</div>
         	    </g:if>
         	    <g:else>

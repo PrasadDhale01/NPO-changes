@@ -4,14 +4,13 @@
 
 <div class="col-md-12 col-sm-12 col-xs-12">
     <g:if test="${project.validated}">
-		<div class="row">
 		    <div class="col-xs-12">
 		        <g:uploadForm class="form-horizontal" controller="project" action="projectupdate" id="${project.id}" role="form">
 		            <button type="submit" class="btn btn-sm btn-primary pull-right" name="button" value="draft"><i class="fa fa-plus-circle"></i> Create Update</button>
 		        </g:uploadForm>
 		    </div>
-		</div>
-	    
+		    <div class="clear"></div>
+		
 		<g:if test="${!project.projectUpdates.empty}">
 		    <%
 		        def projectUpdates = project.projectUpdates.reverse()
@@ -34,8 +33,6 @@
 		</g:else>
 	</g:if>
 	<g:else>
-	    <div class="row">
-		    <div class="alert alert-info">You can post updates after the project is published.</div>
-		</div>
+	        <div class="alert alert-info">You can post updates after the project is published.</div>
 	</g:else>
 </div>

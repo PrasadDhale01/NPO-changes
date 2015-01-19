@@ -901,6 +901,7 @@ class ProjectService {
     
     def getFundRaisersForTeam(Project project, User user) {
         def teams = project.teams
+		def amount = project.amount
         def isTeamExist = false
         String message
         teams.each {
@@ -910,8 +911,9 @@ class ProjectService {
         }
         if(!isTeamExist) {
             Team team = new Team(
-                amount: 0,
-                user: user
+                amount: amount,
+                user: user,
+				joiningDate: new Date()
             )
 
             project.addToTeams(team).save(failOnError: true)
@@ -924,6 +926,16 @@ class ProjectService {
             message = "You Already have a Team"
         }
         return message
+    }
+    
+    def getWebUrl(def project) {
+        if (project.webAddress) {
+            if (project.webAddress.startsWith('http')) {
+                return project.webAddress
+            } else {
+                return "http://"+project.webAddress
+            }
+        }
     }
 
     @Transactional

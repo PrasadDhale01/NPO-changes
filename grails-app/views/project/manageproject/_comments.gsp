@@ -6,7 +6,7 @@
             <h3 class="panel-title">Project Comments</h3>
         </div>
         <div class="panel-body">
-            <div class="list-group">
+            <div class="list-group" id="uniqueId">
                 <g:each in="${project.comments}" var="comment">
                     <div class="list-group-item">
                         <dt>${userService.getFriendlyFullName(comment.user)}</dt>

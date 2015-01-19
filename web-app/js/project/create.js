@@ -1,6 +1,8 @@
 $(function() {
     console.log("create.js initialized");
 
+    $('#logomsg').hide();
+    $('#imgmsg').hide();
     /********************* Create page Session timeout ***************************/
   var SessionTime = 60*1000*5; //set for 1 minute
   var tickDuration = 1000;
@@ -297,7 +299,14 @@ $(function() {
   });
 
   $("#iconfile").on("change",function() {
+          var file =this.files[0];
+          if(!file.type.match('image')){
+            $('#icondiv').hide();
+            $('#logomsg').show();
+            this.value=null;
+          }else{
             $('#icondiv').show();
+            $('#logomsg').hide();
             var file = this.files[0];
             var fileName = file.name;
             var fileSize = file.size;
@@ -307,10 +316,10 @@ $(function() {
                       var picFile = event.target;
                       $('#imgIcon').attr('src',picFile.result);
                       $('#delIcon').attr('src',"/images/delete.ico");
-                    
             });
             // Read the image
             picReader.readAsDataURL(file);
+          } 
   });
 
 
@@ -399,15 +408,18 @@ $(function() {
   $('#projectImageFile')
       .change(
           function(event) {
+            var file =this.files[0];
+            if(!file.type.match('image')){
+              $('.pr-thumbnail-div').hide();
+              $('#imgmsg').show();
+              this.value=null;
+            }else{
+            $('#imgmsg').hide();
             var files = event.target.files; // FileList object
             var output = document.getElementById("result");
             for ( var i = 0; i < files.length; i++) {
               var file = files[i];
               var filename = file.name;
-
-              // Only pics
-              if (!file.type.match('image'))
-                continue;
               var picReader = new FileReader();
               picReader
                   .addEventListener(
@@ -430,6 +442,7 @@ $(function() {
               // Read the image
               picReader.readAsDataURL(file);
             }
+          }
 
 
           });

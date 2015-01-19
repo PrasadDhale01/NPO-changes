@@ -286,10 +286,11 @@ tinymce.init({
 								<div class="form-group">
 									<label class="col-sm-4 control-label" id="iconfiles">Organization Logo</label>
 									<div class="col-sm-4">
-										<input type="file" id="iconfile" name="iconfile">
+										<input type="file" id="iconfile" name="iconfile" accept="image/*">
 										<button id="chooseFile" class="btn btn-primary" type="button">
 											<i class="icon-file"></i> Choose File
 										</button>
+										<label  id="logomsg" style="color:red;dispaly:none;" >Select image file.</label>
 									</div>
 									<div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
 									<img id="imgIcon" class="pr-icon-thumbnail"/>
@@ -387,8 +388,9 @@ tinymce.init({
       						<label class="col-sm-2 control-label">Pictures</label>
       						<div class="col-sm-4">
         						<button id="add_img_btn" class="btn btn-primary btnAddImage" type="button"> <i class="icon-file"></i> Add Image </button>
+        						<label id="imgmsg" style="color:red;" >Select image file.</label>
         						<input type="file" class="hidden" name="${FORMCONSTANTS.THUMBNAIL}[]"
-         							id="projectImageFile" multiple="multiple">
+         							id="projectImageFile" multiple="multiple" accept="image/*">
       						</div>
       						<!--<div class="col-sm-2">
         						<input class="hidden" name="${FORMCONSTANTS.IMAGEURL}"

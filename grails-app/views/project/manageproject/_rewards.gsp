@@ -3,6 +3,7 @@
 <g:set var="projectService" bean="projectService"/>
 <%
     boolean isFundingOpen = projectService.isFundingOpen(project)
+    def rewards = project.rewards
 %>
 <br>
 <div class="row">
@@ -29,7 +30,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Description</label>
-                                <textarea class="form-control" name="description" rows="4" placeholder="Description"></textarea>
+                                <textarea class="form-control" name="description" maxlength="140" rows="4" placeholder="Description"></textarea>
                             </div>
                             <div class="clear"></div>
                             <div class="form-group">
@@ -55,22 +56,9 @@
         </div>
     </div>
 </div>
-<div class="panel panel-default" style="margin-top: 30px;">
-    <div class="panel-body">
-        <div class="list-group">
-            <g:each in="${project.rewards}" var="reward">
-                <%
-                    def backers = contributionService.getBackersForProjectByReward(project, reward);
-                    def price = projectService.getDataType(reward.price);
-                    
-                %>
-                <div class="list-group-item">
-                    <h4 class="list-group-item-heading">${reward.title}</h4>
-                    <h5 class="list-group-item-heading lead">$${price}</h5>
-                    <p class="list-group-item-text text-justify">${reward.description}</p>
-                    <p class="list-group-item-text text-justify">${backers} backer(s)</p>
-                </div>
-            </g:each>
-        </div>
+
+<div class="row">
+    <div class="col-md-12">
+        <g:render template="manageproject/rewardsgrids" model="['rewards': rewards]"></g:render>
     </div>
 </div>

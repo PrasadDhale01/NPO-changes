@@ -8,7 +8,8 @@ $(function() {
             },
             description: {
                 required: true,
-                minlength: 2
+                minlength: 2,
+                maxlength: 140
             },
             price: {
                 required: true,

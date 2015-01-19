@@ -1327,6 +1327,12 @@ text-decoration: none !important;
     padding: 7px 17px;
 }
 }
+@media only screen and (min-width: 767px) and (max-width: 768px){
+.containrewards{
+    height: 190px !important;
+    position: relative;
+}
+}
 .rewarddesc{
     margin-left:-21px;
 }
@@ -1931,4 +1937,28 @@ button.projectedit.close{
 
 .rewardTitle {
 	padding-left: 20px;
+}
+.panel-primary > .panel-heading{
+     background-color: #4d6785;
+     border-color: #4d6785;
+}
+.containrewards{
+    height: 156px;
+    position: relative;
+}
+.containrewards .rewarddelete{
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-size: 22px;
+}
+.containrewards p{
+    word-wrap: break-word;
+}
+.reward-footer .badge{
+    background-color:#000;
+    color:#fff;
+    padding: 5px 9px;
+    font-size: 12px;
+    border-radius: 48px;
 }

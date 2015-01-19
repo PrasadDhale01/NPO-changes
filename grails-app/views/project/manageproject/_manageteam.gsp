@@ -82,7 +82,7 @@
 	    <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">Team is yet to create.</div>
 	    <g:if test="${project.validated}">
 	        <div class="col-md-12 col-sm-12 col-xs-12">
-				<g:link controller="project" action="addFundRaiser" class="text-center btn btn-primary pull-right" id="${project.id}">create a team</g:link>
+				<g:link controller="project" action="addFundRaiser" class="text-center btn btn-primary btn-sm pull-right" id="${project.id}">Create a Team</g:link>
 		    </div>
 	    </g:if>
 	</g:else>
@@ -103,6 +103,7 @@
                 </div>
                 <div class="modal-body">
                     <g:hiddenField name="amount" value="${project.amount}"/>
+                    <g:hiddenField name="ismanagepage" value="managepage" />
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" class="form-control" name="username" value="${userName}" placeholder="Name"/>

@@ -86,6 +86,7 @@
 						</div>
 						<div class="modal-body">
 							<g:hiddenField name="amount" value="${project.amount}" />
+							<g:hiddenField name="ismanagepage" value="managepage" />
 							<div class="form-group">
 								<label>Your Name</label> <input type="text"
 									class="form-control" name="name" placeholder="Name" />

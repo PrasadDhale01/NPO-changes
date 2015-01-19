@@ -14,9 +14,15 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 <script src="/js/main.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script>
+	var nowTemp = new Date();
+	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 	var j = jQuery.noConflict();
 		j(function(){
-			j('.datepicker').datepicker();
+			j('#datepicker').datepicker({
+				  onRender: function(date) {
+					    return date.valueOf() <= now.valueOf() ? 'disabled' : '';
+				}
+			});
 		});
 </script>
 <script>
@@ -331,8 +337,8 @@ tinymce.init({
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Campaign end date</label>
 							<div class="col-sm-10">
-								<div class="input-group enddate"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-									<input class="datepicker pull-left" name="${FORMCONSTANTS.DAYS}" placeholder="Campaign end date"> 
+								<div class="input-group enddate"><span class="input-group-addon datepicker-error"><span class="glyphicon glyphicon-calendar"></span></span>
+									<input class="datepicker pull-left" id="datepicker" name="${FORMCONSTANTS.DAYS}" readonly="readonly" placeholder="Campaign end date"> 
 							    </div>
 							</div>
 						</div>

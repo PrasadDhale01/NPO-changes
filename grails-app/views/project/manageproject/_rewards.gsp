@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-xs-12">
         <!-- Button trigger modal -->
-        <a href="#" class="btn btn-primary btn-circle pull-right" data-toggle="modal" data-target="#createRewardModal" model="['project': project]">
+        <a href="#" class="btn btn-primary btn-sm btn-circle pull-right" data-toggle="modal" data-target="#createRewardModal" model="['project': project]">
             <i class="fa fa-plus-circle"></i> Create Reward
         </a>
         

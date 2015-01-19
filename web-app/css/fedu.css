@@ -1962,3 +1962,8 @@ button.projectedit.close{
     font-size: 12px;
     border-radius: 48px;
 }
+.has-error .datepicker-error {
+    color: #6f6f6f !important;
+    border-color: #cccccc;
+    background-color: #eeeeee;
+}

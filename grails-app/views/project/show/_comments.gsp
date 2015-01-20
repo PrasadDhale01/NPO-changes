@@ -8,7 +8,7 @@
         <div class="form-group">
             <textarea class="form-control" name="comment" rows="4" required="true"></textarea>
         </div>
-        <button type="submit" class="btn btn-default pull-right">Post comment</button>
+        <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
     </g:form>
 </sec:ifLoggedIn>
 <sec:ifNotLoggedIn>

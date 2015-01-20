@@ -32,6 +32,11 @@
 							${flash.message}
 						</div>
 					</g:if>
+					<g:if test="${flash.sentmessage}">
+	                    <div class="alert alert-success" align="center">
+	                        ${flash.sentmessage}
+	                    </div>
+	                </g:if>
 
 					<g:if test="${project.rejected}">
 						<div class="alert alert-info">

@@ -617,9 +617,15 @@ class ProjectController {
         mandrillService.shareProject(emailList, name, message, project)
 
         flash.sentmessage= "Email sent successfully."
-        render (view: 'show/index',
-                model: [project: project,
-                        FORMCONSTANTS: FORMCONSTANTS])
+        if (params.ismanagepage) {
+            render (view: 'manageproject/index',
+                    model: [project: project,
+                            FORMCONSTANTS: FORMCONSTANTS])
+        } else {
+            render (view: 'show/index',
+                    model: [project: project,
+                            FORMCONSTANTS: FORMCONSTANTS])
+        }
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -693,16 +699,20 @@ class ProjectController {
         String emails = params.emailIds
         String name = params.username
         String message = params.message
-
+        User user = userService.getCurrentUser()
+        
         def emailList = emails.split(',')
         emailList = emailList.collect { it.trim() }
 
         mandrillService.sendInvitationForTeam(emailList, name, message, project)
-
+        
         flash.sentmessage= "Email sent successfully."
-        render (view: 'show/index',
-                model: [project: project,
-                        FORMCONSTANTS: FORMCONSTANTS])
+        
+        if (params.ismanagepage) {
+            redirect (action: 'manageproject', id: project.id, params:[fundRaiser: user], fragment: 'manageTeam')
+        } else {
+            redirect (action: 'show', id: project.id, params:[fundRaiser: user], fragment: 'manageTeam')
+        }
     }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
@@ -721,8 +731,12 @@ class ProjectController {
 		} else {
 			flash.teamcommentmessage = "Something went wrong saving comment. Please try again later."
 		}
-
-		redirect (action: 'show', id: params.id, params:[fundRaiser: fundRaiser], fragment: 'manageTeam')
+        
+        if (!params.ismanagepage) {
+		    redirect (action: 'show', id: params.id, params:[fundRaiser: fundRaiser], fragment: 'manageTeam')
+        } else {
+            redirect (action: 'manageproject', id: params.id, params:[fundRaiser: fundRaiser], fragment: 'manageTeam')
+        }
 	}
 
     def deletecustomrewards() {

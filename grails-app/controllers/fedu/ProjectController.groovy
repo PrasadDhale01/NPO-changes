@@ -592,12 +592,17 @@ class ProjectController {
             project.addToRewards(reward)
             reward.obsolete = true
             flash.message = 'Successfully created a new reward'
-            render (view: 'manageproject/index', fragment: 'rewards',
-                    model: [project: project,
-                            FORMCONSTANTS: FORMCONSTANTS])
+            redirect(controller: 'project', action: 'redirectReward',fragment: 'rewards', id: project.id)
         } else {
             render (view: 'manageproject/error', model: [reward: reward])
         }
+    }
+
+    def redirectReward(){
+        def project = Project.get(params.id)
+        render (view: 'manageproject/index', 
+                model: [project: project,
+                        FORMCONSTANTS: FORMCONSTANTS])
     }
     
     def sendemail() {
@@ -719,4 +724,23 @@ class ProjectController {
 
 		redirect (action: 'show', id: params.id, params:[fundRaiser: fundRaiser], fragment: 'manageTeam')
 	}
+
+    def deletecustomrewards() {
+        def rewardId = Reward.get(params.id)
+        def project = Project.get(params.projectId)
+        def shippingInfo = RewardShipping.findByReward(rewardId)
+        if(rewardId){
+            project.rewards.remove(rewardId)
+            shippingInfo.reward = null
+            shippingInfo.delete()
+            rewardId.delete()
+            flash.message = 'Successfully deleted a Reward'
+            render (controller: 'project',fragment: 'rewards', view: 'manageproject/index',model: [project: project,FORMCONSTANTS: FORMCONSTANTS])
+            
+        }else{
+             render (view: 'manageproject/index', fragment: 'rewards',
+                model: [project: project,
+                        FORMCONSTANTS: FORMCONSTANTS])
+        }
+    }
 }

@@ -477,7 +477,7 @@ $(function() {
                    '<label class="col-sm-2 control-label rewarddesctitle">Reward Description</label>'+
                     '<div class="col-sm-10">'+
                       '<textarea class="form-control required rewardDescription" name="rewardDescription'+count+
-                         '" id="rewardDesc'+count+'" rows="2" placeholder="Description"></textarea>'+
+                         '" id="rewardDesc'+count+'" rows="2" placeholder="Description" maxlength="140"></textarea>'+
                     '</div>'+
                 '</div>'+
             '</div>'+

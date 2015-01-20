@@ -460,7 +460,7 @@ tinymce.init({
 											<div class="col-sm-10">
 												<textarea class="form-control rewardDescription required"
 													name="rewardDescription1" id="rewardDesc1" rows="2"
-													placeholder="Description"></textarea>
+													placeholder="Description" maxlength="140"></textarea>
 											</div>
 										</div>
 									</div>

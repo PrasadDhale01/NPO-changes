@@ -2,16 +2,22 @@
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
 <%
+    boolean ended = projectService.isProjectDeadlineCrossed(project)
     boolean isFundingOpen = projectService.isFundingOpen(project)
     def rewards = project.rewards
 %>
-<br>
 <div class="row">
     <div class="col-xs-12">
+        
         <!-- Button trigger modal -->
-        <a href="#" class="btn btn-primary btn-sm btn-circle pull-right" data-toggle="modal" data-target="#createRewardModal" model="['project': project]">
-            <i class="fa fa-plus-circle"></i> Create Reward
-        </a>
+        <g:if test="${!ended}">
+	        <a href="#" class="btn btn-primary btn-sm btn-circle pull-right" data-toggle="modal" data-target="#createRewardModal" model="['project': project]">
+	            <i class="fa fa-plus-circle"></i> Create Reward
+	        </a>
+        </g:if>
+        <g:else>
+        	<div class="alert alert-info">Campaign Ended.</div>
+        </g:else>
         
         <!-- Modal -->
         <div class="modal fade" id="createRewardModal" tabindex="-1" role="dialog" aria-labelledby="createRewardModal" aria-hidden="true">

@@ -7,13 +7,15 @@
         </div>
         <div class="panel-body">
             <div class="list-group" id="uniqueId">
-                <g:each in="${project.comments}" var="comment">
+                <g:set var="i" value="1"></g:set>
+                <g:each in="${project.comments.reverse()}" var="comment">
                     <div class="list-group-item">
                         <dt>${userService.getFriendlyFullName(comment.user)}</dt>
                         <dd>${comment.comment}</dd>
-                        <input type="checkbox" name="link" id="${comment.id}" value="${comment.id}" 
-                            <g:if test="${comment.status }">checked="checked"</g:if>><span id="check${comment.id}"> Hide</span>
+                        <input type="checkbox" name="link" id="${i}" value="${comment.id}" 
+                            <g:if test="${comment.status }">checked="checked"</g:if>><span id="check${i}"> Hide</span>
                         </input>
+                        <% i++ %>
                     </div>
                 </g:each>
             </div>

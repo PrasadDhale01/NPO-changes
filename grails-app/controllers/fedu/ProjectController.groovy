@@ -670,7 +670,13 @@ class ProjectController {
 		} else {
             project = projectService.filterByCategory(category)
         }
-        render (view: 'list/index', model: [projects: project,selectedCategory:category])
+        if(!project){
+             flash.catmessage="No campaign found."
+             render (view: 'list/index', model: [projects: project,selectedCategory:category])
+        }else{
+             flash.catmessage=""
+             render (view: 'list/index', model: [projects: project,selectedCategory:category])
+        }
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])

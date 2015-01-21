@@ -509,15 +509,12 @@ class ProjectController {
             projectService.getMultipleImageUrls(imageFiles, project)
         }
         
-        projectService.getdefaultAdmin(project, user)
+        
         
         String email1 = params.email1
         String email2 = params.email2
         String email3 = params.email3
         
-        projectService.getAdminForProjects(email1, project, user)
-        projectService.getAdminForProjects(email2, project, user)
-        projectService.getAdminForProjects(email3, project, user)
         
         project.user = user
 
@@ -527,6 +524,10 @@ class ProjectController {
         project.beneficiary = beneficiary
         
         if (project.save()) {
+            projectService.getdefaultAdmin(project, user)
+            projectService.getAdminForProjects(email1, project, user)
+            projectService.getAdminForProjects(email2, project, user)
+            projectService.getAdminForProjects(email3, project, user)
             redirect(controller: 'project', action: 'saveRedirect', id: project.id, params: [button: button])
         } else {
             render (view: 'create/createerror', model: [project: project])

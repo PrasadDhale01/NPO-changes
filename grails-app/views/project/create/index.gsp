@@ -208,7 +208,7 @@ tinymce.init({
 					<div class="panel-body">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Preferred payment gateway</label>
-							<div class="col-sm-10" id="payopt">
+							<div class="col-sm-10 form-group" id="payopt">
 								<div class="col-sm-8">
 									<div class="btn-group btn-group-sm">
 										<label class="btn btn-default"> <input type="radio" name="pay" value="paypal">&nbsp;Paypal</label>

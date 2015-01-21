@@ -31,7 +31,9 @@
         </div>
 	<div class="caption">
         <div class="project-title">
-            ${project.title}
+            <g:link controller="project" action="validateshow" id="${project.id}" title="${project.title}">
+                ${project.title}
+            </g:link>
         </div>
         <hr class="tile-separator">
         <div class="project-story-span">

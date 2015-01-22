@@ -76,7 +76,8 @@ $(function() {
             },
             telephone: {
                 required: false,
-                isValidTelephoneNumber: true
+                isValidTelephoneNumber: true,
+                maxlength: 20
             },
             addressLine1: {
                 required: false
@@ -92,7 +93,9 @@ $(function() {
             },
             postalCode: {
                 required: true,
-                number: true
+                number: true,
+                maxlength: 10,
+                minlength: 4
             },
             country: {
                 required: true

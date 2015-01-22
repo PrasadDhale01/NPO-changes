@@ -185,7 +185,7 @@ class FundController {
         def emailList = emails.split(',')
         emailList = emailList.collect { it.trim() }
         
-        mandrillService.shareProject(emailList, name, message,project)
+        mandrillService.shareContribution(emailList, name, message,project,contribution,fundraiser)
 
         flash.sentmessage= "Email sent successfully."
         redirect(controller:'fund',action: 'acknowledge',id: project.id, params:[cb : contribution.id, fr:fundraiser.id])

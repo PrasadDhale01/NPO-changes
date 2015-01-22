@@ -224,6 +224,46 @@ class MandrillService {
         }
     }
 
+    def shareContribution(def emailList, String name, String message, Project project,Contribution contribution, User fundraiser) {
+        def imageUrl = project.imageUrl
+        if (imageUrl) {
+            imageUrl = project.imageUrl[0].getUrl()
+        }
+        emailList.each { email ->
+            def link = grailsLinkGenerator.link(controller: 'fund', action: 'acknowledge', id: project.id,params:[ cb:contribution.id, fr:fundraiser.id], absolute: true)
+            def globalMergeVars = [
+                [
+                    'name': 'LINK',
+                    'content': link
+                ],
+                [
+                    'name': 'NAME',
+                    'content': name
+                ],
+                [
+                    'name': 'EMAIL',
+                    'content': email
+                ],
+                [
+                    'name': 'TITLE',
+                    'content': project.title
+                ],
+                [
+                    'name': 'MESSAGE',
+                    'content': message
+                ],
+                [
+                    'name': 'IMAGEURL',
+                    'content': imageUrl
+                ]
+            ]
+
+            def tags = ['share-contribution']
+
+            inviteToShare(email, 'share-contribution', globalMergeVars, tags)
+        }
+    }
+
     private def inviteToAdmin(String email, String templateName, List globalMergeVars, List tags) {
         def query =  [
             key: grailsApplication.config.mandrill.apiKey,
@@ -264,7 +304,7 @@ class MandrillService {
     }
 
     def inviteAdmin(def email, String name, Project project) {
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageproject', id: project.id, absolute: true)
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', id: project.id, absolute: true)
         def imageUrl = project.imageUrl
         if (imageUrl) {

@@ -16,7 +16,7 @@
 		<g:if test="${!team.comments.empty}">
 		    <h4 class="lead">Comments</h4>
 		    <dl class="dl">
-		        <g:each in="${team.comments}" var="comment">
+		        <g:each in="${team.comments.reverse()}" var="comment">
 		            <hr>
 		            <dt>${userService.getFriendlyFullName(comment.user)}</dt>
 		            <dd>${comment.comment}</dd>

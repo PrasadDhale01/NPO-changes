@@ -367,9 +367,8 @@ class FundController {
             }
         }
 
-        def projectAmount = params.double('projectAmount')
         def totalContribution = contributionService.getTotalContributionForProject(project)
-        if(totalContribution >= projectAmount){
+        if(totalContribution >= project.amount){
             if(project.send_mail == false){
                 def contributor = contributionService.getTotalContributors(project)
                 contributor.each {

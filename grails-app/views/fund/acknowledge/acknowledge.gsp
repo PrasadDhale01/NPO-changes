@@ -73,7 +73,7 @@
                             <a class="fb-like pull-right" href="http://www.facebook.com/sharer.php?s=100&p[url]=${base_url}/projects/${project.id}&p[title]=${project.title} &p[summary]=${project.story}" data-url="${base_url}/projects/${project.id}" data-share="true">
                                 <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" style="padding: 0; width:30px; bottom-margin:4px; margin:2px;" alt="Facebook Share"/>
                             </a>
-                            <span style="float:right; margin:5px;"><label>Share this Campaign</label></span>
+                            <span style="float:right; margin:5px;"><label>Share this Contribution</label></span>
                         </div>
                         
                         <!-- Modal -->

@@ -3,9 +3,9 @@
     <meta name="layout" content="main" />
 </head>
 <body>
-<g:if test="${flash.message}">
+<g:if test="${flash.user_admin_message}">
     <div class="alert alert-info">
-        ${flash.message}
+        ${flash.user_admin_message}
     </div>
 </g:if>
 <div class="feducontent">

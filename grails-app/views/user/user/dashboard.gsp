@@ -13,9 +13,9 @@
     <div class="container">
 
         <h2>User Profile</h2>
-        <g:if test="${flash}">
-            <div class="alert alert-success">
-                <li>${flash.message}</li>
+        <g:if test="${flash.user_message}">
+            <div class="alert alert-success" align="center">
+                <li>${flash.user_message}</li>
             </div>
         </g:if>
         <div class="row">

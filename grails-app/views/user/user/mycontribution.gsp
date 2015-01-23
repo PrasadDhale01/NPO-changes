@@ -13,9 +13,9 @@
     <div class="container">
 
         <h2>My Contributions</h2>
-        <g:if test="${flash}">
+        <g:if test="${flash.user_mycontri_message}">
             <div class="alert alert-success">
-                <li>${flash.message}</li>
+                <li>${flash.user_mycontri_message}</li>
             </div>
         </g:if>
         <div class="row">

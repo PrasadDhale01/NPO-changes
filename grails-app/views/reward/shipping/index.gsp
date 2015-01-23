@@ -8,9 +8,9 @@
     <div class="container">
         <div class="row">
             <h1><i class="glyphicon glyphicon-list"></i>&nbsp;Shipping pending items</h1><br>
-            <g:if test="${flash.message}">
+            <g:if test="${flash.reward_message}">
                 <div class="alert alert-success">
-                    ${flash.message}&nbsp;<i class=" fa fa-exclamation-circle"></i>
+                    ${flash.reward_message}&nbsp;<i class=" fa fa-exclamation-circle"></i>
                 </div>
             </g:if>
             <table class="table table-bordered">

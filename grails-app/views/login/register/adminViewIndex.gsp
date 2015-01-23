@@ -8,9 +8,9 @@
     <div class="container">
         <div class="row">
         <h1>User Request</h1><br>
-            <g:if test="${flash.message}">
+            <g:if test="${flash.login_message}">
                 <div class="alert alert-success">
-                    ${flash.message}
+                    ${flash.login_message}
                 </div>
             </g:if>
             <table class="table table-bordered">

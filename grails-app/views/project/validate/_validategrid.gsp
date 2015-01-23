@@ -4,9 +4,9 @@
     def rows = (count / cols) + (count % cols > 0 ? 1 : 0)
     def index = 0
 %>
-<g:if test="${flash.message}">
+<g:if test="${flash.prj_validate_message}">
     <div class="alert alert-success">
-        ${flash.message}
+        ${flash.prj_validate_message}
     </div>
 </g:if>
 

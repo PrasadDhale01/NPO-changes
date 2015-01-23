@@ -29,14 +29,9 @@
 	<div class="container">
 		<g:if test="${project}">
             <div class="row">
-             	<g:if test="${flash.sentmessage}">
+             	<g:if test="${flash.prj_mngprj_message}">
                     <div class="alert alert-success" align="center">
-                        ${flash.sentmessage}
-                    </div>
-                </g:if>
-                <g:if test="${flash.teammessage}">
-                    <div class="alert alert-success" align="center">
-                        ${flash.teammessage}
+                        ${flash.prj_mngprj_message}
                     </div>
                 </g:if>
                 <g:if test="${user || beneficiary}">

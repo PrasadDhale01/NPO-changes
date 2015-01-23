@@ -49,9 +49,9 @@
             </div>
         </div>
 
-        <g:if test="${flash.message}">
+        <g:if test="${flash.reward_message}">
             <div class="alert alert-info">
-                ${flash.message}
+                ${flash.reward_message}
             </div>
         </g:if>
 

@@ -8,9 +8,9 @@
         <h2>Error</h2>
         <div class="alert alert-danger">
             Oh snap! Something went wrong.
-            <g:if test="${flash}">
+            <g:if test="${flash.prj_mngprj_message}">
                 <ul>
-                    <li>${flash.message}</li>
+                    <li>${flash.prj_mngprj_message}</li>
                 </ul>
             </g:if>
         </div>

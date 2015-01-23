@@ -17,7 +17,7 @@ class RewardController {
         def reward = new Reward(params)
 
         if(reward.save()) {
-            flash.message = 'Successfully created a new reward'
+            flash.reward_message = 'Successfully created a new reward'
             redirect action: 'list'
         } else {
             render(view: 'list/rewarderror', model: [reward: reward])
@@ -30,12 +30,12 @@ class RewardController {
             Reward reward = Reward.findById(rewardId)
             if (reward) {
                 reward.obsolete = true
-                flash.message = "Successfully marked as unusable"
+                flash.reward_message = "Successfully marked as unusable"
             } else {
-                flash.error = "Couldn't find that reward"
+                flash.reward_message = "Couldn't find that reward"
             }
         } else {
-            flash.error = "Couldn't find that reward"
+            flash.reward_message = "Couldn't find that reward"
         }
         redirect action: 'list'
     }
@@ -49,7 +49,7 @@ class RewardController {
     def update() {
         def contribution = Contribution.get(params.contributionId)
         contribution.shippingDone = params.shippingdone
-        flash.message= "shipping done successfully"
+        flash.reward_message= "shipping done successfully"
         redirect action: 'shipping'
     }
 }

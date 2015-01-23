@@ -63,7 +63,7 @@ class UserController {
 
         if (!imageFile.isEmpty() && imageFile.size < 1024*1024) {
             if (!VALID_IMG_TYPES.contains(imageFile.getContentType())) {
-                flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
+                flash.user_err_message = "Image must be one of: ${VALID_IMG_TYPES}"
                 render (view: 'user/usererror')
                 return
             } else {
@@ -71,11 +71,11 @@ class UserController {
                 avatarUser.userImageUrl = url
             }
         } else {
-            flash.message = "Size of the image must be less than [1024 * 1024]"
+            flash.user_err_message = "Size of the image must be less than [1024 * 1024]"
             render (view: 'user/usererror')
             return
         }
-        flash.message = "Avatar added successfully"
+        flash.user_message = "Avatar added successfully"
         redirect(action:'dashboard') 
     }
     
@@ -86,7 +86,7 @@ class UserController {
         
         if (!imageFile.isEmpty() && imageFile.size < 1024*1024) {
             if (!VALID_IMG_TYPES.contains(imageFile.getContentType())) {
-                flash.message = "Image must be one of: ${VALID_IMG_TYPES}"
+                flash.user_err_message = "Image must be one of: ${VALID_IMG_TYPES}"
                 render (view: 'user/usererror')
                 return
             } else {
@@ -94,11 +94,11 @@ class UserController {
                 avatarUser.userImageUrl = url
             }
         } else {
-            flash.message = "Size of the image must be less than [1024 * 1024]"
+            flash.user_err_message = "Size of the image must be less than [1024 * 1024]"
             render (view: 'user/usererror')
             return
         }
-        flash.message = "Avatar updated successfully"
+        flash.user_message = "Avatar updated successfully"
         redirect(action:'dashboard')
     }
     
@@ -107,10 +107,10 @@ class UserController {
         def avatarUser = User.get(params.id)
         if(avatarUser) {
             avatarUser.userImageUrl = null
-            flash.message = "Avatar deleted successfully"
+            flash.user_message = "Avatar deleted successfully"
             redirect(action:'dashboard')
         } else {
-            flash.message = "User not found"
+            flash.user_err_message = "User not found"
             render (view: 'user/usererror')
         }
     }

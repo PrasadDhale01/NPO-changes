@@ -64,7 +64,7 @@ class LoginController {
     @Secured(['ROLE_ADMIN'])
     def invite() {
         invite_user = true
-        flash.message = "You have now switched the registration procedure to invite only mode "
+        flash.user_admin_message = "You have now switched the registration procedure to invite only mode "
         render(view: '/user/admin/dashboard')
         return (invite_user)
     }
@@ -72,7 +72,7 @@ class LoginController {
     @Secured(['ROLE_ADMIN'])
     def openRegister(){
         invite_user = false
-        flash.message = "You have switched the registration procedure to open registration mode"
+        flash.user_admin_message = "You have switched the registration procedure to open registration mode"
         render(view: '/user/admin/dashboard')
         return (invite_user)
     }  
@@ -133,7 +133,7 @@ class LoginController {
         }
 
         if (user.save()) {
-            flash.message = "Profile updated successfully!"
+            flash.user_message = "Profile updated successfully!"
             redirect (controller: 'user', action: 'dashboard')
         } else {
            render(view: 'error', model: [message: "Error while updating user. Please try again later."])
@@ -181,7 +181,7 @@ class LoginController {
         def users = User.get(params.id)
             users.enabled = true
             mandrillService.sendMail(users)
-            flash.message = "User Invited"
+            flash.login_message = "User Invited"
             redirect (action:'list')
         }
     
@@ -194,7 +194,7 @@ class LoginController {
             }
             int total = query.deleteAll()
         }
-        flash.message= "User deleted successfully"
+        flash.login_message= "User deleted successfully"
             redirect (action:'list')
         }
 

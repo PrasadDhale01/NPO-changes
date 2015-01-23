@@ -7,9 +7,9 @@
         <div class="feducontent">
             <div class="container">
                 <h2>Success</h2>
-                <g:if test="${flash.message}">
+                <g:if test="${flash.sucess_message}">
                     <div class="alert alert-success">
-                        ${flash.message}
+                        ${flash.success_message}
                     </div>
                 </g:if>
                 <g:else>

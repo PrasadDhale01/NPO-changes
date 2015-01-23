@@ -10,9 +10,9 @@
 			<div class="row">
 				<g:if test="${project.paypalEmail}">
 					<div class="col-md-4">
-						<g:if test="${flash.sentmessage}">
+						<g:if test="${flash.amt_message}">
             				<div class="alert alert-danger">
-                	    		${flash.sentmessage}
+                	    		${flash.amt_message}
             				</div>
         	    		</g:if>
 					    <div class="row">
@@ -59,9 +59,9 @@
 				</g:if>
 				<g:else>
 					<div class="col-md-4">
-						<g:if test="${flash.sentmessage}">
+						<g:if test="${flash.amt_message}">
             				<div class="alert alert-danger">
-                	    		${flash.sentmessage}
+                	    		${flash.amt_message}
             				</div>
         	    		</g:if>
 					    <div class="row">

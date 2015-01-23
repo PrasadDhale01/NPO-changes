@@ -1,4 +1,8 @@
 <!-- Comments -->
+<%@ page import="java.text.SimpleDateFormat" %>
+<%
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+%>
 <sec:ifLoggedIn>
     <g:if test="${flash.commentmessage}">
         <div class="alert alert-danger">${flash.commentmessage}</div>
@@ -9,6 +13,7 @@
             <textarea class="form-control" name="comment" rows="4" required="true"></textarea>
         </div>
         <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
+        <div class="clear"></div>
     </g:form>
 </sec:ifLoggedIn>
 <sec:ifNotLoggedIn>
@@ -16,14 +21,25 @@
 </sec:ifNotLoggedIn>
 
 <g:if test="${!project.comments.empty}">
-    <h4 class="lead">Comments</h4>
-    <dl class="dl">
-        <g:each in="${project.comments.reverse()}" var="comment">
-            <g:if test="${!comment.status}">
-            <hr>
-            <dt>${userService.getFriendlyFullName(comment.user)}</dt>
-            <dd>${comment.comment}</dd>
-            </g:if>
-        </g:each>
-    </dl>
+    <div class="panel panel-default" style="margin-top: 30px;">
+        <div class="panel-heading">
+            <h3 class="panel-title">Project Comments</h3>
+        </div>
+        <div class="panel-body commentsoncampaign">
+            <div class="list-group">
+                <g:each in="${project.comments.reverse()}" var="comment">
+                    <%
+		                def date = dateFormat.format(comment.date)
+		            %>
+                    
+                    <g:if test="${!comment.status}">
+                        <div class="modal-body tile-footer" style="text-align: left;">
+				            <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
+				            <dd>${comment.comment}</dd>
+			            </div>
+			        </g:if>
+                </g:each>
+            </div>
+        </div>
+    </div>
 </g:if>

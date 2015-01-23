@@ -1976,3 +1976,9 @@ button.projectedit.close{
     border-color: #cccccc;
     background-color: #eeeeee;
 }
+.commentsoncampaign .list-group {
+	margin-bottom: -5px;
+}
+.commentsoncampaign .tile-footer {
+	margin-bottom: 5px;
+}

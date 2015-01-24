@@ -13,11 +13,12 @@
                     def backers = contributionService.getBackersForProjectByReward(project, reward);
             		def price = projectService.getDataType(reward.price);
                 %>
+                <br>
                 <a href="#" class="list-group-item" data-rewardid="${reward.id}" data-rewardprice="${reward.price}">
-                    <h4 class="list-group-item-heading">${reward.title}</h4>
+                    <h3 class="panel-title">${reward.title}</h3> 
                     <h5 class="list-group-item-heading lead">$${price}</h5>
-                    <p class="list-group-item-text text-justify">${reward.description}</p>
-                    <p class="list-group-item-text text-justify">${backers} backer(s)</p>
+                    <p class="rewarddescription">${reward.description}</p>
+                    <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
                 </a>
             </g:each>
         </div>

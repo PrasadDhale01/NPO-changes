@@ -228,8 +228,8 @@ $(function() {
      
      $.validator.addMethod('isWebUrl', function(value, element){
     	 if(value && value.length !=0){
-	    	var regexp = /(http(s)?:\\)?([\w-]+\.)+[\w-]?[.com|.in|.org]+(\[\?%&=]*)?/;
-	    	return (value.match(regexp))
+          var p= /(?:(?:www):\/\/)?(?:www.)\/?/;
+  	    	return (value.match(p))
     	 }
     	 return true;
      }, "Please provide valid url");

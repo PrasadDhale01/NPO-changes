@@ -126,12 +126,12 @@ environments {
         crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
         
         /*Paypal Details*/
-        crowdera.paypal.PAYPAL_URL='https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
-        crowdera.paypal.BASE_URL= 'https://svcs.paypal.com/AdaptivePayments/Pay'
-        crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info_api1.crowdera.co'
-        crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'AHEFPRUXWJFMCCDE'
-        crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AFcWxV21C7fd0v3bYYYRCpSSRl31AZyNu3X6Z3O2eTTYLGFEQuwRsUm2'
-        crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
+        crowdera.paypal.PAYPAL_URL='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+        crowdera.paypal.BASE_URL= 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay'
+        crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info-facilitator_api1.crowdera.co'
+        crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'ZSD7Z9TJ4BLP8DBT'
+        crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AYDVpnDtJwzfma0uPoGG8ZXKdkDlAhPPZoBbxVRwh93AGi3eiDDGIznY'
+        crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-80W284485P519543T'
         crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
 
@@ -165,12 +165,12 @@ environments {
         crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
         
         /*Paypal Details*/
-        crowdera.paypal.PAYPAL_URL='https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
-        crowdera.paypal.BASE_URL= 'https://svcs.paypal.com/AdaptivePayments/Pay'
-        crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info_api1.crowdera.co'
-        crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'AHEFPRUXWJFMCCDE'
-        crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AFcWxV21C7fd0v3bYYYRCpSSRl31AZyNu3X6Z3O2eTTYLGFEQuwRsUm2'
-        crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
+        crowdera.paypal.PAYPAL_URL='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+        crowdera.paypal.BASE_URL= 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay'
+        crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info-facilitator_api1.crowdera.co'
+        crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'ZSD7Z9TJ4BLP8DBT'
+        crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AYDVpnDtJwzfma0uPoGG8ZXKdkDlAhPPZoBbxVRwh93AGi3eiDDGIznY'
+        crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-80W284485P519543T'
         crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
 

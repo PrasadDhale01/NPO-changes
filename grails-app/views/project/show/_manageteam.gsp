@@ -13,7 +13,7 @@
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
 %>
-<div class="col-md-12 col-sm-12 col-xs-12 btn btn-primary divider"></div>
+<div class="col-md-12 col-sm-12 col-xs-12"></div>
 <div class="pill-buttons">
 <g:if test="${!teams.isEmpty()}">
 	<ul class="nav nav-pills">

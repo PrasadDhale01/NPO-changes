@@ -86,7 +86,9 @@
 
 	<div class="caption">
 		<div class="project-title">
-			${project.title}
+			<g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">
+		        ${project.title}
+		    </g:link>
 		</div>
 		<hr class="tile-separator">
 		<div class="project-story-span">

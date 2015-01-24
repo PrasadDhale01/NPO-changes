@@ -7,9 +7,9 @@
     <div class="container">
         <h2>Error</h2>
         <div class="alert alert-danger">
-            <g:if test="${flash}">
+            <g:if test="${flash.user_err_message}">
                 <ul>
-                    <li>${flash.message}</li>
+                    <li>${flash.user_err_message}</li>
                 </ul>
             </g:if>
         </div>

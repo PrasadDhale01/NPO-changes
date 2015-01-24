@@ -6,6 +6,7 @@ $(function() {
     /********************* Create page Session timeout ***************************/
   var SessionTime = 60*1000*5; //set for 1 minute
   var tickDuration = 1000;
+  var count = 1;
   var myInterval = setInterval(function() {
     SessionTime = SessionTime - tickDuration
   }, 1000);
@@ -75,7 +76,8 @@ $(function() {
             },
             telephone: {
                 required: false,
-                isValidTelephoneNumber: true
+                isValidTelephoneNumber: true,
+                maxlength: 20
             },
             addressLine1: {
                 required: false
@@ -91,7 +93,9 @@ $(function() {
             },
             postalCode: {
                 required: true,
-                number: true
+                number: true,
+                maxlength: 10,
+                minlength: 4
             },
             country: {
                 required: true
@@ -232,12 +236,16 @@ $(function() {
      
      $("input[name='answer']").change(function(){
      	if($(this).val()=="yes") {
+     		count = 1;
+     		$('#rewardCount').attr('value',count);
      		$("#rewardTemplate").show();
      	    $("#updatereward").show();
      	} else {
-        $('#rewardCount').attr('value','1');
+     		count = 0;
+     		$('#rewardCount').attr('value',count);
      		$('#addNewRewards').find('.rewardsTemplate').find('input').val('');
      		$('#addNewRewards').find('.rewardsTemplate').find('#rewardDescription').val('');
+     		$('#addNewRewards').find('.rewardsTemplate').find("input[type='checkbox']").attr('checked', false);
      	    $("#updatereward").hide();
           $('#addNewRewards').find('.rewardsTemplate').hide();
      	}
@@ -447,20 +455,19 @@ $(function() {
 
           });
      
-  var count=1;
   $('#createreward').click(function(){
-      count++;
+     count++;
      $('#addNewRewards').append(
          '<div class="rewardsTemplate" id="rewardTemplate">'+
-           '<div class="row">'+
-             '<div class="form-group rewardTitles col-sm-6">'+
+           '<div class="form-group">'+
+             '<div class="col-sm-6">'+
                 '<label class="col-sm-4 control-label">Reward Title</label>'+
-                '<div class="col-sm-8">'+
+                '<div class="col-sm-8 rewardTitle">'+
                    '<input type="text" placeholder="Title" name="rewardTitle'+count+'" id="rewardTitle'+count+
                       '"  class="form-control required rewardTitle">'+
                 '</div>'+
               '</div>'+
-              '<div class="form-group col-sm-6">'+
+              '<div class="col-sm-6">'+
                  '<label class="col-sm-3 control-label" id="lblrPrice">Reward Price</label>'+
                  '<div class="col-sm-9">'+
                    '<input type="number" placeholder="Enter digits only"  name="rewardPrice'+count+'" id="rewardPrice'+count+
@@ -471,15 +478,28 @@ $(function() {
             '<div class="form-group row">'+
                 '<div class="col-sm-12">'+
                    '<label class="col-sm-2 control-label rewarddesctitle">Reward Description</label>'+
-                    '<div class="col-sm-10 rewarddesc">'+
+                    '<div class="col-sm-10">'+
                       '<textarea class="form-control required rewardDescription" name="rewardDescription'+count+
-                         '" id="rewardDesc'+count+'" rows="2" placeholder="Description"></textarea>'+
+                         '" id="rewardDesc'+count+'" rows="2" placeholder="Description" maxlength="140"></textarea>'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+            '<div class="form-group row">'+
+                '<div class="col-sm-12">'+
+                    '<div class="col-sm-2">'+
+                        '<label class="control-label">Which of the following is necessary to ship this reward:</label>'+
+                    '</div>'+
+                    '<div class="col-sm-10">'+
+                        '<label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing address</label>'+
+                        '<label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email address</label>'+
+                        '<label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter handle</label>'+
+                        '<label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="custom'+count+'" value="true" id="customcheckbox'+count+'">Custom</label>'+
                     '</div>'+
                 '</div>'+
             '</div><hr>'+
           '</div>'
       );
-          $('#rewardCount').attr('value',count);
+      $('#rewardCount').attr('value',count);
   });
     
   $('#removereward').click(function(){

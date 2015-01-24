@@ -60,7 +60,7 @@ $(function() {
     },"please add valid emails only");
 
     /************************Hide/Show comments********************/ 
-    $("input[type='checkbox']").click(function(){
+    $("#uniqueId input[type='checkbox']").click(function(){
        
        if($(this).prop("checked") == true){
             hideShow(this,true);
@@ -72,7 +72,7 @@ $(function() {
         }
     });
     function hideShowLabel() {
-        $('input[type="checkbox"]').each(function(index, value) {
+        $('#uniqueId input[type="checkbox"]').each(function(index, value) {
             if ($(this).prop("checked") == true) {
                 $('#check'+(index+1)).text(' Show');
             } else {

@@ -78,7 +78,7 @@ class FundController {
         def percentage=((totalContribution + contPrice)/ amt)*100
         if(percentage>999)
         {
-            flash.sentmessage= "Amount should not exceed more than \$"+remainAmt
+            flash.amt_message= "Amount should not exceed more than \$"+remainAmt
              render view: 'fund/index', model: [project: project, user:user]
             
         }
@@ -146,7 +146,7 @@ class FundController {
         def percentage=((totalContribution + contPrice)/ amt)*100
         if(percentage>999)
         {
-            flash.sentmessage= "Amount should not exceed more than \$"+remainAmt
+            flash.amt_message= "Amount should not exceed more than \$"+remainAmt
              render view: 'fund/index', model: [project: project, user:user]
             
         }
@@ -185,7 +185,7 @@ class FundController {
         def emailList = emails.split(',')
         emailList = emailList.collect { it.trim() }
         
-        mandrillService.shareProject(emailList, name, message,project)
+        mandrillService.shareContribution(emailList, name, message,project,contribution,fundraiser)
 
         flash.sentmessage= "Email sent successfully."
         redirect(controller:'fund',action: 'acknowledge',id: project.id, params:[cb : contribution.id, fr:fundraiser.id])
@@ -367,9 +367,8 @@ class FundController {
             }
         }
 
-        def projectAmount = params.double('projectAmount')
         def totalContribution = contributionService.getTotalContributionForProject(project)
-        if(totalContribution >= projectAmount){
+        if(totalContribution >= project.amount){
             if(project.send_mail == false){
                 def contributor = contributionService.getTotalContributors(project)
                 contributor.each {

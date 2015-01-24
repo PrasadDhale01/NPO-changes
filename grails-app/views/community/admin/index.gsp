@@ -64,8 +64,8 @@
                 <g:if test="${flash.error}">
                     <label class="bg-danger">${flash.error}</label>
                 </g:if>
-                <g:if test="${flash.message}">
-                    <label class="bg-success">${flash.message}</label>
+                <g:if test="${flash.community_message}">
+                    <label class="bg-success">${flash.community_message}</label>
                 </g:if>
             </div>
 

@@ -14,9 +14,15 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 <script src="/js/main.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script>
+	var nowTemp = new Date();
+	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 	var j = jQuery.noConflict();
 		j(function(){
-			j('.datepicker').datepicker();
+			j('#datepicker').datepicker({
+				  onRender: function(date) {
+					    return date.valueOf() <= now.valueOf() ? 'disabled' : '';
+				}
+			});
 		});
 </script>
 <script>
@@ -202,7 +208,7 @@ tinymce.init({
 					<div class="panel-body">
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Preferred payment gateway</label>
-							<div class="col-sm-10" id="payopt">
+							<div class="col-sm-10 form-group" id="payopt">
 								<div class="col-sm-8">
 									<div class="btn-group btn-group-sm">
 										<label class="btn btn-default"> <input type="radio" name="pay" value="paypal">&nbsp;Paypal</label>
@@ -331,8 +337,8 @@ tinymce.init({
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Campaign end date</label>
 							<div class="col-sm-10">
-								<div class="input-group enddate"><span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
-									<input class="datepicker pull-left" name="${FORMCONSTANTS.DAYS}" placeholder="Campaign end date"> 
+								<div class="input-group enddate"><span class="input-group-addon datepicker-error"><span class="glyphicon glyphicon-calendar"></span></span>
+									<input class="datepicker pull-left" id="datepicker" name="${FORMCONSTANTS.DAYS}" readonly="readonly" placeholder="Campaign end date"> 
 							    </div>
 							</div>
 						</div>
@@ -428,18 +434,19 @@ tinymce.init({
 								</div>
 							</div>
 						</div>
-							<input type="hidden" name="rewardCount" id="rewardCount" value='1'/>
+						<input type="hidden" name="rewardCount" id="rewardCount" value='0'/>
+						<div class="form-group">
 							<div id="addNewRewards">
 								<div class="rewardsTemplate" id="rewardTemplate">
-									<div class="row">
-										<div class="form-group rewardTitles col-sm-6">
+									<div class="form-group">
+										<div class="col-sm-6">
 											<label class="col-sm-4 control-label">Reward Title</label>
-											<div class="col-sm-8">
+											<div class="col-sm-8 rewardTitle">
 												<input type="text" placeholder="Title" name="rewardTitle1"
 													class="form-control rewardTitle required" id="rewardTitle1">
 											</div>
 										</div>
-										<div class="form-group col-sm-6">
+										<div class="col-sm-6">
 											<label class="col-sm-3 control-label">Reward Price</label>
 											<div class="col-sm-9">
 												<input type="number" placeholder="Enter digits only" name="rewardPrice1"
@@ -447,37 +454,48 @@ tinymce.init({
 											</div>
 										</div>
 									</div>
-									
-									<div class="form-group row">
+									<div class="form-group">
 										<div class="col-sm-12">
 											<label class="col-sm-2 control-label rewarddesctitle" >Reward Description</label>
-											<div class="col-sm-10 rewarddesc">
+											<div class="col-sm-10">
 												<textarea class="form-control rewardDescription required"
 													name="rewardDescription1" id="rewardDesc1" rows="2"
-													placeholder="Description"></textarea>
+													placeholder="Description" maxlength="140"></textarea>
 											</div>
 										</div>
-									</div><hr>
+									</div>
+									<div class="form-group">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-2">
+                                                <label class="control-label">Which of the following is necessary to ship this reward:</label>
+                                            </div>
+                                            <div class="col-sm-10 shippingreward">
+                                                <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing address</label>
+                                                <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email address</label>
+                                                <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter handle</label>
+                                                <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="custom1" value="true" id="customcheckbox1">Custom</label>
+                                            </div>
+                                        </div>
+                                    </div><hr>
 								</div>
 							</div>
-						
-
-							<div class="row">
-								<div class="col-sm-12" id="updatereward" style="margin-left:-43px;">
-									<div class="col-sm-12" align="right" style="right-padding: 0px">
-										<div class="btn btn-primary btn-circle" id="createreward"
-											style="padding: 3px 6px;">
-											<i class="glyphicon glyphicon-plus"></i>
-										</div>
-										<div class="btn btn-primary btn-circle" id="removereward"
-											style="padding: 3px 6px;">
-											<i class="glyphicon glyphicon-trash"></i>
-										</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12" id="updatereward" style="margin-left:-43px;">
+								<div class="col-sm-12" align="right" style="right-padding: 0px">
+									<div class="btn btn-primary btn-circle" id="createreward"
+										style="padding: 3px 6px;">
+										<i class="glyphicon glyphicon-plus"></i>
+									</div>
+									<div class="btn btn-primary btn-circle" id="removereward"
+										style="padding: 3px 6px;">
+										<i class="glyphicon glyphicon-trash"></i>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+				</div>
 				
 
 				<div class="panel panel-default">

@@ -22,17 +22,11 @@
 		<div class="container">
 			<g:if test="${project}">
 				<div class="row">
-				    <g:if test="${flash.teammessage}">
-		                <div class="alert alert-success" align="center">
-		                    ${flash.teammessage}
-		                </div>
-                    </g:if>
-					<g:if test="${flash.message}">
-						<div class="alert alert-success">
-							${flash.message}
+					<g:if test="${flash.prj_mngprj_message}">
+						<div class="alert alert-success" align="center">
+							${flash.prj_mngprj_message}
 						</div>
 					</g:if>
-
 					<g:if test="${project.rejected}">
 						<div class="alert alert-info">
 							<h2 class="text-center">Sorry, but this project is not

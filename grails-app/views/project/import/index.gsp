@@ -7,9 +7,9 @@
 	<div class="container">
 		<h1><span class="glyphicon glyphicon-leaf"></span> Bulk Import Campaigns</h1>
 
-        <g:if test="${flash && flash.message}">
+        <g:if test="${flash.prj_import_message && flash.prj_import_message}">
             <div class="alert alert-danger">
-                ${flash.message}
+                ${flash.prj_import_message}
             </div>
         </g:if>
         <g:elseif test="${flash && flash.success}">

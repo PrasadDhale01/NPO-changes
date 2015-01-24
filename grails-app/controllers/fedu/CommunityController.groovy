@@ -171,7 +171,7 @@ class CommunityController {
         communityInvite.accepted = true
         communityInvite.save()
 
-        flash.message = "Congratulations! You are now a member of ${community.title}."
+        flash.success_message = "Congratulations! You are now a member of ${community.title}."
         render view: '/success'
     }
 
@@ -208,7 +208,7 @@ class CommunityController {
             User user = User.findByEmail(params.email)
             if (user) {
                 UserRole.findOrSaveByUserAndRole(user, roleService.communityManagerRole())
-                flash.message = 'User with email "' + params.email + '" authorized to be a community manager'
+                flash.community_message = 'User with email "' + params.email + '" authorized to be a community manager'
             } else {
                 flash.error = 'User with email "' + params.email + '" not found.'
             }

@@ -74,7 +74,7 @@ class ProjectController {
         if(query) {
             def searchResults = projectService.search(query)
             if (searchResults.size == 0){
-                flash.message = "No Campaign found matching your input."
+                flash.catmessage = "No Campaign found matching your input."
                 redirect(action:list)
             } else {
                 searchResults.sort{x,y -> x.title<=>y.title ?: x.story<=>y.story}
@@ -117,7 +117,7 @@ class ProjectController {
             def project = Project.get(id)
             project.validated = true
         }   
-        flash.message= "Campaign validated successfully"
+        flash.prj_validate_message= "Campaign validated successfully"
         redirect (action:'validateList')
     }
 
@@ -126,10 +126,10 @@ class ProjectController {
         def project = Project.get(params.id)
         if (project) {
             project.rejected = true
-            flash.message= "Campaign discarded successfully"
+            flash.prj_validate_message= "Campaign discarded successfully"
             redirect (action:'validateList')
         } else {
-            flash.message = 'Campaign Not Found'
+            flash.prj_validate_err_message = 'Campaign Not Found'
             render (view: 'validate/validateerror', model: [project: project])
         }
     }
@@ -170,13 +170,13 @@ class ProjectController {
         def project = Project.get(params.id)
         if(project.draft) {
             project.draft = false
-            flash.message="Project has been submitted for approval."
+            flash.prj_mngprj_message="Project has been submitted for approval."
             
             render (view: 'manageproject/index',
                     model: [project: project,
                             FORMCONSTANTS: FORMCONSTANTS])
         } else {
-            flash.message="This project has already been submitted for approval, and under review."
+            flash.prj_mngprj_message="This project has already been submitted for approval, and under review."
             render (view: 'manageproject/index',
                     model: [project: project,
                             FORMCONSTANTS: FORMCONSTANTS])
@@ -203,7 +203,7 @@ class ProjectController {
                     date: new Date()).save(failOnError: true)
             }
         } else {
-            flash.commentmessage = "Something went wrong saving comment. Please try again later."
+            flash.sentmessage = "Something went wrong saving comment. Please try again later."
         }
 
         redirect (action: 'show', id: params.id, fragment: 'comments')
@@ -261,7 +261,7 @@ class ProjectController {
                         categoryOptions: categoryOptions,
                         FORMCONSTANTS: FORMCONSTANTS])
         } else {
-            flash.message = "Campaign not found."
+            flash.prj_edit_message = "Campaign not found."
             render (view: 'edit/editerror')
             return
         }
@@ -304,12 +304,12 @@ class ProjectController {
 
             //projectService.sendEmailToAdminForProjectUpdate(project, user)
             
-            flash.message = "Successfully saved the changes"
+            flash.prj_mngprj_message = "Successfully saved the changes"
             render (view: 'manageproject/index',
                     model: [project: project,
                             FORMCONSTANTS: FORMCONSTANTS])
         } else {
-            flash.message = "Campaign not found."
+            flash.prj_edit_message = "Campaign not found."
             render (view: 'edit/editerror')
             return
         }
@@ -355,7 +355,7 @@ class ProjectController {
         CommonsMultipartFile projectSpreadsheet = multipartRequest.getFile(FORMCONSTANTS.PROJECTSEXCEL)
 
         if (projectSpreadsheet.isEmpty()) {
-            flash.message = "Please choose a file and try again."
+            flash.prj_import_message = "Please choose a file and try again."
             redirect(action: 'importprojects')
             return
         }
@@ -365,7 +365,7 @@ class ProjectController {
             Workbook workbook = WorkbookFactory.create(projectSpreadsheet.getInputStream())
             projectParamsList = excelImportService.columns(workbook, CONFIG_BOOK_COLUMN_MAP)
         } catch (Exception e) {
-            flash.message = "Error while importing file: " + e.getMessage()
+            flash.prj_import_message = "Error while importing file: " + e.getMessage()
             redirect(action: 'importprojects')
             return
         }
@@ -445,11 +445,11 @@ class ProjectController {
                 }
             }
 
-            flash.success = "All Campaigns successfully imported"
+            flash.prj_import_message = "All Campaigns successfully imported"
             redirect(action: 'importprojects')
             return
         } else {
-            flash.message = "Nothing to import. Please make sure the file contains some valid rows."
+            flash.projecterror = "Nothing to import. Please make sure the file contains some valid rows."
             render (view: 'import/importerror')
             return
         }
@@ -476,28 +476,26 @@ class ProjectController {
         }
         
         def rewardLength=Integer.parseInt(params.rewardCount)
-        if(rewardLength>1) {
+        if(rewardLength >= 1) {
             def rewardTitle = new Object[rewardLength]
             def rewardPrice = new Object[rewardLength]
             def rewardDescription = new Object[rewardLength]
+            def mailingAddress = new Object[rewardLength]
+            def emailAddress = new Object[rewardLength]
+            def twitter = new Object[rewardLength]
+            def custom = new Object[rewardLength]
 
-            for(def icount=0;icount<rewardLength;icount++){
+            for(def icount=0; icount< rewardLength; icount++){
                 rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
                 rewardPrice[icount] = params.("rewardPrice"+(icount+1))
                 rewardDescription[icount] = params.("rewardDescription"+(icount+1))
+                mailingAddress[icount] = params.("mailingAddress"+(icount+1))
+                emailAddress[icount] = params.("emailAddress"+(icount+1))
+                twitter[icount] = params.("twitter"+(icount+1))
+                custom[icount] = params.("custom"+(icount+1))
             }
-        
-            if(rewardTitle) {
-                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
-            }
-        }else{
-            def rewardTitle = params.rewardTitle1
-            def rewardPrice = params.rewardPrice1
-            def rewardDescription =params.rewardDescription1
             
-            if(rewardTitle){
-                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription)
-            }
+            rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
         }
                
         def iconFile = request.getFile('iconfile')
@@ -511,15 +509,12 @@ class ProjectController {
             projectService.getMultipleImageUrls(imageFiles, project)
         }
         
-        projectService.getdefaultAdmin(project, user)
+        
         
         String email1 = params.email1
         String email2 = params.email2
         String email3 = params.email3
         
-        projectService.getAdminForProjects(email1, project, user)
-        projectService.getAdminForProjects(email2, project, user)
-        projectService.getAdminForProjects(email3, project, user)
         
         project.user = user
 
@@ -529,6 +524,10 @@ class ProjectController {
         project.beneficiary = beneficiary
         
         if (project.save()) {
+            projectService.getdefaultAdmin(project, user)
+            projectService.getAdminForProjects(email1, project, user)
+            projectService.getAdminForProjects(email2, project, user)
+            projectService.getAdminForProjects(email3, project, user)
             redirect(controller: 'project', action: 'saveRedirect', id: project.id, params: [button: button])
         } else {
             render (view: 'create/createerror', model: [project: project])
@@ -567,10 +566,10 @@ class ProjectController {
         def project = Project.get(params.id)
         if (project) {
             project.inactive = true
-            flash.message= "Campaign Discarded Successfully"
+            flash.user_message= "Campaign Discarded Successfully"
             redirect (action:'myproject' , controller:'user')
         } else {
-            flash.message = 'Campaign Not Found'
+            flash.prj_mngprj_message = 'Campaign Not Found'
             render (view: 'manageproject/error', model: [project: project])
         }
     }
@@ -580,23 +579,31 @@ class ProjectController {
         def reward = new Reward(params)
 		int price = Double.parseDouble(params.price)
 		int amount = Double.parseDouble(params.amount)
+        RewardShipping shippingInfo = new RewardShipping(params)
 		if(price >= amount) {
-			flash.message = "Enter a price less than Campaign amount: ${amount}"
+			flash.prj_mngprj_message = "Enter a price less than Campaign amount: ${amount}"
 			render (view: 'manageproject/error', model: [reward: reward])
 			return
 		}
 		
         if(reward.save()) {
             def project= Project.get(params.id)
+            shippingInfo.reward = reward
+            shippingInfo.save(failOnError: true)
             project.addToRewards(reward)
             reward.obsolete = true
-            flash.message = 'Successfully created a new reward'
-            render (view: 'manageproject/index',
-                    model: [project: project,
-                            FORMCONSTANTS: FORMCONSTANTS])
+            flash.prj_mngprj_message = 'Successfully created a new reward'
+            redirect(controller: 'project', action: 'redirectReward',fragment: 'rewards', id: project.id)
         } else {
             render (view: 'manageproject/error', model: [reward: reward])
         }
+    }
+
+    def redirectReward(){
+        def project = Project.get(params.id)
+        render (view: 'manageproject/index', 
+                model: [project: project,
+                        FORMCONSTANTS: FORMCONSTANTS])
     }
     
     def sendemail() {
@@ -610,10 +617,16 @@ class ProjectController {
         
         mandrillService.shareProject(emailList, name, message, project)
 
-        flash.sentmessage= "Email sent successfully."
-        render (view: 'show/index',
-                model: [project: project,
-                        FORMCONSTANTS: FORMCONSTANTS])
+        flash.prj_mngprj_message= "Email sent successfully."
+        if (params.ismanagepage) {
+            render (view: 'manageproject/index',
+                    model: [project: project,
+                            FORMCONSTANTS: FORMCONSTANTS])
+        } else {
+            render (view: 'show/index',
+                    model: [project: project,
+                            FORMCONSTANTS: FORMCONSTANTS])
+        }
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -650,7 +663,7 @@ class ProjectController {
     def updatesaverender() {
         def project = Project.get(params.id)
         
-        flash.message= "Update added successfully."
+        flash.prj_mngprj_message= "Update added successfully."
         render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
     }
     
@@ -664,7 +677,13 @@ class ProjectController {
 		} else {
             project = projectService.filterByCategory(category)
         }
-        render (view: 'list/index', model: [projects: project,selectedCategory:category])
+        if(!project){
+             flash.catmessage="No campaign found."
+             render (view: 'list/index', model: [projects: project,selectedCategory:category])
+        }else{
+             flash.catmessage=""
+             render (view: 'list/index', model: [projects: project,selectedCategory:category])
+        }
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -673,7 +692,7 @@ class ProjectController {
         User user = userService.getCurrentUser()
         def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
         def message = projectService.getFundRaisersForTeam(project, user)
-        flash.teammessage = message
+        flash.prj_mngprj_message = message
         if (iscampaignAdmin) {
             render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
         } else {
@@ -687,16 +706,20 @@ class ProjectController {
         String emails = params.emailIds
         String name = params.username
         String message = params.message
-
+        User user = userService.getCurrentUser()
+        
         def emailList = emails.split(',')
         emailList = emailList.collect { it.trim() }
 
         mandrillService.sendInvitationForTeam(emailList, name, message, project)
-
-        flash.sentmessage= "Email sent successfully."
-        render (view: 'show/index',
-                model: [project: project,
-                        FORMCONSTANTS: FORMCONSTANTS])
+        
+        flash.prj_mngprj_message= "Email sent successfully."
+        
+        if (params.ismanagepage) {
+            redirect (action: 'manageproject', id: project.id, params:[fundRaiser: user], fragment: 'manageTeam')
+        } else {
+            redirect (action: 'show', id: project.id, params:[fundRaiser: user], fragment: 'manageTeam')
+        }
     }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
@@ -713,9 +736,32 @@ class ProjectController {
 				date: new Date())
 	        team.addToComments(teamComment).save(failOnError: true)
 		} else {
-			flash.teamcommentmessage = "Something went wrong saving comment. Please try again later."
+			flash.prj_mngprj_message = "Something went wrong saving comment. Please try again later."
 		}
-
-		redirect (action: 'show', id: params.id, params:[fundRaiser: fundRaiser], fragment: 'manageTeam')
+        
+        if (!params.ismanagepage) {
+		    redirect (action: 'show', id: params.id, params:[fundRaiser: fundRaiser], fragment: 'manageTeam')
+        } else {
+            redirect (action: 'manageproject', id: params.id, params:[fundRaiser: fundRaiser], fragment: 'manageTeam')
+        }
 	}
+
+    def deletecustomrewards() {
+        def rewardId = Reward.get(params.id)
+        def project = Project.get(params.projectId)
+        def shippingInfo = RewardShipping.findByReward(rewardId)
+        if(rewardId){
+            project.rewards.remove(rewardId)
+            shippingInfo.reward = null
+            shippingInfo.delete()
+            rewardId.delete()
+            flash.prj_mngprj_message = 'Successfully deleted a Reward'
+            render (controller: 'project',fragment: 'rewards', view: 'manageproject/index',model: [project: project,FORMCONSTANTS: FORMCONSTANTS])
+            
+        }else{
+             render (view: 'manageproject/index', fragment: 'rewards',
+                model: [project: project,
+                        FORMCONSTANTS: FORMCONSTANTS])
+        }
+    }
 }

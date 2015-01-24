@@ -8,9 +8,9 @@
         <h2>Error</h2>
         <div class="alert alert-danger">
             <p>Oh snap! Looks like that project is not validated by Administrator.</p>
-            <g:if test="${flash}">
+            <g:if test="${flash.prj_validate_err_message}">
                 <ul>
-                    <li>${flash.message}</li>
+                    <li>${flash.prj_validate_err_message}</li>
                 </ul>
             </g:if>
         </div>

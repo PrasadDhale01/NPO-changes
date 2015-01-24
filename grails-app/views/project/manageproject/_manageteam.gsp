@@ -6,39 +6,40 @@
     def teams = project.teams
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
+    boolean ended = projectService.isProjectDeadlineCrossed(project)
 %>
 <div class="col-md-12 col-sm-12 col-xs-12 btn btn-primary divider"></div>
 <div class="pill-buttons">
 <g:if test="${project.validated}">
 	<g:if test="${!teams.isEmpty()}">
 		<g:if test="${project.user == user}">
-			    <ul class="nav nav-pills">
-			        <li data-toggle="tab" class="active team-footer col-md-3 col-sm-3 col-xs-3">
-			           <a href="#team">
-			               <h4 class="text-center">${teams.size()}</h4>
-				           <h5 class="text-center"> Team </h5>
-				       </a>
-				    </li>
-                    <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
-                        <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-target="#teamComment" data-toggle="tab">
-                            Team Comments
-                        </button>
-                    </li>
-                    <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
-                        <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
-                           Invite Members
-                        </button>
-                    </li>
-                    <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
-                        <button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-					      Activity <span class="caret"></span>
-					    </button>
-					    <ul class="dropdown-menu" role="menu">
-						    <li><a class="text-center list" href="#teamMessage"><span class="glyphicon glyphicon-envelope"></span> Team Message </a></li>
-						    <li><a class="text-center list" href="#campaignStatistics"><span class="glyphicon glyphicon-list-alt"></span> Campaign Statistics </a></li>
-					    </ul>
-                    </li>
+		    <ul class="nav nav-pills">
+		        <li data-toggle="tab" class="active team-footer col-md-3 col-sm-3 col-xs-3">
+		           <a href="#team">
+		               <h4 class="text-center">${teams.size()}</h4>
+			           <h5 class="text-center"> Team </h5>
+			       </a>
+			    </li>
+                  <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
+                      <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-target="#teamComment" data-toggle="tab">
+                          Team Comments
+                      </button>
+                  </li>
+                  <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
+                      <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
+                         Invite Members
+                      </button>
+                  </li>
+                  <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
+                      <button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+			      Activity <span class="caret"></span>
+			    </button>
+			    <ul class="dropdown-menu" role="menu">
+				    <li><a class="text-center list" href="#teamMessage"><span class="glyphicon glyphicon-envelope"></span> Team Message </a></li>
+				    <li><a class="text-center list" href="#campaignStatistics"><span class="glyphicon glyphicon-list-alt"></span> Campaign Statistics </a></li>
 			    </ul>
+                  </li>
+		    </ul>
 		</g:if>
 		<g:else>
 			<ul class="nav nav-pills">
@@ -79,12 +80,17 @@
 		
 	</g:if>
 	<g:else>
-	    <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">Team is yet to create.</div>
-	    <g:if test="${project.validated}">
-	        <div class="col-md-12 col-sm-12 col-xs-12">
-				<g:link controller="project" action="addFundRaiser" class="text-center btn btn-primary pull-right" id="${project.id}">create a team</g:link>
-		    </div>
+	    <g:if test="${!ended}">
+		    <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">Team is yet to create.</div>
+		    <g:if test="${project.validated}">
+		        <div class="col-md-12 col-sm-12 col-xs-12">
+					<g:link controller="project" action="addFundRaiser" class="text-center btn btn-primary btn-sm pull-right" id="${project.id}">Create a Team</g:link>
+			    </div>
+	    	</g:if>
 	    </g:if>
+	    <g:else>
+	        <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">Campaign Ended.</div>
+	    </g:else>
 	</g:else>
 </g:if>
 <g:else>
@@ -103,6 +109,7 @@
                 </div>
                 <div class="modal-body">
                     <g:hiddenField name="amount" value="${project.amount}"/>
+                    <g:hiddenField name="ismanagepage" value="managepage" />
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" class="form-control" name="username" value="${userName}" placeholder="Name"/>

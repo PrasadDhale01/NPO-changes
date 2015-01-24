@@ -46,7 +46,9 @@ Expects the parent containers to be like so:
 
     <div class="caption" style="margin-bottom:0;">
         <div class="project-title">
-            ${project.title}
+            <g:link controller="project" action="show" id="${project.id}" title="${project.title}">
+                ${project.title}
+            </g:link>
         </div>
         <hr class="tile-separator">
         <div class="project-story-span">

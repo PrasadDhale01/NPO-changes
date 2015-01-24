@@ -1169,6 +1169,7 @@ text-decoration: none !important;
 }
 .rewarddescription{
 	margin-top:15px;
+    word-wrap: break-word;
 }
 .rewardsectionheading{
 	margin-bottom: 0px;
@@ -1359,7 +1360,7 @@ text-decoration: none !important;
 }
 
 .categorylink {
-	color:red;
+	color:#2b6e44;
 }
 
 .alert-title{
@@ -1981,4 +1982,8 @@ button.projectedit.close{
 }
 .commentsoncampaign .tile-footer {
 	margin-bottom: 5px;
+}
+.list-group-item > .badge{
+    background-color:#000;
+    color: white;
 }

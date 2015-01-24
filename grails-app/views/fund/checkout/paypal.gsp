@@ -7,9 +7,6 @@
 <body>
 	<div class="feducontent">
 		<div class="container">
-			<div class="alert alert-title">
-				<h1>Powered by Paypal</h1>
-			</div>
 			<g:form action="paypalurl" method="POST" name="payment-form"
 				role="form">
 				<div class="row">
@@ -32,6 +29,9 @@
 						</div>
 						<div >
 							<button class="btn btn-primary btn-lg" name="fund-button">Fund this Campaign</button>
+						</div>
+						<div>
+						    <br><img src="/images/paypal-secured.jpg" width="245 px" height="60 px"/>
 						</div>
 					</div>
 					<span class="payment-errors"></span>

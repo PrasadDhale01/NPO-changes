@@ -8,7 +8,7 @@
     def contribution = projectService.getDataType(contributedSoFar)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
 %>
-<div class="col-md-12 col-sm-12 col-xs-12 btn btn-primary divider"></div>
+<div class="col-md-12 col-sm-12 col-xs-12"></div>
 <div class="pill-buttons">
 <g:if test="${project.validated}">
 	<g:if test="${!teams.isEmpty()}">

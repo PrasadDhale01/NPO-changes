@@ -707,19 +707,22 @@ class ProjectController {
         String name = params.username
         String message = params.message
         User user = userService.getCurrentUser()
-        
-        def emailList = emails.split(',')
-        emailList = emailList.collect { it.trim() }
-
-        mandrillService.sendInvitationForTeam(emailList, name, message, project)
-        
-        flash.prj_mngprj_message= "Email sent successfully."
-        
+                       
         if (params.ismanagepage) {
+            sendEmailToTeam(emails, name, message, project)
             redirect (action: 'manageproject', id: project.id, params:[fundRaiser: user], fragment: 'manageTeam')
         } else {
+            sendEmailToTeam(emails, name, message, project)
             redirect (action: 'show', id: project.id, params:[fundRaiser: user], fragment: 'manageTeam')
         }
+    }
+
+    def sendEmailToTeam(def emails, def name, def message, Project project)
+    {
+        def emailList = emails.split(',')
+        emailList = emailList.collect { it.trim() }
+        mandrillService.sendInvitationForTeam(emailList, name, message, project)
+        flash.prj_mngprj_message= "Email sent successfully."
     }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])

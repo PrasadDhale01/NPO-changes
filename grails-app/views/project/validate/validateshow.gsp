@@ -43,7 +43,7 @@
 					<div class="col-md-8">
 						<ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
 							<li class="active"><a href="#essentials" data-toggle="tab">
-									<span class="fa fa-leaf"></span><span class="tab-text"> Essentials</span>
+									<span class="fa fa-leaf"></span><span class="tab-text"> Story</span>
 							</a></li>
 							<li><a href="#projectupdates" data-toggle="tab">
 								<span class="glyphicon glyphicon-asterisk"></span><span class="tab-text"> Updates</span>

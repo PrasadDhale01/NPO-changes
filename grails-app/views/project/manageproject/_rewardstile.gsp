@@ -13,7 +13,7 @@
 		<g:if test="${project.draft}">
 			<g:if test="${reward.id != 1}">
 				<g:form controller="project" action="deletecustomrewards" id="${reward.id}" params="['projectId': projectId]"  method="post">
-					<button class="rewarddelete close" name="" value="Delete" onClick="return confirm(&#39;Are you sure you want to Delete this reward?&#39;);">
+					<button class="rewarddelete close" name="" value="Delete" onClick="return confirm(&#39;Are you sure you want to Delete this Perk?&#39;);">
 						<i class="fa fa-trash-o"></i>
 					</button>
 				</g:form>

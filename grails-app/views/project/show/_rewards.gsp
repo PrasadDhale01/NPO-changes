@@ -6,7 +6,7 @@
 %>
 <div class="modal-footer tile-footer" style="text-align: left; margin-top: 30px;">
     <g:if test="${isFundingOpen}">
-        <h2 class="rewardsectionheading">Rewards</h2>
+        <h2 class="rewardsectionheading">Perks</h2>
     </g:if>
     <g:else>
         <h2 class="rewardsectionheading">Funding closed</h2>
@@ -24,7 +24,7 @@
                 <h4>CONTRIBUTE $${price} OR MORE</h4>
                 <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
                 <p class="rewarddescription">${reward.description}</p>
-                <g:link absolute="true" uri="/projects/${project.id}/fund">SELECT THIS REWARD</g:link>
+                <g:link absolute="true" uri="/projects/${project.id}/fund">SELECT THIS PERK</g:link>
             </g:if>
             <g:else>
                 <h4>CONTRIBUTE $${price} OR MORE</h4>

@@ -14,7 +14,7 @@
         <div class="row">
             <div class="col-md-8">
                 <h1>Thank you!</h1>
-                <p>You have funded this campaign. You will receive your chosen reward soon.</p>
+                <p>You have funded this campaign. You will receive your chosen perk soon.</p>
 
                 <h3>Funding confirmation.</h3>
                 <table class="table table-bordered table-hover table-condensed">
@@ -52,7 +52,12 @@
                     </tbody>
                 </table>
                 <g:if test ="${userService.isAnonymous(user)}">
-                	<div class="alert alert-success">Receipt has been sent over to your email</div>
+                    <g:if test = "${project.charitableId}">
+                	   <div class="alert alert-success">Receipt is sent over email from FirstGiving</div>
+                    </g:if>
+                    <g:else>
+                         <div class="alert alert-success">Receipt is sent over email from Paypal</div>
+                    </g:else>
                 </g:if>
                 <g:elseif test="${flash.sentmessage}">
                             <div class="alert alert-success">

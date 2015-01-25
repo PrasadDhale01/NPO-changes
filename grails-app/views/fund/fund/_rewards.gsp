@@ -2,7 +2,7 @@
 <g:set var="projectService" bean="projectService"/>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Choose a reward</h3>
+        <h3 class="panel-title">Choose a Perk</h3>
     </div>
     <div class="panel-body">
         <div class="choose-error"></div>

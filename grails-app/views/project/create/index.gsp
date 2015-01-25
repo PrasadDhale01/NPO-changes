@@ -224,14 +224,6 @@ tinymce.init({
 									</div>
 								</div>
  							</div>
-							<div class="col-sm-12" id="paypalcheckbox">
-							    <div class="form-group">
-	                             	<label class="col-sm-2 control-label">&nbsp;</label>
-	         						<div class="col-sm-10">
-	          						    <input type="checkbox" name="checkBox2" > I attest that this is a verified non-profit.
-	         						</div>
-          						</div>
-         					</div>
          					
 							<div class="col-sm-12" id="charitableId">							
 								<div class="form-group">
@@ -419,11 +411,11 @@ tinymce.init({
 
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Rewards</h3>
+						<h3 class="panel-title">Perks</h3>
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Will you offer rewards?</label>
+							<label class="col-sm-2 control-label">Will you offer perks?</label>
 							<div class="col-sm-10">
 								<div class="btn-group btn-group-sm">
 									<label class="btn btn-default"> <input type="radio"
@@ -440,14 +432,14 @@ tinymce.init({
 								<div class="rewardsTemplate" id="rewardTemplate">
 									<div class="form-group">
 										<div class="col-sm-6">
-											<label class="col-sm-4 control-label">Reward Title</label>
+											<label class="col-sm-4 control-label">Perk Title</label>
 											<div class="col-sm-8 rewardTitle">
 												<input type="text" placeholder="Title" name="rewardTitle1"
 													class="form-control rewardTitle required" id="rewardTitle1">
 											</div>
 										</div>
 										<div class="col-sm-6">
-											<label class="col-sm-3 control-label">Reward Price</label>
+											<label class="col-sm-3 control-label">Perk Price</label>
 											<div class="col-sm-9">
 												<input type="number" placeholder="Enter digits only" name="rewardPrice1"
 													class="form-control rewardPrice required" id="rewardPrice1" min="0">
@@ -456,7 +448,7 @@ tinymce.init({
 									</div>
 									<div class="form-group">
 										<div class="col-sm-12">
-											<label class="col-sm-2 control-label rewarddesctitle" >Reward Description</label>
+											<label class="col-sm-2 control-label rewarddesctitle" >Perk Description</label>
 											<div class="col-sm-10">
 												<textarea class="form-control rewardDescription required"
 													name="rewardDescription1" id="rewardDesc1" rows="2"
@@ -467,7 +459,7 @@ tinymce.init({
 									<div class="form-group">
                                         <div class="col-sm-12">
                                             <div class="col-sm-2">
-                                                <label class="control-label">Which of the following is necessary to ship this reward:</label>
+                                                <label class="control-label">Which of the following is necessary to ship this perk:</label>
                                             </div>
                                             <div class="col-sm-10 shippingreward">
                                                 <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing address</label>

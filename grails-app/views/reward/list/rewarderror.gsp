@@ -8,7 +8,7 @@
         <h2>Error</h2>
         <div class="alert alert-danger">
             Oh snap! Something went wrong creating the reward.
-            <g:if test="${flash.reward_message">
+            <g:if test="${flash.reward_message}">
                 <ul>
                     <li>${flash.reward_message}</li>
                 </ul>

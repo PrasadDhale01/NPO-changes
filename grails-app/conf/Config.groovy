@@ -201,7 +201,7 @@ environments {
         crowdera.firstgiving.JG_APPLICATIONKEY = '7d2ba10c-b005-4115-a6e4-8336c5071c9d'
         crowdera.firstgiving.JG_SECURITYTOKEN = '8724ab81-a4ba-4d52-8374-1e2f6f2311ca'
          */
-        crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
+        crowdera.firstgiving.BASE_URL= 'https://api.firstgiving.com'
         crowdera.firstgiving.uriPath= '/donation/creditcard'
         crowdera.firstgiving.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
         crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'

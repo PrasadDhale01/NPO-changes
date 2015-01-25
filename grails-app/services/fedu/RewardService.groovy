@@ -56,8 +56,8 @@ class RewardService {
     @Transactional
     def bootstrap() {
         new Reward(
-                title: 'No reward',
-                description: 'No reward. I just want to contribute',
+                title: 'No Perk',
+                description: 'No Perk. I just want to contribute',
                 price: 0.0,
                 image: null
         ).save(failOnError: true)

@@ -12,7 +12,7 @@
         <!-- Button trigger modal -->
         <g:if test="${!ended}">
 	        <a href="#" class="btn btn-primary btn-sm btn-circle pull-right" data-toggle="modal" data-target="#createRewardModal" model="['project': project]">
-	            <i class="fa fa-plus-circle"></i> Create Reward
+	            <i class="fa fa-plus-circle"></i> Create Perk
 	        </a>
         </g:if>
         <g:else>
@@ -26,7 +26,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h4 class="modal-title">Create a new Reward</h4>
+                            <h4 class="modal-title">Create a new Perk</h4>
                         </div>
                         <div class="modal-body">
                             <g:hiddenField name="amount" value="${project.amount}"/>
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary btn-block">Create Reward</button>
+                            <button type="submit" class="btn btn-primary btn-block">Create Perk</button>
                         </div>
                     </div>
                 </div>

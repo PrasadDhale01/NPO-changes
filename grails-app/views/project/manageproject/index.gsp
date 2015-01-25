@@ -57,7 +57,7 @@
 							<li><a href="#manageTeam" data-toggle="tab"> <span class="fa fa-users"></span><span class="tab-text"> Manage Team</span>
  							</a></li>
  							<li><a href="#rewards" data-toggle="tab"> <i
-									class="fa fa-gift fa-lg"></i> <span class="tab-text">Manage Rewards</span>
+									class="fa fa-gift fa-lg"></i> <span class="tab-text">Manage Perks</span>
 							</a></li>
 							<li><a href="#contributions" data-toggle="tab"> <span
 									class="glyphicon glyphicon-tint"></span> <span class="tab-text"> Contributions</span>

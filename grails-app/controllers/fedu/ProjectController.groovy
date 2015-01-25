@@ -170,13 +170,13 @@ class ProjectController {
         def project = Project.get(params.id)
         if(project.draft) {
             project.draft = false
-            flash.prj_mngprj_message="Project has been submitted for approval."
+            flash.prj_mngprj_message="Campaign has been submitted for approval."
             
             render (view: 'manageproject/index',
                     model: [project: project,
                             FORMCONSTANTS: FORMCONSTANTS])
         } else {
-            flash.prj_mngprj_message="This project has already been submitted for approval, and under review."
+            flash.prj_mngprj_message="This Campaign has already been submitted for approval, and under review."
             render (view: 'manageproject/index',
                     model: [project: project,
                             FORMCONSTANTS: FORMCONSTANTS])
@@ -592,7 +592,7 @@ class ProjectController {
             shippingInfo.save(failOnError: true)
             project.addToRewards(reward)
             reward.obsolete = true
-            flash.prj_mngprj_message = 'Successfully created a new reward'
+            flash.prj_mngprj_message = 'Successfully created a new perk'
             redirect(controller: 'project', action: 'redirectReward',fragment: 'rewards', id: project.id)
         } else {
             render (view: 'manageproject/error', model: [reward: reward])
@@ -758,7 +758,7 @@ class ProjectController {
             shippingInfo.reward = null
             shippingInfo.delete()
             rewardId.delete()
-            flash.prj_mngprj_message = 'Successfully deleted a Reward'
+            flash.prj_mngprj_message = 'Successfully deleted a Perk'
             render (controller: 'project',fragment: 'rewards', view: 'manageproject/index',model: [project: project,FORMCONSTANTS: FORMCONSTANTS])
             
         }else{

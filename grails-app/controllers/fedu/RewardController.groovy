@@ -17,7 +17,7 @@ class RewardController {
         def reward = new Reward(params)
 
         if(reward.save()) {
-            flash.reward_message = 'Successfully created a new reward'
+            flash.reward_message = 'Successfully created a new perk'
             redirect action: 'list'
         } else {
             render(view: 'list/rewarderror', model: [reward: reward])
@@ -32,10 +32,10 @@ class RewardController {
                 reward.obsolete = true
                 flash.reward_message = "Successfully marked as unusable"
             } else {
-                flash.reward_message = "Couldn't find that reward"
+                flash.reward_message = "Couldn't find that perk"
             }
         } else {
-            flash.reward_message = "Couldn't find that reward"
+            flash.reward_message = "Couldn't find that perk"
         }
         redirect action: 'list'
     }

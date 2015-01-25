@@ -461,14 +461,14 @@ $(function() {
          '<div class="rewardsTemplate" id="rewardTemplate">'+
            '<div class="form-group">'+
              '<div class="col-sm-6">'+
-                '<label class="col-sm-4 control-label">Reward Title</label>'+
+                '<label class="col-sm-4 control-label">Perk Title</label>'+
                 '<div class="col-sm-8 rewardTitle">'+
                    '<input type="text" placeholder="Title" name="rewardTitle'+count+'" id="rewardTitle'+count+
                       '"  class="form-control required rewardTitle">'+
                 '</div>'+
               '</div>'+
               '<div class="col-sm-6">'+
-                 '<label class="col-sm-3 control-label" id="lblrPrice">Reward Price</label>'+
+                 '<label class="col-sm-3 control-label" id="lblrPrice">Perk Price</label>'+
                  '<div class="col-sm-9">'+
                    '<input type="number" placeholder="Enter digits only"  name="rewardPrice'+count+'" id="rewardPrice'+count+
                       ' style="width:100%;" class="form-control  rewardprice " required min="0" >'+
@@ -477,7 +477,7 @@ $(function() {
             '</div>'+
             '<div class="form-group row">'+
                 '<div class="col-sm-12">'+
-                   '<label class="col-sm-2 control-label rewarddesctitle">Reward Description</label>'+
+                   '<label class="col-sm-2 control-label rewarddesctitle">Perk Description</label>'+
                     '<div class="col-sm-10">'+
                       '<textarea class="form-control required rewardDescription" name="rewardDescription'+count+
                          '" id="rewardDesc'+count+'" rows="2" placeholder="Description" maxlength="140"></textarea>'+
@@ -487,7 +487,7 @@ $(function() {
             '<div class="form-group row">'+
                 '<div class="col-sm-12">'+
                     '<div class="col-sm-2">'+
-                        '<label class="control-label">Which of the following is necessary to ship this reward:</label>'+
+                        '<label class="control-label">Which of the following is necessary to ship this perk:</label>'+
                     '</div>'+
                     '<div class="col-sm-10">'+
                         '<label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing address</label>'+

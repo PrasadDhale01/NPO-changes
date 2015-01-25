@@ -28,8 +28,8 @@
             <div class="col-md-8">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <h3>Your contribution: <span class="pull-right">$${contributedAmount}</span></h3>
-                        <h4>Your reward: <span class="pull-right">${reward.title}</span></h4>
+                        <h3>Your Contribution: <span class="pull-right">$${contributedAmount}</span></h3>
+                        <h4>Your Perk: <span class="pull-right">${reward.title}</span></h4>
                         <g:if test="${fundraiser != project.user}">
 					        <h4>Fundraiser: <span class="pull-right">${fundraiser.firstName} ${fundraiser.lastName}</span></h4>
 						</g:if>
@@ -160,24 +160,18 @@
 										<input class="form-control" type="text" placeholder="Phone Number" name="billToPhone">
 									</div>
 								</div>
-								<div class="form-group">
-                                	<div class="input-group col-md-12">
-                                    	<input class="form-control" type="text" placeholder="Address Line 1" name="billToAddressLine1">
-                                	</div>
-                            	</div>
                             	<div class="clear"></div>
                             </div>
 
                         	<div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-group col-md-12">
+                                        <input class="form-control" type="text" placeholder="Address Line 1" name="billToAddressLine1">
+                                    </div>
+                                </div>
                         		<div class="form-group">
                                 	<div class="input-group col-md-12">
                                     	<input class="form-control" type="text" placeholder="Address Line 2" name="billToAddressLine2">
-                                	</div>
-                            	</div>
-                        
-                            	<div class="form-group">
-                                	<div class="input-group col-md-12">
-                                    	<input class="form-control" type="text" placeholder="Address Line 3" name="billToAddressLine3">
                                 	</div>
                             	</div>
 

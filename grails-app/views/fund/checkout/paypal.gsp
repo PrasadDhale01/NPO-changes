@@ -16,10 +16,10 @@
 								<div class="panel-body">
 									<h3>
 										<% def contributedAmount = projectService.getDataType(amount) %>
-										Your contribution: <span class="pull-right">$${contributedAmount}</span>
+										Your Contribution: <span class="pull-right">$${contributedAmount}</span>
 									</h3>
 									<g:if test="${project.rewards.size()>1}">
-										<h4>Your Reward: <span class="pull-right">${reward.title}</span></h4>
+										<h4>Your Perk: <span class="pull-right">${reward.title}</span></h4>
 									</g:if>
 									<g:if test="${fundraiser != project.user}">
 					                    <h4>Fundraiser: <span class="pull-right">${fundraiser.firstName} ${fundraiser.lastName}</span></h4>

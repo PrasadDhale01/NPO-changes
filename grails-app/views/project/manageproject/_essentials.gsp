@@ -21,7 +21,32 @@
     	<div class="blacknwhite campaignupdatedimages" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
 	        <g:render template="/project/manageproject/projectimagescarousel" model="['images': projectimages]"/>
 	    </div>
-    
+	    <br>
+    	 <%-- Social features --%>
+	    <g:if test="${project.validated}">
+				<a class="share-mail pull-right" href="#" data-toggle="modal"
+					data-target="#sendmailmodal" target="_blank" id="share-mail"
+					data-url="${base_url}/projects/${project.id}"
+					data-name="${project.title}"> <img
+					src="${resource(dir: 'images', file: 'mail-share@2x.png')}"
+					style="padding: 0; width: 30px; bottom-margin: 4px; margin: 2px;"
+				alt="Mail Share" />
+				</a> <a class="twitter-share pull-right"
+					href="https://twitter.com/share?text=Hey check this project at crowdera.co!"
+					data-url="${base_url}/projects/${project.id}" target="_blank">
+					<img src="${resource(dir: 'images', file: 'tw-share@2x.png')}"
+					style="padding: 0; width: 30px; bottom-margin: 4px; margin: 2px;"
+					alt="Twitter Share" />
+				</a> <a class="fb-like pull-right"
+					href="http://www.facebook.com/sharer.php?s=100&p[url]=${base_url}/projects/${project.id}&p[title]=${project.title} &p[summary]=${project.story}"
+					data-url="${base_url}/projects/${project.id}" data-share="true">
+					<img src="${resource(dir: 'images', file: 'fb-share@2x.png')}"
+					style="padding: 0; width: 30px; bottom-margin: 4px; margin: 2px;"
+					alt="Facebook Share" />
+				</a> <span style="float: right; margin: 5px;"><label>Share
+						this campaign</label></span>
+			</g:if>
+
         <div class="panel panel-default campaign-description">
             <div class="panel-heading">
                 <h3 class="panel-title">Campaign Description</h3>
@@ -46,32 +71,7 @@
             </div>
         </g:if>
     
-    <%-- Social features --%>
 		<div class="col-sm-12">
-			<g:if test="${project.validated}">
-				<a class="share-mail pull-right" href="#" data-toggle="modal"
-					data-target="#sendmailmodal" target="_blank" id="share-mail"
-					data-url="${base_url}/projects/${project.id}"
-					data-name="${project.title}"> <img
-					src="${resource(dir: 'images', file: 'mail-share@2x.png')}"
-					style="padding: 0; width: 30px; bottom-margin: 4px; margin: 2px;"
-				alt="Mail Share" />
-				</a> <a class="twitter-share pull-right"
-					href="https://twitter.com/share?text=Hey check this project at crowdera.co!"
-					data-url="${base_url}/projects/${project.id}" target="_blank">
-					<img src="${resource(dir: 'images', file: 'tw-share@2x.png')}"
-					style="padding: 0; width: 30px; bottom-margin: 4px; margin: 2px;"
-					alt="Twitter Share" />
-				</a> <a class="fb-like pull-right"
-					href="http://www.facebook.com/sharer.php?s=100&p[url]=${base_url}/projects/${project.id}&p[title]=${project.title} &p[summary]=${project.story}"
-					data-url="${base_url}/projects/${project.id}" data-share="true">
-					<img src="${resource(dir: 'images', file: 'fb-share@2x.png')}"
-					style="padding: 0; width: 30px; bottom-margin: 4px; margin: 2px;"
-					alt="Facebook Share" />
-				</a> <span style="float: right; margin: 5px;"><label>Share
-						this project</label></span>
-			</g:if>
-	
 		<!-- Modal -->
 		<div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
 			<g:form action="sendemail" id="${project.id}" role="form">

@@ -1809,12 +1809,25 @@ button.projectedit.close{
 	margin-left: 10px;
 }
 
+.team-footer {
+    background-color: #E8E8E8;
+	margin-top: 15px;
+	padding: 0;
+	border-top: 1px solid #e5e5e5;
+	width:30%;
+	margin-right: 30px;
+	margin-left: 20px;
+}
+
 .button-team-footer{
 	padding:0;
 	margin:0;
-	width:24%;
-	margin-right: 6px;
-	margin-left: 10px;
+	width:30%;
+	margin-right: 30px;
+}
+
+.button-team-footer .dropdown-menu {
+	width: 342px !important;
 }
 
 .show-team{

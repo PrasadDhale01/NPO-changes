@@ -14,30 +14,26 @@
 	<g:if test="${!teams.isEmpty()}">
 		<g:if test="${project.user == user}">
 		    <ul class="nav nav-pills">
-		        <li data-toggle="tab" class="active team-footer col-md-3 col-sm-3 col-xs-3">
+		        <li data-toggle="tab" class="active team-footer col-md-4 col-sm-4 col-xs-4">
 		           <a href="#team">
 		               <h4 class="text-center">${teams.size()}</h4>
 			           <h5 class="text-center"> Team </h5>
 			       </a>
 			    </li>
-                  <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
+                  <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 button-team-footer">
                       <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-target="#teamComment" data-toggle="tab">
                           Team Comments
                       </button>
                   </li>
-                  <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
-                      <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
-                         Invite Members
-                      </button>
-                  </li>
-                  <li data-toggle="tab" class="col-md-3 col-sm-3 col-xs-3 button-team-footer">
+                  <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 button-team-footer">
                       <button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-			      Activity <span class="caret"></span>
-			    </button>
-			    <ul class="dropdown-menu" role="menu">
-				    <li><a class="text-center list" href="#teamMessage"><span class="glyphicon glyphicon-envelope"></span> Team Message </a></li>
-				    <li><a class="text-center list" href="#campaignStatistics"><span class="glyphicon glyphicon-list-alt"></span> Campaign Statistics </a></li>
-			    </ul>
+			              Activity <span class="caret"></span>
+			          </button>
+			          <ul class="dropdown-menu" role="menu">
+				          <li><a class="list" href="#teamMessage"><span class="glyphicon glyphicon-envelope"></span> &nbsp;&nbsp;Team Message </a></li>
+				          <li><a class="list" href="#campaignStatistics"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;&nbsp;Campaign Statistics </a></li>
+				          <li><a class="list" href="#inviteTeamMember" data-toggle="modal" model="['project': project]"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a></li>
+			          </ul>
                   </li>
 		    </ul>
 		</g:if>

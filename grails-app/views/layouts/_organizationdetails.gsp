@@ -9,7 +9,7 @@
 %>
 <div class="panel panel-default">
     <div class="panel-heading">
-   		Campaign by
+   		Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
 <%--        <g:if test="${isFundingOpen}">--%>
 <%--            <h3 class="panel-title">Fund this project</h3>--%>
 <%--        </g:if>--%>
@@ -31,7 +31,8 @@
    	            <img alt="Upload Icon" src="/images/uploadIcon.jpg" class="org-logo">
             </div>
         </g:else>
-        <label class="col-sm-12">WEB: <a href="${webUrl}">${project.webAddress}</a></label>
+        <label class="col-sm-12">Email: <a href="#">${beneficiary.email}</a></label>
+        <label class="col-sm-12">Web: <a href="${webUrl}">${project.webAddress}</a></label>
         <div class="clear"></div>
         <g:if test="${project.draft}">
             <div class="tilesanstitletag">

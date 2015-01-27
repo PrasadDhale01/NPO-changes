@@ -9,8 +9,13 @@
     def user = userService.getCurrentUser()
     def username = user.username
 %>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
+<meta property="og:title" content="Crowdera : ${project.title}" />
+<meta property="og:url" content="{base_url}/projects/${project.id}" />
+<meta property="og:image" content="${project.organizationIconUrl}" />
+<meta property="og:description" content="${project.story}" />
+<meta property="og:type" content="website" />
 <meta name="layout" content="main" />
 <r:require modules="projectshowjs" />
 <r:require modules="rewardjs" />

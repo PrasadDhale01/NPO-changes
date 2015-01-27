@@ -512,6 +512,17 @@ class ProjectService {
 		}
 		def popularProjectsList = getPopularProjects()
 		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
+    List endedProjects = []
+    List openProjects = []
+    finalList.each { project ->
+        boolean ended = isProjectDeadlineCrossed(project)
+        if(ended) {
+            endedProjects.add(project)
+        } else {
+            openProjects.add(project)
+        }
+    }
+    finalList =  openProjects.reverse() + endedProjects.reverse()
 //        return Project.findAllWhere(validated: true,inactive: false)
 		return finalList
     }

@@ -339,6 +339,9 @@ ul.unstyled {
     -moz-hyphens: auto;
     hyphens: auto;
     height:80px;
+    white-space: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* MARKETING CONTENT

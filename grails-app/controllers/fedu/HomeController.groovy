@@ -4,7 +4,7 @@ class HomeController {
 	def projectService
 
     def index() {
-    	def projects = projectService.showProjects()
+    	def projects = projectService.projectOnHomePage()
         return [projects: projects]
     }
 }

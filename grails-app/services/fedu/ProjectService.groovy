@@ -542,7 +542,7 @@ class ProjectService {
 		/* Later on the criteria will be modified in order to display the admin selected projects as the popular projects*/
 		def criteria = Project.createCriteria()
 		def results = criteria.list {
-			eq("validated", true)
+			eq("id", true)
 			eq("inactive", false)
             eq("rejected", false)
 			order("id", "desc")
@@ -550,6 +550,11 @@ class ProjectService {
 		def popularProjectsList = getPopularProjects()
 		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
 		return finalList
+	}
+	
+	def projectOnHomePage() {
+		def projects = Project.getAll('6512bd43d9caa6e02c990b0a82652dca', '8613985ec49eb8f757ae6439e879bb2a', 'a5bfc9e07964f8dddeb95fc584cd965d')
+	    return projects
 	}
 
     def getBeneficiaryId(Project project) {

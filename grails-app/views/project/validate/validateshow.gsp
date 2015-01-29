@@ -5,6 +5,10 @@
 <%
     def percentage = contributionService.getPercentageContributionForProject(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
+	def projectTitle = project.title
+	if (projectTitle) {
+		projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
+	}
 %>
 <html>
 <head>
@@ -20,7 +24,7 @@
 					<div class="col-md-12">
 					    <div class="col-md-8">
 						<h1 class="green-heading text-center">
-							<g:link controller="project" action="validateshow" id="${project.id}" title="${project.title}"> ${project.title} </g:link>
+							<g:link controller="project" action="validateshow" id="${project.id}" title="${project.title}"> ${projectTitle} </g:link>
 						</h1>
 						</div>
 						<div class="col-md-4">

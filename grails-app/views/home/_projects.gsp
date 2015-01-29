@@ -69,20 +69,20 @@
 	        <div class="col-md-12">
 	            <h1 class="text-center headingtext">Featured Campaigns</h1><br>
 	        </div>
-	        <div class="col-md-9">
-	            &nbsp;
-	        </div>
-            <div class="col-md-3">
-                <!-- Controls -->
-                <div class="controls pull-right">
-	                <a class="left glyphicon glyphicon-chevron-left btn btn-link btn-xs" href="#carousel-example" data-slide="prev"></a>
-	                <a class="right glyphicon glyphicon-chevron-right btn btn-link btn-xs" href="#carousel-example" data-slide="next"></a>
-                </div>
-            </div>
+<%--	        <div class="col-md-9">--%>
+<%--	            &nbsp;--%>
+<%--	        </div>--%>
+<%--            <div class="col-md-3">--%>
+<%--                <!-- Controls -->--%>
+<%--                <div class="controls pull-right">--%>
+<%--	                <a class="left glyphicon glyphicon-chevron-left btn btn-link btn-xs" href="#carousel-example" data-slide="prev"></a>--%>
+<%--	                <a class="right glyphicon glyphicon-chevron-right btn btn-link btn-xs" href="#carousel-example" data-slide="next"></a>--%>
+<%--                </div>--%>
+<%--            </div>--%>
         </div>
         
         <!-- Wrapper for slides -->
-        <div class="carousel-inner">
+<%--        <div class="carousel-inner">--%>
             <g:each in="${(1..pages).toList()}" var="row">
                 <g:if test="${row == 1}">
                     <div class="item active">
@@ -117,4 +117,4 @@
         </div>
     </div>
 	
-</div>
+<%--</div>--%>

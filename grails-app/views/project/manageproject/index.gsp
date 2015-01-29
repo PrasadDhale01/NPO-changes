@@ -8,6 +8,10 @@
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def user = userService.getCurrentUser()
     def username = user.username
+	def projectTitle = project.title
+	if (projectTitle) {
+		projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
+	}
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -41,7 +45,7 @@
 					
 					<g:if test="${!project.validated}">
 					    <h1 class="green-heading text-center">
-							<g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">${project.title}</g:link>
+							<g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">${projectTitle}</g:link>
 						</h1>
 					</g:if>
 					<g:else>

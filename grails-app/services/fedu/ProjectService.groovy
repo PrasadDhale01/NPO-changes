@@ -551,6 +551,11 @@ class ProjectService {
 		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
 		return finalList
 	}
+	
+	def projectOnHomePage() {
+		def projects = Project.getAll('6512bd43d9caa6e02c990b0a82652dca', '93db85ed909c13838ff95ccfa94cebd8', 'a5bfc9e07964f8dddeb95fc584cd965d')
+	    return projects
+	}
 
     def getBeneficiaryId(Project project) {
         return( project.beneficiaryId )

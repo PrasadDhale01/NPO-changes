@@ -9,7 +9,7 @@
 		<h3 class="panel-title">${reward.title}</h3>
 	</div>
 	<div class="panel-body containrewards">
-		<p>${reward.description}</p>
+		<p>${raw(reward.description)}</p>
 		<g:if test="${project.draft}">
 			<g:if test="${reward.id != 1}">
 				<g:form controller="project" action="deletecustomrewards" id="${reward.id}" params="['projectId': projectId]"  method="post">

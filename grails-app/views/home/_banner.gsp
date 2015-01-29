@@ -11,8 +11,8 @@
 		<div class="row">
 			<div class="text-center">
 			    <br>
-			    <h1>Raise money for anything that matters to you</h1>
-			    <h3>for amplifying your goals of making a social impact or innovating for society</h3>
+			    <h1>Join the giving movement and raise funds </h1>
+			    <h3>for what matters to you</h3>
 			    
 			    <!--<g:form class="form-horizontal" controller="project" action="create" role="form">
 			        <div class="form-group">

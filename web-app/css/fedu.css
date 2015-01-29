@@ -1342,6 +1342,9 @@ text-decoration: none !important;
 .containrewards{
     height: 190px !important;
     position: relative;
+    white-space: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 }
 .rewarddesc{
@@ -1969,8 +1972,11 @@ button.projectedit.close{
      border-color: #4d6785;
 }
 .containrewards{
-    height: 156px;
+    height: 160px;
     position: relative;
+    white-space: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .containrewards .rewarddelete{
     position: absolute;

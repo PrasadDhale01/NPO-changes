@@ -196,10 +196,6 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 
 /* Home
 ------------------------- */
-#carousel-example {
-    width: 100%;
-    margin-left: 0px;
-}
 
 .jumbotron {
     /* height: 350px; */
@@ -1138,7 +1134,7 @@ border-color: rgba(0,0,0,0.2);
 .project-title{
      margin-top: 10px; 
      margin-bottom: 0px; 
-     text-align: justify; 
+     /* text-align: justify; */
      overflow: hidden;
      height:42px;
      word-wrap: break-word;
@@ -1342,6 +1338,9 @@ text-decoration: none !important;
 .containrewards{
     height: 190px !important;
     position: relative;
+    white-space: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 }
 .rewarddesc{
@@ -1969,8 +1968,11 @@ button.projectedit.close{
      border-color: #4d6785;
 }
 .containrewards{
-    height: 156px;
+    height: 160px;
     position: relative;
+    white-space: normal;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .containrewards .rewarddelete{
     position: absolute;

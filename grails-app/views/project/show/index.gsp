@@ -18,6 +18,10 @@
 	    fundRaiserName = fundRaiser.toUpperCase()
 	    username = beneficiary.username
 	}
+	def projectTitle = project.title
+	if (projectTitle) {
+		projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
+	}
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -48,7 +52,7 @@
                 </g:if>
 	            <div class="col-md-12 green-heading text-center">
 	                <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fundRaiser': username]">
-		            	<h1> ${project.title} </h1>
+		            	<h1> ${projectTitle} </h1>
 	                </g:link>
 	            </div>
 	            <div class="col-md-4 mobileview-top">

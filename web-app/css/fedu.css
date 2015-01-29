@@ -1138,7 +1138,7 @@ border-color: rgba(0,0,0,0.2);
 .project-title{
      margin-top: 10px; 
      margin-bottom: 0px; 
-     text-align: justify; 
+     /* text-align: justify; */
      overflow: hidden;
      height:42px;
      word-wrap: break-word;

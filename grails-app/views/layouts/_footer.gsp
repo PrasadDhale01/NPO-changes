@@ -6,7 +6,7 @@
                 <a href="${resource(dir: '/aboutus')}">Crowdera Crew</a>
                 <a href="${resource(dir: '/projects')}" >Explore</a>
                 <a href="${resource(dir: '/projects/create')}">Start a Campaign</a>
-                <a href="${resource(dir: '/howitworks')}">How it works</a>
+                <a href="${resource(dir: '/howitworks')}">How it Works</a>
                 <a href="mailto:info@crowdera.co">Contact</a>
             </div>
             <div class="col-xs-6 flinks">

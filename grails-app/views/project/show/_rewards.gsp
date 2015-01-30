@@ -23,7 +23,7 @@
             <g:if test="${isFundingOpen}">
                 <h4>CONTRIBUTE $${price} OR MORE</h4>
                 <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
-                <p class="rewarddescription">${reward.description}</p>
+                <p class="rewarddescription">${raw(reward.description)}</p>
                 <g:link absolute="true" uri="/projects/${project.id}/fund">SELECT THIS PERK</g:link>
             </g:if>
             <g:else>

@@ -26,6 +26,16 @@
             </div>
         </div>
         <div class="item active">
+            <img src="/images/GirlComputerSlider1.jpg" >
+            <div class="carousel-caption">
+            </div>
+        </div>
+        <div class="item">
+            <img src="/images/KidsRunningSlider1.jpg" >
+            <div class="carousel-caption">
+            </div>
+        </div>
+        <div class="item">
             <img src="/images/Adventure.jpg" >
             <div class="carousel-caption">
             </div>

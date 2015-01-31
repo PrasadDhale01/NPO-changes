@@ -26,12 +26,12 @@ h3.headingtext {
 
 .greenbg {
     min-height: 140px;
-    background-color: #83ab30;
+    background-color: #ff784f;
     color: #fff;
 }
 
 .tagline {
-    background-color: #f3f3f3;
+    background-color: #fff;
     padding: 100px 0;
     text-align: center
 }
@@ -39,9 +39,31 @@ h3.headingtext {
 .tagline h2 {
     font-size: 36px;
     padding-bottom: 15px;
-    color: #7da724
+    color: #ff784f
 }
-
+.tagline a {
+display: inline-block;
+background-color: #ff784f;
+padding: 15px 20px;
+color: #FFF;
+font-size: 18px;
+margin-left: 15px;
+margin-top: 20px;
+text-decoration:none;
+}
+.explore-btn {
+	text-align:center;
+	padding-bottom:20px;
+}
+.explore-btn a {
+background-color: #333541;
+padding: 15px 20px;
+color: #FFFFFF;
+font-size: 18px;
+margin-left: 15px;
+display: inline-block;
+text-decoration:none;
+}
 .tagline h3 {
     font-size: 16px;
     color: #2d2d2d;
@@ -82,13 +104,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-brand {
     margin-left: 15px;
-    background: url('../images/logo-small.png') no-repeat left center;
-    width: 232px;
+    background: url('../images/logo-small.png') no-repeat left 5px;
+    width: 196px;
     float: left;
     padding: 0 !important;
     font-size: 19px;
     line-height: 21px;
-    height: 64px;
+    height: 55px;
 }
 
 .navbar-collapse {
@@ -98,11 +120,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .navbar-nav > li {
     /* background-color: white; */
-    color: #dfe2e6;
+    color: #000;
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    color: #84ac2e; /* Sets the text hover color on navbar */
+    color: #000; /* Sets the text hover color on navbar */
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >
@@ -125,12 +147,13 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-default {
-    background-color: #4d6785;
-    height: 64px;
+    background-color: #fff;
+    height: 70px;
+    border-bottom: solid #ff784f 1px;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-    background-color: #4d6785;
+    background-color: #fff;
 }
 
 .dropdown-menu > li > a:hover,
@@ -147,15 +170,15 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 .nav > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
-    background-color: #4D6785; /* Change rollover cell color here */
+    background-color: #ff784f; /* Change rollover cell color here */
 }
 
 .navbar-default .navbar-nav > li > a {
-    color: #dfe2e6; /* Change active text color here */
+    color: #000; /* Change active text color here */
 }
 
 .navbar-default .dropdown-menu {
-    background-color: #4D6785 !important;
+    background-color: #ff784f !important;
 }
 
 .navbar-nav li.dropdown span {
@@ -163,7 +186,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #4D6785 !important;
+    background-color: #ff784f !important;
     color: #FFF;
 }
 
@@ -191,7 +214,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
-    background-color: #4D6785
+    background-color: #fff
 }
 
 /* Home
@@ -220,9 +243,8 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 /* Footer
 ------------------------- */
 footer {
-    border: none;
-    border-top: none !important;
-    background-color: #4D6785;
+    border-top: solid #ff784f 1px !important;
+    background-color: #f1f1f2;
     padding: 30px 0 0 0;
     margin-top: 25px;
 }
@@ -679,10 +701,6 @@ ul.unstyled {
     width: 100%;
 }
 
-footer {
-    border-top: solid #3399CC 5px;
-}
-
 footer .footertopsection {
     padding-top: 20px;
     font-size: 14px;
@@ -827,7 +845,7 @@ footer .footerbottomsection {
 }
 
 .squarebox.greenbg {
-    background-color: #83ab30
+    background-color: #ff784f
 }
 
 .squarebox.graybg {
@@ -851,7 +869,7 @@ footer .footerbottomsection {
 }
 
 .achivegoal h3.green {
-    color: #83ab30;
+    color: #ff784f;
     text-align: center;
     font-size: 30px;
 
@@ -868,7 +886,7 @@ footer .footerbottomsection {
 }
 
 .greenbg-img {
-    background: #83ab30 url(../images/crew-bg.jpg) top center no-repeat;
+    background: #ff784f url(../images/crew-bg.jpg) top center no-repeat;
     width: 100%;
 }
 
@@ -890,7 +908,7 @@ footer .footerbottomsection {
 
 .crewpage h1 {
     padding: 20px 0;
-    color: #83ab30
+    color: #ff784f
 }
 
 .crewpage .thumbnail {
@@ -915,7 +933,7 @@ footer .footerbottomsection {
 }
 
 .navbar-default .dropdown-menu {
-    background-color: #4D6785 !important;
+    background-color: #ff784f !important;
 }
 
 .navbar-nav li.dropdown span {
@@ -923,12 +941,12 @@ footer .footerbottomsection {
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #4D6785 !important;
+    background-color: #ff784f !important;
     color: #FFF;
 }
 
 .green-heading a {
-    color: #83ab30
+    color: #ff784f
 }
 
 .organization-details h4 {
@@ -955,8 +973,8 @@ footer .footerbottomsection {
 
 .btn-success {
     color: #ffffff;
-    background-color: #83ab30;
-    border-color: #83ab30;
+    background-color: #ff784f;
+    border-color: #ff784f;
 }
 
 .cvc-details span.input-group-addon {
@@ -1120,14 +1138,14 @@ color: #000 !important;
 
 .btn-primary {
 color: #ffffff;
-background-color: #4d6785 !important;
-border-color: #0079a1;
+background-color: #333 !important;
+border-color: #333;
 margin-bottom:5px;
 }
 
 .btn-facebook {
 color: #fff;
-background-color: #4d6785;
+background-color: #ff784f;
 border-color: rgba(0,0,0,0.2);
 }
 
@@ -1295,7 +1313,7 @@ text-decoration: none !important;
 
 .alert-title{
 	color: white;
-    background-color: #4d6785;
+    background-color: #ff784f;
 }
 h1.green-heading{
     text-transform: uppercase;
@@ -1900,7 +1918,7 @@ button.projectedit.close{
 .activitydropdown .dropdown-menu {
 	left: 15px;
 	width: 90%;
-	background-color: #4D6785;
+	background-color: #ff784f;
 	margin-bottom: 0px;
 }
 .activitydropdown .dropdown-menu > li > a {
@@ -1941,7 +1959,7 @@ button.projectedit.close{
 	height: 400px;
 }
 .pill-buttons .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-  background-color: #4d6785 !important ;
+  background-color: #ff784f !important ;
   color: white !important;
 }
 .team-footer h4,.team-footer h5{ font-weight:normal !important}
@@ -1951,12 +1969,12 @@ button.projectedit.close{
 .pill-buttons .btn-default:focus,
 .pill-buttons .active .btn-default,
 .open > .dropdown-toggle.btn-default {
-    background-color: #4d6785 !important ;
+    background-color: #ff784f !important ;
     color: white !important;
 }
 
 .pill-buttons .btn-primary {
-	background-color: #4d6785 !important ;
+	background-color: #ff784f !important ;
     color: white !important;
 }
 .validatebtn.btn-danger {
@@ -1993,8 +2011,8 @@ button.projectedit.close{
 	padding-left: 20px;
 }
 .panel-primary > .panel-heading{
-     background-color: #4d6785;
-     border-color: #4d6785;
+     background-color: #ff784f;
+     border-color: #ff784f;
 }
 .containrewards{
     height: 160px;
@@ -2036,4 +2054,32 @@ button.projectedit.close{
 }
 .powerdby img{
 	max-width:100%;
+}
+a {
+	color: #ff784f;
+	text-decoration: none;
+}
+.greycolorbg{
+	background-color:#f1f1f2
+}
+.footerbottommainlinks a {
+	margin-right: 10px;
+	color: #2a324b;
+	margin: 20px 7px 10px;
+	font-size: 16px;
+	font-weight: bold;
+}
+.footerbottommainlinks {
+	margin-top: 15px;
+}
+a.footerlink {
+	color: #a1a5af;
+	font-size: 14px;
+	margin: 0px 10px 0 10px !important;
+}
+.dropdown-menu{
+	min-width:155.5px;
+}
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: #000;
 }

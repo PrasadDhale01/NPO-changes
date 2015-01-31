@@ -16,10 +16,10 @@
     <g:render template="banner"></g:render>
     
     <g:render template="ace"></g:render>
-    
+    <div class="greycolorbg"> 
     <g:render template="projects"></g:render>
-    
-    <div class="full-image"><img src="images/img-2.jpg" /></div>
+    </div>
+    <div style="display:none" class="full-image"><img src="images/img-2.jpg" /></div>
     
 <!--
 <div class="news">

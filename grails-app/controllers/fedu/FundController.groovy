@@ -172,17 +172,17 @@ class FundController {
 		def fundraiser = User.get(params.fr)
 		def transactionId = params.trId
 		
-		if (transactionId){
-		    Transaction transaction = new Transaction(
-			    transactionId:transactionId,
-			    user:user,
-			    project:project,
-			    contribution:contribution
-			)
-	        transaction.save(failOnError: true)
-		}
+	if (transactionId){
+	    Transaction transaction = new Transaction(
+	        transactionId:transactionId,
+		user:user,
+		project:project,
+		contribution:contribution
+	    )
+	    transaction.save(failOnError: true)
+	}
        
-	   render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
+	render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
     }
 
     def sendemail() {

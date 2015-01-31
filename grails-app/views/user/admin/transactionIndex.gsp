@@ -19,8 +19,9 @@
                 	<tr class="alert alert-title ">
                         <th>Id</th>
                         <th>Transaction Id</th>
+                        <th>Contribution Id</th>
                     	<th>Project</th>
-                    	<th>User</th>
+                    	<th>Contributor</th>
                     	<th>Project Amount</th>
                     	<th>Contributed Amount</th>
                 	</tr>

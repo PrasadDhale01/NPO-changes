@@ -6,6 +6,7 @@
     <tr>
     	<td>${transaction.id}</td>
     	<td>${transaction.transactionId}</td>
+    	<td>${transaction.contribution.id}</td>
         <td>${transaction.project.title}</td>
         <g:if test="${transaction.user.firstName == "anonymousFirstName"}">
         	<td>By Anonymous</td>

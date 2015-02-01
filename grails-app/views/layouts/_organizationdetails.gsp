@@ -31,8 +31,12 @@
    	            <img alt="Upload Icon" src="/images/uploadIcon.jpg" class="org-logo">
             </div>
         </g:else>
-        <label class="col-sm-12">Email: <a href="#">${beneficiary.email}</a></label>
-        <label class="col-sm-12">Web: <a href="${webUrl}">${project.webAddress}</a></label>
+        <div class="col-sm-12">
+        <label>Email: <a href="#">${beneficiary.email}</a></label>
+        </div>
+        <div class="col-sm-12">
+        <label>Web: <a href="${webUrl}">${project.webAddress}</a></label>
+        </div> 
         <div class="clear"></div>
         <g:if test="${project.draft}">
             <div class="tilesanstitletag">

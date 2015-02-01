@@ -228,9 +228,9 @@
                 <div align="center">
                 	<button type="submit" class="btn btn-primary btn-block btn-lg" name="fund-button" id="paypalsubmitbutton">Fund this Campaign</button>
                 </div>
-                <div>
-                    Powered By Firstgiving<br>
-                    <img src="/images/poweredByFirstgiving.jpg" height="60" width="360"/>
+                <div class="powerdby">
+                    <p>Powered By Firstgiving</p>
+                    <p><img src="/images/poweredByFirstgiving.jpg"/></p>
                 </div>
             </div>
         </div>

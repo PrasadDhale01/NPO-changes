@@ -67,7 +67,7 @@
     <div id="carousel-example" class="col-md-10 col-md-offset-1 carousel slide" data-ride="carousel">
 	    <div class="row">
 	        <div class="col-md-12">
-	            <h1 class="text-center headingtext">Featured Campaigns</h1><br>
+	            <h1 class="text-center headingtext">Latest Campaigns</h1><br>
 	        </div>
 <%--	        <div class="col-md-9">--%>
 <%--	            &nbsp;--%>

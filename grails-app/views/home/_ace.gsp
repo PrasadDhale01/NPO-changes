@@ -48,40 +48,34 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="col-md-3 text-center">
-			    <span class="navbar-brand-footer"><img src="/images/icon-1.jpg"></span><br>
+<%--			    <span class="navbar-brand-footer"><img src="/images/icon-1.jpg"></span><br>--%>
 				<h3 class="headingtext">Start Your Campaign</h3>
+				<span class="navbar-brand-footer"><img src="/images/icon-1.jpg"></span><br>
 				<p class="how-it-content">Crowdera is a free online crowdfunding platform for nonprofits and social innovators. Start your campaign, and start raising money!</p>
 				<p class="how-it-content">
 					New to Crowdera, <a href="/howitworks">learn more</a>.
 				</p>
 			</div>
 			<div class="col-md-3 text-center">
-			    <span class="navbar-brand-footer"><img src="/images/icon-2.jpg"></span>
+<%--			    <span class="navbar-brand-footer"><img src="/images/icon-2.jpg"></span>--%>
 				<h3 class="headingtext">Engage Your Contributors</h3>
+				<span class="navbar-brand-footer"><img src="/images/icon-2.jpg"></span>
 				<p class="how-it-content">Crowdera helps people engage their community to make a difference. Share your campaign using social sharing tools to reach your supporters. Successful campaigns take effort and we are here to help you every step of the way!
 				<p>
 			</div>
 			<div class="col-md-3 text-center">
-			    <span class="navbar-brand-footer"><img src="/images/icon-3.jpg"></span>
+<%--			    <span class="navbar-brand-footer"><img src="/images/icon-3.jpg"></span>--%>
 				<h3 class="headingtext">Be The Change</h3>
+				<span class="navbar-brand-footer"><img src="/images/icon-3.png"></span>
 				<p class="how-it-content">Be a catalyst in your community by brining people together to raise awareness and funds for individuals, nonprofits and social innovators. Need help getting started? <a href="/howitworks">Learn more</a></p>
 			</div>
 			<div class="col-md-3 text-center">
-			    <span class="navbar-brand-footer"><img src="/images/icon-4.jpg"></span>
+<%--			    <span class="navbar-brand-footer"><img src="/images/icon-4.jpg"></span>--%>
 				<h3 class="headingtext">Say Thank You</h3>
+				<span class="navbar-brand-footer"><img src="/images/icon-4.jpg"></span>
 				<p class="how-it-content">Find creative ways to say thank you to your supporters! It’s a great way to show your gratitude and celebrate the impact your crowd has made on the world. Need help? Visit our <a href="http://crowdera.tumblr.com/">blog</a> for inspiration.</p>
 			</div>
 			<div style="clear:both"></div>
 		</div>
 	</div>
-</div>
-<div class="tagline  text-center">
- <div class="container">
-	<div class="row">
-		<div class="col-md-12">
-    <h2>No fees to help you do more good.<br />
-      It's true, we promise!</h2>
-    <h3><p>Crowdera is free to help you do more good. No startup fees, no fee charged on funds raised and no hidden fees.</p>
-	<p>Crowdera is Free! It’s really that simple and that’s the way we like it!</p></h3>
-  </div> </div> </div>
 </div>

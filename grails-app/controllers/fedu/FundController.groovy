@@ -21,7 +21,6 @@ class FundController {
     def mailService
     def rewardService
     def mandrillService
-
     def ack
     def paykey
     def userId
@@ -171,7 +170,19 @@ class FundController {
         def reward = contribution.reward
         def user = contribution.user
 		def fundraiser = User.get(params.fr)
-        render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
+		def transactionId = params.trId
+		
+	if (transactionId){
+	    Transaction transaction = new Transaction(
+	        transactionId:transactionId,
+		user:user,
+		project:project,
+		contribution:contribution
+	    )
+	    transaction.save(failOnError: true)
+	}
+       
+	render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
     }
 
     def sendemail() {
@@ -349,13 +360,6 @@ class FundController {
 			team.addToContributions(contribution).save(failOnError: true)
 		}
 
-        Transaction transaction = new Transaction(
-                transactionId:transactionId,
-                user:users,
-                project:project
-                )
-        transaction.save(failOnError: true)
-
         def email = users.email
         if (email) {
             mailService.sendMail {
@@ -386,7 +390,7 @@ class FundController {
                 project.send_mail = true
             }
         }
-        redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [cb: contribution.id, fr:fundraiser.id])
+        redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [cb: contribution.id, fr:fundraiser.id, trId:transactionId])
     }
 
     def paypalurl(){

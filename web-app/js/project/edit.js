@@ -142,44 +142,32 @@ $(function() {
      }, "Please provide valid url");
 
     /***************************Multiple Image Selection*************** */
-
-    $("#add_img_btn").click(function() {
-        $("#projectImageFile").click()
-    });
-
     $('#projectImageFile').change(function(event) {
-                        var file =this.files[0];
-                        if(!file.type.match('image')){
-                            $('#imgmsg').show();
-                            $('.pr-thumbnail-div').hide();
-                            this.value=null;
-                        }else{
-                        $('#imgmsg').hide();
-                        var files = event.target.files; // FileList object
-                        var output = document.getElementById("result");
-                        for ( var i = 0; i < files.length; i++) {
-                            var file = files[i];
-                            var filename = file.name;
-                            var picReader = new FileReader();
-                            picReader.addEventListener("load",function(event) {
-                                                var picFile = event.target;
-
-                                                var div = document
-                                                        .createElement("div");
-                                                div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"
-                                                        + picFile.result
-                                                        + "'"
-                                                        + "title='"
-                                                        + file.name
-                                                        + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"/images/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"
-                                                        + "</div>";
-
-                                                output.insertBefore(div, null);
-                            });
-                            // Read the image
-                            picReader.readAsDataURL(file);
-                          }
-                        }
+        var file =this.files[0];
+        if(!file.type.match('image')){
+            $('#imgmsg').show();
+            $('.pr-thumbnail-div').hide();
+            this.value=null;
+        }else{
+            $('#imgmsg').hide();
+            var files = event.target.files; // FileList object
+            var output = document.getElementById("result");
+            for ( var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var filename = file.name;
+                var picReader = new FileReader();
+                picReader.addEventListener("load",function(event) {
+                var picFile = event.target;
+                var div = document.createElement("div");
+                div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"+ picFile.result + "'" + "title='" + file.name
+                                  + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"/images/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"
+                                  + "</div>";
+                    output.insertBefore(div, null);
+                });
+                // Read the image
+                picReader.readAsDataURL(file);
+            }
+        }
     });
     
     $("#addProjectImage").click(function() {

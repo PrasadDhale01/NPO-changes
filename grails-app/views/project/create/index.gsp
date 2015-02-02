@@ -285,7 +285,7 @@ tinymce.init({
 									<label class="col-sm-4 control-label" id="iconfiles">Organization Logo</label>
 									<div class="col-sm-4">
 										<input type="file" id="iconfile" name="iconfile" accept="image/*">
-										<button id="chooseFile" class="btn btn-primary" type="button">
+										<button id="chooseFile" class="btn btn-primary btn-sm" type="button">
 											<i class="icon-file"></i> Choose File
 										</button>
 										<label  id="logomsg" style="color:red;dispaly:none;" >Select image file.</label>
@@ -385,10 +385,12 @@ tinymce.init({
     					<div class="form-group">
       						<label class="col-sm-2 control-label">Pictures</label>
       						<div class="col-sm-4">
-        						<button id="add_img_btn" class="btn btn-primary btnAddImage" type="button"> <i class="icon-file"></i> Add Image </button>
         						<label id="imgmsg" style="color:red;" >Select image file.</label>
-        						<input type="file" class="hidden" name="${FORMCONSTANTS.THUMBNAIL}[]"
-         							id="projectImageFile" multiple="multiple" accept="image/*">
+        						<div class="fileUpload btn btn-primary btn-sm">
+	        						<span>Add Images</span>
+	        						<input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]"
+	         							id="projectImageFile" multiple="multiple" accept="image/*">
+         					    </div>
       						</div>
       						<!--<div class="col-sm-2">
         						<input class="hidden" name="${FORMCONSTANTS.IMAGEURL}"
@@ -496,15 +498,17 @@ tinymce.init({
 					</div>
 					<div class="panel-body">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">All Cool!</label>
-							<div class="col-sm-2-offset col-sm-4">
-								<button type="submit" class="btn btn-primary" name="button"
-									id="submitProject" value="submitProject">Submit Campaign</button>
-							</div>
-							<div class="col-sm-4">
-								<button type="submit" class="btn btn-primary" name="button"
-									value="draft">Save as draft</button>
-							</div>
+							<label class="col-md-2 col-sm-2 control-label">All Cool!</label>
+							<div class="col-md-4 col-sm-6 campaignsubmitbutton">
+							    <div class="col-md-6 col-sm-6 col-xs-6 submitbutton">
+									<button type="submit" class="btn btn-primary btn-sm" name="button"
+										id="submitProject" value="submitProject">Submit Campaign</button>
+							    </div>
+							    <div class="col-md-6 col-sm-6 col-xs-6">
+									<button type="submit" class="btn btn-primary btn-sm" name="button"
+										value="draft">Save as draft</button>
+							    </div>
+ 							</div>
 						</div>
 					</div>
 				</div>

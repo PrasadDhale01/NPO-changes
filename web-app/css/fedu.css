@@ -1088,10 +1088,6 @@ footer .footerbottomsection {
     left: 0;
 }
 
-#iconfile {
-    display:none;
-}
-
 /*****************Description length error*************************************/
 #uploadavatar {
 	margin-top: 10px;
@@ -1718,6 +1714,10 @@ textarea.form-control {
     #charitableId .modal-body {
         padding: 5px;
     }
+    .campaignsubmitbutton .submitbutton {
+	    padding-left: 5px;
+        padding-right: 5px;
+	}
 }
 @media only screen and (max-width: 320px){
 	.leftcard-column {
@@ -2082,4 +2082,19 @@ a.footerlink {
 }
 .navbar-default .navbar-toggle .icon-bar {
 	background-color: #000;
+}
+.fileUpload {
+	position: relative;
+	overflow: hidden;
+}
+.fileUpload .upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	cursor: pointer;
+	opacity: 0;
+	filter: alpha(opacity=0);
 }

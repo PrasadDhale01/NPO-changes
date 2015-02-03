@@ -1,19 +1,29 @@
 <g:set var="userService" bean="userService"/>
 <g:set var="projectService" bean="projectService"/>
+<% 
+    def contributionId= contribution.id
+    def fundraiserId= fundraiser.id
+    def contribution = projectService.getDataType(contribution.amount)
+	def imageUrl = project.imageUrl
+	if (imageUrl) {
+		imageUrl = project.imageUrl[0].getUrl()
+	}
+%>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
     <meta property="og:title" content="Crowdera : ${project.title}" />
     <meta property="og:url" content="{base_url}/projects/${project.id}" />
-    <meta property="og:image" content="${project.organizationIconUrl}" />
-    <meta property="og:description" content="${project.story}" />
+    <g:if test="${project.organizationIconUrl}">
+        <meta property="og:image" content="${project.organizationIconUrl}" />
+    </g:if>
+    <g:elseif test="${imageUrl}">
+        <meta property="og:image" content="${imageUrl}" />
+    </g:elseif>
+    <meta property="og:description" content="${project.description}" />
     <meta property="og:type" content="website" />
     <meta name="layout" content="main" />
 </head>
 <body>
-<% 
-    def contributionId= contribution.id
-    def fundraiserId= fundraiser.id
-    def contribution = projectService.getDataType(contribution.amount) %>
 <div class="feducontent">
     <div class="container">
         <div class="row">

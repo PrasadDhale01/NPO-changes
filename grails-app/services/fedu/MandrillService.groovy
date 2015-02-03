@@ -345,8 +345,8 @@ class MandrillService {
     def sendUpdateEmailToAdmin(def email, String name, Project project) {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'manageproject', id: project.id, absolute: true)
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', absolute: true)
-        def imageUrl
-        if(project.imageUrl[0].getUrl()) {
+        def imageUrl = project.imageUrl
+        if (imageUrl) {
             imageUrl = project.imageUrl[0].getUrl()
         }
         def globalMergeVars = [[

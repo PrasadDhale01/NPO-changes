@@ -196,6 +196,8 @@ $(function() {
                 error.appendTo(element.parent());
             } else if($(element).prop("id") == "projectImageFile") {
                 error.appendTo(element.parent().parent());
+            }else if($(element).prop("id") == "iconfile") {
+                error.appendTo(element.parent().parent());
             }else{ 
                 error.insertAfter(element);
             }
@@ -303,12 +305,7 @@ $(function() {
 
      /** ********************Organization Icon*************************** */
 
-  $('#chooseFile').click(function(event) {
-    event.preventDefault();
-    $('#iconfile').trigger('click');
-  });
-
-  $("#iconfile").on("change",function() {
+    $("#iconfile").change(function(event) {
           var file =this.files[0];
           if(!file.type.match('image')){
             $('#icondiv').hide();
@@ -330,7 +327,7 @@ $(function() {
             // Read the image
             picReader.readAsDataURL(file);
           } 
-  });
+    });
 
 
      /*******************************Description text length******************** */

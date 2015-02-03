@@ -273,8 +273,7 @@ tinymce.init({
 						<div class="row">
 							<div class="col col-sm-6">
 								<div class="form-group" id="organizationName">
-									<label class="col-sm-4 control-label" id="organizationName">Organization
-										Name</label>
+									<label class="col-sm-4 control-label" id="organizationName">Organization Name</label>
 									<div class="col-sm-8">
 										<input class="form-control"
 											name="${FORMCONSTANTS.ORGANIZATIONNAME}"
@@ -283,14 +282,14 @@ tinymce.init({
 								</div>
 								<div class="form-group">
 									<label class="col-sm-4 control-label" id="iconfiles">Organization Logo</label>
-									<div class="col-sm-4">
-										<input type="file" id="iconfile" name="iconfile" accept="image/*">
-										<button id="chooseFile" class="btn btn-primary btn-sm" type="button">
-											<i class="icon-file"></i> Choose File
-										</button>
-										<label  id="logomsg" style="color:red;dispaly:none;" >Select image file.</label>
+									<div class="col-sm-6">
+										<div class="fileUpload btn btn-primary btn-sm">
+			        						<span>Choose File</span>
+			        						<input type="file" class="upload" id="iconfile" name="iconfile" accept="image/*">
+		         					    </div>
+										<label  id="logomsg" style="color:red;dispaly:none;" >Please select image file.</label>
 									</div>
-									<div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
+									<div id="icondiv" class="pr-icon-thumbnail-div col-sm-2">
 									<img id="imgIcon" class="pr-icon-thumbnail"/>
 										<div class="deleteicon">
 											<img onClick="removeLogo();"
@@ -385,7 +384,7 @@ tinymce.init({
     					<div class="form-group">
       						<label class="col-sm-2 control-label">Pictures</label>
       						<div class="col-sm-4">
-        						<label id="imgmsg" style="color:red;" >Select image file.</label>
+        						<label id="imgmsg" style="color:red;" >Please select image file.</label>
         						<div class="fileUpload btn btn-primary btn-sm">
 	        						<span>Add Images</span>
 	        						<input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]"

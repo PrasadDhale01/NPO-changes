@@ -5,10 +5,11 @@
 	           <div class="col-sm-7">
 	           <a class="navbar-brand-footer pull-center footerimage"><img src="/images/flogo.png" width="193"></a>
 	           <div class="footerbottommainlinks">
-		           <a href="${resource(dir: '/')}" >Home</a><a href="${resource(dir: '/aboutus')}">Crowdera Crew</a>
-		           <a href="${resource(dir: '/projects')}" >Explore</a>
-		           <a href="${resource(dir: '/projects/create')}">Start a Campaign</a>
-		           <a href="${resource(dir: '/howitworks')}">How it works</a>
+		           <a href="${resource(dir: '/')}" >Home</a><br>
+		           <a href="${resource(dir: '/aboutus')}">Crowdera Crew</a><br>
+		           <a href="${resource(dir: '/projects')}" >Explore</a><br>
+		           <a href="${resource(dir: '/projects/create')}">Start a Campaign</a><br>
+		           <a href="${resource(dir: '/howitworks')}">How it works</a><br>
 		           <a href="mailto:info@crowdera.co">Contact</a>
 	     	   </div>
 			   <div class="footerbottomsection">
@@ -32,11 +33,11 @@
         </div>
         <div class="col-sm-5">
 	        	<div class="socialicon">
-					<a href="https://twitter.com/CrowderaInc"><img src="/images/s3.jpg"></a>
-				    <a href="https://www.facebook.com/crowderainc?ref=hl"><img src="/images/s2.jpg"></a>
-				    <a href="http://instagram.com/crowderacrew"><img src="/images/s5.jpg"></a>
-					<a href="#"><img src="/images/s1.jpg"></a>
-					<a href="#"><img src="/images/s4.jpg"></a>
+					<a href="https://twitter.com/CrowderaInc"><img class="twittersocialicon" src="/images/s3.jpg"></a>
+				    <a href="https://www.facebook.com/crowderainc?ref=hl"><img class="facebooklink" src="/images/s2.jpg"></a>
+				    <a href="http://instagram.com/crowderacrew"><img class="insta" src="/images/s5.jpg"></a>
+					<a href="#"><img class="blog" src="/images/s1.png"></a>
+					<a href="#"><img class="inlink" src="/images/s4.jpg"></a>
 	        	</div>
          	</div>
          </div> 

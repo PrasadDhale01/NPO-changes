@@ -167,6 +167,16 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     padding: 7px 21px;
 }
 
+.dropdown-menu.usr > li > a {
+    padding: 7px 21px !important;
+    width:155px;
+}
+
+.dropdown-menu.admin > li > a {
+    padding: 7px 16px !important;
+    width:166px;
+}
+
 .nav > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
@@ -1367,6 +1377,21 @@ textarea.form-control {
     right: 5px;
 }
 
+/* Media 980px */
+@media only screen and (min-width: 980px) {
+    .nav > li > a {
+        padding: 7px 21px;
+    }
+    .squarebox {
+        width: 180px;
+        height: 180px;
+        float: center;
+        margin-right: -7px;
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
 /* Media 970px */
 @media only screen and (max-width: 970px) {
     .nav > li > a {
@@ -1403,7 +1428,7 @@ textarea.form-control {
 }
 @media only screen and (max-width: 800px){
     .nav > li > a {
-        padding: 7px 14px;
+        padding: 7px 21px;
     }
     .squarebox {
         width: 180px;
@@ -1435,6 +1460,9 @@ textarea.form-control {
 
 
 @media only screen and (max-width: 800px) {
+    .nav > li > a{
+        padding:7px, 21px;
+    }
     .validatebutton {
         float: right;
     }
@@ -1482,8 +1510,27 @@ textarea.form-control {
 .nav > li > a {
     padding: 7px 17px;
 }
+.dropdown-menu.usr > li > a {
+    padding: 7px 21px !important;
+    width:155px;
+}
+.dropdown-menu.admin > li > a {
+    padding: 7px 16px !important;
+    width:166px;
+}
 }
 @media only screen and (min-width: 767px) and (max-width: 768px){
+ .nav > li > a{
+        padding: 7px 21px !important;
+  }
+  .dropdown-menu.usr > li > a {
+    padding: 7px 21px !important;
+    width:155px;
+  }
+  .dropdown-menu.admin > li > a {
+    padding: 7px 16px !important;
+    width:166px;
+  }
 .containrewards{
     height: 190px !important;
     position: relative;

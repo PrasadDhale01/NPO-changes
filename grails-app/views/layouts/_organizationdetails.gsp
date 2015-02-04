@@ -28,7 +28,7 @@
         </g:if>
         <g:else>
             <div class="col-sm-12">
-   	            <img alt="Upload Icon" src="/images/uploadIcon.jpg" class="org-logo">
+   	            <img alt="Upload Icon" src="/images/defaultOrgIcon.jpg" class="org-logo">
             </div>
         </g:else>
         <div class="col-sm-12">

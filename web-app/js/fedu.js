@@ -28,17 +28,17 @@ $(function() {
     $('.twittersocialicon').hover(function(){
     	$(this).attr('src',"/images/twitter-over.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"/images/s3.jpg");
+        $(this).attr('src',"/images/s3.png");
     });
     $('.facebooklink').hover(function(){
     	$(this).attr('src',"/images/Facebook-over.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"/images/s2.jpg");
+        $(this).attr('src',"/images/s2.png");
     });
     $('.insta').hover(function(){
     	$(this).attr('src',"/images/instagram-over.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"/images/s5.jpg");
+        $(this).attr('src',"/images/s5.png");
     });
     $('.blog').hover(function(){
     	$(this).attr('src',"/images/Blog-over.png");
@@ -48,6 +48,6 @@ $(function() {
     $('.inlink').hover(function(){
     	$(this).attr('src',"/images/Linked-in-over.png");
     	}).mouseleave(function(){
-        $(this).attr('src',"/images/s4.jpg");
+        $(this).attr('src',"/images/s4.png");
     });
 });

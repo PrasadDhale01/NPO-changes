@@ -33,11 +33,11 @@
         </div>
         <div class="col-sm-5">
 	        	<div class="socialicon">
-					<a href="https://twitter.com/CrowderaInc"><img class="twittersocialicon" src="/images/s3.jpg"></a>
-				    <a href="https://www.facebook.com/crowderainc?ref=hl"><img class="facebooklink" src="/images/s2.jpg"></a>
-				    <a href="http://instagram.com/crowderacrew"><img class="insta" src="/images/s5.jpg"></a>
-					<a href="#"><img class="blog" src="/images/s1.png"></a>
-					<a href="#"><img class="inlink" src="/images/s4.jpg"></a>
+					<a href="https://twitter.com/CrowderaInc"><img class="twittersocialicon" width="49px" src="/images/s3.png"></a>
+				    <a href="https://www.facebook.com/crowderainc?ref=hl"><img class="facebooklink" width="49px" src="/images/s2.png"></a>
+				    <a href="http://instagram.com/crowderacrew"><img class="insta" width="49px" src="/images/s5.png"></a>
+					<a href="#"><img class="blog" width="49px" src="/images/s1.png"></a>
+					<a href="#"><img class="inlink" width="49px" src="/images/s4.png"></a>
 	        	</div>
          	</div>
          </div> 

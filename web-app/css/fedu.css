@@ -241,6 +241,67 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     color: white;
 }
 
+.carousel-caption imageCarouseltextbox{
+	position: absolute;
+	right: 15%;
+    bottom: 20px;
+    left: 15%;
+    max-width:20px;
+}
+
+.imageCarousellabel {
+  background-color: black;
+  padding-top: 6px;
+  height: 43px;
+  width: 560px;
+  margin-left: -2px;
+  margin-top: -93px;
+}
+
+.btn-image {
+  background-color:#FF7F50;
+  border-color: #ccc;
+  width:86.38px;
+  height:30.2px;
+  padding:0px;
+}
+
+.imageCarouseltextbox .imageCoureselForm{
+  width:20%;
+  font-size: 10px;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.imageCarouseltextbox .imageCoureselForm:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
+  color: #999;
+  opacity: 1;
+}
+.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
+  color: #999;
+}
+.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
+  color: #999;
+}
+
+.imageCarouseltextbox .form-group{
+	
+}
+
 #errormsg {
     color: red;
 }
@@ -1581,6 +1642,12 @@ textarea.form-control {
 	}
 }
 @media only screen and (max-width: 480px){
+	.desktop-carousel {
+		display:none;
+	}
+	.mobile-carousel {
+			display:block;
+	}
 	.team-footer {
 	    width: 100% !important;
 	    margin-right: 0px !important;
@@ -1924,6 +1991,10 @@ button.projectedit.close{
 
 .button-team-footer .dropdown-menu {
 	width: 342px;
+}
+
+.mobile-carousel{
+	display:none;
 }
 
 .show-team{

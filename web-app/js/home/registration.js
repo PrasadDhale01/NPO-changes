@@ -22,6 +22,10 @@ $(function() {
             lastName: {
                 minlength: 2,
                 required: true
+            },
+            name : {
+            	minlength: 2,
+                required: true
             }
         }
     });

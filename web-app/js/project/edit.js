@@ -80,10 +80,10 @@ $(function() {
 
     $('#chooseFile').click(function(event) {
         event.preventDefault();
-        $('#iconfile').trigger('click');
+        $('#orgediticonfile').trigger('click');
     });
 
-    $("#iconfile").on("change", function() {
+    $("#orgediticonfile").on("change", function() {
         var file =this.files[0];
         if(!file.type.match('image')){
            this.value=null;
@@ -96,7 +96,7 @@ $(function() {
         picReader.addEventListener("load", function(event) {
             var picFile = event.target;
             $('#imgIcon').attr('src', picFile.result);
-            $('#delIcon').attr('src', "/images/delete.ico");
+            $('#logoDelete').attr('src', "/images/delete.ico");
             $('#imgIcon').show();
             $('#logoDelete').show();
 

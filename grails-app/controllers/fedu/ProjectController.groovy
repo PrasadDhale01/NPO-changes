@@ -509,8 +509,6 @@ class ProjectController {
             projectService.getMultipleImageUrls(imageFiles, project)
         }
         
-        
-        
         String email1 = params.email1
         String email2 = params.email2
         String email3 = params.email3
@@ -524,6 +522,7 @@ class ProjectController {
         project.beneficiary = beneficiary
         
         if (project.save()) {
+            def teammessage = projectService.getFundRaisersForTeam(project, user)
             projectService.getdefaultAdmin(project, user)
             projectService.getAdminForProjects(email1, project, user)
             projectService.getAdminForProjects(email2, project, user)

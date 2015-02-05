@@ -55,9 +55,6 @@
 	</div>
 	
 </g:if>
-<g:else>
-    <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">Team is yet to be enabled by campaign owner.</div>
-</g:else>
 </div>
 
 <!-- Modal -->

@@ -13,7 +13,7 @@
 <g:if test="${project.validated}">
 	<g:if test="${!teams.isEmpty()}">
 		<g:if test="${project.user == user}">
-		    <ul class="nav nav-pills">
+		    <ul class="nav nav-pills nav-pills-manageteam">
 		        <li data-toggle="tab" class="active team-footer col-md-4 col-sm-4 col-xs-4">
 		           <a href="#team">
 		               <h4 class="text-center">${teams.size()}</h4>
@@ -73,24 +73,10 @@
 			    <g:render template="manageproject/campaignStatisticsIndex" model="[team:teams, project:project]"/>
 			</div>
 		</div>
-		
 	</g:if>
-	<g:else>
-	    <g:if test="${!ended}">
-		    <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">Team is yet to be enabled by campaign owner.</div>
-		    <g:if test="${project.validated}">
-		        <div class="col-md-12 col-sm-12 col-xs-12">
-					<g:link controller="project" action="addFundRaiser" class="text-center btn btn-primary btn-sm pull-right" id="${project.id}">Create a Team</g:link>
-			    </div>
-	    	</g:if>
-	    </g:if>
-	    <g:else>
-	        <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">Campaign Ended.</div>
-	    </g:else>
-	</g:else>
 </g:if>
 <g:else>
-    <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">You can create team after the project is published.</div>
+    <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">You can manage your team once the campaign is published.</div>
 </g:else>
 </div>
 

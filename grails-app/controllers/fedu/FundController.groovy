@@ -170,19 +170,8 @@ class FundController {
         def reward = contribution.reward
         def user = contribution.user
 		def fundraiser = User.get(params.fr)
-		def transactionId = params.trId
 		
-	if (transactionId){
-	    Transaction transaction = new Transaction(
-	        transactionId:transactionId,
-		user:user,
-		project:project,
-		contribution:contribution
-	    )
-	    transaction.save(failOnError: true)
-	}
-       
-	render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
+	    render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
     }
 
     def sendemail() {
@@ -390,7 +379,16 @@ class FundController {
                 project.send_mail = true
             }
         }
-        redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [cb: contribution.id, fr:fundraiser.id, trId:transactionId])
+		
+		Transaction transaction = new Transaction(
+			transactionId:transactionId,
+			user:users,
+			project:project,
+			contribution:contribution
+		)
+		transaction.save(failOnError: true)
+			
+        redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [cb: contribution.id, fr:fundraiser.id])
     }
 
     def paypalurl(){

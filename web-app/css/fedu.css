@@ -167,6 +167,16 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     padding: 7px 21px;
 }
 
+.dropdown-menu.usr > li > a {
+    padding: 7px 21px !important;
+    width:155px;
+}
+
+.dropdown-menu.admin > li > a {
+    padding: 7px 16px !important;
+    width:166px;
+}
+
 .nav > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
@@ -1367,6 +1377,21 @@ textarea.form-control {
     right: 5px;
 }
 
+/* Media 980px */
+@media only screen and (min-width: 980px) {
+    .nav > li > a {
+        padding: 7px 21px;
+    }
+    .squarebox {
+        width: 180px;
+        height: 180px;
+        float: center;
+        margin-right: -7px;
+        text-align: center;
+        margin: 0 auto;
+    }
+}
+
 /* Media 970px */
 @media only screen and (max-width: 970px) {
     .nav > li > a {
@@ -1403,7 +1428,7 @@ textarea.form-control {
 }
 @media only screen and (max-width: 800px){
     .nav > li > a {
-        padding: 7px 14px;
+        padding: 7px 21px;
     }
     .squarebox {
         width: 180px;
@@ -1435,6 +1460,9 @@ textarea.form-control {
 
 
 @media only screen and (max-width: 800px) {
+    .nav > li > a{
+        padding:7px, 21px;
+    }
     .validatebutton {
         float: right;
     }
@@ -1482,8 +1510,27 @@ textarea.form-control {
 .nav > li > a {
     padding: 7px 17px;
 }
+.dropdown-menu.usr > li > a {
+    padding: 7px 21px !important;
+    width:155px;
+}
+.dropdown-menu.admin > li > a {
+    padding: 7px 16px !important;
+    width:166px;
+}
 }
 @media only screen and (min-width: 767px) and (max-width: 768px){
+ .nav > li > a{
+        padding: 7px 21px !important;
+  }
+  .dropdown-menu.usr > li > a {
+    padding: 7px 21px !important;
+    width:155px;
+  }
+  .dropdown-menu.admin > li > a {
+    padding: 7px 16px !important;
+    width:166px;
+  }
 .containrewards{
     height: 190px !important;
     position: relative;
@@ -1958,23 +2005,34 @@ button.projectedit.close{
 	width: 100%;
 	height: 400px;
 }
-.pill-buttons .nav-pills > li.active > a, .nav-pills > li.active > a:hover, .nav-pills > li.active > a:focus {
-  background-color: #ff784f !important ;
-  color: white !important;
+.pill-buttons .nav-pills > li.active > a, .nav-pills > li.active > a:focus  {
+    background-color: #333333 !important ;
+    color: white !important;
+}
+.nav-pills > li.active > a:hover{
+	background-color: #ff784f !important ;
+    color: white !important;
 }
 .team-footer h4,.team-footer h5{ font-weight:normal !important}
 .pill-buttons a{ color:#333;}
 .pill-buttons .nav a:hover{ color:#fff !important}
 .pill-buttons .btn-default:hover,
+.pill-buttons .active .btn-default:hover,
 .pill-buttons .btn-default:focus,
-.pill-buttons .active .btn-default,
-.open > .dropdown-toggle.btn-default {
+.open > .dropdown-toggle.btn-default:hover{
     background-color: #ff784f !important ;
     color: white !important;
 }
-
+.open > .dropdown-toggle.btn-default {
+	background-color: #333333 !important ;
+    color: white !important;
+}
+.pill-buttons .active .btn-default {
+	background-color: #333333 !important ;
+    color: white !important;
+}
 .pill-buttons .btn-primary {
-	background-color: #ff784f !important ;
+	background-color: #333333 !important ;
     color: white !important;
 }
 .validatebtn.btn-danger {
@@ -2097,4 +2155,30 @@ a.footerlink {
 	cursor: pointer;
 	opacity: 0;
 	filter: alpha(opacity=0);
+}
+.nav-pills-manageteam .dropdown-menu {
+ 	background-color: #ffffff !important;
+	color: #ffffff !important;
+    text-decoration: none !important;
+}
+.nav-pills-manageteam .dropdown-menu > li > a:hover,
+.nav-pills-manageteam .dropdown-menu > li > a:focus {
+    color: #ffffff !important;
+    text-decoration: none;
+    background-color: #ff784f; /* change color of links in drop down here */
+}
+.nav-pills-manageteam .dropdown-menu > .active > a, .nav-pills-manageteam .dropdown-menu > .active > a:focus {
+	color: #ffffff;
+	text-decoration: none;
+	outline: 0;
+	background-color: #333333 !important;
+}
+.nav-pills-manageteam .dropdown-menu > .active > a:hover {
+	color: #ffffff;
+	text-decoration: none;
+	outline: 0;
+	background-color: #ff784f !important;
+}
+#orgediticonfile {
+    display:none;
 }

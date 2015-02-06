@@ -19,6 +19,10 @@ h3.headingtext {
     padding-top: 20px
 }
 
+.centerText{
+	text-align: center;
+}
+
 .how-it-content {
     text-align: center;
     font-size: 14px;

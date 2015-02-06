@@ -29,9 +29,20 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 col-xs-6">
-                <h6 class="text-center" style="margin-top: 10px;"><span class="lead">$${contribution}</span><br/>ACHIEVED</h6>
-            </div>
+            <g:if test="${isFundingAchieved}">
+				<div class="col-md-6 col-xs-6">
+					<h6 class="text-center" style="margin-top: 10px;">
+						<span class="lead">$${contribution}</span><br />ACHIEVED
+					</h6>
+				</div>
+			</g:if>
+			<g:else>
+			    <div class="col-md-6 col-xs-6">
+					<h6 class="text-center" style="margin-top: 10px;">
+						<span class="lead">$${contribution}</span><br />RAISED
+					</h6>
+				</div>
+			</g:else>
         </div>
     </div>
     <div class="modal-footer tile-footer" style="text-align: left; margin-top: 0; margin-bottom: 2px;">
@@ -40,18 +51,9 @@
                 <h6 class="text-center"><span class="lead">$${amount}</span><br/>GOAL</h6>
             </div>
             <g:if test="${ended}">
-                <g:if test="${isFundingAchieved}">
-                    <!-- Funding achieved in time. -->
-                    <div class="col-md-6 col-xs-6">
-                        <h6 class="text-center"><span class="lead">${dateFormat.format(achievedDate.getTime())}</span><br>ACHIEVED</h6>
-                    </div>
-                </g:if>
-                <g:else>
-                    <!-- Funding not achieved in time. -->
-                    <div class="col-md-6 col-xs-6">
-                        <h6 class="text-center"><span class="lead">${dateFormat.format(endDate.getTime())}</span><br>ENDED</h6>
-                    </div>
-                </g:else>
+                <div class="col-md-6 col-xs-6">
+                    <h6 class="text-center"><span class="lead">0</span><br>DAYS TO GO</h6>
+                </div>
             </g:if>
             <g:else>
                 <!-- Time left till end date. -->

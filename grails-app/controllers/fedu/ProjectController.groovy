@@ -729,7 +729,7 @@ class ProjectController {
 		def fundRaiser = params.fundRaiser
 		User user = User.findByUsername(fundRaiser)
 		Project project = Project.get(params.id)
-		Team team = Team.findByUser(user, project)
+		Team team = Team.findByUserAndProject(user, project)
 		if (team) {
 			TeamComment teamComment = new TeamComment(
 				comment: params.comment,

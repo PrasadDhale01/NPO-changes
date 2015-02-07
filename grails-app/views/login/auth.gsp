@@ -14,7 +14,7 @@
             --%>
             <a class="btn btn-block btn-social btn-facebook"
                href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
-                <i class="fa fa-facebook" style="padding-top: 10px;"></i> Sign in with Facebook
+                <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
             </a>
 
             <hr/>

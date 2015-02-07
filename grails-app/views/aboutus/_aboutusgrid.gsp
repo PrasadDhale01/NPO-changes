@@ -140,7 +140,7 @@
             </div>
         </div>-->
       </div>  
-    <div class="row" style="display:none">
+    <div class="row aboutus">
 	    <h1>Advisors</h1>
 	
 	    <div class="row">

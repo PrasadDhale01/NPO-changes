@@ -83,17 +83,17 @@
                 	<div class="alert alert-success">Receipt has been sent over email to ${user.email}</div>
                 </g:else>
                 <div class="row">
-                        <div class="col-sm-12">
-                            <a class="share-mail pull-right" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail" data-url="${base_url}/projects/${project.id}" data-name="${project.title}">
-                                <img src="${resource(dir: 'images', file: 'mail-share@2x.png')}" style="padding: 0; width:30px; bottom-margin:4px; margin:2px;" alt="Mail Share"/>
+                        <div class="col-sm-12 shared">
+                            <a class="share-mail pull-right social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail" data-url="${base_url}/projects/${project.id}" data-name="${project.title}">
+                                <img src="${resource(dir: 'images', file: 'mail-share@2x.png')}" alt="Mail Share"/>
                             </a>
-                            <a class="twitter-share pull-right" href="https://twitter.com/share?text=Hey check this project at crowdera.co!"  data-url="${base_url}/fund/acknowledge/${project.id}" target="_blank">
-                                <img src="${resource(dir: 'images', file: 'tw-share@2x.png')}" style="padding: 0; width:30px; bottom-margin:4px; margin:2px;" alt="Twitter Share"/>
+                            <a class="twitter-share pull-right social" href="https://twitter.com/share?text=Hey check this project at crowdera.co!"  data-url="${base_url}/fund/acknowledge/${project.id}" target="_blank">
+                                <img src="${resource(dir: 'images', file: 'tw-share@2x.png')}" alt="Twitter Share"/>
                             </a>
-                            <a class="fb-like pull-right" href="http://www.facebook.com/sharer.php?s=100&p[url]=${base_url}/projects/${project.id}&p[title]=${project.title} &p[summary]=${project.story}" data-url="${base_url}/projects/${project.id}" data-share="true">
-                                <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" style="padding: 0; width:30px; bottom-margin:4px; margin:2px;" alt="Facebook Share"/>
+                            <a class="fb-like pull-right social" href="http://www.facebook.com/sharer.php?s=100&p[url]=${base_url}/projects/${project.id}&p[title]=${project.title} &p[summary]=${project.story}" data-url="${base_url}/projects/${project.id}" data-share="true">
+                                <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share"/>
                             </a>
-                            <span style="float:right; margin:5px;"><label>Share this Contribution</label></span>
+                            <span><label>Share this Contribution</label></span>
                         </div>
                         
                         <!-- Modal -->

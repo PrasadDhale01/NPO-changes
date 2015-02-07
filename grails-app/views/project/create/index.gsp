@@ -287,13 +287,13 @@ tinymce.init({
 			        						<span>Choose File</span>
 			        						<input type="file" class="upload" id="iconfile" name="iconfile" accept="image/*">
 		         					    </div>
-										<label  id="logomsg" style="color:red;dispaly:none;" >Please select image file.</label>
+										<label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>
 									</div>
 									<div id="icondiv" class="pr-icon-thumbnail-div col-sm-2">
 									<img id="imgIcon" class="pr-icon-thumbnail"/>
-										<div class="deleteicon">
+										<div class="deleteicon orgicon-css-styles">
 											<img onClick="removeLogo();"
-												id="delIcon" style="margin: 2px; width: 10px; height: 10px;" />
+												id="delIcon"/>
 										</div>
 									</div>
 								</div>
@@ -384,7 +384,7 @@ tinymce.init({
     					<div class="form-group">
       						<label class="col-sm-2 control-label">Pictures</label>
       						<div class="col-sm-4">
-        						<label id="imgmsg" style="color:red;" >Please select image file.</label>
+        						<label class="docfile-orglogo-css" id="imgmsg">Please select image file.</label>
         						<div class="fileUpload btn btn-primary btn-sm">
 	        						<span>Add Images</span>
 	        						<input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]"
@@ -474,14 +474,12 @@ tinymce.init({
 							</div>
 						</div>
 						<div class="row">
-							<div class="col-sm-12" id="updatereward" style="margin-left:-43px;">
-								<div class="col-sm-12" align="right" style="right-padding: 0px">
-									<div class="btn btn-primary btn-circle" id="createreward"
-										style="padding: 3px 6px;">
+							<div class="col-sm-12 perk-css" id="updatereward">
+								<div class="col-sm-12 perk-create-styls" align="right">
+									<div class="btn btn-primary btn-circle perks-css-create" id="createreward">
 										<i class="glyphicon glyphicon-plus"></i>
 									</div>
-									<div class="btn btn-primary btn-circle" id="removereward"
-										style="padding: 3px 6px;">
+									<div class="btn btn-primary btn-circle perks-created-remove" id="removereward">
 										<i class="glyphicon glyphicon-trash"></i>
 									</div>
 								</div>

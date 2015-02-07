@@ -16,8 +16,8 @@
     def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, user)
 %>
 
-<div class="fedu thumbnail grow teamtile" style="padding: 0">
-	<div style="height: 200px; overflow: hidden;" class="blacknwhite">
+<div class="fedu thumbnail grow teamtile teamtile-padding">
+	<div class="blacknwhite teamtile-style">
 	    <g:if test="${!ismanagepage || !isAdminOrBeneficiary}">
 			<g:link controller="project" action="show" id="${project.id}" params="['fundRaiser': username]">
 			    <g:if test="${userImageUrl != null}">
@@ -29,13 +29,13 @@
 				        <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
 	                </div>
 	                <g:if test="${user == project.user}">
-					    <div class="over">
-							<img src="/images/OWNER.png" width="100">
+					    <div class="over teamtile-banner">
+							<img src="/images/OWNER.png">
 						</div>
 					</g:if>
 					<g:else>
-					    <div class="over">
-							<img src="/images/TEAM.png" width="100">
+					    <div class="over teamtile-banner">
+							<img src="/images/TEAM.png">
 						</div>
 					</g:else>
 	            </div>
@@ -53,13 +53,13 @@
 				        <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
 	                </div>
 	                <g:if test="${user == project.user}">
-					    <div class="over">
-							<img src="/images/OWNER.png" width="100">
+					    <div class="over teamtile-banner">
+							<img src="/images/OWNER.png">
 						</div>
 					</g:if>
 					<g:else>
-					    <div class="over">
-							<img src="/images/TEAM.png" width="100">
+					    <div class="over teamtile-banner">
+							<img src="/images/TEAM.png">
 						</div>
 					</g:else>
 	            </div>

@@ -30,12 +30,12 @@
 						<div class="col-md-4">
 							<div class="col-md-6 col-sm-6 col-xs-6">
 								<g:link controller="project" action="updateValidation" id="${project.id}" class="btn-sm btn-primary validatebutton" role="button">
-									<i class="glyphicon glyphicon-check" style="width: 175"></i>&nbsp;Validate
+									<i class="glyphicon glyphicon-check validateshow-validate"></i>&nbsp;Validate
 								</g:link>
 							</div>
 							<div class="col-md-6 col-sm-6 col-xs-6">
 								<g:form action="delete" controller="project" id="${project.id}" method="post">
-									<button class="validatebtn btn-sm btn-danger" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);" style="width: 180">
+									<button class="validatebtn btn-sm btn-danger validateshow-discard" name="_action_delete" value="Delete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);" style="width: 180">
 										<i class="fa fa-trash-o"></i>&nbsp;Discard
 									</button>
 								</g:form>
@@ -45,7 +45,7 @@
 				</div><br/>
 				<div class="row">
 					<div class="col-md-8">
-						<ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
+						<ul class="nav nav-tabs nav-justified validateshow-details-story">
 							<li class="active"><a href="#essentials" data-toggle="tab">
 									<span class="fa fa-leaf"></span><span class="tab-text"> Story</span>
 							</a></li>

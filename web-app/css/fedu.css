@@ -2257,3 +2257,273 @@ a.footerlink {
 #orgediticonfile {
     display:none;
 }
+.aboutus{
+	display:none;
+}
+.social img {
+	padding: 0; 
+	width: 30px; 
+	bottom-margin: 4px; 
+	margin: 2px;
+}
+.shared span{
+	float: right; 
+	margin: 5px;
+}
+.clear-both{
+	clear: both;
+}
+.center-fund{
+	align: center;
+}
+.paypal-secured-image img{
+	width: 245px; 
+	height: 60px;
+}
+.hand-image-non img{
+	display:none;
+}
+.img-footer img{
+	width: 193px;
+}
+.foot {
+	display:none;
+}
+.socialicon img{
+	width: 49px;
+}
+.banner-wid img{
+	width: 100px;
+}
+.tile-raised{
+	margin-top: 10px;
+}
+.tile-pad{
+	padding: 0;
+}
+.tile-title-descrp{
+	margin-bottom: 0;
+}
+.achived-styles{
+	margin-top: 10px;
+}
+.tile-footer-goal{
+	text-align: left; 
+	margin-top: 0;
+}
+.tile-fonts-footer{
+	text-align: left; 
+	margin-bottom: 2px;
+}
+.tilesanstitle-achived-ended{
+	padding: 0; 
+	margin-top: 30px;
+}
+.tilesanstitle-raised{
+	margin-top: 10px;
+}
+.tilesanstitle-footered{
+	text-align: left; 
+	margin-top: 0px; 
+	margin-bottom: 2px;
+}
+.tilesanstitle-achived{
+	margin-top: 10px;
+}
+.tileanstitle-goals{
+	text-align: left; 
+	margin-top: 0; 
+	margin-bottom: 2px;
+}
+.login-adminviews{
+	width: 180px;
+}
+.fa-facebook-styles{
+	padding-top: 10px;
+}
+.css-style-color{
+	color: red;
+}
+.privacy-policy-css-color{
+	color:  #006400;
+}
+.docfile-orglogo-css{
+	color: red;
+	dispaly: none;
+}
+.orgicon-css-styles img{
+	margin: 2px; 
+	width: 10px; 
+	height: 10px;
+}
+.perk-css{
+	margin-left:-43px;
+}
+.perk-create-styls{
+	right-padding: 0px
+}
+.perks-css-create{
+	padding: 3px 6px;
+}
+.perks-created-remove{
+	padding: 3px 6px;
+}
+.edit-logo-icon{
+	display: none;
+}
+.edit-delete img{
+	margin: 2px;
+	width: 10px;
+	height: 10px;
+	display: none;
+}
+.pictures-edit-deleteicon img{
+	margin: 2px;
+	width: 10px;
+	height: 10px;
+}
+.edits-video{
+	width:200px;
+	height:100px; 
+	display:block;
+}
+.manage-comments{
+	margin-top: 30px;
+}
+.manage-comments-footer{
+	text-align: left;
+}
+.essen-story{
+	margin-top: 30px;
+}
+.manage-carousel{
+	display: none;
+}
+.manage-carousel-in{
+	overflow: hidden;
+}
+.team-comments-css{
+	margin-top: 30px;
+}
+.teamtile-padding{
+	padding: 0;
+}
+.teamtile-style{
+	height: 200px; 
+	overflow: hidden;
+}
+.teamtile-banner img{
+	width: 100px;
+}
+.managedetails-edit{
+	padding: 0; 
+	margin-top: 10px;
+}
+.managedetails-footer{
+	text-align: left; 
+	margin-top: 0px; 
+	margin-bottom: 2px;
+}
+.managedetails-achived-raised{
+	margin-top: 10px;
+}
+.managedetails-goal{
+	text-align: left; 
+	margin-top: 0px; 
+	margin-bottom: 2px;
+}
+.managedetails-nine-nine{
+	text-align: left; 
+	margin-top: 0;
+}
+.show-comments-details{
+	margin-top: 30px;
+}
+.show-comments-date{
+	text-align: left;
+}
+.perks-style{
+	text-align: left;
+	margin-top: 30px;
+}
+.perks-supporters{
+	text-align: left; 
+	margin-top:2px;
+}
+.show-team-comments{
+	margin-top: 30px;
+}
+.show-team-footer{
+	text-align: left;
+}
+.show-marginbottoms{
+	margin-bottom: 10px;
+}
+.show-msz{
+	align: center;
+}
+.show-update-select{
+	color: red;
+}
+.validate-paddings{
+	padding: 0px;
+}
+.validate-style{
+	height: 200px; 
+	overflow: hidden;
+}
+.validate-percentage-style{
+	text-align: left; 
+	margin-bottom: 2px;
+}
+.validate-achived-raised{
+	margin-top: 10px;
+}
+.validate-goal{
+	text-align: left; 
+	margin-top: 0;
+}
+.validateshow-validate{
+	width: 175;
+}
+.validateshow-discard{
+	width: 180;
+}
+.validateshow-details-story{
+	margin-bottom: 10px;
+}
+.termofuse-style{
+	color:  #006400;
+}
+.setting-user-contributions{
+	max-width: 300px; 
+	margin: 0 auto;
+}
+.user-tiles-style{
+	padding: 0;
+}
+.user-tiles-widths img{
+	width: 100px;
+}
+.user-footer-percentage{
+	text-align: left; 
+	margin-bottom: 2px;
+}
+.user-achived-raised {
+	margin-top: 10px;
+}
+.user-goal{
+	text-align: left; 
+	margin-top: 0;
+}
+.user-footer-icon{
+	text-align: left; 
+	margin-top: 0;
+}
+.user-icon-edit{
+	right-padding: 0px;
+	align: right;
+}
+.user-dashboard-style{
+	margin-bottom: 10px;
+}

@@ -4,7 +4,7 @@
 <%
     boolean isFundingOpen = projectService.isFundingOpen(project)
 %>
-<div class="modal-footer tile-footer" style="text-align: left; margin-top: 30px;">
+<div class="modal-footer tile-footer perks-style">
     <g:if test="${isFundingOpen}">
         <h2 class="rewardsectionheading">Perks</h2>
     </g:if>
@@ -12,7 +12,7 @@
         <h2 class="rewardsectionheading">Funding closed</h2>
     </g:else>
 </div>
-<div class="modal-footer tile-footer" style="text-align: left; margin-top:2px;">
+<div class="modal-footer tile-footer perks-supporters">
     <div class="rewardsection">
         <g:each in="${project.rewards}" var="reward">
             <%

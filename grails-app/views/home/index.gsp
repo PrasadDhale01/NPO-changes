@@ -19,7 +19,7 @@
     <div class="greycolorbg"> 
     <g:render template="projects"></g:render>
     </div>
-    <div style="display:none" class="full-image"><img src="images/mobile-image.jpg" /></div>
+    <div class="full-image hand-image-non"><img src="images/mobile-image.jpg" /></div>
     
 <!--
 <div class="news">

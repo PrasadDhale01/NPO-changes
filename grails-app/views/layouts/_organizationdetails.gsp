@@ -39,34 +39,34 @@
         </div> 
         <div class="clear"></div>
         <g:if test="${project.draft}">
-            <div class="tilesanstitletag">
-                <img src="/images/DRAFT1.png" width="100">
+            <div class="tilesanstitletag banner-wid">
+                <img src="/images/DRAFT1.png">
             </div>
 	    </g:if>
 	    <g:elseif test="${project.rejected}">
-	        <div class="tilesanstitletag">
-	            <img src="/images/Rejected1.png" width="100">
+	        <div class="tilesanstitletag  banner-wid">
+	            <img src="/images/Rejected1.png">
 	        </div>
 	    </g:elseif>
         <g:elseif test="${!project.validated}">
-	        <div class="tilesanstitletag">
-	            <img src="/images/PENDING1.png" width="100">
+	        <div class="tilesanstitletag  banner-wid">
+	            <img src="/images/PENDING1.png">
 	        </div>
 	    </g:elseif>
 	    <g:elseif test="${ended}">
-	        <div class="tilesanstitletag">
-	            <img src="/images/ended1.png" width="100">
+	        <div class="tilesanstitletag  banner-wid">
+	            <img src="/images/ended1.png">
 	        </div>
 	    </g:elseif>
 	    <g:elseif test="${isteamexist}">
 	        <g:if test="${currentUser == beneficiary}">
-	            <div class="tilesanstitletag">
-					<img src="/images/Owner-Bottom.png" width="100">
+	            <div class="tilesanstitletag  banner-wid">
+					<img src="/images/Owner-Bottom.png">
 				</div>
 	        </g:if>
 	        <g:else>
-	            <div class="tilesanstitletag">
-					<img src="/images/Team-Bottom.png" width="100">
+	            <div class="tilesanstitletag  banner-wid">
+					<img src="/images/Team-Bottom.png">
 				</div>
 	        </g:else>
 	    </g:elseif>

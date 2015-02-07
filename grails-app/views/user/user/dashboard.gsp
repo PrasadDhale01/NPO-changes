@@ -20,7 +20,7 @@
         </g:if>
         <div class="row">
             <div class="col-md-12">
-                <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
+                <ul class="nav nav-tabs nav-justified user-dashboard-style">
                     <li class="active"><a href="#myprojects" data-toggle="tab">
                         <span class="glyphicon glyphicon-leaf"></span> My Campaigns
                     </a></li>

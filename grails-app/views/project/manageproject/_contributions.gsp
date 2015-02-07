@@ -16,7 +16,7 @@
             def reward = contribution.reward
         %>
         
-        <div class="modal-body tile-footer" style="text-align: left;">
+        <div class="modal-body tile-footer manage-comments-footer">
 	        <b>$${contribution.amount}</b>
 	        <g:if test="${isFacebookUser}">
 	            <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>

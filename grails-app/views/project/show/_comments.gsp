@@ -21,7 +21,7 @@
 </sec:ifNotLoggedIn>
 
 <g:if test="${!project.comments.empty}">
-    <div class="panel panel-default" style="margin-top: 30px;">
+    <div class="panel panel-default show-comments-details">
         <div class="panel-heading">
             <h3 class="panel-title">Project Comments</h3>
         </div>
@@ -33,7 +33,7 @@
 		            %>
                     
                     <g:if test="${!comment.status}">
-                        <div class="modal-body tile-footer" style="text-align: left;">
+                        <div class="modal-body tile-footer show-comments-date">
 				            <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
 				            <dd>${comment.comment}</dd>
 			            </div>

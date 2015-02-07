@@ -17,7 +17,7 @@
     </g:form>
 	<g:if test="${team.comments}">
 		<g:if test="${!team.comments.empty}">
-		    <div class="panel panel-default" style="margin-top: 30px;">
+		    <div class="panel panel-default team-comments-css">
 		        <div class="panel-heading">
 		            <h3 class="panel-title">Team Comments</h3>
 		        </div>
@@ -27,7 +27,7 @@
 				            <%
 				                def date = dateFormat.format(comment.date)
 				            %>
-				            <div class="modal-body tile-footer" style="text-align: left;">
+				            <div class="modal-body tile-footer manage-comments-footer">
 					            <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
 					            <dd>${comment.comment}</dd>
 				            </div>

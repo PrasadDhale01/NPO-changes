@@ -28,7 +28,7 @@
                             <i class="glyphicon glyphicon-time"></i> on ${dateFormat.format(contribution.date)}, towards
                         </small></p>
                     </div>
-                    <div class="timeline-body" style="max-width: 300px; margin: 0 auto;">
+                    <div class="timeline-body setting-user-contributions">
                         <g:render template="/layouts/tile" model="['project': contribution.project]"></g:render>
                     </div>
                 </div>

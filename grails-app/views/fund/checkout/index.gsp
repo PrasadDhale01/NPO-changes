@@ -57,15 +57,15 @@
 						    <div class="leftcard-column">
 						        <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
                         		<input type="text" class="card-number form-control" placeholder="Card Number" data-stripe="number" name="ccNumber">
-						        <div style="clear:both"></div>
+						        <div class="clear-both"></div>
 						    </div>
 						    <div class="rightcard-column">
 						        <span class="input-group-addon card-details"><span class="glyphicon glyphicon-credit-card"></span> </span>
                         		<g:select class="selectpicker card-number" name="ccType" id="ccType"
                            			from="${cardTypes}" optionKey="key" optionValue="value"/>
-                           		<div style="clear:both"></div>
+                           		<div class="clear-both"></div>
 						    </div>
-						    <div style="clear:both"></div>
+						    <div class="clear-both"></div>
                      	</div>
                         <div class="clear"></div>
                      	<div class="form-group">
@@ -225,7 +225,7 @@
                         <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse">By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
                     </label>
                 </div>
-                <div align="center">
+                <div class="center-fund">
                 	<button type="submit" class="btn btn-primary btn-block btn-lg" name="fund-button" id="paypalsubmitbutton">Fund this Campaign</button>
                 </div>
                 <div class="powerdby">

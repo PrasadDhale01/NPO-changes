@@ -75,7 +75,7 @@
 				<span class="navbar-brand-footer"><img src="/images/icon-4.jpg"></span>
 				<p class="how-it-content">Find creative ways to say thank you to your supporters! It’s a great way to show your gratitude and celebrate the impact your crowd has made on the world. Need help? Visit our <a href="http://crowdera.tumblr.com/">blog</a> for inspiration.</p>
 			</div>
-			<div style="clear:both"></div>
+			<div class="clear-both"></div>
 		</div>
 	</div>
 </div>

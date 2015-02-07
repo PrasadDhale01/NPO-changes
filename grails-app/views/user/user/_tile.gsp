@@ -21,7 +21,7 @@
     
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
-<div class="fedu thumbnail grow" style="padding: 0">
+<div class="fedu thumbnail grow user-tiles-style">
 	<div class="blacknwhite tile">
 	    <g:if test="${iscampaignAdmin}">
 			<g:link controller="project" action="manageproject" id="${project.id}"
@@ -31,23 +31,23 @@
 						<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
 					</div>
 					<g:if test="${project.draft}">
-						<div class="over">
-							<img src="/images/draft.png" width="100">
+						<div class="over user-tiles-widths">
+							<img src="/images/draft.png">
 						</div>
 					</g:if>
 					<g:elseif test="${project.rejected}">
-						<div class="over">
-							<img src="/images/rejected.png" width="100">
+						<div class="over user-tiles-widths">
+							<img src="/images/rejected.png">
 						</div>
 					</g:elseif>
 					<g:elseif test="${!project.validated}">
-						<div class="over">
-							<img src="/images/PENDING.png" width="100">
+						<div class="over user-tiles-widths">
+							<img src="/images/PENDING.png">
 						</div>
 					</g:elseif>
 					<g:elseif test="${ended}">
-					    <div class="over">
-							<img src="/images/ended.png" width="100">
+					    <div class="over user-tiles-widths">
+							<img src="/images/ended.png">
 						</div>
 					</g:elseif>
 				</div>
@@ -60,23 +60,23 @@
 						<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
 					</div>
 					<g:if test="${project.draft}">
-						<div class="over">
-							<img src="/images/draft.png" width="100">
+						<div class="over user-tiles-widths">
+							<img src="/images/draft.png">
 						</div>
 					</g:if>
 					<g:elseif test="${project.rejected}">
-						<div class="over">
-							<img src="/images/rejected.png" width="100">
+						<div class="over user-tiles-widths">
+							<img src="/images/rejected.png">
 						</div>
 					</g:elseif>
 					<g:elseif test="${!project.validated}">
-						<div class="over">
-							<img src="/images/PENDING.png" width="100">
+						<div class="over user-tiles-widths">
+							<img src="/images/PENDING.png">
 						</div>
 					</g:elseif>
 					<g:elseif test="${ended}">
-					    <div class="over">
-							<img src="/images/ended.png" width="100">
+					    <div class="over user-tiles-widths">
+							<img src="/images/ended.png">
 						</div>
 					</g:elseif>
 				</div>
@@ -111,21 +111,21 @@
 			</div>
 			<g:if test="${isFundingAchieved}">
 				<div class="col-md-6 col-xs-6">
-					<h6 class="text-center" style="margin-top: 10px;">
+					<h6 class="text-center user-achived-raised">
 						<span class="lead">$${contribution}</span><br />ACHIEVED
 					</h6>
 				</div>
 			</g:if>
 			<g:else>
 			    <div class="col-md-6 col-xs-6">
-					<h6 class="text-center" style="margin-top: 10px;">
+					<h6 class="text-center user-achived-raised">
 						<span class="lead">$${contribution}</span><br />RAISED
 					</h6>
 				</div>
 			</g:else>
 		</div>
 	</div>
-	<div class="modal-footer tile-footer" style="text-align: left; margin-top: 0;">
+	<div class="modal-footer tile-footer user-goal">
 		<div class="row">
 			<div class="col-md-6 col-xs-6">
                 <h6 class="text-center"><span class="lead">$${amount}</span><br/>GOAL</h6>
@@ -155,9 +155,9 @@
             </g:else>
 		</div>
 
-		<div class="modal-footer tile-footer" style="text-align: left; margin-top: 0;">
+		<div class="modal-footer tile-footer user-footer-icon">
 			<div class="row">
-				<div class="col-sm-8" align="right" style="right-padding: 0px">
+				<div class="col-sm-8 user-icon-edit">
 					<g:form controller="project" action="edit" method="post" id="${project.id}">
 						<g:hiddenField name="projectId" value="${project.id}" />
 						<button class="projectedit close " aria-label="Edit project" id="editproject">

@@ -7,7 +7,7 @@
 <meta property="og:type" content="website" />
 
 <meta name="layout" content="main" />
-<r:require modules="homejs"/>
+<r:require modules="homejs, registrationjs"/>
 </head>
 <body>
     <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
@@ -19,7 +19,7 @@
     <div class="greycolorbg"> 
     <g:render template="projects"></g:render>
     </div>
-    <div style="display:none" class="full-image"><img src="images/hand-image.jpg" /></div>
+    <div style="display:none" class="full-image"><img src="images/mobile-image.jpg" /></div>
     
 <!--
 <div class="news">
@@ -62,7 +62,7 @@
 </div>
 -->
 
-<div class="full-image2"><img src="images/hand-image.jpg" /></div>
+<div class="full-image2"><img src="images/mobile-image.jpg" /></div>
 
 <div class="container">
 	<div class="row featured-non-profits">

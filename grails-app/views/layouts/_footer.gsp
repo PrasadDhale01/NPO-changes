@@ -10,7 +10,8 @@
 		           <a href="${resource(dir: '/projects')}" >Explore</a><br>
 		           <a href="${resource(dir: '/projects/create')}">Start a Campaign</a><br>
 		           <a href="${resource(dir: '/howitworks')}">How it works</a><br>
-		           <a href="mailto:info@crowdera.co">Contact</a>
+		           <a href="mailto:info@crowdera.co">Contact</a><br>
+		           <a href="https://crowdera.co/blog/">Blog</a>
 	     	   </div>
 			   <div class="footerbottomsection">
 				   <a href="https://crowdera.co/dev2/privacy-policy" class="footerlink">Privacy Policy</a>
@@ -36,8 +37,7 @@
 					<a href="https://twitter.com/CrowderaInc"><img class="twittersocialicon" width="49px" src="/images/s3.png"></a>
 				    <a href="https://www.facebook.com/crowderainc?ref=hl"><img class="facebooklink" width="49px" src="/images/s2.png"></a>
 				    <a href="http://instagram.com/crowderacrew"><img class="insta" width="49px" src="/images/s5.png"></a>
-					<a href="#"><img class="blog" width="49px" src="/images/s1.png"></a>
-					<a href="#"><img class="inlink" width="49px" src="/images/s4.png"></a>
+					<a href="https://www.linkedin.com/company/fedu"><img class="inlink" width="49px" src="/images/s4.png"></a>
 	        	</div>
          	</div>
          </div> 

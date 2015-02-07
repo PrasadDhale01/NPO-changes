@@ -207,16 +207,16 @@
                                 <div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
                                         <g:if test="${project.organizationIconUrl}">
                                             <img id="imgIcon" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
-                                            <div class="deleteicon">
+                                            <div class="deleteicon orgicon-css-styles">
                                                 <img onClick="deleteOrganizationLogo(this,'${project.id}');"
-                                                src="/images/delete.ico" id="logoDelete" style="margin:2px;width:10px;height:10px;" />
+                                                src="/images/delete.ico" id="logoDelete"/>
                                             </div>
                                         </g:if>
                                         <g:else>
-                                            <img id="imgIcon" class="pr-icon-thumbnail" style="display:none;" />
-                                            <div class="deleteicon">
+                                            <img id="imgIcon" class="pr-icon-thumbnail edit-logo-icon"/>
+                                            <div class="deleteicon edit-delete">
                                                  <img onClick="deleteOrganizationLogo(this,'${project.id}');"
-                                                 id="logoDelete" style="margin:2px;width:10px;height:10px;display:none;" />
+                                                 id="logoDelete"/>
                                             </div>
                                         </g:else>
                                 </div>
@@ -371,9 +371,9 @@
                                 <g:each var="imgurl" in="${project.imageUrl}">
                                     <div id="imgdiv" class="pr-thumb-div">
                                         <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}"/>
-                                        <div class="deleteicon">
+                                        <div class="deleteicon pictures-edit-deleteicon">
                                             <img onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}'
-                                            src="/images/delete.ico" id="imageDelete" style="margin:2px;width:10px;height:10px;" />
+                                            src="/images/delete.ico" id="imageDelete"/>
                                         </div>
                                     </div> 
                                 </g:each>
@@ -402,7 +402,7 @@
                         <div class="col-sm-4">
                             <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}">
                         </div>
-                        <iframe id="ytVideo" style="width:200px;height:100px; display:block;" src="${project.videoUrl}"></iframe>
+                        <iframe class="edits-video" id="ytVideo" src="${project.videoUrl}"></iframe>
                     </div>
                 </div>
             </div>

@@ -50,7 +50,7 @@
 		<g:if test="${project}">
             <div class="row">
              	<g:if test="${flash.prj_mngprj_message}">
-                    <div class="alert alert-success" align="center">
+                    <div class="alert alert-success show-msz">
                         ${flash.prj_mngprj_message}
                     </div>
                 </g:if>
@@ -83,7 +83,7 @@
                 <div class="col-md-8">
 <%--                    <h4 class="lead">Beneficiary: ${projectService.getBeneficiaryName(project)}</h4>--%>
                
-                    <ul class="nav nav-tabs nav-justified" style="margin-bottom: 10px;">
+                    <ul class="nav nav-tabs nav-justified show-marginbottoms">
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span><span class="tab-text"> Story</span>
                         </a></li>

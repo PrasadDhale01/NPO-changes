@@ -39,7 +39,7 @@
 	                        <div class="col-sm-2">
 	                            <button class="btn btn-primary btn-sm" type="button" id="addProjectImage">Add Image&nbsp;<span class="fa fa-plus-circle"></span></button>
 	                            <input type="file" class="hidden" name="${FORMCONSTANTS.THUMBNAIL}[]" id="updateImageFile" multiple="multiple" accept="image/*">
-	                            <label id="imgupdatemsg" style="color:red;" >Select image file.</label>
+	                            <label class="show-update-select" id="imgupdatemsg">Select image file.</label>
 	                        </div>
 	                        <div class="col-sm-8">
 							    <output id="result"></output>

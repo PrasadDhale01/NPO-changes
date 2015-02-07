@@ -27,11 +27,11 @@
 								</div>
 							</div>
 						</div>
-						<div >
+						<div>
 							<button class="btn btn-primary btn-lg" name="fund-button">Fund this Campaign</button>
 						</div>
-						<div>
-						    <br><img src="/images/paypal-secured.jpg" width="245 px" height="60 px"/>
+						<div class="paypal-secured-image">
+						    <br><img src="/images/paypal-secured.jpg"/>
 						</div>
 					</div>
 					<span class="payment-errors"></span>

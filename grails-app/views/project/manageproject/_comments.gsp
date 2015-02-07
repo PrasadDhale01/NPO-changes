@@ -4,7 +4,7 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 <g:if test="${!project.comments.empty}">
-    <div class="panel panel-default" style="margin-top: 30px;">
+    <div class="panel panel-default manage-comments">
         <div class="panel-heading">
             <h3 class="panel-title">Project Comments</h3>
         </div>
@@ -12,7 +12,7 @@
             <div class="list-group" id="uniqueId">
                 <g:set var="i" value="1"></g:set>
                 <g:each in="${project.comments.reverse()}" var="comment">
-                    <div class="modal-body tile-footer" style="text-align: left;">
+                    <div class="modal-body tile-footer manage-comments-footer">
                         <%
                             def date = dateFormat.format(comment.date)
                         %>

@@ -180,7 +180,28 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     padding: 7px 16px !important;
     width:166px;
 }
-
+.girlSlider.desktop > a > img{
+  padding: 2px;
+  text-decoration: none;
+  float:left;
+  margin-left:105px;
+  margin-bottom:20px;
+    
+}
+.kidSlider.mobile > a > img{
+        display:none;
+    }
+.kidSlider.desktop > a > img{
+  display:block;
+  padding: 2px;
+  text-decoration: none;
+  float:left;
+  margin-left:15px;
+  margin-bottom:60px;
+}
+.girlSlider.mobile > a > img{
+    display:none;   
+}
 .nav > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
@@ -1646,6 +1667,33 @@ textarea.form-control {
 	}
 }
 @media only screen and (max-width: 480px){
+    .girlSlider.desktop > a > img{
+       display:none;
+    }
+    .kidSlider.desktop > a > img{
+        display:none;
+    }
+    .girlSlider.mobile > a > img{
+        display:block;
+        padding: 2px;
+        text-decoration: none;
+        float:left;
+        margin-left:40px;
+        margin-bottom:-2px;
+        height:30px;
+        widtht:30px;
+    }
+        
+    .kidSlider.mobile > a > img{
+        display:block;
+        padding: 2px;
+        text-decoration: none;
+        float:left;
+        margin-left:21px;;
+        margin-bottom:21px;;
+        height:30px;
+        widtht:30px;        
+    }
 	.desktop-carousel {
 		display:none;
 	}

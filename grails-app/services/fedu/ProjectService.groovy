@@ -953,6 +953,17 @@ class ProjectService {
             }
         }
     }
+    
+    def getCustomerRequest(def params) {
+        CustomerService service = new CustomerService()
+        service.category = params.customerType
+        service.customername = params.firstAndLastName
+        service.description = params.helpDescription
+        service.email = params.emailAddress
+        service.subject = params.subject
+
+        service.save(failOnError: true)
+    }
 
     @Transactional
     def bootstrap() {

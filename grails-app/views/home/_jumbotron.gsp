@@ -1,4 +1,5 @@
 <g:set var="redirectToCreatePage" value="${redirectFromUrl}/projects/create"/>
+<%  def base_url = grailsApplication.config.crowdera.BASE_URL %>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <div id="indicators" style="display:none;">
@@ -12,14 +13,16 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img src="/images/Slider1.jpg" usemap="#mymap">
-            <map name="mymap">
-  				<area  shape="rect" coords="240,213,478,258" alt="Slide-3" href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
- 			</map>
-            <div class="carousel-caption imageCarouseltextbox imageCoureselFormGroup">
+            <img src="/images/Slider1.jpg">
+            <div class="carousel-caption">
+                <div class="fbButton">
+                    <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}"><img src="/images/fbButton.jpg" class="btn btn-fb"></a>
+                </div>
+            </div>
+            <div class="carousel-caption imageCarouseltextbox">
                 <g:form class="form-signin" controller="login" action="create" role="form">
                     <div class="imageCarousellabel"> 
-                        <input type="name" name="name" class="imageCoureselForm" placeholder="First & Last Name" autofocus>
+                        <input type="name" name="name" class="imageCoureselForm" placeholder="First & Last Name">
                         <input type="email" name="username" class="imageCoureselForm" placeholder="Email address">
             			<input type="password" id="password" name="password" class="imageCoureselForm" placeholder="Password *">
                			<input type="password" name="confirmPassword" class="imageCoureselForm" placeholder="Confirm Password *">
@@ -29,18 +32,16 @@
         	</div>
         </div>
         <div class="item">
-            <img src="/images/GirlSlider.jpg" >
+            <img src="/images/girlComputerSlider.jpg" >
             <div class="carousel-caption">
-            <div class="girlSlider desktop"><a href="http://localhost:8080/projects/create"><img src="/images/createButton.png"></img></a></div>
-            <div class="girlSlider mobile"><a href="http://localhost:8080/projects/create"><img src="/images/createButton.png"></img></a></div>
+                <div class="girlSlider"><a href="${base_url}/projects/create"><img src="/images/createButton.jpg"></img></a></div>
             </div>
         </div>
         <div class="item">
-            <img src="/images/KidsSlider.jpg" >
+            <img src="/images/kidsRunningSlider.jpg" >
             <div class="carousel-caption">
-            <div class="kidSlider desktop"><a href="http://localhost:8080/projects/create"><img src="/images/createButton.png"></img></a></div>
-            <div class="kidSlider mobile"><a href="http://localhost:8080/projects/create"><img src="/images/createButton.png"></img></a></div>
-            </div>
+            <div class="kidSlider"><a href="${base_url}/projects/create"><img src="/images/createButton.jpg"></img></a></div>
+        </div>
         </div>
         <div class="item">
             <img src="/images/Playgrounds.jpg" >

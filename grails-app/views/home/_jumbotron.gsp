@@ -1,4 +1,5 @@
 <g:set var="redirectToCreatePage" value="${redirectFromUrl}/projects/create"/>
+<%  def base_url = grailsApplication.config.crowdera.BASE_URL %>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <div id="indicators" style="display:none;">
@@ -33,13 +34,13 @@
         <div class="item">
             <img src="/images/girlComputerSlider.jpg" >
             <div class="carousel-caption">
-                <div class="girlSlider"><a href="http://localhost:8080/projects/create"><img src="/images/createButton.jpg"></img></a></div>
+                <div class="girlSlider"><a href="${base_url}/projects/create"><img src="/images/createButton.jpg"></img></a></div>
             </div>
         </div>
         <div class="item">
             <img src="/images/kidsRunningSlider.jpg" >
             <div class="carousel-caption">
-            <div class="kidSlider"><a href="http://localhost:8080/projects/create"><img src="/images/createButton.jpg"></img></a></div>
+            <div class="kidSlider"><a href="${base_url}/projects/create"><img src="/images/createButton.jpg"></img></a></div>
         </div>
         </div>
         <div class="item">

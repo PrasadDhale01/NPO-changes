@@ -114,4 +114,17 @@ class UserController {
             render (view: 'user/usererror')
         }
     }
+    
+    @Secured(['ROLE_ADMIN'])
+    def userquestionsList() {
+        def services = userService.getCustomerServiceList()
+        render view: '/user/userquestions/index', model: [services: services]
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def response() {
+        def services = userService.sendResponseToCustomer(params)
+        flash.servicemessage = "Successfully Responded"
+        redirect action:'userquestionsList'
+    }
 }

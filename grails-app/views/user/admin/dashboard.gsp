@@ -132,6 +132,18 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <i class="fa fa-user"></i> Manage User Questions
+                    </div>
+                    <div class="panel-footer">
+                        <g:link controller="user" action="userquestionsList">
+                            <button class="btn btn-block btn-primary"><i class="fa fa-user"></i> Manage User Questions</button>
+                        </g:link>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

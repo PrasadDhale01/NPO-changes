@@ -13,4 +13,9 @@ class HomeController {
 			return [projects: projects]
 		}
     }
+    
+    def crowderacustomerhelp() {
+        projectService.getCustomerRequest(params)
+        redirect action: 'index'
+    }
 }

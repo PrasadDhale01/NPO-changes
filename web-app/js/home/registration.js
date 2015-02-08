@@ -27,6 +27,9 @@ $(function() {
             	minlength: 2,
                 required: true
             }
+        },
+        errorPlacement: function(error, element) {
+            error.appendTo(element.parent());
         }
     });
      $.validator.addMethod('isEqualToPassword', function (value, element) {

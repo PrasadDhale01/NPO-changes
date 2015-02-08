@@ -10,7 +10,7 @@
 		           <a href="${resource(dir: '/projects')}" >Explore</a><br>
 		           <a href="${resource(dir: '/projects/create')}">Start a Campaign</a><br>
 		           <a href="${resource(dir: '/howitworks')}">How it works</a><br>
-		           <a href="mailto:info@crowdera.co">Contact</a><br>
+		           <a href="${resource(dir: '/customer-service')}">Contact Us</a><br>
 		           <a href="https://crowdera.co/blog/">Blog</a>
 	     	   </div>
 			   <div class="footerbottomsection">

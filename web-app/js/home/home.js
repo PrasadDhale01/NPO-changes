@@ -1,4 +1,27 @@
 $(function() {
+	$('.selectpicker').selectpicker({
+        style: 'btn btn-sm btn-default'
+    });
+	
+	$('#contactUs').find('form').validate({
+        rules: {
+        	subject: {
+        		required: true,
+                minlength: 5
+            },
+            helpDescription: {
+                required: true,
+                minlength: 10
+            },
+            firstAndLastName: {
+                required: true
+            },
+            emailAddress: {
+            	required: true,
+            	email: true
+            }
+        }
+    });
 });
 
 $(window).load(function() {

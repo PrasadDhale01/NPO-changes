@@ -26,6 +26,9 @@ class UrlMappings {
 
         /* FAQ */
         "/faq"(view:'/faq/index')
+        
+        /* Contact Us */
+        "/customer-service"(view:'/contactus/index')
 
         /* Blogs */
         "/blogs"(controller:'blog', action:'list')

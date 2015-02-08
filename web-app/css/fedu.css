@@ -164,7 +164,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 .dropdown-menu > li > a:focus {
     color: #ffffff;
     text-decoration: none;
-    background-color: #66CCFF; /* change color of links in drop down here */
+    background-color: #ff784f; /* change color of links in drop down here */
 }
 
 .nav > li > a {
@@ -2574,4 +2574,17 @@ a.footerlink {
 }
 .user-dashboard-style{
 	margin-bottom: 10px;
+}
+.contactUs .panel {
+    background-color: #f5f5f5 !important;
+}
+.contactparagraph {
+	font-size: 11px;
+	display: inline-block;
+    font-weight: normal;
+    margin-top: 5px;
+}
+.crowderasupport{
+	margin-top: 5px;
+	margin-bottom: 20px;
 }

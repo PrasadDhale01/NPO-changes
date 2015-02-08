@@ -213,6 +213,16 @@ class UserService {
 		return team
 	}
     
+    def getCustomerServiceList() {
+        def service = CustomerService.list();
+        return service.reverse()
+    }
+    
+    def sendResponseToCustomer(def params) {
+        def service = CustomerService.get(params.id);
+        service.status = true
+    }
+    
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

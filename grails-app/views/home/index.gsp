@@ -17,9 +17,10 @@
     
     <g:render template="ace"></g:render>
     <div class="greycolorbg"> 
-    <g:render template="projects"></g:render>
+    	<g:render template="projects"></g:render>
     </div>
-    <div class="full-image hand-image-non"><img src="images/mobile-image.jpg" /></div>
+   <center><a href="${resource(dir: '/projects')}" class="btn btn-explore">Explore</a></center><br>
+    <div class="full-image hand-image-non"><img src="images/mobile-image.jpg"></div>
     
 <!--
 <div class="news">

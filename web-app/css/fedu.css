@@ -291,6 +291,28 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 
 /*----------------------- End Image courasel new slider and button -------------------------------------- */
 
+.btn-explore{
+	  background-color: #393333;
+  	  border-color: black;
+  	  color: white;
+      padding: 0px;
+      display: block;
+      margin-top: 32px;
+      margin-bottom: 16px;
+      width: 226px;
+      height: 51px;
+      font-size: 25px;
+      padding-top: 5px;
+}
+
+.btn-explore:hover,
+.active .btn-explore:hover,
+.btn-explore:focus {
+	border-color: #FF7F50;
+   	background-color: #FF7F50;
+   	color: white;
+}
+
 .navbar-default .navbar-nav > li > a {
     color: #000; /* Change active text color here */
 }

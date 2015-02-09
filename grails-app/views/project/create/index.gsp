@@ -57,7 +57,7 @@ tinymce.init({
 	<div class="feducontent">
 		<div class="container">
 			<h1>
-				<span class="glyphicon glyphicon-leaf"></span> Create Campaign
+				<img class="img-circle" src="/images/icon-create.png" alt="Generic placeholder image">Create Campaign
 			</h1>
 
 			<g:uploadForm class="form-horizontal" controller="project"

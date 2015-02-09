@@ -196,18 +196,19 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
   width: 560px;
   margin-left: 1px;
   margin-top: -96px;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .btn-image {
   background-color:#FF7F50;
-  border-color: #ccc;
+  border-color: #FF7F50;
   width:86.38px;
   height:30.2px;
   padding:0px;
 }
 
 .fbButton{
-  margin-left: -438px;
+  margin-left: -544px;
   margin-top: -115px;
 }
 
@@ -261,15 +262,26 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
   margin-bottom: 6px;
 }
 
-.kidSlider > a > img{
-  display:block;
-  padding: 2px;
-  text-decoration: none;
-  float:left;
-  margin-left: 539px;
-  margin-bottom: 14px;
-  width: 181px;
-  height: 51px;
+.btn-create {
+    background-color: white;
+  	border-color: white;
+  	color: black;
+  	padding: 0px;
+ 	display: block;
+  	float: left;
+  	margin-left: 539px;
+  	margin-bottom: 14px;
+  	width: 181px;
+  	height: 51px;
+  	font-size: 22px;
+}
+	
+.btn-create:hover,
+.active .btn-create:hover,
+.btn-create:focus {
+	border-color: #FF7F50;
+   	background-color: #FF7F50;
+   	color: white;
 }
 
 /*----------------------- End Image courasel new slider and button -------------------------------------- */
@@ -320,7 +332,6 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 
 /* Home
 ------------------------- */
-
 .jumbotron {
     /* height: 350px; */
     min-height: 200px;
@@ -341,21 +352,45 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .imageCarousellabel {
-  background-color: black;
+  background-color: #F0F0F0;
   padding-top: 6px;
-  height: 43px;
+  height: 41px;
   width: 560px;
-  margin-left: 80px;
-  margin-top: -102px;
+  margin-left: 40px;
+  margin-top: -100px;
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .btn-image {
   background-color:#FF7F50;
-  border-color: #ccc;
+  border-color: #FF7F50;
   width:86.38px;
   height:30.2px;
   padding:0px;
 }
+
+.btn-create{
+  background-color: white;
+  border-color: white;
+  color: black;
+  padding: 0px;
+  display: block;
+  float: left;
+  margin-left: 423px;
+  margin-bottom: 20px;
+  width: 190px;
+  height: 45px;
+  font-size: 22px;
+}
+
+.btn-create:hover,
+.active .btn-create:hover,
+.btn-create:focus{
+	border-color: #FF7F50;
+    background-color: #FF7F50;
+    color: white;
+}
+
 
 .imageCoureselForm{
   width:20%;
@@ -1409,28 +1444,30 @@ text-decoration: none !important;
 
     .imageCarousellabel {
          background-color: black;
+         background: rgba(255, 255, 255, 0.3);
          padding-top: 6px;
-         height: 43px;
-         width: 560px;
-         margin-left: 84px;
-         margin-top: -97px;
+         height: 41px;
+		 width: 560px;
+		 margin-left: 49px;
+		 margin-top: -96px;
     }
 
     .btn-image {
         background-color:#FF7F50;
-  		border-color: #ccc;
+  		border-color: #FF7F50;
   		width:86.38px;
   		height:30.2px;
   		padding:0px;
 	}
 
 	.fbButton{
-  		margin-left: -423px;
-        margin-top: -111px;
+  		margin-left: -520px;
+		margin-top: -111px;
 	}
 
 	.btn-fb {
 		height:71px;
+		width: 263px;
 	}
 
 	.imageCarouseltextbox .imageCoureselForm{
@@ -1465,15 +1502,26 @@ text-decoration: none !important;
   		color: #999;
 	}
 	
-	.kidSlider > a > img{
-        display:block;
-  		padding: 2px;
-  		text-decoration: none;
-  		float:left;
-  		margin-left: 496px;
-		margin-bottom: 14px;
-		width: 154px;
-		height: 44px;
+	.btn-create {
+        background-color: white;
+  		border-color: white;
+  		color: black;
+  		padding: 0px;
+ 		display: block;
+  		float: left;
+  		margin-left: 400px;
+		margin-bottom: 16px;
+		width: 145px;
+		height: 38px;
+		font-size: 18px;
+	}
+	
+	.btn-create:hover,
+    .active .btn-create:hover,
+    .btn-create:focus{
+		border-color: #FF7F50;
+    	background-color: #FF7F50;
+    	color: white;
 	}
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
@@ -1506,32 +1554,35 @@ text-decoration: none !important;
 
     .imageCarousellabel {
         background-color: #000;
+        background: rgba(255, 255, 255, 0.3);
 		padding-top: 4px;
-		height: 38px;
-		width: 514px;
-		margin-left: 93px;
+		height: 36px;
+		width: 532px;
+		margin-left: 62px;
 		margin-top: -76px;
+		
     }
 
     .btn-image {
         background-color:#FF7F50;
-  		border-color: #ccc;
+  		border-color: #FF7F50;
   		width: 81.38px;
         height: 26.4px;
   		padding:0px;
 	}
 
 	.fbButton{
-  		margin-left: -374px;
-        margin-top: -90px;
+  		margin-left: -455px;
+		margin-top: -91px;
 	}
 
 	.btn-fb {
-		height:66px;
+		height: 66px;
+		width: 235px;
 	}
 
 	.imageCarouseltextbox .imageCoureselForm{
-  		width:19%;
+  		width:20%;
   		font-size: 8px;
   		color: #555;
   		background-color: #fff;
@@ -1571,6 +1622,28 @@ text-decoration: none !important;
         height: 49px;
         width: 150px;
     }
+    
+    .btn-create {
+        background-color: white;
+  		border-color: white;
+  		color: black;
+  		padding: 0px;
+ 		display: block;
+  		float: left;
+  		margin-left: 352px;
+		margin-bottom: 8px;
+		width: 130px;
+		height: 33px;
+		font-size: 16px;
+	}
+	
+	.btn-create:hover,
+    .active .btn-create:hover,
+    .btn-create:focus{
+		border-color: #FF7F50;
+    	background-color: #FF7F50;
+    	color: white;
+	}
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 }
@@ -1581,28 +1654,30 @@ text-decoration: none !important;
 
     .imageCarousellabel {
         background-color: #000;
-    	padding-top: 5px;
-    	height: 41px;
-    	width: 476px;
-    	margin-left: 100px;
-    	margin-top: -72px;
+        background: rgba(255, 255, 255, 0.3);
+    	padding-top: 4px;
+    	height: 37px;
+		width: 475px;
+		margin-left: 70px;
+		margin-top: -69px;
     }
 
     .btn-image {
         background-color:#FF7F50;
-  		border-color: #ccc;
+  		border-color: #FF7F50;
   		width:86.38px;
-  		height:30.2px;
+  		height:28.1px;
   		padding:0px;
 	}
-
+	
 	.fbButton{
-  		margin-left: -377px;
-		margin-top: -86px;
+  		margin-left: -429px;
+        margin-top: -84px;
 	}
 
 	.btn-fb {
-		height:68px;
+		height: 67px;
+		width: 226px;
 	}
 
 	.imageCarouseltextbox .imageCoureselForm{
@@ -1637,17 +1712,27 @@ text-decoration: none !important;
   		color: #999;
 	}
 	
-	.kidSlider > a > img{
-        display:block;
-  		padding: 2px;
-  		text-decoration: none;
-  		float:left;
-  		margin-left: 416px;
-		margin-bottom: 2px;
-		width: 127px;
-		height: 38px;
+	.btn-create {
+        background-color: white;
+  		border-color: white;
+  		color: black;
+  		padding: 0px;
+ 		display: block;
+  		float: left;
+  		margin-left: 331px;
+		margin-bottom: 4px;
+		width: 120px;
+		height: 29px;
+		font-size: 14px;
 	}
-
+	
+	.btn-create:hover,
+    .active .btn-create:hover,
+    .btn-create:focus{
+		border-color: #FF7F50;
+    	background-color: #FF7F50;
+    	color: white;
+	}
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
   	.nav > li > a {
@@ -1797,25 +1882,27 @@ textarea.form-control {
 		padding-top: 3px;
 		height: 37px;
 		width: 456px;
-		margin-left: 109px;
-		margin-top: -52px;
+		margin-left: 80px;
+		margin-top: -59px;
+		background: rgba(255, 255, 255, 0.3);
     }
 
     .btn-image {
         background-color:#FF7F50;
-  		border-color: #ccc;
+  		border-color: #FF7F50;
   		width:86.38px;
   		height:30.2px;
   		padding:0px;
 	}
 
 	.fbButton{
-  		margin-left: -344px;
-        margin-top: -66px;
+  		margin-left: -387px;
+		margin-top: -74px;
 	}
 
 	.btn-fb {
-		height:64px;
+		height: 67px;
+		width: 208px;
 	}
 
 	.imageCarouseltextbox .imageCoureselForm{
@@ -1860,15 +1947,26 @@ textarea.form-control {
         width: 150px;
     }
     
-    .kidSlider > a > img{
-        display:block;
-  		padding: 2px;
-  		text-decoration: none;
-  		float:left;
-  		margin-left: 360px;
-		margin-bottom: -4px;
-		width: 119px;
-		height: 34px;
+	.btn-create {
+        background-color: white;
+  		border-color: white;
+  		color: black;
+  		padding: 0px;
+ 		display: block;
+  		float: left;
+  		margin-left: 296px;
+		margin-bottom: -1px;
+		width: 110px;
+		height: 25px;
+		font-size: 13px;
+	}
+	
+	.btn-create:hover,
+    .active .btn-create:hover,
+    .btn-create:focus{
+		border-color: #FF7F50;
+    	background-color: #FF7F50;
+    	color: white;
 	}
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
@@ -1898,34 +1996,35 @@ textarea.form-control {
 
     .imageCarousellabel {
         background-color: #000;
-		padding-top: 0px;
-		height: 28px;
-		width: 397px;
-		margin-left: 113px;
-		margin-top: -42px;
+        background: rgba(255, 255, 255, 0.3);
+		padding-top: 1px;
+		height: 30px;
+		width: 448px;
+		margin-left: 85px;
+		margin-top: -45px;
     }
 
     .btn-image {
         background-color:#FF7F50;
-  		border-color: #ccc;
+  		border-color: #FF7F50;
   		width:86.38px;
   		height:22.2px;
   		padding:0px;
 	}
 
 	.fbButton{
-  		margin-left: -249px;
- 		margin-top: -57px;
+  		margin-left: -339px;
+		margin-top: -60px;
 	}
 
 	.btn-fb {
-		height:57px;
-		width: 161px;
+		height: 60px;
+		width: 198px;
 	}
 
 	.imageCarouseltextbox .imageCoureselForm{
 	    height: 22px;
-        width: 18%;
+        width: 19%;
         font-size: 8px;
   		color: #555;
   		background-color: #fff;
@@ -1956,16 +2055,51 @@ textarea.form-control {
   		color: #999;
 	}
 	
-	.kidSlider > a > img{
-        display:block;
-  		padding: 2px;
-  		text-decoration: none;
-  		float:left;
+	.btn-create {
+        background-color: white;
+  		border-color: white;
+  		color: black;
+  		padding: 0px;
+ 		display: block;
+  		float: left;
   		margin-left: 318px;
 		margin-bottom: -9px;
 		width: 105px;
 		height: 34px;
+  		font-size: 22px;
 	}
+	
+	.btn-create:hover,
+    .active .btn-create:hover,
+	.btn-create:focus{
+		border-color: #FF7F50;
+    	background-color: #FF7F50;
+    	color: white;
+	}
+	
+	.btn-create {
+        background-color: white;
+  		border-color: white;
+  		color: black;
+  		padding: 0px;
+ 		display: block;
+  		float: left;
+  		margin-left: 267px;
+		margin-bottom: -6px;
+		width: 93px;
+		height: 25px;
+		font-size: 11px;
+	}
+	
+	.btn-create:hover,
+    .active .btn-create:hover,
+	.btn-create:focus{
+		border-color: #FF7F50;
+    	background-color: #FF7F50;
+    	color: white;
+	}
+	
+	
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
@@ -2061,8 +2195,6 @@ textarea.form-control {
     padding: 7px 16px !important;
     width:166px;
 }
-
-
 }
 @media only screen and (min-width: 767px) and (max-width: 768px){
  .nav > li > a{
@@ -2093,29 +2225,31 @@ textarea.form-control {
 
     .imageCarousellabel {
         background-color: #000;
+        background: rgba(255, 255, 255, 0.3);
 		padding-top: 0px;
 		height: 28px;
 		width: 397px;
-		margin-left: 113px;
-		margin-top: -50px;
+		margin-left: 91px;
+		margin-top: -51px;
     }
 
     .btn-image {
         background-color: #FF7F50;
-		border-color: #CCC;
+		border-color: #FF7F50;
 		width: 70.38px;
 		height: 21.2px;
 		padding: 0px;
+		font-size: 14px;
 	}
 
 	.fbButton{
-  		margin-left: -240px;
-        margin-top: -64px;
+  		margin-left: -334px;
+		margin-top: -66px;
 	}
 
 	.btn-fb {
-		height:57px;
-		width: 161px;
+		height: 58px;
+		width: 187px;
 	}
 
 	.imageCarouseltextbox .imageCoureselForm{
@@ -2161,15 +2295,26 @@ textarea.form-control {
 		width: 123px;
 	}
 	
-	.kidSlider > a > img{
-        display:block;
-  		padding: 2px;
-  		text-decoration: none;
-  		float:left;
-  		margin-left: 344px;
-		margin-bottom: -1px;
+	.btn-create {
+        background-color: white;
+  		border-color: white;
+  		color: black;
+  		padding: 0px;
+ 		display: block;
+  		float: left;
+  		margin-left: 294px;
+		margin-bottom: 2px;
 		width: 93px;
-		height: 30px;
+		height: 25px;
+		font-size: 11px;
+	}
+	
+	.btn-create:hover,
+    .active .btn-create:hover,
+	.btn-create:focus{
+		border-color: #FF7F50;
+    	background-color: #FF7F50;
+    	color: white;
 	}
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
@@ -2187,24 +2332,25 @@ textarea.form-control {
 
     .imageCarousellabel {
          background-color: black;
+         background: rgba(255, 255, 255, 0.3);
          padding-top: 6px;
          height: 141px;
          width: 120px;
-         margin-left: 225px;
-         margin-bottom: -31px
+         margin-left: 201px;
+         margin-bottom: -16px;
     }
 
     .btn-image {
         background-color:#FF7F50;
-  		border-color: #ccc;
+  		border-color: #FF7F50;
   		width: 109.38px;
         height: 29px;
   		padding:0px;
 	}
 
 	.fbButton{
-  		margin-left: -33px;
-        margin-bottom: -28px;
+  		margin-left: -109px;
+		margin-bottom: -3px;
 	}
 
 	.btn-fb {
@@ -2256,6 +2402,28 @@ textarea.form-control {
     	height: 41px;
     	width: 123px;
 	}
+	
+	.btn-create {
+        background-color: white;
+  		border-color: white;
+  		color: black;
+  		padding: 0px;
+ 		display: block;
+  		float: left;
+  		margin-left: 245px;
+		margin-bottom: 0px;
+		width: 75px;
+		height: 24px;
+		font-size: 9px;
+	}
+	
+	.btn-create:hover,
+    .active .btn-create:hover,
+	.btn-create:focus{
+		border-color: #FF7F50;
+    	background-color: #FF7F50;
+    	color: white;
+	}
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
@@ -2300,15 +2468,26 @@ textarea.form-control {
 		width: 96px;
 	}
         
-    .kidSlider > a > img{
-        display:block;
-  		padding: 2px;
-  		text-decoration: none;
-  		float:left;
-  		margin-left: 206px;
-		margin-bottom: -1px;
+	.btn-create {
+        background-color: white;
+  		border-color: white;
+  		color: black;
+  		padding: 0px;
+ 		display: block;
+  		float: left;
+  		margin-left: 184px;
+		margin-bottom: 0px;
 		width: 75px;
-		height: 30px;
+		height: 24px;
+		font-size: 9px;
+	}
+	
+	.btn-create:hover,
+    .active .btn-create:hover,
+	.btn-create:focus{
+		border-color: #FF7F50;
+    	background-color: #FF7F50;
+    	color: white;
 	}
 	
 	.team-footer {
@@ -2429,16 +2608,17 @@ textarea.form-control {
 
     .imageCarousellabel {
          background-color: black;
+         background: rgba(255, 255, 255, 0.3);
          padding-top: 6px;
          height: 141px;
          width: 120px;
          margin-left: 189px;
-         margin-bottom: -31px
+         margin-bottom: -17px;
     }
 
     .btn-image {
         background-color:#FF7F50;
-  		border-color: #ccc;
+  		border-color: #FF7F50;
   		width: 109.38px;
         height: 28.2px
   		padding:0px;
@@ -2487,6 +2667,28 @@ textarea.form-control {
 	}
 	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
   		color: #999;
+	}
+	
+	.btn-create {
+        background-color: white;
+  		border-color: white;
+  		color: black;
+  		padding: 0px;
+ 		display: block;
+  		float: left;
+  		margin-left: 158px;
+		margin-bottom: 0px;
+		width: 75px;
+		height: 24px;
+		font-size: 9px;
+	}
+	
+	.btn-create:hover,
+    .active .btn-create:hover,
+	.btn-create:focus{
+		border-color: #FF7F50;
+    	background-color: #FF7F50;
+    	color: white;
 	}
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
@@ -2566,15 +2768,26 @@ textarea.form-control {
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 	
-	.kidSlider > a > img{
-        display:block;
-  		padding: 2px;
-  		text-decoration: none;
-  		float:left;
-  		margin-left: 164px;
+	.btn-create {
+        background-color: white;
+  		border-color: white;
+  		color: black;
+  		padding: 0px;
+ 		display: block;
+  		float: left;
+  		margin-left: 144px;
 		margin-bottom: -1px;
 		width: 75px;
-		height: 30px;
+		height: 25px;
+		font-size: 9px;
+	}
+	
+	.btn-create:hover,
+    .active .btn-create:hover,
+	.btn-create:focus{
+		border-color: #FF7F50;
+    	background-color: #FF7F50;
+    	color: white;
 	}
 	
 	/*--------------------End of Image courasel new slider and button ------------------------------------*/
@@ -2588,20 +2801,21 @@ textarea.form-control {
          padding-top: 6px;
          height: 141px;
          width: 120px;
-         margin-left: 142px;
-         margin-bottom: -31px
+         margin-left: 134px;
+         margin-bottom: -17px;
+         background: rgba(255, 255, 255, 0.3);
     }
 
     .btn-image {
         background-color:#FF7F50;
-  		border-color: #ccc;
+  		border-color: #FF7F50;
   		width: 109.38px;
         height: 28.2px
   		padding:0px;
 	}
 
 	.fbButton{
-  		margin-left: -60px;
+  		margin-left: -92px;
   		margin-bottom:-10px;
 	}
 
@@ -2655,15 +2869,26 @@ textarea.form-control {
 		width: 96px;
 	}
 	
-	.kidSlider > a > img{
-        display:block;
-  		padding: 2px;
-  		text-decoration: none;
-  		float:left;
-  		margin-left: 130px;
-		margin-bottom: -1px;
+	.btn-create {
+        background-color: white;
+  		border-color: white;
+  		color: black;
+  		padding: 0px;
+ 		display: block;
+  		float: left;
+  		margin-left: 121px;
+        margin-bottom: -1px;
 		width: 75px;
-		height: 30px;
+		height: 24px;
+		font-size: 9px;
+	}
+	
+	.btn-create:hover,
+    .active .btn-create:hover,
+	.btn-create:focus{
+		border-color: #FF7F50;
+    	background-color: #FF7F50;
+    	color: white;
 	}
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
@@ -3369,4 +3594,14 @@ a.footerlink {
 .crowderasupport{
 	margin-top: 5px;
 	margin-bottom: 20px;
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    background-color: #ffffff !important;
+    color: #000000;
+}
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background-color: #ff784f !important;
+    color: #ffffff;
 }

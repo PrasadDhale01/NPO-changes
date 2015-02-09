@@ -11,7 +11,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1><i class="glyphicon glyphicon-check"></i> Campaigns to be validated</h1><br>
+                    <h1><img class="img-circle" src="/images/icon-validated.png" alt="Generic placeholder image"> Campaigns to be validated</h1><br>
                     <g:render template="validate/validategrid" model="['projects': projects]"></g:render>
                 </div>
             </div>

@@ -14,7 +14,7 @@
 	<div class="container">
 	    <div class="row">
 		<div class="col-md-6">
-		    <h1> <span class="glyphicon glyphicon-tint"></span> Contribute</h1>
+		<h1><img class="img-circle" src="images/icon-contribution.png" alt="Generic placeholder image"> Contribute</h1>
 		</div>
                 <!-- Search -->
                 <g:render template="list/search"></g:render>

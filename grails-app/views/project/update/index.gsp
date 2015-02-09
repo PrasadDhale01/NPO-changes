@@ -9,7 +9,8 @@
 		<div class="container">
 		    <g:uploadForm class="form-horizontal" controller="project" action="updatesave" id="${project.id}" role="form">
 		    <div class="row">
-		        <h1><span class="glyphicon glyphicon-leaf"></span> Post an update</h1>
+<%--		        <h1><span class="glyphicon glyphicon-leaf"></span> Post an update</h1>--%>
+				<h1><img class="img-circle" src="/images/icon-create.png" alt="Generic placeholder image"> Post an update</h1>
 		        <div class="panel panel-default">
 		            <div class="panel-heading">
 						<h3 class="panel-title">Story and Images</h3>

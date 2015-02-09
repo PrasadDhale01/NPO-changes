@@ -51,7 +51,7 @@
 <input type="hidden" name="charity_name" id="charity_name"/>
 <div class="feducontent">
 	<div class="container">
-		<h1><span class="glyphicon glyphicon-edit"></span> Edit Campaign</h1>
+		<h1><img class="img-circle" src="/images/icon-edit.png" alt="Generic placeholder image"> Edit Campaign</h1>
 
         <g:uploadForm class="form-horizontal" controller="project" action="update" method="post" role="form">
             <input type="hidden" name="_method" value="PUT" id="_method" />

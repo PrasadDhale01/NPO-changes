@@ -5,7 +5,7 @@
 <body>
 <div class="feducontent">
 	<div class="container">
-		<h1><span class="glyphicon glyphicon-leaf"></span> Bulk Import Campaigns</h1>
+		<h1><img class="img-circle" src="/images/icon-create.png" alt="Generic placeholder image"> Bulk Import Campaigns</h1>
 
         <g:if test="${flash.prj_import_message && flash.prj_import_message}">
             <div class="alert alert-danger">

@@ -3,20 +3,21 @@
      <div class="container">
 	     <div class="row">
 	           <div class="col-sm-7">
-	           <a class="navbar-brand-footer pull-center footerimage img-footer"><img src="/images/flogo.png"></a>
+	           <a class="navbar-brand-footer pull-center footerimage img-footer" href="${resource(dir: '/')}"><img src="/images/flogo.png"></a>
 	           <div class="footerbottommainlinks">
-		           <a href="${resource(dir: '/')}" >Home</a><br>
-		           <a href="${resource(dir: '/aboutus')}">Crowdera Crew</a><br>
+		           <a href="${resource(dir: '/')}" >Home</a><br/>
+		           <a href="${resource(dir: '/aboutus')}">Crowdera Crew</a><br/>
 		           <a href="${resource(dir: '/projects')}" >Explore</a><br>
-		           <a href="${resource(dir: '/projects/create')}">Start a Campaign</a><br>
-		           <a href="${resource(dir: '/howitworks')}">How it works</a><br>
-		           <a href="${resource(dir: '/customer-service')}">Contact Us</a><br>
-		           <a href="https://crowdera.co/blog/">Blog</a>
+		           <a href="${resource(dir: '/projects/create')}">Start a Campaign</a><br/>
+		           <a href="${resource(dir: '/howitworks')}">How it works</a><br/>
+		           <a href="${resource(dir: '/customer-service')}">Contact Us</a><br/>
+		           <a href="http://crowdera.tumblr.com">Blog</a><br/>
+		           <a href="${resource(dir: '/faq')}">FAQs</a>
 	     	   </div>
 			   <div class="footerbottomsection">
-				   <a href="https://crowdera.co/dev2/privacy-policy" class="footerlink">Privacy Policy</a>
-				   <a href="https://crowdera.co/dev2/terms-and-conditions" class="footerlink">Terms of Use</a>
-				   <a href="#" class="footerlink">&copy;&nbsp;2014 Crowdera,inc.</a>
+				   <a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy</a>
+				   <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms of Use</a>
+				   <a class="footerlink">&copy;&nbsp;2014 Crowdera,inc.</a>
 			   </div>
         </div>
         
@@ -41,5 +42,5 @@
 	        	</div>
          	</div>
          </div> 
-     </div>        
+     </div>
 </footer>

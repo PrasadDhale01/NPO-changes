@@ -450,4 +450,77 @@ class MandrillService {
         }
     }
     
+    def sendEmailToCustomer(def service) {
+        def email = service.email
+        def base_url = grailsApplication.config.crowdera.BASE_URL
+        def link = base_url+"/howitworks"
+        def blogUrl = "http://crowdera.tumblr.com"
+        def date = new Date()
+        def globalMergeVars = [
+            [
+                'name': 'LINK',
+                'content': link
+            ],[
+                'name': 'NAME',
+                'content': service.customername
+            ],[
+                'name': 'EMAIL',
+                'content': email
+            ],[
+                'name': 'BLOG_URL',
+                'content': blogUrl
+            ],[
+                'name': 'REQUEST',
+                'content': service.subject
+            ],[
+                'name': 'DATE',
+                'content': date.format("YYYY-MM-DD HH:mm:ss")
+            ]
+        ]
+        
+        def tags = ['send-email-to-customer']
+
+        inviteToAdmin(email, 'send-email-to-customer', globalMergeVars, tags)
+    }
+    
+    def sendResponseToCustomer(def adminResponse, def service) {
+        def email = service.email
+        def date = new Date()
+        def base_url = grailsApplication.config.crowdera.BASE_URL
+        def url = base_url+"/howitworks"
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'list', absolute: true)
+        def create_url = grailsLinkGenerator.link(controller: 'project', action: 'create', absolute: true)
+        def globalMergeVars = [
+            [
+                'name': 'LINK',
+                'content': link
+            ],[
+                'name': 'CREATE_URL',
+                'content': create_url
+            ],[
+                'name': 'URL',
+                'content': url
+            ],[
+                'name': 'NAME',
+                'content': service.customername
+            ],[
+                'name': 'EMAIL',
+                'content': email
+            ],[
+                'name': 'RESPONSE',
+                'content': adminResponse
+            ],[
+                'name': 'DATE',
+                'content': date.format("YYYY-MM-DD HH:mm:ss")
+            ],[
+                'name': 'REQUEST',
+                'content': service.subject
+            ]
+        ]
+
+        def tags = ['send-response-to-customer']
+
+        inviteToAdmin(email, 'send-response-to-customer', globalMergeVars, tags)
+    }
+    
 }

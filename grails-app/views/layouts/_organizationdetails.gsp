@@ -6,6 +6,7 @@
 	def currentUser = userService.getCurrentUser()
 	def isteamexist = userService.isTeamAlreadyExist(project, currentUser)
     def webUrl = projectService.getWebUrl(project)
+	def percentage = contributionService.getPercentageContributionForProject(project)
 %>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -53,6 +54,11 @@
 	            <img src="/images/PENDING1.png">
 	        </div>
 	    </g:elseif>
+	    <g:elseif test="${percentage >= 75}">
+			<div class="tilesanstitletag  banner-wid">
+				<img src="/images/funded.png">
+			</div>
+		</g:elseif>
 	    <g:elseif test="${ended}">
 	        <div class="tilesanstitletag  banner-wid">
 	            <img src="/images/ended1.png">

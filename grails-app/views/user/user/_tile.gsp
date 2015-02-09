@@ -45,6 +45,11 @@
 							<img src="/images/PENDING.png">
 						</div>
 					</g:elseif>
+					<g:elseif test="${percentage >= 75}">
+				    	<div class="over user-tiles-widths">
+							<img src="/images/funded1.png">
+						</div>
+					</g:elseif>
 					<g:elseif test="${ended}">
 					    <div class="over user-tiles-widths">
 							<img src="/images/ended.png">
@@ -72,6 +77,11 @@
 					<g:elseif test="${!project.validated}">
 						<div class="over user-tiles-widths">
 							<img src="/images/PENDING.png">
+						</div>
+					</g:elseif>
+					<g:elseif test="${percentage >= 75}">
+				    	<div class="over user-tiles-widths">
+							<img src="/images/funded1.png">
 						</div>
 					</g:elseif>
 					<g:elseif test="${ended}">

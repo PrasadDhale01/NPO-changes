@@ -25,7 +25,7 @@
             <div class="thumbnail">
                 <img src="images/aboutus/stepheni.jpg" alt="...">
 
-                <div class="caption">Stephanie Jelley<span>Co-founder and CMO</span></div>
+                <div class="caption">Stephanie Jelley<span> Co-Founder </span></div>
                 <div class="clear"></div>
             </div>
         </div>
@@ -34,7 +34,7 @@
             <div class="thumbnail">
                 <img src="images/aboutus/rich.jpg" alt="...">
 
-                <div class="caption">Rich Matsuura<span>CEO</span></div>
+                <div class="caption">Rich Matsuura<span> Co-Founder </span></div>
                 <div class="clear"></div>
             </div>
         </div>
@@ -43,7 +43,7 @@
             <div class="thumbnail">
                 <img src="images/aboutus/chai.jpg" alt="...">
 
-                <div class="caption">Chai Atreya<span>Product Team <br/>At Crowdera</span></div>
+                <div class="caption">Chai Atreya<span> Co-Founder </span></div>
                 <div class="clear"></div>
             </div>
         </div>

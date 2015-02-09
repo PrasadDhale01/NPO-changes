@@ -12,6 +12,7 @@ class UserService {
     def imageFile
     def springSecurityService
     def roleService
+    def mandrillService
 
     def getNumberOfUsers() {
         return User.count()
@@ -220,7 +221,9 @@ class UserService {
     
     def sendResponseToCustomer(def params) {
         def service = CustomerService.get(params.id);
+        def adminResponse = params.answer
         service.status = true
+        mandrillService.sendResponseToCustomer(adminResponse,service)
     }
     
     @Transactional

@@ -11,7 +11,9 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="${resource(dir: '/')}"></a>
+			<a class="navbar-brand" href="${resource(dir: '/')}">
+			    <img src="/images/logo-small.png">
+			</a>
 		</div>
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">

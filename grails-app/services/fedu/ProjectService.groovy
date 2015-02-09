@@ -553,7 +553,7 @@ class ProjectService {
 	}
 	
 	def projectOnHomePage() {
-		def projects = Project.getAll('6512bd43d9caa6e02c990b0a82652dca', '93db85ed909c13838ff95ccfa94cebd8', 'a5bfc9e07964f8dddeb95fc584cd965d')
+		def projects = Project.getAll('6512bd43d9caa6e02c990b0a82652dca', '93db85ed909c13838ff95ccfa94cebd8', '17e62166fc8586dfa4d1bc0e1742c08b')
 	    return projects
 	}
 
@@ -963,6 +963,8 @@ class ProjectService {
         service.subject = params.subject
 
         service.save(failOnError: true)
+        
+        mandrillService.sendEmailToCustomer(service);
     }
 
     @Transactional

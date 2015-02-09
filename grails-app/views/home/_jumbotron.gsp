@@ -31,37 +31,17 @@
                 </g:form>
         	</div>
         </div>
-        <div class="item">
+        <div class="item ">
             <img src="/images/girlComputerSlider.jpg" >
             <div class="carousel-caption">
-                <div class="girlSlider"><a href="${base_url}/projects/create"><img src="/images/createButton.jpg"></img></a></div>
+                <div class="girlSlider"><a href="${base_url}/projects/create"><img src="/images/createButton.jpg"></a></div>
             </div>
         </div>
         <div class="item">
             <img src="/images/kidsRunningSlider.jpg" >
             <div class="carousel-caption">
-            <div class="kidSlider"><a href="${base_url}/projects/create"><img src="/images/createButton.jpg"></img></a></div>
-        </div>
-        </div>
-        <div class="item">
-            <img src="/images/Playgrounds.jpg" >
-            <div class="carousel-caption">
-            </div>
-        </div>
-        <div class="item">
-            <img src="/images/Classroom.jpg" >
-            <div class="carousel-caption">
-            </div>
-        </div>
-        <div class="item">
-            <img src="/images/sports.jpg" >
-            <div class="carousel-caption">
-            </div>
-        </div>
-        <div class="item">
-            <img src="/images/Adventure.jpg" >
-            <div class="carousel-caption">
-            </div>
+                <div><a href="${base_url}/projects/create"><button class="btn btn-create" type="submit"><b>Create Project</b></button></a></div>
+            </div>       
         </div>
 
     </div>

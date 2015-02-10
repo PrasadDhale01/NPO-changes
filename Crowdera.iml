@@ -106,6 +106,8 @@
           <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-gorm-hibernate-core/3.0.0.RELEASE/grails-datastore-gorm-hibernate-core-3.0.0.RELEASE.jar!/" />
           <root url="jar://$MAVEN_REPOSITORY$/org/grails/grails-datastore-gorm-hibernate/3.0.0.RELEASE/grails-datastore-gorm-hibernate-3.0.0.RELEASE.jar!/" />
           <root url="file://$MODULE_DIR$/lib" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/gmetrics/GMetrics/0.5/GMetrics-0.5.jar!/" />
+          <root url="jar://$MAVEN_REPOSITORY$/org/codenarc/CodeNarc/0.22/CodeNarc-0.22.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

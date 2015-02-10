@@ -185,7 +185,7 @@ environments {
 
         /* Until we go live with crowdera.co domain */
         //crowdera.BASE_URL = 'http://crowdera.co'
-        crowdera.BASE_URL = 'http://new.crowdera.co'
+        crowdera.BASE_URL = 'http://crowdera.co'
 
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true

@@ -5,7 +5,12 @@
 <div class="col-sm-4">
     <g:if test="${imageUrl != null}">
         <div class="profileavatar" class="blacknwhite">
-            <img alt="Profile Image" class="profileimage" src="${imageUrl}">
+            <g:if test="${userService.isFacebookUser()}">
+                <img alt="Profile Image" class="profileimage" src="${imageUrl}?type=large">
+            </g:if>
+            <g:else>
+                <img alt="Profile Image" class="profileimage" src="${imageUrl}">
+            </g:else>
             <div class="deleteavatar">
                <g:link action="deleteavatar" controller="user" id="${user.id}"><img src="/images/delete.ico"></g:link>
             </div>
@@ -32,18 +37,21 @@
     <g:if test="${userService.isFacebookUser()}">
         <div class="form-signin">
             <h2><i class="fa fa-facebook-square"></i> Facebook user</h2>
-            <div class="alert alert-success">
-                As a Facebook user, you cannot update your profile details on Crowdera.
+            <div class="form-group">
+                <input type="text" name="firstName" class="form-control" value="${user.firstName}" readonly>
+            </div>
+            <div class="form-group">
+                <input type="text" name="lastName" class="form-control" value="${user.lastName}" readonly>
             </div>
         </div>
     </g:if>
     <g:else>
         <g:form class="form-signin" controller="login" action="update" role="form">
             <div class="form-group">
-                <input type="fn" name="firstName" required class="form-control" value="${user.firstName}" placeholder="New First name" autofocus>
+                <input type="text" name="firstName" required class="form-control" value="${user.firstName}" placeholder="New First name" autofocus>
             </div>
             <div class="form-group">
-                <input type="ln" name="lastName" required class="form-control" value="${user.lastName}" placeholder="New Last name">
+                <input type="text" name="lastName" required class="form-control" value="${user.lastName}" placeholder="New Last name">
             </div>
             <div class="form-group">
                 <input type="password" name="password" class="form-control" placeholder="New Password (Optional)">

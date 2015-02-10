@@ -202,7 +202,8 @@
                                     <input type="file" id="orgediticonfile" name="iconfile" accept="image/*">
                                     <button id="chooseFile" class="btn btn-primary btn-sm" type="button">
                                             <i class="icon-file"></i> Choose File
-                                     </button>
+                                    </button>
+                                    <label class="docfile-orglogo-css" id="editlogo">Please select image file.</label>
                                 </div>
                                 <div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
                                         <g:if test="${project.organizationIconUrl}">
@@ -361,11 +362,11 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Pictures</label>
                         <div class="col-sm-2">
-                            <label id="imgmsg" style="color:red;" >Select image file.</label>
                             <div class="fileUpload btn btn-primary btn-sm">
 	        					<span>Add Images</span>
                                 <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" multiple="multiple" class="upload" accept="image/*">
                             </div>
+							<label class="docfile-orglogo-css" id="editimg">Please select image file.</label>
                         </div>
                         <div class="col-sm-8">
                                 <g:each var="imgurl" in="${project.imageUrl}">

@@ -19,7 +19,9 @@
     <div class="greycolorbg"> 
     	<g:render template="projects"></g:render>
     </div>
-   <center><a href="${resource(dir: '/projects')}" class="btn btn-explore">Explore</a></center><br>
+   <div class="row text-center explorebtn">
+       <a href="${resource(dir: '/projects')}" class="btn btn-primary btn-lg">Explore Campaigns</a>
+   </div>
     <div class="full-image hand-image-non"><img src="images/mobile-image.jpg"></div>
     
 <!--

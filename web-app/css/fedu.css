@@ -291,26 +291,9 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 
 /*----------------------- End Image courasel new slider and button -------------------------------------- */
 
-.btn-explore{
-	  background-color: #393333;
-  	  border-color: black;
-  	  color: white;
-      padding: 0px;
-      display: block;
-      margin-top: 32px;
-      margin-bottom: 16px;
-      width: 226px;
-      height: 51px;
-      font-size: 25px;
-      padding-top: 5px;
-}
-
-.btn-explore:hover,
-.active .btn-explore:hover,
-.btn-explore:focus {
-	border-color: #FF7F50;
-   	background-color: #FF7F50;
-   	color: white;
+.explorebtn {
+	margin-top: 20px;
+	margin-bottom: 16px;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -370,7 +353,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     color: white;
 }
 
-.carousel-caption imageCarouseltextbox{
+.carousel-caption .imageCarouseltextbox{
 	position: absolute;
 	right: 15%;
     bottom: 20px;
@@ -424,8 +407,6 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
   font-size: 10px;
   color: #555;
   background-color: #fff;
-  background-image: none;
-  border: 1px solid #ccc;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
   -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
@@ -3631,4 +3612,9 @@ a.footerlink {
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
     background-color: #ff784f !important;
     color: #ffffff;
+}
+
+.form-control[readonly], fieldset[disabled] .form-control {
+    cursor: pointer !important;
+    background-color: #ffffff  !important;
 }

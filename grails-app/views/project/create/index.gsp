@@ -384,12 +384,12 @@ tinymce.init({
     					<div class="form-group">
       						<label class="col-sm-2 control-label">Pictures</label>
       						<div class="col-sm-4">
-        						<label class="docfile-orglogo-css" id="imgmsg">Please select image file.</label>
         						<div class="fileUpload btn btn-primary btn-sm">
 	        						<span>Add Images</span>
 	        						<input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]"
 	         							id="projectImageFile" multiple="multiple" accept="image/*">
          					    </div>
+         					    <label class="docfile-orglogo-css" id="imgmsg">Please select image file.</label>
       						</div>
       						<!--<div class="col-sm-2">
         						<input class="hidden" name="${FORMCONSTANTS.IMAGEURL}"

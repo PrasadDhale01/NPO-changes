@@ -3632,3 +3632,8 @@ a.footerlink {
     background-color: #ff784f !important;
     color: #ffffff;
 }
+
+.form-control[readonly], fieldset[disabled] .form-control {
+    cursor: pointer !important;
+    background-color: #ffffff  !important;
+}

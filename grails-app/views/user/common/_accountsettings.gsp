@@ -5,7 +5,12 @@
 <div class="col-sm-4">
     <g:if test="${imageUrl != null}">
         <div class="profileavatar" class="blacknwhite">
-            <img alt="Profile Image" class="profileimage" src="${imageUrl}?type=large">
+            <g:if test="${userService.isFacebookUser()}">
+                <img alt="Profile Image" class="profileimage" src="${imageUrl}?type=large">
+            </g:if>
+            <g:else>
+                <img alt="Profile Image" class="profileimage" src="${imageUrl}">
+            </g:else>
             <div class="deleteavatar">
                <g:link action="deleteavatar" controller="user" id="${user.id}"><img src="/images/delete.ico"></g:link>
             </div>

@@ -1,8 +1,9 @@
 $(function() {
 	console.log("create.js initialized");
 	
+	$('#editlogo').hide();
+	$('#editimg').hide();
     $('#ytVideo').hide();
-    $('#imgmsg').hide();
     $('#imgupdatemsg').hide();
 	/* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
@@ -87,7 +88,9 @@ $(function() {
         var file =this.files[0];
         if(!file.type.match('image')){
            this.value=null;
+           $('#editlogo').show();
         }else{
+           $('#editlogo').hide();
         var file = this.files[0];
         var fileName = file.name;
         var fileSize = file.size;
@@ -145,11 +148,11 @@ $(function() {
     $('#projectImageFile').change(function(event) {
         var file =this.files[0];
         if(!file.type.match('image')){
-            $('#imgmsg').show();
             $('.pr-thumbnail-div').hide();
+            $('#editimg').show();
             this.value=null;
         }else{
-            $('#imgmsg').hide();
+        	$('#editimg').hide();
             var files = event.target.files; // FileList object
             var output = document.getElementById("result");
             for ( var i = 0; i < files.length; i++) {

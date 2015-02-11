@@ -22,10 +22,10 @@
             <div class="carousel-caption imageCarouseltextbox">
                 <g:form class="form-signin" controller="login" action="create" role="form">
                     <div class="imageCarousellabel"> 
-                        <input type="name" name="name" class="imageCoureselForm" placeholder="First & Last Name">
-                        <input type="email" name="username" class="imageCoureselForm" placeholder="Email address">
-            			<input type="password" id="password" name="password" class="imageCoureselForm" placeholder="Password *">
-               			<input type="password" name="confirmPassword" class="imageCoureselForm" placeholder="Confirm Password *">
+                        <input type="name" name="name" id="name" class="imageCoureselForm" placeholder="First & Last Name">
+                        <input type="email" name="email" id="email" class="imageCoureselForm" placeholder="Email address">
+            			<input type="password" name="pass" id="pass" class="imageCoureselForm" placeholder="Password *">
+               			<input type="password" name="confirmPass" id="confirmPass" class="imageCoureselForm" placeholder="Confirm Password *">
                			<button class="btn btn-image" type="submit"><b>Register</b></button>
                		</div>
                 </g:form>
@@ -40,7 +40,7 @@
         <div class="item">
             <img src="/images/kidsRunningSlider.jpg" >
             <div class="carousel-caption">
-                <div><a href="${base_url}/projects/create"><button class="btn btn-create" type="submit"><b>Create Project</b></button></a></div>
+                <div><a href="${base_url}/projects/create"><button class="btn btn-create" type="submit"><b>Create Campaign</b></button></a></div>
             </div>       
         </div>
 

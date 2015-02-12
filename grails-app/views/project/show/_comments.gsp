@@ -23,7 +23,7 @@
 <g:if test="${!project.comments.empty}">
     <div class="panel panel-default show-comments-details">
         <div class="panel-heading">
-            <h3 class="panel-title">Project Comments</h3>
+            <h3 class="panel-title">Campaign Comments</h3>
         </div>
         <div class="panel-body commentsoncampaign">
             <div class="list-group">

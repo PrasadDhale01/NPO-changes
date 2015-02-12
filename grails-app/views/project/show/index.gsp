@@ -162,7 +162,7 @@
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
                     </g:if>
                     <g:elseif test="${ended}">
-                        <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
+                        <button type="button" class="btn btn-warning btn-lg btn-block" disabled>CAMPAIGN ENDED!</button>
                     </g:elseif>
                     <g:else>
                         <form action="/projects/${project.id}/fund">
@@ -182,8 +182,8 @@
 			--%>
 		</g:if>
 		<g:else>
-            <h1>Project not found</h1>
-			<div class="alert alert-danger">Oh snap! Looks like that project doesn't exist.</div>
+            <h1>Campaign not found</h1>
+			<div class="alert alert-danger">Oh snap! Looks like that campaign doesn't exist.</div>
 		</g:else>
 	</div>
 </div>

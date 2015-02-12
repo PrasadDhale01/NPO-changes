@@ -11,6 +11,10 @@ $(function() {
     });
 });
 
+function searchList(){
+	$('#q').val();
+}
+
 $(window).load(function() {
     /*
     $('.blacknwhite').BlackAndWhite({

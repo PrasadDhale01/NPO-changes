@@ -18,6 +18,8 @@
     def user = userService.getCurrentUser()
     def username = user.username
     def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
+	def team = project.teams
+	def isTeamAdmin = projectService.isTeamAdmin(project)
     
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
@@ -55,6 +57,21 @@
 							<img src="/images/ended.png">
 						</div>
 					</g:elseif>
+					<g:if test="${user == project.user}">
+					    <div class="over user-tiles-widths">
+							<img src="/images/OWNER.png">
+						</div>
+					</g:if>
+					<g:elseif test="${isTeamAdmin}">
+					    <div class="over user-tiles-widths">
+							<img src="/images/OWNER.png">
+						</div>
+					</g:elseif>
+					<g:else>
+					    <div class="over user-tiles-widths">
+							<img src="/images/teamTop.png">
+						</div>
+					</g:else>
 				</div>
 			</g:link>
 		</g:if>
@@ -89,6 +106,16 @@
 							<img src="/images/ended.png">
 						</div>
 					</g:elseif>
+					<g:if test="${isTeamAdmin}">
+					    <div class="over teamtile-banner">
+							<img src="/images/OWNER.png">
+						</div>
+					</g:if>
+					<g:else>
+					    <div class="over teamtile-banner">
+							<img src="/images/teamTop.png">
+						</div>
+					</g:else>
 				</div>
 			</g:link>
 		</g:else>

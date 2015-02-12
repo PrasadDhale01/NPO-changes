@@ -447,6 +447,16 @@ class ProjectService {
         def numberOfDays = endDate - createdDate
         project.days = numberOfDays
     }
+	
+	def isTeamAdmin(Project project) {
+		def user = userService.getCurrentUser()
+		def result = false
+		project.projectAdmins.each{
+			if(it.email == user.email)
+				 result = true
+		}
+		return result
+	}
     
     /*def sendEmailToAdminForProjectUpdate(def project, def user) {
         def projectadmins = project.projectAdmins

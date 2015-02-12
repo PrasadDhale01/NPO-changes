@@ -12,7 +12,7 @@
 		           <a href="${resource(dir: '/howitworks')}">How it works</a><br/>
 		           <a href="${resource(dir: '/customer-service')}">Contact Us</a><br/>
 		           <a href="http://crowdera.tumblr.com">Blog</a><br/>
-		           %{--<a href="${resource(dir: '/faq')}">FAQs</a>--}%
+		           <a href="${resource(dir: '/faq')}">FAQs</a>
 	     	   </div>
 			   <div class="footerbottomsection">
 				   <a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy</a>

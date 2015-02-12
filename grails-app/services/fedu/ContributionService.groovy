@@ -29,7 +29,7 @@ class ContributionService {
 		contribution.each {
 		   total += it.amount
 		}
-		return total
+		return total.round()
 	}
 
     def getShippingPendingItems() {
@@ -57,7 +57,7 @@ class ContributionService {
         project.contributions.each { contribution ->
             total += contribution.amount
         }
-        return total
+        return total.round()
     }
 
     def getBackersForProjectByReward(Project project, Reward reward) {

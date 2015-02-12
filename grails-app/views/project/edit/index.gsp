@@ -292,7 +292,8 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Amount</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" value="${amount}">
+                            <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" value="${amount}" id="amount">
+                            <span id="errormsg"></span>
                         </div>
                     </div>
                     <div class="form-group">

@@ -194,14 +194,32 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 
 /*-------------------- Image courasel new slider and button ------------------------------------*/
 
+.carousel-caption .imageCarouseltextbox{
+	position: absolute;
+	right: 15%;
+    bottom: 20px;
+    left: 15%;
+    max-width:20px;
+}
+
 .imageCarousellabel {
   background-color: black;
+  background: rgba(255, 255, 255, 0.3);
   padding-top: 6px;
   height: 43px;
   width: 560px;
-  margin-left: 1px;
-  margin-top: -96px;
-  background: rgba(255, 255, 255, 0.3);
+  margin-left: 46px;
+  margin-top: -105px;
+}
+
+.fbButton{
+  margin-left: -567px;
+  margin-top: -120px;
+}
+
+.btn-fb {
+   height:73px;
+   width: 289px;
 }
 
 .btn-image {
@@ -212,16 +230,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
   padding:0px;
 }
 
-.fbButton{
-  margin-left: -544px;
-  margin-top: -115px;
-}
-
-.btn-fb {
-	height:71px;
-}
-
-.imageCarouseltextbox .imageCoureselForm{
+.imageCoureselForm{
   width:20%;
   font-size: 10px;
   color: #555;
@@ -253,12 +262,6 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
   color: #999;
 }
 
-.has-error .imageCoureselForm {
-  border-color: #f04124;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-}
-
 .girlSlider > a > img{
   padding: 2px;
   text-decoration: none;
@@ -274,9 +277,9 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
   	padding: 0px;
  	display: block;
   	float: left;
-  	margin-left: 539px;
+  	margin-left: 417px;
   	margin-bottom: 14px;
-  	width: 181px;
+  	width: 205px;
   	height: 51px;
   	font-size: 22px;
 }
@@ -351,96 +354,6 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 
 .jumbotron h1 {
     color: white;
-}
-
-.carousel-caption .imageCarouseltextbox{
-	position: absolute;
-	right: 15%;
-    bottom: 20px;
-    left: 15%;
-    max-width:20px;
-}
-
-.imageCarousellabel {
-  background-color: #F0F0F0;
-  padding-top: 6px;
-  height: 41px;
-  width: 560px;
-  margin-left: 40px;
-  margin-top: -100px;
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.btn-image {
-  background-color:#FF7F50;
-  border-color: #FF7F50;
-  width:86.38px;
-  height:30.2px;
-  padding:0px;
-}
-
-.btn-create{
-  background-color: white;
-  border-color: white;
-  color: black;
-  padding: 0px;
-  display: block;
-  float: left;
-  margin-left: 423px;
-  margin-bottom: 20px;
-  width: 190px;
-  height: 45px;
-  font-size: 22px;
-}
-
-.btn-create:hover,
-.active .btn-create:hover,
-.btn-create:focus{
-	border-color: #FF7F50;
-    background-color: #FF7F50;
-    color: white;
-}
-
-
-.imageCoureselForm{
-  width:20%;
-  font-size: 10px;
-  color: #555;
-  background-color: #fff;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
-       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-}
-
-/* .imageCoureselForm:focus { */
-/*   border-color: ; */
-/*   outline: 0; */
-/*   -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6); */
-/*           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6); */
-/* } */
-
-/* .imageCoureselForm::-moz-placeholder { */
-/*   color: #999; */
-/*   opacity: 1; */
-/* } */
-/* .imageCoureselForm:-ms-input-placeholder { */
-/*   color: #999; */
-/* } */
-/* .imageCoureselForm::-webkit-input-placeholder { */
-/*   color: #999; */
-/* } */
-
-.has-error .imageCoureselForm {
-  border-color: #a94442;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
-}
-.has-error .imageCoureselForm:focus {
-  border-color: #843534;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
-          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
 }
 
 #errormsg {
@@ -849,17 +762,6 @@ ul.unstyled {
 	height: 200px; 
     overflow: hidden;
 }
-
-/*#billToTitle {
-	width:50px;
-	
-	margin-right:15px;
-}
-
-#billToFirstName {
-	width:315px;
-	margin-left:15px;
-}*/
 
 /* Blog
 ------------------------- */
@@ -1446,6 +1348,30 @@ text-decoration: none !important;
     width: 68.1% !important;
     float:left;
 }
+
+@media only screen and (max-width: 1280px){
+	
+	.imageCarousellabel {
+      	background-color: black;
+      	padding-top: 6px;
+     	height: 43px;
+  	  	width: 560px;
+      	margin-left: 49px;
+     	margin-top: -100px;
+      	background: rgba(255, 255, 255, 0.3);
+   	}
+
+	.fbButton{
+  		margin-left: -540px;
+  		margin-top: -115px;
+	}
+
+	.btn-fb {
+		height:73px;
+	}
+}
+
+
 @media only screen and (max-width: 1199px){
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
@@ -1517,9 +1443,9 @@ text-decoration: none !important;
   		padding: 0px;
  		display: block;
   		float: left;
-  		margin-left: 400px;
+  		margin-left: 397px;
 		margin-bottom: 16px;
-		width: 145px;
+		width: 170px;
 		height: 38px;
 		font-size: 18px;
 	}
@@ -1638,9 +1564,9 @@ text-decoration: none !important;
   		padding: 0px;
  		display: block;
   		float: left;
-  		margin-left: 352px;
+  		margin-left: 348px;
 		margin-bottom: 8px;
-		width: 130px;
+		width: 154px;
 		height: 33px;
 		font-size: 16px;
 	}
@@ -1727,9 +1653,9 @@ text-decoration: none !important;
   		padding: 0px;
  		display: block;
   		float: left;
-  		margin-left: 331px;
+  		margin-left: 328px;
 		margin-bottom: 4px;
-		width: 120px;
+		width: 138px;
 		height: 29px;
 		font-size: 14px;
 	}
@@ -1962,9 +1888,9 @@ textarea.form-control {
   		padding: 0px;
  		display: block;
   		float: left;
-  		margin-left: 296px;
+  		margin-left: 295px;
 		margin-bottom: -1px;
-		width: 110px;
+		width: 129px;
 		height: 25px;
 		font-size: 13px;
 	}
@@ -2063,20 +1989,6 @@ textarea.form-control {
   		color: #999;
 	}
 	
-	.btn-create {
-        background-color: white;
-  		border-color: white;
-  		color: black;
-  		padding: 0px;
- 		display: block;
-  		float: left;
-  		margin-left: 318px;
-		margin-bottom: -9px;
-		width: 105px;
-		height: 34px;
-  		font-size: 22px;
-	}
-	
 	.btn-create:hover,
     .active .btn-create:hover,
 	.btn-create:focus{
@@ -2092,9 +2004,9 @@ textarea.form-control {
   		padding: 0px;
  		display: block;
   		float: left;
-  		margin-left: 267px;
+  		margin-left: 264px;
 		margin-bottom: -6px;
-		width: 93px;
+		width: 112px;
 		height: 25px;
 		font-size: 11px;
 	}
@@ -2310,9 +2222,9 @@ textarea.form-control {
   		padding: 0px;
  		display: block;
   		float: left;
-  		margin-left: 294px;
+  		margin-left: 292px;
 		margin-bottom: 2px;
-		width: 93px;
+		width: 110px;
 		height: 25px;
 		font-size: 11px;
 	}
@@ -2418,9 +2330,9 @@ textarea.form-control {
   		padding: 0px;
  		display: block;
   		float: left;
-  		margin-left: 245px;
+  		margin-left: 243px;
 		margin-bottom: 0px;
-		width: 75px;
+		width: 94px;
 		height: 24px;
 		font-size: 9px;
 	}
@@ -2485,7 +2397,7 @@ textarea.form-control {
   		float: left;
   		margin-left: 184px;
 		margin-bottom: 0px;
-		width: 75px;
+		width: 89px;
 		height: 24px;
 		font-size: 9px;
 	}
@@ -2686,7 +2598,7 @@ textarea.form-control {
   		float: left;
   		margin-left: 158px;
 		margin-bottom: 0px;
-		width: 75px;
+		width: 90px;
 		height: 24px;
 		font-size: 9px;
 	}
@@ -2785,7 +2697,7 @@ textarea.form-control {
   		float: left;
   		margin-left: 144px;
 		margin-bottom: -1px;
-		width: 75px;
+		width: 89px;
 		height: 25px;
 		font-size: 9px;
 	}
@@ -2886,7 +2798,7 @@ textarea.form-control {
   		float: left;
   		margin-left: 121px;
         margin-bottom: -1px;
-		width: 75px;
+		width: 90px;
 		height: 24px;
 		font-size: 9px;
 	}
@@ -3617,4 +3529,35 @@ a.footerlink {
 .form-control[readonly], fieldset[disabled] .form-control {
     cursor: pointer !important;
     background-color: #ffffff  !important;
+}
+
+.crowderaFaq >h2{
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 25px;
+}
+.crowderaFaq >h3{
+    margin-top: 30px;
+    font-weight: 600;
+    font-size: 21px;
+}
+.crowderaFaq >h4{
+    margin-top: 30px;
+    color: #3333FF;
+    font-weight: 400;
+}
+.crowderaFaq >p {
+    font-size: 17px;
+    font-weight: 500;
+    color: #000000; 
+}
+.crowderaFaq >ul >li {
+    font-size: 17px;
+    font-weight: 500;
+    color: #000000;
+}
+.disableteambutton {
+    background-color: #e7e7e7;
+    color: #333333;
+    border-color: #dadada;
 }

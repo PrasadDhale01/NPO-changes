@@ -25,7 +25,7 @@ class UrlMappings {
         "/privacypolicy"(view:'/privacypolicy/index')
 
         /* FAQ */
-        // "/faq"(view:'/faq/index')
+        "/faq"(view:'/faq/index')
         
         /* Contact Us */
         "/customer-service"(view:'/contactus/index')

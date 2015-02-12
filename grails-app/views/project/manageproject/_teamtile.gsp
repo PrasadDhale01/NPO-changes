@@ -35,7 +35,7 @@
 					</g:if>
 					<g:else>
 					    <div class="over teamtile-banner">
-							<img src="/images/TEAM.png">
+							<img src="/images/teamTop.png">
 						</div>
 					</g:else>
 	            </div>
@@ -59,7 +59,7 @@
 					</g:if>
 					<g:else>
 					    <div class="over teamtile-banner">
-							<img src="/images/TEAM.png">
+							<img src="/images/teamTop.png">
 						</div>
 					</g:else>
 	            </div>

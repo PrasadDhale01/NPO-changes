@@ -77,7 +77,7 @@ class FundController {
         def percentage=((totalContribution + contPrice)/ amt)*100
         if(percentage>999)
         {
-            flash.amt_message= "Amount should not exceed more than \$"+remainAmt
+            flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
              render view: 'fund/index', model: [project: project, user:user]
             
         }
@@ -145,7 +145,7 @@ class FundController {
         def percentage=((totalContribution + contPrice)/ amt)*100
         if(percentage>999)
         {
-            flash.amt_message= "Amount should not exceed more than \$"+remainAmt
+            flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
              render view: 'fund/index', model: [project: project, user:user]
             
         }

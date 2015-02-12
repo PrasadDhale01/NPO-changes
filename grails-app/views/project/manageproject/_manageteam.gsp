@@ -32,7 +32,14 @@
 			          <ul class="dropdown-menu" role="menu">
 				          <li><a class="list" href="#teamMessage"><span class="glyphicon glyphicon-envelope"></span> &nbsp;&nbsp;Team Message </a></li>
 				          <li><a class="list" href="#campaignStatistics"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;&nbsp;Campaign Statistics </a></li>
-				          <li><a class="list" href="#inviteTeamMember" data-toggle="modal" model="['project': project]"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a></li>
+				          <li>
+				              <g:if test="${!ended}">
+				                  <a class="list" href="#inviteTeamMember" data-toggle="modal" model="['project': project]"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+				              </g:if>
+				              <g:else>
+				                  <a class="list"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+				              </g:else>
+				          </li>
 			          </ul>
                   </li>
 		    </ul>
@@ -51,9 +58,14 @@
                    </button>
                 </li>
                 <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
-                   <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
-                      Invite Members
-                   </button>
+                   <g:if test="${!ended}">
+                       <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
+                          Invite Members
+                       </button>
+                   </g:if>
+                   <g:else>
+                       <input type="submit" value="Invite Members" class="col-md-12 col-sm-12 col-xs-12 inviteteammember disableteambutton text-center btn btn-md" readonly/>
+                   </g:else>
                 </li>
             </ul>
 		</g:else>

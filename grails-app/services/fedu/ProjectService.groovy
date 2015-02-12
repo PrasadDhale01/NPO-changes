@@ -447,6 +447,16 @@ class ProjectService {
         def numberOfDays = endDate - createdDate
         project.days = numberOfDays
     }
+	
+	def isTeamAdmin(Project project) {
+		def user = userService.getCurrentUser()
+		def result = false
+		project.projectAdmins.each{
+			if(it.email == user.email)
+				 result = true
+		}
+		return result
+	}
     
     /*def sendEmailToAdminForProjectUpdate(def project, def user) {
         def projectadmins = project.projectAdmins
@@ -594,9 +604,9 @@ class ProjectService {
     def getDataType(Double amount){
         def price
         if(((int)amount) == amount){
-            price = (int)amount
+            price = (int)amount.round()
         } else {
-            price = amount
+            price = amount.round()
         }
         return price
     }
@@ -711,7 +721,7 @@ class ProjectService {
 	
     def getContributedAmount (Transaction transaction){
 	def contribution = Contribution.findWhere(user: transaction.user,project: transaction.project)
-	return contribution.amount
+	return contribution.amount.round()
     }
     
     def getUpdatedImageUrls(List<MultipartFile> files, ProjectUpdate projectUpdate){

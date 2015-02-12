@@ -72,7 +72,7 @@
 	        </g:if>
 	        <g:else>
 	            <div class="tilesanstitletag  banner-wid">
-					<img src="/images/Team-Bottom.png">
+					<img src="/images/teamBottom.png">
 				</div>
 	        </g:else>
 	    </g:elseif>

@@ -13,7 +13,7 @@
             </ul>
         </div> -->
         <!-- /btn-group -->
-        <form action="/campaigns" id="<g:javascript>document.getElementById('q').value()</g:javascript>" name="searchableForm">
+        <form action="/campaigns" onClick="searchList()" name="searchableForm">
         <div class="inner-addon right-addon">
             <i class="glyphicon glyphicon-search"></i>
             <input type="search" class="search" id="q"  name="q" value="${params.q}" placeholder="Search">

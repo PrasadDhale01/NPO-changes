@@ -12,6 +12,7 @@
     def isTeamExist = userService.isTeamAlreadyExist(project, currentUser)
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
+    boolean ended = projectService.isProjectDeadlineCrossed(project)
 %>
 <div class="col-md-12 col-sm-12 col-xs-12"></div>
 <div class="pill-buttons">
@@ -29,18 +30,32 @@
             </button>
         </li>
 		<g:if test="${!isTeamExist}">
-		    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button ">
-		        <g:form controller="project" action="addFundRaiser" id="${project.id}" params="['fundRaiser':username]">
-				    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md"/>
-				</g:form> 
-		    </li>
+		    <g:if test="${!ended}">
+			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button ">
+			        <g:form controller="project" action="addFundRaiser" id="${project.id}" params="['fundRaiser':username]">
+					    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md"/>
+					</g:form> 
+			    </li>
+		    </g:if>
+		    <g:else>
+		        <li class="col-md-4 col-sm-4 col-xs-4 show-team-button">
+                    <input value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember disableteambutton text-center btn btn-md" readonly/>
+                </li>
+		    </g:else>
 		</g:if>
 		<g:else>
-            <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
-                <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
-                   Invite Members
-                </button>		    
-            </li>
+		    <g:if test="${!ended}">
+                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
+                    <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
+                       Invite Members
+                    </button>           
+                </li>
+            </g:if>
+            <g:else>
+                <li class="col-md-4 col-sm-4 col-xs-4 show-team-button">
+                    <input value="Invite Members" class="col-md-12 col-sm-12 col-xs-12 inviteteammember disableteambutton text-center btn btn-md" readonly/>
+                </li>
+            </g:else>
 		</g:else>
 	</ul>
 	<div class="teamtileseperator"></div>

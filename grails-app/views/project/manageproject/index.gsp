@@ -60,7 +60,7 @@
 					</g:if>
 					<g:else>
 					    <h1 class="green-heading text-center">
-						    <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fundRaiser': username]">${project.title}</g:link>
+						    <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link>
 					    </h1>
 					</g:else>
 					

@@ -87,7 +87,7 @@ class ProjectController {
 
 	def show() {
 		Project project
-        User user = User.findByUsername(params.fundRaiser)
+        User user = User.findByUsername(params.fr)
 		if (params.id) {
 			project = Project.findById(params.id)
 		} else {
@@ -610,11 +610,11 @@ class ProjectController {
         String emails = params.emails
         String name = params.name
         String message = params.message
-        
+        def fundRaiser = params.fr
         def emailList = emails.split(',')
         emailList = emailList.collect { it.trim() }
         
-        mandrillService.shareProject(emailList, name, message, project)
+        mandrillService.shareProject(emailList, name, message, project, fundRaiser)
 
         flash.prj_mngprj_message= "Email sent successfully."
         if (params.ismanagepage) {
@@ -622,9 +622,7 @@ class ProjectController {
                     model: [project: project,
                             FORMCONSTANTS: FORMCONSTANTS])
         } else {
-            render (view: 'show/index',
-                    model: [project: project,
-                            FORMCONSTANTS: FORMCONSTANTS])
+           redirect (action: 'show', id: project.id, params:[fr: fundRaiser])
         }
     }
     
@@ -706,13 +704,14 @@ class ProjectController {
         String name = params.username
         String message = params.message
         User user = userService.getCurrentUser()
-                       
+        def fundraiser =user.username  
+
         if (params.ismanagepage) {
             sendEmailToTeam(emails, name, message, project)
-            redirect (action: 'manageproject', id: project.id, params:[fundRaiser: user], fragment: 'manageTeam')
+            redirect (action: 'manageproject', id: project.id, params:[fr: fundraiser], fragment: 'manageTeam')
         } else {
             sendEmailToTeam(emails, name, message, project)
-            redirect (action: 'show', id: project.id, params:[fundRaiser: user], fragment: 'manageTeam')
+            redirect (action: 'show', id: project.id, params:[fr: fundraiser], fragment: 'manageTeam')
         }
     }
 
@@ -726,7 +725,7 @@ class ProjectController {
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def saveteamcomment() {
-		def fundRaiser = params.fundRaiser
+		def fundRaiser = params.fr
 		User user = User.findByUsername(fundRaiser)
 		Project project = Project.get(params.id)
 		Team team = Team.findByUserAndProject(user, project)
@@ -742,9 +741,9 @@ class ProjectController {
 		}
         
         if (!params.ismanagepage) {
-		    redirect (action: 'show', id: params.id, params:[fundRaiser: fundRaiser], fragment: 'manageTeam')
+		    redirect (action: 'show', id: params.id, params:[fr: fundRaiser], fragment: 'manageTeam')
         } else {
-            redirect (action: 'manageproject', id: params.id, params:[fundRaiser: fundRaiser], fragment: 'manageTeam')
+            redirect (action: 'manageproject', id: params.id, params:[fr: fundRaiser], fragment: 'manageTeam')
         }
 	}
 

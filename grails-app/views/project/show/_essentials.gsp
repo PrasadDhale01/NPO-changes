@@ -13,7 +13,7 @@
         <a class="share-mail pull-right" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail" data-url="${base_url}/projects/${project.id}" data-name="${project.title}">
             <img src="${resource(dir: 'images', file: 'mail-share@2x.png')}" alt="Mail Share"/>
         </a>
-        <a class="twitter-share pull-right" href="https://twitter.com/share?text=Hey check this project at crowdera.co!"  data-url="${base_url}/projects/${project.id}" target="_blank">
+        <a class="twitter-share pull-right" href="https://twitter.com/share?text=Check campaign at crowdera.co!"  data-url="${base_url}/projects/${project.id}" target="_blank">
             <img src="${resource(dir: 'images', file: 'tw-share@2x.png')}" alt="Twitter Share"/>
         </a>
         <a class="fb-like pull-right" href="http://www.facebook.com/sharer.php?s=100&p[url]=${base_url}/projects/${project.id}&p[title]=${project.title} &p[summary]=${project.story}" data-url="${base_url}/projects/${project.id}" data-share="true">

@@ -7,8 +7,8 @@
 	           <div class="footerbottommainlinks">
 		           <a href="${resource(dir: '/')}" >Home</a><br/>
 		           <a href="${resource(dir: '/aboutus')}">Crowdera Crew</a><br/>
-		           <a href="${resource(dir: '/projects')}" >Explore</a><br>
-		           <a href="${resource(dir: '/projects/create')}">Start a Campaign</a><br/>
+		           <a href="${resource(dir: '/campaigns')}" >Explore</a><br>
+		           <a href="${resource(dir: '/campaigns/create')}">Start a Campaign</a><br/>
 		           <a href="${resource(dir: '/howitworks')}">How it works</a><br/>
 		           <a href="${resource(dir: '/customer-service')}">Contact Us</a><br/>
 		           <a href="http://crowdera.tumblr.com">Blog</a><br/>

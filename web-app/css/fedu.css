@@ -178,12 +178,12 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 
 .dropdown-menu.usr > li > a {
     padding: 7px 21px !important;
-    width:155px;
+    width:192px;
 }
 
 .dropdown-menu.admin > li > a {
     padding: 7px 16px !important;
-    width:166px;
+    width:192px;
 }
 
 .nav > li > a:hover,
@@ -1806,6 +1806,11 @@ textarea.form-control {
         text-align: center;
         margin: 0 auto;
     }
+    .navbar-nav li span {
+		display: block;
+		color: #b6bbc0;
+		font-size: 9px;
+	}
 }
 @media only screen and (max-width: 891px){
 	
@@ -2032,6 +2037,11 @@ textarea.form-control {
         float: center;
         text-align: center;
     }
+    .navbar-nav li span {
+		display: block;
+		color: #b6bbc0;
+		font-size: 9px;
+	}
 }
 
 .charitableLink {
@@ -2109,11 +2119,11 @@ textarea.form-control {
 }
 .dropdown-menu.usr > li > a {
     padding: 7px 21px !important;
-    width:155px;
+    width:192px;
 }
 .dropdown-menu.admin > li > a {
     padding: 7px 16px !important;
-    width:166px;
+    width:192px;
 }
 }
 @media only screen and (min-width: 767px) and (max-width: 768px){
@@ -2122,11 +2132,11 @@ textarea.form-control {
   }
   .dropdown-menu.usr > li > a {
     padding: 7px 21px !important;
-    width:155px;
+    width:192px;
   }
   .dropdown-menu.admin > li > a {
     padding: 7px 16px !important;
-    width:166px;
+    width:192px;
   }
 .containrewards{
     height: 190px !important;
@@ -2610,6 +2620,11 @@ textarea.form-control {
     	background-color: #FF7F50;
     	color: white;
 	}
+	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+		background-color: #fff;
+		width: 192px;
+	}
+	
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
@@ -2684,6 +2699,10 @@ textarea.form-control {
     .campaignsubmitbutton .submitbutton {
 	    padding-left: 5px;
         padding-right: 5px;
+	}
+	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+		background-color: #fff;
+		width: 192px;
 	}
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
@@ -3560,4 +3579,7 @@ a.footerlink {
     background-color: #e7e7e7;
     color: #333333;
     border-color: #dadada;
+}
+li.dropdown.dropdown-head, ul.dropdown-menu.usr.user-dropdown, ul.dropdown-menu.admin.admin-dropdown{
+	width: 192px;
 }

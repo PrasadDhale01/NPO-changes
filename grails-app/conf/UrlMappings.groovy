@@ -36,12 +36,12 @@ class UrlMappings {
 
         /* Project */
         "/campaigns/create"(controller:'project', action:'create')
-		"/campaign/saveRedirect/$id"(controller:'project', action:'saveRedirect')
-		"/campaign/managecampaign"(controller:'project', action:'manageproject')
-		"/campaign/edit"(controller:'project', action:'edit')
-		"/campaigns/addFundRaiser/$id"(controller:'project', action:'addFundRaiser')
-		"/campaign/campaignupdate"(controller:'project', action:'projectupdate')
-		"/campaign/updatesaverender"(controller:'project', action:'updatesaverender')
+	"/campaign/saveRedirect/$id"(controller:'project', action:'saveRedirect')
+	"/campaign/managecampaign"(controller:'project', action:'manageproject')
+	"/campaign/edit"(controller:'project', action:'edit')
+	"/campaigns/addFundRaiser/$id"(controller:'project', action:'addFundRaiser')
+	"/campaign/campaignupdate"(controller:'project', action:'projectupdate')
+	"/campaign/updatesaverender"(controller:'project', action:'updatesaverender')
         "/campaigns"(controller:'project', action:'list')
         "/campaigns-widget"(controller:'project', action:'listwidget')
         "/campaigns/$id"(controller:'project', action:'show')
@@ -49,9 +49,9 @@ class UrlMappings {
         "/campaigns/$projectId/fund"(controller:'fund', action:'fund')
         "/campaign/query"(controller:'project' , action:'search')
         "/campaign"(controller:'project' , action:'categoryFilter')
-		"/campaign/validateList"(controller:'project', action:'validateList')
-		"/campaign/validateshow"(controller:'project', action:'validateshow')
-		"/campaign/sendemail"(controller:'project', action:'sendemail')
+	"/campaign/validateList"(controller:'project', action:'validateList')
+	"/campaign/validateshow"(controller:'project', action:'validateshow')
+	"/campaign/sendemail"(controller:'project', action:'sendemail')
 
         /* Admin */
         "/admin/dashboard"(controller:'user', action:'admindashboard')
@@ -66,7 +66,7 @@ class UrlMappings {
         /*Paypal*/
         "/fund/paypalReturn"(controller: 'fund', action: 'paypalReturn')
 		
-		/*User*/
-		"/user/mycampaigns"(controller:'user', action:'myproject')
+	/*User*/
+	"/user/mycampaigns"(controller:'user', action:'myproject')
     }
 }

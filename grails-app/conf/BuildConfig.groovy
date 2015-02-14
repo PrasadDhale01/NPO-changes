@@ -70,7 +70,6 @@ grails.project.dependency.resolution = {
 
         compile ":joda-time:1.4"
         compile ":excel-import:1.0.0"
-        compile ":ckeditor:4.4.1.0"
 		compile ":codenarc:0.22"
 
         // plugins needed at runtime but not for compilation

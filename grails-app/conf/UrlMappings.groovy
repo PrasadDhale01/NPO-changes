@@ -47,15 +47,15 @@ class UrlMappings {
         "/campaigns/$id"(controller:'project', action:'show')
         "/campaigns/$id/thumbnail"(controller:'project', action:'thumbnail')
         "/campaigns/$projectId/fund"(controller:'fund', action:'fund')
-        "/campaign"(controller:'project' , action:'search')
-        "/project"(controller:'project' , action:'categoryFilter')
+        "/campaign/query"(controller:'project' , action:'search')
+        "/campaign"(controller:'project' , action:'categoryFilter')
 		"/campaign/validateList"(controller:'project', action:'validateList')
 		"/campaign/validateshow"(controller:'project', action:'validateshow')
 		"/campaign/sendemail"(controller:'project', action:'sendemail')
 
         /* Admin */
         "/admin/dashboard"(controller:'user', action:'admindashboard')
-        "/admin/importprojects"(controller: 'project', action: 'importprojects')
+        "/admin/importcampaigns"(controller: 'project', action: 'importprojects')
 
         /* Community */
         "/community/$communityId/manage"(controller: 'community', action: 'manage')
@@ -65,5 +65,8 @@ class UrlMappings {
         
         /*Paypal*/
         "/fund/paypalReturn"(controller: 'fund', action: 'paypalReturn')
+		
+		/*User*/
+		"/user/mycampaigns"(controller:'user', action:'myproject')
     }
 }

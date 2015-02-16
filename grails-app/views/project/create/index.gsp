@@ -460,7 +460,7 @@ tinymce.init({
 									<div class="form-group">
                                         <div class="col-sm-12">
                                             <div class="col-sm-2">
-                                                <label class="control-label">Which of the following is necessary to ship this perk:</label>
+                                                <label class="control-label">Which of the following is necessary to fulfill this perk:</label>
                                             </div>
                                             <div class="col-sm-10 shippingreward">
                                                 <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing address</label>

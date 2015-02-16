@@ -19,7 +19,7 @@
 			<ul class="nav navbar-nav">
 <%--			    <li><a href="/">Home</a></li>--%>
 				<li><g:link controller="project" action="create" class="centerText"><b>CREATE</b><span>A CAMPAIGN</span></g:link></li>
-                <li><a href="${resource(dir: '/projects')}" class="centerText"><b>EXPLORE</b> <span>CAMPAIGNS</span></a></li>
+                <li><a href="${resource(dir: '/campaigns')}" class="centerText"><b>EXPLORE</b> <span>CAMPAIGNS</span></a></li>
 				<li><a href="${resource(dir: '/howitworks')}" class="centerText"><b>SEE HOW</b> <span>IT WORKS</span></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

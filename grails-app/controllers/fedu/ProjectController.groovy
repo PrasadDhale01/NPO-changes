@@ -592,19 +592,12 @@ class ProjectController {
             project.addToRewards(reward)
             reward.obsolete = true
             flash.prj_mngprj_message = 'Successfully created a new perk'
-            redirect(controller: 'project', action: 'redirectReward',fragment: 'rewards', id: project.id)
+            redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)
         } else {
             render (view: 'manageproject/error', model: [reward: reward])
         }
     }
 
-    def redirectReward(){
-        def project = Project.get(params.id)
-        render (view: 'manageproject/index', 
-                model: [project: project,
-                        FORMCONSTANTS: FORMCONSTANTS])
-    }
-    
     def sendemail() {
         def project = Project.get(params.id)
         String emails = params.emails
@@ -757,8 +750,7 @@ class ProjectController {
             shippingInfo.delete()
             rewardId.delete()
             flash.prj_mngprj_message = 'Successfully deleted a Perk'
-            render (controller: 'project',fragment: 'rewards', view: 'manageproject/index',model: [project: project,FORMCONSTANTS: FORMCONSTANTS])
-            
+			redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)            
         }else{
              render (view: 'manageproject/index', fragment: 'rewards',
                 model: [project: project,

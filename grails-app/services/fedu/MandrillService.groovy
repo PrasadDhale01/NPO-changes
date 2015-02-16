@@ -184,13 +184,13 @@ class MandrillService {
         return ret
     }
 
-    def shareProject(def emailList, String name, String message, Project project) {
+    def shareProject(def emailList, String name, String message, Project project, def fundRaiser) {
         def imageUrl = project.imageUrl
         if (imageUrl) {
             imageUrl = project.imageUrl[0].getUrl()
         }
         emailList.each { email ->
-            def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, absolute: true)
+            def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id,params:[fr:fundRaiser], absolute: true)
             def globalMergeVars = [
                 [
                     'name': 'LINK',

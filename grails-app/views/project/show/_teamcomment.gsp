@@ -19,7 +19,7 @@
 	        <div class="alert alert-danger">${flash.teamcommentmessage}</div>
 	    </g:if>
 	    <h4 class="lead">Leave a comment</h4>
-	    <g:form controller="project" action="saveteamcomment" role="form" id="${project.id}" params="['fundRaiser': fundRaiser]">
+	    <g:form controller="project" action="saveteamcomment" role="form" id="${project.id}" params="['fr': fundRaiser]">
 	        <div class="form-group">
 	            <textarea class="form-control" name="comment" rows="4" required="true"></textarea>
 	        </div>

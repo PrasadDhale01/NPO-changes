@@ -50,7 +50,7 @@
 		<g:if test="${project}">
             <div class="row">
              	<g:if test="${flash.prj_mngprj_message}">
-                    <div class="alert alert-success show-msz">
+                    <div class="alert alert-success show-msz" align="center">
                         ${flash.prj_mngprj_message}
                     </div>
                 </g:if>
@@ -60,7 +60,7 @@
 	                </div>
                 </g:if>
 	            <div class="col-md-12 green-heading text-center">
-	                <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fundRaiser': username]">
+	                <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">
 		            	<h1> ${projectTitle} </h1>
 	                </g:link>
 	            </div>
@@ -123,7 +123,7 @@
                     <div class="row"> 
 				        <!-- Modal -->
 				        <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
-				            <g:form action="sendemail" id="${project.id}" role="form">
+				            <g:form action="sendemail" id="${project.id}" params="['fr': username]" role="form">
 				                <div class="modal-dialog">
 				                    <div class="modal-content">
 				                        <div class="modal-header">

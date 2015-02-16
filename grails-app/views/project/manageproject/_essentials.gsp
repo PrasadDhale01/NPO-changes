@@ -29,7 +29,7 @@
 					data-url="${base_url}/projects/${project.id}"
 					data-name="${project.title}"> <img src="${resource(dir: 'images', file: 'mail-share@2x.png')}" alt="Mail Share" />
 				</a> <a class="twitter-share pull-right social"
-					href="https://twitter.com/share?text=Hey check this project at crowdera.co!"
+					href="https://twitter.com/share?text=Check campaign at crowdera.co!"
 					data-url="${base_url}/projects/${project.id}" target="_blank">
 					<img src="${resource(dir: 'images', file: 'tw-share@2x.png')}" alt="Twitter Share" />
 				</a> <a class="fb-like pull-right social"

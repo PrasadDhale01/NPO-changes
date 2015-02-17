@@ -1,43 +1,94 @@
 <div class=" successtips">
 	<div class="container">
-	    <!-- Three columns of text below the carousel -->
-	           <div class="text-center"> <h2>TIPS FOR SUCCESS</h2></div>
-	    <div class="row">
-	        <div class="col-lg-6">
-	            <h4>01/ <span>Set Your Funding Goal</span></h4>
-	            <h5>
-	                Before you begin, you and your team should decide how much money you'd like to raise and the length of your campaign, considering all the fundraising activities of your organization. We suggest your campaign to run no less than 30 days but it cannot exceed 90 days. Read more on our <a href="http://crowdera.tumblr.com">blog</a>!
-	            </h5>
-	            <hr/>
-	            <h4>02/ <span>Build your project page</span></h4>
-	            <h5>
-	                Your project page is your opportunity to share your ideas and engage potential supporters. Here you will post a description of the project, the beginning and end dates of the campaign and your funding goal. Make sure it is well written with a clear objective, and include pictures and video! To get started, click <a href="/projects/create">here</a>.
-	            </h5>
-	            <hr/>
-	            <h4>03/ <span>Reach out to family and friends</span></h4>
-	            <h5>
-	                Family and friends are going to be the greatest source of support for your campaign, so be sure to get them involved! Once your campaign is approved and you plan to go live, send an email to your network of family and friends asking for their support. Don't be shy, make the "ask". Read more on our <a href="http://crowdera.tumblr.com">blog</a>.
-	            </h5>
-	        </div>
-	
-	        <div class="col-lg-6">
-	            <h4>04/ <span>Include video</span></h4>
-	            <h5>
-	                Crowdfunding campaigns succeed because they appeal to people's passions and interests, whether it's to raise money for a new playground, class trip or to help provide clean water to a community in need. Campaigns which include short videos, less than 3 minutes long, are nearly 50 percent more successful than those without. Grab your digital camera or smartphone and tell your story! Read more on our <a href="http://crowdera.tumblr.com">blog</a>.
-	            </h5>
-	            <hr/>
-	            <h4>05/ <span>Appoint a Chief Enthusiasm Officer</span></h4>
-	            <h5>
-	                After the initial burst of activity you will need to keep up the momentum. Staying engaged for the duration of the campaign is key! Appoint a Chief Enthusiasm Officer to make sure frequent updates are sent to your network and supporters. Include pictures, video and project updates. Campaigns with more than 25 updates have raised upward of 400 percent more funding than those with less than 5 updates. Read more on our <a href="http://crowdera.tumblr.com">blog</a>!
-	            </h5>
-	            <hr/>
-	            <h4>06/ <span>Add rewards</span></h4>
-	            <h5>
-	                Reward-based crowdfunding campaigns offer you an opportunity to thank your supporters. Rewards can be as simple as two free tickets to a school sponsored event or an original piece of student artwork. Keep in mind that the average contribution is $70, but the most common is $25.
-	            </h5>
-	        </div>
-	
-	    </div>
-	    <!-- /.row -->
+		<!-- Three columns of text below the carousel -->
+		<div class="text-center">
+			<h2>TIPS FOR SUCCESS</h2>
+		</div>
+		<div class="row">
+			<div class="col-lg-6">
+				<h4>
+					01/ <span>Set Your Funding Goal</span>
+				</h4>
+				<h5>
+					Decide how much you’d like to raise for your cause and how long to
+					run your campaign. We suggest your campaign to be at least 30 days,
+					but it cannot exceed 90 days. Of course, the length of your
+					campaign and how much you plan to raise all depends on your team
+					and the fund raising activities of your organization. Think
+					realistically, but don’t be afraid to think big! Read more on our <a
+						href="http://crowdera.tumblr.com">blog</a>!
+				</h5>
+				<hr/>
+				<h4>
+					02/ <span>Build your campaign page</span>
+				</h4>
+				<h5>
+					Share your ideas and engage with supporters of your cause. Post a
+					description of your campaign, the beginning and end dates of your
+					campaign, and your funding goal. Include content like pictures and
+					video to make your page pop! Get started, click <a
+						href="/campaigns/create">here</a>.
+				</h5>
+				<hr/>
+				<h4>
+					03/ <span>Include video</span>
+				</h4>
+				<h5>
+					Tell the story of your campaign with a short video. Crowdfunding
+					campaigns which include a video are 50% more successful! We suggest
+					your video be no more than 3 minutes long. Whether you’re filming
+					with a digital camera or a smartphone, videos that make a
+					connection with the passions and interests of your audience can
+					help you meet your goal. Read more on our <a
+						href="http://crowdera.tumblr.com">blog</a>.
+				</h5>
+			</div>
+
+			<div class="col-lg-6">
+				<h4>
+					04/ <span>Reach out to family and friends</span>
+				</h4>
+				<h5>
+					Get your loved ones involved with your campaign! Once your campaign
+					goes live, share your campaign page with your network through email
+					or social media. Don’t be shy. Friends and family are always happy
+					to show their support if you just ask <img src="/images/smily.png">
+					Read more on our <a href="http://crowdera.tumblr.com">blog</a>.
+				</h5>
+				<hr/>
+				<h4>
+					05/ <span>Appoint a Chief Enthusiasm Officer</span>
+				</h4>
+				<h5>
+					Keep up the momentum of your campaign with a CEO – a Chief
+					Enthusiasm Officer. A CEO actively engages with your campaign
+					supporters through email, social media, pictures, video, and
+					campaign updates. Campaigns with more than 25 updates have raised
+					upward of 400% more funding! Frequent updates keep your supporters
+					informed and excited about your cause, which is key to a successful
+					campaign. Read more on our <a href="http://crowdera.tumblr.com">blog</a>!
+				</h5>
+				<hr/>
+				<h4>
+					06/ <span>Add perks</span>
+				</h4>
+				<h5>Express your gratitude to your supporters with perks.
+					They can be as simple as two free tickets to a school sponsored
+					event or an original piece of student artwork. Your perks should
+					closely match the contributions to your campaign. The average
+					contribution is $70, but the most common is $25.</h5>
+			</div>
+			<div class="col-sm-12 col-lg-12">
+				<h5>
+					More advice for setting your funding goals, creating a great
+					campaign video, and marketing your campaign can be found on our <a
+						href="http://crowdera.tumblr.com">blog</a> along with other useful
+					tips for success. Take a look!
+				</h5>
+			</div>
+			
+		</div>
+
+		<!-- /.row -->
 	</div>
 </div>

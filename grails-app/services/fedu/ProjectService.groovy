@@ -595,7 +595,9 @@ class ProjectService {
                 }
             }
             if(!isProjectexist) {
-                list.add(project)
+                if(project.inactive == false) {
+                    list.add(project)
+                }
             }
         }
         return list
@@ -754,6 +756,16 @@ class ProjectService {
                 file.delete()
             }
         }
+    }
+    
+    def isImageFileEmpty(List<MultipartFile> files) {
+        def isImageFileEmpty = true
+        files.each {file ->
+            if (!file?.empty) {
+                isImageFileEmpty = false
+            }
+        }
+        return isImageFileEmpty
     }
 
     def isFundingOpen(Project project) {

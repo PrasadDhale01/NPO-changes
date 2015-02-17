@@ -632,29 +632,31 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def updatesave() {
         def project = Project.get(params.id)
-        def projectUpdate = new ProjectUpdate()
-        User user = userService.getCurrentUser()
-        if(project) {
-            projectUpdate.story = params.story
-            def imageFiles = request.getFiles('thumbnail[]')
-            projectService.getUpdatedImageUrls(imageFiles, projectUpdate)
-            
-            project.addToProjectUpdates(projectUpdate)
-            
-            mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user)
-            
-            redirect (action:'updatesaverender' , controller:'project', id: project.id)
+        def imageFiles = request.getFiles('thumbnail[]')
+        def story = params.story
+        def isImageFileEmpty = projectService.isImageFileEmpty(imageFiles)
+        
+        if(project ) {
+            if (!isImageFileEmpty || !story.isAllWhitespace()) {
+                
+                def projectUpdate = new ProjectUpdate()
+                User user = userService.getCurrentUser()
+                
+                projectUpdate.story = story
+                projectService.getUpdatedImageUrls(imageFiles, projectUpdate)
+                
+                project.addToProjectUpdates(projectUpdate)
+                mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user)
+                
+                flash.prj_mngprj_message= "Update added successfully."
+                redirect (action: 'manageproject', controller:'project', id: project.id, fragment: 'projectupdates')
+            } else {
+                flash.prj_mngprj_message= "No Updates added."
+                redirect (action: 'manageproject', controller:'project', id: project.id, fragment: 'projectupdates')
+            }
         } else {
             render (view: 'manageproject/error', model: [project: project])
         }
-    }
-    
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def updatesaverender() {
-        def project = Project.get(params.id)
-        
-        flash.prj_mngprj_message= "Update added successfully."
-        render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
     }
     
     def categoryFilter (){

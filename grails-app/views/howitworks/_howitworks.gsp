@@ -15,8 +15,7 @@
 					but it cannot exceed 90 days. Of course, the length of your
 					campaign and how much you plan to raise all depends on your team
 					and the fund raising activities of your organization. Think
-					realistically, but don’t be afraid to think big! Read more on our <a
-						href="http://crowdera.tumblr.com">blog</a>!
+					realistically, but don’t be afraid to think big!
 				</h5>
 				<hr/>
 				<h4>
@@ -26,7 +25,7 @@
 					Share your ideas and engage with supporters of your cause. Post a
 					description of your campaign, the beginning and end dates of your
 					campaign, and your funding goal. Include content like pictures and
-					video to make your page pop! Get started, click <a
+					video to make your page pop! Get started <a
 						href="/campaigns/create">here</a>.
 				</h5>
 				<hr/>
@@ -39,8 +38,7 @@
 					your video be no more than 3 minutes long. Whether you’re filming
 					with a digital camera or a smartphone, videos that make a
 					connection with the passions and interests of your audience can
-					help you meet your goal. Read more on our <a
-						href="http://crowdera.tumblr.com">blog</a>.
+					help you meet your goal.
 				</h5>
 			</div>
 
@@ -53,7 +51,6 @@
 					goes live, share your campaign page with your network through email
 					or social media. Don’t be shy. Friends and family are always happy
 					to show their support if you just ask <img src="/images/smily.png">
-					Read more on our <a href="http://crowdera.tumblr.com">blog</a>.
 				</h5>
 				<hr/>
 				<h4>
@@ -66,7 +63,7 @@
 					campaign updates. Campaigns with more than 25 updates have raised
 					upward of 400% more funding! Frequent updates keep your supporters
 					informed and excited about your cause, which is key to a successful
-					campaign. Read more on our <a href="http://crowdera.tumblr.com">blog</a>!
+					campaign.
 				</h5>
 				<hr/>
 				<h4>

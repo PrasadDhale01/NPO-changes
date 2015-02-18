@@ -45,6 +45,15 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 		$('#icondiv').hide();
 		$('#iconfile').val(''); 
 	}
+
+ 	var needToConfirm = true;
+    window.onbeforeunload = confirmExit;
+    function confirmExit()
+    {
+        if(needToConfirm){
+        	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+        }
+    }
 </script>
 
 </head>
@@ -496,12 +505,12 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 							<label class="col-md-2 col-sm-2 control-label">All Cool!</label>
 							<div class="col-md-4 col-sm-6 campaignsubmitbutton">
 							    <div class="col-md-6 col-sm-6 col-xs-6 submitbutton">
-									<button type="submit" class="btn btn-primary btn-sm" name="button"
+									<button type="submit" class="btn btn-primary btn-sm createsubmitbutton" name="button"
 										id="submitProject" value="submitProject">Submit Campaign</button>
 							    </div>
 							    <div class="col-md-6 col-sm-6 col-xs-6">
-									<button type="submit" class="btn btn-primary btn-sm" name="button"
-										value="draft">Save as draft</button>
+									<button type="submit" class="btn btn-primary btn-sm createsubmitbutton" name="button"
+										value="draft,">Save as draft</button>
 							    </div>
  							</div>
 						</div>

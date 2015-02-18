@@ -77,6 +77,18 @@ $(function() {
         }//end error Placement
     });
 
+    $('#editsubmitbutton').click(function(event) {
+        if(validator.form()){
+        	needToConfirm = false;
+        } 	
+    });
+    
+    $('.updatesubmitbutton').click(function(event) {
+        if(validator.form()){
+        	needToConfirm = false;
+        } 	
+    });
+
     /** ********************Organization Icon*************************** */
 
     $('#chooseFile').click(function(event) {
@@ -152,7 +164,7 @@ $(function() {
          }
          return true;
      }, "Please provide valid url");
-
+     
     /***************************Multiple Image Selection*************** */
     $('#projectImageFile').change(function(event) {
         var file =this.files[0];

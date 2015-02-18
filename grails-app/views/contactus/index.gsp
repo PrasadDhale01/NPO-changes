@@ -2,6 +2,16 @@
 <meta name="layout" content="main" />
 <r:require modules="homejs"/>
 <ckeditor:resources />
+<script type="text/javascript">
+	var needToConfirm = true;
+	window.onbeforeunload = confirmExit;
+	function confirmExit()
+	{
+	    if(needToConfirm){
+	    	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+	    }
+	}
+</script>
 </head>
 <body>
     <div class="feducontent">
@@ -43,9 +53,9 @@
 	                        </div>
 	                    </div>
 	                    <div class="panel-footer">
-	                        <button type="submit" class="btn btn-primary btn-block">Submit</button>
+	                        <button type="submit" id="contactsubmitbutton" class="btn btn-primary btn-block">Submit</button>
 	                    </div>
-	                </div>
+	                </div> 
 	            </div>
 	        </g:form>
         </div>

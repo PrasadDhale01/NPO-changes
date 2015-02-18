@@ -205,6 +205,12 @@ $(function() {
         
         //ignore: []
     });
+    
+    $('.createsubmitbutton').click(function(event) {
+        if(validator.form()){
+        	needToConfirm = false;
+        } 	
+    });
 
     $( "#projectImageFile" ).rules( "add", {
       required: true,

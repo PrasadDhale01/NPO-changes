@@ -59,7 +59,7 @@ $(function() {
         //return false;
     });*/
 
-    $('form').validate({
+    var validator = $('form').validate({
         rules: {
             ccNumber: {
                 required: true
@@ -152,6 +152,12 @@ $(function() {
         if($("#payment-form").valid()) {
             $(this).find("button[type='submit']").prop('disabled',true);
         }
+    });
+    
+    $('.checkoutsubmitbutton').click(function(event) {
+        if(validator.form()){
+        	needToConfirm = false;
+        } 	
     });
 
 });

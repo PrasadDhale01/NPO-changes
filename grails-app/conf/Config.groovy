@@ -96,15 +96,15 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
-grails.plugin.springsecurity.facebook.domain.classname = 'fedu.FacebookUser'
+grails.plugin.springsecurity.facebook.domain.classname = 'crowdera.FacebookUser'
 grails.plugin.springsecurity.facebook.domain.appUserConnectionPropertyName = 'user'
 grails.plugin.springsecurity.facebook.filter.redirect.failureHandler='facebookRedirectFailureHandler'
 
 environments {
     development {
         /* FundEdu_dev */
-        fedu.facebook.appId = '641152155950617'
-        fedu.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
+        crowdera.facebook.appId = '641152155950617'
+        crowdera.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
         
         crowdera.BASE_URL = 'http://localhost:8080'
 
@@ -116,8 +116,8 @@ environments {
         grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
 
         /* FundEdu_dev */
-        grails.plugin.springsecurity.facebook.appId = '${fedu.facebook.appId}'
-        grails.plugin.springsecurity.facebook.secret = '${fedu.facebook.secret}'
+        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
         /* FirstGivig Details */
         crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
@@ -141,8 +141,8 @@ environments {
     }
     test {
         /* FundEdu_dev */
-        fedu.facebook.appId = '641152155950617'
-        fedu.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
+        crowdera.facebook.appId = '641152155950617'
+        crowdera.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
         
         crowdera.BASE_URL = 'http://staging.crowdera.co'
 
@@ -155,8 +155,8 @@ environments {
         grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
 
         /* FundEdu_dev */
-        grails.plugin.springsecurity.facebook.appId = '${fedu.facebook.appId}'
-        grails.plugin.springsecurity.facebook.secret = '${fedu.facebook.secret}'
+        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
         /* FirstGiving Details */
         crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
@@ -180,8 +180,8 @@ environments {
     }
     production {
         /* FundEdu */
-        fedu.facebook.appId = '354215177926850'
-        fedu.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
+        crowdera.facebook.appId = '354215177926850'
+        crowdera.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
 
         /* Until we go live with crowdera.co domain */
         //crowdera.BASE_URL = 'http://crowdera.co'
@@ -220,8 +220,8 @@ environments {
         */
 
         /* FundEdu */
-        grails.plugin.springsecurity.facebook.appId = '${fedu.facebook.appId}'
-        grails.plugin.springsecurity.facebook.secret = '${fedu.facebook.secret}'
+        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
@@ -271,9 +271,9 @@ aws {
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.logout.postOnly = false
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'fedu.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'fedu.UserRole'
-grails.plugin.springsecurity.authority.className = 'fedu.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'crowdera.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'crowdera.UserRole'
+grails.plugin.springsecurity.authority.className = 'crowdera.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
     '/secured/**':                    ['ROLE_ADMIN'],
 	'/**':                            ['permitAll']

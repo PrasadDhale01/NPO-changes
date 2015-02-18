@@ -18,6 +18,16 @@
             {{message}}
         </div>
     </script>
+    <script type="text/javascript">
+	    var needToConfirm = true;
+	    window.onbeforeunload = confirmExit;
+	    function confirmExit()
+	    {
+	        if(needToConfirm){
+	        	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+	        }
+	    }
+    </script>
 </head>
 <body>
 <div class="feducontent">
@@ -226,7 +236,7 @@
                     </label>
                 </div>
                 <div class="center-fund">
-                	<button type="submit" class="btn btn-primary btn-block btn-lg" name="fund-button" id="paypalsubmitbutton">Fund this Campaign</button>
+                	<button type="submit" class="btn btn-primary btn-block btn-lg checkoutsubmitbutton" name="fund-button" id="paypalsubmitbutton">Fund this Campaign</button>
                 </div>
                 <div class="powerdby">
                     <p>Powered By Firstgiving</p>

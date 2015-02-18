@@ -17,6 +17,15 @@
 	                  {title: 'Test template 2', content: 'Test 2'}
 	              ]
 	    });
+
+	    var needToConfirm = true;
+        window.onbeforeunload = confirmExit;
+        function confirmExit()
+        {
+            if(needToConfirm){
+            	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+            }
+        }
 	</script>
 </head>
 <body>
@@ -61,7 +70,7 @@
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Save Update</label>
 							<div class="col-sm-2-offset col-sm-4">
-								<button type="submit" class="btn btn-primary btn-sm" name="button" id="updatesubmitbutton">Submit Update</button>
+								<button type="submit" class="btn btn-primary btn-sm updatesubmitbutton" name="button" id="updatesubmitbutton">Submit Update</button>
 							</div>
 						</div>
 					</div>

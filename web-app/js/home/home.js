@@ -3,7 +3,7 @@ $(function() {
         style: 'btn btn-sm btn-default'
     });
 	
-	$('#contactUs').find('form').validate({
+	var validator = $('#contactUs').find('form').validate({
         rules: {
         	subject: {
         		required: true,
@@ -22,6 +22,11 @@ $(function() {
             }
         }
     });
+	$('#contactsubmitbutton').click(function(event) {
+	    if(validator.form()){
+	    	needToConfirm = false;
+	    } 	
+	});
 });
 
 $(window).load(function() {

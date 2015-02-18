@@ -31,7 +31,7 @@ class BlogService {
 							building strength, I realized that the audience was surprisingly
 							receptive. By the time the fourth student knelt in front, she
 							belted her opening line proudly: “My body has never embarrassed
-							me.�? Dressed in a shocking orange and fuchsia salwaar kameez, she
+							me." Dressed in a shocking orange and fuchsia salwaar kameez, she
 							stood out amidst the sea of black men’s blazers, her appearance
 							matching her bold statements. The girls took their turns, telling
 							the audience what it felt like to lose a cousin, to be a girl in
@@ -41,7 +41,7 @@ class BlogService {
 							were all at once hilarious, heart-breaking, brave and shy. At the
 							end of the reading, the audience of men clapped and fell silent.
 							One of the gangly boys raised his hand shyly, eyes wide, and
-							whispered “you girls are an inspiration.�?</p>
+							whispered “you girls are an inspiration."</p>
 						<p>Over the course of the semester, I witnessed my students
 							turn from fearful, reluctant writers, certain that they had no
 							narrative worth listening to, to powerful storytellers. Most of
@@ -138,7 +138,7 @@ class BlogService {
 							<p>Joining FEDU has been an exciting process, one where moving at a frenetic pace is enjoyable
 							because the mission is so clear: Fund Education.  As my first meeting wrapped up, we ended
 							on a slide that really captured my concept of FEDU’s mission.  The slide said “Why do we FEDU?
-							Because where you live shouldn’t determine how you live�?.</p>"""
+							Because where you live shouldn't determine how you live."</p>"""
 				).save(failOnError: true)
 
 		new Blog(

@@ -14,7 +14,7 @@
     -->
 
     <!-- Crowdera CSS -->
-    <r:require module="feducss"/>
+    <r:require module="crowderacss"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,7 +33,7 @@
         var js, fjs = d.getElementsByTagName(s)[0];
         if (d.getElementById(id)) return;
         js = d.createElement(s); js.id = id;
-        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=${grailsApplication.config.fedu.facebook.appId}";
+        js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=${grailsApplication.config.crowdera.facebook.appId}";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));</script>
 
@@ -44,7 +44,7 @@
     <g:render template="/layouts/footer"/>
 
     <!-- Include all javascript assets -->
-    <r:require modules="fedujs"/>
+    <r:require modules="crowderajs"/>
     <r:require module="googleanalytics"/>
 
     <r:layoutResources />

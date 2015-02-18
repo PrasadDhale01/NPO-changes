@@ -147,7 +147,7 @@ class MandrillService {
                 'name': 'EMAIL',
                 'content': user.email
             ]
-	     ]
+	]
 
         def tags = ['reset-password']
 

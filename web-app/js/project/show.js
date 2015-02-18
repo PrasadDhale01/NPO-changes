@@ -46,6 +46,24 @@ $(function() {
     	}
     });
     
+    $('#editFundraiser').find('form').validate({
+    	rules: {
+    		amount: {
+    			required: true,
+    			number : true,
+    		}
+    	}
+    });
+    
+//    $.validator.addMethod('islessThanProjectAmount', function (value, element) {
+//        var amountRaised = value;
+//        var password = $("#password").val();
+//        if(confirmpassword != password) {
+//            return (confirmpassword == password) ? password : false;
+//        }
+//        return true;
+//    }, "Passwords do not match! Please enter a valid password.");
+    
     function validateEmail(field) {
         var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
         return (regex.test(field)) ? true : false;

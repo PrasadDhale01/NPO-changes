@@ -721,6 +721,25 @@ class ProjectController {
             redirect (action: 'show', id: project.id, params:[fr: fundraiser], fragment: 'manageTeam')
         }
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def editFundraiser(){
+		def team = Team.get(params.id)
+		def project = Project.get(params.project)
+		def user = userService.getCurrentUser()
+		def fundRaiser = user.username
+		if(params.amount) {
+			def amount = Double.parseDouble(params.amount)
+			if(amount <= project.amount){
+				team.amount = amount
+				flash.message = "Goal Updated Successfully"
+			}
+			else {
+				flash.message = "Team's goal can't be greater than project's goal"
+			}
+		}
+		redirect (action: 'show', id: project.id , params:[fr: fundRaiser], fragment: 'manageTeam')
+	}
 
     def sendEmailToTeam(def emails, def name, def message, Project project)
     {

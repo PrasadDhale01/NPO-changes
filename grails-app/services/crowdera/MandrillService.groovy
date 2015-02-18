@@ -135,10 +135,10 @@ class MandrillService {
                 'name': 'LINK',
                 'content': link
             ],
-		    [
-			    'name': 'CREATELINK',
-			    'content': createButton
-		    ],
+            [
+		'name': 'CREATELINK',
+		'content': createButton
+	    ],
             [
                 'name': 'NAME',
                 'content': user.firstName + ' ' + user.lastName

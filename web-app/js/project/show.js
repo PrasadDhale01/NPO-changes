@@ -51,18 +51,20 @@ $(function() {
     		amount: {
     			required: true,
     			number : true,
+    			maxlength: 5,
+    			islessThanProjectAmount : true
     		}
     	}
     });
     
-//    $.validator.addMethod('islessThanProjectAmount', function (value, element) {
-//        var amountRaised = value;
-//        var password = $("#password").val();
-//        if(confirmpassword != password) {
-//            return (confirmpassword == password) ? password : false;
-//        }
-//        return true;
-//    }, "Passwords do not match! Please enter a valid password.");
+    $.validator.addMethod('islessThanProjectAmount', function (value, element) {
+    	var amountRaised = value;
+        var projectAmount = $("#projectAmount").val();
+        if (parseFloat(amountRaised) > parseFloat(projectAmount)) {
+        	 return (parseFloat(amountRaised) <= parseFloat(projectAmount)) ? amountRaised : false;
+        }
+        return true;
+    },"Team goal can not be greater than project goal.");
     
     function validateEmail(field) {
         var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;

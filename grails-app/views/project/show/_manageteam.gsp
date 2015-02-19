@@ -18,7 +18,7 @@
 %>
 <g:if test="${flash.message}">
    <div class="alert alert-success">
-       ${flash.message}&nbsp;&nbsp;<i class=" fa fa-exclamation-circle"></i>
+       ${flash.message}&nbsp;&nbsp;<i class="fa fa-check-square"></i>
    </div>
 </g:if>
 <div class="col-md-12 col-sm-12 col-xs-12"></div>
@@ -62,7 +62,7 @@
 				               <a class="list" href="#inviteTeamMember" data-toggle="modal" model="['project': project]"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
 				           </g:if>
 				           <g:else>
-				               <a class="list"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+				               <a class="list"><span class="glyphicon glyphicon-user"></span></i> &nbsp;&nbsp;Invite Members </a>
 				           </g:else>
 				       </li>
 				       <g:if test="${project.user!=currentUser}">
@@ -138,10 +138,10 @@
                 </div>
                 <div class="modal-body">
                     <g:hiddenField name="project" value="${project.id}"/>
-                    <g:hiddenField name="projectAmount" id="projectAmount" onchange="alertFunction()" value="${project.amount}"/>
+                    <g:hiddenField name="projectAmount" id="projectAmount" value="${project.amount}"/>
                     <div class="form-group">
                         <label>$ GOAL</label>
-                        <input type="text" class="form-control" name="amount" placeholder="Goal" value="${currentTeam.amount}"/>
+                        <input type="text" class="form-control" name="amount" id="amount" placeholder="Goal" value="${currentTeam.amount}"/>
                     </div>
                 </div>
                 <div class="modal-footer">

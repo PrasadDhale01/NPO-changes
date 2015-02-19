@@ -734,9 +734,6 @@ class ProjectController {
 				team.amount = amount
 				flash.message = "Goal Updated Successfully"
 			}
-			else {
-				flash.message = "Team's goal can't be greater than project's goal"
-			}
 		}
 		redirect (action: 'show', id: project.id , params:[fr: fundRaiser], fragment: 'manageTeam')
 	}

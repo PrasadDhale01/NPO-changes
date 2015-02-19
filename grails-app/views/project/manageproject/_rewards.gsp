@@ -44,7 +44,7 @@
                                 <input type="number" class="form-control" name="price" min="0" placeholder="Price"/>
                             </div>
                             <div class="form-group">
-                                <label class="control-label">Which of the following is necessary to ship this reward:</label>
+                                <label class="control-label">Which of the following is necessary to fulfill this perk:</label>
                                 <div class="shippingreward">
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="address" value="true" id="mailaddcheckbox">Mailing address</label>
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="email" value="true" id="emailcheckbox">Email address</label>

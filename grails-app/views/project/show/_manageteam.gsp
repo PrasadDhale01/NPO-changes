@@ -32,7 +32,7 @@
 		<g:if test="${!isTeamExist}">
 		    <g:if test="${!ended}">
 			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button ">
-			        <g:form controller="project" action="addFundRaiser" id="${project.id}" params="['fundRaiser':username]">
+			        <g:form controller="project" action="addFundRaiser" id="${project.id}" params="['fr':username]">
 					    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md"/>
 					</g:form> 
 			    </li>

@@ -35,18 +35,27 @@ class UrlMappings {
         "/blogs/$id"(controller:'blog', action:'show')
 
         /* Project */
-        "/projects/create"(controller:'project', action:'create')
-        "/projects"(controller:'project', action:'list')
-        "/projects-widget"(controller:'project', action:'listwidget')
-        "/projects/$id"(controller:'project', action:'show')
-        "/projects/$id/thumbnail"(controller:'project', action:'thumbnail')
-        "/projects/$projectId/fund"(controller:'fund', action:'fund')
-        "/campaigns"(controller:'project' , action:'search')
-        "/project"(controller:'project' , action:'categoryFilter')
+        "/campaigns/create"(controller:'project', action:'create')
+	"/campaign/saveRedirect/$id"(controller:'project', action:'saveRedirect')
+	"/campaign/managecampaign"(controller:'project', action:'manageproject')
+	"/campaign/edit"(controller:'project', action:'edit')
+	"/campaigns/addFundRaiser/$id"(controller:'project', action:'addFundRaiser')
+	"/campaign/campaignupdate"(controller:'project', action:'projectupdate')
+	"/campaign/updatesaverender"(controller:'project', action:'updatesaverender')
+        "/campaigns"(controller:'project', action:'list')
+        "/campaigns-widget"(controller:'project', action:'listwidget')
+        "/campaigns/$id"(controller:'project', action:'show')
+        "/campaigns/$id/thumbnail"(controller:'project', action:'thumbnail')
+        "/campaigns/$projectId/fund"(controller:'fund', action:'fund')
+        "/campaign/query"(controller:'project' , action:'search')
+        "/campaign"(controller:'project' , action:'categoryFilter')
+	"/campaign/validateList"(controller:'project', action:'validateList')
+	"/campaign/validateshow"(controller:'project', action:'validateshow')
+	"/campaign/sendemail"(controller:'project', action:'sendemail')
 
         /* Admin */
         "/admin/dashboard"(controller:'user', action:'admindashboard')
-        "/admin/importprojects"(controller: 'project', action: 'importprojects')
+        "/admin/importcampaigns"(controller: 'project', action: 'importprojects')
 
         /* Community */
         "/community/$communityId/manage"(controller: 'community', action: 'manage')
@@ -56,5 +65,8 @@ class UrlMappings {
         
         /*Paypal*/
         "/fund/paypalReturn"(controller: 'fund', action: 'paypalReturn')
+		
+	/*User*/
+	"/user/mycampaigns"(controller:'user', action:'myproject')
     }
 }

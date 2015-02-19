@@ -50,7 +50,7 @@
 		<g:if test="${project}">
             <div class="row">
              	<g:if test="${flash.prj_mngprj_message}">
-                    <div class="alert alert-success show-msz">
+                    <div class="alert alert-success show-msz" align="center">
                         ${flash.prj_mngprj_message}
                     </div>
                 </g:if>
@@ -60,7 +60,7 @@
 	                </div>
                 </g:if>
 	            <div class="col-md-12 green-heading text-center">
-	                <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fundRaiser': username]">
+	                <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">
 		            	<h1> ${projectTitle} </h1>
 	                </g:link>
 	            </div>
@@ -74,7 +74,7 @@
                         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
                     </g:elseif>
                     <g:else>
-                        <a href="/projects/${project.id}/fund" class="btn btn-success btn-lg btn-block" role="button">Fund this Campaign</a>
+                        <a href="/campaigns/${project.id}/fund" class="btn btn-success btn-lg btn-block" role="button">Fund this Campaign</a>
                     </g:else>
                     <g:if test="${project.rewards.size()>1}">
                     	<g:render template="show/rewards"/>
@@ -123,7 +123,7 @@
                     <div class="row"> 
 				        <!-- Modal -->
 				        <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
-				            <g:form action="sendemail" id="${project.id}" role="form">
+				            <g:form action="sendemail" id="${project.id}" params="['fr': username]" role="form">
 				                <div class="modal-dialog">
 				                    <div class="modal-content">
 				                        <div class="modal-header">
@@ -165,7 +165,7 @@
                         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>CAMPAIGN ENDED!</button>
                     </g:elseif>
                     <g:else>
-                        <form action="/projects/${project.id}/fund">
+                        <form action="/campaigns/${project.id}/fund">
                             <g:hiddenField name="fundraiserUsername" value="${username}" />
                             <g:submitButton name="submit" value="Fund this Campaign" class="btn btn-success btn-lg btn-block"/>
                         </form>                    

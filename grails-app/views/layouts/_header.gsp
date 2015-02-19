@@ -19,7 +19,7 @@
 			<ul class="nav navbar-nav">
 <%--			    <li><a href="/">Home</a></li>--%>
 				<li><g:link controller="project" action="create" class="centerText"><b>CREATE</b><span>A CAMPAIGN</span></g:link></li>
-                <li><a href="${resource(dir: '/projects')}" class="centerText"><b>EXPLORE</b> <span>CAMPAIGNS</span></a></li>
+                <li><a href="${resource(dir: '/campaigns')}" class="centerText"><b>EXPLORE</b> <span>CAMPAIGNS</span></a></li>
 				<li><a href="${resource(dir: '/howitworks')}" class="centerText"><b>SEE HOW</b> <span>IT WORKS</span></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
@@ -33,7 +33,7 @@
                     <li><g:link controller="login" action="register">Register</g:link></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
-                    <li class="dropdown">
+                    <li class="dropdown dropdown-head">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <g:if test="${userService.isFacebookUser()}">
                                 <i class="fa fa-facebook-square"></i>
@@ -54,7 +54,7 @@
                             <b class="caret"></b>
                         </a>
                             <g:if test="${userService.isAdmin()}">
-                                <ul class="dropdown-menu admin">
+                                <ul class="dropdown-menu admin  admin-dropdown">
                                 <li><g:link controller="user" action="dashboard">
                                         <span class="glyphicon glyphicon-cog"></span> Settings
                                 </g:link></li>
@@ -73,7 +73,7 @@
                             </ul>
                             </g:if>
                             <g:else>
-                            <ul class="dropdown-menu usr">
+                            <ul class="dropdown-menu usr user-dropdown">
                             <li><g:link class="myprojects" controller="user"
                                     action="myproject">
                                     <span class="glyphicon glyphicon-off"></span> My Campaigns

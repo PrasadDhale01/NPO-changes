@@ -7,7 +7,7 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 <g:if test="${user || beneficiary}">
-    <g:form controller="project" action="saveteamcomment" role="form" id="${project.id}" params="['fundRaiser': fundRaiser]">
+    <g:form controller="project" action="saveteamcomment" role="form" id="${project.id}" params="['fr': fundRaiser]">
         <g:hiddenField name="ismanagepage" value="managepage" />
         <div class="form-group">
             <textarea class="form-control" name="comment" rows="4" required="true"></textarea>

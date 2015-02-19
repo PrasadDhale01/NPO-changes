@@ -21,9 +21,9 @@ modules = {
         dependsOn 'corejs'
         resource url: 'vendor/jquery.validate/jquery.validate.js'
     }
-    fedujs {
+    crowderajs {
         dependsOn 'corejs', 'bootstrapselectjs', 'bootstrapmultiselectjs', 'jqueryvalidate'
-        resource url: 'js/fedu.js'
+        resource url: 'js/crowdera.js'
     }
     googleanalytics {
         resource url: 'js/ga.js'
@@ -48,61 +48,61 @@ modules = {
     /* Page-specific JS */
     /* Home */
     homejs {
-        dependsOn 'fedujs', 'blacknwhitejs'
+        dependsOn 'crowderajs', 'blacknwhitejs'
         resource url: 'js/home/home.js'
     }
     /* Login */
     loginjs {
-        dependsOn 'fedujs'
+        dependsOn 'crowderajs'
         resource url: 'js/home/login.js'
     }
     registrationjs {
-        dependsOn 'fedujs'
+        dependsOn 'crowderajs'
         resource url: 'js/home/registration.js'
     }
     /* Project */
     projectcreatejs {
-        dependsOn 'fedujs', 'handlebarsjs'
+        dependsOn 'crowderajs', 'handlebarsjs'
         resource url: 'js/project/create.js'
     }
     projectshowjs {
-        dependsOn 'fedujs'
+        dependsOn 'crowderajs'
         resource url: 'js/project/show.js'
     }
     projectlistjs {
-        dependsOn 'fedujs', 'blacknwhitejs'
+        dependsOn 'crowderajs', 'blacknwhitejs'
         resource url: 'js/project/list.js'
     }
     projecteditjs {
-        dependsOn 'fedujs', 'blacknwhitejs'
+        dependsOn 'crowderajs', 'blacknwhitejs'
         resource url: 'js/project/edit.js'
     }
     /* Fund */
     fundjs {
-        dependsOn 'underscorejs', 'fedujs'
+        dependsOn 'underscorejs', 'crowderajs'
         resource url: 'js/fund/fund.js'
     }
     checkoutjs {
-        dependsOn 'fedujs'
+        dependsOn 'crowderajs'
         resource url: 'js/fund/checkout.js'
     }
     /* Community */
     communitycreatejs {
-        dependsOn 'fedujs'
+        dependsOn 'crowderajs'
         resource url: 'js/community/create.js'
     }
     communitymanagejs {
-        dependsOn 'fedujs'
+        dependsOn 'crowderajs'
         resource url: 'js/community/manage.js'
     }
     /* Rewards */
     rewardjs {
-        dependsOn 'fedujs'
+        dependsOn 'crowderajs'
         resource url: 'js/reward.js'
     }
     /* User */
     userjs {
-        dependsOn 'fedujs'
+        dependsOn 'crowderajs'
         resource url: 'js/user.js'
     }
 
@@ -113,12 +113,24 @@ modules = {
     piecss {
         resource url: 'css/pie.css'
     }
-    feducss {
-        dependsOn 'bootswatchcss', 'bootstrapselectcss', 'bootstrapmultiselectcss', 'fontawesomecss', 'piecss'
-        resource url: 'css/fedu.css'
+    crowderacss {
+        dependsOn 'bootswatchcss', 'bootstrapselectcss', 'bootstrapmultiselectcss', 'fontawesomecss', 'piecss', 'campaigncss', 'usercss', 'fundcss', 'showcss'
+        resource url: 'css/crowdera.css'
+    }
+    campaigncss {
+        resource url: 'css/campaign.css'
+    }
+    usercss {
+        resource url: 'css/user.css'
+    }
+    fundcss {
+        resource url: 'css/fund.css'
+    }
+    showcss {
+        resource url: 'css/show.css'
     }
     timelinecss {
-        dependsOn 'feducss'
+        dependsOn 'crowderacss'
         resource url: 'css/timeline.css'
     }
     bootstrapcss {

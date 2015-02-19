@@ -34,13 +34,13 @@
         <div class="item ">
             <img src="/images/girlComputerSlider.jpg" >
             <div class="carousel-caption">
-                <div class="girlSlider"><a href="${base_url}/projects/create"><img src="/images/createButton.jpg"></a></div>
+                <div class="girlSlider"><a href="${base_url}/campaigns/create"><img src="/images/createButton.jpg"></a></div>
             </div>
         </div>
         <div class="item">
             <img src="/images/kidsRunningSlider.jpg" >
             <div class="carousel-caption">
-                <div><a href="${base_url}/projects/create"><button class="btn btn-create" type="submit"><b>Create Campaign</b></button></a></div>
+                <div><a href="${base_url}/campaigns/create"><button class="btn btn-create" type="submit"><b>Create Campaign</b></button></a></div>
             </div>       
         </div>
 

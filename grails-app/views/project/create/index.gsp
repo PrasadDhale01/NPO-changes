@@ -8,9 +8,9 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 <head>
 <meta name="layout" content="main" />
 <r:require modules="projectcreatejs" />
-<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 <link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
 <link rel="stylesheet" href="/css/datepicker.css">
+<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script>
@@ -24,29 +24,36 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 				}
 			});
 		});
-</script>
-<script>
-tinymce.init({
-	mode : "specific_textareas",
-    editor_selector : "mceEditor",
-	plugins: [
-          "advlist autolink lists link image charmap print preview hr anchor pagebreak emoticons",
-      ],
-      toolbar: "| insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image forecolor backcolor emoticons",
-      image_advtab: true,
-      templates: [
-          {title: 'Test template 1', content: 'Test 1'},
-          {title: 'Test template 2', content: 'Test 2'}
-      ]
-});
-</script>
-<script>
+
+    tinymce.init({
+	    mode : "specific_textareas",
+        editor_selector : "mceEditor",
+	    plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak emoticons",
+        ],
+        toolbar: "| insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image forecolor backcolor emoticons",
+        image_advtab: true,
+        templates: [
+           {title: 'Test template 1', content: 'Test 1'},
+           {title: 'Test template 2', content: 'Test 2'}
+        ]
+    });
+
 	function removeLogo(){
- 			$('#delIcon').removeAttr('src');
-			$('#imgIcon').removeAttr('src');
-			$('#icondiv').hide();
-			$('#iconfile').val(''); 
+ 		$('#delIcon').removeAttr('src');
+		$('#imgIcon').removeAttr('src');
+		$('#icondiv').hide();
+		$('#iconfile').val(''); 
 	}
+
+ 	var needToConfirm = true;
+    window.onbeforeunload = confirmExit;
+    function confirmExit()
+    {
+        if(needToConfirm){
+        	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+        }
+    }
 </script>
 
 </head>
@@ -460,7 +467,7 @@ tinymce.init({
 									<div class="form-group">
                                         <div class="col-sm-12">
                                             <div class="col-sm-2">
-                                                <label class="control-label">Which of the following is necessary to ship this perk:</label>
+                                                <label class="control-label">Which of the following is necessary to fulfill this perk:</label>
                                             </div>
                                             <div class="col-sm-10 shippingreward">
                                                 <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing address</label>
@@ -498,12 +505,12 @@ tinymce.init({
 							<label class="col-md-2 col-sm-2 control-label">All Cool!</label>
 							<div class="col-md-4 col-sm-6 campaignsubmitbutton">
 							    <div class="col-md-6 col-sm-6 col-xs-6 submitbutton">
-									<button type="submit" class="btn btn-primary btn-sm" name="button"
+									<button type="submit" class="btn btn-primary btn-sm createsubmitbutton" name="button"
 										id="submitProject" value="submitProject">Submit Campaign</button>
 							    </div>
 							    <div class="col-md-6 col-sm-6 col-xs-6">
-									<button type="submit" class="btn btn-primary btn-sm" name="button"
-										value="draft">Save as draft</button>
+									<button type="submit" class="btn btn-primary btn-sm createsubmitbutton" name="button"
+										value="draft,">Save as draft</button>
 							    </div>
  							</div>
 						</div>

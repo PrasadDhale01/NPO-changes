@@ -15,7 +15,6 @@ class Reward {
         image (nullable: true)
         title nullable: true
         description nullable: true
-        price nullable: true
     }
 
     static mapping = {

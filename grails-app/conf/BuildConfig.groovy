@@ -56,6 +56,7 @@ grails.project.dependency.resolution = {
         // plugins for the build system only
         build ":tomcat:7.0.52.1"
         // build ':jetty:2.0.3'
+        provided ":codenarc:0.22"
 
         // plugins for the compile step
         compile ":scaffolding:2.0.2"
@@ -70,7 +71,6 @@ grails.project.dependency.resolution = {
 
         compile ":joda-time:1.4"
         compile ":excel-import:1.0.0"
-		compile ":codenarc:0.22"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.8" // or ":hibernate4:4.3.1.1"

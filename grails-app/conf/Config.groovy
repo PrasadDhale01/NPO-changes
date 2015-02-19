@@ -102,7 +102,6 @@ grails.plugin.springsecurity.facebook.filter.redirect.failureHandler='facebookRe
 
 environments {
     development {
-        /* FundEdu_dev */
         crowdera.facebook.appId = '1023231227691905'
         crowdera.facebook.secret = '62799ed033c94866b84d718053ebaff2'
 
@@ -139,9 +138,9 @@ environments {
         }
     }
     test {
-        /* FundEdu_dev */
-        crowdera.facebook.appId = '1023227677692260'
-        crowdera.facebook.secret = '309e644f9088e2937f91bee3e8bdd6e5'
+        /*  */
+        crowdera.facebook.appId = '554475128028127'
+        crowdera.facebook.secret = 'f1991f7bf85d445a346821967e2b1251'
 
         grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
         grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
@@ -177,7 +176,6 @@ environments {
         }
     }
     production {
-        /* FundEdu */
         crowdera.facebook.appId = '354215177926850'
         crowdera.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
 

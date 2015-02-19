@@ -136,18 +136,14 @@ class MandrillService {
                 'content': link
             ],
             [
-		'name': 'CREATELINK',
-		'content': createButton
-	    ],
+		       'name': 'CREATELINK',
+		       'content': createButton
+	        ],
             [
                 'name': 'NAME',
-                'content': user.firstName + ' ' + user.lastName
-            ],
-            [
-                'name': 'EMAIL',
-                'content': user.email
+                'content': user.firstName 
             ]
-	]
+	    ]
 
         def tags = ['reset-password']
 

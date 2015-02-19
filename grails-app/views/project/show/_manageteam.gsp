@@ -141,7 +141,8 @@
                     <g:hiddenField name="projectAmount" id="projectAmount" value="${project.amount}"/>
                     <div class="form-group">
                         <label>$ GOAL</label>
-                        <input type="text" class="form-control" name="amount" id="amount" placeholder="Goal" value="${currentTeam.amount}"/>
+                        <input type="text" class="form-control" name="amount" id="teamamount" placeholder="Goal" value="${currentTeam.amount}"/>
+                        <span id="errormsg"></span>
                     </div>
                 </div>
                 <div class="modal-footer">

@@ -50,7 +50,6 @@ $(function() {
     	rules: {
     		amount: {
     			required: true,
-    			number : true,
     			maxlength: 5,
     			islessThanProjectAmount : true
     		}
@@ -65,6 +64,16 @@ $(function() {
         }
         return true;
     },"Team goal can not be greater than project goal.");
+    
+    //called when key is pressed in textbox
+    $("#teamamount").keypress(function (e) {
+           //if the letter is not digit then display error and don't type anything
+           if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+               //display error message
+               $("#errormsg").html("Digits Only").show().fadeOut("slow");
+           return false;
+       } 
+    });
     
     function validateEmail(field) {
         var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;

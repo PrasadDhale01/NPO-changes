@@ -15,7 +15,7 @@
         <h2>My Campaigns</h2>
         <g:if test="${flash.user_message}">
             <div class="alert alert-success" align="center">
-                <li>${flash.user_message}</li>
+                ${flash.user_message}
             </div>
         </g:if>
         <div class="row">

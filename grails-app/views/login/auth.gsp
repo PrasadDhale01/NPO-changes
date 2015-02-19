@@ -30,10 +30,10 @@
                 <input type="password" class="form-control" placeholder="Password" name="j_password" id="password">
             </div>
 
-            <label class="checkbox">
-                <input type="checkbox" value="remember-me" id="remember_me" name='${rememberMeParameter}' <g:if test='${hasCookie}'>checked='checked'</g:if> />
-                Remember me
-            </label>
+<%--            <label class="checkbox">--%>
+<%--                <input type="checkbox" value="remember-me" id="remember_me" name='${rememberMeParameter}' <g:if test='${hasCookie}'>checked='checked'</g:if> />--%>
+<%--                Remember me--%>
+<%--            </label>--%>
             <button class="btn btn-primary btn-block" type="submit" id="submit">Sign in</button>
             <g:link controller="login" action="edit_reset">Forgot your password?</g:link>
         </form>

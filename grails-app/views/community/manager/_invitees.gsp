@@ -1,4 +1,4 @@
-<%@ page import="fedu.CommunityInvite" %>
+<%@ page import="crowdera.CommunityInvite" %>
 <g:set var="userService" bean="userService"/>
 <g:set var="communityInviteService" bean="communityInviteService"/>
 <div class="panel panel-default">

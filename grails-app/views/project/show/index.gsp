@@ -9,11 +9,14 @@
     def fundRaiserName
 	def beneficiary = project.user
     def username
+	def currentFundraiser
     if (user) {
+		currentFundraiser = user
 	    def fundRaiser = user.firstName + " " + user.lastName
 	    fundRaiserName = fundRaiser.toUpperCase()
 	    username = user.username
     } else {
+	    currentFundraiser = beneficiary
 	    def fundRaiser = beneficiary.firstName + " " + beneficiary.lastName
 	    fundRaiserName = fundRaiser.toUpperCase()
 	    username = beneficiary.username
@@ -27,22 +30,23 @@
 	if (imageUrl) {
 		imageUrl = project.imageUrl[0].getUrl()
 	}
+    def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-<meta property="og:title" content="Crowdera : ${project.title}" />
-<meta property="og:url" content="{base_url}/projects/${project.id}" />
-<g:if test="${project.organizationIconUrl}">
-    <meta property="og:image" content="${project.organizationIconUrl}" />
-</g:if>
-<g:elseif test="${imageUrl}">
-     <meta property="og:image" content="${imageUrl}" />
-</g:elseif>
-<meta property="og:description" content="${project.description}" />
-<meta property="og:type" content="website" />
-
-<meta name="layout" content="main" />
-<r:require modules="projectshowjs"/>
+	<meta property="og:title" content="Crowdera : ${project.title}" />
+	<meta property="og:url" content="${fbShareUrl}" />
+	<g:if test="${project.organizationIconUrl}">
+	    <meta property="og:image" content="${project.organizationIconUrl}" />
+	</g:if>
+	<g:elseif test="${imageUrl}">
+	     <meta property="og:image" content="${imageUrl}" />
+	</g:elseif>
+	<meta property="og:description" content="${project.description}" />
+	<meta property="og:type" content="website" />
+	
+	<meta name="layout" content="main" />
+	<r:require modules="projectshowjs"/>
 </head>
 <body>
 <div class="feducontent">
@@ -110,7 +114,7 @@
                             <g:render template="show/projectupdates"/>
                         </div>
                         <div class="tab-pane" id="manageTeam">
-							<g:render template="show/manageteam" />
+							<g:render template="show/manageteam" model="['currentFundraiser':currentFundraiser]"/>
 						</div>
                         <div class="tab-pane" id="contributions">
                             <g:render template="show/contributions"/>
@@ -134,7 +138,7 @@
 				                            <g:hiddenField name="amount" value="${project.amount}"/>
 				                            <div class="form-group">
 				                                <label>Your Name</label>
-				                                <input type="text" class="form-control" name="name" placeholder="Name"/>
+				                                <input type="text" class="form-control" name="name" placeholder="Name"></input>
 				                            </div>
 				                            <div class="form-group">
 				                                <label>Email ID's (separated by comma)</label>
@@ -175,11 +179,6 @@
                     </g:if>
                 </div>
             </div>
-            <%--
-			<g:if test="${project.validated == false}">
-                <div class="alert alert-warning">This project is not yet published.</div>
-			</g:if>
-			--%>
 		</g:if>
 		<g:else>
             <h1>Campaign not found</h1>

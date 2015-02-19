@@ -103,9 +103,12 @@ grails.plugin.springsecurity.facebook.filter.redirect.failureHandler='facebookRe
 environments {
     development {
         /* FundEdu_dev */
-        crowdera.facebook.appId = '641152155950617'
-        crowdera.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
-        
+        crowdera.facebook.appId = '1023231227691905'
+        crowdera.facebook.secret = '62799ed033c94866b84d718053ebaff2'
+
+        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
+
         crowdera.BASE_URL = 'http://localhost:8080'
 
         grails.logging.jul.usebridge = true
@@ -115,11 +118,7 @@ environments {
         grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
         grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
 
-        /* FundEdu_dev */
-        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
-        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
-
-        /* FirstGivig Details */
+        /* FirstGiving Details */
         crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
         crowdera.firstgiving.uriPath= '/donation/creditcard'
         crowdera.firstgiving.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
@@ -141,9 +140,12 @@ environments {
     }
     test {
         /* FundEdu_dev */
-        crowdera.facebook.appId = '641152155950617'
-        crowdera.facebook.secret = 'cada382949c01ceab9d45ccfe8881216'
-        
+        crowdera.facebook.appId = '1023227677692260'
+        crowdera.facebook.secret = '309e644f9088e2937f91bee3e8bdd6e5'
+
+        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
+
         crowdera.BASE_URL = 'http://staging.crowdera.co'
 
         grails.logging.jul.usebridge = false
@@ -153,10 +155,6 @@ environments {
         /* Stripe test keys */
         grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
         grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
-
-        /* FundEdu_dev */
-        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
-        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
         /* FirstGiving Details */
         crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
@@ -183,8 +181,9 @@ environments {
         crowdera.facebook.appId = '354215177926850'
         crowdera.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
 
-        /* Until we go live with crowdera.co domain */
-        //crowdera.BASE_URL = 'http://crowdera.co'
+        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
+
         crowdera.BASE_URL = 'http://crowdera.co'
 
         grails.logging.jul.usebridge = false
@@ -218,10 +217,6 @@ environments {
         grails.plugins.stripe.secretKey = 'sk_live_UJc8cRZYdv4AasXP3whR6xfX'
         grails.plugins.stripe.publishableKey = 'pk_live_dABB1ahq9wrYlnUl1fN5wl1j'
         */
-
-        /* FundEdu */
-        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
-        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"

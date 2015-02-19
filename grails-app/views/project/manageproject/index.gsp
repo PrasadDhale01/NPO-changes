@@ -16,27 +16,27 @@
 	if (imageUrl) {
 		imageUrl = project.imageUrl[0].getUrl()
 	}
+    def fbShareUrl = base_url+"/campaign/managecampaign?id="+project.id
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-<meta property="og:title" content="Crowdera : ${project.title}" />
-<meta property="og:url" content="{base_url}/projects/${project.id}" />
-<g:if test="${project.organizationIconUrl}">
-    <meta property="og:image" content="${project.organizationIconUrl}" />
-</g:if>
-<g:elseif test="${imageUrl}">
-     <meta property="og:image" content="${imageUrl}" />
-</g:elseif>
-<meta property="og:description" content="${project.description}" />
-<meta property="og:type" content="website" />
-
-<meta name="layout" content="main" />
-<r:require modules="projectshowjs" />
-<r:require modules="rewardjs" />
-<ckeditor:resources />
+	<meta property="og:title" content="Crowdera : ${project.title}" />
+	<meta property="og:url" content="${fbShareUrl}" />
+	<g:if test="${project.organizationIconUrl}">
+	    <meta property="og:image" content="${project.organizationIconUrl}" />
+	</g:if>
+	<g:elseif test="${imageUrl}">
+	     <meta property="og:image" content="${imageUrl}" />
+	</g:elseif>
+	<meta property="og:description" content="${project.description}" />
+	<meta property="og:type" content="website" />
+	
+	<meta name="layout" content="main" />
+	<r:require modules="projectshowjs" />
+	<r:require modules="rewardjs" />
 </head>
 <body>
-	<input type="hidden" id="b_url" value="<%=base_url%>" />
+	<input type="hidden" id="b_url" value="<%=base_url%>"></input>
 	<div class="feducontent">
 		<div class="container">
 			<g:if test="${project}">
@@ -110,11 +110,6 @@
 
 					</div>
 				</div>
-				<%--
-			<g:if test="${project.validated == false}">
-                <div class="alert alert-warning">This project is not yet published.</div>
-			</g:if>
-			--%>
 			</g:if>
 			<g:else>
 				<h1>Project not found</h1>

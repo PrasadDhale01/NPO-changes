@@ -212,7 +212,7 @@
 		<p class="text-justify">
 			We do not entertain offline payments at this time. However, if you
 			want to give a large grant to a project, you can reach out to one of
-			our partnership managers <a href="#">here</a>.
+			our partnership managers <a href="mailto:partnerships@crowdera.co">here</a>.
 		</p>
 
 <%--		<h4>How do I know the authenticity of organization, individual--%>

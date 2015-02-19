@@ -9,11 +9,14 @@
     def fundRaiserName
 	def beneficiary = project.user
     def username
+	def currentFundraiser
     if (user) {
+		currentFundraiser = user
 	    def fundRaiser = user.firstName + " " + user.lastName
 	    fundRaiserName = fundRaiser.toUpperCase()
 	    username = user.username
     } else {
+	    currentFundraiser = beneficiary
 	    def fundRaiser = beneficiary.firstName + " " + beneficiary.lastName
 	    fundRaiserName = fundRaiser.toUpperCase()
 	    username = beneficiary.username
@@ -111,7 +114,7 @@
                             <g:render template="show/projectupdates"/>
                         </div>
                         <div class="tab-pane" id="manageTeam">
-							<g:render template="show/manageteam" />
+							<g:render template="show/manageteam" model="['currentFundraiser':currentFundraiser]"/>
 						</div>
                         <div class="tab-pane" id="contributions">
                             <g:render template="show/contributions"/>

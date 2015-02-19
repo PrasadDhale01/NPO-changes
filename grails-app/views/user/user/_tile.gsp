@@ -76,7 +76,7 @@
 			</g:link>
 		</g:if>
 		<g:else>
-		    <g:link controller="project" action="show" id="${project.id}" params="['fundRaiser': username]" title="${project.title}">
+		    <g:link controller="project" action="show" id="${project.id}" params="['fr': username]" title="${project.title}">
 				<div class="imageWithTag">
 					<div class="under">
 						<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">

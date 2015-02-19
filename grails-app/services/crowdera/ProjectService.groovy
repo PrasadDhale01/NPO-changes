@@ -581,6 +581,10 @@ class ProjectService {
     def getBeneficiaryId(Project project) {
         return( project.beneficiaryId )
     }
+	
+	def getCurrentTeam(Project project,User user){
+		return Team.findByProjectAndUser(project,user)
+	}
     
     def getProjects(def projects, def projectAdmins, def fundRaisers) {
         def list = []

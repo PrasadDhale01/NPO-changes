@@ -229,15 +229,15 @@ log4j = {
     // Example of changing the log pattern for the default console appender:
 
     appenders {
-        console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-        file name:'file', file:'fedu.log'
+        console name: 'stdout', layout: pattern(conversionPattern: '%c{2} %m%n')
+        file name: 'file', file: 'crowdera.log'
     }
 
     root {
         info 'stdout', 'file'
     }
 
-    info   'fedu'
+    info   'crowdera'
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP

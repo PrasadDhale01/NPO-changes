@@ -30,27 +30,32 @@
 	<sec:ifNotLoggedIn>
 	    <div class="alert alert-warning">Please login to comment.</div>
 	</sec:ifNotLoggedIn>
-
-	<g:if test="${team.comments}">
-		<g:if test="${!team.comments.empty}">
-		    <div class="panel panel-default show-team-comments">
-		        <div class="panel-heading">
-		            <h3 class="panel-title">Team Comments</h3>
-		        </div>
-		        <div class="panel-body commentsoncampaign">
-		            <div class="list-group">
-		                <g:each in="${team.comments.reverse()}" var="comment">
-				            <%
-				                def date = dateFormat.format(comment.date)
-				            %>
-				            <div class="modal-body tile-footer show-team-footer">
-					            <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
-					            <dd>${comment.comment}</dd>
-				            </div>
-				        </g:each>
-		            </div>
-		        </div>
-		    </div>
+	
+    <g:if test="${team}">
+		<g:if test="${team.comments}">
+			<g:if test="${!team.comments.empty}">
+			    <div class="panel panel-default show-team-comments">
+			        <div class="panel-heading">
+			            <h3 class="panel-title">Team Comments</h3>
+			        </div>
+			        <div class="panel-body commentsoncampaign">
+			            <div class="list-group">
+			                <g:each in="${team.comments.reverse()}" var="comment">
+					            <%
+					                def date = dateFormat.format(comment.date)
+					            %>
+					            <div class="modal-body tile-footer show-team-footer">
+						            <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
+						            <dd>${comment.comment}</dd>
+					            </div>
+					        </g:each>
+			            </div>
+			        </div>
+			    </div>
+			</g:if>
 		</g:if>
 	</g:if>
+	<g:else>
+    	<div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">No Comments.</div>
+	</g:else>
 </g:if>

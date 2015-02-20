@@ -24,7 +24,7 @@
                 <h4>CONTRIBUTE $${price} OR MORE</h4>
                 <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
                 <p class="rewarddescription">${raw(reward.description)}</p>
-                <g:link absolute="true" uri="/projects/${project.id}/fund">SELECT THIS PERK</g:link>
+                <g:link absolute="true" uri="/campaigns/${project.id}/fund">SELECT THIS PERK</g:link>
             </g:if>
             <g:else>
                 <h4>CONTRIBUTE $${price} OR MORE</h4>

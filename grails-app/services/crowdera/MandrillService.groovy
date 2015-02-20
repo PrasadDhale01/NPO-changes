@@ -129,6 +129,7 @@ class MandrillService {
     private def sendResetPassword(User user) {
         def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm_reset', id: user.resetCode, absolute: true)
 		def createButton = grailsLinkGenerator.link(controller: 'project', action: 'create',absolute: true)
+		def home = grailsLinkGenerator.link(controller: 'home', action: 'index', absolute: true)
 
         def globalMergeVars = [
             [
@@ -142,7 +143,11 @@ class MandrillService {
             [
                 'name': 'NAME',
                 'content': user.firstName 
-            ]
+            ],
+		    [
+			    'name': 'HOME',
+			    'content': home
+		    ]
 	    ]
 
         def tags = ['reset-password']

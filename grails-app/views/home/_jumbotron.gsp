@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="carousel-caption imageCarouseltextbox">
-                <g:form class="form-signin" id="registrationForm" controller="login" action="create" role="form">
+                <g:form class="form-signin" controller="login" action="create" role="form">
                     <div class="imageCarousellabel">
                         <input type="text" name="name" id="name" class="imageCoureselForm" placeholder="First & Last Name">
                         <input type="email" name="username" id="username" class="imageCoureselForm" placeholder="Email address">

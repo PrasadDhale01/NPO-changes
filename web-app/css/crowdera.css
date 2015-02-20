@@ -292,7 +292,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
    	color: white;
 }
 
-#carousel-example-generic{
+#carousel-example-generic {
     .transition(.10s ease-in-out left);
 }
 

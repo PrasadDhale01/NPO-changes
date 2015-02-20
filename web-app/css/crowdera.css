@@ -292,7 +292,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
    	color: white;
 }
 
-#carousel-example-generic{
+#carousel-example-generic {
     .transition(.10s ease-in-out left);
 }
 
@@ -1225,7 +1225,9 @@ footer .footerbottomsection {
 	position: relative;
 	height: 200px;
 	width: 200px;
-	
+	border-style: solid;
+	border-color: rgb(249, 177, 141) !important;
+	border-width: 1px;
 }
 
 .profileavatar img {
@@ -1244,8 +1246,10 @@ footer .footerbottomsection {
 	overflow: hidden;
 	height: 200px;
 	width: 200px;
+	border-style: solid;
+	border-color: rgb(249, 177, 141) !important;
+	border-width: 1px;
 }
-
 .lead,.tile-footer h6 {
 color: #000 !important;
 }
@@ -2392,6 +2396,12 @@ textarea.form-control {
 }
 @media only screen and (max-width: 480px){
 	
+    .campaignsubmitbutton .submitbutton {
+        padding-left: 13px !important;
+    }
+    .draftbutton{
+        padding-left: 42px !important;
+    }
     .girlSlider > a > img {
         padding: 2px;
     	text-decoration: none;
@@ -3548,12 +3558,6 @@ a.footerlink {
     background-color: #ff784f !important;
     color: #ffffff;
 }
-
-.form-control[readonly], fieldset[disabled] .form-control {
-    cursor: pointer !important;
-    background-color: #ffffff  !important;
-}
-
 .crowderaFaq >h2{
     margin-top: 20px;
     font-weight: 600;
@@ -3586,4 +3590,7 @@ a.footerlink {
 }
 li.dropdown.dropdown-head, ul.dropdown-menu.usr.user-dropdown, ul.dropdown-menu.admin.admin-dropdown{
 	width: 192px;
+}
+.campaignsubmitbutton .submitbutton {
+        margin-left: -14px !important;
 }

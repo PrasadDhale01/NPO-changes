@@ -50,7 +50,7 @@
 					Get your loved ones involved with your campaign! Once your campaign
 					goes live, share your campaign page with your network through email
 					or social media. Don’t be shy. Friends and family are always happy
-					to show their support if you just ask <img src="/images/smily.png">
+					to show their support if you just ask.
 				</h5>
 				<hr/>
 				<h4>

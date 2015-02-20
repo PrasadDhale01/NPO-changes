@@ -7,7 +7,7 @@
 <meta property="og:type" content="website" />
 
 <meta name="layout" content="main" />
-<r:require modules="homejs, registrationjs"/>
+<r:require modules="homejs"/>
 </head>
 <body>
     <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">

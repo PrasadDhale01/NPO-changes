@@ -174,7 +174,7 @@
 			more, you may have to go through rigorous approval process so we
 			understand your need better and help you to be successful. In such
 			case, please reach out to one of our crowdfunding experts from the
-			team <a href="#">here</a> to evaluate your situation.
+			team <a href="mailto:partnerships@crowdera.co">here</a> to evaluate your situation.
 		</p>
 
 		<h4>My campaign was rejected. How do I know the reason for

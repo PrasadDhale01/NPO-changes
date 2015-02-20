@@ -2,38 +2,40 @@
 <%
     def imageUrl = user.userImageUrl
 %>
-<div class="col-sm-4">
-    <g:if test="${imageUrl != null}">
-        <div class="profileavatar" class="blacknwhite">
-            <g:if test="${userService.isFacebookUser()}">
-                <img alt="Profile Image" class="profileimage" src="${imageUrl}?type=large">
-            </g:if>
-            <g:else>
-                <img alt="Profile Image" class="profileimage" src="${imageUrl}">
-            </g:else>
-            <div class="deleteavatar">
-               <g:link action="deleteavatar" controller="user" id="${user.id}"><img src="/images/delete.ico"></g:link>
-            </div>
-        </div>
-	    <g:uploadForm controller="user" action="edit_avatar" id="${user.id}" role="form">
-	        <button class="btn btn-primary btn-sm" type="button" id="editavatarbutton">Edit Avatar</button>
-            <input class="hidden" type="file" name="profile" id="editavatar" accept="image/*"/>
-            <input type="submit" class="hidden buttons" value="Upload" id="editbutton" accept="image/*"/>
-        </g:uploadForm>
-    </g:if>
-    <g:else>
-        <div class="uploadimage" class="blacknwhite">
-            <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="profileimage" alt="Upload Photo"/>
-        </div>
-        <g:uploadForm controller="user" action="upload_avatar" id="${user.id}" role="form">
-            <button class="btn btn-primary btn-sm" type="button" id="uploadavatar">Upload Avatar</button>
-            <input class="hidden" type="file" name="avatar" id="avatar" accept="image/*"/>
-            <input type="submit" class="hidden buttons" value="Upload" id="uploadbutton" accept="image/*"/>
-        </g:uploadForm> 
-    </g:else>
+ 
+<div class="col-sm-6">
+	<div class="form-signin">
+	    <g:if test="${imageUrl != null}">
+	        <div class="profileavatar" class="blacknwhite">
+	            <g:if test="${userService.isFacebookUser()}">
+	                <img alt="Profile Image" class="profileimage" src="${imageUrl}?type=large">
+	            </g:if>
+	            <g:else>
+	                <img alt="Profile Image" class="profileimage" src="${imageUrl}">
+	            </g:else>
+	            <div class="deleteavatar">
+	               <g:link action="deleteavatar" controller="user" id="${user.id}"><img onclick="return confirm(&#39;Are you sure you want to deleted this avatar?&#39;);" src="/images/delete.ico"></g:link>
+	            </div>
+	        </div>
+		    <g:uploadForm controller="user" action="edit_avatar" id="${user.id}" role="form">
+		        <button class="btn btn-primary btn-sm" type="button" id="editavatarbutton">Edit Avatar</button>
+	            <input class="hidden" type="file" name="profile" id="editavatar" accept="image/*"/>
+	            <input type="submit" class="hidden buttons" value="Upload" id="editbutton" accept="image/*"/>
+	        </g:uploadForm>
+	    </g:if>
+	    <g:else>
+	        <div class="uploadimage" class="blacknwhite">
+	            <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="profileimage" alt="Upload Photo"/>
+	        </div>
+	        <g:uploadForm controller="user" action="upload_avatar" id="${user.id}" role="form">
+	            <button class="btn btn-primary btn-sm" type="button" id="uploadavatar">Upload Avatar</button>
+	            <input class="hidden" type="file" name="avatar" id="avatar" accept="image/*"/>
+	            <input type="submit" class="hidden buttons" value="Upload" id="uploadbutton" accept="image/*"/>
+	        </g:uploadForm> 
+	    </g:else>
+	</div>
 </div>
-
-<div class="col-sm-8">
+<div class="col-sm-6">
     <g:if test="${userService.isFacebookUser()}">
         <div class="form-signin">
             <h2><i class="fa fa-facebook-square"></i> Facebook user</h2>

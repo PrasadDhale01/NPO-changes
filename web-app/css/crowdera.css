@@ -1225,7 +1225,9 @@ footer .footerbottomsection {
 	position: relative;
 	height: 200px;
 	width: 200px;
-	
+	border-style: solid;
+	border-color: rgb(249, 177, 141) !important;
+	border-width: 1px;
 }
 
 .profileavatar img {
@@ -1244,8 +1246,10 @@ footer .footerbottomsection {
 	overflow: hidden;
 	height: 200px;
 	width: 200px;
+	border-style: solid;
+	border-color: rgb(249, 177, 141) !important;
+	border-width: 1px;
 }
-
 .lead,.tile-footer h6 {
 color: #000 !important;
 }

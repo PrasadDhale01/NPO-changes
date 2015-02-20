@@ -20,13 +20,13 @@
                 </div>
             </div>
             <div class="carousel-caption imageCarouseltextbox">
-                <g:form class="form-signin" controller="login" action="create" role="form">
-                    <div class="imageCarousellabel"> 
-                        <input type="name" name="name" id="name" class="imageCoureselForm" placeholder="First & Last Name">
-                        <input type="email" name="email" id="email" class="imageCoureselForm" placeholder="Email address">
-            			<input type="password" name="pass" id="pass" class="imageCoureselForm" placeholder="Password *">
-               			<input type="password" name="confirmPass" id="confirmPass" class="imageCoureselForm" placeholder="Confirm Password *">
-               			<button class="btn btn-image" type="submit"><b>Register</b></button>
+                <g:form class="form-signin" id="registrationForm" controller="login" action="create" role="form">
+                    <div class="imageCarousellabel">
+                        <input type="text" name="name" id="name" class="imageCoureselForm" placeholder="First & Last Name">
+                        <input type="email" name="username" id="username" class="imageCoureselForm" placeholder="Email address">
+            			<input type="password" name="password" id="password" class="imageCoureselForm" placeholder="Password *">
+               			<input type="password" name="confirmPassword" id="confirmPassword" class="imageCoureselForm" placeholder="Confirm Password *">
+               			<button class="btn btn-image" type="submit" id="regButton"><b>Register</b></button>
                		</div>
                 </g:form>
         	</div>

@@ -22,17 +22,7 @@ $(function() {
             lastName: {
                 minlength: 2,
                 required: true
-            },
-            name : {
-            	minlength: 2,
-            },
-            email: {
-                minlength: 2,
-                email: true
-            },
-            confirmPass: {
-                isEqualToPass: true
-            },
+            }
         },
         errorPlacement: function(error, element) {
             error.appendTo(element.parent());
@@ -47,12 +37,4 @@ $(function() {
         return true;
     }, "Passwords do not match! Please enter a valid password.");
      
-     $.validator.addMethod('isEqualToPass', function (value, element) {
-         var confirmpass = value;
-         var pass= $("#pass").val();
-         if(confirmpass != pass) {
-             return (confirmpass== pass) ? pass : false;
-         }
-         return true;
-     }, "Passwords do not match! Please enter a valid password.");
 });

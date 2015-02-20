@@ -22,11 +22,98 @@ $(function() {
             }
         }
     });
+	
+	$('form').validate({
+		rules: {
+		     name: {
+		    	 minlength: 2
+             },
+             username: {
+                 minlength: 2,
+                 email: true
+             },
+             confirmPassword: {
+                 isEqualToPassword: true
+             }
+	    },
+	    errorPlacement: function(error, element) {
+            error.appendTo(element.parent());
+        }
+	 });
+	
+	$.validator.addMethod('isEqualToPassword', function (value, element) {
+        var confirmpassword = value;
+        var password = $("#password").val();
+        if(confirmpassword != password) {
+            return (confirmpassword == password) ? password : false;
+        }
+        return true;
+    }, "Passwords do not match! Please enter a valid password.");
+	
 	$('#contactsubmitbutton').click(function(event) {
 	    if(validator.form()){
 	    	needToConfirm = false;
 	    } 	
 	});
+	
+	    $( "#name" ).rules( "add", {
+	        required: true,
+	        messages: {
+	          required: ""
+	        }
+	      });
+	    
+	    $( "#username" ).rules( "add", {
+	        required: true,
+	        messages: {
+	          required: ""
+	        }
+	      });
+	    
+	    $( "#password" ).rules( "add", {
+	        required: true,
+	        messages: {
+	          required: ""
+	        }
+	      });
+	    
+	    $( "#confirmPassword" ).rules( "add", {
+	        required: true,
+	        messages: {
+	          required: ""
+	        }
+	      });
+	    
+	    $('#regButton').click(function(e) {
+	        if ($('#name').val() == '') {
+	   	        $('#name').css('border-color', 'red');
+	   	     }
+	        if ($('#username').val() == '') {
+	    	    $('#username').css('border-color', 'red');
+	    	 }
+	        if ($('#password').val() == '') {
+	    	    $('#password').css('border-color', 'red');
+	    	 }
+	        if ($('#confirmPassword').val() == '') {
+	    	    $('#confirmPassword').css('border-color', 'red');
+	    	 }
+	    });
+	    
+	    $("input").blur(function(){
+	   	     if ($('#name').val() != '') {
+	    	    $('#name').css('border-color', '');
+	    	 }
+	   	     if ($('#username').val() != '') {
+	     	    $('#username').css('border-color', '');
+	     	 }
+	         if ($('#password').val() != '') {
+	     	    $('#password').css('border-color', '');
+	     	 }
+	         if ($('#confirmPassword').val() != '') {
+	     	    $('#confirmPassword').css('border-color', '');
+	     	 }
+	    });
+	
 });
 
 $(window).load(function() {

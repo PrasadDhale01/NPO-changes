@@ -2392,6 +2392,12 @@ textarea.form-control {
 }
 @media only screen and (max-width: 480px){
 	
+    .campaignsubmitbutton .submitbutton {
+        padding-left: 13px !important;
+    }
+    .draftbutton{
+        padding-left: 42px !important;
+    }
     .girlSlider > a > img {
         padding: 2px;
     	text-decoration: none;
@@ -3586,4 +3592,7 @@ a.footerlink {
 }
 li.dropdown.dropdown-head, ul.dropdown-menu.usr.user-dropdown, ul.dropdown-menu.admin.admin-dropdown{
 	width: 192px;
+}
+.campaignsubmitbutton .submitbutton {
+        margin-left: -14px !important;
 }

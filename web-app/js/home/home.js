@@ -24,9 +24,9 @@ $(function() {
     });
 	
 	$('form').validate({
-		rules: {
-		     name: {
-		    	 minlength: 2
+	rules: {
+	     name: {
+	     minlength: 2
              },
              username: {
                  minlength: 2,
@@ -34,21 +34,21 @@ $(function() {
              },
              confirmPassword: {
                  isEqualToPassword: true
-             }
-	    },
-	    errorPlacement: function(error, element) {
+              }
+	},
+	errorPlacement: function(error, element) {
             error.appendTo(element.parent());
         }
-	 });
+    });
 	
 	$.validator.addMethod('isEqualToPassword', function (value, element) {
-        var confirmpassword = value;
-        var password = $("#password").val();
-        if(confirmpassword != password) {
-            return (confirmpassword == password) ? password : false;
-        }
-        return true;
-    }, "Passwords do not match! Please enter a valid password.");
+            var confirmpassword = value;
+            var password = $("#password").val();
+            if(confirmpassword != password) {
+                return (confirmpassword == password) ? password : false;
+            }
+            return true;
+        }, "Passwords do not match! Please enter a valid password.");
 	
 	$('#contactsubmitbutton').click(function(event) {
 	    if(validator.form()){

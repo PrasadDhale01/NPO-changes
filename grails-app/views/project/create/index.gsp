@@ -473,7 +473,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
                                                 <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing address</label>
                                                 <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email address</label>
                                                 <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter handle</label>
-                                                <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="custom1" value="true" id="customcheckbox1">Custom</label>
+                                                <label class="btn btn-primary btn-sm checkbox-inline control-label lblCustom"><input type="checkbox" name="custom1" value="true" id="customcheckbox1">Custom</label>
                                             </div>
                                         </div>
                                     </div><hr>

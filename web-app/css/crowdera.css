@@ -178,12 +178,12 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 
 .dropdown-menu.usr > li > a {
     padding: 7px 21px !important;
-    width:192px;
+    width: 180px;
 }
 
 .dropdown-menu.admin > li > a {
     padding: 7px 16px !important;
-    width:192px;
+    width: 180px;
 }
 
 .nav > li > a:hover,
@@ -316,8 +316,8 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #ff784f !important;
-    color: #FFF;
+    background-color: #FDF9F9 !important;
+    color: #0F0101 !important;
 }
 
 .searchbox {
@@ -1059,8 +1059,8 @@ footer .footerbottomsection {
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #ff784f !important;
-    color: #FFF;
+     background-color: #FDF9F9 !important;
+     color: #0F0101;
 }
 
 .green-heading a {
@@ -1804,7 +1804,7 @@ textarea.form-control {
 /* Media 970px */
 @media only screen and (max-width: 970px) {
     .nav > li > a {
-        padding: 7px 19px;
+        padding: 7px 13px;
     }
     .squarebox {
         width: 180px;
@@ -1818,6 +1818,20 @@ textarea.form-control {
 		display: block;
 		color: #b6bbc0;
 		font-size: 9px;
+	}
+	 /**********************dropdown********************/
+	.dropdown-menu {
+		top: 160%;
+		margin: 0px 55px 0 !important;
+	}
+	li.dropdown.dropdown-head{
+		width: 240px;
+	}
+	ul.dropdown-menu.usr.user-dropdown{
+		width: 180px !important;
+	}
+	ul.dropdown-menu.admin.admin-dropdown{
+		width: 180px !important;
 	}
 }
 @media only screen and (max-width: 891px){
@@ -2037,7 +2051,7 @@ textarea.form-control {
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
     .nav > li > a {
-        padding: 7px 21px;
+        padding: 7px 10px;
     }
     .squarebox {
         width: 180px;
@@ -2075,11 +2089,25 @@ textarea.form-control {
 
 @media only screen and (max-width: 800px) {
     .nav > li > a{
-        padding:7px, 21px;
+        padding:7px, 10px !important;
     }
     .validatebutton {
         float: right;
     }
+    /**********************dropdown********************/
+	.dropdown-menu {
+		top: 160%;
+		margin: 0px 55px 0 !important;
+	}
+	li.dropdown.dropdown-head{
+		width: 240px;
+	}
+	ul.dropdown-menu.usr.user-dropdown{
+		width: 180px !important;
+	}
+	ul.dropdown-menu.admin.admin-dropdown{
+		width: 180px !important;
+	}
 }
 
 @media only screen and (max-width: 768px) {
@@ -2136,16 +2164,30 @@ textarea.form-control {
 }
 @media only screen and (min-width: 767px) and (max-width: 768px){
  .nav > li > a{
-        padding: 7px 21px !important;
+        padding: 7px 13px !important;
   }
   .dropdown-menu.usr > li > a {
     padding: 7px 21px !important;
-    width:192px;
+    width:180px;
   }
   .dropdown-menu.admin > li > a {
     padding: 7px 16px !important;
-    width:192px;
+    width:180px;
   }
+  /**********************dropdown********************/
+	.dropdown-menu {
+		top: 160%;
+		margin: 0px 55px 0 !important;
+	}
+	li.dropdown.dropdown-head{
+		width: 240px;
+	}
+	ul.dropdown-menu.usr.user-dropdown{
+		width: 180px !important;
+	}
+	ul.dropdown-menu.admin.admin-dropdown{
+		width: 180px !important;
+	}
 .containrewards{
     height: 190px !important;
     position: relative;
@@ -2687,6 +2729,20 @@ textarea.form-control {
 	.organization-details {
 	    padding-bottom:30px;
 	}
+	/**********************dropdown********************/
+	.dropdown-menu {
+		top: 160%;
+		margin: 12px 0px 0 !important;
+	}
+	li.dropdown.dropdown-head{
+		width: 240px;
+	}
+	ul.dropdown-menu.usr.user-dropdown{
+		width: 192px !important;
+	}
+	ul.dropdown-menu.admin.admin-dropdown{
+		width: 192px !important;
+	}
 }
 
 @media only screen and (max-width: 375px) {
@@ -2717,6 +2773,20 @@ textarea.form-control {
 	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
 		background-color: #fff;
 		width: 192px;
+	}
+	/**********************dropdown********************/
+	.dropdown-menu {
+		top: 160%;
+		margin: 12px 0px 0 !important;
+	}
+	li.dropdown.dropdown-head{
+		width: 240px;
+	}
+	ul.dropdown-menu.usr.user-dropdown{
+		width: 192px !important;
+	}
+	ul.dropdown-menu.admin.admin-dropdown{
+		width: 192px !important;
 	}
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
@@ -3555,8 +3625,11 @@ a.footerlink {
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #ff784f !important;
-    color: #ffffff;
+  /*  background-color: #ff784f !important;
+    color: #ffffff;*/
+     background-color: #FDF9F9 !important;
+    /*color: #FFF;*/
+    color: #0F0101;
 }
 .crowderaFaq >h2{
     margin-top: 20px;
@@ -3588,9 +3661,19 @@ a.footerlink {
     color: #333333;
     border-color: #dadada;
 }
-li.dropdown.dropdown-head, ul.dropdown-menu.usr.user-dropdown, ul.dropdown-menu.admin.admin-dropdown{
-	width: 192px;
+li.dropdown.dropdown-head{
+	width: 240px;
+}
+ul.dropdown-menu.admin.admin-dropdown{
+	width: 180px;
+}
+ul.dropdown-menu.usr.user-dropdown{
+	width: 180px;
 }
 .campaignsubmitbutton .submitbutton {
         margin-left: -14px !important;
+}
+.dropdown-menu {
+	top: 160%;
+	margin: 39px 50px 0;
 }

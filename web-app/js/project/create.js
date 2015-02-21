@@ -474,11 +474,11 @@ $(function() {
                     '<div class="col-sm-2">'+
                         '<label class="control-label">Which of the following is necessary to ship this perk:</label>'+
                     '</div>'+
-                    '<div class="col-sm-10">'+
+                    '<div class="col-sm-10 shippingreward">'+
                         '<label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing address</label>'+
                         '<label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email address</label>'+
                         '<label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter handle</label>'+
-                        '<label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="custom'+count+'" value="true" id="customcheckbox'+count+'">Custom</label>'+
+                        '<label class="btn btn-primary btn-sm checkbox-inline control-label lblCustom"><input type="checkbox" name="custom'+count+'" value="true" id="customcheckbox'+count+'">Custom</label>'+
                     '</div>'+
                 '</div>'+
             '</div><hr>'+

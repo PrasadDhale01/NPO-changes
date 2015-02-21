@@ -2198,9 +2198,22 @@ textarea.form-control {
 }
 @media only screen and (max-width: 767px){
 	.rewarddesc,.rewarddesctitle {
-	    margin-left: -14px !important;
+	    margin-left: 1px !important;
 	}
-	
+    .rewardTitle {
+        padding-left: 15px !important;
+    }
+	.shippingreward > .btn-primary
+    {
+       margin-left: 0px !important;
+       margin-right: 11px !important;
+       margin-top: 8px !important;
+       width: 116px !important;
+       padding-left: 16px !important;
+    }
+    .shippingreward >.lblCustom{
+        padding-right:54px !important;
+    }
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
     .imageCarousellabel {
@@ -2307,7 +2320,17 @@ textarea.form-control {
 	}
 }
 @media only screen and (max-width: 640px){
-	
+	.shippingreward > .btn-primary
+    {
+       margin-left: 0px !important;
+       margin-right: 31px !important;
+       margin-top: 8px !important;
+       width: 116px !important;
+       padding-left: 16px !important;
+    }
+    .shippingreward >.lblCustom{
+        padding-right:54px !important;
+    }
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
     .imageCarousellabel {
@@ -2438,6 +2461,17 @@ textarea.form-control {
 }
 @media only screen and (max-width: 480px){
 	
+    .shippingreward > .btn-primary
+    {
+       margin-left: 0px !important;
+       margin-right: 11px !important;
+       margin-top: 8px !important;
+       width: 116px !important;
+       padding-left: 16px !important;
+    }
+    .shippingreward >.lblCustom{
+        padding-right:54px !important;
+    }
     .campaignsubmitbutton .submitbutton {
         padding-left: 13px !important;
     }
@@ -3215,11 +3249,19 @@ button.projectedit.close{
 .shippingreward .checkbox input[type="checkbox"],.checkbox-inline input[type="checkbox"]
 {
 	margin-left: -10px !important;
-	margin-right: 3px;
+	margin-right: 3px
 }
-
+.shippingreward >.btn-primary{
+    width:116px !important;
+}
+.shippingreward > .lblCustom{
+    padding-right:82px;
+}
 .rewardTitle {
 	padding-left: 20px;
+}
+.rewardTitle > input {
+    padding-left: 8px !important;
 }
 .panel-primary > .panel-heading{
      background-color: #ff784f;
@@ -3442,9 +3484,11 @@ a.footerlink {
 }
 .perks-css-create{
 	padding: 3px 6px;
+    width:29px;
 }
 .perks-created-remove{
 	padding: 3px 6px;
+    width:29px;
 }
 .edit-logo-icon{
 	display: none;

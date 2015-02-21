@@ -17,10 +17,12 @@ $(function() {
             },
             firstName: {
                 minlength: 2,
+                maxlength: 20,
                 required: true
             },
             lastName: {
                 minlength: 2,
+                maxlength: 20,
                 required: true
             }
         },

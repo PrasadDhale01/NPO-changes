@@ -35,14 +35,14 @@ Expects the parent containers to be like so:
                 <div class="under">
                     <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
                 </div>
-                <g:if test="${percentage >= 75}">
-				    <div class="over banner-wid">
-						<img src="/images/funded1.png">
-					</div>
-				</g:if>
-                <g:elseif test="${ended}">
+                <g:if test="${ended}">
 				    <div class="over banner-wid">
 						<img src="/images/ended.png">
+					</div>
+				</g:if>
+                <g:elseif test="${percentage >= 75}">
+				    <div class="over banner-wid">
+						<img src="/images/funded1.png">
 					</div>
 				</g:elseif>
             </div>

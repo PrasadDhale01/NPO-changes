@@ -33,7 +33,7 @@
             </div>
         </g:else>
         <div class="col-sm-12">
-        <label>Email: <a href="#">${beneficiary.email}</a></label>
+        <label>Email: ${beneficiary.email}</label>
         </div>
         <div class="col-sm-12">
         <label>Web: <a href="${webUrl}">${project.webAddress}</a></label>
@@ -54,16 +54,16 @@
 	            <img src="/images/PENDING1.png">
 	        </div>
 	    </g:elseif>
+	     <g:elseif test="${ended}">
+	        <div class="tilesanstitletag  banner-wid">
+	            <img src="/images/ended1.png">
+	        </div>
+	    </g:elseif>
 	    <g:elseif test="${percentage >= 75}">
 			<div class="tilesanstitletag  banner-wid">
 				<img src="/images/funded.png">
 			</div>
 		</g:elseif>
-	    <g:elseif test="${ended}">
-	        <div class="tilesanstitletag  banner-wid">
-	            <img src="/images/ended1.png">
-	        </div>
-	    </g:elseif>
 	    <g:elseif test="${isteamexist}">
 	        <g:if test="${currentUser == beneficiary}">
 	            <div class="tilesanstitletag  banner-wid">

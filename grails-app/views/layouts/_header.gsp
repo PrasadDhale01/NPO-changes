@@ -54,7 +54,7 @@
                             <b class="caret"></b>
                         </a>
                             <g:if test="${userService.isAdmin()}">
-                                <ul class="dropdown-menu admin  admin-dropdown">
+                                <ul class="dropdown-menu admin  admin-dropdown dropdown-menu-head">
                                 <li><g:link controller="user" action="dashboard">
                                         <span class="glyphicon glyphicon-cog"></span> Settings
                                 </g:link></li>
@@ -73,7 +73,7 @@
                             </ul>
                             </g:if>
                             <g:else>
-                            <ul class="dropdown-menu usr user-dropdown">
+                            <ul class="dropdown-menu usr user-dropdown dropdown-menu-head">
                             <li><g:link class="myprojects" controller="user"
                                     action="myproject">
                                     <span class="glyphicon glyphicon-off"></span> My Campaigns

@@ -1,7 +1,5 @@
 package crowdera
 
-import java.util.Date;
-
 class TeamComment {
 
     static belongsTo = [team: Team, user: User]

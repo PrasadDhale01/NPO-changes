@@ -32,11 +32,11 @@ class UserRole implements Serializable {
 		}.get()
 	}
 
-	static UserRole create(User user, Role role, boolean flush = false) {
-		new UserRole(user: user, role: role).save(flush: flush, insert: true)
+	static UserRole create(User user, Role role) {
+		new UserRole(user: user, role: role).save(insert: true)
 	}
 
-	static boolean remove(User u, Role r, boolean flush = false) {
+	static boolean remove(User u, Role r) {
 
 		int rowCount = UserRole.where {
 			user == User.load(u.id) &&

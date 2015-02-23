@@ -16,7 +16,6 @@ import org.jets3t.service.security.AWSCredentials
 import crowdera.Beneficiary;
 import crowdera.ImageUrl;
 import crowdera.Project;
-import crowdera.ProjectAdmin;
 import crowdera.ProjectComment;
 import crowdera.ProjectUpdate;
 import crowdera.Reward;
@@ -476,7 +475,6 @@ class ProjectController {
         User user = userService.getCurrentUser()
         project = new Project(params)
         beneficiary = new Beneficiary(params)
-        ProjectAdmin projectAdmin = new ProjectAdmin()
         
         def button = params.button
         if(button == 'draft'){
@@ -534,7 +532,7 @@ class ProjectController {
         project.beneficiary = beneficiary
         
         if (project.save()) {
-            def teammessage = projectService.getFundRaisersForTeam(project, user)
+            projectService.getFundRaisersForTeam(project, user)
             projectService.getdefaultAdmin(project, user)
             projectService.getAdminForProjects(email1, project, user)
             projectService.getAdminForProjects(email2, project, user)

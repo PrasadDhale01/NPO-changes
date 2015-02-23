@@ -1820,7 +1820,7 @@ textarea.form-control {
 		font-size: 9px;
 	}
 	 /**********************dropdown********************/
-	.dropdown-menu {
+	.dropdown-menu-head {
 		top: 160%;
 		margin: 0px 55px 0 !important;
 	}
@@ -2095,7 +2095,7 @@ textarea.form-control {
         float: right;
     }
     /**********************dropdown********************/
-	.dropdown-menu {
+	.dropdown-menu-head {
 		top: 160%;
 		margin: 0px 55px 0 !important;
 	}
@@ -2175,7 +2175,7 @@ textarea.form-control {
     width:180px;
   }
   /**********************dropdown********************/
-	.dropdown-menu {
+	.dropdown-menu-head {
 		top: 160%;
 		margin: 0px 55px 0 !important;
 	}
@@ -2764,7 +2764,7 @@ textarea.form-control {
 	    padding-bottom:30px;
 	}
 	/**********************dropdown********************/
-	.dropdown-menu {
+	.dropdown-menu-head {
 		top: 160%;
 		margin: 12px 0px 0 !important;
 	}
@@ -2812,7 +2812,7 @@ textarea.form-control {
 		width: 192px;
 	}
 	/**********************dropdown********************/
-	.dropdown-menu {
+	.dropdown-menu-head {
 		top: 160%;
 		margin: 12px 0px 0 !important;
 	}
@@ -3723,7 +3723,7 @@ ul.dropdown-menu.usr.user-dropdown{
 .campaignsubmitbutton .submitbutton {
         margin-left: -14px !important;
 }
-.dropdown-menu {
-	top: 160%;
+.dropdown-menu-head {
+	top: 155%;
 	margin: 39px 50px 0;
 }

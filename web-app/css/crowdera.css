@@ -2777,6 +2777,9 @@ textarea.form-control {
 	ul.dropdown-menu.admin.admin-dropdown{
 		width: 192px !important;
 	}
+	.socialicon img{
+		margin-top: 12px;
+	}
 }
 
 @media only screen and (max-width: 375px) {
@@ -2848,6 +2851,9 @@ textarea.form-control {
 	}
 	
 	/*--------------------End of Image courasel new slider and button ------------------------------------*/
+	.socialicon img{
+		margin-top: 12px;
+	}
 }
 @media only screen and (max-width: 320px){
 	
@@ -3328,7 +3334,7 @@ a {
 a.footerlink {
 	color: #a1a5af;
 	font-size: 14px;
-	margin: 0px 10px 0 10px !important;
+	margin: 0px 10px 0 0px !important;
 }
 .dropdown-menu{
 	min-width:155.5px;

@@ -3,6 +3,13 @@
 <g:set var="projectService" bean="projectService"/>
 <%
     boolean isFundingOpen = projectService.isFundingOpen(project)
+    def beneficiary = project.user
+    def username
+    if (user) {
+        username = user.username
+    } else {
+        username = beneficiary.username
+    }
 %>
 <div class="modal-footer tile-footer perks-style">
     <g:if test="${isFundingOpen}">
@@ -24,7 +31,7 @@
                 <h4>CONTRIBUTE $${price} OR MORE</h4>
                 <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
                 <p class="rewarddescription">${raw(reward.description)}</p>
-                <g:link absolute="true" uri="/campaigns/${project.id}/fund">SELECT THIS PERK</g:link>
+                <g:link controller="fund" action="fund" id="${project.id}" params="['fr': username]">SELECT THIS PERK</g:link>
             </g:if>
             <g:else>
                 <h4>CONTRIBUTE $${price} OR MORE</h4>

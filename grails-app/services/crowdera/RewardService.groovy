@@ -55,6 +55,10 @@ class RewardService {
         }
     }
     
+    def getShippingInfo(def reward) {
+        return RewardShipping.findByReward(reward)
+    }
+    
     @Transactional
     def bootstrap() {
         new Reward(

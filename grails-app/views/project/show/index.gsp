@@ -78,7 +78,10 @@
                         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
                     </g:elseif>
                     <g:else>
-                        <a href="/campaigns/${project.id}/fund" class="btn btn-success btn-lg btn-block" role="button">Fund this Campaign</a>
+                        <form action="/campaigns/${project.id}/fund">
+                            <g:hiddenField name="fr" value="${username}" />
+                            <g:submitButton name="submit" value="Fund this Campaign" class="btn btn-success btn-lg btn-block"/>
+                        </form>
                     </g:else>
                     <g:if test="${project.rewards.size()>1}">
                     	<g:render template="show/rewards"/>
@@ -169,10 +172,9 @@
                         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>CAMPAIGN ENDED!</button>
                     </g:elseif>
                     <g:else>
-                        <form action="/campaigns/${project.id}/fund">
-                            <g:hiddenField name="fundraiserUsername" value="${username}" />
-                            <g:submitButton name="submit" value="Fund this Campaign" class="btn btn-success btn-lg btn-block"/>
-                        </form>                    
+                        <g:form controller="fund" action="fund" id="${project.id}" params="['fr': username]">
+                            <button name="submit" class="btn btn-success btn-lg btn-block">Fund this Campaign</button>
+                        </g:form>
                     </g:else>
                     <g:if test="${project.rewards.size()>1}">
                     	<g:render template="show/rewards"/>

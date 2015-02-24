@@ -30,10 +30,10 @@
                     </g:else>
 	        </g:else>
 	        <g:if test="${reward.id == 1}">
-	            <b>No reward</b>
+	            <b>No Perk</b>
             </g:if>
             <g:else>
-                <b>Reward</b>
+                <b>Perk</b>
 	            <div class="rewardsection">
 			        <p>${reward.description}</p>
 			        <a href="#" data-id="${contribution}" data-toggle="modal" data-target="#rewarddetails${contribution.id}" model="['contribution': contribution]">Shipping Details</a>
@@ -57,6 +57,34 @@
 	                    <div class="form-group">
 	                        <label for="email">Email: &nbsp; ${contribution.user.email}</label>
 	                    </div>
+	                    <g:if test="${contribution.email  != null}">
+	                    	<g:if test="${!contribution.email.equalsIgnoreCase('null')}">
+						        <div class="form-group">
+						        	<label for="name">Shipping Email: &nbsp; ${contribution.email}</label>
+						        </div>
+					        </g:if>
+						</g:if>
+						<g:if test="${contribution.physicalAddress != null}">
+							<g:if test="${!contribution.physicalAddress.equalsIgnoreCase('null')}">
+						        <div class="form-group">
+						            <label for="name">Physical Address: &nbsp; ${contribution.physicalAddress}</label>
+						        </div>
+					        </g:if>
+						</g:if>
+						<g:if test="${contribution.twitterHandle  != null}">
+							<g:if test="${!contribution.twitterHandle.equalsIgnoreCase('null')}">
+						        <div class="form-group">
+						        	<label for="name">Twitter Handle: &nbsp; ${contribution.twitterHandle}</label>
+						        </div>
+					        </g:if>
+						</g:if>
+						<g:if test="${contribution.custom  != null}">
+							<g:if test="${!contribution.custom.equalsIgnoreCase('null')}">
+						        <div class="form-group">
+						        	<label for="name">Custom Details: &nbsp; ${contribution.custom}</label>
+						        </div>
+					        </g:if>
+						</g:if>
 	                </div>
 	            </div>
 	        </div>

@@ -46,7 +46,7 @@ class UrlMappings {
         "/campaigns-widget"(controller:'project', action:'listwidget')
         "/campaigns/$id"(controller:'project', action:'show')
         "/campaigns/$id/thumbnail"(controller:'project', action:'thumbnail')
-        "/campaigns/$projectId/fund"(controller:'fund', action:'fund')
+        "/campaigns/$id/fund"(controller:'fund', action:'fund')
         "/campaign/query"(controller:'project' , action:'search')
         "/campaign"(controller:'project' , action:'categoryFilter')
 	"/campaign/validateList"(controller:'project', action:'validateList')

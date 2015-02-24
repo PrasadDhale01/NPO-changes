@@ -38,10 +38,10 @@ class FundController {
     def fund() {
         Project project
         User user = userService.getCurrentUser()
-		def fundraiserUsername = params.fundraiserUsername
-
-        if (params.projectId) {
-            project = Project.findById(params.projectId)
+		def fundraiser = params.fr
+        
+        if (params.id) {
+            project = Project.findById(params.id)
         }
 
         boolean fundingAchieved = contributionService.isFundingAchievedForProject(project)
@@ -52,7 +52,7 @@ class FundController {
         } else if (fundingAchieved || ended) {
             redirect(controller: 'project', action: 'show', id: project.id)
         } else {
-            render view: 'fund/index', model: [project: project, user:user, fundraiserUsername:fundraiserUsername]
+            render view: 'fund/index', model: [project: project, user:user, fundraiser:fundraiser]
         }
     }
 
@@ -76,7 +76,8 @@ class FundController {
             project = Project.findById(params.projectId)
         }
 		
-		User fundraiser = User.findByUsername(params.fundraiserUsername)
+        def fundRaiserUserName = params.fr
+		User fundraiser = User.findByUsername(params.fr)
 
         def totalContribution= contributionService.getTotalContributionForProject(project)
         def contPrice = params.double(('amount'))
@@ -84,11 +85,9 @@ class FundController {
         def reqAmt=(999/100)*amt
         def remainAmt=reqAmt- totalContribution
         def percentage=((totalContribution + contPrice)/ amt)*100
-        if(percentage>999)
-        {
+        if(percentage>999) {
             flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
-             render view: 'fund/index', model: [project: project, user:user]
-            
+            redirect action: 'fund', id: project.id, params:[fr: fundRaiserUserName]
         }
         else{
         if (project) {
@@ -128,7 +127,8 @@ class FundController {
             user = User.findByUsername('anonymous@example.com')
         }
 		
-		User fundraiser = User.findByUsername(params.fundraiserUsername)
+        def fundRaiserUserName = params.fr
+		User fundraiser = User.findByUsername(params.fr)
 
         if (project) {
             if (params.int('rewardId')) {
@@ -152,27 +152,23 @@ class FundController {
         def reqAmt=(999/100)*amt
         def remainAmt=reqAmt- totalContribution
         def percentage=((totalContribution + contPrice)/ amt)*100
-        if(percentage>999)
-        {
+        
+        if(percentage>999) {
             flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
-             render view: 'fund/index', model: [project: project, user:user]
-            
-        }
-        else{
-        if (project && reward) {
-            if (project.paypalEmail){
-                payByPaypal(params,project,reward,user,fundraiser)
-                if(ack.equals("Success")){
-                    render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, paykey:paykey, fundraiser:fundraiser]
+            redirect action: 'fund', id: project.id, params:[fr: fundRaiserUserName]
+        } else {
+            if (project && reward) {
+                if (project.paypalEmail){
+                render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser]
+                } else {
+                    payByFirstGiving(params,project,reward,user,fundraiser)
                 }
             } else {
-                payByFirstGiving(params,project,reward,user,fundraiser)
+                render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
             }
-        } else {
-            render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
-        }
         }
     }
+    
     def acknowledge() {
         def contribution = Contribution.get(params.cb)
         def project = contribution.project
@@ -281,7 +277,7 @@ class FundController {
                 def xmlParsef=  new XmlParser().parseText(firstGivingXML)
                 transactionId = xmlParsef.transactionId.text()
 
-                userContribution(project,reward,amount,transactionId,user,fundraiser)
+                userContribution(project,reward,amount,transactionId,user,fundraiser,params)
             }
 
             // response handler for a failure response code
@@ -295,7 +291,7 @@ class FundController {
 
     def payByPaypal(def params,Project project,Reward reward,User user,User fundraiser){
         String timestamp = UUID.randomUUID().toString()
-        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}"
+        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}"
         def failureUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}"
 
         def BASE_URL = grailsApplication.config.crowdera.paypal.BASE_URL
@@ -326,11 +322,11 @@ class FundController {
             }
         }
         if(!str.equals("")){
-            paypalSecondCall(params, project, str ,reward, timestamp)
+            paypalSecondCall(project, str ,reward, timestamp)
         }
     }
 
-    def paypalSecondCall(def params,Project project,String str,Reward reward,String timestamp){
+    def paypalSecondCall(Project project,String str,Reward reward,String timestamp){
         //After fetching response paykey will be fetched by this method
         def json = new JsonSlurper().parseText(str)
 
@@ -344,12 +340,21 @@ class FundController {
         paykeytemp.save(failOnError: true)
     }
     
-    def userContribution(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser){
+    def userContribution(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params){
+        def emailId = request.getParameter('shippingEmail')
+        def twitter = request.getParameter('twitterHandle')
+        def custom = request.getParameter('shippingCustom')
+        def address = request.getParameter('physicalAddress')
+        
         Contribution contribution = new Contribution(
                 date: new Date(),
                 user: users,
                 reward: reward,
-                amount: amount
+                amount: amount,
+                email: emailId,
+                twitterHandle: twitter,
+                custom: custom,
+                physicalAddress: address
                 )
         project.addToContributions(contribution).save(failOnError: true)
 		
@@ -401,7 +406,24 @@ class FundController {
     }
 
     def paypalurl(){
-        redirect (url:grailsApplication.config.crowdera.paypal.PAYPAL_URL+paykey)
+        Project project = Project.get(params.id)
+        Reward reward = Reward.get(params.rewardId)
+        User user = User.get(params.userId)
+        def fundRaiserUserName = params.fr
+        User fundraiser = User.get(params.fr)
+        def amount = params.double(('amount'))
+        
+        if (project && reward && fundraiser) {
+            payByPaypal(params,project,reward,user,fundraiser)
+            if(ack.equals("Success")){
+                redirect (url:grailsApplication.config.crowdera.paypal.PAYPAL_URL+paykey)
+            } else {
+                flash.paypalFailureMessage = "Unable to connect to the paypal account."
+                redirect action: 'fund', id: project.id, params:[fr: fundRaiserUserName]
+            }
+        } else {
+            render view: 'error', model: [message: 'This project,reward or fundraiser does not exist. Please try again.']
+        }
     }
 
     def paypalReturn(){
@@ -423,7 +445,7 @@ class FundController {
         paykeytemp.delete()
         
         if (result){
-            userContribution(project,reward,amount,payKey,user,fundraiser)
+            userContribution(project,reward,amount,payKey,user,fundraiser,request)
         } else {
             render view: 'fund/index', model: [project: project]
         }

@@ -132,6 +132,19 @@ $(function() {
             },
             agreetoTermsandUse: {
                 required: true
+            },
+            physicalAddress: {
+            	required: true
+            },
+            shippingEmail: {
+            	required: true,
+            	email: true
+            },
+            twitterHandle: {
+            	required: true
+            },
+            shippingCustom: {
+            	required: true
             }
         },
         messages:{

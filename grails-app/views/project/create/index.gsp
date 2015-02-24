@@ -27,11 +27,12 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 
     tinymce.init({
 	    mode : "specific_textareas",
+	    menubar: "edit insert view format",
         editor_selector : "mceEditor",
 	    plugins: [
             "advlist autolink lists link image charmap print preview hr anchor pagebreak emoticons",
         ],
-        toolbar: "| insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image forecolor backcolor emoticons",
+        toolbar: "| undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image forecolor backcolor emoticons",
         image_advtab: true,
         templates: [
            {title: 'Test template 1', content: 'Test 1'},
@@ -379,8 +380,8 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 								<textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="mceEditor">
 									${initialValue}</textarea>
 							</div>
-						</div>
-					</div>
+				        </div>
+				    </div>
 				</div>
 
 				<div class="panel panel-default">

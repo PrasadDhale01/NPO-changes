@@ -922,13 +922,13 @@ footer .footerbottomsection {
 
 .successtips h2 {
     background: url(../images/sucess-icon.png) center left no-repeat;
-    padding-left: 100px;
+    padding-left: 80px;
     display: inline-block;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
     color: #86a734;
-    font-size: 38px !important;
+    font-size: 31px !important;
     margin-bottom: 50px !important;
 }
 
@@ -2624,6 +2624,10 @@ textarea.form-control {
 }
 @media only screen and (max-width: 414px) {
 	
+	.tips h2 {
+		padding-left: 72px !important;
+	}
+	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
     .imageCarousellabel {
@@ -2780,6 +2784,18 @@ textarea.form-control {
 	.socialicon img{
 		margin-top: 12px;
 	}
+	/*--------------------------Logo-Login-register-css--------------------------------*/
+	h2.form-signin-heading.signin.login-logo {
+		padding: 24px 0 15px 70px;
+	}
+	h2.form-signin-heading.register.register-logo {
+		padding: 24px 0 15px 70px;
+	}
+}
+
+@media only screen and (max-width: 400px){
+	
+	
 }
 
 @media only screen and (max-width: 375px) {
@@ -2854,8 +2870,28 @@ textarea.form-control {
 	.socialicon img{
 		margin-top: 12px;
 	}
+	/*--------------------------Logo-Login-register-css--------------------------------*/
+	h2.form-signin-heading.signin.login-logo {
+		padding: 24px 0 15px 70px;
+	}
+	h2.form-signin-heading.register.register-logo {
+		padding: 24px 0 15px 70px;
+	}
+	.tips h2 {
+		padding-left: 72px !important;
+	}
 }
+@media only screen and (max-width: 360px){
+	.tips h2 {
+		padding-left: 68px !important;
+	}
+}
+
 @media only screen and (max-width: 320px){
+	
+	.tips h2 {
+		padding-left: 29px !important;
+	}
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 

@@ -569,15 +569,21 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def manageproject() {
         Project project
+        User user = userService.getCurrentUser()
         if (params.id) {
             project = Project.findById(params.id)
         } else {
             project = null
         }
-
-        render (view: 'manageproject/index',
+        def isCoAdmin=userService.isCampaignBeneficiaryOrAdmin(project,user)
+        if(project.user==user || isCoAdmin){
+                render (view: 'manageproject/index',
                 model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])
+        }else{
+                flash.prj_mngprj_message = 'Campaign Not Found'
+                render (view: 'manageproject/error', model: [project: project])
+        }
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])

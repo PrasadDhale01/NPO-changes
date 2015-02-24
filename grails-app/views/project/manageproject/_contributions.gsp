@@ -30,10 +30,10 @@
                     </g:else>
 	        </g:else>
 	        <g:if test="${reward.id == 1}">
-	            <b>No reward</b>
+	            <b>No Perk</b>
             </g:if>
             <g:else>
-                <b>Reward</b>
+                <b>Perk</b>
 	            <div class="rewardsection">
 			        <p>${reward.description}</p>
 			        <a href="#" data-id="${contribution}" data-toggle="modal" data-target="#rewarddetails${contribution.id}" model="['contribution': contribution]">Shipping Details</a>

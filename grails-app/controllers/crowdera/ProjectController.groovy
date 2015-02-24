@@ -475,6 +475,8 @@ class ProjectController {
         User user = userService.getCurrentUser()
         project = new Project(params)
         beneficiary = new Beneficiary(params)
+        def amount=project.amount
+        def boolPerk=false
         
         def button = params.button
         if(button == 'draft'){
@@ -503,9 +505,17 @@ class ProjectController {
                 emailAddress[icount] = params.("emailAddress"+(icount+1))
                 twitter[icount] = params.("twitter"+(icount+1))
                 custom[icount] = params.("custom"+(icount+1))
+                if(rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount])>amount){
+                    boolPerk=true;
+                }
             }
-            
-            rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
+            if(boolPerk==true){
+                flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
+                render (view: 'manageproject/error')
+                return
+            }else{
+                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
+            }
         }
                
         def iconFile = request.getFile('iconfile')

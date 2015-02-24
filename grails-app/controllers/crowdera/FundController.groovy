@@ -412,7 +412,6 @@ class FundController {
         def fundRaiserUserName = params.fr
         User fundraiser = User.get(params.fr)
         def amount = params.double(('amount'))
-        println "project:" +project+ " reward: "+reward+" user: "+user+"fundraiser :"+fundraiser
         
         if (project && reward && fundraiser) {
             payByPaypal(params,project,reward,user,fundraiser)

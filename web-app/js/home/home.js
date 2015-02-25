@@ -24,21 +24,49 @@ $(function() {
     });
 	
 	$('form').validate({
-	rules: {
-	     name: {
-	     minlength: 2
+	    rules: {
+	        name: {
+	    	    required: true,
+	            minlength: 2
              },
              username: {
+            	 required: true,
                  minlength: 2,
                  email: true
              },
+             password: {
+                 required: true
+             },
              confirmPassword: {
+            	 required: true,
                  isEqualToPassword: true
               }
-	},
-	errorPlacement: function(error, element) {
-            error.appendTo(element.parent());
-        }
+	    },
+	    messages: {
+	    	 name: {
+	    		required: ""
+             },
+             username: {
+            	 required: ""
+             },
+             password: {
+            	 required: ""
+             },
+             confirmPassword: {
+            	 required: ""
+             }
+	    },
+	    showErrors: function(errorMap, errorList) {
+	        $(".form-signin").find("input").each(function() {
+	            $(this).closest('.imageCoureselFormGroup').removeClass('has-error');
+	            $(".errormessage").empty();
+	        });
+	        if(errorList.length) {
+	        	if (screen.width > 640)
+	                $(".errormessage").html(errorList[0]['message']);
+	            $(errorList[0]['element']).closest('.imageCoureselFormGroup').addClass('has-error');
+	        }
+	    }
     });
 	
 	$.validator.addMethod('isEqualToPassword', function (value, element) {
@@ -55,64 +83,6 @@ $(function() {
 	    	needToConfirm = false;
 	    } 	
 	});
-	
-	    $( "#name" ).rules( "add", {
-	        required: true,
-	        messages: {
-	          required: ""
-	        }
-	      });
-	    
-	    $( "#username" ).rules( "add", {
-	        required: true,
-	        messages: {
-	          required: ""
-	        }
-	      });
-	    
-	    $( "#password" ).rules( "add", {
-	        required: true,
-	        messages: {
-	          required: ""
-	        }
-	      });
-	    
-	    $( "#confirmPassword" ).rules( "add", {
-	        required: true,
-	        messages: {
-	          required: ""
-	        }
-	      });
-	    
-	    $('#regButton').click(function(e) {
-	        if ($('#name').val() == '') {
-	   	        $('#name').css('border-color', 'red');
-	   	     }
-	        if ($('#username').val() == '') {
-	    	    $('#username').css('border-color', 'red');
-	    	 }
-	        if ($('#password').val() == '') {
-	    	    $('#password').css('border-color', 'red');
-	    	 }
-	        if ($('#confirmPassword').val() == '') {
-	    	    $('#confirmPassword').css('border-color', 'red');
-	    	 }
-	    });
-	    
-	    $("input").blur(function(){
-	   	     if ($('#name').val() != '') {
-	    	    $('#name').css('border-color', '');
-	    	 }
-	   	     if ($('#username').val() != '') {
-	     	    $('#username').css('border-color', '');
-	     	 }
-	         if ($('#password').val() != '') {
-	     	    $('#password').css('border-color', '');
-	     	 }
-	         if ($('#confirmPassword').val() != '') {
-	     	    $('#confirmPassword').css('border-color', '');
-	     	 }
-	    });
 	
 });
 

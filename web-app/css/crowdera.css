@@ -251,15 +251,23 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 }
 
-.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  color: #999;
-  opacity: 1;
+.has-error .imageCoureselForm  {
+  border-color: #f04124;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  color: #999;
+
+.has-error .imageCoureselForm:focus {
+  border-color: #d32a0e;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
 }
-.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  color: #999;
+
+.errormessage{
+	color: #ff0000;
+    font-size: 12px;
+    font-weight: normal;
+    padding-top: 15px;
 }
 
 .girlSlider > a > img{
@@ -437,7 +445,7 @@ footer .flinks a {
     color: #999999;
 }
 
-@media only screen and (max-width: 640px) {
+@media only screen and (max-width: fpx) {
     .clientpart .col-md-8 {
         width: 100%;
         padding: 20px 0;
@@ -1433,16 +1441,17 @@ text-decoration: none !important;
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.btn-create {
         background-color: white;
@@ -1544,16 +1553,17 @@ text-decoration: none !important;
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.girlSlider> a > img{
         padding: 2px;
@@ -1643,16 +1653,17 @@ text-decoration: none !important;
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.btn-create {
         background-color: white;
@@ -1887,16 +1898,17 @@ textarea.form-control {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.girlSlider > a > img {
         padding: 2px;
@@ -2005,16 +2017,17 @@ textarea.form-control {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.btn-create:hover,
     .active .btn-create:hover,
@@ -2267,16 +2280,17 @@ textarea.form-control {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.girlSlider > a > img {
         padding: 2px;
@@ -2385,17 +2399,18 @@ textarea.form-control {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
-	
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
+    
 	.girlSlider > a > img {
         padding: 2px;
     	text-decoration: none;
@@ -2678,16 +2693,17 @@ textarea.form-control {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.btn-create {
         background-color: white;
@@ -2911,16 +2927,17 @@ textarea.form-control {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.girlSlider > a > img {
         padding: 2px;

@@ -8,7 +8,7 @@
     <div class="container">
 
         <g:form class="form-signin" controller="login" action="create" role="form">
-            <h2 class="form-signin-heading register">Please register</h2>
+            <h2 class="form-signin-heading register register-logo">Please register</h2>
             <%--
             <facebookAuth:connect/>
             --%>

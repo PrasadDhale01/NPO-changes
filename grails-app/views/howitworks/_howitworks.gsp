@@ -1,7 +1,7 @@
 <div class=" successtips">
 	<div class="container">
 		<!-- Three columns of text below the carousel -->
-		<div class="text-center">
+		<div class="text-center tips">
 			<h2>TIPS FOR SUCCESS</h2>
 		</div>
 		<div class="row">

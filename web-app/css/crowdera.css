@@ -1833,7 +1833,24 @@ textarea.form-control {
 	ul.dropdown-menu.admin.admin-dropdown{
 		width: 180px !important;
 	}
+	/*************ManageTeamButtons************/
+    .team-footer ,.button-team-footer {
+	    margin: 8px !important;
+	}
+	.inviteteammember {
+		margin-top: 1px !important;
+		padding: 18px 28px;
+		height: 70px;
+	}
+	.button-team-footer .dropdown-menu {
+	    width: 216px !important;
+	}
+	.manage-team{
+		margin-top: 16px !important;
+	}
+	/*************EndManageTeamButtons************/	
 }
+
 @media only screen and (max-width: 891px){
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
@@ -2064,6 +2081,22 @@ textarea.form-control {
 		color: #b6bbc0;
 		font-size: 9px;
 	}
+	/*************ManageTeamButtons************/
+    .team-footer ,.button-team-footer {
+	    margin: 8px !important;
+	}
+	.inviteteammember {
+		margin-top: 1px !important;
+		padding: 18px 28px;
+		height: 70px;
+	}
+	.button-team-footer .dropdown-menu {
+	    width: 216px !important;
+	}
+	.manage-team{
+		margin-top: 16px !important;
+	}
+	/*************EndManageTeamButtons************/	
 }
 
 .charitableLink {
@@ -2142,9 +2175,22 @@ textarea.form-control {
 	.leftcard-column-one .form-control {
 	    width: 90.3%;
 	}
+	/*************ManageTeamButtons************/
     .team-footer ,.button-team-footer {
-	    margin: 0px !important;
-	}	
+	    margin: 8px !important;
+	}
+	.inviteteammember {
+		margin-top: 1px !important;
+		padding: 18px 28px;
+		height: 70px;
+	}
+	.manage-team{
+		margin-top: 16px !important;
+	}
+	.button-team-footer .dropdown-menu {
+	    width: 216px !important;
+	}
+	/*************EndManageTeamButtons************/	
 	.nav-pills > li + li {
 	    margin-left: 0px;
 	}
@@ -2521,7 +2567,7 @@ textarea.form-control {
 	    width: 100% !important;
 	}
 	.button-team-footer .dropdown-menu {
-	    width: 320px !important;
+	    width: 343px !important;
 	}
 	.radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline {
 	    margin-top: 0px;
@@ -2620,6 +2666,15 @@ textarea.form-control {
 	}
 	.leftcard-column-one .form-control {
 	    width: 83.4%;
+	}
+	.button-team-show{
+		padding: 0px !important;
+		margin: 4px !important;
+		width: 100% !important;
+		margin-right: 30px !important;
+	}
+	li.active.team-footer.col-md-4.col-sm-4.col-xs-4 {
+		margin-left: 9px !important;
 	}
 }
 @media only screen and (max-width: 414px) {
@@ -2791,11 +2846,35 @@ textarea.form-control {
 	h2.form-signin-heading.register.register-logo {
 		padding: 24px 0 15px 70px;
 	}
+	/*************************manageteamcommentbutton************************/
+	.button-team-footer .dropdown-menu {
+	    width: 372px !important;
+	}
+	.team-footer {
+		margin-left: 7px !important;
+	}
+	.nav-pills {
+		margin-right: 13px;
+	}
+	.button-team-show{
+		padding: 0px !important;
+		margin: 4px !important;
+		width: 100% !important;
+		margin-right: 30px !important;
+	}
+	.button-team-show .dropdown-menu {
+		width: 372px !important;
+	}	
 }
 
 @media only screen and (max-width: 400px){
 	
-	
+	.button-team-footer .dropdown-menu {
+	    width: 357px !important;
+	}
+	.button-team-show .dropdown-menu {
+		width: 356px !important;
+	}	
 }
 
 @media only screen and (max-width: 375px) {
@@ -2880,11 +2959,36 @@ textarea.form-control {
 	.tips h2 {
 		padding-left: 72px !important;
 	}
+	/**********************manageTeamcomment*******************************/
+	.button-team-footer .dropdown-menu {
+	    width: 332px !important;
+	}
+	.team-footer {
+		margin-left: 7px !important;
+	}
+	.nav-pills {
+		margin-right: 13px;
+	}
+	.button-team-show{
+		padding: 0px !important;
+		margin: 4px !important;
+		width: 100% !important;
+		margin-right: 30px !important;
+	}
+	.button-team-show .dropdown-menu {
+		width: 332px !important;
+	}	
 }
 @media only screen and (max-width: 360px){
 	.tips h2 {
 		padding-left: 68px !important;
 	}
+	.button-team-footer .dropdown-menu {
+	    width: 317px !important;
+	}
+	.button-team-show .dropdown-menu {
+		width: 317px !important;
+	}	
 }
 
 @media only screen and (max-width: 320px){
@@ -3092,6 +3196,22 @@ textarea.form-control {
 	h3, .h3 {
 	    font-size: 20px;
 	}
+	/**********************manageTeamcomment*******************************/
+	.button-team-footer .dropdown-menu {
+	    width: 277px !important;
+	}
+	.button-team-show .dropdown-menu {
+		width: 277px !important;
+	}
+	.button-team-show{
+		padding: 0px !important;
+		margin: 4px !important;
+		width: 100% !important;
+		margin-right: 30px !important;
+	}
+	li.active.team-footer.col-md-4.col-sm-4.col-xs-4 {
+		margin-left: 9px !important;
+	}
 }
 .org-logo{
 	 height:100px; 
@@ -3135,11 +3255,10 @@ button.projectedit.close{
 	margin-top: 15px;
 	padding: 0;
 	border-top: 1px solid #e5e5e5;
-	width:30%;
+	width:27%;
 	margin-right: 30px;
 	margin-left: 20px;
 }
-
 .button-team-footer{
 	padding:0;
 	margin:0;
@@ -3160,7 +3279,7 @@ button.projectedit.close{
 	margin-top: 15px;
 	padding: 0;
 	border-top: 1px solid #e5e5e5;
-	width:30%;
+	width:28%;
 	margin-left: 15px;
 	margin-right: 15px;
 }
@@ -3397,6 +3516,7 @@ a.footerlink {
  	background-color: #ffffff !important;
 	color: #ffffff !important;
     text-decoration: none !important;
+    width: 100% !important;
 }
 .nav-pills-manageteam .dropdown-menu > li > a:hover,
 .nav-pills-manageteam .dropdown-menu > li > a:focus {

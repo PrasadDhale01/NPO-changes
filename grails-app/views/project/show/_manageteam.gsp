@@ -25,22 +25,22 @@
 <div class="pill-buttons">
 <g:if test="${!teams.isEmpty()}">
 	<ul class="nav nav-pills">
-		<li data-toggle="tab" class="active show-team col-md-4 col-sm-4 col-xs-4">
+		<li data-toggle="tab" class="active show-team col-md-4 col-sm-4 col-xs-4 button-team-show">
 		   <a href="#team">
 		      <h4 class="text-center">${teams.size()}</h4>
 		      <h5 class="text-center"> Team </h5>
 		   </a>
 		</li>
-        <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
-            <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-target="#teamComment" data-toggle="tab">
+        <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
+            <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md manage-team" data-target="#teamComment" data-toggle="tab">
                Team Comments
             </button>
         </li>
 		<g:if test="${!isTeamExist}">
 		    <g:if test="${!ended}">
-			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button ">
+			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
 			        <g:form controller="project" action="addFundRaiser" id="${project.id}" params="['fr':username]">
-					    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md"/>
+					    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md manage-team"/>
 					</g:form> 
 			    </li>
 		    </g:if>
@@ -52,8 +52,8 @@
 		</g:if>
 		<g:else>
 		    <g:if test="${currentFundraiser == currentUser}">
-                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
-                   <button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
+                   <button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team" data-toggle="dropdown" aria-expanded="false">
 			           Activity <span class="caret"></span>
 			       </button>
 			       <ul class="dropdown-menu" role="menu">

@@ -58,7 +58,7 @@
 						</div>
 					</g:elseif>
 					<g:elseif test="${project.validated}">
-						<g:if test="${user == project.user}">
+						<g:if test="${user == project.user || iscampaignAdmin}">
 						    <div class="over user-tiles-widths">
 								<img src="/images/OWNER.png">
 							</div>

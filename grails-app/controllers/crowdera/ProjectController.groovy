@@ -723,7 +723,7 @@ class ProjectController {
         def project = Project.get(params.id)
         String emails = params.emailIds
         String name = params.username
-        String message = params.message
+        String message = params.teammessage
         User user = userService.getCurrentUser()
         def fundraiser =user.username  
 

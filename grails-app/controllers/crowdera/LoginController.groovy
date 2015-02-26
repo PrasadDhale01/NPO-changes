@@ -7,9 +7,7 @@ import grails.plugin.springsecurity.annotation.Secured
 
 class LoginController {
 
-    def mailService
     def mandrillService
-
     def userService
     def roleService
     def grailsLinkGenerator
@@ -45,14 +43,8 @@ class LoginController {
                 render(view: 'error', model: [message: 'Problem in saving your details'])
            } else {
                 render(view: 'success', model: [message: 'Your request has been send to admin.'])
-
-                mailService.sendMail { 
-                async true
-                to user.email
-                from "info@crowdera.org"
-                subject "Crowdera - Registration Request"
-                html g.render(template: 'register/acknowledgetemplate')
-                }
+                
+                mandrillService.sendUserResponseToUserRequest(user)
             }
         }           
     } 
@@ -79,26 +71,6 @@ class LoginController {
         return (invite_user)
     }  
 
-
-    private def sendMandrillEmail(User user) {
-        def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm', id: user.confirmCode, absolute: true)
-
-        def globalMergeVars = [[
-            'name': 'LINK',
-            'content': link
-        ], [
-            'name': 'NAME',
-            'content': user.firstName + ' ' + user.lastName
-        ], [
-            'name': 'EMAIL',
-            'content': user.email
-        ]]
-
-        def tags = ['registration']
-
-        mandrillService.sendTemplate(user, 'new_user_confirmation', globalMergeVars, tags)
-    }
-
     def create() {
         if (User.findByUsername(params.username)) {
             render(view: 'error', model: [message: 'A user with that email already exists. Please use a different email.'])
@@ -122,7 +94,7 @@ class LoginController {
             } else {
                 UserRole.create(user, roleService.userRole())
 
-                sendMandrillEmail(user)
+                mandrillService.sendMandrillEmail(user)
 
                 redirect(action: 'success')
             }

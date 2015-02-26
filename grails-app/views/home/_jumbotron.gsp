@@ -3,11 +3,11 @@
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <div id="indicators" style="display:none;">
-	    <ol class="carousel-indicators">
-	        <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-	        <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-	        <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-	    </ol>
+	<ol class="carousel-indicators">
+	    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+	    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+	    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+	</ol>
     </div>
 
     <!-- Wrapper for slides -->
@@ -22,14 +22,23 @@
             <div class="carousel-caption imageCarouseltextbox">
                 <g:form class="form-signin" controller="login" action="create" role="form">
                     <div class="imageCarousellabel">
-                        <input type="text" name="name" id="name" class="imageCoureselForm" placeholder="First & Last Name">
-                        <input type="email" name="username" id="username" class="imageCoureselForm" placeholder="Email address">
-            			<input type="password" name="password" id="password" class="imageCoureselForm" placeholder="Password *">
-               			<input type="password" name="confirmPassword" id="confirmPassword" class="imageCoureselForm" placeholder="Confirm Password *">
-               			<button class="btn btn-image" type="submit" id="regButton"><b>Register</b></button>
-               		</div>
+                        <span class="imageCoureselFormGroup">
+                            <input type="text" name="name" id="name" class="imageCoureselForm" placeholder="First & Last Name">
+                        </span>
+                        <span class="imageCoureselFormGroup">
+                            <input type="email" name="username" id="username" class="imageCoureselForm" placeholder="Email address">
+            		</span>
+            		<span class="imageCoureselFormGroup">	
+            		   <input type="password" name="password" id="password" class="imageCoureselForm" placeholder="Password *">
+               		</span>
+               		<span class="imageCoureselFormGroup">
+               		    <input type="password" name="confirmPassword" id="confirmPassword" class="imageCoureselForm" placeholder="Confirm Password *">
+               	        </span>		
+               		<button class="btn btn-image" type="submit" id="regButton"><b>Register</b></button><br>
+               		<div class="col-sm-10 errormessage"></div>
+               	    </div>
                 </g:form>
-        	</div>
+            </div>
         </div>
         <div class="item ">
             <img src="/images/girlComputerSlider.jpg" >

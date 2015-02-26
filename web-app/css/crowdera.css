@@ -2415,8 +2415,24 @@ textarea.form-control {
     	background-color: #FF7F50;
     	color: white;
 	}
-
-	/*----------------------- End Image courasel new slider and button -------------------------------------- */
+	/**********************dropdown********************/
+	.dropdown-menu-head {
+		top: 160%;
+		margin: 12px 0px 0 !important;
+	}
+	li.dropdown.dropdown-head{
+		width: 240px;
+	}
+	ul.dropdown-menu.usr.user-dropdown{
+		width: 192px !important;
+	}
+	ul.dropdown-menu.admin.admin-dropdown{
+		width: 192px !important;
+	}
+	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+		background-color: #fff;
+		width: 192px;
+	}
 	
 }   
 
@@ -3991,4 +4007,10 @@ ul.dropdown-menu.usr.user-dropdown{
 	top: 155%;
 	margin: 39px 50px 0;
 }
-
+.goal-size, .achived-size {
+	font-size: 18px;
+}
+.dropdown-menu .divider {
+	height: 1px;
+	margin: 6.5px 0px;
+}

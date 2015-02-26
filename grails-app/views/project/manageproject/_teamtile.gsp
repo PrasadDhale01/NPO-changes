@@ -77,11 +77,11 @@
 	<div class="modal-footer tile-footer">
 		<div class="row">
 			<div class="col-md-6 col-xs-6">
-                <h6 class="text-center"><span class="lead">$${goal}</span><br/>GOAL</h6>
+                <h6 class="text-center"><span class="lead goal-size">$${goal}</span><br/>GOAL</h6>
             </div>
 			<div class="col-md-6 col-xs-6">
 				<h6 class="text-center">
-					<span class="lead">$${amount}</span><br />ACHIEVED
+					<span class="lead achived-size">$${amount}</span><br />ACHIEVED
 				</h6>
 			</div>
 		</div>

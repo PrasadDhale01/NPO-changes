@@ -444,7 +444,29 @@ footer .flinks a {
     text-align: left;
     color: #999999;
 }
+@media only screen and (max-width: 600px){
+    .nav-tabs.nav-justified.show-marginbottoms {
+        border-bottom: 0 none;
+        width: 100% !important;
+    }
+    .nav-tabs.nav-justified > li {
+        float: none;
+        width: 100% !important;
+    }
+    .nav-justified.validateshow-details-story{
+        display:flex !important;
+    }
+    .nav-justified.user-dashboard-style{
+        display:flex !important;
+    }
+    .nav-justified.show-marginbottoms{
+        display:flex !important;
+    }
+    .manage-projects.nav-justified{
+        display:flex !important;
+    }
 
+}    
 @media only screen and (max-width: 640px) {
     .clientpart .col-md-8 {
         width: 100%;
@@ -456,7 +478,14 @@ footer .flinks a {
     .clientpart .col-md-4 {
         clear: both;
     }
-
+    .validatebutton {
+        float: right;
+        width:102px;
+    }
+    .validatebtn.btn-danger {
+        border: medium none !important;
+        margin-top: 1px !important;
+    }
     .testimonial {
         max-width: 100%;
         width: 100%;
@@ -1817,6 +1846,12 @@ textarea.form-control {
     .nav > li > a {
         padding: 7px 13px;
     }
+    .btn-sm.btn-primary.validatebutton {
+        margin-left: 207px;
+    }
+    .nav-tabs.nav-justified > li > a {
+        font-size: 8px;
+    }
     .squarebox {
         width: 180px;
         height: 180px;
@@ -1982,6 +2017,13 @@ textarea.form-control {
 }
 @media only screen and (max-width: 800px){
 	
+    .validatebtn.btn-danger {
+        border: none !important;
+        margin-top: 0px !important;
+    }
+    .nav-tabs.nav-justified > li > a {
+        font-size: 8px;
+    }
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
     .imageCarousellabel {
@@ -2160,6 +2202,10 @@ textarea.form-control {
 		
     .validatebutton {
         float: right;
+    }
+    .validatebtn.btn-danger {
+        border: medium none !important;
+        margin-top: 1px !important;
     }
     .input-group[class*="col-"] {
 	    width: 100%;
@@ -2522,6 +2568,26 @@ textarea.form-control {
 }
 @media only screen and (max-width: 480px){
 	
+    .nav-tabs.nav-justified.show-marginbottoms {
+        border-bottom: 0 none;
+        width: 100% !important;
+    }
+    .nav-tabs.nav-justified > li {
+        float: none;
+        width: 100% !important;
+    }
+    .nav-justified.validateshow-details-story{
+        display:flex !important;
+    }
+    .nav-justified.user-dashboard-style{
+        display:flex !important;
+    }
+    .nav-justified.show-marginbottoms{
+        display:flex !important;
+    }
+    .manage-projects.nav-justified{
+        display:flex !important;
+    }
     .shippingreward > .btn-primary
     {
        margin-left: 0px !important;

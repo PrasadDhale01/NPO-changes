@@ -14,7 +14,7 @@ class CommunityController {
     def roleService
     def communityService
     def communityInviteService
-    def mailService
+    def mandrillService
 
     def FORMCONSTANTS = [
         TITLE: 'title',
@@ -148,14 +148,7 @@ class CommunityController {
         CommunityInvite invite = new CommunityInvite(community: community, user: user)
         invite.inviteCode = UUID.randomUUID().toString()
         invite.save()
-        mailService.sendMail {
-            async true
-            to user.email
-            from "info@fedu.org"
-            subject "Crowdera - Invitation to join community"
-            html g.render(template: 'manager/communityinviteemailtemplate',
-                model: [code: invite.inviteCode, community: community, user: user])
-        }
+        mandrillService.inviteMembersToCommunity(invite, community, user)
     }
 
     @Secured(['ROLE_USER'])

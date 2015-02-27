@@ -533,4 +533,84 @@ class MandrillService {
         inviteToAdmin(email, 'send-response-to-customer', globalMergeVars, tags)
     }
     
+    public def sendMandrillEmail(User user) {
+        def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm', id: user.confirmCode, absolute: true)
+
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+        ], [
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ], [
+            'name': 'EMAIL',
+            'content': user.email
+        ]]
+
+        def tags = ['registration']
+
+        sendTemplate(user, 'new_user_confirmation', globalMergeVars, tags)
+    }
+    
+    public def sendUserResponseToUserRequest(User user) {
+        def globalMergeVars = [[
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ], [
+            'name': 'EMAIL',
+            'content': user.email
+        ]]
+
+        def tags = ['userRequestToRegister']
+
+        sendTemplate(user, 'userRequestToRegister', globalMergeVars, tags)
+    }
+    
+    public def sendThankYouMailToContributors(User user, Project project, def amount, User fundraiser) {
+        def fundRaiserUserName = fundraiser.username
+        def beneficiary = project.user
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:fundRaiserUserName], absolute: true)
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+        ],[
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ],[
+            'name': 'BENEFICIARY',
+            'content': beneficiary.firstName + ' ' + beneficiary.lastName
+        ],[
+            'name': 'AMOUNT',
+            'content': amount
+        ], [
+            'name': 'EMAIL',
+            'content': user.email
+        ]]
+
+        def tags = ['thankYouEmailToContributor']
+
+        sendTemplate(user, 'thankYouEmailToContributor', globalMergeVars, tags)
+    }
+    
+    public def inviteMembersToCommunity(def invite, def community, def user) {
+        def code = invite.inviteCode
+        def link = grailsLinkGenerator.link(controller: 'community', action: 'accept_invite', id: code, absolute: true)
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+        ],[
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ],[
+            'name': 'TITLE',
+            'content': community.title
+        ],[
+            'name': 'EMAIL',
+            'content': user.email
+        ]]
+
+        def tags = ['inviteToCommunity']
+
+        sendTemplate(user, 'inviteToCommunity', globalMergeVars, tags)
+    }
 }

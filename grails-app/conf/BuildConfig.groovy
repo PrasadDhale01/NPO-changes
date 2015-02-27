@@ -62,7 +62,6 @@ grails.project.dependency.resolution = {
         compile ":scaffolding:2.0.2"
         compile ':cache:1.1.1'
         compile ":rest:0.8"
-        compile ":mail:1.0.4"
         compile ":spring-security-core:2.0-RC2"
         compile "org.grails.plugins:spring-security-facebook:0.15.2-CORE2"
         compile ":stripe:2.6"

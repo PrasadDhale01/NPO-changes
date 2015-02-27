@@ -365,13 +365,7 @@ class FundController {
 
         def email = users.email
         if (email) {
-            mailService.sendMail {
-                async true
-                to users.email
-                from "info@fedu.org"
-                subject "Crowdera - Thank you for funding"
-                html g.render(template: 'acknowledge/ackemailtemplate', model: [project: project, reward: reward, amount: amount, users:users])
-            }
+            mandrillService.sendThankYouMailToContributors(users, project,amount,fundraiser)
         }
 
         def totalContribution = contributionService.getTotalContributionForProject(project)

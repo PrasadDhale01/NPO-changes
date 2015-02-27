@@ -2773,6 +2773,37 @@ textarea.form-control {
 	li.active.team-footer.col-md-4.col-sm-4.col-xs-4 {
 		margin-left: 9px !important;
 	}
+    .divFirstAdmin{
+        margin-left:6px !important;
+    }
+    .divSecondAdmin{
+        padding-left:54px !important;
+    }
+    .divThirdAdmin{
+        padding-left:68px !important;
+    }
+    .tbFirstAdmin{
+        padding-left:7px;
+        width:100% !important;
+    }
+    .tbSecondAdmin{
+        padding-left:0px;
+        width:100% !important;
+    }
+    .tbThirdAdmin{
+        padding-left:0px;
+        width:100% !important;
+    }
+    label.lblFirstAdmin{
+        padding-left:7px !important;
+    }
+    label.lblSecAdmin{
+        padding-left:1px !important;
+    }
+    label.lblThirdAdmin{
+        padding-left:1px !important;
+    }
+
 }
 @media only screen and (max-width: 414px) {
 	
@@ -3094,6 +3125,36 @@ textarea.form-control {
 	.tips h2 {
 		padding-left: 29px !important;
 	}
+    .divFirstAdmin{
+        margin-left:6px !important;
+    }
+    .divSecondAdmin{
+        padding-left:54px !important;
+    }
+    .divThirdAdmin{
+        padding-left:68px !important;
+    }
+    .tbFirstAdmin{
+        padding-left:7px;
+        width:100% !important;
+    }
+    .tbSecondAdmin{
+        padding-left:0px;
+        width:100% !important;
+    }
+    .tbThirdAdmin{
+        padding-left:0px;
+        width:100% !important;
+    }
+    label.lblFirstAdmin{
+        padding-left:7px !important;
+    }
+    label.lblSecAdmin{
+        padding-left:1px !important;
+    }
+    label.lblThirdAdmin{
+        padding-left:1px !important;
+    }
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
@@ -4013,4 +4074,69 @@ ul.dropdown-menu.usr.user-dropdown{
 .dropdown-menu .divider {
 	height: 1px;
 	margin: 6.5px 0px;
+}
+.fileUpload.btn-primary{
+background-color: #E9967A !important;
+border-color:#E9967A;
+}
+.submitbutton > button{
+background-color: #ff784f !important;
+border-color:#ff784f;
+}
+.submitbutton > button:hover{
+background-color: #ff784f !important;
+border-color:#ff784f;
+}
+div.bootstrap-select > button{
+background-color: #333;
+color: white;
+}
+div.bootstrap-select > button:hover{
+background-color: #333;
+color: white;
+}
+div.bootstrap-select.dropup > button{
+background-color: #333;
+color: white;
+}
+div.bootstrap-select > button.selectpicker{
+background-color: #333;
+color: white;
+}
+.btnOrgBgColor > label{
+background-color: #333;
+color:#fff;
+}
+.btnOrgBgColor > label:hover{
+background-color: #333;
+color:#fff;
+}
+.btnPerkBgColor > label{
+background-color: #333;
+color:#fff;
+}
+.btnPerkBgColor > label:hover{
+background-color: #333;
+color:#fff;
+}
+.divFirstAdmin{
+    margin-left:69px;
+}
+.divSecondAdmin{
+    margin-left:-27px;
+}
+.divThirdAdmin{
+    margin-left:-42px;
+}
+.tbFirstAdmin{
+    padding-left:7px;
+    width:61%;
+}
+.tbSecondAdmin{
+    padding-left:0px;
+    width:66%;
+}
+.tbThirdAdmin{
+    padding-left:0px;
+    width:66%;
 }

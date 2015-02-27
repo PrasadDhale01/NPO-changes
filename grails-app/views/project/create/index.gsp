@@ -71,11 +71,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 			<g:uploadForm class="form-horizontal" controller="project"
 				action="save" role="form">
 
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Campaign Creator</h3>
-					</div>
-					<div class="panel-body">
+						<h3 class="panel-title">Campaign Creator</h3><hr/>
 
 						<div class="row">
 							<div class="col col-sm-6">
@@ -172,53 +168,47 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
         						</div>
 							</div>
 						</div>
-					</div>
-				</div>
 
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Campaign Co-Creators</h3>
-					</div>
-					<div class="panel-body">
-						<div class="col-sm-6">
+				
+					
+						<br><h3 class="panel-title">Campaign Co-Creators</h3><hr/>
+						<div class="row-fluid">
+						<div class="col-sm-4 divFirstAdmin lowRes highRes">
 							<div class="form-group">
-								<label class="col-sm-4 control-label">First Admin</label>
-								<div class="col-sm-8">
+								<label class="col-sm-4 control-label lblFirstAdmin">First Admin</label>
+								<div class="col-sm-6 tbFirstAdmin lowRes">
 									<input type="text" class="form-control" name="email1"
 										   id="firstadmin" placeholder="Email ID"></input>
 								</div>
 							</div>
+						</div>
+						<div class="col-sm-4 divSecondAdmin lowRes highRes">
 							<div class="form-group">
-								<label class="col-sm-4 control-label">Second Admin</label>
-								<div class="col-sm-8">
+								<label class="col-sm-4 control-label lblSecAdmin">Second Admin</label>
+								<div class="col-sm-6 tbSecondAdmin lowRes">
 									<input type="text" class="form-control" name="email2"
 										   id="secondadmin" placeholder="Email ID"></input>
 								</div>
 							</div>
 						</div>
 
-						<div class="col-sm-6">
+						<div class="col-sm-4 divThirdAdmin lowRes highRes">
 							<div class="form-group">
-								<label class="col-sm-4 control-label">Third Admin</label>
-								<div class="col-sm-8">
+								<label class="col-sm-4 control-label lblThirdAdmin">Third Admin</label>
+								<div class="col-sm-6 tbThirdAdmin lowRes">
 									<input type="text" class="form-control" name="email3"
 										   id="thirdadmin" placeholder="Email ID"></input>
 								</div>
 							</div>
+						 </div>
 						</div>
-					</div>
-				</div>
 
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Organization</h3>
-					</div>
-					<div class="panel-body">
+					<br><h3 class="panel-title">Organization</h3><hr/>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Preferred payment gateway</label>
 							<div class="col-sm-10 form-group" id="payopt">
 								<div class="col-sm-8">
-									<div class="btn-group btn-group-sm">
+									<div class="btn-group btn-group-sm btnOrgBgColor">
 										<label class="btn btn-default"> <input type="radio" name="pay" value="paypal">&nbsp;Paypal</label>
 										<label class="btn btn-default"> <input type="radio" name="pay" value="firstgiving">&nbsp;First Giving</label>
 									</div>
@@ -317,54 +307,54 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
 
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Funding Goal and Campaign End Date</h3>
-					</div>
-					<div class="panel-body">
+					
+					<br><h3 class="panel-title">Funding Goal and Campaign End Date</h3><hr/>
+					<div class="row">
+						<div class="col-sm-6">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Amount</label>
-							<div class="col-sm-10">
+							<label class="col-sm-4 control-label">Amount</label>
+							<div class="col-sm-8">
 								<input class="form-control" name="${FORMCONSTANTS.AMOUNT}"
 									id="${FORMCONSTANTS.AMOUNT}" placeholder="Amount"> <span
 									id="errormsg"></span>
 							</div>
 						</div>
+						</div>
+						<div class="col-sm-6">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Campaign end date</label>
-							<div class="col-sm-10">
+							<label class="col-sm-4 control-label">Campaign end date</label>
+							<div class="col-sm-8">
 								<div class="input-group enddate"><span class="input-group-addon datepicker-error"><span class="glyphicon glyphicon-calendar"></span></span>
 									<input class="datepicker pull-left" id="datepicker" name="${FORMCONSTANTS.DAYS}" readonly="readonly" placeholder="Campaign end date"> 
 							    </div>
 							</div>
 						</div>
+						</div>
 					</div>
-				</div>
-
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Tell us about your Campaign</h3>
-					</div>
-					<div class="panel-body">
+     
+     				<br><h3 class="panel-title">Tell us about your Campaign</h3><hr/>
+     				<div class="row">
+					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Category</label>
-							<div class="col-sm-10">
+							<label class="col-sm-4 control-label">Category</label>
+							<div class="col-sm-8">
 								<g:select class="selectpicker" name="${FORMCONSTANTS.CATEGORY}"
 										  from="${categoryOptions}"
 										  value="${FORMCONSTANTS.DEFAULT_CATEGORY}" optionKey="key"
 										  optionValue="value" />
 							</div>
 						</div>
+					</div>
+					<div class="col-sm-6">
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Campaign title</label>
-							<div class="col-sm-10">
+							<label class="col-sm-4 control-label">Campaign title</label>
+							<div class="col-sm-8">
 								<input class="form-control" name="${FORMCONSTANTS.TITLE}"
 									placeholder="Enter Campaign title">
 							</div>
 						</div>
+					</div></div>	
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Brief Description</label>
 							<div class="col-sm-10">
@@ -381,14 +371,8 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 									${initialValue}</textarea>
 							</div>
 				        </div>
-				    </div>
-				</div>
 
-				<div class="panel panel-default">
-  					<div class="panel-heading">
-    					<h3 class="panel-title">Campaign Images and Video</h3>
-  					</div>
-  					<div class="panel-body">
+    					<br><h3 class="panel-title">Campaign Images and Video</h3><hr/>
     					<div class="form-group">
       						<label class="col-sm-2 control-label">Pictures</label>
       						<div class="col-sm-4">
@@ -415,18 +399,12 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
       						</div>
       						<div class="col-sm-4" id="ytVideo"></div>
     					</div>
-  					</div>
-				</div>
 
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Perks</h3>
-					</div>
-					<div class="panel-body">
+					<br><h3 class="panel-title">Perks</h3><hr/>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Will you offer perks?</label>
 							<div class="col-sm-10">
-								<div class="btn-group btn-group-sm">
+								<div class="btn-group btn-group-sm btnPerkBgColor">
 									<label class="btn btn-default"> <input type="radio"
 										name="answer" value="yes"> Yes
 									</label> <label class="btn btn-default"> <input type="radio"
@@ -493,15 +471,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-				
-
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h3 class="panel-title">Get set, go</h3>
-					</div>
-					<div class="panel-body">
+					<br><h3 class="panel-title">Get set, go</h3><hr/>
 						<div class="form-group">
 							<label class="col-md-2 col-sm-2 control-label">All Cool!</label>
 							<div class="col-md-4 col-sm-6 campaignsubmitbutton">
@@ -515,9 +485,6 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 							    </div>
  							</div>
 						</div>
-					</div>
-				</div>
-
 			</g:uploadForm>
 		</div>
 	</div>

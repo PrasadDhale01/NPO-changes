@@ -127,10 +127,10 @@
 		<p class="text-justify">Yes you can edit certain sections of the
 			campaign.</p>
 
-		<h4>Does Crowdera accept international payments?</h4>
-		<p class="text-justify">Yes, anyone can fund on Crowdera as long
-			as Our payment gateway partners decide if Crowdera ensures complete
-			transparency, therefore the funds will be transferred directly into</p>
+<%--		<h4>Does Crowdera accept international payments?</h4>--%>
+<%--		<p class="text-justify">Yes, anyone can fund on Crowdera as long--%>
+<%--			as Our payment gateway partners decide if Crowdera ensures complete--%>
+<%--			transparency, therefore the funds will be transferred directly into</p>--%>
 
 		<h4>How will the funds be transferred?</h4>
 		<p class="text-justify">Crowdera ensures complete transparency,
@@ -157,7 +157,7 @@
 				free so do more good!</li>
 			<li>TEAMS - You can form teams to rally your campaign.</li>
 			<li>We help you multiply your impact by cloning your campaign
-				for your teams. All your team works towards a common goal which
+				for your teams. Your team works towards a common goal which
 				helps you to get more attention from your team’s crowd</li>
 			<li>We plan to engage corporate CSR $$ in the most unique
 				fashion to help you reach your goals faster.</li>
@@ -179,11 +179,9 @@
 
 		<h4>My campaign was rejected. How do I know the reason for
 			rejection?</h4>
-		<p class="text-justify">Please read the FAQ section thoroughly and
-			also read our crowdfunding guidelines sections to understand the
-			criterion of selection. If you feel you need more information, you
-			can reach out to Crowdera Crew to find out why your campaign was
-			rejected.</p>
+		<p class="text-justify">Please read the FAQ section thoroughly and also read our crowdfunding
+		 guidelines sections to understand the criterion of selection. If you feel you need more information, 
+		 you can reach out to our <a href="mailto:hello@crowdera.co">customer support</a>  to find out why your campaign was rejected.</p>
 
 		<h4>Who is responsible for delivering the rewards?</h4>
 		<p class="text-justify">The beneficiary / campaign creator is
@@ -295,7 +293,7 @@
 			contribution even after being logged in.</p>
 
 		<h4>Can I receive rewards after donating anonymously?</h4>
-		<p class="text-justify">Yes you can. You will need to provide.</p>
+		<p class="text-justify">Yes you can.</p>
 
 		<h4>I have not received my rewards, what do I do now?</h4>
 		<p class="text-justify">Please contact the campaign creator.</p>

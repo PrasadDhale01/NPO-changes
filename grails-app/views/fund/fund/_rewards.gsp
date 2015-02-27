@@ -14,7 +14,7 @@
             		def price = projectService.getDataType(reward.price);
                 %>
                 <br>
-                <a href="#" class="list-group-item" data-rewardid="${reward.id}" data-rewardprice="${reward.price}">
+                <a href="#" class="list-group-item <% if(perk == reward){%> active <%}%>" data-rewardid="${reward.id}" data-rewardprice="${reward.price}">
                     <h3 class="panel-title">${reward.title}</h3> 
                     <h5 class="list-group-item-heading lead">$${price}</h5>
                     <p class="rewarddescription">${reward.description}</p>

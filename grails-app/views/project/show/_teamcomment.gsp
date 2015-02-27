@@ -19,13 +19,15 @@
 	        <div class="alert alert-danger">${flash.teamcommentmessage}</div>
 	    </g:if>
 	    <h4 class="lead">Leave a comment</h4>
-	    <g:form controller="project" action="saveteamcomment" role="form" id="${project.id}" params="['fr': fundRaiser]">
-	        <div class="form-group">
-	            <textarea class="form-control" name="comment" rows="4" required="true"></textarea>
-	        </div>
-	        <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
-	        <div class="clear"></div>
-	    </g:form>
+	    <div id="commentForm">
+		    <g:form controller="project" action="saveteamcomment" role="form" id="${project.id}" params="['fr': fundRaiser]">
+		        <div class="form-group">
+		            <textarea class="form-control" name="comment" rows="4" required></textarea>
+		        </div>
+		        <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
+		        <div class="clear"></div>
+		    </g:form>
+	    </div>
 	</sec:ifLoggedIn>
 	<sec:ifNotLoggedIn>
 	    <div class="alert alert-warning">Please login to comment.</div>
@@ -45,8 +47,8 @@
 					                def date = dateFormat.format(comment.date)
 					            %>
 					            <div class="modal-body tile-footer show-team-footer">
-						            <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
-						            <dd>${comment.comment}</dd>
+						            <dt> By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
+						            <dd> ${comment.comment}</dd>
 					            </div>
 					        </g:each>
 			            </div>

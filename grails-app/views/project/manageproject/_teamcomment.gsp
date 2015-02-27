@@ -7,14 +7,16 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
 <g:if test="${user || beneficiary}">
-    <g:form controller="project" action="saveteamcomment" role="form" id="${project.id}" params="['fr': fundRaiser]">
-        <g:hiddenField name="ismanagepage" value="managepage" />
-        <div class="form-group">
-            <textarea class="form-control" name="comment" rows="4" required="true"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
-        <div class="clear"></div>
-    </g:form>
+    <div id="commentForm">
+        <g:form controller="project" action="saveteamcomment" role="form" id="${project.id}" params="['fr': fundRaiser]">
+            <g:hiddenField name="ismanagepage" value="managepage" />
+            <div class="form-group">
+                <textarea class="form-control" name="comment" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
+            <div class="clear"></div>
+        </g:form>
+    </div>
     
     <g:if test="${team}">
 		<g:if test="${team.comments}">

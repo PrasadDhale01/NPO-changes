@@ -13,15 +13,6 @@ $(function() {
         $('html,body').scrollTop(scrollmem);
     });
 
-    $('form').validate({
-        rules: {
-            comment: {
-                required: true,
-                maxlength: 5000
-            }
-        }
-    });
-    
     $('#sendmailmodal').find('form').validate({
         rules: {
         	name: {
@@ -52,6 +43,24 @@ $(function() {
     			required: true,
     			maxlength: 5,
     			islessThanProjectAmount : true
+    		}
+    	}
+    });
+    
+    $('#commentForm').find('form').validate({
+    	rules: {
+    		comment: {
+    			required: true,
+    			maxlength: 5000
+    		}
+    	}
+    });
+    
+    $('#commentBox').find('form').validate({
+    	rules: {
+    		comment: {
+    			required: true,
+    			maxlength: 5000
     		}
     	}
     });

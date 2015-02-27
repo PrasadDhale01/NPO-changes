@@ -8,13 +8,15 @@
         <div class="alert alert-danger">${flash.commentmessage}</div>
     </g:if>
     <h4 class="lead">Leave a comment</h4>
-    <g:form controller="project" action="savecomment" role="form" id="${project.id}">
-        <div class="form-group">
-            <textarea class="form-control" name="comment" rows="4" required="true"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
-        <div class="clear"></div>
-    </g:form>
+    <div id="commentBox">
+        <g:form controller="project" action="savecomment" role="form" id="${project.id}">
+            <div class="form-group">
+                <textarea class="form-control" name="comment" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
+            <div class="clear"></div>
+        </g:form>
+    </div>
 </sec:ifLoggedIn>
 <sec:ifNotLoggedIn>
     <div class="alert alert-warning">Please login to comment.</div>

@@ -132,7 +132,7 @@ class FundController {
         }
 		
         def fundRaiserUserName = params.fr
-	User fundraiser = User.findByUsername(params.fr)
+        User fundraiser = User.findByUsername(params.fr)
 
         if (project) {
             if (params.int('rewardId')) {
@@ -156,7 +156,7 @@ class FundController {
         def reqAmt=(999/100)*amt
         def remainAmt=reqAmt- totalContribution
         def percentage=((totalContribution + contPrice)/ amt)*100
-	perk = Reward.get(params.rewardId)
+        perk = Reward.get(params.rewardId)
 		
         if(percentage>999) {
             flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
@@ -179,7 +179,7 @@ class FundController {
         def project = contribution.project
         def reward = contribution.reward
         def user = contribution.user
-	def fundraiser = User.get(params.fr)
+        def fundraiser = User.get(params.fr)
 		
 	    render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
     }

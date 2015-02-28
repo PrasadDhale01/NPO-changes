@@ -202,6 +202,21 @@ class UserService {
             return isFundRaiserExist
         }
     }
+    
+    def isTeamEnabled(def project, def user) {
+        def isFundRaiserExist = false
+        def fundRaisers = Team.findAllWhere(project: project, enable: true)
+        if (user) {
+            fundRaisers.each {
+                if(user.id == it.user.id) {
+                    isFundRaiserExist = true
+                }
+            }
+            return isFundRaiserExist
+        } else {
+            return isFundRaiserExist
+        }
+    }
 
     def isCampaignBeneficiaryOrAdmin(def project, def user) {
         def projectAdmins = project.projectAdmins

@@ -40,7 +40,7 @@ class UserController {
             def projects = Project.findAllByUser(user)
             def email = user.email
             def projectAdmins = ProjectAdmin.findAllByEmail(email)
-            def teams = Team.findAllByUser(user)
+            def teams = Team.findAllWhere(user:user, enable: true)
             def project = projectService.getProjects(projects, projectAdmins, teams)
             def contributions = Contribution.findAllByUser(user)
             

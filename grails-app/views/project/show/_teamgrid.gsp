@@ -1,5 +1,5 @@
 <%
-    def teams = project.teams
+    def teams = projectService.getEnabledTeamsForCampaign(project)
     def count = teams.size()
     def cols = 3
     def rows = (count / cols) + (count % cols > 0 ? 1 : 0)

@@ -1003,6 +1003,11 @@ class ProjectService {
         
         mandrillService.sendEmailToCustomer(service);
     }
+    
+    def getEnabledTeamsForCampaign(Project project) {
+        def teams = Team.findAllWhere(project : project,enable:true);
+        return teams
+    }
 
     @Transactional
     def bootstrap() {

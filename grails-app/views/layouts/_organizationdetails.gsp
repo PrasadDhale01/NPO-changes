@@ -4,7 +4,7 @@
     def beneficiary = project.user
 	boolean ended = projectService.isProjectDeadlineCrossed(project)
 	def currentUser = userService.getCurrentUser()
-	def isteamexist = userService.isTeamAlreadyExist(project, currentUser)
+	def isteamexist = userService.isTeamEnabled(project, currentUser)
     def webUrl = projectService.getWebUrl(project)
 	def percentage = contributionService.getPercentageContributionForProject(project)
 %>

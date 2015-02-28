@@ -2,7 +2,7 @@
 <g:set var="projectService" bean="projectService" />
 <g:set var="userService" bean="userService"/>
 <%
-    def teams = project.teams
+    def teams = projectService.getEnabledTeamsForCampaign(project)
 	def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
 	def amount = contributionService.getTotalContributionForUser(currentTeam.contributions)
     def percentage = contributionService.getPercentageContributionForProject(project)

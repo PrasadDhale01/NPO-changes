@@ -11,6 +11,7 @@ class Team {
     List contributions
 	List comments
     Double amount
+    boolean enable = true
 	
 	Date joiningDate
     

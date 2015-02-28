@@ -70,7 +70,7 @@ class FundController {
         def month = contributionService.getMonth()
         def year = contributionService.getYear()
         def defaultCountry = 'US'
-	perk = Reward.get(params.rewardId)
+        perk = Reward.get(params.rewardId)
 
         def user = User.get(params.userId)
         if (user == null){

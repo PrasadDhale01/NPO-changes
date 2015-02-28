@@ -33,10 +33,10 @@
             </div>
         </g:else>
         <div class="col-sm-12">
-        <label>Email: ${beneficiary.email}</label>
+        <label>Email: <a href="mailto:${beneficiary.email}">${beneficiary.email}</a></label>
         </div>
         <div class="col-sm-12">
-        <label>Web: <a href="${webUrl}">${project.webAddress}</a></label>
+        <label>Web: <a href="${webUrl}" target="${webUrl}">${project.webAddress}</a></label>
         </div> 
         <div class="clear"></div>
         <g:if test="${project.draft}">

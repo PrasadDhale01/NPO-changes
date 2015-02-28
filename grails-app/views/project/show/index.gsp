@@ -64,9 +64,9 @@
 	                </div>
                 </g:if>
 	            <div class="col-md-12 green-heading text-center">
-	                <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">
-		            	<h1> ${projectTitle} </h1>
-	                </g:link>
+	                <h1><g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">
+		            	 ${projectTitle} 
+	                </g:link></h1>
 	            </div>
 	            <div class="col-md-4 mobileview-top">
 					<g:render template="/layouts/organizationdetails"/>

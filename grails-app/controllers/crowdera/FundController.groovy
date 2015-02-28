@@ -33,7 +33,7 @@ class FundController {
     def ack
     def paykey
     def userId
-	def perk
+    def perk
     String str
 
     def fund() {
@@ -45,7 +45,7 @@ class FundController {
             project = Project.findById(params.id)
         }
 		
-		perk = Reward.get(params.rewardId)
+        perk = Reward.get(params.rewardId)
 
         boolean fundingAchieved = contributionService.isFundingAchievedForProject(project)
         boolean ended = projectService.isProjectDeadlineCrossed(project)
@@ -70,7 +70,7 @@ class FundController {
         def month = contributionService.getMonth()
         def year = contributionService.getYear()
         def defaultCountry = 'US'
-		perk = Reward.get(params.rewardId)
+	perk = Reward.get(params.rewardId)
 
         def user = User.get(params.userId)
         if (user == null){
@@ -81,7 +81,7 @@ class FundController {
         }
 		
         def fundRaiserUserName = params.fr
-		User fundraiser = User.findByUsername(params.fr)
+	User fundraiser = User.findByUsername(params.fr)
 
         def totalContribution= contributionService.getTotalContributionForProject(project)
         def contPrice = params.double(('amount'))
@@ -132,7 +132,7 @@ class FundController {
         }
 		
         def fundRaiserUserName = params.fr
-		User fundraiser = User.findByUsername(params.fr)
+	User fundraiser = User.findByUsername(params.fr)
 
         if (project) {
             if (params.int('rewardId')) {
@@ -156,7 +156,7 @@ class FundController {
         def reqAmt=(999/100)*amt
         def remainAmt=reqAmt- totalContribution
         def percentage=((totalContribution + contPrice)/ amt)*100
-		perk = Reward.get(params.rewardId)
+	perk = Reward.get(params.rewardId)
 		
         if(percentage>999) {
             flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
@@ -179,7 +179,7 @@ class FundController {
         def project = contribution.project
         def reward = contribution.reward
         def user = contribution.user
-		def fundraiser = User.get(params.fr)
+	def fundraiser = User.get(params.fr)
 		
 	    render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
     }

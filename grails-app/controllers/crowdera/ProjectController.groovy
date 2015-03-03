@@ -126,7 +126,7 @@ class ProjectController {
         if (params.id) {
             def id = params.id
             def project = Project.get(id)
-	    project.created = new Date()
+            project.created = new Date()
             project.validated = true
         }   
         flash.prj_validate_message= "Campaign validated successfully"

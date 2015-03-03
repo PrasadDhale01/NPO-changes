@@ -63,7 +63,7 @@
 </head>
 <body>
 <input type="hidden" id="b_url" value="<%=base_url%>" />
-<input type="hidden" class="cpgdate" value="<%=numberOfDays%>"/>
+<input type="hidden" class="campaigndate" value="<%=numberOfDays%>"/>
 <input type="hidden" name="uuid" id="uuid"/>
 <input type="hidden" name="charity_name" id="charity_name"/>
 <div class="feducontent">
@@ -322,7 +322,7 @@
                             <script>
                                 var nowTemp = new Date();
                                 var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-                                var days = $('.cpgdate').val();
+                                var days = $('.campaigndate').val();
                                 nowTemp.setDate(now.getDate()-days);
                         	    now.setDate(now.getDate()+90-days);
          

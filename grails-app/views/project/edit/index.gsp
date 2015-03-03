@@ -20,9 +20,9 @@
 
     def endDate = projectService.getProjectEndDate(project)
     def campaigndate = endDate.getTime().format('MM/dd/yyyy')
-	def amount = projectService.getDataType(project.amount)
+    def amount = projectService.getDataType(project.amount)
     def base_url = grailsApplication.config.crowdera.BASE_URL
-	def numberOfDays = projectService.getDaysFromStartDate(project)
+    def numberOfDays = projectService.getDaysFromStartDate(project)
 %>
 <html>
 <head>

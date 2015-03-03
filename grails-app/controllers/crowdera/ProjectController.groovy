@@ -474,8 +474,6 @@ class ProjectController {
       
             Date minuteAgo = new Date(System.currentTimeMillis() - 60 * 10 * 1000); // Timeout for 10 minutes
             Date sessionCreated = new Date(session.getCreationTime());
-            println "Minute agp        pppppasfd sfas" + minuteAgo
-            println "session create time adsfas fasdf" + sessionCreated
             if (minuteAgo.time > sessionCreated.time ) {
                 session.invalidate();
                 flash.session_message = "Session timeout, please login!"

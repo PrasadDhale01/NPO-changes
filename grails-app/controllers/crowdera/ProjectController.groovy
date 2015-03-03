@@ -470,86 +470,100 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def save() {
-        Project project
-        Beneficiary beneficiary
-        User user = userService.getCurrentUser()
-        project = new Project(params)
-        beneficiary = new Beneficiary(params)
-        def amount=project.amount
-        def boolPerk=false
+        if (!session.isNew()) { // skip new sessions
+      
+            Date minuteAgo = new Date(System.currentTimeMillis() - 60 * 10 * 1000); // Timeout for 10 minutes
+            Date sessionCreated = new Date(session.getCreationTime());
+            println "Minute agp        pppppasfd sfas" + minuteAgo
+            println "session create time adsfas fasdf" + sessionCreated
+            if (minuteAgo.time > sessionCreated.time ) {
+                session.invalidate();
+                flash.session_message = "Session timeout, please login!"
+                render (view: 'manageproject/error')
+                //redirect(controller:'logout', action:'index')
+            }else{
+                Project project
+                Beneficiary beneficiary
+                User user = userService.getCurrentUser()
+                project = new Project(params)
+                beneficiary = new Beneficiary(params)
+                def amount=project.amount
+                def boolPerk=false
         
-        def button = params.button
-        if(button == 'draft'){
-            project.draft = true
-        }
+                def button = params.button
+                if(button == 'draft'){
+                    project.draft = true
+                }
 
-        if(params.(FORMCONSTANTS.COUNTRY) != "US"){
-            beneficiary.stateOrProvince = params.otherstate
-        }
+                if(params.(FORMCONSTANTS.COUNTRY) != "US"){
+                    beneficiary.stateOrProvince = params.otherstate
+                }
         
-        def rewardLength=Integer.parseInt(params.rewardCount)
-        if(rewardLength >= 1) {
-            def rewardTitle = new Object[rewardLength]
-            def rewardPrice = new Object[rewardLength]
-            def rewardDescription = new Object[rewardLength]
-            def mailingAddress = new Object[rewardLength]
-            def emailAddress = new Object[rewardLength]
-            def twitter = new Object[rewardLength]
-            def custom = new Object[rewardLength]
+                def rewardLength=Integer.parseInt(params.rewardCount)
+                if(rewardLength >= 1) {
+                    def rewardTitle = new Object[rewardLength]
+                    def rewardPrice = new Object[rewardLength]
+                    def rewardDescription = new Object[rewardLength]
+                    def mailingAddress = new Object[rewardLength]
+                    def emailAddress = new Object[rewardLength]
+                    def twitter = new Object[rewardLength]
+                    def custom = new Object[rewardLength]
 
-            for(def icount=0; icount< rewardLength; icount++){
-                rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
-                rewardPrice[icount] = params.("rewardPrice"+(icount+1))
-                rewardDescription[icount] = params.("rewardDescription"+(icount+1))
-                mailingAddress[icount] = params.("mailingAddress"+(icount+1))
-                emailAddress[icount] = params.("emailAddress"+(icount+1))
-                twitter[icount] = params.("twitter"+(icount+1))
-                custom[icount] = params.("custom"+(icount+1))
-                if(rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount])>amount){
-                    boolPerk=true;
+                    for(def icount=0; icount< rewardLength; icount++){
+                        rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
+                        rewardPrice[icount] = params.("rewardPrice"+(icount+1))
+                        rewardDescription[icount] = params.("rewardDescription"+(icount+1))
+                        mailingAddress[icount] = params.("mailingAddress"+(icount+1))
+                        emailAddress[icount] = params.("emailAddress"+(icount+1))
+                        twitter[icount] = params.("twitter"+(icount+1))
+                        custom[icount] = params.("custom"+(icount+1))
+                        if(rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount])>amount){
+                            boolPerk=true;
+                        }
+                    }
+                    if(boolPerk==true){
+                        flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
+                        render (view: 'manageproject/error')
+                        return
+                    }else{
+                        rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
+                    }
+                }
+               
+                def iconFile = request.getFile('iconfile')
+                if(!iconFile.isEmpty()) {
+                    def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
+                    project.organizationIconUrl = uploadedFileUrl
+                }
+        
+                def imageFiles = request.getFiles('thumbnail[]')
+                if(!imageFiles.isEmpty()) {
+                    projectService.getMultipleImageUrls(imageFiles, project)
+                }
+        
+                String email1 = params.email1
+                String email2 = params.email2
+                String email3 = params.email3
+        
+        
+                project.user = user
+
+                def days = params.days
+                projectService.getNumberofDays(days, project)
+
+                project.beneficiary = beneficiary
+        
+                if (project.save()) {
+                    projectService.getFundRaisersForTeam(project, user)
+                    projectService.getdefaultAdmin(project, user)
+                    projectService.getAdminForProjects(email1, project, user)
+                    projectService.getAdminForProjects(email2, project, user)
+                    projectService.getAdminForProjects(email3, project, user)
+                    redirect(controller: 'project', action: 'saveRedirect', id: project.id, params: [button: button])
+                } else {
+                    render (view: 'create/createerror', model: [project: project])
                 }
             }
-            if(boolPerk==true){
-                flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
-                render (view: 'manageproject/error')
-                return
-            }else{
-                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
-            }
-        }
-               
-        def iconFile = request.getFile('iconfile')
-        if(!iconFile.isEmpty()) {
-            def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
-            project.organizationIconUrl = uploadedFileUrl
-        }
-        
-        def imageFiles = request.getFiles('thumbnail[]')
-        if(!imageFiles.isEmpty()) {
-            projectService.getMultipleImageUrls(imageFiles, project)
-        }
-        
-        String email1 = params.email1
-        String email2 = params.email2
-        String email3 = params.email3
-        
-        
-        project.user = user
-
-        def days = params.days
-        projectService.getNumberofDays(days, project)
-
-        project.beneficiary = beneficiary
-        
-        if (project.save()) {
-            projectService.getFundRaisersForTeam(project, user)
-            projectService.getdefaultAdmin(project, user)
-            projectService.getAdminForProjects(email1, project, user)
-            projectService.getAdminForProjects(email2, project, user)
-            projectService.getAdminForProjects(email3, project, user)
-            redirect(controller: 'project', action: 'saveRedirect', id: project.id, params: [button: button])
-        } else {
-            render (view: 'create/createerror', model: [project: project])
         }
 	}
 

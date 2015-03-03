@@ -8,11 +8,20 @@
         <h2>Error</h2>
         <div class="alert alert-danger">
             Oh snap! Something went wrong.
-            <g:if test="${flash.prj_mngprj_message}">
+            <g:if test="${flash.session_message}">
+                <ul>
+                    <li>${flash.session_message}</li>
+                </ul>
+                <g:javascript>
+                    alert('Session timeout, please login!');
+                    window.location.href = '/logout';
+                </g:javascript>
+            </g:if>
+            <g:elseif test="${flash.prj_mngprj_message}">
                 <ul>
                     <li>${flash.prj_mngprj_message}</li>
                 </ul>
-            </g:if>
+            </g:elseif>
         </div>
 
         <g:if env="development">

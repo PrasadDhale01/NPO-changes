@@ -552,30 +552,28 @@ class MandrillService {
         sendTemplate(user, 'new_user_confirmation', globalMergeVars, tags)
     } 
 	
-	public def reSendConfirmationMail(User user) {
-		def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm', id: user.confirmCode, absolute: true)
+    public def reSendConfirmationMail(User user) {
+	def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm', id: user.confirmCode, absolute: true)
 
-		def globalMergeVars = [[
-			'name': 'LINK',
-			'content': link
-		], [
-			'name': 'NAME',
-			'content': user.firstName + ' ' + user.lastName
-		], [
-			'name': 'EMAIL',
-			'content': user.email
-		], [
-		    'name':'DATE',
-			'content': user.dateCreated
-		]]
+	def globalMergeVars = [[
+            'name': 'LINK',
+	    'content': link
+	], [
+	    'name': 'NAME',
+	    'content': user.firstName + ' ' + user.lastName
+	], [
+	    'name': 'EMAIL',
+	    'content': user.email
+	], [
+	    'name':'DATE',
+	    'content': user.dateCreated
+	]]
 
-		def tags = ['resend-confirmation-mail']
+	def tags = ['resend-confirmation-mail']
 
-		sendTemplate(user, 'resend_confirmation_mail', globalMergeVars, tags)
-	}
-	
-	
-    
+	sendTemplate(user, 'resend_confirmation_mail', globalMergeVars, tags)
+    }
+
     public def sendUserResponseToUserRequest(User user) {
         def globalMergeVars = [[
             'name': 'NAME',

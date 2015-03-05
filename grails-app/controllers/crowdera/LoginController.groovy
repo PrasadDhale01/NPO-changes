@@ -41,10 +41,10 @@ class LoginController {
             
             if (!user.save()) {
                 render(view: 'error', model: [message: 'Problem in saving your details'])
-           } else {
-                render(view: 'success', model: [message: 'Your request has been send to admin.'])
+        } else {
+            render(view: 'success', model: [message: 'Your request has been send to admin.'])
                 
-                mandrillService.sendUserResponseToUserRequest(user)
+            mandrillService.sendUserResponseToUserRequest(user)
             }
         }           
     } 
@@ -79,15 +79,15 @@ class LoginController {
             user.enabled = false
             user.confirmCode = UUID.randomUUID().toString()
 			
-			if(params.name){
-				StringTokenizer tokenizer = new StringTokenizer(params.name)
-				if (tokenizer.hasMoreTokens()) {
-					user.firstName = tokenizer.nextToken()
-				}
-				if (tokenizer.hasMoreTokens()) {
-					user.lastName = tokenizer.nextToken()
-				}
-			}
+	    if(params.name){
+	        StringTokenizer tokenizer = new StringTokenizer(params.name)
+		if (tokenizer.hasMoreTokens()) {
+		user.firstName = tokenizer.nextToken()
+	        }
+		if (tokenizer.hasMoreTokens()) {
+		    user.lastName = tokenizer.nextToken()
+		}
+	    }
 
             if (!user.save()) {
                 render(view: 'error', model: [message: 'Problem creating user. Please try again.'])

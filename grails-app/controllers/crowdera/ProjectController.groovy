@@ -752,6 +752,7 @@ class ProjectController {
 		redirect (action: 'show', id: project.id , params:[fr: fundRaiser], fragment: 'manageTeam')
 	}
 
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def sendEmailToTeam(def emails, def name, def message, Project project)
     {
         def emailList = emails.split(',')
@@ -783,7 +784,20 @@ class ProjectController {
             redirect (action: 'manageproject', id: params.id, params:[fr: fundRaiser], fragment: 'manageTeam')
         }
 	}
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def enableOrDisableTeam() {
+        def teamId= request.getParameter('teamId')
+        def team = Team.get(teamId)
+        if(team.enable){
+            team.enable = false
+        }else{
+            team.enable = true
+        }
+        render ""
+    }
 
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def deletecustomrewards() {
         def rewardId = Reward.get(params.id)
         def project = Project.get(params.projectId)

@@ -13,11 +13,11 @@
 					<th>Id</th>
 					<th>Team Member</th>
 					<th>Joining Date</th>
-					<th>Official Team Member</th>
 					<th>Contribution Deadline</th>
 					<th>Amount Authorized</th>
 					<th>$ Achieved</th>
 					<th>Need to hit minimum</th>
+					<th>Team Status</th>
 				</tr>
 			</thead>
 			<tbody>

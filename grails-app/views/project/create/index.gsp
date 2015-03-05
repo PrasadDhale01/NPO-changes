@@ -14,13 +14,16 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 <script src="/js/main.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script>
-	var nowTemp = new Date();
+        var nowTemp = new Date();
 	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+	now.setDate(now.getDate()+91);
 	var j = jQuery.noConflict();
 		j(function(){
 			j('#datepicker').datepicker({
-				  onRender: function(date) {
-					    return date.valueOf() <= now.valueOf() ? 'disabled' : '';
+				  onRender: function(date) {    
+					   if (date.valueOf() < nowTemp.valueOf() || date.valueOf() >= now.valueOf()){
+						   return  'disabled';
+					   } 
 				}
 			});
 		});

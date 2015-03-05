@@ -459,6 +459,13 @@ class ProjectService {
         project.days = numberOfDays
     }
 	
+	def getDaysFromStartDate(Project project) {
+		def startDate = project.created
+		def currentDate = new Date()
+		def numberOfDays = currentDate - startDate
+		return numberOfDays
+	}
+	
 	def isTeamAdmin(Project project) {
 		def user = userService.getCurrentUser()
 		def result = false

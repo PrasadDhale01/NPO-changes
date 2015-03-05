@@ -20,8 +20,9 @@
 
     def endDate = projectService.getProjectEndDate(project)
     def campaigndate = endDate.getTime().format('MM/dd/yyyy')
-	def amount = projectService.getDataType(project.amount)
+    def amount = projectService.getDataType(project.amount)
     def base_url = grailsApplication.config.crowdera.BASE_URL
+    def numberOfDays = projectService.getDaysFromStartDate(project)
 %>
 <html>
 <head>
@@ -33,16 +34,7 @@
     <script src="/js/main.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>
     <script>
-    var nowTemp = new Date();
-    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-    var j = jQuery.noConflict();
-        j(function(){
-            j('#datepicker').datepicker({
-                  onRender: function(date) {
-                        return date.valueOf() <= now.valueOf() ? 'disabled' : '';
-                }
-            });
-        });
+   
 
         tinymce.init({
         	mode : "specific_textareas",
@@ -71,6 +63,7 @@
 </head>
 <body>
 <input type="hidden" id="b_url" value="<%=base_url%>" />
+<input type="hidden" class="campaigndate" value="<%=numberOfDays%>"/>
 <input type="hidden" name="uuid" id="uuid"/>
 <input type="hidden" name="charity_name" id="charity_name"/>
 <div class="feducontent">
@@ -326,6 +319,24 @@
                             <div class="input-group enddate"><span class="input-group-addon datepicker-error"><span class="glyphicon glyphicon-calendar"></span></span>
                                 <input class="datepicker pull-left" id="datepicker" name="${FORMCONSTANTS.DAYS}" value="${campaigndate}" readonly="readonly" placeholder="Campaign end date"> 
                             </div>
+                            <script>
+                                var nowTemp = new Date();
+                                var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+                                var days = $('.campaigndate').val();
+                                nowTemp.setDate(now.getDate()-days);
+                        	    now.setDate(now.getDate()+90-days);
+         
+                        	    var j = jQuery.noConflict();
+                        		    j(function(){
+                        			    j('#datepicker').datepicker({
+                        				    onRender: function(date) {    
+                        					    if (date.valueOf() < nowTemp.valueOf() || date.valueOf() > now.valueOf()){
+                        						    return  'disabled';
+                        					    } 
+                        				    }
+                        			    });
+                        		    });
+                            </script>
                         </div>
                     </div>
                 </div>

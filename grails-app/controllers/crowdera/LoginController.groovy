@@ -70,7 +70,7 @@ class LoginController {
         render(view: '/user/admin/dashboard')
         return (invite_user)
     }  
-
+	
     def create() {
         if (User.findByUsername(params.username)) {
             render(view: 'error', model: [message: 'A user with that email already exists. Please use a different email.'])
@@ -223,7 +223,9 @@ class LoginController {
         if (!user) {
             // TBD: We might not want to give any hint on existing users
             render(view: 'error', model: [message: 'A user with that email does not exist. Please use a registered email.'])
-        } else {
+        } else if(user.enabled == false) {
+		    render(view: 'error', model: [message: 'Email is not verified. Please complete the registration process.'])
+		} else {
             user.resetCode = UUID.randomUUID().toString()
             user.save()
            

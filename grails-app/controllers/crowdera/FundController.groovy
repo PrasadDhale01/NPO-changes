@@ -33,6 +33,7 @@ class FundController {
     def ack
     def paykey
     def userId
+    def perk
     String str
 
     def fund() {
@@ -43,6 +44,8 @@ class FundController {
         if (params.id) {
             project = Project.findById(params.id)
         }
+		
+        perk = Reward.get(params.rewardId)
 
         boolean fundingAchieved = contributionService.isFundingAchievedForProject(project)
         boolean ended = projectService.isProjectDeadlineCrossed(project)
@@ -52,7 +55,7 @@ class FundController {
         } else if (fundingAchieved || ended) {
             redirect(controller: 'project', action: 'show', id: project.id)
         } else {
-            render view: 'fund/index', model: [project: project, user:user, fundraiser:fundraiser]
+            render view: 'fund/index', model: [project: project, user:user, fundraiser:fundraiser, perk:perk]
         }
     }
 
@@ -67,17 +70,18 @@ class FundController {
         def month = contributionService.getMonth()
         def year = contributionService.getYear()
         def defaultCountry = 'US'
+        perk = Reward.get(params.rewardId)
+
         def user = User.get(params.userId)
         if (user == null){
             user = User.findByUsername('anonymous@example.com')
         }
-
         if (params.projectId) {
             project = Project.findById(params.projectId)
         }
 		
         def fundRaiserUserName = params.fr
-		User fundraiser = User.findByUsername(params.fr)
+	User fundraiser = User.findByUsername(params.fr)
 
         def totalContribution= contributionService.getTotalContributionForProject(project)
         def contPrice = params.double(('amount'))
@@ -87,7 +91,7 @@ class FundController {
         def percentage=((totalContribution + contPrice)/ amt)*100
         if(percentage>999) {
             flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
-            redirect action: 'fund', id: project.id, params:[fr: fundRaiserUserName]
+            redirect action: 'fund', id: project.id, params:[fr: fundRaiserUserName, rewardId:perk.id]
         }
         else{
         if (project) {
@@ -128,7 +132,7 @@ class FundController {
         }
 		
         def fundRaiserUserName = params.fr
-		User fundraiser = User.findByUsername(params.fr)
+        User fundraiser = User.findByUsername(params.fr)
 
         if (project) {
             if (params.int('rewardId')) {
@@ -152,10 +156,11 @@ class FundController {
         def reqAmt=(999/100)*amt
         def remainAmt=reqAmt- totalContribution
         def percentage=((totalContribution + contPrice)/ amt)*100
-        
+        perk = Reward.get(params.rewardId)
+		
         if(percentage>999) {
             flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
-            redirect action: 'fund', id: project.id, params:[fr: fundRaiserUserName]
+            redirect action: 'fund', id: project.id, params:[fr: fundRaiserUserName, rewardId:perk.id]
         } else {
             if (project && reward) {
                 if (project.paypalEmail){
@@ -174,7 +179,7 @@ class FundController {
         def project = contribution.project
         def reward = contribution.reward
         def user = contribution.user
-		def fundraiser = User.get(params.fr)
+        def fundraiser = User.get(params.fr)
 		
 	    render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
     }

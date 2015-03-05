@@ -21,7 +21,7 @@ class UserController {
     @Secured(['ROLE_ADMIN'])
     def list() {
         def verifiedUsers = userService.getVerifiedUserList()
-		def nonVerifiedUsers = userService.getNonVerifiedUserList()
+	def nonVerifiedUsers = userService.getNonVerifiedUserList()
         render(view: 'admin/userList', model: [verifiedUsers:verifiedUsers,nonVerifiedUsers:nonVerifiedUsers])
     }
 
@@ -31,19 +31,17 @@ class UserController {
        userprofile('user/dashboard')
     }
 	
-	@Secured(['ROLE_ADMIN'])
-	def resendConfirmMailByAdmin(){
-		def user = User.get(params.id)
-		user.confirmCode = UUID.randomUUID().toString()
-		mandrillService.reSendConfirmationMail(user)
-		flash.message = "Confirmation Email has been send to ${user.email}"
-		redirect(action:'list')
-	}
+    @Secured(['ROLE_ADMIN'])
+    def resendConfirmMailByAdmin(){
+	def user = User.get(params.id)
+	user.confirmCode = UUID.randomUUID().toString()
+	mandrillService.reSendConfirmationMail(user)
+	flash.message = "Confirmation Email has been send to ${user.email}"
+	redirect(action:'list')
+    }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
-    def userprofile(String userViews )
-    {
-        
+    def userprofile(String userViews ){
         User user = (User)userService.getCurrentUser()
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'

@@ -178,12 +178,12 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 
 .dropdown-menu.usr > li > a {
     padding: 7px 21px !important;
-    width:192px;
+    width: 180px;
 }
 
 .dropdown-menu.admin > li > a {
     padding: 7px 16px !important;
-    width:192px;
+    width: 180px;
 }
 
 .nav > li > a:hover,
@@ -251,15 +251,23 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 }
 
-.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  color: #999;
-  opacity: 1;
+.has-error .imageCoureselForm  {
+  border-color: #f04124;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
-.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  color: #999;
+
+.has-error .imageCoureselForm:focus {
+  border-color: #d32a0e;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
 }
-.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  color: #999;
+
+.errormessage{
+	color: #ff0000;
+    font-size: 12px;
+    font-weight: normal;
+    padding-top: 15px;
 }
 
 .girlSlider > a > img{
@@ -316,8 +324,8 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #ff784f !important;
-    color: #FFF;
+    background-color: #FDF9F9 !important;
+    color: #0F0101 !important;
 }
 
 .searchbox {
@@ -436,7 +444,29 @@ footer .flinks a {
     text-align: left;
     color: #999999;
 }
+@media only screen and (max-width: 600px){
+    .nav-tabs.nav-justified.show-marginbottoms {
+        border-bottom: 0 none;
+        width: 100% !important;
+    }
+    .nav-tabs.nav-justified > li {
+        float: none;
+        width: 100% !important;
+    }
+    .nav-justified.validateshow-details-story{
+        display:flex !important;
+    }
+    .nav-justified.user-dashboard-style{
+        display:flex !important;
+    }
+    .nav-justified.show-marginbottoms{
+        display:flex !important;
+    }
+    .manage-projects.nav-justified{
+        display:flex !important;
+    }
 
+}    
 @media only screen and (max-width: 640px) {
     .clientpart .col-md-8 {
         width: 100%;
@@ -448,7 +478,14 @@ footer .flinks a {
     .clientpart .col-md-4 {
         clear: both;
     }
-
+    .validatebutton {
+        float: right;
+        width:102px;
+    }
+    .validatebtn.btn-danger {
+        border: medium none !important;
+        margin-top: 1px !important;
+    }
     .testimonial {
         max-width: 100%;
         width: 100%;
@@ -922,13 +959,13 @@ footer .footerbottomsection {
 
 .successtips h2 {
     background: url(../images/sucess-icon.png) center left no-repeat;
-    padding-left: 100px;
+    padding-left: 80px;
     display: inline-block;
     text-align: center;
     padding-top: 20px;
     padding-bottom: 20px;
     color: #86a734;
-    font-size: 38px !important;
+    font-size: 31px !important;
     margin-bottom: 50px !important;
 }
 
@@ -1059,8 +1096,8 @@ footer .footerbottomsection {
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #ff784f !important;
-    color: #FFF;
+     background-color: #FDF9F9 !important;
+     color: #0F0101;
 }
 
 .green-heading a {
@@ -1433,16 +1470,17 @@ text-decoration: none !important;
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.btn-create {
         background-color: white;
@@ -1544,16 +1582,17 @@ text-decoration: none !important;
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.girlSlider> a > img{
         padding: 2px;
@@ -1643,16 +1682,17 @@ text-decoration: none !important;
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.btn-create {
         background-color: white;
@@ -1804,7 +1844,13 @@ textarea.form-control {
 /* Media 970px */
 @media only screen and (max-width: 970px) {
     .nav > li > a {
-        padding: 7px 19px;
+        padding: 7px 13px;
+    }
+    .btn-sm.btn-primary.validatebutton {
+        margin-left: 207px;
+    }
+    .nav-tabs.nav-justified > li > a {
+        font-size: 8px;
     }
     .squarebox {
         width: 180px;
@@ -1819,7 +1865,38 @@ textarea.form-control {
 		color: #b6bbc0;
 		font-size: 9px;
 	}
+	 /**********************dropdown********************/
+	.dropdown-menu-head {
+		top: 160%;
+		margin: 0px 55px 0 !important;
+	}
+	li.dropdown.dropdown-head{
+		width: 240px;
+	}
+	ul.dropdown-menu.usr.user-dropdown{
+		width: 180px !important;
+	}
+	ul.dropdown-menu.admin.admin-dropdown{
+		width: 180px !important;
+	}
+	/*************ManageTeamButtons************/
+    .team-footer ,.button-team-footer {
+	    margin: 8px !important;
+	}
+	.inviteteammember {
+		margin-top: 1px !important;
+		padding: 18px 28px;
+		height: 70px;
+	}
+	.button-team-footer .dropdown-menu {
+	    width: 216px !important;
+	}
+	.manage-team{
+		margin-top: 16px !important;
+	}
+	/*************EndManageTeamButtons************/	
 }
+
 @media only screen and (max-width: 891px){
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
@@ -1873,16 +1950,17 @@ textarea.form-control {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.girlSlider > a > img {
         padding: 2px;
@@ -1939,6 +2017,13 @@ textarea.form-control {
 }
 @media only screen and (max-width: 800px){
 	
+    .validatebtn.btn-danger {
+        border: none !important;
+        margin-top: 0px !important;
+    }
+    .nav-tabs.nav-justified > li > a {
+        font-size: 8px;
+    }
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
     .imageCarousellabel {
@@ -1991,16 +2076,17 @@ textarea.form-control {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.btn-create:hover,
     .active .btn-create:hover,
@@ -2037,7 +2123,7 @@ textarea.form-control {
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
     .nav > li > a {
-        padding: 7px 21px;
+        padding: 7px 10px;
     }
     .squarebox {
         width: 180px;
@@ -2050,6 +2136,22 @@ textarea.form-control {
 		color: #b6bbc0;
 		font-size: 9px;
 	}
+	/*************ManageTeamButtons************/
+    .team-footer ,.button-team-footer {
+	    margin: 8px !important;
+	}
+	.inviteteammember {
+		margin-top: 1px !important;
+		padding: 18px 28px;
+		height: 70px;
+	}
+	.button-team-footer .dropdown-menu {
+	    width: 216px !important;
+	}
+	.manage-team{
+		margin-top: 16px !important;
+	}
+	/*************EndManageTeamButtons************/	
 }
 
 .charitableLink {
@@ -2075,17 +2177,35 @@ textarea.form-control {
 
 @media only screen and (max-width: 800px) {
     .nav > li > a{
-        padding:7px, 21px;
+        padding:7px, 10px !important;
     }
     .validatebutton {
         float: right;
     }
+    /**********************dropdown********************/
+	.dropdown-menu-head {
+		top: 160%;
+		margin: 0px 55px 0 !important;
+	}
+	li.dropdown.dropdown-head{
+		width: 240px;
+	}
+	ul.dropdown-menu.usr.user-dropdown{
+		width: 180px !important;
+	}
+	ul.dropdown-menu.admin.admin-dropdown{
+		width: 180px !important;
+	}
 }
 
 @media only screen and (max-width: 768px) {
 		
     .validatebutton {
         float: right;
+    }
+    .validatebtn.btn-danger {
+        border: medium none !important;
+        margin-top: 1px !important;
     }
     .input-group[class*="col-"] {
 	    width: 100%;
@@ -2114,9 +2234,22 @@ textarea.form-control {
 	.leftcard-column-one .form-control {
 	    width: 90.3%;
 	}
+	/*************ManageTeamButtons************/
     .team-footer ,.button-team-footer {
-	    margin: 0px !important;
-	}	
+	    margin: 8px !important;
+	}
+	.inviteteammember {
+		margin-top: 1px !important;
+		padding: 18px 28px;
+		height: 70px;
+	}
+	.manage-team{
+		margin-top: 16px !important;
+	}
+	.button-team-footer .dropdown-menu {
+	    width: 216px !important;
+	}
+	/*************EndManageTeamButtons************/	
 	.nav-pills > li + li {
 	    margin-left: 0px;
 	}
@@ -2136,16 +2269,30 @@ textarea.form-control {
 }
 @media only screen and (min-width: 767px) and (max-width: 768px){
  .nav > li > a{
-        padding: 7px 21px !important;
+        padding: 7px 13px !important;
   }
   .dropdown-menu.usr > li > a {
     padding: 7px 21px !important;
-    width:192px;
+    width:180px;
   }
   .dropdown-menu.admin > li > a {
     padding: 7px 16px !important;
-    width:192px;
+    width:180px;
   }
+  /**********************dropdown********************/
+	.dropdown-menu-head {
+		top: 160%;
+		margin: 0px 55px 0 !important;
+	}
+	li.dropdown.dropdown-head{
+		width: 240px;
+	}
+	ul.dropdown-menu.usr.user-dropdown{
+		width: 180px !important;
+	}
+	ul.dropdown-menu.admin.admin-dropdown{
+		width: 180px !important;
+	}
 .containrewards{
     height: 190px !important;
     position: relative;
@@ -2156,9 +2303,22 @@ textarea.form-control {
 }
 @media only screen and (max-width: 767px){
 	.rewarddesc,.rewarddesctitle {
-	    margin-left: -14px !important;
+	    margin-left: 1px !important;
 	}
-	
+    .rewardTitle {
+        padding-left: 15px !important;
+    }
+	.shippingreward > .btn-primary
+    {
+       margin-left: 0px !important;
+       margin-right: 11px !important;
+       margin-top: 8px !important;
+       width: 116px !important;
+       padding-left: 16px !important;
+    }
+    .shippingreward >.lblCustom{
+        padding-right:54px !important;
+    }
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
     .imageCarousellabel {
@@ -2212,16 +2372,17 @@ textarea.form-control {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.girlSlider > a > img {
         padding: 2px;
@@ -2254,8 +2415,24 @@ textarea.form-control {
     	background-color: #FF7F50;
     	color: white;
 	}
-
-	/*----------------------- End Image courasel new slider and button -------------------------------------- */
+	/**********************dropdown********************/
+	.dropdown-menu-head {
+		top: 160%;
+		margin: 12px 0px 0 !important;
+	}
+	li.dropdown.dropdown-head{
+		width: 240px;
+	}
+	ul.dropdown-menu.usr.user-dropdown{
+		width: 192px !important;
+	}
+	ul.dropdown-menu.admin.admin-dropdown{
+		width: 192px !important;
+	}
+	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+		background-color: #fff;
+		width: 192px;
+	}
 	
 }   
 
@@ -2265,7 +2442,17 @@ textarea.form-control {
 	}
 }
 @media only screen and (max-width: 640px){
-	
+	.shippingreward > .btn-primary
+    {
+       margin-left: 0px !important;
+       margin-right: 31px !important;
+       margin-top: 8px !important;
+       width: 116px !important;
+       padding-left: 16px !important;
+    }
+    .shippingreward >.lblCustom{
+        padding-right:54px !important;
+    }
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
     .imageCarousellabel {
@@ -2320,17 +2507,18 @@ textarea.form-control {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
-	
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
+    
 	.girlSlider > a > img {
         padding: 2px;
     	text-decoration: none;
@@ -2396,6 +2584,37 @@ textarea.form-control {
 }
 @media only screen and (max-width: 480px){
 	
+    .nav-tabs.nav-justified.show-marginbottoms {
+        border-bottom: 0 none;
+        width: 100% !important;
+    }
+    .nav-tabs.nav-justified > li {
+        float: none;
+        width: 100% !important;
+    }
+    .nav-justified.validateshow-details-story{
+        display:flex !important;
+    }
+    .nav-justified.user-dashboard-style{
+        display:flex !important;
+    }
+    .nav-justified.show-marginbottoms{
+        display:flex !important;
+    }
+    .manage-projects.nav-justified{
+        display:flex !important;
+    }
+    .shippingreward > .btn-primary
+    {
+       margin-left: 0px !important;
+       margin-right: 11px !important;
+       margin-top: 8px !important;
+       width: 116px !important;
+       padding-left: 16px !important;
+    }
+    .shippingreward >.lblCustom{
+        padding-right:54px !important;
+    }
     .campaignsubmitbutton .submitbutton {
         padding-left: 13px !important;
     }
@@ -2445,7 +2664,7 @@ textarea.form-control {
 	    width: 100% !important;
 	}
 	.button-team-footer .dropdown-menu {
-	    width: 320px !important;
+	    width: 343px !important;
 	}
 	.radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline {
 	    margin-top: 0px;
@@ -2545,8 +2764,52 @@ textarea.form-control {
 	.leftcard-column-one .form-control {
 	    width: 83.4%;
 	}
+	.button-team-show{
+		padding: 0px !important;
+		margin: 4px !important;
+		width: 100% !important;
+		margin-right: 30px !important;
+	}
+	li.active.team-footer.col-md-4.col-sm-4.col-xs-4 {
+		margin-left: 9px !important;
+	}
+    .divFirstAdmin{
+        margin-left:6px !important;
+    }
+    .divSecondAdmin{
+        padding-left:54px !important;
+    }
+    .divThirdAdmin{
+        padding-left:68px !important;
+    }
+    .tbFirstAdmin{
+        padding-left:7px;
+        width:100% !important;
+    }
+    .tbSecondAdmin{
+        padding-left:0px;
+        width:100% !important;
+    }
+    .tbThirdAdmin{
+        padding-left:0px;
+        width:100% !important;
+    }
+    label.lblFirstAdmin{
+        padding-left:7px !important;
+    }
+    label.lblSecAdmin{
+        padding-left:1px !important;
+    }
+    label.lblThirdAdmin{
+        padding-left:1px !important;
+    }
+
 }
 @media only screen and (max-width: 414px) {
+	
+	.tips h2 {
+		padding-left: 72px !important;
+	}
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
@@ -2602,16 +2865,17 @@ textarea.form-control {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.btn-create {
         background-color: white;
@@ -2687,6 +2951,59 @@ textarea.form-control {
 	.organization-details {
 	    padding-bottom:30px;
 	}
+	/**********************dropdown********************/
+	.dropdown-menu-head {
+		top: 160%;
+		margin: 12px 0px 0 !important;
+	}
+	li.dropdown.dropdown-head{
+		width: 240px;
+	}
+	ul.dropdown-menu.usr.user-dropdown{
+		width: 192px !important;
+	}
+	ul.dropdown-menu.admin.admin-dropdown{
+		width: 192px !important;
+	}
+	.socialicon img{
+		margin-top: 12px;
+	}
+	/*--------------------------Logo-Login-register-css--------------------------------*/
+	h2.form-signin-heading.signin.login-logo {
+		padding: 24px 0 15px 70px;
+	}
+	h2.form-signin-heading.register.register-logo {
+		padding: 24px 0 15px 70px;
+	}
+	/*************************manageteamcommentbutton************************/
+	.button-team-footer .dropdown-menu {
+	    width: 372px !important;
+	}
+	.team-footer {
+		margin-left: 7px !important;
+	}
+	.nav-pills {
+		margin-right: 13px;
+	}
+	.button-team-show{
+		padding: 0px !important;
+		margin: 4px !important;
+		width: 100% !important;
+		margin-right: 30px !important;
+	}
+	.button-team-show .dropdown-menu {
+		width: 372px !important;
+	}	
+}
+
+@media only screen and (max-width: 400px){
+	
+	.button-team-footer .dropdown-menu {
+	    width: 357px !important;
+	}
+	.button-team-show .dropdown-menu {
+		width: 356px !important;
+	}	
 }
 
 @media only screen and (max-width: 375px) {
@@ -2718,6 +3035,20 @@ textarea.form-control {
 		background-color: #fff;
 		width: 192px;
 	}
+	/**********************dropdown********************/
+	.dropdown-menu-head {
+		top: 160%;
+		margin: 12px 0px 0 !important;
+	}
+	li.dropdown.dropdown-head{
+		width: 240px;
+	}
+	ul.dropdown-menu.usr.user-dropdown{
+		width: 192px !important;
+	}
+	ul.dropdown-menu.admin.admin-dropdown{
+		width: 192px !important;
+	}
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 	
@@ -2744,8 +3075,86 @@ textarea.form-control {
 	}
 	
 	/*--------------------End of Image courasel new slider and button ------------------------------------*/
+	.socialicon img{
+		margin-top: 12px;
+	}
+	/*--------------------------Logo-Login-register-css--------------------------------*/
+	h2.form-signin-heading.signin.login-logo {
+		padding: 24px 0 15px 70px;
+	}
+	h2.form-signin-heading.register.register-logo {
+		padding: 24px 0 15px 70px;
+	}
+	.tips h2 {
+		padding-left: 72px !important;
+	}
+	/**********************manageTeamcomment*******************************/
+	.button-team-footer .dropdown-menu {
+	    width: 332px !important;
+	}
+	.team-footer {
+		margin-left: 7px !important;
+	}
+	.nav-pills {
+		margin-right: 13px;
+	}
+	.button-team-show{
+		padding: 0px !important;
+		margin: 4px !important;
+		width: 100% !important;
+		margin-right: 30px !important;
+	}
+	.button-team-show .dropdown-menu {
+		width: 332px !important;
+	}	
 }
+@media only screen and (max-width: 360px){
+	.tips h2 {
+		padding-left: 68px !important;
+	}
+	.button-team-footer .dropdown-menu {
+	    width: 317px !important;
+	}
+	.button-team-show .dropdown-menu {
+		width: 317px !important;
+	}	
+}
+
 @media only screen and (max-width: 320px){
+	
+	.tips h2 {
+		padding-left: 29px !important;
+	}
+    .divFirstAdmin{
+        margin-left:6px !important;
+    }
+    .divSecondAdmin{
+        padding-left:54px !important;
+    }
+    .divThirdAdmin{
+        padding-left:68px !important;
+    }
+    .tbFirstAdmin{
+        padding-left:7px;
+        width:100% !important;
+    }
+    .tbSecondAdmin{
+        padding-left:0px;
+        width:100% !important;
+    }
+    .tbThirdAdmin{
+        padding-left:0px;
+        width:100% !important;
+    }
+    label.lblFirstAdmin{
+        padding-left:7px !important;
+    }
+    label.lblSecAdmin{
+        padding-left:1px !important;
+    }
+    label.lblThirdAdmin{
+        padding-left:1px !important;
+    }
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
@@ -2801,16 +3210,17 @@ textarea.form-control {
           box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
 	}
 
-	.imageCarouseltextbox .imageCoureselForm::-moz-placeholder {
-  		color: #999;
-  		opacity: 1;
-	}
-	.imageCarouseltextbox .imageCoureselForm:-ms-input-placeholder {
-  		color: #999;
-	}
-	.imageCarouseltextbox .imageCoureselForm::-webkit-input-placeholder {
-  		color: #999;
-	}
+	.has-error .imageCoureselForm  {
+        border-color: #f04124;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    }
+
+    .has-error .imageCoureselForm:focus {
+        border-color: #d32a0e;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
+    }
 	
 	.girlSlider > a > img {
         padding: 2px;
@@ -2946,6 +3356,22 @@ textarea.form-control {
 	h3, .h3 {
 	    font-size: 20px;
 	}
+	/**********************manageTeamcomment*******************************/
+	.button-team-footer .dropdown-menu {
+	    width: 277px !important;
+	}
+	.button-team-show .dropdown-menu {
+		width: 277px !important;
+	}
+	.button-team-show{
+		padding: 0px !important;
+		margin: 4px !important;
+		width: 100% !important;
+		margin-right: 30px !important;
+	}
+	li.active.team-footer.col-md-4.col-sm-4.col-xs-4 {
+		margin-left: 9px !important;
+	}
 }
 .org-logo{
 	 height:100px; 
@@ -2989,11 +3415,10 @@ button.projectedit.close{
 	margin-top: 15px;
 	padding: 0;
 	border-top: 1px solid #e5e5e5;
-	width:30%;
+	width:27%;
 	margin-right: 30px;
 	margin-left: 20px;
 }
-
 .button-team-footer{
 	padding:0;
 	margin:0;
@@ -3014,7 +3439,7 @@ button.projectedit.close{
 	margin-top: 15px;
 	padding: 0;
 	border-top: 1px solid #e5e5e5;
-	width:30%;
+	width:28%;
 	margin-left: 15px;
 	margin-right: 15px;
 }
@@ -3145,11 +3570,19 @@ button.projectedit.close{
 .shippingreward .checkbox input[type="checkbox"],.checkbox-inline input[type="checkbox"]
 {
 	margin-left: -10px !important;
-	margin-right: 3px;
+	margin-right: 3px
 }
-
+.shippingreward >.btn-primary{
+    width:116px !important;
+}
+.shippingreward > .lblCustom{
+    padding-right:82px;
+}
 .rewardTitle {
 	padding-left: 20px;
+}
+.rewardTitle > input {
+    padding-left: 8px !important;
 }
 .panel-primary > .panel-heading{
      background-color: #ff784f;
@@ -3216,7 +3649,7 @@ a {
 a.footerlink {
 	color: #a1a5af;
 	font-size: 14px;
-	margin: 0px 10px 0 10px !important;
+	margin: 0px 10px 0 0px !important;
 }
 .dropdown-menu{
 	min-width:155.5px;
@@ -3243,6 +3676,7 @@ a.footerlink {
  	background-color: #ffffff !important;
 	color: #ffffff !important;
     text-decoration: none !important;
+    width: 100% !important;
 }
 .nav-pills-manageteam .dropdown-menu > li > a:hover,
 .nav-pills-manageteam .dropdown-menu > li > a:focus {
@@ -3372,9 +3806,11 @@ a.footerlink {
 }
 .perks-css-create{
 	padding: 3px 6px;
+    width:29px;
 }
 .perks-created-remove{
 	padding: 3px 6px;
+    width:29px;
 }
 .edit-logo-icon{
 	display: none;
@@ -3535,18 +3971,43 @@ a.footerlink {
 .user-dashboard-style{
 	margin-bottom: 10px;
 }
-.contactUs .panel {
-    background-color: #f5f5f5 !important;
-}
+
 .contactparagraph {
 	font-size: 11px;
 	display: inline-block;
     font-weight: normal;
     margin-top: 5px;
 }
-.crowderasupport{
+.crowderasupport {
 	margin-top: 5px;
 	margin-bottom: 20px;
+}
+.crowderasupport >img {
+	width: 50px;
+}
+
+.contactUsSubmitButton .btn {
+	padding: 6px 30px !important;
+}
+.contactUsSubmitButton .btn-primary {
+	color: #ffffff;
+	background-color: #ff784f !important;
+	border-color: #ff784f !important;
+	margin-bottom: 5px;
+}
+.contactUs .btn-default {
+	color: #ffffff;
+	background-color: #333333 !important;
+	border-color: #333333 !important;
+}
+.contactUs .active .btn-default:hover, .contactUs .open .dropdown-toggle.btn-default:hover {
+	background-image: none;
+	border-color: #ff784f !important;
+}
+.contactUs .btn-default:hover {
+	background-image: none;
+	background-color: #ff784f !important;
+	border-color: #ff784f !important;
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
@@ -3555,8 +4016,11 @@ a.footerlink {
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #ff784f !important;
-    color: #ffffff;
+  /*  background-color: #ff784f !important;
+    color: #ffffff;*/
+     background-color: #FDF9F9 !important;
+    /*color: #FFF;*/
+    color: #0F0101;
 }
 .crowderaFaq >h2{
     margin-top: 20px;
@@ -3588,9 +4052,91 @@ a.footerlink {
     color: #333333;
     border-color: #dadada;
 }
-li.dropdown.dropdown-head, ul.dropdown-menu.usr.user-dropdown, ul.dropdown-menu.admin.admin-dropdown{
-	width: 192px;
+li.dropdown.dropdown-head{
+	width: 240px;
+}
+ul.dropdown-menu.admin.admin-dropdown{
+	width: 180px;
+}
+ul.dropdown-menu.usr.user-dropdown{
+	width: 180px;
 }
 .campaignsubmitbutton .submitbutton {
         margin-left: -14px !important;
+}
+.dropdown-menu-head {
+	top: 155%;
+	margin: 39px 50px 0;
+}
+.goal-size, .achived-size {
+	font-size: 18px;
+}
+.dropdown-menu .divider {
+	height: 1px;
+	margin: 6.5px 0px;
+}
+.fileUpload.btn-primary{
+background-color: #E9967A !important;
+border-color:#E9967A;
+}
+.submitbutton > button{
+background-color: #ff784f !important;
+border-color:#ff784f;
+}
+.submitbutton > button:hover{
+background-color: #ff784f !important;
+border-color:#ff784f;
+}
+div.bootstrap-select > button{
+background-color: #333;
+color: white;
+}
+div.bootstrap-select > button:hover{
+background-color: #333;
+color: white;
+}
+div.bootstrap-select.dropup > button{
+background-color: #333;
+color: white;
+}
+div.bootstrap-select > button.selectpicker{
+background-color: #333;
+color: white;
+}
+.btnOrgBgColor > label{
+background-color: #333;
+color:#fff;
+}
+.btnOrgBgColor > label:hover{
+background-color: #333;
+color:#fff;
+}
+.btnPerkBgColor > label{
+background-color: #333;
+color:#fff;
+}
+.btnPerkBgColor > label:hover{
+background-color: #333;
+color:#fff;
+}
+.divFirstAdmin{
+    margin-left:69px;
+}
+.divSecondAdmin{
+    margin-left:-27px;
+}
+.divThirdAdmin{
+    margin-left:-42px;
+}
+.tbFirstAdmin{
+    padding-left:7px;
+    width:61%;
+}
+.tbSecondAdmin{
+    padding-left:0px;
+    width:66%;
+}
+.tbThirdAdmin{
+    padding-left:0px;
+    width:66%;
 }

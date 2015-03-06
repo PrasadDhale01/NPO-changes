@@ -64,9 +64,9 @@
 	                </div>
                 </g:if>
 	            <div class="col-md-12 green-heading text-center">
-	                <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">
-		            	<h1> ${projectTitle} </h1>
-	                </g:link>
+	                <h1><g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">
+		            	 ${projectTitle} 
+	                </g:link></h1>
 	            </div>
 	            <div class="col-md-4 mobileview-top">
 					<g:render template="/layouts/organizationdetails"/>
@@ -78,7 +78,10 @@
                         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
                     </g:elseif>
                     <g:else>
-                        <a href="/campaigns/${project.id}/fund" class="btn btn-success btn-lg btn-block" role="button">Fund this Campaign</a>
+                        <form action="/campaigns/${project.id}/fund">
+                            <g:hiddenField name="fr" value="${username}" />
+                            <g:submitButton name="submit" value="Fund this Campaign" class="btn btn-success btn-lg btn-block"/>
+                        </form>
                     </g:else>
                     <g:if test="${project.rewards.size()>1}">
                     	<g:render template="show/rewards"/>
@@ -89,19 +92,19 @@
                
                     <ul class="nav nav-tabs nav-justified show-marginbottoms">
                         <li class="active"><a href="#essentials" data-toggle="tab">
-                            <span class="glyphicon glyphicon-leaf"></span><span class="tab-text"> Story</span>
+                            <span class="glyphicon glyphicon-leaf"></span><span class="tab-text hidden-xs"> Story</span>
                         </a></li>
                         <li><a href="#projectupdates" data-toggle="tab">
-							<span class="glyphicon glyphicon-asterisk"></span><span class="tab-text"> Updates</span>
+							<span class="glyphicon glyphicon-asterisk"></span><span class="tab-text hidden-xs"> Updates</span>
                         </a></li>
                         <li><a href="#manageTeam" data-toggle="tab">
-                            <span class="fa fa-users"></span><span class="tab-text"> Team</span>
+                            <span class="fa fa-users"></span><span class="tab-text hidden-xs"> Team</span>
 						</a></li>
                         <li><a href="#contributions" data-toggle="tab">
-                            <span class="glyphicon glyphicon-tint"></span><span class="tab-text"> Contributions</span>
+                            <span class="glyphicon glyphicon-tint"></span><span class="tab-text hidden-xs"> Contributions</span>
                         </a></li>
                         <li><a href="#comments" data-toggle="tab">
-                            <span class="glyphicon glyphicon-comment"></span><span class="tab-text"> Comments</span>
+                            <span class="glyphicon glyphicon-comment"></span><span class="tab-text hidden-xs"> Comments</span>
                         </a></li>
                     </ul>
 
@@ -169,10 +172,9 @@
                         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>CAMPAIGN ENDED!</button>
                     </g:elseif>
                     <g:else>
-                        <form action="/campaigns/${project.id}/fund">
-                            <g:hiddenField name="fundraiserUsername" value="${username}" />
-                            <g:submitButton name="submit" value="Fund this Campaign" class="btn btn-success btn-lg btn-block"/>
-                        </form>                    
+                        <g:form controller="fund" action="fund" id="${project.id}" params="['fr': username]">
+                            <button name="submit" class="btn btn-success btn-lg btn-block">Fund this Campaign</button>
+                        </g:form>
                     </g:else>
                     <g:if test="${project.rewards.size()>1}">
                     	<g:render template="show/rewards"/>

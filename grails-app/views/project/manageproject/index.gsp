@@ -68,21 +68,21 @@
 						<ul class="nav nav-tabs manage-projects nav-justified"
 							style="margin-bottom: 10px;">
 							<li class="active"><a href="#essentials" data-toggle="tab">
-									<span class="glyphicon glyphicon-leaf"></span> <span class="tab-text"> Story</span>
+									<span class="glyphicon glyphicon-leaf"></span> <span class="tab-text hidden-xs"> Story</span>
 							</a></li>
 							<li><a href="#projectupdates" data-toggle="tab"> <span
-									class="glyphicon glyphicon-asterisk"></span> <span class="tab-text">Manage Updates</span>
+									class="glyphicon glyphicon-asterisk"></span> <span class="tab-text hidden-xs">Manage Updates</span>
 							</a></li>
-							<li><a href="#manageTeam" data-toggle="tab"> <span class="fa fa-users"></span><span class="tab-text"> Manage Team</span>
+							<li><a href="#manageTeam" data-toggle="tab"> <span class="fa fa-users"></span><span class="tab-text hidden-xs"> Manage Team</span>
  							</a></li>
  							<li><a href="#rewards" data-toggle="tab"> <i
-									class="fa fa-gift fa-lg"></i> <span class="tab-text">Manage Perks</span>
+									class="fa fa-gift fa-lg"></i> <span class="tab-text hidden-xs">Manage Perks</span>
 							</a></li>
 							<li><a href="#contributions" data-toggle="tab"> <span
-									class="glyphicon glyphicon-tint"></span> <span class="tab-text"> Contributions</span>
+									class="glyphicon glyphicon-tint"></span> <span class="tab-text hidden-xs"> Contributions</span>
 							</a></li>
 							<li><a href="#comments" data-toggle="tab"> <span
-									class="glyphicon glyphicon-comment"></span> <span class="tab-text"> Comments</span>
+									class="glyphicon glyphicon-comment"></span> <span class="tab-text hidden-xs"> Comments</span>
 							</a></li>
 						</ul>
 

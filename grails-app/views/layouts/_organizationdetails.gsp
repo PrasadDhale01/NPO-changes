@@ -4,7 +4,7 @@
     def beneficiary = project.user
 	boolean ended = projectService.isProjectDeadlineCrossed(project)
 	def currentUser = userService.getCurrentUser()
-	def isteamexist = userService.isTeamAlreadyExist(project, currentUser)
+	def isteamexist = userService.isTeamEnabled(project, currentUser)
     def webUrl = projectService.getWebUrl(project)
 	def percentage = contributionService.getPercentageContributionForProject(project)
 %>
@@ -33,10 +33,10 @@
             </div>
         </g:else>
         <div class="col-sm-12">
-        <label>Email: <a href="#">${beneficiary.email}</a></label>
+        <label>Email: <a href="mailto:${beneficiary.email}">${beneficiary.email}</a></label>
         </div>
         <div class="col-sm-12">
-        <label>Web: <a href="${webUrl}">${project.webAddress}</a></label>
+        <label>Web: <a href="${webUrl}" target="${webUrl}">${project.webAddress}</a></label>
         </div> 
         <div class="clear"></div>
         <g:if test="${project.draft}">
@@ -54,16 +54,16 @@
 	            <img src="/images/PENDING1.png">
 	        </div>
 	    </g:elseif>
+	     <g:elseif test="${ended}">
+	        <div class="tilesanstitletag  banner-wid">
+	            <img src="/images/ended1.png">
+	        </div>
+	    </g:elseif>
 	    <g:elseif test="${percentage >= 75}">
 			<div class="tilesanstitletag  banner-wid">
 				<img src="/images/funded.png">
 			</div>
 		</g:elseif>
-	    <g:elseif test="${ended}">
-	        <div class="tilesanstitletag  banner-wid">
-	            <img src="/images/ended1.png">
-	        </div>
-	    </g:elseif>
 	    <g:elseif test="${isteamexist}">
 	        <g:if test="${currentUser == beneficiary}">
 	            <div class="tilesanstitletag  banner-wid">

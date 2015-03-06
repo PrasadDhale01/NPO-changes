@@ -47,19 +47,19 @@
 					<div class="col-md-8">
 						<ul class="nav nav-tabs nav-justified validateshow-details-story">
 							<li class="active"><a href="#essentials" data-toggle="tab">
-									<span class="fa fa-leaf"></span><span class="tab-text"> Story</span>
+									<span class="fa fa-leaf"></span><span class="tab-text hidden-xs"> Story</span>
 							</a></li>
 							<li><a href="#projectupdates" data-toggle="tab">
-								<span class="glyphicon glyphicon-asterisk"></span><span class="tab-text"> Updates</span>
+								<span class="glyphicon glyphicon-asterisk"></span><span class="tab-text hidden-xs"> Updates</span>
 							</a></li>
 							<li><a href="#manageTeam" data-toggle="tab">
-                            	<span class="fa fa-users"></span><span class="tab-text"> Team</span>
+                            	<span class="fa fa-users"></span><span class="tab-text hidden-xs"> Team</span>
  							</a></li>
 							<li><a href="#contributions" data-toggle="tab"> <span
-									class="fa fa-tint"></span><span class="tab-text"> Contributions</span>
+									class="fa fa-tint"></span><span class="tab-text hidden-xs"> Contributions</span>
 							</a></li>
 							<li><a href="#comments" data-toggle="tab"> <span
-									class="fa fa-comments"></span><span class="tab-text"> Comments</span>
+									class="fa fa-comments"></span><span class="tab-text hidden-xs"> Comments</span>
 							</a></li>
 						</ul>
 

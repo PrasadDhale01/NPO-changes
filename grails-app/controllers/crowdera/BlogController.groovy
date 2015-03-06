@@ -40,10 +40,6 @@ class BlogController {
     }
 
     @Secured(['ROLE_AUTHOR', 'ROLE_ADMIN'])
-    def create() {
-    }
-
-    @Secured(['ROLE_AUTHOR', 'ROLE_ADMIN'])
     def publish() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd")
         params.date = dateFormat.parse(params.date)

@@ -2,6 +2,7 @@ $(function() {
     console.log('show.js initialized');
     /***************Hide/Show label******************************/
     hideShowLabel();
+    changeTeamStatus();
 
     var hash = window.location.hash;
     hash && $('ul.nav a[href="' + hash + '"]').tab('show');
@@ -13,15 +14,6 @@ $(function() {
         $('html,body').scrollTop(scrollmem);
     });
 
-    $('form').validate({
-        rules: {
-            comment: {
-                required: true,
-                maxlength: 5000
-            }
-        }
-    });
-    
     $('#sendmailmodal').find('form').validate({
         rules: {
         	name: {
@@ -52,6 +44,24 @@ $(function() {
     			required: true,
     			maxlength: 5,
     			islessThanProjectAmount : true
+    		}
+    	}
+    });
+    
+    $('#commentForm').find('form').validate({
+    	rules: {
+    		comment: {
+    			required: true,
+    			maxlength: 5000
+    		}
+    	}
+    });
+    
+    $('#commentBox').find('form').validate({
+    	rules: {
+    		comment: {
+    			required: true,
+    			maxlength: 5000
     		}
     	}
     });
@@ -123,8 +133,48 @@ $(function() {
             alert('An error occured');
         });
     }
+    
+    /***********************Enable or Disable a Team********************************/
+    
+    $("#teamStatusButton input[type='checkbox']").click(function(){
+        
+        if($(this).prop("checked") == true){
+             enableOrDisableTeam(this,true);
+             changeTeamStatus();
+         }                        
+         else if($(this).prop("checked") == false){
+             enableOrDisableTeam(this,false);
+             changeTeamStatus();
+         }
+     });
+    
+     function changeTeamStatus() {
+         $('#teamStatusButton input[type="checkbox"]').each(function(index, value) {
+             if ($(this).prop("checked") == true) {
+                 $('#check'+(index+1)).text(' Enable');
+             } else {
+                 $('#check'+(index+1)).text(' Disable');
+             }
+         });
+     }
+     
+     function enableOrDisableTeam(checkstat,statusValue)
+     {
+         var teamId=$(checkstat).val();
+         $.ajax({
+                 type:'post',
+                 url:$("#b_url").val()+'/project/enableOrDisableTeam',
+                 data:'teamId='+teamId,
+                 success: function(data){
+                 $('#test').html(data);
+                 }
+         }).error(function(){
+             alert('An error occured');
+         });
+     }
 
-/***********************Youtube url********************************/ 
+    /***********************Youtube url********************************/
+     
     $('#youtubeVideoUrl').html(function(i, html) {
     	
     	var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;

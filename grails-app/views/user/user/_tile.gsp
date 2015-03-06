@@ -47,21 +47,28 @@
 							<img src="/images/PENDING.png">
 						</div>
 					</g:elseif>
-					<g:elseif test="${percentage >= 75}">
-				    	<div class="over user-tiles-widths">
-							<img src="/images/funded1.png">
-						</div>
-					</g:elseif>
 					<g:elseif test="${ended}">
 					    <div class="over user-tiles-widths">
 							<img src="/images/ended.png">
 						</div>
 					</g:elseif>
-					<g:if test="${user == project.user}">
-					    <div class="over user-tiles-widths">
-							<img src="/images/OWNER.png">
+					<g:elseif test="${percentage >= 75}">
+				    	<div class="over user-tiles-widths">
+							<img src="/images/funded1.png">
 						</div>
-					</g:if>
+					</g:elseif>
+					<g:elseif test="${project.validated}">
+						<g:if test="${user == project.user || iscampaignAdmin}">
+						    <div class="over user-tiles-widths">
+								<img src="/images/OWNER.png">
+							</div>
+						</g:if>
+						<g:else>
+							<div class="over user-tiles-widths">
+								<img src="/images/PENDING.png">
+							</div>
+						</g:else>
+					</g:elseif>
 					<g:elseif test="${isTeamAdmin}">
 					    <div class="over user-tiles-widths">
 							<img src="/images/OWNER.png">
@@ -96,14 +103,14 @@
 							<img src="/images/PENDING.png">
 						</div>
 					</g:elseif>
-					<g:elseif test="${percentage >= 75}">
-				    	<div class="over user-tiles-widths">
-							<img src="/images/funded1.png">
-						</div>
-					</g:elseif>
 					<g:elseif test="${ended}">
 					    <div class="over user-tiles-widths">
 							<img src="/images/ended.png">
+						</div>
+					</g:elseif>
+					<g:elseif test="${percentage >= 75}">
+				    	<div class="over user-tiles-widths">
+							<img src="/images/funded1.png">
 						</div>
 					</g:elseif>
 					<g:if test="${isTeamAdmin}">

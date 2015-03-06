@@ -16,7 +16,6 @@ import org.jets3t.service.security.AWSCredentials
 import crowdera.Beneficiary;
 import crowdera.ImageUrl;
 import crowdera.Project;
-import crowdera.ProjectAdmin;
 import crowdera.ProjectComment;
 import crowdera.ProjectUpdate;
 import crowdera.Reward;
@@ -127,6 +126,7 @@ class ProjectController {
         if (params.id) {
             def id = params.id
             def project = Project.get(id)
+            project.created = new Date()
             project.validated = true
         }   
         flash.prj_validate_message= "Campaign validated successfully"
@@ -471,77 +471,98 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def save() {
-        Project project
-        Beneficiary beneficiary
-        User user = userService.getCurrentUser()
-        project = new Project(params)
-        beneficiary = new Beneficiary(params)
-        ProjectAdmin projectAdmin = new ProjectAdmin()
+        if (!session.isNew()) { // skip new sessions
+      
+            Date minuteAgo = new Date(System.currentTimeMillis() - 60 * 10 * 1000); // Timeout for 10 minutes
+            Date sessionCreated = new Date(session.getCreationTime());
+            if (minuteAgo.time > sessionCreated.time ) {
+                session.invalidate();
+                flash.session_message = "Session timeout, please login!"
+                render (view: 'manageproject/error')
+                //redirect(controller:'logout', action:'index')
+            }else{
+                Project project
+                Beneficiary beneficiary
+                User user = userService.getCurrentUser()
+                project = new Project(params)
+                beneficiary = new Beneficiary(params)
+                def amount=project.amount
+                def boolPerk=false
         
-        def button = params.button
-        if(button == 'draft'){
-            project.draft = true
-        }
+                def button = params.button
+                if(button == 'draft'){
+                    project.draft = true
+                }
 
-        if(params.(FORMCONSTANTS.COUNTRY) != "US"){
-            beneficiary.stateOrProvince = params.otherstate
-        }
+                if(params.(FORMCONSTANTS.COUNTRY) != "US"){
+                    beneficiary.stateOrProvince = params.otherstate
+                }
         
-        def rewardLength=Integer.parseInt(params.rewardCount)
-        if(rewardLength >= 1) {
-            def rewardTitle = new Object[rewardLength]
-            def rewardPrice = new Object[rewardLength]
-            def rewardDescription = new Object[rewardLength]
-            def mailingAddress = new Object[rewardLength]
-            def emailAddress = new Object[rewardLength]
-            def twitter = new Object[rewardLength]
-            def custom = new Object[rewardLength]
+                def rewardLength=Integer.parseInt(params.rewardCount)
+                if(rewardLength >= 1) {
+                    def rewardTitle = new Object[rewardLength]
+                    def rewardPrice = new Object[rewardLength]
+                    def rewardDescription = new Object[rewardLength]
+                    def mailingAddress = new Object[rewardLength]
+                    def emailAddress = new Object[rewardLength]
+                    def twitter = new Object[rewardLength]
+                    def custom = new Object[rewardLength]
 
-            for(def icount=0; icount< rewardLength; icount++){
-                rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
-                rewardPrice[icount] = params.("rewardPrice"+(icount+1))
-                rewardDescription[icount] = params.("rewardDescription"+(icount+1))
-                mailingAddress[icount] = params.("mailingAddress"+(icount+1))
-                emailAddress[icount] = params.("emailAddress"+(icount+1))
-                twitter[icount] = params.("twitter"+(icount+1))
-                custom[icount] = params.("custom"+(icount+1))
-            }
-            
-            rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
-        }
+                    for(def icount=0; icount< rewardLength; icount++){
+                        rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
+                        rewardPrice[icount] = params.("rewardPrice"+(icount+1))
+                        rewardDescription[icount] = params.("rewardDescription"+(icount+1))
+                        mailingAddress[icount] = params.("mailingAddress"+(icount+1))
+                        emailAddress[icount] = params.("emailAddress"+(icount+1))
+                        twitter[icount] = params.("twitter"+(icount+1))
+                        custom[icount] = params.("custom"+(icount+1))
+                        if(rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount])>amount){
+                            boolPerk=true;
+                        }
+                    }
+                    if(boolPerk==true){
+                        flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
+                        render (view: 'manageproject/error')
+                        return
+                    }else{
+                        rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
+                    }
+                }
                
-        def iconFile = request.getFile('iconfile')
-        if(!iconFile.isEmpty()) {
-            def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
-            project.organizationIconUrl = uploadedFileUrl
-        }
+                def iconFile = request.getFile('iconfile')
+                if(!iconFile.isEmpty()) {
+                    def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
+                    project.organizationIconUrl = uploadedFileUrl
+                }
         
-        def imageFiles = request.getFiles('thumbnail[]')
-        if(!imageFiles.isEmpty()) {
-            projectService.getMultipleImageUrls(imageFiles, project)
-        }
+                def imageFiles = request.getFiles('thumbnail[]')
+                if(!imageFiles.isEmpty()) {
+                    projectService.getMultipleImageUrls(imageFiles, project)
+                }
         
-        String email1 = params.email1
-        String email2 = params.email2
-        String email3 = params.email3
+                String email1 = params.email1
+                String email2 = params.email2
+                String email3 = params.email3
         
         
-        project.user = user
+                project.user = user
 
-        def days = params.days
-        projectService.getNumberofDays(days, project)
+                def days = params.days
+                projectService.getNumberofDays(days, project)
 
-        project.beneficiary = beneficiary
+                project.beneficiary = beneficiary
         
-        if (project.save()) {
-            def teammessage = projectService.getFundRaisersForTeam(project, user)
-            projectService.getdefaultAdmin(project, user)
-            projectService.getAdminForProjects(email1, project, user)
-            projectService.getAdminForProjects(email2, project, user)
-            projectService.getAdminForProjects(email3, project, user)
-            redirect(controller: 'project', action: 'saveRedirect', id: project.id, params: [button: button])
-        } else {
-            render (view: 'create/createerror', model: [project: project])
+                if (project.save()) {
+                    projectService.getFundRaisersForTeam(project, user)
+                    projectService.getdefaultAdmin(project, user)
+                    projectService.getAdminForProjects(email1, project, user)
+                    projectService.getAdminForProjects(email2, project, user)
+                    projectService.getAdminForProjects(email3, project, user)
+                    redirect(controller: 'project', action: 'saveRedirect', id: project.id, params: [button: button])
+                } else {
+                    render (view: 'create/createerror', model: [project: project])
+                }
+            }
         }
 	}
 
@@ -561,15 +582,21 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def manageproject() {
         Project project
+        User user = userService.getCurrentUser()
         if (params.id) {
             project = Project.findById(params.id)
         } else {
             project = null
         }
-
-        render (view: 'manageproject/index',
+        def isCoAdmin=userService.isCampaignBeneficiaryOrAdmin(project,user)
+        if(project.user==user || isCoAdmin){
+                render (view: 'manageproject/index',
                 model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])
+        }else{
+                flash.prj_mngprj_message = 'Campaign Not Found'
+                render (view: 'manageproject/error', model: [project: project])
+        }
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -709,7 +736,7 @@ class ProjectController {
         def project = Project.get(params.id)
         String emails = params.emailIds
         String name = params.username
-        String message = params.message
+        String message = params.teammessage
         User user = userService.getCurrentUser()
         def fundraiser =user.username  
 
@@ -738,6 +765,7 @@ class ProjectController {
 		redirect (action: 'show', id: project.id , params:[fr: fundRaiser], fragment: 'manageTeam')
 	}
 
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def sendEmailToTeam(def emails, def name, def message, Project project)
     {
         def emailList = emails.split(',')
@@ -769,7 +797,20 @@ class ProjectController {
             redirect (action: 'manageproject', id: params.id, params:[fr: fundRaiser], fragment: 'manageTeam')
         }
 	}
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def enableOrDisableTeam() {
+        def teamId= request.getParameter('teamId')
+        def team = Team.get(teamId)
+        if(team.enable){
+            team.enable = false
+        }else{
+            team.enable = true
+        }
+        render ""
+    }
 
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def deletecustomrewards() {
         def rewardId = Reward.get(params.id)
         def project = Project.get(params.projectId)

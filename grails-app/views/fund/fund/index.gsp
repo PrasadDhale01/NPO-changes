@@ -15,6 +15,11 @@
                 	    		${flash.amt_message}
             				</div>
         	    		</g:if>
+        	    		<g:if test="${paypalFailureMessage}">
+            				<div class="alert alert-danger">
+                	    		${paypalFailureMessage}
+            				</div>
+        	    		</g:if>
 					    <div class="row">
 					        <div class="col-md-12 col-sm-12 col-xs-12">
 						        <h1>Amount</h1>
@@ -22,7 +27,7 @@
 						</div>
 						<g:form action="charge" method="POST" role="form">
 							<g:hiddenField name="projectId" value="${project.id}" />
-							<g:hiddenField name="fundraiserUsername" value="${fundraiserUsername}" />
+							<g:hiddenField name="fr" value="${fundraiser}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
 							
@@ -72,7 +77,7 @@
 						<g:form action="checkout" method="POST" role="form">
 
 							<g:hiddenField name="projectId" value="${project.id}" />
-							<g:hiddenField name="fundraiserUsername" value="${fundraiserUsername}" />
+							<g:hiddenField name="fr" value="${fundraiser}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
 							<!-- Value set by Javascript -->

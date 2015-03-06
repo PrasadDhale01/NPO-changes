@@ -3,7 +3,6 @@ package crowdera
 import crowdera.Community;
 import crowdera.CommunityInvite;
 import crowdera.User;
-import grails.transaction.Transactional
 
 class CommunityInviteService {
     def getInviteByCommunityAndUser(Community community, User user) {

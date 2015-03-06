@@ -1,5 +1,9 @@
 <g:set var="projectService" bean="projectService"/>
 <g:set var="userService" bean="userService"/>
+<g:set var="rewardservice" bean="rewardService"/>
+<%
+    def shippingInfo = rewardservice.getShippingInfo(reward)
+%>
 <html>
 <head>
     <meta name="layout" content="main" />
@@ -51,7 +55,7 @@
                     <g:hiddenField name="projectId" value="${project.id}"/>
                     <g:hiddenField name="userId" value="${user.id}"/>
                     <g:hiddenField name="rewardId" value="${reward.id}"/>
-                    <g:hiddenField name="fundraiserUsername" value="${fundraiser.username}"/>
+                    <g:hiddenField name="fr" value="${fundraiser.username}"/>
                     <g:hiddenField name="amount" value="${amount}"/>
                     <g:hiddenField name="currencyCode" value="USD"/>
                     <g:hiddenField name="charityId" value="${project.charitableId}"/>
@@ -223,6 +227,55 @@
                     	</div>
                     </div>
                 </div>
+                
+                <g:if test="${shippingInfo}">
+                	<g:if test="${shippingInfo.address != null || shippingInfo.email  != null || shippingInfo.twitter  != null || shippingInfo.custom  != null}">
+	                    <div class="panel panel-default">
+	                        <div class="panel-heading">
+	                            <h3 class="panel-title">Shipping Information Required to Fulfill a Perk</h3>
+	                        </div>
+	                        <div class="panel-body">
+	                            <g:if test="${shippingInfo.address != null}">
+	                                <div class="col-md-6">
+	                                    <div class="form-group">
+	                                        <div class="input-group col-md-12">
+	                                            <input class="form-control" type="text" placeholder="Physical Address" name="physicalAddress">
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </g:if>
+	                            <g:if test="${shippingInfo.email  != null}">
+	                                <div class="col-md-6">
+	                                    <div class="form-group">
+	                                        <div class="input-group col-md-12">
+	                                            <input class="form-control" type="text" placeholder="Email" name="shippingEmail">
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </g:if>
+	                            <g:if test="${shippingInfo.twitter  != null}">
+	                                <div class="col-md-6">
+	                                    <div class="form-group">
+	                                        <div class="input-group col-md-12">
+	                                            <input class="form-control" type="text" placeholder="Twitter Handle" name="twitterHandle">
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </g:if>
+	                            <g:if test="${shippingInfo.custom  != null}">
+	                                <div class="col-md-6">
+	                                    <div class="form-group">
+	                                        <div class="input-group col-md-12">
+	                                            <input class="form-control" type="text" placeholder="Custom Details ex. Size of T-shirts etc" name="shippingCustom">
+	                                        </div>
+	                                    </div>
+	                                </div>
+	                            </g:if>
+	                            
+	                        </div>
+	                    </div>
+                    </g:if>
+                </g:if>
             </div>
             
             <div class="col-md-4 box">

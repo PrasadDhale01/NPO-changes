@@ -22,14 +22,14 @@
             <div class="col-md-12">
                 <ul class="nav nav-tabs nav-justified user-dashboard-style">
                     <li class="active"><a href="#myprojects" data-toggle="tab">
-                        <span class="glyphicon glyphicon-leaf"></span> My Campaigns
-                    </a></li>
+                        <span class="glyphicon glyphicon-leaf"></span><span class="hidden-xs"> My Campaigns
+                    </span></a></li>
                     <li><a href="#my-contributions" data-toggle="tab">
-                        <span class="glyphicon glyphicon-tint"></span> My Contributions
-                    </a></li>
+                        <span class="glyphicon glyphicon-tint"></span><span class="hidden-xs"> My Contributions
+                    </span></a></li>
                     <li><a href="#account-settings" data-toggle="tab">
-                        <span class="fa fa-info-circle"></span> My Profile
-                    </a></li>
+                        <span class="fa fa-info-circle"></span><span class="hidden-xs"> My Profile
+                    </span></a></li>
                     <g:if test="${userService.isCommunityManager()}">
                         <li><a href="#manage-community" data-toggle="tab">
                             <i class="fa fa-users"></i></span> Manage Community

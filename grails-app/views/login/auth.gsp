@@ -8,7 +8,7 @@
     <div class="container">
 
         <form class="form-signin" role="form" action="${postUrl}" method="POST" id="loginForm">
-            <h2 class="form-signin-heading signin">Please login</h2>
+            <h2 class="form-signin-heading signin login-logo">Please login</h2>
             <%--
             <facebookAuth:connect/>
             --%>

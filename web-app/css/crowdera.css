@@ -355,6 +355,12 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     background-color: #fff
 }
 
+/*Admin dashboard User list*/
+.sendMail{
+	color:white;
+	background-color: black;
+}
+
 /* Home
 ------------------------- */
 .jumbotron {

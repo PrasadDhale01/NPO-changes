@@ -83,6 +83,14 @@ class UserService {
 
         return imageUrl
     }
+	
+	def getVerifiedUserList(){
+		return User.findAllWhere(enabled:true)
+	}
+	
+	def getNonVerifiedUserList(){
+		return User.findAllWhere(enabled:false)
+	}
 
     def getEmail() {
         EmailValidator emailValidator = EmailValidator.getInstance()

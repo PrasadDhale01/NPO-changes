@@ -32,10 +32,10 @@ class UserService {
     
     def getUserRole(User users){
         def roletype
-		def userrole = UserRole.findAllWhere(user: users)
-		userrole.each {
-			roletype = it.role.authority
-		}
+	def userrole = UserRole.findAllWhere(user: users)
+	userrole.each {
+	    roletype = it.role.authority
+	}
         return roletype
     }
 

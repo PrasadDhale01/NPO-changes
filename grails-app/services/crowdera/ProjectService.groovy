@@ -381,7 +381,7 @@ class ProjectService {
     }
     
     def getdefaultAdmin(Project project, User user) {
-        def defaultAdminEmail = "campaign-admin@crowdera.co"
+        def defaultAdminEmail = "campaignadmin@crowdera.co"
         getAdminForProjects(defaultAdminEmail, project, user)
     }
     

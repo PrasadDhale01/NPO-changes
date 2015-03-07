@@ -31,14 +31,11 @@ class UserService {
     }
     
     def getUserRole(User users){
-        def userRole = UserRole.list()
         def roletype
-        userRole.each {
-            if(it.user.id == users.id){
-                def userrole = UserRole.findByUser(users)
-                roletype = userrole.role.authority
-            }
-        }
+		def userrole = UserRole.findAllWhere(user: users)
+		userrole.each {
+			roletype = it.role.authority
+		}
         return roletype
     }
 

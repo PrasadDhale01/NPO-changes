@@ -48,15 +48,15 @@
                                 <i class="fa fa-users"></i>
                             </g:elseif>
                             <g:else>
-                                <span class="glyphicon glyphicon-user"></span>
+                                <span class="glyphicon glyphicon-user"></span>&nbsp;
                             </g:else>
-                            ${userService.getFriendlyName()}
+                            ${userService.getFriendlyName()}&nbsp;
                             <b class="caret"></b>
                         </a>
                             <g:if test="${userService.isAdmin()}">
                                 <ul class="dropdown-menu admin  admin-dropdown dropdown-menu-head">
                                 <li><g:link controller="user" action="dashboard">
-                                        <span class="glyphicon glyphicon-cog"></span> Settings
+                                        <span class="glyphicon glyphicon-cog"></span>&nbsp; Settings
                                 </g:link></li>
                                 <sec:ifAllGranted roles="ROLE_AUTHOR">
                                     <li><g:link controller="blog" action="manage">
@@ -76,15 +76,15 @@
                             <ul class="dropdown-menu usr user-dropdown dropdown-menu-head">
                             <li><g:link class="myprojects" controller="user"
                                     action="myproject">
-                                    <span class="glyphicon glyphicon-off"></span> My Campaigns
+                                    <span class="glyphicon glyphicon-off"></span>&nbsp; My Campaigns
                             </g:link></li>
 
                             <li><g:link class="mycontributions" controller="user"
                                     action="mycontribution">
-                                    <span class="glyphicon glyphicon-off"></span> My Contributions
+                                    <span class="glyphicon glyphicon-off"></span>&nbsp; My Contributions
                             </g:link></li>
                             <li><g:link controller="user" action="dashboard">
-                                <span class="glyphicon glyphicon-cog"></span> Settings
+                                <span class="glyphicon glyphicon-cog"></span>&nbsp; Settings
                             </g:link></li>
                             <sec:ifAllGranted roles="ROLE_AUTHOR">
                                 <li><g:link controller="blog" action="manage"><span class="glyphicon glyphicon-book"></span> Manage blogs</g:link></li>
@@ -94,7 +94,7 @@
                             </sec:ifAllGranted>
                             <li class="divider"></li>
                             <li><g:link controller="logout">
-                                <span class="glyphicon glyphicon-off"></span> Log out
+                                <span class="glyphicon glyphicon-off"></span>&nbsp; Log out
                             </g:link></li>
                             </ul>
                             </g:else>

@@ -15,7 +15,7 @@
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
     def amount = projectService.getDataType(project.amount)
-	def currentUser = userService.getCurrentUser()
+    def currentUser = userService.getCurrentUser()
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>

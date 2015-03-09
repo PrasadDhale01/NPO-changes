@@ -3,21 +3,21 @@
 <g:set var="projectService" bean="projectService"/>
 <%
     def percentage
-	def contributedSoFar
-	def amount
-	if (project.user == currentFundraiser){
+    def contributedSoFar
+    def amount
+    if (project.user == currentFundraiser){
         percentage = contributionService.getPercentageContributionForProject(project)
-	    contributedSoFar = contributionService.getTotalContributionForProject(project)
-	    amount = projectService.getDataType(project.amount)
-	} else {
-	    percentage = contributionService.getPercentageContributionForTeam(currentTeam)
-	    contributedSoFar = teamContribution
-	    amount = currentTeamAmount
-	}
-	def achievedDate
-	if (percentage == 100) {
-		achievedDate = contributionService.getFundingAchievedDate(project)
-	}
+        contributedSoFar = contributionService.getTotalContributionForProject(project)
+        amount = projectService.getDataType(project.amount)
+    } else {
+        percentage = contributionService.getPercentageContributionForTeam(currentTeam)
+        contributedSoFar = teamContribution
+        amount = currentTeamAmount
+    }
+    def achievedDate
+    if (percentage == 100) {
+	achievedDate = contributionService.getFundingAchievedDate(project)
+    }
     def endDate = projectService.getProjectEndDate(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def isFundingOpen = projectService.isFundingOpen(project)

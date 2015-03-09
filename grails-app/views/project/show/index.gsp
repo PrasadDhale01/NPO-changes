@@ -16,8 +16,8 @@
 	fundRaiserName = fundRaiser.toUpperCase()
 	username = user.username
     } else {
-        currentFundraiser = beneficiary
-        def fundRaiser = beneficiary.firstName + " " + beneficiary.lastName
+       currentFundraiser = beneficiary
+       def fundRaiser = beneficiary.firstName + " " + beneficiary.lastName
 	fundRaiserName = fundRaiser.toUpperCase()
 	username = beneficiary.username
     }

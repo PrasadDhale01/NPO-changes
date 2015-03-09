@@ -48,7 +48,12 @@
                 <h3 class="panel-title">Campaign Story</h3>
             </div>
             <div class="panel-body project-description">
-                <span class="text-centre project-story-span">${raw(currentTeam.story)}</span>
+                <g:if test="${project.validated}">
+                   <span class="text-centre project-story-span">${raw(currentTeam.story)}</span>
+                </g:if>
+                <g:else>
+                   <span class="text-centre project-story-span">${raw(project.story)}</span>
+                </g:else>
             </div>
         </div>  
     </div>

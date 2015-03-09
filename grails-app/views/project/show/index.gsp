@@ -7,34 +7,34 @@
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def fundRaiserName
-	def beneficiary = project.user
+    def beneficiary = project.user
     def username
-	def currentFundraiser
+    def currentFundraiser
     if (user) {
-		currentFundraiser = user
-	    def fundRaiser = user.firstName + " " + user.lastName
-	    fundRaiserName = fundRaiser.toUpperCase()
-	    username = user.username
+	currentFundraiser = user
+	def fundRaiser = user.firstName + " " + user.lastName
+	fundRaiserName = fundRaiser.toUpperCase()
+	username = user.username
     } else {
-	    currentFundraiser = beneficiary
-	    def fundRaiser = beneficiary.firstName + " " + beneficiary.lastName
-	    fundRaiserName = fundRaiser.toUpperCase()
-	    username = beneficiary.username
-	}
-	def projectTitle = project.title
-	if (projectTitle) {
-		projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
-	}
+        currentFundraiser = beneficiary
+        def fundRaiser = beneficiary.firstName + " " + beneficiary.lastName
+	fundRaiserName = fundRaiser.toUpperCase()
+	username = beneficiary.username
+    }
+    def projectTitle = project.title
+    if (projectTitle) {
+	projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
+    }
 	
-	def imageUrl = project.imageUrl
-	if (imageUrl) {
-		imageUrl = project.imageUrl[0].getUrl()
-	}
+    def imageUrl = project.imageUrl
+    if (imageUrl) {
+	imageUrl = project.imageUrl[0].getUrl()
+    }
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
-	def currentTeamAmount = projectService.getCurrentTeamAmount(project,currentFundraiser)
-	def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
-	def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
-	def teamPercentage = contributionService.getPercentageContributionForTeam(currentTeam)
+    def currentTeamAmount = projectService.getCurrentTeamAmount(project,currentFundraiser)
+    def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
+    def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
+    def teamPercentage = contributionService.getPercentageContributionForTeam(currentTeam)
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>

@@ -589,15 +589,15 @@ class ProjectService {
         return( project.beneficiaryId )
     }
 	
-	def getCurrentTeam(Project project,User user){
-		return Team.findByProjectAndUser(project, user)
-	}
+    def getCurrentTeam(Project project,User user){
+	return Team.findByProjectAndUser(project, user)
+    }
 	
-	def getCurrentTeamAmount(Project project,User user){
-		def team = Team.findByProjectAndUser(project, user)
-		def amount = team.amount
-		return amount.round()
-	}
+    def getCurrentTeamAmount(Project project,User user){
+	def team = Team.findByProjectAndUser(project, user)
+	def amount = team.amount
+	return amount.round()
+    }
     
     def getProjects(def projects, def projectAdmins, def fundRaisers) {
         def list = []

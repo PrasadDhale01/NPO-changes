@@ -3,8 +3,7 @@
 <% 
     def beneficiary = project.user
 	boolean ended = projectService.isProjectDeadlineCrossed(project)
-	def currentUser = userService.getCurrentUser()
-	def isteamexist = userService.isTeamEnabled(project, currentUser)
+	def isteamexist = userService.isTeamEnabled(project, currentFundraiser)
     def webUrl = projectService.getWebUrl(project)
 	def percentage = contributionService.getPercentageContributionForProject(project)
 %>
@@ -70,7 +69,7 @@
 			</div>
 		</g:elseif>
 	    <g:elseif test="${isteamexist}">
-	        <g:if test="${currentUser == beneficiary}">
+	        <g:if test="${currentFundraiser == beneficiary}">
 	            <div class="tilesanstitletag  banner-wid">
 					<img src="/images/Owner-Bottom.png">
 				</div>

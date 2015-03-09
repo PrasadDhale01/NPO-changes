@@ -9,27 +9,27 @@ class Team {
     static belongsTo = [user: User, project: Project]
     
     List contributions
-	List comments
-	List imageUrl
+    List comments
+    List imageUrl
     
-	Double amount
+    Double amount
 	
-	String story
-	String videoUrl
+    String story
+    String videoUrl
 	
-	Image image
+    Image image
 	
     boolean enable = true
 	
-	Date joiningDate
+    Date joiningDate
     
     static constraints = {
         contributions nullable: true
-		comments nullable: true
-		image (nullable: true)
-		imageUrl (nullable: true)
-		videoUrl (nullable:true)
-		story (nullable: true)
+	comments nullable: true
+	image (nullable: true)
+	imageUrl (nullable: true)
+	videoUrl (nullable:true)
+	story (nullable: true)
     }
     
 }

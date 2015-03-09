@@ -31,6 +31,10 @@
 		imageUrl = project.imageUrl[0].getUrl()
 	}
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
+	def currentTeamAmount = projectService.getCurrentTeamAmount(project,currentFundraiser)
+	def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
+	def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
+	def teamPercentage = contributionService.getPercentageContributionForTeam(currentTeam)
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -163,8 +167,8 @@
 				    
                 </div>
                 <div class="col-md-4 mobileview-bottom">
-					<g:render template="/layouts/organizationdetails"/>
-                    <g:render template="/layouts/tilesanstitle"/>
+					<g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentFundraiser]"/>
+                    <g:render template="/layouts/tilesanstitle" model="['currentFundraiser':currentFundraiser,'currentTeam':currentTeam,'currentTeamAmount':currentTeamAmount,'teamContribution':teamContribution]"/>
                     <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
                     </g:if>

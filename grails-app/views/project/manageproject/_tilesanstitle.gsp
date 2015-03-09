@@ -1,6 +1,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
+<g:set var="userService" bean="userService"/>
 <%
     def isFundingAchieved = contributionService.isFundingAchievedForProject(project)
     def percentage = contributionService.getPercentageContributionForProject(project)
@@ -14,10 +15,11 @@
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
     def amount = projectService.getDataType(project.amount)
+	def currentUser = userService.getCurrentUser()
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
-<g:render template="/layouts/organizationdetails"/>
+<g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentUser]"/>
 <div class="fedu thumbnail grow managedetails-edit">
 <%--    <div style="height: 200px; overflow: hidden;" class="blacknwhite" onmouseover="showNavigation()" onmouseleave="hideNavigation()">--%>
 <%--        <g:link controller="project" action="show" id="${project.id}" title="${project.title}">--%>

@@ -2,18 +2,26 @@
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
 <%
-    def percentage = contributionService.getPercentageContributionForProject(project)
-    def achievedDate
-    if (percentage == 100) {
-        achievedDate = contributionService.getFundingAchievedDate(project)
-    }
+    def percentage
+	def contributedSoFar
+	def amount
+	if (project.user == currentFundraiser){
+        percentage = contributionService.getPercentageContributionForProject(project)
+	    contributedSoFar = contributionService.getTotalContributionForProject(project)
+	    amount = projectService.getDataType(project.amount)
+	} else {
+	    percentage = contributionService.getPercentageContributionForTeam(currentTeam)
+	    contributedSoFar = teamContribution
+	    amount = currentTeamAmount
+	}
+	def achievedDate
+	if (percentage == 100) {
+		achievedDate = contributionService.getFundingAchievedDate(project)
+	}
     def endDate = projectService.getProjectEndDate(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def isFundingOpen = projectService.isFundingOpen(project)
-    def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def day= projectService.getRemainingDay(project)
-    def contribution = projectService.getDataType(contributedSoFar)
-    def amount = projectService.getDataType(project.amount)
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
 %>
@@ -32,14 +40,14 @@
             <g:if test="${isFundingAchieved}">
 				<div class="col-md-6 col-xs-6">
 					<h6 class="text-center tilesanstitle-achived">
-						<span class="lead">$${contribution}</span><br />ACHIEVED
+						<span class="lead">$${contributedSoFar}</span><br />ACHIEVED
 					</h6>
 				</div>
 			</g:if>
 			<g:else>
 			    <div class="col-md-6 col-xs-6">
 					<h6 class="text-center tilesanstitle-raised">
-						<span class="lead">$${contribution}</span><br />RAISED
+						<span class="lead">$${contributedSoFar}</span><br />RAISED
 					</h6>
 				</div>
 			</g:else>

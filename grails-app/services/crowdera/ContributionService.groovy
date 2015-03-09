@@ -95,6 +95,29 @@ class ContributionService {
         }
         return percentage
     }
+	
+	def getPercentageContributionForTeam(def team){
+		if (!team) {
+			return null
+		}
+		double totalContribution = getTotalContributionForUser(team.contributions)
+		def percentage
+		if (totalContribution == 0) {
+			percentage = 0
+		} else if (totalContribution == team.amount) {
+			percentage = 100
+		} else {
+			percentage = totalContribution / team.amount * 100
+			if (percentage <= 1) {
+				percentage = 1
+			}else if(percentage>999){
+				percentage=999
+			} else {
+				percentage = percentage.intValue()
+			}
+		}
+		return percentage
+	}
 
     def getFundingAchievedDate(Project project) {
         if (!project) {

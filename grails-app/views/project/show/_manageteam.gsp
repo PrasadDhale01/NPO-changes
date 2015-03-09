@@ -13,7 +13,6 @@
 	} 
     def isTeamExist = userService.isTeamAlreadyExist(project, currentUser)
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
-    def contribution = projectService.getDataType(contributedSoFar)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
 %>
 <g:if test="${flash.message}">
@@ -141,7 +140,7 @@
                     <g:hiddenField name="projectAmount" id="projectAmount" value="${project.amount}"/>
                     <div class="form-group">
                         <label>$ GOAL</label>
-                        <input type="text" class="form-control" name="amount" id="teamamount" placeholder="Goal" value="${currentTeam.amount}"/>
+                        <input type="text" class="form-control" name="amount" id="teamamount" placeholder="Goal" value="${currentTeam.amount.round()}"/>
                         <span id="errormsg"></span>
                     </div>
                 </div>

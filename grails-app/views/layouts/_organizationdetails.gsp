@@ -10,7 +10,12 @@
 %>
 <div class="panel panel-default">
     <div class="panel-heading">
-   		Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
+        <g:if test="${currentFundraiser == beneficiary}">
+   		    Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
+   		</g:if>
+   		<g:else>
+   		    Benefited by ${beneficiary.firstName} ${beneficiary.lastName}
+   		</g:else>
 <%--        <g:if test="${isFundingOpen}">--%>
 <%--            <h3 class="panel-title">Fund this project</h3>--%>
 <%--        </g:if>--%>

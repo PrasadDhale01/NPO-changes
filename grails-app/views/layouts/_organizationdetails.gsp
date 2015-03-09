@@ -2,14 +2,14 @@
 <g:set var="userService" bean="userService"/>
 <% 
     def beneficiary = project.user
-	boolean ended = projectService.isProjectDeadlineCrossed(project)
-	def isteamexist = userService.isTeamEnabled(project, currentFundraiser)
+    boolean ended = projectService.isProjectDeadlineCrossed(project)
+    def isteamexist = userService.isTeamEnabled(project, currentFundraiser)
     def webUrl = projectService.getWebUrl(project)
-	def percentage = contributionService.getPercentageContributionForProject(project)
+    def percentage = contributionService.getPercentageContributionForProject(project)
 %>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <g:if test="${currentFundraiser == beneficiary}">
+       <g:if test="${currentFundraiser == beneficiary}">
    	    Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
    	</g:if>
    	<g:else>

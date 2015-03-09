@@ -9,6 +9,7 @@
 	}
 	def projectimages = projectService.getProjectImageLinks(project)
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
+	def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
 %>
 <div class="col-md-12">
 	<div class="row">
@@ -47,7 +48,7 @@
                 <h3 class="panel-title">Campaign Story</h3>
             </div>
             <div class="panel-body project-description">
-                <span class="text-centre project-story-span">${raw(project.story)}</span>
+                <span class="text-centre project-story-span">${raw(currentTeam.story)}</span>
             </div>
         </div>  
     </div>

@@ -139,12 +139,21 @@
                 <div class="modal-body">
                     <g:hiddenField name="project" value="${project.id}"/>
                     <g:hiddenField name="projectAmount" id="projectAmount" value="${project.amount}"/>
+                    <h3 class="panel-title">Team's Campaign Goal</h3><hr/>
                     <div class="form-group">
                         <label>$ GOAL</label>
                         <input type="text" class="form-control" name="amount" id="teamamount" placeholder="Goal" value="${currentTeam.amount}"/>
                         <span id="errormsg"></span>
                     </div>
-                </div>
+                    <hr>
+                    <h3 class="panel-title">Team's Campaign Story</h3><hr/>
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="mceEditor">
+									 ${currentTeam.story}</textarea>
+                        </div>
+                    </div>
+                </div><br><br><br><br><br><br><br><br><br><br><br>
                 <div class="modal-footer">
                    <button data-dismiss="modal" class="btn btn-primary">Close</button>
 				   <button class="btn btn-primary" type="submit" id="saveButton">Save</button>

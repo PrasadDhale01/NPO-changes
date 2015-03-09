@@ -755,12 +755,13 @@ class ProjectController {
 		def project = Project.get(params.project)
 		def user = userService.getCurrentUser()
 		def fundRaiser = user.username
-		if(params.amount) {
+		if(params) {
 			def amount = Double.parseDouble(params.amount)
 			if(amount <= project.amount){
 				team.amount = amount
-				flash.message = "Goal Updated Successfully"
 			}
+			team.story = params.story
+			flash.message = "Goal Updated Successfully"
 		}
 		redirect (action: 'show', id: project.id , params:[fr: fundRaiser], fragment: 'manageTeam')
 	}

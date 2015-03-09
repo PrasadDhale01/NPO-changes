@@ -4,13 +4,21 @@ import java.util.List;
 
 class Team {
 
-    static hasMany = [contributions: Contribution, comments: TeamComment]
+    static hasMany = [contributions: Contribution, comments: TeamComment, imageUrl: ImageUrl]
     
     static belongsTo = [user: User, project: Project]
     
     List contributions
 	List comments
-    Double amount
+	List imageUrl
+    
+	Double amount
+	
+	String story
+	String videoUrl
+	
+	Image image
+	
     boolean enable = true
 	
 	Date joiningDate
@@ -18,6 +26,10 @@ class Team {
     static constraints = {
         contributions nullable: true
 		comments nullable: true
+		image (nullable: true)
+		imageUrl (nullable: true)
+		videoUrl (nullable:true)
+		story (nullable: true)
     }
     
 }

@@ -81,7 +81,7 @@ class FundController {
         }
 		
         def fundRaiserUserName = params.fr
-	User fundraiser = User.findByUsername(params.fr)
+	    User fundraiser = User.findByUsername(params.fr)
 
         def totalContribution= contributionService.getTotalContributionForProject(project)
         def contPrice = params.double(('amount'))

@@ -167,7 +167,7 @@
 				    
                 </div>
                 <div class="col-md-4 mobileview-bottom">
-		    <g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentFundraiser]"/>
+		     <g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentFundraiser]"/>
                     <g:render template="/layouts/tilesanstitle" model="['currentFundraiser':currentFundraiser,'currentTeam':currentTeam,'currentTeamAmount':currentTeamAmount,'teamContribution':teamContribution]"/>
                     <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>

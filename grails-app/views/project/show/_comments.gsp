@@ -64,10 +64,10 @@
                     <g:if test="${user== project.user}">
                         <g:if test="${!comment.status}">
                             <div class="modal-body tile-footer show-comments-date">
-				                <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
-				                <dd>${comment.comment}</dd>
-			                </div>
-			             </g:if>
+				 <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
+				 <dd>${comment.comment}</dd>
+			    </div>
+			</g:if>
                     </g:if>
                     <g:else>
                         <div class="modal-body tile-footer show-comments-date">

@@ -59,7 +59,7 @@
 	    menubar: "edit insert view format",
         editor_selector : "mceEditor",
 	    plugins: [
-            "advlist autolink lists charmap print preview hr anchor pagebreak emoticons",
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak emoticons",
         ],
         toolbar: "| undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image forecolor backcolor emoticons",
         image_advtab: true,

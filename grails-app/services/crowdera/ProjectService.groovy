@@ -696,6 +696,24 @@ class ProjectService {
         }
         return imageUrls
     }
+	
+	def getTeamImageLinks(Team team) {
+		def imageUrls = []
+		for (imgUrl in team.imageUrl) {
+			if (imgUrl) {
+				if (imgUrl.getUrl().startsWith('http')) {
+					imageUrls.add(imgUrl.getUrl())
+				} else {
+					imageUrls.add(grailsLinkGenerator.resource(file: imgUrl.getUrl()))
+				}
+			} 
+		}
+		// if no project image, set the default project url
+		if(imageUrls == []){
+			imageUrls.add('http://lorempixel.com/400/400/abstract')
+		}
+		return imageUrls
+	}
 
     def getProjectUpdatedImageLink(def projectUpdate) {
         def imageUrls = []
@@ -742,6 +760,42 @@ class ProjectService {
             }
         }
     }
+	
+	def getMultipleImageUrlsForTeam(List<MultipartFile> files, Team team){
+		def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+		def awsSecretKey = "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"
+
+		def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+		def s3Service = new RestS3Service(awsCredentials);
+
+		def bucketName = "crowdera"
+		def s3Bucket = new S3Bucket(bucketName)
+
+		def Folder = "project-images"
+
+		def tempImageUrl
+		files.each {
+			def imageUrl = new ImageUrl()
+			def imageFile= it
+			if (!imageFile?.empty && imageFile.size < 1024*1024) {
+				try{
+					def file= new File("${imageFile.getOriginalFilename()}")
+					def key = "${Folder}/${it.getOriginalFilename()}"
+					imageFile.transferTo(file)
+					def object=new S3Object(file)
+					object.key=key
+
+					tempImageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+					s3Service.putObject(s3Bucket, object)
+					imageUrl.url = tempImageUrl
+					team.addToImageUrl(imageUrl)
+					file.delete()
+				}catch(IllegalStateException e){
+					e.printStackTrace()
+				}
+			}
+		}
+	}
 	
     def getContributedAmount (Transaction transaction){
 	def contribution = Contribution.findWhere(user: transaction.user,project: transaction.project)

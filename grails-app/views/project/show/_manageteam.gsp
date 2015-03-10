@@ -128,7 +128,7 @@
 
 <!-- Edit Fundraiser Modal -->
 <div class="modal fade" id="editFundraiser" tabindex="-1" role="dialog" aria-hidden="true">
-    <g:form action="editFundraiser" id="${currentTeam.id}" role="form"> 
+    <g:uploadForm action="editFundraiser" id="${currentTeam.id}" role="form"> 
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -137,25 +137,79 @@
                 </div>
                 <div class="modal-body">
                     <g:hiddenField name="project" value="${project.id}"/>
+                    <input type="hidden" id="b_url" value="<%=base_url%>" />
                     <h5><b>Team's Campaign Goal</b></h5><hr/>
                     <div class="form-group">
                         <label>$ GOAL</label>
                         <input type="text" class="form-control" name="amount" id="teamamount" placeholder="Goal" value="${currentTeam.amount.round()}"/>
                         <span id="errormsg"></span>
                     </div>
+                    <div class="clear"></div>
                     <hr>
                     <h5><b>About My Team</b></h5><hr/>
                     <div class="form-group">
                         <label class="control-label">Brief Description</label>
-                        <textarea class="form-control" name="${FORMCONSTANTS.DESCRIPTION}" id="descarea" maxlength="140" rows="2" placeholder="Make it catchy, and no more than 140 characters"> ${project.description} </textarea>
+                        <textarea class="form-control" maxlength="140" rows="2" name="description" placeholder="Make it catchy, and no more than 140 characters"> ${currentTeam.description} </textarea>
                         <label class="pull-right " id="desclength"></label>
                     </div>
                     <div class="clear"></div>
                     <div class="form-group">
                         <label>Story</label>
-                        <textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="mceEditor">
+                        <textarea row="4" col="6" class="mceEditor" name="story">
 						     ${currentTeam.story}</textarea>
                     </div>
+                    <div class="clear"></div>
+                    <hr>
+                    <h5><b>Upload Images/Video</b></h5><hr/>
+                    <div class="form-group">
+      					<label class="col-sm-2 control-label">Pictures</label>
+      					<div class="col-sm-4">
+        					<div class="fileUpload btn btn-primary btn-sm">
+	        					<span>Add Images</span>
+	        					<input type="file" class="upload" name="imagethumbnail" id="projectImageFile" multiple="multiple" accept="image/*">
+         					</div>
+         					<label class="docfile-orglogo-css" id="editimg">Please select image file.</label>
+      					</div>
+      					<div class="col-sm-6">
+      					    <g:each var="imgurl" in="${currentTeam.imageUrl}">
+                                <div id="imgdiv" class="pr-thumb-div">
+                                    <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}"/>
+                                    <div class="deleteicon pictures-edit-deleteicon">
+                                        <img onClick="deleteTeamImage(this,'${imgurl.id}','${currentTeam.id}');" value='${imgurl.id}'
+                                            src="/images/delete.ico" id="imageDelete"/>
+                                    </div>
+                                </div> 
+                            </g:each>
+                            <script>
+                               function deleteTeamImage(current,imgst, teamId) {
+                                   $(current).parents('#imgdiv').remove();
+                                   $('#projectImageFile').val('');
+                                   $.ajax({
+                                       type:'post',
+                                       url:$("#b_url").val()+'/project/deleteTeamImage',
+                                       data:'imgst='+imgst+'&teamId='+teamId,
+                                       success: function(data){
+                                       $('#test').html(data);
+                                   }
+                                   }).error(function(){
+                                       alert('An error occured');
+                                   });
+                               }
+                            </script>
+                            <div class="clear"></div>
+        					<output id="result"></output>
+        					<div id="test"></div>
+      					</div>
+    				</div>
+    				<div class="clear"></div>
+    				<div class="form-group">
+      					<label class="col-sm-2 control-label">Video URL</label>
+      					<div class="col-sm-4">
+        					<input id="videoUrl" class="form-control"
+         						name="videoUrl" value="${currentTeam.videoUrl}">
+      					</div>
+      					<iframe class="edits-video" id="ytVideo" src="${currentTeam.videoUrl}"></iframe>
+    				</div>
                 </div>
                 <div class="clear"></div>
                 <div class="modal-footer">
@@ -164,6 +218,6 @@
 		        </div>
 		    </div>
 		</div>
-    </g:form>
+    </g:uploadForm>
 </div>
-		
+

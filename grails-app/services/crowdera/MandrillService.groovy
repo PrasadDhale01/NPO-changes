@@ -662,4 +662,31 @@ class MandrillService {
             inviteToAdmin(email, 'Exception-email-to-dev', globalMergeVars, tags)
         }
     }
+    
+    public def contributionEmailToCampaignOwnerOrTeam(def fundRaiser, def project, def contribution) {
+        def username = fundRaiser.username
+        def contributor = contribution.user
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')
+
+        def globalMergeVars = [
+            [
+                'name': 'LINK',
+                'content': link
+            ],[
+                'name': 'NAME',
+                'content': fundRaiser.firstName + ' ' + fundRaiser.lastName
+            ],[
+                'name': 'AMOUNT',
+                'content': contribution.amount
+            ],[
+                'name': 'CONTRIBUTOR',
+                'content': contributor.firstName
+            ]
+        ]
+
+        def tags = ['contributionEmailToCampaignOwnerOrTeam']
+
+        sendTemplate(fundRaiser,'contributionEmailToCampaignOwnerOrTeam', globalMergeVars, tags)
+    }
+    
 }

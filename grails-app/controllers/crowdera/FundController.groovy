@@ -369,9 +369,11 @@ class FundController {
 		}
 
         def email = users.email
-        if (email) {
+        if (email && email !="anonymous@example.com") {
             mandrillService.sendThankYouMailToContributors(users, project,amount,fundraiser)
         }
+        
+        userService.contributionEmailToOwnerOrTeam(fundraiser, project, contribution)
 
         def totalContribution = contributionService.getTotalContributionForProject(project)
         if(totalContribution >= project.amount){

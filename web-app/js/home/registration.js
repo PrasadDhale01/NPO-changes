@@ -9,7 +9,8 @@ $(function() {
                 email: true
             },
             password: {
-                required: true
+                required: true,
+                minlength: 6
             },
             confirmPassword: {
                 required: true,

@@ -65,7 +65,7 @@
 				               <a class="list"><span class="glyphicon glyphicon-user"></span></i> &nbsp;&nbsp;Invite Members </a>
 				           </g:else>
 				       </li>
-				       <g:if test="${project.user!=currentUser}">
+				       <g:if test="${currentUser!=project.user}">
 				           <li><a class="list" href="#editFundraiser" data-toggle="modal" model="['currentTeam': currentTeam"><i class="glyphicon glyphicon-edit"></i> &nbsp;&nbsp;Edit Fundraiser</a></li>
 				       </g:if>
 			       </ul>         
@@ -134,26 +134,32 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Edit Fundraiser</h4>
+                    <h2 class="modal-title text-center"><b>Edit Fundraiser Info</b></h2>
                 </div>
                 <div class="modal-body">
                     <g:hiddenField name="project" value="${project.id}"/>
                     <g:hiddenField name="projectAmount" id="projectAmount" value="${project.amount}"/>
-                    <h3 class="panel-title">Team's Campaign Goal</h3><hr/>
+                    <h5><b>Team's Campaign Goal</b></h5><hr/>
                     <div class="form-group">
                         <label>$ GOAL</label>
                         <input type="text" class="form-control" name="amount" id="teamamount" placeholder="Goal" value="${currentTeam.amount}"/>
                         <span id="errormsg"></span>
                     </div>
                     <hr>
-                    <h3 class="panel-title">Team's Campaign Story</h3><hr/>
+                    <h5><b>About My Team</b></h5><hr/>
                     <div class="form-group">
-                        <div class="col-sm-12">
-                            <textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="mceEditor">
-									 ${currentTeam.story}</textarea>
-                        </div>
+                        <label class="control-label">Brief Description</label>
+                        <textarea class="form-control" name="${FORMCONSTANTS.DESCRIPTION}" id="descarea" maxlength="140" rows="2" placeholder="Make it catchy, and no more than 140 characters"> ${project.description} </textarea>
+                        <label class="pull-right " id="desclength"></label>
                     </div>
-                </div><br><br><br><br><br><br><br><br><br><br><br>
+                    <div class="clear"></div>
+                    <div class="form-group">
+                        <label>Story</label>
+                        <textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="mceEditor">
+						     ${currentTeam.story}</textarea>
+                    </div>
+                </div>
+                <div class="clear"></div>
                 <div class="modal-footer">
                    <button data-dismiss="modal" class="btn btn-primary">Close</button>
 				   <button class="btn btn-primary" type="submit" id="saveButton">Save</button>

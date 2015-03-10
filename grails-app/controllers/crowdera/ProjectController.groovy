@@ -761,6 +761,7 @@ class ProjectController {
 				team.amount = amount
 			}
 			team.story = params.story
+			team.description = params.description
 			flash.message = "Goal Updated Successfully"
 		}
 		redirect (action: 'show', id: project.id , params:[fr: fundRaiser], fragment: 'manageTeam')

@@ -962,6 +962,7 @@ class ProjectService {
     def getFundRaisersForTeam(Project project, User user) {
         def teams = project.teams
 	def amount = project.amount
+	def description = project.description
 	def story = project.story
 	def videoUrl = project.videoUrl
 	def image = project.image
@@ -977,11 +978,12 @@ class ProjectService {
             Team team = new Team(
                 amount: amount,
                 user: user,
-	        story : story,
-	        videoUrl:videoUrl,
-	        image : image,
-	        imageUrl : imageUrl,
-	        joiningDate: new Date()
+				description:description,
+	            story : story,
+	            videoUrl:videoUrl,
+	            image : image,
+	            imageUrl : imageUrl,
+	            joiningDate: new Date()
             )
 
             project.addToTeams(team).save(failOnError: true)

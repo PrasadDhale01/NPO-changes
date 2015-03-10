@@ -14,6 +14,7 @@ class Team {
     
     Double amount
 	
+	String description
     String story
     String videoUrl
 	
@@ -25,11 +26,12 @@ class Team {
     
     static constraints = {
         contributions nullable: true
-	comments nullable: true
-	image (nullable: true)
-	imageUrl (nullable: true)
-	videoUrl (nullable:true)
-	story (nullable: true)
+		description nullable: true
+	    comments nullable: true
+	    image nullable: true
+	    imageUrl nullable: true
+	    videoUrl nullable:true
+	    story nullable: true
     }
     
 }

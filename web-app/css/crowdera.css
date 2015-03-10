@@ -2024,22 +2024,22 @@ textarea.form-control {
 }
 @media only screen and (max-width: 800px){
 	
-	.arrow-top {
+        .arrow-top {
 		margin-Top: -33px !important;
-    }
-    .arrow-mobile-css {
+        }
+        .arrow-mobile-css {
 		margin-right: -35px;
 	}
 	.arrow-mobile {
 		margin-left: -40px !important;
 	}
-    .validatebtn.btn-danger {
-        border: none !important;
-        margin-top: 0px !important;
-    }
-    .nav-tabs.nav-justified > li > a {
-        font-size: 8px;
-    }
+        .validatebtn.btn-danger {
+            border: none !important;
+            margin-top: 0px !important;
+        }
+        .nav-tabs.nav-justified > li > a {
+            font-size: 8px;
+        }
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
     .imageCarousellabel {
@@ -2220,8 +2220,8 @@ textarea.form-control {
 @media only screen and (max-width: 768px) {
 	.arrow-top {
 		margin-Top: -33px !important;
-    }
-    .arrow-mobile-css {
+        }
+        .arrow-mobile-css {
 		margin-right: -35px;
 	}
 	.arrow-mobile {
@@ -3059,14 +3059,14 @@ textarea.form-control {
 		margin-left: -17px !important;
 	}
 	.imageCarousellabel {
-         background-color: black;
-         background: rgba(255, 255, 255, 0.3);
-         padding-top: 6px;
-         height: 141px;
-         width: 120px;
-         margin-left: 160px;
-         margin-bottom: -17px;
-    }
+            background-color: black;
+            background: rgba(255, 255, 255, 0.3);
+            padding-top: 6px;
+            height: 141px;
+            width: 120px;
+            margin-left: 160px;
+            margin-bottom: -17px;
+        }
 	#fgGraphWidgetContainer #fgNameStart {
 	    width: 280px !important;
 	}

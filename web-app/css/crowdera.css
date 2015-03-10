@@ -176,16 +176,6 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     padding: 7px 21px;
 }
 
-.dropdown-menu.usr > li > a {
-    padding: 7px 21px !important;
-    width: 180px;
-}
-
-.dropdown-menu.admin > li > a {
-    padding: 7px 16px !important;
-    width: 180px;
-}
-
 .nav > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
@@ -1872,18 +1862,21 @@ textarea.form-control {
 		font-size: 9px;
 	}
 	 /**********************dropdown********************/
+	.navbar {
+		font-size: 11px !important;
+    }
 	.dropdown-menu-head {
 		top: 160%;
-		margin: 0px 55px 0 !important;
+/* 		margin: 0px 55px 0 !important; */
 	}
 	li.dropdown.dropdown-head{
-		width: 240px;
+		width: 100% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
-		width: 180px !important;
+		width: 100% !important;
 	}
 	ul.dropdown-menu.admin.admin-dropdown{
-		width: 180px !important;
+		width: 100% !important;
 	}
 	/*************ManageTeamButtons************/
     .team-footer ,.button-team-footer {
@@ -2189,18 +2182,21 @@ textarea.form-control {
         float: right;
     }
     /**********************dropdown********************/
+     .navbar {
+		font-size: 11px !important;
+    }
 	.dropdown-menu-head {
 		top: 160%;
-		margin: 0px 55px 0 !important;
+/* 		margin: 0px 55px 0 !important; */
 	}
 	li.dropdown.dropdown-head{
-		width: 240px;
+		width: 100% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
-		width: 180px !important;
+		width: 100% !important;
 	}
 	ul.dropdown-menu.admin.admin-dropdown{
-		width: 180px !important;
+		width: 100% !important;
 	}
 }
 
@@ -2286,18 +2282,21 @@ textarea.form-control {
     width:180px;
   }
   /**********************dropdown********************/
+    .navbar {
+		font-size: 11px !important;
+    }
 	.dropdown-menu-head {
 		top: 160%;
-		margin: 0px 55px 0 !important;
+/* 		margin: 0px 55px 0 !important; */
 	}
 	li.dropdown.dropdown-head{
-		width: 240px;
+		width: 100% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
-		width: 180px !important;
+		width: 100% !important;
 	}
 	ul.dropdown-menu.admin.admin-dropdown{
-		width: 180px !important;
+		width: 100% !important;
 	}
 .containrewards{
     height: 190px !important;
@@ -2963,7 +2962,7 @@ textarea.form-control {
 		margin: 12px 0px 0 !important;
 	}
 	li.dropdown.dropdown-head{
-		width: 240px;
+		width: 280px !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
 		width: 192px !important;
@@ -3047,7 +3046,7 @@ textarea.form-control {
 		margin: 12px 0px 0 !important;
 	}
 	li.dropdown.dropdown-head{
-		width: 240px;
+		width: 280px !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
 		width: 192px !important;
@@ -4058,28 +4057,39 @@ a.footerlink {
     color: #333333;
     border-color: #dadada;
 }
+/*******************Header-Dropdown-css*****************/
+.dropdown-menu.usr > li > a {
+    padding: 7px 21px !important;
+    width: 100%;
+}
+
+.dropdown-menu.admin > li > a {
+    padding: 7px 16px !important;
+    width: 100%;
+}
 li.dropdown.dropdown-head{
-	width: 240px;
+	width: 100%;
 }
 ul.dropdown-menu.admin.admin-dropdown{
-	width: 180px;
+	width: 100%;
 }
 ul.dropdown-menu.usr.user-dropdown{
-	width: 180px;
-}
-.campaignsubmitbutton .submitbutton {
-        margin-left: -14px !important;
+	width: 100%;
 }
 .dropdown-menu-head {
-	top: 155%;
-	margin: 39px 50px 0;
-}
-.goal-size, .achived-size {
-	font-size: 18px;
+	top: 100%;
+	margin: 39px 0px 0;
 }
 .dropdown-menu .divider {
 	height: 1px;
 	margin: 6.5px 0px;
+}
+/*******************End-Dropdown-css*****************/
+.campaignsubmitbutton .submitbutton {
+        margin-left: -14px !important;
+}
+.goal-size, .achived-size {
+	font-size: 18px;
 }
 .fileUpload.btn-primary{
 background-color: #E9967A !important;

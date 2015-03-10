@@ -40,7 +40,7 @@
                 <h3 class="panel-title">Campaign Description</h3>
             </div>
             <div class="panel-body descript">
-                <g:if test="${currentFundraiser == beneficiary}">
+                <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
                     <span class="text-left">${raw(project.description)}</span>
                 </g:if>
                 <g:else>
@@ -53,7 +53,7 @@
                 <h3 class="panel-title">Campaign Story</h3>
             </div>
             <div class="panel-body project-description">
-                <g:if test="${currentFundraiser == beneficiary}">
+                <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
                    <span class="text-centre project-story-span">${raw(project.story)}</span>
                 </g:if>
                 <g:else>

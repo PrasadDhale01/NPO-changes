@@ -961,12 +961,11 @@ class ProjectService {
     
     def getFundRaisersForTeam(Project project, User user) {
         def teams = project.teams
-	def amount = project.amount
-	def description = project.description
-	def story = project.story
-	def videoUrl = project.videoUrl
-	def image = project.image
-	def imageUrl = project.imageUrl
+	    def amount = project.amount
+	    def description = project.description
+	    def story = project.story
+	    def videoUrl = project.videoUrl
+	    def imageUrl = project.imageUrl
         def isTeamExist = false
         String message
         teams.each {
@@ -981,7 +980,6 @@ class ProjectService {
 				description:description,
 	            story : story,
 	            videoUrl:videoUrl,
-	            image : image,
 	            imageUrl : imageUrl,
 	            joiningDate: new Date()
             )

@@ -65,7 +65,7 @@
 				               <a class="list"><span class="glyphicon glyphicon-user"></span></i> &nbsp;&nbsp;Invite Members </a>
 				           </g:else>
 				       </li>
-				       <g:if test="${currentUser!=project.user}">
+				       <g:if test="${!userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
 				           <li><a class="list" href="#editFundraiser" data-toggle="modal" model="['currentTeam': currentTeam"><i class="glyphicon glyphicon-edit"></i> &nbsp;&nbsp;Edit Fundraiser</a></li>
 				       </g:if>
 			       </ul>         
@@ -138,7 +138,6 @@
                 </div>
                 <div class="modal-body">
                     <g:hiddenField name="project" value="${project.id}"/>
-                    <g:hiddenField name="projectAmount" id="projectAmount" value="${project.amount}"/>
                     <h5><b>Team's Campaign Goal</b></h5><hr/>
                     <div class="form-group">
                         <label>$ GOAL</label>

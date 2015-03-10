@@ -76,6 +76,11 @@
                         ${flash.prj_mngprj_message}
                     </div>
                 </g:if>
+                <g:if test="${flash.teamUpdatemessage}">
+                    <div class="alert alert-success show-msz" align="center">
+                        ${flash.teamUpdatemessage}
+                    </div>
+                </g:if>
                 <g:if test="${user || beneficiary}">
 	                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
 	                	<h4 class="green-heading"> FUNDRAISER: ${fundRaiserName}</h4>

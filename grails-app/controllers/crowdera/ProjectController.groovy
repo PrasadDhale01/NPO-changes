@@ -794,7 +794,7 @@ class ProjectController {
 		}
         
         if (!params.ismanagepage) {
-		    redirect (action: 'show', id: params.id, params:[fr: fundRaiser], fragment: 'manageTeam')
+		    redirect (action: 'show', id: params.id, params:[fr: fundRaiser], fragment: 'comments')
         } else {
             redirect (action: 'manageproject', id: params.id, params:[fr: fundRaiser], fragment: 'manageTeam')
         }

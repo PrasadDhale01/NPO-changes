@@ -9,7 +9,7 @@
     if(project.user == team.user) {
         list = project.contributions
     }else {
-        list = team
+        list = team.contributions
     }
 %>
 <g:if test="${!list.empty}">

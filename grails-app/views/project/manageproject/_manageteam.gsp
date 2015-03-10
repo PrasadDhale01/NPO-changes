@@ -18,14 +18,9 @@
 		           <a href="#team">
 		               <h4 class="text-center">${teams.size()}</h4>
 			           <h5 class="text-center"> Team </h5>
-			       </a>
-			    </li>
-                  <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 button-team-footer">
-                      <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-target="#teamComment" data-toggle="tab">
-                          Team Comments
-                      </button>
-                  </li>
-                  <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 button-team-footer">
+			         </a>
+			     </li>
+                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 button-team-footer">
                       <button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 			              Activity <span class="caret"></span>
 			          </button>

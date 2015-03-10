@@ -20,10 +20,10 @@
 			           <h5 class="text-center"> Team </h5>
 			         </a>
 			 </li>
-                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 button-team-footer">
-                      <button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                	 <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 button-team-footer">
+                      		<button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
 			              Activity <span class="caret"></span>
-		       </button>
+		       		</button>
 			          <ul class="dropdown-menu" role="menu">
 				          <li><a class="list" href="#teamMessage"><span class="glyphicon glyphicon-envelope"></span> &nbsp;&nbsp;Team Message </a></li>
 				          <li><a class="list" href="#campaignStatistics"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;&nbsp;Campaign Statistics </a></li>
@@ -36,7 +36,7 @@
 				              </g:else>
 				          </li>
 			          </ul>
-                  </li>
+                        </li>
 		    </ul>
 		</g:if>
 		<g:else>

@@ -5,10 +5,16 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+    List list = []
+    if(project.user == team.user) {
+        list = project.contributions
+    }else {
+        list = team
+    }
 %>
-<g:if test="${!project.contributions.empty}">
+<g:if test="${!list.empty}">
     <dl class="dl">
-        <g:each in="${project.contributions}" var="contribution">
+        <g:each in="${list}" var="contribution">
             <%
                 def date = dateFormat.format(contribution.date)
                 def friendlyName = userService.getFriendlyName(contribution.user)

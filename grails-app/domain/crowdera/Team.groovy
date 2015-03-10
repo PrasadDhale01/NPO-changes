@@ -18,8 +18,6 @@ class Team {
     String story
     String videoUrl
 	
-    Image image
-	
     boolean enable = true
 	
     Date joiningDate
@@ -28,7 +26,6 @@ class Team {
         contributions nullable: true
 		description nullable: true
 	    comments nullable: true
-	    image nullable: true
 	    imageUrl nullable: true
 	    videoUrl nullable:true
 	    story nullable: true

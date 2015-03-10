@@ -254,6 +254,17 @@ class UserService {
         mandrillService.sendResponseToCustomer(adminResponse,service)
     }
     
+    def contributionEmailToOwnerOrTeam(def fundRaiser, def project, def contribution) {
+        def user = project.user
+        
+        if(user != fundRaiser) {
+            mandrillService.contributionEmailToCampaignOwnerOrTeam(fundRaiser, project, contribution)
+            mandrillService.contributionEmailToCampaignOwnerOrTeam(user, project, contribution)
+        } else {
+            mandrillService.contributionEmailToCampaignOwnerOrTeam(user, project, contribution)
+        }
+    }
+    
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

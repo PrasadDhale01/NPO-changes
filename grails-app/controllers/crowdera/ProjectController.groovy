@@ -155,6 +155,16 @@ class ProjectController {
         imageUrlId.delete()
         render ''
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def deleteTeamImage(){
+		def imageUrlId = ImageUrl.get(request.getParameter("imgst"))
+		def teamId = Team.get(request.getParameter("teamId"))
+		List imageUrl = teamId.imageUrl
+		imageUrl.remove(imageUrlId)
+		imageUrlId.delete()
+		render ''
+	}
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def deleteOrganizationLogo(){
@@ -760,6 +770,13 @@ class ProjectController {
 			if(amount <= project.amount){
 				team.amount = amount
 			}
+			println params
+			def imageFiles = request.getFiles('imagethumbnail')
+			if(!imageFiles.isEmpty()) {
+				projectService.getMultipleImageUrlsForTeam(imageFiles, team)
+			}
+			
+			team.videoUrl = params.videoUrl
 			team.story = params.story
 			team.description = params.description
 			flash.teamUpdatemessage = "Team Updated Successfully"

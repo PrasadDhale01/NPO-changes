@@ -9,7 +9,7 @@
     if(project.user == team.user) {
         list = project.contributions
     }else {
-        list = team
+        list = team.contributions
     }
 %>
 <g:if test="${!list.empty}">
@@ -22,7 +22,7 @@
                 def userFacebookUrl = facebookService.getUserFacebookUrl(contribution.user)
                 def amount = projectService.getDataType(contribution.amount)
             %>
-            <dt>$${amount}</dt>
+            <dt>$${amount} </dt>
             <g:if test="${isFacebookUser}">
                 <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>
             </g:if>

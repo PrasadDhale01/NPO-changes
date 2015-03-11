@@ -3,7 +3,6 @@ package crowdera
 class Contribution {
 
     double amount
-    boolean shippingDone = false
 
     static belongsTo = [user: User, project: Project, reward: Reward, credit: Credit]
 
@@ -12,6 +11,10 @@ class Contribution {
     String twitterHandle
     String custom
     String physicalAddress
+    String contributorName
+    
+    boolean shippingDone = false
+    boolean isContributionOffline = false
 
     static constraints = {
         credit nullable: true
@@ -20,6 +23,7 @@ class Contribution {
         twitterHandle nullable: true
         custom nullable: true
         physicalAddress nullable: true
+        contributorName nullable: true
     }
 
     def beforeValidate() {

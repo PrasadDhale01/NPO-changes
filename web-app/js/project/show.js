@@ -68,6 +68,44 @@ $(function() {
     	}
     });
     
+    $('#offlineContributionModal').find('form').validate({
+        rules: {
+            contributorName1: {
+                required: true,
+                minlength: 3
+            },
+            amount1: {
+                required: true,
+                number: true
+            },
+            amount2: {
+                number: true
+            },
+            amount3: {
+                number: true
+            }
+        }
+    });
+
+    $("#offlineAmount1").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            $("#errormsg1").html("Digits Only").show().fadeOut("slow");
+            return false;
+        }
+    });
+    $("#offlineAmount2").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            $("#errormsg2").html("Digits Only").show().fadeOut("slow");
+            return false;
+        }
+    });
+    $("#offlineAmount3").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            $("#errormsg3").html("Digits Only").show().fadeOut("slow");
+            return false;
+        }
+    });
+    
     $.validator.addMethod('islessThanProjectAmount', function (value, element) {
     	var amountRaised = value;
         var projectAmount = $("#projectAmount").val();

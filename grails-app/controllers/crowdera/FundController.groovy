@@ -462,4 +462,42 @@ class FundController {
         def transaction = Transaction.list();
         render view: '/user/admin/transactionIndex', model: [transaction: transaction]
     }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def saveOfflineContribution() {
+        def project = Project.get(params.id)
+        def user = User.findByUsername('anonymous@example.com')
+        def reward = rewardService.getNoReward()
+        def fundraiser = params.fr
+        def fundRaiser = User.findByUsername(fundraiser)
+        def username = fundRaiser.username
+        for(int i = 1; i <= 3 ; i++) {
+            def amount = params.("amount"+i)
+            def contributorName = params.("contributorName"+i)
+            if (amount && contributorName) {
+                Contribution contribution = new Contribution(
+                    date: new Date(),
+                    user: user,
+                    reward: reward,
+                    amount: amount,
+                    contributorName: contributorName,
+                    isContributionOffline: true
+                )
+                project.addToContributions(contribution).save(failOnError: true)
+
+                if(project.teams) {
+                    Team team = Team.findByUserAndProject(fundRaiser,project)
+                    if (team) {
+                        team.addToContributions(contribution).save(failOnError: true)
+                    }
+                }
+            }
+        }
+        flash.offlineContributionMsg = "Offline Contribution Added Successfully."
+        if (params.manageCampaign) {
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', id: project.id)
+        } else {
+            redirect (controller: 'project', action: 'show',fragment: 'contributions', id: project.id, params:[fr: username])
+        }
+    }
 }

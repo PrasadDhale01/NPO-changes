@@ -731,13 +731,14 @@ class ProjectController {
     def addFundRaiser(){
         def project = Project.get(params.id)
         User user = userService.getCurrentUser()
+        def fundraiser = user.username
         def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
         def message = projectService.getFundRaisersForTeam(project, user)
         flash.prj_mngprj_message = message
         if (iscampaignAdmin) {
             render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
         } else {
-            render (view: 'show/index', model: [project: project, user: user, FORMCONSTANTS: FORMCONSTANTS])
+            redirect (action: 'show', id: project.id, params:[fr: fundraiser])
         }
     }
 

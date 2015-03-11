@@ -64,10 +64,10 @@
     <!-- Controls -->
     <div id="navigators" style="display: none">
 	    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-	        <span class="glyphicon glyphicon-chevron-left"></span>
+	        <span class="glyphicon glyphicon-chevron-left arrow-mobile arrow-top"></span>
 	    </a>
 	    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-	        <span class="glyphicon glyphicon-chevron-right"></span>
+	        <span class="glyphicon glyphicon-chevron-right arrow-mobile-css arrow-top"></span>
 	    </a>
     </div>
 </div>

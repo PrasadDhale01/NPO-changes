@@ -1410,6 +1410,10 @@ text-decoration: none !important;
 	.btn-fb {
 		height:73px;
 	}
+	.form-horizontal .form-group {
+		margin-left: 2px;
+		margin-right: -15px;
+	}
 }
 
 
@@ -1506,22 +1510,24 @@ text-decoration: none !important;
 	    padding: 7px 20px;
 	}
 	.leftcard-column {
-	    width: 85.5%;
+	    width: 69%;
 	}
 	.leftcard-column .form-control {
-	    width: 92%;
+	    width: 90%;
 	}
 	.rightcard-column {
-	    width: 14%;
+	    width: 30%;
+	    display: flex;
 	}
 	.leftcard-column-one {
-	    width: 71.5%;
+	    width: 55%;
 	}
 	.leftcard-column-one .form-control {
-	    width: 90.43%;
+	    width: 86%;
 	}
 	.leftcard-column-two,.leftcard-column-three {
-	    width: 14%;
+	    width: 22%;
+	    display: flex;
 	}
 }
 
@@ -1720,22 +1726,24 @@ text-decoration: none !important;
 	    width:100%;
 	}	
 	.leftcard-column {
-	    width: 88%;
+	    width: 75%;
 	}	
 	.leftcard-column .form-control {
-	    width: 93.35%;
+	    width: 91%;
 	}
 	.rightcard-column {
-	    width: 12%;
+	    width: 25%;
+	    display: flex !important;
 	}
 	.leftcard-column-one {
-	    width: 76%;
+	    width: 60%;
 	}
 	.leftcard-column-one .form-control {
-	    width: 92.3%;
+	    width: 88%;
 	}
 	.leftcard-column-two, .leftcard-column-three {
-	    width: 12%;
+	    width: 20%;
+	    display: flex !important;
 	}
 }
 
@@ -2016,13 +2024,22 @@ textarea.form-control {
 }
 @media only screen and (max-width: 800px){
 	
-    .validatebtn.btn-danger {
-        border: none !important;
-        margin-top: 0px !important;
-    }
-    .nav-tabs.nav-justified > li > a {
-        font-size: 8px;
-    }
+        .arrow-top {
+		margin-Top: -33px !important;
+        }
+        .arrow-mobile-css {
+		margin-right: -35px;
+	}
+	.arrow-mobile {
+		margin-left: -40px !important;
+	}
+        .validatebtn.btn-danger {
+            border: none !important;
+            margin-top: 0px !important;
+        }
+        .nav-tabs.nav-justified > li > a {
+            font-size: 8px;
+        }
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
     .imageCarousellabel {
@@ -2201,7 +2218,18 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 768px) {
-		
+	.arrow-top {
+		margin-Top: -33px !important;
+        }
+        .arrow-mobile-css {
+		margin-right: -35px;
+	}
+	.arrow-mobile {
+		margin-left: -40px !important;
+	}
+	.divFirstAdmin {
+		margin-left: 38px !important;
+	}	
     .validatebutton {
         float: right;
     }
@@ -2220,6 +2248,7 @@ textarea.form-control {
 	}
 	.rightcard-column {
 	    width: 30%;
+	    display: flex;
 	}
 	.rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	    width: 80% !important;
@@ -2229,12 +2258,16 @@ textarea.form-control {
 	}
 	.leftcard-column-two, .leftcard-column-three {
 	    width: 20%;
+	    display: flex;
 	}
 	.leftcard-column-one {
 	    width: 60%;
 	}
 	.leftcard-column-one .form-control {
-	    width: 90.3%;
+	    width: 88%;
+	}
+	.btn-group.btn-group-sm.btnOrgBgColor {
+		margin-left: -22px;
 	}
 	/*************ManageTeamButtons************/
     .team-footer ,.button-team-footer {
@@ -2443,7 +2476,7 @@ textarea.form-control {
 
 @media only screen and (max-width: 745px){
 	.leftcard-column .form-control {
-	    width: 93.3%;
+	    width: 90%;
 	}
 }
 @media only screen and (max-width: 640px){
@@ -2569,22 +2602,24 @@ textarea.form-control {
     height:200px;
     }
     .leftcard-column {
-	    width: 85.5%;
+	    width: 64%;
 	}
 	.leftcard-column .form-control {
-	    width: 91.8%;
+	    width: 86%;
 	}
 	.rightcard-column {
-	    width: 14%;
+	    width: 35%;
+	    display: flex !important;
 	}
 	.leftcard-column-one {
-	    width: 72.5%;
+	    width: 49%;
 	}
 	.leftcard-column-one .form-control {
-	    width: 90.4%;
+	    width: 80%;
 	}
 	.leftcard-column-two, .leftcard-column-three {
-	    width: 13%;
+	    width: 25%;
+	    display: flex !important;
 	}
 }
 @media only screen and (max-width: 480px){
@@ -2811,7 +2846,12 @@ textarea.form-control {
 
 }
 @media only screen and (max-width: 414px) {
-	
+	.arrow-mobile-css {
+		margin-right: -11px;
+	}
+	.arrow-mobile {
+		margin-left: -17px !important;
+	}
 	.tips h2 {
 		padding-left: 72px !important;
 	}
@@ -2824,7 +2864,7 @@ textarea.form-control {
          padding-top: 6px;
          height: 141px;
          width: 120px;
-         margin-left: 189px;
+         margin-left: 172px;
          margin-bottom: -17px;
     }
 
@@ -3012,7 +3052,21 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 375px) {
-	
+	.arrow-mobile-css {
+		margin-right: -11px;
+	}
+	.arrow-mobile {
+		margin-left: -17px !important;
+	}
+	.imageCarousellabel {
+            background-color: black;
+            background: rgba(255, 255, 255, 0.3);
+            padding-top: 6px;
+            height: 141px;
+            width: 120px;
+            margin-left: 160px;
+            margin-bottom: -17px;
+        }
 	#fgGraphWidgetContainer #fgNameStart {
 	    width: 280px !important;
 	}
@@ -3122,11 +3176,40 @@ textarea.form-control {
 	}
 	.button-team-show .dropdown-menu {
 		width: 317px !important;
+	}
+	.arrow-mobile-css {
+		margin-right: -21px;
+	}
+	.arrow-mobile {
+		margin-left: -17px !important;
+	}
+	.imageCarousellabel {
+		background-color: black;
+		background: rgba(255, 255, 255, 0.3);
+		padding-top: 6px;
+		height: 141px;
+		width: 120px;
+		margin-left: 151px;
+		margin-bottom: -17px;
 	}	
 }
 
 @media only screen and (max-width: 320px){
-	
+	.arrow-mobile-css {
+		margin-right: -21px;
+	}
+	.arrow-mobile {
+		margin-left: -17px !important;
+	}
+	.imageCarousellabel {
+         background-color: black;
+         background: rgba(255, 255, 255, 0.3);
+         padding-top: 6px;
+         height: 141px;
+         width: 120px;
+         margin-left: 128px !important;
+         margin-bottom: -17px;
+    }
 	.tips h2 {
 		padding-left: 29px !important;
 	}

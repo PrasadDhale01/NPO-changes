@@ -75,10 +75,10 @@
 								<g:render template="manageproject/manageteam"/>
 							</div>
 							<div class="tab-pane" id="contributions">
-								<g:render template="/project/manageproject/contributions" />
+								<g:render template="show/contributions"/>
 							</div>
 							<div class="tab-pane" id="comments">
-								<g:render template="/project/manageproject/comments" />
+								<g:render template="show/comments"/>
 							</div>
 						</div>
 

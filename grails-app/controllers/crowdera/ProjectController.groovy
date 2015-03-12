@@ -12,6 +12,7 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.model.S3Bucket
 import org.jets3t.service.model.S3Object
 import org.jets3t.service.security.AWSCredentials
+import java.text.SimpleDateFormat
 
 import crowdera.Beneficiary;
 import crowdera.ImageUrl;
@@ -887,5 +888,54 @@ class ProjectController {
         } else {
             redirect (controller: 'project', action: 'show',fragment: 'contributions', id: project.id, params:[fr: fundraiser])
         }
+    }
+
+    def generateCSV(){
+        List contributions=[]
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+
+        def projectId= params.projectId
+        def project = Project.get(projectId)
+
+        def teamId = params.teamId
+        def team = Team.get(teamId)
+
+        if(team!=null){
+                if(project.user==team.user){
+                    contributions=project.contributions
+                }else{
+                    contributions=team.contributions
+                }
+        }else{
+                contributions=project.contributions
+        }
+
+        response.setHeader("Content-disposition", "attachment; filename=CSV_report.csv")
+        def results=[]
+        def  contributorName
+        def payMode
+        contributions.each{
+
+            if(it.isContributionOffline){
+                payMode="offline"
+                contributorName= it.contributorName
+            }else{
+                payMode="Online"
+                contributorName= it.user.firstName 
+            }
+            def rows = [it.project.title,  dateFormat.format(it.date), contributorName, it.amount, payMode]
+            results << rows
+        }
+            
+        def result='CAMPAIGN TITLE, DATE, CONTRIBUTOR, AMOUNT, MODE, \n'
+        results.each{ row->
+            row.each{
+            col -> result+=col +','
+            }
+            result = result[0..-2]
+            result+="\n"
+        }
+            
+        render (contentType:"text/csv", text:result)            
     }
 }

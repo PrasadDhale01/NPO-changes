@@ -21,6 +21,11 @@
         <a href="#" class="btn btn-primary btn-sm pull-right managecontribution" data-toggle="modal" data-target="#offlineContributionModal" model="['project': project]">
             Manage Offline Contribution
         </a>
+        <g:if test="${!project.contributions.empty}">
+            <a href="#"class="btn btn-primary btn-sm btn-circle pull-right mngReportCls" data-toggle="modal" data-target="#reportModal">
+                Report
+            </a>
+        </g:if>
     </g:if>
     <div class="clear"></div>
     <!-- Modal -->
@@ -257,3 +262,87 @@
 <g:else>
     <div class="alert alert-info">Campaign is yet to be validated.</div>
 </g:else>
+
+<!-- Modal -->
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" 
+   aria-labelledby="reportModalLabel" aria-hidden="true">
+   <g:form controller="project" action="generateCSV" role="form">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="reportModalLabel">
+               Contribution Report
+            </h4>
+         </div>
+         <g:hiddenField name="projectId" value="${project.id}"/>
+         <div class="modal-body">
+           <g:if test="${!project.contributions.empty}">
+                <dl class="dl">
+                    <div class="table table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr class="alert alert-title ">
+                                    <th class="col-sm-2 text-center">Title</th>
+                                    <th class="col-sm-2 text-center">DATE</th>
+                                    <th class="col-sm-2 text-center">CONTRIBUTOR</th>
+                                    <th class="col-sm-2 text-center">AMOUNT</th>
+                                    <th class="col-sm-2 text-center">MODE</th>                            
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                <g:each in="${project.contributions}" var="contributions">
+                                    <%
+                                        def date = dateFormat.format(contributions.date)
+                                        def friendlyName = userService.getFriendlyName(contributions.user)
+                                        def isFacebookUser = userService.isFacebookUser(contributions.user)
+                                        def userFacebookUrl = facebookService.getUserFacebookUrl(contributions.user)
+                                        def amount = projectService.getDataType(contributions.amount)
+                                        def pay_mode=contributions.isContributionOffline
+                                        def contributorName= contributions.contributorName
+                                        def donor
+
+                                        if(contributions.isContributionOffline){
+                                            donor = contributorName
+                                        }else{
+                                             donor= friendlyName
+                                        }
+
+                                    %>
+                                    <tr>
+                                        <td class="col-sm-2">${project.title}</td>
+                                        <td class="col-sm-2">${date}</td>
+                                        <td class="col-sm-2">${donor}</td>                         
+                                        <td class="col-sm-2">${amount}</td>
+
+                                        <g:if test="${pay_mode}">
+                                            <td class="col-sm-2 text-center">Offline</td>
+                                        </g:if>
+                                        <g:else>
+                                            <td class="col-sm-2 text-center">Online</td>
+                                        </g:else>
+                                    </tr>
+                                </g:each>
+                            </tbody>
+                        </table>
+                    </div>
+                </dl>
+            </g:if>
+            <g:else>
+                <div class="alert alert-info">No contributions yet. Yours can be the first one.</div>
+            </g:else>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" 
+               >Generate CSV
+            </button>
+         </div>
+       </div> <!-- /.modal-dialog -->
+    </div><!-- /.modal-content -->
+    </g:form>
+</div><!-- /.modal -->
+

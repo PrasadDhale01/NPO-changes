@@ -139,16 +139,16 @@
 		                    <b>Offline Contribution</b>
 		                </div>
 		                <div class="rewardsection">
-							<b>$${contribution.amount.round()}</b>
-							<div class="clear"></div>
-							    By ${contribution.contributorName}, on ${date}
-							</div>
-							<div class="clear"></div>
-							<g:if test="${isContributionBelongsToCurrentUser}">
-							<div class="editAndDeleteBtn">
-							    <div class="pull-right">
-							        <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
-							            <i class="glyphicon glyphicon-edit" ></i>
+                            <b>$${contribution.amount.round()}</b>
+                            <div class="clear"></div>
+                                By ${contribution.contributorName}, on ${date}
+                            </div>
+                            <div class="clear"></div>
+                            <g:if test="${isContributionBelongsToCurrentUser}">
+                            <div class="editAndDeleteBtn">
+                                <div class="pull-right">
+                                    <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
+                                        <i class="glyphicon glyphicon-edit" ></i>
                                     </button>
                                 </div>
                                 <div class="pull-right">

@@ -28,15 +28,22 @@
 	                <div class="under">
 				        <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
 	                </div>
-	                <g:if test="${user == project.user}">
+	                <g:if test="${!team.enable}">
 					    <div class="over teamtile-banner">
-							<img src="/images/OWNER.png">
+							<img src="/images/disabledTeam.png">
 						</div>
 					</g:if>
 					<g:else>
-					    <div class="over teamtile-banner">
-							<img src="/images/teamTop.png">
-						</div>
+		                <g:if test="${user == project.user}">
+						    <div class="over teamtile-banner">
+								<img src="/images/OWNER.png">
+							</div>
+						</g:if>
+						<g:else>
+						    <div class="over teamtile-banner">
+								<img src="/images/teamTop.png">
+							</div>
+						</g:else>
 					</g:else>
 	            </div>
 				</g:else>
@@ -52,15 +59,22 @@
 	                <div class="under">
 				        <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
 	                </div>
-	                <g:if test="${user == project.user}">
+	                <g:if test="${!team.enable}">
 					    <div class="over teamtile-banner">
-							<img src="/images/OWNER.png">
+							<img src="/images/disabledTeam.png">
 						</div>
 					</g:if>
 					<g:else>
-					    <div class="over teamtile-banner">
-							<img src="/images/teamTop.png">
-						</div>
+		                <g:if test="${user == project.user}">
+						    <div class="over teamtile-banner">
+								<img src="/images/OWNER.png">
+							</div>
+						</g:if>
+						<g:else>
+						    <div class="over teamtile-banner">
+								<img src="/images/teamTop.png">
+							</div>
+						</g:else>
 					</g:else>
 	            </div>
 				</g:else>

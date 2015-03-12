@@ -33,3 +33,10 @@
 .contributioninput {
     border-radius: 3px;
 }
+
+.editAndDeleteBtn {
+	margin-top: 12px;
+}
+.offlinecontributionbtn {
+	margin-bottom: 10px !important;
+}

@@ -9,6 +9,7 @@
     def manageCampaign = "manageCampaign"
     def user = userService.getCurrentUser()
     def fundRaiser = user.username
+    def projectId = project.id
 %>
 <button class="btn btn-primary btn-block contribution-seperator"></button>
 <g:if test="${project.validated}">
@@ -91,7 +92,7 @@
         </g:form>
     </div>
 	<g:if test="${!project.contributions.empty}">
-        <h2>Campaign Contributions</h2>
+        <h2 class="crowderasupport"><img src="/images/icon-contribution.png">&nbsp;&nbsp;Campaign Contributions</h2>
 	    <div class="commentsoncampaign">
     		<g:each in="${project.contributions}" var="contribution">
 		        <%
@@ -103,7 +104,7 @@
 		        %>
        			<g:if test="${!contribution.isContributionOffline}">
 		            <div class="modal-body tile-footer manage-comments-footer">
-		                <p class="text-success">Contribution #${i++}&nbsp;<i class="fa fa-info-circle"></i></p>
+		                <p class="text-success">Contribution #${i++}</p>
 			            <b>$${contribution.amount}</b>
 			            <g:if test="${isFacebookUser}">
 			                <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>
@@ -121,24 +122,81 @@
 		                </g:if>
 		                <g:else>
 		                    <b>Perk</b>
-			                <div class="rewardsection">
-					            <p>${reward.description}</p>
-					            <a href="#" data-id="${contribution}" data-toggle="modal" data-target="#rewarddetails${contribution.id}" model="['contribution': contribution]">Shipping Details</a>
-					        </div>
+			            <div class="rewardsection">
+					<p>${reward.description}</p>
+					<a href="#" data-id="${contribution}" data-toggle="modal" data-target="#rewarddetails${contribution.id}" model="['contribution': contribution]">Shipping Details</a>
+				    </div>
 		                </g:else>
 		            </div>
 		        </g:if>
 		        <g:else>
 		            <div class="modal-body tile-footer manage-comments-footer">
-		                <p class="text-success">Contribution #${i++}&nbsp;<i class="fa fa-info-circle"></i></p>
+		                <%
+				    def isContributionBelongsToCurrentUser = userService.isContributionBelongsToCurrentTeam(contribution, user, project)
+				%>
+		                <p class="text-success">Contribution #${i++}</p>
 		                <div class="rewardsection">
 		                    <b>Offline Contribution</b>
 		                </div>
 		                <div class="rewardsection">
-			                <b>$${contribution.amount}</b>
-			                <div class="clear"></div>
-			                By ${contribution.contributorName}, on ${date}
-			            </div>
+                            <b>$${contribution.amount.round()}</b>
+                            <div class="clear"></div>
+                                By ${contribution.contributorName}, on ${date}
+                            </div>
+                            <div class="clear"></div>
+                            <g:if test="${isContributionBelongsToCurrentUser}">
+                            <div class="editAndDeleteBtn">
+                                <div class="pull-right">
+                                    <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
+                                        <i class="glyphicon glyphicon-edit" ></i>
+                                    </button>
+                                </div>
+                                <div class="pull-right">
+                                    <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser]">
+                                        <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
+                                        <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this contribution?&#39;);">
+                                            <i class="glyphicon glyphicon-trash" ></i>
+                                        </button>
+                                    </g:form>
+                                </div>
+                            </div>
+                        </g:if>
+                        <div class="clear"></div>
+                        
+                        <!-- EditContributionModal -->
+                        <div class="modal fade offlineContributionModal contributionedit" id="contributionedit${contribution.id}" tabindex="-1" role="dialog" aria-labelledby="contributionedit${contribution.id}" aria-hidden="true">
+                            <g:form action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser]" role="form">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                                            <div class="col-sm-12 margin">
+                                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                                <h4 class="heading crowderasupport"><img src="/images/icon-edit.png">&nbsp;&nbsp;EDIT OFFLINE CONTRIBUTION</h4>
+                                            </div>
+                                            <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
+                                            <div class="col-sm-8">
+                                                <div class="form-group">
+                                                    <label class="text" for="title">Display Name</label>
+                                                    <input type="text" class="form-control contributioninput" name="contributorName" value="${contribution.contributorName}"/>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="form-group">
+                                                    <label for="title" class="text">Amount</label>
+                                                    <input type="text" class="form-control contributioninput" name="amount" value="${contribution.amount.round()}" id="offlineAmount"/>
+                                                </div>
+                                                <div id="errormsg"></div>
+                                            </div>
+                                        </div>
+                                        <div class="clear"></div>
+                                        <div class="modal-footer">
+                                            <button data-dismiss="modal" class="btn btn-primary">Close</button>
+                                            <button class="btn btn-primary" type="submit" id="saveButton">Save</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </g:form>
+                        </div>
 		            </div>
 		        </g:else>
        		    

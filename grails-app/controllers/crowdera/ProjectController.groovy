@@ -848,4 +848,44 @@ class ProjectController {
                         FORMCONSTANTS: FORMCONSTANTS])
         }
     }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def contributiondelete() {
+        def contribution = Contribution.get(params.id)
+        def project = Project.get(params.projectId)
+        def fundraiser = params.fr
+        def fundRaiser = User.findByUsername(fundraiser)
+        Team team = Team.findByProjectAndUser(project, fundRaiser)
+        if (team) {
+            List teamContributions = team.contributions
+            teamContributions.remove(contribution)
+        }
+        
+        List contributions = project.contributions
+        contributions.remove(contribution)
+        
+        contribution.delete();
+        
+        if (params.manageCampaign) {
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', id: project.id)
+        } else {
+            redirect (controller: 'project', action: 'show',fragment: 'contributions', id: project.id, params:[fr: fundraiser])
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def contributionedit() {
+        def contribution = Contribution.get(params.id)
+        def project = Project.get(params.projectId)
+        def fundraiser = params.fr
+        def fundRaiser = User.findByUsername(fundraiser)
+        contribution.contributorName = params.contributorName
+        contribution.amount = Double.parseDouble(params.amount)
+        
+        if (params.manageCampaign) {
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', id: project.id)
+        } else {
+            redirect (controller: 'project', action: 'show',fragment: 'contributions', id: project.id, params:[fr: fundraiser])
+        }
+    }
 }

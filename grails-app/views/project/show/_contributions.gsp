@@ -117,7 +117,7 @@
             %>
             <g:if test="${!contribution.isContributionOffline}">
                 <div class="modal-body tile-footer manage-comments-footer">
-                    <p class="text-success">Contribution #${i++}&nbsp;<i class="fa fa-info-circle"></i></p>
+                    <p class="text-success">Contribution #${i++}</p>
                     <div class="rewardsection">
                         <b>$${amount}</b>
                     </div>
@@ -134,7 +134,7 @@
                     <%
                         def isContributionBelongsToCurrentUser = userService.isContributionBelongsToCurrentTeam(contribution, currentTeamUser, project)
                     %>
-                    <p class="text-success">Contribution #${i++}&nbsp;<i class="fa fa-info-circle"></i></p>
+                    <p class="text-success">Contribution #${i++}</p>
                     <div class="rewardsection">
                         <b>Offline Contribution</b>
                     </div>

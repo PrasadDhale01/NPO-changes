@@ -104,7 +104,7 @@
 		        %>
        			<g:if test="${!contribution.isContributionOffline}">
 		            <div class="modal-body tile-footer manage-comments-footer">
-		                <p class="text-success">Contribution #${i++}&nbsp;<i class="fa fa-info-circle"></i></p>
+		                <p class="text-success">Contribution #${i++}</p>
 			            <b>$${contribution.amount}</b>
 			            <g:if test="${isFacebookUser}">
 			                <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>
@@ -132,23 +132,23 @@
 		        <g:else>
 		            <div class="modal-body tile-footer manage-comments-footer">
 		                <%
-                            def isContributionBelongsToCurrentUser = userService.isContributionBelongsToCurrentTeam(contribution, user, project)
-                        %>
-		                <p class="text-success">Contribution #${i++}&nbsp;<i class="fa fa-info-circle"></i></p>
+						    def isContributionBelongsToCurrentUser = userService.isContributionBelongsToCurrentTeam(contribution, user, project)
+						%>
+		                <p class="text-success">Contribution #${i++}</p>
 		                <div class="rewardsection">
 		                    <b>Offline Contribution</b>
 		                </div>
 		                <div class="rewardsection">
-			                <b>$${contribution.amount.round()}</b>
-			                <div class="clear"></div>
-			                By ${contribution.contributorName}, on ${date}
-			            </div>
-			            <div class="clear"></div>
-			            <g:if test="${isContributionBelongsToCurrentUser}">
-			                <div class="editAndDeleteBtn">
-			                    <div class="pull-right">
-			                        <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
-                                        <i class="glyphicon glyphicon-edit" ></i>
+							<b>$${contribution.amount.round()}</b>
+							<div class="clear"></div>
+							    By ${contribution.contributorName}, on ${date}
+							</div>
+							<div class="clear"></div>
+							<g:if test="${isContributionBelongsToCurrentUser}">
+							<div class="editAndDeleteBtn">
+							    <div class="pull-right">
+							        <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
+							            <i class="glyphicon glyphicon-edit" ></i>
                                     </button>
                                 </div>
                                 <div class="pull-right">

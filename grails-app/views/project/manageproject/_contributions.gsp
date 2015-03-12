@@ -122,18 +122,18 @@
 		                </g:if>
 		                <g:else>
 		                    <b>Perk</b>
-			                <div class="rewardsection">
-					            <p>${reward.description}</p>
-					            <a href="#" data-id="${contribution}" data-toggle="modal" data-target="#rewarddetails${contribution.id}" model="['contribution': contribution]">Shipping Details</a>
-					        </div>
+			            <div class="rewardsection">
+					<p>${reward.description}</p>
+					<a href="#" data-id="${contribution}" data-toggle="modal" data-target="#rewarddetails${contribution.id}" model="['contribution': contribution]">Shipping Details</a>
+				    </div>
 		                </g:else>
 		            </div>
 		        </g:if>
 		        <g:else>
 		            <div class="modal-body tile-footer manage-comments-footer">
 		                <%
-						    def isContributionBelongsToCurrentUser = userService.isContributionBelongsToCurrentTeam(contribution, user, project)
-						%>
+				    def isContributionBelongsToCurrentUser = userService.isContributionBelongsToCurrentTeam(contribution, user, project)
+				%>
 		                <p class="text-success">Contribution #${i++}</p>
 		                <div class="rewardsection">
 		                    <b>Offline Contribution</b>

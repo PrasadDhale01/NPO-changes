@@ -4239,3 +4239,15 @@ color:#fff;
     padding-left:0px;
     width:66%;
 }
+.pull-right.reportCls{
+    margin-right:6px;
+}
+.mngReportCls{
+    margin-right:6px;
+    margin-top:6px;
+}
+#reportModal .modal-content
+{
+  height:500px;
+  overflow:auto;
+}

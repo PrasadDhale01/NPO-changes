@@ -22,6 +22,12 @@
 	def isTeamAdmin = projectService.isTeamAdmin(project)
     
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+    def cents
+    if(percentage >= 100) {
+        cents = 100
+    } else {
+        cents = percentage
+    }
 %>
 <div class="fedu thumbnail grow user-tiles-style">
 	<div class="blacknwhite tile">
@@ -144,7 +150,7 @@
 		style="text-align: left; margin-bottom: 2px;">
 		<div class="row">
 			<div class="col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1 progress-pie-chart" data-percent="43">
-				<div class="c100 p${percentage} small text-center">
+				<div class="c100 p${cents} small text-center">
 					<span> ${percentage}%
 					</span>
 					<div class="slice">

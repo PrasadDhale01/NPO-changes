@@ -132,6 +132,7 @@
                 </div>
                 <div class="modal-body">
                     <g:hiddenField name="project" value="${project.id}"/>
+                    <g:hiddenField name="projectAmount" value="${project.amount}"/>
                     <input type="hidden" id="b_url" value="<%=base_url%>" />
                     <h5><b>Team's Campaign Goal</b></h5><hr/>
                     <div class="form-group">
@@ -144,7 +145,7 @@
                     <h5><b>About My Team</b></h5><hr/>
                     <div class="form-group">
                         <label class="control-label">Brief Description</label>
-                        <textarea class="form-control" maxlength="140" rows="2" name="description" placeholder="Make it catchy, and no more than 140 characters"> ${currentTeam.description} </textarea>
+                        <textarea class="form-control" maxlength="140" rows="2" id="descarea" name="description" placeholder="Make it catchy, and no more than 140 characters"> ${currentTeam.description} </textarea>
                         <label class="pull-right " id="desclength"></label>
                     </div>
                     <div class="clear"></div>

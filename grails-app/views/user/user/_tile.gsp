@@ -175,18 +175,6 @@
                 <h6 class="text-center"><span class="lead">$${amount}</span><br/>GOAL</h6>
             </div>
             <g:if test="${ended}">
-                <%--<g:if test="${isFundingAchieved}">
-                    <!-- Funding achieved in time. -->
-                    <div class="col-md-6 col-xs-6">
-                        <h6 class="text-center"><span class="lead">${dateFormat.format(achievedDate.getTime())}</span><br>ACHIEVED</h6>
-                    </div>
-                </g:if>
-                <g:else>
-                   <!-- Funding not achieved in time. -->
-                    <div class="col-md-6 col-xs-6">
-                        <h6 class="text-center"><span class="lead">${dateFormat.format(endDate.getTime())}</span><br>ENDED</h6>
-                    </div>
-                </g:else>--%>
                 <div class="col-md-6 col-xs-6">
                     <h6 class="text-center"><span class="lead">0</span><br>DAYS TO GO</h6>
                 </div>
@@ -201,31 +189,25 @@
 
 		<div class="modal-footer tile-footer user-footer-icon">
 			<div class="row">
-				<div class="col-sm-8 user-icon-edit">
-					<g:form controller="project" action="edit" method="post" id="${project.id}">
-						<g:hiddenField name="projectId" value="${project.id}" />
-						<button class="projectedit close " aria-label="Edit project" id="editproject">
-							<i class="glyphicon glyphicon-edit"></i>
-						</button>
-					</g:form>
-				</div>
-				<div class="col-sm-2">
-					<g:form controller="project" action="manageproject" method="post" id="${project.id}">
-						<button class="projectpreview close" aria-label="Preview project" id="projectpreview">
-							<i class="glyphicon glyphicon-picture"></i>
-						</button>
-					</g:form>
-				</div>
-
-				<div class="col-sm-2">
-					<g:form controller="project" action="projectdelete" method="post" id="${project.id}">
-						<button class="projectdelete close pull-right" aria-label="Delete project" id="projectdelete"
-							onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
-							<i class="glyphicon glyphicon-trash"></i>
-						</button>
-					</g:form>
-				</div>
-				
+                <g:if test="${!project.validated || username.equals('campaignadmin@crowdera.co') }">
+                    <g:form controller="project" action="projectdelete" method="post" id="${project.id}">
+                        <button class="projectedit close pull-right" id="projectdelete"
+                         onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>
+                    </g:form>
+                </g:if>
+                <g:form controller="project" action="edit" method="post" id="${project.id}">
+                    <g:hiddenField name="projectId" value="${project.id}" />
+                    <button class="projectedit close pull-right" id="editproject">
+                     <i class="glyphicon glyphicon-edit"></i>
+                    </button>
+                </g:form>
+                <g:form controller="project" action="manageproject" method="post" id="${project.id}">
+                    <button class="projectedit close pull-right" id="projectpreview">
+                        <i class="glyphicon glyphicon-picture"></i>
+                    </button>
+                </g:form>
 			</div>
 		</div>
 	</div>

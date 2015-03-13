@@ -11,7 +11,6 @@
     def fundRaiser = user.username
     def projectId = project.id
 %>
-<button class="btn btn-primary btn-block contribution-seperator"></button>
 <g:if test="${project.validated}">
 <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
     <g:if test="${project.contributions.empty}">
@@ -286,7 +285,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="alert alert-title ">
-                                    <th class="col-sm-2 text-center">Title</th>
+                                    <th class="col-sm-2 text-center">CAMPAIGN_TITLE</th>
                                     <th class="col-sm-2 text-center">DATE</th>
                                     <th class="col-sm-2 text-center">CONTRIBUTOR</th>
                                     <th class="col-sm-2 text-center">AMOUNT</th>

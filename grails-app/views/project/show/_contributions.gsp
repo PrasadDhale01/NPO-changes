@@ -230,7 +230,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="alert alert-title ">
-                                    <th class="col-sm-2 text-center">Title</th>
+                                    <th class="col-sm-2 text-center">CAMPAIGN_TITLE</th>
                                     <th class="col-sm-2 text-center">DATE</th>
                                     <th class="col-sm-2 text-center">CONTRIBUTOR</th>
                                     <th class="col-sm-2 text-center">AMOUNT</th>

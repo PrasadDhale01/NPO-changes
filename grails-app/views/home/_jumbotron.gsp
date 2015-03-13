@@ -16,6 +16,20 @@
         <div class="item active">
             <g:if test="${userService.isLoggedIn()}">
                 <img src="/images/sliderWithoutReg.jpg">
+                <g:if test="${userService.isFacebookUser() }">
+                    <div class="carousel-caption">
+                        <div class="fbButton">
+                            <a href="${base_url}/campaigns/create"><img src="/images/fbButton.jpg" class="btn btn-fb"></a>
+                        </div>
+                    </div>
+                </g:if>
+                <g:else>
+                    <div class="carousel-caption">
+                        <div class="fbButton">
+                            <a href="${base_url}/campaigns/create"><img src="/images/fbButton.jpg" class="btn btn-fb"></a>
+                        </div>
+                    </div>
+                </g:else>
             </g:if>
             <g:else>
             <img src="/images/Slider1.jpg">

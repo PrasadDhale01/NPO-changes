@@ -550,8 +550,30 @@ class MandrillService {
         def tags = ['registration']
 
         sendTemplate(user, 'new_user_confirmation', globalMergeVars, tags)
+    } 
+	
+    public def reSendConfirmationMail(User user) {
+	def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm', id: user.confirmCode, absolute: true)
+
+	def globalMergeVars = [[
+            'name': 'LINK',
+	    'content': link
+	], [
+	    'name': 'NAME',
+	    'content': user.firstName + ' ' + user.lastName
+	], [
+	    'name': 'EMAIL',
+	    'content': user.email
+	], [
+	    'name':'DATE',
+	    'content': user.dateCreated
+	]]
+
+	def tags = ['resend-confirmation-mail']
+
+	sendTemplate(user, 'resend_confirmation_mail', globalMergeVars, tags)
     }
-    
+
     public def sendUserResponseToUserRequest(User user) {
         def globalMergeVars = [[
             'name': 'NAME',
@@ -613,4 +635,58 @@ class MandrillService {
 
         sendTemplate(user, 'inviteToCommunity', globalMergeVars, tags)
     }
+    
+    public def sendEmailToDevGroup(def exception) {
+        
+        def exceptionString = " "+ exception
+        def devList = ['kartiki.sahu@crowdera.co','krishna.sahu@crowdera.co','tushar@crowdera.co','prasad.dhale@crowdera.co','minal.ganatra@crowdera.co','roshan.mahant@crowdera.co']
+        def date = new Date()
+        
+        devList.each { email ->
+            
+            def globalMergeVars = [
+                [
+                    'name': 'EXCEPTION',
+                    'content': exceptionString
+                ],[
+                    'name': 'EMAIL',
+                    'content': email
+                ],[
+                    'name': 'DATE',
+                    'content': date.format("YYYY-MM-DD HH:mm:ss")
+                ]
+            ]
+
+            def tags = ['Exception-email-to-dev']
+
+            inviteToAdmin(email, 'Exception-email-to-dev', globalMergeVars, tags)
+        }
+    }
+    
+    public def contributionEmailToCampaignOwnerOrTeam(def fundRaiser, def project, def contribution) {
+        def username = fundRaiser.username
+        def contributor = contribution.user
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')
+
+        def globalMergeVars = [
+            [
+                'name': 'LINK',
+                'content': link
+            ],[
+                'name': 'NAME',
+                'content': fundRaiser.firstName + ' ' + fundRaiser.lastName
+            ],[
+                'name': 'AMOUNT',
+                'content': contribution.amount
+            ],[
+                'name': 'CONTRIBUTOR',
+                'content': contributor.firstName
+            ]
+        ]
+
+        def tags = ['contributionEmailToCampaignOwnerOrTeam']
+
+        sendTemplate(fundRaiser,'contributionEmailToCampaignOwnerOrTeam', globalMergeVars, tags)
+    }
+    
 }

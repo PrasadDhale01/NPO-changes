@@ -9,6 +9,7 @@
 	if (projectTitle) {
 		projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
 	}
+	def currentTeam = projectService.getCurrentTeam(project,project.user)
 %>
 <html>
 <head>
@@ -66,7 +67,7 @@
 						<!-- Tab panes -->
 						<div class="tab-content">
 							<div class="tab-pane active" id="essentials">
-								<g:render template="/project/show/essentials" />
+								<g:render template="/project/show/essentials" model="['currentFundraiser':project.user]"/>
 							</div>
 							<div class="tab-pane" id="projectupdates">
                             	<g:render template="show/projectupdates"/>
@@ -75,10 +76,10 @@
 								<g:render template="manageproject/manageteam"/>
 							</div>
 							<div class="tab-pane" id="contributions">
-								<g:render template="/project/manageproject/contributions" />
+								<g:render template="show/contributions" model="['team':currentTeam]"/>
 							</div>
 							<div class="tab-pane" id="comments">
-								<g:render template="/project/manageproject/comments" />
+								<g:render template="show/comments"/>
 							</div>
 						</div>
 

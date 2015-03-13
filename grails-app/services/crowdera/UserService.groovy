@@ -31,14 +31,11 @@ class UserService {
     }
     
     def getUserRole(User users){
-        def userRole = UserRole.list()
         def roletype
-        userRole.each {
-            if(it.user.id == users.id){
-                def userrole = UserRole.findByUser(users)
-                roletype = userrole.role.authority
-            }
-        }
+	def userrole = UserRole.findAllWhere(user: users)
+	userrole.each {
+	    roletype = it.role.authority
+	}
         return roletype
     }
 
@@ -83,6 +80,14 @@ class UserService {
 
         return imageUrl
     }
+	
+	def getVerifiedUserList(){
+		return User.findAllWhere(enabled:true)
+	}
+	
+	def getNonVerifiedUserList(){
+		return User.findAllWhere(enabled:false)
+	}
 
     def getEmail() {
         EmailValidator emailValidator = EmailValidator.getInstance()
@@ -247,6 +252,28 @@ class UserService {
         def adminResponse = params.answer
         service.status = true
         mandrillService.sendResponseToCustomer(adminResponse,service)
+    }
+    
+    def contributionEmailToOwnerOrTeam(def fundRaiser, def project, def contribution) {
+        def user = project.user
+        
+        if(user != fundRaiser) {
+            mandrillService.contributionEmailToCampaignOwnerOrTeam(fundRaiser, project, contribution)
+            mandrillService.contributionEmailToCampaignOwnerOrTeam(user, project, contribution)
+        } else {
+            mandrillService.contributionEmailToCampaignOwnerOrTeam(user, project, contribution)
+        }
+    }
+    
+    def isContributionBelongsToCurrentTeam(def contribution, def user, def project) {
+        Team team = Team.findByProjectAndUser(project, user)
+        if(team) {
+            def contributions = team.contributions
+            if(contributions.contains(contribution)) {
+                return true
+            }
+        }
+        return false
     }
     
     @Transactional

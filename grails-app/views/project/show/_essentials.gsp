@@ -1,6 +1,7 @@
 <%
 	def base_url = grailsApplication.config.crowdera.BASE_URL
 	def beneficiary = project.user
+	def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
 	def username
 	if (user) {
 	    username = user.username
@@ -8,12 +9,19 @@
 	    username = beneficiary.username
 	}
 	def projectimages = projectService.getProjectImageLinks(project)
+	def teamimages = projectService.getTeamImageLinks(currentTeam)
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
+	
 %>
 <div class="col-md-12">
 	<div class="row">
 		<div class="blacknwhite campaignupdatedimages" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
-	        <g:render template="/project/manageproject/projectimagescarousel" model="['images': projectimages]"/>
+		    <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
+	            <g:render template="/project/manageproject/projectimagescarousel" model="['images': projectimages]"/>
+	        </g:if>
+	        <g:else>
+                <g:render template="/project/manageproject/projectimagescarousel" model="['images': teamimages]"/>
+	        </g:else>
 	    </div>
 	</div>
     <br>
@@ -39,7 +47,12 @@
                 <h3 class="panel-title">Campaign Description</h3>
             </div>
             <div class="panel-body descript">
-                <span class="text-left">${raw(project.description)}</span>
+                <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
+                    <span class="text-left">${raw(project.description)}</span>
+                </g:if>
+                <g:else>
+                    <span class="text-left">${raw(currentTeam.description)}</span>  
+                </g:else>
             </div>
         </div>
         <div class="panel panel-default show-comments-details">
@@ -47,7 +60,12 @@
                 <h3 class="panel-title">Campaign Story</h3>
             </div>
             <div class="panel-body project-description">
-                <span class="text-centre project-story-span">${raw(project.story)}</span>
+                <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
+                   <span class="text-centre project-story-span">${raw(project.story)}</span>
+                </g:if>
+                <g:else>
+                   <span class="text-centre project-story-span">${raw(currentTeam.story)}</span>
+                </g:else>
             </div>
         </div>  
     </div>
@@ -55,7 +73,12 @@
     <div class="row">
         <g:if test="${project.videoUrl}">
             <div id="youtubeVideoUrl">
-                ${project.videoUrl}
+                <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
+                    ${project.videoUrl}
+                </g:if>
+                <g:else>
+                    ${currentTeam.videoUrl}
+                </g:else>
 	        </div>
 	        <div class="video-container" id="youtube">
 	        </div>

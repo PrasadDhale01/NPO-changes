@@ -12,6 +12,7 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.model.S3Bucket
 import org.jets3t.service.model.S3Object
 import org.jets3t.service.security.AWSCredentials
+import java.text.SimpleDateFormat
 
 import crowdera.Beneficiary;
 import crowdera.ImageUrl;
@@ -155,6 +156,16 @@ class ProjectController {
         imageUrlId.delete()
         render ''
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def deleteTeamImage(){
+		def imageUrlId = ImageUrl.get(request.getParameter("imgst"))
+		def teamId = Team.get(request.getParameter("teamId"))
+		List imageUrl = teamId.imageUrl
+		imageUrl.remove(imageUrlId)
+		imageUrlId.delete()
+		render ''
+	}
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def deleteOrganizationLogo(){
@@ -721,13 +732,14 @@ class ProjectController {
     def addFundRaiser(){
         def project = Project.get(params.id)
         User user = userService.getCurrentUser()
+        def fundraiser = user.username
         def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
         def message = projectService.getFundRaisersForTeam(project, user)
         flash.prj_mngprj_message = message
         if (iscampaignAdmin) {
             render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
         } else {
-            render (view: 'show/index', model: [project: project, user: user, FORMCONSTANTS: FORMCONSTANTS])
+            redirect (action: 'show', id: project.id, params:[fr: fundraiser])
         }
     }
 
@@ -755,12 +767,21 @@ class ProjectController {
 		def project = Project.get(params.project)
 		def user = userService.getCurrentUser()
 		def fundRaiser = user.username
-		if(params.amount) {
+		if(params) {
 			def amount = Double.parseDouble(params.amount)
 			if(amount <= project.amount){
 				team.amount = amount
-				flash.message = "Goal Updated Successfully"
 			}
+			println params
+			def imageFiles = request.getFiles('imagethumbnail')
+			if(!imageFiles.isEmpty()) {
+				projectService.getMultipleImageUrlsForTeam(imageFiles, team)
+			}
+			
+			team.videoUrl = params.videoUrl
+			team.story = params.story
+			team.description = params.description
+			flash.teamUpdatemessage = "Team Updated Successfully"
 		}
 		redirect (action: 'show', id: project.id , params:[fr: fundRaiser], fragment: 'manageTeam')
 	}
@@ -792,7 +813,7 @@ class ProjectController {
 		}
         
         if (!params.ismanagepage) {
-		    redirect (action: 'show', id: params.id, params:[fr: fundRaiser], fragment: 'manageTeam')
+	    redirect (action: 'show', id: params.id, params:[fr: fundRaiser], fragment: 'comments')
         } else {
             redirect (action: 'manageproject', id: params.id, params:[fr: fundRaiser], fragment: 'manageTeam')
         }
@@ -827,5 +848,94 @@ class ProjectController {
                 model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])
         }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def contributiondelete() {
+        def contribution = Contribution.get(params.id)
+        def project = Project.get(params.projectId)
+        def fundraiser = params.fr
+        def fundRaiser = User.findByUsername(fundraiser)
+        Team team = Team.findByProjectAndUser(project, fundRaiser)
+        if (team) {
+            List teamContributions = team.contributions
+            teamContributions.remove(contribution)
+        }
+        
+        List contributions = project.contributions
+        contributions.remove(contribution)
+        
+        contribution.delete();
+        
+        if (params.manageCampaign) {
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', id: project.id)
+        } else {
+            redirect (controller: 'project', action: 'show',fragment: 'contributions', id: project.id, params:[fr: fundraiser])
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def contributionedit() {
+        def contribution = Contribution.get(params.id)
+        def project = Project.get(params.projectId)
+        def fundraiser = params.fr
+        def fundRaiser = User.findByUsername(fundraiser)
+        contribution.contributorName = params.contributorName
+        contribution.amount = Double.parseDouble(params.amount)
+        
+        if (params.manageCampaign) {
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', id: project.id)
+        } else {
+            redirect (controller: 'project', action: 'show',fragment: 'contributions', id: project.id, params:[fr: fundraiser])
+        }
+    }
+
+    def generateCSV(){
+        List contributions=[]
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+
+        def projectId= params.projectId
+        def project = Project.get(projectId)
+
+        def teamId = params.teamId
+        def team = Team.get(teamId)
+
+        if(team!=null){
+                if(project.user==team.user){
+                    contributions=project.contributions
+                }else{
+                    contributions=team.contributions
+                }
+        }else{
+                contributions=project.contributions
+        }
+
+        response.setHeader("Content-disposition", "attachment; filename=CSV_report.csv")
+        def results=[]
+        def  contributorName
+        def payMode
+        contributions.each{
+
+            if(it.isContributionOffline){
+                payMode="offline"
+                contributorName= it.contributorName
+            }else{
+                payMode="Online"
+                contributorName= it.user.firstName 
+            }
+            def rows = [it.project.title,  dateFormat.format(it.date), contributorName, it.amount, payMode]
+            results << rows
+        }
+            
+        def result='CAMPAIGN TITLE, DATE, CONTRIBUTOR, AMOUNT, MODE, \n'
+        results.each{ row->
+            row.each{
+            col -> result+=col +','
+            }
+            result = result[0..-2]
+            result+="\n"
+        }
+            
+        render (contentType:"text/csv", text:result)            
     }
 }

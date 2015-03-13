@@ -3,6 +3,8 @@ $(function() {
     /***************Hide/Show label******************************/
     hideShowLabel();
     changeTeamStatus();
+    $('#editimg').hide();
+    $('#ytVideo').hide();
 
     var hash = window.location.hash;
     hash && $('ul.nav a[href="' + hash + '"]').tab('show');
@@ -64,6 +66,63 @@ $(function() {
     			maxlength: 5000
     		}
     	}
+    });
+    
+    $('#offlineContributionModal').find('form').validate({
+        rules: {
+            contributorName1: {
+                required: true,
+                minlength: 3
+            },
+            amount1: {
+                required: true,
+                number: true
+            },
+            amount2: {
+                number: true
+            },
+            amount3: {
+                number: true
+            }
+        }
+    });
+    
+    $('.contributionedit').find('form').validate({
+    	rules: {
+    		contributorName: {
+                required: true,
+                minlength: 3
+            },
+            amount: {
+                required: true,
+                number: true
+            }
+    	}
+    });
+
+    $("#offlineAmount").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            $("#errormsg").html("Digits Only").show().fadeOut("slow");
+            return false;
+        }
+    });
+    $("#offlineAmount1").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            $("#errormsg1").html("Digits Only").show().fadeOut("slow");
+            return false;
+        }
+    });
+    $("#offlineAmount2").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            $("#errormsg2").html("Digits Only").show().fadeOut("slow");
+            return false;
+        }
+    });
+    $("#offlineAmount3").keypress(function (e) {
+        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+            $("#errormsg3").html("Digits Only").show().fadeOut("slow");
+            return false;
+        }
     });
     
     $.validator.addMethod('islessThanProjectAmount', function (value, element) {
@@ -187,6 +246,65 @@ $(function() {
             $('#youtube').html('<iframe width="560" height="315" src="//www.youtube.com/embed/' + value + '" frameborder="0" allowfullscreen></iframe>');
         }
     });
+    
+    /**************************************Edit team*******************************************/
+    
+    /** *************************Multiple Image Selection*************** */
+
+    $('#projectImageFile').change(function(event) {
+        var file =this.files[0];
+        if(!file.type.match('image')){
+            $('.pr-thumbnail-div').hide();
+            $('#imgmsg').show();
+            this.value=null;
+        }else{
+            $('#imgmsg').hide();
+            var files = event.target.files; // FileList object
+            var output = document.getElementById("result");
+            for ( var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var filename = file.name;
+                var picReader = new FileReader();
+                picReader.addEventListener("load",function(event) {
+                    var picFile = event.target;
+                    var div = document.createElement("div");
+                    div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"+ picFile.result+ "'"+ "title='"
+                        + file.name + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"/images/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"+ "</div>";
+                        output.insertBefore(div, null);
+                    });
+                // Read the image
+                picReader.readAsDataURL(file);
+            }
+        }
+    });
+    
+    /*************************Edit video for team*************************/
+    
+    $('#videoUrl').focus(function(){
+        var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+           var url= $('#videoUrl').val().trim();
+           var match = url.match(regExp);
+         
+           if (match && match[2].length == 11) {
+               $('#ytVideo').show();
+               var vurl=url.replace("watch?v=", "v/");
+               $('#ytVideo').attr('src',vurl);
+           }else if($(this).val('')){
+               $('#ytVideo').hide();
+           }
+      }).change(function(){
+           var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+           var url= $('#videoUrl').val().trim();
+           var match = url.match(regExp);
+         
+           if (match && match[2].length == 11) {
+               $('#ytVideo').show();
+               var vurl=url.replace("watch?v=", "v/");
+               $('#ytVideo').attr('src',vurl);
+           }else if($(this).val('')){
+               $('#ytVideo').hide();
+           }
+      });
 
 });
 

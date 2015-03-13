@@ -41,10 +41,10 @@ class LoginController {
             
             if (!user.save()) {
                 render(view: 'error', model: [message: 'Problem in saving your details'])
-           } else {
-                render(view: 'success', model: [message: 'Your request has been send to admin.'])
+        } else {
+            render(view: 'success', model: [message: 'Your request has been send to admin.'])
                 
-                mandrillService.sendUserResponseToUserRequest(user)
+            mandrillService.sendUserResponseToUserRequest(user)
             }
         }           
     } 
@@ -70,7 +70,7 @@ class LoginController {
         render(view: '/user/admin/dashboard')
         return (invite_user)
     }  
-
+	
     def create() {
         if (User.findByUsername(params.username)) {
             render(view: 'error', model: [message: 'A user with that email already exists. Please use a different email.'])
@@ -79,15 +79,15 @@ class LoginController {
             user.enabled = false
             user.confirmCode = UUID.randomUUID().toString()
 			
-			if(params.name){
-				StringTokenizer tokenizer = new StringTokenizer(params.name)
-				if (tokenizer.hasMoreTokens()) {
-					user.firstName = tokenizer.nextToken()
-				}
-				if (tokenizer.hasMoreTokens()) {
-					user.lastName = tokenizer.nextToken()
-				}
-			}
+	    if(params.name){
+	        StringTokenizer tokenizer = new StringTokenizer(params.name)
+		if (tokenizer.hasMoreTokens()) {
+		user.firstName = tokenizer.nextToken()
+	        }
+		if (tokenizer.hasMoreTokens()) {
+		    user.lastName = tokenizer.nextToken()
+		}
+	    }
 
             if (!user.save()) {
                 render(view: 'error', model: [message: 'Problem creating user. Please try again.'])
@@ -223,7 +223,9 @@ class LoginController {
         if (!user) {
             // TBD: We might not want to give any hint on existing users
             render(view: 'error', model: [message: 'A user with that email does not exist. Please use a registered email.'])
-        } else {
+        } else if(user.enabled == false) {
+		    render(view: 'error', model: [message: 'Email is not verified. Please complete the registration process.'])
+		} else {
             user.resetCode = UUID.randomUUID().toString()
             user.save()
            

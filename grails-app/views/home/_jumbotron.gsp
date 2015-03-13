@@ -1,4 +1,5 @@
 <g:set var="redirectToCreatePage" value="${redirectFromUrl}/projects/create"/>
+<g:set var="userService" bean="userService"/>
 <%  def base_url = grailsApplication.config.crowdera.BASE_URL %>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
@@ -13,6 +14,10 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
+            <g:if test="${userService.isLoggedIn()}">
+                <img src="/images/sliderWithoutReg.jpg">
+            </g:if>
+            <g:else>
             <img src="/images/Slider1.jpg">
             <div class="carousel-caption">
                 <div class="fbButton">
@@ -39,6 +44,7 @@
                	    </div>
                 </g:form>
             </div>
+            </g:else>
         </div>
         <div class="item ">
             <img src="/images/girlComputerSlider.jpg" >
@@ -58,10 +64,10 @@
     <!-- Controls -->
     <div id="navigators" style="display: none">
 	    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-	        <span class="glyphicon glyphicon-chevron-left"></span>
+	        <span class="glyphicon glyphicon-chevron-left arrow-mobile arrow-top"></span>
 	    </a>
 	    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-	        <span class="glyphicon glyphicon-chevron-right"></span>
+	        <span class="glyphicon glyphicon-chevron-right arrow-mobile-css arrow-top"></span>
 	    </a>
     </div>
 </div>

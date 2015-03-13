@@ -7,30 +7,34 @@
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def fundRaiserName
-	def beneficiary = project.user
+    def beneficiary = project.user
     def username
-	def currentFundraiser
+    def currentFundraiser
     if (user) {
-		currentFundraiser = user
-	    def fundRaiser = user.firstName + " " + user.lastName
-	    fundRaiserName = fundRaiser.toUpperCase()
-	    username = user.username
+	currentFundraiser = user
+	def fundRaiser = user.firstName + " " + user.lastName
+	fundRaiserName = fundRaiser.toUpperCase()
+	username = user.username
     } else {
-	    currentFundraiser = beneficiary
-	    def fundRaiser = beneficiary.firstName + " " + beneficiary.lastName
-	    fundRaiserName = fundRaiser.toUpperCase()
-	    username = beneficiary.username
-	}
-	def projectTitle = project.title
-	if (projectTitle) {
-		projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
-	}
+       currentFundraiser = beneficiary
+       def fundRaiser = beneficiary.firstName + " " + beneficiary.lastName
+	fundRaiserName = fundRaiser.toUpperCase()
+	username = beneficiary.username
+    }
+    def projectTitle = project.title
+    if (projectTitle) {
+	projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
+    }
 	
-	def imageUrl = project.imageUrl
-	if (imageUrl) {
-		imageUrl = project.imageUrl[0].getUrl()
-	}
+    def imageUrl = project.imageUrl
+    if (imageUrl) {
+	imageUrl = project.imageUrl[0].getUrl()
+    }
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
+    def currentTeamAmount = projectService.getCurrentTeamAmount(project,currentFundraiser)
+    def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
+    def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
+    def teamPercentage = contributionService.getPercentageContributionForTeam(currentTeam)
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -47,6 +51,24 @@
 	
 	<meta name="layout" content="main" />
 	<r:require modules="projectshowjs"/>
+	
+	<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
+	<script>
+	tinymce.init({
+	    mode : "specific_textareas",
+	    menubar: "edit insert view format",
+        editor_selector : "mceEditor",
+	    plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak emoticons",
+        ],
+        toolbar: "| undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image forecolor backcolor emoticons",
+        image_advtab: true,
+        templates: [
+           {title: 'Test template 1', content: 'Test 1'},
+           {title: 'Test template 2', content: 'Test 2'}
+        ]
+    });
+	</script>
 </head>
 <body>
 <div class="feducontent">
@@ -56,6 +78,11 @@
              	<g:if test="${flash.prj_mngprj_message}">
                     <div class="alert alert-success show-msz" align="center">
                         ${flash.prj_mngprj_message}
+                    </div>
+                </g:if>
+                <g:if test="${flash.teamUpdatemessage}">
+                    <div class="alert alert-success show-msz" align="center">
+                        ${flash.teamUpdatemessage}
                     </div>
                 </g:if>
                 <g:if test="${user || beneficiary}">
@@ -111,7 +138,7 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="essentials">
-                            <g:render template="show/essentials"/>
+                            <g:render template="show/essentials" model="['currentFundraiser':currentFundraiser]"/>
                         </div>
                         <div class="tab-pane" id="projectupdates">
                             <g:render template="show/projectupdates"/>
@@ -120,7 +147,7 @@
 							<g:render template="show/manageteam" model="['currentFundraiser':currentFundraiser]"/>
 						</div>
                         <div class="tab-pane" id="contributions">
-                            <g:render template="show/contributions"/>
+                            <g:render template="show/contributions" model="['team':currentTeam]"/>
                         </div>
                         <div class="tab-pane" id="comments">
                             <g:render template="show/comments"/>
@@ -163,8 +190,8 @@
 				    
                 </div>
                 <div class="col-md-4 mobileview-bottom">
-					<g:render template="/layouts/organizationdetails"/>
-                    <g:render template="/layouts/tilesanstitle"/>
+		     <g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentFundraiser]"/>
+                    <g:render template="/layouts/tilesanstitle" model="['currentFundraiser':currentFundraiser,'currentTeam':currentTeam,'currentTeamAmount':currentTeamAmount,'teamContribution':teamContribution]"/>
                     <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
                     </g:if>

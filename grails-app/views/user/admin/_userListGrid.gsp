@@ -4,5 +4,5 @@
 %>
 
 <% while(index < count) { %>
-   <g:render template="admin/userListView" model="['users': users.get(index++)]"></g:render>
+   <g:render template="admin/userListView" model="['users': users.get(index++),index:index]"></g:render>
 <% } %>

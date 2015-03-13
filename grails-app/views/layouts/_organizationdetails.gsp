@@ -2,15 +2,19 @@
 <g:set var="userService" bean="userService"/>
 <% 
     def beneficiary = project.user
-	boolean ended = projectService.isProjectDeadlineCrossed(project)
-	def currentUser = userService.getCurrentUser()
-	def isteamexist = userService.isTeamEnabled(project, currentUser)
+    boolean ended = projectService.isProjectDeadlineCrossed(project)
+    def isteamexist = userService.isTeamEnabled(project, currentFundraiser)
     def webUrl = projectService.getWebUrl(project)
-	def percentage = contributionService.getPercentageContributionForProject(project)
+    def percentage = contributionService.getPercentageContributionForProject(project)
 %>
 <div class="panel panel-default">
     <div class="panel-heading">
-   		Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
+       <g:if test="${currentFundraiser == beneficiary}">
+   	    Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
+   	</g:if>
+   	<g:else>
+   	    Benefited by ${beneficiary.firstName} ${beneficiary.lastName}
+   	</g:else>
 <%--        <g:if test="${isFundingOpen}">--%>
 <%--            <h3 class="panel-title">Fund this project</h3>--%>
 <%--        </g:if>--%>
@@ -65,7 +69,7 @@
 			</div>
 		</g:elseif>
 	    <g:elseif test="${isteamexist}">
-	        <g:if test="${currentUser == beneficiary}">
+	        <g:if test="${currentFundraiser == beneficiary}">
 	            <div class="tilesanstitletag  banner-wid">
 					<img src="/images/Owner-Bottom.png">
 				</div>

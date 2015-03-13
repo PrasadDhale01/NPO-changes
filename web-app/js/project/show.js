@@ -76,13 +76,9 @@ $(function() {
             },
             amount1: {
                 required: true,
-                number: true
-            },
-            amount2: {
-                number: true
-            },
-            amount3: {
-                number: true
+                number: true,
+                maxlength: 5,
+                min: 1
             }
         }
     });
@@ -95,7 +91,9 @@ $(function() {
             },
             amount: {
                 required: true,
-                number: true
+                number: true,
+                maxlength: 5,
+                min: 1
             }
     	}
     });
@@ -109,18 +107,6 @@ $(function() {
     $("#offlineAmount1").keypress(function (e) {
         if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
             $("#errormsg1").html("Digits Only").show().fadeOut("slow");
-            return false;
-        }
-    });
-    $("#offlineAmount2").keypress(function (e) {
-        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-            $("#errormsg2").html("Digits Only").show().fadeOut("slow");
-            return false;
-        }
-    });
-    $("#offlineAmount3").keypress(function (e) {
-        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-            $("#errormsg3").html("Digits Only").show().fadeOut("slow");
             return false;
         }
     });

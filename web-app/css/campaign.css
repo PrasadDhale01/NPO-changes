@@ -15,7 +15,7 @@
 .offlineContributionModal >input {
     border-radius: 3px;
 }
-#errormsg1,#errormsg2, #errormsg3{
+#errormsg1{
     color: red;
 }
 .contribution-seperator {

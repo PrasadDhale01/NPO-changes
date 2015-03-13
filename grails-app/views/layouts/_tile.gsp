@@ -26,6 +26,12 @@ Expects the parent containers to be like so:
     def amount = projectService.getDataType(project.amount)
     def username = project.user.username
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+    def cents
+    if(percentage >= 100) {
+        cents = 100
+    } else {
+        cents = percentage
+    }
 %>
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow tile-pad">
@@ -64,7 +70,7 @@ Expects the parent containers to be like so:
     <div class="modal-footer tile-footer tile-fonts-footer">
         <div class="row">
             <div class="col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1 progress-pie-chart" data-percent="43">
-				<div class="c100 p${percentage} small text-center">
+				<div class="c100 p${cents} small text-center">
                     <span>${percentage}%</span>
                     <div class="slice">
                         <div class="bar"></div>

@@ -1085,8 +1085,8 @@ footer .footerbottomsection {
 .navbar-default .dropdown-menu {
     background-color: #FDFCFB !important;
     border-style: solid;
-	border-color: #ff784f !important;
-	border-width: 1px;
+    border-color: #ff784f !important;
+    border-width: 1px;
 }
 
 .navbar-default .dropdown-menu > li > a, .navbar-default .dropdown-menu > li > a:focus {
@@ -3129,12 +3129,12 @@ textarea.form-control {
 		width: 301px !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown.dropdown-menu-head {
-        margin-top: 0px !important;
-    }
-    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        	margin-top: 0px !important;
+    	}
+    	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
 		color: #ff784f !important;
-    }
-    .user-img span {
+    	}
+    	.user-img span {
 		padding-left: 10px;
 		padding-bottom: 10px;
 	}

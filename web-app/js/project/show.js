@@ -305,6 +305,24 @@ $(function() {
                $('#ytVideo').hide();
            }
       });
+    
+    /* Show pop-over tooltip on hover for some fields. */
+    var showPopover = function () {
+            $(this).popover('show');
+        },
+        hidePopover = function () {
+            $(this).popover('hide');
+        };
+
+    /* Initialize pop-overs (tooltips) */
+    $("button[name='contributeButton']").popover({
+        content: 'Contributions are not possible to this campaign at this time.',
+        trigger: 'manual',
+        placement: 'top'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
 
 });
 

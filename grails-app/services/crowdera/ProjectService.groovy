@@ -694,7 +694,18 @@ class ProjectService {
         if(imageUrls == []){
             imageUrls.add('http://lorempixel.com/400/400/abstract')
         }
-        return imageUrls
+        if(project.videoUrl){
+            def regex =/^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+            def vidUrl=project.getVideoUrl()
+            def match = vidUrl.matches(regex);
+            if(match){
+                def vurl=vidUrl.replace("watch?v=", "embed/");
+                imageUrls.add(vurl)
+                return imageUrls
+            }
+        }else{
+             return imageUrls
+        }
     }
 	
 	def getTeamImageLinks(Team team) {
@@ -712,7 +723,18 @@ class ProjectService {
 		if(imageUrls == []){
 			imageUrls.add('http://lorempixel.com/400/400/abstract')
 		}
-		return imageUrls
+		if(team.videoUrl){
+            def regex =/^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+            def teamVideoUrl=team.getVideoUrl()
+            def match = teamVideoUrl.matches(regex);
+            if(match){
+                def tvurl=teamVideoUrl.replace("watch?v=", "embed/");
+                imageUrls.add(tvurl)
+                return imageUrls
+            }
+         }else{
+            return imageUrls
+         }
 	}
 
     def getProjectUpdatedImageLink(def projectUpdate) {

@@ -22,14 +22,30 @@
         	<g:if test="${count == 1}">
         		<div class="item active">
 		        	<div class="blacknwhite manage-carousel-in">
-			            <a href="#"><img alt="" class="imagestyle" src="${img}"></a>
+			            <g:if test="${img.toString().contains('.jpg') }">
+                                    <img class="imagestyle" src="${img}">
+                         </g:if>
+                         <g:elseif test="${img.toString().contains('.png')}">
+                                    <img class="imagestyle" src="${img}">
+                         </g:elseif>
+                         <g:else>
+                                    <iframe class="imagestyle" src="${img}" allowfullscreen="" frameborder="0"></iframe>
+                         </g:else>
 				    </div>
         		</div>
         	</g:if>
         	<g:else>
 	        	<div class="item">
 		        	<div class="blacknwhite manage-carousel-in">
-			            <a herf="#"><img alt="" class="imagestyle" src="${img}"></a>
+			            <g:if test="${img.toString().contains('.jpg') }">
+                                        <img class="imagestyle" src="${img}">
+                         </g:if>
+                         <g:elseif test="${img.toString().contains('.png')}">
+                                        <img class="imagestyle" src="${img}">
+                         </g:elseif>
+                         <g:else>
+                                        <iframe class="imagestyle" src="${img}" allowfullscreen="" frameborder="0"></iframe>
+                         </g:else>
 				    </div>
 	        	</div>
         	</g:else>

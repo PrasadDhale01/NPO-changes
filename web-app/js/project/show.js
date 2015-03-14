@@ -40,16 +40,6 @@ $(function() {
     	}
     });
     
-    $('#editFundraiser').find('form').validate({
-    	rules: {
-    		amount: {
-    			required: true,
-    			maxlength: 5,
-    			islessThanProjectAmount : true
-    		}
-    	}
-    });
-    
     $('#commentForm').find('form').validate({
     	rules: {
     		comment: {
@@ -109,25 +99,6 @@ $(function() {
             $("#errormsg1").html("Digits Only").show().fadeOut("slow");
             return false;
         }
-    });
-    
-    $.validator.addMethod('islessThanProjectAmount', function (value, element) {
-    	var amountRaised = value;
-        var projectAmount = $("#projectAmount").val();
-        if (parseFloat(amountRaised) > parseFloat(projectAmount)) {
-        	 return (parseFloat(amountRaised) <= parseFloat(projectAmount)) ? amountRaised : false;
-        }
-        return true;
-    },"Team goal can not be greater than project goal.");
-    
-    //called when key is pressed in textbox
-    $("#teamamount").keypress(function (e) {
-           //if the letter is not digit then display error and don't type anything
-           if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-               //display error message
-               $("#errormsg").html("Digits Only").show().fadeOut("slow");
-           return false;
-       } 
     });
     
     function validateEmail(field) {
@@ -235,7 +206,57 @@ $(function() {
     
     /**************************************Edit team*******************************************/
     
-    /** *************************Multiple Image Selection*************** */
+    $('#editFundraiser').find('form').validate({
+        rules: {
+            amount: {
+                required: true,
+                maxlength: 5,
+                islessThanProjectAmount : true
+            },
+            description: {
+                required: true,
+                minlength: 10,
+                maxlength: 140
+            },
+            story: {
+                required: true,
+                minlength:10,
+                maxlength: 5000
+            },
+            videoUrl: {
+                isYoutubeVideo: true
+            }
+        }
+    });
+    
+    $.validator.addMethod('islessThanProjectAmount', function (value, element) {
+    	var amountRaised = value;
+        var projectAmount = $("#projectAmount").val();
+        if (parseFloat(amountRaised) > parseFloat(projectAmount)) {
+        	 return (parseFloat(amountRaised) <= parseFloat(projectAmount)) ? amountRaised : false;
+        }
+        return true;
+    },"Team goal can not be greater than project goal.");
+    
+    //called when key is pressed in textbox
+    $("#teamamount").keypress(function (e) {
+           //if the letter is not digit then display error and don't type anything
+           if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+               //display error message
+               $("#errormsg").html("Digits Only").show().fadeOut("slow");
+           return false;
+       } 
+    });
+    
+    $.validator.addMethod('isYoutubeVideo', function (value, element) {
+        if(value && value.length !=0){
+           var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+           return (value.match(p)) ? RegExp.$1 : false;
+        }
+        return true;
+     }, "Please upload a url of Youtube video");
+    
+    /***************************Multiple Image Selection*************** */
 
     $('#projectImageFile').change(function(event) {
         var file =this.files[0];
@@ -291,6 +312,79 @@ $(function() {
                $('#ytVideo').hide();
            }
       });
+    
+    /*******************************Description text length*********************/
+        var counter = 1;
+        $('#descarea').on('keydown', function(event) {
+            event.altKey==true;
+            var currentString = $('#descarea').val().length;
+            if(currentString <=139) {
+                var text = currentString + 1;
+            }
+            if (event.keyCode > 31) {
+               if(event.altKey==true){
+                   setDescriptionText();
+               } else {
+                   currentString++;
+                   $('#desclength').text(text);
+               } 
+            } else {
+               currentString--;
+                $('#desclength').text(text);
+            }
+        }).keyup(function(e) {
+        
+            if(e.altKey==true){
+                setDescriptionText();
+                return false;
+            }
+    
+            switch (e.keyCode) {
+    
+                case 13:      //Enter
+                case 8:       //backspace
+                case 46:      //delete
+                case 17:      
+                case 27:      //escape
+                case 10:      //new line
+                case 20:      
+                case 9:       //horizontal TAB
+                case 11:      //vertical tab
+                case 33:      //page up  
+                case 34:      //page  down
+                case 35:      //End 
+                case 36:      //Home
+                case 37:      //Left arrow
+                case 38:      //up arrow
+                case 39:      //Right arrow
+                case 40:      //Down arrow
+                case 45:      //Insert
+                case 12:      //vertical tab
+                    setDescriptionText();
+                    break;
+                case 16:      //shift
+                    setDescriptionText();
+                    break;
+           }
+        }).focus(function(){
+            setDescriptionText();
+        }).focusout(function(){
+            setDescriptionText();
+        });
+    
+        function setDescriptionText(){
+       
+            var currentString = $('#descarea').val().length;
+            if (currentString == 0) {
+                $('#desclength').text("0");
+            } else {
+                currentString = currentString;
+                $('#desclength').text(currentString);
+            }
+        }
+        
+        /**************************************End of Edit team*******************************************/
+        
     
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {

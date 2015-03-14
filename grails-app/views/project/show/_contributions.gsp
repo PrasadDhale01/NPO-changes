@@ -73,33 +73,6 @@
                             <div id="errormsg1"></div>
                         </div>
                         <div class="clear"></div>
-                        <div class="col-sm-8">
-                            <div class="form-group">
-                                <label class="text" for="title">Display Name</label>
-                                <input type="text" class="form-control contributioninput" name="contributorName2"/>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="title" class="text">Amount</label>
-                                <input type="text" class="form-control contributioninput" name="amount2" id="offlineAmount2"/>
-                            </div>
-                            <div id="errormsg2"></div>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="col-sm-8">
-                            <div class="form-group">
-                                <label class="text" for="title">Display Name</label>
-                                <input type="text" class="form-control contributioninput" name="contributorName3"/>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="title" class="text">Amount</label>
-                                <input type="text" class="form-control contributioninput" name="amount3" id="offlineAmount3"/>
-                            </div>
-                            <div id="errormsg3"></div>
-                        </div>
                     </div>
                     <div class="clear"></div>
                     <div class="modal-footer">

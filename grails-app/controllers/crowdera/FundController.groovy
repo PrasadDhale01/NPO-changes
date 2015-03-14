@@ -471,25 +471,23 @@ class FundController {
         def fundraiser = params.fr
         def fundRaiser = User.findByUsername(fundraiser)
         def username = fundRaiser.username
-        for(int i = 1; i <= 3 ; i++) {
-            def amount = params.("amount"+i)
-            def contributorName = params.("contributorName"+i)
-            if (amount && contributorName) {
-                Contribution contribution = new Contribution(
-                    date: new Date(),
-                    user: user,
-                    reward: reward,
-                    amount: amount,
-                    contributorName: contributorName,
-                    isContributionOffline: true
-                )
-                project.addToContributions(contribution).save(failOnError: true)
+        def amount = params.amount1
+        def contributorName = params.contributorName1
+        if (amount && contributorName) {
+            Contribution contribution = new Contribution(
+                date: new Date(),
+                user: user,
+                reward: reward,
+                amount: amount,
+                contributorName: contributorName,
+                isContributionOffline: true
+            )
+            project.addToContributions(contribution).save(failOnError: true)
 
-                if(project.teams) {
-                    Team team = Team.findByUserAndProject(fundRaiser,project)
-                    if (team) {
-                        team.addToContributions(contribution).save(failOnError: true)
-                    }
+            if(project.teams) {
+                Team team = Team.findByUserAndProject(fundRaiser,project)
+                if (team) {
+                    team.addToContributions(contribution).save(failOnError: true)
                 }
             }
         }

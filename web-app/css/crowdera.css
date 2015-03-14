@@ -464,16 +464,16 @@ footer .flinks a {
 }    
 @media only screen and (max-width: 640px) {
     .divFirstAdmin.lowRes.highRes {
-		margin-left: -32px !important;
-		width: 105% !important;
-		margin-left: 10px !important;
-	}
-	.divSecondAdmin {
-		margin-left: 15px !important;
-	}
-	.divThirdAdmin {
-		margin-left: -29px !important;
-	}
+	margin-left: -32px !important;
+	width: 105% !important;
+	margin-left: 10px !important;
+     }
+     .divSecondAdmin {
+	margin-left: 15px !important;
+     }
+     .divThirdAdmin {
+	margin-left: -29px !important;
+     }
     .clientpart .col-md-8 {
         width: 100%;
         padding: 20px 0;
@@ -2749,8 +2749,8 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 480px) and (max-width: 481px){
-	.tbFirstAdmin{
-	    padding-left:7px;
+    .tbFirstAdmin{
+	padding-left:7px;
         width:91% !important;
     }
     
@@ -2764,18 +2764,18 @@ textarea.form-control {
     }
     
     .divFirstAdmin.lowRes.highRes {
-		width: 108% !important;
-		margin-left: 0%!important;
-	}
+	width: 108% !important;
+	margin-left: 0%!important;
+     }
 	
-	.divSecondAdmin {
-		margin-left: 1% !important;
-		width: 98%;
-	}
+     .divSecondAdmin {
+	margin-left: 1% !important;
+	width: 98%;
+     }
 	
-	.divThirdAdmin {
-		margin-left: -36px !important;
-	}
+     .divThirdAdmin {
+	margin-left: -36px !important;
+     }
 }
 
 @media only screen and (max-width: 479px){

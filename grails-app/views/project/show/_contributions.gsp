@@ -54,9 +54,9 @@
                             <h4 class="heading">ENTER OFFLINE CONTRIBUTION</h4>
                         </div>
                         <div class="col-sm-12 margin">
-                            <p class="justify text-paragraph">If your friends donate by check or hand you a pile of cash or a stack of casino chips,
-                                you can enter their name and donation amount below and the donor will show up in your donations scroll and everyone will be happy.
-                                If you want to enter checks in bulk, just make the Display Name say something like "Offline Donations."
+                            <p class="justify text-paragraph">We understand that not all your friends will contribute online. 
+                            Give your offline contributors due credit by listing their name and contribution amount below. 
+                            The offline contributions will be listed under the contribution tab on your campaign. Each cent counts to make a campaign successful! 
                             </p>
                         </div>
                         <div class="col-sm-8">

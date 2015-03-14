@@ -33,8 +33,8 @@
                     <li><g:link controller="login" action="register">Register</g:link></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
-                    <li class="dropdown dropdown-head">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img">
+                        <a href="#" class="dropdown-toggle login" data-toggle="dropdown">
                             <g:if test="${userService.isFacebookUser()}">
                                 <i class="fa fa-facebook-square"></i>
                             </g:if>
@@ -48,15 +48,15 @@
                                 <i class="fa fa-users"></i>
                             </g:elseif>
                             <g:else>
-                                <span class="glyphicon glyphicon-user"></span>&nbsp;
+                                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span> <%--note: Span is using in dropdown --%>
                             </g:else>
-                            ${userService.getFriendlyName()}&nbsp;
-                            <b class="caret"></b>
+                            	${userService.getFriendlyName()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            	<span class="user-cl"></span>
                         </a>
                             <g:if test="${userService.isAdmin()}">
-                                <ul class="dropdown-menu admin  admin-dropdown dropdown-menu-head">
+                                <ul class="dropdown-menu admin  admin-dropdown dropdown-menu-head admin-selected-drop">
                                 <li><g:link controller="user" action="dashboard">
-                                        <span class="glyphicon glyphicon-cog"></span>&nbsp; Settings
+                                       <img class="img-circle" src="/images/dropdown-setting.png" alt="Generic placeholder image">&nbsp; Settings
                                 </g:link></li>
                                 <sec:ifAllGranted roles="ROLE_AUTHOR">
                                     <li><g:link controller="blog" action="manage">
@@ -68,23 +68,23 @@
                                 </sec:ifAllGranted>
                                 <li class="divider"></li>
                                 <li><g:link controller="logout">
-                                        <span class="glyphicon glyphicon-off"></span> Log out
+                                        <img class="img-circle" src="/images/dropdown-Logout.png" alt="Generic placeholder image">&nbsp; Log out
                             </g:link></li>
                             </ul>
                             </g:if>
                             <g:else>
-                            <ul class="dropdown-menu usr user-dropdown dropdown-menu-head">
+                            <ul class="dropdown-menu usr user-dropdown dropdown-menu-head user-selected-drop">
                             <li><g:link class="myprojects" controller="user"
                                     action="myproject">
-                                    <span class="glyphicon glyphicon-off"></span>&nbsp; My Campaigns
+                                   <img class="img-circle" src="/images/dropdown-My-Campaigns.png" alt="Generic placeholder image">&nbsp;&nbsp;&nbsp;&nbsp; My Campaigns
                             </g:link></li>
 
                             <li><g:link class="mycontributions" controller="user"
                                     action="mycontribution">
-                                    <span class="glyphicon glyphicon-off"></span>&nbsp; My Contributions
+                                   <img class="img-circle" src="/images/dropdown-My-Contributions.png" alt="Generic placeholder image">&nbsp;&nbsp;&nbsp;&nbsp; My Contributions
                             </g:link></li>
                             <li><g:link controller="user" action="dashboard">
-                                <span class="glyphicon glyphicon-cog"></span>&nbsp; Settings
+                               <img class="img-circle" src="/images/dropdown-setting.png" alt="Generic placeholder image">&nbsp;&nbsp;&nbsp;&nbsp; Settings
                             </g:link></li>
                             <sec:ifAllGranted roles="ROLE_AUTHOR">
                                 <li><g:link controller="blog" action="manage"><span class="glyphicon glyphicon-book"></span> Manage blogs</g:link></li>
@@ -94,7 +94,7 @@
                             </sec:ifAllGranted>
                             <li class="divider"></li>
                             <li><g:link controller="logout">
-                                <span class="glyphicon glyphicon-off"></span>&nbsp; Log out
+                                <img class="img-circle" src="/images/dropdown-Logout.png" alt="Generic placeholder image">&nbsp;&nbsp;&nbsp;&nbsp; Log out
                             </g:link></li>
                             </ul>
                             </g:else>

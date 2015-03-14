@@ -207,7 +207,7 @@ $(function() {
     /**************************************Edit team*******************************************/
     
     $('#editFundraiser').find('form').validate({
-       	rules: {
+        rules: {
        	    amount: {
        		required: true,
        		maxlength: 5,

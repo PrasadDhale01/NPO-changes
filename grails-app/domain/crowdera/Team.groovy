@@ -22,6 +22,11 @@ class Team {
 	
     Date joiningDate
     
+    static mapping = {
+        description type: 'text'
+        story type: 'text'
+    }
+    
     static constraints = {
         contributions nullable: true
 		description nullable: true

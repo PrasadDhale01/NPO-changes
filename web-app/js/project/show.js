@@ -208,24 +208,24 @@ $(function() {
     
     $('#editFundraiser').find('form').validate({
         rules: {
-       	    amount: {
-       		required: true,
-       		maxlength: 5,
-       		islessThanProjectAmount : true
-       	    },
-       	    description: {
-       		required: true,
-       		minlength: 10,
-       		maxlength: 140
-       	    },
-       	    story: {
-       		required: true,
-       		minlength:10,
-       		maxlength: 5000
-       	    },
-       	    videoUrl: {
-       		isYoutubeVideo: true
-       	    }
+            amount: {
+                required: true,
+                maxlength: 5,
+                islessThanProjectAmount : true
+            },
+            description: {
+                required: true,
+                minlength: 10,
+                maxlength: 140
+            },
+            story: {
+                required: true,
+                minlength:10,
+                maxlength: 5000
+            },
+            videoUrl: {
+                isYoutubeVideo: true
+            }
         }
     });
     

@@ -11,7 +11,6 @@
     def fundRaiser = user.username
     def projectId = project.id
 %>
-<button class="btn btn-primary btn-block contribution-seperator"></button>
 <g:if test="${project.validated}">
 <div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
     <g:if test="${project.contributions.empty}">
@@ -39,9 +38,10 @@
                             <h4 class="heading">ENTER OFFLINE CONTRIBUTION</h4>
                         </div>
                         <div class="col-sm-12 margin">
-	                        <p class="justify text-paragraph">If your friends donate by check or hand you a pile of cash or a stack of casino chips,
-	                         you can enter their name and donation amount below and the donor will show up in your donations scroll and everyone will be happy.
-	                         If you want to enter checks in bulk, just make the Display Name say something like "Offline Donations."
+	                        <p class="justify text-paragraph">We understand that not all your friends will contribute online.
+	                         Give your offline contributors due credit by listing their name and contribution amount below. 
+	                         The offline contributions will be listed under the contribution tab on your campaign.
+	                          Each cent counts to make a campaign successful! 
 	                        </p>
                         </div>
                         <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
@@ -59,33 +59,6 @@
                             <div id="errormsg1"></div>
                         </div>
                         <div class="clear"></div>
-                        <div class="col-sm-8">
-                            <div class="form-group">
-                                <label class="text" for="title">Display Name</label>
-                                <input type="text" class="form-control contributioninput" name="contributorName2"/>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="title" class="text">Amount</label>
-                                <input type="text" class="form-control contributioninput" name="amount2" id="offlineAmount2"/>
-                            </div>
-                            <div id="errormsg2"></div>
-                        </div>
-                        <div class="clear"></div>
-                        <div class="col-sm-8">
-                            <div class="form-group">
-                                <label class="text" for="title">Display Name</label>
-                                <input type="text" class="form-control contributioninput" name="contributorName3"/>
-                            </div>
-                        </div>
-                        <div class="col-sm-4">
-                            <div class="form-group">
-                                <label for="title" class="text">Amount</label>
-                                <input type="text" class="form-control contributioninput" name="amount3" id="offlineAmount3"/>
-                            </div>
-                            <div id="errormsg3"></div>
-                        </div>
                     </div>
                     <div class="clear"></div>
                     <div class="modal-footer">
@@ -286,7 +259,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="alert alert-title ">
-                                    <th class="col-sm-2 text-center">Title</th>
+                                    <th class="col-sm-2 text-center">CAMPAIGN_TITLE</th>
                                     <th class="col-sm-2 text-center">DATE</th>
                                     <th class="col-sm-2 text-center">CONTRIBUTOR</th>
                                     <th class="col-sm-2 text-center">AMOUNT</th>

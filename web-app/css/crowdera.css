@@ -103,7 +103,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .navbar-brand {
@@ -314,10 +314,9 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #FDF9F9 !important;
-    color: #0F0101 !important;
+    background-color: #ff784f !important;
+    color: #ffffff;
 }
-
 .searchbox {
     position: relative;
     height: 30px;
@@ -464,6 +463,17 @@ footer .flinks a {
 
 }    
 @media only screen and (max-width: 640px) {
+    .divFirstAdmin.lowRes.highRes {
+	margin-left: -32px !important;
+	width: 105% !important;
+	margin-left: 10px !important;
+     }
+     .divSecondAdmin {
+	margin-left: 15px !important;
+     }
+     .divThirdAdmin {
+	margin-left: -29px !important;
+     }
     .clientpart .col-md-8 {
         width: 100%;
         padding: 20px 0;
@@ -1084,7 +1094,14 @@ footer .footerbottomsection {
 }
 
 .navbar-default .dropdown-menu {
-    background-color: #ff784f !important;
+    background-color: #FDFCFB !important;
+    border-style: solid;
+    border-color: #ff784f !important;
+    border-width: 1px;
+}
+
+.navbar-default .dropdown-menu > li > a, .navbar-default .dropdown-menu > li > a:focus {
+	color: #ff784f;
 }
 
 .navbar-nav li.dropdown span {
@@ -1390,7 +1407,52 @@ text-decoration: none !important;
     float:left;
 }
 
+@media only screen and (min-width: 1821px){
+    .btn-create {
+        margin-left: 636px;
+        margin-bottom: 52px;
+    }
+}
+
+@media only screen and (max-width: 1820px){
+    .btn-create {
+        margin-left: 593px;
+        margin-bottom: 43px;
+    }
+}
+
+@media only screen and (max-width: 1540px){
+    .btn-create {
+        margin-left: 507px;
+        margin-bottom: 30px;
+    }
+}
+
 @media only screen and (max-width: 1280px){
+	
+	.divFirstAdmin.lowRes.highRes {
+		 margin-left: -32px !important;
+		 width: 30% !important;
+		 margin-left: 76px !important;
+	}
+	
+	.divSecondAdmin {
+		margin-left: -1px !important;
+	}
+	
+	.divThirdAdmin {
+		margin-left: -43px !important;
+		padding-left: 56px !important;
+	}
+	
+	.btn-group > .btn:first-child {
+		margin-left: -20px !important;
+	}
+	
+    .btn-create {
+        margin-left: 417px;
+        margin-bottom: 14px;
+    }
 	
 	.imageCarousellabel {
       	background-color: black;
@@ -1847,6 +1909,17 @@ textarea.form-control {
 
 /* Media 970px */
 @media only screen and (max-width: 970px) {
+	
+	.divFirstAdmin.lowRes.highRes {
+		width: 33% !important;
+  		margin-left: 40px !important;
+	}
+	.divSecondAdmin {
+		margin-left: -11px !important;
+	}
+	.divThirdAdmin {
+		margin-left: -29px !important;
+	}
     .nav > li > a {
         padding: 7px 13px;
     }
@@ -1871,14 +1944,14 @@ textarea.form-control {
 	}
 	 /**********************dropdown********************/
 	.navbar {
-		font-size: 11px !important;
+		font-size: 9px !important;
     }
 	.dropdown-menu-head {
 		top: 160%;
 /* 		margin: 0px 55px 0 !important; */
 	}
 	li.dropdown.dropdown-head{
-		width: 100% !important;
+		width: 102% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
 		width: 100% !important;
@@ -2207,13 +2280,33 @@ textarea.form-control {
 /* 		margin: 0px 55px 0 !important; */
 	}
 	li.dropdown.dropdown-head{
-		width: 100% !important;
+		width: 102% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
 		width: 100% !important;
 	}
 	ul.dropdown-menu.admin.admin-dropdown{
 		width: 100% !important;
+	}
+	.user-img:hover span {
+		padding-bottom: 20px !important;
+	}
+}
+
+@media only screen and (max-width: 1024px) {
+	
+	.divFirstAdmin.lowRes.highRes {
+		width: 36% !important;
+  		margin-left: 40px !important;
+	}
+	.divSecondAdmin {
+		margin-left: -60px !important;
+	}
+	.divThirdAdmin {
+		margin-left: -68px !important;
+	}
+	.btn-group > .btn:first-child {
+		margin-left: -20px !important;
 	}
 }
 
@@ -2227,9 +2320,20 @@ textarea.form-control {
 	.arrow-mobile {
 		margin-left: -40px !important;
 	}
-	.divFirstAdmin {
-		margin-left: 38px !important;
-	}	
+	
+	.btn-group > .btn:first-child {
+		margin-left: 2px !important;
+	}
+	.divFirstAdmin.lowRes.highRes {
+		width: 34% !important;
+		margin-left: 35px !important;
+	}
+	.divSecondAdmin {
+		margin-left: -51px !important;
+	}
+	.divThirdAdmin {
+		margin-left: -73px !important;
+	}
     .validatebutton {
         float: right;
     }
@@ -2316,20 +2420,28 @@ textarea.form-control {
   }
   /**********************dropdown********************/
     .navbar {
-		font-size: 11px !important;
+		font-size: 9px !important;
     }
 	.dropdown-menu-head {
 		top: 160%;
 /* 		margin: 0px 55px 0 !important; */
 	}
 	li.dropdown.dropdown-head{
-		width: 100% !important;
+		width: 102% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
 		width: 100% !important;
 	}
 	ul.dropdown-menu.admin.admin-dropdown{
 		width: 100% !important;
+	}
+	 .user-img span {
+		padding-left: 10px;
+		padding-bottom: 10px;
+	}
+	.user-img span.user-cl {
+		padding-right: 22px !important;
+		padding-bottom: 10px !important;
 	}
 .containrewards{
     height: 190px !important;
@@ -2459,27 +2571,40 @@ textarea.form-control {
 		margin: 12px 0px 0 !important;
 	}
 	li.dropdown.dropdown-head{
-		width: 240px;
+		width: 301px !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
-		width: 192px !important;
+		width: 301px !important;
 	}
 	ul.dropdown-menu.admin.admin-dropdown{
-		width: 192px !important;
+		width: 301px !important;
 	}
 	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
 		background-color: #fff;
-		width: 192px;
+		width: 230px !important;
 	}
-	
+	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+		color: #ff784f !important;
+	}	
 }   
 
 @media only screen and (max-width: 745px){
 	.leftcard-column .form-control {
 	    width: 90%;
 	}
+	.divFirstAdmin.lowRes.highRes {
+		width: 100% !important;
+		margin-left: 40px !important;
+	}
+	.divSecondAdmin {
+		margin-left: 47px !important;
+	}
+	.divThirdAdmin {
+		margin-left: 7px !important;
+	}
 }
 @media only screen and (max-width: 640px){
+	
 	.shippingreward > .btn-primary
     {
        margin-left: 0px !important;
@@ -2622,7 +2747,38 @@ textarea.form-control {
 	    display: flex !important;
 	}
 }
-@media only screen and (max-width: 480px){
+
+@media only screen and (min-width: 480px) and (max-width: 481px){
+    .tbFirstAdmin{
+	padding-left:7px;
+        width:91% !important;
+    }
+    
+    .tbSecondAdmin{
+        padding-left:0px;
+        width:100% !important;
+    }
+    .tbThirdAdmin{
+        padding-left:0px;
+        width:100% !important;
+    }
+    
+    .divFirstAdmin.lowRes.highRes {
+	width: 108% !important;
+	margin-left: 0%!important;
+     }
+	
+     .divSecondAdmin {
+	margin-left: 1% !important;
+	width: 98%;
+     }
+	
+     .divThirdAdmin {
+	margin-left: -36px !important;
+     }
+}
+
+@media only screen and (max-width: 479px){
 	
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
@@ -2815,13 +2971,14 @@ textarea.form-control {
 	}
     .divFirstAdmin{
         margin-left:6px !important;
+        width: 102% !important;
     }
-    .divSecondAdmin{
-        padding-left:54px !important;
-    }
-    .divThirdAdmin{
-        padding-left:68px !important;
-    }
+/*     .divSecondAdmin{ */
+/*         padding-left:12px !important; */
+/*     } */
+/*     .divThirdAdmin{ */
+/*         padding-left:68px !important; */
+/*     } */
     .tbFirstAdmin{
         padding-left:7px;
         width:100% !important;
@@ -3002,13 +3159,13 @@ textarea.form-control {
 		margin: 12px 0px 0 !important;
 	}
 	li.dropdown.dropdown-head{
-		width: 280px !important;
+		width: 301px !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
-		width: 192px !important;
+		width: 301px !important;
 	}
 	ul.dropdown-menu.admin.admin-dropdown{
-		width: 192px !important;
+		width: 301px !important;
 	}
 	.socialicon img{
 		margin-top: 12px;
@@ -3038,7 +3195,18 @@ textarea.form-control {
 	}
 	.button-team-show .dropdown-menu {
 		width: 372px !important;
-	}	
+	}
+	.divFirstAdmin.lowRes.highRes {
+		margin-left: -32px !important;
+		width: 106% !important;
+		margin-left: -19px !important;
+	}
+	.divSecondAdmin {
+  		margin-left: -14px !important;
+	}
+	.divThirdAdmin {
+		margin-left: -55px !important;
+	}
 }
 
 @media only screen and (max-width: 400px){
@@ -3052,6 +3220,7 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 375px) {
+    
 	.arrow-mobile-css {
 		margin-right: -11px;
 	}
@@ -3092,7 +3261,7 @@ textarea.form-control {
 	}
 	.navbar-default .navbar-collapse, .navbar-default .navbar-form {
 		background-color: #fff;
-		width: 192px;
+		width: 200px;
 	}
 	/**********************dropdown********************/
 	.dropdown-menu-head {
@@ -3100,15 +3269,29 @@ textarea.form-control {
 		margin: 12px 0px 0 !important;
 	}
 	li.dropdown.dropdown-head{
-		width: 280px !important;
+		width: 301px !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
-		width: 192px !important;
+		width: 301px !important;
 	}
 	ul.dropdown-menu.admin.admin-dropdown{
-		width: 192px !important;
+		width: 301px !important;
 	}
-	
+	ul.dropdown-menu.usr.user-dropdown.dropdown-menu-head {
+        	margin-top: 0px !important;
+    	}
+    	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
+		color: #ff784f !important;
+    	}
+    	.user-img span {
+		padding-left: 10px;
+		padding-bottom: 10px;
+	}
+	.user-img span.user-cl {
+		padding-right: 22px !important;
+		padding-bottom: 10px !important;
+	}
+    
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 	
 	.btn-create {
@@ -3165,7 +3348,17 @@ textarea.form-control {
 	}
 	.button-team-show .dropdown-menu {
 		width: 332px !important;
-	}	
+	}
+	.divFirstAdmin.lowRes.highRes {
+		width: 106% !important;
+		margin-left: -19px !important;
+	}
+	.divSecondAdmin {
+  		margin-left: -14px !important;
+	}
+	.divThirdAdmin {
+		margin-left: -55px !important;
+	}
 }
 @media only screen and (max-width: 360px){
 	.tips h2 {
@@ -3216,12 +3409,12 @@ textarea.form-control {
     .divFirstAdmin{
         margin-left:6px !important;
     }
-    .divSecondAdmin{
-        padding-left:54px !important;
-    }
-    .divThirdAdmin{
-        padding-left:68px !important;
-    }
+/*     .divSecondAdmin{ */
+/*         padding-left:54px !important; */
+/*     } */
+/*     .divThirdAdmin{ */
+/*         padding-left:68px !important; */
+/*     } */
     .tbFirstAdmin{
         padding-left:7px;
         width:100% !important;
@@ -3675,6 +3868,8 @@ button.projectedit.close{
 .panel-primary > .panel-heading{
      background-color: #ff784f;
      border-color: #ff784f;
+     height: 48px;
+     word-wrap: break-word;
 }
 .containrewards{
     height: 160px;
@@ -3933,6 +4128,7 @@ a.footerlink {
 }
 .manage-carousel-in{
 	overflow: hidden;
+    	height:400px;
 }
 .team-comments-css{
 	margin-top: 30px;
@@ -4104,12 +4300,54 @@ a.footerlink {
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-  /*  background-color: #ff784f !important;
-    color: #ffffff;*/
-     background-color: #FDF9F9 !important;
-    /*color: #FFF;*/
-    color: #0F0101;
+    background-color: #ff784f !important;
+    color: #ffffff;
+/*      background-color: #FDF9F9 !important; */
+/*     color: #FFF; */
+/*     color: #0F0101; */
 }
+li.home-dropdown a:hover{
+    background-color: #ff784f !important;
+    color: #ffffff !important;
+}
+ul.dropdown-menu.usr.user-dropdown.dropdown-menu-head.user-selected-drop a:hover {
+	background: rgb(252, 233, 236) !important;
+	color:  #ff784f !important;
+}
+ul.dropdown-menu.admin.admin-dropdown.dropdown-menu-head.admin-selected-drop a:hover {
+	background: rgb(252, 233, 236) !important;
+	color:  #ff784f !important;
+}
+
+.user-img span{	
+	background: url('../images/dropdown-User-Black.png') no-repeat !important;
+	padding-left: 10px;
+	padding-bottom: 10px !important;
+}
+.user-img:hover span{
+	background: url('../images/dropdown-User-White.png') no-repeat !important;
+}
+
+.user-img span.user-cl{
+	background: url('../images/dropdown-arrow-Black.png') no-repeat !important;
+	padding-right:12px !important;
+	padding-bottom:10px !important;
+}
+.user-img:hover span.user-cl {
+	background: url('../images/dropdown-arrow-White.png') no-repeat !important;
+	
+}
+.dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open span{
+	background: url('../images/dropdown-User-White.png') no-repeat !important;
+	padding-bottom:10px !important;
+}
+.dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open span.user-cl{
+	background: url('../images/dropdown-arrow-White.png') no-repeat !important;
+}
+/* li.drop a:focus { */
+/* 	background-color: #ff784f !important; */
+/* } */
+
 .crowderaFaq >h2{
     margin-top: 20px;
     font-weight: 600;
@@ -4151,7 +4389,7 @@ a.footerlink {
     width: 100%;
 }
 li.dropdown.dropdown-head{
-	width: 100%;
+	width: 102%;
 }
 ul.dropdown-menu.admin.admin-dropdown{
 	width: 100%;
@@ -4219,7 +4457,7 @@ background-color: #333;
 color:#fff;
 }
 .divFirstAdmin{
-    margin-left:69px;
+    margin-left:58px;
 }
 .divSecondAdmin{
     margin-left:-27px;
@@ -4238,6 +4476,9 @@ color:#fff;
 .tbThirdAdmin{
     padding-left:0px;
     width:66%;
+}
+.btn-group > .btn:first-child {
+	margin-left: -3px;
 }
 .pull-right.reportCls{
     margin-right:6px;

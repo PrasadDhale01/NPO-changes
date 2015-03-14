@@ -16,8 +16,14 @@
     def contribution = projectService.getDataType(contributedSoFar)
     def amount = projectService.getDataType(project.amount)
     def currentUser = userService.getCurrentUser()
-
+    def username = currentUser.username
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+    def cents
+    if(percentage >= 100) {
+        cents = 100
+    } else {
+        cents = percentage
+    }
 %>
 <g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentUser]"/>
 <div class="fedu thumbnail grow managedetails-edit">
@@ -32,7 +38,7 @@
     <div class="modal-footer tile-footer managedetails-footer">
         <div class="row">
             <div class="col-md-5 col-md-offset-1 col-sm-4 col-sm-offset-2 col-xs-5 col-xs-offset-1 progress-pie-chart" data-percent="43">
-				<div class="c100 p${percentage} small text-center">
+				<div class="c100 p${cents} small text-center">
                     <span>${percentage}%</span>
                     <div class="slice">
                         <div class="bar"></div>
@@ -77,19 +83,21 @@
     <div class="modal-footer tile-footer managedetails-nine-nine">
         <div class="row">
             <div class="fullwidth pull-right">
-            <% if(percentage <= 999) { %>
-            	    <g:form controller="project" action="edit" method="post"  id="${project.id}">
+                <% if(percentage <= 999) { %>
+                    <g:form controller="project" action="edit" method="post"  id="${project.id}">
                         <g:hiddenField name="projectId" value="${project.id}"/>               
                         <button class="projectedit close"  aria-label="Edit project" id="editproject">
                             <i class="glyphicon glyphicon-edit" ></i>
-               	        </button>
+                        </button>
                     </g:form>
-            <% } %>
-            <g:form controller="project" action="projectdelete" method="post"  id="${project.id}">
-                <button class="projectedit close" aria-label="Edit project" id="projectdelete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
-                    <i class="glyphicon glyphicon-trash" ></i>
-                </button>
-            </g:form>
+                <% } %>
+                <g:if test="${!project.validated || username.equals('campaignadmin@crowdera.co') }">
+                    <g:form controller="project" action="projectdelete" method="post"  id="${project.id}">
+                        <button class="projectedit close" aria-label="Edit project" id="projectdelete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
+                            <i class="glyphicon glyphicon-trash" ></i>
+                        </button>
+                    </g:form>
+                </g:if>
             </div>
         </div>
     </div>

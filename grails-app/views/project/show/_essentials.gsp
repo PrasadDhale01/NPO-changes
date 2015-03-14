@@ -69,20 +69,4 @@
             </div>
         </div>  
     </div>
-    
-    <div class="row">
-        <g:if test="${project.videoUrl}">
-            <div id="youtubeVideoUrl">
-                <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
-                    ${project.videoUrl}
-                </g:if>
-                <g:else>
-                    ${currentTeam.videoUrl}
-                </g:else>
-	        </div>
-	        <div class="video-container" id="youtube">
-	        </div>
-        </g:if>
-    </div>
-
 </div>

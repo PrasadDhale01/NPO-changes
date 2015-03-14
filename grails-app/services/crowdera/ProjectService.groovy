@@ -724,17 +724,17 @@ class ProjectService {
 			imageUrls.add('http://lorempixel.com/400/400/abstract')
 		}
 		if(team.videoUrl){
-            def regex =/^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
-            def teamVideoUrl=team.getVideoUrl()
-            def match = teamVideoUrl.matches(regex);
-            if(match){
-                def tvurl=teamVideoUrl.replace("watch?v=", "embed/");
-                imageUrls.add(tvurl)
-                return imageUrls
-            }
-         }else{
-            return imageUrls
-         }
+            	     def regex =/^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+            	     def teamVideoUrl=team.getVideoUrl()
+            	     def match = teamVideoUrl.matches(regex);
+            	     if(match){
+                	def tvurl=teamVideoUrl.replace("watch?v=", "embed/");
+                	imageUrls.add(tvurl)
+                	return imageUrls
+            	     }
+         	}else{
+            		return imageUrls
+         	}
 	}
 
     def getProjectUpdatedImageLink(def projectUpdate) {

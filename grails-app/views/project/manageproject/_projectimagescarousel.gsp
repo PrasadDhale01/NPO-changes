@@ -23,15 +23,15 @@
         		<div class="item active">
 		        	<div class="blacknwhite manage-carousel-in">
 			            <g:if test="${img.toString().contains('.jpg') }">
-                                    <img class="imagestyle" src="${img}">
-                         </g:if>
-                         <g:elseif test="${img.toString().contains('.png')}">
-                                    <img class="imagestyle" src="${img}">
-                         </g:elseif>
-                         <g:else>
-                                    <iframe class="imagestyle" src="${img}" allowfullscreen="" frameborder="0"></iframe>
-                         </g:else>
-				    </div>
+                                    	<img class="imagestyle" src="${img}">
+                         	    </g:if>
+                         	    <g:elseif test="${img.toString().contains('.png')}">
+                                    	<img class="imagestyle" src="${img}">
+                         	    </g:elseif>
+                         	   <g:else>
+                                    	<iframe class="imagestyle" src="${img}" allowfullscreen="" frameborder="0"></iframe>
+                         	   </g:else>
+				</div>
         		</div>
         	</g:if>
         	<g:else>
@@ -39,14 +39,14 @@
 		        	<div class="blacknwhite manage-carousel-in">
 			            <g:if test="${img.toString().contains('.jpg') }">
                                         <img class="imagestyle" src="${img}">
-                         </g:if>
-                         <g:elseif test="${img.toString().contains('.png')}">
+                         	    </g:if>
+                              	    <g:elseif test="${img.toString().contains('.png')}">
                                         <img class="imagestyle" src="${img}">
-                         </g:elseif>
-                         <g:else>
+                         	   </g:elseif>
+                         	   <g:else>
                                         <iframe class="imagestyle" src="${img}" allowfullscreen="" frameborder="0"></iframe>
-                         </g:else>
-				    </div>
+                         	  </g:else>
+			        </div>
 	        	</div>
         	</g:else>
         </g:each>

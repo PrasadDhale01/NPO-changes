@@ -602,7 +602,7 @@ class ProjectController {
         def isCoAdmin=userService.isCampaignBeneficiaryOrAdmin(project,user)
         if(project.user==user || isCoAdmin){
                 render (view: 'manageproject/index',
-                model: [project: project,
+                model: [project: project, fundRaiser: user,
                         FORMCONSTANTS: FORMCONSTANTS])
         }else{
                 flash.prj_mngprj_message = 'Campaign Not Found'
@@ -661,9 +661,7 @@ class ProjectController {
 
         flash.prj_mngprj_message= "Email sent successfully."
         if (params.ismanagepage) {
-            render (view: 'manageproject/index',
-                    model: [project: project,
-                            FORMCONSTANTS: FORMCONSTANTS])
+             redirect(controller: 'project', action: 'manageproject', id: project.id)
         } else {
            redirect (action: 'show', id: project.id, params:[fr: fundRaiser])
         }
@@ -737,6 +735,7 @@ class ProjectController {
         def message = projectService.getFundRaisersForTeam(project, user)
         flash.prj_mngprj_message = message
         if (iscampaignAdmin) {
+            redirect (action: 'manageproject', id: project.id)
             render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
         } else {
             redirect (action: 'show', id: project.id, params:[fr: fundraiser])

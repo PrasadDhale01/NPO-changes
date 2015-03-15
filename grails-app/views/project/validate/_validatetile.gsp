@@ -47,7 +47,7 @@
         </div>
     </div>
 	<div class="modal-footer tile-footer validate-percentage-style">
-        <div class="row">
+        <div class="row tilepadding">
             <div class="col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1 progress-pie-chart" data-percent="43">
 				<div class="c100 p${cents} small text-center">
                     <span>${percentage}%</span>
@@ -74,7 +74,7 @@
         </div>
     </div>
     <div class="modal-footer tile-footer validate-goal">
-        <div class="row">
+        <div class="row tilepadding">
             <div class="col-md-6 col-xs-6">
                 <h6 class="text-center"><span class="lead">$${amount}</span><br/>GOAL</h6>
             </div>

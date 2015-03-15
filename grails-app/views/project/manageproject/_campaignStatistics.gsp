@@ -11,7 +11,7 @@
 	SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d yyyy");
  %>
 <tr>
-	<td>${team.id}</td>
+	<td>${index}</td>
 	<td>${team.user.firstName} ${team.user.lastName}</td>
 	<td>${dateFormat.format(joiningDate.getTime())}</td>
 	<td>${dateFormat.format(endDate.getTime())}</td>

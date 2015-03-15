@@ -1062,12 +1062,12 @@ class ProjectService {
 
             project.addToTeams(team).save(failOnError: true)
             if (project.teams.size()==1) {
-                message= "You have Successfully Created the Team"
+                message= "You have successfully created the team"
             } else {
-                message= "You have Successfully Joined the Team"
+                message= "You have successfully joined the team"
             }
         } else {
-            message = "You Already have a Team"
+            message = "You already have a team"
         }
         return message
     }

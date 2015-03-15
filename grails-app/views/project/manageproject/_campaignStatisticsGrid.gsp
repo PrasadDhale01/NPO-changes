@@ -4,5 +4,5 @@
 %>
 
 <% while(index < count) { %>
-   <g:render template="manageproject/campaignStatistics" model="['team': team.get(index++), project:project]"></g:render>
+   <g:render template="manageproject/campaignStatistics" model="['team': team.get(index++), project:project, index: index]"></g:render>
 <% } %>

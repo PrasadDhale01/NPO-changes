@@ -68,7 +68,7 @@ Expects the parent containers to be like so:
     </div>
 
     <div class="modal-footer tile-footer tile-fonts-footer">
-        <div class="row">
+        <div class="row tilepadding">
             <div class="col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1 progress-pie-chart" data-percent="43">
 				<div class="c100 p${cents} small text-center">
                     <span>${percentage}%</span>
@@ -95,7 +95,7 @@ Expects the parent containers to be like so:
         </div>
     </div>
     <div class="modal-footer tile-footer tile-footer-goal">
-        <div class="row">
+        <div class="row tilepadding">
             <div class="col-md-6 col-xs-6">
                 <h6 class="text-center"><span class="lead">$${amount}</span><br/>GOAL</h6>
             </div>

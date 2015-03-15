@@ -4,7 +4,7 @@
 <g:set var="projectService" bean="projectService" />
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM, YYYY");
     def currentTeamUser
     List list = []
     if(project.user == team.user) {
@@ -232,7 +232,7 @@
                                         <td class="col-sm-2">${project.title}</td>
                                         <td class="col-sm-2">${date}</td>
                                         <td class="col-sm-2">${donor}</td>
-                                        <td class="col-sm-2">${amount}</td>
+                                        <td class="col-sm-2">$${amount}</td>
                                         
                                         <g:if test="${pay_mode}">
                                             <td class="col-sm-2 text-center">Offline</td>

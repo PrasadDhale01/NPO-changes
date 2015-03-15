@@ -136,9 +136,16 @@
 
 	<div class="caption">
 		<div class="project-title">
-			<g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">
-		        ${project.title}
-		    </g:link>
+		    <g:if test="${iscampaignAdmin}">
+				<g:link controller="project" action="manageproject" id="${project.id}" params="['fr': username]" title="${project.title}">
+			        ${project.title}
+			    </g:link>
+		    </g:if>
+		    <g:else>
+		        <g:link controller="project" action="show" id="${project.id}" params="['fr': username]" title="${project.title}">
+			        ${project.title}
+			    </g:link>
+		    </g:else>
 		</div>
 		<hr class="tile-separator">
 		<div class="project-story-span">
@@ -148,7 +155,7 @@
 
 	<div class="modal-footer tile-footer"
 		style="text-align: left; margin-bottom: 2px;">
-		<div class="row">
+		<div class="row tilepadding">
 			<div class="col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1 progress-pie-chart" data-percent="43">
 				<div class="c100 p${cents} small text-center">
 					<span> ${percentage}%
@@ -176,7 +183,7 @@
 		</div>
 	</div>
 	<div class="modal-footer tile-footer user-goal">
-		<div class="row">
+		<div class="row tilepadding">
 			<div class="col-md-6 col-xs-6">
                 <h6 class="text-center"><span class="lead">$${amount}</span><br/>GOAL</h6>
             </div>

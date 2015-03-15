@@ -17,6 +17,11 @@
 		imageUrl = project.imageUrl[0].getUrl()
 	}
     def fbShareUrl = base_url+"/campaign/managecampaign?id="+project.id
+    def fundRaiserName
+    if (fundRaiser) {
+        fundRaiserName = fundRaiser.firstName+" "+fundRaiser.lastName
+        fundRaiserName = fundRaiserName.toUpperCase()
+    }
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -53,6 +58,11 @@
 						</div>
 					</g:if>
 					
+                    <g:if test="${fundRaiser}">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                            <h4 class="green-heading"> FUNDRAISER: ${fundRaiserName}</h4>
+                        </div>
+                    </g:if>
 					<g:if test="${!project.validated}">
 					    <h1 class="green-heading text-center">
 							<g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">${projectTitle}</g:link>

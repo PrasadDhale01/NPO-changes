@@ -12,6 +12,7 @@ class Contribution {
     String custom
     String physicalAddress
     String contributorName
+    String fundRaiser
     
     boolean shippingDone = false
     boolean isContributionOffline = false
@@ -24,6 +25,7 @@ class Contribution {
         custom nullable: true
         physicalAddress nullable: true
         contributorName nullable: true
+        fundRaiser nullable: true
     }
 
     def beforeValidate() {

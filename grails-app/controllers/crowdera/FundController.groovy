@@ -363,10 +363,11 @@ class FundController {
                 )
         project.addToContributions(contribution).save(failOnError: true)
 		
-		if(project.teams) {
-			Team team = Team.findByUserAndProject(fundraiser,project)
-			team.addToContributions(contribution).save(failOnError: true)
-		}
+        Team team = Team.findByUserAndProject(fundraiser,project)
+        if (team) {
+            contribution.fundRaiser = fundraiser.username
+            team.addToContributions(contribution).save(failOnError: true)
+        }
 
         def email = users.email
         if (email && email !="anonymous@example.com") {
@@ -468,8 +469,7 @@ class FundController {
         def project = Project.get(params.id)
         def user = User.findByUsername('anonymous@example.com')
         def reward = rewardService.getNoReward()
-        def fundraiser = params.fr
-        def fundRaiser = User.findByUsername(fundraiser)
+        def fundRaiser = userService.getCurrentUser()
         def username = fundRaiser.username
         def amount = params.amount1
         def contributorName = params.contributorName1
@@ -480,7 +480,8 @@ class FundController {
                 reward: reward,
                 amount: amount,
                 contributorName: contributorName,
-                isContributionOffline: true
+                isContributionOffline: true,
+                fundRaiser: username
             )
             project.addToContributions(contribution).save(failOnError: true)
 

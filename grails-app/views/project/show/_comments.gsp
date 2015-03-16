@@ -1,9 +1,11 @@
 <!-- Comments -->
+<g:set var="userService" bean="userService"/>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     def fundRaiser
     def team
+    def currentUser= userService.getCurrentUser()
     def beneficiary = project.user 
     if (user) {
         fundRaiser = user.username
@@ -19,6 +21,7 @@
     }else{
         listcomment= team.comments
     }
+    def projectId=project.id
 %>
 <sec:ifLoggedIn>
     <g:if test="${flash.commentmessage}">
@@ -73,6 +76,19 @@
                         <div class="modal-body tile-footer show-comments-date">
                             <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
                             <dd>${comment.comment}</dd>
+                            <g:if test="${team.user!=project.user}">
+                            <g:if test="${team.user==currentUser}">
+                                <div class="editAndDeleteBtn deleteComment">
+                                    <div class="pull-right">
+                                        <g:form controller="project" action="commentdelete" method="post" id="${comment.id}" params="['projectId':projectId, 'fr': fundRaiser]">
+                                            <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this comment?&#39;);">
+                                            <i class="glyphicon glyphicon-trash"></i>
+                                            </button>
+                                        </g:form>
+                                    </div>
+                                </div>
+                            </g:if>
+                            </g:if>
                         </div>
                     </g:else>
                 </g:each>

@@ -109,9 +109,6 @@
 		        </g:if>
 		        <g:else>
 		            <div class="modal-body tile-footer manage-comments-footer">
-		                <%
-				    def isContributionBelongsToCurrentUser = userService.isContributionBelongsToCurrentTeam(contribution, user, project)
-				%>
 		                <p class="text-success">Contribution #${i++}</p>
 		                <div class="rewardsection">
 		                    <b>Offline Contribution</b>
@@ -122,7 +119,7 @@
                                 By ${contribution.contributorName}, on ${date}
                             </div>
                             <div class="clear"></div>
-                            <g:if test="${isContributionBelongsToCurrentUser}">
+                            <g:if test="${contribution.fundRaiser.equals(fundRaiser)}">
                             <div class="editAndDeleteBtn">
                                 <div class="pull-right">
                                     <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
@@ -248,7 +245,7 @@
                   &times;
             </button>
             <h4 class="modal-title" id="reportModalLabel">
-               Contribution Report
+               <h4><b>CONTRIBUTION REPORT</b></h4>
             </h4>
          </div>
          <g:hiddenField name="projectId" value="${project.id}"/>
@@ -259,7 +256,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="alert alert-title ">
-                                    <th class="col-sm-2 text-center">CAMPAIGN_TITLE</th>
+                                    <th class="col-sm-2 text-center">CAMPAIGN</th>
                                     <th class="col-sm-2 text-center">DATE</th>
                                     <th class="col-sm-2 text-center">CONTRIBUTOR</th>
                                     <th class="col-sm-2 text-center">AMOUNT</th>

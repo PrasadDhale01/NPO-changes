@@ -736,7 +736,6 @@ class ProjectController {
         flash.prj_mngprj_message = message
         if (iscampaignAdmin) {
             redirect (action: 'manageproject', id: project.id)
-            render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
         } else {
             redirect (action: 'show', id: project.id, params:[fr: fundraiser])
         }
@@ -872,6 +871,31 @@ class ProjectController {
             redirect (controller: 'project', action: 'show',fragment: 'contributions', id: project.id, params:[fr: fundraiser])
         }
     }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def commentdelete() {
+        def teamcomment = TeamComment.get(params.id)
+        def projectcomment= ProjectComment.get(params.id)
+        def project = Project.get(params.projectId)
+        def fundraiser = params.fr
+        def fundRaiser = User.findByUsername(fundraiser)
+        Team team = Team.findByProjectAndUser(project, fundRaiser)
+        if(team){
+            List teamComments = team.comments
+            teamComments.remove(teamcomment)
+            teamcomment.delete()
+        }else{
+            List projectComments = project.comments
+            projectComments.remove(projectcomment)
+            projectcomment.delete()
+        }
+        
+        if (params.manageCampaign) {
+            redirect(controller: 'project', action: 'manageproject',fragment: 'comments', id: project.id)
+        } else {
+            redirect (controller: 'project', action: 'show',fragment: 'comments', id: project.id, params:[fr: fundraiser])
+        }
+    }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def contributionedit() {
@@ -891,7 +915,7 @@ class ProjectController {
 
     def generateCSV(){
         List contributions=[]
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
 
         def projectId= params.projectId
         def project = Project.get(projectId)

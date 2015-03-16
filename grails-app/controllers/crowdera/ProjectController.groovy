@@ -736,7 +736,6 @@ class ProjectController {
         flash.prj_mngprj_message = message
         if (iscampaignAdmin) {
             redirect (action: 'manageproject', id: project.id)
-            render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
         } else {
             redirect (action: 'show', id: project.id, params:[fr: fundraiser])
         }

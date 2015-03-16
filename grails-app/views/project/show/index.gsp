@@ -8,6 +8,7 @@
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def fundRaiserName
     def beneficiary = project.user
+    def beneficiaryUserName = beneficiary.username
     def username
     def currentFundraiser
     if (user) {
@@ -91,7 +92,7 @@
 	                </div>
                 </g:if>
 	            <div class="col-md-12 green-heading text-center">
-	                <h1><g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">
+	                <h1><g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
 		            	 ${projectTitle} 
 	                </g:link></h1>
 	            </div>

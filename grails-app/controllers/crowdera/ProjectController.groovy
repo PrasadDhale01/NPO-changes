@@ -736,7 +736,6 @@ class ProjectController {
         flash.prj_mngprj_message = message
         if (iscampaignAdmin) {
             redirect (action: 'manageproject', id: project.id)
-            render (view: 'manageproject/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
         } else {
             redirect (action: 'show', id: project.id, params:[fr: fundraiser])
         }
@@ -916,7 +915,7 @@ class ProjectController {
 
     def generateCSV(){
         List contributions=[]
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
 
         def projectId= params.projectId
         def project = Project.get(projectId)

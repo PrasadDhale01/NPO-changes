@@ -265,17 +265,6 @@ class UserService {
         }
     }
     
-    def isContributionBelongsToCurrentTeam(def contribution, def user, def project) {
-        Team team = Team.findByProjectAndUser(project, user)
-        if(team) {
-            def contributions = team.contributions
-            if(contributions.contains(contribution)) {
-                return true
-            }
-        }
-        return false
-    }
-    
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

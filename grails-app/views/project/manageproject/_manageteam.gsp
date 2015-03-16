@@ -1,7 +1,9 @@
 <g:set var="contributionService" bean="contributionService" />
 <g:set var="projectService" bean="projectService" />
+<g:set var="userService" bean="userService"/>
 <%
     def user = userService.getCurrentUser()
+    def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
     def userName = user.firstName +" "+ user.lastName
     def teams = project.teams
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
@@ -12,7 +14,7 @@
 <div class="pill-buttons">
 <g:if test="${project.validated}">
 	<g:if test="${!teams.isEmpty()}">
-		<g:if test="${project.user == user}">
+		<g:if test="${isCampaignOwnerOrAdmin}">
 		    <ul class="nav nav-pills nav-pills-manageteam">
 		        <li data-toggle="tab" class="active team-footer col-md-4 col-sm-4 col-xs-4">
 		           <a href="#team">

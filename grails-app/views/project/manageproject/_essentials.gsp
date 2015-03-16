@@ -55,13 +55,13 @@
             <span class="text-centre project-story-span">${raw(project.story)}</span>
         </div>
     </div>  
-    <g:if test="${project.videoUrl}">
-        <div id="youtubeVideoUrl">
-            ${project.videoUrl}
-        </div>
-        <div class="video-container" id="youtube">
-        </div>
-    </g:if>
+<%--    <g:if test="${project.videoUrl}">--%>
+<%--        <div id="youtubeVideoUrl">--%>
+<%--            ${project.videoUrl}--%>
+<%--        </div>--%>
+<%--        <div class="video-container" id="youtube">--%>
+<%--        </div>--%>
+<%--    </g:if>--%>
     
 	<div class="col-sm-12">
 	    <!-- Modal -->

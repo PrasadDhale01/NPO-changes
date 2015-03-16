@@ -3,7 +3,7 @@
 <g:if test="${images.size()>1}">
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
-    <div >
+    <div>
  	<ol class="carousel-indicators manage-carousel" id="indicators">
     	<g:each in="${images}" var="img" status="count">
         	<g:if test="${count == 1}">
@@ -63,5 +63,13 @@
 </div>
 </g:if>
 <g:else>
-	<img alt="${project.title}" class="imagestyle"  src="${images.get(0)}">
+    <g:if test="${images.toString().contains('.jpg') }">
+        <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}">
+    </g:if>
+    <g:if test="${images.toString().contains('.png') }">
+        <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}">
+    </g:if>
+    <g:else>
+        <iframe class="imagestyle" src="${images.get(0)}" allowfullscreen="" frameborder="0"></iframe>
+    </g:else>	
 </g:else>

@@ -890,7 +890,7 @@ class ProjectController {
 
     def generateCSV(){
         List contributions=[]
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
 
         def projectId= params.projectId
         def project = Project.get(projectId)

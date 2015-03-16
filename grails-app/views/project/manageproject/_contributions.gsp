@@ -248,7 +248,7 @@
                   &times;
             </button>
             <h4 class="modal-title" id="reportModalLabel">
-               Contribution Report
+               <h4><b>CONTRIBUTION REPORT</b></h4>
             </h4>
          </div>
          <g:hiddenField name="projectId" value="${project.id}"/>
@@ -259,7 +259,7 @@
                         <table class="table table-bordered">
                             <thead>
                                 <tr class="alert alert-title ">
-                                    <th class="col-sm-2 text-center">CAMPAIGN_TITLE</th>
+                                    <th class="col-sm-2 text-center">CAMPAIGN</th>
                                     <th class="col-sm-2 text-center">DATE</th>
                                     <th class="col-sm-2 text-center">CONTRIBUTOR</th>
                                     <th class="col-sm-2 text-center">AMOUNT</th>

@@ -26,14 +26,14 @@
 	                        </input>
 	                        <% i++ %>
 	                        <div class="editAndDeleteBtn deleteComment">
-		                   		 	<div class="pull-right">
-                                		<g:form controller="project" action="commentdelete" method="post" id="${comment.id}" params="['projectId':projectId]">
-                                			<g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
-                                    		<button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this comment?&#39;);">
-                                        	<i class="glyphicon glyphicon-trash"></i>
-                                    		</button>
-                                		</g:form>
-                            		</div>
+		                   <div class="pull-right">
+                                       <g:form controller="project" action="commentdelete" method="post" id="${comment.id}" params="['projectId':projectId]">
+                                	  <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
+                                    	      <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this comment?&#39;);">
+                                              	<i class="glyphicon glyphicon-trash"></i>
+                                    	      </button>
+                                	</g:form>
+                                    </div>
                         	</div>
 	                    </div>
 	                </g:each>

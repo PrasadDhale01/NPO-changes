@@ -710,15 +710,15 @@ class ProjectService {
 	def getTeamImageLinks(Team team) {
 		def imageUrls = []
 
-    if(team.videoUrl){
-      def regex =/^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
-      def teamVideoUrl=team.getVideoUrl()
-      def match = teamVideoUrl.matches(regex);
-      if(match){
-        def tvurl=teamVideoUrl.replace("watch?v=", "embed/");
-        imageUrls.add(tvurl)
-      }
-    }
+    		if(team.videoUrl){
+      			def regex =/^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+      			def teamVideoUrl=team.getVideoUrl()
+      			def match = teamVideoUrl.matches(regex);
+      			if(match){
+        			def tvurl=teamVideoUrl.replace("watch?v=", "embed/");
+        			imageUrls.add(tvurl)
+      			}
+		}
 		for (imgUrl in team.imageUrl) {
 			if (imgUrl) {
 				if (imgUrl.getUrl().startsWith('http')) {

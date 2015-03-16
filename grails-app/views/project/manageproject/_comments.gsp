@@ -2,6 +2,8 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+    def projectId=project.id
+    def manageCampaign = "manageCampaign"
 %>
 <div class="col-md-8 col-sm-8 col-xs-12">
 	<g:if test="${!project.comments.empty}">
@@ -23,6 +25,16 @@
 	                            <g:if test="${comment.status }">checked="checked"</g:if>><span id="check${i}"> Hide</span>
 	                        </input>
 	                        <% i++ %>
+	                        <div class="editAndDeleteBtn deleteComment">
+		                   		 	<div class="pull-right">
+                                		<g:form controller="project" action="commentdelete" method="post" id="${comment.id}" params="['projectId':projectId]">
+                                			<g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
+                                    		<button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this comment?&#39;);">
+                                        	<i class="glyphicon glyphicon-trash"></i>
+                                    		</button>
+                                		</g:form>
+                            		</div>
+                        	</div>
 	                    </div>
 	                </g:each>
 	            </div>

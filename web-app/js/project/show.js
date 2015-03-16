@@ -28,6 +28,16 @@ $(function() {
         }
     });
     
+    /*************************Image upload on tinymce made working ***************************/
+    
+    $(document).on('focusin', function(e) {
+        if ($(event.target).closest(".mce-window").length) {
+            e.stopImmediatePropagation();
+        }
+    });
+    
+    /**********End***************************************************************************/
+    
     $('#inviteTeamMember').find('form').validate({
     	rules: {
     		userName: {

@@ -37,9 +37,9 @@ $(function() {
                 minlength: 10,
                 maxlength: 5000
             },*/
-            /*videoUrl: {
+            videoUrl: {
                 isYoutubeVideo: true
-            },*/
+            },
             organizationName: {
                 required: true
             },
@@ -88,6 +88,14 @@ $(function() {
         	needToConfirm = false;
         } 	
     });
+    
+    $.validator.addMethod('isYoutubeVideo', function (value, element) {
+        if(value && value.length !=0){
+           var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+           return (value.match(p)) ? RegExp.$1 : false;
+        }
+        return true;
+    }, "Please upload a url of Youtube video");
 
     /** ********************Organization Icon*************************** */
 
@@ -131,7 +139,7 @@ $(function() {
               $('#ytVideo').show();
               var vurl=url.replace("watch?v=", "v/");
               $('#ytVideo').attr('src',vurl);
-          }else if($(this).val('')){
+          }else if($(this)){
               $('#ytVideo').hide();
           }
      }).change(function(){
@@ -143,7 +151,7 @@ $(function() {
               $('#ytVideo').show();
               var vurl=url.replace("watch?v=", "v/");
               $('#ytVideo').attr('src',vurl);
-          }else if($(this).val('')){
+          }else if($(this)){
               $('#ytVideo').hide();
           }
      });

@@ -306,7 +306,7 @@ $(function() {
                $('#ytVideo').show();
                var vurl=url.replace("watch?v=", "v/");
                $('#ytVideo').attr('src',vurl);
-           }else if($(this).val('')){
+           }else if($(this)){
                $('#ytVideo').hide();
            }
       }).change(function(){
@@ -318,7 +318,7 @@ $(function() {
                $('#ytVideo').show();
                var vurl=url.replace("watch?v=", "v/");
                $('#ytVideo').attr('src',vurl);
-           }else if($(this).val('')){
+           }else if($(this)){
                $('#ytVideo').hide();
            }
       });

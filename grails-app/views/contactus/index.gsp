@@ -38,13 +38,9 @@
 					</div>
 					<div class="form-group">
 						<label for="description"><b>Description</b></label>
-						<textarea class="form-control" name="helpDescription" maxlength="140" rows="4" placeholder="Description"></textarea>
+						<textarea class="form-control" name="helpDescription" maxlength="140" rows="4"></textarea>
 						<div class="clear"></div>
-						<p class="contactparagraph">To help us get you an answer as quickly as
-							possible, please consider including as many specific details as
-							possible. For example, if your question is about a particular
-							campaign on Crowdera, please include the name of the campaign
-							and a link.</p>
+						<p class="contactparagraph">We love hearing from you and would like to respond to your request timely and accurately. To help us do so, please include as many specific details as possible.</p>
 					</div>
 					<div class="form-group">
 						<label for="firstAndLastName"><b>First and Last Name</b></label>

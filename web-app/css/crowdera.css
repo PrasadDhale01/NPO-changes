@@ -1861,10 +1861,17 @@ h1.green-heading{
 .project-story-span img{
     max-width: 100%;
 }
-.help-block{
+.descriptionDiv .help-block{
     color: #ff0000;
     font-size: 12px;
     font-weight: normal;
+    display:inline !important;
+}
+.createDescDiv .help-block{
+    color: #ff0000;
+    font-size: 12px;
+    font-weight: normal;
+    display:inline !important;
 }
 .form-control.rewardprice{
     width:100%;

@@ -16,6 +16,11 @@ class HomeController {
     
     def crowderacustomerhelp() {
         projectService.getCustomerRequest(params)
-        redirect action: 'index'
+        flash.contactmessage="Message Sent ! Crowdera Happiness Team will be in touch with you shortly."
+        redirect action: "customerService"
+    }
+	
+    def customerService(){
+    	render (view:'/contactus/index')
     }
 }

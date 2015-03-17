@@ -629,11 +629,6 @@ class ProjectController {
 		int price = Double.parseDouble(params.price)
 		int amount = Double.parseDouble(params.amount)
         RewardShipping shippingInfo = new RewardShipping(params)
-		if(price >= amount) {
-			flash.prj_mngprj_message = "Enter a price less than Campaign amount: ${amount}"
-			render (view: 'manageproject/error', model: [reward: reward])
-			return
-		}
 		
         if(reward.save()) {
             def project= Project.get(params.id)

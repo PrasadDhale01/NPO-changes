@@ -29,19 +29,21 @@
                             <h4 class="modal-title">Create a new Perk</h4>
                         </div>
                         <div class="modal-body">
-                            <g:hiddenField name="amount" value="${project.amount}"/>
+                            <g:hiddenField name="amount" value="${project.amount}" id="cAmount"/>
                             <div class="form-group">
                                 <label for="title">Title</label>
                                 <input type="text" class="form-control" name="title" placeholder="Title"/>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group descriptionDiv">
                                 <label for="description">Description</label>
-                                <textarea class="form-control" name="description" maxlength="140" rows="4" placeholder="Description"></textarea>
+                                <textarea class="form-control" id="descarea" name="description" maxlength="140" rows="4" placeholder="Description"></textarea>
+                                <label class="pull-right " id="desclength"></label>
                             </div>
                             <div class="clear"></div>
                             <div class="form-group">
                                 <label for="price">Price ($)</label>
-                                <input type="number" class="form-control" name="price" min="0" placeholder="Price"/>
+                                <input type="number" class="form-control" name="price" id="perkPrice" min="0" placeholder="Price"/>
+                                <span id="errormsg"></span>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Which of the following is necessary to fulfill this perk:</label>

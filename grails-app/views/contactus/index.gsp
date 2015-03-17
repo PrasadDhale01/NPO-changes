@@ -15,9 +15,9 @@
 <body>
 	<div class="feducontent">
 		<div class="container contactUs" id="contactUs">
-            <g:if test="${flash.contactmessage}">
+                        <g:if test="${flash.contactmessage}">
 			    <div class="alert alert-success" align="center">
-				  	   ${flash.contactmessage}
+		                ${flash.contactmessage}
 			    </div>
 			</g:if>
 			<g:form action="crowderacustomerhelp" controller="Home" role="form">

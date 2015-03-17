@@ -16,7 +16,7 @@ $(function() {
                 number: true,
                 max : 50000,
                 isPerk:true,
-                min: 1
+                min: 0
             }
         }
     });

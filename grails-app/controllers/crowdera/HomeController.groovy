@@ -20,7 +20,7 @@ class HomeController {
         redirect action: "customerService"
     }
 	
-	def customerService(){
-	    render (view:'/contactus/index')
-	}
+    def customerService(){
+    	render (view:'/contactus/index')
+    }
 }

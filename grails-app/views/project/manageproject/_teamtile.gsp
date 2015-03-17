@@ -18,6 +18,18 @@
 
 <div class="fedu thumbnail grow teamtile teamtile-padding">
 	<div class="blacknwhite teamtile-style">
+		<g:if test="${userService.isFacebookUser() || project.user}">
+	    	<g:if test="${!isAdminOrBeneficiary}">
+	    		<div class="over teamtile-banner">
+					<img src="/images/teamTop.png">
+				</div>
+	    	</g:if>
+	    	<g:else>
+	    		<div class="over teamtile-banner">
+					<img src="/images/owner.png">
+				</div>
+	    	</g:else>
+	    </g:if>
 	    <g:if test="${!ismanagepage || !isAdminOrBeneficiary}">
 			<g:link controller="project" action="show" id="${project.id}" params="['fr': username]">
 			    <g:if test="${userImageUrl != null}">

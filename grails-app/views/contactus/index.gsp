@@ -15,6 +15,11 @@
 <body>
 	<div class="feducontent">
 		<div class="container contactUs" id="contactUs">
+            <g:if test="${flash.contactmessage}">
+			    <div class="alert alert-success" align="center">
+				  	   ${flash.contactmessage}
+			    </div>
+			</g:if>
 			<g:form action="crowderacustomerhelp" controller="Home" role="form">
 				<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2">
 					<h3 class="crowderasupport"><img src="/images/questionorcomment.png">&nbsp;&nbsp;<b>Submit a question or comment</b></h3>
@@ -35,8 +40,7 @@
 						<label for="description"><b>Description</b></label>
 						<textarea class="form-control" name="helpDescription" maxlength="140" rows="4" placeholder="Description"></textarea>
 						<div class="clear"></div>
-						<p class="contactparagraph">Please enter additional details of
-							your request. To help us get you an answer as quickly as
+						<p class="contactparagraph">To help us get you an answer as quickly as
 							possible, please consider including as many specific details as
 							possible. For example, if your question is about a particular
 							campaign on Crowdera, please include the name of the campaign

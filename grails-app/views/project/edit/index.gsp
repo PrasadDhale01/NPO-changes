@@ -1,5 +1,6 @@
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
+<g:set var="userService" bean="userService"/>
 <%
     def percentage = contributionService.getPercentageContributionForProject(project)
     def firstAdmins = project.projectAdmins[1]
@@ -23,6 +24,7 @@
     def amount = projectService.getDataType(project.amount)
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def numberOfDays = projectService.getDaysFromStartDate(project)
+    def currentUser = userService.getCurrentUser()
 %>
 <html>
 <head>
@@ -279,13 +281,39 @@
 	                    <div class="form-group">
 	                        <label class="col-sm-4 control-label">First Admin</label>
 	                        <div class="col-sm-8">
-	                            <input type="text" class="form-control" name="email1" value="${email1}" id="firstadmin" placeholder="Email ID" ></input>
+	                            <g:if test="${project.user == currentUser}">
+	                            <div class="textFieldWithTag">
+	                                <input type="text" class="form-control" name="email1" value="${email1}" id="firstadmin" placeholder="Email ID" ></input>
+					                <g:if test="${email1}">
+					                    <div class="deleteIconAbove">
+                                            <img onClick="deleteAdmin(this,'${project.id}', 'email1', '${email1}');"
+                                                src="/images/delete.ico" id="logoDelete1"/>
+                                        </div>
+                                    </g:if>
+                                </div>
+					            </g:if>
+					            <g:else>
+					                <input type="text" class="form-control" name="email1" value="${email1}" id="firstadmin" placeholder="Email ID" readonly></input>
+					            </g:else>
 					        </div>
 	                    </div>
 	                    <div class="form-group">
 	                        <label class="col-sm-4 control-label">Second Admin</label>
 	                        <div class="col-sm-8">
-	                            <input type="text" class="form-control" name="email2" value="${email2}" id="secondadmin" placeholder="Email ID"></input>
+	                            <g:if test="${project.user == currentUser}">
+	                            <div class="textFieldWithTag">
+	                                <input type="text" class="form-control" name="email2" value="${email2}" id="secondadmin" placeholder="Email ID"></input>
+	                                <g:if test="${email2}">
+	                                <div class="deleteIconAbove">
+                                        <img onClick="deleteAdmin(this,'${project.id}', 'email2', '${email2}');"
+                                            src="/images/delete.ico" id="logoDelete2"/>
+                                    </div>
+                                    </g:if>
+	                            </div>
+	                            </g:if>
+	                            <g:else>
+	                                <input type="text" class="form-control" name="email2" value="${email2}" id="secondadmin" placeholder="Email ID" readonly></input>
+					            </g:else>
 					        </div>
 	                    </div>
                     </div>
@@ -294,10 +322,54 @@
 	                    <div class="form-group">
 	                        <label class="col-sm-4 control-label">Third Admin</label>
 	                        <div class="col-sm-8">
-	                            <input type="text" class="form-control" name="email3" id="thirdadmin" value="${email3}" placeholder="Email ID"></input>
+	                            <g:if test="${project.user == currentUser}">
+	                                <div class="textFieldWithTag">
+	                                    <input type="text" class="form-control" name="email3" id="thirdadmin" class="" value="${email3}" placeholder="Email ID"></input>
+	                                    <g:if test="${email3}">
+	                                    <div class="deleteIconAbove">
+                                            <img onClick="deleteAdmin(this,'${project.id}', 'email3' ,'${email3}');"
+                                                src="/images/delete.ico" id="logoDelete3"/>
+                                        </div>
+                                        </g:if>
+                                    </div>
+	                            </g:if>
+	                            <g:else>
+	                                <input type="text" class="form-control" name="email3" id="thirdadmin" value="${email3}" placeholder="Email ID" readonly></input>
+					            </g:else>
 					        </div>
 	                    </div>
                     </div>
+                    <span id="test"></span>
+                    <script>
+                    function deleteAdmin(current, projectId, email, username) {
+                       var stat= confirm("Are you sure you want delete this admin");
+                       if(stat){
+                       if(email == "email1"){
+                           $('#firstadmin').val('');
+                           $('#logoDelete1').hide();  
+                        }
+                        if(email == "email2"){
+                            $('#secondadmin').val('');
+                            $('#logoDelete2').hide();  
+                        }
+                        if(email == "email3"){
+                            $('#thirdadmin').val('');
+                            $('#logoDelete3').hide();  
+                        }
+                    	                      
+                        $.ajax({
+                             type:'post',
+                             url:$("#b_url").val()+'/project/deleteCampaignAdmin',
+                             data:'projectId='+projectId+'&username='+username,
+                             success: function(data){
+                             $('#test').html(data);
+                         }
+                         }).error(function(){
+                             alert('An error occured');
+                         });
+                        }
+                     }
+                    </script>
                 </div>
             </div>
 

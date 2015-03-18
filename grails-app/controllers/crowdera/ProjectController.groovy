@@ -174,6 +174,17 @@ class ProjectController {
         projectId.organizationIconUrl=null
         render '' 
     }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def deleteCampaignAdmin(){
+        def project = Project.get(request.getParameter("projectId"))
+        def username = request.getParameter("username")
+        def projectAdmin = ProjectAdmin.findByEmail(username)
+        def projectAdmins = project.projectAdmins
+        projectAdmins.remove(projectAdmin);
+        projectAdmin.delete()
+        render ''
+    }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def validate() {

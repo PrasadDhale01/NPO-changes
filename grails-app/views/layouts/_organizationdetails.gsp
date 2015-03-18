@@ -3,13 +3,14 @@
 <% 
     def beneficiary = project.user
     boolean ended = projectService.isProjectDeadlineCrossed(project)
-    def isteamexist = userService.isTeamEnabled(project, currentFundraiser)
+    def isteamexist = userService.isTeamEnabled(project, currentFundraiser) 
     def webUrl = projectService.getWebUrl(project)
     def percentage = contributionService.getPercentageContributionForProject(project)
+    def isCampaignAdmin = userService.isCampaignAdmin(project, username)
 %>
 <div class="panel panel-default">
     <div class="panel-heading">
-       <g:if test="${currentFundraiser == beneficiary}">
+    <g:if test="${currentFundraiser == beneficiary}">
    	    Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
    	</g:if>
    	<g:else>
@@ -43,42 +44,34 @@
         <label>Web: <a href="${webUrl}" target="${webUrl}">${project.webAddress}</a></label>
         </div> 
         <div class="clear"></div>
-        <g:if test="${project.draft}">
-            <div class="tilesanstitletag banner-wid">
-                <img src="/images/DRAFT1.png">
-            </div>
-	    </g:if>
-	    <g:elseif test="${project.rejected}">
-	        <div class="tilesanstitletag  banner-wid">
-	            <img src="/images/Rejected1.png">
-	        </div>
-	    </g:elseif>
-        <g:elseif test="${!project.validated}">
-	        <div class="tilesanstitletag  banner-wid">
-	            <img src="/images/PENDING1.png">
-	        </div>
-	    </g:elseif>
-	     <g:elseif test="${ended}">
-	        <div class="tilesanstitletag  banner-wid">
-	            <img src="/images/ended1.png">
-	        </div>
-	    </g:elseif>
-	    <g:elseif test="${percentage >= 75}">
-			<div class="tilesanstitletag  banner-wid">
-				<img src="/images/funded.png">
-			</div>
-		</g:elseif>
-	    <g:elseif test="${isteamexist}">
-	        <g:if test="${currentFundraiser == beneficiary}">
-	            <div class="tilesanstitletag  banner-wid">
-					<img src="/images/Owner-Bottom.png">
-				</div>
+        <div class="tilesanstitletag banner-wid">
+            <g:if test="${project.draft}">
+                <img src="/images/DRAFT1.png" alt="draft">
 	        </g:if>
-	        <g:else>
-	            <div class="tilesanstitletag  banner-wid">
-					<img src="/images/teamBottom.png">
-				</div>
-	        </g:else>
-	    </g:elseif>
+	        <g:elseif test="${project.rejected}">
+	            <img src="/images/Rejected1.png" alt="rejected">
+	        </g:elseif>
+            <g:elseif test="${!project.validated}">
+	            <img src="/images/PENDING1.png" alt="validated">
+	        </g:elseif>
+	        <g:elseif test="${ended}">
+	            <img src="/images/ended1.png" alt="ended">
+	        </g:elseif>
+	        <g:elseif test="${percentage >= 75}">
+				<img src="/images/funded.png" alt="funded">
+		    </g:elseif>
+		    <g:elseif test="${isCampaignAdmin}">
+<%--                <img src="/images/CO-OWNER.png" alt="CO-OWNER">--%>
+                <img src="/images/Owner-Bottom.png" alt="Owner">
+            </g:elseif>
+	        <g:elseif test="${isteamexist}">
+	            <g:if test="${currentFundraiser == beneficiary}">
+					<img src="/images/Owner-Bottom.png" alt="Owner">
+	            </g:if>
+	            <g:else>
+					<img src="/images/teamBottom.png" alt="team">
+	            </g:else>
+	        </g:elseif>
+	    </div>
     </div>
 </div>

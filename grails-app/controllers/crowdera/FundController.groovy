@@ -34,6 +34,8 @@ class FundController {
     def paykey
     def userId
     def perk
+    def static conId
+    def static frId
     String str
 
     def fund() {
@@ -81,7 +83,9 @@ class FundController {
         }
 		
         def fundRaiserUserName = params.fr
-	User fundraiser = User.findByUsername(params.fr)
+	    User fundraiser = User.findByUsername(params.fr)
+        def isCoAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
+        def team = userService.getTeamByUser(fundraiser, project)
 
         def totalContribution= contributionService.getTotalContributionForProject(project)
         def contPrice = params.double(('amount'))
@@ -111,7 +115,11 @@ class FundController {
         }
 
         if (project && reward) {
-            render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser]
+            if(!team || ! project.user){
+                render view:"error", model: [message:'User not found']     
+            }else{
+                render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser]
+            }
         } else {
             render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
         }
@@ -180,8 +188,11 @@ class FundController {
         def reward = contribution.reward
         def user = contribution.user
         def fundraiser = User.get(params.fr)
-		
-	    render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
+		if((contribution.id ==conId) && (fundraiser.id==frId)){
+	       render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
+        }else{
+           render view: 'error', model: [message: 'This contribution or fundraiser does not exist.']
+        }
     }
 
     def sendemail() {
@@ -403,7 +414,8 @@ class FundController {
 			contribution:contribution
 		)
 		transaction.save(failOnError: true)
-			
+		conId=contribution.id
+        frId= fundraiser.id
         redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [cb: contribution.id, fr:fundraiser.id])
     }
 

@@ -676,8 +676,13 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def projectupdate() {
         def project = Project.get(params.id)
+        def currentUser =userService.getCurrentUser()
         if(project) {
-            render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+            if(project.user!=currentUser){
+                render view:"manageproject/error", model: [project: project]
+            }else{
+                render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+            }
         } else {
             render (view: 'manageproject/error', model: [project: project])
         }

@@ -19,6 +19,7 @@ class Team {
     String videoUrl
 	
     boolean enable = true
+    boolean validated = false
 	
     Date joiningDate
     

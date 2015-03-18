@@ -725,10 +725,10 @@ class ProjectController {
     def addFundRaiser(){
         def project = Project.get(params.id)
         User user = userService.getCurrentUser()
-        def fundraiser = user.username
+        def fundraiser = project.user.username
         def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
         def message = projectService.getFundRaisersForTeam(project, user)
-        flash.prj_mngprj_message = message
+        flash.prj_mngprj_message = "Your request has been submitted for review and we'll get back to you within 24 hours."
         if (iscampaignAdmin) {
             redirect (action: 'manageproject', id: project.id)
         } else {
@@ -908,6 +908,7 @@ class ProjectController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def generateCSV(){
         List contributions=[]
         SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
@@ -955,5 +956,21 @@ class ProjectController {
         }
             
         render (contentType:"text/csv", text:result)            
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def validateteam() {
+        def project = Project.get(params.id);
+        def team = Team.get(params.teamId)
+        team.validated = true
+        flash.teamvalidationmessage = "Team validated Successfully."
+        redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', id: project.id)
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def discardteam() {
+        def project = projectService.discardTeam(params)
+        flash.teamdiscardedmessage = "Team Discarded Successfully."
+        redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', id: project.id)
     }
 }

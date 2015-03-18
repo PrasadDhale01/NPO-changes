@@ -725,10 +725,10 @@ class ProjectController {
     def addFundRaiser(){
         def project = Project.get(params.id)
         User user = userService.getCurrentUser()
-        def fundraiser = user.username
+        def fundraiser = project.user.username
         def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
         def message = projectService.getFundRaisersForTeam(project, user)
-        flash.prj_mngprj_message = message
+        flash.prj_mngprj_message = "Your request has been submitted for review and we'll get back to you within 24 hours."
         if (iscampaignAdmin) {
             redirect (action: 'manageproject', id: project.id)
         } else {

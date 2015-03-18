@@ -908,6 +908,7 @@ class ProjectController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def generateCSV(){
         List contributions=[]
         SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
@@ -957,6 +958,7 @@ class ProjectController {
         render (contentType:"text/csv", text:result)            
     }
     
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def validateteam() {
         def project = Project.get(params.id);
         def team = Team.get(params.teamId)
@@ -965,6 +967,7 @@ class ProjectController {
         redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', id: project.id)
     }
     
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def discardteam() {
         def project = projectService.discardTeam(params)
         flash.teamdiscardedmessage = "Team Discarded Successfully."

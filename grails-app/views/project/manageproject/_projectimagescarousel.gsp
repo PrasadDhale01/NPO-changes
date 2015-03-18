@@ -66,9 +66,12 @@
     <g:if test="${images.toString().contains('.jpg') }">
         <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}">
     </g:if>
-    <g:if test="${images.toString().contains('.png') }">
+    <g:elseif test="${images.toString().contains('.png') }">
         <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}">
-    </g:if>
+    </g:elseif>
+    <g:elseif test="${images.toString().contains('abstract') }">
+        <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}">
+    </g:elseif>
     <g:else>
         <iframe class="imagestyle" src="${images.get(0)}" allowfullscreen="" frameborder="0"></iframe>
     </g:else>	

@@ -174,6 +174,17 @@ class ProjectController {
         projectId.organizationIconUrl=null
         render '' 
     }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def deleteCampaignAdmin(){
+        def project = Project.get(request.getParameter("projectId"))
+        def username = request.getParameter("username")
+        def projectAdmin = ProjectAdmin.findByEmail(username)
+        def projectAdmins = project.projectAdmins
+        projectAdmins.remove(projectAdmin);
+        projectAdmin.delete()
+        render ''
+    }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def validate() {
@@ -629,11 +640,6 @@ class ProjectController {
 		int price = Double.parseDouble(params.price)
 		int amount = Double.parseDouble(params.amount)
         RewardShipping shippingInfo = new RewardShipping(params)
-		if(price >= amount) {
-			flash.prj_mngprj_message = "Enter a price less than Campaign amount: ${amount}"
-			render (view: 'manageproject/error', model: [reward: reward])
-			return
-		}
 		
         if(reward.save()) {
             def project= Project.get(params.id)
@@ -670,8 +676,13 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def projectupdate() {
         def project = Project.get(params.id)
+        def currentUser =userService.getCurrentUser()
         if(project) {
-            render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+            if(project.user!=currentUser){
+                render view:"manageproject/error", model: [project: project]
+            }else{
+                render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])
+            }
         } else {
             render (view: 'manageproject/error', model: [project: project])
         }
@@ -730,10 +741,10 @@ class ProjectController {
     def addFundRaiser(){
         def project = Project.get(params.id)
         User user = userService.getCurrentUser()
-        def fundraiser = user.username
+        def fundraiser = project.user.username
         def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
         def message = projectService.getFundRaisersForTeam(project, user)
-        flash.prj_mngprj_message = message
+        flash.prj_mngprj_message = "Your request has been submitted for review and we'll get back to you within 24 hours."
         if (iscampaignAdmin) {
             redirect (action: 'manageproject', id: project.id)
         } else {
@@ -913,6 +924,7 @@ class ProjectController {
         }
     }
 
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def generateCSV(){
         List contributions=[]
         SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
@@ -960,5 +972,21 @@ class ProjectController {
         }
             
         render (contentType:"text/csv", text:result)            
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def validateteam() {
+        def project = Project.get(params.id);
+        def team = Team.get(params.teamId)
+        team.validated = true
+        flash.teamvalidationmessage = "Team validated Successfully."
+        redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', id: project.id)
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def discardteam() {
+        def project = projectService.discardTeam(params)
+        flash.teamdiscardedmessage = "Team Discarded Successfully."
+        redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', id: project.id)
     }
 }

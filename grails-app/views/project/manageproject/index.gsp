@@ -57,7 +57,16 @@
 								validated by admin</h2>
 						</div>
 					</g:if>
-					
+					<g:if test="${flash.teamvalidationmessage}">
+						<div class="alert alert-success text-center">
+							${flash.teamvalidationmessage}
+						</div>
+					</g:if>
+					<g:if test="${flash.teamdiscardedmessage}">
+						<div class="alert alert-success text-center">
+							${flash.teamdiscardedmessage}
+						</div>
+					</g:if>
                     <g:if test="${fundRaiser}">
                         <div class="col-md-12 col-sm-12 col-xs-12 text-center">
                             <h4 class="green-heading"> FUNDRAISER: ${fundRaiserName}</h4>

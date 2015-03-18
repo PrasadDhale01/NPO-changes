@@ -36,7 +36,7 @@
                     <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img">
                         <a href="#" class="dropdown-toggle login" data-toggle="dropdown">
                             <g:if test="${userService.isFacebookUser()}">
-                                <i class="fa fa-facebook-square"></i>
+                                <i class="fa fa-facebook-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </g:if>
                             <g:elseif test="${userService.isAdmin()}">
                                 <i class="fa fa-unlock"></i>

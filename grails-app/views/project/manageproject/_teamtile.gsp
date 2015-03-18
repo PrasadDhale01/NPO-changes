@@ -14,72 +14,85 @@
     def uri = request.forwardURI
     def ismanagepage = uri.contains("manageproject")
     def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, user)
+    def isCampaignAdmin = userService.isCampaignAdmin(project, username)
 %>
 
 <div class="fedu thumbnail grow teamtile teamtile-padding">
 	<div class="blacknwhite teamtile-style">
+	   <g:if test="${userService.isFacebookUser() || project.user}">
+	    	<g:if test="${!isAdminOrBeneficiary}">
+	    	   <div class="over teamtile-banner">
+			<img src="/images/teamTop.png" alt="team">
+		   </div>
+	        </g:if>
+	    	<g:else>
+	    	   <div class="over teamtile-banner">
+		         <img src="/images/owner.png" alt="owner">
+		   </div>
+	    	</g:else>
+	    </g:if>
 	    <g:if test="${!ismanagepage || !isAdminOrBeneficiary}">
-			<g:link controller="project" action="show" id="${project.id}" params="['fr': username]">
-			    <g:if test="${userImageUrl != null}">
-					<img alt="${userName}" class="project-img" src="${userImageUrl}">
-				</g:if>
-				<g:else>
-				    <div class="imageWithTag">
-	                <div class="under">
-				        <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
+		<g:link controller="project" action="show" id="${project.id}" params="['fr': username]">
+		    <g:if test="${userImageUrl != null}">
+			<img alt="${userName}" class="project-img" src="${userImageUrl}">
+		    </g:if>
+		    <g:else>
+		        <div class="imageWithTag">
+	                    <div class="under">
+				<img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
+	                    </div>
+	                    <div class="over teamtile-banner">
+	                        <g:if test="${!team.enable}">
+				    <img src="/images/disabledTeam.png" alt="diabledTeam">
+			        </g:if>
+			        <g:else>
+		                    <g:if test="${user == project.user}">
+					<img src="/images/OWNER.png" alt="owner">
+				    </g:if>
+				    <g:elseif test="${isCampaignAdmin}">
+<%--                                    <img src="/images/CO-OWNER1.png" alt="co-owner">--%>
+                                        <img src="/images/OWNER.png" alt="owner">
+                                    </g:elseif>
+				    <g:else>
+			                <img src="/images/teamTop.png" alt="team">
+			            </g:else>
+			        </g:else>
+			    </div>
 	                </div>
-	                <g:if test="${!team.enable}">
-					    <div class="over teamtile-banner">
-							<img src="/images/disabledTeam.png">
-						</div>
-					</g:if>
-					<g:else>
-		                <g:if test="${user == project.user}">
-						    <div class="over teamtile-banner">
-								<img src="/images/OWNER.png">
-							</div>
-						</g:if>
-						<g:else>
-						    <div class="over teamtile-banner">
-								<img src="/images/teamTop.png">
-							</div>
-						</g:else>
-					</g:else>
-	            </div>
+		    </g:else>
+		</g:link>
+	    </g:if>
+	    <g:else>
+	        <g:link controller="project" action="manageproject" id="${project.id}">
+		    <g:if test="${userImageUrl != null}">
+			<img alt="${userName}" class="project-img" src="${userImageUrl}">
+		    </g:if>
+		    <g:else>
+		        <div class="imageWithTag">
+	                    <div class="under">
+				 <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
+	                    </div>
+	                    <div class="over teamtile-banner">
+	                        <g:if test="${!team.enable}">
+			            <img src="/images/disabledTeam.png" alt="diabledTeam">
+			        </g:if>
+			        <g:else>
+		                    <g:if test="${user == project.user}">
+				        <img src="/images/OWNER.png" alt="owner">
+				    </g:if>
+				    <g:elseif test="${isCampaignAdmin}">
+<%--                                    <img src="/images/CO-OWNER1.png" alt="co-owner">--%>
+                                        <img src="/images/OWNER.png" alt="owner">
+                                    </g:elseif>
+				    <g:else>
+					<img src="/images/teamTop.png" alt="team">
+				    </g:else>
 				</g:else>
-			</g:link>
-		</g:if>
-		<g:else>
-		    <g:link controller="project" action="manageproject" id="${project.id}">
-			    <g:if test="${userImageUrl != null}">
-					<img alt="${userName}" class="project-img" src="${userImageUrl}">
-				</g:if>
-				<g:else>
-				    <div class="imageWithTag">
-	                <div class="under">
-				        <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
+		            </div>
 	                </div>
-	                <g:if test="${!team.enable}">
-					    <div class="over teamtile-banner">
-							<img src="/images/disabledTeam.png">
-						</div>
-					</g:if>
-					<g:else>
-		                <g:if test="${user == project.user}">
-						    <div class="over teamtile-banner">
-								<img src="/images/OWNER.png">
-							</div>
-						</g:if>
-						<g:else>
-						    <div class="over teamtile-banner">
-								<img src="/images/teamTop.png">
-							</div>
-						</g:else>
-					</g:else>
-	            </div>
-				</g:else>
-			</g:link>
-		</g:else>
+		    </g:else>
+		</g:link>
+	    </g:else>
 	</div>
 
 	<div class="modal-footer tile-footer">

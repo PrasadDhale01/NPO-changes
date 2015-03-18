@@ -1057,7 +1057,9 @@ class ProjectService {
 	            imageUrl : imageUrl,
 	            joiningDate: new Date()
             )
-
+            if (project.user == user) {
+                team.validated = true
+            }
             project.addToTeams(team).save(failOnError: true)
             if (project.teams.size()==1) {
                 message= "You have successfully created the team"
@@ -1093,9 +1095,33 @@ class ProjectService {
         mandrillService.sendEmailToCustomer(service);
     }
     
-    def getEnabledTeamsForCampaign(Project project) {
-        def teams = Team.findAllWhere(project : project,enable:true);
+    def getEnabledAndValidatedTeamsForCampaign(Project project) {
+        def teams = Team.findAllWhere(project : project,enable:true, validated: true);
         return teams
+    }
+    
+    def getTeamToBeValidated(def project) {
+        def teams = Team.findAllWhere(project: project,validated: false)
+        return teams
+    }
+    
+    def getValidatedTeam(def project) {
+        def teams = Team.findAllWhere(project: project,validated: true)
+        return teams
+    }
+    
+    def discardTeam(def params) {
+        def project = Project.get(params.id);
+        def team = Team.get(params.teamId)
+        List imageUrls = team.imageUrl
+        def i = imageUrls.size()
+        for (int j=0; j< i; j++) {
+            imageUrls[j] = null;
+        }
+        List teams = project.teams
+        teams.remove(team)
+        team.delete()
+        return project
     }
 
     @Transactional

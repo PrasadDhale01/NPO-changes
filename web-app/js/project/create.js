@@ -265,9 +265,7 @@ $(function() {
 
       /******************************Video Thumbnail***************************************/
      
-     $('#videoUrl').focus(function(){
-       
-     }).change(function(){
+     $('#videoUrl').change(function(){
           var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
           var url= $('#videoUrl').val().trim();
           var match = url.match(regExp);
@@ -276,7 +274,7 @@ $(function() {
               $('#ytVideo').show();
               var vurl=url.replace("watch?v=", "v/");
               $('#ytVideo').html('<iframe style="width:200px;height:100px; display:block;" src='+ vurl +'></iframe>');
-          }else if($(this).val('')){
+          }else if($(this)){
               $('#ytVideo').hide();
           }
      });

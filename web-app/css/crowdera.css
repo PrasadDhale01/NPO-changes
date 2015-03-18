@@ -1217,7 +1217,6 @@ footer .footerbottomsection {
 
 .under{
 	position:absolute;
-    left:0;
     top:0;
     max-width:100%;
     width:100%;
@@ -1229,6 +1228,15 @@ footer .footerbottomsection {
 	left:0;
 }
 
+.textFieldWithTag{
+	positon: relative;
+}
+
+.deleteIconAbove{
+	position: absolute;
+    top: 0px;
+    right: 5%;
+}
 /*************************************Organization logo***********************/
 .pr-icon-thumbnail {
     width: 50px;
@@ -1861,10 +1869,17 @@ h1.green-heading{
 .project-story-span img{
     max-width: 100%;
 }
-.help-block{
+.descriptionDiv .help-block{
     color: #ff0000;
     font-size: 12px;
     font-weight: normal;
+    display:inline !important;
+}
+.createDescDiv .help-block{
+    color: #ff0000;
+    font-size: 12px;
+    font-weight: normal;
+    display:inline !important;
 }
 .form-control.rewardprice{
     width:100%;

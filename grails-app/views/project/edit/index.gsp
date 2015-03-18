@@ -278,66 +278,66 @@
                 </div>
                 <div class="panel-body">
                     <div class="col-sm-6">
-	                    <div class="form-group">
-	                        <label class="col-sm-4 control-label">First Admin</label>
-	                        <div class="col-sm-8">
-	                            <g:if test="${project.user == currentUser}">
+	                <div class="form-group">
+	                    <label class="col-sm-4 control-label">First Admin</label>
+	                    <div class="col-sm-8">
+	                        <g:if test="${project.user == currentUser}">
 	                            <div class="textFieldWithTag">
 	                                <input type="text" class="form-control" name="email1" value="${email1}" id="firstadmin" placeholder="Email ID" ></input>
-					                <g:if test="${email1}">
-					                    <div class="deleteIconAbove">
-                                            <img onClick="deleteAdmin(this,'${project.id}', 'email1', '${email1}');"
-                                                src="/images/delete.ico" id="logoDelete1"/>
-                                        </div>
-                                    </g:if>
-                                </div>
-					            </g:if>
-					            <g:else>
-					                <input type="text" class="form-control" name="email1" value="${email1}" id="firstadmin" placeholder="Email ID" readonly></input>
-					            </g:else>
-					        </div>
-	                    </div>
-	                    <div class="form-group">
-	                        <label class="col-sm-4 control-label">Second Admin</label>
-	                        <div class="col-sm-8">
-	                            <g:if test="${project.user == currentUser}">
-	                            <div class="textFieldWithTag">
-	                                <input type="text" class="form-control" name="email2" value="${email2}" id="secondadmin" placeholder="Email ID"></input>
+					    <g:if test="${email1}">
+				            <div class="deleteIconAbove">
+                                                <img onClick="deleteAdmin(this,'${project.id}', 'email1', '${email1}');"
+                                                    src="/images/delete.ico" id="logoDelete1"/>
+                                            </div>
+                                        </g:if>
+                                   </div>
+				</g:if>
+				<g:else>
+				    <input type="text" class="form-control" name="email1" value="${email1}" id="firstadmin" placeholder="Email ID" readonly></input>
+				</g:else>
+		            </div>
+	                </div>
+	                <div class="form-group">
+	                   <label class="col-sm-4 control-label">Second Admin</label>
+	                   <div class="col-sm-8">
+	                       <g:if test="${project.user == currentUser}">
+	                           <div class="textFieldWithTag">
+	                               <input type="text" class="form-control" name="email2" value="${email2}" id="secondadmin" placeholder="Email ID"></input>
 	                                <g:if test="${email2}">
-	                                <div class="deleteIconAbove">
-                                        <img onClick="deleteAdmin(this,'${project.id}', 'email2', '${email2}');"
-                                            src="/images/delete.ico" id="logoDelete2"/>
-                                    </div>
-                                    </g:if>
+	                                    <div class="deleteIconAbove">
+                                                <img onClick="deleteAdmin(this,'${project.id}', 'email2', '${email2}');"
+                                                    src="/images/delete.ico" id="logoDelete2"/>
+                                            </div>
+                                        </g:if>
 	                            </div>
-	                            </g:if>
-	                            <g:else>
-	                                <input type="text" class="form-control" name="email2" value="${email2}" id="secondadmin" placeholder="Email ID" readonly></input>
-					            </g:else>
-					        </div>
-	                    </div>
+	                        </g:if>
+	                        <g:else>
+	                           <input type="text" class="form-control" name="email2" value="${email2}" id="secondadmin" placeholder="Email ID" readonly></input>
+			        </g:else>
+			    </div>
+	                 </div>
                     </div>
                     
                     <div class="col-sm-6">
-	                    <div class="form-group">
-	                        <label class="col-sm-4 control-label">Third Admin</label>
-	                        <div class="col-sm-8">
-	                            <g:if test="${project.user == currentUser}">
-	                                <div class="textFieldWithTag">
-	                                    <input type="text" class="form-control" name="email3" id="thirdadmin" class="" value="${email3}" placeholder="Email ID"></input>
-	                                    <g:if test="${email3}">
+	                <div class="form-group">
+	                    <label class="col-sm-4 control-label">Third Admin</label>
+	                    <div class="col-sm-8">
+	                        <g:if test="${project.user == currentUser}">
+	                            <div class="textFieldWithTag">
+	                                <input type="text" class="form-control" name="email3" id="thirdadmin" class="" value="${email3}" placeholder="Email ID"></input>
+	                                 <g:if test="${email3}">
 	                                    <div class="deleteIconAbove">
-                                            <img onClick="deleteAdmin(this,'${project.id}', 'email3' ,'${email3}');"
-                                                src="/images/delete.ico" id="logoDelete3"/>
-                                        </div>
+                                                <img onClick="deleteAdmin(this,'${project.id}', 'email3' ,'${email3}');"
+                                                    src="/images/delete.ico" id="logoDelete3"/>
+                                            </div>
                                         </g:if>
                                     </div>
-	                            </g:if>
-	                            <g:else>
-	                                <input type="text" class="form-control" name="email3" id="thirdadmin" value="${email3}" placeholder="Email ID" readonly></input>
-					            </g:else>
-					        </div>
-	                    </div>
+	                        </g:if>
+	                        <g:else>
+	                            <input type="text" class="form-control" name="email3" id="thirdadmin" value="${email3}" placeholder="Email ID" readonly></input>
+				</g:else>
+			    </div>
+	                </div>
                     </div>
                     <span id="test"></span>
                     <script>

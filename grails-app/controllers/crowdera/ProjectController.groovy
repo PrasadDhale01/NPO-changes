@@ -956,4 +956,18 @@ class ProjectController {
             
         render (contentType:"text/csv", text:result)            
     }
+    
+    def validateteam() {
+        def project = Project.get(params.id);
+        def team = Team.get(params.teamId)
+        team.validated = true
+        flash.teamvalidationmessage = "Team validated Successfully."
+        redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', id: project.id)
+    }
+    
+    def discardteam() {
+        def project = projectService.discardTeam(params)
+        flash.teamdiscardedmessage = "Team Discarded Successfully."
+        redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', id: project.id)
+    }
 }

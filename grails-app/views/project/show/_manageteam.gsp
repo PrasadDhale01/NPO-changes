@@ -2,7 +2,7 @@
 <g:set var="projectService" bean="projectService" />
 <g:set var="userService" bean="userService"/>
 <%
-    def teams = projectService.getEnabledTeamsForCampaign(project)
+    def teams = projectService.getEnabledAndValidatedTeamsForCampaign(project)
 	def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
 	def amount = contributionService.getTotalContributionForUser(currentTeam.contributions)
     def percentage = contributionService.getPercentageContributionForProject(project)
@@ -10,7 +10,7 @@
 	def username
 	if (currentUser) {
 	    username = currentUser.username
-	} 
+	}
     def isTeamExist = userService.isTeamAlreadyExist(project, currentUser)
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)

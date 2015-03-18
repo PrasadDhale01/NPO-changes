@@ -32,67 +32,67 @@
 	    	</g:else>
 	    </g:if>
 	    <g:if test="${!ismanagepage || !isAdminOrBeneficiary}">
-			<g:link controller="project" action="show" id="${project.id}" params="['fr': username]">
-			    <g:if test="${userImageUrl != null}">
-					<img alt="${userName}" class="project-img" src="${userImageUrl}">
-				</g:if>
-				<g:else>
-				    <div class="imageWithTag">
+		<g:link controller="project" action="show" id="${project.id}" params="['fr': username]">
+		    <g:if test="${userImageUrl != null}">
+			<img alt="${userName}" class="project-img" src="${userImageUrl}">
+		    </g:if>
+		    <g:else>
+		        <div class="imageWithTag">
 	                    <div class="under">
-				            <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
+				<img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
 	                    </div>
 	                    <div class="over teamtile-banner">
 	                        <g:if test="${!team.enable}">
-							    <img src="/images/disabledTeam.png" alt="diabledTeam">
-					        </g:if>
-					        <g:else>
-		                        <g:if test="${user == project.user}">
-								    <img src="/images/OWNER.png" alt="owner">
-						        </g:if>
-						        <g:elseif test="${isCampaignAdmin}">
+				    <img src="/images/disabledTeam.png" alt="diabledTeam">
+			        </g:if>
+			        <g:else>
+		                    <g:if test="${user == project.user}">
+					<img src="/images/OWNER.png" alt="owner">
+				    </g:if>
+				    <g:elseif test="${isCampaignAdmin}">
 <%--                                    <img src="/images/CO-OWNER1.png" alt="co-owner">--%>
-                                    <img src="/images/OWNER.png" alt="owner">
-                                </g:elseif>
-						        <g:else>
-								    <img src="/images/teamTop.png" alt="team">
-						        </g:else>
-					       </g:else>
-					   </div>
+                                        <img src="/images/OWNER.png" alt="owner">
+                                    </g:elseif>
+				    <g:else>
+			                <img src="/images/teamTop.png" alt="team">
+			            </g:else>
+			        </g:else>
+			    </div>
 	                </div>
-				</g:else>
-			</g:link>
-		</g:if>
-		<g:else>
-		    <g:link controller="project" action="manageproject" id="${project.id}">
-			    <g:if test="${userImageUrl != null}">
-					<img alt="${userName}" class="project-img" src="${userImageUrl}">
-				</g:if>
-				<g:else>
-				    <div class="imageWithTag">
+		    </g:else>
+		</g:link>
+	    </g:if>
+	    <g:else>
+	        <g:link controller="project" action="manageproject" id="${project.id}">
+		    <g:if test="${userImageUrl != null}">
+			<img alt="${userName}" class="project-img" src="${userImageUrl}">
+		    </g:if>
+		    <g:else>
+		        <div class="imageWithTag">
 	                    <div class="under">
-				            <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
+				 <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
 	                    </div>
 	                    <div class="over teamtile-banner">
 	                        <g:if test="${!team.enable}">
-					            <img src="/images/disabledTeam.png" alt="diabledTeam">
-					        </g:if>
-					        <g:else>
-		                        <g:if test="${user == project.user}">
-								    <img src="/images/OWNER.png" alt="owner">
-						        </g:if>
-						        <g:elseif test="${isCampaignAdmin}">
+			            <img src="/images/disabledTeam.png" alt="diabledTeam">
+			        </g:if>
+			        <g:else>
+		                    <g:if test="${user == project.user}">
+				        <img src="/images/OWNER.png" alt="owner">
+				    </g:if>
+				    <g:elseif test="${isCampaignAdmin}">
 <%--                                    <img src="/images/CO-OWNER1.png" alt="co-owner">--%>
-                                    <img src="/images/OWNER.png" alt="owner">
-                                </g:elseif>
-						        <g:else>
-								    <img src="/images/teamTop.png" alt="team">
-						        </g:else>
-					        </g:else>
-					    </div>
-	                </div>
+                                        <img src="/images/OWNER.png" alt="owner">
+                                    </g:elseif>
+				    <g:else>
+					<img src="/images/teamTop.png" alt="team">
+				    </g:else>
 				</g:else>
-			</g:link>
-		</g:else>
+		            </div>
+	                </div>
+		    </g:else>
+		</g:link>
+	    </g:else>
 	</div>
 
 	<div class="modal-footer tile-footer">

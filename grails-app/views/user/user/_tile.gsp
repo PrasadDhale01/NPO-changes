@@ -213,7 +213,7 @@
                 <g:form controller="project" action="edit" method="post" id="${project.id}">
                     <g:hiddenField name="projectId" value="${project.id}" />
                     <button class="projectedit close pull-right" id="editproject">
-                     <i class="glyphicon glyphicon-edit"></i>
+                        <i class="glyphicon glyphicon-edit"></i>
                     </button>
                 </g:form>
                 <g:form controller="project" action="manageproject" method="post" id="${project.id}">

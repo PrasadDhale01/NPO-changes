@@ -1055,7 +1055,6 @@ class ProjectService {
 				description:description,
 	            story : story,
 	            videoUrl:videoUrl,
-	            imageUrl : imageUrl,
 	            joiningDate: new Date()
             )
             if (isCampaignBeneficiaryOrAdmin) {

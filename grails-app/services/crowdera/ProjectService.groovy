@@ -1068,7 +1068,12 @@ class ProjectService {
                 message= "Your request has been submitted for review and we'll get back to you within 24 hours."
             }
         } else {
-            message = "You already have a team."
+            def isValidatedTeamExist = userService.isValidatedTeamExist(project, user)
+            if (!isValidatedTeamExist) {
+                message = "Your request is yet to be validated."
+            } else {
+                message = "You already have a team."
+            }
         }
         return message
     }

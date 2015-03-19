@@ -11,7 +11,7 @@
 	if (currentUser) {
 	    username = currentUser.username
 	}
-    def isTeamExist = userService.isTeamAlreadyExist(project, currentUser)
+    def isTeamExist = userService.isValidatedTeamExist(project, currentUser)
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
 %>

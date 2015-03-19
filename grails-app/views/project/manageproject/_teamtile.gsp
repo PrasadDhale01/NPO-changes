@@ -47,11 +47,11 @@
 			        </g:if>
 			        <g:else>
 		                    <g:if test="${user == project.user}">
-					<img src="/images/OWNER.png" alt="owner">
+					<img src="/images/Owner.png" alt="owner">
 				    </g:if>
 				    <g:elseif test="${isCampaignAdmin}">
 <%--                                    <img src="/images/CO-OWNER1.png" alt="co-owner">--%>
-                                        <img src="/images/OWNER.png" alt="owner">
+                                        <img src="/images/Owner.png" alt="owner">
                                     </g:elseif>
 				    <g:else>
 			                <img src="/images/teamTop.png" alt="team">
@@ -78,11 +78,11 @@
 			        </g:if>
 			        <g:else>
 		                    <g:if test="${user == project.user}">
-				        <img src="/images/OWNER.png" alt="owner">
+				        <img src="/images/Owner.png" alt="owner">
 				    </g:if>
 				    <g:elseif test="${isCampaignAdmin}">
 <%--                                    <img src="/images/CO-OWNER1.png" alt="co-owner">--%>
-                                        <img src="/images/OWNER.png" alt="owner">
+                                        <img src="/images/Owner.png" alt="owner">
                                     </g:elseif>
 				    <g:else>
 					<img src="/images/teamTop.png" alt="team">

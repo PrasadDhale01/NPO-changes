@@ -27,7 +27,7 @@ $(function() {
 
     /* Initialize pop-overs (tooltips) */
     $("button[name='editproject']").popover({
-        content: 'Access denied',
+        content: 'ACCESS DENIED',
         trigger: 'manual',
         placement: 'right'
     })
@@ -37,7 +37,7 @@ $(function() {
 
     /* Initialize pop-overs (tooltips) */
     $("button[name='projectpreview']").popover({
-        content: 'Access denied',
+        content: 'ACCESS DENIED',
         trigger: 'manual',
         placement: 'bottom'
     })

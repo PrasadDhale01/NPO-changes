@@ -439,6 +439,30 @@ footer .flinks a {
     text-align: left;
     color: #999999;
 }
+@media only screen and (max-width: 767px){
+
+    .nav-tabs.nav-justified.show-marginbottoms {
+        border-bottom: 0 none;
+        width: 100% !important;
+    }
+    .nav-tabs.nav-justified > li {
+        float: none;
+        width: 100% !important;
+    }
+    .nav-justified.validateshow-details-story{
+        display:flex !important;
+    }
+    .nav-justified.user-dashboard-style{
+        display:flex !important;
+    }
+    .nav-justified.show-marginbottoms{
+        display:flex !important;
+    }
+    .manage-projects.nav-justified{
+        display:flex !important;
+    }
+}
+
 @media only screen and (max-width: 600px){
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;

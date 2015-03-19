@@ -1041,6 +1041,7 @@ class ProjectService {
 	    def videoUrl = project.videoUrl
 	    def imageUrl = project.imageUrl
         def isTeamExist = false
+        def isCampaignBeneficiaryOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
         String message
         teams.each {
             if(user.id == it.user.id) {
@@ -1057,17 +1058,23 @@ class ProjectService {
 	            imageUrl : imageUrl,
 	            joiningDate: new Date()
             )
-            if (project.user == user) {
+            if (isCampaignBeneficiaryOrAdmin) {
                 team.validated = true
             }
             project.addToTeams(team).save(failOnError: true)
-            if (project.teams.size()==1) {
-                message= "You have successfully created the team"
+            if (isCampaignBeneficiaryOrAdmin) {
+                message= "You have successfully joined the team."
             } else {
-                message= "You have successfully joined the team"
+                mandrillService.sendTeamInvitation(project, user)
+                message= "Your request has been submitted for review and we'll get back to you within 24 hours."
             }
         } else {
-            message = "You already have a team"
+            def isValidatedTeamExist = userService.isValidatedTeamExist(project, user)
+            if (!isValidatedTeamExist) {
+                message = "Your request is yet to be validated."
+            } else {
+                message = "You already have a team."
+            }
         }
         return message
     }

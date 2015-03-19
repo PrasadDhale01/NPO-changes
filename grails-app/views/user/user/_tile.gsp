@@ -50,7 +50,7 @@
 					</g:elseif>
 					<g:elseif test="${!project.validated}">
 						<div class="over user-tiles-widths">
-							<img src="/images/PENDING.png">
+							<img src="/images/Pending.png">
 						</div>
 					</g:elseif>
 					<g:elseif test="${ended}">
@@ -66,18 +66,18 @@
 					<g:elseif test="${project.validated}">
 						<g:if test="${user == project.user || iscampaignAdmin}">
 						    <div class="over user-tiles-widths">
-								<img src="/images/OWNER.png">
+								<img src="/images/Owner.png">
 							</div>
 						</g:if>
 						<g:else>
 							<div class="over user-tiles-widths">
-								<img src="/images/PENDING.png">
+								<img src="/images/Pending.png">
 							</div>
 						</g:else>
 					</g:elseif>
 					<g:elseif test="${isTeamAdmin}">
 					    <div class="over user-tiles-widths">
-							<img src="/images/OWNER.png">
+							<img src="/images/Owner.png">
 						</div>
 					</g:elseif>
 					<g:else>
@@ -106,7 +106,7 @@
 					</g:elseif>
 					<g:elseif test="${!project.validated}">
 						<div class="over user-tiles-widths">
-							<img src="/images/PENDING.png">
+							<img src="/images/Pending.png">
 						</div>
 					</g:elseif>
 					<g:elseif test="${ended}">
@@ -121,7 +121,7 @@
 					</g:elseif>
 					<g:if test="${isTeamAdmin}">
 					    <div class="over teamtile-banner">
-							<img src="/images/OWNER.png">
+							<img src="/images/Owner.png">
 						</div>
 					</g:if>
 					<g:else>

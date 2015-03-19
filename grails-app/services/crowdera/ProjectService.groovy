@@ -1039,7 +1039,7 @@ class ProjectService {
 	    def description = project.description
 	    def story = project.story
 	    def videoUrl = project.videoUrl
-	    def imageUrl = project.imageUrl
+	    def imageUrls = project.imageUrl
         def isTeamExist = false
         def isCampaignBeneficiaryOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
         String message
@@ -1060,6 +1060,13 @@ class ProjectService {
             )
             if (isCampaignBeneficiaryOrAdmin) {
                 team.validated = true
+            } else {
+                imageUrls.each { imageUrl ->
+                    ImageUrl imgUrl = new ImageUrl()
+                    imgUrl.url = imageUrl.url
+                    imgUrl.save(failOnError: true)
+                    team.addToImageUrl(imgUrl)
+                }
             }
             project.addToTeams(team).save(failOnError: true)
             if (isCampaignBeneficiaryOrAdmin) {

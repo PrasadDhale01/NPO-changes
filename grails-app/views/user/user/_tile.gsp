@@ -210,17 +210,29 @@
                         </button>
                     </g:form>
                 </g:if>
-                <g:form controller="project" action="edit" method="post" id="${project.id}">
-                    <g:hiddenField name="projectId" value="${project.id}" />
-                    <button class="projectedit close pull-right" id="editproject">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </button>
-                </g:form>
-                <g:form controller="project" action="manageproject" method="post" id="${project.id}">
-                    <button class="projectedit close pull-right" id="projectpreview">
-                        <i class="glyphicon glyphicon-picture"></i>
-                    </button>
-                </g:form>
+                <g:if test="${isTeamAdmin || (user==project.user)}">
+                	<g:form controller="project" action="edit" method="post" id="${project.id}">
+                    	<g:hiddenField name="projectId" value="${project.id}" />
+                    	<button class="projectedit close pull-right" id="editproject">
+                        	<i class="glyphicon glyphicon-edit"></i>
+                    	</button>
+                	</g:form>
+                	<g:form controller="project" action="manageproject" method="post" id="${project.id}">
+                    	<button class="projectedit close pull-right" id="projectpreview">
+                        	<i class="glyphicon glyphicon-picture"></i>
+                    	</button>
+                	</g:form>
+                </g:if>
+                <g:else>
+                	<button class="projectedit close pull-right" id="editproject" name="editproject"
+               	   	 data-toggle="popover">
+                       	<i class="glyphicon glyphicon-edit"></i>
+                   	</button>
+                   	<button class="projectedit close pull-right" id="projectpreview" name="projectpreview"
+                   	 data-toggle="popover">
+                       	<i class="glyphicon glyphicon-picture"></i>
+                   	</button>
+                </g:else>
 			</div>
 		</div>
 	</div>

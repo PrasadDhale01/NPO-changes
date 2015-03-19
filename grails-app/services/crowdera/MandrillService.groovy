@@ -702,11 +702,11 @@ class MandrillService {
                 'name': 'NAME',
                 'content': fundRaiser.firstName + ' ' + fundRaiser.lastName
             ],[
-                'name': 'EMAIL',
-                'content': fundRaiser.email
-            ],[
                 'name': 'OWNER',
                 'content': user.firstName+' '+user.lastName
+            ],[
+                'name': 'TITLE',
+                'content': project.title
             ]
         ]
 

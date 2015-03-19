@@ -382,7 +382,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
         						<div class="fileUpload btn btn-primary btn-sm">
 	        						<span>Add Images</span>
 	        						<input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]"
-	         							id="projectImageFile" multiple="multiple" accept="image/*">
+	         							id="projectImageFile" multiple="multiple" accept="image/jpeg, image/png">
          					    </div>
          					    <label class="docfile-orglogo-css" id="imgmsg">Please select image file.</label>
       						</div>

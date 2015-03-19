@@ -29,7 +29,7 @@ $(function() {
     $("button[name='editproject']").popover({
         content: 'ACCESS DENIED',
         trigger: 'manual',
-        placement: 'right'
+        placement: 'bottom'
     })
     .focus(showPopover)
     .blur(hidePopover)

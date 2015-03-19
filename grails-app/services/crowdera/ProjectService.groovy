@@ -1065,6 +1065,7 @@ class ProjectService {
             if (isCampaignBeneficiaryOrAdmin) {
                 message= "You have successfully joined the team."
             } else {
+                mandrillService.sendTeamInvitation(project, user)
                 message= "Your request has been submitted for review and we'll get back to you within 24 hours."
             }
         } else {

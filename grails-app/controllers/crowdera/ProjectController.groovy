@@ -733,7 +733,6 @@ class ProjectController {
             flash.prj_mngprj_message = message
             redirect (action: 'manageproject', id: project.id)
         } else {
-            mandrillService.sendTeamInvitation(project, user)
             flash.prj_mngprj_message = message
             redirect (action: 'show', id: project.id, params:[fr: fundraiser])
         }

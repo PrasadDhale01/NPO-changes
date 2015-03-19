@@ -728,10 +728,13 @@ class ProjectController {
         def fundraiser = project.user.username
         def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
         def message = projectService.getFundRaisersForTeam(project, user)
-        flash.prj_mngprj_message = "Your request has been submitted for review and we'll get back to you within 24 hours."
+        
         if (iscampaignAdmin) {
+            flash.prj_mngprj_message = message
             redirect (action: 'manageproject', id: project.id)
         } else {
+            mandrillService.sendTeamInvitation(project, user)
+            flash.prj_mngprj_message = message
             redirect (action: 'show', id: project.id, params:[fr: fundraiser])
         }
     }
@@ -963,6 +966,7 @@ class ProjectController {
         def project = Project.get(params.id);
         def team = Team.get(params.teamId)
         team.validated = true
+        mandrillService.sendTeamValidatedConfirmation(project,team.user)
         flash.teamvalidationmessage = "Team validated Successfully."
         redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', id: project.id)
     }

@@ -158,9 +158,9 @@
                                             <div class="col-sm-4">
                                                 <div class="form-group">
                                                     <label for="title" class="text">Amount</label>
-                                                    <input type="text" class="form-control contributioninput" name="amount" value="${contribution.amount.round()}" id="offlineAmount"/>
+                                                    <input type="text" class="form-control contributioninput offlineAmount" name="amount" value="${contribution.amount.round()}" id="offlineAmount"/>
                                                 </div>
-                                                <div id="errormsg"></div>
+                                                <div class="contributionerrormsg"></div>
                                             </div>
                                         </div>
                                         <div class="clear"></div>

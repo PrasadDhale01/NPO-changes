@@ -4,7 +4,7 @@
 	def projectId = project.id
 	def backers = contributionService.getBackersForProjectByReward(project, reward);
 %>
-<div class="panel panel-primary">
+<div class="panel panel-primary reward-tile">
 	<div class="panel-heading">
 		<h3 class="panel-title">${reward.title}</h3>
 	</div>

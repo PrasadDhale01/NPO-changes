@@ -777,13 +777,12 @@ class ProjectController {
 		def team = Team.get(params.id)
 		def project = Project.get(params.project)
 		def user = userService.getCurrentUser()
-		def fundRaiser = user.username
+		def fundRaiser = team.user.username
 		if(params) {
 			def amount = Double.parseDouble(params.amount)
 			if(amount <= project.amount){
 				team.amount = amount
 			}
-			println params
 			def imageFiles = request.getFiles('imagethumbnail')
 			if(!imageFiles.isEmpty()) {
 				projectService.getMultipleImageUrlsForTeam(imageFiles, team)
@@ -793,6 +792,9 @@ class ProjectController {
 			team.story = params.story
 			team.description = params.description
 			flash.teamUpdatemessage = "Team Updated Successfully"
+            if (user == project.user) {
+                mandrillService.sendTeamUpdationEmail(project, team)
+            }
 		}
 		redirect (action: 'show', id: project.id , params:[fr: fundRaiser], fragment: 'manageTeam')
 	}

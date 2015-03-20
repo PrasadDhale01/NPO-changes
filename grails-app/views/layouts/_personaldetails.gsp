@@ -21,10 +21,10 @@
           <li><span><b>Contact : </b>${project.beneficiary.telephone}</span></li>
         
           <g:if test='${project.paypalEmail==null}'>
-              <li><span><b>Payment mode : </b>Paypal</span></li>
+              <li><span><b>Payment mode : </b>FirstGiving</span></li>
           </g:if>
           <g:else>
-              <li><span><b>Payment mode : </b> FirstGiving</span></li>
+              <li><span><b>Payment mode : </b>Paypal</span></li>
           </g:else>
         </ul>
    	    

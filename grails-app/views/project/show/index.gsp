@@ -36,6 +36,7 @@
     def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
     def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
     def teamPercentage = contributionService.getPercentageContributionForTeam(currentTeam)
+    def isAdmin = userService.isAdmin()
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -97,7 +98,7 @@
 	                </g:link></h1>
 	            </div>
 	            <div class="col-md-4 mobileview-top">
-					<g:render template="/layouts/organizationdetails"/>
+                    <g:render template="/layouts/organizationdetails"/>
                     <g:render template="/layouts/tilesanstitle"/>
                     <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
@@ -195,7 +196,8 @@
 				    
                 </div>
                 <div class="col-md-4 mobileview-bottom">
-		            <g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentFundraiser,'username':username]"/>
+                    <g:render template="/layouts/organizationdetails" 
+                     model="['currentFundraiser':currentFundraiser,'username':username]"/>
                     <g:render template="/layouts/tilesanstitle" model="['currentFundraiser':currentFundraiser,'currentTeam':currentTeam,'currentTeamAmount':currentTeamAmount,'teamContribution':teamContribution]"/>
                     <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>

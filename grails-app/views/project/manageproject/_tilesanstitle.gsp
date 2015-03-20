@@ -26,6 +26,7 @@
     }
 %>
 <g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentUser,'username':username]"/>
+<g:render template="/layouts/personaldetails" model="['currentFundraiser':currentUser,'username':username, 'project':project]"/>
 <div class="fedu thumbnail grow managedetails-edit">
 <%--    <div style="height: 200px; overflow: hidden;" class="blacknwhite" onmouseover="showNavigation()" onmouseleave="hideNavigation()">--%>
 <%--        <g:link controller="project" action="show" id="${project.id}" title="${project.title}">--%>

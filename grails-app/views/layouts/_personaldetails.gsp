@@ -2,7 +2,6 @@
 <g:set var="userService" bean="userService"/>
 <% 
     def beneficiary = project.user
-    def isCampaignAdmin = userService.isCampaignAdmin(project, username)
     def isCoAdmin = userService.isCampaignBeneficiaryOrAdmin(project, beneficiary)
     def counter=1
 %>
@@ -22,10 +21,10 @@
           <li><span><b>Contact : </b>${project.beneficiary.telephone}</span></li>
           </g:if>
           <g:if test='${project.paypalEmail==null}'>
-              <li><span><b>Payment mode : </b>Paypal</span></li>
+              <li><span><b>Payment mode : </b>FirstGiving</span></li>
           </g:if>
           <g:else>
-              <li><span><b>Payment mode : </b> FirstGiving</span></li>
+              <li><span><b>Payment mode : </b>Paypal</span></li>
           </g:else>
         </ul>
    	    

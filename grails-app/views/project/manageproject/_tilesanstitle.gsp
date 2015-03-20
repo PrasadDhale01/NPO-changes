@@ -27,9 +27,13 @@
     def isAdmin =userService.isAdmin()
 %>
 <g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentUser,'username':username]"/>
+<<<<<<< HEAD
 <g:if test="${isAdmin}">
 <g:render template="/layouts/personaldetails" model="['currentFundraiser':currentUser,'username':username, 'project':project]"/>
 </g:if>
+=======
+<g:render template="/layouts/personaldetails" model="['project':project]"/>
+>>>>>>> origin/CDRA-694-ADMIN-VALIDATION
 <div class="fedu thumbnail grow managedetails-edit">
 <%--    <div style="height: 200px; overflow: hidden;" class="blacknwhite" onmouseover="showNavigation()" onmouseleave="hideNavigation()">--%>
 <%--        <g:link controller="project" action="show" id="${project.id}" title="${project.title}">--%>

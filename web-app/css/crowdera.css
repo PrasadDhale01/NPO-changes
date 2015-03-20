@@ -3751,6 +3751,7 @@ button.projectedit.close{
     border: solid #ccc 1px;
     padding: 5px;
     border-radius:0px;
+    width: 200px;
 }
 
 .team-footer {

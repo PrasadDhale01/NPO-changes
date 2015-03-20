@@ -83,27 +83,32 @@ $(function() {
         }
     });
     
-    $('.contributionedit').find('form').validate({
-    	rules: {
-    		contributorName: {
-                required: true,
-                minlength: 3
-            },
-            amount: {
-                required: true,
-                number: true,
-                maxlength: 5,
-                min: 1
-            }
-    	}
+    $('.contributionedit').each(function () {
+        $(this).find('form').validate({
+        	rules: {
+        		contributorName: {
+                    required: true,
+                    minlength: 3
+                },
+                amount: {
+                    required: true,
+                    number: true,
+                    maxlength: 5,
+                    min: 1
+                }
+        	}
+        });
     });
 
-    $("#offlineAmount").keypress(function (e) {
-        if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-            $("#errormsg").html("Digits Only").show().fadeOut("slow");
-            return false;
-        }
+    $('.offlineAmount').each(function () {
+        $(this).keypress(function (e) {
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                $(".contributionerrormsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+             }
+        });
     });
+    
     $("#offlineAmount1").keypress(function (e) {
         if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
             $("#errormsg1").html("Digits Only").show().fadeOut("slow");

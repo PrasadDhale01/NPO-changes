@@ -24,23 +24,23 @@
 	    </div><br>
 	    <div class="row">
 		<div class="col-sm-2 categoryList">
-            <g:form action="category" controller="project" name="categoryForm">
-                <g:select class="selectpicker" name="category" from="${categoryOptions}" id="category"
-			       optionKey="value" optionValue="value" value="${params.category}" onchange="selectedCategory()"/>
-			</g:form>
+                    <g:form action="category" controller="project" name="categoryForm">
+                        <g:select class="selectpicker" name="category" from="${categoryOptions}" id="category"
+		            optionKey="value" optionValue="value" value="${params.category}" onchange="selectedCategory()"/>
+		     </g:form>
 		</div>
 		<div class="col-sm-10">
-        	<g:if test="${flash.catmessage}">
-            	<div class="alert alert-danger">
-                    ${flash.catmessage}
-            	</div>
-        	</g:if>
-        	<g:else>
+        	    <g:if test="${flash.catmessage}">
+            	       <div class="alert alert-danger">
+                           ${flash.catmessage}
+            	        </div>
+        	    </g:if>
+        	    <g:else>
         	    <!-- Carousel -->
-			    <g:render template="list/grid" model="['projects': projects]"></g:render>
+		        <g:render template="list/grid" model="['projects': projects]"></g:render>
 		    </g:else>
 		</div>
-        </div>
+            </div>
 	</div>
     </div>
 </body>

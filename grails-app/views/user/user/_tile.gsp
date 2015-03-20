@@ -50,7 +50,7 @@
 					</g:elseif>
 					<g:elseif test="${!project.validated}">
 						<div class="over user-tiles-widths">
-							<img src="/images/PENDING.png">
+							<img src="/images/Pending.png">
 						</div>
 					</g:elseif>
 					<g:elseif test="${ended}">
@@ -66,18 +66,18 @@
 					<g:elseif test="${project.validated}">
 						<g:if test="${user == project.user || iscampaignAdmin}">
 						    <div class="over user-tiles-widths">
-								<img src="/images/OWNER.png">
+								<img src="/images/Owner.png">
 							</div>
 						</g:if>
 						<g:else>
 							<div class="over user-tiles-widths">
-								<img src="/images/PENDING.png">
+								<img src="/images/Pending.png">
 							</div>
 						</g:else>
 					</g:elseif>
 					<g:elseif test="${isTeamAdmin}">
 					    <div class="over user-tiles-widths">
-							<img src="/images/OWNER.png">
+							<img src="/images/Owner.png">
 						</div>
 					</g:elseif>
 					<g:else>
@@ -106,7 +106,7 @@
 					</g:elseif>
 					<g:elseif test="${!project.validated}">
 						<div class="over user-tiles-widths">
-							<img src="/images/PENDING.png">
+							<img src="/images/Pending.png">
 						</div>
 					</g:elseif>
 					<g:elseif test="${ended}">
@@ -121,7 +121,7 @@
 					</g:elseif>
 					<g:if test="${isTeamAdmin}">
 					    <div class="over teamtile-banner">
-							<img src="/images/OWNER.png">
+							<img src="/images/Owner.png">
 						</div>
 					</g:if>
 					<g:else>
@@ -210,17 +210,29 @@
                         </button>
                     </g:form>
                 </g:if>
-                <g:form controller="project" action="edit" method="post" id="${project.id}">
-                    <g:hiddenField name="projectId" value="${project.id}" />
-                    <button class="projectedit close pull-right" id="editproject">
-                        <i class="glyphicon glyphicon-edit"></i>
-                    </button>
-                </g:form>
-                <g:form controller="project" action="manageproject" method="post" id="${project.id}">
-                    <button class="projectedit close pull-right" id="projectpreview">
-                        <i class="glyphicon glyphicon-picture"></i>
-                    </button>
-                </g:form>
+                <g:if test="${isTeamAdmin || (user==project.user)}">
+                	<g:form controller="project" action="edit" method="post" id="${project.id}">
+                    	<g:hiddenField name="projectId" value="${project.id}" />
+                    	<button class="projectedit close pull-right" id="editproject">
+                        	<i class="glyphicon glyphicon-edit"></i>
+                    	</button>
+                	</g:form>
+                	<g:form controller="project" action="manageproject" method="post" id="${project.id}">
+                    	<button class="projectedit close pull-right" id="projectpreview">
+                        	<i class="glyphicon glyphicon-picture"></i>
+                    	</button>
+                	</g:form>
+                </g:if>
+                <g:else>
+                	<button class="projectedit close pull-right" id="editproject" name="editproject"
+               	   	 data-toggle="popover">
+                       	<i class="glyphicon glyphicon-edit"></i>
+                   	</button>
+                   	<button class="projectedit close pull-right" id="projectpreview" name="projectpreview"
+                   	 data-toggle="popover">
+                       	<i class="glyphicon glyphicon-picture"></i>
+                   	</button>
+                </g:else>
 			</div>
 		</div>
 	</div>

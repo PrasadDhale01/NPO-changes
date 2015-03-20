@@ -689,4 +689,56 @@ class MandrillService {
         sendTemplate(fundRaiser,'contributionEmailToCampaignOwnerOrTeam', globalMergeVars, tags)
     }
     
+    public def sendTeamInvitation(Project project, User fundRaiser) {
+        def user = project.user
+        def username = user.username
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageproject', id: project.id, params:[fr:username], absolute: true, fragment: 'manageTeam')
+
+        def globalMergeVars = [
+            [
+                'name': 'LINK',
+                'content': link
+            ],[
+                'name': 'NAME',
+                'content': fundRaiser.firstName + ' ' + fundRaiser.lastName
+            ],[
+                'name': 'OWNER',
+                'content': user.firstName+' '+user.lastName
+            ],[
+                'name': 'TITLE',
+                'content': project.title
+            ]
+        ]
+
+        def tags = ['team-validation-request']
+
+        sendTemplate(user,'team-validation-request', globalMergeVars, tags)
+    }
+    
+    public def sendTeamValidatedConfirmation(Project project, User fundRaiser) {
+        def user = project.user
+        def username = fundRaiser.username
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:username], absolute: true)
+
+        def globalMergeVars = [
+            [
+                'name': 'LINK',
+                'content': link
+            ],[
+                'name': 'NAME',
+                'content': fundRaiser.firstName + ' ' + fundRaiser.lastName
+            ],[
+                'name': 'IMAGEURL',
+                'content': project.organizationIconUrl
+            ],[
+                'name': 'TITLE',
+                'content': project.title
+            ]
+        ]
+
+        def tags = ['team-validated-confirmation']
+
+        sendTemplate(fundRaiser,'team-validated-confirmation', globalMergeVars, tags)
+    }
+    
 }

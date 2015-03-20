@@ -718,23 +718,28 @@ class ProjectController {
         }
     }
     
-    def categoryFilter (){
-		def category = request.getParameter("category")
+    def category (){
+        def category = params.category
+        redirect(action: 'categoryFilter', controller:'project',params:[category: category])
+    }
+    
+    def categoryFilter() {
+        def category = params.category
         def project
         if (category == "Social Innovation"){
             project = projectService.filterByCategory("SOCIAL_INNOVATION")
         } else if (category == "All Categories"){
-		    project = projectService.filterByCategory("All")
-		} else {
+            project = projectService.filterByCategory("All")
+        } else {
             project = projectService.filterByCategory(category)
         }
         if(!project){
-             flash.catmessage="No campaign found."
-             render (view: 'list/index', model: [projects: project,selectedCategory:category])
-        }else{
-             flash.catmessage=""
-             render (view: 'list/index', model: [projects: project,selectedCategory:category])
-        }
+            flash.catmessage="No campaign found."
+            render (view: 'list/index', model: [projects: project,selectedCategory:category])
+       }else{
+            flash.catmessage=""
+            render (view: 'list/index', model: [projects: project,selectedCategory:category])
+       }
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])

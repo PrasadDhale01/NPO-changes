@@ -461,6 +461,10 @@ footer .flinks a {
     .manage-projects.nav-justified{
         display:flex !important;
     }
+    
+    .categoryList .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+        width: 219px;
+    }
 }
 
 @media only screen and (max-width: 600px){

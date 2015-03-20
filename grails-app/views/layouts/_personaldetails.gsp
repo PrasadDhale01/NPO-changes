@@ -17,8 +17,9 @@
         <ul>
           <li><span><b>Name : </b>${beneficiary.firstName} ${beneficiary.lastName}</span></li>
           <li><span><b>Email : </b> <a href="mailto:${beneficiary.email}">${beneficiary.email}</a></span></li>
+          <g:if test="${project.beneficiary.telephone}">
           <li><span><b>Contact : </b>${project.beneficiary.telephone}</span></li>
-        
+          </g:if>
           <g:if test='${project.paypalEmail==null}'>
               <li><span><b>Payment mode : </b>FirstGiving</span></li>
           </g:if>
@@ -27,7 +28,7 @@
           </g:else>
         </ul>
    	    
-        <g:if test="${isCoAdmin}">
+        <g:if test="${isCoAdmin && project.projectAdmins.email[0]!="campaignadmin@crowdera.co"}">
             <div class="col-sm-12 coCreator">
                 <span><b>Campaign Co-Creator</b></span><hr class="hrClass"/>
             </div>

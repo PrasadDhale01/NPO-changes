@@ -1,6 +1,6 @@
 <g:set var="projectService" bean="projectService"/>
 <% 
-    def category = projectService.getCategory() 
+    def categoryOptions = projectService.getCategory() 
 	def base_url = grailsApplication.config.crowdera.BASE_URL
 	def base = "/campaign?"
 %>
@@ -20,15 +20,12 @@
                 <g:render template="list/search"></g:render>
             </div>
 	    <div class="row">
-		<div class="col-sm-2">
+		<div class="col-sm-2 categoryList">
 	        <h4>Categories</h4><br>
-		    <g:each in="${category}" var="categories">
-		        <% 
-				   def params = [category:"${categories.value}"]
-				   def url = base_url + base + params.collect { k,v -> "$k=$v" }.join('&')
-				%>
-		        <a href="${url}"<g:if test="${selectedCategory == categories.value}">class="categorylink"</g:if>>${categories.value}</a><br>
-		    </g:each>
+                <g:form action="category" controller="project" name="categoryForm">
+                    <g:select class="selectpicker" name="category" from="${categoryOptions}" id="category"
+					    optionKey="value" optionValue="value" value="${params.category}" onchange="selectedCategory()"/>
+				</g:form>
 		</div>
 		<div class="col-sm-10">
 		    <h4>Explore

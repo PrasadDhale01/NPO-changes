@@ -9,10 +9,19 @@ $(function() {
             }
         }
     });
+    
+    /* Apply selectpicker to selects. */
+    $('.selectpicker').selectpicker({
+        style: 'btn btn-sm btn-default'
+    });
 });
 
 function searchList(){
 	$('#q').val();
+}
+
+function selectedCategory(){
+	document.categoryForm.submit();
 }
 
 $(window).load(function() {

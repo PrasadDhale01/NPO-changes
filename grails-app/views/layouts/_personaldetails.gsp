@@ -2,7 +2,6 @@
 <g:set var="userService" bean="userService"/>
 <% 
     def beneficiary = project.user
-    def isCampaignAdmin = userService.isCampaignAdmin(project, username)
     def isCoAdmin = userService.isCampaignBeneficiaryOrAdmin(project, beneficiary)
     def counter=1
 %>

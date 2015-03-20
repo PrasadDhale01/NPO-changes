@@ -64,11 +64,16 @@
 						</div>
 					</g:elseif>
 					<g:elseif test="${project.validated}">
-						<g:if test="${user == project.user || iscampaignAdmin}">
+						<g:if test="${user == project.user}">
 						    <div class="over user-tiles-widths">
 								<img src="/images/Owner.png">
 							</div>
 						</g:if>
+						<g:elseif test="${isTeamAdmin}">
+						    <div class="over user-tiles-widths">
+                                <img src="/images/Co-Owner1.png" alt="co-owner">
+                            </div>
+                        </g:elseif>
 						<g:else>
 							<div class="over user-tiles-widths">
 								<img src="/images/Pending.png">

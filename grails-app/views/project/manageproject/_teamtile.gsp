@@ -51,7 +51,7 @@
 				    </g:if>
 				    <g:elseif test="${isCampaignAdmin}">
                         <img src="/images/Co-Owner1.png" alt="co-owner">
-                     </g:elseif>
+                      </g:elseif>
 				    <g:else>
 			            <img src="/images/teamTop.png" alt="team">
 			        </g:else>

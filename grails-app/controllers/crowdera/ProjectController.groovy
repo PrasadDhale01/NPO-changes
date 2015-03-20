@@ -718,23 +718,28 @@ class ProjectController {
         }
     }
     
-    def categoryFilter (){
-		def category = request.getParameter("category")
+    def category (){
+        def category = params.category
+        redirect(action: 'categoryFilter', controller:'project',params:[category: category])
+    }
+    
+    def categoryFilter() {
+        def category = params.category
         def project
         if (category == "Social Innovation"){
             project = projectService.filterByCategory("SOCIAL_INNOVATION")
         } else if (category == "All Categories"){
-		    project = projectService.filterByCategory("All")
-		} else {
+            project = projectService.filterByCategory("All")
+        } else {
             project = projectService.filterByCategory(category)
         }
         if(!project){
-             flash.catmessage="No campaign found."
-             render (view: 'list/index', model: [projects: project,selectedCategory:category])
-        }else{
-             flash.catmessage=""
-             render (view: 'list/index', model: [projects: project,selectedCategory:category])
-        }
+            flash.catmessage="No campaign found."
+            render (view: 'list/index', model: [projects: project,selectedCategory:category])
+       }else{
+            flash.catmessage=""
+            render (view: 'list/index', model: [projects: project,selectedCategory:category])
+       }
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -777,13 +782,12 @@ class ProjectController {
 		def team = Team.get(params.id)
 		def project = Project.get(params.project)
 		def user = userService.getCurrentUser()
-		def fundRaiser = user.username
+		def fundRaiser = team.user.username
 		if(params) {
 			def amount = Double.parseDouble(params.amount)
 			if(amount <= project.amount){
 				team.amount = amount
 			}
-			println params
 			def imageFiles = request.getFiles('imagethumbnail')
 			if(!imageFiles.isEmpty()) {
 				projectService.getMultipleImageUrlsForTeam(imageFiles, team)
@@ -793,6 +797,9 @@ class ProjectController {
 			team.story = params.story
 			team.description = params.description
 			flash.teamUpdatemessage = "Team Updated Successfully"
+            if (user == project.user) {
+                mandrillService.sendTeamUpdationEmail(project, team)
+            }
 		}
 		redirect (action: 'show', id: project.id , params:[fr: fundRaiser], fragment: 'manageTeam')
 	}

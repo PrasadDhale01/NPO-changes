@@ -741,4 +741,33 @@ class MandrillService {
         sendTemplate(fundRaiser,'team-validated-confirmation', globalMergeVars, tags)
     }
     
+    public def sendTeamUpdationEmail(Project project,Team team) {
+        def teamUser = team.user
+        def username = teamUser.username
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:username], absolute: true)
+
+        def globalMergeVars = [
+            [
+                'name': 'LINK',
+                'content': link
+            ],[
+                'name': 'NAME',
+                'content': teamUser.firstName + ' ' + teamUser.lastName
+            ],[
+                'name': 'IMAGEURL',
+                'content': project.organizationIconUrl
+            ],[
+                'name': 'TITLE',
+                'content': project.title
+            ],[
+                'name': 'OWNER',
+                'content': project.user.firstName +' '+ project.user.lastName
+            ]
+        ]
+
+        def tags = ['team-updation-email']
+
+        sendTemplate(teamUser,'team-updation-email', globalMergeVars, tags)
+    }
+    
 }

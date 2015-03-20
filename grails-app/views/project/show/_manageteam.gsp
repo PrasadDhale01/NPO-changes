@@ -45,7 +45,7 @@
 		    </g:else>
 		</g:if>
 		<g:else>
-		    <g:if test="${currentFundraiser == currentUser}">
+		    <g:if test="${currentFundraiser == currentUser || currentUser == project.user}">
                 <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
                    <button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team" data-toggle="dropdown" aria-expanded="false">
 			           Activity <span class="caret"></span>
@@ -53,7 +53,9 @@
 			       <ul class="dropdown-menu" role="menu">
 				       <li>
 				           <g:if test="${!ended}">
-				               <a class="list" href="#inviteTeamMember" data-toggle="modal" model="['project': project]"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+				               <g:if test="${currentFundraiser == currentUser || currentUser != project.user}">
+				                   <a class="list" href="#inviteTeamMember" data-toggle="modal" model="['project': project]"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+				               </g:if>
 				           </g:if>
 				           <g:else>
 				               <a class="list"><span class="glyphicon glyphicon-user"></span></i> &nbsp;&nbsp;Invite Members </a>
@@ -62,7 +64,7 @@
 				       <g:if test="${!userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
 				           <li><a class="list" href="#editFundraiser" data-toggle="modal" model="['currentTeam': currentTeam"><i class="glyphicon glyphicon-edit"></i> &nbsp;&nbsp;Edit Fundraiser</a></li>
 				       </g:if>
-			       </ul>         
+			       </ul>
                 </li>
             </g:if>
             <g:else>

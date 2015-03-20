@@ -97,7 +97,7 @@
 	                </g:link></h1>
 	            </div>
 	            <div class="col-md-4 mobileview-top">
-					<g:render template="/layouts/organizationdetails"/>
+                    <g:render template="/layouts/organizationdetails"/>
                     <g:render template="/layouts/tilesanstitle"/>
                     <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
@@ -195,7 +195,8 @@
 				    
                 </div>
                 <div class="col-md-4 mobileview-bottom">
-		            <g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentFundraiser,'username':username]"/>
+                    <g:render template="/layouts/organizationdetails" 
+                     model="['currentFundraiser':currentFundraiser,'username':username]"/>
                     <g:render template="/layouts/tilesanstitle" model="['currentFundraiser':currentFundraiser,'currentTeam':currentTeam,'currentTeamAmount':currentTeamAmount,'teamContribution':teamContribution]"/>
                     <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>

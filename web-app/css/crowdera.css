@@ -461,6 +461,10 @@ footer .flinks a {
     .manage-projects.nav-justified{
         display:flex !important;
     }
+    
+    .categoryList .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+        width: 219px;
+    }
 }
 
 @media only screen and (max-width: 600px){
@@ -3747,6 +3751,7 @@ button.projectedit.close{
     border: solid #ccc 1px;
     padding: 5px;
     border-radius:0px;
+    width: 200px;
 }
 
 .team-footer {
@@ -4562,4 +4567,11 @@ color:#fff;
 }
 .deleteComment{
  padding-bottom:22px;
+}
+.coCreator{
+    padding-top:10px;
+}
+.hrClass{
+    margin-top:4px;
+    margin-bottom:8px;
 }

@@ -46,13 +46,13 @@
         <div class="clear"></div>
         <div class="tilesanstitletag banner-wid">
             <g:if test="${project.draft}">
-                <img src="/images/Draft1.png" alt="draft">
+                <img src="/images/DRAFT1.png" alt="draft">
 	        </g:if>
 	        <g:elseif test="${project.rejected}">
 	            <img src="/images/Rejected1.png" alt="rejected">
 	        </g:elseif>
             <g:elseif test="${!project.validated}">
-	            <img src="/images/Pending1.png" alt="validated">
+	            <img src="/images/PENDING1.png" alt="validated">
 	        </g:elseif>
 	        <g:elseif test="${ended}">
 	            <img src="/images/ended1.png" alt="ended">
@@ -61,8 +61,7 @@
 				<img src="/images/funded.png" alt="funded">
 		    </g:elseif>
 		    <g:elseif test="${isCampaignAdmin}">
-<%--                <img src="/images/CO-OWNER.png" alt="CO-OWNER">--%>
-                <img src="/images/Owner-Bottom.png" alt="Owner">
+                <img src="/images/Co-Owner.png" alt="CO-OWNER">
             </g:elseif>
 	        <g:elseif test="${isteamexist}">
 	            <g:if test="${currentFundraiser == beneficiary}">

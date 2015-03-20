@@ -50,11 +50,11 @@
 					<img src="/images/OWNER.png" alt="owner">
 				    </g:if>
 				    <g:elseif test="${isCampaignAdmin}">
-                        <img src="/images/Co-Owner1.png" alt="co-owner">
-                      </g:elseif>
+                                        <img src="/images/Co-Owner1.png" alt="co-owner">
+                                    </g:elseif>
 				    <g:else>
-			            <img src="/images/teamTop.png" alt="team">
-			        </g:else>
+			                <img src="/images/teamTop.png" alt="team">
+			            </g:else>
 			        </g:else>
 			    </div>
 	                </div>
@@ -80,8 +80,8 @@
 				        <img src="/images/OWNER.png" alt="owner">
 				    </g:if>
 				    <g:elseif test="${isCampaignAdmin}">
-                        <img src="/images/Co-Owner1.png" alt="co-owner">
-                    </g:elseif>
+                                        <img src="/images/Co-Owner1.png" alt="co-owner">
+                                    </g:elseif>
 				    <g:else>
 					<img src="/images/teamTop.png" alt="team">
 				    </g:else>

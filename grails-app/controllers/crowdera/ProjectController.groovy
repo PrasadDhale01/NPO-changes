@@ -1005,13 +1005,12 @@ class ProjectController {
 	
 	def sortCampaign(){
 		def sorts = params.query
-		def selectedCategory = "All Categories"
 		def campaignsorts = projectService.isCampaignsorts(sorts)
 		if(!campaignsorts){
 			flash.catmessage="No campaign found."
 			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])
 		}else{
-		render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])
+		        render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])
 		}
 	}
 }

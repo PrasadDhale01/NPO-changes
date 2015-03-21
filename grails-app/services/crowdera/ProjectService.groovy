@@ -415,7 +415,7 @@ class ProjectService {
 		if(sorts == '10 days remining'){
 			projects.each {
 				def day = getRemainingDay(it)
-				if(day < 10){
+				if(day <= 10){
 					p.add(it)
 				}
 			}

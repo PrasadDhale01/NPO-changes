@@ -439,6 +439,30 @@ footer .flinks a {
     text-align: left;
     color: #999999;
 }
+/* Screen resolution 641 x 767*/
+@media only screen and (min-width: 641px) and (max-width: 767px){
+    .form-group.col-sm-6.col-xs-11.rewardPriceClass {
+        margin-left: 16px;
+        width: 100% !important;
+    }
+}
+
+/* Screen resolution 768 x 1024*/
+@media only screen and (min-width:768px) and (max-width: 1024px) {
+    .form-group.col-sm-6.rewardPriceClass{
+        margin-left: -24px !important;
+        width:57% !important;
+    }
+}
+
+/* Screen resolution 1025 x 1280*/
+@media only screen and (min-width:1025px) and (max-width: 1280px) {
+    .form-group.col-sm-6.rewardPriceClass{
+        margin-left: -24px !important;
+        width:55% !important;
+    }
+}
+
 @media only screen and (max-width: 767px){
 
     .nav-tabs.nav-justified.show-marginbottoms {
@@ -466,7 +490,12 @@ footer .flinks a {
         width: 219px;
     }
 }
-
+@media only screen and (min-width:599px) and (max-width: 600px){
+    .form-group.col-sm-6.col-xs-11.rewardPriceClass {
+        margin-left: 16px;
+        width: 100% !important;
+    }
+}
 @media only screen and (max-width: 600px){
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
@@ -1463,9 +1492,8 @@ text-decoration: none !important;
         margin-bottom: 30px;
     }
 }
-
+ 
 @media only screen and (max-width: 1280px){
-	
 	.divFirstAdmin.lowRes.highRes {
 		 width: 30% !important;
 		 margin-left: 76px !important;
@@ -2319,10 +2347,6 @@ textarea.form-control {
 	margin-bottom: 5px;
 }
 
-
-
-
-
 @media only screen and (max-width: 800px) {
     .nav > li > a{
         padding:7px, 10px !important;
@@ -2351,9 +2375,7 @@ textarea.form-control {
 		padding-bottom: 20px !important;
 	}
 }
-
 @media only screen and (max-width: 1024px) {
-	
 	.divFirstAdmin.lowRes.highRes {
 		width: 37% !important;
   		margin-left: 36px !important;
@@ -3436,6 +3458,10 @@ textarea.form-control {
 	.tips h2 {
 		padding-left: 68px !important;
 	}
+    .form-group.col-xs-11.rewardPriceClass{
+        padding-left:17px;
+        width:104% !important;
+    }
 	.button-team-footer .dropdown-menu {
 	    width: 317px !important;
 	}
@@ -3459,7 +3485,12 @@ textarea.form-control {
 	}	
 }
 
-@media only screen and (max-width: 320px){
+/* Screen resolution 320 x 640*/
+@media only screen and (min-width: 320px) and (max-width: 640px){
+    .form-group.col-sm-6.rewardPriceClass{
+        padding-left:16px;
+        width:104% !important;
+    }
 	.arrow-mobile-css {
 		margin-right: -21px;
 	}
@@ -3933,7 +3964,11 @@ button.projectedit.close{
     padding-right:82px;
 }
 .rewardTitle {
-	padding-left: 20px;
+	padding-left: 27px;
+}
+.form-group.rewardPriceClass{
+    padding-left:0px;
+    width:55% !important;
 }
 .rewardTitle > input {
     padding-left: 8px !important;

@@ -420,17 +420,17 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 						<div class="form-group">
 							<div id="addNewRewards">
 								<div class="rewardsTemplate" id="rewardTemplate">
-									<div class="form-group">
-										<div class="col-sm-6">
+									<div>
+										<div class="form-group col-sm-6 rewardTitleClass">
 											<label class="col-sm-4 control-label">Perk Title</label>
 											<div class="col-sm-8 rewardTitle">
 												<input type="text" placeholder="Title" name="rewardTitle1"
 													class="form-control rewardTitle required" id="rewardTitle1">
 											</div>
 										</div>
-										<div class="col-sm-6">
+										<div class=" form-group col-sm-6 rewardPriceClass">
 											<label class="col-sm-3 control-label">Perk Price</label>
-											<div class="col-sm-9">
+											<div class="col-sm-9 rewardPriceDiv">
 												<input type="number" placeholder="Enter digits only" name="rewardPrice1"
 													class="form-control rewardPrice required" id="rewardPrice1" min="0">
 											</div>

@@ -28,12 +28,12 @@
           </g:else>
         </ul>
    	    
-        <g:if test="${isCoAdmin && project.projectAdmins.email[0]!="campaignadmin@crowdera.co"}">
-            <div class="col-sm-12 coCreator">
-                <span><b>Campaign Co-Creator</b></span><hr class="hrClass"/>
-            </div>
+        <g:if test="${isCoAdmin}">
             <g:each in="${project.projectAdmins.email}" var="admin">
                 <g:if test="${admin!="campaignadmin@crowdera.co"}">
+                  <div class="col-sm-12 coCreator">
+                    <span><b>Campaign Co-Creator</b></span><hr class="hrClass"/>
+                  </div>
                   <ul>
                     <li><span>${admin}</span></li>
                   </ul>

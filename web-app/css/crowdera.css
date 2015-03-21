@@ -504,7 +504,7 @@ footer .flinks a {
         margin-left: 16px;
         width: 100% !important;
     }
-    .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+        .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 		width: 48% !important;
 		margin-left: -29% !important;
 	}

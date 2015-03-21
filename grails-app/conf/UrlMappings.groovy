@@ -68,6 +68,6 @@ class UrlMappings {
 		
 	/*User*/
 	"/user/mycampaigns"(controller:'user', action:'myproject')
-        "/users/dashboard"(controller:'user', action:'accountSetting')
+       "/users/dashboard"(controller:'user', action:'accountSetting')
     }
 }

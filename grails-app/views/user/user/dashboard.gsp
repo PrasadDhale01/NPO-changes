@@ -21,13 +21,13 @@
         <div class="row">
             <div class="col-md-12">
                 <ul class="nav nav-tabs nav-justified user-dashboard-style">
-                    <li class="active"><a href="#myprojects" data-toggle="tab">
+                    <li <g:if test="${activeTab == 'myprojects'}">class="active"</g:if>><a href="#myprojects" data-toggle="tab">
                         <span class="glyphicon glyphicon-leaf"></span><span class="hidden-xs"> My Campaigns
                     </span></a></li>
                     <li><a href="#my-contributions" data-toggle="tab">
                         <span class="glyphicon glyphicon-tint"></span><span class="hidden-xs"> My Contributions
                     </span></a></li>
-                    <li><a href="#account-settings" data-toggle="tab">
+                    <li <g:if test="${activeTab == 'account-settings'}">class="active"</g:if>><a href="#account-settings" data-toggle="tab">
                         <span class="fa fa-info-circle"></span><span class="hidden-xs"> My Profile
                     </span></a></li>
                     <g:if test="${userService.isCommunityManager()}">
@@ -44,11 +44,11 @@
 
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane active" id="myprojects">
+                    <div class="tab-pane <g:if test="${activeTab == 'myprojects'}">active</g:if>" id="myprojects">
                         <g:render template="user/myprojects"/>
                     </div>
 
-                    <div class="tab-pane" id="account-settings">
+                    <div class="tab-pane <g:if test="${activeTab == 'account-settings'}">active</g:if>" id="account-settings">
                         <g:render template="common/accountsettings"/>
                     </div>
 

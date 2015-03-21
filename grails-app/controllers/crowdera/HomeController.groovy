@@ -15,7 +15,10 @@ class HomeController {
     }
     
     def crowderacustomerhelp() {
-        projectService.getCustomerRequest(params)
+        def service = projectService.getCustomerRequest(params)
+        def files = request.getFiles('files')
+        projectService.setAttachments(service, files)
+        
         flash.contactmessage="Message Sent ! Crowdera Happiness Team will be in touch with you shortly."
         redirect action: "customerService"
     }

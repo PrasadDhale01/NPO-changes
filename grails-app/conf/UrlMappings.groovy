@@ -52,6 +52,7 @@ class UrlMappings {
 	"/campaign/validateList"(controller:'project', action:'validateList')
 	"/campaign/validateshow"(controller:'project', action:'validateshow')
 	"/campaign/sendemail"(controller:'project', action:'sendemail')
+	"/campaign/sortby"(controller:'project', action:'sortCampaign')
 
         /* Admin */
         "/admin/dashboard"(controller:'user', action:'admindashboard')

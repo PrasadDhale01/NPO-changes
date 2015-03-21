@@ -379,6 +379,49 @@ class ProjectService {
         ]
         return state
     }
+	
+	def getSorts(){
+		def sortsOptions = [
+			All_Campaigns: "All Campaigns",
+			More_than_ninety: "More than 90",
+			Less_than_ten: "Less than 10",
+			Ten_days_remining: "10 days remining"
+		]
+		return sortsOptions
+	}
+	
+	def isCampaignsorts(def sorts){
+		List projects = getValidatedProjects()
+		List p = []
+		if(sorts == 'All Campaigns'){
+			return projects
+		}
+		if(sorts == 'More than 90'){
+			projects.each {
+				def percentage = contributionService.getPercentageContributionForProject(it)
+				if(percentage > 90){
+					p.add(it)
+				}
+			}
+		}
+		if(sorts == 'Less than 10'){
+			projects.each {
+				def percentage = contributionService.getPercentageContributionForProject(it)
+				if(percentage < 10){
+					p.add(it)
+				}
+			}
+		}
+		if(sorts == '10 days remining'){
+			projects.each {
+				def day = getRemainingDay(it)
+				if(day < 10){
+					p.add(it)
+				}
+			}
+		}
+		return p
+	}
     
     def getdefaultAdmin(Project project, User user) {
         def defaultAdminEmail = "campaignadmin@crowdera.co"

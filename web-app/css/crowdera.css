@@ -464,7 +464,16 @@ footer .flinks a {
 }
 
 @media only screen and (max-width: 767px){
-
+	
+	.right-addon input {
+		padding-right: 30px;
+		margin-left: 27px;
+		height: 36px;
+	}
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 78%;
+		margin-left: -28%;
+	}
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
         width: 100% !important;
@@ -495,8 +504,18 @@ footer .flinks a {
         margin-left: 16px;
         width: 100% !important;
     }
+    .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 48% !important;
+		margin-left: -29% !important;
+	}
+	.right-addon input {
+		padding-right: 30px;
+		margin-left: 30px !important;
+		height: 36px;
+	}
 }
 @media only screen and (max-width: 600px){
+	
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
         width: 100% !important;
@@ -802,6 +821,8 @@ ul.unstyled {
 
 .right-addon input {
     padding-right: 30px;
+    margin-left: -58px;
+    height: 36px;
 }
 
 /* Override bootstrap */
@@ -1991,6 +2012,15 @@ textarea.form-control {
 /* Media 970px */
 @media only screen and (max-width: 970px) {
 	
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 80%;
+		margin-left: -26%;
+	}
+	.right-addon input {
+		padding-right: 30px;
+		margin-left: -95px;
+		height: 36px;
+	}
 	.btn-group.btn-group-sm.btnOrgBgColor {
   		margin-left: 0px;
 	}
@@ -2181,6 +2211,15 @@ textarea.form-control {
 }
 @media only screen and (max-width: 800px){
 	
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 80%;
+		margin-left: -26%;
+	}
+	.right-addon input {
+		padding-right: 30px;
+		margin-left: -95px;
+		height: 36px;
+	}
 	.btn-group.btn-group-sm.btnOrgBgColor {
 		margin-left: -20px;
 	}
@@ -2388,7 +2427,28 @@ textarea.form-control {
 	}
 }
 
+@media only screen and (min-width: 1023px) and (max-width: 1024px){
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 80%;
+		margin-left: -15%;
+	}
+	.right-addon input {
+		padding-right: 30px;
+		margin-left: -95px;
+		height: 36px;
+	}
+}
+
 @media only screen and (max-width: 768px) {
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 80%;
+		margin-left: -26%;
+	}
+	.right-addon input {
+		padding-right: 30px;
+		margin-left: -95px;
+		height: 36px;
+	}
 	.arrow-top {
 		margin-Top: -33px !important;
         }
@@ -2870,6 +2930,16 @@ textarea.form-control {
      .divThirdAdmin {
 	margin-left: -36px !important;
      }
+     
+     .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 61%;
+		margin-left: -29%;
+	 }
+	 .right-addon input {
+		padding-right: 30px;
+		margin-left: 29px;
+		height: 36px;
+	 }
 }
 
 @media only screen and (max-width: 479px){
@@ -3097,6 +3167,15 @@ textarea.form-control {
 
 }
 @media only screen and (max-width: 414px) {
+	.right-addon input {
+		padding-right: 30px;
+		margin-left: 27px;
+		height: 36px;
+	}
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 70%;
+		margin-left: -28%;
+	}
 	.arrow-mobile-css {
 		margin-right: -11px;
 	}
@@ -3310,11 +3389,29 @@ textarea.form-control {
 	}
 	.button-team-show .dropdown-menu {
 		width: 356px !important;
+	}
+	.right-addon input {
+		padding-right: 30px;
+		margin-left: 27px;
+		height: 36px;
+	}
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 73%;
+		margin-left: -28%;
 	}	
 }
 
 @media only screen and (max-width: 375px) {
-    
+	
+    .right-addon input {
+		padding-right: 30px;
+		margin-left: 27px;
+		height: 36px;
+	}
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 78%;
+		margin-left: -28%;
+	}
 	.arrow-mobile-css {
 		margin-right: -11px;
 	}
@@ -3455,6 +3552,10 @@ textarea.form-control {
 	}
 }
 @media only screen and (max-width: 360px){
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 81%;
+		margin-left: -28%;
+	}
 	.tips h2 {
 		padding-left: 68px !important;
 	}
@@ -3483,6 +3584,17 @@ textarea.form-control {
 		margin-left: 151px;
 		margin-bottom: -17px;
 	}	
+}
+
+@media only screen and (max-width: 320px){
+	.right-addon input {
+		padding-right: 30px;
+		margin-left: 27px;
+	}
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 93%;
+		margin-left: -28%;
+	}
 }
 
 /* Screen resolution 320 x 640*/
@@ -4609,4 +4721,7 @@ color:#fff;
 .hrClass{
     margin-top:4px;
     margin-bottom:8px;
+}
+form#sortsForm {
+	margin-left: 25%;
 }

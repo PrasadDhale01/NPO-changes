@@ -997,4 +997,21 @@ class ProjectController {
         flash.teamdiscardedmessage = "Team Discarded Successfully."
         redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', id: project.id)
     }
+	
+	def campaignsSorts(){
+		def sorts = params.sorts
+		redirect(action:'sortCampaign', controller: 'project',params:[query: sorts])
+	}
+	
+	def sortCampaign(){
+		def sorts = params.query
+		def selectedCategory = "All Categories"
+		def campaignsorts = projectService.isCampaignsorts(sorts)
+		if(!campaignsorts){
+			flash.catmessage="No campaign found."
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])
+		}else{
+		render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])
+		}
+	}
 }

@@ -1,23 +1,21 @@
-<div class="col-md-3 col-md-offset-3">
+<g:set var="projectService" bean="projectService"/>
+<%
+	def sortsOptions = projectService.getSorts()
+%>
+<div class="row">
+    <div class="col-sm-4 sortscamp">
+        <g:form action="campaignsSorts" controller="project" name="sortsForm">
+            <g:select class="selectpicker" name="sorts" from="${sortsOptions}"
+		            optionKey="value" optionValue="value" value="${sorts}" onchange="selectedCampaigns()"/>
+            </g:form>
+	</div>
+    <!-- /btn-group -->
     <div class="input-group">
-    <!--<div class="input-group-btn">
-            <button type="button" class="btn btn-primary dropdown-toggle"
-                data-toggle="dropdown">
-                All <span class="caret"></span>
-            </button>
-            <ul class="dropdown-menu">
-                <li><a href="#">Just started</a></li>
-                <li><a href="#">Mid way</a></li>
-                <li><a href="#">Almost complete</a></li>
-                <li><a href="#">Complete</a></li>
-            </ul>
-        </div> -->
-        <!-- /btn-group -->
         <form action="/campaign/query" onClick="searchList()" name="searchableForm">
-        <div class="inner-addon right-addon">
-            <i class="glyphicon glyphicon-search"></i>
-            <input type="search" class="search" id="q"  name="q" value="${params.q}" placeholder="Search">
-        </div>
+            <div class="inner-addon right-addon">
+                <i class="glyphicon glyphicon-search"></i>
+                <input type="search" class="search" id="q"  name="q" value="${params.q}" placeholder="Search">
+            </div>
         </form>
     </div>
 </div>

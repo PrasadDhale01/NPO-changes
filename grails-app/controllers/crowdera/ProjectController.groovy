@@ -305,7 +305,7 @@ class ProjectController {
     def update() {
         def project = Project.get(params.projectId)
         User user = userService.getCurrentUser()
-        
+        def fundRaiser = user.username
         if(project) {
             
             def iconFile = request.getFile('iconfile')
@@ -339,9 +339,7 @@ class ProjectController {
             //projectService.sendEmailToAdminForProjectUpdate(project, user)
             
             flash.prj_mngprj_message = "Successfully saved the changes"
-            render (view: 'manageproject/index',
-                    model: [project: project,
-                            FORMCONSTANTS: FORMCONSTANTS])
+            redirect (action: 'manageproject', id: project.id, params:[fr: fundRaiser])
         } else {
             flash.prj_edit_message = "Campaign not found."
             render (view: 'edit/editerror')

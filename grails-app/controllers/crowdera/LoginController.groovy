@@ -118,7 +118,7 @@ class LoginController {
 
         if (user.save()) {
             flash.user_message = "Profile updated successfully!"
-            redirect (controller: 'user', action: 'dashboard')
+            redirect (controller: 'user', action: 'accountSetting')
         } else {
            render(view: 'error', model: [message: "Error while updating user. Please try again later."])
         }

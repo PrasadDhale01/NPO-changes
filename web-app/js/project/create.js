@@ -415,19 +415,19 @@ $(function() {
      count++;
      $('#addNewRewards').append(
          '<div class="rewardsTemplate" id="rewardTemplate">'+
-           '<div class="form-group">'+
-             '<div class="col-sm-6">'+
+           '<div>'+
+             '<div class="form-group col-sm-6">'+
                 '<label class="col-sm-4 control-label">Perk Title</label>'+
                 '<div class="col-sm-8 rewardTitle">'+
                    '<input type="text" placeholder="Title" name="rewardTitle'+count+'" id="rewardTitle'+count+
                       '"  class="form-control required rewardTitle">'+
                 '</div>'+
               '</div>'+
-              '<div class="col-sm-6">'+
+              '<div class="form-group col-sm-6 rewardPriceClass">'+
                  '<label class="col-sm-3 control-label" id="lblrPrice">Perk Price</label>'+
-                 '<div class="col-sm-9">'+
+                 '<div class="col-sm-9 rewardPriceDiv">'+
                    '<input type="number" placeholder="Enter digits only"  name="rewardPrice'+count+'" id="rewardPrice'+count+
-                      ' style="width:100%;" class="form-control  rewardprice " required min="0" >'+
+                      '" style="width:100%;" class="form-control  rewardPrice required" min="0" >'+
                   '</div>'+
               '</div>'+
             '</div>'+
@@ -537,9 +537,22 @@ $(function() {
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                 //display error message
                 $("#errormsg").html("Digits Only").show().fadeOut("slow");
-            return false;
-        } 
-     });
+                return false;
+            } 
+        });
+
+        $("form").on("click", ".rewardPrice", function () {
+          $('.rewardPrice').each(function () {
+              $(this).keypress(function (e) {
+                //if the letter is not digit then display error and don't type anything
+                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                  //display error message
+                  $('.rewardPrice').val('');
+                  return false;
+                } 
+              });
+          });
+        });
    });
 
 /*Javascript error raised due to tooltip is resolved*/

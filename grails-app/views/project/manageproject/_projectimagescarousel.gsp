@@ -3,10 +3,9 @@
 <g:if test="${images.size()>1}">
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
-    <div>
  	<ol class="carousel-indicators manage-carousel" id="indicators">
     	<g:each in="${images}" var="img" status="count">
-        	<g:if test="${count == 1}">
+        	<g:if test="${count == 0}">
         		<li data-target="#carousel-example-generic" data-slide-to="${ count }" class="active"></li>
         	</g:if>
         	<g:else>
@@ -14,12 +13,11 @@
         	</g:else>
         </g:each>
     </ol>
-    </div>
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <g:each in="${images}" var="img" status="count">
-        	<g:if test="${count == 1}">
+        	<g:if test="${count == 0}">
         		<div class="item active">
 		        	<div class="blacknwhite manage-carousel-in">
 			            <g:if test="${img.toString().contains('.jpg') }">

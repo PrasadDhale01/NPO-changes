@@ -1104,8 +1104,46 @@ class ProjectService {
         service.subject = params.subject
 
         service.save(failOnError: true)
-        
         mandrillService.sendEmailToCustomer(service);
+        return service
+    }
+    
+    def setAttachments(CustomerService service, List<MultipartFile> files){
+        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+        def awsSecretKey = "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"
+
+        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+        def s3Service = new RestS3Service(awsCredentials);
+
+        def bucketName = "crowdera"
+        def s3Bucket = new S3Bucket(bucketName)
+        
+        def Folder = "Attachments"
+        
+        def tempImageUrl
+        files.each {
+            def fileUrl = new ImageUrl()
+            def attachedFile= it
+            
+            if (!attachedFile?.empty && attachedFile.size < 1024*1024) {
+                try{
+                    def file= new File("${attachedFile.getOriginalFilename()}")
+                    def key = "${Folder}/${it.getOriginalFilename()}"
+                    attachedFile.transferTo(file)
+                    def object=new S3Object(file)
+                    object.key=key
+                
+                    tempImageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+                    s3Service.putObject(s3Bucket, object)
+                    fileUrl.url = tempImageUrl
+                    
+                    service.addToAttachments(fileUrl)
+                    file.delete()
+                } catch(IllegalStateException e){
+                    e.printStackTrace()
+                }
+            }
+        }
     }
     
     def getEnabledAndValidatedTeamsForCampaign(Project project) {

@@ -2,6 +2,10 @@ package crowdera
 
 class CustomerService {
 
+    static hasMany = [attachments: ImageUrl]
+    
+    List attachments
+    
     String category
     String customername
     String description
@@ -15,6 +19,7 @@ class CustomerService {
         description nullable: true
         email nullable: true
         subject nullable: true
+        attachments nullable: true
     }
 
 }

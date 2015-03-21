@@ -20,7 +20,7 @@
 		                ${flash.contactmessage}
 			    </div>
 			</g:if>
-			<g:form action="crowderacustomerhelp" controller="Home" role="form">
+			<g:uploadForm action="crowderacustomerhelp" controller="Home" role="form">
 				<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2">
 					<h3 class="crowderasupport"><img src="/images/questionorcomment.png">&nbsp;&nbsp;<b>Submit a question or comment</b></h3>
 				</div>
@@ -50,11 +50,19 @@
 						<label for="emailAddress"><b>Your Email Address</b></label>
 						<input type="text" class="form-control" name="emailAddress"/>
 					</div>
+					<div class="form-group">
+						<label for="attachments"><b>Attachments</b></label>
+						<div class="clear"></div>
+						<div class="fileUpload btn btn-primary btn-sm">
+ 						    <span>Choose File</span>
+ 						    <input type="file" class="upload" id="attachments" name="files"/>
+       					</div>
+			        </div><hr/>
 					<div class="contactUsSubmitButton">
 						<button type="submit" id="contactsubmitbutton" class="btn btn-primary">Submit</button>
 					</div>
 				</div>
-			</g:form>
+			</g:uploadForm>
 		</div>
 	</div>
 </body>

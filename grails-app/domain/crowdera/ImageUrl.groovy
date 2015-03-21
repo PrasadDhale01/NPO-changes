@@ -3,7 +3,7 @@ package crowdera
 class ImageUrl {
 	String url
 
-	static belongsTo = Project, ProjectUpdate
+	static belongsTo = Project, ProjectUpdate, CustomerService
 
 	static hasMany = [projects: Project]
 

@@ -28,7 +28,12 @@ class UserController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def dashboard() {
-       userprofile('user/dashboard')
+       userprofile('user/dashboard','myprojects')
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def accountSetting() {
+       userprofile('user/dashboard','account-settings')
     }
 	
     @Secured(['ROLE_ADMIN'])
@@ -41,7 +46,7 @@ class UserController {
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
-    def userprofile(String userViews ){
+    def userprofile(String userViews, String activeTab){
         User user = (User)userService.getCurrentUser()
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
@@ -53,19 +58,19 @@ class UserController {
             def project = projectService.getProjects(projects, projectAdmins, teams)
             def contributions = Contribution.findAllByUser(user)
             
-            render view: userViews, model: [user: user, projects: project, contributions: contributions]
+            render view: userViews, model: [user: user, projects: project, contributions: contributions, activeTab:activeTab]
         }
         
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def myproject() {
-         userprofile('user/myproject')
+         userprofile('user/myproject',null)
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def mycontribution() {
-        userprofile('user/mycontribution')
+        userprofile('user/mycontribution',null)
     }
 
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
@@ -90,7 +95,7 @@ class UserController {
             return
         }
         flash.user_message = "Avatar added successfully"
-        redirect(action:'dashboard') 
+        redirect(action:'accountSetting') 
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -113,7 +118,7 @@ class UserController {
             return
         }
         flash.user_message = "Avatar updated successfully"
-        redirect(action:'dashboard')
+        redirect(action:'accountSetting')
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -122,7 +127,7 @@ class UserController {
         if(avatarUser) {
             avatarUser.userImageUrl = null
             flash.user_message = "Avatar deleted successfully"
-            redirect(action:'dashboard')
+            redirect(action:'accountSetting')
         } else {
             flash.user_err_message = "User not found"
             render (view: 'user/usererror')

@@ -7,8 +7,8 @@
         <g:form action="campaignsSorts" controller="project" name="sortsForm">
             <g:select class="selectpicker" name="sorts" from="${sortsOptions}"
 		            optionKey="value" optionValue="value" value="${sorts}" onchange="selectedCampaigns()"/>
-            </g:form>
-	</div>
+        </g:form>
+    </div>
     <!-- /btn-group -->
     <div class="input-group">
         <form action="/campaign/query" onClick="searchList()" name="searchableForm">

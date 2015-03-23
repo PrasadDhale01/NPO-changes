@@ -48,17 +48,22 @@
         </div>
     </g:if>
     <g:else>
-        <g:form class="form-signin" controller="login" action="update" role="form">
-            <div class="form-group">
-                <input type="text" name="firstName" required class="form-control" value="${user.firstName}" placeholder="New First name" autofocus>
-            </div>
-            <div class="form-group">
-                <input type="text" name="lastName" required class="form-control" value="${user.lastName}" placeholder="New Last name">
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="New Password (Optional)">
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
-        </g:form>
+        <div id="validpass">
+            <g:form class="form-signin" controller="login" action="update" role="form">
+                <div class="form-group">
+                    <input type="text" name="firstName" required class="form-control" value="${user.firstName}" placeholder="New First name" autofocus>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="lastName" required class="form-control" value="${user.lastName}" placeholder="New Last name">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="New Password (Optional)">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password">
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+            </g:form>
+        </div>
     </g:else>
 </div>

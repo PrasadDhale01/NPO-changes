@@ -445,6 +445,15 @@ footer .flinks a {
         margin-left: 16px;
         width: 100% !important;
     }
+    .right-addon input {
+		padding-right: 30px;
+		margin-left: 27px !important;
+		height: 36px;
+	}
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		margin-left: -30% !important;
+    	width:  218px!important;
+	}
 }
 
 /* Screen resolution 768 x 1024*/
@@ -453,6 +462,15 @@ footer .flinks a {
         margin-left: -24px !important;
         width:57% !important;
     }
+    .right-addon input {
+		padding-right: 30px;
+		margin-left: -83px !important;
+		height: 36px;
+	}
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		margin-left: -30% !important;
+    	width:  155px!important;
+	}
 }
 
 /* Screen resolution 1025 x 1280*/
@@ -461,19 +479,19 @@ footer .flinks a {
         margin-left: -24px !important;
         width:55% !important;
     }
+    .right-addon input {
+		padding-right: 30px;
+		margin-left: -61px !important;
+		height: 36px;
+	}
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		margin-left: -3% !important;
+    	width:  229px!important;
+	}
 }
 
 @media only screen and (max-width: 767px){
 	
-	.right-addon input {
-		padding-right: 30px;
-		margin-left: 27px;
-		height: 36px;
-	}
-	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		width: 78%;
-		margin-left: -28%;
-	}
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
         width: 100% !important;
@@ -2012,15 +2030,6 @@ textarea.form-control {
 /* Media 970px */
 @media only screen and (max-width: 970px) {
 	
-	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		width: 80%;
-		margin-left: -26%;
-	}
-	.right-addon input {
-		padding-right: 30px;
-		margin-left: -95px;
-		height: 36px;
-	}
 	.btn-group.btn-group-sm.btnOrgBgColor {
   		margin-left: 0px;
 	}
@@ -2210,16 +2219,6 @@ textarea.form-control {
 	}
 }
 @media only screen and (max-width: 800px){
-	
-	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		width: 80%;
-		margin-left: -26%;
-	}
-	.right-addon input {
-		padding-right: 30px;
-		margin-left: -95px;
-		height: 36px;
-	}
 	.btn-group.btn-group-sm.btnOrgBgColor {
 		margin-left: -20px;
 	}
@@ -2427,28 +2426,7 @@ textarea.form-control {
 	}
 }
 
-@media only screen and (min-width: 1023px) and (max-width: 1024px){
-	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		width: 80%;
-		margin-left: -15%;
-	}
-	.right-addon input {
-		padding-right: 30px;
-		margin-left: -95px;
-		height: 36px;
-	}
-}
-
 @media only screen and (max-width: 768px) {
-	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		width: 80%;
-		margin-left: -26%;
-	}
-	.right-addon input {
-		padding-right: 30px;
-		margin-left: -95px;
-		height: 36px;
-	}
 	.arrow-top {
 		margin-Top: -33px !important;
         }
@@ -3167,15 +3145,6 @@ textarea.form-control {
 
 }
 @media only screen and (max-width: 414px) {
-	.right-addon input {
-		padding-right: 30px;
-		margin-left: 27px;
-		height: 36px;
-	}
-	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		width: 70%;
-		margin-left: -28%;
-	}
 	.arrow-mobile-css {
 		margin-right: -11px;
 	}
@@ -3402,16 +3371,6 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 375px) {
-	
-    .right-addon input {
-		padding-right: 30px;
-		margin-left: 27px;
-		height: 36px;
-	}
-	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		width: 78%;
-		margin-left: -28%;
-	}
 	.arrow-mobile-css {
 		margin-right: -11px;
 	}
@@ -3586,23 +3545,21 @@ textarea.form-control {
 	}	
 }
 
-@media only screen and (max-width: 320px){
-	.right-addon input {
-		padding-right: 30px;
-		margin-left: 27px;
-	}
-	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		width: 93%;
-		margin-left: -28%;
-	}
-}
-
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
     .form-group.col-sm-6.rewardPriceClass{
         padding-left:16px;
         width:104% !important;
     }
+    .right-addon input {
+		padding-right: 30px;
+		margin-left: 27px;
+		height: 36px;
+	}
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		margin-left: -29% !important;
+    	width:  222px!important;
+	}
 	.arrow-mobile-css {
 		margin-right: -21px;
 	}

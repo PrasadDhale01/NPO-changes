@@ -105,17 +105,17 @@
                     </g:if>
                     <g:if test="${userService.isAnonymous(contribution.user)}">
                         <g:if test="${!isCampaignOwnerOrAdmin && CurrentUserTeam}">
-			                <g:if test="${contribution.contributorEmail == 'anonymous@example.com'}">
-			                    <p>By Anonymous Good Soul, on ${date}</p>
-			                </g:if>
-			                <g:else>
-			                    <dd>By ${contribution.contributorName}, on ${date}</dd>
-			                </g:else>
-			            </g:if>
-			            <g:else>
-			                <p>By Anonymous Good Soul, on ${date}</p>
-			            </g:else>
-			        </g:if>
+			    <g:if test="${contribution.contributorEmail == 'anonymous@example.com'}">
+			        <p>By Anonymous Good Soul, on ${date}</p>
+			    </g:if>
+			    <g:else>
+			        <dd>By ${contribution.contributorName}, on ${date}</dd>
+			    </g:else>
+			</g:if>
+			<g:else>
+			   <p>By Anonymous Good Soul, on ${date}</p>
+			</g:else>
+		    </g:if>
                     <g:else>
                         <dd>By ${friendlyName}, on ${date}</dd>
                     </g:else>

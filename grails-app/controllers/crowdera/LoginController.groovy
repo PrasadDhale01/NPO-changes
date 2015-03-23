@@ -31,10 +31,11 @@ class LoginController {
     }
 
     def user_request(){
-        if (User.findByUsername(params.username)) {
+        def userName=userService.getUserByName(params.username)
+        if (userName){
             render(view: 'error', model: [message: 'A user with that email already exists. Please use a different email.'])
         } else {
-            def user = new User(params)
+            def user = userService.getUserObject(params)
             user.enabled = false
             user.confirmed = false
             user.inviteCode = UUID.randomUUID().toString()
@@ -72,10 +73,11 @@ class LoginController {
     }  
 	
     def create() {
-        if (User.findByUsername(params.username)) {
+        def userName=userService.getUserByName(params.username)
+        if (userName) {
             render(view: 'error', model: [message: 'A user with that email already exists. Please use a different email.'])
         } else {
-            def user = new User(params)
+            def user = userService.getUserObject(params)
             user.enabled = false
             user.confirmCode = UUID.randomUUID().toString()
 			
@@ -92,8 +94,8 @@ class LoginController {
             if (!user.save()) {
                 render(view: 'error', model: [message: 'Problem creating user. Please try again.'])
             } else {
-                UserRole.create(user, roleService.userRole())
-
+                //UserRole.create(user, roleService.userRole())
+                userService.createUserRole(user, roleService)
                 mandrillService.sendMandrillEmail(user)
 
                 redirect(action: 'success')
@@ -130,7 +132,7 @@ class LoginController {
     }
 
     def confirm(String id) {
-        User user = User.findByConfirmCode(id)
+        User user = userService.getUserByConfirmCode(id)
 
         if (!user) {
             render(view: 'error', model: [message: 'Problem activating account. Please check your activation link.'])
@@ -162,7 +164,7 @@ class LoginController {
     }
 
     def request_accept(){
-        def users = User.get(params.id)
+        def users = userService.getUserId(params.id)
             users.enabled = true
             mandrillService.sendMail(users)
             flash.login_message = "User Invited"
@@ -183,7 +185,7 @@ class LoginController {
         }
 
     def confirmUser(String id) {
-        User users = User.findByInviteCode(id)
+        User users = userService.getUserByInviteCode(id)
         if (!users) {
             render(view: 'error', model: [message: 'Problem activating account. Please check your activation link.'])
         } else {
@@ -201,7 +203,7 @@ class LoginController {
     }
 
     def createAccount() {
-        def users = User.get(params.long('id'))
+        def users = userService.getUserId(params.long('id'))
          users.password = params.password
          if (params.firstName || params.lastName) {
              users.firstName = params.firstName
@@ -209,7 +211,7 @@ class LoginController {
         }
         if (users.save()) {
             users.confirmed = true
-            UserRole.create(users, roleService.userRole())
+            userService.createUserRole(users, roleService)
             render(view: 'success', model: [message: 'You have successfully registerd'])
         } else {
             render(view: 'error', model: [message: 'Problem creating user. Please try again.'])
@@ -218,7 +220,7 @@ class LoginController {
 
 
     def send_reset_email() {
-        User user = User.findByUsername(params.username)
+        User user = userService.getUserByName(params.username)
 
         if (!user) {
             // TBD: We might not want to give any hint on existing users
@@ -237,7 +239,7 @@ class LoginController {
     }
 
     def confirm_reset(String id) {
-        User user = User.findByResetCode(id)
+        User user = userService.getUserByResetCode(id)
 
         if (!user) {
             render(view: 'error', model: [message: 'Problem resetting password. Please check your reset link.'])
@@ -247,7 +249,7 @@ class LoginController {
     }
 
     def reset_password(String id) {
-        User user = User.findByResetCode(id)
+        User user = userService.getUserByResetCode(id)
 
         if (!user) {
             render(view: 'error', model: [message: 'Error resetting password.'])

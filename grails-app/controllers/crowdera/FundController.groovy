@@ -73,10 +73,12 @@ class FundController {
         def year = contributionService.getYear()
         def defaultCountry = 'US'
         perk = Reward.get(params.rewardId)
+        def user1 = User.get(params.tempValue)
 
         def user = User.get(params.userId)
         if (user == null){
             user = User.findByUsername('anonymous@example.com')
+            user1 = User.findByUsername('anonymous@example.com')
         }
         if (params.projectId) {
             project = Project.findById(params.projectId)
@@ -118,7 +120,7 @@ class FundController {
             if(!team || ! project.user){
                 render view:"error", model: [message:'User not found']     
             }else{
-                render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser]
+                render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1]
             }
         } else {
             render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
@@ -134,9 +136,11 @@ class FundController {
             project = Project.findById(params.projectId)
         }
         
+        def user1 = User.get(params.tempValue)
         def user = User.get(params.userId)
         if (user == null){
             user = User.findByUsername('anonymous@example.com')
+            user1 = User.findByUsername('anonymous@example.com')
         }
 		
         def fundRaiserUserName = params.fr
@@ -172,7 +176,7 @@ class FundController {
         } else {
             if (project && reward) {
                 if (project.paypalEmail){
-                render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser]
+                render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser, user1:user1]
                 } else {
                     payByFirstGiving(params,project,reward,user,fundraiser)
                 }
@@ -307,7 +311,7 @@ class FundController {
 
     def payByPaypal(def params,Project project,Reward reward,User user,User fundraiser){
         String timestamp = UUID.randomUUID().toString()
-        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}"
+        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}&tempValue=${params.tempValue}"
         def failureUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}"
 
         def BASE_URL = grailsApplication.config.crowdera.paypal.BASE_URL
@@ -361,6 +365,9 @@ class FundController {
         def twitter = request.getParameter('twitterHandle')
         def custom = request.getParameter('shippingCustom')
         def address = request.getParameter('physicalAddress')
+        def orgUser = User.get(request.getParameter('tempValue'))
+        def name = orgUser.firstName
+        def username = orgUser.email
         
         Contribution contribution = new Contribution(
                 date: new Date(),
@@ -370,6 +377,8 @@ class FundController {
                 email: emailId,
                 twitterHandle: twitter,
                 custom: custom,
+                contributorName: name,
+                contributorEmail:username,
                 physicalAddress: address
                 )
         project.addToContributions(contribution).save(failOnError: true)
@@ -448,6 +457,7 @@ class FundController {
         def timestamp = request.getParameter('timestamp')
         def userid = request.getParameter('userId')
 		def fundraiserId = request.getParameter('fundraiser')
+        def tempValue = request.getParameter('tempValue')
 
         Project project = Project.get(projectId)
         User user = User.get(userid)

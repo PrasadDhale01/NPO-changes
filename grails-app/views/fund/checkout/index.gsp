@@ -53,6 +53,7 @@
                 	<span class="payment-errors"></span>
 
                     <g:hiddenField name="projectId" value="${project.id}"/>
+                    <g:hiddenField name="user1" value="${user1.id}"/>
                     <g:hiddenField name="userId" value="${user.id}"/>
                     <g:hiddenField name="rewardId" value="${reward.id}"/>
                     <g:hiddenField name="fr" value="${fundraiser.username}"/>

@@ -14,6 +14,9 @@
 		<div class="container">
 			<g:form action="paypalurl" method="POST" name="payment-form" id="${project.id}" role="form">
 				<g:hiddenField name="fr" value="${fundraiser.id}"/>
+				<g:if test="${user1}">
+				    <g:hiddenField name="tempValue" value="${user1.id}"/>
+				</g:if>
 				<g:hiddenField name="rewardId" value="${reward.id}"/>
 				<g:hiddenField name="userId" value="${user.id}"/>
 				<g:hiddenField name="amount" value="${amount}"/>

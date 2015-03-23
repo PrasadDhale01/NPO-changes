@@ -8,7 +8,7 @@ $(function() {
             },
     		confirmPassword: {
 		        isEqualToPassword: true
-		    }
+            }
         }
     });
     

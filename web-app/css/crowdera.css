@@ -446,14 +446,14 @@ footer .flinks a {
         width: 100% !important;
     }
     .right-addon input {
-		padding-right: 30px;
-		margin-left: 27px !important;
-		height: 36px;
-	}
-	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		margin-left: -30% !important;
+	padding-right: 30px;
+	margin-left: 27px !important;
+	height: 36px;
+    }
+    .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	margin-left: -30% !important;
     	width:  218px!important;
-	}
+     }
 }
 
 /* Screen resolution 768 x 1024*/
@@ -463,14 +463,14 @@ footer .flinks a {
         width:57% !important;
     }
     .right-addon input {
-		padding-right: 30px;
-		margin-left: -83px !important;
-		height: 36px;
-	}
-	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		margin-left: -30% !important;
+	padding-right: 30px;
+	margin-left: -83px !important;
+	height: 36px;
+    }
+    .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	margin-left: -30% !important;
     	width:  155px!important;
-	}
+    }
 }
 
 /* Screen resolution 1025 x 1280*/
@@ -480,14 +480,14 @@ footer .flinks a {
         width:55% !important;
     }
     .right-addon input {
-		padding-right: 30px;
-		margin-left: -61px !important;
-		height: 36px;
-	}
-	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		margin-left: -3% !important;
+	padding-right: 30px;
+	margin-left: -61px !important;
+	height: 36px;
+    }
+    .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	margin-left: -3% !important;
     	width:  229px!important;
-	}
+    }
 }
 
 @media only screen and (max-width: 767px){
@@ -3552,32 +3552,32 @@ textarea.form-control {
         width:104% !important;
     }
     .right-addon input {
-		padding-right: 30px;
-		margin-left: 27px;
-		height: 36px;
-	}
-	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		margin-left: -29% !important;
-    	width:  222px!important;
-	}
-	.arrow-mobile-css {
-		margin-right: -21px;
-	}
-	.arrow-mobile {
-		margin-left: -17px !important;
-	}
-	.imageCarousellabel {
-         background-color: black;
-         background: rgba(255, 255, 255, 0.3);
-         padding-top: 6px;
-         height: 141px;
-         width: 120px;
-         margin-left: 128px !important;
-         margin-bottom: -17px;
+	padding-right: 30px;
+	margin-left: 27px;
+	height: 36px;
     }
-	.tips h2 {
-		padding-left: 29px !important;
-	}
+    .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	margin-left: -29% !important;
+    	width:  222px!important;
+    }
+    .arrow-mobile-css {
+	margin-right: -21px;
+    }
+    .arrow-mobile {
+	margin-left: -17px !important;
+    }
+    .imageCarousellabel {
+        background-color: black;
+        background: rgba(255, 255, 255, 0.3);
+        padding-top: 6px;
+        height: 141px;
+        width: 120px;
+        margin-left: 128px !important;
+        margin-bottom: -17px;
+    }
+    .tips h2 {
+	padding-left: 29px !important;
+    }
     .divFirstAdmin{
         margin-left:6px !important;
     }

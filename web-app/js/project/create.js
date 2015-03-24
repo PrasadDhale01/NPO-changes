@@ -3,7 +3,8 @@ $(function() {
 
     $('#logomsg').hide();
     $('#imgmsg').hide();
-  
+    $('#iconfilesize').hide();
+    $('#campaignfilesize').hide();
   /*********************************************************************/
 
     $("#updatereward").hide();
@@ -283,27 +284,36 @@ $(function() {
      /** ********************Organization Icon*************************** */
 
     $("#iconfile").change(function(event) {
-          var file =this.files[0];
-          if(!file.type.match('image')){
-            $('#icondiv').hide();
-            $('#logomsg').show();
-            this.value=null;
-          }else{
-            $('#icondiv').show();
-            $('#logomsg').hide();
-            var file = this.files[0];
-            var fileName = file.name;
-            var fileSize = file.size;
-            
-            var picReader = new FileReader();
-            picReader.addEventListener("load",function(event) {
-                      var picFile = event.target;
-                      $('#imgIcon').attr('src',picFile.result);
-                      $('#delIcon').attr('src',"/images/delete.ico");
-            });
-            // Read the image
-            picReader.readAsDataURL(file);
-          } 
+        var file =this.files[0];
+	    if(!file.type.match('image')){
+	        $('#icondiv').hide();
+	        $('#iconfilesize').hide();
+	        $('#logomsg').show();
+	        this.value=null;
+	    } else{
+	        if (file.size > 1024 * 1024 * 3) {
+	            $('#icondiv').hide();
+	            $('#logomsg').hide();
+	            $('#iconfilesize').show();
+	            $('#iconfile').val('');
+	        } else {
+                $('#icondiv').show();
+                $('#logomsg').hide();
+                $('#iconfilesize').hide();
+                var file = this.files[0];
+                var fileName = file.name;
+                var fileSize = file.size;
+        
+                var picReader = new FileReader();
+                picReader.addEventListener("load",function(event) {
+                    var picFile = event.target;
+                    $('#imgIcon').attr('src',picFile.result);
+                    $('#delIcon').attr('src',"/images/delete.ico");
+               });
+               // Read the image
+               picReader.readAsDataURL(file);
+	        }
+	    } 
     });
 
 
@@ -383,34 +393,54 @@ $(function() {
   }
      
       /** *************************Multiple Image Selection*************** */
-
+    var isvalidsize =  false;
     $('#projectImageFile').change(function(event) {
         var file =this.files[0];
         if(!file.type.match('image')){
             $('.pr-thumbnail-div').hide();
             $('#imgmsg').show();
+            $('#campaignfilesize').hide();
             this.value=null;
-        }else{
+        } else{
             $('#imgmsg').hide();
+            $('#campaignfilesize').hide();
             var files = event.target.files; // FileList object
             var output = document.getElementById("result");
+            var fileName;
+            var isFileSizeExceeds = false;
             for ( var i = 0; i < files.length; i++) {
                 var file = files[i];
                 var filename = file.name;
-                var picReader = new FileReader();
-                picReader.addEventListener("load",function(event) {
-                    var picFile = event.target;
-                    var div = document.createElement("div");
-                    div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"+ picFile.result+ "'"+ "title='"
-                        + file.name + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"/images/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"+ "</div>";
-                        output.insertBefore(div, null);
+                if(file.size < 1024 * 1024 * 3) {
+                	isvalidsize =  true;
+                    var picReader = new FileReader();
+                    picReader.addEventListener("load",function(event) {
+                        var picFile = event.target;
+                        var div = document.createElement("div");
+                        div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"+ picFile.result+ "'"+ "title='"
+                            + file.name + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"/images/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"+ "</div>";
+                            output.insertBefore(div, null);
                     });
-                // Read the image
-                picReader.readAsDataURL(file);
+                    // Read the image
+                    picReader.readAsDataURL(file);
+                } else {
+                	if (fileName) {
+                	    fileName = fileName +" "+ file.name;
+                	} else {
+                		fileName = file.name;
+                	}
+                	$('#campaignfilesize').show();
+                	isFileSizeExceeds = true;
+                }
+                
+            }
+            document.getElementById("campaignfilesize").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
+            if (isFileSizeExceeds && !isvalidsize) {
+                $('#projectImageFile').val('');
             }
         }
     });
-     
+    
   $('#createreward').click(function(){
      count++;
      $('#addNewRewards').append(

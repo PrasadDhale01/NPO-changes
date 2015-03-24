@@ -21,7 +21,7 @@ class UserController {
     @Secured(['ROLE_ADMIN'])
     def list() {
         def verifiedUsers = userService.getVerifiedUserList()
-	    def nonVerifiedUsers = userService.getNonVerifiedUserList()
+	def nonVerifiedUsers = userService.getNonVerifiedUserList()
         render(view: 'admin/userList', model: [verifiedUsers:verifiedUsers,nonVerifiedUsers:nonVerifiedUsers])
     }
 

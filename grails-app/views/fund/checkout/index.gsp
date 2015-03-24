@@ -3,6 +3,7 @@
 <g:set var="rewardservice" bean="rewardService"/>
 <%
     def shippingInfo = rewardservice.getShippingInfo(reward)
+    def currentUser = userService.getCurrentUser()
 %>
 <html>
 <head>
@@ -53,7 +54,12 @@
                 	<span class="payment-errors"></span>
 
                     <g:hiddenField name="projectId" value="${project.id}"/>
-                    <g:hiddenField name="user1" value="${user1.id}"/>
+                    <g:if test="${user1}">
+                        <g:hiddenField name="tempValue" value="${user1.id}"/>
+                    </g:if>
+                    <g:else>
+                        <g:hiddenField name="tempValue" value="${user1}"/>
+                    </g:else>
                     <g:hiddenField name="userId" value="${user.id}"/>
                     <g:hiddenField name="rewardId" value="${reward.id}"/>
                     <g:hiddenField name="fr" value="${fundraiser.username}"/>
@@ -130,7 +136,7 @@
                 
                 <div class="panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">Personal Details</h3>
+						<h3 class="panel-title">Billing Information <g:if test="${currentUser == null}">(Your contact details are used to send a receipt)</g:if></h3>
 					</div>
 					<div class="panel-body">  
                     	<div class="row">

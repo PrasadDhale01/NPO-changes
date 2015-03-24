@@ -14,7 +14,7 @@
    	    Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
    	</g:if>
    	<g:else>
-   	    Benefited by ${beneficiary.firstName} ${beneficiary.lastName}
+   	    Benefiting ${beneficiary.firstName} ${beneficiary.lastName}
    	</g:else>
 <%--        <g:if test="${isFundingOpen}">--%>
 <%--            <h3 class="panel-title">Fund this project</h3>--%>

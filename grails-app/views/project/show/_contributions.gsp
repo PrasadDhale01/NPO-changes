@@ -104,13 +104,8 @@
                         <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>
                     </g:if>
                     <g:if test="${userService.isAnonymous(contribution.user)}">
-                        <g:if test="${!isCampaignOwnerOrAdmin && CurrentUserTeam}">
-			                <g:if test="${contribution.contributorEmail == 'anonymous@example.com'}">
-			                    <p>By Anonymous Good Soul, on ${date}</p>
-			                </g:if>
-			                <g:else>
-			                    <dd>By ${contribution.contributorName}, on ${date}</dd>
-			                </g:else>
+                        <g:if test="${!isCampaignOwnerOrAdmin && CurrentUserTeam && currentFundraiser == team}">
+			               <dd>By ${contribution.contributorName}, on ${date}</dd>
 			            </g:if>
 			            <g:else>
 			                <p>By Anonymous Good Soul, on ${date}</p>

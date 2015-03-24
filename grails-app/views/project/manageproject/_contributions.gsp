@@ -89,12 +89,7 @@
 			            </g:if>
 			            <g:else>
 			                <g:if test="${userService.isAnonymous(contribution.user)}">
-			                    <g:if test="${contribution.contributorEmail == 'anonymous@example.com'}">
-			                        <p>By Anonymous Good Soul, on ${date}</p>
-			                    </g:if>
-			                    <g:else>
-			                        <dd>By ${contribution.contributorName}, on ${date}</dd>
-			                    </g:else>
+		                        <dd>By ${contribution.contributorName}, on ${date}</dd>
 			                </g:if>
 			                <g:else>
 		                        <p>By ${friendlyName}, on ${date}</p>

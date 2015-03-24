@@ -286,7 +286,6 @@ $(function() {
             }
             document.getElementById("updatefilesize").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
             if (isFileSizeExceeds && !isvalidsizefile) {
-            	alert('krishna');
                 $('#updateImageFile').val('');
             }
         }

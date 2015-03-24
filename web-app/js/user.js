@@ -24,7 +24,7 @@ $(function() {
 	        } else {
 	        	$('#uploadProfilesize').hide();
 		        $('#uploadProfileImg').hide();
-                $("#uploadbutton").click();
+                        $("#uploadbutton").click();
 	        }
 	    } 
     });
@@ -43,7 +43,7 @@ $(function() {
 	        if (file.size > 1024 * 1024 * 3) {
 	        	$('#editProfilesize').show();
 		        $('#editProfileImg').hide();
-	            $('#editavatar').val('');
+	                $('#editavatar').val('');
 	        } else {
 	        	$('#editProfilesize').hide();
 		        $('#editProfileImg').hide();

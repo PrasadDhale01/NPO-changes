@@ -1,6 +1,26 @@
 $(function() {
     console.log("user.js initialized");
     
+    var validator = $('#validpass').find('form').validate({
+        rules: {
+        	password: {
+                minlength: 6
+            },
+    		confirmPassword: {
+		        isEqualToPassword: true
+            }
+        }
+    });
+    
+    $.validator.addMethod('isEqualToPassword', function (value, element) {
+        var confirmpassword = value;
+        var password = $("#password").val();
+        if(confirmpassword != password) {
+            return (confirmpassword == password) ? password : false;
+        }
+        return true;
+    }, "Passwords do not match! Please enter a valid password.");
+    
     $("#uploadavatar").click(function() {
         $("#avatar").click();
     });

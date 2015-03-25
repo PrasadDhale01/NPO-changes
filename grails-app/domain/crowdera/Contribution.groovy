@@ -13,6 +13,7 @@ class Contribution {
     String physicalAddress
     String contributorName
     String fundRaiser
+    String contributorEmail
     
     boolean shippingDone = false
     boolean isContributionOffline = false
@@ -25,6 +26,7 @@ class Contribution {
         custom nullable: true
         physicalAddress nullable: true
         contributorName nullable: true
+        contributorEmail nullable: true
         fundRaiser nullable: true
     }
 

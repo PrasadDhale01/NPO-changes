@@ -152,7 +152,7 @@
 							<g:render template="show/manageteam" model="['currentFundraiser':currentFundraiser]"/>
 						</div>
                         <div class="tab-pane" id="contributions">
-                            <g:render template="show/contributions" model="['team':currentTeam]"/>
+                            <g:render template="show/contributions" model="['team':currentTeam, 'currentFundraiser':currentFundraiser]"/>
                         </div>
                         <div class="tab-pane" id="comments">
                             <g:render template="show/comments"/>

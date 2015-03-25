@@ -1218,6 +1218,27 @@ class ProjectService {
         return project
     }
 
+    def getAllProjectByUser(User user){
+      def projects= Project.findAllByUser(user)
+      return projects
+    }
+
+    def getProjectAdminEmail(User user){
+      def projectAdminEmail= ProjectAdmin.findAllByEmail(user.email)
+      return projectAdminEmail
+    }
+
+    def getTeamByUserAndEnable(User user, def enable){
+      def teams=Team.findAllWhere(user:user, enable: enable)
+      return teams
+    }
+
+    def getContibutionByUser(User user){
+      def contributions = Contribution.findAllByUser(user)
+      return contributions
+    }
+
+
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

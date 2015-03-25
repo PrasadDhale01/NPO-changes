@@ -290,6 +290,40 @@ class UserService {
             mandrillService.contributionEmailToCampaignOwnerOrTeam(user, project, contribution)
         }
     }
+
+    def getUserId(def userId){
+        def avatarUser = User.get(userId)
+        return avatarUser
+    }
+
+    def getUserByName(def userName){
+        def user = User.findByUsername(userName)
+        return user
+    }
+
+    def getUserByConfirmCode(String id){
+        def confirmCode= User.findByConfirmCode(id)
+        return confirmCode
+    }
+
+    def getUserByInviteCode(String id){
+        def inviteCode= User.findByInviteCode(id)
+        return inviteCode
+    }
+    
+    def getUserByResetCode(String id){
+        def resetCode= User.findByResetCode(id)
+        return resetCode
+    }
+
+    User getUserObject(def params){
+        def user = new User(params)
+        return user
+    }
+
+    def createUserRole(User users, RoleService roleService){
+        UserRole.create(users, roleService.userRole())
+    }
     
     @Transactional
     def bootstrap() {

@@ -29,11 +29,13 @@
         </ul>
    	    
         <g:if test="${isCoAdmin}">
+            <g:if test="${project.projectAdmins.email.size() > 1}">
+              <div class="col-sm-12 coCreator">
+                    <span><b>Campaign Co-Creator</b></span><hr class="hrClass"/>
+              </div>
+            </g:if>
             <g:each in="${project.projectAdmins.email}" var="admin">
                 <g:if test="${admin!="campaignadmin@crowdera.co"}">
-                  <div class="col-sm-12 coCreator">
-                    <span><b>Campaign Co-Creator</b></span><hr class="hrClass"/>
-                  </div>
                   <ul>
                     <li><span>${admin}</span></li>
                   </ul>

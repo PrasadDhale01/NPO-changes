@@ -716,7 +716,6 @@ class MandrillService {
     }
     
     public def sendTeamValidatedConfirmation(Project project, User fundRaiser) {
-        def user = project.user
         def username = fundRaiser.username
         def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:username], absolute: true)
 

@@ -30,6 +30,32 @@ class RewardService {
         return Reward.findAllWhere(obsolete: true)
     }
     
+    def isOnlyTwitterHandled (Reward reward){
+       def rewardShipping = RewardShipping.findByReward(reward)
+       def isOnlyTwitterSelected = false
+       if(rewardShipping) {
+           if (rewardShipping.twitter == 'true') {
+               if(rewardShipping.email == null && rewardShipping.address == null && rewardShipping.custom == null) {
+                   isOnlyTwitterSelected = true
+               }
+           }
+       }
+       return isOnlyTwitterSelected
+    }
+    
+    def isTwitterHandled(reward){
+        def rewardShipping = RewardShipping.findByReward(reward)
+        def isTwitterSelected = false
+        if(rewardShipping) {
+            if (rewardShipping.twitter == 'true') {
+                if(rewardShipping.email == 'true' || rewardShipping.address == 'true' || rewardShipping.custom == 'true') {
+                    isTwitterSelected = true
+                }
+            }
+        }
+        return isTwitterSelected
+    }
+    
     def getMultipleRewards(def project, def rewardTitle ,def rewardPrice ,def rewardDescription, def mailingAddress, def emailAddress, def twitter, def custom) {
         def amount
         for(int i=0; i<rewardTitle.size();i++ ) {

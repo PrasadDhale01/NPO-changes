@@ -1,6 +1,8 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
+<g:set var="rewardService" bean="rewardService"/>
+<g:set var="userService" bean="userService"/>
 <%
     boolean isFundingOpen = projectService.isFundingOpen(project)
     def beneficiary = project.user
@@ -10,6 +12,7 @@
     } else {
         username = beneficiary.username
     }
+    def currentUser = userService.getCurrentUser()
 %>
 <div class="modal-footer tile-footer perks-style">
     <g:if test="${isFundingOpen}">
@@ -26,13 +29,23 @@
                 def backers = contributionService.getBackersForProjectByReward(project, reward);
         		def price = projectService.getDataType(reward.price);
 				def rewardId = reward.id
+                def isOnlyTwitterHandled = rewardService.isOnlyTwitterHandled(reward)
+                def isTwitterHandled = rewardService.isTwitterHandled(reward)
             %>
             <div class="rewardsection-row">
             <g:if test="${isFundingOpen}">
                 <h4>CONTRIBUTE $${price} OR MORE</h4>
                 <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
                 <p class="rewarddescription" id="${reward.id}">${raw(reward.description)}</p>
-                <g:link controller="fund" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">SELECT THIS PERK</g:link>
+                <g:if test="${currentUser == null && isOnlyTwitterHandled}">
+                    <p title="As you are anonymous, this perk which contains twitter handler is disabled for you">SELECT THIS PERK</p>
+                </g:if>
+                <g:elseif test="${currentUser == null && isTwitterHandled}">
+                    <g:link controller="fund" title="As you are anonymous, twitter handler information will be disabled for this perk" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">SELECT THIS PERK</g:link>
+                </g:elseif>
+                <g:else>
+                    <g:link controller="fund" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">SELECT THIS PERK</g:link>
+                </g:else>
             </g:if>
             <g:else>
                 <h4>CONTRIBUTE $${price} OR MORE</h4>

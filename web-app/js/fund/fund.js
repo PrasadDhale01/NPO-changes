@@ -75,6 +75,33 @@ $(function() {
     		var user = $('#tempValue').val();
     		$('#userId').val(user);
     	}
-    	
     });
+    
+    /* Show pop-over tooltip on hover for some fields. */
+    var showPopover = function () {
+            $(this).popover('show');
+        },
+        hidePopover = function () {
+            $(this).popover('hide');
+        };
+
+    /* Initialize pop-overs (tooltips) */
+    $("#onlyTwitterReward").popover({
+        content: 'As you are anonymous, this perk which contains twitter handler is disabled for you',
+        trigger: 'manual',
+        placement: 'bottom'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
+    
+    $("#twitterReward").popover({
+        content: "As you are anonymous, only twitter handler information will be disabled for this perk",
+        trigger: 'manual',
+        placement: 'bottom'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
+    	
 });

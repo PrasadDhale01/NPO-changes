@@ -488,6 +488,7 @@ class FundController {
     
     def makeUserAnonymous(){
         def user = User.findByUsername('anonymous@example.com')
+        def project = Project.get(request.getParameter('projectId'))
         render user.id
     }
 	

@@ -472,23 +472,23 @@ footer .flinks a {
     	width:  155px!important;
     }
     .btn-create {
-		background-color: white;
-		border-color: white;
-		color: black;
-		padding: 0px;
-		display: block;
-		float: left;
-		margin-left: 55% !important;
-		margin-bottom: -6px;
-		width: 112px;
-		height: 25px;
-		font-size: 11px;
+	background-color: white;
+	border-color: white;
+	color: black;
+	padding: 0px;
+	display: block;
+	float: left;
+	margin-left: 55% !important;
+	margin-bottom: -6px;
+	width: 112px;
+	height: 25px;
+	font-size: 11px;
     }
     a.left.carousel-control.left-css {
-  		margin-top: -4%;
+  	margin-top: -4%;
     }
     a.right.carousel-control.right-css {
-		margin-top: -4%;
+	margin-top: -4%;
     }
 }
 
@@ -1550,8 +1550,8 @@ text-decoration: none !important;
 
 @media only screen and (max-width: 1540px){
     .btn-create {
-		margin-left: 55%;
-		margin-bottom: 4%;
+	margin-left: 55%;
+	margin-bottom: 4%;
     }
 }
  
@@ -2676,29 +2676,29 @@ textarea.form-control {
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
     }
 	
-	.girlSlider > a > img {
+    .girlSlider > a > img {
         padding: 2px;
     	text-decoration: none;
     	float: left;
     	margin-left: 10%;
-		margin-bottom: -19px;
-		height: 41px;
-		width: 123px;
-	}
+	margin-bottom: -19px;
+	height: 41px;
+	width: 123px;
+    }
 	
-	.btn-create {
+    .btn-create {
         background-color: white;
-  		border-color: white;
-  		color: black;
-  		padding: 0px;
- 		display: block;
-  		float: left;
-  		margin-left: 54%;
-		margin-bottom: 2px;
-		width: 110px;
-		height: 25px;
-		font-size: 11px;
-	}
+  	border-color: white;
+  	color: black;
+  	padding: 0px;
+ 	display: block;
+  	float: left;
+  	margin-left: 54%;
+	margin-bottom: 2px;
+	width: 110px;
+	height: 25px;
+	font-size: 11px;
+    }
 	
 	.btn-create:hover,
     .active .btn-create:hover,
@@ -3565,7 +3565,7 @@ textarea.form-control {
 
 @media only screen and (max-width: 320px){
 	.btn-create {
-        background-color: white;
+        	background-color: white;
   		border-color: white;
   		color: black;
   		padding: 0px;
@@ -3578,14 +3578,14 @@ textarea.form-control {
 		font-size: 9px;
 	}
 	.imageCarousellabel {
-      	background-color: black;
-      	padding-top: 6px;
-      	height: 141px;
-     	width: 120px;
-      	margin-left: 134px !important;
-      	margin-bottom: -17px;
-      	background: rgba(255, 255, 255, 0.3);
-    }
+      		background-color: black;
+      		padding-top: 6px;
+      		height: 141px;
+     		width: 120px;
+      		margin-left: 134px !important;
+      		margin-bottom: -17px;
+      		background: rgba(255, 255, 255, 0.3);
+    	}
 }
 
 /* Screen resolution 320 x 640*/
@@ -3699,15 +3699,15 @@ textarea.form-control {
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
     }
 	
-	.girlSlider > a > img {
+    .girlSlider > a > img {
         padding: 2px;
     	text-decoration: none;
     	float: left;
     	margin-left: 10%;
-		margin-bottom: -19px;
-		height: 36px;
-		width: 96px;
-	}
+	margin-bottom: -19px;
+	height: 36px;
+	width: 96px;
+    }
 	
 	.btn-create:hover,
     .active .btn-create:hover,

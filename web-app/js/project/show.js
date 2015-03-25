@@ -5,6 +5,7 @@ $(function() {
     changeTeamStatus();
     $('#editimg').hide();
     $('#ytVideo').hide();
+    $('#editTeamImg').hide();
 
     var hash = window.location.hash;
     hash && $('ul.nav a[href="' + hash + '"]').tab('show');
@@ -273,29 +274,51 @@ $(function() {
     
     /***************************Multiple Image Selection*************** */
 
+    var isvalidsize = false;
     $('#projectImageFile').change(function(event) {
         var file =this.files[0];
         if(!file.type.match('image')){
             $('.pr-thumbnail-div').hide();
             $('#imgmsg').show();
+            $('#editTeamImg').hide();
             this.value=null;
         }else{
             $('#imgmsg').hide();
+            $('#editTeamImg').hide();
             var files = event.target.files; // FileList object
             var output = document.getElementById("result");
+            var fileName;
+            var isFileSizeExceeds = false;
+            
             for ( var i = 0; i < files.length; i++) {
                 var file = files[i];
                 var filename = file.name;
-                var picReader = new FileReader();
-                picReader.addEventListener("load",function(event) {
-                    var picFile = event.target;
-                    var div = document.createElement("div");
-                    div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"+ picFile.result+ "'"+ "title='"
-                        + file.name + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"/images/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"+ "</div>";
-                        output.insertBefore(div, null);
-                    });
-                // Read the image
-                picReader.readAsDataURL(file);
+                
+                if(file.size < 1024 * 1024 * 3) {
+                	isvalidsize =  true;
+                    var picReader = new FileReader();
+                    picReader.addEventListener("load",function(event) {
+                        var picFile = event.target;
+                        var div = document.createElement("div");
+                        div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"+ picFile.result+ "'"+ "title='"
+                            + file.name + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"/images/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"+ "</div>";
+                            output.insertBefore(div, null);
+                        });
+                    // Read the image
+                    picReader.readAsDataURL(file);
+                } else {
+                	if (fileName) {
+                	    fileName = fileName +" "+ file.name;
+                	} else {
+                		fileName = file.name;
+                	}
+                	$('#editTeamImg').show();
+                	isFileSizeExceeds = true;
+                }
+            }
+            document.getElementById("editTeamImg").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
+            if (isFileSizeExceeds && !isvalidsize) {
+                $('#projectImageFile').val('');
             }
         }
     });

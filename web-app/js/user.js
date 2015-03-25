@@ -1,5 +1,10 @@
 $(function() {
     console.log("user.js initialized");
+    $('#uploadProfilesize').hide();
+    $('#uploadProfileImg').hide();
+    
+    $('#editProfilesize').hide();
+    $('#editProfileImg').hide();
     
     var validator = $('#validpass').find('form').validate({
         rules: {
@@ -26,7 +31,22 @@ $(function() {
     });
     
     $('#avatar').change( function(event) {
-    	$("#uploadbutton").click();
+    	var file =this.files[0];
+	    if(!file.type.match('image')){
+	        $('#uploadProfilesize').hide();
+	        $('#uploadProfileImg').show();
+	        this.value=null;
+	    } else{
+	        if (file.size > 1024 * 1024 * 3) {
+	        	$('#uploadProfilesize').show();
+		        $('#uploadProfileImg').hide();
+	            $('#avatar').val('');
+	        } else {
+	        	$('#uploadProfilesize').hide();
+		        $('#uploadProfileImg').hide();
+                        $("#uploadbutton").click();
+	        }
+	    } 
     });
     
     $("#editavatarbutton").click(function() {
@@ -34,7 +54,22 @@ $(function() {
     });
     
     $('#editavatar').change( function(event) {
-    	$("#editbutton").click();
+    	var file =this.files[0];
+	    if(!file.type.match('image')){
+	        $('#editProfilesize').hide();
+	        $('#editProfileImg').show();
+	        this.value=null;
+	    } else{
+	        if (file.size > 1024 * 1024 * 3) {
+	        	$('#editProfilesize').show();
+		        $('#editProfileImg').hide();
+	                $('#editavatar').val('');
+	        } else {
+	        	$('#editProfilesize').hide();
+		        $('#editProfileImg').hide();
+		        $("#editbutton").click();
+	        }
+	    } 
     });
 
     /* Show pop-over tooltip on hover for some fields. */

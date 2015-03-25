@@ -2,7 +2,7 @@
 <%
     def imageUrl = user.userImageUrl
 %>
- 
+
 <div class="col-sm-6">
 	<div class="form-signin">
 	    <g:if test="${imageUrl != null}">
@@ -21,6 +21,9 @@
 		        <button class="btn btn-primary btn-sm" type="button" id="editavatarbutton">Edit Avatar</button>
 	            <input class="hidden" type="file" name="profile" id="editavatar" accept="image/*"/>
 	            <input type="submit" class="hidden buttons" value="Upload" id="editbutton" accept="image/*"/>
+	            <div class="clear"></div>
+                <label class="docfile-orglogo-css" id="editProfileImg">Please select image file only.</label>
+                <label class="docfile-orglogo-css" id="editProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
 	        </g:uploadForm>
 	    </g:if>
 	    <g:else>
@@ -31,6 +34,9 @@
 	            <button class="btn btn-primary btn-sm" type="button" id="uploadavatar">Upload Avatar</button>
 	            <input class="hidden" type="file" name="avatar" id="avatar" accept="image/*"/>
 	            <input type="submit" class="hidden buttons" value="Upload" id="uploadbutton" accept="image/*"/>
+	            <div class="clear"></div>
+                <label class="docfile-orglogo-css" id="uploadProfileImg">Please select image file only.</label>
+                <label class="docfile-orglogo-css" id="uploadProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
 	        </g:uploadForm> 
 	    </g:else>
 	</div>

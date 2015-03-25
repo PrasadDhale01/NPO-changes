@@ -289,6 +289,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 			        						<input type="file" class="upload" id="iconfile" name="iconfile" accept="image/*">
 		         					    </div>
 										<label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>
+										<label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
 									</div>
 									<div id="icondiv" class="pr-icon-thumbnail-div col-sm-2">
 									<img id="imgIcon" class="pr-icon-thumbnail"/>
@@ -382,14 +383,12 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
         						<div class="fileUpload btn btn-primary btn-sm">
 	        						<span>Add Images</span>
 	        						<input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]"
-	         							id="projectImageFile" multiple="multiple" accept="image/jpeg, image/png">
+	         							id="projectImageFile" accept="image/jpeg, image/png" multiple>
          					    </div>
+         					    <div class="clear"></div>
          					    <label class="docfile-orglogo-css" id="imgmsg">Please select image file.</label>
+         					    <label class="docfile-orglogo-css" id="campaignfilesize"></label>
       						</div>
-      						<!--<div class="col-sm-2">
-        						<input class="hidden" name="${FORMCONSTANTS.IMAGEURL}"
-         							placeholder="Image URL">
-       						</div>-->
       						<div class="col-sm-6">
         						<output id="result"></output>
       						</div>

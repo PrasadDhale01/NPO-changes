@@ -804,7 +804,7 @@ class ProjectService {
         files.each {
             def imageUrl = new ImageUrl()
             def imageFile= it
-            if (!imageFile?.empty && imageFile.size < 1024*1024) {
+            if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
                 try{
                     def file= new File("${imageFile.getOriginalFilename()}")
                     def key = "${Folder}/${it.getOriginalFilename()}"
@@ -840,7 +840,7 @@ class ProjectService {
 		files.each {
 			def imageUrl = new ImageUrl()
 			def imageFile= it
-			if (!imageFile?.empty && imageFile.size < 1024*1024) {
+			if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
 				try{
 					def file= new File("${imageFile.getOriginalFilename()}")
 					def key = "${Folder}/${it.getOriginalFilename()}"
@@ -881,7 +881,7 @@ class ProjectService {
         files.each {
             def imageUrl = new ImageUrl()
             def imageFile= it
-             if (!imageFile?.empty && imageFile.size < 1024*1024) {
+             if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
                 def file= new File("${imageFile.getOriginalFilename()}")
                 def key = "${Folder}/${it.getOriginalFilename()}"
                 imageFile.transferTo(file)
@@ -900,7 +900,7 @@ class ProjectService {
     def isImageFileEmpty(List<MultipartFile> files) {
         def isImageFileEmpty = true
         files.each {file ->
-            if (!file?.empty) {
+            if (!file?.empty && file.size < 1024 * 1024 * 3) {
                 isImageFileEmpty = false
             }
         }
@@ -942,28 +942,29 @@ class ProjectService {
     }*/
 
     def getorganizationIconUrl(CommonsMultipartFile iconFile) {
-        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
-        def awsSecretKey = "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"
-        def bucketName = "crowdera"
-        def folder = "project-icon"
+        if (!iconFile?.empty && iconFile.size < 1024 * 1024 * 3) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "project-icon"
 
-        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
-        def s3Service = new RestS3Service(awsCredentials);
-        def myBucket = s3Service.listAllBuckets();
-        def s3Bucket = new S3Bucket(bucketName)
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def myBucket = s3Service.listAllBuckets();
+            def s3Bucket = new S3Bucket(bucketName)
         
-        def tempFile = new File("${iconFile.getOriginalFilename()}")
-        def key = "${folder}/${iconFile.getOriginalFilename()}"
-        iconFile.transferTo(tempFile)
-        def object = new S3Object(tempFile)
-        object.key = key
+            def tempFile = new File("${iconFile.getOriginalFilename()}")
+            def key = "${folder}/${iconFile.getOriginalFilename()}"
+            iconFile.transferTo(tempFile)
+            def object = new S3Object(tempFile)
+            object.key = key
 
-        s3Service.putObject(s3Bucket, object)
-        tempFile.delete()
+            s3Service.putObject(s3Bucket, object)
+            tempFile.delete()
         
-        def organizationIconUrl = "https://s3.amazonaws.com/crowdera/${key}"
-
-        return organizationIconUrl
+            def organizationIconUrl = "https://s3.amazonaws.com/crowdera/${key}"
+            return organizationIconUrl
+        }
     }
 	
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
@@ -985,7 +986,7 @@ class ProjectService {
             def imageUrl = new ImageUrl()
             def imageFile= it
             
-            if (!imageFile?.empty && imageFile.size < 1024*1024) {
+            if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
                 
                 if (VALID_IMG_TYPES.contains(imageFile.getContentType())) {
                     try{
@@ -1168,7 +1169,7 @@ class ProjectService {
             def fileUrl = new ImageUrl()
             def attachedFile= it
             
-            if (!attachedFile?.empty && attachedFile.size < 1024*1024) {
+            if (!attachedFile?.empty && attachedFile.size < 1024 * 1024 * 3) {
                 try{
                     def file= new File("${attachedFile.getOriginalFilename()}")
                     def key = "${Folder}/${it.getOriginalFilename()}"

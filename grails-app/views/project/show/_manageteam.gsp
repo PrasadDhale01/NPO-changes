@@ -164,9 +164,10 @@
       					<div class="col-sm-4">
         					<div class="fileUpload btn btn-primary btn-sm">
 	        					<span>Add Images</span>
-	        					<input type="file" class="upload" name="imagethumbnail" id="projectImageFile" multiple="multiple" accept="image/*">
+	        					<input type="file" class="upload" name="imagethumbnail" id="projectImageFile" accept="image/*" multiple>
          					</div>
          					<label class="docfile-orglogo-css" id="editimg">Please select image file.</label>
+         					<label class="docfile-orglogo-css" id="editTeamImg"></label>
       					</div>
       					<div class="col-sm-6">
       					    <g:each var="imgurl" in="${currentTeam.imageUrl}">
@@ -181,7 +182,6 @@
                             <script>
                                function deleteTeamImage(current,imgst, teamId) {
                                    $(current).parents('#imgdiv').remove();
-                                   $('#projectImageFile').val('');
                                    $.ajax({
                                        type:'post',
                                        url:$("#b_url").val()+'/project/deleteTeamImage',

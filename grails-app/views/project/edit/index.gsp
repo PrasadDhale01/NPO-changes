@@ -223,6 +223,7 @@
                                             <i class="icon-file"></i> Choose File
                                     </button>
                                     <label class="docfile-orglogo-css" id="editlogo">Please select image file.</label>
+                                    <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
                                 </div>
                                 <div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
                                         <g:if test="${project.organizationIconUrl}">
@@ -245,7 +246,7 @@
                                        $('#imgIcon').removeAttr('src');
                                         $('#imgIcon').hide();
                                         $('#logoDelete').hide();
-                                        $('#iconfile').val(''); 
+                                        $('#orgediticonfile').val(''); 
                                         $.ajax({
                                             type:'post',
                                             url:$("#b_url").val()+'/project/deleteOrganizationLogo',
@@ -461,9 +462,10 @@
                         <div class="col-sm-2">
                             <div class="fileUpload btn btn-primary btn-sm">
 	        					<span>Add Images</span>
-                                <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" multiple="multiple" class="upload" accept="image/jpeg, image/png">
+                                <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" class="upload" accept="image/jpeg, image/png" multiple>
                             </div>
 							<label class="docfile-orglogo-css" id="editimg">Please select image file.</label>
+							<label class="docfile-orglogo-css" id="campaignfilesize"></label>
                         </div>
                         <div class="col-sm-8">
                                 <g:each var="imgurl" in="${project.imageUrl}">
@@ -478,7 +480,6 @@
                                 <script>
                                    function deleteProjectImage(current,imgst, projectId) {
                                         $(current).parents('#imgdiv').remove();
-                                        $('#projectImageFile').val('');
                                         $.ajax({
                                             type:'post',
                                             url:$("#b_url").val()+'/project/deleteProjectImage',

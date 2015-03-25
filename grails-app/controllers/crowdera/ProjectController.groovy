@@ -311,7 +311,9 @@ class ProjectController {
             def iconFile = request.getFile('iconfile')
             if(!iconFile.isEmpty()) {
                 def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
-                project.organizationIconUrl = uploadedFileUrl
+                if (uploadedFileUrl) {
+                    project.organizationIconUrl = uploadedFileUrl
+                }
             }
             
             def imageFiles = request.getFiles('thumbnail[]')

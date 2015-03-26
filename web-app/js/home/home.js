@@ -24,7 +24,7 @@ $(function() {
         }
     });
 	
-	$('form').validate({
+	$('#imageCarouselForm').find('form').validate({
 	    rules: {
 	        name: {
 	    	    required: true,

@@ -38,7 +38,7 @@
                     <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}"><img src="/images/fbButton.jpg" class="btn btn-fb"></a>
                 </div>
             </div>
-            <div class="carousel-caption imageCarouseltextbox">
+            <div class="carousel-caption imageCarouseltextbox" id="imageCarouselForm">
                 <g:form class="form-signin" controller="login" action="create" role="form">
                     <div class="imageCarousellabel">
                         <span class="imageCoureselFormGroup">

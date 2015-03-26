@@ -493,7 +493,7 @@ class MandrillService {
         inviteToAdmin(email, 'send-email-to-customer', globalMergeVars, tags)
     }
     
-    def sendResponseToCustomer(def adminResponse, def service) {
+    def sendResponseToCustomer(def adminResponse, def service, def attachmentUrl) {
         def email = service.email
         def date = new Date()
         def base_url = grailsApplication.config.crowdera.BASE_URL
@@ -525,6 +525,9 @@ class MandrillService {
             ],[
                 'name': 'REQUEST',
                 'content': service.subject
+            ],[
+                'name': 'ATTACHMENTURL',
+                'content': attachmentUrl
             ]
         ]
 

@@ -22,6 +22,7 @@
                         <th>Subject</th>
                     	<th>Customer type</th>
                     	<th>Description</th>
+                    	<th>Attachments</th>
                     	<th>Response</th>
                 	</tr>
             	    </thead>

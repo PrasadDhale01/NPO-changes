@@ -141,7 +141,8 @@ class UserController {
     
     @Secured(['ROLE_ADMIN'])
     def response() {
-        def services = userService.sendResponseToCustomer(params)
+        def imageFile = request.getFile('file')
+        def services = userService.sendResponseToCustomer(params, imageFile)
         flash.servicemessage = "Successfully Responded"
         redirect action:'userquestionsList'
     }

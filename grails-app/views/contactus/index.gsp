@@ -50,14 +50,22 @@
 						<label for="emailAddress"><b>Your Email Address</b></label>
 						<input type="text" class="form-control" name="emailAddress"/>
 					</div>
-					<div class="form-group">
+					<div class="form-group attachment-group">
 						<label for="attachments"><b>Attachments</b></label>
 						<div class="clear"></div>
-						<div class="fileUpload btn btn-primary btn-sm">
- 						    <span>Choose File</span>
- 						    <input type="file" class="upload" id="attachments" name="files"/>
+						<div class="col-xs-12 col-sm-4 col-md-4">
+						    <div class="fileUpload btn btn-primary btn-sm">
+ 						        <span>Choose File</span>
+ 						        <input type="file" class="upload" id="attachments" name="files" multiple/>
+       					    </div>
+       					    <label class="docfile-orglogo-css" id="attachmentfilesize"></label>
        					</div>
-			        </div><hr/>
+       					<div class="col-xs-12 col-sm-8 col-md-8">
+    						<output id="result"></output>
+  						</div>
+			        </div>
+			        <div class="clear"></div>
+			        <hr/>
 					<div class="contactUsSubmitButton">
 						<button type="submit" id="contactsubmitbutton" class="btn btn-primary">Submit</button>
 					</div>

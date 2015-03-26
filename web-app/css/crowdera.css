@@ -2218,6 +2218,24 @@ textarea.form-control {
 	    width:100%;
 	}
 }
+
+/*Screen resolution 644 x 767 */
+@media only screen and (min-width: 644px) and (max-width: 767px){
+    .form-group.col-sm-6.rewardPriceClass{
+        padding-left:16px;
+        width:102% !important;
+    }
+
+}
+
+/*Screen resolution 800 x 1280*/
+@media only screen and (min-width: 800px) and (max-width: 1280px){
+    .form-group.col-sm-6.rewardPriceClass{
+        padding-left:16px;
+        width:54% !important;
+    }
+
+}
 @media only screen and (max-width: 800px){
 	.btn-group.btn-group-sm.btnOrgBgColor {
 		margin-left: -20px;

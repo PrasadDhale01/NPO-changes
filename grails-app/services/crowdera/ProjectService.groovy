@@ -817,7 +817,7 @@ class ProjectService {
                     imageUrl.url = tempImageUrl
                     project.addToImageUrl(imageUrl)
                     file.delete()
-                }catch(IllegalStateException e){
+                }catch(Exception e){
                     e.printStackTrace()
                 }
             }

@@ -379,6 +379,49 @@ class ProjectService {
         ]
         return state
     }
+	
+	def getSorts(){
+		def sortsOptions = [
+			All_Campaigns: "All Campaigns",
+			More_than_ninety: "More than 90",
+			Less_than_ten: "Less than 10",
+			Ten_days_remining: "10 days remining"
+		]
+		return sortsOptions
+	}
+	
+	def isCampaignsorts(def sorts){
+		List projects = getValidatedProjects()
+		List p = []
+		if(sorts == 'All Campaigns'){
+			return projects
+		}
+		if(sorts == 'More than 90'){
+			projects.each {
+				def percentage = contributionService.getPercentageContributionForProject(it)
+				if(percentage > 90){
+					p.add(it)
+				}
+			}
+		}
+		if(sorts == 'Less than 10'){
+			projects.each {
+				def percentage = contributionService.getPercentageContributionForProject(it)
+				if(percentage < 10){
+					p.add(it)
+				}
+			}
+		}
+		if(sorts == '10 days remining'){
+			projects.each {
+				def day = getRemainingDay(it)
+				if(day <= 10){
+					p.add(it)
+				}
+			}
+		}
+		return p
+	}
     
     def getdefaultAdmin(Project project, User user) {
         def defaultAdminEmail = "campaignadmin@crowdera.co"
@@ -761,7 +804,7 @@ class ProjectService {
         files.each {
             def imageUrl = new ImageUrl()
             def imageFile= it
-            if (!imageFile?.empty && imageFile.size < 1024*1024) {
+            if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
                 try{
                     def file= new File("${imageFile.getOriginalFilename()}")
                     def key = "${Folder}/${it.getOriginalFilename()}"
@@ -774,7 +817,7 @@ class ProjectService {
                     imageUrl.url = tempImageUrl
                     project.addToImageUrl(imageUrl)
                     file.delete()
-                }catch(IllegalStateException e){
+                }catch(Exception e){
                     e.printStackTrace()
                 }
             }
@@ -797,7 +840,7 @@ class ProjectService {
 		files.each {
 			def imageUrl = new ImageUrl()
 			def imageFile= it
-			if (!imageFile?.empty && imageFile.size < 1024*1024) {
+			if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
 				try{
 					def file= new File("${imageFile.getOriginalFilename()}")
 					def key = "${Folder}/${it.getOriginalFilename()}"
@@ -818,8 +861,8 @@ class ProjectService {
 	}
 	
     def getContributedAmount (Transaction transaction){
-	def contribution = Contribution.findWhere(user: transaction.user,project: transaction.project)
-	return contribution.amount.round()
+	    def contribution = transaction.contribution
+	    return contribution.amount.round()
     }
     
     def getUpdatedImageUrls(List<MultipartFile> files, ProjectUpdate projectUpdate){
@@ -838,7 +881,7 @@ class ProjectService {
         files.each {
             def imageUrl = new ImageUrl()
             def imageFile= it
-             if (!imageFile?.empty && imageFile.size < 1024*1024) {
+             if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
                 def file= new File("${imageFile.getOriginalFilename()}")
                 def key = "${Folder}/${it.getOriginalFilename()}"
                 imageFile.transferTo(file)
@@ -857,7 +900,7 @@ class ProjectService {
     def isImageFileEmpty(List<MultipartFile> files) {
         def isImageFileEmpty = true
         files.each {file ->
-            if (!file?.empty) {
+            if (!file?.empty && file.size < 1024 * 1024 * 3) {
                 isImageFileEmpty = false
             }
         }
@@ -899,28 +942,29 @@ class ProjectService {
     }*/
 
     def getorganizationIconUrl(CommonsMultipartFile iconFile) {
-        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
-        def awsSecretKey = "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"
-        def bucketName = "crowdera"
-        def folder = "project-icon"
+        if (!iconFile?.empty && iconFile.size < 1024 * 1024 * 3) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "project-icon"
 
-        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
-        def s3Service = new RestS3Service(awsCredentials);
-        def myBucket = s3Service.listAllBuckets();
-        def s3Bucket = new S3Bucket(bucketName)
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def myBucket = s3Service.listAllBuckets();
+            def s3Bucket = new S3Bucket(bucketName)
         
-        def tempFile = new File("${iconFile.getOriginalFilename()}")
-        def key = "${folder}/${iconFile.getOriginalFilename()}"
-        iconFile.transferTo(tempFile)
-        def object = new S3Object(tempFile)
-        object.key = key
+            def tempFile = new File("${iconFile.getOriginalFilename()}")
+            def key = "${folder}/${iconFile.getOriginalFilename()}"
+            iconFile.transferTo(tempFile)
+            def object = new S3Object(tempFile)
+            object.key = key
 
-        s3Service.putObject(s3Bucket, object)
-        tempFile.delete()
+            s3Service.putObject(s3Bucket, object)
+            tempFile.delete()
         
-        def organizationIconUrl = "https://s3.amazonaws.com/crowdera/${key}"
-
-        return organizationIconUrl
+            def organizationIconUrl = "https://s3.amazonaws.com/crowdera/${key}"
+            return organizationIconUrl
+        }
     }
 	
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
@@ -942,7 +986,7 @@ class ProjectService {
             def imageUrl = new ImageUrl()
             def imageFile= it
             
-            if (!imageFile?.empty && imageFile.size < 1024*1024) {
+            if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
                 
                 if (VALID_IMG_TYPES.contains(imageFile.getContentType())) {
                     try{
@@ -1125,7 +1169,7 @@ class ProjectService {
             def fileUrl = new ImageUrl()
             def attachedFile= it
             
-            if (!attachedFile?.empty && attachedFile.size < 1024*1024) {
+            if (!attachedFile?.empty && attachedFile.size < 1024 * 1024 * 3) {
                 try{
                     def file= new File("${attachedFile.getOriginalFilename()}")
                     def key = "${Folder}/${it.getOriginalFilename()}"
@@ -1172,6 +1216,40 @@ class ProjectService {
         List teams = project.teams
         teams.remove(team)
         team.delete()
+        return project
+    }
+
+    def getAllProjectByUser(User user){
+      def projects= Project.findAllByUser(user)
+      return projects
+    }
+
+    def getProjectAdminEmail(User user){
+      def projectAdminEmail= ProjectAdmin.findAllByEmail(user.email)
+      return projectAdminEmail
+    }
+
+    def getTeamByUserAndEnable(User user, def enable){
+      def teams=Team.findAllWhere(user:user, enable: enable)
+      return teams
+    }
+
+    def getContibutionByUser(User user){
+      def contributions = Contribution.findAllByUser(user)
+      return contributions
+    }
+
+    def shareCampaignOrTeamByEmail(def params, def fundRaiser) {
+        def project = Project.get(params.id)
+        String emails = params.emails
+        String name = params.name
+        String message = params.message
+        if(emails) {
+            def emailList = emails.split(',')
+            emailList = emailList.collect { it.trim() }
+            mandrillService.shareProject(emailList, name, message, project, fundRaiser)
+        }
+        
         return project
     }
 

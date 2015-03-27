@@ -47,7 +47,7 @@ class FundController {
             project = Project.findById(params.id)
         }
 		
-        perk = Reward.get(params.rewardId)
+        perk = Reward.get(params.long('rewardId'))
 
         boolean fundingAchieved = contributionService.isFundingAchievedForProject(project)
         boolean ended = projectService.isProjectDeadlineCrossed(project)
@@ -72,7 +72,8 @@ class FundController {
         def month = contributionService.getMonth()
         def year = contributionService.getYear()
         def defaultCountry = 'US'
-        perk = Reward.get(params.rewardId)
+        perk = Reward.get(params.long('rewardId'))
+        def user1 = User.get(params.tempValue)
 
         def user = User.get(params.userId)
         if (user == null){
@@ -118,7 +119,7 @@ class FundController {
             if(!team || ! project.user){
                 render view:"error", model: [message:'User not found']     
             }else{
-                render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser]
+                render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1]
             }
         } else {
             render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
@@ -134,6 +135,7 @@ class FundController {
             project = Project.findById(params.projectId)
         }
         
+        def user1 = User.get(params.tempValue)
         def user = User.get(params.userId)
         if (user == null){
             user = User.findByUsername('anonymous@example.com')
@@ -164,7 +166,7 @@ class FundController {
         def reqAmt=(999/100)*amt
         def remainAmt=reqAmt- totalContribution
         def percentage=((totalContribution + contPrice)/ amt)*100
-        perk = Reward.get(params.rewardId)
+        perk = Reward.get(params.long('rewardId'))
 		
         if(percentage>999) {
             flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
@@ -172,7 +174,7 @@ class FundController {
         } else {
             if (project && reward) {
                 if (project.paypalEmail){
-                render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser]
+                render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser, user1:user1]
                 } else {
                     payByFirstGiving(params,project,reward,user,fundraiser)
                 }
@@ -307,7 +309,7 @@ class FundController {
 
     def payByPaypal(def params,Project project,Reward reward,User user,User fundraiser){
         String timestamp = UUID.randomUUID().toString()
-        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}"
+        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}&tempValue=${params.tempValue}&name=${params.name}&email=${params.email}"
         def failureUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}"
 
         def BASE_URL = grailsApplication.config.crowdera.paypal.BASE_URL
@@ -361,6 +363,23 @@ class FundController {
         def twitter = request.getParameter('twitterHandle')
         def custom = request.getParameter('shippingCustom')
         def address = request.getParameter('physicalAddress')
+        def userId = request.getParameter('tempValue')
+        def name
+        def username
+        if (userId == 'null' || userId.isAllWhitespace() || userId == null) {
+            if (project.paypalEmail){
+                name = request.getParameter('name')
+                username = request.getParameter('email')
+            } else {
+                name = params.billToFirstName
+                username = params.billToEmail
+            }
+        } else {
+            def orgUser = User.get(userId)
+            name = orgUser.firstName
+            username = orgUser.email
+        }
+        
         
         Contribution contribution = new Contribution(
                 date: new Date(),
@@ -370,6 +389,8 @@ class FundController {
                 email: emailId,
                 twitterHandle: twitter,
                 custom: custom,
+                contributorName: name,
+                contributorEmail:username,
                 physicalAddress: address
                 )
         project.addToContributions(contribution).save(failOnError: true)
@@ -421,7 +442,7 @@ class FundController {
 
     def paypalurl(){
         Project project = Project.get(params.id)
-        Reward reward = Reward.get(params.rewardId)
+        Reward reward = Reward.get(params.long('rewardId'))
         User user = User.get(params.userId)
         def fundRaiserUserName = params.fr
         User fundraiser = User.get(params.fr)
@@ -429,7 +450,7 @@ class FundController {
         
         if (project && reward && fundraiser) {
             payByPaypal(params,project,reward,user,fundraiser)
-            if(ack.equals("Success")){
+            if(ack.equals("Success")) {
                 redirect (url:grailsApplication.config.crowdera.paypal.PAYPAL_URL+paykey)
             } else {
                 flash.paypalFailureMessage = "Unable to connect to the paypal account."

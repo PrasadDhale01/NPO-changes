@@ -311,7 +311,9 @@ class ProjectController {
             def iconFile = request.getFile('iconfile')
             if(!iconFile.isEmpty()) {
                 def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
-                project.organizationIconUrl = uploadedFileUrl
+                if (uploadedFileUrl) {
+                    project.organizationIconUrl = uploadedFileUrl
+                }
             }
             
             def imageFiles = request.getFiles('thumbnail[]')
@@ -653,19 +655,11 @@ class ProjectController {
     }
 
     def sendemail() {
-        def project = Project.get(params.id)
-        String emails = params.emails
-        String name = params.name
-        String message = params.message
         def fundRaiser = params.fr
-        def emailList = emails.split(',')
-        emailList = emailList.collect { it.trim() }
-        
-        mandrillService.shareProject(emailList, name, message, project, fundRaiser)
-
+        def project = projectService.shareCampaignOrTeamByEmail(params,fundRaiser)
         flash.prj_mngprj_message= "Email sent successfully."
         if (params.ismanagepage) {
-             redirect(controller: 'project', action: 'manageproject', id: project.id)
+             redirect(controller: 'project', action: 'manageproject', id: project.id, params:[fr: fundRaiser])
         } else {
            redirect (action: 'show', id: project.id, params:[fr: fundRaiser])
         }
@@ -997,4 +991,20 @@ class ProjectController {
         flash.teamdiscardedmessage = "Team Discarded Successfully."
         redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', id: project.id)
     }
+	
+	def campaignsSorts(){
+		def sorts = params.sorts
+		redirect(action:'sortCampaign', controller: 'project',params:[query: sorts])
+	}
+	
+	def sortCampaign(){
+		def sorts = params.query
+		def campaignsorts = projectService.isCampaignsorts(sorts)
+		if(!campaignsorts){
+			flash.catmessage="No campaign found."
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])
+		}else{
+		        render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])
+		}
+	}
 }

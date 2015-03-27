@@ -2,6 +2,7 @@ $(function() {
 	$('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
     });
+	$('#attachmentfilesize').hide();
 	
 	var validator = $('#contactUs').find('form').validate({
         rules: {
@@ -23,7 +24,7 @@ $(function() {
         }
     });
 	
-	$('form').validate({
+	$('#imageCarouselForm').find('form').validate({
 	    rules: {
 	        name: {
 	    	    required: true,
@@ -81,9 +82,45 @@ $(function() {
 	$('#contactsubmitbutton').click(function(event) {
 	    if(validator.form()){
 	    	needToConfirm = false;
-	    } 	
+	    }
 	});
 	
+	var isvalidsize =  false;
+	$('#attachments').change(function(event) {
+        var files = event.target.files; // FileList object
+        var output = document.getElementById("result");
+        var fileName;
+        var isFileSizeExceeds = false;
+        $('#attachmentfilesize').hide();
+        
+        var x = document.querySelectorAll("#attachmentId");
+        for (var i = 0; i < x.length; i++) {
+        	$("#attachmentId").remove();
+        }
+        for ( var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var filename = file.name;
+            if(file.size < 1024 * 1024 * 3) {
+            	isvalidsize =  true;
+                var div = document.createElement("div");
+                div.id = 'attachmentId';
+                div.innerHTML = "<div class='attachment-div'>"+filename+"</div><div class='clear'></div>";
+                output.insertBefore(div, null);
+            } else {
+            	if (fileName) {
+            	    fileName = fileName +" "+ file.name;
+            	} else {
+            		fileName = file.name;
+            	}
+            	$('#attachmentfilesize').show();
+            	isFileSizeExceeds = true;
+            }
+        }
+        document.getElementById("attachmentfilesize").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
+        if (isFileSizeExceeds && !isvalidsize) {
+            $('#attachments').val('');
+        }
+    });
 });
 
 $(window).load(function() {

@@ -58,27 +58,29 @@ class UserService {
 
     def getImageUrl(CommonsMultipartFile imageFile) {
         this.imageFile = imageFile
-        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
-        def awsSecretKey = "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"
-        def bucketName = "crowdera"
-        def folder = "user-images"
+        if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "user-images"
 
-        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
-        def s3Service = new RestS3Service(awsCredentials);
-        def s3Bucket = new S3Bucket(bucketName)
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def s3Bucket = new S3Bucket(bucketName)
 
-        def file = new File("${imageFile.getOriginalFilename()}")
-        def key = "${folder}/${imageFile.getOriginalFilename()}"
+            def file = new File("${imageFile.getOriginalFilename()}")
+            def key = "${folder}/${imageFile.getOriginalFilename()}"
 
-        imageFile.transferTo(file)
-        def object = new S3Object(file)
-        object.key = key
+            imageFile.transferTo(file)
+            def object = new S3Object(file)
+            object.key = key
 
-        s3Service.putObject(s3Bucket, object)
-        file.delete()
-        def imageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+            s3Service.putObject(s3Bucket, object)
+            file.delete()
+            def imageUrl = "https://s3.amazonaws.com/crowdera/${key}"
 
-        return imageUrl
+            return imageUrl
+        }
     }
 	
 	def getVerifiedUserList(){
@@ -273,11 +275,34 @@ class UserService {
         return service.reverse()
     }
     
-    def sendResponseToCustomer(def params) {
+    def sendResponseToCustomer(def params, CommonsMultipartFile attachedFile) {
         def service = CustomerService.get(params.id);
         def adminResponse = params.answer
+        def attachmentUrl
+        if (!attachedFile?.empty && attachedFile.size < 1024 * 1024 * 3) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "user-images"
+
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def s3Bucket = new S3Bucket(bucketName)
+
+            def file = new File("${attachedFile.getOriginalFilename()}")
+            def key = "${folder}/${attachedFile.getOriginalFilename()}"
+
+            attachedFile.transferTo(file)
+            def object = new S3Object(file)
+            object.key = key
+
+            s3Service.putObject(s3Bucket, object)
+            file.delete()
+            attachmentUrl = "https://s3.amazonaws.com/crowdera/${key}"
+        }
+        
         service.status = true
-        mandrillService.sendResponseToCustomer(adminResponse,service)
+        mandrillService.sendResponseToCustomer(adminResponse,service,attachmentUrl)
     }
     
     def contributionEmailToOwnerOrTeam(def fundRaiser, def project, def contribution) {
@@ -289,6 +314,40 @@ class UserService {
         } else {
             mandrillService.contributionEmailToCampaignOwnerOrTeam(user, project, contribution)
         }
+    }
+
+    def getUserId(def userId){
+        def avatarUser = User.get(userId)
+        return avatarUser
+    }
+
+    def getUserByName(def userName){
+        def user = User.findByUsername(userName)
+        return user
+    }
+
+    def getUserByConfirmCode(String id){
+        def confirmCode= User.findByConfirmCode(id)
+        return confirmCode
+    }
+
+    def getUserByInviteCode(String id){
+        def inviteCode= User.findByInviteCode(id)
+        return inviteCode
+    }
+    
+    def getUserByResetCode(String id){
+        def resetCode= User.findByResetCode(id)
+        return resetCode
+    }
+
+    User getUserObject(def params){
+        def user = new User(params)
+        return user
+    }
+
+    def createUserRole(User users, RoleService roleService){
+        UserRole.create(users, roleService.userRole())
     }
     
     @Transactional

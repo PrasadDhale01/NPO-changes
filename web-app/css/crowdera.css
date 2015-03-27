@@ -445,6 +445,15 @@ footer .flinks a {
         margin-left: 16px;
         width: 100% !important;
     }
+    .right-addon input {
+	padding-right: 30px;
+	margin-left: 27px !important;
+	height: 36px;
+    }
+    .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	margin-left: -30% !important;
+    	width:  218px!important;
+     }
 }
 
 /* Screen resolution 768 x 1024*/
@@ -452,6 +461,34 @@ footer .flinks a {
     .form-group.col-sm-6.rewardPriceClass{
         margin-left: -24px !important;
         width:57% !important;
+    }
+    .right-addon input {
+	padding-right: 30px;
+	margin-left: -83px !important;
+	height: 36px;
+    }
+    .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	margin-left: -30% !important;
+    	width:  155px!important;
+    }
+    .btn-create {
+	background-color: white;
+	border-color: white;
+	color: black;
+	padding: 0px;
+	display: block;
+	float: left;
+	margin-left: 55% !important;
+	margin-bottom: -6px;
+	width: 112px;
+	height: 25px;
+	font-size: 11px;
+    }
+    a.left.carousel-control.left-css {
+  	margin-top: -4%;
+    }
+    a.right.carousel-control.right-css {
+	margin-top: -4%;
     }
 }
 
@@ -461,10 +498,23 @@ footer .flinks a {
         margin-left: -24px !important;
         width:55% !important;
     }
+    .right-addon input {
+	padding-right: 30px;
+	margin-left: -61px !important;
+	height: 36px;
+    }
+    .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	margin-left: -3% !important;
+    	width:  229px!important;
+    }
+    .btn-create {
+        margin-left: 55% !important;
+        margin-bottom: 2% !important;
+    }
 }
 
 @media only screen and (max-width: 767px){
-
+	
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
         width: 100% !important;
@@ -495,8 +545,18 @@ footer .flinks a {
         margin-left: 16px;
         width: 100% !important;
     }
+        .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 48% !important;
+		margin-left: -29% !important;
+	}
+	.right-addon input {
+		padding-right: 30px;
+		margin-left: 30px !important;
+		height: 36px;
+	}
 }
 @media only screen and (max-width: 600px){
+	
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
         width: 100% !important;
@@ -802,6 +862,8 @@ ul.unstyled {
 
 .right-addon input {
     padding-right: 30px;
+    margin-left: -58px;
+    height: 36px;
 }
 
 /* Override bootstrap */
@@ -1488,8 +1550,8 @@ text-decoration: none !important;
 
 @media only screen and (max-width: 1540px){
     .btn-create {
-        margin-left: 507px;
-        margin-bottom: 30px;
+	margin-left: 55%;
+	margin-bottom: 4%;
     }
 }
  
@@ -1511,11 +1573,6 @@ text-decoration: none !important;
 	.btn-group.btn-group-sm.btnOrgBgColor {
 		margin-left: -17px;
 	}
-	
-    .btn-create {
-        margin-left: 417px;
-        margin-bottom: 14px;
-    }
 	
 	.imageCarousellabel {
       	background-color: black;
@@ -1832,19 +1889,19 @@ text-decoration: none !important;
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
     }
 	
-	.btn-create {
-        background-color: white;
-  		border-color: white;
-  		color: black;
-  		padding: 0px;
- 		display: block;
-  		float: left;
-  		margin-left: 328px;
-		margin-bottom: 4px;
-		width: 138px;
-		height: 29px;
-		font-size: 14px;
-	}
+/* 	.btn-create { */
+/*         background-color: white; */
+/*   		border-color: white; */
+/*   		color: black; */
+/*   		padding: 0px; */
+/*  		display: block; */
+/*   		float: left; */
+/*   		margin-left: 328px; */
+/* 		margin-bottom: 4px; */
+/* 		width: 138px; */
+/* 		height: 29px; */
+/* 		font-size: 14px; */
+/* 	} */
 	
 	.btn-create:hover,
     .active .btn-create:hover,
@@ -2179,8 +2236,25 @@ textarea.form-control {
 	    width:100%;
 	}
 }
+
+/*Screen resolution 644 x 767 */
+@media only screen and (min-width: 644px) and (max-width: 767px){
+    .form-group.col-sm-6.rewardPriceClass{
+        padding-left:16px;
+        width:102% !important;
+    }
+
+}
+
+/*Screen resolution 800 x 1280*/
+@media only screen and (min-width: 800px) and (max-width: 1280px){
+    .form-group.col-sm-6.rewardPriceClass{
+        padding-left:16px;
+        width:54% !important;
+    }
+
+}
 @media only screen and (max-width: 800px){
-	
 	.btn-group.btn-group-sm.btnOrgBgColor {
 		margin-left: -20px;
 	}
@@ -2563,8 +2637,8 @@ textarea.form-control {
 		padding-top: 0px;
 		height: 28px;
 		width: 397px;
-		margin-left: 91px;
-		margin-top: -51px;
+		margin-left: 29%;
+		margin-top: -44px;
     }
 
     .btn-image {
@@ -2577,8 +2651,8 @@ textarea.form-control {
 	}
 
 	.fbButton{
-  		margin-left: -334px;
-		margin-top: -66px;
+  		margin-left: -60%;
+		margin-top: 10px;
 	}
 
 	.btn-fb {
@@ -2620,29 +2694,29 @@ textarea.form-control {
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
     }
 	
-	.girlSlider > a > img {
+    .girlSlider > a > img {
         padding: 2px;
     	text-decoration: none;
     	float: left;
-    	margin-left: 62px;
-		margin-bottom: -19px;
-		height: 41px;
-		width: 123px;
-	}
+    	margin-left: 10%;
+	margin-bottom: -19px;
+	height: 41px;
+	width: 123px;
+    }
 	
-	.btn-create {
+    .btn-create {
         background-color: white;
-  		border-color: white;
-  		color: black;
-  		padding: 0px;
- 		display: block;
-  		float: left;
-  		margin-left: 292px;
-		margin-bottom: 2px;
-		width: 110px;
-		height: 25px;
-		font-size: 11px;
-	}
+  	border-color: white;
+  	color: black;
+  	padding: 0px;
+ 	display: block;
+  	float: left;
+  	margin-left: 54%;
+	margin-bottom: 2px;
+	width: 110px;
+	height: 25px;
+	font-size: 11px;
+    }
 	
 	.btn-create:hover,
     .active .btn-create:hover,
@@ -2786,19 +2860,19 @@ textarea.form-control {
     	width: 123px;
 	}
 	
-	.btn-create {
-        background-color: white;
-  		border-color: white;
-  		color: black;
-  		padding: 0px;
- 		display: block;
-  		float: left;
-  		margin-left: 243px;
-		margin-bottom: 0px;
-		width: 94px;
-		height: 24px;
-		font-size: 9px;
-	}
+/* 	.btn-create { */
+/*         background-color: white; */
+/*   		border-color: white; */
+/*   		color: black; */
+/*   		padding: 0px; */
+/*  		display: block; */
+/*   		float: left; */
+/*   		margin-left: 243px; */
+/* 		margin-bottom: 0px; */
+/* 		width: 94px; */
+/* 		height: 24px; */
+/* 		font-size: 9px; */
+/* 	} */
 	
 	.btn-create:hover,
     .active .btn-create:hover,
@@ -2870,6 +2944,16 @@ textarea.form-control {
      .divThirdAdmin {
 	margin-left: -36px !important;
      }
+     
+     .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 61%;
+		margin-left: -29%;
+	 }
+	 .right-addon input {
+		padding-right: 30px;
+		margin-left: 29px;
+		height: 36px;
+	 }
 }
 
 @media only screen and (max-width: 479px){
@@ -3180,7 +3264,7 @@ textarea.form-control {
   		padding: 0px;
  		display: block;
   		float: left;
-  		margin-left: 158px;
+  		margin-left: 54% !important;
 		margin-bottom: 0px;
 		width: 90px;
 		height: 24px;
@@ -3310,11 +3394,19 @@ textarea.form-control {
 	}
 	.button-team-show .dropdown-menu {
 		width: 356px !important;
+	}
+	.right-addon input {
+		padding-right: 30px;
+		margin-left: 27px;
+		height: 36px;
+	}
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 73%;
+		margin-left: -28%;
 	}	
 }
 
 @media only screen and (max-width: 375px) {
-    
 	.arrow-mobile-css {
 		margin-right: -11px;
 	}
@@ -3395,7 +3487,7 @@ textarea.form-control {
   		padding: 0px;
  		display: block;
   		float: left;
-  		margin-left: 144px;
+  		margin-left: 55% !important;
 		margin-bottom: -1px;
 		width: 89px;
 		height: 25px;
@@ -3455,6 +3547,10 @@ textarea.form-control {
 	}
 }
 @media only screen and (max-width: 360px){
+	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 81%;
+		margin-left: -28%;
+	}
 	.tips h2 {
 		padding-left: 68px !important;
 	}
@@ -3485,30 +3581,55 @@ textarea.form-control {
 	}	
 }
 
+@media only screen and (max-width: 320px){
+	.btn-create {
+        	background-color: white;
+  		border-color: white;
+  		color: black;
+  		padding: 0px;
+ 		display: block;
+  		float: left;
+  		margin-left: 54% !important;
+		margin-bottom: -1px;
+		width: 90px;
+		height: 24px;
+		font-size: 9px;
+	}
+	.imageCarousellabel {
+      		background-color: black;
+      		padding-top: 6px;
+      		height: 141px;
+     		width: 120px;
+      		margin-left: 134px !important;
+      		margin-bottom: -17px;
+      		background: rgba(255, 255, 255, 0.3);
+    	}
+}
+
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
     .form-group.col-sm-6.rewardPriceClass{
         padding-left:16px;
         width:104% !important;
     }
-	.arrow-mobile-css {
-		margin-right: -21px;
-	}
-	.arrow-mobile {
-		margin-left: -17px !important;
-	}
-	.imageCarousellabel {
-         background-color: black;
-         background: rgba(255, 255, 255, 0.3);
-         padding-top: 6px;
-         height: 141px;
-         width: 120px;
-         margin-left: 128px !important;
-         margin-bottom: -17px;
+    .right-addon input {
+	padding-right: 30px;
+	margin-left: 27px;
+	height: 36px;
     }
-	.tips h2 {
-		padding-left: 29px !important;
-	}
+    .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	margin-left: -29% !important;
+    	width:  222px!important;
+    }
+    .arrow-mobile-css {
+	margin-right: -21px;
+    }
+    .arrow-mobile {
+	margin-left: -17px !important;
+    }
+    .tips h2 {
+	padding-left: 29px !important;
+    }
     .divFirstAdmin{
         margin-left:6px !important;
     }
@@ -3541,17 +3662,7 @@ textarea.form-control {
     }
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
-
-    .imageCarousellabel {
-         background-color: black;
-         padding-top: 6px;
-         height: 141px;
-         width: 120px;
-         margin-left: 134px;
-         margin-bottom: -17px;
-         background: rgba(255, 255, 255, 0.3);
-    }
-
+	
     .btn-image {
         background-color:#FF7F50;
   		border-color: #FF7F50;
@@ -3606,29 +3717,15 @@ textarea.form-control {
         box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f79483;
     }
 	
-	.girlSlider > a > img {
+    .girlSlider > a > img {
         padding: 2px;
     	text-decoration: none;
     	float: left;
-    	margin-left: 21px;
-		margin-bottom: -19px;
-		height: 36px;
-		width: 96px;
-	}
-	
-	.btn-create {
-        background-color: white;
-  		border-color: white;
-  		color: black;
-  		padding: 0px;
- 		display: block;
-  		float: left;
-  		margin-left: 121px;
-        margin-bottom: -1px;
-		width: 90px;
-		height: 24px;
-		font-size: 9px;
-	}
+    	margin-left: 10%;
+	margin-bottom: -19px;
+	height: 36px;
+	width: 96px;
+    }
 	
 	.btn-create:hover,
     .active .btn-create:hover,
@@ -4609,4 +4706,7 @@ color:#fff;
 .hrClass{
     margin-top:4px;
     margin-bottom:8px;
+}
+form#sortsForm {
+	margin-left: 25%;
 }

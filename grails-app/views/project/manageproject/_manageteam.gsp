@@ -5,7 +5,8 @@
     def user = userService.getCurrentUser()
     def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
     def userName = user.firstName +" "+ user.lastName
-    def teams = projectService.getEnabledAndValidatedTeamsForCampaign(project)
+    def teams = project.teams
+    def validatedTeam = projectService.getValidatedTeam(project)
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
@@ -18,7 +19,7 @@
 		    <ul class="nav nav-pills nav-pills-manageteam">
 		        <li data-toggle="tab" class="active team-footer col-md-4 col-sm-4 col-xs-4">
 		           <a href="#team">
-		               <h4 class="text-center">${teams.size()}</h4>
+		               <h4 class="text-center">${validatedTeam.size()}</h4>
 			           <h5 class="text-center"> Team </h5>
 			         </a>
 			 </li>
@@ -45,7 +46,7 @@
 			<ul class="nav nav-pills">
 			   <li data-toggle="tab" class="active team-footer col-md-4 col-sm-4 col-xs-4">
 			      <a href="#team">
-			         <h4 class="text-center">${teams.size()}</h4>
+			         <h4 class="text-center">${validatedTeam.size()}</h4>
 				     <h5 class="text-center"> Team </h5>
 				  </a>
 				</li>
@@ -79,7 +80,7 @@
 			    <g:render template="manageproject/teamvalidationIndex" model="[project:project]"/>
 			</div>
 			<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="campaignStatistics">
-			    <g:render template="manageproject/campaignStatisticsIndex" model="[team:teams, project:project]"/>
+			    <g:render template="manageproject/campaignStatisticsIndex" model="[team:validatedTeam, project:project]"/>
 			</div>
 		</div>
 	</g:if>

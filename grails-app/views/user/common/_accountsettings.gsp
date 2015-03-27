@@ -2,7 +2,7 @@
 <%
     def imageUrl = user.userImageUrl
 %>
- 
+
 <div class="col-sm-6">
 	<div class="form-signin">
 	    <g:if test="${imageUrl != null}">
@@ -21,6 +21,9 @@
 		        <button class="btn btn-primary btn-sm" type="button" id="editavatarbutton">Edit Avatar</button>
 	            <input class="hidden" type="file" name="profile" id="editavatar" accept="image/*"/>
 	            <input type="submit" class="hidden buttons" value="Upload" id="editbutton" accept="image/*"/>
+	            <div class="clear"></div>
+                <label class="docfile-orglogo-css" id="editProfileImg">Please select image file only.</label>
+                <label class="docfile-orglogo-css" id="editProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
 	        </g:uploadForm>
 	    </g:if>
 	    <g:else>
@@ -31,6 +34,9 @@
 	            <button class="btn btn-primary btn-sm" type="button" id="uploadavatar">Upload Avatar</button>
 	            <input class="hidden" type="file" name="avatar" id="avatar" accept="image/*"/>
 	            <input type="submit" class="hidden buttons" value="Upload" id="uploadbutton" accept="image/*"/>
+	            <div class="clear"></div>
+                <label class="docfile-orglogo-css" id="uploadProfileImg">Please select image file only.</label>
+                <label class="docfile-orglogo-css" id="uploadProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
 	        </g:uploadForm> 
 	    </g:else>
 	</div>
@@ -48,17 +54,22 @@
         </div>
     </g:if>
     <g:else>
-        <g:form class="form-signin" controller="login" action="update" role="form">
-            <div class="form-group">
-                <input type="text" name="firstName" required class="form-control" value="${user.firstName}" placeholder="New First name" autofocus>
-            </div>
-            <div class="form-group">
-                <input type="text" name="lastName" required class="form-control" value="${user.lastName}" placeholder="New Last name">
-            </div>
-            <div class="form-group">
-                <input type="password" name="password" class="form-control" placeholder="New Password (Optional)">
-            </div>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
-        </g:form>
+        <div id="validpass">
+            <g:form class="form-signin" controller="login" action="update" role="form">
+                <div class="form-group">
+                    <input type="text" name="firstName" required class="form-control" value="${user.firstName}" placeholder="New First name" autofocus>
+                </div>
+                <div class="form-group">
+                    <input type="text" name="lastName" required class="form-control" value="${user.lastName}" placeholder="New Last name">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="New Password (Optional)">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password">
+                </div>
+                <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
+            </g:form>
+        </div>
     </g:else>
 </div>

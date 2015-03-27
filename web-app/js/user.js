@@ -1,12 +1,52 @@
 $(function() {
     console.log("user.js initialized");
+    $('#uploadProfilesize').hide();
+    $('#uploadProfileImg').hide();
+    
+    $('#editProfilesize').hide();
+    $('#editProfileImg').hide();
+    
+    var validator = $('#validpass').find('form').validate({
+        rules: {
+        	password: {
+                minlength: 6
+            },
+    		confirmPassword: {
+		        isEqualToPassword: true
+            }
+        }
+    });
+    
+    $.validator.addMethod('isEqualToPassword', function (value, element) {
+        var confirmpassword = value;
+        var password = $("#password").val();
+        if(confirmpassword != password) {
+            return (confirmpassword == password) ? password : false;
+        }
+        return true;
+    }, "Passwords do not match! Please enter a valid password.");
     
     $("#uploadavatar").click(function() {
         $("#avatar").click();
     });
     
     $('#avatar').change( function(event) {
-    	$("#uploadbutton").click();
+    	var file =this.files[0];
+	    if(!file.type.match('image')){
+	        $('#uploadProfilesize').hide();
+	        $('#uploadProfileImg').show();
+	        this.value=null;
+	    } else{
+	        if (file.size > 1024 * 1024 * 3) {
+	        	$('#uploadProfilesize').show();
+		        $('#uploadProfileImg').hide();
+	            $('#avatar').val('');
+	        } else {
+	        	$('#uploadProfilesize').hide();
+		        $('#uploadProfileImg').hide();
+                        $("#uploadbutton").click();
+	        }
+	    } 
     });
     
     $("#editavatarbutton").click(function() {
@@ -14,7 +54,22 @@ $(function() {
     });
     
     $('#editavatar').change( function(event) {
-    	$("#editbutton").click();
+    	var file =this.files[0];
+	    if(!file.type.match('image')){
+	        $('#editProfilesize').hide();
+	        $('#editProfileImg').show();
+	        this.value=null;
+	    } else{
+	        if (file.size > 1024 * 1024 * 3) {
+	        	$('#editProfilesize').show();
+		        $('#editProfileImg').hide();
+	                $('#editavatar').val('');
+	        } else {
+	        	$('#editProfilesize').hide();
+		        $('#editProfileImg').hide();
+		        $("#editbutton").click();
+	        }
+	    } 
     });
 
     /* Show pop-over tooltip on hover for some fields. */

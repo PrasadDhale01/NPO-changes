@@ -24,6 +24,10 @@ function selectedCategory(){
 	document.categoryForm.submit();
 }
 
+function selectedCampaigns(){
+	document.sortsForm.submit();
+}
+
 $(window).load(function() {
     /*
     $('.blacknwhite').BlackAndWhite({

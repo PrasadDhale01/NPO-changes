@@ -1,8 +1,10 @@
 <g:set var="projectService" bean="projectService" />
+<g:set var="userService" bean="userService" />
 <g:set var="rewardservice" bean="rewardService"/>
 <%
     def shippingInfo = rewardservice.getShippingInfo(reward)
     def contributedAmount = projectService.getDataType(amount)
+    def currentUser = userService.getCurrentUser()
 %>
 <html>
 <head>
@@ -14,6 +16,9 @@
 		<div class="container">
 			<g:form action="paypalurl" method="POST" name="payment-form" id="${project.id}" role="form">
 				<g:hiddenField name="fr" value="${fundraiser.id}"/>
+				<g:if test="${user1}">
+				    <g:hiddenField name="tempValue" value="${user1.id}"/>
+				</g:if>
 				<g:hiddenField name="rewardId" value="${reward.id}"/>
 				<g:hiddenField name="userId" value="${user.id}"/>
 				<g:hiddenField name="amount" value="${amount}"/>
@@ -37,6 +42,29 @@
 							</div>
 						</div>
 						
+						<g:if test="${currentUser == null}">
+						    <div class="panel panel-default">
+							    <div class="panel-heading">
+							        <h3 class="panel-title">Contact details (for your receipt)</h3>
+							    </div>
+							    <div class="panel-body">
+							        <div class="col-md-6">
+							            <div class="form-group">
+							                <div class="input-group col-md-12">
+							                    <input class="form-control" type="text" placeholder="Name" name="name">
+							                </div>
+							            </div>
+							        </div>
+							        <div class="col-md-6">
+							            <div class="form-group">
+							                <div class="input-group col-md-12">
+							                    <input class="form-control" type="text" placeholder="Email" name="email">
+							                </div>
+							            </div>
+							        </div>
+							    </div>
+						    </div>
+						</g:if>
 						<g:if test="${shippingInfo}">
 							<g:if test="${shippingInfo.address != null || shippingInfo.email  != null || shippingInfo.twitter  != null || shippingInfo.custom  != null}">
 							    <div class="panel panel-default">
@@ -85,6 +113,7 @@
 							    </div>
 						    </g:if>
 						</g:if>
+						
 						<div class="form-group">
 							<button class="btn btn-primary btn-lg" name="fund-button">Fund this Campaign</button>
 						</div>

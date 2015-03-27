@@ -89,7 +89,7 @@
 			            </g:if>
 			            <g:else>
 			                <g:if test="${userService.isAnonymous(contribution.user)}">
-			                    <p>By Anonymous, on ${date}</p>
+		                        <dd>By ${contribution.contributorName}, on ${date}</dd>
 			                </g:if>
 			                <g:else>
 		                        <p>By ${friendlyName}, on ${date}</p>
@@ -184,12 +184,19 @@
 			                    <h4 class="modal-title">Shipping Details</h4>
 			                </div>
 			                <div class="modal-body">
-			                    <div class="form-group">
-			                        <label for="name">Name: &nbsp; ${contribution.user.firstName}&nbsp; ${contribution.user.lastName}</label>
-			                    </div>
-			                    <div class="form-group">
-			                        <label for="email">Email: &nbsp; ${contribution.user.email}</label>
-			                    </div>
+			                    <g:if test="${contribution.contributorEmail == 'anonymous@example.com'}">
+			                        <div class="form-group">
+			                            <label>By Anonymous Good Soul </label>
+			                        </div>
+			                    </g:if>
+			                    <g:else>
+			                        <div class="form-group">
+			                            <label for="name">Name: &nbsp; ${contribution.contributorName}</label>
+			                        </div>
+			                        <div class="form-group">
+			                            <label for="email">Email: &nbsp; ${contribution.contributorEmail}</label>
+			                        </div>
+			                    </g:else>
 			                    <g:if test="${contribution.email  != null}">
 			                    	<g:if test="${!contribution.email.equalsIgnoreCase('null')}">
 								        <div class="form-group">

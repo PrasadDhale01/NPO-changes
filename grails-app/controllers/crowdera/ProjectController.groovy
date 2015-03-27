@@ -655,19 +655,11 @@ class ProjectController {
     }
 
     def sendemail() {
-        def project = Project.get(params.id)
-        String emails = params.emails
-        String name = params.name
-        String message = params.message
         def fundRaiser = params.fr
-        def emailList = emails.split(',')
-        emailList = emailList.collect { it.trim() }
-        
-        mandrillService.shareProject(emailList, name, message, project, fundRaiser)
-
+        def project = projectService.shareCampaignOrTeamByEmail(params,fundRaiser)
         flash.prj_mngprj_message= "Email sent successfully."
         if (params.ismanagepage) {
-             redirect(controller: 'project', action: 'manageproject', id: project.id)
+             redirect(controller: 'project', action: 'manageproject', id: project.id, params:[fr: fundRaiser])
         } else {
            redirect (action: 'show', id: project.id, params:[fr: fundRaiser])
         }

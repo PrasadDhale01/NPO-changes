@@ -3,6 +3,8 @@
     def base_url = grailsApplication.config.crowdera.BASE_URL
 	def projectimages = projectService.getProjectImageLinks(project)
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+project.user.username
+    def currentUser = userService.getCurrentUser();
+    def fundRaiser = currentUser.username
 %>
 
 <div class="col-md-4 mobileview-top">
@@ -78,6 +80,7 @@
 						<div class="modal-body">
 						    <g:hiddenField name="amount" value="${project.amount}" />
 						    <g:hiddenField name="ismanagepage" value="managepage" />
+						    <g:hiddenField name="fr" value="${fundRaiser}" />
 						    <div class="form-group">
 							    <label>Your Name</label> <input type="text" class="form-control" name="name" placeholder="Name" />
 						    </div>

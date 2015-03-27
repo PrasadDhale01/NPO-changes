@@ -861,8 +861,8 @@ class ProjectService {
 	}
 	
     def getContributedAmount (Transaction transaction){
-	def contribution = Contribution.findWhere(user: transaction.user,project: transaction.project)
-	return contribution.amount.round()
+	    def contribution = transaction.contribution
+	    return contribution.amount.round()
     }
     
     def getUpdatedImageUrls(List<MultipartFile> files, ProjectUpdate projectUpdate){
@@ -1239,6 +1239,19 @@ class ProjectService {
       return contributions
     }
 
+    def shareCampaignOrTeamByEmail(def params, def fundRaiser) {
+        def project = Project.get(params.id)
+        String emails = params.emails
+        String name = params.name
+        String message = params.message
+        if(emails) {
+            def emailList = emails.split(',')
+            emailList = emailList.collect { it.trim() }
+            mandrillService.shareProject(emailList, name, message, project, fundRaiser)
+        }
+        
+        return project
+    }
 
     @Transactional
     def bootstrap() {

@@ -76,3 +76,26 @@
 	background-color: #F0F0F0;
 	margin-bottom: 5px;
 }
+.hrClass{
+    margin-top:4px;
+    margin-bottom:-7px !important;
+}
+.hrClasses{
+    margin-top:4px;
+    margin-bottom:12px !important;
+}
+form#sortsForm {
+    margin-left: 25%;
+}
+ul.personalDetailClass, menu, dir {
+    display:inline !important;
+}
+.personalDetailClass > li{
+    margin-left:30px;
+}
+ul.personalDetailClasses, menu, dir {
+    display:table !important;
+}
+.personalDetailClasses > li{
+    margin-left:-10px ;
+}

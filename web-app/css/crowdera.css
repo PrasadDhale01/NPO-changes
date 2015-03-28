@@ -476,18 +476,18 @@ footer .flinks a {
   	margin-left: -94% !important;
   	margin-top: -16% !important;
     }
-	.btn-create {
+    .btn-create {
         background-color: white;
-  	    border-color: white;
-  	    color: black;
-  	    padding: 0px;
- 	    display: block;
-  	    float: left;
-  	    margin-left: 51% !important;
-  	    margin-bottom: 6% !important;
-	    width: 110px;
-	    height: 25px;
-	    font-size: 11px;
+  	border-color: white;
+  	color: black;
+  	padding: 0px;
+ 	display: block;
+  	float: left;
+        margin-left: 51% !important;
+  	margin-bottom: 6% !important;
+	width: 110px;
+	height: 25px;
+	font-size: 11px;
     }
 }
 

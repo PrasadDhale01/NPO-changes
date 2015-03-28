@@ -14,7 +14,7 @@
         <div class="col-sm-12">
                 <span><b>Campaign Creator</b></span><hr class="hrClass"/>
         </div>
-        <ul>
+        <ul class="personalDetailClass">
           <li><span><b>Name : </b>${beneficiary.firstName} ${beneficiary.lastName}</span></li>
           <li><span><b>Email : </b> <a href="mailto:${beneficiary.email}">${beneficiary.email}</a></span></li>
           <g:if test="${project.beneficiary.telephone}">
@@ -31,12 +31,12 @@
         <g:if test="${isCoAdmin}">
             <g:if test="${project.projectAdmins.email.size() > 1}">
               <div class="col-sm-12 coCreator">
-                    <span><b>Campaign Co-Creator</b></span><hr class="hrClass"/>
+                    <span><b>Campaign Co-Creator</b></span><hr class="hrClasses"/>
               </div>
             </g:if>
             <g:each in="${project.projectAdmins.email}" var="admin">
                 <g:if test="${admin!="campaignadmin@crowdera.co"}">
-                  <ul>
+                  <ul class="personalDetailClasses">
                     <li><span>${admin}</span></li>
                   </ul>
                   <% counter++%>

@@ -26,7 +26,7 @@
 						    </div>
 						</div>
 						<g:form action="charge" method="POST" role="form">
-							<g:hiddenField name="projectId" value="${project.id}" />
+							<g:hiddenField name="projectId" id="projectId" value="${project.id}" />
 							<g:hiddenField name="fr" value="${fundraiser}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
@@ -114,7 +114,7 @@
 
 				<div class="col-md-4">
                     <g:if test="${project.rewards.size()>1}">
-                        <g:render template="fund/rewards"/>
+                        <g:render template="fund/rewards" model="[user:user]"/>
                     </g:if>
                 </div>
 

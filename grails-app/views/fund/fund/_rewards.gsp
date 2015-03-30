@@ -9,7 +9,7 @@
     <div class="panel-body">
         <div class="choose-error"></div>
         <% isAnonymous = userService.isAnonymous(user) %>
-        <div class="list-group">
+        <div class="list-group twitterHandler ">
             <g:each in="${project.rewards}" var="reward">
                 <%
                     def backers = contributionService.getBackersForProjectByReward(project, reward);
@@ -18,16 +18,16 @@
                     def isTwitterHandled = rewardService.isTwitterHandled(reward)
                 %>
                 <br>
-                 <g:if test="${(user == null) && isOnlyTwitterHandled}">
-                    <div title="As you are anonymous, this perk which contains twitter handler is disabled for you" class="list-group-item" id="onlyTwitterReward">
+                <g:if test="${(user == null) && isOnlyTwitterHandled}">
+                    <div class="list-group-item onlyTwitterReward">
                         <h3 class="panel-title">twitter${reward.title}</h3> 
                         <h5 class="list-group-item-heading lead">$${price}</h5>
                         <p class="rewarddescription">${reward.description}</p>
                         <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
                     </div>
-                 </g:if>
-                 <g:elseif test="${(user == null) && isTwitterHandled}">
-                        <a href="#" id="twitterReward" title="As you are anonymous, twitter handler information will be disabled for this perk" class="list-group-item <% if(perk == reward){%> active <%}%>" data-rewardid="${reward.id}" data-rewardprice="${reward.price}">
+                </g:if>
+                <g:elseif test="${(user == null) && isTwitterHandled}">
+                        <a href="#" class="list-group-item twitterReward <% if(perk == reward){%> active <%}%>" id="${reward.id}" data-rewardprice="${reward.price}">
                             <h3 class="panel-title">${reward.title}</h3> 
                             <h5 class="list-group-item-heading lead">$${price}</h5>
                             <p class="rewarddescription">${reward.description}</p>
@@ -35,7 +35,7 @@
                         </a>
                 </g:elseif>
                 <g:else>
-                <a href="#" class="list-group-item <% if(perk == reward){%> active <%}%>" data-rewardid="${reward.id}" data-rewardprice="${reward.price}">
+                <a href="#" class="list-group-item <% if(perk == reward){%> active <%}%>" id="${reward.id}" data-rewardprice="${reward.price}">
                     <h3 class="panel-title">${reward.title}</h3> 
                     <h5 class="list-group-item-heading lead">$${price}</h5>
                     <p class="rewarddescription">${reward.description}</p>

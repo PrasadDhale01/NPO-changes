@@ -2,7 +2,7 @@ $(function() {
     console.log("fund.js initialized");
 
     function getSelectedRewardId() {
-        return $('.list-group-item.active').data('rewardid');
+        return $('.list-group-item.active').attr('id');
     }
 
     function getSelectedRewardPrice() {
@@ -60,20 +60,166 @@ $(function() {
     });
     
     $('#anonymousUser').click(function(){
+    	var projectId = $('#projectId').val();
     	
     	if($(this).prop("checked") == true){
     		$.ajax({
     			type:'post',
-    			url:$('#url').val()+'/fund/makeUserAnonymous',
+    			url:$('#url').val()+'/fund/getOnlyTwitterHandlerRewards',
+    			data:'projectId='+projectId,
     			success: function(data){
-    				$('#userId').val(data);
+    				$('#userId').val(3);
+    				var list = data.split("[");
+    				var list1 = list[1].split("]");
+    				var list2 = list1[0].split(",");
+    				var s= [];
+    				for(var i=0;i<list2.length;i++){
+    		    		var a = '#'+list2[i].trim();
+    		    		var x = $(a).attr("data-rewardprice");
+    		    		s.push(x);
+    		    		$(a).replaceWith(function() {
+    		    			return $('<div/>', {
+    		    			    html: this.innerHTML
+    		    			});
+    		    		});
+    		    		//$(a).attr('class','list-group-item');
+    		    		$('.twitterHandler').children('div').attr('class','list-group-item onlyTwitterReward');
+    				}
+    				for(var i=0;i<list2.length;i++){
+    					var idval = list2[i].trim();
+					    var k = 0;
+					    $('.onlyTwitterReward').each(function () {
+					    	if(k == i) {
+			                    $(this).attr('id',idval);
+			                    $(this).attr('data-rewardprice',s[i]);
+					    	}
+					    	k++;
+			            });
+    				}
+    				
+    				$('.onlyTwitterReward').each(function(){    
+    		            $(this).popover({
+    		                content: 'As you are anonymous, this perk which contains twitter handler is disabled for you',
+    		                trigger: 'manual',
+    		                placement: 'bottom'
+    		            })
+    		            .focus(showPopover)
+    		            .blur(hidePopover)
+    		            .hover(showPopover, hidePopover);
+    		        });
     			}
-    		}).error(function(){
+    		}).error(function(data){
     			alert('An error occured');
     		});
+    		
+    		$.ajax({
+                type:'post',
+                url:$("#url").val()+'/fund/getRewardsHavingTwitterHandler',
+                data:'projectId='+projectId,
+                success: function(data){
+                	var list = data.split("[");
+    				var list1 = list[1].split("]");
+    				var list2 = list1[0].split(",");
+    				for(var i=0;i<list2.length;i++){
+    		    		var a = '#'+list2[i].trim();
+    		    		$(a).attr('class','list-group-item twitterReward');
+    				}
+    				
+    				$('.twitterReward').each(function(){
+    		            $(this).popover({
+    		                content: "As you are anonymous, only twitter handler information will be disabled for this perk",
+    		                trigger: 'manual',
+    		                placement: 'bottom'
+    		            })
+    		            .focus(showPopover)
+    		            .blur(hidePopover)
+    		            .hover(showPopover, hidePopover);
+    		        });
+                }
+            }).error(function(){
+                alert('An error occured');
+            });
+    		
     	} else if ($(this).prop("checked") == false){
     		var user = $('#tempValue').val();
-    		$('#userId').val(user);
+    		
+    		$.ajax({
+    			type:'post',
+    			url:$('#url').val()+'/fund/getOnlyTwitterHandlerRewards',
+    			data:'projectId='+projectId,
+    			success: function(data){
+    				$('#userId').val(user);
+    				var list = data.split("[");
+    				var list1 = list[1].split("]");
+    				var list2 = list1[0].split(",");
+    				var s= [];
+    				for(var i=0;i<list2.length;i++){
+    		    		var a = '#'+list2[i].trim();
+    		    		var x = $(a).attr("data-rewardprice");
+    		    		s.push(x);
+    		    		$(a).replaceWith(function() {
+    		    			return $('<a/>', {
+    		    			    html: this.innerHTML
+    		    			});
+    		    		});
+    		    		//$(a).attr('class','list-group-item');
+    		    		$('.twitterHandler').children('a').attr('href','#');
+    		    		$('.twitterHandler').children('a').attr('class','list-group-item');
+    				}
+    				
+    				for(var i=0;i<list2.length;i++){
+    					var idval = list2[i].trim();
+    					var k = 1;
+					    $('.list-group-item').each(function () {
+					    	var hasAttr = $(this).is("[id]");
+					    	if (!hasAttr){
+					    		if (k == 1) {
+		                            $(this).attr('id',idval);
+		                            $(this).attr('data-rewardprice',s[i]);
+		                            k++;
+					    		}
+					    	}
+			            });
+					    
+    				}
+    				
+    				$('.list-group-item').click(function() {
+    			        $('.choose-error').html('');
+
+    			        $(this).siblings().removeClass('active');
+    			        $(this).addClass('active');
+    			    });
+    			}
+    		}).error(function(data){
+    			alert('An error occured');
+    		});
+    		
+    		$.ajax({
+                type:'post',
+                url:$("#url").val()+'/fund/getRewardsHavingTwitterHandler',
+                data:'projectId='+projectId,
+                success: function(data){
+                	var list = data.split("[");
+    				var list1 = list[1].split("]");
+    				var list2 = list1[0].split(",");
+    				for(var i=0;i<list2.length;i++){
+    		    		var a = '#'+list2[i].trim();
+    		    		$(a).attr('class','list-group-item');
+    		    		$('.list-group-item').each(function(){
+        		            $(this).popover({
+        		                content: "",
+        		                trigger: 'manual',
+        		                placement: 'bottom'
+        		            })
+        		            .focus(hidePopover)
+        		            .blur(hidePopover)
+        		            .hover(hidePopover);
+        		        });
+    				}
+                }
+            }).error(function(){
+                alert('An error occured');
+            });
     	}
     });
     
@@ -85,23 +231,26 @@ $(function() {
             $(this).popover('hide');
         };
 
-    /* Initialize pop-overs (tooltips) */
-    $("#onlyTwitterReward").popover({
-        content: 'As you are anonymous, this perk which contains twitter handler is disabled for you',
-        trigger: 'manual',
-        placement: 'bottom'
-    })
-    .focus(showPopover)
-    .blur(hidePopover)
-    .hover(showPopover, hidePopover);
-    
-    $("#twitterReward").popover({
-        content: "As you are anonymous, only twitter handler information will be disabled for this perk",
-        trigger: 'manual',
-        placement: 'bottom'
-    })
-    .focus(showPopover)
-    .blur(hidePopover)
-    .hover(showPopover, hidePopover);
+        $('.onlyTwitterReward').each(function(){    
+            $(this).popover({
+                content: 'As you are anonymous, this perk which contains twitter handler is disabled for you',
+                trigger: 'manual',
+                placement: 'bottom'
+            })
+            .focus(showPopover)
+            .blur(hidePopover)
+            .hover(showPopover, hidePopover);
+        });
+            
+        $('.twitterReward').each(function(){
+            $(this).popover({
+                content: "As you are anonymous, only twitter handler information will be disabled for this perk",
+                trigger: 'manual',
+                placement: 'bottom'
+            })
+            .focus(showPopover)
+            .blur(hidePopover)
+            .hover(showPopover, hidePopover);
+        });
     	
 });

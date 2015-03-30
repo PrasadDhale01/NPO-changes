@@ -4,6 +4,7 @@
 <%
     def shippingInfo = rewardservice.getShippingInfo(reward)
     def currentUser = userService.getCurrentUser()
+    isAnonymous = userService.isAnonymous(currentUser)
 %>
 <html>
 <head>
@@ -260,7 +261,7 @@
 	                                    </div>
 	                                </div>
 	                            </g:if>
-	                            <g:if test="${shippingInfo.twitter  != null}">
+	                            <g:if test="${shippingInfo.twitter  != null && isAnonymous}">
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
 	                                        <div class="input-group col-md-12">

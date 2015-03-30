@@ -486,10 +486,18 @@ class FundController {
         }
     }
     
-    def makeUserAnonymous(){
-        def user = User.findByUsername('anonymous@example.com')
+    def getOnlyTwitterHandlerRewards(){
         def project = Project.get(request.getParameter('projectId'))
-        render user.id
+        def reward = rewardService.getOnlytwitterHandlerReward(project)
+        def rewardId = reward.id
+        render rewardId
+    }
+    
+    def getRewardsHavingTwitterHandler(){
+        def project = Project.get(request.getParameter('projectId'))
+        def reward = rewardService.getTwitterHandlerReward(project)
+        def rewardId = reward.id
+        render rewardId
     }
 	
     @Secured(['ROLE_ADMIN'])

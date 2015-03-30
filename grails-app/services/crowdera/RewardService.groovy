@@ -56,6 +56,38 @@ class RewardService {
         return isTwitterSelected
     }
     
+    def getOnlytwitterHandlerReward(Project project){
+        def reward = project.rewards
+        List rewardList = []
+        reward.each {
+            def rewardShipping = RewardShipping.findByReward(it)
+            if(rewardShipping) {
+                if (rewardShipping.twitter == 'true') {
+                    if(rewardShipping.email == null && rewardShipping.address == null && rewardShipping.custom == null) {
+                        rewardList.add(it)
+                    }
+                }
+            }
+        }
+        return rewardList
+    }
+    
+    def getTwitterHandlerReward(Project project){
+        def reward = project.rewards
+        List rewardList = []
+        reward.each {
+            def rewardShipping = RewardShipping.findByReward(it)
+            if(rewardShipping) {
+                if (rewardShipping.twitter == 'true') {
+                    if(rewardShipping.email == 'true' || rewardShipping.address == 'true' || rewardShipping.custom == 'true') {
+                        rewardList.add(it)
+                    }
+                }
+            }
+        }
+        return rewardList
+    }
+    
     def getMultipleRewards(def project, def rewardTitle ,def rewardPrice ,def rewardDescription, def mailingAddress, def emailAddress, def twitter, def custom) {
         def amount
         for(int i=0; i<rewardTitle.size();i++ ) {

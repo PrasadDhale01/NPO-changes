@@ -546,6 +546,7 @@ footer .flinks a {
         margin-left: 55% !important;
         margin-bottom: 2% !important;
     }
+    
 }
 
 @media only screen and (max-width: 767px){
@@ -1764,6 +1765,14 @@ text-decoration: none !important;
 	    width: 22%;
 	    display: flex;
 	}
+	
+	.team-footer ,.button-team-footer {
+	    margin-top: 10px !important;
+	}
+	
+	.activitydropdown {
+         margin-top: 0px !important;
+	}
 }
 
 @media only screen and (max-width: 1055px){
@@ -1861,6 +1870,14 @@ text-decoration: none !important;
 		border-color: #FF7F50;
     	background-color: #FF7F50;
     	color: white;
+	}
+	
+	.team-footer ,.button-team-footer {
+	    margin-top: 10px !important;
+	}
+	
+	.activitydropdown {
+         margin-top: 0px !important;
 	}
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
@@ -1980,8 +1997,17 @@ text-decoration: none !important;
 	    width: 20%;
 	    display: flex !important;
 	}
+	
+    .nav-pills-manageteam > li + li {
+        margin-left: 0px !important;
+    }
+    
+    .team-footer ,.button-team-footer {
+	    margin-left: 0px !important;
+	    margin-right: 0px !important;
+	    margin-top: 10px !important;
+	}
 }
-
 
 .rewarddesc{
     margin-left:-21px;
@@ -2143,13 +2169,11 @@ textarea.form-control {
 		width: 100% !important;
 	}
 	/*************ManageTeamButtons************/
-    .team-footer ,.button-team-footer {
-	    margin: 8px !important;
-	}
+    
 	.inviteteammember {
-		margin-top: 1px !important;
-		padding: 18px 28px;
-		height: 70px;
+        margin-top: 1px !important;
+		padding: 8px 28px;
+        height: 42px;
 	}
 	.button-team-footer .dropdown-menu {
 	    width: 216px !important;
@@ -2430,13 +2454,15 @@ textarea.form-control {
 	}
 	/*************ManageTeamButtons************/
     .team-footer ,.button-team-footer {
-	    margin: 8px !important;
+	    margin-left: 0px !important;
+	    margin-right: 0px 0px !important;
+	    margin-top: 10px !important;
 	}
-	.inviteteammember {
-		margin-top: 1px !important;
-		padding: 18px 28px;
-		height: 70px;
-	}
+    .inviteteammember {
+        margin-top: 1px !important;
+        padding: 8px 28px;
+        height: 42px;
+    }
 	.button-team-footer .dropdown-menu {
 	    width: 216px !important;
 	}
@@ -2576,14 +2602,12 @@ textarea.form-control {
 		margin-left: -18px;
 	}
 	/*************ManageTeamButtons************/
-    .team-footer ,.button-team-footer {
-	    margin: 8px !important;
-	}
-	.inviteteammember {
-		margin-top: 1px !important;
-		padding: 18px 28px;
-		height: 70px;
-	}
+    
+    .inviteteammember {
+        margin-top: 1px !important;
+        padding: 8px 28px;
+        height: 42px;
+    }
 	.manage-team{
 		margin-top: 16px !important;
 	}
@@ -3866,10 +3890,12 @@ textarea.form-control {
 	    width: 277px !important;
 	}
 	.button-team-show .dropdown-menu {
-		width: 277px !important;
+		width: 100% !important;
 	}
 	.button-team-show{
 		padding: 0px !important;
+		
+		
 		margin: 4px !important;
 		width: 100% !important;
 		margin-right: 30px !important;
@@ -3911,24 +3937,12 @@ button.projectedit.close{
 	margin-top: 15px;
 	padding: 0;
 	border-top: 1px solid #e5e5e5;
-	width:24%;
-	margin-right: 6px;
-	margin-left: 10px;
-}
-
-.team-footer {
-    background-color: #E8E8E8;
-	margin-top: 15px;
-	padding: 0;
-	border-top: 1px solid #e5e5e5;
-	width:27%;
+	
 	margin-right: 30px;
 	margin-left: 20px;
 }
 .button-team-footer{
 	padding:0;
-	margin:0;
-	width:30%;
 	margin-right: 30px;
 }
 
@@ -3942,12 +3956,12 @@ button.projectedit.close{
 
 .show-team{
 	background-color: #E8E8E8;
-	margin-top: 15px;
+	margin-top: 14px;
 	padding: 0;
 	border-top: 1px solid #e5e5e5;
-	width:28%;
+	width:29%;
 	margin-left: 15px;
-	margin-right: 15px;
+	margin-right: 30px;
 }
 
 .show-team-button{
@@ -3968,9 +3982,15 @@ button.projectedit.close{
 	margin-top: 15px;
 }
 .inviteteammember {
-	margin-top: 15px;
-	padding: 18px 28px;
-	height: 72px;
+    margin-top: 15px;
+    padding: 8px 28px;
+    height: 42px;
+}
+
+.teammembers{
+    padding: 11px 21px !important;
+    height: 42px !important;
+    font-weight: 500;
 }
 
 .activitydropdown .btn{

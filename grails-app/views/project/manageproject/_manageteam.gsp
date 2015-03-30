@@ -14,46 +14,44 @@
 <div class="col-md-12 col-sm-12 col-xs-12"></div>
 <div class="pill-buttons">
 <g:if test="${project.validated}">
-	<g:if test="${!teams.isEmpty()}">
-		<g:if test="${isCampaignOwnerOrAdmin}">
+    <g:if test="${!teams.isEmpty()}">
+        <g:if test="${isCampaignOwnerOrAdmin}">
 		    <ul class="nav nav-pills nav-pills-manageteam">
-		        <li data-toggle="tab" class="active team-footer col-md-4 col-sm-4 col-xs-4">
-		           <a href="#team">
-		               <h4 class="text-center">${validatedTeam.size()}</h4>
-			           <h5 class="text-center"> Team </h5>
-			         </a>
-			 </li>
-                	 <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 button-team-footer">
-                      		<button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-			              Activity <span class="caret"></span>
-		       		</button>
-			          <ul class="dropdown-menu" role="menu">
-				          <li><a class="list" href="#teamValidation"><span class="fa fa-users"></span> &nbsp;&nbsp;Validate Team</a></li>
-				          <li><a class="list" href="#campaignStatistics"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;&nbsp;Campaign Statistics </a></li>
-				          <li>
-				              <g:if test="${!ended}">
-				                  <a class="list" href="#inviteTeamMember" data-toggle="modal" model="['project': project]"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
-				              </g:if>
-				              <g:else>
-				                  <a class="list"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
-				              </g:else>
-				          </li>
-			          </ul>
-                        </li>
+                <li data-toggle="tab" class="active team-footer col-md-3 col-sm-6 col-xs-12">
+                    <a href="#team" class="text-center teammembers">
+                        ${validatedTeam.size()}&nbsp;&nbsp;Team
+                    </a>
+                </li>
+                <li data-toggle="tab" class="col-md-3 col-sm-6 col-xs-12 button-team-footer">
+                    <a class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember activitydropdown dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                        Activity <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a class="list" href="#teamValidation"><span class="fa fa-users"></span> &nbsp;&nbsp;Validate Team</a></li>
+                        <li><a class="list" href="#campaignStatistics"><span class="glyphicon glyphicon-list-alt"></span> &nbsp;&nbsp;Campaign Statistics </a></li>
+                        <li>
+                            <g:if test="${!ended}">
+                                <a class="list" href="#inviteTeamMember" data-toggle="modal" model="['project': project]"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+                            </g:if>
+                            <g:else>
+                                <a class="list"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+                            </g:else>
+				        </li>
+			        </ul>
+                </li>
 		    </ul>
 		</g:if>
 		<g:else>
 			<ul class="nav nav-pills">
 			   <li data-toggle="tab" class="active team-footer col-md-4 col-sm-4 col-xs-4">
 			      <a href="#team">
-			         <h4 class="text-center">${validatedTeam.size()}</h4>
-				     <h5 class="text-center"> Team </h5>
+			         ${validatedTeam.size()}&nbsp;&nbsp;Team
 				  </a>
 				</li>
                 <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
-                   <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-target="#teamComment">
+                   <a class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-target="#teamComment">
                       Team Comment 
-                   </button>
+                   </a>
                 </li>
                 <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
                    <g:if test="${!ended}">

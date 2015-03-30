@@ -15,7 +15,8 @@
     <div class="carousel-inner">
         <div class="item active">
             <g:if test="${userService.isLoggedIn()}">
-                <img src="/images/sliderWithoutReg.jpg">
+                <img class="hidden-xs" src="/images/sliderWithoutReg.jpg">
+                <img class="visible-xs" src="/images/slide-mobile.jpg">
                 <g:if test="${userService.isFacebookUser() }">
                     <div class="carousel-caption">
                         <div class="fbButton">
@@ -32,10 +33,12 @@
                 </g:else>
             </g:if>
             <g:else>
-            <img src="/images/Slider1.jpg">
+            <img class="hidden-xs or-css" src="/images/sliderWithoutReg.jpg">
+            <img class="visible-xs" src="/images/slide-mobile.jpg">
             <div class="carousel-caption">
                 <div class="fbButton">
                     <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}"><img src="/images/fbButton.jpg" class="btn btn-fb"></a>
+                    <img src="/images/or.png">
                 </div>
             </div>
             <div class="carousel-caption imageCarouseltextbox" id="imageCarouselForm">
@@ -61,13 +64,15 @@
             </g:else>
         </div>
         <div class="item ">
-            <img src="/images/girlComputerSlider.jpg" >
+            <img class="hidden-xs" src="/images/girlComputerSlider.jpg" >
+            <img class="visible-xs" src="/images/slide-3.jpg">
             <div class="carousel-caption">
                 <div class="girlSlider"><a href="${base_url}/campaigns/create"><img src="/images/createButton.jpg"></a></div>
             </div>
         </div>
         <div class="item">
-            <img src="/images/kidsRunningSlider.jpg" >
+            <img class="hidden-xs" src="/images/kidsRunningSlider.jpg" >
+            <img class="visible-xs" src="/images/slide-2.jpg">
             <div class="carousel-caption">
                 <div><a href="${base_url}/campaigns/create"><button class="btn btn-create" type="submit"><b>Create Campaign</b></button></a></div>
             </div>       

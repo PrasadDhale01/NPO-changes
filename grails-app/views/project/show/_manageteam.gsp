@@ -25,9 +25,8 @@
 <g:if test="${!teams.isEmpty()}">
 	<ul class="nav nav-pills">
 		<li data-toggle="tab" class="active show-team col-md-4 col-sm-4 col-xs-4 button-team-show">
-		   <a href="#team">
-		      <h4 class="text-center">${teams.size()}</h4>
-		      <h5 class="text-center"> Team </h5>
+		   <a href="#team" class="text-center teammembers">
+		       ${teams.size()}&nbsp;&nbsp;Team
 		   </a>
 		</li>
 		<g:if test="${!isTeamExist}">
@@ -47,9 +46,9 @@
 		<g:else>
 		    <g:if test="${currentFundraiser == currentUser || currentUser == project.user}">
                 <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
-                   <button class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team" data-toggle="dropdown" aria-expanded="false">
+                   <a class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team" data-toggle="dropdown" aria-expanded="false">
 			           Activity <span class="caret"></span>
-			       </button>
+			       </a>
 			       <ul class="dropdown-menu" role="menu">
 				       <li>
 				           <g:if test="${!ended}">
@@ -67,14 +66,7 @@
 			       </ul>
                 </li>
             </g:if>
-            <g:else>
-                <li data-toggle="tab" class="show-team col-md-4 col-sm-4 col-xs-4">
-                    <a href="#team">
-		                <h4 class="text-center">$${amount}</h4>
-		                <h5 class="text-center">Amount Raised</h5>
-		            </a>
-                </li>
-            </g:else>
+            
 		</g:else>
 	</ul>
 	<div class="teamtileseperator"></div>

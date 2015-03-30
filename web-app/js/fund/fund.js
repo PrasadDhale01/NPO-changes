@@ -99,7 +99,7 @@ $(function() {
     				
     				$('.onlyTwitterReward').each(function(){    
     		            $(this).popover({
-    		                content: 'As you are anonymous, this perk which contains twitter handler is disabled for you',
+    		                content: 'As you are keeping your contribution anonymous, this perks which has only Twitter handler will be disabled for you',
     		                trigger: 'manual',
     		                placement: 'bottom'
     		            })
@@ -127,7 +127,7 @@ $(function() {
     				
     				$('.twitterReward').each(function(){
     		            $(this).popover({
-    		                content: "As you are anonymous, only twitter handler information will be disabled for this perk",
+    		                content: "As you are keeping your contribution anonymous, Twitter perks will be disabled for you",
     		                trigger: 'manual',
     		                placement: 'bottom'
     		            })
@@ -233,7 +233,7 @@ $(function() {
 
         $('.onlyTwitterReward').each(function(){    
             $(this).popover({
-                content: 'As you are anonymous, this perk which contains twitter handler is disabled for you',
+                content: 'As you are keeping your contribution anonymous, this perks which has only Twitter handler will be disabled for you',
                 trigger: 'manual',
                 placement: 'bottom'
             })
@@ -244,7 +244,7 @@ $(function() {
             
         $('.twitterReward').each(function(){
             $(this).popover({
-                content: "As you are anonymous, only twitter handler information will be disabled for this perk",
+                content: "As you are keeping your contribution anonymous, Twitter perks will be disabled for you",
                 trigger: 'manual',
                 placement: 'bottom'
             })

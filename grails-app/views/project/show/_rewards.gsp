@@ -41,7 +41,7 @@
                     <p title="As you are anonymous, this perk which contains twitter handler is disabled for you">SELECT THIS PERK</p>
                 </g:if>
                 <g:elseif test="${currentUser == null && isTwitterHandled}">
-                    <g:link controller="fund" title="As you are anonymous, twitter handler information will be disabled for this perk" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">SELECT THIS PERK</g:link>
+                    <g:link controller="fund" title="As you are keeping your contribution anonymous, Twitter perks will be disabled for you" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">SELECT THIS PERK</g:link>
                 </g:elseif>
                 <g:else>
                     <g:link controller="fund" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">SELECT THIS PERK</g:link>

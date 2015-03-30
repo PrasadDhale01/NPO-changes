@@ -19,7 +19,7 @@
        <g:form action="discardteam" controller="project" id="${project.id}" method="post">
            <g:hiddenField name="teamId" value="${team.id}"/>
            <g:link controller="reward" action="update">
-               <button type="submit" class="btn btn-sm btn-danger">Discard</button>
+               <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm(&#39;Are you sure you want to discard this team?&#39;);">Discard</button>
            </g:link>
        </g:form>
     </td>

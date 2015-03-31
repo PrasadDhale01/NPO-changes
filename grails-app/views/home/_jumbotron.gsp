@@ -17,33 +17,33 @@
             <g:if test="${userService.isLoggedIn()}">
                 <img class="hidden-xs" src="/images/sliderWithoutReg.jpg">
                 <img class="visible-xs" src="/images/slide-mobile.jpg">
-                <g:if test="${userService.isFacebookUser() }">
-                    <div class="carousel-caption">
-                        <div class="fbButton">
-                            <a href="${base_url}/campaigns/create"><img src="/images/fbButton.jpg" class="btn btn-fb"></a>
-                        </div>
-                    </div>
-                </g:if>
-                <g:else>
-                    <div class="carousel-caption">
-                        <div class="fbButton">
-                            <a href="${base_url}/campaigns/create"><img src="/images/fbButton.jpg" class="btn btn-fb"></a>
-                        </div>
-                    </div>
-                </g:else>
+<%--                <g:if test="${userService.isFacebookUser() }">--%>
+<%--                    <div class="carousel-caption">--%>
+<%--                        <div class="fbButton">--%>
+<%--                            <a href="${base_url}/campaigns/create"><img src="/images/fbButton.jpg" class="btn btn-fb"></a>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </g:if>--%>
+<%--                <g:else>--%>
+<%--                    <div class="carousel-caption">--%>
+<%--                        <div class="fbButton">--%>
+<%--                            <a href="${base_url}/campaigns/create"><img src="/images/fbButton.jpg" class="btn btn-fb"></a>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </g:else>--%>
             </g:if>
             <g:else>
             <img class="hidden-xs or-css" src="/images/sliderWithoutReg.jpg">
             <img class="visible-xs" src="/images/slide-mobile.jpg">
             <div class="carousel-caption">
                 <div class="fbButton">
-                    <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}"><img src="/images/fbButton.jpg" class="btn btn-fb"></a>
+                    <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}"><img src="/images/facebook_register.jpg" class="btn btn-fb"></a>
                     <img src="/images/or.png">
                 </div>
             </div>
             <div class="carousel-caption imageCarouseltextbox" id="imageCarouselForm">
                 <g:form class="form-signin" controller="login" action="create" role="form">
-                    <div class="imageCarousellabel">
+                    <div class="imageCarousellabel img-carousel-label">
                         <span class="imageCoureselFormGroup">
                             <input type="text" name="name" id="name" class="imageCoureselForm" placeholder="First & Last Name">
                         </span>

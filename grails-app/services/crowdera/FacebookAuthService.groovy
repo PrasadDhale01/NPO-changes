@@ -24,7 +24,7 @@ class FacebookAuthService {
         user.firstName = fbUserInfo.first_name
         user.lastName = fbUserInfo.last_name
         user.email = fbUserInfo.email
-        user.userImageUrl = "http://graph.facebook.com/"+fbUser.uid+"/picture"
+        user.userImageUrl = "http://graph.facebook.com/"+fbUser.uid+"/picture?type=large"
         user.save()
     }
 

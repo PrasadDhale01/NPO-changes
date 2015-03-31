@@ -9,6 +9,13 @@ $(function() {
 
     var hash = window.location.hash;
     hash && $('ul.nav a[href="' + hash + '"]').tab('show');
+    
+    var videoVal = $('#youtubeVideoUrl').val();
+    if(videoVal && videoVal.length > 0) {
+    	$('.carousel').carousel({
+            interval: false
+        });
+    }
 
     $('.nav a').click(function (e) {
         $(this).tab('show');

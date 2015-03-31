@@ -3,7 +3,6 @@
 <% 
     def contributionId= contribution.id
     def fundraiserId= fundraiser.id
-    def contribution = projectService.getDataType(contribution.amount)
 	def imageUrl = project.imageUrl
 	if (imageUrl) {
 		imageUrl = project.imageUrl[0].getUrl()
@@ -64,25 +63,17 @@
                     </g:else>
                         <tr>
                             <td>Amount</td>
-                            <td>$${contribution}</td>
+                            <td>$${contribution.amount.round()}</td>
                         </tr>
                     </tbody>
                 </table>
-                <g:if test ="${userService.isAnonymous(user)}">
-                    <g:if test = "${project.charitableId}">
-                	   <div class="alert alert-success">Receipt is sent over email from FirstGiving</div>
-                    </g:if>
-                    <g:else>
-                         <div class="alert alert-success">Receipt is sent over email from Paypal</div>
-                    </g:else>
+                <g:if test="${flash.sentmessage}">
+                    <div class="alert alert-success">
+                        ${flash.sentmessage}
+                    </div>
                 </g:if>
-                <g:elseif test="${flash.sentmessage}">
-                            <div class="alert alert-success">
-                                ${flash.sentmessage}
-                            </div>
-                </g:elseif>
                 <g:else>
-                	<div class="alert alert-success">Receipt has been sent over email to ${user.email}</div>
+                	<div class="alert alert-success">Receipt has been sent over email to ${contribution.contributorEmail}</div>
                 </g:else>
                 <div class="row">
 					<div class="col-sm-12 shared">

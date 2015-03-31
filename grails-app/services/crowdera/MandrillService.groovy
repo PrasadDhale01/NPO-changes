@@ -54,6 +54,46 @@ class MandrillService {
 
         return ret
     }
+    
+    def sendThankYouTemplate(Contribution contribution, String templateName, List globalMergeVars, List tags) {
+        def query =  [
+            key: grailsApplication.config.mandrill.apiKey,
+            template_name: templateName,
+            message: [
+                tags: tags,
+                to: [
+                    [
+                        email: contribution.contributorEmail,
+                        name: contribution.contributorName
+                    ]
+                ],
+                global_merge_vars: globalMergeVars
+            ],
+            template_content: Collections.EMPTY_LIST
+        ]
+
+        def ret = null
+        def http = new HTTPBuilder(BASE_URL)
+
+        http.request(Method.POST, ContentType.TEXT) {
+            uri.path = 'messages/send-template.json'
+            body = new JSON(query)
+
+            // response handler for a success response code
+            response.success = { resp, reader ->
+                ret = reader.getText()
+                log.info('Successfully sent email via Mandrill to ' + contribution.contributorEmail)
+            }
+
+            // response handler for a failure response code
+            response.failure = { resp, reader ->
+                ret = reader.getText()
+                log.error('Failure sending email via Mandrill to ' + contribution.contributorEmail)
+            }
+        }
+
+        return ret
+    }
 
     private def sendMail(User user) {
         def link = grailsLinkGenerator.link(controller: 'login', action: 'confirmUser', id: user.inviteCode, absolute: true)
@@ -591,7 +631,7 @@ class MandrillService {
         sendTemplate(user, 'userRequestToRegister', globalMergeVars, tags)
     }
     
-    public def sendThankYouMailToContributors(User user, Project project, def amount, User fundraiser) {
+    public def sendThankYouMailToContributors(Contribution contribution, Project project, def amount, User fundraiser) {
         def fundRaiserUserName = fundraiser.username
         def beneficiary = project.user
         def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:fundRaiserUserName], absolute: true)
@@ -600,7 +640,7 @@ class MandrillService {
             'content': link
         ],[
             'name': 'NAME',
-            'content': user.firstName + ' ' + user.lastName
+            'content': contribution.contributorName
         ],[
             'name': 'BENEFICIARY',
             'content': beneficiary.firstName + ' ' + beneficiary.lastName
@@ -609,12 +649,12 @@ class MandrillService {
             'content': amount
         ], [
             'name': 'EMAIL',
-            'content': user.email
+            'content': contribution.contributorEmail
         ]]
 
         def tags = ['thankYouEmailToContributor']
 
-        sendTemplate(user, 'thankYouEmailToContributor', globalMergeVars, tags)
+        sendThankYouTemplate(contribution, 'thankYouEmailToContributor', globalMergeVars, tags)
     }
     
     public def inviteMembersToCommunity(def invite, def community, def user) {

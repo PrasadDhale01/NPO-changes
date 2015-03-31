@@ -202,19 +202,34 @@ $(function() {
                 	var list = data.split("[");
     				var list1 = list[1].split("]");
     				var list2 = list1[0].split(",");
+    				alert(list2);
+    				var s= [];
     				for(var i=0;i<list2.length;i++){
     		    		var a = '#'+list2[i].trim();
-    		    		$(a).attr('class','list-group-item');
-    		    		$('.list-group-item').each(function(){
-        		            $(this).popover({
-        		                content: "",
-        		                trigger: 'manual',
-        		                placement: 'bottom'
-        		            })
-        		            .focus(hidePopover)
-        		            .blur(hidePopover)
-        		            .hover(hidePopover);
-        		        });
+    		    		var x = $(a).attr("data-rewardprice");
+    		    		s.push(x);
+    		    		$(a).replaceWith(function() {
+    		    			return $('<a/>', {
+    		    			    html: this.innerHTML
+    		    			});
+    		    		});
+    		    		$('.twitterHandler').children('a').attr('href','#');
+    		    		$('.twitterHandler').children('a').attr('class','list-group-item');
+    				}
+    				
+    				for(var i=0;i<list2.length;i++){
+    					var idval = list2[i].trim();
+    					var k = 1;
+					    $('.list-group-item').each(function () {
+					    	var hasAttr = $(this).is("[id]");
+					    	if (!hasAttr){
+					    		if (k == 1) {
+		                            $(this).attr('id',idval);
+		                            $(this).attr('data-rewardprice',s[i]);
+		                            k++;
+					    		}
+					    	}
+			            });
     				}
                 }
             }).error(function(){

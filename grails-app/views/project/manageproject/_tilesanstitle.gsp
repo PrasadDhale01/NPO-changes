@@ -24,10 +24,9 @@
     } else {
         cents = percentage
     }
-    def isAdmin =userService.isAdmin()
 %>
 <g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentUser,'username':username]"/>
-<g:if test="${isAdmin}">
+<g:if test="${validatedPage}">
 <g:render template="/layouts/personaldetails" model="['currentFundraiser':currentUser,'username':username, 'project':project]"/>
 </g:if>
 <div class="fedu thumbnail grow managedetails-edit">

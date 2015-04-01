@@ -1,5 +1,14 @@
 <g:set var="projectService" bean="projectService"/>
-
+<g:if test="${!currentTeam}">
+    <g:if test="${project.videoUrl}">
+        <g:hiddenField name="videoUrl" id="youtubeVideoUrl" value="${project.videoUrl}"/>
+    </g:if>
+</g:if>
+<g:else>
+    <g:if test="${currentTeam.videoUrl}">
+        <g:hiddenField name="videoUrl" id="youtubeVideoUrl" value="${currentTeam.videoUrl}"/>
+    </g:if>
+</g:else>
 <g:if test="${images.size()>1}">
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->

@@ -20,7 +20,7 @@
 	            <g:render template="/project/manageproject/projectimagescarousel" model="['images': projectimages]"/>
 	        </g:if>
 	        <g:else>
-                <g:render template="/project/manageproject/projectimagescarousel" model="['images': teamimages]"/>
+                <g:render template="/project/manageproject/projectimagescarousel" model="['images': teamimages, 'currentTeam': currentTeam]"/>
 	        </g:else>
 	    </div>
 	</div>

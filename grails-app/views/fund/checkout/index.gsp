@@ -4,7 +4,7 @@
 <%
     def shippingInfo = rewardservice.getShippingInfo(reward)
     def currentUser = userService.getCurrentUser()
-    isAnonymous = userService.isAnonymous(currentUser)
+    def isAnonymous = userService.isAnonymous(user)
 %>
 <html>
 <head>
@@ -261,7 +261,7 @@
 	                                    </div>
 	                                </div>
 	                            </g:if>
-	                            <g:if test="${shippingInfo.twitter  != null && isAnonymous}">
+	                            <g:if test="${shippingInfo.twitter  != null && !isAnonymous}">
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
 	                                        <div class="input-group col-md-12">
@@ -301,7 +301,7 @@
                 </div>
                 <div class="powerdby">
                     <p>Powered By Firstgiving</p>
-                    <p><img src="/images/poweredByFirstgiving.jpg"/></p>
+                    <p><img src="/images/poweredByFirstgiving.jpg" alt="Powered By Firstgiving"/></p>
                 </div>
             </div>
         </div>

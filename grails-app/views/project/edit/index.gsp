@@ -70,7 +70,7 @@
 <input type="hidden" name="charity_name" id="charity_name"/>
 <div class="feducontent">
 	<div class="container">
-		<h1><img class="img-circle" src="/images/icon-edit.png" alt="Generic placeholder image"> Edit Campaign</h1>
+		<h1><img class="img-circle" src="/images/icon-edit.png" alt="Edit Campaign"/> Edit Campaign</h1>
 
         <g:uploadForm class="form-horizontal" controller="project" action="update" method="post" role="form">
             <input type="hidden" name="_method" value="PUT" id="_method" />
@@ -227,16 +227,16 @@
                                 </div>
                                 <div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
                                         <g:if test="${project.organizationIconUrl}">
-                                            <img id="imgIcon" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
+                                            <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
                                             <div class="deleteicon orgicon-css-styles">
-                                                <img onClick="deleteOrganizationLogo(this,'${project.id}');"
+                                                <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
                                                 src="/images/delete.ico" id="logoDelete"/>
                                             </div>
                                         </g:if>
                                         <g:else>
-                                            <img id="imgIcon" class="pr-icon-thumbnail edit-logo-icon"/>
+                                            <img alt="cross" id="imgIcon" class="pr-icon-thumbnail edit-logo-icon"/>
                                             <div class="deleteicon edit-delete">
-                                                 <img onClick="deleteOrganizationLogo(this,'${project.id}');"
+                                                 <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
                                                  id="logoDelete"/>
                                             </div>
                                         </g:else>
@@ -287,7 +287,7 @@
 	                                <input type="text" class="form-control" name="email1" value="${email1}" id="firstadmin" placeholder="Email ID" ></input>
 					    <g:if test="${email1}">
 				            <div class="deleteIconAbove">
-                                                <img onClick="deleteAdmin(this,'${project.id}', 'email1', '${email1}');"
+                                                <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email1', '${email1}');"
                                                     src="/images/delete.ico" id="logoDelete1"/>
                                             </div>
                                         </g:if>
@@ -306,7 +306,7 @@
 	                               <input type="text" class="form-control" name="email2" value="${email2}" id="secondadmin" placeholder="Email ID"></input>
 	                                <g:if test="${email2}">
 	                                    <div class="deleteIconAbove">
-                                                <img onClick="deleteAdmin(this,'${project.id}', 'email2', '${email2}');"
+                                                <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email2', '${email2}');"
                                                     src="/images/delete.ico" id="logoDelete2"/>
                                             </div>
                                         </g:if>
@@ -328,7 +328,7 @@
 	                                <input type="text" class="form-control" name="email3" id="thirdadmin" class="" value="${email3}" placeholder="Email ID"></input>
 	                                 <g:if test="${email3}">
 	                                    <div class="deleteIconAbove">
-                                                <img onClick="deleteAdmin(this,'${project.id}', 'email3' ,'${email3}');"
+                                                <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email3' ,'${email3}');"
                                                     src="/images/delete.ico" id="logoDelete3"/>
                                             </div>
                                         </g:if>
@@ -470,9 +470,9 @@
                         <div class="col-sm-8">
                                 <g:each var="imgurl" in="${project.imageUrl}">
                                     <div id="imgdiv" class="pr-thumb-div">
-                                        <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}"/>
+                                        <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}"/>
                                         <div class="deleteicon pictures-edit-deleteicon">
-                                            <img onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}'
+                                            <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}'
                                             src="/images/delete.ico" id="imageDelete"/>
                                         </div>
                                     </div> 

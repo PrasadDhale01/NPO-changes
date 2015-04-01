@@ -3,7 +3,7 @@
     <div class="container">
 	    <div class="row">
 	        <div class="col-sm-7">
-	            <a class="navbar-brand-footer pull-center footerimage img-footer" href="${resource(dir: '/')}"><img src="/images/flogo.png"></a>
+	            <a class="navbar-brand-footer pull-center footerimage img-footer" href="${resource(dir: '/')}"><img src="/images/flogo.png" alt="Crowdera"/></a>
 	            <div class="footerbottommainlinks">
 		            <a href="${resource(dir: '/')}" >Home</a><br/>
 		            <a href="${resource(dir: '/aboutus')}">Crowdera Crew</a><br/>
@@ -30,10 +30,10 @@
             </div>
             <div class="col-sm-5">
 	            <div class="socialicon">
-				    <a href="https://twitter.com/CrowderaInc"><img class="twittersocialicon" src="/images/s3.png"></a>
-				    <a href="https://www.facebook.com/crowderainc?ref=hl"><img class="facebooklink" src="/images/s2.png"></a>
-				    <a href="http://instagram.com/crowderacrew"><img class="insta" src="/images/s5.png"></a>
-					<a href="https://www.linkedin.com/company/fedu"><img class="inlink" src="/images/s4.png"></a>
+				    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="/images/s3.png" alt="twitter"/></a>
+				    <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="/images/s2.png" alt="facebook"/></a>
+				    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="insta" src="/images/s5.png" alt="Instagram"/></a>
+					<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="inlink" src="/images/s4.png" alt="Linkedin"/></a>
 	        	</div>
          	</div>
         </div> 

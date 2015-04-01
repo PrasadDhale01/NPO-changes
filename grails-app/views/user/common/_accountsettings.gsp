@@ -8,7 +8,7 @@
 	    <g:if test="${imageUrl != null}">
 	        <div class="profileavatar" class="blacknwhite">
 	            <g:if test="${userService.isFacebookUser()}">
-	                <img alt="Profile Image" class="profileimage" src="${imageUrl}?type=large">
+	                <img alt="Profile Image" class="profileimage" src="${imageUrl}">
 	            </g:if>
 	            <g:else>
 	                <img alt="Profile Image" class="profileimage" src="${imageUrl}">

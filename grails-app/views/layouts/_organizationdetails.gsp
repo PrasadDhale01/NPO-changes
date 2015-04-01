@@ -29,12 +29,12 @@
    	    <label class="col-sm-12"><h4><b>${project.organizationName}</b></h4></label>
    	    <g:if test="${project.organizationIconUrl}">
    	        <div class="col-sm-12">
-   	            <img alt="" src="${project.organizationIconUrl}" class="org-logo">
+   	            <img alt="Organization" src="${project.organizationIconUrl}" class="org-logo"/>
             </div>
         </g:if>
         <g:else>
             <div class="col-sm-12">
-   	            <img alt="Upload Icon" src="/images/defaultOrgIcon.jpg" class="org-logo">
+   	            <img alt="Upload Icon" src="/images/defaultOrgIcon.jpg" class="org-logo"/>
             </div>
         </g:else>
         <div class="col-sm-12">
@@ -46,29 +46,29 @@
         <div class="clear"></div>
         <div class="tilesanstitletag banner-wid">
             <g:if test="${project.draft}">
-                <img src="/images/DRAFT1.png" alt="draft">
+                <img src="/images/DRAFT1.png" alt="draft"/>
 	        </g:if>
 	        <g:elseif test="${project.rejected}">
-	            <img src="/images/Rejected1.png" alt="rejected">
+	            <img src="/images/Rejected1.png" alt="rejected"/>
 	        </g:elseif>
             <g:elseif test="${!project.validated}">
-	            <img src="/images/PENDING1.png" alt="validated">
+	            <img src="/images/PENDING1.png" alt="validated"/>
 	        </g:elseif>
 	        <g:elseif test="${ended}">
-	            <img src="/images/ended1.png" alt="ended">
+	            <img src="/images/ended1.png" alt="ended"/>
 	        </g:elseif>
 	        <g:elseif test="${percentage >= 75}">
-				<img src="/images/funded.png" alt="funded">
+				<img src="/images/funded.png" alt="funded"/>
 		    </g:elseif>
 		    <g:elseif test="${isCampaignAdmin}">
-                <img src="/images/Co-Owner.png" alt="CO-OWNER">
+                <img src="/images/Co-Owner.png" alt="CO-OWNER"/>
             </g:elseif>
 	        <g:elseif test="${isteamexist}">
 	            <g:if test="${currentFundraiser == beneficiary}">
-					<img src="/images/Owner-Bottom.png" alt="Owner">
+					<img src="/images/Owner-Bottom.png" alt="Owner"/>
 	            </g:if>
 	            <g:else>
-					<img src="/images/teamBottom.png" alt="team">
+					<img src="/images/teamBottom.png" alt="team"/>
 	            </g:else>
 	        </g:elseif>
 	    </div>

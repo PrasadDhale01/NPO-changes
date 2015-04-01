@@ -39,16 +39,16 @@ Expects the parent containers to be like so:
         <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">
             <div class="imageWithTag">
                 <div class="under">
-                    <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
+                    <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
                 </div>
                 <g:if test="${ended}">
 				    <div class="over banner-wid">
-						<img src="/images/ended.png">
+						<img src="/images/ended.png" alt="Ended"/>
 					</div>
 				</g:if>
                 <g:elseif test="${percentage >= 75}">
 				    <div class="over banner-wid">
-						<img src="/images/funded1.png">
+						<img src="/images/funded1.png" alt="Funded"/>
 					</div>
 				</g:elseif>
             </div>

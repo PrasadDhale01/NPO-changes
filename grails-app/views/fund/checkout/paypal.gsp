@@ -5,7 +5,7 @@
     def shippingInfo = rewardservice.getShippingInfo(reward)
     def contributedAmount = projectService.getDataType(amount)
     def currentUser = userService.getCurrentUser()
-    isAnonymous = userService.isAnonymous(currentUser)
+    def isAnonymous = userService.isAnonymous(user)
 %>
 <html>
 <head>
@@ -91,7 +91,7 @@
 							                    </div>
 							                </div>
 							            </g:if>
-							            <g:if test="${shippingInfo.twitter != null && isAnonymous}">
+							            <g:if test="${shippingInfo.twitter != null && !isAnonymous}">
 							                <div class="col-md-6">
 							                    <div class="form-group">
 							                        <div class="input-group col-md-12">
@@ -119,7 +119,7 @@
 							<button class="btn btn-primary btn-lg" name="fund-button">Fund this Campaign</button>
 						</div>
 						<div class="paypal-secured-image">
-						    <img src="/images/paypal-secured.jpg"/>
+						    <img src="/images/paypal-secured.jpg" alt="Paypal Secured"/>
 						</div>
 					</div>
 					<span class="payment-errors"></span>

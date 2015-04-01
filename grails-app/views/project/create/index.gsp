@@ -68,7 +68,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	<div class="feducontent">
 		<div class="container">
 			<h1>
-				<img class="img-circle" src="/images/icon-create.png" alt="Generic placeholder image">Create Campaign
+				<img class="img-circle" src="/images/icon-create.png" alt="Create Campaign"/>Create Campaign
 			</h1>
 
 			<g:uploadForm class="form-horizontal" controller="project"
@@ -205,7 +205,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 							</div>
 						 </div>
 						</div>
-						
+						<div class="clear"></div>
 						<br><h3 class="panel-title">Organization</h3><hr/>
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Preferred payment gateway</label>
@@ -292,9 +292,9 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 										<label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
 									</div>
 									<div id="icondiv" class="pr-icon-thumbnail-div col-sm-2">
-									<img id="imgIcon" class="pr-icon-thumbnail"/>
+									<img id="imgIcon" alt="cross" class="pr-icon-thumbnail"/>
 										<div class="deleteicon orgicon-css-styles">
-											<img onClick="removeLogo();"
+											<img alt="cross" onClick="removeLogo();"
 												id="delIcon"/>
 										</div>
 									</div>

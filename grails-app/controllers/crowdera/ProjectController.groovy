@@ -116,8 +116,9 @@ class ProjectController {
         def projects = params.id
         if (params.id) {         
             projects = Project.findById(params.id)
+            def validatedPage = true
             if(projects.validated == false) {
-                render (view: 'validate/validateshow', model: [project: projects])
+                render (view: 'validate/validateshow', model: [project: projects, validatedPage: validatedPage])
             }
         }
     }
@@ -669,8 +670,9 @@ class ProjectController {
     def projectupdate() {
         def project = Project.get(params.id)
         def currentUser =userService.getCurrentUser()
+        def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
         if(project) {
-            if(project.user!=currentUser){
+            if(!isCampaignOwnerOrAdmin){
                 render view:"manageproject/error", model: [project: project]
             }else{
                 render (view: 'update/index', model: [project: project, FORMCONSTANTS: FORMCONSTANTS])

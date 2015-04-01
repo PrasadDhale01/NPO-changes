@@ -385,7 +385,7 @@ class ProjectService {
 			All_Campaigns: "All Campaigns",
 			More_than_ninety: "More than 90",
 			Less_than_ten: "Less than 10",
-			Ten_days_remining: "10 days remining"
+			Ten_days_remaining: "10 days remaining"
 		]
 		return sortsOptions
 	}
@@ -412,7 +412,7 @@ class ProjectService {
 				}
 			}
 		}
-		if(sorts == '10 days remining'){
+		if(sorts == '10 days remaining'){
 			projects.each {
 				def day = getRemainingDay(it)
 				if(day <= 10){

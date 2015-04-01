@@ -401,10 +401,7 @@ class FundController {
             team.addToContributions(contribution).save(failOnError: true)
         }
 
-        def email = users.email
-        if (email && email !="anonymous@example.com") {
-            mandrillService.sendThankYouMailToContributors(users, project,amount,fundraiser)
-        }
+        mandrillService.sendThankYouMailToContributors(contribution, project,amount,fundraiser)
         
         userService.contributionEmailToOwnerOrTeam(fundraiser, project, contribution)
 
@@ -414,7 +411,9 @@ class FundController {
                 def contributor = contributionService.getTotalContributors(project)
                 contributor.each {
                     def user = User.get(it)
-                    mandrillService.sendContributorEmail(user, project)
+                    if (user.email != 'anonymous@example.com'){
+                        mandrillService.sendContributorEmail(user, project)
+                    }
                 }
                 def beneficiaryId = projectService.getBeneficiaryId(project)
                 def beneficiary = Beneficiary.get(beneficiaryId)

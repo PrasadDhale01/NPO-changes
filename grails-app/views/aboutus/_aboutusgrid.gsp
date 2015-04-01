@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-sm-3">
             <div class="thumbnail">
-                <img src="images/aboutus/chet.jpg" alt="...">
+                <img src="images/aboutus/chet.jpg" alt="chet jain">
 
                 <div class="caption">Chet Jain<span>Founder</span></div>
                 <div class="clear"></div>
@@ -23,7 +23,7 @@
 
         <div class="col-sm-3">
             <div class="thumbnail">
-                <img src="images/aboutus/stepheni.jpg" alt="...">
+                <img src="images/aboutus/stepheni.jpg" alt="Stephanie Jelley">
 
                 <div class="caption">Stephanie Jelley<span> Co-Founder </span></div>
                 <div class="clear"></div>
@@ -32,7 +32,7 @@
 
         <div class="col-sm-3">
             <div class="thumbnail">
-                <img src="images/aboutus/rich.jpg" alt="...">
+                <img src="images/aboutus/rich.jpg" alt="Rich Matsuura">
 
                 <div class="caption">Rich Matsuura<span> Co-Founder </span></div>
                 <div class="clear"></div>
@@ -41,7 +41,7 @@
 
         <div class="col-sm-3">
             <div class="thumbnail">
-                <img src="images/aboutus/chai.jpg" alt="...">
+                <img src="images/aboutus/chai.jpg" alt="Chai Atreya">
 
                 <div class="caption">Chai Atreya<span> Co-Founder </span></div>
                 <div class="clear"></div>
@@ -146,7 +146,7 @@
 	    <div class="row">
 	        <div class="col-xs-4 col-md-3">
 	            <div class="thumbnail">
-	                <img src="images/aboutus/johnguilleabeaux.jpg" alt="...">
+	                <img src="images/aboutus/johnguilleabeaux.jpg" alt="John Guilleabeaux">
 	
 	                <div class="caption">John Guilleabeaux</div>
 	                <div class="clear"></div>
@@ -155,7 +155,7 @@
 	
 	        <div class="col-xs-4 col-md-3">
 	            <div class="thumbnail">
-	                <img src="images/aboutus/billyleung.jpg" alt="...">
+	                <img src="images/aboutus/billyleung.jpg" alt="Billy Leung">
 	
 	                <div class="caption">Billy Leung</div>
 	                <div class="clear"></div>
@@ -164,7 +164,7 @@
 	
 	        <div class="col-xs-4 col-md-3">
 	            <div class="thumbnail">
-	                <img src="images/aboutus/ratinderahuja.jpg" alt="...">
+	                <img src="images/aboutus/ratinderahuja.jpg" alt="Ratinder Ahuja">
 	
 	                <div class="caption">Ratinder Ahuja</div>
 	                <div class="clear"></div>
@@ -173,7 +173,7 @@
 	
 	        <div class="col-xs-4 col-md-3">
 	            <div class="thumbnail">
-	                <img src="images/aboutus/abhijitdas.png" alt="...">
+	                <img src="images/aboutus/abhijitdas.png" alt="Abhijit Das">
 	
 	                <div class="caption">Abhijit Das</div>
 	                <div class="clear"></div>

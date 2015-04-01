@@ -164,9 +164,9 @@
       					<div class="col-sm-6">
       					    <g:each var="imgurl" in="${currentTeam.imageUrl}">
                                 <div id="imgdiv" class="pr-thumb-div">
-                                    <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}"/>
+                                    <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}" alt="images"/>
                                     <div class="deleteicon pictures-edit-deleteicon">
-                                        <img onClick="deleteTeamImage(this,'${imgurl.id}','${currentTeam.id}');" value='${imgurl.id}'
+                                        <img alt="images" onClick="deleteTeamImage(this,'${imgurl.id}','${currentTeam.id}');" value='${imgurl.id}'
                                             src="/images/delete.ico" id="imageDelete"/>
                                     </div>
                                 </div> 

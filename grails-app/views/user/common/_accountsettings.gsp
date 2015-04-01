@@ -8,13 +8,13 @@
 	    <g:if test="${imageUrl != null}">
 	        <div class="profileavatar" class="blacknwhite">
 	            <g:if test="${userService.isFacebookUser()}">
-	                <img alt="Profile Image" class="profileimage" src="${imageUrl}">
+	                <img alt="Profile Image" class="profileimage" src="${imageUrl}"/>
 	            </g:if>
 	            <g:else>
-	                <img alt="Profile Image" class="profileimage" src="${imageUrl}">
+	                <img alt="Profile Image" class="profileimage" src="${imageUrl}"/>
 	            </g:else>
 	            <div class="deleteavatar">
-	               <g:link action="deleteavatar" controller="user" id="${user.id}"><img onclick="return confirm(&#39;Are you sure you want to deleted this avatar?&#39;);" src="/images/delete.ico"></g:link>
+	               <g:link action="deleteavatar" controller="user" id="${user.id}"><img alt="Delete" onclick="return confirm(&#39;Are you sure you want to deleted this avatar?&#39;);" src="/images/delete.ico"/></g:link>
 	            </div>
 	        </div>
 		    <g:uploadForm controller="user" action="edit_avatar" id="${user.id}" role="form">

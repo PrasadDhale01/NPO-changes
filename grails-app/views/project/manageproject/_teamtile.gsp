@@ -8,7 +8,7 @@
     def userImageUrl = user.userImageUrl
     def userName = user.firstName
     def goal = projectService.getDataType(team.amount)
-	def contributedAmount = contributionService.getTotalContributionForUser(team.contributions)
+    def contributedAmount = contributionService.getTotalContributionForUser(team.contributions)
     def amount = projectService.getDataType(contributedAmount)
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     def uri = request.forwardURI
@@ -23,25 +23,25 @@
 	   <g:if test="${userService.isFacebookUser() || project.user}">
 	    	<g:if test="${!isAdminOrBeneficiary}">
 	    	   <div class="over teamtile-banner">
-					<img src="/images/teamTop.png" alt="team"/>
-		   	    </div>
+			<img src="/images/teamTop.png" alt="team"/>
+		   </div>
 	        </g:if>
 	        <g:elseif test="${isCampaignAdminByUser}">
 	        	<g:if test="${team.enable==false}">
 	        		<div class="over user-tiles-widths">
 				    	<img src="/images/disabledTeam.png" alt="diabledTeam"/>
-				    </div>
-				</g:if>
-				<g:else>
-                   	<div class="over user-tiles-widths">
-                        <img alt="co-owner" src="/images/Co-Owner1.png">
-                  	</div>
-                </g:else>
-            </g:elseif>
+				</div>
+			</g:if>
+			<g:else>
+                   		<div class="over user-tiles-widths">
+                        		<img alt="co-owner" src="/images/Co-Owner1.png">
+                  		</div>
+                	</g:else>
+        	 </g:elseif>
 	    	<g:else>
 	    	   <div class="over teamtile-banner">
 		          <img src="/images/OWNER.png" alt="owner"/>
-		   	   </div>
+		   </div>
 	    	</g:else>
 	    </g:if>
 	    <g:if test="${!ismanagepage || !isAdminOrBeneficiary}">

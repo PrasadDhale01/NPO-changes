@@ -264,6 +264,18 @@ class UserService {
         }
         return isAdmin
     }
+
+    def isCampaignAdminByUserID(Project project, User user){
+        def projectAdmins = project.projectAdmins
+        def username =user.email
+        def isAdmin = false
+        projectAdmins.each { projectAdmin ->
+            if(username == projectAdmin.email) {
+                isAdmin = true
+            }
+        }
+        return isAdmin
+    }
 	
 	def getTeamByUser(User user, Project project) {
 		Team team = Team.findByUserAndProject(user, project)

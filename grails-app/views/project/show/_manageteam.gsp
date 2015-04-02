@@ -26,7 +26,7 @@
 	<ul class="nav nav-pills">
 		<li data-toggle="tab" class="active show-team col-md-4 col-sm-4 col-xs-4 button-team-show">
 		   <a href="#team" class="text-center teammembers">
-		       ${teams.size()}&nbsp;&nbsp;Team
+		       ${teams.size()}&nbsp;&nbsp;Teams
 		   </a>
 		</li>
 		<g:if test="${!isTeamExist}">

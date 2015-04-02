@@ -11,7 +11,7 @@
 		            <a href="${resource(dir: '/campaigns/create')}">Start a Campaign</a><br/>
 		            <a href="${resource(dir: '/howitworks')}">How it works</a><br/>
 		            <a href="${resource(dir: '/customer-service')}">Contact Us</a><br/>
-		            <a href="http://crowdera.tumblr.com">Blog</a><br/>
+		            <a href="http://crowdera.tumblr.com" target="_blank">Blog</a><br/>
 		            <a href="${resource(dir: '/faq')}">FAQs</a>
 	     	    </div>
             </div>

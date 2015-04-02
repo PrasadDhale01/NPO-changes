@@ -12,6 +12,10 @@ class CustomerService {
     String email
     String subject
     boolean status = false
+	
+	static mapping = {
+		description type: 'text'
+	}
     
     static constraints = {
         category nullable: true

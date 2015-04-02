@@ -8,7 +8,7 @@
 		imageUrl = project.imageUrl[0].getUrl()
 	}
     def base_url = grailsApplication.config.crowdera.BASE_URL
-    def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+fundraiser.username
+    def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+fundraiser.username+"#contributions"
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -25,6 +25,7 @@
     <meta name="layout" content="main" />
 </head>
 <body>
+<input type="hidden" id="fbShareUrl" value="<%=fbShareUrl%>" />
 <div class="feducontent">
     <div class="container">
         <div class="row">
@@ -83,10 +84,18 @@
 					    <a class="twitter-share pull-right social" href="https://twitter.com/share?text=Hey check this project at crowdera.co!"  data-url="${base_url}/fund/acknowledge/${project.id}" target="_blank">
 					        <img src="${resource(dir: 'images', file: 'tw-share@2x.png')}" alt="Twitter Share">
 					    </a>
-					    <a target="_blank" class="fb-like pull-right social" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
+					    <a target="_self" class="fb-like pull-right social" href="#" onClick="fbs_click()">
 					        <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share">
 					    </a>
 					    <span><label>Share this Contribution</label></span>
+                        <script type="text/javascript">
+                            function fbs_click() {
+                                var url = 'http://www.facebook.com/sharer.php?p[url]=' +
+                                encodeURIComponent($('#fbShareUrl').val());
+                                window.open(url, 'Share on FaceBook', 'left=20,top=20,width=550,height=400,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+                                return false;
+                            }
+                        </script>
 					</div>
                         
                     <!-- Modal -->

@@ -22,22 +22,16 @@
 	<div class="blacknwhite teamtile-style">
 	   <g:if test="${userService.isFacebookUser() || project.user}">
 	    	<g:if test="${!isAdminOrBeneficiary}">
-<<<<<<< HEAD
 	    		<g:if test="${team.enable==false}">
-	        		<div class="over user-tiles-widths">
-				    	<img src="/images/disabledTeam.png" alt="diabledTeam"/>
-				    </div>
-				</g:if>
-				<g:else>
-	    	   		<div class="over teamtile-banner">
-						<img src="/images/teamTop.png" alt="team"/>
-		   	    	</div>
-		   	    </g:else>
-=======
-	    	   <div class="over teamtile-banner">
-			<img src="/images/teamTop.png" alt="team"/>
-		   </div>
->>>>>>> origin/CDRA-747-BANNER-FOR-FACEBOOK-USER
+	        	    <div class="over user-tiles-widths">
+			    	<img src="/images/disabledTeam.png" alt="diabledTeam"/>
+			    </div>
+			</g:if>
+			<g:else>
+	    	   	     <div class="over teamtile-banner">
+			        <img src="/images/teamTop.png" alt="team"/>
+		   	     </div>
+		   	</g:else>
 	        </g:if>
 	        <g:elseif test="${isCampaignAdminByUser}">
 	        	<g:if test="${team.enable==false}">

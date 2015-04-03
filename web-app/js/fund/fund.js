@@ -202,7 +202,6 @@ $(function() {
                 	var list = data.split("[");
     				var list1 = list[1].split("]");
     				var list2 = list1[0].split(",");
-    				alert(list2);
     				var s= [];
     				for(var i=0;i<list2.length;i++){
     		    		var a = '#'+list2[i].trim();

@@ -59,8 +59,6 @@ $(function() {
         $(this).addClass('active');
     });
     
-    /**********************************checkbox for anonymous user***************************************/
-    
     $('#anonymousUser').click(function(){
     	var projectId = $('#projectId').val();
     	

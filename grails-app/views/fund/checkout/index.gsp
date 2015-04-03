@@ -68,6 +68,7 @@
                     <g:hiddenField name="currencyCode" value="USD"/>
                     <g:hiddenField name="charityId" value="${project.charitableId}"/>
                     <g:hiddenField name="projectAmount" value="${project.amount}"/>
+                    <g:hiddenField name="anonymous" value="${anonymous}" id="anonymous"/>
                     <!-- TDODO-->
 
                     <div class="panel panel-default">
@@ -305,7 +306,7 @@
 	                                    </div>
 	                                </div>
 	                            </g:if>
-	                            <g:if test="${shippingInfo.twitter  != null && !isAnonymous}">
+	                            <g:if test="${shippingInfo.twitter  != null && anonymous == "false"}">
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
 	                                        <div class="input-group col-md-12">

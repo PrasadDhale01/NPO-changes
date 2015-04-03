@@ -82,6 +82,8 @@ class FundController {
         if (params.projectId) {
             project = Project.findById(params.projectId)
         }
+        
+        def anonymous = params.anonymous
 		
         def fundRaiserUserName = params.fr
 	    User fundraiser = User.findByUsername(params.fr)
@@ -119,7 +121,7 @@ class FundController {
             if(!team || ! project.user){
                 render view:"error", model: [message:'User not found']     
             }else{
-                render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1]
+                render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1, anonymous:anonymous]
             }
         } else {
             render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
@@ -147,6 +149,7 @@ class FundController {
 		
         def fundRaiserUserName = params.fr
         User fundraiser = User.findByUsername(params.fr)
+        def anonymous = params.anonymous
 
         if (project) {
             if (params.int('rewardId')) {
@@ -178,7 +181,7 @@ class FundController {
         } else {
             if (project && reward) {
                 if (project.paypalEmail){
-                render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser, user1:user1, state:state, country:country]
+                render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser, user1:user1, state:state, country:country, anonymous:anonymous]
                 } else {
                     payByFirstGiving(params,project,reward,user,fundraiser,address)
                 }
@@ -313,7 +316,7 @@ class FundController {
 
     def payByPaypal(def params,Project project,Reward reward,User user,User fundraiser,def address){
         String timestamp = UUID.randomUUID().toString()
-        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}&tempValue=${params.tempValue}&name=${params.name}&email=${params.email}&address=${address}"
+        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}&tempValue=${params.tempValue}&name=${params.reciptName}&email=${params.recieptEmail}&address=${address}&anonymous=${params.anonymous}"
         def failureUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}"
 
         def BASE_URL = grailsApplication.config.crowdera.paypal.BASE_URL
@@ -367,8 +370,10 @@ class FundController {
         def twitter = request.getParameter('twitterHandle')
         def custom = request.getParameter('shippingCustom')
         def userId = request.getParameter('tempValue')
+        def anonymous = request.getParameter('anonymous')
         def name
         def username
+        
         if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
             if (project.paypalEmail){
                 name = request.getParameter('name')
@@ -382,7 +387,6 @@ class FundController {
             name = orgUser.firstName
             username = orgUser.email
         }
-        
         
         Contribution contribution = new Contribution(
                 date: new Date(),
@@ -403,6 +407,9 @@ class FundController {
             contribution.fundRaiser = fundraiser.username
             team.addToContributions(contribution).save(failOnError: true)
         }
+        
+        println"anonymous"+anonymous
+        contribution.isAnonymous = anonymous.toBoolean()
 
         mandrillService.sendThankYouMailToContributors(contribution, project,amount,fundraiser)
         

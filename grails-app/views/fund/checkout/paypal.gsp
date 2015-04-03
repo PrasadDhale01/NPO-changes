@@ -23,6 +23,7 @@
 				<g:hiddenField name="rewardId" value="${reward.id}"/>
 				<g:hiddenField name="userId" value="${user.id}"/>
 				<g:hiddenField name="amount" value="${amount}"/>
+				<g:hiddenField name="anonymous" value="${anonymous}" id="anonymous"/>
 				<div class="row">
 					<div class="col-md-8">
 						<div class="panel panel-default">
@@ -52,14 +53,14 @@
 							        <div class="col-md-6">
 							            <div class="form-group">
 							                <div class="input-group col-md-12">
-							                    <input class="form-control" type="text" placeholder="Name" name="name">
+							                    <input class="form-control" type="text" placeholder="Name" name="reciptName">
 							                </div>
 							            </div>
 							        </div>
 							        <div class="col-md-6">
 							            <div class="form-group">
 							                <div class="input-group col-md-12">
-							                    <input class="form-control" type="text" placeholder="Email" name="email">
+							                    <input class="form-control" type="text" placeholder="Email" name="recieptEmail">
 							                </div>
 							            </div>
 							        </div>
@@ -132,7 +133,7 @@
 							                    </div>
 							                </div>
 							            </g:if>
-							            <g:if test="${shippingInfo.twitter != null && !isAnonymous}">
+							            <g:if test="${shippingInfo.twitter != null && anonymous=="false"}">
 							                <div class="col-md-6">
 							                    <div class="form-group">
 							                        <div class="input-group col-md-12">
@@ -156,16 +157,22 @@
 						    </g:if>
 						</g:if>
 						
-						<div class="form-group">
-							<button class="btn btn-primary btn-lg" name="fund-button">Fund this Campaign</button>
-						</div>
-						<div class="paypal-secured-image">
-						    <img src="/images/paypal-secured.jpg" alt="Paypal Secured"/>
-						</div>
 					</div>
 					<span class="payment-errors"></span>
 					<div class="col-md-4">
 						<g:render template="/layouts/tile" />
+						<div>
+                            <label class="checkbox control-label">
+                                <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse">By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
+                            </label>
+                        </div>
+						<div class="center-fund">
+							<button class="btn btn-primary btn-block" name="fund-button">Fund this Campaign</button>
+						</div>
+						<div class="powerdby">
+                            <p>Powered By Paypal</p>
+                                <p><img src="/images/poweredByFirstgiving.jpg" alt="Powered By paypal"/></p>
+                        </div>
 					</div>
 				</div>
 			</g:form>

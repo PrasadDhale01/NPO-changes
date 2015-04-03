@@ -91,9 +91,10 @@
 
 					<div  class="col-md-4">
 					    <g:render template="/layouts/organizationdetails" 
-                                                model="['currentFundraiser':currentFundraiser,'username':username]"/>
-                                            <g:render template="/layouts/tilesanstitle" model="['currentFundraiser':currentFundraiser,'currentTeam':currentTeam,'currentTeamAmount':currentTeamAmount,'teamContribution':teamContribution]"/>
+                            model="['currentFundraiser':currentFundraiser,'username':username]"/>
+                            <g:render template="/layouts/tilesanstitle" model="['currentFundraiser':currentFundraiser,'currentTeam':currentTeam,'currentTeamAmount':currentTeamAmount,'teamContribution':teamContribution]"/>
 					</div>
+				</div>
 				<%--
 			<g:if test="${project.validated == false}">
                             <div class="alert alert-warning">This Campaign is not yet published.</div>

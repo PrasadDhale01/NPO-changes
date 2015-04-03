@@ -19,7 +19,7 @@
 		    <ul class="nav nav-pills nav-pills-manageteam">
                 <li data-toggle="tab" class="active team-footer col-md-3 col-sm-6 col-xs-12">
                     <a href="#team" class="text-center teammembers">
-                        ${validatedTeam.size()}&nbsp;&nbsp;Team
+                        ${validatedTeam.size()}&nbsp;&nbsp;Teams
                     </a>
                 </li>
                 <li data-toggle="tab" class="col-md-3 col-sm-6 col-xs-12 button-team-footer">
@@ -45,7 +45,7 @@
 			<ul class="nav nav-pills">
 			   <li data-toggle="tab" class="active team-footer col-md-4 col-sm-4 col-xs-4">
 			      <a href="#team">
-			         ${validatedTeam.size()}&nbsp;&nbsp;Team
+			         ${validatedTeam.size()}&nbsp;&nbsp;Teams
 				  </a>
 				</li>
                 <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">

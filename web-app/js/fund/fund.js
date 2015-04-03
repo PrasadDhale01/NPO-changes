@@ -231,6 +231,13 @@ $(function() {
 					    	}
 			            });
     				}
+    				
+    				$('.list-group-item').click(function() {
+    			        $('.choose-error').html('');
+
+    			        $(this).siblings().removeClass('active');
+    			        $(this).addClass('active');
+    			    });
                 }
             }).error(function(){
                 alert('An error occured');

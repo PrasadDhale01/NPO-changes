@@ -366,7 +366,7 @@ class FundController {
         def userId = request.getParameter('tempValue')
         def name
         def username
-        if (userId == 'null' || userId.isAllWhitespace() || userId == null) {
+        if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
             if (project.paypalEmail){
                 name = request.getParameter('name')
                 username = request.getParameter('email')

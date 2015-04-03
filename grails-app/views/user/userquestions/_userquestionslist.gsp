@@ -46,7 +46,7 @@
                     </div>
                     <div class="form-group">
                         <label for="answer"><b>Response to User's Question</b></label>
-                        <textarea class="form-control" name="answer" maxlength="140" rows="4" placeholder="Response to User's Question" required></textarea>
+                        <textarea class="form-control" name="answer" rows="4" placeholder="Response to User's Question" required></textarea>
                     </div>
                     <div class="form-group attachment-group">
                         <label for="attachments"><b>Attachments</b></label>

@@ -92,7 +92,7 @@
 							<li><a href="#projectupdates" data-toggle="tab"> <span
 									class="glyphicon glyphicon-asterisk"></span> <span class="tab-text hidden-xs">Manage Updates</span>
 							</a></li>
-							<li><a href="#manageTeam" data-toggle="tab"> <span class="fa fa-users"></span><span class="tab-text hidden-xs"> Manage Team</span>
+							<li><a href="#manageTeam" data-toggle="tab"> <span class="fa fa-users"></span><span class="tab-text hidden-xs"> Manage Teams</span>
  							</a></li>
  							<li><a href="#rewards" data-toggle="tab"> <i
 									class="fa fa-gift fa-lg"></i> <span class="tab-text hidden-xs">Manage Perks</span>

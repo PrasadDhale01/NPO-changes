@@ -12,6 +12,11 @@
                     ${flash.servicemessage}
                 </div>
             </g:if>
+            <g:if test="${flash.discardQueryMessage}">
+                <div class="alert alert-success">
+                    ${flash.discardQueryMessage}
+                </div>
+            </g:if>
             <div class="table table-responsive">
             	<table class="table table-bordered">
             	    <thead>
@@ -21,9 +26,10 @@
                         <th>Email Id</th>
                         <th>Subject</th>
                     	<th>Customer type</th>
-                    	<th>Description</th>
-                    	<th>Attachments</th>
+                    	<th>Date</th>
+                    	<th>Details</th>
                     	<th>Response</th>
+                    	<th>Discard</th>
                 	</tr>
             	    </thead>
             	    <tbody>

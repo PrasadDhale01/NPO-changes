@@ -709,8 +709,13 @@ class MandrillService {
     public def contributionEmailToCampaignOwnerOrTeam(def fundRaiser, def project, def contribution) {
         def username = fundRaiser.username
         def contributor = contribution.user
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')
-
+        def link
+        if (project.user == fundRaiser) {
+            link = grailsLinkGenerator.link(controller: 'project', action: 'manageproject', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')
+        } else {
+            link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')
+        }
+        
         def globalMergeVars = [
             [
                 'name': 'LINK',
@@ -723,7 +728,10 @@ class MandrillService {
                 'content': contribution.amount
             ],[
                 'name': 'CONTRIBUTOR',
-                'content': contributor.firstName
+                'content': contribution.contributorName
+            ],,[
+                'name': 'CONTRIBUTOREMAIL',
+                'content': contribution.contributorEmail
             ]
         ]
 

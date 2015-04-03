@@ -1146,6 +1146,7 @@ class ProjectService {
         service.description = params.helpDescription
         service.email = params.emailAddress
         service.subject = params.subject
+        service.date = new Date()
 
         service.save(failOnError: true)
         mandrillService.sendEmailToCustomer(service);
@@ -1202,6 +1203,11 @@ class ProjectService {
     
     def getValidatedTeam(def project) {
         def teams = Team.findAllWhere(project: project,validated: true)
+        return teams
+    }
+    
+    def getDiscardedTeams(project) {
+        def teams = Team.findAllWhere(project: project,validated: true, enable: false)
         return teams
     }
     

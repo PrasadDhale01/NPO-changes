@@ -11,6 +11,7 @@ class CustomerService {
     String description
     String email
     String subject
+    Date date
     boolean status = false
 	
 	static mapping = {

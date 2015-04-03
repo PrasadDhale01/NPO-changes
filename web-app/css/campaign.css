@@ -96,3 +96,15 @@ ul.personalDetailClasses, menu, dir {
 .personalDetailClasses > li{
     margin-left:-10px ;
 }
+.outertext {
+	font-size: 16px;
+	display: inline-block;
+    font-weight: normal;
+    margin-top: 5px;
+}
+.innertext {
+	font-size: 14px;
+	display: inline-block;
+    font-weight: normal;
+    margin-top: 5px;
+}

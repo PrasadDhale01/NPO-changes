@@ -1233,6 +1233,32 @@ class ProjectService {
       def teams=Team.findAllWhere(user:user, enable: enable)
       return teams
     }
+    
+    def getAddress(def params){
+        def address 
+        def state
+        def country
+        println "params.addressLine1"+ params.addressLine1
+        if (params.addressLine1 !=null){
+            if (params.state == "other") {
+                state = params.otherstate
+            } else {
+                Map states = getState()
+                state = states.getAt(params.state)
+            }
+            Map countries = getCountry()
+            country = countries.getAt(params.country)
+            if (params.addressLine2 == null || params.addressLine2.isAllWhitespace()){
+                address = params.addressLine1 +","+ params.city +"-"+ params.zip +","+ state +","+ country
+            } else {
+                address = params.addressLine1 +","+params.addressLine2 +","+ params.city +"-"+ params.zip +","+ state +","+ country
+            }
+        } else {
+            address = null
+        }
+        
+        return address
+    }
 
     def getContibutionByUser(User user){
       def contributions = Contribution.findAllByUser(user)

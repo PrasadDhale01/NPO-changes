@@ -127,7 +127,7 @@ class FundController {
         }   
     }
 
-    def charge(String stripeToken) {
+    def charge() {
         Project project
         Reward reward
 
@@ -140,6 +140,10 @@ class FundController {
         if (user == null){
             user = User.findByUsername('anonymous@example.com')
         }
+        
+        def address = projectService.getAddress(params)
+        def state = projectService.getState()
+        def country = projectService.getCountry()
 		
         def fundRaiserUserName = params.fr
         User fundraiser = User.findByUsername(params.fr)
@@ -174,9 +178,9 @@ class FundController {
         } else {
             if (project && reward) {
                 if (project.paypalEmail){
-                render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser, user1:user1]
+                render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser, user1:user1, state:state, country:country]
                 } else {
-                    payByFirstGiving(params,project,reward,user,fundraiser)
+                    payByFirstGiving(params,project,reward,user,fundraiser,address)
                 }
             } else {
                 render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
@@ -233,7 +237,7 @@ class FundController {
         }
     }
 
-    def payByFirstGiving(def params, Project project,Reward reward,User user,User fundraiser){
+    def payByFirstGiving(def params, Project project,Reward reward,User user,User fundraiser,def address){
         def BASE_URL = grailsApplication.config.crowdera.firstgiving.BASE_URL
 
         def http = new HTTPBuilder(BASE_URL)
@@ -295,7 +299,7 @@ class FundController {
                 def xmlParsef=  new XmlParser().parseText(firstGivingXML)
                 transactionId = xmlParsef.transactionId.text()
 
-                userContribution(project,reward,amount,transactionId,user,fundraiser,params)
+                userContribution(project,reward,amount,transactionId,user,fundraiser,params,address)
             }
 
             // response handler for a failure response code
@@ -307,9 +311,9 @@ class FundController {
         }
     }
 
-    def payByPaypal(def params,Project project,Reward reward,User user,User fundraiser){
+    def payByPaypal(def params,Project project,Reward reward,User user,User fundraiser,def address){
         String timestamp = UUID.randomUUID().toString()
-        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}&tempValue=${params.tempValue}&name=${params.name}&email=${params.email}"
+        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}&tempValue=${params.tempValue}&name=${params.name}&email=${params.email}&address=${address}"
         def failureUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}"
 
         def BASE_URL = grailsApplication.config.crowdera.paypal.BASE_URL
@@ -358,11 +362,10 @@ class FundController {
         paykeytemp.save(failOnError: true)
     }
     
-    def userContribution(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params){
+    def userContribution(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address){
         def emailId = request.getParameter('shippingEmail')
         def twitter = request.getParameter('twitterHandle')
         def custom = request.getParameter('shippingCustom')
-        def address = request.getParameter('physicalAddress')
         def userId = request.getParameter('tempValue')
         def name
         def username
@@ -446,9 +449,10 @@ class FundController {
         def fundRaiserUserName = params.fr
         User fundraiser = User.get(params.fr)
         def amount = params.double(('amount'))
+        def address = projectService.getAddress(params)
         
         if (project && reward && fundraiser) {
-            payByPaypal(params,project,reward,user,fundraiser)
+            payByPaypal(params,project,reward,user,fundraiser,address)
             if(ack.equals("Success")) {
                 redirect (url:grailsApplication.config.crowdera.paypal.PAYPAL_URL+paykey)
             } else {
@@ -468,6 +472,7 @@ class FundController {
         def timestamp = request.getParameter('timestamp')
         def userid = request.getParameter('userId')
 		def fundraiserId = request.getParameter('fundraiser')
+        def address = request.getParameter('address')
 
         Project project = Project.get(projectId)
         User user = User.get(userid)
@@ -479,7 +484,7 @@ class FundController {
         paykeytemp.delete()
         
         if (result){
-            userContribution(project,reward,amount,payKey,user,fundraiser,request)
+            userContribution(project,reward,amount,payKey,user,fundraiser,request,address)
         } else {
             render view: 'fund/index', model: [project: project]
         }

@@ -69,6 +69,7 @@ $(function() {
     			data:'projectId='+projectId,
     			success: function(data){
     				$('#userId').val(3);
+    				$('#anonymous').val(true);
     				var list = data.split("[");
     				var list1 = list[1].split("]");
     				var list2 = list1[0].split(",");
@@ -149,6 +150,7 @@ $(function() {
     			data:'projectId='+projectId,
     			success: function(data){
     				$('#userId').val(user);
+    				$('#anonymous').val(false);
     				var list = data.split("[");
     				var list1 = list[1].split("]");
     				var list2 = list1[0].split(",");

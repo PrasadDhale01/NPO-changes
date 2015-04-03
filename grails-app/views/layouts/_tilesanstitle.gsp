@@ -30,7 +30,11 @@
     }
 
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+    username = currentFundraiser.email
 %>
+<g:if test="${validatedPage}">
+    <g:render template="/layouts/personaldetails" model="['currentFundraiser':currentFundraiser,'username':username, 'project':project]"/>
+</g:if>
 <div class="fedu thumbnail tilesanstitle-achived-ended">
     <div class="modal-footer tile-footer tilesanstitle-footered">
         <div class="row tilepadding">

@@ -50,7 +50,7 @@
                             <td>${fundraiser.firstName} ${fundraiser.lastName}</td>
                         </tr>
                     </g:if>
-                    <g:if test ="${userService.isAnonymous(user)}">
+                    <g:if test ="${contribution.isAnonymous}">
                         <tr>
                             <td>Contributor</td>
                             <td>Anonymous</td>
@@ -59,7 +59,7 @@
                     <g:else>
                         <tr>
                             <td>Contributor</td>
-                            <td>${user.firstName} ${user.lastName}</td>
+                            <td>${contribution.contributorName}</td>
                         </tr>
                     </g:else>
                         <tr>

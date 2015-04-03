@@ -171,6 +171,12 @@ $(function() {
             },
             shippingCustom: {
             	required: true
+            },
+            reciptName: {
+            	required: true
+            },
+            recieptEmail: {
+            	required: true
             }
         },
         messages:{

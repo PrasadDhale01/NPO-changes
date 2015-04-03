@@ -1244,7 +1244,6 @@ class ProjectService {
         def address 
         def state
         def country
-        println "params.addressLine1"+ params.addressLine1
         if (params.addressLine1 !=null){
             if (params.state == "other") {
                 state = params.otherstate

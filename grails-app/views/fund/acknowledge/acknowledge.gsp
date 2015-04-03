@@ -42,7 +42,7 @@
                     </tr>
                     <tr>
                         <td>Beneficiary</td>
-                        <td>${projectService.getBeneficiaryName(project)}</td>
+                        <td>${project.user.firstName}&nbsp;${project.user.lastName}</td>
                     </tr>
                     <g:if test="${fundraiser != project.user}">
                         <tr>

@@ -5,15 +5,15 @@
 <%
     def percentage = contributionService.getPercentageContributionForProject(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
-	def projectTitle = project.title
-	if (projectTitle) {
-		projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
-	}
-	def currentTeam = projectService.getCurrentTeam(project,project.user)
-        def currentFundraiser = project.user
-        def username = currentFundraiser.username
-        def currentTeamAmount = currentTeam.amount
-        def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
+    def projectTitle = project.title
+    if (projectTitle) {
+	projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
+    }
+    def currentTeam = projectService.getCurrentTeam(project,project.user)
+    def currentFundraiser = project.user
+    def username = currentFundraiser.username
+    def currentTeamAmount = currentTeam.amount
+    def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
 %>
 <html>
 <head>

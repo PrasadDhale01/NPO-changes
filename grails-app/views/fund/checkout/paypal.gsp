@@ -113,7 +113,7 @@
                                                 <div class="form-group">
                                                     <div class="input-group col-md-12">
                                                         <g:select class="selectpicker" name="country" 
-                                                            from="${country}" value="United States"
+                                                            from="${country}" value="US"
                                                             optionKey="key" optionValue="value"/>
                                                     </div>
                                                 </div>

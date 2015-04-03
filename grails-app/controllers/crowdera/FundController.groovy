@@ -366,24 +366,23 @@ class FundController {
         def emailId = request.getParameter('shippingEmail')
         def twitter = request.getParameter('twitterHandle')
         def custom = request.getParameter('shippingCustom')
-        def userId
+        def userId = request.getParameter('tempValue')
         def name
         def username
+        
         if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
-            if (project.paypalEmail){
+            if (project.paypalEmail) {
                 name = request.getParameter('name')
                 username = request.getParameter('email')
             } else {
-                name = params.billToFirstName
+                name = params.billToFirstName + " " + params.billToLastName
                 username = params.billToEmail
             }
         } else {
             def orgUser = User.get(userId)
-            name = orgUser.firstName
+            name = orgUser.firstName + " " + orgUser.lastName
             username = orgUser.email
         }
-        
-        
         
         Contribution contribution = new Contribution(
                 date: new Date(),

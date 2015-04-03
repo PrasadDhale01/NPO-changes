@@ -369,28 +369,21 @@ class FundController {
         def userId
         def name
         def username
-        
-        if (project.paypalEmail) {
-            userId = request.getParameter('tempValue')
-            if (userId == null || userId == 'null') {
+        if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
+            if (project.paypalEmail){
                 name = request.getParameter('name')
                 username = request.getParameter('email')
             } else {
-                def orgUser = User.get(userId)
-                name = orgUser.firstName
-                username = orgUser.email
-            }
-        } else {
-            userId = params.tempValue
-            if (userId == null || userId == 'null'|| userId.isAllWhitespace()) {
                 name = params.billToFirstName
                 username = params.billToEmail
-            } else {
-                def orgUser = User.get(userId)
-                name = orgUser.firstName
-                username = orgUser.email
             }
+        } else {
+            def orgUser = User.get(userId)
+            name = orgUser.firstName
+            username = orgUser.email
         }
+        
+        
         
         Contribution contribution = new Contribution(
                 date: new Date(),

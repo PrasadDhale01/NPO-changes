@@ -1254,9 +1254,9 @@ class ProjectService {
             Map countries = getCountry()
             country = countries.getAt(params.country)
             if (params.addressLine2 == null || params.addressLine2.isAllWhitespace()){
-                address = params.addressLine1 +","+ params.city +"-"+ params.zip +","+ state +","+ country
+                address = params.addressLine1 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
             } else {
-                address = params.addressLine1 +","+params.addressLine2 +","+ params.city +"-"+ params.zip +","+ state +","+ country
+                address = params.addressLine1 +" "+params.addressLine2 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
             }
         } else {
             address = null

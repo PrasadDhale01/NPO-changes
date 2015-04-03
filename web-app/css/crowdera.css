@@ -4751,6 +4751,7 @@ color:#fff;
 #reportModal .modal-content
 {
   height:500px;
+  width: 800px;
   overflow:auto;
 }
 .deleteComment{

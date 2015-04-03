@@ -74,13 +74,54 @@
 							        </div>
 							        <div class="panel-body">
 							            <g:if test="${shippingInfo.address != null}">
-							                <div class="col-md-6">
-							                    <div class="form-group">
-							                        <div class="input-group col-md-12">
-							                            <input class="form-control" type="text" placeholder="Physical Address" name="physicalAddress">
-							                        </div>
-							                    </div>
-							                </div>
+                                            <div class="col-md-6" id="physicalAddress">
+                                                <div class="form-group">
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" type="text" placeholder="AddressLine1" name="addressLine1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" type="text" placeholder="AddressLine2" name="addressLine2">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <input class="form-control" type="text" placeholder="City" name="city" id="city">
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <input class="form-control" type="text" placeholder="Zip" name="zip"> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="input-group col-md-12">
+                                                        <g:select class="selectpicker" name="state" id="states"
+                                                            from="${state}" optionKey="key" optionValue="value"/>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group" id="ostate">
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" type="text" placeholder="Other State" name="otherstate" >
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group col-md-12">
+                                                        <g:select class="selectpicker" name="country" 
+                                                            from="${country}" value="United States"
+                                                            optionKey="key" optionValue="value"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                            <g:if test="${shippingInfo.email  != null || (shippingInfo.twitter  != null && !isAnonymous) || shippingInfo.custom  != null}">
+                                                <hr>
+                                            </g:if>
 							            </g:if>
 							            <g:if test="${shippingInfo.email != null}">
 							                <div class="col-md-6">

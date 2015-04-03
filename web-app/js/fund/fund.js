@@ -59,6 +59,8 @@ $(function() {
         $(this).addClass('active');
     });
     
+    /**********************************checkbox for anonymous user***************************************/
+    
     $('#anonymousUser').click(function(){
     	var projectId = $('#projectId').val();
     	
@@ -202,7 +204,6 @@ $(function() {
                 	var list = data.split("[");
     				var list1 = list[1].split("]");
     				var list2 = list1[0].split(",");
-    				alert(list2);
     				var s= [];
     				for(var i=0;i<list2.length;i++){
     		    		var a = '#'+list2[i].trim();
@@ -231,6 +232,13 @@ $(function() {
 					    	}
 			            });
     				}
+    				
+    				$('.list-group-item').click(function() {
+    			        $('.choose-error').html('');
+
+    			        $(this).siblings().removeClass('active');
+    			        $(this).addClass('active');
+    			    });
                 }
             }).error(function(){
                 alert('An error occured');

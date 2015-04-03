@@ -30,6 +30,7 @@
 							<g:hiddenField name="fr" value="${fundraiser}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
+							<g:hiddenField name="anonymous" value="false" id="anonymous"/>
 							
 							<!-- Value set by Javascript -->
                             <div class="row">
@@ -45,13 +46,13 @@
 							</div>
 							<div class="row">
 							    <div class="col-md-12 col-sm-12 col-xs-12">
-									<% if (user != null){ %>
-		                                <g:hiddenField name="tempValue" id="tempValue" value="${user.id}"/>
-		                                <g:hiddenField name="userId"  id="userId" value="${user.id}"/>
-		                                <label class="checkbox control-label">
-		                                    <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
-		                                </label>
-		                            <% } %>
+							    <g:if test="${user != null}">
+	                                <g:hiddenField name="tempValue" id="tempValue" value="${user.id}"/>
+	                                <g:hiddenField name="userId"  id="userId" value="${user.id}"/>
+	                            </g:if>
+	                                <label class="checkbox control-label">
+	                                    <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
+	                                </label>
 	                            </div>
                             </div>
                             <div class="row">
@@ -80,6 +81,7 @@
 							<g:hiddenField name="fr" value="${fundraiser}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
+							<g:hiddenField name="anonymous" value="false" id="anonymous"/>
 							<!-- Value set by Javascript -->
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -94,13 +96,13 @@
 							</div>
 							<div class="row">
 							    <div class="col-md-12 col-sm-12 col-xs-12">
-								<% if (user != null){ %>
-	                                <g:hiddenField name="tempValue" id="tempValue" value="${user.id}"/>
-	                            	<g:hiddenField name="userId"  id="userId" value="${user.id}"/>
+							        <g:if test="${user != null}">
+	                                    <g:hiddenField name="tempValue" id="tempValue" value="${user.id}"/>
+	                            	    <g:hiddenField name="userId"  id="userId" value="${user.id}"/>
+	                            	</g:if>
 	                    			<label class="checkbox">
 	                        	        <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
 	                    			</label>
-	                			<% } %>
 	                			</div>
                 			</div>
                 			<div class="row">

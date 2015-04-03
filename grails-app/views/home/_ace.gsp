@@ -67,7 +67,7 @@
 <%--			    <span class="navbar-brand-footer"><img src="/images/icon-3.jpg"></span>--%>
 				<h3 class="headingtext">Be The Change</h3>
 				<span class="navbar-brand-footer"><img src="/images/icon-3.png" alt="icon-3"/></span>
-				<p class="how-it-content">Be a catalyst in your community by brining people together to raise awareness and funds for individuals, nonprofits and social innovators. Need help getting started? <a href="/howitworks">Learn more</a></p>
+				<p class="how-it-content">Be a catalyst in your community by bringing people together to raise awareness and funds for individuals, nonprofits and social innovators. Need help getting started? <a href="/howitworks">Learn more</a></p>
 			</div>
 			<div class="col-md-3 text-center">
 <%--			    <span class="navbar-brand-footer"><img src="/images/icon-4.jpg"></span>--%>

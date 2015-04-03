@@ -146,4 +146,11 @@ class UserController {
         flash.servicemessage = "Successfully Responded"
         redirect action:'userquestionsList'
     }
+    
+    @Secured(['ROLE_ADMIN'])
+    def discardUserQuery() {
+        userService.discardUserQuery(params)
+        flash.discardQueryMessage = "User Query Discarded Successfully."
+        redirect action:'userquestionsList'
+    }
 }

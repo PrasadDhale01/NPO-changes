@@ -1146,6 +1146,7 @@ class ProjectService {
         service.description = params.helpDescription
         service.email = params.emailAddress
         service.subject = params.subject
+        service.date = new Date()
 
         service.save(failOnError: true)
         mandrillService.sendEmailToCustomer(service);
@@ -1205,6 +1206,11 @@ class ProjectService {
         return teams
     }
     
+    def getDiscardedTeams(project) {
+        def teams = Team.findAllWhere(project: project,validated: true, enable: false)
+        return teams
+    }
+    
     def discardTeam(def params) {
         def project = Project.get(params.id);
         def team = Team.get(params.teamId)
@@ -1232,6 +1238,31 @@ class ProjectService {
     def getTeamByUserAndEnable(User user, def enable){
       def teams=Team.findAllWhere(user:user, enable: enable)
       return teams
+    }
+    
+    def getAddress(def params){
+        def address 
+        def state
+        def country
+        if (params.addressLine1 !=null){
+            if (params.state == "other") {
+                state = params.otherstate
+            } else {
+                Map states = getState()
+                state = states.getAt(params.state)
+            }
+            Map countries = getCountry()
+            country = countries.getAt(params.country)
+            if (params.addressLine2 == null || params.addressLine2.isAllWhitespace()){
+                address = params.addressLine1 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
+            } else {
+                address = params.addressLine1 +" "+params.addressLine2 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
+            }
+        } else {
+            address = null
+        }
+        
+        return address
     }
 
     def getContibutionByUser(User user){

@@ -952,20 +952,78 @@ class ProjectController {
         def results=[]
         def  contributorName
         def payMode
+        def shippingDetails=""
+        def contributorEmail
         contributions.each{
 
             if(it.isContributionOffline){
                 payMode="offline"
                 contributorName= it.contributorName
+                contributorEmail=it.contributorEmail
+                shippingDetails="Not Found "
             }else{
                 payMode="Online"
-                contributorName= it.user.firstName 
+                contributorName= it.contributorName 
+                contributorEmail=it.contributorEmail
+                if(it.email==null && it.physicalAddress==null && it.twitterHandle==null && it.custom==null){         
+                    shippingDetails="Not Found "
+                }else{
+                    if(it.email!=null){
+                        shippingDetails="Email: " +it.email
+                        if(it.physicalAddress!=null){
+                            shippingDetails+=" - Physical Address: " + it.physicalAddress
+                        }
+                        if(it.twitterHandle!=null){
+                            shippingDetails+=" - Twitter Handle: " + it.twitterHandle
+                        }
+                        if(it.custom!=null) {
+                            shippingDetails+=" - Custom: " + it.custom
+                        }
+                    }
+                    if(it.physicalAddress!=null){
+                        shippingDetails="Physical Address: " + it.physicalAddress
+                        if(it.twitterHandle!=null){
+                            shippingDetails+=" - Twitter Handle: " + it.twitterHandle
+                        }
+                        if(it.custom!=null) {
+                            shippingDetails+=" - Custom: " + it.custom
+                        }
+                        if(it.email!=null){
+                            shippingDetails+=" - Email: " +it.email
+                        }
+                    }
+                    if(it.twitterHandle!=null){
+                        shippingDetails ="Twitter Handle: " + it.twitterHandle
+                        if(it.physicalAddress!=null){
+                            shippingDetails+=" - Physical Address: " + it.physicalAddress
+                        }
+                        if(it.custom!=null) {
+                            shippingDetails+=" - Custom: " + it.custom
+                        }
+                        if(it.email!=null){
+                            shippingDetails+=" - Email: " +it.email
+                        }
+                    }
+                    if(it.custom!=null) {
+                        shippingDetails="Custom: " + it.custom
+                        if(it.physicalAddress!=null){
+                            shippingDetails+=" - Physical Address: " + it.physicalAddress
+                        }
+                        if(it.twitterHandle!=null) {
+                            shippingDetails+=" - Twitter Handle: " + it.twitterHandle
+                        }
+                        if(it.email!=null){
+                            shippingDetails+=" - Email: " +it.email
+                        }     
+                    }
+                }                                 
             }
-            def rows = [it.project.title,  dateFormat.format(it.date), contributorName, it.amount, payMode]
+            def rows = [it.project.title,  dateFormat.format(it.date), contributorName, contributorEmail, shippingDetails, it.amount, payMode]
             results << rows
+            shippingDetails=""
         }
             
-        def result='CAMPAIGN TITLE, DATE, CONTRIBUTOR, AMOUNT, MODE, \n'
+        def result='CAMPAIGN TITLE, DATE, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, SHIPPING DETAILS, AMOUNT, MODE, \n'
         results.each{ row->
             row.each{
             col -> result+=col +','

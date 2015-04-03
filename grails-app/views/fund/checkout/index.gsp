@@ -68,6 +68,7 @@
                     <g:hiddenField name="currencyCode" value="USD"/>
                     <g:hiddenField name="charityId" value="${project.charitableId}"/>
                     <g:hiddenField name="projectAmount" value="${project.amount}"/>
+                    <g:hiddenField name="anonymous" value="${anonymous}" id="anonymous"/>
                     <!-- TDODO-->
 
                     <div class="panel panel-default">
@@ -188,12 +189,12 @@
                         	<div class="col-md-6">
                                 <div class="form-group">
                                     <div class="input-group col-md-12">
-                                        <input class="form-control" type="text" placeholder="Address Line 1" name="billToAddressLine1">
+                                        <input class="form-control" type="text" placeholder="Address Line 1" name="billToAddressLine1" id="billToAddressLine1">
                                     </div>
                                 </div>
                         		<div class="form-group">
                                 	<div class="input-group col-md-12">
-                                    	<input class="form-control" type="text" placeholder="Address Line 2" name="billToAddressLine2">
+                                    	<input class="form-control" type="text" placeholder="Address Line 2" name="billToAddressLine2" id="billToAddressLine2">
                                 	</div>
                             	</div>
 
@@ -201,10 +202,10 @@
                                 	<div class="input-group col-md-12">
                                 		<div class="row">
                                 			<div class="col-sm-6">
-                                				<input class="form-control" type="text" placeholder="City" name="billToCity" id="billToCity">
+                                				<input class="form-control" type="text" placeholder="City" name="billToCity" id="billToCity" id="billToCity">
                                 			</div>
                                 			<div class="col-sm-6">
-                                    			<input class="form-control" type="text" placeholder="Zip" name="billToZip"> 
+                                    			<input class="form-control" type="text" placeholder="Zip" name="billToZip" id="billToZip"> 
                                 			</div>
                                 		</div>
                                 	</div>
@@ -220,13 +221,13 @@
                             	
                             	<div class="form-group" id="otherState">
                             		<div class="input-group col-md-12">
-                            			<input class="form-control" type="text" placeholder="Other State" name="otherState" >
+                            			<input class="form-control" type="text" placeholder="Other State" name="otherState" id="os">
                             		</div>
                             	</div>
                             
                             	<div class="form-group">
                                 	<div class="input-group col-md-12">
-                                		<g:select class="selectpicker" name="billToCountry" 
+                                		<g:select class="selectpicker" name="billToCountry" id="billToCountry"
                                       		from="${country}" value="${defaultCountry}"
                                       		optionKey="key" optionValue="value"/>
                                 	</div>
@@ -244,13 +245,57 @@
 	                        </div>
 	                        <div class="panel-body">
 	                            <g:if test="${shippingInfo.address != null}">
+	                                <label class="checkbox control-label">
+		                               <input type="checkbox" name="checkAddress" id="checkAddress" > Address same as above.
+		                            </label>
+	                                <div class="col-md-6" id="physicalAddress">
+	                                    <div class="form-group">
+	                                        <div class="input-group col-md-12">
+	                                            <input class="form-control" type="text" placeholder="AddressLine1" name="addressLine1" id="addressLine1">
+	                                        </div>
+	                                    </div>
+	                                    <div class="form-group">
+	                                        <div class="input-group col-md-12">
+	                                            <input class="form-control" type="text" placeholder="AddressLine2" name="addressLine2" id="addressLine2">
+	                                        </div>
+	                                    </div>
+                                        <div class="form-group">
+                                            <div class="input-group col-md-12">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" type="text" placeholder="City" name="city" id="city">
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <input class="form-control" type="text" placeholder="Zip" name="zip" id="zip"> 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+	                                </div>
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
 	                                        <div class="input-group col-md-12">
-	                                            <input class="form-control" type="text" placeholder="Physical Address" name="physicalAddress">
+	                                            <g:select class="selectpicker state" name="state" id="state"
+                                      				from="${state}" optionKey="key" optionValue="value"/>
+	                                        </div>
+	                                    </div>
+                                        <div class="form-group" id="other">
+                                            <div class="input-group col-md-12">
+                                                <input class="form-control" type="text" placeholder="Other State" name="otherstate" id="otherstate">
+                                            </div>
+                                        </div>
+	                                    <div class="form-group">
+	                                        <div class="input-group col-md-12">
+	                                            <g:select class="selectpicker" name="country" id="country"
+                                      		        from="${country}" value="US"
+                                      		        optionKey="key" optionValue="value"/>
 	                                        </div>
 	                                    </div>
 	                                </div>
+	                                <div class="clear"></div>
+	                                <g:if test="${shippingInfo.email  != null || (shippingInfo.twitter  != null && !isAnonymous) || shippingInfo.custom  != null}">
+	                                    <hr>
+	                                </g:if>
 	                            </g:if>
 	                            <g:if test="${shippingInfo.email  != null}">
 	                                <div class="col-md-6">
@@ -261,7 +306,7 @@
 	                                    </div>
 	                                </div>
 	                            </g:if>
-	                            <g:if test="${shippingInfo.twitter  != null && !isAnonymous}">
+	                            <g:if test="${shippingInfo.twitter  != null && anonymous == "false"}">
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
 	                                        <div class="input-group col-md-12">

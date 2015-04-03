@@ -126,11 +126,13 @@
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span><span class="tab-text hidden-xs"> Story</span>
                         </a></li>
-                        <li><a href="#projectupdates" data-toggle="tab">
-							<span class="glyphicon glyphicon-asterisk"></span><span class="tab-text hidden-xs"> Updates</span>
-                        </a></li>
+                        <g:if test="${!project.projectUpdates.isEmpty() }">
+                            <li><a href="#projectupdates" data-toggle="tab">
+							    <span class="glyphicon glyphicon-asterisk"></span><span class="tab-text hidden-xs"> Updates</span>
+                            </a></li>
+                        </g:if>
                         <li><a href="#manageTeam" data-toggle="tab">
-                            <span class="fa fa-users"></span><span class="tab-text hidden-xs"> Team</span>
+                            <span class="fa fa-users"></span><span class="tab-text hidden-xs"> Teams</span>
 						</a></li>
                         <li><a href="#contributions" data-toggle="tab">
                             <span class="glyphicon glyphicon-tint"></span><span class="tab-text hidden-xs"> Contributions</span>

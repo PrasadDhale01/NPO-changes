@@ -5,11 +5,15 @@
 <%
     def percentage = contributionService.getPercentageContributionForProject(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
-	def projectTitle = project.title
-	if (projectTitle) {
-		projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
-	}
-	def currentTeam = projectService.getCurrentTeam(project,project.user)
+    def projectTitle = project.title
+    if (projectTitle) {
+	projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
+    }
+    def currentTeam = projectService.getCurrentTeam(project,project.user)
+    def currentFundraiser = project.user
+    def username = currentFundraiser.username
+    def currentTeamAmount = currentTeam.amount
+    def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
 %>
 <html>
 <head>
@@ -86,11 +90,14 @@
 					</div>
 
 					<div  class="col-md-4">
-						<g:render template="/project/manageproject/tilesanstitle"/></div>
+					    <g:render template="/layouts/organizationdetails" 
+                            model="['currentFundraiser':currentFundraiser,'username':username]"/>
+                            <g:render template="/layouts/tilesanstitle" model="['currentFundraiser':currentFundraiser,'currentTeam':currentTeam,'currentTeamAmount':currentTeamAmount,'teamContribution':teamContribution]"/>
 					</div>
+				</div>
 				<%--
 			<g:if test="${project.validated == false}">
-                <div class="alert alert-warning">This Campaign is not yet published.</div>
+                            <div class="alert alert-warning">This Campaign is not yet published.</div>
 			</g:if>
 			--%>
 			</g:if>

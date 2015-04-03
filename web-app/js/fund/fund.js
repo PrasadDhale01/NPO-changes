@@ -69,6 +69,7 @@ $(function() {
     			data:'projectId='+projectId,
     			success: function(data){
     				$('#userId').val(3);
+    				$('#anonymous').val(true);
     				var list = data.split("[");
     				var list1 = list[1].split("]");
     				var list2 = list1[0].split(",");
@@ -149,6 +150,7 @@ $(function() {
     			data:'projectId='+projectId,
     			success: function(data){
     				$('#userId').val(user);
+    				$('#anonymous').val(false);
     				var list = data.split("[");
     				var list1 = list[1].split("]");
     				var list2 = list1[0].split(",");
@@ -202,7 +204,6 @@ $(function() {
                 	var list = data.split("[");
     				var list1 = list[1].split("]");
     				var list2 = list1[0].split(",");
-    				alert(list2);
     				var s= [];
     				for(var i=0;i<list2.length;i++){
     		    		var a = '#'+list2[i].trim();
@@ -231,6 +232,13 @@ $(function() {
 					    	}
 			            });
     				}
+    				
+    				$('.list-group-item').click(function() {
+    			        $('.choose-error').html('');
+
+    			        $(this).siblings().removeClass('active');
+    			        $(this).addClass('active');
+    			    });
                 }
             }).error(function(){
                 alert('An error occured');

@@ -264,6 +264,18 @@ class UserService {
         }
         return isAdmin
     }
+
+    def isCampaignAdminByUserID(Project project, User user){
+        def projectAdmins = project.projectAdmins
+        def username =user.email
+        def isAdmin = false
+        projectAdmins.each { projectAdmin ->
+            if(username == projectAdmin.email) {
+                isAdmin = true
+            }
+        }
+        return isAdmin
+    }
 	
 	def getTeamByUser(User user, Project project) {
 		Team team = Team.findByUserAndProject(user, project)
@@ -350,6 +362,13 @@ class UserService {
         UserRole.create(users, roleService.userRole())
     }
     
+    def discardUserQuery(def params) {
+        CustomerService service = CustomerService.get(params.id)
+        if (service) {
+            service.delete();
+        }
+    }
+    
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')
@@ -366,7 +385,7 @@ class UserService {
         
         def anonymous = User.findByUsername('anonymous@example.com')
         if (!anonymous) {
-            anonymous = new User(username: 'anonymous@example.com', password: 'password',firstName: 'anonymousFirstName', lastName:'anonymousLastName', email: 'anonymous@example.com').save(failOnError: true)
+            anonymous = new User(username: 'anonymous@example.com', password: 'password',firstName: 'Anonymous Good Soul', lastName:'anonymousLastName', email: 'anonymous@example.com').save(failOnError: true)
         }
         UserRole.findOrSaveByUserAndRole(anonymous, roleService.anonymousRole())
 

@@ -1,6 +1,8 @@
 $(function() {
     console.log("checkout.js initialized");
     $("#otherState").hide();
+    $("#other").hide();
+    $("#ostate").hide();
     
     /* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
@@ -21,6 +23,24 @@ $(function() {
     		$("#otherState").hide();
     	}
     		
+    });
+    
+    $('#state').change(function(event) {
+    	var option = $(this).val();
+    	if(option == 'other'){
+    		$("#other").show();
+    	} else {
+    		$("#other").hide();
+    	}
+    });
+    
+    $('#states').change(function(event) {
+    	var option = $(this).val();
+    	if(option == 'other'){
+    		$("#ostate").show();
+    	} else {
+    		$("#ostate").hide();
+    	}
     });
     
 
@@ -133,7 +153,13 @@ $(function() {
             agreetoTermsandUse: {
                 required: true
             },
-            physicalAddress: {
+            addressLine1: {
+            	required: true
+            },
+            city: {
+            	required: true
+            },
+            zip: {
             	required: true
             },
             shippingEmail: {
@@ -144,6 +170,12 @@ $(function() {
             	required: true
             },
             shippingCustom: {
+            	required: true
+            },
+            reciptName: {
+            	required: true
+            },
+            recieptEmail: {
             	required: true
             }
         },
@@ -172,5 +204,44 @@ $(function() {
         	needToConfirm = false;
         } 	
     });
+    
+/**********************************End of checkbox for anonymous user***************************************/
+    
+    $('#checkAddress').click(function(){
+    	if($(this).prop("checked") == true){
+    		var addressLine1 = $('#billToAddressLine1').val();
+    		var addressLine2 = $('#billToAddressLine2').val();
+    		var city = $('#billToCity').val();
+    		var zip = $('#billToZip').val();
+    		var state = $("#billToState").val();
+    		var country = $("#billToCountry option:selected").val();
+    		$('#addressLine1').val(addressLine1);
+    		$('#addressLine2').val(addressLine2);
+    		$('#city').val(city);
+    		$('#zip').val(zip);
+    		$('#state').val(state);
+    		$("#state").selectpicker('refresh');
+    		$('#country').val(country);
+    		$("#country").selectpicker('refresh');
+    		if (state == 'other'){
+    			$("#other").show();
+    			var otherState = $('#os').val();
+    			$("#otherstate").val(otherState);
+    		}
+    	} else if($(this).prop("checked") == false){
+    		$('#addressLine1').val("");
+    		$('#addressLine2').val("");
+    		$('#city').val("");
+    		$('#zip').val("");
+    		$('#state').val("AL");
+    		$("#state").selectpicker('refresh');
+    		$('#country').val("US");
+    		$("#country").selectpicker('refresh');
+    		$("#other").hide();
+    		$("#otherstate").val("");
+    	}
+    });
 
 });
+
+/**********************End of checkbox on checkout page for physical address shipping details****************************/

@@ -362,6 +362,13 @@ class UserService {
         UserRole.create(users, roleService.userRole())
     }
     
+    def discardUserQuery(def params) {
+        CustomerService service = CustomerService.get(params.id)
+        if (service) {
+            service.delete();
+        }
+    }
+    
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

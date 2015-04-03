@@ -9,6 +9,7 @@
     def validatedTeam = projectService.getValidatedTeam(project)
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
+    def discardedTeam = projectService.getDiscardedTeams(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
 %>
 <div class="col-md-12 col-sm-12 col-xs-12"></div>
@@ -19,7 +20,7 @@
 		    <ul class="nav nav-pills nav-pills-manageteam">
                 <li data-toggle="tab" class="active team-footer col-md-3 col-sm-6 col-xs-12">
                     <a href="#team" class="text-center teammembers">
-                        ${validatedTeam.size()}&nbsp;&nbsp;Teams
+                        ${validatedTeam.size()}&nbsp;&nbsp;Teams <g:if test="${discardedTeam.size() > 0}">&nbsp;&nbsp;(${discardedTeam.size()}&nbsp;&nbsp;Disabled)</g:if>
                     </a>
                 </li>
                 <li data-toggle="tab" class="col-md-3 col-sm-6 col-xs-12 button-team-footer">

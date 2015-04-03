@@ -370,16 +370,16 @@ class FundController {
         def name
         def username
         if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
-            if (project.paypalEmail) {
+            if (project.paypalEmail){
                 name = request.getParameter('name')
                 username = request.getParameter('email')
             } else {
-                name = params.billToFirstName + " " + params.billToLastName
+                name = params.billToFirstName
                 username = params.billToEmail
             }
         } else {
             def orgUser = User.get(userId)
-            name = orgUser.firstName + " " + orgUser.lastName
+            name = orgUser.firstName
             username = orgUser.email
         }
         

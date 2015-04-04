@@ -4748,11 +4748,9 @@ color:#fff;
     margin-right:6px;
     margin-top:6px;
 }
-#reportModal .modal-content
-{
-  height:500px;
-  width: 800px;
-  overflow:auto;
+#reportModal .modal-dialog {
+    width: 1000px;
+    margin: 30px auto;
 }
 .deleteComment{
  padding-bottom:22px;

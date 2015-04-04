@@ -207,15 +207,9 @@
                     <div class="table table-responsive">
                         <table class="table table-bordered">
                             <thead>
-                                <col style="width:10%">
-                                <col style="width:10%">
-                                <col style="width:10%">
-                                <col style="width:10%">
-                                <col style="width:28%">
-                                <col style="width:10%">
-                                <col style="width:10%">
                                 <tr class="alert alert-title ">
                                     <th class="col-sm-2 text-center">CAMPAIGN</th>
+                                    <th class="col-sm-1 text-center">FUNDRAISER</th>
                                     <th class="col-sm-2 text-center">DATE</th>
                                     <th class="col-sm-2 text-center">CONTRIBUTOR</th>
                                     <th class="col-sm-2 text-center">EMAIL</th>
@@ -234,12 +228,16 @@
                                         def amount = projectService.getDataType(contributions.amount)
                                         def pay_mode=contributions.isContributionOffline
                                         def contributorName= contributions.contributorName
-                                        def contributorEmail=contributions.contributorEmail
+                                        def contributorEmail
+                                        contributorEmail = contributions.contributorEmail
+                                        if (!contributorEmail) {
+                                            contributorEmail = " "
+                                        }
                                         def shippingDetails
 
                                         if(contributions.email==null && contributions.physicalAddress==null && contributions.
                                             twitterHandle==null  && contributions.custom==null){
-                                            shippingDetails="Not Found"
+                                            shippingDetails=" "
                                         }else{
                                             if(contributions.email!=null){
                                                 shippingDetails ="Email: " +contributions.email
@@ -258,6 +256,9 @@
                                     %>
                                     <tr>
                                         <td class="col-sm-2">${project.title}</td>
+                                        <td class="col-sm-1">
+                                            ${contributionService.getFundRaiserName(contributions, project)}
+                                        </td>
                                         <td class="col-sm-2">${date}</td>
                                         <td class="col-sm-2">${contributorName}</td>
                                         <td class="col-sm-2">${contributorEmail}</td>

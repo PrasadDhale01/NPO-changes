@@ -31,6 +31,7 @@ class ProjectController {
     def rewardService
     def projectService
     def mandrillService
+    def contributionService
 
     def FORMCONSTANTS = [
         /* Beneficiary */
@@ -959,14 +960,14 @@ class ProjectController {
             if(it.isContributionOffline){
                 payMode="offline"
                 contributorName= it.contributorName
-                contributorEmail=it.contributorEmail
-                shippingDetails="Not Found "
+                contributorEmail= "-"
+                shippingDetails="-"
             }else{
                 payMode="Online"
                 contributorName= it.contributorName 
                 contributorEmail=it.contributorEmail
                 if(it.email==null && it.physicalAddress==null && it.twitterHandle==null && it.custom==null){         
-                    shippingDetails="Not Found "
+                    shippingDetails="-"
                 }else{
                     if(it.email!=null){
                         shippingDetails="Email: " +it.email
@@ -1018,12 +1019,13 @@ class ProjectController {
                     }
                 }                                 
             }
-            def rows = [it.project.title,  dateFormat.format(it.date), contributorName, contributorEmail, shippingDetails, it.amount, payMode]
+            def fundRaiserName = contributionService.getFundRaiserName(it, project)
+            def rows = [it.project.title, fundRaiserName, dateFormat.format(it.date), contributorName, contributorEmail, shippingDetails, it.amount, payMode]
             results << rows
             shippingDetails=""
         }
             
-        def result='CAMPAIGN TITLE, DATE, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, SHIPPING DETAILS, AMOUNT, MODE, \n'
+        def result='CAMPAIGN TITLE, FUNDRAISER, DATE, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, SHIPPING DETAILS, AMOUNT, MODE, \n'
         results.each{ row->
             row.each{
             col -> result+=col +','

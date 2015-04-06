@@ -1284,6 +1284,63 @@ class ProjectService {
         return project
     }
 
+    def getShippingDetails(def contibutions){
+      def shippingDetails=" "
+      if(contibutions.email==null && contibutions.physicalAddress==null && contibutions.twitterHandle==null && contibutions.custom==null){         
+          shippingDetails="No Perk Selected"
+      }else{
+        if(contibutions.email!=null){
+          shippingDetails="Email: " +contibutions.email
+          if(contibutions.physicalAddress!=null){
+            shippingDetails+=" - Physical Address: " + contibutions.physicalAddress
+          }
+          if(contibutions.twitterHandle!=null){
+            shippingDetails+=" - Twitter Handle: " + contibutions.twitterHandle
+          }
+          if(contibutions.custom!=null) {
+            shippingDetails+=" - Custom: " + contibutions.custom
+          }
+        }
+        if(contibutions.physicalAddress!=null){
+          shippingDetails="Physical Address: " + contibutions.physicalAddress
+          if(contibutions.twitterHandle!=null){
+            shippingDetails+=" - Twitter Handle: " + contibutions.twitterHandle
+          }
+          if(contibutions.custom!=null) {
+            shippingDetails+=" - Custom: " + contibutions.custom
+          }
+          if(contibutions.email!=null){
+            shippingDetails+=" - Email: " +contibutions.email
+          }
+        }
+        if(contibutions.twitterHandle!=null){
+          shippingDetails ="Twitter Handle: " + contibutions.twitterHandle
+          if(contibutions.physicalAddress!=null){
+            shippingDetails+=" - Physical Address: " + contibutions.physicalAddress
+          }
+          if(contibutions.custom!=null) {
+            shippingDetails+=" - Custom: " + contibutions.custom
+          }
+          if(contibutions.email!=null){
+            shippingDetails+=" - Email: " +contibutions.email
+          }
+        }
+        if(contibutions.custom!=null) {
+          shippingDetails="Custom: " + contibutions.custom
+          if(contibutions.physicalAddress!=null){
+            shippingDetails+=" - Physical Address: " + contibutions.physicalAddress
+          }
+          if(contibutions.twitterHandle!=null) {
+            shippingDetails+=" - Twitter Handle: " + contibutions.twitterHandle
+          }
+          if(contibutions.email!=null){
+            shippingDetails+=" - Email: " +contibutions.email
+          }     
+        }
+      }
+      return shippingDetails      
+    }
+
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

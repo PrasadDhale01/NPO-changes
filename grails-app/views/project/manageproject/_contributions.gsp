@@ -266,7 +266,11 @@
                                     <th class="col-sm-2 text-center">DATE</th>
                                     <th class="col-sm-2 text-center">CONTRIBUTOR</th>
                                     <th class="col-sm-2 text-center">EMAIL</th>
-                                    <th class="col-sm-3 text-center">SHIPPING_DETAILS</th>
+
+                                    <g:if test="${project.rewards.size()>1}">
+                                        <th class="col-sm-2 text-center">SHIPPING DETAILS</th>
+                                    </g:if>
+
                                     <th class="text-center">AMOUNT</th>
                                     <th class="text-center">MODE</th>                            
                                 </tr>
@@ -291,19 +295,56 @@
 
                                         if(contributions.email==null && contributions.physicalAddress==null && contributions.
                                             twitterHandle==null  && contributions.custom==null){
-                                            shippingDetails=" "
+                                            shippingDetails="No Perk Selected "
                                         }else{
                                             if(contributions.email!=null){
-                                                shippingDetails="Email: " +contributions.email
+                                                shippingDetails="<b>Email:</b> " +contributions.email
+
+                                                if(contributions.physicalAddress!=null){
+                                                    shippingDetails=", <br><b>Physical Address:</b> " + contributions.physicalAddress
+                                                }
+                                                if(contributions.twitterHandle!=null){
+                                                    shippingDetails+=" , <br><b>Twitter Handle:</b> " + contributions.twitterHandle
+                                                }
+                                                if(contributions.custom!=null) {
+                                                    shippingDetails+=" , <br><b>Custom: </b> " +contributions.custom
+                                                }
                                             }
                                             if(contributions.physicalAddress!=null){
-                                                shippingDetails+=", Physical Address: " + contributions.physicalAddress
+                                                shippingDetails="<b>Physical Address:</b> " + contributions.physicalAddress
+                                                if(contributions.twitterHandle!=null){
+                                                    shippingDetails+=" , <br><b>Twitter Handle:</b> " + contributions.twitterHandle
+                                                }
+                                                if(contributions.custom!=null) {
+                                                    shippingDetails+=" , <br><b>Custom: </b> " + contributions.custom
+                                                }
+                                                if(contributions.email!=null){
+                                                    shippingDetails+=" , <br><b>Email:</b> " +contributions.email
+                                                }
                                             }
                                             if(contributions.twitterHandle!=null){
-                                                shippingDetails+=", Twitter Handle: " + contributions.twitterHandle
+                                                shippingDetails ="<b>Twitter Handle:</b> " + contributions.twitterHandle
+                                                if(contributions.physicalAddress!=null){
+                                                    shippingDetails+=" , <br><b>Physical Address:</b> " + contributions.physicalAddress
+                                                }
+                                                if(contributions.custom!=null) {
+                                                    shippingDetails+=" , <br><b>Custom: </b> " + contributions.custom
+                                                }
+                                                if(contributions.email!=null){
+                                                    shippingDetails+=" , <br><b>Email:</b> " +contributions.email
+                                                }
                                             }
                                             if(contributions.custom!=null){
-                                                shippingDetails+=", Custom: " + contributions.custom
+                                                shippingDetails="<b>Custom: </b>" + contributions.custom
+                                                if(contributions.physicalAddress!=null){
+                                                    shippingDetails+=" , <br><b>Physical Address:</b> " + contributions.physicalAddress
+                                                }
+                                                if(contributions.twitterHandle!=null) {
+                                                    shippingDetails+=" , <br><b>Twitter Handle:</b> " + contributions.twitterHandle
+                                                }
+                                                if(contributions.email!=null){
+                                                    shippingDetails+=" , <br><b>Email:</b> " +contributions.email
+                                                } 
                                             }
                                         }    
                                     %>
@@ -315,7 +356,11 @@
                                         <td class="col-sm-2">${date}</td>
                                         <td class="col-sm-2">${contributorName}</td>
                                         <td class="col-sm-2">${contributorEmail}</td>
-                                        <td class="col-sm-3">${shippingDetails}</td>                        
+
+                                        <g:if test="${project.rewards.size()>1}">
+                                            <td class="col-sm-3">${raw(shippingDetails)}</td> 
+                                        </g:if>
+
                                         <td class="text-center">$${amount}</td>
 
                                         <g:if test="${pay_mode}">

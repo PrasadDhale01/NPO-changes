@@ -4768,3 +4768,6 @@ form#sortsForm {
 .dropdown-menu.open {
     margin-left: -1.1%;
 }
+.generateCSV{
+    padding-bottom:39px;
+}

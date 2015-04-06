@@ -95,6 +95,9 @@
 		                        <p>By ${friendlyName}, on ${date}</p>
 		                    </g:else>
 			            </g:else>
+			            <g:if test="${contribution.comments}">
+			                <p><b>Comment:</b> ${contribution.comments}</p>
+			            </g:if>
 			            <g:if test="${reward.id == 1}">
 			                <b>No Perk</b>
 		                </g:if>

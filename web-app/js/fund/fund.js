@@ -8,7 +8,7 @@ $(function() {
     function getSelectedRewardPrice() {
         return $('.list-group-item.active').data('rewardprice');
     }
-
+    
     $('form').validate({
         submitHandler: function(form) {
             if (getSelectedRewardId() == undefined) {

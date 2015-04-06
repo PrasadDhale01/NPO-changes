@@ -114,6 +114,9 @@
                     <g:else>
                         <dd>By ${contribution.contributorName}, on ${date}</dd>
                     </g:else>
+                    <g:if test="${contribution.comments}">
+			            <p><b>Comment:</b> ${contribution.comments}</p>
+			        </g:if>
                 </div>
             </g:if>
             <g:else>

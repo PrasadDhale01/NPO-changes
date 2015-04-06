@@ -14,6 +14,7 @@ class Contribution {
     String contributorName
     String fundRaiser
     String contributorEmail
+    String comments
     
     boolean shippingDone = false
     boolean isContributionOffline = false
@@ -22,6 +23,7 @@ class Contribution {
     static constraints = {
         credit nullable: true
         reward nullable: true
+        comments  nullable: true
         email nullable: true
         twitterHandle nullable: true
         custom nullable: true

@@ -1514,6 +1514,10 @@ text-decoration: none !important;
 .rewardsection-row{
 	padding-bottom:25px;
 	padding-top:10px;
+	border-bottom: 2px solid #fff;
+}
+.rewardBottomBorder {
+    padding-left: 20px;
 }
 .rewarddescription{
 	margin-top:15px;

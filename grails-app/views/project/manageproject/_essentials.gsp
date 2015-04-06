@@ -41,22 +41,10 @@
 		</div> 
 	</g:if>
 
-    <div class="panel panel-default campaign-description">
-        <div class="panel-heading">
-            <h3 class="panel-title">Campaign Description</h3>
-        </div>
-        <div class="panel-body descript">
-            <span class="text-left">${raw(project.description)}</span>
-        </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <p class="campaignDescription justify">${raw(project.description)}</p>
+        <p class="campaignStory justify">${raw(project.story)}</p>
     </div>
-    <div class="panel panel-default essen-story">
-        <div class="panel-heading">
-             <h3 class="panel-title">Campaign Story</h3>
-        </div>
-        <div class="panel-body">
-            <span class="text-centre project-story-span">${raw(project.story)}</span>
-        </div>
-    </div>  
 <%--    <g:if test="${project.videoUrl}">--%>
 <%--        <div id="youtubeVideoUrl">--%>
 <%--            ${project.videoUrl}--%>

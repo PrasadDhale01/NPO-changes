@@ -22,7 +22,7 @@
         <h2 class="rewardsectionheading">Funding closed</h2>
     </g:else>
 </div>
-<div class="modal-footer tile-footer perks-supporters">
+<div class="tile-footer perks-supporters">
     <div class="rewardsection">
         <g:each in="${project.rewards}" var="reward">
             <%
@@ -33,25 +33,29 @@
                 def isTwitterHandled = rewardService.isTwitterHandled(reward)
             %>
             <div class="rewardsection-row">
-            <g:if test="${isFundingOpen}">
-                <h4>CONTRIBUTE $${price} OR MORE</h4>
-                <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
-                <p class="rewarddescription" id="${reward.id}">${raw(reward.description)}</p>
-                <g:if test="${currentUser == null && isOnlyTwitterHandled}">
-                    <p title="As you are anonymous, this perk which contains twitter handler is disabled for you">SELECT THIS PERK</p>
+                <g:if test="${isFundingOpen}">
+                    <div class="rewardBottomBorder">
+                        <h4>CONTRIBUTE $${price} OR MORE</h4>
+                        <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
+                        <p class="rewarddescription" id="${reward.id}">${raw(reward.description)}</p>
+                        <g:if test="${currentUser == null && isOnlyTwitterHandled}">
+                            <p title="As you are anonymous, this perk which contains twitter handler is disabled for you">SELECT THIS PERK</p>
+                        </g:if>
+                        <g:elseif test="${currentUser == null && isTwitterHandled}">
+                            <g:link controller="fund" title="As you are keeping your contribution anonymous, Twitter perks will be disabled for you" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">SELECT THIS PERK</g:link>
+                        </g:elseif>
+                        <g:else>
+                            <g:link controller="fund" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">SELECT THIS PERK</g:link>
+                        </g:else>
+                    </div>
                 </g:if>
-                <g:elseif test="${currentUser == null && isTwitterHandled}">
-                    <g:link controller="fund" title="As you are keeping your contribution anonymous, Twitter perks will be disabled for you" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">SELECT THIS PERK</g:link>
-                </g:elseif>
                 <g:else>
-                    <g:link controller="fund" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">SELECT THIS PERK</g:link>
+                    <div class="rewardBottomBorder">
+                        <h4>CONTRIBUTE $${price} OR MORE</h4>
+                        <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
+                        <p class="rewarddescription">${reward.description}</p>
+                    </div>
                 </g:else>
-            </g:if>
-            <g:else>
-                <h4>CONTRIBUTE $${price} OR MORE</h4>
-                <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
-                <p class="rewarddescription">${reward.description}</p>
-            </g:else>
             </div>
         </g:each>
     </div>

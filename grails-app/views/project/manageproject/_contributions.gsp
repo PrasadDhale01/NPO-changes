@@ -5,7 +5,6 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM, YYYY");
-    def i = 1;
     def manageCampaign = "manageCampaign"
     def user = userService.getCurrentUser()
     def fundRaiser = user.username
@@ -82,7 +81,6 @@
 		        %>
        			<g:if test="${!contribution.isContributionOffline}">
 		            <div class="modal-body tile-footer manage-comments-footer">
-		                <p class="text-success">Contribution #${i++}</p>
 			            <b>$${contribution.amount}</b>
 			            <g:if test="${isFacebookUser}">
 			                <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>
@@ -109,7 +107,6 @@
 		        </g:if>
 		        <g:else>
 		            <div class="modal-body tile-footer manage-comments-footer">
-		                <p class="text-success">Contribution #${i++}</p>
 		                <div class="rewardsection">
 		                    <b>Offline Contribution</b>
 		                </div>

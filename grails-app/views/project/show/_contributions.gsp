@@ -24,7 +24,6 @@
             currentTeamUser = team.user
         }
     }
-    def i = 1;
     def projectId = project.id
 %>
 <g:if test="${list.empty}">
@@ -96,7 +95,6 @@
             %>
             <g:if test="${!contribution.isContributionOffline}">
                 <div class="modal-body tile-footer manage-comments-footer">
-                    <p class="text-success">Contribution #${i++}</p>
                     <div class="rewardsection">
                         <b>$${amount}</b>
                     </div>
@@ -118,7 +116,6 @@
             </g:if>
             <g:else>
                 <div class="modal-body tile-footer manage-comments-footer">
-                    <p class="text-success">Contribution #${i++}</p>
                     <div class="rewardsection">
                         <b>Offline Contribution</b>
                     </div>

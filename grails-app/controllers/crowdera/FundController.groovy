@@ -408,7 +408,6 @@ class FundController {
             team.addToContributions(contribution).save(failOnError: true)
         }
         
-        println"anonymous"+anonymous
         contribution.isAnonymous = anonymous.toBoolean()
 
         mandrillService.sendThankYouMailToContributors(contribution, project,amount,fundraiser)

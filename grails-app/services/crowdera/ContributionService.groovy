@@ -168,4 +168,15 @@ class ContributionService {
         ]
         return year
     }
+    
+    def getFundRaiserName(def contribution, def project) {
+        def user = User.findByUsername(contribution.fundRaiser)
+        def fundRaiserName
+        if (user) {
+            fundRaiserName = user.firstName +" "+ user.lastName
+        } else {
+            fundRaiserName = project.user.firstName +" "+project.user.lastName
+        }
+        return fundRaiserName
+    }
 }

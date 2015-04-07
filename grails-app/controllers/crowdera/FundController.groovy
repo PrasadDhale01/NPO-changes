@@ -203,7 +203,48 @@ class FundController {
            render view: 'error', model: [message: 'This contribution or fundraiser does not exist.']
         }
     }
-
+    
+    def saveContributionComent(){
+        Contribution contribution
+        if(params.id){
+            contribution = Contribution.get(params.id)
+            if(contribution && params.comment){
+                contribution.comments = params.comment
+            }
+        } else {
+            flash.sentmessage = "Something went wrong saving comment. Please try again later."
+        }
+        redirect (action:"acknowledge", params:[cb : params.id, fr : params.fr])
+    }
+    
+    def editContributionComment(){
+        Contribution contribution = Contribution.get(params.id)
+        if(Contribution){
+            def project = contribution.project
+            def reward = contribution.reward
+            def user = contribution.user
+            def fundraiser = User.get(params.fr)
+            def editedComment = contribution.comments
+            render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser,editedComment: editedComment]
+        } else {
+            flash.sentmessage = "Something went wrong saving comment. Please try again later."
+        }
+        
+    }
+    
+    def deleteContributionComment() {
+        Contribution contribution 
+        if(params.id){
+            contribution = Contribution.get(params.id)
+            if(contribution && contribution.comments){
+                contribution.comments = null
+            }
+        } else {
+            flash.sentmessage = "Something went wrong saving comment. Please try again later."
+        }
+        redirect (action:"acknowledge", params:[cb : params.id, fr : params.fr])
+    }
+    
     def sendemail() {
         def project = Project.get(params.id)
         def contribution =Contribution.get(params.cb)
@@ -408,7 +449,6 @@ class FundController {
             team.addToContributions(contribution).save(failOnError: true)
         }
         
-        println"anonymous"+anonymous
         contribution.isAnonymous = anonymous.toBoolean()
 
         mandrillService.sendThankYouMailToContributors(contribution, project,amount,fundraiser)
@@ -446,7 +486,7 @@ class FundController {
 		transaction.save(failOnError: true)
 		conId=contribution.id
         frId= fundraiser.id
-        redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [cb: contribution.id, fr:fundraiser.id])
+        redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [cb: contribution.id, fr:fundraiser.id, editedComment:editedComment])
     }
 
     def paypalurl(){
@@ -515,6 +555,31 @@ class FundController {
     def transaction(){
         def transaction = Transaction.list();
         render view: '/user/admin/transactionIndex', model: [transaction: transaction]
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def generateCSV(){
+        
+        def transactions =Transaction.list()
+        def results=[]
+     
+        response.setHeader("Content-disposition", "attachment; filename=CSV_report.csv")
+       
+        transactions.each{  
+           def rows = [it.transactionId, it.contribution.id, it.project.title, it.user.firstName,it.project.amount, projectService.getContributedAmount(it)]
+           results << rows
+        }
+           
+        def result='Transaction Id, Contribution Id, Project, Contributor, Project Amount, Contributed Amount, \n'
+        results.each{ row->
+           row.each{
+           col -> result+=col +','
+           }
+           result = result[0..-2]
+           result+="\n"
+        }
+           
+        render (contentType:"text/csv", text:result)
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])

@@ -13,6 +13,13 @@
                     ${flash.message}
                 </div>
             </g:if>
+            <g:if test="${!transaction.empty }">
+                <g:form controller="fund" action="generateCSV" role="form" Method="post" >
+                    <div class="generateCSV">
+                        <button type="submit" class="btn btn-primary btn-sm pull-right" >Generate CSV</button>
+                    </div>
+                </g:form>
+           </g:if>
             <div class="table table-responsive">
             	<table class="table table-bordered">
             	    <thead>

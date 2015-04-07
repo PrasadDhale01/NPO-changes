@@ -26,37 +26,29 @@
     </div>
     <br>
     <%-- Social features --%>
+    <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <g:if test="${project.validated}">
         <a class="share-mail pull-right social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
             <img src="${resource(dir: 'images', file: 'mail-share@2x.png')}" alt="Mail Share"/>
 		</a>
-		<a class="twitter-share pull-right social" href="https://twitter.com/share?text=Check campaign at crowdera.co!" data-url="${base_url}/projects/${project.id}" target="_blank">
+		<a class="twitter-share pull-right social" id="twitterShare" target="_blank">
 			<img src="${resource(dir: 'images', file: 'tw-share@2x.png')}" alt="Twitter Share"/>
 		</a> 
-        <a target="_blank" class="fb-like pull-right social" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
+        <a target="_blank" class="fb-like pull-right social fbShareForLargeDevices" id="fbshare">
         	<img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share"/>
+        </a>
+        <a target="_blank" class="fb-like pull-right social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
+            <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share"/>
         </a>
 		<div class="shared">
 		    <span><label>Share this campaign</label></span>
 		</div> 
 	</g:if>
 
-    <div class="panel panel-default campaign-description">
-        <div class="panel-heading">
-            <h3 class="panel-title">Campaign Description</h3>
-        </div>
-        <div class="panel-body descript">
-            <span class="text-left">${raw(project.description)}</span>
-        </div>
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <p class="campaignDescription justify">${raw(project.description)}</p>
+        <p class="campaignStory justify">${raw(project.story)}</p>
     </div>
-    <div class="panel panel-default essen-story">
-        <div class="panel-heading">
-             <h3 class="panel-title">Campaign Story</h3>
-        </div>
-        <div class="panel-body">
-            <span class="text-centre project-story-span">${raw(project.story)}</span>
-        </div>
-    </div>  
 <%--    <g:if test="${project.videoUrl}">--%>
 <%--        <div id="youtubeVideoUrl">--%>
 <%--            ${project.videoUrl}--%>

@@ -108,3 +108,30 @@ ul.personalDetailClasses, menu, dir {
     font-weight: normal;
     margin-top: 5px;
 }
+.campaignStory {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.campaignDescription {
+	margin-top: 25px;
+	margin-bottom: 25px;
+	font-weight: 600;
+	font-size: 20px;
+}
+.rewardleftmargin {
+	margin-left: 35px;
+}
+
+.fixCarousel{
+    margin: 209px 24px 279px 23px;
+}
+/*Campaign detail page carousel */
+@media only screen and (min-width: 320px) and (max-width: 479px){
+    #carousel-example-generic {
+        height: 200px !important;
+    }
+    .fixCarousel{
+        margin-bottom: 166px !important;
+        margin-top: 84px !important;
+    }
+}

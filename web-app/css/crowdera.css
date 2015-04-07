@@ -441,6 +441,10 @@ footer .flinks a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    input.paypal-create {
+        margin-left: -3% !important;
+        width: 103%;
+    }
     .form-group.col-sm-6.col-xs-11.rewardPriceClass {
         margin-left: 16px;
         width: 100% !important;
@@ -493,6 +497,9 @@ footer .flinks a {
 
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    input.paypal-create {
+        margin-left: -8% !important;
+    }
     .form-group.col-sm-6.rewardPriceClass{
         margin-left: -24px !important;
         width:57% !important;
@@ -581,15 +588,18 @@ footer .flinks a {
         margin-left: 16px;
         width: 100% !important;
     }
-        .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		width: 48% !important;
-		margin-left: -29% !important;
-	}
-	.right-addon input {
-		padding-right: 30px;
-		margin-left: 30px !important;
-		height: 36px;
-	}
+    .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	width: 48% !important;
+	margin-left: -29% !important;
+    }
+    .right-addon input {
+	padding-right: 30px;
+	margin-left: 30px !important;
+	height: 36px;
+    }
+    input.paypal-create {
+        margin-left: -3% !important;
+    }
 }
 @media only screen and (max-width: 600px){
 	
@@ -1514,6 +1524,10 @@ text-decoration: none !important;
 .rewardsection-row{
 	padding-bottom:25px;
 	padding-top:10px;
+	border-bottom: 2px solid #fff;
+}
+.rewardBottomBorder {
+    padding-left: 20px;
 }
 .rewarddescription{
 	margin-top:15px;
@@ -2320,7 +2334,9 @@ textarea.form-control {
         padding-left:16px;
         width:54% !important;
     }
-
+    input.paypal-create {
+        margin-left: -5% !important;
+    }
 }
 @media only screen and (max-width: 800px){
 	.btn-group.btn-group-sm.btnOrgBgColor {
@@ -2620,6 +2636,12 @@ textarea.form-control {
 	.nav-pills > li + li {
 	    margin-left: 0px;
 	}
+    .fbShareForSmallDevices {
+        display: block !important;
+    }
+    .fbShareForLargeDevices {
+        display: none !important;
+    }
 }
 @media only screen and (max-width: 768px){
 .nav > li > a {
@@ -2812,7 +2834,11 @@ textarea.form-control {
 }
 @media only screen and (max-width: 640px){
 	
-	.shippingreward > .btn-primary
+    input.paypal-create {
+        margin-left: -3% !important;
+        width: 103%;
+    }
+    .shippingreward > .btn-primary
     {
        margin-left: 0px !important;
        margin-right: 31px !important;
@@ -2956,6 +2982,10 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 480px) and (max-width: 481px){
+    input.paypal-create {
+        margin-left: -4% !important;
+        width: 105%;
+    }
     .tbFirstAdmin{
 	padding-left:7px;
         width:91% !important;
@@ -3220,6 +3250,10 @@ textarea.form-control {
 
 }
 @media only screen and (max-width: 414px) {
+    input.paypal-create {
+        margin-left: -6% !important;
+        width: 106%;
+    }
 	.arrow-mobile-css {
 		margin-right: -11px;
 	}
@@ -3446,6 +3480,10 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 375px) {
+    input.paypal-create {
+        margin-left: -6% !important;
+        width: 106%;
+    }
     .btn-image {
         background-color:#FF7F50;
         border-color: #FF7F50;
@@ -4748,11 +4786,9 @@ color:#fff;
     margin-right:6px;
     margin-top:6px;
 }
-#reportModal .modal-content
-{
-  height:500px;
-  width: 800px;
-  overflow:auto;
+#reportModal .modal-dialog {
+    width: 1000px;
+    margin: 30px auto;
 }
 .deleteComment{
  padding-bottom:22px;
@@ -4769,4 +4805,10 @@ form#sortsForm {
 }
 .dropdown-menu.open {
     margin-left: -1.1%;
+}
+.generateCSV{
+    padding-bottom:39px;
+}
+.fbShareForSmallDevices {
+	display: none;
 }

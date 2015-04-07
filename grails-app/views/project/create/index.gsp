@@ -33,9 +33,9 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	    menubar: "edit insert view format",
         editor_selector : "mceEditor",
 	    plugins: [
-            "advlist autolink lists link image charmap print preview hr anchor pagebreak emoticons",
+            "advlist media autolink lists link image charmap print preview hr anchor pagebreak emoticons",
         ],
-        toolbar: "| undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image forecolor backcolor emoticons",
+        toolbar: "| undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media forecolor backcolor emoticons",
         image_advtab: true,
         templates: [
            {title: 'Test template 1', content: 'Test 1'},
@@ -221,7 +221,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
                                 <div class="form-group">
 									<label class="col-sm-2 control-label">PayPal Email ID </label>
 									<div class="col-sm-4">
-										<input id="email" type="email" class="form-control" name="${FORMCONSTANTS.PAYPALEMAIL}">
+										<input id="email" type="email" class="form-control paypal-create" name="${FORMCONSTANTS.PAYPALEMAIL}">
 									</div>
 								</div>
  							</div>

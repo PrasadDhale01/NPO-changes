@@ -17,6 +17,7 @@
 		imageUrl = project.imageUrl[0].getUrl()
 	}
     def fbShareUrl = base_url+"/campaign/managecampaign?id="+project.id
+    def fundRaiser = userService.getCurrentUser()
     def fundRaiserName
     if (fundRaiser) {
         fundRaiserName = fundRaiser.firstName+" "+fundRaiser.lastName

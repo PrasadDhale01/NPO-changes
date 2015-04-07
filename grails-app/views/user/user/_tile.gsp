@@ -142,7 +142,7 @@
 	<div class="caption">
 		<div class="project-title">
 		    <g:if test="${iscampaignAdmin}">
-				<g:link controller="project" action="manageproject" id="${project.id}" params="['fr': username]" title="${project.title}">
+				<g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">
 			        ${project.title}
 			    </g:link>
 		    </g:if>

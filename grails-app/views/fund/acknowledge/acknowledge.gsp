@@ -1,6 +1,8 @@
 <g:set var="userService" bean="userService"/>
 <g:set var="projectService" bean="projectService"/>
+<%@ page import="java.text.SimpleDateFormat" %>
 <% 
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     def contributionId= contribution.id
     def fundraiserId= fundraiser.id
 	def imageUrl = project.imageUrl
@@ -23,9 +25,10 @@
     <meta property="og:description" content="${project.description}" />
     <meta property="og:type" content="website" />
     <meta name="layout" content="main" />
+    <r:require modules="fundjs" />
 </head>
 <body>
-<input type="hidden" id="fbShareUrl" value="<%=fbShareUrl%>" />
+<g:hiddenField name="fbShareUrl" value="${fbShareUrl}" id="fbShareUrl"/>
 <div class="feducontent">
     <div class="container">
         <div class="row">
@@ -74,28 +77,55 @@
                     </div>
                 </g:if>
                 <g:else>
-                	<div class="alert alert-success">Receipt has been sent over email to ${contribution.contributorEmail}</div>
+                	<div class="alert alert-success">Receipt has been sent over email to ${contribution.contributorEmail}</div><br>
+                </g:else>
+                <g:if test="${contribution.comments == null || editedComment}">
+                    <h4 class="lead">Leave a comment</h4>
+                    <div id="commentBox">
+                        <g:form controller="fund" action="saveContributionComent" id="${contribution.id}" params="['fr': fundraiser.id]">
+                            <div class="form-group">
+                                <textarea class="form-control" name="comment" rows="4" required><g:if test="${editedComment}">${editedComment}</g:if></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
+                            <div class="clear"></div>
+                        </g:form>
+                    </div><br>
+                </g:if>
+                <g:else>
+                    <%
+                        def date = dateFormat.format(new Date())
+                     %>
+                    <h3>Contributor Comment</h3>
+                    <div class="modal-body tile-footer show-comments-date">
+                        <h6>By ${contribution.contributorName}, on ${date}</h6>
+                        <p><b>${contribution.comments}</b></p>
+                        <g:form controller="fund" name="deletecomment" action="deleteContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id]">
+                            <button type="submit" class="projectedit close pull-right" id="projectdelete"
+                                 onclick="return confirm(&#39;Are you sure you want to delete this comment?&#39;);">
+                                 <i class="glyphicon glyphicon-trash"></i>
+                             </button>
+                        </g:form>
+                        <g:link controller="fund" name="editcomment" action="editContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id]">
+                            <i class="glyphicon glyphicon-edit glyphicon-lg projectedit close pull-right"></i>
+                        </g:link>
+                       <div class="clear"></div>
+                    </div>
                 </g:else>
                 <div class="row">
-					<div class="col-sm-12 shared">
+					<div class="col-sm-12 shared contributionShare">
 					    <a class="share-mail pull-right social" href="#" data-toggle="modal" data-target="#sendmailmodal">
 					        <img src="${resource(dir: 'images', file: 'mail-share@2x.png')}" alt="Mail Share">
 					    </a>
-					    <a class="twitter-share pull-right social" href="https://twitter.com/share?text=Hey check this project at crowdera.co!"  data-url="${base_url}/fund/acknowledge/${project.id}" target="_blank">
+					    <a class="twitter-share pull-right social" id="twitterShare" target="_blank">
 					        <img src="${resource(dir: 'images', file: 'tw-share@2x.png')}" alt="Twitter Share">
 					    </a>
-					    <a target="_self" class="fb-like pull-right social" href="#" onClick="fbs_click()">
+					    <a target="_self" class="fb-like pull-right social fbShareForLargeDevices" href="#" id="fbshare">
 					        <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share">
 					    </a>
+                        <a target="_blank" class="fb-like pull-right social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
+                            <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share"/>
+                        </a>
 					    <span><label>Share this Contribution</label></span>
-                        <script type="text/javascript">
-                            function fbs_click() {
-                                var url = 'http://www.facebook.com/sharer.php?p[url]=' +
-                                encodeURIComponent($('#fbShareUrl').val());
-                                window.open(url, 'Share on FaceBook', 'left=20,top=20,width=550,height=400,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
-                                return false;
-                            }
-                        </script>
 					</div>
                         
                     <!-- Modal -->

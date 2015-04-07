@@ -24,7 +24,6 @@
             currentTeamUser = team.user
         }
     }
-    def i = 1;
     def projectId = project.id
 %>
 <g:if test="${list.empty}">
@@ -96,7 +95,6 @@
             %>
             <g:if test="${!contribution.isContributionOffline}">
                 <div class="modal-body tile-footer manage-comments-footer">
-                    <p class="text-success">Contribution #${i++}</p>
                     <div class="rewardsection">
                         <b>$${amount}</b>
                     </div>
@@ -114,11 +112,13 @@
                     <g:else>
                         <dd>By ${contribution.contributorName}, on ${date}</dd>
                     </g:else>
+                    <g:if test="${contribution.comments}">
+			            <p><b>Comment:</b> ${contribution.comments}</p>
+			        </g:if>
                 </div>
             </g:if>
             <g:else>
                 <div class="modal-body tile-footer manage-comments-footer">
-                    <p class="text-success">Contribution #${i++}</p>
                     <div class="rewardsection">
                         <b>Offline Contribution</b>
                     </div>
@@ -207,19 +207,17 @@
                     <div class="table table-responsive">
                         <table class="table table-bordered">
                             <thead>
-                                <col style="width:10%">
-                                <col style="width:10%">
-                                <col style="width:10%">
-                                <col style="width:10%">
-                                <col style="width:28%">
-                                <col style="width:10%">
-                                <col style="width:10%">
                                 <tr class="alert alert-title ">
                                     <th class="col-sm-2 text-center">CAMPAIGN</th>
+                                    <th class="col-sm-1 text-center">FUNDRAISER</th>
                                     <th class="col-sm-2 text-center">DATE</th>
                                     <th class="col-sm-2 text-center">CONTRIBUTOR</th>
                                     <th class="col-sm-2 text-center">EMAIL</th>
-                                    <th class="col-sm-2 text-center">SHIPPING_DETAILS</th>
+
+                                    <g:if test="${project.rewards.size()>1}">
+                                        <th class="col-sm-2 text-center">SHIPPING DETAILS</th>
+                                    </g:if>
+
                                     <th class="col-sm-2 text-center">AMOUNT</th>
                                     <th class="col-sm-2 text-center">MODE</th>                                                      
                                 </tr>
@@ -234,34 +232,82 @@
                                         def amount = projectService.getDataType(contributions.amount)
                                         def pay_mode=contributions.isContributionOffline
                                         def contributorName= contributions.contributorName
-                                        def contributorEmail=contributions.contributorEmail
+                                        def contributorEmail
+                                        contributorEmail = contributions.contributorEmail
+                                        if (!contributorEmail) {
+                                            contributorEmail = " "
+                                        }
                                         def shippingDetails
 
                                         if(contributions.email==null && contributions.physicalAddress==null && contributions.
                                             twitterHandle==null  && contributions.custom==null){
-                                            shippingDetails="Not Found"
+                                            shippingDetails="No Perk Selected "
                                         }else{
                                             if(contributions.email!=null){
-                                                shippingDetails ="Email: " +contributions.email
+                                                shippingDetails="<b>Email:</b> " +contributions.email
+
+                                                if(contributions.physicalAddress!=null){
+                                                    shippingDetails=", <br><b>Physical Address:</b> " + contributions.physicalAddress
+                                                }
+                                                if(contributions.twitterHandle!=null){
+                                                    shippingDetails+=" , <br><b>Twitter Handle:</b> " + contributions.twitterHandle
+                                                }
+                                                if(contributions.custom!=null) {
+                                                    shippingDetails+=" , <br><b>Custom: </b> " +contributions.custom
+                                                }
                                             }
                                             if(contributions.physicalAddress!=null){
-                                                shippingDetails+=", Physical Address: " + contributions.physicalAddress
+                                                shippingDetails="<b>Physical Address:</b> " + contributions.physicalAddress
+                                                if(contributions.twitterHandle!=null){
+                                                    shippingDetails+=" , <br><b>Twitter Handle:</b> " + contributions.twitterHandle
+                                                }
+                                                if(contributions.custom!=null) {
+                                                    shippingDetails+=" , <br><b>Custom: </b> " + contributions.custom
+                                                }
+                                                if(contributions.email!=null){
+                                                    shippingDetails+=" , <br><b>Email:</b> " +contributions.email
+                                                }
                                             }
                                             if(contributions.twitterHandle!=null){
-                                                shippingDetails+=", Twitter Handle: " + contributions.twitterHandle
+                                                shippingDetails ="<b>Twitter Handle:</b> " + contributions.twitterHandle
+                                                if(contributions.physicalAddress!=null){
+                                                    shippingDetails+=" , <br><b>Physical Address:</b> " + contributions.physicalAddress
+                                                }
+                                                if(contributions.custom!=null) {
+                                                    shippingDetails+=" , <br><b>Custom: </b> " + contributions.custom
+                                                }
+                                                if(contributions.email!=null){
+                                                    shippingDetails+=" ,<br><b>Email:</b> " +contributions.email
+                                                }
                                             }
                                             if(contributions.custom!=null){
-                                                shippingDetails+=", Custom: " + contributions.custom
+                                                shippingDetails="<b>Custom: </b>  " + contributions.custom
+                                                if(contributions.physicalAddress!=null){
+                                                    shippingDetails+=" , <br><b>Physical Address:</b> " + contributions.physicalAddress
+                                                }
+                                                if(contributions.twitterHandle!=null) {
+                                                    shippingDetails+=" , <br><b>Twitter Handle:</b> " + contributions.twitterHandle
+                                                }
+                                                if(contributions.email!=null){
+                                                    shippingDetails+=" , <br><b>Email:</b> " +contributions.email
+                                                } 
                                             }
                                         }    
 
                                     %>
                                     <tr>
                                         <td class="col-sm-2">${project.title}</td>
+                                        <td class="col-sm-1">
+                                            ${contributionService.getFundRaiserName(contributions, project)}
+                                        </td>
                                         <td class="col-sm-2">${date}</td>
                                         <td class="col-sm-2">${contributorName}</td>
                                         <td class="col-sm-2">${contributorEmail}</td>
-                                        <td class="col-sm-2">${shippingDetails}</td>
+
+                                        <g:if test="${project.rewards.size()>1}">
+                                            <td class="col-sm-3">${raw(shippingDetails)}</td> 
+                                        </g:if>
+                                        
                                         <td class="col-sm-2">$${amount}</td>
                                         
                                         <g:if test="${pay_mode}">

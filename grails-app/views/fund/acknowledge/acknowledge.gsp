@@ -1,6 +1,8 @@
 <g:set var="userService" bean="userService"/>
 <g:set var="projectService" bean="projectService"/>
+<%@ page import="java.text.SimpleDateFormat" %>
 <% 
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     def contributionId= contribution.id
     def fundraiserId= fundraiser.id
 	def imageUrl = project.imageUrl
@@ -23,6 +25,7 @@
     <meta property="og:description" content="${project.description}" />
     <meta property="og:type" content="website" />
     <meta name="layout" content="main" />
+    <r:require modules="fundjs" />
 </head>
 <body>
 <input type="hidden" id="fbShareUrl" value="<%=fbShareUrl%>" />
@@ -75,6 +78,47 @@
                 </g:if>
                 <g:else>
                 	<div class="alert alert-success">Receipt has been sent over email to ${contribution.contributorEmail}</div>
+                </g:else><br>
+                <g:if test="${contribution.comments == null}">
+                    <h4 class="lead">Leave a comment</h4>
+                    <div id="commentBox">
+                        <g:form controller="fund" action="saveContributionComent" id="${contribution.id}" params="['fr': fundraiser.id]">
+                            <div class="form-group">
+                                <textarea class="form-control" name="comment" rows="4" required><g:if test="${editedComment}">${editedComment}</g:if></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
+                            <div class="clear"></div>
+                        </g:form>
+                    </div><br>
+                </g:if>
+                <g:else>
+                    <div class="panel panel-default show-comments-details">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Contribution Comments</h3>
+                        </div>
+                        <div class="panel-body commentsoncampaign">
+                            
+                                <div class="list-group">
+                                <%
+                                    def date = dateFormat.format(new Date())
+                                 %>
+                                 <div class="modal-body tile-footer show-comments-date">
+                                     <h6>By ${contribution.contributorName}, on ${date}</h6>
+                                     <p><b>${contribution.comments}</b></p>
+                                     <g:form controller="fund" name="deletecomment" action="deleteContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id]">
+                                         <button type="submit" class="projectedit close pull-right" id="projectdelete"
+                                              onclick="return confirm(&#39;Are you sure you want to delete this comment?&#39;);">
+                                              <i class="glyphicon glyphicon-trash"></i>
+                                          </button>
+                                     </g:form>
+                                     <g:link controller="fund" name="editcomment" action="editContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id]">
+                                         <i class="glyphicon glyphicon-edit glyphicon-lg projectedit close pull-right"></i>
+                                     </g:link>
+                                    <div class="clear"></div>
+                                 </div>
+                            </div>
+                        </div>
+                    </div>
                 </g:else>
                 <div class="row">
 					<div class="col-sm-12 shared">

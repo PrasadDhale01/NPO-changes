@@ -70,5 +70,8 @@ class UrlMappings {
 	/*User*/
 	"/user/mycampaigns"(controller:'user', action:'myproject')
        "/users/dashboard"(controller:'user', action:'accountSetting')
+       
+    /*contributionComments*/
+    "/funds/acknowledge"(controller: 'fund', action: 'editContributionComment')
     }
 }

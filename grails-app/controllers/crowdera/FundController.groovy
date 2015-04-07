@@ -198,7 +198,7 @@ class FundController {
         def user = contribution.user
         def fundraiser = User.get(params.fr)
 		if((contribution.id ==conId) && (fundraiser.id==frId)){
-	       render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser, editedComment:params.editedComment]
+	       render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
         }else{
            render view: 'error', model: [message: 'This contribution or fundraiser does not exist.']
         }
@@ -206,7 +206,6 @@ class FundController {
     
     def saveContributionComent(){
         Contribution contribution
-        def editedComment = null
         if(params.id){
             contribution = Contribution.get(params.id)
             if(contribution && params.comment){
@@ -215,27 +214,26 @@ class FundController {
         } else {
             flash.sentmessage = "Something went wrong saving comment. Please try again later."
         }
-        redirect (action:"acknowledge", params:[cb : params.id, fr : params.fr, editedComment:editedComment])
+        redirect (action:"acknowledge", params:[cb : params.id, fr : params.fr])
     }
     
     def editContributionComment(){
-        Contribution contribution
-        def editedComment
-        if(params.id){
-            contribution = Contribution.get(params.id)
-            if(contribution && contribution.comments){
-                editedComment = contribution.comments
-                contribution.comments = null
-            }
+        Contribution contribution = Contribution.get(params.id)
+        if(Contribution){
+            def project = contribution.project
+            def reward = contribution.reward
+            def user = contribution.user
+            def fundraiser = User.get(params.fr)
+            def editedComment = contribution.comments
+            render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser,editedComment: editedComment]
         } else {
             flash.sentmessage = "Something went wrong saving comment. Please try again later."
         }
-        redirect (action:"acknowledge", params:[cb : params.id, fr : params.fr, editedComment:editedComment])
+        
     }
     
     def deleteContributionComment() {
         Contribution contribution 
-        def editedComment = null
         if(params.id){
             contribution = Contribution.get(params.id)
             if(contribution && contribution.comments){
@@ -244,7 +242,7 @@ class FundController {
         } else {
             flash.sentmessage = "Something went wrong saving comment. Please try again later."
         }
-        redirect (action:"acknowledge", params:[cb : params.id, fr : params.fr, editedComment:editedComment])
+        redirect (action:"acknowledge", params:[cb : params.id, fr : params.fr])
     }
     
     def sendemail() {
@@ -416,7 +414,6 @@ class FundController {
         def anonymous = request.getParameter('anonymous')
         def name
         def username
-        def editedComment = null
         
         if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
             if (project.paypalEmail){

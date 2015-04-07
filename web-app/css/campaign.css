@@ -108,3 +108,16 @@ ul.personalDetailClasses, menu, dir {
     font-weight: normal;
     margin-top: 5px;
 }
+.campaignStory {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.campaignDescription {
+	margin-top: 25px;
+	margin-bottom: 25px;
+	font-weight: 600;
+	font-size: 20px;
+}
+.rewardleftmargin {
+	margin-left: 35px;
+}

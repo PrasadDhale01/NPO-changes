@@ -41,32 +41,18 @@
         </div>
     </div>
 
-    <div class="row">
-        <div class="panel panel-default campaign-description">
-            <div class="panel-heading">
-                <h3 class="panel-title">Campaign Description</h3>
-            </div>
-            <div class="panel-body descript">
-                <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
-                    <span class="text-left">${raw(project.description)}</span>
-                </g:if>
-                <g:else>
-                    <span class="text-left">${raw(currentTeam.description)}</span>  
-                </g:else>
-            </div>
-        </div>
-        <div class="panel panel-default show-comments-details">
-            <div class="panel-heading">
-                <h3 class="panel-title">Campaign Story</h3>
-            </div>
-            <div class="panel-body project-description">
-                <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
-                   <span class="text-centre project-story-span">${raw(project.story)}</span>
-                </g:if>
-                <g:else>
-                   <span class="text-centre project-story-span">${raw(currentTeam.story)}</span>
-                </g:else>
-            </div>
-        </div>  
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
+            <p class="campaignDescription justify">${raw(project.description)}</p>
+        </g:if>
+        <g:else>
+            <p class="campaignDescription justify">${raw(currentTeam.description)}</p>
+        </g:else>
+        <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
+            <p class="campaignStory justify">${raw(project.story)}</p>
+        </g:if>
+        <g:else>
+            <p class="campaignStory justify">${raw(currentTeam.story)}</p>
+        </g:else>
     </div>
 </div>

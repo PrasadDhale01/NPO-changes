@@ -497,7 +497,7 @@ footer .flinks a {
 
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	input.paypal-create {
+    input.paypal-create {
         margin-left: -8% !important;
     }
     .form-group.col-sm-6.rewardPriceClass{
@@ -588,16 +588,16 @@ footer .flinks a {
         margin-left: 16px;
         width: 100% !important;
     }
-        .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		width: 48% !important;
-		margin-left: -29% !important;
-	}
-	.right-addon input {
-		padding-right: 30px;
-		margin-left: 30px !important;
-		height: 36px;
-	}
-	input.paypal-create {
+    .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	width: 48% !important;
+	margin-left: -29% !important;
+    }
+    .right-addon input {
+	padding-right: 30px;
+	margin-left: 30px !important;
+	height: 36px;
+    }
+    input.paypal-create {
         margin-left: -3% !important;
     }
 }
@@ -2834,11 +2834,11 @@ textarea.form-control {
 }
 @media only screen and (max-width: 640px){
 	
-	input.paypal-create {
+    input.paypal-create {
         margin-left: -3% !important;
         width: 103%;
     }
-	.shippingreward > .btn-primary
+    .shippingreward > .btn-primary
     {
        margin-left: 0px !important;
        margin-right: 31px !important;
@@ -2982,7 +2982,7 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 480px) and (max-width: 481px){
-	input.paypal-create {
+    input.paypal-create {
         margin-left: -4% !important;
         width: 105%;
     }

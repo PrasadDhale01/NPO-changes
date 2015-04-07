@@ -287,5 +287,14 @@ $(function() {
             .blur(hidePopover)
             .hover(showPopover, hidePopover);
         });
+        
+        $("#anonymousUser").popover({
+            content: 'If checked, your name will only be visible to campiagn owner, for public you will be anonymous contributor.',
+            trigger: 'manual',
+            placement: 'top'
+        })
+        .focus(showPopover)
+        .blur(hidePopover)
+        .hover(showPopover, hidePopover);
     	
 });

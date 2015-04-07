@@ -60,10 +60,10 @@
     </div>
     <!-- Controls -->
     <div id="navigators" class="manage-carousel">
-	    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+	    <a class="left carousel-control fixCarousel" href="#carousel-example-generic" role="button" data-slide="prev">
 	        <span class="glyphicon glyphicon-chevron-left"></span>
 	    </a>
-	    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+	    <a class="right carousel-control fixCarousel" href="#carousel-example-generic" role="button" data-slide="next">
 	        <span class="glyphicon glyphicon-chevron-right"></span>
 	    </a>
     </div>

@@ -515,6 +515,31 @@ class FundController {
         def transaction = Transaction.list();
         render view: '/user/admin/transactionIndex', model: [transaction: transaction]
     }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def generateCSV(){
+        
+        def transactions =Transaction.list()
+        def results=[]
+     
+        response.setHeader("Content-disposition", "attachment; filename=CSV_report.csv")
+       
+        transactions.each{  
+           def rows = [it.transactionId, it.contribution.id, it.project.title, it.user.firstName,it.project.amount, projectService.getContributedAmount(it)]
+           results << rows
+        }
+           
+        def result='Transaction Id, Contribution Id, Project, Contributor, Project Amount, Contributed Amount, \n'
+        results.each{ row->
+           row.each{
+           col -> result+=col +','
+           }
+           result = result[0..-2]
+           result+="\n"
+        }
+           
+        render (contentType:"text/csv", text:result)
+    }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def saveOfflineContribution() {

@@ -961,78 +961,44 @@ class ProjectController {
                 payMode="offline"
                 contributorName= it.contributorName
                 contributorEmail= "-"
-                shippingDetails="-"
+                shippingDetails="No Perk Selected"
             }else{
                 payMode="Online"
                 contributorName= it.contributorName 
                 contributorEmail=it.contributorEmail
-                if(it.email==null && it.physicalAddress==null && it.twitterHandle==null && it.custom==null){         
-                    shippingDetails="-"
-                }else{
-                    if(it.email!=null){
-                        shippingDetails="Email: " +it.email
-                        if(it.physicalAddress!=null){
-                            shippingDetails+=" - Physical Address: " + it.physicalAddress
-                        }
-                        if(it.twitterHandle!=null){
-                            shippingDetails+=" - Twitter Handle: " + it.twitterHandle
-                        }
-                        if(it.custom!=null) {
-                            shippingDetails+=" - Custom: " + it.custom
-                        }
-                    }
-                    if(it.physicalAddress!=null){
-                        shippingDetails="Physical Address: " + it.physicalAddress
-                        if(it.twitterHandle!=null){
-                            shippingDetails+=" - Twitter Handle: " + it.twitterHandle
-                        }
-                        if(it.custom!=null) {
-                            shippingDetails+=" - Custom: " + it.custom
-                        }
-                        if(it.email!=null){
-                            shippingDetails+=" - Email: " +it.email
-                        }
-                    }
-                    if(it.twitterHandle!=null){
-                        shippingDetails ="Twitter Handle: " + it.twitterHandle
-                        if(it.physicalAddress!=null){
-                            shippingDetails+=" - Physical Address: " + it.physicalAddress
-                        }
-                        if(it.custom!=null) {
-                            shippingDetails+=" - Custom: " + it.custom
-                        }
-                        if(it.email!=null){
-                            shippingDetails+=" - Email: " +it.email
-                        }
-                    }
-                    if(it.custom!=null) {
-                        shippingDetails="Custom: " + it.custom
-                        if(it.physicalAddress!=null){
-                            shippingDetails+=" - Physical Address: " + it.physicalAddress
-                        }
-                        if(it.twitterHandle!=null) {
-                            shippingDetails+=" - Twitter Handle: " + it.twitterHandle
-                        }
-                        if(it.email!=null){
-                            shippingDetails+=" - Email: " +it.email
-                        }     
-                    }
-                }                                 
+                shippingDetails=projectService.getShippingDetails(it)                              
             }
             def fundRaiserName = contributionService.getFundRaiserName(it, project)
-            def rows = [it.project.title, fundRaiserName, dateFormat.format(it.date), contributorName, contributorEmail, shippingDetails, it.amount, payMode]
-            results << rows
-            shippingDetails=""
-        }
-            
-        def result='CAMPAIGN TITLE, FUNDRAISER, DATE, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, SHIPPING DETAILS, AMOUNT, MODE, \n'
-        results.each{ row->
-            row.each{
-            col -> result+=col +','
+             if(project.rewards.size()>1){
+                def rows = [it.project.title, fundRaiserName, dateFormat.format(it.date), contributorName, contributorEmail, shippingDetails, it.amount, payMode]
+                results << rows
+                shippingDetails=""
+            }else{
+                def rows = [it.project.title, fundRaiserName, dateFormat.format(it.date), contributorName, contributorEmail, it.amount, payMode]
+                results << rows
+                shippingDetails=""
             }
-            result = result[0..-2]
-            result+="\n"
         }
+        def result
+        if(project.rewards.size()>1){ 
+            result='CAMPAIGN TITLE, FUNDRAISER, DATE, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, SHIPPING DETAILS, AMOUNT, MODE, \n'
+            results.each{ row->
+                row.each{
+                col -> result+=col +','
+                }
+                result = result[0..-2]
+                result+="\n"
+            }
+        }else{
+            result='CAMPAIGN TITLE, FUNDRAISER, DATE, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, AMOUNT, MODE, \n'
+            results.each{ row->
+                row.each{
+                col -> result+=col +','
+                }
+                result = result[0..-2]
+                result+="\n"
+            }
+        }    
             
         render (contentType:"text/csv", text:result)            
     }

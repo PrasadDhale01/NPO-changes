@@ -246,6 +246,18 @@ $(function() {
     	}
     });
     
+    $("#fbshare").click(function(){
+        var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl').val());
+        window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+        return false;
+    });
+    
+    $("#twitterShare").click(function(){
+        var url = 'https://twitter.com/share?text=Check contribution at crowdera.co!';
+        window.open(url, 'Share on Twitter', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+        return false;
+    });
+    
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {
             $(this).popover('show');

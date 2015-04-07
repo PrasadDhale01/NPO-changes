@@ -343,7 +343,7 @@ class ProjectController {
             //projectService.sendEmailToAdminForProjectUpdate(project, user)
             
             flash.prj_mngprj_message = "Successfully saved the changes"
-            redirect (action: 'manageproject', id: project.id, params:[fr: fundRaiser])
+            redirect (action: 'manageproject', id: project.id)
         } else {
             flash.prj_edit_message = "Campaign not found."
             render (view: 'edit/editerror')
@@ -615,7 +615,7 @@ class ProjectController {
         def isCoAdmin=userService.isCampaignBeneficiaryOrAdmin(project,user)
         if(project.user==user || isCoAdmin){
                 render (view: 'manageproject/index',
-                model: [project: project, fundRaiser: user,
+                model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])
         }else{
                 flash.prj_mngprj_message = 'Campaign Not Found'
@@ -661,7 +661,7 @@ class ProjectController {
         def project = projectService.shareCampaignOrTeamByEmail(params,fundRaiser)
         flash.prj_mngprj_message= "Email sent successfully."
         if (params.ismanagepage) {
-             redirect(controller: 'project', action: 'manageproject', id: project.id, params:[fr: fundRaiser])
+             redirect(controller: 'project', action: 'manageproject', id: project.id)
         } else {
            redirect (action: 'show', id: project.id, params:[fr: fundRaiser])
         }
@@ -765,7 +765,7 @@ class ProjectController {
 
         if (params.ismanagepage) {
             sendEmailToTeam(emails, name, message, project)
-            redirect (action: 'manageproject', id: project.id, params:[fr: fundraiser], fragment: 'manageTeam')
+            redirect (action: 'manageproject', id: project.id, fragment: 'manageTeam')
         } else {
             sendEmailToTeam(emails, name, message, project)
             redirect (action: 'show', id: project.id, params:[fr: fundraiser], fragment: 'manageTeam')
@@ -828,7 +828,7 @@ class ProjectController {
         if (!params.ismanagepage) {
 	    redirect (action: 'show', id: params.id, params:[fr: fundRaiser], fragment: 'comments')
         } else {
-            redirect (action: 'manageproject', id: params.id, params:[fr: fundRaiser], fragment: 'manageTeam')
+            redirect (action: 'manageproject', id: params.id, fragment: 'manageTeam')
         }
 	}
     

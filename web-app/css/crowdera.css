@@ -389,6 +389,7 @@ footer .flinks a  a:hover{
     
 }
 
+footer a:hover,
 a:focus {
   color: #cccccc; 
   text-decoration: none !important;

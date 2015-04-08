@@ -34,31 +34,29 @@
             %>
             <div class="rewardsection-row">
                 <g:if test="${isFundingOpen}">
-                    <div class="rewardBottomBorder">
-                        <h5><b>$${price}&nbsp;&nbsp;&nbsp; ${reward.title}</b></h5>
-                        <div class="rewardleftmargin">
-                            <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
-                            <p class="rewarddescription" id="${reward.id}">${raw(reward.description)}</p>
-                            <g:if test="${currentUser == null && isOnlyTwitterHandled}">
-                                <p title="As you are anonymous, this perk which contains twitter handler is disabled for you">SELECT THIS PERK</p>
-                            </g:if>
-                            <g:elseif test="${currentUser == null && isTwitterHandled}">
-                                <g:link controller="fund" title="As you are keeping your contribution anonymous, Twitter perks will be disabled for you" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">SELECT THIS PERK</g:link>
-                            </g:elseif>
-                            <g:else>
-                                <g:link controller="fund" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">SELECT THIS PERK</g:link>
-                            </g:else>
+                    <g:link controller="fund" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">
+                        <div class="rewardsection-row">
+                            <div class="rewardBottomBorder">
+                                <h5><b>$${price}&nbsp;&nbsp;&nbsp; ${reward.title}</b></h5>
+                                <div class="rewardleftmargin">
+                                    <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
+                                    <p class="rewarddescription" id="${reward.id}">${raw(reward.description)}</p>
+                                    <p>SELECT THIS PERK</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </g:link>
                 </g:if>
                 <g:else>
-                    <div class="rewardBottomBorder">
-                        <h4><b>$${price}&nbsp;&nbsp;&nbsp; ${reward.title}</b></h4>
-                        <div class="rewardleftmargin">
-                            <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
-                            <p class="rewarddescription">${reward.description}</p>
-                        </div>
-                    </div>
+                    <div class="rewarddiv">
+                        <div class="rewardBottomBorder">
+                            <h5><b>$${price}&nbsp;&nbsp;&nbsp; ${reward.title}</b></h5>
+                            <div class="rewardleftmargin">
+                                <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
+                                <p class="rewarddescription">${reward.description}</p>
+                            </div>
+                         </div>
+                     </div>
                 </g:else>
             </div>
         </g:each>

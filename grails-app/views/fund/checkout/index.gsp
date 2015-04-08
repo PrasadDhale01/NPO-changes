@@ -332,9 +332,6 @@
             </div>
             
             <div class="col-md-4 box">
-                	<g:if test="${project.rewards.size()>1}">
-                        <g:render template="rewardtile"/>
-                    </g:if>
                 	<g:render template="/layouts/tile"/>
                 <div>
                     <label class="checkbox control-label">

@@ -1531,17 +1531,16 @@ border-color: rgba(0,0,0,0.2);
     font-size: 16px;
     border-radius: 48px;
 }
-.rewardsection a:hover, .rewardsection a:focus {
+.rewardsection a:focus {
 color: #388f58 !important;
-text-decoration: underline !important;
 }
 .rewardsection a {
 color: #388f58 !important;
 text-decoration: none !important;
 }
 .rewardsection-row{
-	padding-bottom:25px;
-	padding-top:10px;
+	padding-bottom:15px;
+	padding-top:15px;
 	border-bottom: 2px solid #fff;
 }
 .rewardBottomBorder {

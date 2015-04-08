@@ -1,0 +1,3 @@
+$ keytool -keystore keystore -alias jetty -genkey -keyalg RSA
+$ keytool -certreq -alias jetty -keystore keystore -file jetty.csr
+

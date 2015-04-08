@@ -376,15 +376,29 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 ------------------------- */
 footer {
     border-top: solid #ff784f 1px !important;
-    background-color: #f1f1f2;
+    background-color: #666666;
     padding: 30px 0 0 0;
     margin-top: 25px;
+    
 }
 
-footer .flinks a {
+footer .flinks a  a:hover{
     display: block;
     margin: 4px 0;
-    color: #dbe0e5;
+    text-decoration: none !important;
+    
+}
+
+footer a:hover,
+a:focus {
+   color: #cccccc; 
+   text-decoration: none !important;
+}
+
+.foooter a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
 }
 
 .footerbottomsection {
@@ -392,10 +406,14 @@ footer .flinks a {
 }
 
 .footerbottomsection a {
-    color: #dbe0e5;
+	width:100%;
+	color: #cccccc;
+    font-size: 15px;
+    text-decoration: none
+    /* color: #dbe0e5;
     text-decoration: none;
     margin-right: 40px;
-    font-size: 12px;
+    font-size: 12px; */
 }
 
 .clientpart {
@@ -4212,8 +4230,10 @@ button.projectedit.close{
 	max-width:100%;
 }
 a {
-	color: #ff784f;
+	color: #cccccc;
+	font-size:15px;
 	text-decoration: none;
+	
 }
 .greycolorbg{
 	background-color:#f1f1f2
@@ -4229,9 +4249,15 @@ a {
 	margin-top: 15px;
 }
 a.footerlink {
-	color: #a1a5af;
+	color: #cccccc;
+    font-size: 15px;
+    text-decoration: none;
+    font-weight: 500;
+	
+	/* color: #cccccc;
 	font-size: 14px;
-	margin: 0px 10px 0 0px !important;
+	 text-decoration: none
+	margin: 0px 10px 0 0px !important; */
 }
 .dropdown-menu{
 	min-width:155.5px;

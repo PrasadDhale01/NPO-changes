@@ -392,10 +392,13 @@ footer .flinks a {
 }
 
 .footerbottomsection a {
-    color: #dbe0e5;
+	color: #cccccc;
+    font-size: 15px;
+    text-decoration: none
+    /* color: #dbe0e5;
     text-decoration: none;
     margin-right: 40px;
-    font-size: 12px;
+    font-size: 12px; */
 }
 
 .clientpart {
@@ -4178,8 +4181,10 @@ button.projectedit.close{
 	max-width:100%;
 }
 a {
-	color: #ff784f;
+	color: #cccccc;
+	font-size:15px;
 	text-decoration: none;
+	
 }
 .greycolorbg{
 	background-color:#f1f1f2
@@ -4195,9 +4200,15 @@ a {
 	margin-top: 15px;
 }
 a.footerlink {
-	color: #a1a5af;
+	color: #cccccc;
+    font-size: 15px;
+    text-decoration: none;
+    font-weight: 500;
+	
+	/* color: #cccccc;
 	font-size: 14px;
-	margin: 0px 10px 0 0px !important;
+	 text-decoration: none
+	margin: 0px 10px 0 0px !important; */
 }
 .dropdown-menu{
 	min-width:155.5px;

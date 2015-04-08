@@ -25,7 +25,7 @@ $(function() {
         }
     });
     
-    $('.twittersocialicon').hover(function(){
+  /*  $('.twittersocialicon').hover(function(){
     	$(this).attr('src',"/images/twitter-over.png");
     	}).mouseleave(function(){
         $(this).attr('src',"/images/s3.png");
@@ -49,5 +49,5 @@ $(function() {
     	$(this).attr('src',"/images/Linked-in-over.png");
     	}).mouseleave(function(){
         $(this).attr('src',"/images/s4.png");
-    });
+    }); */
 });

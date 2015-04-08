@@ -8,7 +8,6 @@
 <div class="feducontent">
 	<div class="container">
 		<h1><i class="fa fa-users"></i> Create Community</h1>
-
         <g:form class="form-horizontal" action="save" role="form">
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -46,7 +45,6 @@
                 </div>
             </div>
 		</g:form>
-
 	</div>
 </div>
 

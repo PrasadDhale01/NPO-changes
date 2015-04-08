@@ -1,9 +1,9 @@
 <!-- Footer -->
-<footer style="background-color: #666666">    
+<footer>    
     <div class="container">
    		<div class="row">
 	        <div class="pager" >
-	    		<div >
+	    		<div>
 		            <div class="socialicon">
 					    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="/images/twitter-ico.png" alt="twitter"/></a>
 					    <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="/images/_thumb_13631.png" alt="facebook"/></a>
@@ -14,10 +14,10 @@
 	       	</div>
       	</div>
 	    <div class="row">
-	        <div class="pager" >
-	            <a class="navbar-brand-footer pull-center footerimage img-footer" href="${resource(dir: '/')}"><img src="/images/flogo.png" alt="Crowdera"/></a><br><br><br>
-	            <div class="text-primary"><strong>
-		            <a href="${resource(dir: '/')}" >Home</a>&nbsp;&nbsp;&nbsp;&nbsp;
+	        <div class="pager">
+	            <a  href="${resource(dir: '/')}"><img src="/images/flogo.png" alt="Crowdera"/></a><br><br><br>
+	            <div><strong>
+		            <a href="${resource(dir: '/')}"  >Home</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		            <a href="${resource(dir: '/aboutus')}">Crowdera Crew</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		            <a href="${resource(dir: '/campaigns')}" >Explore</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		            <a href="${resource(dir: '/campaigns/create')}">Start a Campaign</a><br/>

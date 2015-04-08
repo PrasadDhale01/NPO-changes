@@ -376,15 +376,28 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 ------------------------- */
 footer {
     border-top: solid #ff784f 1px !important;
-    background-color: #f1f1f2;
+    background-color: #666666;
     padding: 30px 0 0 0;
     margin-top: 25px;
+    
 }
 
-footer .flinks a {
+footer .flinks a  a:hover{
     display: block;
     margin: 4px 0;
-    color: #dbe0e5;
+    text-decoration: none !important;
+    
+}
+
+a:focus {
+  color: #cccccc; 
+  text-decoration: none !important;
+}
+
+.foooter a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
 }
 
 .footerbottomsection {
@@ -392,6 +405,7 @@ footer .flinks a {
 }
 
 .footerbottomsection a {
+	width:100%;
 	color: #cccccc;
     font-size: 15px;
     text-decoration: none

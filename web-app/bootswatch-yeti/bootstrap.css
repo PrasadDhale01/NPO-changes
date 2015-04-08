@@ -293,7 +293,7 @@ a {
 }
 a:hover,
 a:focus {
-  /* color: #00526e; */
+  color: #00526e; 
   text-decoration: none;
 }
 a:focus {

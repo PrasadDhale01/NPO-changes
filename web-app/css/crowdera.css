@@ -391,8 +391,8 @@ footer .flinks a  a:hover{
 
 footer a:hover,
 a:focus {
-  color: #cccccc; 
-  text-decoration: none !important;
+   color: #cccccc; 
+   text-decoration: none !important;
 }
 
 .foooter a:focus {

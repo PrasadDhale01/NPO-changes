@@ -2,7 +2,7 @@
 <footer>    
     <div class="container">
    		<div class="row">
-	        <div class="pager" >
+	        <div class="pager">
 	    		<div>
 		            <div class="socialicon">
 					    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="/images/twitter-ico.png" alt="twitter"/></a>
@@ -14,10 +14,10 @@
 	       	</div>
       	</div>
 	    <div class="row">
-	        <div class="pager">
-	            <a  href="${resource(dir: '/')}"><img src="/images/flogo.png" alt="Crowdera"/></a><br><br><br>
+	        <div class="pager" >
+	            <a href="${resource(dir: '/')}"><img src="/images/flogo.png" alt="Crowdera"/></a><br><br><br>
 	            <div><strong>
-		            <a href="${resource(dir: '/')}"  >Home</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		            <a href="${resource(dir: '/')}">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		            <a href="${resource(dir: '/aboutus')}">Crowdera Crew</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		            <a href="${resource(dir: '/campaigns')}" >Explore</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		            <a href="${resource(dir: '/campaigns/create')}">Start a Campaign</a><br/>
@@ -30,9 +30,9 @@
             </div>
             <div class="pager">
 	            <div class="text-primary">
-					    <a href="${resource(dir: '/privacypolicy')}" class="footerlink">PRIVACY POLICY &nbsp;&nbsp;</a>
-					    <a href="${resource(dir: '/termsofuse')}" class="footerlink">TERMS OF USE</a><br/><br/>
-					    <a class="footerlink">&copy;&nbsp;2015 Crowdera,inc.&nbsp;&nbsp;&nbsp;All rights reserved.</a>
+					<a href="${resource(dir: '/privacypolicy')}" class="footerlink">PRIVACY POLICY &nbsp;&nbsp;</a>
+					<a href="${resource(dir: '/termsofuse')}" class="footerlink">TERMS OF USE</a><br/><br/>
+					<a class="footerlink">&copy;&nbsp;2015 Crowdera,inc.&nbsp;&nbsp;&nbsp;All rights reserved.</a>
 				</div>
 			</div>
             <div class="col-sm-2 flinks foot">

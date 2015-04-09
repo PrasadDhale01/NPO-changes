@@ -117,6 +117,11 @@ class RewardService {
         return RewardShipping.findByReward(reward)
     }
     
+    def getSortedRewards(Project project) {
+        def rewards = project.rewards.sort {it.id}
+        return rewards
+    }
+    
     @Transactional
     def bootstrap() {
         new Reward(

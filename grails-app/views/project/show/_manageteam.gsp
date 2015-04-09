@@ -25,9 +25,14 @@
 <g:if test="${!teams.isEmpty()}">
 	<ul class="nav nav-pills">
 		<li data-toggle="tab" class="active show-team col-md-4 col-sm-4 col-xs-4 button-team-show">
-		   <a href="#team" class="text-center teammembers">
-		       ${teams.size()}&nbsp;&nbsp;Teams
-		   </a>
+		    <g:if test="${currentUser}">   
+		        <a href="#team" class="text-center teammembers">
+		            ${teams.size()}&nbsp;&nbsp;Teams
+		        </a>
+		    </g:if>
+		    <g:else>
+		        <div class="col-md-12 col-sm-12 col-xs-12 teammembers noOfteamsLabel disableteambutton text-center">${teams.size()}&nbsp;&nbsp;Teams</div>
+		    </g:else>
 		</li>
 		<g:if test="${!isTeamExist}">
 		    <g:if test="${!ended}">

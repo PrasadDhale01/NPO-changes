@@ -41,7 +41,7 @@
                             <div class="rewardleftmargin">
                                 <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
                                 <p class="rewarddescription" id="${reward.id}">${raw(reward.description)}</p>
-                                <p class="selectperktext"><b></>SELECT THIS PERK</b></p>
+                                <p class="selectperktext"><b>SELECT THIS PERK</b></p>
                             </div>
                         </div>
                     </div>

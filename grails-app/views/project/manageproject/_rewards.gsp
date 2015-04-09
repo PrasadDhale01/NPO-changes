@@ -1,10 +1,11 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
+<g:set var="rewardService" bean="rewardService"/>
 <%
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     boolean isFundingOpen = projectService.isFundingOpen(project)
-    def rewards = project.rewards
+    def rewards = rewardService.getSortedRewards(project);
 %>
 <div class="row">
     <div class="col-xs-12">

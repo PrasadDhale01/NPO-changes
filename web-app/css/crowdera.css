@@ -382,15 +382,18 @@ footer {
     
 }
 
-footer .flinks a  a:hover{
+.flinks a , .flinks a:hover{
     display: block;
     margin: 4px 0;
     text-decoration: none !important;
     
 }
 
-footer a:hover,
-a:focus {
+a {
+	color: #ff784f;
+}
+
+.footer_links a:hover, .footer_links a:focus {
    color: #cccccc; 
    text-decoration: none !important;
 }
@@ -1531,12 +1534,10 @@ border-color: rgba(0,0,0,0.2);
     font-size: 16px;
     border-radius: 48px;
 }
-.rewardsection a:focus {
-color: #388f58 !important;
-}
+
 .rewardsection a {
-color: #388f58 !important;
-text-decoration: none !important;
+    color: #388f58 !important;
+    text-decoration: none !important;
 }
 .rewardsection-row{
 	padding-bottom:15px;
@@ -4228,7 +4229,7 @@ button.projectedit.close{
 .powerdby img{
 	max-width:100%;
 }
-a {
+.footer_links a {
 	color: #cccccc;
 	font-size:15px;
 	text-decoration: none;

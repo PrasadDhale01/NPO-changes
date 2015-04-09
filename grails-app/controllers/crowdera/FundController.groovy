@@ -486,7 +486,7 @@ class FundController {
 		transaction.save(failOnError: true)
 		conId=contribution.id
         frId= fundraiser.id
-        redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [cb: contribution.id, fr:fundraiser.id, editedComment:editedComment])
+        redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [cb: contribution.id, fr:fundraiser.id])
     }
 
     def paypalurl(){

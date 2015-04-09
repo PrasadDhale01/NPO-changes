@@ -13,6 +13,7 @@
         username = beneficiary.username
     }
     def currentUser = userService.getCurrentUser()
+    def rewards = rewardService.getSortedRewards(project);
 %>
 <div class="modal-footer tile-footer perks-style">
     <g:if test="${isFundingOpen}">
@@ -24,7 +25,7 @@
 </div>
 <div class="tile-footer perks-supporters">
     <div class="rewardsection">
-        <g:each in="${project.rewards}" var="reward">
+        <g:each in="${rewards}" var="reward">
             <%
                 def backers = contributionService.getBackersForProjectByReward(project, reward);
         		def price = projectService.getDataType(reward.price);
@@ -32,33 +33,31 @@
                 def isOnlyTwitterHandled = rewardService.isOnlyTwitterHandled(reward)
                 def isTwitterHandled = rewardService.isTwitterHandled(reward)
             %>
-            <div class="rewardsection-row">
-                <g:if test="${isFundingOpen}">
-                    <g:link controller="fund" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">
-                        <div class="rewardsection-row">
-                            <div class="rewardBottomBorder">
-                                <h5><b>$${price}&nbsp;&nbsp;&nbsp; ${reward.title}</b></h5>
-                                <div class="rewardleftmargin">
-                                    <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
-                                    <p class="rewarddescription" id="${reward.id}">${raw(reward.description)}</p>
-                                    <p>SELECT THIS PERK</p>
-                                </div>
-                            </div>
-                        </div>
-                    </g:link>
-                </g:if>
-                <g:else>
-                    <div class="rewarddiv">
+            <g:if test="${isFundingOpen}">
+                <g:link controller="fund" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">
+                    <div class="rewardsection-row">
                         <div class="rewardBottomBorder">
                             <h5><b>$${price}&nbsp;&nbsp;&nbsp; ${reward.title}</b></h5>
                             <div class="rewardleftmargin">
                                 <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
-                                <p class="rewarddescription">${reward.description}</p>
+                                <p class="rewarddescription" id="${reward.id}">${raw(reward.description)}</p>
+                                <p class="selectperktext"><b>SELECT THIS PERK</b></p>
                             </div>
-                         </div>
+                        </div>
+                    </div>
+                </g:link>
+            </g:if>
+            <g:else>
+                <div class="rewarddiv">
+                    <div class="rewardBottomBorder">
+                        <h5><b>$${price}&nbsp;&nbsp;&nbsp; ${reward.title}</b></h5>
+                        <div class="rewardleftmargin">
+                            <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
+                            <p class="rewarddescription">${reward.description}</p>
+                        </div>
                      </div>
-                </g:else>
-            </div>
+                 </div>
+            </g:else>
         </g:each>
     </div>
 </div>

@@ -1,6 +1,6 @@
 <!-- Footer -->
 <footer>    
-    <div class="container">
+    <div class="container footer_links">
    		<div class="row">
 	        <div class="pager">
 	    		<div>

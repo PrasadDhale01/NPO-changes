@@ -1,3 +1,31 @@
 .contributionShare {
 	margin-top: 20px;
 }
+.rewardTileOnFundPage a.list-group-item.active,
+.rewardTileOnFundPage a.list-group-item.active:hover,
+.rewardTileOnFundPage a.list-group-item.active:focus {
+    z-index: 2;
+    color: #ffffff;
+    background-color: #ff784f !important;
+    border-color: #ff784f !important;
+}
+
+.rewardTileOnFundPage a.list-group-item.active .badge{
+	background-color:#fff;
+	color:#ff784f;
+    padding: 4px 8px;
+    font-size: 16px;
+    border-radius: 48px;
+}
+.rewardTileOnFundPage .badge{
+	background-color:#000;
+	color:#fff;
+    padding: 4px 8px;
+    font-size: 16px;
+    border-radius: 48px;
+}
+.rewardTileOnFundPage .rewardHeading {
+	margin-top: 10px;
+	font-size: 18px;
+	font-weight: 500;
+}

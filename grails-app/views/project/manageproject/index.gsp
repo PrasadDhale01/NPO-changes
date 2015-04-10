@@ -68,22 +68,19 @@
 							${flash.teamdiscardedmessage}
 						</div>
 					</g:if>
-                    <g:if test="${fundRaiser}">
-                        <div class="col-md-12 col-sm-12 col-xs-12 text-center">
+                    <div class="col-md-12 green-heading campaignTitle text-center">
+					    <g:if test="${!project.validated}">
+					        <h1 class="green-heading"><g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
+					    </g:if>
+					    <g:else>
+					        <h1 class="green-heading"><g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
+					    </g:else>
+					</div>
+					<g:if test="${fundRaiser}">
+                        <div class="col-md-12 col-sm-12 col-xs-12 text-center campaignFundRaiser">
                             <h4 class="green-heading"> FUNDRAISER: ${fundRaiserName}</h4>
                         </div>
                     </g:if>
-					<g:if test="${!project.validated}">
-					    <h1 class="green-heading text-center">
-							<g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">${projectTitle}</g:link>
-						</h1>
-					</g:if>
-					<g:else>
-					    <h1 class="green-heading text-center">
-						    <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link>
-					    </h1>
-					</g:else>
-					
 					<div class="col-md-12">
 						<ul class="nav nav-tabs manage-projects nav-justified"
 							style="margin-bottom: 10px;">

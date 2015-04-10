@@ -86,16 +86,16 @@
                         ${flash.teamUpdatemessage}
                     </div>
                 </g:if>
-                <g:if test="${user || beneficiary}">
-	                <div class="col-md-12 col-sm-12 col-xs-12 text-center">
-	                	<h4 class="green-heading"> FUNDRAISER: ${fundRaiserName}</h4>
-	                </div>
-                </g:if>
-	            <div class="col-md-12 green-heading text-center">
+                <div class="col-md-12 green-heading campaignTitle text-center">
 	                <h1><g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
 		            	 ${projectTitle} 
 	                </g:link></h1>
 	            </div>
+                <g:if test="${user || beneficiary}">
+	                <div class="col-md-12 col-sm-12 col-xs-12 text-center campaignFundRaiser">
+	                	<h4 class="green-heading"> FUNDRAISER: ${fundRaiserName}</h4>
+	                </div>
+                </g:if>
 	            <div class="col-md-4 mobileview-top">
                     <g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentFundraiser,'username':username]"/>
                     <g:render template="/layouts/tilesanstitle" model="['currentFundraiser':currentFundraiser,'currentTeam':currentTeam,'currentTeamAmount':currentTeamAmount,'teamContribution':teamContribution]"/>

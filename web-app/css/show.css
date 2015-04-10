@@ -7,3 +7,48 @@
 	background-color: #ff784f !important;
 	color: white !important;
 }
+
+.campaignTitle {
+	margin-top: 6px;
+	margin-bottom: 8px;
+}
+.campaignTitle a {
+	color: #000 !important;
+}
+.campaignTitle h1 {
+	color: #000 !important;
+	font-weight: 900 !important;
+	font-size: 40px !important;
+}
+.campaignTitle a:hover {
+	color: #000 !important;
+	text-decoration: none !important;
+}
+.campaignFundRaiser h4 {
+	color: #ff784f !important;
+	font-weight: 500;
+}
+.campaignFundRaiser {
+	margin-bottom: 10px;
+}
+.rewardpricespan {
+	font-weight: 600;
+	font-size: 27px;
+}
+.rewardtitlespan {
+	font-weight: 500;
+	font-size: 20px;
+}
+.perksupporter {
+	font-weight: 500;
+}
+.perk-title-fund {
+	font-weight: 500;
+}
+.perk-amount-fund {
+	font-weight: 500;
+}
+.perk-desc-fund {
+	font-weight: 400;
+	font-size: 15px;
+}

@@ -23,10 +23,10 @@
                 %>
                 <br>
                 <a href="#" class="list-group-item <% if(perk == reward){%> active <%}%>" id="${reward.id}" data-rewardprice="${reward.price}">
-                    <h3 class="panel-title">${reward.title}</h3>
-                    <h4 class="rewardHeading">$${price}</h4>
-                    <p class="rewarddescription">${reward.description}</p>
-                    <span class="badge">${backers}</span>&nbsp;&nbsp;<b>SUPPORTERS</b>
+                    <h4 class="perk-title-fund">${reward.title}</h4>
+                    <h3 class="perk-amount-fund">$${price}</h3>
+                    <p class="perk-desc-fund">${reward.description}</p>
+                    <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perksupporter">SUPPORTERS</span>
                 </a>
             </g:each>
         </div>

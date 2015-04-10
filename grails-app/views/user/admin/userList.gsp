@@ -33,6 +33,16 @@
             	</table>
             </div><br>
             <h4>Non-Verified Users</h4>
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Send an email to non-verified users</h5>
+                </div>
+                <div  class="col-sm-2">
+                    <g:link action="resendToUsers" controller="User">
+                        <button class="sendMail" ><span class="glyphicon glyphicon-envelope"></span> Send Mail</button>
+                    </g:link>
+                </div>
+            </div>
             <div class="table table-responsive">
             	<table class="table table-bordered">
             	    <thead>

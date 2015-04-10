@@ -159,10 +159,10 @@ class UserController {
         def mailstousers = userService.getUsersMails()
         if(mailstousers){
             redirect(action:'list')
-            flash.message = "You have successfully send an email"
+            flash.message = "You have successfully sent an email"
         }else{
             redirect(action:'list')
-            flash.message = "You have already send an email"
+            flash.message = "You have already sent an email"
         }
     }
 }

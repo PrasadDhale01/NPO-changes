@@ -4838,3 +4838,6 @@ form#sortsForm {
 .fbShareForSmallDevices {
 	display: none;
 }
+button.all-users{
+  margin-bottom: 2%;
+}

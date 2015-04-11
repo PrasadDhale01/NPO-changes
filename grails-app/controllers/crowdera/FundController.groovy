@@ -421,7 +421,7 @@ class FundController {
                 name = request.getParameter('name')
                 username = request.getParameter('email')
             } else {
-                name = params.billToFirstName + " " +params.billToFirstName
+                name = params.billToFirstName + " " +params.billTolastName
                 username = params.billToEmail
             }
         } else {

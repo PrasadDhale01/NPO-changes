@@ -24,13 +24,13 @@
             	<table class="table table-bordered">
             	    <thead>
                 	<tr class="alert alert-title ">
-                        <th>Id</th>
-                        <th>Transaction Id</th>
-                        <th>Contribution Id</th>
-                    	<th>Project</th>
-                    	<th>Contributor</th>
-                    	<th>Project Amount</th>
-                    	<th>Contributed Amount</th>
+                        <th class="col-sm-1">SR. NO.</th>
+                        <th class="col-sm-1">Transaction Id</th>
+                        <th class="col-sm-1">Contribution Date</th>
+                    	<th class="col-sm-1">Project</th>
+                    	<th class="col-sm-1">Contributor Name</th>
+                    	<th class="col-sm-1">Project Amount</th>
+                    	<th class="col-sm-1">Contributed Amount</th>
                 	</tr>
             	    </thead>
             	    <tbody>

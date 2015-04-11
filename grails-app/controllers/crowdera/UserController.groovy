@@ -153,4 +153,16 @@ class UserController {
         flash.discardQueryMessage = "User Query Discarded Successfully."
         redirect action:'userquestionsList'
     }
+
+    @Secured(['ROLE_ADMIN'])
+    def resendToUsers(){
+        def mailstousers = userService.getUsersMails()
+        if(mailstousers){
+            redirect(action:'list')
+            flash.message = "You have successfully sent an email"
+        }else{
+            redirect(action:'list')
+            flash.message = "You have already sent an email"
+        }
+    }
 }

@@ -368,6 +368,27 @@ class UserService {
             service.delete();
         }
     }
+
+    def getUsersMails(){
+        List nonVerifiedUsers = getNonVerifiedUserList()
+        def status =false
+        Date date = new Date()
+        nonVerifiedUsers.each {
+            def lastUpdatedbyusers = it.lastUpdated
+            def diff = date - lastUpdatedbyusers
+            if (diff > 3) {
+                def user =User.findByLastUpdated(it.lastUpdated)
+                mandrillService.reSendConfirmationMail(user)
+                user.lastUpdated = date
+                status =true
+            }
+        }
+        if(status==true){
+            return true
+        }else{
+            return false
+        }
+    }
     
     @Transactional
     def bootstrap() {

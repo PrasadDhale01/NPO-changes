@@ -122,8 +122,8 @@
 					    <a target="_self" class="fb-like pull-right social fbShareForLargeDevices" href="#" id="fbshare">
 					        <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share">
 					    </a>
-                        <a target="_blank" class="fb-like pull-right social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
-                            <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share"/>
+                        <a target="_blank" class="fb-like pull-right social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">
+                            <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share">
                         </a>
 					    <span><label>Share this Contribution</label></span>
 					</div>
@@ -131,8 +131,8 @@
                     <!-- Modal -->
                     <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
                         <g:form action="sendemail" controller="fund" id="${project.id}" role="form">
-                            <input type="hidden" name="cb" id="${contributionId }" value="${contributionId }"></input>
-                            <input type="hidden" name="fr" id="${fundraiserId }" value="${fundraiserId }"></input>
+                            <input type="hidden" name="cb" id="${contributionId }" value="${contributionId }"/>
+                            <input type="hidden" name="fr" id="${fundraiserId }" value="${fundraiserId }"/>
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -143,7 +143,7 @@
                                         <g:hiddenField name="amount" value="${project.amount}"/>
                                         <div class="form-group">
                                             <label>Your Name</label>
-                                            <input type="text" class="form-control" name="name" placeholder="Name"></input>
+                                            <input type="text" class="form-control" name="name" placeholder="Name"/>
                                         </div>
 	                                    <div class="form-group">
 	                                        <label>Email ID's (separated by comma)</label>

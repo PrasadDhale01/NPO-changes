@@ -67,7 +67,7 @@
             <img class="hidden-xs" src="/images/girlComputerSlider.jpg" alt="Girl Computer Slider"/>
             <img class="visible-xs" src="/images/slide-3.jpg" alt="Girl Computer Slider Mobile"/>
             <div class="carousel-caption">
-                <div class="girlSlider"><a href="${base_url}/campaigns/create"><img src="/images/createButton.jpg"></a></div>
+                <div class="girlSlider"><a href="${base_url}/campaigns/create"><img src="/images/createButton.jpg" alt="create campaign"></a></div>
             </div>
         </div>
         <div class="item">

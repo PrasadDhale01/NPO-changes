@@ -33,22 +33,22 @@
 					</div>
 					<div class="form-group">
 						<label for="Subject"><b>Subject</b></label>
-						<input type="text" class="form-control" name="subject"/>
+						<input type="text" class="form-control" id="Subject" name="subject"/>
 						<p class="contactparagraph">Please use a few words to summarize your question.</p>
 					</div>
 					<div class="form-group">
 						<label for="description"><b>Description</b></label>
-						<textarea class="form-control" name="helpDescription" rows="4"></textarea>
+						<textarea class="form-control" id="description" name="helpDescription" rows="4"></textarea>
 						<div class="clear"></div>
 						<p class="contactparagraph">We love hearing from you and would like to respond to your request timely and accurately. To help us do so, please include as many specific details as possible.</p>
 					</div>
 					<div class="form-group">
 						<label for="firstAndLastName"><b>First and Last Name</b></label>
-						<input type="text" class="form-control" name="firstAndLastName"/>
+						<input type="text" id="firstAndLastName" class="form-control" name="firstAndLastName"/>
 					</div>
 					<div class="form-group">
 						<label for="emailAddress"><b>Your Email Address</b></label>
-						<input type="text" class="form-control" name="emailAddress"/>
+						<input type="text" id="emailAddress" class="form-control" name="emailAddress"/>
 					</div>
 					<div class="form-group attachment-group">
 						<label for="attachments"><b>Attachments</b></label>

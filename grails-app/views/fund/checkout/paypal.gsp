@@ -171,7 +171,7 @@
 						</div>
 						<div class="powerdby">
                             <p>Powered By Paypal</p>
-                                <p><img src="/images/poweredByFirstgiving.jpg" alt="Powered By paypal"/></p>
+                                <p><img src="https://s3.amazonaws.com/crowdera/assets/poweredByFirstgiving.jpg" alt="Powered By paypal"/></p>
                         </div>
 					</div>
 				</div>

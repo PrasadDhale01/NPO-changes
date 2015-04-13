@@ -114,16 +114,16 @@
                 <div class="row">
 					<div class="col-sm-12 shared contributionShare">
 					    <a class="share-mail pull-right social" href="#" data-toggle="modal" data-target="#sendmailmodal">
-					        <img src="https://s3.amazonaws.com/crowdera/assets/mail-share@2x.png" alt="Mail Share">
+					        <img src="${resource(dir: 'images', file: 'mail-share@2x.png')}" alt="Mail Share">
 					    </a>
 					    <a class="twitter-share pull-right social" id="twitterShare" target="_blank">
-					        <img src="https://s3.amazonaws.com/crowdera/assets/tw-share@2x.png" alt="Twitter Share">
+					        <img src="${resource(dir: 'images', file: 'tw-share@2x.png')}" alt="Twitter Share">
 					    </a>
 					    <a target="_self" class="fb-like pull-right social fbShareForLargeDevices" href="#" id="fbshare">
-					        <img src="https://s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share">
+					        <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share">
 					    </a>
                         <a target="_blank" class="fb-like pull-right social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
-                            <img src="https://s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share"/>
+                            <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share"/>
                         </a>
 					    <span><label>Share this Contribution</label></span>
 					</div>

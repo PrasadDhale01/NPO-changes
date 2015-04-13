@@ -40,54 +40,54 @@
 					</div>
 					<g:if test="${project.draft}">
 						<div class="over user-tiles-widths">
-							<img src="/images/draft.png" alt="draft"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/draft.png" alt="draft"/>
 						</div>
 					</g:if>
 					<g:elseif test="${project.rejected}">
 						<div class="over user-tiles-widths">
-							<img src="/images/rejected.png"  alt="rejected"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/rejected.png"  alt="rejected"/>
 						</div>
 					</g:elseif>
 					<g:elseif test="${!project.validated}">
 						<div class="over user-tiles-widths">
-							<img src="/images/PENDING.png" alt="PENDING"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/PENDING.png" alt="PENDING"/>
 						</div>
 					</g:elseif>
 					<g:elseif test="${ended}">
 					    <div class="over user-tiles-widths">
-							<img src="/images/ended.png" alt="ended"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/ended.png" alt="ended"/>
 						</div>
 					</g:elseif>
 					<g:elseif test="${percentage >= 75}">
 				    	<div class="over user-tiles-widths">
-							<img src="/images/funded1.png" alt="Funded"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/funded1.png" alt="Funded"/>
 						</div>
 					</g:elseif>
 					<g:elseif test="${project.validated}">
 						<g:if test="${user == project.user}">
 						    <div class="over user-tiles-widths">
-								<img src="/images/OWNER.png" alt="Owner"/>
+								<img src="https://s3.amazonaws.com/crowdera/assets/OWNER.png" alt="Owner"/>
 							</div>
 						</g:if>
 						<g:elseif test="${isTeamAdmin}">
 						    <div class="over user-tiles-widths">
-                                <img src="/images/Co-Owner1.png" alt="co-owner"/>
+                                <img src="https://s3.amazonaws.com/crowdera/assets/Co-Owner1.png" alt="co-owner"/>
                             </div>
                         </g:elseif>
 						<g:else>
 							<div class="over user-tiles-widths">
-								<img src="/images/PENDING.png" alt="Pending"/>
+								<img src="https://s3.amazonaws.com/crowdera/assets/PENDING.png" alt="Pending"/>
 							</div>
 						</g:else>
 					</g:elseif>
 					<g:elseif test="${isTeamAdmin}">
 					    <div class="over user-tiles-widths">
-							<img src="/images/OWNER.png" alt="Owner"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/OWNER.png" alt="Owner"/>
 						</div>
 					</g:elseif>
 					<g:else>
 					    <div class="over user-tiles-widths">
-							<img src="/images/teamTop.png" alt="Team top"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/teamTop.png" alt="Team top"/>
 						</div>
 					</g:else>
 				</div>
@@ -101,37 +101,37 @@
 					</div>
 					<g:if test="${project.draft}">
 						<div class="over user-tiles-widths">
-							<img src="/images/draft.png" alt="draft"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/draft.png" alt="draft"/>
 						</div>
 					</g:if>
 					<g:elseif test="${project.rejected}">
 						<div class="over user-tiles-widths">
-							<img src="/images/rejected.png" alt="rejected"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/rejected.png" alt="rejected"/>
 						</div>
 					</g:elseif>
 					<g:elseif test="${!project.validated}">
 						<div class="over user-tiles-widths">
-							<img src="/images/PENDING.png" alt="Pending"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/PENDING.png" alt="Pending"/>
 						</div>
 					</g:elseif>
 					<g:elseif test="${ended}">
 					    <div class="over user-tiles-widths">
-							<img src="/images/ended.png" alt="ended"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/ended.png" alt="ended"/>
 						</div>
 					</g:elseif>
 					<g:elseif test="${percentage >= 75}">
 				    	<div class="over user-tiles-widths">
-							<img src="/images/funded1.png" alt="Funded"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/funded1.png" alt="Funded"/>
 						</div>
 					</g:elseif>
 					<g:if test="${isTeamAdmin}">
 					    <div class="over teamtile-banner">
-							<img src="/images/OWNER.png" alt="Owner"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/OWNER.png" alt="Owner"/>
 						</div>
 					</g:if>
 					<g:else>
 					    <div class="over teamtile-banner">
-							<img src="/images/teamTop.png" alt="Team top"/>
+							<img src="https://s3.amazonaws.com/crowdera/assets/teamTop.png" alt="Team top"/>
 						</div>
 					</g:else>
 				</div>

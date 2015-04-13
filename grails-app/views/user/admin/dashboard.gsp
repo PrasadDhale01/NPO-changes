@@ -11,7 +11,7 @@
 <div class="feducontent">
     <div class="container">
 
-        <h2><img class="img-circle" src="/images/icon-admin.png" alt="Admin Dashboard"/>Admin Dashboard</h2>
+        <h2><img class="img-circle" src="https://s3.amazonaws.com/crowdera/assets/icon-admin.png" alt="Admin Dashboard"/>Admin Dashboard</h2>
 
         <h4>Vital Stats</h4>
         <g:render template="/user/admin/vitals"/>

@@ -70,7 +70,7 @@
         </g:form>
     </div>
 	<g:if test="${!project.contributions.empty}">
-        <h2 class="crowderasupport"><img src="/images/icon-contribution.png" alt="Campaign Contributions"/>&nbsp;&nbsp;Campaign Contributions</h2>
+        <h2 class="crowderasupport"><img src="https://s3.amazonaws.com/crowdera/assets/icon-contribution.png" alt="Campaign Contributions"/>&nbsp;&nbsp;Campaign Contributions</h2>
 	    <div class="commentsoncampaign">
     		<g:each in="${project.contributions}" var="contribution">
 		        <%
@@ -147,7 +147,7 @@
                                         <div class="modal-body">
                                             <div class="col-sm-12 margin">
                                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                                <h4 class="heading crowderasupport"><img src="/images/icon-edit.png" alt="Edit offline contribution"/>&nbsp;&nbsp;EDIT OFFLINE CONTRIBUTION</h4>
+                                                <h4 class="heading crowderasupport"><img src="https://s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit offline contribution"/>&nbsp;&nbsp;EDIT OFFLINE CONTRIBUTION</h4>
                                             </div>
                                             <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
                                             <div class="col-sm-8">

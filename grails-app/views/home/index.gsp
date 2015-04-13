@@ -22,7 +22,7 @@
    <div class="row text-center explorebtn">
        <a href="${resource(dir: '/campaigns')}" class="btn btn-primary btn-lg">Explore Campaigns</a>
    </div>
-    <div class="full-image hand-image-non"><img src="images/mobile-image.jpg" alt="mobile image"/></div>
+    <div class="full-image hand-image-non"><img src="https://s3.amazonaws.com/crowdera/assets/mobile-image.jpg" alt="mobile image"></div>
     
 <!--
 <div class="news">
@@ -65,17 +65,17 @@
 </div>
 -->
 
-<div class="full-image2"><img src="images/mobile-image.jpg" alt="mobile image" /></div>
+<div class="full-image2"><img src="https://s3.amazonaws.com/crowdera/assets/mobile-image.jpg" alt="mobile image" /></div>
 
 <div class="container">
 	<div class="row featured-non-profits">
 		<div class="col-md-12">
 		<h1 class="text-center headingtext">Featured Partners</h1>
 			<div class="col-md-3">
-				<img src="images/client-3.jpg" alt="Literate Nation"/>
+				<img src="https://s3.amazonaws.com/crowdera/assets/client-3.jpg" alt="Literate Nation"/>
 			</div>
 			<div class="col-md-3">
-				<img src="images/client-4.jpg" alt="Eagle Academy"/>
+				<img src="https://s3.amazonaws.com/crowdera/assets/client-4.jpg" alt="Eagle Academy"/>
 			</div>
 			
 		</div>

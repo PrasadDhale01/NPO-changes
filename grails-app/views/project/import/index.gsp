@@ -5,7 +5,7 @@
 <body>
 <div class="feducontent">
 	<div class="container">
-		<h1><img class="img-circle" src="/images/icon-create.png" alt="Bulk Import Campaigns"/> Bulk Import Campaigns</h1>
+		<h1><img class="img-circle" src="https://s3.amazonaws.com/crowdera/assets/icon-create.png" alt="Bulk Import Campaigns"/> Bulk Import Campaigns</h1>
 
         <g:if test="${flash.prj_import_message && flash.prj_import_message}">
             <div class="alert alert-danger">

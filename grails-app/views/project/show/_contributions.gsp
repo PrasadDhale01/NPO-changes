@@ -153,7 +153,7 @@
                                     <div class="modal-body">
                                         <div class="col-sm-12 margin">
                                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                            <h4 class="heading crowderasupport"><img src="/images/icon-edit.png" alt="Edit offline contribution"/>&nbsp;&nbsp;EDIT OFFLINE CONTRIBUTION</h4>
+                                            <h4 class="heading crowderasupport"><img src="https://s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit offline contribution"/>&nbsp;&nbsp;EDIT OFFLINE CONTRIBUTION</h4>
                                         </div>
                                         <div class="col-sm-8">
                                             <div class="form-group">

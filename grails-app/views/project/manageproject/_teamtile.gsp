@@ -29,30 +29,30 @@
 	    	<g:if test="${!isAdminOrBeneficiary}">
 	    		<g:if test="${team.enable==false}">
 	        	    <div class="over user-tiles-widths">
-			    	<img src="/images/disabledTeam.png" alt="diabledTeam"/>
+			    	<img src="https://s3.amazonaws.com/crowdera/assets/disabledTeam.png" alt="diabledTeam"/>
 			    </div>
 			</g:if>
 			<g:else>
 	    	   	     <div class="over teamtile-banner">
-			        <img src="/images/teamTop.png" alt="team"/>
+			        <img src="https://s3.amazonaws.com/crowdera/assets/teamTop.png" alt="team"/>
 		   	     </div>
 		   	</g:else>
 	        </g:if>
 	        <g:elseif test="${isCampaignAdminByUser}">
 	        	<g:if test="${team.enable==false}">
 	        		<div class="over user-tiles-widths">
-				    	<img src="/images/disabledTeam.png" alt="diabledTeam"/>
+				    	<img src="https://s3.amazonaws.com/crowdera/assets/disabledTeam.png" alt="diabledTeam"/>
 				</div>
 			</g:if>
 			<g:else>
                    		<div class="over user-tiles-widths">
-                        		<img alt="co-owner" src="/images/Co-Owner1.png">
+                        		<img alt="co-owner" src="https://s3.amazonaws.com/crowdera/assets/Co-Owner1.png">
                   		</div>
                 	</g:else>
         	 </g:elseif>
 	    	<g:else>
 	    	   <div class="over teamtile-banner">
-		          <img src="/images/OWNER.png" alt="owner"/>
+		          <img src="https://s3.amazonaws.com/crowdera/assets/OWNER.png" alt="owner"/>
 		   </div>
 	    	</g:else>
 	    </g:if>
@@ -64,21 +64,21 @@
 		    <g:else>
 		        <div class="imageWithTag">
 	                    <div class="under">
-				<img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
+				<img src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="project-img" alt="Upload Photo"/>
 	                    </div>
 	                    <div class="over teamtile-banner">
 	                        <g:if test="${!team.enable}">
-				    <img src="/images/disabledTeam.png" alt="diabledTeam"/>
+				    <img src="https://s3.amazonaws.com/crowdera/assets/disabledTeam.png" alt="diabledTeam"/>
 			        </g:if>
 			        <g:else>
 		                    <g:if test="${user == project.user}">
-					<img src="/images/OWNER.png" alt="owner"/>
+					<img src="https://s3.amazonaws.com/crowdera/assets/OWNER.png" alt="owner"/>
 				    </g:if>
 				    <g:elseif test="${isCampaignAdmin}">
-                                        <img src="/images/Co-Owner1.png" alt="co-owner"/>
+                                        <img src="https://s3.amazonaws.com/crowdera/assets/Co-Owner1.png" alt="co-owner"/>
                                     </g:elseif>
 				    <g:else>
-			                <img src="/images/teamTop.png" alt="team"/>
+			                <img src="https://s3.amazonaws.com/crowdera/assets/teamTop.png" alt="team"/>
 			            </g:else>
 			        </g:else>
 			    </div>
@@ -94,21 +94,21 @@
 		    <g:else>
 		        <div class="imageWithTag">
 	                    <div class="under">
-				 <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="project-img" alt="Upload Photo"/>
+				 <img src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="project-img" alt="Upload Photo"/>
 	                    </div>
 	                    <div class="over teamtile-banner">
 	                        <g:if test="${!team.enable}">
-			            <img src="/images/disabledTeam.png" alt="diabledTeam"/>
+			            <img src="https://s3.amazonaws.com/crowdera/assets/disabledTeam.png" alt="diabledTeam"/>
 			        </g:if>
 			        <g:else>
 		                    <g:if test="${user == project.user}">
-				        <img src="/images/OWNER.png" alt="owner"/>
+				        <img src="https://s3.amazonaws.com/crowdera/assets/OWNER.png" alt="owner"/>
 				    </g:if>
 				    <g:elseif test="${isCampaignAdmin}">
-                                        <img src="/images/Co-Owner1.png" alt="co-owner"/>
+                                        <img src="https://s3.amazonaws.com/crowdera/assets/Co-Owner1.png" alt="co-owner"/>
                                     </g:elseif>
 				    <g:else>
-					<img src="/images/teamTop.png" alt="team"/>
+					<img src="https://s3.amazonaws.com/crowdera/assets/teamTop.png" alt="team"/>
 				    </g:else>
 				</g:else>
 		            </div>

@@ -343,7 +343,7 @@
                 </div>
                 <div class="powerdby">
                     <p>Powered By Firstgiving</p>
-                    <p><img src="/images/poweredByFirstgiving.jpg" alt="Powered By Firstgiving"/></p>
+                    <p><img src="https://s3.amazonaws.com/crowdera/assets/poweredByFirstgiving.jpg" alt="Powered By Firstgiving"/></p>
                 </div>
             </div>
         </div>

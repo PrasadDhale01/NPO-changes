@@ -5,17 +5,17 @@
 	        <div class="pager">
 	    		<div>
 		            <div class="socialicon">
-					    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="/images/twitter-ico.png" alt="twitter"/></a>
-					    <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="/images/_thumb_13631.png" alt="facebook"/></a>
-					    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="insta" src="/images/instagram-icon.png" alt="Instagram"/></a>
-						<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="inlink" src="/images/linked-in-icon.png" alt="Linkedin"/></a>
+					    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="https://s3.amazonaws.com/crowdera/assets/twitter-ico.png" alt="twitter"/></a>
+					    <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="https://s3.amazonaws.com/crowdera/assets/_thumb_13631.png" alt="facebook"/></a>
+					    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="insta" src="https://s3.amazonaws.com/crowdera/assets/instagram-icon.png" alt="Instagram"/></a>
+						<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="inlink" src="https://s3.amazonaws.com/crowdera/assets/linked-in-icon.png" alt="Linkedin"/></a>
 		        	</div>
 	         	</div>
 	       	</div>
       	</div>
 	    <div class="row">
 	        <div class="pager" >
-	            <a href="${resource(dir: '/')}"><img src="/images/flogo.png" alt="Crowdera"/></a><br><br><br>
+	            <a href="${resource(dir: '/')}"><img src="https://s3.amazonaws.com/crowdera/assets/flogo.png" alt="Crowdera"/></a><br><br><br>
 	            <div><strong>
 		            <a href="${resource(dir: '/')}">Home</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		            <a href="${resource(dir: '/aboutus')}">Crowdera Crew</a>&nbsp;&nbsp;&nbsp;&nbsp;

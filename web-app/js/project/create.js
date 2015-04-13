@@ -466,7 +466,7 @@ $(function() {
                    '<label class="col-sm-2 control-label rewarddesctitle">Perk Description</label>'+
                     '<div class="col-sm-10">'+
                       '<textarea class="form-control required rewardDescription" name="rewardDescription'+count+
-                         '" id="rewardDesc'+count+'" rows="2" placeholder="Description" maxlength="140"></textarea>'+
+                         '" id="rewardDesc'+count+'" rows="2" placeholder="Description" maxlength="250"></textarea>'+
                     '</div>'+
                 '</div>'+
             '</div>'+

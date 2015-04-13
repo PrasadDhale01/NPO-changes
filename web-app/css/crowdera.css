@@ -2090,6 +2090,9 @@ h1.green-heading{
     font-weight: normal;
     display:inline !important;
 }
+.form-group.createDescDiv.has-error {
+    display: inline;
+}
 .createDescDiv .help-block{
     color: #ff0000;
     font-size: 12px;
@@ -4189,7 +4192,7 @@ button.projectedit.close{
      word-wrap: break-word;
 }
 .containrewards{
-    height: 160px;
+    height: 245px;
     position: relative;
     white-space: normal;
 	overflow: hidden;

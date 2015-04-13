@@ -123,7 +123,7 @@
 					        <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share">
 					    </a>
                         <a target="_blank" class="fb-like pull-right social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">
-                            <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share"/>
+                            <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share">
                         </a>
 					    <span><label>Share this Contribution</label></span>
 					</div>

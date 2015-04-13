@@ -5,6 +5,7 @@ import groovy.json.JsonSlurper
 import groovyx.net.http.ContentType
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.Method
+import java.text.SimpleDateFormat
 
 import org.apache.http.HttpEntity
 import org.apache.http.HttpResponse
@@ -420,12 +421,12 @@ class FundController {
                 name = request.getParameter('name')
                 username = request.getParameter('email')
             } else {
-                name = params.billToFirstName
+                name = params.billToFirstName + " " +params.billTolastName
                 username = params.billToEmail
             }
         } else {
             def orgUser = User.get(userId)
-            name = orgUser.firstName
+            name = orgUser.firstName + " " + orgUser.lastName
             username = orgUser.email
         }
         
@@ -560,17 +561,19 @@ class FundController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def generateCSV(){
         
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
+        
         def transactions =Transaction.list()
         def results=[]
      
         response.setHeader("Content-disposition", "attachment; filename=CSV_report.csv")
        
         transactions.each{  
-           def rows = [it.transactionId, it.contribution.id, it.project.title, it.user.firstName,it.project.amount, projectService.getContributedAmount(it)]
+           def rows = [it.transactionId, dateFormat.format(it.contribution.date), it.project.title, it.contribution.contributorName,it.project.amount, projectService.getContributedAmount(it)]
            results << rows
         }
            
-        def result='Transaction Id, Contribution Id, Project, Contributor, Project Amount, Contributed Amount, \n'
+        def result='Transaction Id, Contribution Date, Project, Contributor Name, Project Amount, Contributed Amount, \n'
         results.each{ row->
            row.each{
            col -> result+=col +','

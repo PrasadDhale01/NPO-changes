@@ -107,14 +107,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-brand {
-/*     margin-left: 15px; */
-/*     background: url('../images/logo-small.png') no-repeat left 5px; */
-/*     width: 196px; */
-/*     float: left; */
-/*     padding: 0 !important; */
-/*     font-size: 19px; */
-/*     line-height: 21px; */
-/*     height: 55px; */
     height: 70px;
 }
 .navbar-brand >img {

@@ -22,7 +22,7 @@
 			</g:if>
 			<g:uploadForm action="crowderacustomerhelp" controller="Home" role="form">
 				<div class="col-xs-12 col-xs-offset-0 col-sm-12 col-sm-offset-0 col-md-10 col-md-offset-2">
-					<h3 class="crowderasupport"><img src="https://s3.amazonaws.com/crowdera/assets/questionorcomment.png" alt="Question or Comment">&nbsp;&nbsp;<b>Submit a question or comment</b></h3>
+					<h3 class="crowderasupport"><img src="//s3.amazonaws.com/crowdera/assets/questionorcomment.png" alt="Question or Comment">&nbsp;&nbsp;<b>Submit a question or comment</b></h3>
 				</div>
 				<div class=" col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
 					<div class="form-group">

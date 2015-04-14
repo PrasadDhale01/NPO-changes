@@ -43,12 +43,12 @@ Expects the parent containers to be like so:
                 </div>
                 <g:if test="${ended}">
 				    <div class="over banner-wid">
-						<img src="https://s3.amazonaws.com/crowdera/assets/ended.png" alt="Ended"/>
+						<img src="//s3.amazonaws.com/crowdera/assets/ended.png" alt="Ended"/>
 					</div>
 				</g:if>
                 <g:elseif test="${percentage >= 75}">
 				    <div class="over banner-wid">
-						<img src="https://s3.amazonaws.com/crowdera/assets/funded1.png" alt="Funded"/>
+						<img src="//s3.amazonaws.com/crowdera/assets/funded1.png" alt="Funded"/>
 					</div>
 				</g:elseif>
             </div>

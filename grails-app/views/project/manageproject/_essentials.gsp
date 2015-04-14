@@ -29,16 +29,16 @@
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <g:if test="${project.validated}">
         <a class="share-mail pull-right social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
-            <img src="https://s3.amazonaws.com/crowdera/assets/mail-share@2x.png">
+            <img src="//s3.amazonaws.com/crowdera/assets/mail-share@2x.png">
 		</a>
 		<a class="twitter-share pull-right social" id="twitterShare" target="_blank">
-			<img src="https://s3.amazonaws.com/crowdera/assets/tw-share@2x.png" alt="Twitter Share"/>
+			<img src="//s3.amazonaws.com/crowdera/assets/tw-share@2x.png" alt="Twitter Share"/>
 		</a> 
         <a target="_blank" class="fb-like pull-right social fbShareForLargeDevices" id="fbshare">
-        	<img src="https://s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share"/>
+        	<img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share"/>
         </a>
         <a target="_blank" class="fb-like pull-right social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
-            <img src="https://s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share"/>
+            <img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share"/>
         </a>
 		<div class="shared">
 		    <span><label>Share this campaign</label></span>

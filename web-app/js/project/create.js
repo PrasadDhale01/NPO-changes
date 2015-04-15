@@ -308,7 +308,7 @@ $(function() {
                 picReader.addEventListener("load",function(event) {
                     var picFile = event.target;
                     $('#imgIcon').attr('src',picFile.result);
-                    $('#delIcon').attr('src',"/images/delete.ico");
+                    $('#delIcon').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
                });
                // Read the image
                picReader.readAsDataURL(file);
@@ -418,7 +418,7 @@ $(function() {
                         var picFile = event.target;
                         var div = document.createElement("div");
                         div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"+ picFile.result+ "'"+ "title='"
-                            + file.name + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"/images/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"+ "</div>";
+                            + file.name + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"+ "</div>";
                             output.insertBefore(div, null);
                     });
                     // Read the image

@@ -24,11 +24,11 @@
             	<table class="table table-bordered">
             	    <thead>
                 	<tr class="alert alert-title ">
-                        <th>Id</th>
+                        <th>SR. NO.</th>
                         <th>Transaction Id</th>
-                        <th>Contribution Id</th>
+                        <th>Contribution Date</th>
                     	<th>Project</th>
-                    	<th>Contributor</th>
+                    	<th>Contributor Name</th>
                     	<th>Project Amount</th>
                     	<th>Contributed Amount</th>
                 	</tr>

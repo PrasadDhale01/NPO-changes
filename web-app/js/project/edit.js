@@ -131,7 +131,7 @@ $(function() {
                 picReader.addEventListener("load", function(event) {
                     var picFile = event.target;
                     $('#imgIcon').attr('src', picFile.result);
-                    $('#logoDelete').attr('src', "/images/delete.ico");
+                    $('#logoDelete').attr('src', "//s3.amazonaws.com/crowdera/assets/delete.ico");
                     $('#imgIcon').show();
                     $('#logoDelete').show();
 
@@ -211,7 +211,7 @@ $(function() {
                         var picFile = event.target;
                         var div = document.createElement("div");
                         div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"+ picFile.result + "'" + "title='" + file.name
-                                      + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"/images/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"
+                                      + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"
                                       + "</div>";
                         output.insertBefore(div, null);
                     });
@@ -267,7 +267,7 @@ $(function() {
                         var picFile = event.target;
                         var div = document.createElement("div");
                         div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div pull-left\"><img  class='pr-thumbnail' src='"+ picFile.result+ "'"+ "title='"+ file.name
-                                         + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"/images/delete.ico\" style=\"width:10px;height:10px;\"/></div>"
+                                         + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"width:10px;height:10px;\"/></div>"
                                          + "</div>";
 
                         output.insertBefore(div, null);

@@ -6,7 +6,7 @@
 <body>
 <div class="container">
   <div class="static-content">
-    </br>
+    <br>
     <h1 >TERMS AND CONDITIONS</h1>
 
     <p class="static-content-paragraph">Crowdera Inc.("Crowdera", "we", "us", or "our") welcomes you. We invite you to access and use our online services (the "Services"), which are made available to you through a variety of platforms, including http://www.crowdera.co (the "Website") and through our mobile app, which is accessible through tablets, cell phones, personal digital assistants, connected televisions, and other devices (the "App"). The Website and the App are collectively referred to as the "Platform".</p>

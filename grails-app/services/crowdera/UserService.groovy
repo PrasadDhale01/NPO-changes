@@ -77,7 +77,7 @@ class UserService {
 
             s3Service.putObject(s3Bucket, object)
             file.delete()
-            def imageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+            def imageUrl = "//s3.amazonaws.com/crowdera/${key}"
 
             return imageUrl
         }
@@ -310,7 +310,7 @@ class UserService {
 
             s3Service.putObject(s3Bucket, object)
             file.delete()
-            attachmentUrl = "https://s3.amazonaws.com/crowdera/${key}"
+            attachmentUrl = "//s3.amazonaws.com/crowdera/${key}"
         }
         
         service.status = true
@@ -366,6 +366,27 @@ class UserService {
         CustomerService service = CustomerService.get(params.id)
         if (service) {
             service.delete();
+        }
+    }
+
+    def getUsersMails(){
+        List nonVerifiedUsers = getNonVerifiedUserList()
+        def status =false
+        Date date = new Date()
+        nonVerifiedUsers.each {
+            def lastUpdatedbyusers = it.lastUpdated
+            def diff = date - lastUpdatedbyusers
+            if (diff > 3) {
+                def user =User.findByLastUpdated(it.lastUpdated)
+                mandrillService.reSendConfirmationMail(user)
+                user.lastUpdated = date
+                status =true
+            }
+        }
+        if(status==true){
+            return true
+        }else{
+            return false
         }
     }
     

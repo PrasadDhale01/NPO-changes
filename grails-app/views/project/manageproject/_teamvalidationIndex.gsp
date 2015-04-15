@@ -3,7 +3,7 @@
 %>
 
 <div class="col-md-12 col-sm-12 col-xs-12"><br>
-    <h2><img class="img-circle" src="/images/icon-validated.png" alt="Teams Validation"/>&nbsp;Teams Validation</h2>
+    <h2><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-validated.png" alt="Teams Validation"/>&nbsp;Teams Validation</h2>
     <br>
     <g:if test="${team.size() > 0}">
         <div class="table table-responsive">

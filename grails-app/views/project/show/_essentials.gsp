@@ -29,16 +29,16 @@
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <div class="col-sm-12 social">
         <a class="share-mail pull-right" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
-            <img src="${resource(dir: 'images', file: 'mail-share@2x.png')}" alt="Mail Share"/>
+            <img src="//s3.amazonaws.com/crowdera/assets/mail-share@2x.png" alt="Mail Share"/>
         </a>
         <a class="twitter-share pull-right" id="twitterShare" data-url="${base_url}/projects/${project.id}" target="_blank">
-            <img src="${resource(dir: 'images', file: 'tw-share@2x.png')}" alt="Twitter Share"/>
+            <img src="//s3.amazonaws.com/crowdera/assets/tw-share@2x.png" alt="Twitter Share"/>
         </a>
         <a target="_blank" class="fb-like pull-right fbShareForLargeDevices" id="fbshare">
-            <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share"/>
+            <img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share"/>
         </a>
         <a target="_blank" class="fb-like pull-right social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
-            <img src="${resource(dir: 'images', file: 'fb-share@2x.png')}" alt="Facebook Share"/>
+            <img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share"/>
         </a>
         <div class="shared">
         	<span><label>Share this Campaign</label></span>

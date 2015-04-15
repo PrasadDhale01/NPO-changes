@@ -68,7 +68,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	<div class="feducontent">
 		<div class="container">
 			<h1>
-				<img class="img-circle" src="/images/icon-create.png" alt="Create Campaign"/>Create Campaign
+				<img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-create.png" alt="Create Campaign"/>Create Campaign
 			</h1>
 
 			<g:uploadForm class="form-horizontal" controller="project"
@@ -441,7 +441,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 											<div class="col-sm-10">
 												<textarea class="form-control rewardDescription required"
 													name="rewardDescription1" id="rewardDesc1" rows="2"
-													placeholder="Description" maxlength="140"></textarea>
+													placeholder="Description" maxlength="250"></textarea>
 											</div>
 										</div>
 									</div>

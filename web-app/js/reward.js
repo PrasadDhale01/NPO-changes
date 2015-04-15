@@ -9,7 +9,7 @@ $(function() {
             description: {
                 required: true,
                 minlength: 2,
-                maxlength: 140
+                maxlength: 250
             },
             price: {
                 required: true,
@@ -45,7 +45,7 @@ $(function() {
     
     event.altKey==true;
     var currentString = $('#descarea').val().length;
-    if(currentString <=139) {
+    if(currentString <=249) {
         var text = currentString + 1;
     }
     if (event.keyCode > 31) {
@@ -53,7 +53,7 @@ $(function() {
         setDescriptionText();
       }
       else{
-          if(currentString <139)
+          if(currentString <249)
           currentString++;
           $('#desclength').text(text);
       }

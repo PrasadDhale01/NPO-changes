@@ -20,10 +20,10 @@
 
             <hr/>
             <div class="form-group">
-                <input type="fn" name="firstName" class="form-control" placeholder="First name" autofocus>
+                <input type="text" name="firstName" class="form-control" placeholder="First name" autofocus>
             </div>
             <div class="form-group">
-                <input type="ln" name="lastName" class="form-control" placeholder="Last name">
+                <input type="text" name="lastName" class="form-control" placeholder="Last name">
             </div>
             <div class="form-group">
                 <input type="email" name="username" class="form-control" placeholder="Email address">

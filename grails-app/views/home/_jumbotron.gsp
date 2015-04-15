@@ -15,8 +15,8 @@
     <div class="carousel-inner">
         <div class="item active">
             <g:if test="${userService.isLoggedIn()}">
-                <img class="hidden-xs" src="/images/sliderWithoutReg.jpg" alt="Slider-1"/>
-                <img class="visible-xs" src="/images/slide-mobile.jpg" alt="Mobile Slider-1"/>
+                <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/sliderWithoutReg.jpg" alt="Slider-1"/>
+                <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/slide-mobile.jpg" alt="Mobile Slider-1"/>
 <%--                <g:if test="${userService.isFacebookUser() }">--%>
 <%--                    <div class="carousel-caption">--%>
 <%--                        <div class="fbButton">--%>
@@ -33,12 +33,12 @@
 <%--                </g:else>--%>
             </g:if>
             <g:else>
-            <img class="hidden-xs or-css" src="/images/sliderWithoutReg.jpg" alt="Slider-1"/>
-            <img class="visible-xs" src="/images/slide-mobile.jpg" alt="Mobile Slider-1"/>
+            <img class="hidden-xs or-css" src="//s3.amazonaws.com/crowdera/assets/sliderWithoutReg.jpg" alt="Slider-1"/>
+            <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/slide-mobile.jpg" alt="Mobile Slider-1"/>
             <div class="carousel-caption">
                 <div class="fbButton">
-                    <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}"><img src="/images/facebook_register.jpg" alt="facebook register" class="btn btn-fb"/></a>
-                    <img src="/images/or.png" alt="or"/>
+                    <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}"><img src="//s3.amazonaws.com/crowdera/assets/facebook_register.jpg" alt="facebook register" class="btn btn-fb"/></a>
+                    <img src="//s3.amazonaws.com/crowdera/assets/or.png" alt="or"/>
                 </div>
             </div>
             <div class="carousel-caption imageCarouseltextbox" id="imageCarouselForm">
@@ -64,15 +64,15 @@
             </g:else>
         </div>
         <div class="item ">
-            <img class="hidden-xs" src="/images/girlComputerSlider.jpg" alt="Girl Computer Slider"/>
-            <img class="visible-xs" src="/images/slide-3.jpg" alt="Girl Computer Slider Mobile"/>
+            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/girlComputerSlider.jpg" alt="Girl Computer Slider"/>
+            <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/slide-3.jpg" alt="Girl Computer Slider Mobile"/>
             <div class="carousel-caption">
-                <div class="girlSlider"><a href="${base_url}/campaigns/create"><img src="/images/createButton.jpg"></a></div>
+                <div class="girlSlider"><a href="${base_url}/campaigns/create"><img src="//s3.amazonaws.com/crowdera/assets/createButton.jpg" alt="create campaign"></a></div>
             </div>
         </div>
         <div class="item">
-            <img class="hidden-xs" src="/images/kidsRunningSlider.jpg" alt="kids Running Slider"/>
-            <img class="visible-xs" src="/images/slide-2.jpg" alt="kids Running Slider Mobile"/>
+            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/kidsRunningSlider.jpg" alt="kids Running Slider"/>
+            <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/slide-2.jpg" alt="kids Running Slider Mobile"/>
             <div class="carousel-caption">
                 <div><a href="${base_url}/campaigns/create"><button class="btn btn-create" type="submit"><b>Create Campaign</b></button></a></div>
             </div>       

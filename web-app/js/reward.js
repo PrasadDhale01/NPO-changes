@@ -4,6 +4,7 @@ $(function() {
     $('#createRewardModal').find('form').validate({
         rules: {
             title: {
+            	required: true,
                 minlength: 2
             },
             description: {
@@ -21,9 +22,43 @@ $(function() {
         }
     });
 
+    $('.editperks').each(function () {
+        $(this).find('form').validate({
+        	rules: {
+        		title: {
+                	required: true,
+                    minlength: 2
+                },
+                description: {
+                    required: true,
+                    minlength: 2,
+                    maxlength: 250
+                },
+                price: {
+                    required: true,
+                    number: true,
+                    max : 50000,
+                    isPerk:true,
+                    min: 0
+                }
+        	}
+        });
+    });
+    
+    $('.perkPrice').each(function () {
+    	$(this).keypress(function (e) {
+            //if the letter is not digit then display error and don't type anything
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                //display error message
+                $(".errormsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            } 
+        });
+    });
+    
     $.validator.addMethod('isPerk', function (value, element) {
-        var price =  $('#perkPrice').val();
-        var cAmount=parseFloat($('#cAmount').val());
+        var price =  $('.perkPrice').val();
+        var cAmount = parseFloat($('#cAmount').val());
         if(price > cAmount){
            return false;
         }

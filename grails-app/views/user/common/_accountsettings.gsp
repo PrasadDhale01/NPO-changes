@@ -14,7 +14,7 @@
 	                <img alt="Profile Image" class="profileimage" src="${imageUrl}"/>
 	            </g:else>
 	            <div class="deleteavatar">
-	               <g:link action="deleteavatar" controller="user" id="${user.id}"><img alt="Delete" onclick="return confirm(&#39;Are you sure you want to deleted this avatar?&#39;);" src="/images/delete.ico"/></g:link>
+	               <g:link action="deleteavatar" controller="user" id="${user.id}"><img alt="Delete" onclick="return confirm(&#39;Are you sure you want to deleted this avatar?&#39;);" src="//s3.amazonaws.com/crowdera/assets/delete.ico"/></g:link>
 	            </div>
 	        </div>
 		    <g:uploadForm controller="user" action="edit_avatar" id="${user.id}" role="form">
@@ -28,7 +28,7 @@
 	    </g:if>
 	    <g:else>
 	        <div class="uploadimage" class="blacknwhite">
-	            <img src="${resource(dir: 'images', file: 'profile_image.jpg')}" class="profileimage" alt="Upload Photo"/>
+	            <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="profileimage" alt="Upload Photo"/>
 	        </div>
 	        <g:uploadForm controller="user" action="upload_avatar" id="${user.id}" role="form">
 	            <button class="btn btn-primary btn-sm" type="button" id="uploadavatar">Upload Avatar</button>

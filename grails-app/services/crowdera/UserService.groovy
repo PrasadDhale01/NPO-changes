@@ -77,7 +77,7 @@ class UserService {
 
             s3Service.putObject(s3Bucket, object)
             file.delete()
-            def imageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+            def imageUrl = "//s3.amazonaws.com/crowdera/${key}"
 
             return imageUrl
         }
@@ -310,7 +310,7 @@ class UserService {
 
             s3Service.putObject(s3Bucket, object)
             file.delete()
-            attachmentUrl = "https://s3.amazonaws.com/crowdera/${key}"
+            attachmentUrl = "//s3.amazonaws.com/crowdera/${key}"
         }
         
         service.status = true

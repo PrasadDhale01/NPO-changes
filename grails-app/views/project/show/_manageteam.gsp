@@ -172,7 +172,7 @@
                                     <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}" alt="images"/>
                                     <div class="deleteicon pictures-edit-deleteicon">
                                         <img alt="images" onClick="deleteTeamImage(this,'${imgurl.id}','${currentTeam.id}');" value='${imgurl.id}'
-                                            src="/images/delete.ico" id="imageDelete"/>
+                                            src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete"/>
                                     </div>
                                 </div> 
                             </g:each>

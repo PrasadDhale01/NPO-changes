@@ -46,7 +46,7 @@
                 <tbody>
                     <g:render template="shipping/shippinggrid" model="['contribution': shippingDoneItems]"></g:render>
                 </tbody>
-            <table>
+            </table>
         </div>
     </div>
 </div>	

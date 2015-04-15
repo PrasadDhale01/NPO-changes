@@ -70,7 +70,7 @@
 <input type="hidden" name="charity_name" id="charity_name"/>
 <div class="feducontent">
 	<div class="container">
-		<h1><img class="img-circle" src="/images/icon-edit.png" alt="Edit Campaign"/> Edit Campaign</h1>
+		<h1><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit Campaign"/> Edit Campaign</h1>
 
         <g:uploadForm class="form-horizontal" controller="project" action="update" method="post" role="form">
             <input type="hidden" name="_method" value="PUT" id="_method" />
@@ -230,7 +230,7 @@
                                             <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
                                             <div class="deleteicon orgicon-css-styles">
                                                 <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
-                                                src="/images/delete.ico" id="logoDelete"/>
+                                                src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete"/>
                                             </div>
                                         </g:if>
                                         <g:else>
@@ -288,7 +288,7 @@
 					    <g:if test="${email1}">
 				            <div class="deleteIconAbove">
                                                 <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email1', '${email1}');"
-                                                    src="/images/delete.ico" id="logoDelete1"/>
+                                                    src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete1"/>
                                             </div>
                                         </g:if>
                                    </div>
@@ -307,7 +307,7 @@
 	                                <g:if test="${email2}">
 	                                    <div class="deleteIconAbove">
                                                 <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email2', '${email2}');"
-                                                    src="/images/delete.ico" id="logoDelete2"/>
+                                                    src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete2"/>
                                             </div>
                                         </g:if>
 	                            </div>
@@ -329,7 +329,7 @@
 	                                 <g:if test="${email3}">
 	                                    <div class="deleteIconAbove">
                                                 <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email3' ,'${email3}');"
-                                                    src="/images/delete.ico" id="logoDelete3"/>
+                                                    src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete3"/>
                                             </div>
                                         </g:if>
                                     </div>
@@ -473,7 +473,7 @@
                                         <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}"/>
                                         <div class="deleteicon pictures-edit-deleteicon">
                                             <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}'
-                                            src="/images/delete.ico" id="imageDelete"/>
+                                            src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete"/>
                                         </div>
                                     </div> 
                                 </g:each>

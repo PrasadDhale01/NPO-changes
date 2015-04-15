@@ -812,7 +812,7 @@ class ProjectService {
                     def object=new S3Object(file)
                     object.key=key
 
-                    tempImageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+                    tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
                     s3Service.putObject(s3Bucket, object)
                     imageUrl.url = tempImageUrl
                     project.addToImageUrl(imageUrl)
@@ -848,7 +848,7 @@ class ProjectService {
 					def object=new S3Object(file)
 					object.key=key
 
-					tempImageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+					tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
 					s3Service.putObject(s3Bucket, object)
 					imageUrl.url = tempImageUrl
 					team.addToImageUrl(imageUrl)
@@ -888,7 +888,7 @@ class ProjectService {
                 def object=new S3Object(file)
                 object.key=key
 
-                imageUrl.url = "https://s3.amazonaws.com/crowdera/${key}"
+                imageUrl.url = "//s3.amazonaws.com/crowdera/${key}"
                 s3Service.putObject(s3Bucket, object)
                 imageUrl.save()
                 projectUpdate.addToImageUrls(imageUrl)
@@ -936,7 +936,7 @@ class ProjectService {
 
         s3Service.putObject(s3Bucket, object)
         file.delete()
-        def imageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+        def imageUrl = "//s3.amazonaws.com/crowdera/${key}"
 
         return imageUrl
     }*/
@@ -962,7 +962,7 @@ class ProjectService {
             s3Service.putObject(s3Bucket, object)
             tempFile.delete()
         
-            def organizationIconUrl = "https://s3.amazonaws.com/crowdera/${key}"
+            def organizationIconUrl = "//s3.amazonaws.com/crowdera/${key}"
             return organizationIconUrl
         }
     }
@@ -996,7 +996,7 @@ class ProjectService {
                         def object=new S3Object(file)
                         object.key=key
                     
-                        tempImageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+                        tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
                         s3Service.putObject(s3Bucket, object)
                         imageUrl.url = tempImageUrl
                         project.addToImageUrl(imageUrl)
@@ -1178,10 +1178,9 @@ class ProjectService {
                     def object=new S3Object(file)
                     object.key=key
                 
-                    tempImageUrl = "https://s3.amazonaws.com/crowdera/${key}"
+                    tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
                     s3Service.putObject(s3Bucket, object)
                     fileUrl.url = tempImageUrl
-                    
                     service.addToAttachments(fileUrl)
                     file.delete()
                 } catch(IllegalStateException e){

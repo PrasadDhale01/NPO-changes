@@ -1,7 +1,5 @@
 package crowdera
 
-import crowdera.Community;
-import crowdera.User;
 import grails.transaction.Transactional
 
 class CommunityService {

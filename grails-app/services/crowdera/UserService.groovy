@@ -7,13 +7,6 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
 
-import crowdera.Community;
-import crowdera.CustomerService;
-import crowdera.FacebookUser;
-import crowdera.Project;
-import crowdera.Team;
-import crowdera.User;
-import crowdera.UserRole;
 
 class UserService {
 

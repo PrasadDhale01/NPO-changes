@@ -1,9 +1,5 @@
 package crowdera
 
-import crowdera.Contribution;
-import crowdera.Project;
-import crowdera.ProjectUpdate;
-import crowdera.User;
 import grails.converters.JSON
 import groovyx.net.http.ContentType
 import groovyx.net.http.HTTPBuilder
@@ -708,7 +704,6 @@ class MandrillService {
     
     public def contributionEmailToCampaignOwnerOrTeam(def fundRaiser, def project, def contribution) {
         def username = fundRaiser.username
-        def contributor = contribution.user
         def link
         if (project.user == fundRaiser) {
             link = grailsLinkGenerator.link(controller: 'project', action: 'manageproject', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')

@@ -1,9 +1,5 @@
 package crowdera
 
-import crowdera.Contribution;
-import crowdera.Project;
-import crowdera.Reward;
-
 class ContributionService {
 
     def getTotalContribution() {

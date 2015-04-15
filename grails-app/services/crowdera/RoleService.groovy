@@ -1,6 +1,5 @@
 package crowdera
 
-import crowdera.Role;
 import grails.transaction.Transactional
 
 class RoleService {

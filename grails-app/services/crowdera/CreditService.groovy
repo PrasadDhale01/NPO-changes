@@ -1,9 +1,5 @@
 package crowdera
 
-import crowdera.Community;
-import crowdera.Contribution;
-import crowdera.Credit;
-
 class CreditService {
 
     def getAllNonExpiredCreditsForCommunity(Community community) {

@@ -35,9 +35,9 @@
                                 <label for="title">Title</label>
                                 <input type="text" class="form-control" name="title" placeholder="Title"/>
                             </div>
-                            <div class="form-group descriptionDiv">
+                            <div class="form-group descriptionDiv createDescDiv">
                                 <label for="description">Description</label>
-                                <textarea class="form-control" id="descarea" name="description" maxlength="140" rows="4" placeholder="Description"></textarea>
+                                <textarea class="form-control" id="descarea" name="description" maxlength="250" rows="4" placeholder="Description"></textarea>
                                 <label class="pull-right " id="desclength"></label>
                             </div>
                             <div class="clear"></div>

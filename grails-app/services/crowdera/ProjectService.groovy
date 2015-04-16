@@ -1070,7 +1070,6 @@ class ProjectService {
                 amount: amount,
                 user: user,
 				description:description,
-	            story : story,
 	            videoUrl:videoUrl,
 	            joiningDate: new Date()
             )

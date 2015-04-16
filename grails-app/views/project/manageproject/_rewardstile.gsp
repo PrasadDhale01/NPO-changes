@@ -42,7 +42,11 @@
 	</div>
 	<div class="panel-footer reward-footer">
 		<% def price = projectService.getDataType(reward.price); %>
-		<b>$${price}</b>
+		<g:if test="${reward.id==1 }">
+            <b>&nbsp;</b>
+        </g:if><g:else>
+            <b>$${price}</b>
+        </g:else>
 		<b class="pull-right">&nbsp;SUPPORTERS</b><span class="badge pull-right">${backers}</span>
 	</div>
 </div>

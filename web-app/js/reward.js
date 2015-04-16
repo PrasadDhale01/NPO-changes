@@ -148,6 +148,32 @@ $(function() {
       $('#desclength').text(currentString);
     }
   }
-     
-
+  
+   /* Show pop-over tooltip on hover for some fields. */
+    var showPopover = function () {
+        $(this).popover('show');
+    },
+    hidePopover = function () {
+        $(this).popover('hide');
+    };
+    
+    $('.supporterExist').each(function(){    
+        $(this).popover({
+            content: 'This perk can\'t be edited as it is already selected by a contributor',
+            trigger: 'manual',
+            placement: 'left'
+        })
+        .focus(showPopover)
+        .blur(hidePopover)
+        .hover(showPopover, hidePopover);
+    });
+    
+    $(".defaultperk").popover({
+        content: 'Default perk can\'t be edited',
+        trigger: 'manual',
+        placement: 'left'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
 });

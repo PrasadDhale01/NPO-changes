@@ -1525,7 +1525,7 @@ border-color: rgba(0,0,0,0.2);
 }
 
 .rewardsection a {
-    color: #388f58 !important;
+    color: #000 !important;
     text-decoration: none !important;
 }
 .rewardsection-row{
@@ -1534,9 +1534,11 @@ border-color: rgba(0,0,0,0.2);
 	border-bottom: 2px solid #fff;
 }
 .rewardBottomBorder {
-    padding-left: 20px;
+    padding-left: 15px;
+    padding-right: 8px;
 }
 .rewarddescription{
+	font-weight: 400;
 	margin-top:15px;
     word-wrap: break-word;
 }

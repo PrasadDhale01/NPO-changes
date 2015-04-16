@@ -1,8 +1,5 @@
 package crowdera
 
-import crowdera.FacebookUser;
-import crowdera.User;
-
 class FacebookService {
     def userService
 

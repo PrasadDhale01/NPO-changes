@@ -1,7 +1,5 @@
 package crowdera
 
-import crowdera.Reward;
-import crowdera.RewardShipping;
 import grails.transaction.Transactional
 
 class RewardService {

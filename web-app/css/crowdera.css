@@ -3136,11 +3136,12 @@ textarea.form-control {
     h1.green-heading{
         font-size:25px;
         text-transform: uppercase;
-        line-height:22px;
+        line-height:35px;
    }
    .mobileview-top{
         display:block;
         margin-bottom: 15px;
+        margin-top: 16% !important;
    }
    .mobileview-bottom{
         display:none;

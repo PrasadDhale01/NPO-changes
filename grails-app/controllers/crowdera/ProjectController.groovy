@@ -1035,4 +1035,18 @@ class ProjectController {
 		        render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])
 		}
 	}
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def customrewardedit() {
+        def isPerkPriceLess = rewardService.editCustomReward(params)
+        def amount = params.amount
+        def project = Project.get(params.projectId)
+        if (isPerkPriceLess) {
+            flash.perkupdate = 'Perk Updated Successfully!!'
+            redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)
+        } else {
+            flash.perkupdate = 'Perk price should be less than campaign amount '+amount
+            redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)
+        }
+    }
 }

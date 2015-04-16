@@ -43,7 +43,7 @@
                             <div class="clear"></div>
                             <div class="form-group">
                                 <label for="price">Price ($)</label>
-                                <input type="number" class="form-control" name="price" id="perkPrice" min="0" placeholder="Price"/>
+                                <input type="number" class="form-control perkPrice" name="price" id="perkPrice" min="0" placeholder="Price"/>
                                 <span id="errormsg"></span>
                             </div>
                             <div class="form-group">

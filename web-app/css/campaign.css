@@ -136,27 +136,15 @@ ul.personalDetailClasses, menu, dir {
     }
 }
 .rewardsection-row:hover {
-    background-color: #ff784f;
+	background-color: #fff;
+    border-color: #ff784f !important;
+    border: 2px solid #ff784f;
 }
 .rewardsection a:hover, .rewardsection a:active {
     text-decoration: none !important;
-    color: white !important;
 }
 .rewarddiv {
 	padding-bottom:15px;
 	padding-top:15px;
-	border-bottom: 2px solid #fff;
-}
-.selectperktext {
-	display: none;
-}
-.rewardsection-row:hover .selectperktext{
-	display: block;
-}
-.rewardsection-row:hover .badge{
-	background-color:#fff;
-	color:#ff784f;
-    padding: 5px 9px;
-    font-size: 16px;
-    border-radius: 48px;
+	border: 2px solid #fff;
 }

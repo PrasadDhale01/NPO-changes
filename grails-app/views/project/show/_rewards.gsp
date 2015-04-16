@@ -37,11 +37,15 @@
                 <g:link controller="fund" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">
                     <div class="rewardsection-row">
                         <div class="rewardBottomBorder">
-                            <span class="rewardpricespan">$${price}</span>&nbsp;&nbsp;&nbsp;<span class="rewardtitlespan">${reward.title}</span>
+                            <g:if test="${reward.id==1 }">
+                                <span class="rewardpricespan">&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rewardtitlespan">${reward.title}</span>
+                            </g:if>
+                            <g:else>
+                                <span class="rewardpricespan">$${price}</span>&nbsp;&nbsp;&nbsp;<span class="rewardtitlespan">${reward.title}</span>
+                            </g:else>
                             <div class="rewardleftmargin">
                                 <span class="badge">${backers}</span>&nbsp;&nbsp;SUPPORTERS
                                 <p class="rewarddescription" id="${reward.id}">${raw(reward.description)}</p>
-                                <p class="selectperktext"><b>SELECT THIS PERK</b></p>
                             </div>
                         </div>
                     </div>

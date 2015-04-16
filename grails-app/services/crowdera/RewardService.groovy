@@ -1,7 +1,5 @@
 package crowdera
 
-import crowdera.Reward;
-import crowdera.RewardShipping;
 import grails.transaction.Transactional
 
 class RewardService {
@@ -28,6 +26,40 @@ class RewardService {
 
     def getObsoleteRewards() {
         return Reward.findAllWhere(obsolete: true)
+    }
+    
+    def getRewardShippingInfo(def reward) {
+        return RewardShipping.findByReward(reward)
+    }
+    
+    def editCustomReward(params) {
+        int price = Double.parseDouble(params.price)
+        int amount = Double.parseDouble(params.amount)
+        def reward = Reward.get(params.long('id'))
+        def isPerkPriceLess = true
+        if(reward) {
+            if (price <= amount) {
+                if(price != reward.price) {
+                    reward.price = price
+                }
+            } else {
+                isPerkPriceLess = false;
+            }
+            
+            if (params.title != reward.title) {
+                reward.title = params.title
+            }
+            
+            if (params.description != reward.description) {
+                reward.description = params.description
+            }
+            def rewardShipping = RewardShipping.findByReward(reward)
+            rewardShipping.address = params.address
+            rewardShipping.email = params.email 
+            rewardShipping.twitter = params.twitter
+            rewardShipping.custom = params.custom
+        }
+        return isPerkPriceLess
     }
     
     def isOnlyTwitterHandled (Reward reward){

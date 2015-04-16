@@ -68,6 +68,11 @@
 							${flash.teamdiscardedmessage}
 						</div>
 					</g:if>
+					<g:if test="${flash.perkupdate}">
+						<div class="alert alert-success text-center">
+							${flash.perkupdate}
+						</div>
+					</g:if>
                     <div class="col-md-12 green-heading campaignTitle text-center">
 					    <g:if test="${!project.validated}">
 					        <h1 class="green-heading"><g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>

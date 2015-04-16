@@ -217,7 +217,9 @@
                         </g:else>
                     </g:else>
                     <g:if test="${project.rewards.size()>1}">
-                    	<g:render template="show/rewards"/>
+                        <g:if test="${project.paypalEmail || project.charitableId}">
+                    	    <g:render template="show/rewards"/>
+                    	</g:if>
                     </g:if>
                 </div>
             </div>

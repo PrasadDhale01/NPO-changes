@@ -1,7 +1,6 @@
 package crowdera
 
 import grails.transaction.Transactional
-
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
@@ -11,16 +10,6 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
 
-import crowdera.Contribution;
-import crowdera.CustomerService;
-import crowdera.ImageUrl;
-import crowdera.PopularProject;
-import crowdera.Project;
-import crowdera.ProjectAdmin;
-import crowdera.ProjectUpdate;
-import crowdera.Team;
-import crowdera.Transaction;
-import crowdera.User;
 
 class ProjectService {
     def userService
@@ -575,17 +564,11 @@ class ProjectService {
     
     def getValidatedProjects() {
 		def criteria = Project.createCriteria()
-		def results = criteria.list {
-			eq("validated", true)
-			eq("inactive", false)
-            eq("rejected", false)
-			order("id", "desc")
-		}
 		def popularProjectsList = getPopularProjects()
 		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
-    List endedProjects = []
-    List openProjects = []
-    finalList.each { project ->
+		List endedProjects = []
+		List openProjects = []
+		finalList.each { project ->
         boolean ended = isProjectDeadlineCrossed(project)
         if(ended) {
             endedProjects.add(project)
@@ -612,12 +595,6 @@ class ProjectService {
 		//TO DO
 		/* Later on the criteria will be modified in order to display the admin selected projects as the popular projects*/
 		def criteria = Project.createCriteria()
-		def results = criteria.list {
-			eq("validated", true)
-			eq("inactive", false)
-            eq("rejected", false)
-			order("id", "desc")
-		}
 		def popularProjectsList = getPopularProjects()
 		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
 		return finalList
@@ -722,7 +699,6 @@ class ProjectService {
 
     def getProjectImageLinks(Project project) {
         def imageUrls = []
-
         if(project.videoUrl){
             def regex =/^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
             def vidUrl=project.getVideoUrl()
@@ -877,7 +853,6 @@ class ProjectService {
 
         def Folder = "project-images"
  
-        def tempImageUrl
         files.each {
             def imageUrl = new ImageUrl()
             def imageFile= it
@@ -950,7 +925,6 @@ class ProjectService {
 
             def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
             def s3Service = new RestS3Service(awsCredentials);
-            def myBucket = s3Service.listAllBuckets();
             def s3Bucket = new S3Bucket(bucketName)
         
             def tempFile = new File("${iconFile.getOriginalFilename()}")
@@ -1015,7 +989,6 @@ class ProjectService {
             return null
         }
 
-        def startDate = getProjectStartDate(project)
         def endDate = getProjectEndDate(project)
 
         def today = Calendar.instance
@@ -1120,10 +1093,11 @@ class ProjectService {
             }
         } else {
             def isValidatedTeamExist = userService.isValidatedTeamExist(project, user)
-            if (!isValidatedTeamExist) {
-                message = "Your request is yet to be validated."
-            } else {
+            if (isValidatedTeamExist) {
+                
                 message = "You already have a team."
+            } else {
+                message = "Your request is yet to be validated."
             }
         }
         return message

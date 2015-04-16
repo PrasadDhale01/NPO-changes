@@ -1,9 +1,6 @@
 package crowdera
 
 import com.the6hours.grails.springsecurity.facebook.FacebookAuthToken
-
-import crowdera.FacebookUser;
-import crowdera.User;
 import grails.plugin.springsecurity.SpringSecurityUtils
 
 import grails.plugin.facebooksdk.FacebookGraphClient

@@ -8,6 +8,5 @@
 		<h4>
 			${reward.title}
 		</h4>
-		<p>Worth $${price}</p>
 	</div>
 </div>

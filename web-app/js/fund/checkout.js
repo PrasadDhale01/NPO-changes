@@ -172,11 +172,12 @@ $(function() {
             shippingCustom: {
             	required: true
             },
-            reciptName: {
+            receiptName: {
             	required: true
             },
-            recieptEmail: {
-            	required: true
+            receiptEmail: {
+            	required: true,
+            	email: true
             }
         },
         messages:{

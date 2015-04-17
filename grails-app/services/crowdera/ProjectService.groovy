@@ -1070,7 +1070,6 @@ class ProjectService {
                 amount: amount,
                 user: user,
 				description:description,
-	            story : story,
 	            videoUrl:videoUrl,
 	            joiningDate: new Date()
             )
@@ -1313,6 +1312,36 @@ class ProjectService {
       }
       return shippingDetails      
     }
+	
+	def checkShippingDetail(def emailId, def twitter, def address, def custom){
+		def emailid
+		def tweet
+		def add
+		def cstm
+		if(emailId=='null'){
+			emailid=null
+		}else{
+		 	emailid=emailId
+		}
+		if(twitter =='null'){
+			tweet=null
+		}else{
+			tweet=twitter
+		}
+		if(address=='null'){
+			add=null
+		}else{
+			add=address
+		}
+		if(custom=='null'){
+			cstm=null
+		}else{
+			cstm=custom
+		}
+		
+		return ['emailid':emailid, 'twitter':tweet,'address':add,'custom':cstm]
+		
+	}
 
     @Transactional
     def bootstrap() {

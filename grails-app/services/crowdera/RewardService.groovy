@@ -54,10 +54,12 @@ class RewardService {
                 reward.description = params.description
             }
             def rewardShipping = RewardShipping.findByReward(reward)
-            rewardShipping.address = params.address
-            rewardShipping.email = params.email 
-            rewardShipping.twitter = params.twitter
-            rewardShipping.custom = params.custom
+			if (rewardShipping) {
+                rewardShipping.address = params.address
+                rewardShipping.email = params.email 
+                rewardShipping.twitter = params.twitter
+                rewardShipping.custom = params.custom
+			}
         }
         return isPerkPriceLess
     }

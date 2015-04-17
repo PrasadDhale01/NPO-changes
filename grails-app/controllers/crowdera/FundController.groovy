@@ -413,6 +413,8 @@ class FundController {
         def custom = request.getParameter('shippingCustom')
         def userId = request.getParameter('tempValue')
         def anonymous = request.getParameter('anonymous')
+		
+	def shippingDetail=projectService.checkShippingDetail(emailId,twitter,address, custom)
         def name
         def username
         
@@ -435,12 +437,12 @@ class FundController {
                 user: users,
                 reward: reward,
                 amount: amount,
-                email: emailId,
-                twitterHandle: twitter,
-                custom: custom,
+                email: shippingDetail.emailid,
+                twitterHandle: shippingDetail.twitter,
+                custom: shippingDetail.custom,
                 contributorName: name,
                 contributorEmail:username,
-                physicalAddress: address
+                physicalAddress: shippingDetail.address
                 )
         project.addToContributions(contribution).save(failOnError: true)
 		

@@ -8,6 +8,8 @@
 		<h4>
 			${reward.title}
 		</h4>
-		<p>Worth $${price}</p>
+		<g:if test="${reward.id>1}">
+			<p>Worth $${price}</p>
+		</g:if>
 	</div>
 </div>

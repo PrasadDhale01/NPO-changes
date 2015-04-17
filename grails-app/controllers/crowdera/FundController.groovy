@@ -414,7 +414,7 @@ class FundController {
         def userId = request.getParameter('tempValue')
         def anonymous = request.getParameter('anonymous')
 		
-		def shippingDetail=projectService.checkShippingDetail(emailId,twitter,address, custom)
+	def shippingDetail=projectService.checkShippingDetail(emailId,twitter,address, custom)
         def name
         def username
         

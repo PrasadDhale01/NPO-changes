@@ -53,14 +53,14 @@
 							        <div class="col-md-6">
 							            <div class="form-group">
 							                <div class="input-group col-md-12">
-							                    <input class="form-control" type="text" placeholder="Name" name="reciptName">
+							                    <input class="form-control" type="text" placeholder="Name" name="receiptName">
 							                </div>
 							            </div>
 							        </div>
 							        <div class="col-md-6">
 							            <div class="form-group">
 							                <div class="input-group col-md-12">
-							                    <input class="form-control" type="text" placeholder="Email" name="recieptEmail">
+							                    <input class="form-control" type="text" placeholder="Email" name="receiptEmail">
 							                </div>
 							            </div>
 							        </div>

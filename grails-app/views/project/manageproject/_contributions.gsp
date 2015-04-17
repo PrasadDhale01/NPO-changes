@@ -304,7 +304,7 @@
                                                 shippingDetails="<b>Email:</b> " +contributions.email
 
                                                 if(contributions.physicalAddress!=null){
-                                                    shippingDetails=", <br><b>Physical Address:</b> " + contributions.physicalAddress
+                                                    shippingDetails+=", <br><b>Physical Address:</b> " + contributions.physicalAddress
                                                 }
                                                 if(contributions.twitterHandle!=null){
                                                     shippingDetails+=" , <br><b>Twitter Handle:</b> " + contributions.twitterHandle

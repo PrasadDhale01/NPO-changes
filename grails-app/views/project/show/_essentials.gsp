@@ -9,7 +9,7 @@
 	    username = beneficiary.username
 	}
 	def projectimages = projectService.getProjectImageLinks(project)
-	def teamimages = projectService.getTeamImageLinks(currentTeam)
+	def teamimages = projectService.getTeamImageLinks(currentTeam,project)
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
 	
 %>

@@ -176,7 +176,8 @@ $(function() {
             	required: true
             },
             recieptEmail: {
-            	required: true
+            	required: true,
+            	email: true
             }
         },
         messages:{

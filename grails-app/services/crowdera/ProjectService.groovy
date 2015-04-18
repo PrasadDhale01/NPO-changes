@@ -692,11 +692,38 @@ class ProjectService {
             }
         } else if (project.image) {
             return grailsLinkGenerator.link(controller: 'project', action: 'thumbnail', id: project.id)
-        } else {
-            return 'http://lorempixel.com/400/400/abstract'
-        }
+        } else { 
+		    def category = project.category.toString()
+			return getCategoryImage(category)
+		}
     }
-
+    
+	def getCategoryImage(String category) {
+		if(category.equalsIgnoreCase('ANIMALS')) {
+			return '//s3.amazonaws.com/crowdera/assets/animals.jpg'
+		} else if (category.equalsIgnoreCase('ARTS')) {
+			return '//s3.amazonaws.com/crowdera/assets/arts.jpg'
+		} else if (category.equalsIgnoreCase('CHILDREN')) {
+		    return '//s3.amazonaws.com/crowdera/assets/children.jpg'
+		} else if (category.equalsIgnoreCase('COMMUNITY')){
+		    return '//s3.amazonaws.com/crowdera/assets/community.jpg'
+		} else if (category.equalsIgnoreCase('EDUCATION')) {
+		    return '//s3.amazonaws.com/crowdera/assets/education.jpg'
+		} else if (category.equalsIgnoreCase('ELDERLY')) {
+		    return '//s3.amazonaws.com/crowdera/assets/elderly.jpg'
+		} else if (category.equalsIgnoreCase('ENVIRONMENT')) {
+		    return '//s3.amazonaws.com/crowdera/assets/environment.jpg'
+		} else if (category.equalsIgnoreCase('HEALTH')){
+		    return '//s3.amazonaws.com/crowdera/assets/health.jpg'
+		} else if (category.equalsIgnoreCase('SOCIAL_INNOVATION')){
+		    return '//s3.amazonaws.com/crowdera/assets/social-Innovation.jpg'
+		} else if (category.equalsIgnoreCase('RELIGION')) {
+		    return '//s3.amazonaws.com/crowdera/assets/religion.jpg'
+		} else if (category.equalsIgnoreCase('OTHER')) {
+		    return '//s3.amazonaws.com/crowdera/assets/other.jpg'
+		}
+	}
+	
     def getProjectImageLinks(Project project) {
         def imageUrls = []
         if(project.videoUrl){
@@ -720,13 +747,14 @@ class ProjectService {
             }
         }
         // if no project image, set the default project url
+		def category = project.category.toString()
         if(imageUrls == []){
-            imageUrls.add('http://lorempixel.com/400/400/abstract')
+            imageUrls.add(getCategoryImage(category))
         }
             return imageUrls
     }
 	
-	def getTeamImageLinks(Team team) {
+	def getTeamImageLinks(Team team, Project project) {
 		def imageUrls = []
 
     		if(team.videoUrl){
@@ -748,8 +776,10 @@ class ProjectService {
 			} 
 		}
 		// if no project image, set the default project url
+		
 		if(imageUrls == []){
-			imageUrls.add('http://lorempixel.com/400/400/abstract')
+			def category = project.category.toString()
+			imageUrls.add(getCategoryImage(category))
 		}
 			return imageUrls
 	}

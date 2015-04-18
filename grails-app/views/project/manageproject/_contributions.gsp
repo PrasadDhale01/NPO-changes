@@ -102,9 +102,9 @@
 		                </g:if>
 		                <g:else>
 		                    <b>Perk</b>
-			            <div class="rewardsection">
+			            <div class="shiping-details">
 					<p>${reward.description}</p>
-					<a class="shiping-details" href="#" data-id="${contribution}" data-toggle="modal" data-target="#rewarddetails${contribution.id}" model="['contribution': contribution]">Shipping Details</a>
+					<a href="#" data-id="${contribution}" data-toggle="modal" data-target="#rewarddetails${contribution.id}" model="['contribution': contribution]">Shipping Details</a>
 				    </div>
 		                </g:else>
 		            </div>

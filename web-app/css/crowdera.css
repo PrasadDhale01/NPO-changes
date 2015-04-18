@@ -4833,3 +4833,6 @@ form#sortsForm {
 button.all-users{
   margin-bottom: 2%;
 }
+.rewardsection a.shiping-details:hover {
+    color: #ff784f !important;
+}

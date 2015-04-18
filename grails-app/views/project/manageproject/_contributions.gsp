@@ -104,7 +104,7 @@
 		                    <b>Perk</b>
 			            <div class="rewardsection">
 					<p>${reward.description}</p>
-					<a href="#" data-id="${contribution}" data-toggle="modal" data-target="#rewarddetails${contribution.id}" model="['contribution': contribution]">Shipping Details</a>
+					<a class="shiping-details" href="#" data-id="${contribution}" data-toggle="modal" data-target="#rewarddetails${contribution.id}" model="['contribution': contribution]">Shipping Details</a>
 				    </div>
 		                </g:else>
 		            </div>
@@ -182,7 +182,7 @@
 			            <div class="modal-content">
 			                <div class="modal-header">
 			                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			                    <h4 class="modal-title">Shipping Details</h4>
+			                    <h4 class="modal-title"><b>Shipping Details</b></h4>
 			                </div>
 			                <div class="modal-body">
 			                    <g:if test="${contribution.contributorEmail == 'anonymous@example.com'}">
@@ -192,23 +192,23 @@
 			                    </g:if>
 			                    <g:else>
 			                        <div class="form-group">
-			                            <label for="name">Name: &nbsp; ${contribution.contributorName}</label>
+			                            <label for="name"><b>Name: &nbsp;</b> ${contribution.contributorName}</label>
 			                        </div>
 			                        <div class="form-group">
-			                            <label for="email">Email: &nbsp; ${contribution.contributorEmail}</label>
+			                            <label for="email"><b>Email: &nbsp;</b> ${contribution.contributorEmail}</label>
 			                        </div>
 			                    </g:else>
 			                    <g:if test="${contribution.email  != null}">
 			                    	<g:if test="${!contribution.email.equalsIgnoreCase('null')}">
 								        <div class="form-group">
-								        	<label for="name">Shipping Email: &nbsp; ${contribution.email}</label>
+								        	<label for="name"><b>Shipping Email: &nbsp;</b> ${contribution.email}</label>
 								        </div>
 							        </g:if>
 								</g:if>
 								<g:if test="${contribution.physicalAddress != null}">
 									<g:if test="${!contribution.physicalAddress.equalsIgnoreCase('null')}">
 								        <div class="form-group">
-								            <label for="name">Physical Address: &nbsp; ${contribution.physicalAddress}</label>
+								            <label for="name"><b>Physical Address: &nbsp;</b> ${contribution.physicalAddress}</label>
 								        </div>
 							        </g:if>
 								</g:if>

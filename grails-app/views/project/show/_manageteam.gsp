@@ -151,7 +151,7 @@
                     <div class="form-group">
                         <label>Story</label>
                         <textarea row="4" col="6" class="mceEditor" name="story">
-						     ${currentTeam.teamStory}</textarea>
+						     ${currentTeam.story}</textarea>
                     </div>
                     <div class="clear"></div>
                     <hr>

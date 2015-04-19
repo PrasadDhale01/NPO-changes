@@ -16,7 +16,7 @@ class Team {
 	
 	String description
     String videoUrl
-    String teamStory
+    String story
 	
     boolean enable = true
     boolean validated = false
@@ -25,7 +25,7 @@ class Team {
     
     static mapping = {
         description type: 'text'
-        teamStory type: 'text'
+        story type: 'text'
     }
     
     static constraints = {
@@ -34,7 +34,7 @@ class Team {
 	    comments nullable: true
 	    imageUrl nullable: true
 	    videoUrl nullable:true
-        teamStory nullable: true
+        story nullable: true
     }
     
 }

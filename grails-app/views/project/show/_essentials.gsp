@@ -56,7 +56,7 @@
             <p class="campaignStory justify">${raw(project.story)}</p>
         </g:if>
         <g:else>
-            <p class="campaignStory justify">${raw(currentTeam.teamStory)}</p>
+            <p class="campaignStory justify">${raw(currentTeam.story)}</p>
             <p class="campaignStory justify">${raw(project.story)}</p>
         </g:else>
     </div>

@@ -789,7 +789,7 @@ class ProjectController {
 			}
 			
 			team.videoUrl = params.videoUrl
-			team.teamStory = params.story
+			team.story = params.story
 			team.description = params.description
 			flash.teamUpdatemessage = "Team Updated Successfully"
             if (user == project.user) {

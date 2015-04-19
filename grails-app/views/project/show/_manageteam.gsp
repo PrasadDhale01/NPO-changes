@@ -49,7 +49,7 @@
 		    </g:else>
 		</g:if>
 		<g:else>
-		    <g:if test="${currentFundraiser == currentUser || currentUser == project.user}">
+		    <g:if test="${currentFundraiser == currentUser || userService.isCampaignBeneficiaryOrAdmin(project,currentUser)}">
                 <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
                    <a class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team" data-toggle="dropdown" aria-expanded="false">
 			           Activity <span class="caret"></span>
@@ -57,7 +57,7 @@
 			       <ul class="dropdown-menu" role="menu">
 				       <li>
 				           <g:if test="${!ended}">
-				               <g:if test="${currentFundraiser == currentUser || currentUser != project.user}">
+				               <g:if test="${currentFundraiser == currentUser || userService.isCampaignBeneficiaryOrAdmin(project,currentUser)}">
 				                   <a class="list" href="#inviteTeamMember" data-toggle="modal" model="['project': project]"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
 				               </g:if>
 				           </g:if>
@@ -151,7 +151,7 @@
                     <div class="form-group">
                         <label>Story</label>
                         <textarea row="4" col="6" class="mceEditor" name="story">
-						     ${currentTeam.teamStory}</textarea>
+						     ${currentTeam.story}</textarea>
                     </div>
                     <div class="clear"></div>
                     <hr>

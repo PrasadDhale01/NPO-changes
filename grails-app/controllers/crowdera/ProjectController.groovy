@@ -497,7 +497,7 @@ class ProjectController {
     def save() {
         if (!session.isNew()) { // skip new sessions
       
-            Date minuteAgo = new Date(System.currentTimeMillis() - 60 * 10 * 1000); // Timeout for 10 minutes
+            Date minuteAgo = new Date(System.currentTimeMillis() - 60 * 30 * 1000); // Timeout for 30 minutes
             Date sessionCreated = new Date(session.getCreationTime());
             if (minuteAgo.time > sessionCreated.time ) {
                 session.invalidate();
@@ -940,13 +940,13 @@ class ProjectController {
         def team = Team.get(teamId)
 
         if(team!=null){
-                if(project.user==team.user){
-                    contributions=project.contributions
-                }else{
-                    contributions=team.contributions
-                }
-        }else{
-                contributions=project.contributions
+            if(project.user==team.user){
+                contributions = project.contributions.reverse()
+            } else {
+                contributions = team.contributions.reverse()
+            }
+        } else {
+            contributions = project.contributions.reverse()
         }
 
         response.setHeader("Content-disposition", "attachment; filename=CSV_report.csv")

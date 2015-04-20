@@ -8,9 +8,9 @@
     def currentTeamUser
     List list = []
     if(project.user == team.user) {
-        list = project.contributions
+        list = project.contributions.reverse();
     }else {
-        list = team.contributions
+        list = team.contributions.reverse();
     }
     def user = userService.getCurrentUser()
     def isCampaignOwnerOrAdmin
@@ -185,8 +185,7 @@
 </g:if>
 
 <!-- Modal -->
-<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" 
-   aria-labelledby="reportModalLabel" aria-hidden="true">
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
    <g:form controller="project" action="generateCSV" role="form">
    <div class="modal-dialog">
       <div class="modal-content">

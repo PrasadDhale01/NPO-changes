@@ -9,6 +9,14 @@
     	<td>${transaction.contribution.date}</td>
         <td>${transaction.project.title}</td>
         <td>${transaction.contribution.contributorName}</td>
+        <td>
+            <g:if test="${transaction.contribution.isAnonymous}">
+                Anonymous
+            </g:if>
+            <g:else>
+                Non Anonymous
+            </g:else>
+        </td>
         <td>${transaction.project.amount}</td>
         <td>${projectService.getContributedAmount(transaction)}</td>
     </tr>

@@ -72,7 +72,7 @@
 	<g:if test="${!project.contributions.empty}">
         <h2 class="crowderasupport"><img src="//s3.amazonaws.com/crowdera/assets/icon-contribution.png" alt="Campaign Contributions"/>&nbsp;&nbsp;Campaign Contributions</h2>
 	    <div class="commentsoncampaign">
-    		<g:each in="${project.contributions}" var="contribution">
+    		<g:each in="${project.contributions.reverse()}" var="contribution">
 		        <%
 		            def date = dateFormat.format(contribution.date)
 		            def friendlyName = userService.getFriendlyName(contribution.user)
@@ -280,7 +280,7 @@
                             </thead>
                             <tbody>
 
-                                <g:each in="${project.contributions}" var="contributions">
+                                <g:each in="${project.contributions.reverse()}" var="contributions">
                                     <%
                                         def date = dateFormat.format(contributions.date)
                                         def friendlyName = userService.getFriendlyName(contributions.user)

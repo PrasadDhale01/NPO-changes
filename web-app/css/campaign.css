@@ -138,7 +138,7 @@ ul.personalDetailClasses, menu, dir {
 .rewardsection-row:hover {
 	background-color: #fff;
     border-color: #ff784f !important;
-    border: 2px solid #ff784f;
+    border: 1px solid #ff784f;
 }
 .rewardsection a:hover, .rewardsection a:active {
     text-decoration: none !important;
@@ -147,4 +147,7 @@ ul.personalDetailClasses, menu, dir {
 	padding-bottom:15px;
 	padding-top:15px;
 	border: 2px solid #fff;
+}
+.perkSupporter {
+	color: #505050;
 }

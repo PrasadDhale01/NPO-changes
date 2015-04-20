@@ -1534,12 +1534,12 @@ border-color: rgba(0,0,0,0.2);
 	border-bottom: 2px solid #fff;
 }
 .rewardBottomBorder {
-    padding-left: 15px;
-    padding-right: 8px;
+    padding-left: 20px;
+    padding-right: 10px;
 }
 .rewarddescription{
-	font-weight: 400;
-	margin-top:15px;
+    color: #606060;
+	margin-top:6px;
     word-wrap: break-word;
 }
 .rewardsectionheading{

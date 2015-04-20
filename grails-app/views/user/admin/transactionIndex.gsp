@@ -29,6 +29,7 @@
                         <th>Contribution Date</th>
                     	<th>Project</th>
                     	<th>Contributor Name</th>
+                    	<th>Identity</th>
                     	<th>Project Amount</th>
                     	<th>Contributed Amount</th>
                 	</tr>

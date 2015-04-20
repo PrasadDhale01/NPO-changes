@@ -38,15 +38,14 @@
                     <div class="rewardsection-row">
                         <div class="rewardBottomBorder">
                             <g:if test="${reward.id==1 }">
-                                <span class="rewardpricespan">&nbsp;&nbsp;&nbsp;</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="rewardtitlespan">${reward.title}</span>
+                                <div class="rewardtitlespan">${reward.title}</div>
                             </g:if>
                             <g:else>
-                                <span class="rewardpricespan">$${price}</span>&nbsp;&nbsp;&nbsp;<span class="rewardtitlespan">${reward.title}</span>
+                                <div class="rewardpricespan">$${price}</div>
+                                <div class="rewardtitlespan">${reward.title}</div>
                             </g:else>
-                            <div class="rewardleftmargin">
-                                <span class="badge">${backers}</span>&nbsp;&nbsp;SUPPORTERS
-                                <p class="rewarddescription" id="${reward.id}">${raw(reward.description)}</p>
-                            </div>
+                            <p class="rewarddescription" id="${reward.id}">${raw(reward.description)}</p>
+                            <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                         </div>
                     </div>
                 </g:link>
@@ -54,11 +53,10 @@
             <g:else>
                 <div class="rewarddiv">
                     <div class="rewardBottomBorder">
-                        <span class="rewardpricespan">$${price}</span>&nbsp;&nbsp;&nbsp;<span class="rewardtitlespan">${reward.title}</span>
-                        <div class="rewardleftmargin">
-                            <span class="badge">${backers}</span>&nbsp;&nbsp;SUPPORTERS
-                            <p class="rewarddescription">${reward.description}</p>
-                        </div>
+                        <div class="rewardpricespan">$${price}</div>
+                        <div class="rewardtitlespan">${reward.title}</div>
+                        <p class="rewarddescription">${reward.description}</p>
+                        <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                      </div>
                  </div>
             </g:else>

@@ -18,9 +18,9 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 <%--			    <li><a href="/">Home</a></li>--%>
-				<li><g:link controller="project" action="create" class="centerText"><b>CREATE</b><span>A CAMPAIGN</span></g:link></li>
-                <li><a href="${resource(dir: '/campaigns')}" class="centerText"><b>EXPLORE</b> <span>CAMPAIGNS</span></a></li>
-				<li><a href="${resource(dir: '/howitworks')}" class="centerText"><b>SEE HOW</b> <span>IT WORKS</span></a></li>
+				<li><g:link controller="project" action="create" class="centerText"><b>START</b></g:link></li>
+                <li><a href="${resource(dir: '/campaigns')}" class="centerText"><b>DISCOVER</b></a></li>
+				<li><a href="${resource(dir: '/howitworks')}" class="centerText"><b>LEARN</b></a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 			    <!-- Dont use form action here as its header file, it messes with other forms in the body part-->

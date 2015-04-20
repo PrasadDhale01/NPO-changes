@@ -570,12 +570,18 @@ class FundController {
      
         response.setHeader("Content-disposition", "attachment; filename=CSV_report.csv")
        
-        transactions.each{  
-           def rows = [it.transactionId, dateFormat.format(it.contribution.date), it.project.title, it.contribution.contributorName,it.project.amount, projectService.getContributedAmount(it)]
+        transactions.each{ 
+           def userIdentity 
+           if (it.contribution.isAnonymous) {
+               userIdentity = "Anonymous"
+           } else {
+               userIdentity = "Non Anonymous"
+           }
+           def rows = [it.transactionId, dateFormat.format(it.contribution.date), it.project.title, it.contribution.contributorName,userIdentity, it.project.amount, projectService.getContributedAmount(it)]
            results << rows
         }
            
-        def result='Transaction Id, Contribution Date, Project, Contributor Name, Project Amount, Contributed Amount, \n'
+        def result='Transaction Id, Contribution Date, Project, Contributor Name, Identity, Project Amount, Contributed Amount, \n'
         results.each{ row->
            row.each{
            col -> result+=col +','

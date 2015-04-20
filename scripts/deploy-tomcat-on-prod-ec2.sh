@@ -18,6 +18,7 @@ grails prod war
 echo "Stop tomcat"
 cd $TOMCAT_HOME
 ./bin/catalina.sh stop -force
+killall java
 
 rm -rf $TOMCAT_HOME/webapps/ROOT
 cp $CROWDERA_HOME/target/Crowdera-0.1.war $TOMCAT_HOME/webapps/ROOT.war

@@ -11,9 +11,12 @@
 		<div class="row">
 			<div class="text-center">
 			    <br>
-			    <h1>Join the giving movement and raise funds </h1>
-			    <h3>for what matters to you</h3>
+			    <h1>Let's help you Raise Money FREE for what matters to you </h1>
 			    
+				    <a class="btn buttonOnBanner" href="${resource(dir: '/howitworks')}"><b>LEARN HOW</b></a>
+				    &nbsp;&nbsp;or&nbsp;&nbsp;
+				    <a class="btn buttonOnBanner" href="/project/create"><b>START NOW</b></a>
+			        <br>
 			    <!--<g:form class="form-horizontal" controller="project" action="create" role="form">
 			        <div class="form-group">
 			            <div class="col-sm-12">

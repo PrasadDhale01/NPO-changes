@@ -4839,3 +4839,17 @@ button.all-users{
 .shiping-details a {
     color: #388f58 !important;
 }
+
+.buttonOnBanner{
+  background-color: #ff784f;
+  border-color: white;
+  color: white;
+  border-radius: 6px;
+  padding:1%;
+}
+
+.buttonOnBanner:visited,
+.buttonOnBanner:active,
+.buttonOnBanner:hover {
+	color: white;
+}

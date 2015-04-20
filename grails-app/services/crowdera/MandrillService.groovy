@@ -429,14 +429,13 @@ class MandrillService {
             url = imageUrls[0].getUrl()            
         }
         contributors.each {contributor ->
-            def user = contributor.user
-            if (!user.email.equalsIgnoreCase('anonymous@example.com')) {
+			if(contributor.contributorEmail != "anonymous@example.com"){
                 def globalMergeVars = [[
                    'name': 'LINK',
                    'content': link
                 ],[
                     'name': 'NAME',
-                    'content': user.firstName+" "+user.lastName
+                    'content': contributor.contributorName
                 ],[
                     'name': 'STORY',
                     'content': projectUpdate.story
@@ -445,7 +444,7 @@ class MandrillService {
                     'content': currentUser.firstName+" "+currentUser.lastName
                 ],[
                     'name': 'EMAIL',
-                    'content': user.email
+                    'content': contributor.contributorEmail
                 ], [
                     'name': 'TITLE',
                     'content': project.title
@@ -456,8 +455,8 @@ class MandrillService {
                 
                 def tags = ['campaign-update']
                 
-                inviteToAdmin(user.email, 'campaign-update', globalMergeVars, tags)
-            }
+                inviteToAdmin(contributor.contributorEmail, 'campaign-update', globalMergeVars, tags)
+			}
         }
     }
     

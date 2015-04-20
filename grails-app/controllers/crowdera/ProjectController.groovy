@@ -544,11 +544,15 @@ class ProjectController {
                             boolPerk=true;
                         }
                     }
+					if(mailingAddress[0]==null && emailAddress[0]==null && twitter[0]==null && custom[0]==null){
+						emailAddress[0]=true
+					}
                     if(boolPerk==true){
                         flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
                         render (view: 'manageproject/error')
                         return
                     }else{
+					        
                         rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
                     }
                 }
@@ -642,6 +646,10 @@ class ProjectController {
 		int price = Double.parseDouble(params.price)
 		int amount = Double.parseDouble(params.amount)
         RewardShipping shippingInfo = new RewardShipping(params)
+		
+		if(params.email==null && params.twitter==null && params.custom==null&& params.address==null){
+			shippingInfo.email=true
+		}
 		
         if(reward.save()) {
             def project= Project.get(params.id)

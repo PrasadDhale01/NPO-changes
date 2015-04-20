@@ -2,8 +2,8 @@
   <div class="container">
     <div class="crew-content">
     <h1>What is Crowdera ?</h1>
-    <p> Crowdera is a crowdfunding platform supporting educational and nonprofit organizations serving youth and their communities. Individuals and organizations working to enhance and improve the educational and cultural experiences of youth can upload their projects on crowdera and supporters from anywhere in the world can rally to fund those projects.</p>
-    <p>The founders and crew at Crowdera have gone to great lengths to create and foster an intentional community of like-minded people dedicated to celebrating youth and those who educate and inspire them. It is our intent to complement your organizations' existing fundraising and volunteering activities by giving you a user-friendly platform to create visually compelling viral fundraising campaigns that raise awareness and funding for your organizational needs and dreams. </p>
+    <p>Crowdera intends to build a giving economy making crowdfunding FREE for everyone, monetizing the social capital to empower individuals following passion and organizations driving social impact & social innovation</p>
+    <p>We have gone to great lengths to create and foster an intentional community of like-minded people dedicated to celebrating youth and those who educate and inspire them. It is our intent to complement your organizations' existing fundraising and volunteering activities by giving you a user-friendly platform to create visually compelling viral fundraising campaigns that raise awareness and funding for your organizational needs and dreams.</p>
     </div>
   </div>
 </div>
@@ -20,12 +20,12 @@
                 <div class="clear"></div>
             </div>
         </div>
-
+        
         <div class="col-sm-3">
             <div class="thumbnail">
-                <img src="//s3.amazonaws.com/crowdera/assets/stepheni.jpg" alt="Stephanie Jelley">
+                <img src="//s3.amazonaws.com/crowdera/assets/chai.jpg" alt="Chai Atreya">
 
-                <div class="caption">Stephanie Jelley<span> Co-Founder </span></div>
+                <div class="caption">Chai Atreya<span> Co-Founder </span></div>
                 <div class="clear"></div>
             </div>
         </div>
@@ -41,9 +41,9 @@
 
         <div class="col-sm-3">
             <div class="thumbnail">
-                <img src="//s3.amazonaws.com/crowdera/assets/chai.jpg" alt="Chai Atreya">
+                <img src="//s3.amazonaws.com/crowdera/assets/stepheni.jpg" alt="Stephanie Jelley">
 
-                <div class="caption">Chai Atreya<span> Co-Founder </span></div>
+                <div class="caption">Stephanie Jelley<span> Co-Founder </span></div>
                 <div class="clear"></div>
             </div>
         </div>

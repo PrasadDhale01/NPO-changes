@@ -212,7 +212,7 @@ class LoginController {
         if (users.save()) {
             users.confirmed = true
             userService.createUserRole(users, roleService)
-            render(view: 'success', model: [message: 'You have successfully registerd'])
+            render(view: 'success', model: [message: 'You have successfully registered.'])
         } else {
             render(view: 'error', model: [message: 'Problem creating user. Please try again.'])
         }

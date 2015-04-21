@@ -1,6 +1,6 @@
 $(function() {
     console.log('reward.js initialized');
-
+    $('.shippingError').hide();
     $('#createRewardModal').find('form').validate({
         rules: {
             title: {
@@ -73,6 +73,18 @@ $(function() {
             return false;
         } 
     });
+    
+  $.validator.addMethod('shippingInfo', function(value) {
+	  var si =$('.shippingInfo:checked').size() ;
+	  if(si >0){
+		  $('.shippingreward').removeClass('dynCSS');
+		  $('.shippingError').hide();
+		  return $('.shippingInfo:checked').size() > 0;
+	  }else{
+		  $('.shippingreward').addClass('dynCSS');
+		  $('.shippingError').html('This field is required').show();	  
+	  }
+  }, '');
 
      /*******************************Description text length******************** */
     var counter = 1;

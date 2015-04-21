@@ -957,7 +957,7 @@ class ProjectController {
             contributions = project.contributions.reverse()
         }
 
-        response.setHeader("Content-disposition", "attachment; filename=CSV_report.csv")
+        response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll(' ','_')+".csv")
         def results=[]
         def  contributorName
         def payMode

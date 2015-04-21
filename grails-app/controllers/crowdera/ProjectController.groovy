@@ -647,10 +647,6 @@ class ProjectController {
 		int amount = Double.parseDouble(params.amount)
         RewardShipping shippingInfo = new RewardShipping(params)
 		
-		if(params.email==null && params.twitter==null && params.custom==null&& params.address==null){
-			shippingInfo.email=true
-		}
-		
         if(reward.save()) {
             def project= Project.get(params.id)
             shippingInfo.reward = reward
@@ -957,7 +953,7 @@ class ProjectController {
             contributions = project.contributions.reverse()
         }
 
-        response.setHeader("Content-disposition", "attachment; filename=CSV_report.csv")
+        response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll(' ','_')+".csv")
         def results=[]
         def  contributorName
         def payMode

@@ -568,8 +568,7 @@ class FundController {
         def transactions =Transaction.list()
         def results=[]
      
-        response.setHeader("Content-disposition", "attachment; filename=CSV_report.csv")
-       
+        response.setHeader("Content-disposition", "attachment; filename=Crowdera_report.csv")
         transactions.each{ 
            def userIdentity 
            if (it.contribution.isAnonymous) {

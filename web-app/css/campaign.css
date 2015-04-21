@@ -117,6 +117,7 @@ ul.personalDetailClasses, menu, dir {
 	margin-bottom: 25px;
 	font-weight: 600;
 	font-size: 20px;
+	word-wrap: break-word;
 }
 .rewardleftmargin {
 	margin-left: 35px;

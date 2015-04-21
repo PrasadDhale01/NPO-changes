@@ -49,15 +49,16 @@
                             <div class="form-group">
                                 <label class="control-label">Which of the following is necessary to fulfill this perk:</label>
                                 <div class="shippingreward">
-                                    <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="address" value="true" id="mailaddcheckbox">Mailing address</label>
-                                    <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="email" value="true" id="emailcheckbox">Email address</label>
-                                    <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="twitter" value="true" id="twittercheckbox">Twitter handle</label>
-                                    <label class="btn btn-primary btn-sm checkbox-inline control-label lblCustom"><input type="checkbox" name="custom" value="true" id="customcheckbox">Custom</label>
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="shippingInfo" name="address" value="true" id="mailaddcheckbox">Mailing address</label>
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="shippingInfo" name="email" value="true" id="emailcheckbox">Email address</label>
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="shippingInfo" name="twitter" value="true" id="twittercheckbox">Twitter handle</label>
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label lblCustom"><input type="checkbox" class="shippingInfo" name="custom" value="true" id="customcheckbox">Custom</label>
                                 </div>
+                                <div class="shippingError"></div>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary btn-block">Create Perk</button>
+                            <button type="submit" class="btn btn-primary btn-block createPerk">Create Perk</button>
                         </div>
                     </div>
                 </div>

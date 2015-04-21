@@ -4853,3 +4853,16 @@ button.all-users{
 .buttonOnBanner:hover {
 	color: white;
 }
+.dynCSS{
+	border: 1px solid red;
+    padding-left: 4px;
+    padding-top: 4px;
+}
+.shippingError{
+	color:red;
+	font-size: 12px;
+    font-weight: normal;
+}
+.shippingreward .help-block {
+    display: inline-block;
+}

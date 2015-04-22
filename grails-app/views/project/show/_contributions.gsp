@@ -5,6 +5,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM, YYYY");
+    SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
     def currentTeamUser
     List list = []
     if(project.user == team.user) {
@@ -208,8 +209,9 @@
                             <thead>
                                 <tr class="alert alert-title ">
                                     <th class="col-sm-2 text-center">CAMPAIGN</th>
-                                    <th class="col-sm-1 text-center">FUNDRAISER</th>
-                                    <th class="col-sm-2 text-center">DATE</th>
+                                    <th class="text-center">FUNDRAISER</th>
+                                    <th class="col-sm-3 text-center">CONTRIBUTION DATE</th>
+                                    <th class="col-sm-3 text-center">CONTRIBUTION TIME</th>
                                     <th class="col-sm-2 text-center">CONTRIBUTOR</th>
                                     <th class="col-sm-2 text-center">EMAIL</th>
 
@@ -217,14 +219,15 @@
                                         <th class="col-sm-2 text-center">SHIPPING DETAILS</th>
                                     </g:if>
 
-                                    <th class="col-sm-2 text-center">AMOUNT</th>
-                                    <th class="col-sm-2 text-center">MODE</th>                                                      
+                                    <th class="text-center">AMOUNT</th>
+                                    <th class="text-center">MODE</th>                                                      
                                 </tr>
                             </thead>
                             <tbody>
                                 <g:each in="${list}" var="contributions">
                                     <%
                                         def date = dateFormat.format(contributions.date)
+                                        def time = timeFormat.format(contributions.date);
                                         def friendlyName = userService.getFriendlyName(contributions.user)
                                         def isFacebookUser = userService.isFacebookUser(contributions.user)
                                         def userFacebookUrl = facebookService.getUserFacebookUrl(contributions.user)
@@ -295,25 +298,26 @@
 
                                     %>
                                     <tr>
-                                        <td class="col-sm-2">${project.title}</td>
-                                        <td class="col-sm-1">
+                                        <td class="col-sm-2 text-center">${project.title}</td>
+                                        <td class="text-center">
                                             ${contributionService.getFundRaiserName(contributions, project)}
                                         </td>
-                                        <td class="col-sm-2">${date}</td>
-                                        <td class="col-sm-2">${contributorName}</td>
-                                        <td class="col-sm-2">${contributorEmail}</td>
+                                        <td class="col-sm-3 text-center">${date}</td>
+                                        <td class="col-sm-3 text-center">${time}</td>
+                                        <td class="col-sm-2 ">${contributorName}</td>
+                                        <td class="col-sm-2 ">${contributorEmail}</td>
 
                                         <g:if test="${project.rewards.size()>1}">
-                                            <td class="col-sm-3">${raw(shippingDetails)}</td> 
+                                            <td class="col-sm-3 ">${raw(shippingDetails)}</td> 
                                         </g:if>
                                         
-                                        <td class="col-sm-2">$${amount}</td>
+                                        <td class="text-center">$${amount}</td>
                                         
                                         <g:if test="${pay_mode}">
-                                            <td class="col-sm-2 text-center">Offline</td>
+                                            <td class="text-center">Offline</td>
                                         </g:if>
                                         <g:else>
-                                            <td class="col-sm-2 text-center">Online</td>
+                                            <td class="text-center">Online</td>
                                         </g:else>
                                     </tr>
                                 </g:each>

@@ -6,6 +6,7 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM, YYYY");
+    SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
     def manageCampaign = "manageCampaign"
     def user = userService.getCurrentUser()
     def fundRaiser = user.username
@@ -182,7 +183,7 @@
 			            <div class="modal-content">
 			                <div class="modal-header">
 			                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			                    <h4 class="modal-title"><b>Shipping Details</b></h4>
+			                    <h4 class="modal-title text-center"><b>Shipping Details</b></h4>
 			                </div>
 			                <div class="modal-body">
 			                    <g:if test="${contribution.contributorEmail == 'anonymous@example.com'}">
@@ -215,19 +216,21 @@
 								<g:if test="${contribution.twitterHandle  != null}">
 									<g:if test="${!contribution.twitterHandle.equalsIgnoreCase('null')}">
 								        <div class="form-group">
-								        	<label for="name">Twitter Handle: &nbsp; ${contribution.twitterHandle}</label>
+								        	<label for="name"><b>Twitter Handle: &nbsp;</b> ${contribution.twitterHandle}</label>
 								        </div>
 							        </g:if>
 								</g:if>
 								<g:if test="${contribution.custom  != null}">
 									<g:if test="${!contribution.custom.equalsIgnoreCase('null')}">
 								        <div class="form-group">
-								        	<label for="name">Custom Details: &nbsp; ${contribution.custom}</label>
+								        	<label for="name"><b>Custom Details: &nbsp;</b> ${contribution.custom}</label>
 								        </div>
 							        </g:if>
 								</g:if>
 			                </div>
-			                
+			                <div class="modal-footer">
+                                <button data-dismiss="modal" class="btn btn-sm btn-primary">Close</button>
+                            </div>
 			            </div>
 			        </div>
 				</div>
@@ -253,7 +256,7 @@
                   &times;
             </button>
             <h4 class="modal-title" id="reportModalLabel">
-               <h4><b>CONTRIBUTION REPORT</b></h4>
+               <span class="text-center"><h3><b>CONTRIBUTION REPORT</b></h3></span>
             </h4>
          </div>
          <g:hiddenField name="projectId" value="${project.id}"/>
@@ -265,8 +268,9 @@
                             <thead>
                                 <tr class="alert alert-title ">
                                     <th class="col-sm-2 text-center">CAMPAIGN</th>
-                                    <th class="col-sm-1 text-center">FUNDRAISER</th>
-                                    <th class="col-sm-2 text-center">DATE</th>
+                                    <th class="text-center">FUNDRAISER</th>
+                                    <th class="col-sm-3 text-center">CONTRIBUTION DATE</th>
+                                    <th class="col-sm-3 text-center">CONTRIBUTION TIME</th>
                                     <th class="col-sm-2 text-center">CONTRIBUTOR</th>
                                     <th class="col-sm-2 text-center">EMAIL</th>
 
@@ -283,6 +287,7 @@
                                 <g:each in="${project.contributions.reverse()}" var="contributions">
                                     <%
                                         def date = dateFormat.format(contributions.date)
+                                        def time = timeFormat.format(contributions.date);
                                         def friendlyName = userService.getFriendlyName(contributions.user)
                                         def isFacebookUser = userService.isFacebookUser(contributions.user)
                                         def userFacebookUrl = facebookService.getUserFacebookUrl(contributions.user)
@@ -352,16 +357,17 @@
                                         }    
                                     %>
                                     <tr>
-                                        <td class="col-sm-2">${project.title}</td>
-                                        <td class="col-sm-1">
+                                        <td class="col-sm-2 text-center">${project.title}</td>
+                                        <td class="text-center">
                                             ${contributionService.getFundRaiserName(contributions, project)}
                                         </td>
-                                        <td class="col-sm-2">${date}</td>
-                                        <td class="col-sm-2">${contributorName}</td>
-                                        <td class="col-sm-2">${contributorEmail}</td>
+                                        <td class="col-sm-3 text-center">${date}</td>
+                                        <td class="col-sm-3 text-center">${time}</td>
+                                        <td class="col-sm-2 ">${contributorName}</td>
+                                        <td class="col-sm-2 ">${contributorEmail}</td>
 
                                         <g:if test="${project.rewards.size()>1}">
-                                            <td class="col-sm-3">${raw(shippingDetails)}</td> 
+                                            <td class="col-sm-3 ">${raw(shippingDetails)}</td> 
                                         </g:if>
 
                                         <td class="text-center">$${amount}</td>

@@ -11,13 +11,13 @@
 <body>
 	<g:set var="user" value="transaction.user"/>
     <tr>
-    	<td class="text-center">${transaction.id}</td>
-    	<td class="text-center">${transaction.transactionId}</td>
+    	<td>${transaction.id}</td>
+    	<td>${transaction.transactionId}</td>
     	<td class="text-center">${date}</td>
     	<td class="text-center">${time}</td>
-       <td class="text-center">${transaction.project.title}</td>
-       <td class="text-center">${transaction.contribution.contributorName}</td>
-       <td class="text-center">
+       <td>${transaction.project.title}</td>
+       <td>${transaction.contribution.contributorName}</td>
+       <td>
             <g:if test="${transaction.contribution.isAnonymous}">
                 Anonymous
             </g:if>

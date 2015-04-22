@@ -15,9 +15,9 @@
     	<td class="text-center">${transaction.transactionId}</td>
     	<td class="text-center">${date}</td>
     	<td class="text-center">${time}</td>
-        <td class="text-center">${transaction.project.title}</td>
-        <td class="text-center">${transaction.contribution.contributorName}</td>
-        <td class="text-center">
+       <td class="text-center">${transaction.project.title}</td>
+       <td class="text-center">${transaction.contribution.contributorName}</td>
+       <td class="text-center">
             <g:if test="${transaction.contribution.isAnonymous}">
                 Anonymous
             </g:if>

@@ -35,48 +35,53 @@
 <%--        </g:link>--%>
 <%--    </div>--%>
 
-    <div class="modal-footer tile-footer managedetails-footer">
-        <div class="row tilepadding">
-            <div class="col-md-5 col-md-offset-1 col-sm-4 col-sm-offset-2 col-xs-5 col-xs-offset-1 progress-pie-chart" data-percent="43">
-				<div class="c100 p${cents} small text-center">
-                    <span>${percentage}%</span>
-                    <div class="slice">
-                        <div class="bar"></div>
-                        <div class="fill"></div>
-                    </div>
-                </div>
-            </div>
-            <g:if test="${isFundingAchieved}">
-				<div class="col-md-6 col-xs-6">
-					<h6 class="text-center managedetails-achived-raised">
-						<span class="lead">$${contribution}</span><br />ACHIEVED
-					</h6>
-				</div>
-			</g:if>
-			<g:else>
-			    <div class="col-md-6 col-xs-6">
-					<h6 class="text-center  managedetails-achived-raised">
-						<span class="lead">$${contribution}</span><br />RAISED
-					</h6>
-				</div>
-			</g:else>
-        </div>
-    </div>
+<%--    <div class="modal-footer tile-footer managedetails-footer">--%>
+<%--        <div class="row tilepadding">--%>
+            
+<%--            <g:if test="${isFundingAchieved}">--%>
+<%--				<div class="col-md-6 col-xs-6">--%>
+<%--					<h6 class="text-center managedetails-achived-raised">--%>
+<%--						<span class="lead">$${contribution}</span><br />ACHIEVED--%>
+<%--					</h6>--%>
+<%--				</div>--%>
+<%--			</g:if>--%>
+<%--			<g:else>--%>
+<%--			    <div class="col-md-6 col-xs-6">--%>
+<%--					<h6 class="text-center  managedetails-achived-raised">--%>
+<%--						<span class="lead">$${contribution}</span><br />RAISED--%>
+<%--					</h6>--%>
+<%--				</div>--%>
+<%--			</g:else>--%>
+<%--        </div>--%>
+<%--    </div>--%>
     <div class="modal-footer tile-footer managedetails-goal">
         <div class="row tilepadding">
-            <div class="col-md-6 col-xs-6">
-                <h6 class="text-center"><span class="lead">$${amount}</span><br/>GOAL</h6>
+            <div class="manage-tiles-details">
+	            <div class="col-md-5 col-xs-5">
+	                <h6 class="text-center  tile-goal"><span class="lead">$${amount}</span><br/><p class="tile-text-size">GOAL</p></h6>
+	            </div>
             </div>
+            <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-2 col-xs-3 col-xs-offset-2 progress-pie-chart" data-percent="43">
+				<div class="c100  p${cents} pie-tile-manage pie-css text-center mobile-pie">
+                     <span class="c999">${percentage}%</span>
+                     <div class="slice">
+                         <div class="bar"></div>
+                         <div class="fill"></div>
+                     </div>
+                 </div>
+             </div>
             <g:if test="${ended}">
-                <div class="col-md-6 col-xs-6">
+                <div class="col-md-3 col-xs-3">
                     <h6 class="text-center"><span class="lead">0</span><br>DAYS TO GO</h6>
                 </div>
             </g:if>
             <g:else>
                 <!-- Time left till end date. -->
-                <div class="col-md-6 col-xs-6">
-                    <h6 class="text-center"><span class="lead">${projectService.getRemainingDay(project)}</span><br>DAYS TO GO</h6>
-                </div>
+                <div class="manage-tileanstitle-manage">
+	               <div class="col-md-3 col-xs-3">
+	                   <h6 class="text-center"><span class="lead">${projectService.getRemainingDay(project)}</span><br><p class="tile-text-size">DAYS TO GO</p></h6>
+	               </div>
+                 </div>
             </g:else>
         </div>
     </div>

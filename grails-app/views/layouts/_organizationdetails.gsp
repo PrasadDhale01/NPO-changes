@@ -9,7 +9,7 @@
     def isCampaignAdmin = userService.isCampaignAdmin(project, username)
 %>
 <div class="panel panel-default">
-    <div class="panel-heading">
+    <div class="panel-heading panel-css">
     <g:if test="${currentFundraiser == beneficiary}">
    	    Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
    	</g:if>
@@ -38,10 +38,10 @@
             </div>
         </g:else>
         <div class="col-sm-12">
-        <label>Email: <a href="mailto:${beneficiary.email}">${beneficiary.email}</a></label>
+        <label>Web: <a href="${webUrl}" target="${webUrl}">${project.webAddress}</a></label>
         </div>
         <div class="col-sm-12">
-        <label>Web: <a href="${webUrl}" target="${webUrl}">${project.webAddress}</a></label>
+        <label><a href="#"></a></label>
         </div> 
         <div class="clear"></div>
         <div class="tilesanstitletag banner-wid">

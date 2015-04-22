@@ -27,6 +27,7 @@
                         <th>SR. NO.</th>
                         <th>Transaction Id</th>
                         <th>Contribution Date</th>
+                        <th>Contribution Time</th>
                     	<th>Project</th>
                     	<th>Contributor Name</th>
                     	<th>Identity</th>

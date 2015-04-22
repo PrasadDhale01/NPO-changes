@@ -564,11 +564,12 @@ class FundController {
     def generateCSV(){
         
         SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
+        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
         
         def transactions =Transaction.list()
         def results=[]
      
-        response.setHeader("Content-disposition", "attachment; filename=Crowdera_report.csv")
+        response.setHeader("Content-disposition", "attachment; filename=Crowdera_transaction_report.csv")
         transactions.each{ 
            def userIdentity 
            if (it.contribution.isAnonymous) {
@@ -576,11 +577,11 @@ class FundController {
            } else {
                userIdentity = "Non Anonymous"
            }
-           def rows = [it.transactionId, dateFormat.format(it.contribution.date), it.project.title, it.contribution.contributorName,userIdentity, it.project.amount, projectService.getContributedAmount(it)]
+           def rows = [it.transactionId, dateFormat.format(it.contribution.date), timeFormat.format(it.contribution.date), it.project.title, it.contribution.contributorName,userIdentity, it.project.amount, projectService.getContributedAmount(it)]
            results << rows
         }
            
-        def result='Transaction Id, Contribution Date, Project, Contributor Name, Identity, Project Amount, Contributed Amount, \n'
+        def result='Transaction Id, Contribution Date, Contribution Time, Project, Contributor Name, Identity, Project Amount, Contributed Amount, \n'
         results.each{ row->
            row.each{
            col -> result+=col +','

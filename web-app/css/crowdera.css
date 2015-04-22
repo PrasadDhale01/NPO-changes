@@ -562,11 +562,6 @@ a {
 		margin-left: 28% !important;
 		width:  56%;
     }
-    .btn-create {
-        margin-left: 55% !important;
-        margin-bottom: 2% !important;
-    }
-    
 }
 
 @media only screen and (max-width: 767px){
@@ -1593,6 +1588,7 @@ border-color: rgba(0,0,0,0.2);
     float:left;
 }
 
+
 @media only screen and (min-width: 1821px){
     .btn-create {
         margin-left: 636px;
@@ -1606,6 +1602,8 @@ border-color: rgba(0,0,0,0.2);
         margin-bottom: 43px;
     }
 }
+
+
 
 @media only screen and (max-width: 1540px){
     .btn-create {
@@ -1638,7 +1636,7 @@ border-color: rgba(0,0,0,0.2);
         padding-top: 6px;
         height: 43px;
         width: 560px;
-        margin-left: 2%;
+        margin-left: -1%;
         margin-top: -100px;
         background: rgba(255, 255, 255, 0.3);
    	}
@@ -1688,7 +1686,7 @@ border-color: rgba(0,0,0,0.2);
          padding-top: 6px;
          height: 41px;
 		 width: 560px;
-		 margin-left: 49px;
+		 margin-left: 20px;
 		 margin-top: -96px;
     }
 
@@ -1701,13 +1699,12 @@ border-color: rgba(0,0,0,0.2);
 	}
 
 	.fbButton{
-  		margin-left: -520px;
+  		margin-left: -565px;
 		margin-top: -111px;
 	}
 
 	.btn-fb {
 		height:71px;
-		width: 263px;
 	}
 
 	.imageCarouseltextbox .imageCoureselForm{
@@ -4805,7 +4802,7 @@ color:#fff;
     margin-top:6px;
 }
 #reportModal .modal-dialog {
-    width: 1000px;
+    width: 1115px;
     margin: 30px auto;
 }
 .deleteComment{
@@ -4865,4 +4862,16 @@ button.all-users{
 }
 .shippingreward .help-block {
     display: inline-block;
+}
+
+.nav-text1{
+	margin-top: 11%;
+}
+
+.nav-text2{
+	margin-top: 9%;
+}
+
+.nav-text3{
+	margin-top: 11%;
 }

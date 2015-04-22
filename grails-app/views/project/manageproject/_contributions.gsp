@@ -183,7 +183,7 @@
 			            <div class="modal-content">
 			                <div class="modal-header">
 			                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-			                    <h4 class="modal-title"><b>Shipping Details</b></h4>
+			                    <h4 class="modal-title text-center"><b>Shipping Details</b></h4>
 			                </div>
 			                <div class="modal-body">
 			                    <g:if test="${contribution.contributorEmail == 'anonymous@example.com'}">
@@ -216,19 +216,21 @@
 								<g:if test="${contribution.twitterHandle  != null}">
 									<g:if test="${!contribution.twitterHandle.equalsIgnoreCase('null')}">
 								        <div class="form-group">
-								        	<label for="name">Twitter Handle: &nbsp; ${contribution.twitterHandle}</label>
+								        	<label for="name"><b>Twitter Handle: &nbsp;</b> ${contribution.twitterHandle}</label>
 								        </div>
 							        </g:if>
 								</g:if>
 								<g:if test="${contribution.custom  != null}">
 									<g:if test="${!contribution.custom.equalsIgnoreCase('null')}">
 								        <div class="form-group">
-								        	<label for="name">Custom Details: &nbsp; ${contribution.custom}</label>
+								        	<label for="name"><b>Custom Details: &nbsp;</b> ${contribution.custom}</label>
 								        </div>
 							        </g:if>
 								</g:if>
 			                </div>
-			                
+			                <div class="modal-footer">
+                                <button data-dismiss="modal" class="btn btn-sm btn-primary">Close</button>
+                            </div>
 			            </div>
 			        </div>
 				</div>
@@ -254,7 +256,7 @@
                   &times;
             </button>
             <h4 class="modal-title" id="reportModalLabel">
-               <h4><b>CONTRIBUTION REPORT</b></h4>
+               <span class="text-center"><h3><b>CONTRIBUTION REPORT</b></h3></span>
             </h4>
          </div>
          <g:hiddenField name="projectId" value="${project.id}"/>

@@ -397,6 +397,81 @@ function setDescriptionText(){
     $('#desclength').text(currentString);
   }
 }
+
+/*******************************Title text length******************** */
+var counter = 1;
+$('#campaignTitle').on('keydown', function(event) {
+
+event.altKey==true;
+var currentstring = $('#campaignTitle').val().length;
+if(currentstring <=99) {
+    var text = currentstring + 1;
+}
+if (event.keyCode > 31) {
+  if(event.altKey==true){
+  	setTitleText();
+  }
+  else{
+	  if(currentstring <99)
+		currentstring++;
+      $('#titleLength').text(text);
+  }
+
+} else {
+	  currentstring--;
+      $('#titleLength').text(text);
+  }
+}).keyup(function(e) {
+  
+if(e.altKey==true){
+	  setTitleText();
+    return false;
+}
+
+switch (e.keyCode) {
+
+  case 13:      //Enter
+  case 8:       //backspace
+  case 46:      //delete
+  case 17:      
+  case 27:      //escape
+  case 10:      //new line
+  case 20:      
+  case 9:       //horizontal TAB
+  case 11:      //vertical tab
+  case 33:      //page up  
+  case 34:      //page  down
+  case 35:      //End 
+  case 36:      //Home
+  case 37:      //Left arrow
+  case 38:      //up arrow
+  case 39:      //Right arrow
+  case 40:      //Down arrow
+  case 45:      //Insert
+  case 12:      //vertical tab
+  	setTitleText();
+    break;
+  case 16:      //shift
+  	setTitleText();
+   break;
+}
+}).focus(function(){
+	setTitleText();
+}).focusout(function(){
+	  setTitleText();
+});
+
+function setTitleText(){
+ 
+var currentstring = $('#campaignTitle').val().length;
+if (currentstring == 0) {
+  $('#titleLength').text("0");
+} 
+else {
+	  currentstring = currentstring;
+  $('#titleLength').text(currentstring);
+}
+}
   
 
 });

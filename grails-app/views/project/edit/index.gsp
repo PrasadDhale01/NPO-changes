@@ -428,13 +428,14 @@
                                       optionKey="key" optionValue="value"/>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group editTitleDiv">
                         <label class="col-sm-2 control-label">Campaign title</label>
                         <div class="col-sm-10">
-                            <input class="form-control" name="${FORMCONSTANTS.TITLE}" value="${project.title}">
+                            <input class="form-control" name="${FORMCONSTANTS.TITLE}" id="campaignTitle" value="${project.title}" maxlength="100">
+                            <label class="pull-right " id="titleLength"></label>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group editDescDiv">
                         <label class="col-sm-2 control-label">Brief Description</label>
                         <div class="col-sm-10">
                             <textarea class="form-control" name="${FORMCONSTANTS.DESCRIPTION}" id="descarea" maxlength="140" rows="2" placeholder="Make it catchy, and no more than 140 characters"> ${project.description} </textarea>

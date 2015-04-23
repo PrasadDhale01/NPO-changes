@@ -4893,18 +4893,22 @@ button.all-users{
 }
 
 .buttonOnBanner{
-  background-color: #ff784f;
-  border-color: white;
-  color: white;
+  background-color: white;
+  color: #ff784f;
   border-radius: 6px;
   padding:1%;
+  border-width: 3px;
 }
 
 .buttonOnBanner:visited,
 .buttonOnBanner:active,
 .buttonOnBanner:hover {
-	color: white;
+	background-color: #ff784f;
+    border-color: white;
+    color: white;
+    border-width: 3px;
 }
+
 .dynCSS{
 	border: 1px solid red;
     padding-left: 4px;

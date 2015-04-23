@@ -53,7 +53,7 @@
 							        <div class="col-md-6">
 							            <div class="form-group">
 							                <div class="input-group col-md-12">
-							                    <input class="form-control" type="text" placeholder="Name" name="receiptName">
+							                    <input class="form-control" type="text" placeholder="Full Name" name="receiptName" id="receiptName">
 							                </div>
 							            </div>
 							        </div>

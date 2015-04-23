@@ -22,7 +22,6 @@ $(function() {
     	} else {
     		$("#otherState").hide();
     	}
-    		
     });
     
     $('#state').change(function(event) {
@@ -173,7 +172,8 @@ $(function() {
             	required: true
             },
             receiptName: {
-            	required: true
+            	required: true,
+            	isFullName: true
             },
             receiptEmail: {
             	required: true,
@@ -194,6 +194,21 @@ $(function() {
         }
     });
     
+    $.validator.addMethod('isFullName', function(value, element){
+     	  if(value && value.length !=0){
+     		var fullname =$('#receiptName').val();
+    		 var space= fullname.split(" ");
+    		 if(space.length < 2){
+    			return false;
+    		 }else if(space[1]==''){
+    			return false;
+    		 }else{
+    			var p=/^[A-Za-z]+([\sA-Za-z]+)*$/
+    	   	 	return (value.match(p));
+    		 }
+     	  }
+     	  return true;
+     }, "Please enter fullname");
     $('form').submit(function() {
         if($("#payment-form").valid()) {
             $(this).find("button[type='submit']").prop('disabled',true);

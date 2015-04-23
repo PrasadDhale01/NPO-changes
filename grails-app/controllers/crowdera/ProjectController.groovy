@@ -543,10 +543,10 @@ class ProjectController {
                         if(rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount])>amount){
                             boolPerk=true;
                         }
+						if(mailingAddress[icount]==null && emailAddress[icount]==null && twitter[icount]==null && custom[icount]==null){
+							emailAddress[icount]=true
+						}
                     }
-					if(mailingAddress[0]==null && emailAddress[0]==null && twitter[0]==null && custom[0]==null){
-						emailAddress[0]=true
-					}
                     if(boolPerk==true){
                         flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
                         render (view: 'manageproject/error')

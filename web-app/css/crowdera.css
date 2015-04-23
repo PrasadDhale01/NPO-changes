@@ -1313,6 +1313,7 @@ footer .footerbottomsection {
     color: #ffffff;
     background-color: #ff784f;
     border-color: #ff784f;
+    margin-top: -1%;
 }
 
 .cvc-details span.input-group-addon {
@@ -2141,6 +2142,18 @@ textarea.form-control {
 /* Media 970px */
 @media only screen and (max-width: 970px) {
 	
+	.manage-tiles {
+        width: 65% !important;
+    }
+     .manage-tiles-details {
+        width: 65% !important;
+    }
+    .c100.pie-tile {
+        margin-top: -4%;
+    }
+    .c100.pie-tile-manage {
+        margin-top: -4%;
+    }
 	.btn-group.btn-group-sm.btnOrgBgColor {
   		margin-left: 0px;
 	}
@@ -2517,6 +2530,18 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 800px) {
+	.manage-tiles {
+        width: 65% !important;
+    }
+    .manage-tiles-details {
+        width: 65% !important;
+    }
+    .c100.pie-tile {
+        margin-top: -4%;
+    }
+    .c100.pie-tile-manage {
+        margin-top: -4%;
+    }
     .nav > li > a{
         padding:7px, 10px !important;
     }
@@ -2545,6 +2570,9 @@ textarea.form-control {
 	}
 }
 @media only screen and (max-width: 1024px) {
+	.tile-goal {
+        width: 150%;
+    }
 	.divFirstAdmin.lowRes.highRes {
 		width: 37% !important;
   		margin-left: 36px !important;
@@ -2653,6 +2681,18 @@ textarea.form-control {
     }
 }
 @media only screen and (max-width: 768px){
+.manage-tiles {
+    width: 65% !important;
+}
+.manage-tiles-details {
+    width: 65% !important;
+}
+.c100.pie-tile {
+    margin-top: -4%;
+}
+.c100.pie-tile-manage {
+    margin-top: -4%;
+}
 .nav > li > a {
     padding: 7px 17px;
 }
@@ -3260,6 +3300,12 @@ textarea.form-control {
 
 }
 @media only screen and (max-width: 414px) {
+	.manage-tiles {
+        width: 55% !important;
+    }
+    .manage-tiles-details {
+        width: 55% !important;
+    }
     input.paypal-create {
         margin-left: -6% !important;
         width: 106%;
@@ -3490,6 +3536,12 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 375px) {
+	.manage-tiles {
+        width: 55% !important;
+    }
+    .manage-tiles-details {
+        width: 55% !important;
+    }
     input.paypal-create {
         margin-left: -6% !important;
         width: 106%;
@@ -3680,6 +3732,9 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 320px){
+	.tile-goal {
+        width: 150%;
+    }
 	.btn-create {
         	background-color: white;
   		border-color: white;
@@ -4356,7 +4411,7 @@ a.footerlink {
 }
 .tilesanstitle-achived-ended{
 	padding: 0; 
-	margin-top: 30px;
+	margin-top: 12px;
 }
 .tilesanstitle-raised{
 	margin-top: 10px;
@@ -4371,8 +4426,8 @@ a.footerlink {
 }
 .tileanstitle-goals{
 	text-align: left; 
-	margin-top: 0; 
-	margin-bottom: 2px;
+	margin-top: 15px; 
+	margin-bottom: 15px;
 }
 .login-adminviews{
 	width: 180px;
@@ -4875,3 +4930,23 @@ button.all-users{
 .nav-text3{
 	margin-top: 11%;
 }
+.manage-tileanstitle {
+    width: 171%;
+}
+.manage-tileanstitle-manage{
+	width: 171%;
+}
+.panel-css{
+	margin-bottom: -5px;
+}
+p.tile-text-size {
+    font-size: 73%;
+}
+.manage-tiles {
+    width: 75%;
+}
+.manage-tiles-details {
+    width: 75%;
+}
+
+

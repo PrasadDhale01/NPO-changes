@@ -2099,6 +2099,26 @@ h1.green-heading{
     display:inline !important;
 }
 
+.form-group.editTitleDiv.has-error {
+    display: inline;
+}
+.editTitleDiv .help-block{
+    color: #ff0000;
+    font-size: 12px;
+    font-weight: normal;
+    display:inline !important;
+}
+
+.form-group.editDescDiv.has-error {
+    display: inline;
+}
+.editDescDiv .help-block{
+    color: #ff0000;
+    font-size: 12px;
+    font-weight: normal;
+    display:inline !important;
+}
+
 .form-control.rewardprice{
     width:100%;
 }

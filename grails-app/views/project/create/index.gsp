@@ -355,7 +355,8 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 							<label class="col-sm-4 control-label">Campaign title</label>
 							<div class="col-sm-8">
 								<input class="form-control" name="${FORMCONSTANTS.TITLE}"
-									placeholder="Enter Campaign title">
+									placeholder="Title should be no more than 100 characters " id="campaignTitle" maxlength="100">
+									<label class="pull-right " id="titleLength"></label>
 							</div>
 						</div>
 					</div></div>	

@@ -6,7 +6,7 @@
 %>
 <div class="panel panel-primary reward-tile">
 	<div class="panel-heading">
-		<h3 class="panel-title">${reward.title}</h3>
+		<h3 class="panel-title"><b>${reward.title}</b></h3>
 	</div>
 	<div class="panel-body perktile">
 	    <div class="containrewards">

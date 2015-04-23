@@ -11,22 +11,22 @@
 <body>
 	<g:set var="user" value="transaction.user"/>
     <tr>
-    	<td>${transaction.id}</td>
-    	<td>${transaction.transactionId}</td>
-    	<td class="text-center">${date}</td>
-    	<td class="text-center">${time}</td>
-       <td>${transaction.project.title}</td>
-       <td>${transaction.contribution.contributorName}</td>
-       <td>
+    	<td class="text-center col-sm-1">${transaction.id}</td>
+    	<td class="col-sm-2">${transaction.transactionId}</td>
+    	<td class="text-center col-sm-2">${date}</td>
+    	<td class="text-center col-sm-2">${time}</td>
+        <td class="col-sm-1">${transaction.project.title}</td>
+        <td class="col-sm-2">${transaction.contribution.contributorName}</td>
+        <td class="text-center">
             <g:if test="${transaction.contribution.isAnonymous}">
                 Anonymous
             </g:if>
             <g:else>
                 Non Anonymous
             </g:else>
-        </td>
-        <td class="text-center">${transaction.project.amount}</td>
-        <td class="text-center">${projectService.getContributedAmount(transaction)}</td>
+         </td>
+         <td class="text-center">${transaction.project.amount}</td>
+         <td class="col-sm-2">${projectService.getContributedAmount(transaction)}</td>
     </tr>
 </body>
 </html>

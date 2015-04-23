@@ -2088,6 +2088,37 @@ h1.green-heading{
     font-weight: normal;
     display:inline !important;
 }
+
+.form-group.createTitleDiv.has-error {
+    display: inline;
+}
+.createTitleDiv .help-block{
+    color: #ff0000;
+    font-size: 12px;
+    font-weight: normal;
+    display:inline !important;
+}
+
+.form-group.editTitleDiv.has-error {
+    display: inline;
+}
+.editTitleDiv .help-block{
+    color: #ff0000;
+    font-size: 12px;
+    font-weight: normal;
+    display:inline !important;
+}
+
+.form-group.editDescDiv.has-error {
+    display: inline;
+}
+.editDescDiv .help-block{
+    color: #ff0000;
+    font-size: 12px;
+    font-weight: normal;
+    display:inline !important;
+}
+
 .form-control.rewardprice{
     width:100%;
 }
@@ -4900,7 +4931,6 @@ button.all-users{
   border-width: 3px;
 }
 
-.buttonOnBanner:visited,
 .buttonOnBanner:active,
 .buttonOnBanner:hover {
 	background-color: #ff784f;

@@ -48,6 +48,7 @@
     
     $('#inviteTeamMember').find('form').validate({
         rules: {
+            username: {
                 required: true
             },
             emailIds: {

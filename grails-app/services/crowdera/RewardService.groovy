@@ -152,7 +152,7 @@ class RewardService {
     }
     
     def getSortedRewards(Project project) {
-        def rewards = project.rewards.sort {it.id}
+        def rewards = project.rewards.sort {it.price}
         return rewards
     }
     

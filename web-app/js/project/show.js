@@ -47,15 +47,14 @@
     /**********End***************************************************************************/
     
     $('#inviteTeamMember').find('form').validate({
-    	rules: {
-    		userName: {
-    			required: true
-    		},
-   		emailIds: {
-    			required: true,
-    			validateMultipleEmailsCommaSeparated: true
-    		}
-    	}
+        rules: {
+                required: true
+            },
+            emailIds: {
+                required: true,
+                validateMultipleEmailsCommaSeparated: true
+            }
+        }
     });
     
     $('#commentForm').find('form').validate({
@@ -107,7 +106,11 @@
         	}
         });
     });
-
+    
+    $('#loadTeamPage').click(function() {
+        location.reload(true);
+    });
+    
     $('.offlineAmount').each(function () {
         $(this).keypress(function (e) {
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -135,7 +138,7 @@
         if(!validateEmail(result[i])) 
                 return false;    		
         return true;
-    },"please add valid emails only");
+    },"Please add valid emails only");
 
     /************************Hide/Show comments********************/ 
     $("#uniqueId input[type='checkbox']").click(function(){

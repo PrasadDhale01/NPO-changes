@@ -208,7 +208,7 @@ $(function() {
     		 }
      	  }
      	  return true;
-     }, "Please enter fullname");
+     }, "Please enter a valid fullname");
     $('form').submit(function() {
         if($("#payment-form").valid()) {
             $(this).find("button[type='submit']").prop('disabled',true);

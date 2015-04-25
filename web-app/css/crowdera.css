@@ -110,7 +110,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 70px;
 }
 .navbar-brand >img {
-	height: 56px;
+	height: 48px;
 	margin-top: -4px;
 }
 
@@ -3567,6 +3567,12 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 375px) {
+	
+	.footer_links a {
+        color: #cccccc;
+        font-size: 11px !important;
+        text-decoration: none;
+    }
 	.manage-tiles {
         width: 55% !important;
     }
@@ -3727,6 +3733,15 @@ textarea.form-control {
 		margin-left: -55px !important;
 	}
 }
+
+@media only screen and (max-width: 384px){
+	.footer_links a {
+        color: #cccccc;
+        font-size: 10px !important;
+        text-decoration: none;
+    }
+}
+
 @media only screen and (max-width: 360px){
 	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 		width: 81%;
@@ -3762,7 +3777,22 @@ textarea.form-control {
 	}	
 }
 
+@media only screen and (min-width: 210px) and (max-width: 300px){
+   .navbar-brand > img {
+       height: 40px !important;
+       margin-top: -4px;
+   }
+}
+
 @media only screen and (max-width: 320px){
+    .tips h2 {
+        font-size: 156% !important;
+    }
+	.footer_links a {
+        color: #cccccc;
+        font-size: 9px !important;
+        text-decoration: none;
+    }
 	.tile-goal {
         width: 150%;
     }
@@ -3823,7 +3853,7 @@ textarea.form-control {
 	margin-left: -17px !important;
     }
     .tips h2 {
-	padding-left: 29px !important;
+	    padding-left: 72px !important;
     }
     .divFirstAdmin{
         margin-left:6px !important;

@@ -25,6 +25,10 @@ $(function() {
         }
     });
     
+//    $('#projectDetailsImage'+$('#id').val()).click(function (e) {
+//    	$('.projectDetailsForm'+$('#id').val()).submit();
+//    });
+    
   /*  $('.twittersocialicon').hover(function(){
     	$(this).attr('src',"/images/twitter-over.png");
     	}).mouseleave(function(){
@@ -51,3 +55,35 @@ $(function() {
         $(this).attr('src',"/images/s4.png");
     }); */
 });
+
+function clickableImage(image) {
+	$(image).closest('.projectDetailsForm').submit();
+}
+
+function clickableTitle(title){
+	$(title).closest('.projectTitleDetailsForm').submit();
+}
+
+function manageProjectImageClickable(element){
+	$(element).closest('.manageProjectForm').submit();
+}
+
+function teamsClickableImage(images){
+	$(images).closest('.teamsMangageForm').submit();
+}
+
+function teamsManageProjectTitleClickable(element1){
+	$(element1).closest('.teamsManageProjectForm').submit();
+}
+
+function manageProjectTitleClickable(element2){
+	$(element2).closest('.manageProjectTitleForm').submit();
+}
+
+function showTitleClickable(titleShow){
+	$(titleShow).closest('.showTitleForm').submit();
+}
+
+function manageProjectTitleClickable(titlemanageProject){
+	$(titlemanageProject).closest('.manageProjectTitleForm').submit();
+}

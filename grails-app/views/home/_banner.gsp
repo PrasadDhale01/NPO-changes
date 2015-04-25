@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="text-center">
 			    <br>
-			    <h1>Let's help you <b>Raise Money FREE</b> for what matters to you </h1>
+			    <h1><b>Let's help you Raise Money FREE for what matters to you </b></h1>
 			    
 				    <a class="btn buttonOnBanner" href="${resource(dir: '/howitworks')}"><b>LEARN HOW</b></a>
 				    &nbsp;&nbsp;or&nbsp;&nbsp;

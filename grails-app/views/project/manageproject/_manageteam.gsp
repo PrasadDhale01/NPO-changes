@@ -91,7 +91,11 @@
 
 <!-- Modal -->
 <div class="modal fade" id="inviteTeamMember" tabindex="-1" role="dialog" aria-hidden="true">
-    <g:form action="inviteTeamMember" id="${project.id}" role="form">
+    <g:form action="inviteTeamMember" role="form" params="['fundraiser': project.user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]" fragment='manageTeam'>
+        <g:hiddenField name="id" value="${project.id}"/>
+        <g:hiddenField name="fr" value="${username}"/>
+        <g:hiddenField name="amount" value="${project.amount}"/>
+        <g:hiddenField name="ismanagepage" value="managepage" />
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -99,8 +103,7 @@
                     <h4 class="modal-title">Invite Team Members</h4>
                 </div>
                 <div class="modal-body">
-                    <g:hiddenField name="amount" value="${project.amount}"/>
-                    <g:hiddenField name="ismanagepage" value="managepage" />
+                    
                     <div class="form-group">
                         <label>Name</label>
                         <input type="text" class="form-control" name="username" value="${userName}" placeholder="Name"/>

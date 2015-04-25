@@ -19,7 +19,7 @@
         <g:if test="${isCampaignOwnerOrAdmin}">
 		    <ul class="nav nav-pills nav-pills-manageteam">
                 <li data-toggle="tab" class="active team-footer col-md-3 col-sm-6 col-xs-12">
-                    <a href="#team" class="text-center teammembers">
+                    <a href="#manageTeam" class="text-center teammembers" id="loadTeamPage">
                         ${validatedTeam.size()}&nbsp;&nbsp;Teams <g:if test="${discardedTeam.size() > 0}">&nbsp;&nbsp;(${discardedTeam.size()}&nbsp;&nbsp;Disabled)</g:if>
                     </a>
                 </li>
@@ -45,7 +45,7 @@
 		<g:else>
 			<ul class="nav nav-pills">
 			   <li data-toggle="tab" class="active team-footer col-md-4 col-sm-4 col-xs-4">
-			      <a href="#team">
+			      <a href="#manageTeam">
 			         ${validatedTeam.size()}&nbsp;&nbsp;Teams
 				  </a>
 				</li>
@@ -69,7 +69,7 @@
 		<div class="teamtileseperator"></div>
 
 		<div class="tab-content">
-		    <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
+		    <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="manageTeam">
 			    <g:render template="manageproject/teamgrid"/>
 			</div>
 			<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamComment">

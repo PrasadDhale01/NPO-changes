@@ -32,11 +32,12 @@
 <div class="fedu thumbnail grow user-tiles-style">
 	<div class="blacknwhite tile">
 	    <g:if test="${iscampaignAdmin}">
-			<g:link controller="project" action="manageproject" id="${project.id}"
-				title="${project.title}">
+			<g:form controller="project" action="manageproject" title="${project.title}" class="manageProjectForm" params="['fundraiser': user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]">
+				<g:hiddenField name="id" value="${project.id}"/>
+                <g:hiddenField name="fr" value="${username}"/>
 				<div class="imageWithTag">
 					<div class="under">
-						<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
+						<img alt="${project.title}" onclick="manageProjectImageClickable(this)" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
 					</div>
 					<g:if test="${project.draft}">
 						<div class="over user-tiles-widths">
@@ -91,17 +92,19 @@
 						</div>
 					</g:else>
 				</div>
-			</g:link>
+			</g:form>
 		</g:if>
 		<g:else>
-		    <g:link controller="project" action="show" id="${project.id}" params="['fr': username]" title="${project.title}">
+		    <g:form controller="project" action="show" class="teamsMangageForm" params="['fundraiser': user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]" title="${project.title}">
+				<g:hiddenField name="id" value="${project.id}"/>
+                <g:hiddenField name="fr" value="${username}"/>
 				<div class="imageWithTag">
 					<div class="under">
 						<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
 					</div>
 					<g:if test="${project.draft}">
 						<div class="over user-tiles-widths">
-							<img src="//s3.amazonaws.com/crowdera/assets/draft.png" alt="draft"/>
+							<img src="//s3.amazonaws.com/crowdera/assets/draft.png" onclick="teamsClickableImage(this)" alt="draft"/>
 						</div>
 					</g:if>
 					<g:elseif test="${project.rejected}">
@@ -135,21 +138,25 @@
 						</div>
 					</g:else>
 				</div>
-			</g:link>
+			</g:form>
 		</g:else>
 	</div>
 
 	<div class="caption">
 		<div class="project-title">
 		    <g:if test="${iscampaignAdmin}">
-				<g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">
-			        ${project.title}
-			    </g:link>
+				<g:form controller="project" action="manageproject" class="teamsManageProjectForm" params="['fundraiser': user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]" title="${project.title}">
+			        <g:hiddenField name="id" value="${project.id}"/>
+                    <g:hiddenField name="fr" value="${username}"/>
+			        <a onclick="teamsManageProjectTitleClickable(this)">${project.title}</a>
+			    </g:form>
 		    </g:if>
 		    <g:else>
-		        <g:link controller="project" action="show" id="${project.id}" params="['fr': username]" title="${project.title}">
-			        ${project.title}
-			    </g:link>
+		        <g:form controller="project" action="show" class="manageProjectTitleForm" params="['fundraiser': user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]" title="${project.title}">
+			        <g:hiddenField name="id" value="${project.id}"/>
+                    <g:hiddenField name="fr" value="${username}"/>
+			        <a onclick="manageProjectTitleClickable(this)">${project.title}</a>
+			    </g:form>
 		    </g:else>
 		</div>
 		<hr class="tile-separator">
@@ -208,7 +215,9 @@
 		<div class="modal-footer tile-footer user-footer-icon">
 			<div class="row">
                 <g:if test="${!project.validated || username.equals('campaignadmin@crowdera.co') }">
-                    <g:form controller="project" action="projectdelete" method="post" id="${project.id}">
+                    <g:form controller="project" action="projectdelete" method="post" params="['fundraiser': user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]">
+                        <g:hiddenField name="id" value="${project.id}"/>
+                        <g:hiddenField name="fr" value="${username}"/>
                         <button class="projectedit close pull-right" id="projectdelete"
                          onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
                             <i class="glyphicon glyphicon-trash"></i>
@@ -216,13 +225,16 @@
                     </g:form>
                 </g:if>
                 <g:if test="${isTeamAdmin || (user==project.user)}">
-                	<g:form controller="project" action="edit" method="post" id="${project.id}">
+                	<g:form controller="project" action="edit" method="post" params="['fundraiser': user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]">
                     	<g:hiddenField name="projectId" value="${project.id}" />
+                        <g:hiddenField name="fr" value="${username}"/>
                     	<button class="projectedit close pull-right" id="editproject">
                         	<i class="glyphicon glyphicon-edit"></i>
                     	</button>
                 	</g:form>
-                	<g:form controller="project" action="manageproject" method="post" id="${project.id}">
+                	<g:form controller="project" action="manageproject" method="post" params="['fundraiser': user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]">
+                    	<g:hiddenField name="id" value="${project.id}"/>
+                        <g:hiddenField name="fr" value="${username}"/>
                     	<button class="projectedit close pull-right" id="projectpreview">
                         	<i class="glyphicon glyphicon-picture"></i>
                     	</button>

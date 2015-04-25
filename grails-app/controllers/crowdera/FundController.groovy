@@ -623,9 +623,9 @@ class FundController {
         }
         flash.offlineContributionMsg = "Offline Contribution Added Successfully."
         if (params.manageCampaign) {
-            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', id: project.id)
+            forward(controller: 'project', action: 'manageproject',params:params)
         } else {
-            redirect (controller: 'project', action: 'show',fragment: 'contributions', id: project.id, params:[fr: username])
+            forward(controller: 'project', action: 'show', params:params)
         }
     }
 }

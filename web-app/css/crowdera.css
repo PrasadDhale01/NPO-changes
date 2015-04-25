@@ -4924,18 +4924,18 @@ button.all-users{
 }
 
 .buttonOnBanner{
-  background-color: white;
-  color: #ff784f;
+  background-color: #ff784f;
+  color: white;
   border-radius: 6px;
   padding:1%;
   border-width: 3px;
+  border-color: white;
 }
 
 .buttonOnBanner:active,
 .buttonOnBanner:hover {
-	background-color: #ff784f;
-    border-color: white;
-    color: white;
+	background-color: white;
+    color: #ff784f;
     border-width: 3px;
 }
 
@@ -4982,5 +4982,3 @@ p.tile-text-size {
 .manage-tiles-details {
     width: 75%;
 }
-
-

@@ -1166,7 +1166,7 @@ class ProjectService {
         def bucketName = "crowdera"
         def s3Bucket = new S3Bucket(bucketName)
         
-        def Folder = "assets"
+        def Folder = "Attachments"
         
         def tempImageUrl
         files.each {
@@ -1186,7 +1186,6 @@ class ProjectService {
                     fileUrl.url = tempImageUrl
                     service.addToAttachments(fileUrl)
                     file.delete()
-                    println tempImageUrl
                 } catch(IllegalStateException e){
                     e.printStackTrace()
                 }

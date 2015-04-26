@@ -11,7 +11,7 @@
 		<div class="row">
 			<div class="text-center">
 			    <br>
-			    <h1><b>Let's help you Raise Money FREE for what matters to you </b></h1>
+			    <h1 class="bannerheadbtmMargin"><b>Let's help you Raise Money FREE for what matters to you </b></h1>
 			    
 				    <a class="btn buttonOnBanner" href="${resource(dir: '/howitworks')}"><b>LEARN HOW</b></a>
 				    &nbsp;&nbsp;or&nbsp;&nbsp;

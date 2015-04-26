@@ -2433,7 +2433,7 @@ textarea.form-control {
 
     .fbButton{
         margin-left: -78%;
-        margin-top: -60px;
+        margin-top: -55px;
     }
 
 	.btn-fb {
@@ -5011,4 +5011,7 @@ p.tile-text-size {
 }
 .manage-tiles-details {
     width: 75%;
+}
+.bannerheadbtmMargin {
+	margin-bottom: 20px;
 }

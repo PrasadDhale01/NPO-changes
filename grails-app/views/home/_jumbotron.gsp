@@ -8,6 +8,7 @@
 	    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
 	    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
 	    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+	    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
 	</ol>
     </div>
 
@@ -15,7 +16,7 @@
     <div class="carousel-inner">
         <div class="item active">
             <g:if test="${userService.isLoggedIn()}">
-                <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/sliderImg1.jpg" alt="Slider-1"/>
+                <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/collage-Image.jpg" alt="Slider-1"/>
                 <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/sliderMobImg1.jpg" alt="Mobile Slider-1"/>
 <%--                <g:if test="${userService.isFacebookUser() }">--%>
 <%--                    <div class="carousel-caption">--%>
@@ -33,8 +34,8 @@
 <%--                </g:else>--%>
             </g:if>
             <g:else>
-            <img class="hidden-xs or-css" src="//s3.amazonaws.com/crowdera/assets/sliderMobImg1.jpg" alt="Slider-1"/>
-            <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/sliderImg.jpg" alt="Mobile Slider-1"/>
+            <img class="hidden-xs or-css" src="//s3.amazonaws.com/crowdera/assets/Collage-Image1.jpg" alt="Slider-1"/>
+            <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/Mobile-slide-1.jpg" alt="Mobile Slider-1"/>
             <div class="carousel-caption">
                 <div class="fbButton">
                     <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}"><img src="//s3.amazonaws.com/crowdera/assets/facebook_register.jpg" alt="facebook register" class="btn btn-fb"/></a>
@@ -64,12 +65,16 @@
             </g:else>
         </div>
         <div class="item ">
-            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/sliderMobImg2.jpg" alt="Girl Computer Slider"/>
-            <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/sliderImg2.jpg" alt="Girl Computer Slider Mobile"/>
+            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/nepal-Image.jpg" alt="Girl Computer Slider"/>
+            <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/Mobile-slide-2.jpg" alt="Girl Computer Slider Mobile"/>
+        </div>
+        <div class="item ">
+            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/girl-computer-image.jpg" alt="Girl Computer Slider"/>
+            <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/Mobile-slide-3.jpg" alt="Girl Computer Slider Mobile"/>
         </div>
         <div class="item">
-            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/sliderMobImg3.jpg" alt="kids Running Slider"/>
-            <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/sliderImg3.jpg" alt="kids Running Slider Mobile"/>
+            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/children-Image.jpg" alt="kids Running Slider"/>
+            <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/Mobile-slide-4.jpg" alt="kids Running Slider Mobile"/>
         </div>
     </div>
 

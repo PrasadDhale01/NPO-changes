@@ -237,7 +237,7 @@
         rules: {
             amount: {
                 required: true,
-                maxlength: 5,
+                maxlength: 6,
                 islessThanProjectAmount : true
             },
             description: {

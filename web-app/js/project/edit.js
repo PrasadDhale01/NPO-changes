@@ -19,8 +19,8 @@ $(function() {
             amount: {
                 required: true,
                 number: true,
-                maxlength: 5,
-                max: 50000
+                maxlength: 6,
+                max: 500000
             },
             days: {
                 required: true

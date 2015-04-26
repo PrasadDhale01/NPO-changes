@@ -83,7 +83,7 @@
 								<g:render template="show/contributions" model="['team':currentTeam]"/>
 							</div>
 							<div class="tab-pane" id="comments">
-								<g:render template="show/comments"/>
+								<g:render template="show/comments" model="['currentFundraiser':project.user]"/>
 							</div>
 						</div>
 

@@ -77,7 +77,7 @@ $(function() {
             amount: {
                 required: true,
                 number: true,
-                maxlength: 5,
+                maxlength: 6,
                 max: 50000
             },
             days: {

@@ -259,7 +259,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 														$('#organizationName').find('input').val(document.getElementById("charity_name").value);
 													}
 												</script>
-												<script src="http://assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
+												<script src="//assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
 											</div>
 											<div class="modal-footer">
 												<button href="#" data-dismiss="modal" class="btn btn-primary">Close</button>

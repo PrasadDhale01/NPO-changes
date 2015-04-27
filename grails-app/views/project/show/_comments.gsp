@@ -30,9 +30,7 @@
     <h4 class="lead">Leave a comment</h4>
     <div id="commentBox">
         <g:if test="${team.user!=project.user}">
-            <g:form controller="project" action="saveComment" role="form" params="['fundraiser': currentFundraiser.firstName,'projectTitle':project.title.replaceAll(' ', '-')]"  fragment= "comments">
-                <g:hiddenField name="id" value="${project.id}"/>
-                <g:hiddenField name="fr" value="${currentFundraiser.username}"/>
+            <g:form controller="project" action="saveteamcomment" role="form" id="${project.id}" params="['fr': fundRaiser]">
                 <div class="form-group">
                     <textarea class="form-control" name="comment" rows="4" required></textarea>
                 </div>
@@ -41,9 +39,7 @@
             </g:form>
         </g:if>
         <g:else>
-            <g:form controller="project" action="saveComment" role="form" params="['fundraiser': currentFundraiser.firstName,'projectTitle':project.title.replaceAll(' ', '-')]"  fragment= "comments">
-                <g:hiddenField name="id" value="${project.id}"/>
-                <g:hiddenField name="fr" value="${currentFundraiser.username}"/>
+            <g:form controller="project" action="savecomment" role="form" id="${project.id}" params="fragment: 'comments'">
                 <div class="form-group">
                     <textarea class="form-control" name="comment" rows="4" required></textarea>
                 </div>

@@ -51,29 +51,29 @@
 <%--			    <span class="navbar-brand-footer"><img src="/images/icon-1.jpg"></span><br>--%>
 				<h3 class="headingtext">Start Your Campaign</h3>
 				<span class="navbar-brand-footer"><img src="//s3.amazonaws.com/crowdera/assets/icon-1.jpg" alt="icon-1"/></span><br>
-				<p class="how-it-content">Crowdera is a free online crowdfunding platform for nonprofits and social innovators. Start your campaign, and start raising money!</p>
-				<p class="how-it-content">
-					New to Crowdera, <a href="/howitworks">learn more</a>.
-				</p>
+				<p class="how-it-content">Share your passion, idea, or cause in form of touching words, talking images and videos.</p>
+<%--				<p class="how-it-content">--%>
+<%--					New to Crowdera, <a href="/howitworks">learn more</a>.--%>
+<%--				</p>--%>
 			</div>
 			<div class="col-md-3 text-center">
 <%--			    <span class="navbar-brand-footer"><img src="/images/icon-2.jpg"></span>--%>
-				<h3 class="headingtext">Engage Your Contributors</h3>
+				<h3 class="headingtext">Engage Your Crowd</h3>
 				<span class="navbar-brand-footer"><img src="//s3.amazonaws.com/crowdera/assets/icon-2.jpg" alt="icon-2"/></span>
-				<p class="how-it-content">Crowdera helps people engage their community to make a difference. Share your campaign using social sharing tools to reach your supporters. Successful campaigns take effort and we are here to help you every step of the way!
+				<p class="how-it-content">Water your campaign with your social connects and incentivize them with meaningful perks.
 				<p>
 			</div>
 			<div class="col-md-3 text-center">
 <%--			    <span class="navbar-brand-footer"><img src="/images/icon-3.jpg"></span>--%>
-				<h3 class="headingtext">Be The Change</h3>
+				<h3 class="headingtext">Receive Your Funds</h3>
 				<span class="navbar-brand-footer"><img src="//s3.amazonaws.com/crowdera/assets/icon-3.png" alt="icon-3"/></span>
-				<p class="how-it-content">Be a catalyst in your community by bringing people together to raise awareness and funds for individuals, nonprofits and social innovators. Need help getting started? <a href="/howitworks">Learn more</a></p>
+				<p class="how-it-content">Receive instant contributions via our secured payment gateway and show gratitude.</p>
 			</div>
 			<div class="col-md-3 text-center">
 <%--			    <span class="navbar-brand-footer"><img src="/images/icon-4.jpg"></span>--%>
-				<h3 class="headingtext">Say Thank You</h3>
+				<h3 class="headingtext">Achieve Your Goals</h3>
 				<span class="navbar-brand-footer"><img src="//s3.amazonaws.com/crowdera/assets/icon-4.jpg" alt="icon-4"/></span>
-				<p class="how-it-content">Find creative ways to say thank you to your supporters! It’s a great way to show your gratitude and celebrate the impact your crowd has made on the world. Need help? Visit our <a href="http://crowdera.tumblr.com/">blog</a> for inspiration.</p>
+				<p class="how-it-content">Achieve your goals with raised money, deliver promised perks and keep sharing updates.</p>
 			</div>
 			<div class="clear-both"></div>
 		</div>

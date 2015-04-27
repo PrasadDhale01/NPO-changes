@@ -30,9 +30,7 @@
     <div class="clear"></div>
     <!-- Modal -->
     <div class="modal fade offlineContributionModal" id="offlineContributionModal" tabindex="-1" role="dialog" aria-labelledby="offlineContributionModal" aria-hidden="true">
-        <g:form action="saveOfflineContribution" controller="fund" params="['fundraiser': user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]" fragment='contributions' role="form">
-            <g:hiddenField name="id" value="${project.id}"/>
-            <g:hiddenField name="fr" value="${fundRaiser}"/>
+        <g:form action="saveOfflineContribution" controller="fund" id="${project.id}"  params="['fr':fundRaiser]" role="form">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -131,11 +129,8 @@
                                     </button>
                                 </div>
                                 <div class="pull-right">
-                                    <g:form controller="project" action="contributiondelete" method="post" params="['fundraiser': user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]" fragment='contributions'>
+                                    <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser]">
                                         <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
-                                        <g:hiddenField name="id" value="${project.id}"/>
-                                        <g:hiddenField name="contributionId" value="${contribution.id}"/>
-                                        <g:hiddenField name="fr" value="${fundRaiser}"/>
                                         <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this contribution?&#39;);">
                                             <i class="glyphicon glyphicon-trash" ></i>
                                         </button>
@@ -147,10 +142,7 @@
                         
                         <!-- EditContributionModal -->
                         <div class="modal fade offlineContributionModal contributionedit" id="contributionedit${contribution.id}" tabindex="-1" role="dialog" aria-labelledby="contributionedit${contribution.id}" aria-hidden="true">
-                            <g:form action="contributionedit" controller="project" params="['fundraiser': user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]" fragment='contributions' role="form">
-                                <g:hiddenField name="id" value="${project.id}"/>
-                                <g:hiddenField name="contributionId" value="${contribution.id}"/>
-                                <g:hiddenField name="fr" value="${fundRaiser}"/>
+                            <g:form action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser]" role="form">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-body">

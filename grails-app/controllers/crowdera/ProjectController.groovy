@@ -99,28 +99,27 @@ class ProjectController {
      }
 
 	def show() {
-		Project project
-        User user = User.findByUsername(params.fr)
-		if (params.id) {
-			project = Project.findById(params.id)
-		} else {
-			project = null
-		}
-
-        render (view: 'show/index',
+		Project project = Project.findById(params.id)
+		if (project) {
+            User user = User.findByUsername(params.fr)
+            render (view: 'show/index',
                 model: [project: project, user: user,
                         FORMCONSTANTS: FORMCONSTANTS])
+		} else {
+			render (view: '/error')
+		}
 	}
 
     @Secured(['ROLE_ADMIN'])
     def validateshow() {
-        def projects = params.id
-        if (params.id) {         
-            projects = Project.findById(params.id)
+        def projects = Project.findById(params.id)
+        if (projects) {         
             def validatedPage = true
             if(projects.validated == false) {
                 render (view: 'validate/validateshow', model: [project: projects, validatedPage: validatedPage])
             }
+        } else {
+            render (view: '/error')
         }
     }
 
@@ -190,9 +189,8 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def validate() {
-        Project project
-        if (params.id) {
-            project = Project.findById(params.id)
+        Project project = Project.findById(params.id)
+        if (project) {
             if(project.validated == true){
                 redirect (action:'show')
             } else {
@@ -609,21 +607,20 @@ class ProjectController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def manageproject() {
-        Project project
+        Project project = Project.findById(params.id)
         User user = userService.getCurrentUser()
-        if (params.id) {
-            project = Project.findById(params.id)
+        if (project) {
+            def isCoAdmin=userService.isCampaignBeneficiaryOrAdmin(project,user)
+            if(project.user==user || isCoAdmin){
+                    render (view: 'manageproject/index',
+                    model: [project: project,
+                            FORMCONSTANTS: FORMCONSTANTS])
+            }else{
+                    flash.prj_mngprj_message = 'Campaign Not Found'
+                    render (view: 'manageproject/error', model: [project: project])
+            }
         } else {
-            project = null
-        }
-        def isCoAdmin=userService.isCampaignBeneficiaryOrAdmin(project,user)
-        if(project.user==user || isCoAdmin){
-                render (view: 'manageproject/index',
-                model: [project: project,
-                        FORMCONSTANTS: FORMCONSTANTS])
-        }else{
-                flash.prj_mngprj_message = 'Campaign Not Found'
-                render (view: 'manageproject/error', model: [project: project])
+            render (view: '/error')
         }
     }
     
@@ -986,7 +983,7 @@ class ProjectController {
         }
         def result
         if(project.rewards.size()>1){ 
-            result='CAMPAIGN TITLE, FUNDRAISER, DATE, TIME, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, SHIPPING DETAILS, AMOUNT, MODE, \n'
+            result='CAMPAIGN, FUNDRAISER, CONTRIBUTION_DATE, CONTRIBUTION_TIME, CONTRIBUTOR_NAME,CONTRIBUTOR_EMAIL, SHIPPING_DETAILS, AMOUNT, MODE, \n'
             results.each{ row->
                 row.each{
                 col -> result+=col +','
@@ -995,7 +992,7 @@ class ProjectController {
                 result+="\n"
             }
         }else{
-            result='CAMPAIGN TITLE, FUNDRAISER, DATE, TIME, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, AMOUNT, MODE, \n'
+            result='CAMPAIGN, FUNDRAISER, CONTRIBUTION_DATE, CONTRIBUTION_TIME, CONTRIBUTOR_NAME,CONTRIBUTOR_EMAIL, AMOUNT, MODE, \n'
             results.each{ row->
                 row.each{
                 col -> result+=col +','

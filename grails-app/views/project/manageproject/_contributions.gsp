@@ -268,14 +268,14 @@
                             <thead>
                                 <tr class="alert alert-title ">
                                     <th class="col-sm-2 text-center">CAMPAIGN</th>
-                                    <th class="text-center">FUNDRAISER</th>
-                                    <th class="col-sm-3 text-center">CONTRIBUTION DATE</th>
-                                    <th class="col-sm-3 text-center">CONTRIBUTION TIME</th>
-                                    <th class="col-sm-2 text-center">CONTRIBUTOR</th>
-                                    <th class="col-sm-2 text-center">EMAIL</th>
+                                    <th class="col-sm-2 text-center">FUNDRAISER</th>
+                                    <th class="col-sm-2 text-center">CONTRIBUTION_DATE</th>
+                                    <th class="col-sm-1 text-center">CONTRIBUTION_TIME</th>
+                                    <th class="col-sm-1 text-center">CONTRIBUTOR_NAME</th>
+                                    <th class="col-sm-2 text-center">CONTRIBUTOR_EMAIL</th>
 
                                     <g:if test="${project.rewards.size()>1}">
-                                        <th class="col-sm-2 text-center">SHIPPING DETAILS</th>
+                                        <th class="col-sm-2 text-center">SHIPPING_DETAILS</th>
                                     </g:if>
 
                                     <th class="text-center">AMOUNT</th>
@@ -357,17 +357,17 @@
                                         }    
                                     %>
                                     <tr>
-                                        <td class="col-sm-2 text-center">${project.title}</td>
-                                        <td class="text-center">
+                                        <td class="col-sm-2 text-center wordBreak">${project.title}</td>
+                                        <td class="col-sm-2 text-center wordBreak">
                                             ${contributionService.getFundRaiserName(contributions, project)}
                                         </td>
-                                        <td class="col-sm-3 text-center">${date}</td>
-                                        <td class="col-sm-3 text-center">${time}</td>
-                                        <td class="col-sm-2 ">${contributorName}</td>
-                                        <td class="col-sm-2 ">${contributorEmail}</td>
+                                        <td class="col-sm-1 text-center ">${date}</td>
+                                        <td class="col-sm-1 text-center">${time}</td>
+                                        <td class="col-sm-2 wordBreak">${contributorName}</td>
+                                        <td class="col-sm-2 wordBreak">${contributorEmail}</td>
 
                                         <g:if test="${project.rewards.size()>1}">
-                                            <td class="col-sm-3 ">${raw(shippingDetails)}</td> 
+                                            <td class="col-sm-2 wordBreak">${raw(shippingDetails)}</td> 
                                         </g:if>
 
                                         <td class="text-center">$${amount}</td>

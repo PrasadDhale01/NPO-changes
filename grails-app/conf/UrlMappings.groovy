@@ -9,6 +9,7 @@ class UrlMappings {
 
         "/"(controller: 'home', action: 'index')
         "500"(controller: "error")
+        "404"(view: '/error')
 
         "/logout/$action?"(controller: "logout")
 

@@ -5023,3 +5023,7 @@ p.tile-text-size {
 .bannerheadbtmMargin {
 	margin-bottom: 20px;
 }
+
+.wordBreak{
+	word-break: break-all;
+}

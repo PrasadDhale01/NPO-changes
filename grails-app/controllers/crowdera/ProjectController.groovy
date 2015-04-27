@@ -995,7 +995,7 @@ class ProjectController {
                 result+="\n"
             }
         }else{
-            result='CAMPAIGN, FUNDRAISER, CONTRIBUTION_DATE, CONTRIBUTION_TIME, CONTRIBUTOR NAME,CONTRIBUTOR_EMAIL, AMOUNT, MODE, \n'
+            result='CAMPAIGN, FUNDRAISER, CONTRIBUTION_DATE, CONTRIBUTION_TIME, CONTRIBUTOR_NAME,CONTRIBUTOR_EMAIL, AMOUNT, MODE, \n'
             results.each{ row->
                 row.each{
                 col -> result+=col +','

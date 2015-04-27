@@ -2,12 +2,10 @@
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
 <g:set var="rewardService" bean="rewardService"/>
-<g:set var="userService" bean="userService"/>
 <%
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     boolean isFundingOpen = projectService.isFundingOpen(project)
     def rewards = rewardService.getSortedRewards(project);
-	def currentUser = userService.getCurrentUser()
 %>
 <div class="row">
     <div class="col-xs-12">
@@ -24,9 +22,7 @@
         
         <!-- Modal -->
         <div class="modal fade" id="createRewardModal" tabindex="-1" role="dialog" aria-labelledby="createRewardModal" aria-hidden="true">
-            <g:form action="customrewardsave" role="form" params="['fundraiser': currentUser.firstName,'projectTitle':project.title.replaceAll(' ', '-')]" fragment='rewards'>
-                <g:hiddenField name="id" value="${project.id}"/>
-                <g:hiddenField name="fr" value="${currentUser.username}"/>
+            <g:form action="customrewardsave" id="${project.id}"role="form">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">

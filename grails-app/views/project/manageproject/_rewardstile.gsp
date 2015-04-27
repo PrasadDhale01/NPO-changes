@@ -82,12 +82,13 @@
                             def rewarShipping = rewardService.getRewardShippingInfo(reward)
                         %>
                         <g:if test="${rewarShipping}">
-                        <div class="shippingreward">
-                            <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="address" value="true" id="mailaddcheckbox" <g:if test="${rewarShipping.address}">checked="checked"</g:if> >Mailing address</label>
-                            <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="email" value="true" id="emailcheckbox" <g:if test="${rewarShipping.email}">checked="checked"</g:if>>Email address</label>
-                            <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="twitter" value="true" id="twittercheckbox" <g:if test="${rewarShipping.twitter}">checked="checked"</g:if>>Twitter handle</label>
-                            <label class="btn btn-primary btn-sm checkbox-inline control-label lblCustom"><input type="checkbox" name="custom" value="true" id="customcheckbox" <g:if test="${rewarShipping.custom}">checked="checked"</g:if>>Custom</label>
+                        <div class="editShippingreward">
+                            <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="editShippingInfo" name="address" value="true" id="mailaddcheckbox" <g:if test="${rewarShipping.address}">checked="checked"</g:if> >Mailing address</label>
+                            <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="editShippingInfo" name="email" value="true" id="emailcheckbox" <g:if test="${rewarShipping.email}">checked="checked"</g:if>>Email address</label>
+                            <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="editShippingInfo" name="twitter" value="true" id="twittercheckbox" <g:if test="${rewarShipping.twitter}">checked="checked"</g:if>>Twitter handle</label>
+                            <label class="btn btn-primary btn-sm checkbox-inline control-label lblCustom"><input type="checkbox" class="editShippingInfo" name="custom" value="true" id="customcheckbox" <g:if test="${rewarShipping.custom}">checked="checked"</g:if>>Custom</label>
                         </div>
+                        <div class="editShippingError"></div>
                         </g:if>
                     </div>
                 </div>

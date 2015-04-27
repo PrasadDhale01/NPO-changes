@@ -74,7 +74,22 @@ $(function() {
         } 
     });
     
-  $.validator.addMethod('shippingInfo', function(value) {
+    /****************************Edit Shipping Perk**************************************************/
+    $.validator.addMethod('editShippingInfo', function(value) {
+  	  var si =$('.editShippingInfo:checked').size() ;
+  	  if(si >0){
+  		  $('.editShippingreward').removeClass('dynCSS');
+  		  $('.editShippingError').hide();
+  		  return $('.editShippingInfo:checked').size() > 0;
+  	  }else{
+  		  $('.editShippingreward').addClass('dynCSS');
+  		  $('.editShippingError').html('This field is required').show();	  
+  	  }
+    }, '');
+    
+    /***************************Create Shipping Perk***********************************************************************/
+    
+    $.validator.addMethod('shippingInfo', function(value) {
 	  var si =$('.shippingInfo:checked').size() ;
 	  if(si >0){
 		  $('.shippingreward').removeClass('dynCSS');
@@ -84,7 +99,7 @@ $(function() {
 		  $('.shippingreward').addClass('dynCSS');
 		  $('.shippingError').html('This field is required').show();	  
 	  }
-  }, '');
+    }, '');
 
      /*******************************Description text length******************** */
     var counter = 1;

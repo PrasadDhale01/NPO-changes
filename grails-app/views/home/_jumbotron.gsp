@@ -65,15 +65,15 @@
             </g:else>
         </div>
         <div class="item ">
-            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/nepal-Image.jpg" alt="Girl Computer Slider"/>
+            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/new-Nepal-Image.jpg" alt="Girl Computer Slider"/>
             <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/Mobile-slide-2.jpg" alt="Girl Computer Slider Mobile"/>
         </div>
         <div class="item ">
-            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/girl-computer-image.jpg" alt="Girl Computer Slider"/>
+            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/newGirlAndComImage.jpg" alt="Girl Computer Slider"/>
             <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/Mobile-slide-3.jpg" alt="Girl Computer Slider Mobile"/>
         </div>
         <div class="item">
-            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/children-Image.jpg" alt="kids Running Slider"/>
+            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/new-Children-image.jpg" alt="kids Running Slider"/>
             <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/Mobile-slide-4.jpg" alt="kids Running Slider Mobile"/>
         </div>
     </div>

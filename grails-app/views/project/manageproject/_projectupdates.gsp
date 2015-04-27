@@ -1,11 +1,10 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
-<g:set var="userService" bean="userService" />
 <%
     boolean ended = projectService.isProjectDeadlineCrossed(project)
-	def user = userService.getCurrentUser()
 %>
+
 <div class="col-md-8 col-sm-8 col-xs-12">
     <g:if test="${project.validated}">
         <g:if test="${ended}">
@@ -13,9 +12,7 @@
 	    </g:if>
         <g:if test="${!ended}">
 		    <div class="col-xs-12">
-		        <g:uploadForm class="form-horizontal" controller="project" action="projectupdate" params="['fundraiser': user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]" role="form">
-		            <g:hiddenField name="id" value="${project.id}"/>
-                    <g:hiddenField name="fr" value="${user.username}"/>
+		        <g:uploadForm class="form-horizontal" controller="project" action="projectupdate" id="${project.id}" role="form">
 		            <button type="submit" class="btn btn-sm btn-primary pull-right" name="button" value="draft"><i class="fa fa-plus-circle"></i> Create Update</button>
 		        </g:uploadForm>
 		    </div>

@@ -87,13 +87,9 @@
                     </div>
                 </g:if>
                 <div class="col-md-12 green-heading campaignTitle text-center">
-	                <h1>
-	                    <g:form controller="project" action="show" class="showTitleForm" title="${project.title}" params="['fundraiser': project.user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]">
-		            	     <g:hiddenField name="id" value="${project.id}"/>
-                             <g:hiddenField name="fr" value="${beneficiaryUserName}"/>
-		            	     <a onclick="showTitleClickable(this)">${projectTitle}</a> 
-	                    </g:form>
-	                </h1>
+	                <h1><g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
+		            	 ${projectTitle} 
+	                </g:link></h1>
 	            </div>
                 <g:if test="${user || beneficiary}">
 	                <div class="col-md-12 col-sm-12 col-xs-12 text-center campaignFundRaiser">
@@ -161,7 +157,7 @@
                             <g:render template="show/contributions" model="['team':currentTeam, 'currentFundraiser':currentFundraiser]"/>
                         </div>
                         <div class="tab-pane" id="comments">
-                            <g:render template="show/comments" model="['currentFundraiser':currentFundraiser]"/>
+                            <g:render template="show/comments"/>
                         </div>
                     </div>
                     

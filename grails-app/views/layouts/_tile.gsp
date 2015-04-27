@@ -36,12 +36,10 @@ Expects the parent containers to be like so:
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow tile-pad">
     <div class="blacknwhite tile">
-        <g:form controller="project" action="show" title="${project.title}" class="projectDetailsForm" params="['fundraiser': project.user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]">
-            <g:hiddenField name="id" value="${project.id}"/>
-            <g:hiddenField name="fr" value="${username}"/>
+        <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">
             <div class="imageWithTag">
                 <div class="under">
-                    <img alt="${project.title}" onclick="clickableImage(this)" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
+                    <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
                 </div>
                 <g:if test="${ended}">
 				    <div class="over banner-wid">
@@ -54,16 +52,14 @@ Expects the parent containers to be like so:
 					</div>
 				</g:elseif>
             </div>
-        </g:form>
+        </g:link>
     </div>
 
     <div class="caption tile-title-descrp">
         <div class="project-title">
-            <g:form controller="project" action="show" title="${project.title}" class="projectTitleDetailsForm" params="['fundraiser': project.user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]">
-                <g:hiddenField name="id" value="${project.id}"/>
-                <g:hiddenField name="fr" value="${username}"/>  
-                <a onclick="clickableTitle(this)">${project.title}</a>
-            </g:form>
+            <g:link controller="project" action="show" id="${project.id}" title="${project.title}">
+                ${project.title}
+            </g:link>
         </div>
         <hr class="tile-separator">
         <div class="project-story-span">

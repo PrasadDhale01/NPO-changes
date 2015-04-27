@@ -4982,6 +4982,14 @@ button.all-users{
 .shippingreward .help-block {
     display: inline-block;
 }
+.editShippingError{
+	color:red;
+	font-size: 12px;
+    font-weight: normal;
+}
+.editShippingreward .help-block {
+    display: inline-block;
+}
 
 .nav-text1{
 	margin-top: 11%;

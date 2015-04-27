@@ -75,22 +75,10 @@
 					</g:if>
                     <div class="col-md-12 green-heading campaignTitle text-center">
 					    <g:if test="${!project.validated}">
-					        <h1 class="green-heading">
-					            <g:form controller="project" action="manageproject" class="manageProjectTitleForm" title="${project.title}" params="['fundraiser': fundRaiser.firstName,'projectTitle':project.title.replaceAll(' ', '-')]">
-					                <g:hiddenField name="id" value="${project.id}"/>
-                                    <g:hiddenField name="fr" value="${fundRaiser.username}"/>
-					                <a onclick="manageProjectTitleClickable(this)">${projectTitle}</a>
-					            </g:form>
-					        </h1>
+					        <h1 class="green-heading"><g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
 					    </g:if>
 					    <g:else>
-					        <h1 class="green-heading">
-					            <g:form controller="project" action="show" class="showTitleForm" title="${project.title}" params="['fundraiser': fundRaiser.firstName,'projectTitle':project.title.replaceAll(' ', '-')]">
-		            	            <g:hiddenField name="id" value="${project.id}"/>
-                                    <g:hiddenField name="fr" value="${fundRaiser.username}"/>
-		            	            <a onclick="showTitleClickable(this)">${projectTitle}</a> 
-	                            </g:form>
-					        </h1>
+					        <h1 class="green-heading"><g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
 					    </g:else>
 					</div>
 					<g:if test="${fundRaiser}">

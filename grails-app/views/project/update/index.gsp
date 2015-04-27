@@ -1,4 +1,3 @@
-<g:set var="userService" bean="userService" />
 <html>
 <head>
 	<meta name="layout" content="main" />
@@ -31,12 +30,9 @@
 	</script>
 </head>
 <body>
-    <% 	def user = userService.getCurrentUser() %>
     <div class="feducontent">
 		<div class="container">
-		    <g:uploadForm class="form-horizontal" controller="project" action="updatesave" role="form" params="['fundraiser': user.firstName,'projectTitle':project.title.replaceAll(' ', '-')]" fragment='projectupdates'>
-		    <g:hiddenField name="id" value="${project.id}"/>
-            <g:hiddenField name="fr" value="${user.username}"/> 
+		    <g:uploadForm class="form-horizontal" controller="project" action="updatesave" id="${project.id}" role="form">
 		    <div class="row">
 <%--		        <h1><span class="glyphicon glyphicon-leaf"></span> Post an update</h1>--%>
 				<h1><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-create.png" alt="Post an update"/> Post an update</h1>

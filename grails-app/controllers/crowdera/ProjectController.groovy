@@ -225,6 +225,26 @@ class ProjectController {
         render(view: 'validate/index', model: [projects: projects])
     }
 
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def savecomment() {
+        Project project
+        if (params.id) {
+            project = Project.findById(params.id)
+            if (project && params.comment) {
+                new ProjectComment(
+                    comment: params.comment,
+                    user: userService.getCurrentUser(),
+                    project: project,
+                    date: new Date()).save(failOnError: true)
+            }
+        } else {
+            flash.sentmessage = "Something went wrong saving comment. Please try again later."
+        }
+
+        redirect (action: 'show', id: params.id, fragment: 'comments')
+    }
+
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def updatecomment(){
         def checkid= request.getParameter('checkID')
@@ -599,7 +619,7 @@ class ProjectController {
         def isCoAdmin=userService.isCampaignBeneficiaryOrAdmin(project,user)
         if(project.user==user || isCoAdmin){
                 render (view: 'manageproject/index',
-                model: [project: project,params:params,
+                model: [project: project,
                         FORMCONSTANTS: FORMCONSTANTS])
         }else{
                 flash.prj_mngprj_message = 'Campaign Not Found'
@@ -634,7 +654,7 @@ class ProjectController {
             project.addToRewards(reward)
             reward.obsolete = true
             flash.prj_mngprj_message = 'Successfully created a new perk'
-            forward(controller: 'project', action: 'manageproject', params:params)
+            redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)
         } else {
             render (view: 'manageproject/error', model: [reward: reward])
         }
@@ -653,7 +673,6 @@ class ProjectController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def projectupdate() {
-		println"kartiki"
         def project = Project.get(params.id)
         def currentUser =userService.getCurrentUser()
         def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
@@ -688,10 +707,10 @@ class ProjectController {
                 mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user)
                 
                 flash.prj_mngprj_message= "Update added successfully."
-                forward (action: 'manageproject', controller:'project', params:params)
+                redirect (action: 'manageproject', controller:'project', id: project.id, fragment: 'projectupdates')
             } else {
                 flash.prj_mngprj_message= "No Updates added."
-                forward (action: 'manageproject', controller:'project', params:params)
+                redirect (action: 'manageproject', controller:'project', id: project.id, fragment: 'projectupdates')
             }
         } else {
             render (view: 'manageproject/error', model: [project: project])
@@ -725,7 +744,6 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def addFundRaiser(){
         def project = Project.get(params.id)
-		println "params.id"+params.id
         User user = userService.getCurrentUser()
         def fundraiser = project.user.username
         def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
@@ -733,10 +751,10 @@ class ProjectController {
         
         if (iscampaignAdmin) {
             flash.prj_mngprj_message = message
-            forward (action: 'manageproject', params:params)
+            redirect (action: 'manageproject', id: project.id)
         } else {
             flash.prj_mngprj_message = message
-            forward (action: 'show', params:params)
+            redirect (action: 'show', id: project.id, params:[fr: fundraiser])
         }
     }
 
@@ -751,16 +769,16 @@ class ProjectController {
 
         if (params.ismanagepage) {
             sendEmailToTeam(emails, name, message, project)
-            forward (action: 'manageproject', params:params)
+            redirect (action: 'manageproject', id: project.id, fragment: 'manageTeam')
         } else {
             sendEmailToTeam(emails, name, message, project)
-            forward (action: 'show', params:params)
+            redirect (action: 'show', id: project.id, params:[fr: fundraiser], fragment: 'manageTeam')
         }
     }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editFundraiser(){
-		def team = Team.get(params.teamId)
+		def team = Team.get(params.id)
 		def project = Project.get(params.project)
 		def user = userService.getCurrentUser()
 		def fundRaiser = team.user.username
@@ -782,7 +800,7 @@ class ProjectController {
                 mandrillService.sendTeamUpdationEmail(project, team)
             }
 		}
-		forward (action: 'show', id: project.id , params:params)
+		redirect (action: 'show', id: project.id , params:[fr: fundRaiser], fragment: 'manageTeam')
 	}
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -795,19 +813,12 @@ class ProjectController {
     }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def saveComment() {
+	def saveteamcomment() {
 		def fundRaiser = params.fr
 		User user = User.findByUsername(fundRaiser)
 		Project project = Project.get(params.id)
 		Team team = Team.findByUserAndProject(user, project)
-		if(user == project.user && params.comment){
-			new ProjectComment(
-				comment: params.comment,
-				user: userService.getCurrentUser(),
-				project: project,
-				date: new Date()).save(failOnError: true)
-		}
-		else if (team && params.comment) {
+		if (team) {
 			TeamComment teamComment = new TeamComment(
 				comment: params.comment,
 				user: userService.getCurrentUser(),
@@ -819,12 +830,12 @@ class ProjectController {
 		}
         
         if (!params.ismanagepage) {
-	        forward (action: 'show', params:params)
+	    redirect (action: 'show', id: params.id, params:[fr: fundRaiser], fragment: 'comments')
         } else {
-            forward (action: 'manageproject', params:params)
+            redirect (action: 'manageproject', id: params.id, fragment: 'manageTeam')
         }
 	}
-	
+    
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def enableOrDisableTeam() {
         def teamId= request.getParameter('teamId')
@@ -858,8 +869,8 @@ class ProjectController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def contributiondelete() {
-        def contribution = Contribution.get(params.contributionId)
-        def project = Project.get(params.id)
+        def contribution = Contribution.get(params.id)
+        def project = Project.get(params.projectId)
         def fundraiser = params.fr
         def fundRaiser = User.findByUsername(fundraiser)
         Team team = Team.findByProjectAndUser(project, fundRaiser)
@@ -874,9 +885,9 @@ class ProjectController {
         contribution.delete();
         
         if (params.manageCampaign) {
-            forward(controller: 'project', action: 'manageproject',params:params)
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', id: project.id)
         } else {
-            forward (controller: 'project', action: 'show',fragment: 'contributions', params:params)
+            redirect (controller: 'project', action: 'show',fragment: 'contributions', id: project.id, params:[fr: fundraiser])
         }
     }
 
@@ -907,17 +918,17 @@ class ProjectController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def contributionedit() {
-        def contribution = Contribution.get(params.contributionId)
-        def project = Project.get(params.id)
+        def contribution = Contribution.get(params.id)
+        def project = Project.get(params.projectId)
         def fundraiser = params.fr
         def fundRaiser = User.findByUsername(fundraiser)
         contribution.contributorName = params.contributorName
         contribution.amount = Double.parseDouble(params.amount)
         
         if (params.manageCampaign) {
-            forward (controller: 'project', action: 'manageproject',params:params)
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', id: project.id)
         } else {
-            forward (controller: 'project', action: 'show',fragment: 'contributions', params:params)
+            redirect (controller: 'project', action: 'show',fragment: 'contributions', id: project.id, params:[fr: fundraiser])
         }
     }
 
@@ -1004,7 +1015,7 @@ class ProjectController {
         team.validated = true
         mandrillService.sendTeamValidatedConfirmation(project,team.user)
         flash.teamvalidationmessage = "Team validated Successfully."
-        forward(controller: 'project', action: 'manageproject',params:params)
+        redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', id: project.id)
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])

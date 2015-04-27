@@ -986,7 +986,7 @@ class ProjectController {
         }
         def result
         if(project.rewards.size()>1){ 
-            result='CAMPAIGN TITLE, FUNDRAISER, DATE, TIME, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, SHIPPING DETAILS, AMOUNT, MODE, \n'
+            result='CAMPAIGN, FUNDRAISER, CONTRIBUTION_DATE, CONTRIBUTION_TIME, CONTRIBUTOR_NAME,CONTRIBUTOR_EMAIL, SHIPPING_DETAILS, AMOUNT, MODE, \n'
             results.each{ row->
                 row.each{
                 col -> result+=col +','
@@ -995,7 +995,7 @@ class ProjectController {
                 result+="\n"
             }
         }else{
-            result='CAMPAIGN TITLE, FUNDRAISER, DATE, TIME, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, AMOUNT, MODE, \n'
+            result='CAMPAIGN, FUNDRAISER, CONTRIBUTION_DATE, CONTRIBUTION_TIME, CONTRIBUTOR NAME,CONTRIBUTOR_EMAIL, AMOUNT, MODE, \n'
             results.each{ row->
                 row.each{
                 col -> result+=col +','

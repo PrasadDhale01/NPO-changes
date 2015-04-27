@@ -358,16 +358,16 @@
                                     %>
                                     <tr>
                                         <td class="col-sm-2 text-center">${project.title}</td>
-                                        <td class="col-sm-2 text-center word-break">
+                                        <td class="col-sm-2 text-center wordBreak">
                                             ${contributionService.getFundRaiserName(contributions, project)}
                                         </td>
                                         <td class="col-sm-1 text-center ">${date}</td>
                                         <td class="col-sm-1 text-center">${time}</td>
-                                        <td class="col-sm-2 word-break"R>${contributorName}</td>
-                                        <td class="col-sm-2 word-break">${contributorEmail}</td>
+                                        <td class="col-sm-2 wordBreak">${contributorName}</td>
+                                        <td class="col-sm-2 wordBreak">${contributorEmail}</td>
 
                                         <g:if test="${project.rewards.size()>1}">
-                                            <td class="col-sm-2 word-break">${raw(shippingDetails)}</td> 
+                                            <td class="col-sm-2 wordBreak">${raw(shippingDetails)}</td> 
                                         </g:if>
 
                                         <td class="text-center">$${amount}</td>

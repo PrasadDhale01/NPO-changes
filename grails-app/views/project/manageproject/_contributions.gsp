@@ -268,14 +268,14 @@
                             <thead>
                                 <tr class="alert alert-title ">
                                     <th class="col-sm-2 text-center">CAMPAIGN</th>
-                                    <th class="text-center">FUNDRAISER</th>
-                                    <th class="col-sm-3 text-center">CONTRIBUTION DATE</th>
-                                    <th class="col-sm-3 text-center">CONTRIBUTION TIME</th>
-                                    <th class="col-sm-2 text-center">CONTRIBUTOR</th>
-                                    <th class="col-sm-3 text-center">EMAIL</th>
+                                    <th class="col-sm-2 text-center">FUNDRAISER</th>
+                                    <th class="col-sm-2 text-center">CONTRIBUTION DATE</th>
+                                    <th class="col-sm-1 text-center">CONTRIBUTION TIME</th>
+                                    <th class="col-sm-1 text-center">CONTRIBUTOR</th>
+                                    <th class="col-sm-2 text-center">EMAIL</th>
 
                                     <g:if test="${project.rewards.size()>1}">
-                                        <th class="col-sm-3 text-center">SHIPPING DETAILS</th>
+                                        <th class="col-sm-2 text-center">SHIPPING DETAILS</th>
                                     </g:if>
 
                                     <th class="text-center">AMOUNT</th>
@@ -358,16 +358,16 @@
                                     %>
                                     <tr>
                                         <td class="col-sm-2 text-center">${project.title}</td>
-                                        <td class="text-center word-break">
+                                        <td class="col-sm-2 text-center word-break">
                                             ${contributionService.getFundRaiserName(contributions, project)}
                                         </td>
                                         <td class="col-sm-1 text-center ">${date}</td>
                                         <td class="col-sm-1 text-center">${time}</td>
                                         <td class="col-sm-2 word-break"R>${contributorName}</td>
-                                        <td class="col-sm-3 word-break">${contributorEmail}</td>
+                                        <td class="col-sm-2 word-break">${contributorEmail}</td>
 
                                         <g:if test="${project.rewards.size()>1}">
-                                            <td class="col-sm-3 word-break">${raw(shippingDetails)}</td> 
+                                            <td class="col-sm-2 word-break">${raw(shippingDetails)}</td> 
                                         </g:if>
 
                                         <td class="text-center">$${amount}</td>

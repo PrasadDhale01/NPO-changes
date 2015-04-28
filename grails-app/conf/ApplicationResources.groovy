@@ -114,7 +114,7 @@ modules = {
         resource url: 'css/pie.css'
     }
     crowderacss {
-        dependsOn 'bootswatchcss', 'bootstrapselectcss', 'bootstrapmultiselectcss', 'fontawesomecss', 'piecss', 'campaigncss', 'usercss', 'fundcss', 'showcss'
+        dependsOn 'bootswatchcss', 'bootstrapselectcss', 'bootstrapmultiselectcss', 'fontawesomecss', 'piecss', 'campaigncss', 'usercss', 'fundcss', 'showcss', 'mediacss'
         resource url: 'css/crowdera.css'
     }
     campaigncss {
@@ -128,6 +128,9 @@ modules = {
     }
     showcss {
         resource url: 'css/show.css'
+    }
+    mediacss {
+        resource url: 'css/media.css'
     }
     timelinecss {
         dependsOn 'crowderacss'

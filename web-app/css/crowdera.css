@@ -115,7 +115,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-collapse {
-    width: 67%;
     float: right;
 }
 
@@ -5026,4 +5025,7 @@ p.tile-text-size {
 
 .wordBreak{
 	word-break: break-all;
+}
+.headerFbButton {
+	margin-top: -1%;
 }

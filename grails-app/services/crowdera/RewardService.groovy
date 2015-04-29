@@ -152,8 +152,9 @@ class RewardService {
     }
     
     def getSortedRewards(Project project) {
-        def rewards = project.rewards.sort {it.price}
-        return rewards
+        def rewards = project.rewards
+        def sortedRewards = rewards.sort {it.price}
+        return sortedRewards
     }
     
     @Transactional

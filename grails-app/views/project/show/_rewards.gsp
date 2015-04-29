@@ -44,7 +44,7 @@
                                 <div class="rewardpricespan">$${price}</div>
                                 <div class="rewardtitlespan">${reward.title}</div>
                             </g:else>
-                            <p class="rewarddescription" id="${reward.id}">${raw(reward.description)}</p>
+                            <p class="rewarddescription">${raw(reward.description)}</p>
                             <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                         </div>
                     </div>

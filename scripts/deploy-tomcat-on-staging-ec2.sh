@@ -2,8 +2,6 @@
 
 TOMCAT_HOME="/home/ubuntu/Programs/tomcat"
 CROWDERA_HOME="/home/ubuntu/Projects/Crowdera"
-export JAVA_OPTS="$JAVA_OPTS -XX:MaxPermSize=256m -Xms1024m -Xmx2048m"
-
 
 echo "Pulling code from GitHub"
 cd $CROWDERA_HOME

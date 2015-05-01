@@ -145,7 +145,7 @@ environments {
         grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
         grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-        crowdera.BASE_URL = 'http://staging.crowdera.co'
+        crowdera.BASE_URL = 'http://qa.crowdera.co'
 
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true
@@ -168,6 +168,44 @@ environments {
         crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'ZSD7Z9TJ4BLP8DBT'
         crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AYDVpnDtJwzfma0uPoGG8ZXKdkDlAhPPZoBbxVRwh93AGi3eiDDGIznY'
         crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-80W284485P519543T'
+        crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
+        crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+
+        mandrill {
+            apiKey = "R28ZHu6_5IkJWLFunpsJbw"
+        }
+    }
+    staging {
+        crowdera.facebook.appId = '354215177926850'
+        crowdera.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
+
+        grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+        grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
+
+        crowdera.BASE_URL = 'http://staging.crowdera.co'
+
+        grails.logging.jul.usebridge = false
+        grails.dbconsole.enabled = true
+        grails.dbconsole.urlRoot = '/secured/dbconsole'
+        // TODO: grails.serverURL = "http://www.changeme.com"
+
+        /* Stripe test keys */
+        grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
+        grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+
+        /* FirstGiving Details */
+        crowdera.firstgiving.BASE_URL= 'https://api.firstgiving.com'
+        crowdera.firstgiving.uriPath= '/donation/creditcard'
+        crowdera.firstgiving.JG_APPLICATIONKEY = '7d2ba10c-b005-4115-a6e4-8336c5071c9d'
+        crowdera.firstgiving.JG_SECURITYTOKEN = '8724ab81-a4ba-4d52-8374-1e2f6f2311ca'
+
+        /* Paypal Details */
+        crowdera.paypal.PAYPAL_URL='https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+        crowdera.paypal.BASE_URL= 'https://svcs.paypal.com/AdaptivePayments/Pay'
+        crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info_api1.crowdera.co'
+        crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'AHEFPRUXWJFMCCDE'
+        crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AFcWxV21C7fd0v3bYYYRCpSSRl31AZyNu3X6Z3O2eTTYLGFEQuwRsUm2'
+        crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
         crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
 

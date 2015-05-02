@@ -972,18 +972,18 @@ class ProjectController {
             }
             def fundRaiserName = contributionService.getFundRaiserName(it, project)
              if(project.rewards.size()>1){
-                def rows = [it.project.title, fundRaiserName, dateFormat.format(it.date), timeFormat.format(it.date), contributorName, contributorEmail, shippingDetails, it.amount, payMode]
+                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.reward.title, shippingDetails, it.amount, payMode]
                 results << rows
                 shippingDetails=""
             }else{
-                def rows = [it.project.title, fundRaiserName, dateFormat.format(it.date), timeFormat.format(it.date), contributorName, contributorEmail, it.amount, payMode]
+                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
                 results << rows
                 shippingDetails=""
             }
         }
         def result
         if(project.rewards.size()>1){ 
-            result='CAMPAIGN, FUNDRAISER, CONTRIBUTION_DATE, CONTRIBUTION_TIME, CONTRIBUTOR_NAME,CONTRIBUTOR_EMAIL, SHIPPING_DETAILS, AMOUNT, MODE, \n'
+            result='CAMPAIGN, FUNDRAISER, DATE AND TIME, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, PERK , SHIPPING DETAILS, AMOUNT, MODE, \n'
             results.each{ row->
                 row.each{
                 col -> result+=col +','
@@ -992,7 +992,7 @@ class ProjectController {
                 result+="\n"
             }
         }else{
-            result='CAMPAIGN, FUNDRAISER, CONTRIBUTION_DATE, CONTRIBUTION_TIME, CONTRIBUTOR_NAME,CONTRIBUTOR_EMAIL, AMOUNT, MODE, \n'
+            result='CAMPAIGN, FUNDRAISER, DATE AND TIME, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, AMOUNT, MODE, \n'
             results.each{ row->
                 row.each{
                 col -> result+=col +','

@@ -568,19 +568,17 @@ class ProjectService {
 		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
 		List endedProjects = []
 		List openProjects = []
-		def sortedProjects
+		List sortedProjects
 		finalList.each { project ->
-        boolean ended = isProjectDeadlineCrossed(project)
-        if(ended) {
-            endedProjects.add(project)
-        }else {
-            openProjects.add(project)
+            boolean ended = isProjectDeadlineCrossed(project)
+            if(ended) {
+                endedProjects.add(project)
+            }else {
+                openProjects.add(project)
+            }
         }
-		
-		sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
-
-    }
-    finalList =  sortedProjects.reverse() + endedProjects.reverse()
+        sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
+        finalList =  sortedProjects.reverse() + endedProjects.reverse()
 //        return Project.findAllWhere(validated: true,inactive: false)
 		return finalList
     }
@@ -656,7 +654,11 @@ class ProjectService {
     }
     
     def getDataType(Double amount){
-        return amount.round()
+        if (amount) {
+            return amount.round()
+        } else {
+            return 0
+        }
     }
 
     def getNonValidatedProjects() {
@@ -1237,16 +1239,16 @@ class ProjectService {
 	  List draftProjects=[]
 	  List pendingProjects=[]
 	  List endedProjects=[]
-	  def sortedProjects
+	  List sortedProjects
 	  def finalList
 	  projects.each{ project->
 		  boolean ended = isProjectDeadlineCrossed(project)
 		  if(ended) {
 			  endedProjects.add(project)
 		  }else{
-		  	if(project.validated==true && project.inactive==false){
-			  activeProjects.add(project)
-			}
+		  	  if(project.validated==true && project.inactive==false){
+			      activeProjects.add(project)
+			  }
 		  }
 		  
 		  if(project.draft==true){
@@ -1256,9 +1258,8 @@ class ProjectService {
 		  if(project.inactive==false && project.validated==false && project.draft==false){
 			  pendingProjects.add(project)
 		  }
-		  sortedProjects =activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
 	  }
-	  
+      sortedProjects =activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
 	  finalList = draftProjects.reverse()+ pendingProjects.reverse() + sortedProjects.reverse() + endedProjects.reverse()
 	  
       return finalList

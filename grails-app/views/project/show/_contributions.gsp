@@ -2,6 +2,7 @@
 <g:set var="userService" bean="userService"/>
 <g:set var="facebookService" bean="facebookService"/>
 <g:set var="projectService" bean="projectService" />
+<g:set var="contributionService" bean="contributionService"/>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
     SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM, YYYY");
@@ -185,7 +186,6 @@
     </div>
 </g:if>
 
-<!-- Modal -->
 <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
    <g:form controller="project" action="generateCSV" role="form">
    <div class="modal-dialog">
@@ -210,13 +210,23 @@
                                 <tr class="alert alert-title ">
                                     <th class="col-sm-2 text-center">CAMPAIGN</th>
                                     <th class="col-sm-2 text-center">FUNDRAISER</th>
-                                    <th class="col-sm-1 text-center">CONTRIBUTION_DATE</th>
-                                    <th class="col-sm-1 text-center">CONTRIBUTION_TIME</th>
-                                    <th class="col-sm-2 text-center">CONTRIBUTOR_NAME</th>
-                                    <th class="col-sm-2 text-center">CONTRIBUTOR_EMAIL</th>
+                                    <g:if test="${project.rewards.size()>1}">
+                                        <th class="col-sm-1 text-center">DATE AND TIME</th>
+                                    </g:if>
+                                    <g:else>
+                                        <th class="col-sm-2 text-center">DATE AND TIME</th>
+                                    </g:else>
+                                    <g:if test="${project.rewards.size()>1}">
+                                        <th class="col-sm-1 text-center">CONTRIBUTOR NAME</th>
+                                    </g:if>
+                                    <g:else>
+                                        <th class="col-sm-2 text-center">CONTRIBUTOR NAME</th>
+                                    </g:else>
+                                    <th class="col-sm-2 text-center">CONTRIBUTOR EMAIL</th>
 
                                     <g:if test="${project.rewards.size()>1}">
-                                        <th class="col-sm-2 text-center">SHIPPING_DETAILS</th>
+                                        <th class="col-sm-2 text-center">PERK</th>
+                                        <th class="col-sm-2 text-center">SHIPPING DETAILS</th>
                                     </g:if>
 
                                     <th class="text-center">AMOUNT</th>
@@ -226,8 +236,7 @@
                             <tbody>
                                 <g:each in="${list}" var="contributions">
                                     <%
-                                        def date = dateFormat.format(contributions.date)
-                                        def time = timeFormat.format(contributions.date);
+                                        def date = contributions.date.format('YYYY-MM-DD HH:mm:ss')
                                         def friendlyName = userService.getFriendlyName(contributions.user)
                                         def isFacebookUser = userService.isFacebookUser(contributions.user)
                                         def userFacebookUrl = facebookService.getUserFacebookUrl(contributions.user)
@@ -239,75 +248,29 @@
                                         if (!contributorEmail) {
                                             contributorEmail = " "
                                         }
-                                        def shippingDetails
-
-                                        if(contributions.email==null && contributions.physicalAddress==null && contributions.
-                                            twitterHandle==null  && contributions.custom==null){
-                                            shippingDetails="No Perk Selected "
-                                        }else{
-                                            if(contributions.email!=null){
-                                                shippingDetails="<b>Email:</b> " +contributions.email
-
-                                                if(contributions.physicalAddress!=null){
-                                                    shippingDetails+=", <br><b>Physical Address:</b> " + contributions.physicalAddress
-                                                }
-                                                if(contributions.twitterHandle!=null){
-                                                    shippingDetails+=" , <br><b>Twitter Handle:</b> " + contributions.twitterHandle
-                                                }
-                                                if(contributions.custom!=null) {
-                                                    shippingDetails+=" , <br><b>Custom: </b> " +contributions.custom
-                                                }
-                                            }
-                                            if(contributions.physicalAddress!=null){
-                                                shippingDetails="<b>Physical Address:</b> " + contributions.physicalAddress
-                                                if(contributions.twitterHandle!=null){
-                                                    shippingDetails+=" , <br><b>Twitter Handle:</b> " + contributions.twitterHandle
-                                                }
-                                                if(contributions.custom!=null) {
-                                                    shippingDetails+=" , <br><b>Custom: </b> " + contributions.custom
-                                                }
-                                                if(contributions.email!=null){
-                                                    shippingDetails+=" , <br><b>Email:</b> " +contributions.email
-                                                }
-                                            }
-                                            if(contributions.twitterHandle!=null){
-                                                shippingDetails ="<b>Twitter Handle:</b> " + contributions.twitterHandle
-                                                if(contributions.physicalAddress!=null){
-                                                    shippingDetails+=" , <br><b>Physical Address:</b> " + contributions.physicalAddress
-                                                }
-                                                if(contributions.custom!=null) {
-                                                    shippingDetails+=" , <br><b>Custom: </b> " + contributions.custom
-                                                }
-                                                if(contributions.email!=null){
-                                                    shippingDetails+=" ,<br><b>Email:</b> " +contributions.email
-                                                }
-                                            }
-                                            if(contributions.custom!=null){
-                                                shippingDetails="<b>Custom: </b>  " + contributions.custom
-                                                if(contributions.physicalAddress!=null){
-                                                    shippingDetails+=" , <br><b>Physical Address:</b> " + contributions.physicalAddress
-                                                }
-                                                if(contributions.twitterHandle!=null) {
-                                                    shippingDetails+=" , <br><b>Twitter Handle:</b> " + contributions.twitterHandle
-                                                }
-                                                if(contributions.email!=null){
-                                                    shippingDetails+=" , <br><b>Email:</b> " +contributions.email
-                                                } 
-                                            }
-                                        }    
-
+                                        def shippingDetails = contributionService.getShippingDetails(contributions)
                                     %>
                                     <tr>
                                         <td class="col-sm-2 text-center wordBreak">${project.title}</td>
                                         <td class="col-sm-2 text-center wordBreak">
                                             ${contributionService.getFundRaiserName(contributions, project)}
                                         </td>
-                                        <td class="col-sm-1 text-center">${date}</td>
-                                        <td class="col-sm-1 text-center">${time}</td>
-                                        <td class="col-sm-2 wordBreak">${contributorName}</td>
+                                        <g:if test="${project.rewards.size()>1}">
+                                            <td class="col-sm-1 text-center ">${date}</td>
+                                        </g:if>
+                                        <g:else>
+                                            <td class="col-sm-2 text-center ">${date}</td>
+                                        </g:else>
+                                        <g:if test="${project.rewards.size()>1}">
+                                            <td class="col-sm-1 wordBreak">${contributorName}</td>
+                                        </g:if>
+                                        <g:else>
+                                            <td class="col-sm-2 wordBreak">${contributorName}</td>
+                                        </g:else>
                                         <td class="col-sm-2 wordBreak">${contributorEmail}</td>
 
                                         <g:if test="${project.rewards.size()>1}">
+                                            <td class="col-sm-2">${contributions.reward.title}</td>
                                             <td class="col-sm-2 wordBreak">${raw(shippingDetails)}</td> 
                                         </g:if>
                                         

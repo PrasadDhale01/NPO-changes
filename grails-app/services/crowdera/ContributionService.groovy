@@ -175,4 +175,63 @@ class ContributionService {
         }
         return fundRaiserName
     }
+    
+    def getShippingDetails(Contribution contributions) {
+        def shippingDetails
+        if(contributions.email==null && contributions.physicalAddress==null && contributions.
+            twitterHandle==null  && contributions.custom==null){
+            shippingDetails="No Perk Selected "
+        }else{
+            if(contributions.email!=null){
+                shippingDetails="<b>Email:</b> " +contributions.email
+
+                if(contributions.physicalAddress!=null){
+                    shippingDetails+=", <br><b>Physical Address:</b> " + contributions.physicalAddress
+                }
+                if(contributions.twitterHandle!=null){
+                    shippingDetails+=" , <br><b>Twitter Handle:</b> " + contributions.twitterHandle
+                }
+                if(contributions.custom!=null) {
+                    shippingDetails+=" , <br><b>Custom: </b> " +contributions.custom
+                }
+            }
+            if(contributions.physicalAddress!=null){
+                shippingDetails="<b>Physical Address:</b> " + contributions.physicalAddress
+                if(contributions.twitterHandle!=null){
+                    shippingDetails+=" , <br><b>Twitter Handle:</b> " + contributions.twitterHandle
+                }
+                if(contributions.custom!=null) {
+                    shippingDetails+=" , <br><b>Custom: </b> " + contributions.custom
+                }
+                if(contributions.email!=null){
+                    shippingDetails+=" , <br><b>Email:</b> " +contributions.email
+                }
+            }
+            if(contributions.twitterHandle!=null){
+                shippingDetails ="<b>Twitter Handle:</b> " + contributions.twitterHandle
+                if(contributions.physicalAddress!=null){
+                    shippingDetails+=" , <br><b>Physical Address:</b> " + contributions.physicalAddress
+                }
+                if(contributions.custom!=null) {
+                    shippingDetails+=" , <br><b>Custom: </b> " + contributions.custom
+                }
+                if(contributions.email!=null){
+                    shippingDetails+=" ,<br><b>Email:</b> " +contributions.email
+                }
+            }
+            if(contributions.custom!=null){
+                shippingDetails="<b>Custom: </b>  " + contributions.custom
+                if(contributions.physicalAddress!=null){
+                    shippingDetails+=" , <br><b>Physical Address:</b> " + contributions.physicalAddress
+                }
+                if(contributions.twitterHandle!=null) {
+                    shippingDetails+=" , <br><b>Twitter Handle:</b> " + contributions.twitterHandle
+                }
+                if(contributions.email!=null){
+                    shippingDetails+=" , <br><b>Email:</b> " +contributions.email
+                }
+            }
+        }
+        return shippingDetails
+    }
 }

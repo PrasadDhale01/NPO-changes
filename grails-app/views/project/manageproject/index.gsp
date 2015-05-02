@@ -83,7 +83,7 @@
 					</div>
 					<g:if test="${fundRaiser}">
                         <div class="col-md-12 col-sm-12 col-xs-12 text-center campaignFundRaiser">
-                            <h4 class="green-heading"> FUNDRAISER: ${fundRaiserName}</h4>
+                            <h4 class="green-heading"> by ${fundRaiserName}</h4>
                         </div>
                     </g:if>
 					<div class="col-md-12">

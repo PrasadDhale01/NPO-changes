@@ -67,15 +67,10 @@
 		       <div>
 			  <br>
 			  <div class="footer-mid-section-menu"><span class="footer-header">Sign up for Newsletter</span></div>
-			  <div id="mce-responses" class="clear">
-			     <div class="response" id="mce-error-response"></div>
-			     <div class="response" id="mce-success-response"></div>
-			   </div> 
 			  <div class="footer-input-align">
 			     <input type="text" class="text-email" name="b_41c633b30eeabc78e88bd090d_e37aea1b78" tabindex="-1" value="" placeholder="Your email">
 			     <input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup">
 			  </div>
-			  <div class="clear"></div>
 		       </div>
 		    </form>
 		</div>
@@ -158,15 +153,10 @@
 				<div>
 			  	  <br>
 				  <div class="footer-mid-section-menu"><span class="footer-header footer-header-align">Sign up for Newsletter</span></div>
-				      <div id="mce-responses" class="clear">
-				          <div class="response" id="mce-error-response"></div>
-					  <div class="response" id="mce-success-response"></div>
-				       </div> 
 				       <div>
 				       	  <input type="text" class="text-email" name="b_41c633b30eeabc78e88bd090d_e37aea1b78" tabindex="-1" value="" placeholder="Your email">
 					  <input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup">
 			               </div>
-				       <div class="clear"></div>
 				    </div>
 			     </form>
 			</div>
@@ -203,11 +193,8 @@
         	<div class="col-md-4">
         		<a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a>
         	</div>
-        	
-        	<div class="col-md-4">
-        	</div>
-        	
-        	<div class="col-md-4">
+    
+        	<div class="col-md-4 col-md-offset-4">
         	 	<br>
 		       <div class="socialicon">
 		        	<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="twitter"></a>
@@ -264,16 +251,11 @@
 			   <form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 				<div>
 				   <br>
-				   <div class="footer-mid-section-menu"><span class="footer-header">Sign up for Newsletter</span></div>
-				      <div id="mce-responses" class="clear">
-				      	<div class="response" id="mce-error-response"></div>
-				       	<div class="response" id="mce-success-response"></div>
-				      </div> 
+				   <div class="footer-mid-section-menu"><span class="footer-header">Sign up for Newsletter</span></di>
 				      <div>
 				 	<input type="text" name="b_41c633b30eeabc78e88bd090d_e37aea1b78" tabindex="-1" value="" placeholder="Your email">
 					<input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup">
 				      </div>
-				      <div class="clear"></div>
 				    </div>
 				</form>
 		        </div>

@@ -374,38 +374,38 @@ footer {
     
 }
 hr.footer-hr{
-	color: #666666;
-	background-color: #666666;
-	height: 2px;
+    color: #666666;
+    background-color: #666666;
+    height: 2px;
 }
 .footer-first-section p{
-	color:#cccccc;
-	font-size:17px;
-	text-align:center;
+    color:#cccccc;
+    font-size:17px;
+    text-align:center;
 }
 .footer-mid-section p{
-	color:#ffffff;
-	font-size:13px;
-	text-align:center;	
+    color:#ffffff;
+    font-size:13px;
+    text-align:center;	
 }
 .footer-mid-section p b{
-	color:#cccccc;
-	font-size:18px;	
+    color:#cccccc;
+    font-size:18px;	
 }
 .footer-mid-section-menu ul li a{
-	font-size:14px;
+    font-size:14px;
 }
 .footer-mid-section-menu .footer-header{
-	color:#999999;
-	font-size:19px;
-	padding-bottom:5px;
+    color:#999999;
+    font-size:19px;
+    padding-bottom:5px;
 }
 .footer-mid-section-menu ul li{
-	list-style-type:none;
-	margin-left:-39px;
+    list-style-type:none;
+    margin-left:-39px;
 }
 input.text-email{
-	width:68%;
+    width:68%;
 }
 input.button-signup{
     background-image: url(https://s3.amazonaws.com/crowdera/assets/Signup-Button.png); 
@@ -417,7 +417,7 @@ input.button-signup{
     width: 84px;
 }
 .footer-mid-section-img a{
-	margin-left:-24px;
+    margin-left:-24px;
 }
 .flinks a , .flinks a:hover{
     display: block;
@@ -2514,40 +2514,40 @@ textarea.form-control {
     .footer-mid-section-menu-mobile ul li {
     	list-style-type: none;
     	margin-left: -39px !important;
-	}
-	.footer-mid-section-menu-mobile ul li a {
+    }
+    .footer-mid-section-menu-mobile ul li a {
     	font-size: 14px !important;
-	}
-	.footer-mid-section-mobile p {
+    }
+    .footer-mid-section-mobile p {
     	color: #ffffff;
     	font-size: 22px;
     	text-align: center;
-	}
-	.footer-text-align p{
-		font-size:21px;
-		text-align:center;
-		color:#999999;
-	}
-	.footer-p-text-align p{
-		font-size:15px;
-		text-align:center;
-		color:#ffffff;
-	}
-	div.footer-header-align {
-	 	font-size:21px;
-		color:#999999;
-	}
-	.footer-input-align .text-email{
-		width:85% !important;
-	}
-	.footer-img-align img{
-		padding-left:53px;
-		padding-right:51px;
-	}
-	.footer-menu-align {
-		margin-left:109px;
-		margin-right:-146px;
-	}
+    }
+    .footer-text-align p{
+	font-size:21px;
+	text-align:center;
+	color:#999999;
+    }
+    .footer-p-text-align p{
+	font-size:15px;
+	text-align:center;
+	color:#ffffff;
+    }
+    div.footer-header-align {
+ 	font-size:21px;
+	color:#999999;
+    }
+    .footer-input-align .text-email{
+	width:85% !important;
+    }
+    .footer-img-align img{
+	padding-left:53px;
+	padding-right:51px;
+    }
+    .footer-menu-align {
+	margin-left:109px;
+	margin-right:-146px;
+    }
 
 }
 
@@ -4002,23 +4002,23 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-	.footer-first-section-mobile p {
+   .footer-first-section-mobile p {
     	color: #cccccc;
     	font-size: 15px;
     	text-align: center;
-	}
-	.footer-mid-section-menu-mobile .footer-header-mobile {
-    	color: #999999;
+   }
+   .footer-mid-section-menu-mobile .footer-header-mobile {
+   	color: #999999;
     	font-size: 19px;
-	}
-	.footer-mid-section-menu-mobile ul li {
+   }
+   .footer-mid-section-menu-mobile ul li {
     	list-style-type: none;
     	margin-left: -39px;
-	}
-	.footer-mid-section-menu-mobile ul li a {
+   }
+   .footer-mid-section-menu-mobile ul li a {
     	font-size: 10px !important;
-	}
-	.form-group.col-sm-6.rewardPriceClass{
+   }
+   .form-group.col-sm-6.rewardPriceClass{
         padding-left:16px;
         width:104% !important;
     }
@@ -4540,9 +4540,9 @@ button.projectedit.close{
 }
 a.footerlink {
 	color: #cccccc;
-    font-size: 14px;
-    text-decoration: none;
-    font-weight: 500;
+    	font-size: 14px;
+    	text-decoration: none;
+    	font-weight: 500;
 	
 	/* color: #cccccc;
 	font-size: 14px;

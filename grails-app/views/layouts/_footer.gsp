@@ -219,14 +219,8 @@
         	</div>
        </section>
        <section class="row">
-       		<div class="col-md-4">
-        	</div>
-        	
-        	<div class="col-md-4 footer-first-section">
+        	<div class="col-md-4 col-md-offset-4 footer-first-section">
         		<p>Hands up for a Better World. See how you can make a difference with Crowdera.</p>
-        	</div>
-        	
-        	<div class="col-md-4">
         	</div>
        </section>
        <section class="row">

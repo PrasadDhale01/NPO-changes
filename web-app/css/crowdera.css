@@ -408,7 +408,7 @@ input.text-email{
 	width:68%;
 }
 input.button-signup{
-	background-image: url(https://s3.amazonaws.com/crowdera/assets/Signup-Button.png); 
+    background-image: url(https://s3.amazonaws.com/crowdera/assets/Signup-Button.png); 
     background-color: transparent;
     background-repeat: no-repeat;  
     border: none;                   
@@ -423,7 +423,6 @@ input.button-signup{
     display: block;
     margin: 4px 0;
     text-decoration: none !important;
-    
 }
 
 a {
@@ -502,40 +501,40 @@ a {
     .footer-mid-section-menu-mobile ul li {
     	list-style-type: none;
     	margin-left: -39px !important;
-	}
-	.footer-mid-section-menu-mobile ul li a {
+    }
+    .footer-mid-section-menu-mobile ul li a {
     	font-size: 14px !important;
-	}
-	.footer-mid-section-mobile p {
+    }
+    .footer-mid-section-mobile p {
     	color: #ffffff;
     	font-size: 22px;
     	text-align: center;
-	}
-	.footer-text-align p{
-		font-size:21px;
-		text-align:center;
-		color:#999999;
-	}
-	.footer-p-text-align p{
-		font-size:15px;
-		text-align:center;
-		color:#ffffff;
-	}
-	div.footer-header-align {
-	 	font-size:21px;
-		color:#999999;
-	}
-	.footer-input-align .text-email{
-		width:85% !important;
-	}
-	.footer-img-align img{
-		margin-left:40px;
-		margin-right:40px;
-	}
-	.footer-menu-align {
-		margin-left:109px;
-		margin-right:-146px;
-	}
+    }
+    .footer-text-align p{
+	font-size:21px;
+	text-align:center;
+	color:#999999;
+    }
+    .footer-p-text-align p{
+	font-size:15px;
+	text-align:center;
+	color:#ffffff;
+    }
+    div.footer-header-align {
+ 	font-size:21px;
+	color:#999999;
+    }
+    .footer-input-align .text-email{
+	width:85% !important;
+    }
+    .footer-img-align img{
+	margin-left:40px;
+	margin-right:40px;
+    }
+    .footer-menu-align {
+	margin-left:109px;
+	margin-right:-146px;
+    }
     input.paypal-create {
         margin-left: -3% !important;
         width: 103%;
@@ -592,18 +591,18 @@ a {
 
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	input.text-email {
+   input.text-email {
     	width: 193px;
-	}
-	.footer-mid-section-menu ul li a{
-		font-size:10px;
-	}
-	a.footerlink {
+   }
+  .footer-mid-section-menu ul li a{
+	font-size:10px;
+   }
+   a.footerlink {
     	color: #cccccc;
     	font-size: 13px !important;
     	font-weight: 500;
     	text-decoration: none;
-	}
+    }
     input.paypal-create {
         margin-left: -8% !important;
     }
@@ -687,16 +686,16 @@ a {
 }
 @media only screen and (min-width:506px) and (max-width: 640px){
 	.footer-mid-section-menu-mobile ul li {
-    	list-style-type: none;
-    	margin-left: -39px !important;
+    		list-style-type: none;
+    		margin-left: -39px !important;
 	}
 	.footer-mid-section-menu-mobile.footer-menu-align ul li a {
-    	font-size: 14px !important;
+    		font-size: 14px !important;
 	}
 	.footer-mid-section-mobile p {
-    	color: #ffffff;
-    	font-size: 22px;
-    	text-align: center;
+    		color: #ffffff;
+    		font-size: 22px;
+    		text-align: center;
 	}
 	.footer-text-align p{
 		font-size:21px;

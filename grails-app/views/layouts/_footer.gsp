@@ -37,7 +37,7 @@
       	      	<center>
       	      	    <div class="footer-first-section-mobile footer-img-align">
      	  		 <img src="//s3.amazonaws.com/crowdera/assets/hand-image-mobile.png" alt="Crowdera">
-        	  	 <a href="${resource(dir: '/campaigns/create')}"><img src="//s3.amazonaws.com/crowdera/assets/start-a-campaign-mobile.png" alt="Crowdera"/></a>
+        	  	 <a href="${resource(dir: '/campaigns/create')}"><img src="//s3.amazonaws.com/crowdera/assets/start-a-campaign-mobile.png" alt="Crowdera"></a>
         	    </div>
         	 </center>
       	      </div>

@@ -368,17 +368,61 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 ------------------------- */
 footer {
     border-top: solid #ff784f 1px !important;
-    background-color: #666666;
+    background-color: #363636;
     padding: 30px 0 0 0;
     margin-top: 25px;
     
 }
-
+hr.footer-hr{
+    color: #666666;
+    background-color: #666666;
+    height: 2px;
+}
+.footer-first-section p{
+    color:#cccccc;
+    font-size:17px;
+    text-align:center;
+}
+.footer-mid-section p{
+    color:#ffffff;
+    font-size:13px;
+    text-align:center;	
+}
+.footer-mid-section p b{
+    color:#cccccc;
+    font-size:18px;	
+}
+.footer-mid-section-menu ul li a{
+    font-size:14px;
+}
+.footer-mid-section-menu .footer-header{
+    color:#999999;
+    font-size:19px;
+    padding-bottom:5px;
+}
+.footer-mid-section-menu ul li{
+    list-style-type:none;
+    margin-left:-39px;
+}
+input.text-email{
+    width:68%;
+}
+input.button-signup{
+    background-image: url(https://s3.amazonaws.com/crowdera/assets/Signup-Button.png); 
+    background-color: transparent;
+    background-repeat: no-repeat;  
+    border: none;                   
+    height: 40px;                
+    vertical-align: middle;
+    width: 84px;
+}
+.footer-mid-section-img a{
+    margin-left:-24px;
+}
 .flinks a , .flinks a:hover{
     display: block;
     margin: 4px 0;
     text-decoration: none !important;
-    
 }
 
 a {
@@ -454,6 +498,43 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    .footer-mid-section-menu-mobile ul li {
+    	list-style-type: none;
+    	margin-left: -39px !important;
+    }
+    .footer-mid-section-menu-mobile ul li a {
+    	font-size: 14px !important;
+    }
+    .footer-mid-section-mobile p {
+    	color: #ffffff;
+    	font-size: 22px;
+    	text-align: center;
+    }
+    .footer-text-align p{
+	font-size:21px;
+	text-align:center;
+	color:#999999;
+    }
+    .footer-p-text-align p{
+	font-size:15px;
+	text-align:center;
+	color:#ffffff;
+    }
+    div.footer-header-align {
+ 	font-size:21px;
+	color:#999999;
+    }
+    .footer-input-align .text-email{
+	width:85% !important;
+    }
+    .footer-img-align img{
+	margin-left:40px;
+	margin-right:40px;
+    }
+    .footer-menu-align {
+	margin-left:109px;
+	margin-right:-146px;
+    }
     input.paypal-create {
         margin-left: -3% !important;
         width: 103%;
@@ -510,6 +591,18 @@ a {
 
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+   input.text-email {
+    	width: 193px;
+   }
+  .footer-mid-section-menu ul li a{
+	font-size:10px;
+   }
+   a.footerlink {
+    	color: #cccccc;
+    	font-size: 13px !important;
+    	font-weight: 500;
+    	text-decoration: none;
+    }
     input.paypal-create {
         margin-left: -8% !important;
     }
@@ -590,6 +683,46 @@ a {
     .categoryList .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
         width: 219px;
     }
+}
+@media only screen and (min-width:506px) and (max-width: 640px){
+	.footer-mid-section-menu-mobile ul li {
+    		list-style-type: none;
+    		margin-left: -39px !important;
+	}
+	.footer-mid-section-menu-mobile.footer-menu-align ul li a {
+    		font-size: 14px !important;
+	}
+	.footer-mid-section-mobile p {
+    		color: #ffffff;
+    		font-size: 22px;
+    		text-align: center;
+	}
+	.footer-text-align p{
+		font-size:21px;
+		text-align:center;
+		color:#999999;
+	}
+	.footer-p-text-align p{
+		font-size:15px;
+		text-align:center;
+		color:#ffffff;
+	}
+	div.footer-header-align {
+	 	font-size:21px;
+		color:#999999;
+	}
+	.footer-input-align .text-email{
+		width:80% !important;
+	}
+	.footer-img-align img{
+		margin-left:40px;
+		margin-right:40px;
+	}
+	.footer-menu-align {
+		margin-left:50px;
+		margin-right:-62px;
+	}
+	
 }
 @media only screen and (min-width:599px) and (max-width: 600px){
     .form-group.col-sm-6.col-xs-11.rewardPriceClass {
@@ -2378,6 +2511,43 @@ textarea.form-control {
         padding-left:16px;
         width:102% !important;
     }
+    .footer-mid-section-menu-mobile ul li {
+    	list-style-type: none;
+    	margin-left: -39px !important;
+    }
+    .footer-mid-section-menu-mobile ul li a {
+    	font-size: 14px !important;
+    }
+    .footer-mid-section-mobile p {
+    	color: #ffffff;
+    	font-size: 22px;
+    	text-align: center;
+    }
+    .footer-text-align p{
+	font-size:21px;
+	text-align:center;
+	color:#999999;
+    }
+    .footer-p-text-align p{
+	font-size:15px;
+	text-align:center;
+	color:#ffffff;
+    }
+    div.footer-header-align {
+ 	font-size:21px;
+	color:#999999;
+    }
+    .footer-input-align .text-email{
+	width:85% !important;
+    }
+    .footer-img-align img{
+	padding-left:53px;
+	padding-right:51px;
+    }
+    .footer-menu-align {
+	margin-left:109px;
+	margin-right:-146px;
+    }
 
 }
 
@@ -2913,7 +3083,6 @@ textarea.form-control {
 	}
 }
 @media only screen and (max-width: 640px){
-	
     input.paypal-create {
         margin-left: -3% !important;
         width: 103%;
@@ -3737,7 +3906,7 @@ textarea.form-control {
 @media only screen and (max-width: 384px){
 	.footer_links a {
         color: #cccccc;
-        font-size: 10px !important;
+        font-size: 11px !important;
         text-decoration: none;
     }
 }
@@ -3790,7 +3959,7 @@ textarea.form-control {
     }
 	.footer_links a {
         color: #cccccc;
-        font-size: 9px !important;
+        font-size: 10px !important;
         text-decoration: none;
     }
 	.tile-goal {
@@ -3833,7 +4002,23 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-    .form-group.col-sm-6.rewardPriceClass{
+   .footer-first-section-mobile p {
+    	color: #cccccc;
+    	font-size: 15px;
+    	text-align: center;
+   }
+   .footer-mid-section-menu-mobile .footer-header-mobile {
+   	color: #999999;
+    	font-size: 19px;
+   }
+   .footer-mid-section-menu-mobile ul li {
+    	list-style-type: none;
+    	margin-left: -39px;
+   }
+   .footer-mid-section-menu-mobile ul li a {
+    	font-size: 10px !important;
+   }
+   .form-group.col-sm-6.rewardPriceClass{
         padding-left:16px;
         width:104% !important;
     }
@@ -4355,9 +4540,9 @@ button.projectedit.close{
 }
 a.footerlink {
 	color: #cccccc;
-    font-size: 15px;
-    text-decoration: none;
-    font-weight: 500;
+    	font-size: 14px;
+    	text-decoration: none;
+    	font-weight: 500;
 	
 	/* color: #cccccc;
 	font-size: 14px;

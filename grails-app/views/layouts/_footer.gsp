@@ -54,11 +54,11 @@
         	 <center>
         	 	<br>
       	      	<div class="socialicon">
-		        	<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog.png" alt="twitter"/></a>
-		           	<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook.png" alt="facebook"/></a>
-				    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter.png" alt="twitter"/></a>
-				    <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="inlink" src="//s3.amazonaws.com/crowdera/assets/linked-In.png" alt="Linkedin"/></a>
-				    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="insta" src="//s3.amazonaws.com/crowdera/assets/instagram.png" alt="Instagram"/></a>
+		        	<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="twitter"/></a>
+		           	<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"/></a>
+				    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"/></a>
+				    <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="inlink" src="//s3.amazonaws.com/crowdera/assets/linked-In-footer.png" alt="Linkedin"/></a>
+				    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="insta" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="Instagram"/></a>
 		        </div>
 		        <br><br>
 		        <div><p>"Through the Crowdera platform our scholars, parents, families, staff and parents can participate
@@ -117,11 +117,11 @@
    	  		<div class="col-sm-5">
    	  		 	<br>
    	  			<div class="socialicon">
-		        	<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog.png" alt="twitter"/></a>
-		           	<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook.png" alt="facebook"/></a>
-				    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter.png" alt="twitter"/></a>
-				    <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="inlink" src="//s3.amazonaws.com/crowdera/assets/linked-In.png" alt="Linkedin"/></a>
-				    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="insta" src="//s3.amazonaws.com/crowdera/assets/instagram.png" alt="Instagram"/></a>
+		        	<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="twitter"/></a>
+		           	<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"/></a>
+				    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"/></a>
+				    <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="inlink" src="//s3.amazonaws.com/crowdera/assets/linked-In-footer.png" alt="Linkedin"/></a>
+				    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="insta" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="Instagram"/></a>
 						
 		        </div>
    	  		</div>
@@ -231,11 +231,11 @@
         	<div class="col-md-4">
         	 	<br>
 		       <div class="socialicon">
-		        	<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog.png" alt="twitter"/></a>
-		           	<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook.png" alt="facebook"/></a>
-				    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter.png" alt="twitter"/></a>
-				    <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="inlink" src="//s3.amazonaws.com/crowdera/assets/linked-In.png" alt="Linkedin"/></a>
-				    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="insta" src="//s3.amazonaws.com/crowdera/assets/instagram.png" alt="Instagram"/></a>
+		        	<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="twitter"/></a>
+		           	<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"/></a>
+				    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"/></a>
+				    <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="inlink" src="//s3.amazonaws.com/crowdera/assets/linked-In-footer.png" alt="Linkedin"/></a>
+				    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="insta" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="Instagram"/></a>
 						
 		        </div>
         	</div>

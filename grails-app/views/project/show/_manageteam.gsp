@@ -161,7 +161,7 @@
       					<div class="col-sm-4">
         					<div class="fileUpload btn btn-primary btn-sm">
 	        					<span>Add Images</span>
-	        					<input type="file" class="upload" name="imagethumbnail" id="projectImageFile" accept="image/*" multiple>
+	        					<input type="file" class="upload" name="imagethumbnail" id="projectImageFile" accept="image/jpeg, image/png" multiple>
          					</div>
          					<label class="docfile-orglogo-css" id="editimg">Please select image file.</label>
          					<label class="docfile-orglogo-css" id="editTeamImg"></label>

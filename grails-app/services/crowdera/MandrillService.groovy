@@ -232,8 +232,15 @@ class MandrillService {
 
     def shareProject(def emailList, String name, String message, Project project, def fundRaiser) {
         def imageUrl = project.imageUrl
+		def imgUrl
+		def projectImageUrl
         if (imageUrl) {
             imageUrl = project.imageUrl[0].getUrl()
+			if(imageUrl.startsWith("https") || imageUrl.startsWith("http")) {
+				projectImageUrl = imageUrl
+			} else {
+			    projectImageUrl = "https:"+imageUrl
+			}
         }
         emailList.each { email ->
             def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id,params:[fr:fundRaiser], absolute: true)
@@ -260,7 +267,7 @@ class MandrillService {
                 ],
                 [
                     'name': 'IMAGEURL',
-                    'content': imageUrl
+                    'content': projectImageUrl
                 ]
             ]
 
@@ -272,8 +279,14 @@ class MandrillService {
 
     def shareContribution(def emailList, String name, String message, Project project,Contribution contribution, User fundraiser) {
         def imageUrl = project.imageUrl
+		def projectImageUrl
         if (imageUrl) {
             imageUrl = project.imageUrl[0].getUrl()
+			if(imageUrl.startsWith("https") || imageUrl.startsWith("http")) {
+				projectImageUrl = imageUrl
+			} else {
+				projectImageUrl = "https:"+imageUrl
+			}
         }
         emailList.each { email ->
             def link = grailsLinkGenerator.link(controller: 'fund', action: 'acknowledge', id: project.id,params:[ cb:contribution.id, fr:fundraiser.id], absolute: true)
@@ -300,7 +313,7 @@ class MandrillService {
                 ],
                 [
                     'name': 'IMAGEURL',
-                    'content': imageUrl
+                    'content': projectImageUrl
                 ]
             ]
 
@@ -353,8 +366,14 @@ class MandrillService {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'manageproject', id: project.id, absolute: true)
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', id: project.id, absolute: true)
         def imageUrl = project.imageUrl
+		def projectImageUrl
         if (imageUrl) {
             imageUrl = project.imageUrl[0].getUrl()
+			if(imageUrl.startsWith("https") || imageUrl.startsWith("http")) {
+				projectImageUrl = imageUrl
+			} else {
+				projectImageUrl = "https:"+imageUrl
+			}
         }
         def globalMergeVars = [
             [
@@ -379,7 +398,7 @@ class MandrillService {
             ],
             [
                 'name': 'IMAGEURL',
-                'content': imageUrl
+                'content': projectImageUrl
             ]
         ]
 
@@ -392,8 +411,14 @@ class MandrillService {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'manageproject', id: project.id, absolute: true)
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', absolute: true)
         def imageUrl = project.imageUrl
+		def projectImageUrl
         if (imageUrl) {
             imageUrl = project.imageUrl[0].getUrl()
+			if(imageUrl.startsWith("https") || imageUrl.startsWith("http")) {
+				projectImageUrl = imageUrl
+			} else {
+				projectImageUrl = "https:"+imageUrl
+			}
         }
         def globalMergeVars = [[
             'name': 'LINK',
@@ -412,7 +437,7 @@ class MandrillService {
             'content': project.title
         ], [
             'name': 'IMAGEURL',
-            'content': imageUrl
+            'content': projectImageUrl
         ]]
 
         def tags = ['project-update-email']
@@ -424,9 +449,15 @@ class MandrillService {
         def contributors=project.contributions
         def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, absolute: true)
         List imageUrls = projectUpdate.imageUrls
+		def projectImageUrl
         def url
         if(imageUrls) {
-            url = imageUrls[0].getUrl()            
+            url = imageUrls[0].getUrl()    
+			if(url.startsWith("https") || url.startsWith("http")) {
+				projectImageUrl = url
+			} else {
+				projectImageUrl = "https:"+url
+			}
         }
         contributors.each {contributor ->
 			if(contributor.contributorEmail != "anonymous@example.com"){
@@ -450,7 +481,7 @@ class MandrillService {
                     'content': project.title
                 ], [
                     'name': 'IMAGEURL',
-                    'content': url
+                    'content': projectImageUrl
                 ]]
                 
                 def tags = ['campaign-update']
@@ -464,8 +495,14 @@ class MandrillService {
         emailList.each { email ->
             def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, absolute: true)
             def imageUrl = project.imageUrl
+			def projectImageUrl
             if (imageUrl) {
                 imageUrl = project.imageUrl[0].getUrl()
+				if(imageUrl.startsWith("https") || imageUrl.startsWith("http")) {
+					projectImageUrl = imageUrl
+				} else {
+					projectImageUrl = "https:"+imageUrl
+				}
             }
             def globalMergeVars = [
                 [
@@ -485,7 +522,7 @@ class MandrillService {
                     'content': message
                 ],[
                     'name': 'IMAGEURL',
-                    'content': imageUrl
+                    'content': projectImageUrl
                 ]
             ]
 
@@ -763,7 +800,16 @@ class MandrillService {
     public def sendTeamValidatedConfirmation(Project project, User fundRaiser) {
         def username = fundRaiser.username
         def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:username], absolute: true)
-
+		def imageUrl = project.organizationIconUrl
+		def projectImageUrl
+		if (imageUrl) {
+			if(imageUrl.startsWith("https") || imageUrl.startsWith("http")) {
+				projectImageUrl = imageUrl
+			} else {
+				projectImageUrl = "https:"+imageUrl
+			}
+		}
+		
         def globalMergeVars = [
             [
                 'name': 'LINK',
@@ -773,7 +819,7 @@ class MandrillService {
                 'content': fundRaiser.firstName + ' ' + fundRaiser.lastName
             ],[
                 'name': 'IMAGEURL',
-                'content': project.organizationIconUrl
+                'content': projectImageUrl
             ],[
                 'name': 'TITLE',
                 'content': project.title
@@ -789,7 +835,16 @@ class MandrillService {
         def teamUser = team.user
         def username = teamUser.username
         def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:username], absolute: true)
-
+		def imageUrl = project.organizationIconUrl
+		def projectImageUrl
+		if (imageUrl) {
+			if(imageUrl.startsWith("https") || imageUrl.startsWith("http")) {
+				projectImageUrl = imageUrl
+			} else {
+				projectImageUrl = "https:"+imageUrl
+			}
+		}
+		
         def globalMergeVars = [
             [
                 'name': 'LINK',
@@ -799,7 +854,7 @@ class MandrillService {
                 'content': teamUser.firstName + ' ' + teamUser.lastName
             ],[
                 'name': 'IMAGEURL',
-                'content': project.organizationIconUrl
+                'content': projectImageUrl
             ],[
                 'name': 'TITLE',
                 'content': project.title

@@ -13,6 +13,11 @@
                     ${flash.message}
                 </div>
             </g:if>
+            <g:if test="${flash.deleteusermsg}">
+                <div class="alert alert-success text-center">
+                    ${flash.deleteusermsg}
+                </div>
+            </g:if>
             <h4>Verified Users</h4>
             <div class="table table-responsive">
             	<table class="table table-bordered">
@@ -51,7 +56,8 @@
                     	    <th class="col-sm-2 text-center">Last Name</th>
                     	    <th class="col-sm-2 text-center">Role</th>
                     	    <th class="col-sm-2 text-center">Date Created</th>
-                    	    <th class="col-sm-2 text-center">Re-send Confirm Email</th>            
+                    	    <th class="col-sm-2 text-center">Re-send Confirm Email</th>
+                    	    <th class="col-sm-2 text-center">Delete</th>
                 	</tr>
             	    </thead>
             	    <tbody>

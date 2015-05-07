@@ -5,6 +5,7 @@ NEWRELIC_JAR=$NEWRELIC_HOME/newrelic.jar
 NEWRELIC_OPTS=-javaagent:$NEWRELIC_JAR
 TOMCAT_HOME="/home/ubuntu/Programs/tomcat"
 CROWDERA_HOME="/home/ubuntu/Projects/Crowdera"
+CATALINA_OPTS="-d64 -Xms2048M -Xmx2048M -XX:NewSize=1024m -XX:MaxNewSize=1024m -XX:PermSize=1024m -XX:MaxPermSize=1024m -XX:+DisableExplicitGC"
 export CATALINA_OPTS="$CATALINA_OPTS $NEWRELIC_OPTS"
 
 echo "Stop tomcat"

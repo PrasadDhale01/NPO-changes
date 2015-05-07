@@ -145,7 +145,7 @@ environments {
         grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
         grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-        crowdera.BASE_URL = 'http://qa.crowdera.co'
+        crowdera.BASE_URL = 'http://test.crowdera.co'
 
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true

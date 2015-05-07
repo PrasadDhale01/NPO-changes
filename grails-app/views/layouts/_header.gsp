@@ -31,7 +31,7 @@
                 <sec:ifNotLoggedIn>
                     <li class="hidden-xs hidden-sm headerFbButton">
                         <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
-                            <img src="//s3.amazonaws.com/crowdera/assets/Facebook-Login-Button.jpg">
+                            <img src="//s3.amazonaws.com/crowdera/assets/facebook-register.png" alt="Register with Facebook">
                         </a>
                     </li>
                     <li><g:link controller="login" action="auth">Login</g:link></li>

@@ -165,4 +165,13 @@ class UserController {
             flash.message = "You have already sent an email"
         }
     }
+    
+    @Secured(['ROLE_ADMIN'])
+    def deleteUser() {
+        def user = userService.getUserById(params.id)
+        userService.deleteNonVerifiedUser(user)
+        
+        flash.deleteusermsg = "User Deleted Successfully"
+        redirect (action: 'list')
+    }
 }

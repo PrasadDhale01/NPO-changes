@@ -21,3 +21,8 @@
 	outline: 0;
 	background-color: #ff784f !important;
 }
+
+.nonverifiedUserList .close {
+	float: none !important;
+	margin-left: 0px !important;
+}

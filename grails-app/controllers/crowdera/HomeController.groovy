@@ -1,11 +1,11 @@
 package crowdera
+import grails.util.Environment
 
 class HomeController {
 	def projectService
 
     def index() {
-		def base_url = grailsApplication.config.crowdera.BASE_URL
-		if(base_url.contains("localhost") || base_url.contains("staging")){
+		if(Environment.DEVELOPMENT == Environment.current || Environment.TEST == Environment.current){
 			def projects = projectService.showProjects()
 			return [projects: projects]
 		}else{

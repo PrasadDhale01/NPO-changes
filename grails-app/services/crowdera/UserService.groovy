@@ -48,7 +48,7 @@ class UserService {
         }
         return communities
     }
-
+    
     def getImageUrl(CommonsMultipartFile imageFile) {
         this.imageFile = imageFile
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
@@ -325,6 +325,11 @@ class UserService {
         def avatarUser = User.get(userId)
         return avatarUser
     }
+    
+    def getUserById(def userId) {
+        def user = User.get(userId)
+        return user
+    }
 
     def getUserByName(def userName){
         def user = User.findByUsername(userName)
@@ -359,6 +364,17 @@ class UserService {
         CustomerService service = CustomerService.get(params.id)
         if (service) {
             service.delete();
+        }
+    }
+    
+    def deleteNonVerifiedUser(User user) {
+        if (user) {
+            def userRoles = UserRole.findAllWhere(user: user);
+            
+            userRoles.each { userRole ->
+                userRole.delete();
+            }
+            user.delete();
         }
     }
 

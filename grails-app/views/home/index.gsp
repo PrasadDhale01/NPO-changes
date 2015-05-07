@@ -19,11 +19,9 @@
     <div class="greycolorbg"> 
     	<g:render template="projects"></g:render>
     </div>
-   <div class="row text-center explorebtn">
-       <a href="${resource(dir: '/campaigns')}" class="btn btn-primary btn-lg">Explore Campaigns</a>
-   </div>
-    <div class="full-image hand-image-non"><img src="//s3.amazonaws.com/crowdera/assets/mobile-image.jpg" alt="mobile image"></div>
-    
+    <div class="whycrowderacontainer">
+        <g:render template="whycrowdera"></g:render>
+    </div>
 <!--
 <div class="news">
 <div class="container">
@@ -64,8 +62,6 @@
 </div></div>
 </div>
 -->
-
-<div class="full-image2"><img src="//s3.amazonaws.com/crowdera/assets/mobile-image.jpg" alt="mobile image" /></div>
 
 <div class="container">
 	<div class="row featured-non-profits">

@@ -114,6 +114,9 @@
                     </div>
                 </g:else>
             </g:each>
+            <div class="row text-center explorebtn">
+                <a href="${resource(dir: '/campaigns')}" class="btn btn-primary btn-lg">Explore Campaigns</a>
+            </div>
         </div>
     </div>
 	

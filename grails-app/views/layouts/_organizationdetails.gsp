@@ -7,6 +7,8 @@
     def webUrl = projectService.getWebUrl(project)
     def percentage = contributionService.getPercentageContributionForProject(project)
     def isCampaignAdmin = userService.isCampaignAdmin(project, username)
+	def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
+	def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, currentFundraiser)
 %>
 <div class="panel panel-default">
     <div class="panel-heading panel-css">
@@ -27,14 +29,26 @@
 <%--	<label class="col-sm-12" style="margin-top:10px"><h3>Project By</h3></label>--%>
    	<div class="organization-details text-center">
    	    <label class="col-sm-12"><h4><b>${project.organizationName}</b></h4></label>
-   	    <g:if test="${project.organizationIconUrl}">
+   	    <g:if test="${!isAdminOrBeneficiary }">
+   	    	<g:if test="${currentTeam.user.userImageUrl}">
+   	        	<div class="col-sm-12">
+   	            	<img alt="Organization" src="${currentTeam.user.userImageUrl}" class="org-logo">
+            	</div>
+        	</g:if>
+        	<g:else>
+            	<div class="col-sm-12">
+   	            	<img alt="Upload Icon" src="//s3.amazonaws.com/crowdera/assets/defaultOrgIcon.jpg" class="org-logo">
+            	</div>
+        	</g:else>
+   	    </g:if>
+   	    <g:elseif test="${project.organizationIconUrl}">
    	        <div class="col-sm-12">
-   	            <img alt="Organization" src="${project.organizationIconUrl}" class="org-logo"/>
+   	            <img alt="Organization" src="${project.organizationIconUrl}" class="org-logo">
             </div>
-        </g:if>
+        </g:elseif>
         <g:else>
             <div class="col-sm-12">
-   	            <img alt="Upload Icon" src="//s3.amazonaws.com/crowdera/assets/defaultOrgIcon.jpg" class="org-logo"/>
+   	            <img alt="Upload Icon" src="//s3.amazonaws.com/crowdera/assets/defaultOrgIcon.jpg" class="org-logo">
             </div>
         </g:else>
         <div class="col-sm-12">

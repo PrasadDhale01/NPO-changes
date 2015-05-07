@@ -13,7 +13,7 @@
         </tr>
     </g:if>
     <g:else>
-        <tr>
+        <tr class="nonverifiedUserList">
     	    <td>${index}</td>
             <td class="col-sm-2">${users.email}</td>
             <td class="col-sm-2">${users.firstName}</td>
@@ -22,12 +22,17 @@
             <td class="col-sm-2">${users.dateCreated}</td>
             <td class="col-sm-2 text-center">
             <g:link action="resendConfirmMailByAdmin" id="${users.id}" role="button">
-               <button class="sendMail" ><span class="glyphicon glyphicon-envelope"></span> Send Mail</button>
+                <button class="sendMail" ><span class="glyphicon glyphicon-envelope"></span> Send Mail</button>
             </g:link>
+            </td>
+            <td class="text-center">
+                <g:form controller="user" action="deleteUser" method="post"  id="${users.id}">
+                    <button class="projectedit close" id="projectdelete" onclick="return confirm(&#39;Are you sure you want to delete this user?&#39;);">
+                        <i class="glyphicon glyphicon-trash" ></i>
+                    </button>
+                </g:form>
             </td>
         </tr>
     </g:else>
-    
-    
 </body>
 </html>

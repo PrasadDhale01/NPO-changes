@@ -24,7 +24,7 @@ environments {
     test {
         dataSource {
             dbCreate = "update"
-            url = "jdbc:mysql://crowderadb-staging.c5qkqnx9x4ca.us-west-2.rds.amazonaws.com:3306/crowderadbstaging?zeroDateTimeBehavior=convertToNull"
+            url = "jdbc:mysql://crowderadb-test.c5qkqnx9x4ca.us-west-2.rds.amazonaws.com:3306/crowderadbtest?zeroDateTimeBehavior=convertToNull"
             driverClassName = "com.mysql.jdbc.Driver"
             dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
 

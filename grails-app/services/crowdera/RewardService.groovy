@@ -15,6 +15,15 @@ class RewardService {
             return false
         }
     }
+	
+	def getRewardByParams(def rewardParams){
+		Reward reward = new Reward(rewardParams)
+		return reward
+	}
+	
+	def getRewardById(def rewardId){
+		return Reward.get(rewardId)
+	}
 
     def numProjectsUsingReward(Reward reward) {
         return reward.projects.size()

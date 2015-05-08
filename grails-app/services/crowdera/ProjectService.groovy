@@ -18,6 +18,257 @@ class ProjectService {
     def imageFile
 	def imageUrlService
     def mandrillService
+	
+	def getProjectById(def projectId){
+		return Project.get(projectId)
+	}
+	
+	def getImageUrlById(def imageId){
+		return ImageUrl.get(imageId)
+	}
+	
+	def getTeamById(def teamId){
+		return Team.get(teamId)
+	}
+	
+	def getTeamCommentById(def teamCommentId){
+		return TeamComment.get(teamCommentId)
+	}
+	
+	def getTeamByUserAndProject(def user,def project){
+		def team = Team.findByUserAndProject(project, user)
+		return team
+	}
+	
+	def getProjectAdminByEmail(def email){
+		return ProjectAdmin.findByEmail(email)
+	} 
+	
+	def getProjectCommentById(def commentId){
+		return ProjectComment.get(commentId)
+	}
+	
+	def getProjectByParams(def projectParams){
+		Project project = new Project(projectParams)
+		return project
+	}
+	
+	def getProjectUpdateDetails(def params, def request, def project){
+		def iconFile = request.getFile('iconfile')
+		if(!iconFile.isEmpty()) {
+			def uploadedFileUrl = getorganizationIconUrl(iconFile)
+			if (uploadedFileUrl) {
+				project.organizationIconUrl = uploadedFileUrl
+			}
+		}
+		
+		def imageFiles = request.getFiles('thumbnail[]')
+		if(!imageFiles.isEmpty()) {
+			getMultipleImageUrls(imageFiles, project)
+		}
+		
+		project.description = params.description
+		project.story = params.story
+		project.amount = Double.parseDouble(params.amount)
+		project.title = params.title
+		project.category = params.category
+		project.webAddress = params.webAddress
+		project.videoUrl = params.videoUrl
+
+		def days = params.days
+		getUpdatedNumberofDays(days, project)
+	}
+	
+	def getCSVDetails(def params, def response){
+		List contributions=[]
+		SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
+		SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+
+		def projectId= params.projectId
+		def project = Project.get(projectId)
+
+		def teamId = params.teamId
+		def team = Team.get(teamId)
+
+		if(team!=null){
+			if(project.user==team.user){
+				contributions = project.contributions.reverse()
+			} else {
+				contributions = team.contributions.reverse()
+			}
+		} else {
+			contributions = project.contributions.reverse()
+		}
+
+		response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll(' ','_')+".csv")
+		def results=[]
+		def  contributorName
+		def payMode
+		def shippingDetails=""
+		def contributorEmail
+		contributions.each{
+
+			if(it.isContributionOffline){
+				payMode="offline"
+				contributorName= it.contributorName
+				contributorEmail= "-"
+				shippingDetails="No Perk Selected"
+			}else{
+				payMode="Online"
+				contributorName= it.contributorName
+				contributorEmail=it.contributorEmail
+				shippingDetails=getShippingDetails(it)
+			}
+			def fundRaiserName = contributionService.getFundRaiserName(it, project)
+			 if(project.rewards.size()>1){
+				def rows = [it.project.title, fundRaiserName, it.date.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.reward.title, shippingDetails, it.amount, payMode]
+				results << rows
+				shippingDetails=""
+			}else{
+				def rows = [it.project.title, fundRaiserName, it.date.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
+				results << rows
+				shippingDetails=""
+			}
+		}
+		def result
+		if(project.rewards.size()>1){
+			result='CAMPAIGN, FUNDRAISER, DATE AND TIME, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, PERK , SHIPPING DETAILS, AMOUNT, MODE, \n'
+			results.each{ row->
+				row.each{
+				col -> result+=col +','
+				}
+				result = result[0..-2]
+				result+="\n"
+			}
+		}else{
+			result='CAMPAIGN, FUNDRAISER, DATE AND TIME, CONTRIBUTOR NAME,CONTRIBUTOR EMAIL, AMOUNT, MODE, \n'
+			results.each{ row->
+				row.each{
+				col -> result+=col +','
+				}
+				result = result[0..-2]
+				result+="\n"
+			}
+		}
+		return result
+	}
+	
+	def getUpdateValidationDetails(def params){
+		def project = Project.get(params.id)
+		project.created = new Date()
+		project.validated = true
+	}
+	
+		
+	def getCommentsDetails(params){
+		def project = Project.get(params.id)
+		if (project && params.comment) {
+			new ProjectComment(
+				comment: params.comment,
+				user: userService.getCurrentUser(),
+				project: project,
+				date: new Date()).save(failOnError: true)
+	    }
+	} 
+	
+	def getUpdateCommentDetails(def request){
+		println "kartiki in project service"
+		def checkid= request.getParrmeter('checkID')
+		def proComment = ProjectComment.get(checkid)
+		def status = request.getParameter('status')
+		if(status=='false'){
+			proComment.status=false
+		}else{
+			proComment.status=true
+		}
+	}
+	
+	def getEditedFundraiserDetails(def params, def team, def request){
+		def user = userService.getCurrentUser()
+		def project = Project.get(params.project)
+		def amount = Double.parseDouble(params.amount)
+		if(amount <= project.amount){
+			team.amount = amount
+		}
+		def imageFiles = request.getFiles('imagethumbnail')
+		if(!imageFiles.isEmpty()) {
+			getMultipleImageUrlsForTeam(imageFiles, team)
+		}
+		
+		team.videoUrl = params.videoUrl
+		team.story = params.story
+		team.description = params.description
+		def message = "Team Updated Successfully"
+		
+		if (user == project.user) {
+			mandrillService.sendTeamUpdationEmail(project, team)
+		}
+		
+		return message
+	}
+	
+	def getTeamCommentsDetails(def params){
+		def fundRaiser = params.fr
+		def message
+		User user = User.findByUsername(fundRaiser)
+		Project project = Project.get(params.id)
+		Team team = getTeamByUserAndProject(project, user)
+		if (team) {
+			TeamComment teamComment = new TeamComment(
+				comment: params.comment,
+				user: userService.getCurrentUser(),
+				team: team,
+				date: new Date())
+	        team.addToComments(teamComment).save(failOnError: true)
+		} else {
+			message = "Something went wrong saving comment. Please try again later."
+		}
+		return message
+	}
+	
+	def getContributionDeleteDetails(def params){
+		def contribution = contributionService.getContributionById(params.id)
+		def project = Project.get(params.projectId)
+		def fundraiser = params.fr
+		def fundRaiser = User.findByUsername(fundraiser)
+		Team team = getTeamByUserAndProject(project, fundRaiser)
+		if (team) {
+			List teamContributions = team.contributions
+			teamContributions.remove(contribution)
+		}
+		
+		List contributions = project.contributions
+		contributions.remove(contribution)
+		
+		contribution.delete();
+	}
+	
+	def getCommentDeletedDetails(def params){
+		def teamcomment = Team.get(params.id)
+		def projectcomment= ProjectComment.get(params.id)
+		def project = Project.get(params.projectId)
+		def fundraiser = params.fr
+		def fundRaiser = userService.getUserByUsername(fundraiser)
+		Team team = getTeamByUserAndProject(project, fundRaiser)
+		if(team){
+			List teamComments = team.comments
+			teamComments.remove(teamcomment)
+			teamcomment.delete()
+		}else{
+			List projectComments = project.comments
+			projectComments.remove(projectcomment)
+			projectcomment.delete()
+		}
+	}
+	
+	def getContributionEditedDetails(def params){
+		def contribution = Contribution.get(params.id)
+		def project = Project.get(params.projectId)
+		def fundraiser = params.fr
+		def fundRaiser = userService.getUserByUsername(fundraiser)
+		contribution.contributorName = params.contributorName
+		contribution.amount = Double.parseDouble(params.amount)
+	}
 
     def getNumberOfProjects() {
         return Project.count()

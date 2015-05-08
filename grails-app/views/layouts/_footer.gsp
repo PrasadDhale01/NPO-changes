@@ -157,10 +157,10 @@
 				  <div class="footer-mid-section-menu"><span class="footer-header footer-header-align">Sign up for Newsletter</span></div>
 				       <div class="col-sm-8">
 				       	  <input type="text" class="text-email" name="EMAIL" tabindex="-1" value="" placeholder="Your email">
-					  	</div>
-					  	<div class="col-sm-4">
-					  		<input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup signup-md">
-					  	</div>
+					</div>
+					<div class="col-sm-4">
+					  <input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup signup-md">
+					</div>
 				    </div>
 			     </form>
 			</div>
@@ -257,11 +257,11 @@
 				   <br>
 				   <div class="footer-mid-section-menu"><span class="footer-header subscribe-email">Sign up for Newsletter</span></di>
 				      <div class="col-md-6">
-				 		<input type="text" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">
-				  	  </div>
-				  	  <div class="col-md-6">
-							<input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup signup-lg">
-						</div>
+				 	<input type="text" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">
+				      </div>
+				      <div class="col-md-6">
+					<input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup signup-lg">
+				      </div>
 				    </div>
 				</form>
 		        </div>

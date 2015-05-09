@@ -336,19 +336,19 @@ class UserService {
         return user
     }
 	
-	def getUserByUsername(def username){
-		return User.findByUsername(username)
-	}
+    def getUserByUsername(def username){
+        return User.findByUsername(username)
+    }
 
     def getUserByConfirmCode(String id){
         def confirmCode= User.findByConfirmCode(id)
         return confirmCode
     }
 	
-	def getBeneficiaryByParams(def projectParams){
-		Beneficiary beneficiary = new Beneficiary(projectParams)
-		return beneficiary
-	}
+    def getBeneficiaryByParams(def projectParams){
+        Beneficiary beneficiary = new Beneficiary(projectParams)
+        return beneficiary
+    }
 
     def getUserByInviteCode(String id){
         def inviteCode= User.findByInviteCode(id)

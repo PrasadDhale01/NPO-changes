@@ -147,13 +147,13 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def deleteProjectImage(){
-		def imageUrlId = projectService.getImageUrlById(request.getParameter("imgst"))
-		def projectId = projectService.getProjectById(request.getParameter("projectId"))
-		List imageUrl = projectId.imageUrl
-		imageUrl.remove(imageUrlId)
-		imageUrlId.delete()
+        def imageUrlId = projectService.getImageUrlById(request.getParameter("imgst"))
+        def projectId = projectService.getProjectById(request.getParameter("projectId"))
+        List imageUrl = projectId.imageUrl
+        imageUrl.remove(imageUrlId)
+        imageUrlId.delete()
         render ''
-    }
+     }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def deleteTeamImage(){
@@ -175,11 +175,11 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def deleteCampaignAdmin(){
         def project = projectService.getProjectById(request.getParameter("projectId"))
-		def username = request.getParameter("username")
-		def projectAdmin = projectService.getProjectAdminByEmail(username)
-		def projectAdmins = project.projectAdmins
-		projectAdmins.remove(projectAdmin);
-		projectAdmin.delete()
+        def username = request.getParameter("username")
+        def projectAdmin = projectService.getProjectAdminByEmail(username)
+        def projectAdmins = project.projectAdmins
+        projectAdmins.remove(projectAdmin);
+        projectAdmin.delete()
         render ''
     }
 
@@ -233,14 +233,14 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def updatecomment(){
-		def checkid= request.getParameter('checkID')
-		def proComment = projectService.getProjectCommentById(checkid)
-		def status = request.getParameter('status')
-		if(status=='false'){
-			proComment.status=false
-		}else{
-			proComment.status=true
-		}
+        def checkid= request.getParameter('checkID')
+        def proComment = projectService.getProjectCommentById(checkid)
+        def status = request.getParameter('status')
+        if(status=='false'){
+            proComment.status=false
+        }else{
+            proComment.status=true
+        }
         render ""
     }
 

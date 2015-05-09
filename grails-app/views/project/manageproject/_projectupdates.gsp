@@ -5,17 +5,15 @@
     boolean ended = projectService.isProjectDeadlineCrossed(project)
 %>
 
-<div class="col-md-8 col-sm-8 col-xs-12">
+<div class="col-md-offset-2 col-md-8 col-sm-8 col-xs-12">
     <g:if test="${project.validated}">
         <g:if test="${ended}">
 	    	<div class="alert alert-info">Campaign Ended.</div>
 	    </g:if>
         <g:if test="${!ended}">
-		    <div class="col-xs-12">
-		        <g:uploadForm class="form-horizontal" controller="project" action="projectupdate" id="${project.id}" role="form">
-		            <button type="submit" class="btn btn-sm btn-primary pull-right" name="button" value="draft"><i class="fa fa-plus-circle"></i> Create Update</button>
-		        </g:uploadForm>
-		    </div>
+	        <g:uploadForm class="form-horizontal" controller="project" action="projectupdate" id="${project.id}" role="form">
+	            <button type="submit" class="btn btn-sm btn-primary pull-right" name="button" value="draft"><i class="fa fa-plus-circle"></i> Create Update</button>
+	        </g:uploadForm>
 		    <div class="clear"></div>
 		</g:if>
 		
@@ -44,14 +42,4 @@
 	<g:else>
 	        <div class="alert alert-info">You can post updates after the campaign is published.</div>
 	</g:else>
-</div>
-<div class="col-md-4 col-sm-4 col-xs-12">
-    <g:render template="/project/manageproject/tilesanstitle" />
-    <g:if test="${project.draft}">
-        <g:form controller="project" action="saveasdraft" id="${project.id}">
-            <button class="btn btn-block btn-primary">
-                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-            </button>
-        </g:form>
-    </g:if>
 </div>

@@ -33,6 +33,16 @@ class ProjectService {
         return cardtypes
     }
     
+    def getProjectById(def projectId) {
+        def project = Project.get(projectId)
+        return project
+    }
+    
+    def getProjectUpdateById(def projectUpdateId) {
+        def projectUpdate = ProjectUpdate.get(projectUpdateId)
+        return projectUpdate
+    }
+    
     def getTitle(){
         def title = [
            Dr:'Dr.',
@@ -1405,6 +1415,35 @@ class ProjectService {
 		return ['emailid':emailid, 'twitter':tweet,'address':add,'custom':cstm]
 		
 	}
+    
+    def editCampaignUpdates(def params, def project, def request, def imageFiles) {
+        ProjectUpdate projectUpdate = getProjectUpdateById(params.id)
+        def story = params.story
+        def isImageFileEmpty = isImageFileEmpty(imageFiles)
+        
+        if(projectUpdate) {
+            if (!isImageFileEmpty) {
+                getUpdatedImageUrls(imageFiles, projectUpdate)
+            }
+            if (!story.isAllWhitespace()) {
+                if (projectUpdate.story != story) {
+                    projectUpdate.story = story
+                }
+            } else {
+                if (!projectUpdate.imageUrls.isEmpty()) {
+                    projectUpdate.story = params.story
+                }
+            }
+            
+            if (projectUpdate.imageUrls.isEmpty() && story.isAllWhitespace()) {
+                if (projectUpdate.story == null || projectUpdate.story.isAllWhitespace()) {
+                    List projectUpdates = project.projectUpdates
+                    projectUpdates.remove(projectUpdate)
+                    projectUpdate.delete()
+                }
+            }
+        }
+    }
 
     @Transactional
     def bootstrap() {

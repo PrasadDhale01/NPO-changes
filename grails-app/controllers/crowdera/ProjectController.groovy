@@ -685,6 +685,39 @@ class ProjectController {
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
+    def editUpdate() {
+        def projectUpdate = projectService.getProjectUpdateById(params.id)
+        def project = projectService.getProjectById(params.projectId)
+        def projectUpdates = project.projectUpdates
+        if (projectUpdates.contains(projectUpdate)) {
+            flash.editUpdateSuccessMsg = "Campaign Update Edited Successfully"
+            render (view:'editupdate/index', model:[projectUpdate: projectUpdate, project: project, FORMCONSTANTS: FORMCONSTANTS])
+        } else {
+            render (view: 'manageproject/error')
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def saveEditUpdate() {
+        def project = projectService.getProjectById(params.projectId)
+        def imageFiles = request.getFiles('thumbnail[]')
+        boolean isUpdateEdited = projectService.editCampaignUpdates(params, project, request, imageFiles)
+        
+        flash.saveEditUpdateSuccessMsg = "Campaign Update Edited Successfully!"
+        redirect(controller: 'project', action: 'manageproject', id: project.id, fragment: 'projectupdates')
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def deleteProjectUpdateImage() {
+        def imageUrl = ImageUrl.get(request.getParameter("imageId"))
+        def projectUpdate = ProjectUpdate.get(request.getParameter("projectUpdateId"))
+        List imageUrls = projectUpdate.imageUrls
+        imageUrls.remove(imageUrl)
+        imageUrl.delete()
+        render ''
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def updatesave() {
         def project = Project.get(params.id)
         def imageFiles = request.getFiles('thumbnail[]')

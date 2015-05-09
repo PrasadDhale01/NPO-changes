@@ -41,15 +41,15 @@
             <input type="hidden" id="baseUrl" value="${baseUrl}"/>
             <div class="panel panel-default">
 	            <div class="panel-heading">
-					<h3 class="panel-title">Story and Images</h3>
-				</div>
-		        <div class="panel-body">
-		            <div class="form-group">
-						<label class="col-sm-2 control-label">Story</label>
-						<div class="col-sm-10">
-							<textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" class="mceEditor">${projectUpdate.story}</textarea>
-					    </div>
-					</div><br/>
+                    <h3 class="panel-title">Story and Images</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Story</label>
+                        <div class="col-sm-10">
+                            <textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" class="mceEditor">${projectUpdate.story}</textarea>
+                        </div>
+                    </div><br/>
 					
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Pictures</label>

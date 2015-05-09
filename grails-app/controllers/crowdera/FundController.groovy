@@ -35,8 +35,8 @@ class FundController {
     def paykey
     def userId
     def perk
-    def static conId
-    def static frId
+    def conId
+    def frId
     String str
 
     def fund() {
@@ -48,7 +48,7 @@ class FundController {
             project = Project.findById(params.id)
         }
 		
-        perk = Reward.get(params.long('rewardId'))
+        perk = rewardService.getRewardById(params.long('rewardId'))
 
         boolean fundingAchieved = contributionService.isFundingAchievedForProject(project)
         boolean ended = projectService.isProjectDeadlineCrossed(project)
@@ -73,21 +73,21 @@ class FundController {
         def month = contributionService.getMonth()
         def year = contributionService.getYear()
         def defaultCountry = 'US'
-        perk = Reward.get(params.long('rewardId'))
-        def user1 = User.get(params.tempValue)
+        perk = rewardService.getRewardById(params.long('rewardId'))
+        def user1 = userService.getUserByUsername(params.tempValue)
 
-        def user = User.get(params.userId)
+        def user = userService.getUserById(params.userId)
         if (user == null){
-            user = User.findByUsername('anonymous@example.com')
+            user = userService.getUserByUsername('anonymous@example.com')
         }
         if (params.projectId) {
-            project = Project.findById(params.projectId)
+            project = projectService.getProjectById(params.projectId)
         }
         
         def anonymous = params.anonymous
 		
         def fundRaiserUserName = params.fr
-	    User fundraiser = User.findByUsername(params.fr)
+	    User fundraiser = userService.getUserByUsername(params.fr)
         def isCoAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
         def team = userService.getTeamByUser(fundraiser, project)
 
@@ -135,13 +135,13 @@ class FundController {
         Reward reward
 
         if (params.projectId) {
-            project = Project.findById(params.projectId)
+            project = projectService.getProjectById(params.projectId)
         }
         
-        def user1 = User.get(params.tempValue)
-        def user = User.get(params.userId)
+        def user1 = userService.getUserById(params.tempValue)
+        def user = userService.getUserById(params.userId)
         if (user == null){
-            user = User.findByUsername('anonymous@example.com')
+            user = userService.getUserByUsername('anonymous@example.com')
         }
         
         def address = projectService.getAddress(params)
@@ -149,7 +149,7 @@ class FundController {
         def country = projectService.getCountry()
 		
         def fundRaiserUserName = params.fr
-        User fundraiser = User.findByUsername(params.fr)
+        User fundraiser = userService.getUserByUsername(params.fr)
         def anonymous = params.anonymous
 
         if (project) {
@@ -193,13 +193,15 @@ class FundController {
     }
     
     def acknowledge() {
-        def contribution = Contribution.get(params.cb)
+        def contribution = contributionService.getContributionById(params.cb)
         def project = contribution.project
         def reward = contribution.reward
         def user = contribution.user
-        def fundraiser = User.get(params.fr)
+        def fundraiser = userService.getUserById(params.fr)
 		if((contribution.id ==conId) && (fundraiser.id==frId)){
-	       render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
+			conId=contribution.id
+			frId=fundraiser.id
+	        render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
         }else{
            render view: 'error', model: [message: 'This contribution or fundraiser does not exist.']
         }
@@ -208,7 +210,7 @@ class FundController {
     def saveContributionComent(){
         Contribution contribution
         if(params.id){
-            contribution = Contribution.get(params.id)
+            contribution = contributionService.getContributionById(params.id)
             if(contribution && params.comment){
                 contribution.comments = params.comment
             }
@@ -219,12 +221,12 @@ class FundController {
     }
     
     def editContributionComment(){
-        Contribution contribution = Contribution.get(params.id)
+        Contribution contribution = contributionService.getContributionById(params.id)
         if(Contribution){
             def project = contribution.project
             def reward = contribution.reward
             def user = contribution.user
-            def fundraiser = User.get(params.fr)
+            def fundraiser = userService.getUserById(params.fr)
             def editedComment = contribution.comments
             render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser,editedComment: editedComment]
         } else {
@@ -236,7 +238,7 @@ class FundController {
     def deleteContributionComment() {
         Contribution contribution 
         if(params.id){
-            contribution = Contribution.get(params.id)
+            contribution = contributionService.getContributionById(params.id)
             if(contribution && contribution.comments){
                 contribution.comments = null
             }
@@ -247,24 +249,14 @@ class FundController {
     }
     
     def sendemail() {
-        def project = Project.get(params.id)
-        def contribution =Contribution.get(params.cb)
-        def fundraiser =User.get(params.fr)
-        String emails = params.emails
-        String name = params.name
-        String message = params.message
+        projectService.getEmailDetails(params)
         
-        def emailList = emails.split(',')
-        emailList = emailList.collect { it.trim() }
-        
-        mandrillService.shareContribution(emailList, name, message,project,contribution,fundraiser)
-
-        flash.sentmessage= "Email sent successfully."
-        redirect(controller:'fund',action: 'acknowledge',id: project.id, params:[cb : contribution.id, fr:fundraiser.id])
+		flash.sentmessage= "Email sent successfully."
+        redirect(controller:'fund',action: 'acknowledge',id: params.id, params:[cb : params.cb, fr: params.fr])
     }
 
     def fundingConfirmation(){
-        User users = User.get(params.id)
+        User users = userService.getUserById(params.id)
         if (!users) {
             render(view: 'error', model: [message: 'Problem activating account. Please check your activation link.'])
         } else {
@@ -273,11 +265,10 @@ class FundController {
     }
 
     def thankingContributors(){
-        def project = Project.get(params.id)
+        def project = projectService.getProjectById(params.id)
         if (!project) {
             render(view: 'error', model: [message: 'Problem activating account. Please check your activation link.'])
         } else {
-
             redirect(controller: 'project', action: 'show', id: project.id)
         }
     }
@@ -408,96 +399,18 @@ class FundController {
     }
     
     def userContribution(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address){
-        def emailId = request.getParameter('shippingEmail')
-        def twitter = request.getParameter('twitterHandle')
-        def custom = request.getParameter('shippingCustom')
-        def userId = request.getParameter('tempValue')
-        def anonymous = request.getParameter('anonymous')
-		
-	def shippingDetail=projectService.checkShippingDetail(emailId,twitter,address, custom)
-        def name
-        def username
-        
-        if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
-            if (project.paypalEmail){
-                name = request.getParameter('name')
-                username = request.getParameter('email')
-            } else {
-                name = params.billToFirstName + " " +params.billToLastName
-                username = params.billToEmail
-            }
-        } else {
-            def orgUser = User.get(userId)
-            name = orgUser.firstName + " " + orgUser.lastName
-            username = orgUser.email
-        }
-        
-        Contribution contribution = new Contribution(
-                date: new Date(),
-                user: users,
-                reward: reward,
-                amount: amount,
-                email: shippingDetail.emailid,
-                twitterHandle: shippingDetail.twitter,
-                custom: shippingDetail.custom,
-                contributorName: name,
-                contributorEmail:username,
-                physicalAddress: shippingDetail.address
-                )
-        project.addToContributions(contribution).save(failOnError: true)
-		
-        Team team = Team.findByUserAndProject(fundraiser,project)
-        if (team) {
-            contribution.fundRaiser = fundraiser.username
-            team.addToContributions(contribution).save(failOnError: true)
-        }
-        
-        contribution.isAnonymous = anonymous.toBoolean()
-
-        mandrillService.sendThankYouMailToContributors(contribution, project,amount,fundraiser)
-        
-        userService.contributionEmailToOwnerOrTeam(fundraiser, project, contribution)
-
-        def totalContribution = contributionService.getTotalContributionForProject(project)
-        if(totalContribution >= project.amount){
-            if(project.send_mail == false){
-                def contributor = contributionService.getTotalContributors(project)
-                contributor.each {
-                    def user = User.get(it)
-                    if (user.email != 'anonymous@example.com'){
-                        mandrillService.sendContributorEmail(user, project)
-                    }
-                }
-                def beneficiaryId = projectService.getBeneficiaryId(project)
-                def beneficiary = Beneficiary.get(beneficiaryId)
-                def user = User.list()
-                user.each{
-                    if(it.email == beneficiary.email){
-                        mandrillService.sendBeneficiaryEmail(it)
-                    }
-                }
-                project.send_mail = true
-            }
-        }
-		
-		Transaction transaction = new Transaction(
-			transactionId:transactionId,
-			user:users,
-			project:project,
-			contribution:contribution
-		)
-		transaction.save(failOnError: true)
-		conId=contribution.id
-        frId= fundraiser.id
-        redirect(controller: 'fund', action: 'acknowledge', id: project.id, params: [cb: contribution.id, fr:fundraiser.id])
+		def contributionId = projectService.getUserContributionDetails(project, reward, amount, transactionId, users, fundraiser, params,  address, request)
+		conId = contributionId
+		frId = fundraiser.id
+		redirect(controller: 'fund', action: 'acknowledge' , id: project.id, params: [cb: contributionId, fr:fundraiser.id])
     }
 
     def paypalurl(){
-        Project project = Project.get(params.id)
-        Reward reward = Reward.get(params.long('rewardId'))
-        User user = User.get(params.userId)
+        Project project = projectService.getProjectById(params.id)
+        Reward reward = rewardService.getRewardById(params.long('rewardId'))
+        User user = userService.getUserById(params.userId)
         def fundRaiserUserName = params.fr
-        User fundraiser = User.get(params.fr)
+        User fundraiser = userService.getUserById(params.fr)
         def amount = params.double(('amount'))
         def address = projectService.getAddress(params)
         
@@ -524,12 +437,12 @@ class FundController {
 		def fundraiserId = request.getParameter('fundraiser')
         def address = request.getParameter('address')
 
-        Project project = Project.get(projectId)
-        User user = User.get(userid)
-		User fundraiser = User.get(fundraiserId)
-        Reward reward = Reward.get(rewardId)
+        Project project = projectService.getProjectById(projectId)
+        User user = userService.getUserById(userid)
+		User fundraiser = userService.getUserById(fundraiserId)
+        Reward reward = rewardService.getRewardById(rewardId)
 
-        PaykeyTemp paykeytemp = PaykeyTemp.findByTimestamp(timestamp)
+        def paykeytemp = projectService.getpayKeytempObject(timestamp)
         def payKey = paykeytemp.paykey
         paykeytemp.delete()
         
@@ -541,14 +454,14 @@ class FundController {
     }
     
     def getOnlyTwitterHandlerRewards(){
-        def project = Project.get(request.getParameter('projectId'))
+        def project = projectService.getProjectById(request.getParameter('projectId'))
         def reward = rewardService.getOnlytwitterHandlerReward(project)
         def rewardId = reward.id
         render rewardId
     }
     
     def getRewardsHavingTwitterHandler(){
-        def project = Project.get(request.getParameter('projectId'))
+        def project = projectService.getProjectById(request.getParameter('projectId'))
         def reward = rewardService.getTwitterHandlerReward(project)
         def rewardId = reward.id
         render rewardId
@@ -562,70 +475,19 @@ class FundController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def generateCSV(){
-        
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
-        
-        def transactions =Transaction.list()
-        def results=[]
-     
-        response.setHeader("Content-disposition", "attachment; filename=Crowdera_Transaction_Report.csv")
-        transactions.each{ 
-           def userIdentity 
-           if (it.contribution.isAnonymous) {
-               userIdentity = "Anonymous"
-           } else {
-               userIdentity = "Non Anonymous"
-           }
-           def rows = [it.transactionId, dateFormat.format(it.contribution.date), timeFormat.format(it.contribution.date), it.project.title, it.contribution.contributorName,userIdentity, it.project.amount, projectService.getContributedAmount(it)]
-           results << rows
-        }
-           
-        def result='Transaction Id, Contribution Date, Contribution Time, Project, Contributor Name, Identity, Project Amount, Contributed Amount, \n'
-        results.each{ row->
-           row.each{
-           col -> result+=col +','
-           }
-           result = result[0..-2]
-           result+="\n"
-        }
-           
+        def result = projectService.generateCSV(response)          
         render (contentType:"text/csv", text:result)
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def saveOfflineContribution() {
-        def project = Project.get(params.id)
-        def user = User.findByUsername('anonymous@example.com')
-        def reward = rewardService.getNoReward()
-        def fundRaiser = userService.getCurrentUser()
-        def username = fundRaiser.username
-        def amount = params.amount1
-        def contributorName = params.contributorName1
-        if (amount && contributorName) {
-            Contribution contribution = new Contribution(
-                date: new Date(),
-                user: user,
-                reward: reward,
-                amount: amount,
-                contributorName: contributorName,
-                isContributionOffline: true,
-                fundRaiser: username
-            )
-            project.addToContributions(contribution).save(failOnError: true)
-
-            if(project.teams) {
-                Team team = Team.findByUserAndProject(fundRaiser,project)
-                if (team) {
-                    team.addToContributions(contribution).save(failOnError: true)
-                }
-            }
-        }
+		def fundRaiser = userService.getCurrentUser()
+        projectService.getOfflineDetails(params)
         flash.offlineContributionMsg = "Offline Contribution Added Successfully."
         if (params.manageCampaign) {
-            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', id: project.id)
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', id: params.id)
         } else {
-            redirect (controller: 'project', action: 'show',fragment: 'contributions', id: project.id, params:[fr: username])
+            redirect (controller: 'project', action: 'show',fragment: 'contributions', id: params.id, params:[fr: fundRaiser.username])
         }
     }
 }

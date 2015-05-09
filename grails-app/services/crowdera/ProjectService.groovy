@@ -18,6 +18,7 @@ class ProjectService {
     def imageFile
 	def imageUrlService
     def mandrillService
+	def rewardService
 	
     def getProjectById(def projectId){
         return Project.get(projectId)
@@ -240,6 +241,168 @@ class ProjectService {
 
          contribution.delete();
      }
+	 
+	 def getEmailDetails(def params){
+		 def project = Project.get(params.id)
+		 def contribution = Contribution.get(params.cb)
+		 def fundraiser = User.get(params.fr)
+		 String emails = params.emails
+		 String name = params.name
+		 String message = params.message
+		 
+		 def emailList = emails.split(',')
+		 emailList = emailList.collect { it.trim() }
+		 
+		 mandrillService.shareContribution(emailList, name, message,project,contribution,fundraiser)
+	 }
+	 
+	 def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
+		 def emailId = request.getParameter('shippingEmail')
+		 def twitter = request.getParameter('twitterHandle')
+		 def custom = request.getParameter('shippingCustom')
+		 def userId = request.getParameter('tempValue')
+		 def anonymous = request.getParameter('anonymous')
+		 def shippingDetail=checkShippingDetail(emailId,twitter,address, custom)
+		 def name
+		 def username
+		 
+		 if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
+			 if (project.paypalEmail){
+				 name = request.getParameter('name')
+				 username = request.getParameter('email')
+			 } else {
+				 name = params.billToFirstName + " " +params.billToLastName
+				 username = params.billToEmail
+			 }
+		 } else {
+			 def orgUser = User.get(userId)
+			 name = orgUser.firstName + " " + orgUser.lastName
+			 username = orgUser.email
+		 }
+		 
+		 Contribution contribution = new Contribution(
+				 date: new Date(),
+				 user: users,
+				 reward: reward,
+				 amount: amount,
+				 email: shippingDetail.emailid,
+				 twitterHandle: shippingDetail.twitter,
+				 custom: shippingDetail.custom,
+				 contributorName: name,
+				 contributorEmail:username,
+				 physicalAddress: shippingDetail.address
+				 )
+		 project.addToContributions(contribution).save(failOnError: true)
+		 
+		 Team team = Team.findByUserAndProject(fundraiser,project)
+		 if (team) {
+			 contribution.fundRaiser = fundraiser.username
+			 team.addToContributions(contribution).save(failOnError: true)
+		 }
+		 
+		 contribution.isAnonymous = anonymous.toBoolean()
+ 
+		 mandrillService.sendThankYouMailToContributors(contribution, project,amount,fundraiser)
+		 
+		 userService.contributionEmailToOwnerOrTeam(fundraiser, project, contribution)
+ 
+		 def totalContribution = contributionService.getTotalContributionForProject(project)
+		 if(totalContribution >= project.amount){
+			 if(project.send_mail == false){
+				 def contributor = contributionService.getTotalContributors(project)
+				 contributor.each {
+					 def user = User.get(it)
+					 if (user.email != 'anonymous@example.com'){
+						 mandrillService.sendContributorEmail(user, project)
+					 }
+				 }
+				 def beneficiaryId = projectService.getBeneficiaryId(project)
+				 def beneficiary = Beneficiary.get(beneficiaryId)
+				 def user = User.list()
+				 user.each{
+					 if(it.email == beneficiary.email){
+						 mandrillService.sendBeneficiaryEmail(it)
+					 }
+				 }
+				 project.send_mail = true
+			 }
+		 }
+		 
+		 Transaction transaction = new Transaction(
+			 transactionId:transactionId,
+			 user:users,
+			 project:project,
+			 contribution:contribution
+		 )
+		 transaction.save(failOnError: true)
+		 
+		 return contribution.id
+	 }
+	 
+	 def getpayKeytempObject(def timestamp){
+		 PaykeyTemp paykeytemp = PaykeyTemp.findByTimestamp(timestamp)
+		 return paykeytemp
+	 }
+	 
+	 def generateCSV(def response){
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
+		 SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+		 
+		 def transactions =Transaction.list()
+		 def results=[]
+	  
+		 response.setHeader("Content-disposition", "attachment; filename=Crowdera_Transaction_Report.csv")
+		 transactions.each{
+			def userIdentity
+			if (it.contribution.isAnonymous) {
+				userIdentity = "Anonymous"
+			} else {
+				userIdentity = "Non Anonymous"
+			}
+			def rows = [it.transactionId, dateFormat.format(it.contribution.date), timeFormat.format(it.contribution.date), it.project.title, it.contribution.contributorName, userIdentity, it.project.amount, getContributedAmount(it)]
+			results << rows
+		 }
+			
+		 def result='Transaction Id, Contribution Date, Contribution Time, Project, Contributor Name, Identity, Project Amount, Contributed Amount, \n'
+		 results.each{ row->
+			row.each{
+			col -> result+=col +','
+			}
+			result = result[0..-2]
+			result+="\n"
+		 }
+		 
+		 return result
+	 }
+	 
+	 def getOfflineDetails(def params){
+		 def project = Project.get(params.id)
+		 def user = User.findByUsername('anonymous@example.com')
+		 def reward = rewardService.getNoReward()
+		 def fundRaiser = userService.getCurrentUser()
+		 def username = fundRaiser.username
+		 def amount = params.amount1
+		 def contributorName = params.contributorName1
+		 if (amount && contributorName) {
+			 Contribution contribution = new Contribution(
+				 date: new Date(),
+				 user: user,
+				 reward: reward,
+				 amount: amount,
+				 contributorName: contributorName,
+				 isContributionOffline: true,
+				 fundRaiser: username
+			 )
+			 project.addToContributions(contribution).save(failOnError: true)
+ 
+			 if(project.teams) {
+				 Team team = Team.findByUserAndProject(fundRaiser,project)
+				 if (team) {
+					 team.addToContributions(contribution).save(failOnError: true)
+				 }
+			 }
+		 }
+	 }
 
      def getCommentDeletedDetails(def params){
          def project = Project.get(params.projectId)

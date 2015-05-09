@@ -763,7 +763,7 @@ class ProjectController {
 		flash.prj_mngprj_message = message
         
 		if (!params.ismanagepage) {
-	        redirect (action: 'show', id: params.id, params:[fr: fundRaiser], fragment: 'comments')
+	        redirect (action: 'show', id: params.id, params:[fr: params.fr], fragment: 'comments')
         } else {
             redirect (action: 'manageproject', id: params.id, fragment: 'manageTeam')
         }

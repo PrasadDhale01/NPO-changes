@@ -35,8 +35,8 @@ class ProjectService {
 		return TeamComment.get(teamCommentId)
 	}
 	
-	def getTeamByUserAndProject(def user,def project){
-		def team = Team.findByUserAndProject(project, user)
+	def getTeamByUserAndProject(def project, def user){
+		def team = Team.findByUserAndProject(user, project)
 		return team
 	}
 	
@@ -172,7 +172,6 @@ class ProjectService {
 	} 
 	
 	def getUpdateCommentDetails(def request){
-		println "kartiki in project service"
 		def checkid= request.getParrmeter('checkID')
 		def proComment = ProjectComment.get(checkid)
 		def status = request.getParameter('status')
@@ -244,20 +243,24 @@ class ProjectService {
 	}
 	
 	def getCommentDeletedDetails(def params){
-		def teamcomment = Team.get(params.id)
-		def projectcomment= ProjectComment.get(params.id)
 		def project = Project.get(params.projectId)
 		def fundraiser = params.fr
 		def fundRaiser = userService.getUserByUsername(fundraiser)
 		Team team = getTeamByUserAndProject(project, fundRaiser)
 		if(team){
-			List teamComments = team.comments
-			teamComments.remove(teamcomment)
-			teamcomment.delete()
+			def teamcomment = TeamComment.get(params.id)
+			if (teamcomment) {
+				List teamComments = team.comments
+				teamComments.remove(teamcomment)
+			    teamcomment.delete()
+			}
 		}else{
-			List projectComments = project.comments
-			projectComments.remove(projectcomment)
-			projectcomment.delete()
+			def projectcomment= ProjectComment.get(params.id)
+			if (projectcomment) {
+				List projectComments = project.comments
+				projectComments.remove(projectcomment)
+			    projectcomment.delete()
+			}
 		}
 	}
 	

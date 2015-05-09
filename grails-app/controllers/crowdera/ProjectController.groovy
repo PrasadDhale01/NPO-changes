@@ -98,17 +98,17 @@ class ProjectController {
         }
      }
 
-	def show() {
-		Project project = projectService.getProjectById(params.id)
-		if (project) {
-            User user = userService.getUserByUsername(params.fr)
-            render (view: 'show/index',
-                model: [project: project, user: user,
-                        FORMCONSTANTS: FORMCONSTANTS])
-		} else {
-			render (view: '/error')
-		}
-	}
+     def show() {
+          Project project = projectService.getProjectById(params.id)
+          if (project) {
+              User user = userService.getUserByUsername(params.fr)
+              render (view: 'show/index',
+              model: [project: project, user: user,
+                   FORMCONSTANTS: FORMCONSTANTS])
+          } else {
+              render (view: '/error')
+          }
+     }
 
     @Secured(['ROLE_ADMIN'])
     def validateshow() {
@@ -298,7 +298,7 @@ class ProjectController {
             
             projectService.getProjectUpdateDetails(params, request, project)          
             
-			String email1 = params.email1
+            String email1 = params.email1
             String email2 = params.email2
             String email3 = params.email3
 

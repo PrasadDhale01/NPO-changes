@@ -82,10 +82,8 @@ class ProjectService {
 
     def getCSVDetails(def params, def response){
         List contributions=[]
-        SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
-        SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
 
-        def projectId= params.projectId
+		def projectId= params.projectId
         def project = Project.get(projectId)
 
         def teamId = params.teamId

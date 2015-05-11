@@ -99,12 +99,12 @@
                     <div class="modal-body tile-footer show-comments-date">
                         <h6>By ${contribution.contributorName}, on ${date}</h6>
                         <p><b>${contribution.comments}</b></p>
-                        <g:form controller="fund" name="deletecomment" action="deleteContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id]">
+                        <g:link controller="fund" name="deletecomment" action="deleteContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id]">
                             <button type="submit" class="projectedit close pull-right" id="projectdelete"
                                  onclick="return confirm(&#39;Are you sure you want to delete this comment?&#39;);">
                                  <i class="glyphicon glyphicon-trash"></i>
                              </button>
-                        </g:form>
+                        </g:link>
                         <g:link controller="fund" name="editcomment" action="editContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id]">
                             <i class="glyphicon glyphicon-edit glyphicon-lg projectedit close pull-right"></i>
                         </g:link>

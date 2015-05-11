@@ -9,6 +9,14 @@ $(function() {
         return $('.list-group-item.active').data('rewardprice');
     }
     
+    $('#commentBox').find('form').validate({
+        rules: {
+        	comment: {
+        		required: true
+        	}
+        }
+    });
+    
     $('form').validate({
         submitHandler: function(form) {
             if (getSelectedRewardId() == undefined) {

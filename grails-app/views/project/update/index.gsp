@@ -34,7 +34,6 @@
 		<div class="container">
 		    <g:uploadForm class="form-horizontal" controller="project" action="updatesave" id="${project.id}" role="form">
 		    <div class="row">
-<%--		        <h1><span class="glyphicon glyphicon-leaf"></span> Post an update</h1>--%>
 				<h1><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-create.png" alt="Post an update"/> Post an update</h1>
 		        <div class="panel panel-default">
 		            <div class="panel-heading">
@@ -53,7 +52,7 @@
 	                        <label class="col-sm-2 control-label">Pictures</label>
 	                        <div class="col-sm-2">
 	                            <button class="btn btn-primary btn-sm" type="button" id="addProjectImage">Add Image&nbsp;<span class="fa fa-plus-circle"></span></button>
-	                            <input type="file" class="hidden" name="${FORMCONSTANTS.THUMBNAIL}[]" id="updateImageFile" multiple="multiple" accept="image/*">
+	                            <input type="file" class="hidden" name="${FORMCONSTANTS.THUMBNAIL}[]" id="updateImageFile" multiple="multiple" accept="image/jpeg, image/png">
 	                            <label class="show-update-select" id="imgupdatemsg">Select image file.</label>
 	                            <label class="docfile-orglogo-css" id="updatefilesize"></label>
 	                        </div>

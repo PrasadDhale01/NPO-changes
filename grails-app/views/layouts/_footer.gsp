@@ -62,14 +62,16 @@
         	</center>
         	<br><br>
         	
-        	<div>
-		   <form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+        	<div class="footer-newsletter">
+		   <form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-sm" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 		       <div>
 			  <br>
-			  <div class="footer-mid-section-menu"><span class="footer-header">Sign up for Newsletter</span></div>
-			  <div class="footer-input-align">
-			     <input type="text" class="text-email" name="b_41c633b30eeabc78e88bd090d_e37aea1b78" tabindex="-1" value="" placeholder="Your email">
-			     <input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup">
+			  <div class="footer-mid-section-menu"><span class="footer-header subscribeHeading">Sign up for Newsletter</span></div>
+			  <div class="col-xs-6 footer-input-align">
+			     <input type="text" class="text-email" name="EMAIL" tabindex="-1" value="" placeholder="Your email">
+			  </div>
+			  <div class="col-xs-6 ">
+			  	<input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup signup-sm">
 			  </div>
 		       </div>
 		    </form>
@@ -149,14 +151,16 @@
         		 </div>
         		  <br>
         	       <div>
-			  <form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
-				<div>
+			  <form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-md" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+				<div class="footer-newsletter">
 			  	  <br>
 				  <div class="footer-mid-section-menu"><span class="footer-header footer-header-align">Sign up for Newsletter</span></div>
-				       <div>
-				       	  <input type="text" class="text-email" name="b_41c633b30eeabc78e88bd090d_e37aea1b78" tabindex="-1" value="" placeholder="Your email">
-					  <input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup">
-			               </div>
+				       <div class="col-sm-8">
+				       	  <input type="text" class="text-email" name="EMAIL" tabindex="-1" value="" placeholder="Your email">
+					</div>
+					<div class="col-sm-4">
+					  <input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup signup-md">
+					</div>
 				    </div>
 			     </form>
 			</div>
@@ -248,13 +252,15 @@
         		</div>
         		<br><br>
         		<div>
-			   <form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+			   <form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
 				<div>
 				   <br>
-				   <div class="footer-mid-section-menu"><span class="footer-header">Sign up for Newsletter</span></di>
-				      <div>
-				 	<input type="text" name="b_41c633b30eeabc78e88bd090d_e37aea1b78" tabindex="-1" value="" placeholder="Your email">
-					<input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup">
+				   <div class="footer-mid-section-menu"><span class="footer-header subscribe-email">Sign up for Newsletter</span></di>
+				      <div class="col-md-6">
+				 	<input type="text" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">
+				      </div>
+				      <div class="col-md-6">
+					<input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup signup-lg">
 				      </div>
 				    </div>
 				</form>

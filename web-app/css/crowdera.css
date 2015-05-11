@@ -373,6 +373,17 @@ footer {
     margin-top: 25px;
     
 }
+.footer-newsletter .help-block{
+	color:#f04124;
+	width:170%;
+}
+.footer-mid-section-menu .help-block{
+	color:#f04124;
+	width:140%;
+}
+input#subscriberEmail{
+	height:37px;
+}
 hr.footer-hr{
     color: #666666;
     background-color: #666666;
@@ -405,7 +416,11 @@ hr.footer-hr{
     margin-left:-39px;
 }
 input.text-email{
-    width:68%;
+    width:125%;
+    height:37px;
+}
+.footer-mid-section-menu  .subscribe-email{
+	margin-left:13px;
 }
 input.button-signup{
     background-image: url(https://s3.amazonaws.com/crowdera/assets/Signup-Button.png); 
@@ -415,6 +430,9 @@ input.button-signup{
     height: 40px;                
     vertical-align: middle;
     width: 84px;
+}
+input.signup-lg{
+	margin-left:28px;
 }
 .footer-mid-section-img a{
     margin-left:-24px;
@@ -502,6 +520,9 @@ a {
     	list-style-type: none;
     	margin-left: -39px !important;
     }
+    .footer-mid-section-menu .subscribeHeading{
+   		margin-left:14px;
+   }
     .footer-mid-section-menu-mobile ul li a {
     	font-size: 14px !important;
     }
@@ -525,7 +546,7 @@ a {
 	color:#999999;
     }
     .footer-input-align .text-email{
-	width:85% !important;
+	width:109% !important;
     }
     .footer-img-align img{
 	margin-left:40px;
@@ -594,8 +615,14 @@ a {
    input.text-email {
     	width: 193px;
    }
+   span.footer-header-align{
+   	margin-left:13px;
+   }
   .footer-mid-section-menu ul li a{
 	font-size:10px;
+   }
+   .footer-mid-section-menu .footer-header-align{
+   	margin-left:14px;
    }
    a.footerlink {
     	color: #cccccc;
@@ -646,6 +673,9 @@ a {
         margin-left: -24px !important;
         width:55% !important;
     }
+    .footer-mid-section-menu .footer-header-align{
+   		margin-left:14px;
+   }
     .right-addon input {
 	padding-right: 30px;
 	margin-left: -61px !important;
@@ -689,6 +719,9 @@ a {
     		list-style-type: none;
     		margin-left: -39px !important;
 	}
+	.footer-mid-section-menu .subscribeHeading{
+   			margin-left:14px;
+   	}
 	.footer-mid-section-menu-mobile.footer-menu-align ul li a {
     		font-size: 14px !important;
 	}
@@ -712,7 +745,7 @@ a {
 		color:#999999;
 	}
 	.footer-input-align .text-email{
-		width:80% !important;
+		width:114% !important;
 	}
 	.footer-img-align img{
 		margin-left:40px;
@@ -2538,7 +2571,7 @@ textarea.form-control {
 	color:#999999;
     }
     .footer-input-align .text-email{
-	width:85% !important;
+	width:109% !important;
     }
     .footer-img-align img{
 	padding-left:53px;
@@ -4006,6 +4039,9 @@ textarea.form-control {
     	color: #cccccc;
     	font-size: 15px;
     	text-align: center;
+   }
+   .footer-mid-section-menu .subscribeHeading{
+   		margin-left:14px;
    }
    .footer-mid-section-menu-mobile .footer-header-mobile {
    	color: #999999;

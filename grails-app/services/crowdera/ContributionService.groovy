@@ -11,6 +11,10 @@ class ContributionService {
         }
         return totalContribution
     }
+	 
+    def getContributionById(def contributionId){
+        return Contribution.get(contributionId)
+    }
 
     def getTotalContributors (Project project){
         def user = []

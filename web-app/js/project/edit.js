@@ -8,6 +8,10 @@ $(function() {
     $('#iconfilesize').hide();
     $('#campaignfilesize').hide();
     $('#updatefilesize').hide();
+    
+    $('#editUpdateimg').hide();
+    $('#campaignUpdatefilesize').hide();
+    
 	/* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
@@ -109,6 +113,13 @@ $(function() {
 
     $("#orgediticonfile").on("change", function() {
         var file =this.files[0];
+        if(validateExtension(file.name) == false){
+            this.value=null;
+            $('#editlogo').show();
+            $('#editlogo').html("Add only PNG or JPG extension image");
+            $('#iconfilesize').hide();
+            return;
+        }
         if(!file.type.match('image')){
            this.value=null;
            $('#editlogo').show();
@@ -189,6 +200,14 @@ $(function() {
     var isvalidsize =  false;
     $('#projectImageFile').change(function(event) {
         var file =this.files[0];
+        if(validateExtension(file.name) == false){
+          	$('.pr-thumbnail-div').hide();
+            $('#editimg').show();
+            $('#editimg').html("Add only PNG or JPG extension images");
+            $('#campaignfilesize').hide();
+            this.value=null;
+            return;
+        }
         if(!file.type.match('image')){
             $('.pr-thumbnail-div').hide();
             $('#editimg').show();
@@ -234,6 +253,19 @@ $(function() {
         }
     });
     
+    function validateExtension(imgExt)
+    {
+          var allowedExtensions = new Array("jpg","JPG","png","PNG");
+          for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
+          {
+              imageFile = imgExt.lastIndexOf(allowedExtensions[imgExtImg]);
+              if(imageFile != -1){
+            	  return true;
+              }
+          }
+          return false;
+    }
+    
     $("#addProjectImage").click(function() {
         $("#updateImageFile").click()
     });
@@ -241,6 +273,14 @@ $(function() {
     var isvalidsizefile =  false;
     $('#updateImageFile').change( function(event) {
         var file= this.files[0];
+        if(validateExtension(file.name) == false){
+        	$('#imgupdatemsg').show();
+        	$('#imgupdatemsg').html("Add only PNG or JPG extension images");
+            $('.pr-thumbnail-div').hide();
+            $('#updatefilesize').hide();
+            this.value=null;
+            return;
+        }
         if(!file.type.match('image')){
             $('#imgupdatemsg').show();
             $('.pr-thumbnail-div').hide();
@@ -287,6 +327,55 @@ $(function() {
             document.getElementById("updatefilesize").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
             if (isFileSizeExceeds && !isvalidsizefile) {
                 $('#updateImageFile').val('');
+            }
+        }
+    });
+    
+    /***************************Multiple Image Selection for Edit Campaign Updates*************** */
+    var isvalidsize =  false;
+    $('#projectUpdateImageFile').change(function(event) {
+        var file =this.files[0];
+        if(!file.type.match('image')){
+            $('.pr-thumbnail-div').hide();
+            $('#editUpdateimg').show();
+            $('#campaignUpdatefilesize').hide();
+            this.value=null;
+        }else{
+        	$('#editUpdateimg').hide();
+        	$('#campaignUpdatefilesize').hide();
+        	var fileName;
+            var isFileSizeExceeds = false;
+            var files = event.target.files; // FileList object
+            var output = document.getElementById("imageresult");
+            for ( var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var filename = file.name;
+                if (file.size < 1024 * 1024 * 3) {
+                	isvalidsize =  true;
+                    var picReader = new FileReader();
+                    picReader.addEventListener("load",function(event) {
+                        var picFile = event.target;
+                        var div = document.createElement("div");
+                        div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"+ picFile.result + "'" + "title='" + file.name
+                                      + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"
+                                      + "</div>";
+                        output.insertBefore(div, null);
+                    });
+                    // Read the image
+                    picReader.readAsDataURL(file);
+                } else {
+                	if (fileName) {
+                	    fileName = fileName +" "+ file.name;
+                	} else {
+                		fileName = file.name;
+                	}
+                	$('#campaignUpdatefilesize').show();
+                	isFileSizeExceeds = true;
+                }
+            }
+            document.getElementById("campaignUpdatefilesize").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
+            if (isFileSizeExceeds && !isvalidsize) {
+                $('#projectUpdateImageFile').val('');
             }
         }
     });

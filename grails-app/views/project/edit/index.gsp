@@ -218,7 +218,7 @@
                             <div class="form-group">
                                 <label class="col-sm-4 control-label" id="iconfiles">Organization Logo</label>
                                 <div class="col-sm-4">
-                                    <input type="file" id="orgediticonfile" name="iconfile" accept="image/*">
+                                    <input type="file" id="orgediticonfile" name="iconfile" accept="image/jpeg, image/png">
                                     <button id="chooseFile" class="btn btn-primary btn-sm" type="button">
                                             <i class="icon-file"></i> Choose File
                                     </button>

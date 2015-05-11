@@ -283,18 +283,33 @@
         return true;
      }, "Please upload a url of Youtube video");
     
+    $( "#projectImageFile" ).rules( "add", {
+        required: true,
+        messages: {
+          required: "Please upload at least one campaign image"
+        }
+      });
+    
     /***************************Multiple Image Selection*************** */
 
     var isvalidsize = false;
     $('#projectImageFile').change(function(event) {
         var file =this.files[0];
+        if(validateExtension(file.name) == false){
+        	$('.pr-thumbnail-div').hide();
+            $('#editimg').show();
+            $('#editimg').html("Add only PNG or JPG extension images");
+            $('#editTeamImg').hide();
+            this.value=null;
+            return;
+       }
         if(!file.type.match('image')){
             $('.pr-thumbnail-div').hide();
             $('#imgmsg').show();
             $('#editTeamImg').hide();
             this.value=null;
         }else{
-            $('#imgmsg').hide();
+            $('#editimg').hide();
             $('#editTeamImg').hide();
             var files = event.target.files; // FileList object
             var output = document.getElementById("result");
@@ -333,6 +348,19 @@
             }
         }
     });
+    
+    function validateExtension(imgExt)
+    {
+          var allowedExtensions = new Array("jpg","JPG","png","PNG");
+          for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
+          {
+              imageFile = imgExt.lastIndexOf(allowedExtensions[imgExtImg]);
+              if(imageFile != -1){
+            	  return true;
+              }
+          }
+          return false;
+    }
     
     /*************************Edit video for team*************************/
     

@@ -1,6 +1,43 @@
 $(function() {
     console.log("Crowdera is up");
-
+    
+    $(document).ready(function() { 
+    	$("#mc-embedded-subscribe-form-lg").validate({ 
+    	   rules: { 
+    	    EMAIL: {// compound rule 
+    		          required: true, 
+    		          email: true 
+    	    		} 
+    	   }, 
+    	   messages: { 
+    	    email: "" 
+    	   } 
+    	});
+    	$("#mc-embedded-subscribe-form-md").validate({ 
+     	   rules: { 
+     	    EMAIL: {// compound rule 
+     		          required: true, 
+     		          email: true 
+     	    		} 
+     	   }, 
+     	   messages: { 
+     	    email: "" 
+     	   } 
+     	}); 
+    	$("#mc-embedded-subscribe-form-sm").validate({ 
+     	   rules: { 
+     	    EMAIL: {// compound rule 
+     		          required: true, 
+     		          email: true 
+     	    		} 
+     	   }, 
+     	   messages: { 
+     	    email: "" 
+     	   } 
+     	}); 
+    		      
+    }); 
+    
     // Decode the blog post HTML so that <p></p> gets recognized.
     var text = $('.blogpost h4').html();
     var decoded = $('<div/>').html(text).text();

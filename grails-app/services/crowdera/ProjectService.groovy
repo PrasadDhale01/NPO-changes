@@ -447,11 +447,6 @@ class ProjectService {
         return cardtypes
     }
     
-    def getProjectById(def projectId) {
-        def project = Project.get(projectId)
-        return project
-    }
-    
     def getProjectUpdateById(def projectUpdateId) {
         def projectUpdate = ProjectUpdate.get(projectUpdateId)
         return projectUpdate

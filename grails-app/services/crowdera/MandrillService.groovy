@@ -460,7 +460,7 @@ class MandrillService {
 			}
         }
         contributors.each {contributor ->
-			if(contributor.contributorEmail != "anonymous@example.com"){
+			if(contributor.contributorEmail != "anonymous@example.com" && contributor.contributorEmail !=null){
                 def globalMergeVars = [[
                    'name': 'LINK',
                    'content': link

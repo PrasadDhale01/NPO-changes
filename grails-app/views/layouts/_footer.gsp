@@ -13,8 +13,8 @@
             		      <li><b><a href="${resource(dir: '/')}">Home</a></b></li>
 		       	      <li><b><a href="${resource(dir: '/aboutus')}">Crowdera Crew</a></b></li>
 		              <li><b><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></b></li>
-		              <li><b><a href="${resource(dir: '/campaigns/create')}">Create a Fundraiser</a></b></li>
-		              <li><b><a href="${resource(dir: '/howitworks')}">How it works</a></b></li>
+<%--		              <li><b><a href="${resource(dir: '/campaigns/create')}">Create a Fundraiser</a></b></li>--%>
+		              
 		              <li><b><a href="${resource(dir: '/customer-service')}">Contact Us</a></b></li>
 		              <li><b><a href="http://crowdera.tumblr.com" target="_blank">Blog</a></b></li>
             		   </ul>
@@ -23,6 +23,7 @@
             		<div class="footer-header-mobile footer-header-align">Campaigning</div>
             		  <ul>
                     	       <li><b><a href="${resource(dir: '/campaigns/create')}">Start Your Campaign</a></b></li>
+                    	       <li><b><a href="${resource(dir: '/howitworks')}">How it works</a></b></li>
 		            	<!-- <li><b><a href="${resource(dir: '/aboutus')}">Success Stories</a></b></li>
 		            	<li><b><a href="${resource(dir: '/campaigns')}" >Pricing</a></b></li>
 		            	<li><b><a href="${resource(dir: '/campaigns/create')}">Campaign Playbook</a></b></li>-->
@@ -127,8 +128,7 @@
             	  		    <li><b><a href="${resource(dir: '/')}">Home</a></b></li>
             	  		    <li><b><a href="${resource(dir: '/aboutus')}">Crowdera Crew</a></b></li>
 		          	    <li><b><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></b></li>
-		          	    <li><b><a href="${resource(dir: '/campaigns/create')}">Create a Fundraiser</a></b></li>
-		          	    <li><b><a href="${resource(dir: '/howitworks')}">How it works</a></b></li>
+<%--		          	    <li><b><a href="${resource(dir: '/campaigns/create')}">Create a Fundraiser</a></b></li>--%>
 		          	    <li><b><a href="${resource(dir: '/customer-service')}">Contact Us</a></b></li>
 		          	    <li><b><a href="http://crowdera.tumblr.com" target="_blank">Blog</a></b></li>
             			 </ul>
@@ -137,6 +137,7 @@
           		     <div class="footer-header">Campaigning</div>
               	   		<ul>
                   		   <li><b><a href="${resource(dir: '/campaigns/create')}">Start Your Campaign</a></b></li>
+                  		   <li><b><a href="${resource(dir: '/howitworks')}">How it works</a></b></li>
 		          	   <!-- <li><b><a href="${resource(dir: '/aboutus')}">Success Stories</a></b></li>
 		          	   <li><b><a href="${resource(dir: '/campaigns')}" >Pricing</a></b></li>
 	   		           <li><b><a href="${resource(dir: '/campaigns/create')}">Campaign Playbook</a></b></li>-->
@@ -222,8 +223,7 @@
             			<li><b><a href="${resource(dir: '/')}">Home</a></b></li>
             			<li><b><a href="${resource(dir: '/aboutus')}">Crowdera Crew</a></b></li>
 		        	<li><b><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></b></li>
-		        	<li><b><a href="${resource(dir: '/campaigns/create')}">Create a Fundraiser</a></b></li>
-		      		<li><b><a href="${resource(dir: '/howitworks')}">How it works</a></b></li>
+<%--		        	<li><b><a href="${resource(dir: '/campaigns/create')}">Create a Fundraiser</a></b></li>--%>
 		        	<li><b><a href="${resource(dir: '/customer-service')}">Contact Us</a></b></li>
 		        	<li><b><a href="http://crowdera.tumblr.com" target="_blank">Blog</a></b></li>
             		    </ul>
@@ -232,6 +232,7 @@
             		     <div class="footer-header">Campaigning</div>
             		     <ul>
                     		<li><b><a href="${resource(dir: '/campaigns/create')}">Start Your Campaign</a></b></li>
+                    		<li><b><a href="${resource(dir: '/howitworks')}">How it works</a></b></li>
 		            	<!-- <li><b><a href="${resource(dir: '/aboutus')}">Success Stories</a></b></li>
 		            	<li><b><a href="${resource(dir: '/campaigns')}" >Pricing</a></b></li>
 		            	<li><b><a href="${resource(dir: '/campaigns/create')}">Campaign Playbook</a></b></li>-->

@@ -314,7 +314,7 @@ class ProjectService {
 						 mandrillService.sendContributorEmail(user, project)
 					 }
 				 }
-				 def beneficiaryId = projectService.getBeneficiaryId(project)
+				 def beneficiaryId = getBeneficiaryId(project)
 				 def beneficiary = Beneficiary.get(beneficiaryId)
 				 def user = User.list()
 				 user.each{

@@ -5,7 +5,7 @@
     def projectId=project.id
     def manageCampaign = "manageCampaign"
 %>
-<div class="col-md-8 col-sm-8 col-xs-12">
+<div class="col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
 	<g:if test="${!project.comments.empty}">
 	    <div class="panel panel-default">
 	        <div class="panel-heading">
@@ -45,15 +45,4 @@
 	    <div class="alert alert-info">No comments yet</div>
 	</g:else>
 	<div id="test"></div>
-</div>
-
-<div class="col-md-4 col-sm-4 col-xs-12">
-	<g:render template="/project/manageproject/tilesanstitle" />
-	<g:if test="${project.draft}">
-		<g:form controller="project" action="saveasdraft" id="${project.id}">
-			<button class="btn btn-block btn-primary">
-				<i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-			</button>
-		</g:form>
-	</g:if>
 </div>

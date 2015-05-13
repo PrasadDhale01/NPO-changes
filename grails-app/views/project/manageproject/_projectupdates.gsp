@@ -10,6 +10,11 @@
         <g:if test="${ended}">
 	    	<div class="alert alert-info">Campaign Ended.</div>
 	    </g:if>
+	    <g:if test="${project.projectUpdates.empty}">
+		    <g:if test="${!ended}">
+		    	<div class="alert alert-info">No updates yet.</div>
+		    </g:if>
+		</g:if>
         <g:if test="${!ended}">
 	        <g:uploadForm class="form-horizontal" controller="project" action="projectupdate" id="${project.id}" role="form">
 	            <button type="submit" class="btn btn-sm btn-primary pull-right" name="button" value="draft"><i class="fa fa-plus-circle"></i> Create Update</button>
@@ -33,11 +38,6 @@
 			    </div>
 			</g:each>
 		</g:if>
-		<g:else>
-		    <g:if test="${!ended}">
-		    	<div class="alert alert-info">No updates yet.</div>
-		    </g:if>
-		</g:else>
 	</g:if>
 	<g:else>
 	        <div class="alert alert-info">You can post updates after the campaign is published.</div>

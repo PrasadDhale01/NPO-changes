@@ -62,38 +62,5 @@
 </div></div>
 </div>
 -->
-
-<div class="container">
-	<div class="row featured-non-profits">
-		<div class="col-md-12">
-		<h1 class="text-center headingtext">Featured Partners</h1>
-			<div class="col-md-3">
-				<img src="//s3.amazonaws.com/crowdera/assets/client-3.jpg" alt="Literate Nation"/>
-			</div>
-			<div class="col-md-3">
-				<img src="//s3.amazonaws.com/crowdera/assets/client-4.jpg" alt="Eagle Academy"/>
-			</div>
-			
-		</div>
-	</div>
-	<div class="clear"></div>
-	<div class="clientpart">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="col-md-8">
-			 <div class="testimonial">
-				 <div class="testimonial-content">Through the Crowdera platform our scholars, parents, families, staff, and parents can participate in building support for the Eagle Academy movement.</div>
-			 </div>
-			</div>
-			<div class="col-md-4">
-			 <div class="customer-details">
-			     <h3>Thomas Owens</h3>
-			     <h4>Eagle Academy</h4>
-			  </div>
-			</div>
-			
-		</div>
-	</div>
-</div>	</div>			
 </body>
 </html>

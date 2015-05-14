@@ -388,6 +388,7 @@ hr.footer-hr{
     color: #666666;
     background-color: #666666;
     height: 2px;
+    border: #666666;
 }
 .footer-first-section p{
     color:#cccccc;
@@ -397,13 +398,17 @@ hr.footer-hr{
 }
 .footer-mid-section p{
     color:#ffffff;
-    font-size:13px;
+    font-size:16px;
     text-align:center;
     font-family: "OPEN SANS";	
 }
 .footer-mid-section p b{
     color:#cccccc;
     font-size:18px;	
+    padding-left: 50%;	
+}
+p.egle {
+    padding-left: 44%;
 }
 .footer-mid-section-menu ul li a{
     font-size:14px;
@@ -616,6 +621,20 @@ a {
 
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    .footer-mid-section p b {
+        color: #cccccc;
+        font-size: 18px;
+        padding-left: 37%;
+    }
+    p.egle {
+        padding-left: 26%;
+    }
+    .footer-mid-section p {
+        color: #ffffff;
+	font-family: "OPEN SANS";
+	font-size: 14px;
+	text-align: center;
+    }
    input.text-email {
     	width: 193px;
    }
@@ -2590,6 +2609,10 @@ textarea.form-control {
 
 /*Screen resolution 800 x 1280*/
 @media only screen and (min-width: 800px) and (max-width: 1280px){
+    input.text-email{
+        width:125%;
+        height:37px;
+    }
     .form-group.col-sm-6.rewardPriceClass{
         padding-left:16px;
         width:54% !important;
@@ -4039,11 +4062,19 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-   .footer-first-section-mobile p {
-    	color: #cccccc;
-    	font-size: 15px;
-    	text-align: center;
-   }
+    .footer-mid-section p b {
+        color: #cccccc;
+        font-size: 18px;
+        padding-left: 40%;
+    }
+    p.egle {
+        padding-left: 33%;
+    }
+    .footer-first-section-mobile p {
+        color: #cccccc;
+        font-size: 15px;
+        text-align: center;
+    }
    .footer-mid-section-menu .subscribeHeading{
    		margin-left:14px;
    }
@@ -5277,6 +5308,4 @@ p.tile-text-size {
 .whycrowderacontainer {
 	padding-left: 0px !important;
     padding-right: 0px !important;
-	border-top: 1px solid #ff784f;
-	border-bottom: 1px solid #ff784f;
 }

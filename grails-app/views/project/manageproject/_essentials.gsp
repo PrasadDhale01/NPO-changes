@@ -1,10 +1,8 @@
 <!-- Comments -->
 <%
     def base_url = grailsApplication.config.crowdera.BASE_URL
-	def projectimages = projectService.getProjectImageLinks(project)
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+project.user.username
-    def currentUser = userService.getCurrentUser();
-    def fundRaiser = currentUser.username
+    def fundRaiser = user.username
 %>
 
 <div class="col-md-4 mobileview-top">
@@ -32,13 +30,13 @@
             <img src="//s3.amazonaws.com/crowdera/assets/mail-share@2x.png">
 		</a>
 		<a class="twitter-share pull-right social" id="twitterShare" target="_blank">
-			<img src="//s3.amazonaws.com/crowdera/assets/tw-share@2x.png" alt="Twitter Share"/>
+			<img src="//s3.amazonaws.com/crowdera/assets/tw-share@2x.png" alt="Twitter Share">
 		</a> 
         <a target="_blank" class="fb-like pull-right social fbShareForLargeDevices" id="fbshare">
-        	<img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share"/>
+        	<img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share">
         </a>
         <a target="_blank" class="fb-like pull-right social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
-            <img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share"/>
+            <img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share">
         </a>
 		<div class="shared">
 		    <span><label>Share this campaign</label></span>
@@ -49,13 +47,6 @@
         <p class="campaignDescription justify">${raw(project.description)}</p>
         <p class="campaignStory justify">${raw(project.story)}</p>
     </div>
-<%--    <g:if test="${project.videoUrl}">--%>
-<%--        <div id="youtubeVideoUrl">--%>
-<%--            ${project.videoUrl}--%>
-<%--        </div>--%>
-<%--        <div class="video-container" id="youtube">--%>
-<%--        </div>--%>
-<%--    </g:if>--%>
     
 	<div class="col-sm-12">
 	    <!-- Modal -->

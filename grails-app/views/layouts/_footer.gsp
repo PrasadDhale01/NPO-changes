@@ -58,7 +58,7 @@
 		<br><br>
 		 <div>
 		    <p>"Through the Crowdera platform our scholars, parents, families, staff and parents can participate
-        	        in building support for the Eagle Academy movement." <br><br><b class="pull-right">Thomas Owens</b><br><p class="pull-right">Eagle Academy</p>
+        	        in building support for the Eagle Academy movement." <br><br><b>Thomas Owens</b><br><p class="egle">Eagle Academy</p>
         	  </div>
         	</center>
         	<br><br>
@@ -148,7 +148,7 @@
    	  	      <div class="col-sm-5 footer-mid-section">
    	  	   	 <div>
    	  		   <p>"Through the Crowdera platform our scholars, parents, families, staff and parents can participate
-        		       in building support for the Eagle Academy movement." <br><br><b class="pull-right">Thomas Owens</b><br><p class="pull-right">Eagle Academy</p>
+        		       in building support for the Eagle Academy movement." <br><br><b>Thomas Owens</b><br><p class="egle">Eagle Academy</p>
         		 </div>
         		  <br>
         	       <div>
@@ -249,7 +249,7 @@
         	
         	<div class="col-md-4 footer-mid-section">
         		<div><p>"Through the Crowdera platform our scholars, parents, families, staff and parents can participate
-        			 in building support for the Eagle Academy movement." <br><br><b class="pull-right">Thomas Owens</b><br><p class="pull-right">Eagle Academy</p>
+        			 in building support for the Eagle Academy movement." <br><br><b>Thomas Owens</b><br><p class="egle">Eagle Academy</p>
         		</div>
         		<br><br>
         		<div>

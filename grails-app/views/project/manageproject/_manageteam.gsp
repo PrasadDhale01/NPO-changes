@@ -2,15 +2,8 @@
 <g:set var="projectService" bean="projectService" />
 <g:set var="userService" bean="userService"/>
 <%
-    def user = userService.getCurrentUser()
-    def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
     def userName = user.firstName +" "+ user.lastName
     def teams = project.teams
-    def validatedTeam = projectService.getValidatedTeam(project)
-    def contributedSoFar = contributionService.getTotalContributionForProject(project)
-    def contribution = projectService.getDataType(contributedSoFar)
-    def discardedTeam = projectService.getDiscardedTeams(project)
-    boolean ended = projectService.isProjectDeadlineCrossed(project)
 %>
 <div class="col-md-12 col-sm-12 col-xs-12"></div>
 <div class="pill-buttons">
@@ -42,30 +35,6 @@
                 </li>
 		    </ul>
 		</g:if>
-		<g:else>
-			<ul class="nav nav-pills">
-			   <li data-toggle="tab" class="active team-footer col-md-4 col-sm-4 col-xs-4">
-			      <a href="#manageTeam">
-			         ${validatedTeam.size()}&nbsp;&nbsp;Teams
-				  </a>
-				</li>
-                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
-                   <a class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-target="#teamComment">
-                      Team Comment 
-                   </a>
-                </li>
-                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button">
-                   <g:if test="${!ended}">
-                       <button class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md" data-toggle="modal" data-target="#inviteTeamMember" model="['project': project]">
-                          Invite Members
-                       </button>
-                   </g:if>
-                   <g:else>
-                       <input type="submit" value="Invite Members" class="col-md-12 col-sm-12 col-xs-12 inviteteammember disableteambutton text-center btn btn-md" readonly/>
-                   </g:else>
-                </li>
-            </ul>
-		</g:else>
 		<div class="teamtileseperator"></div>
 
 		<div class="tab-content">
@@ -76,10 +45,10 @@
 			    <g:render template="manageproject/teamcomment"/>
 			</div>
 			<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamValidation">
-			    <g:render template="manageproject/teamvalidationIndex" model="[project:project]"/>
+			    <g:render template="manageproject/teamvalidationIndex"/>
 			</div>
 			<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="campaignStatistics">
-			    <g:render template="manageproject/campaignStatisticsIndex" model="[team:validatedTeam, project:project]"/>
+			    <g:render template="manageproject/campaignStatisticsIndex" model="[teams:validatedTeam]"/>
 			</div>
 		</div>
 	</g:if>

@@ -314,7 +314,7 @@ class ProjectService {
 						 mandrillService.sendContributorEmail(user, project)
 					 }
 				 }
-				 def beneficiaryId = projectService.getBeneficiaryId(project)
+				 def beneficiaryId = getBeneficiaryId(project)
 				 def beneficiary = Beneficiary.get(beneficiaryId)
 				 def user = User.list()
 				 user.each{
@@ -823,7 +823,7 @@ class ProjectService {
 		if(sorts == '10 days remaining'){
 			projects.each {
 				def day = getRemainingDay(it)
-				if(day <= 10){
+				if(day <= 10 && day!=0){
 					p.add(it)
 				}
 			}

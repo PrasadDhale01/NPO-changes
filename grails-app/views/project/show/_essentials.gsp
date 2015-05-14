@@ -1,13 +1,5 @@
 <%
 	def base_url = grailsApplication.config.crowdera.BASE_URL
-	def beneficiary = project.user
-	def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
-	def username
-	if (user) {
-	    username = user.username
-	} else {
-	    username = beneficiary.username
-	}
 	def projectimages = projectService.getProjectImageLinks(project)
 	def teamimages = projectService.getTeamImageLinks(currentTeam,project)
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
@@ -20,7 +12,7 @@
 	            <g:render template="/project/manageproject/projectimagescarousel" model="['images': projectimages]"/>
 	        </g:if>
 	        <g:else>
-                <g:render template="/project/manageproject/projectimagescarousel" model="['images': teamimages, 'currentTeam': currentTeam]"/>
+                <g:render template="/project/manageproject/projectimagescarousel" model="['images': teamimages]"/>
 	        </g:else>
 	    </div>
 	</div>
@@ -46,13 +38,13 @@
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-12">
-        <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
+        <g:if test="${isCrFrCampBenOrAdmin}">
             <p class="campaignDescription justify">${raw(project.description)}</p>
         </g:if>
         <g:else>
             <p class="campaignDescription justify">${raw(currentTeam.description)}</p>
         </g:else>
-        <g:if test="${userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
+        <g:if test="${isCrFrCampBenOrAdmin}">
             <p class="campaignStory justify">${raw(project.story)}</p>
         </g:if>
         <g:else>

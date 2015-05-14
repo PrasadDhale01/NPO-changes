@@ -2,18 +2,10 @@
 <g:set var="projectService" bean="projectService" />
 <g:set var="userService" bean="userService"/>
 <%
-    def teams = projectService.getEnabledAndValidatedTeamsForCampaign(project)
-	def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
-	def amount = contributionService.getTotalContributionForUser(currentTeam.contributions)
-    def percentage = contributionService.getPercentageContributionForProject(project)
-    def currentUser = userService.getCurrentUser()
-	def username
+	def currentUserName
 	if (currentUser) {
-	    username = currentUser.username
+	    currentUserName = currentUser.username
 	}
-    def isTeamExist = userService.isValidatedTeamExist(project, currentUser)
-    def contributedSoFar = contributionService.getTotalContributionForProject(project)
-    boolean ended = projectService.isProjectDeadlineCrossed(project)
 %>
 <g:if test="${flash.message}">
    <div class="alert alert-success">
@@ -25,7 +17,7 @@
 <g:if test="${!teams.isEmpty()}">
 	<ul class="nav nav-pills">
 		<li data-toggle="tab" class="active show-team col-md-4 col-sm-4 col-xs-4 button-team-show">
-		    <g:if test="${currentUser}">   
+		    <g:if test="${currentUser}">
 		        <a href="#team" class="text-center teammembers">
 		            ${teams.size()}&nbsp;&nbsp;Teams
 		        </a>
@@ -37,7 +29,7 @@
 		<g:if test="${!isTeamExist}">
 		    <g:if test="${!ended}">
 			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
-			        <g:form controller="project" action="addFundRaiser" id="${project.id}" params="['fr':username]">
+			        <g:form controller="project" action="addFundRaiser" id="${project.id}" params="['fr':currentUserName]">
 					    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md manage-team"/>
 					</g:form> 
 			    </li>
@@ -49,7 +41,7 @@
 		    </g:else>
 		</g:if>
 		<g:else>
-		    <g:if test="${currentFundraiser == currentUser || userService.isCampaignBeneficiaryOrAdmin(project,currentUser)}">
+		    <g:if test="${currentFundraiser == currentUser || isCrUserCampBenOrAdmin}">
                 <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
                    <a class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team" data-toggle="dropdown" aria-expanded="false">
 			           Activity <span class="caret"></span>
@@ -57,16 +49,16 @@
 			       <ul class="dropdown-menu" role="menu">
 				       <li>
 				           <g:if test="${!ended}">
-				               <g:if test="${currentFundraiser == currentUser || userService.isCampaignBeneficiaryOrAdmin(project,currentUser)}">
+				               <g:if test="${currentFundraiser == currentUser || isCrUserCampBenOrAdmin}">
 				                   <a class="list" href="#inviteTeamMember" data-toggle="modal" model="['project': project]"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
-				               </g:if>
+    		               </g:if>
 				           </g:if>
 				           <g:else>
-				               <a class="list"><span class="glyphicon glyphicon-user"></span></i> &nbsp;&nbsp;Invite Members </a>
+				               <a class="list"><span class="glyphicon glyphicon-user"></span></i> &nbsp;&nbsp;Invite Members</a>
 				           </g:else>
 				       </li>
-				       <g:if test="${!userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)}">
-				           <li><a class="list" href="#editFundraiser" data-toggle="modal" model="['currentTeam': currentTeam"><i class="glyphicon glyphicon-edit"></i> &nbsp;&nbsp;Edit Fundraiser</a></li>
+				       <g:if test="${!isCrFrCampBenOrAdmin}">
+				           <li><a class="list" href="#editFundraiser" data-toggle="modal" model="['currentTeam': currentTeam]"><i class="glyphicon glyphicon-edit"></i> &nbsp;&nbsp;Edit Fundraiser</a></li>
 				       </g:if>
 			       </ul>
                 </li>
@@ -76,14 +68,14 @@
 	</ul>
 	<div class="teamtileseperator"></div>
 
-	<div class="tab-content">
-	    <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
-		    <g:render template="show/teamgrid"/>
-		</div>
-		<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamComment">
-		    <g:render template="show/teamcomment"/>
-		</div>
-	</div>
+    <div class="tab-content">
+        <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
+            <g:render template="show/teamgrid"/>
+        </div>
+        <div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamComment">
+            <g:render template="show/teamcomment"/>
+        </div>
+    </div>
 	
 </g:if>
 </div>
@@ -169,10 +161,10 @@
       					<div class="col-sm-6">
       					    <g:each var="imgurl" in="${currentTeam.imageUrl}">
                                 <div id="imgdiv" class="pr-thumb-div">
-                                    <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}" alt="images"/>
+                                    <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}" alt="images">
                                     <div class="deleteicon pictures-edit-deleteicon">
                                         <img alt="images" onClick="deleteTeamImage(this,'${imgurl.id}','${currentTeam.id}');" value='${imgurl.id}'
-                                            src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete"/>
+                                            src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete">
                                     </div>
                                 </div> 
                             </g:each>
@@ -215,4 +207,3 @@
 		</div>
     </g:uploadForm>
 </div>
-

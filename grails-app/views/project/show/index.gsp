@@ -3,39 +3,25 @@
 <g:set var="projectService" bean="projectService"/>
 <g:set var="userService" bean="userService"/>
 <%
-    def percentage = contributionService.getPercentageContributionForProject(project)
-    boolean ended = projectService.isProjectDeadlineCrossed(project)
     def base_url = grailsApplication.config.crowdera.BASE_URL
-    def fundRaiserName
     def beneficiary = project.user
     def beneficiaryUserName = beneficiary.username
-    def username
-    def currentFundraiser
-    if (user) {
-	    currentFundraiser = user
-	    def fundRaiser = user.firstName + " " + user.lastName
-	    fundRaiserName = fundRaiser.toUpperCase()
-	    username = user.username
-    } else {
-        currentFundraiser = beneficiary
-        def fundRaiser = beneficiary.firstName + " " + beneficiary.lastName
-	    fundRaiserName = fundRaiser.toUpperCase()
-	    username = beneficiary.username
-    }
+    
+    def fundRaiser = currentFundraiser.firstName + " " + currentFundraiser.lastName
+    def fundRaiserName = fundRaiser.toUpperCase()
+    def username = currentFundraiser.username
+    
     def projectTitle = project.title
     if (projectTitle) {
-	projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
+        projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
     }
 	
     def imageUrl = project.imageUrl
     if (imageUrl) {
-	imageUrl = project.imageUrl[0].getUrl()
+        imageUrl = project.imageUrl[0].getUrl()
     }
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
-    def currentTeamAmount = projectService.getCurrentTeamAmount(project,currentFundraiser)
-    def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
-    def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
-    def teamPercentage = contributionService.getPercentageContributionForTeam(currentTeam)
+    def currentTeamAmount = currentTeam.amount
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -97,7 +83,7 @@
 	                </div>
                 </g:if>
 	            <div class="col-md-4 mobileview-top">
-                    <g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentFundraiser,'username':username]"/>
+                    <g:render template="/layouts/organizationdetails"/>
                     <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
                     </g:if>
@@ -114,14 +100,12 @@
                             <button name="contributeButton" class="btn btn-success btn-lg btn-block">Fund this Campaign</button>
                         </g:else>
                     </g:else>
-                    <g:render template="/layouts/tilesanstitle" model="['currentFundraiser':currentFundraiser,'currentTeam':currentTeam,'currentTeamAmount':currentTeamAmount,'teamContribution':teamContribution]"/>
+                    <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                     <g:if test="${project.rewards.size()>1}">
                     	<g:render template="show/rewards"/>
                     </g:if>
                 </div>
                 <div class="col-md-8">
-<%--                    <h4 class="lead">Beneficiary: ${projectService.getBeneficiaryName(project)}</h4>--%>
-               
                     <ul class="nav nav-tabs nav-justified show-marginbottoms">
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span><span class="tab-text hidden-xs"> Story</span>
@@ -145,16 +129,16 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="essentials">
-                            <g:render template="show/essentials" model="['currentFundraiser':currentFundraiser]"/>
+                            <g:render template="show/essentials"/>
                         </div>
                         <div class="tab-pane" id="projectupdates">
                             <g:render template="show/projectupdates"/>
                         </div>
                         <div class="tab-pane" id="manageTeam">
-							<g:render template="show/manageteam" model="['currentFundraiser':currentFundraiser]"/>
+							<g:render template="show/manageteam"/>
 						</div>
                         <div class="tab-pane" id="contributions">
-                            <g:render template="show/contributions" model="['team':currentTeam, 'currentFundraiser':currentFundraiser]"/>
+                            <g:render template="show/contributions" model="['team':currentTeam]"/>
                         </div>
                         <div class="tab-pane" id="comments">
                             <g:render template="show/comments"/>
@@ -197,8 +181,7 @@
 				    
                 </div>
                 <div class="col-md-4 mobileview-bottom">
-                    <g:render template="/layouts/organizationdetails" 
-                     model="['currentFundraiser':currentFundraiser,'username':username]"/>
+                    <g:render template="/layouts/organizationdetails"/>
                     <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
                     </g:if>
@@ -215,7 +198,7 @@
                             <button name="contributeButton" class="btn btn-success btn-lg btn-block">Fund this Campaign</button>
                         </g:else>
                     </g:else>
-                    <g:render template="/layouts/tilesanstitle" model="['currentFundraiser':currentFundraiser,'currentTeam':currentTeam,'currentTeamAmount':currentTeamAmount,'teamContribution':teamContribution]"/>
+                    <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                     <g:if test="${project.rewards.size()>1}">
                         <g:if test="${project.paypalEmail || project.charitableId}">
                     	    <g:render template="show/rewards"/>

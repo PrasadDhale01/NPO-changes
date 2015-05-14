@@ -20,7 +20,7 @@
     
     <g:if test="${!links.isEmpty()}">
 	    <div class="blacknwhite campaignupdatedimages" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
-	        <g:render template="/project/manageproject/projectimagescarousel" model="['images': links]"/>
+	        <g:render template="/project/manageproject/projectupdateimagecarousel" model="['images': links]"/>
 	    </div>
     </g:if>
 </div>

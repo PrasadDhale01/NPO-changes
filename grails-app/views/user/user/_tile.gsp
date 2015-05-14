@@ -32,8 +32,7 @@
 <div class="fedu thumbnail grow user-tiles-style">
 	<div class="blacknwhite tile">
 	    <g:if test="${iscampaignAdmin}">
-			<g:link controller="project" action="manageproject" id="${project.id}"
-				title="${project.title}">
+			<g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">
 				<div class="imageWithTag">
 					<div class="under">
 						<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>

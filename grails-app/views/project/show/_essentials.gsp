@@ -1,4 +1,5 @@
 <%
+    def username = user.username
 	def base_url = grailsApplication.config.crowdera.BASE_URL
 	def projectimages = projectService.getProjectImageLinks(project)
 	def teamimages = projectService.getTeamImageLinks(currentTeam,project)

@@ -8,7 +8,6 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM, YYYY");
     SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
     def manageCampaign = "manageCampaign"
-    def user = userService.getCurrentUser()
     def fundRaiser = user.username
     def projectId = project.id
 %>

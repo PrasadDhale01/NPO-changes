@@ -621,7 +621,7 @@ a {
 
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	.footer-mid-section p b {
+    .footer-mid-section p b {
         color: #cccccc;
         font-size: 18px;
         padding-left: 37%;
@@ -630,11 +630,11 @@ a {
         padding-left: 26%;
     }
     .footer-mid-section p {
-		color: #ffffff;
-		font-family: "OPEN SANS";
-		font-size: 14px;
-		text-align: center;
-   }
+        color: #ffffff;
+	font-family: "OPEN SANS";
+	font-size: 14px;
+	text-align: center;
+    }
    input.text-email {
     	width: 193px;
    }

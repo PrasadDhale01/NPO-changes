@@ -49,6 +49,16 @@ class UserService {
         return communities
     }
     
+    def getCurrentFundRaiser(User user, Project project) {
+        def currentFundraiser
+        if (user) {
+            currentFundraiser = user
+        } else {
+            currentFundraiser = project.user
+        }
+        return currentFundraiser
+    }
+    
     def getImageUrl(CommonsMultipartFile imageFile) {
         this.imageFile = imageFile
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {

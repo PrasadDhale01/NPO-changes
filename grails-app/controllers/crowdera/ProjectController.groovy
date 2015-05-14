@@ -98,25 +98,83 @@ class ProjectController {
         }
      }
 
-     def show() {
-          Project project = projectService.getProjectById(params.id)
-          if (project) {
-              User user = userService.getUserByUsername(params.fr)
-              render (view: 'show/index',
-              model: [project: project, user: user,
-                   FORMCONSTANTS: FORMCONSTANTS])
-          } else {
-              render (view: '/error')
-          }
-     }
+    def show() {
+        Project project = projectService.getProjectById(params.id)
+        if (project) {
+            User user = userService.getUserByUsername(params.fr)
+            def currentUser = userService.getCurrentUser()
+            def currentFundraiser = userService.getCurrentFundRaiser(user, project)
+            def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
+            def totalContribution = contributionService.getTotalContributionForProject(project)
+            def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+  
+            def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
+            def teamPercentage = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
+  
+            def isCrFrCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)
+            def isCrUserCampBenOrAdmin
+            def isTeamExist
+            if (currentUser) {
+                isCrUserCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
+                isTeamExist = userService.isValidatedTeamExist(project, currentUser)
+            }
+            def teams = projectService.getEnabledAndValidatedTeamsForCampaign(project)
+  
+            boolean ended = projectService.isProjectDeadlineCrossed(project)
+            boolean isFundingOpen = projectService.isFundingOpen(project)
+            def rewards = rewardService.getSortedRewards(project);
+            def day= projectService.getRemainingDay(project)
+            def endDate = projectService.getProjectEndDate(project)
+              
+            render (view: 'show/index',
+            model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,
+                    totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution,
+                    teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,
+                    isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
+                    isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS])
+        } else {
+            render (view: '/error')
+        }
+    }
 
     @Secured(['ROLE_ADMIN'])
     def validateshow() {
-        def projects = projectService.getProjectById(params.id)
-        if (projects) {         
+        def project = projectService.getProjectById(params.id)
+        if (project) {
+            User user = userService.getUserByUsername(params.fr)
+            def currentUser = userService.getCurrentUser()
+            def currentFundraiser = project.user
+            def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
+            def totalContribution = contributionService.getTotalContributionForProject(project)
+            def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+            
+            def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
+            def teamPercentage = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
+            
+            def isCrFrCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)
+            def isCrUserCampBenOrAdmin
+            def isTeamExist
+            if (currentUser) {
+                isCrUserCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
+                isTeamExist = userService.isValidatedTeamExist(project, currentUser)
+            }
+            def teams = projectService.getEnabledAndValidatedTeamsForCampaign(project)
+            
+            boolean ended = projectService.isProjectDeadlineCrossed(project)
+            boolean isFundingOpen = projectService.isFundingOpen(project)
+            def rewards = rewardService.getSortedRewards(project);
+            def day= projectService.getRemainingDay(project)
+            def endDate = projectService.getProjectEndDate(project)
+            
             def validatedPage = true
-            if(projects.validated == false) {
-                render (view: 'validate/validateshow', model: [project: projects, validatedPage: validatedPage])
+            if(project.validated == false) {
+                
+                render (view: 'validate/validateshow',
+                    model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,
+                            totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution,
+                            teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,
+                            isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
+                            validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS])
             }
         } else {
             render (view: '/error')

@@ -3,17 +3,11 @@
 <g:set var="projectService" bean="projectService" />
 <g:set var="userService" bean="userService" />
 <%
-    def percentage = contributionService.getPercentageContributionForProject(project)
-    boolean ended = projectService.isProjectDeadlineCrossed(project)
     def projectTitle = project.title
     if (projectTitle) {
-	projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
+	    projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
     }
-    def currentTeam = projectService.getCurrentTeam(project,project.user)
-    def currentFundraiser = project.user
-    def username = currentFundraiser.username
     def currentTeamAmount = currentTeam.amount
-    def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
 %>
 <html>
 <head>
@@ -71,7 +65,7 @@
 						<!-- Tab panes -->
 						<div class="tab-content">
 							<div class="tab-pane active" id="essentials">
-								<g:render template="/project/show/essentials" model="['currentFundraiser':project.user]"/>
+								<g:render template="/project/show/essentials"/>
 							</div>
 							<div class="tab-pane" id="projectupdates">
                             	<g:render template="show/projectupdates"/>
@@ -80,26 +74,19 @@
 								<g:render template="manageproject/manageteam"/>
 							</div>
 							<div class="tab-pane" id="contributions">
-								<g:render template="show/contributions" model="['team':currentTeam]"/>
+								<g:render template="manageproject/contributions" model="['team':currentTeam]"/>
 							</div>
 							<div class="tab-pane" id="comments">
-								<g:render template="show/comments" model="['currentFundraiser':project.user]"/>
+								<g:render template="show/comments"/>
 							</div>
 						</div>
-
 					</div>
 
-					<div  class="col-md-4">
-					    <g:render template="/layouts/organizationdetails" 
-                            model="['currentFundraiser':currentFundraiser,'username':username]"/>
-                            <g:render template="/layouts/tilesanstitle" model="['currentFundraiser':currentFundraiser,'currentTeam':currentTeam,'currentTeamAmount':currentTeamAmount,'teamContribution':teamContribution]"/>
-					</div>
+                    <div  class="col-md-4">
+                       <g:render template="/layouts/organizationdetails"/>
+                       <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                    </div>
 				</div>
-				<%--
-			<g:if test="${project.validated == false}">
-                            <div class="alert alert-warning">This Campaign is not yet published.</div>
-			</g:if>
-			--%>
 			</g:if>
 			<g:else>
 				<h1>Project not found</h1>

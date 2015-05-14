@@ -3,18 +3,7 @@
 <g:set var="projectService" bean="projectService"/>
 <g:set var="rewardService" bean="rewardService"/>
 <g:set var="userService" bean="userService"/>
-<%
-    boolean isFundingOpen = projectService.isFundingOpen(project)
-    def beneficiary = project.user
-    def username
-    if (user) {
-        username = user.username
-    } else {
-        username = beneficiary.username
-    }
-    def currentUser = userService.getCurrentUser()
-    def rewards = rewardService.getSortedRewards(project);
-%>
+
 <div class="modal-footer tile-footer perks-style">
     <g:if test="${isFundingOpen}">
         <h2 class="rewardsectionheading">Perks</h2>
@@ -28,7 +17,7 @@
         <g:each in="${rewards}" var="reward">
             <%
                 def backers = contributionService.getBackersForProjectByReward(project, reward);
-        		def price = projectService.getDataType(reward.price);
+        		def price = reward.price.round();
 				def rewardId = reward.id
                 def isOnlyTwitterHandled = rewardService.isOnlyTwitterHandled(reward)
                 def isTwitterHandled = rewardService.isTwitterHandled(reward)

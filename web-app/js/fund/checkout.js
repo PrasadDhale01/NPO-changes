@@ -146,7 +146,6 @@ $(function() {
                 required: true
             },
             billToZip: {
-            	number: true,
             	required: true
             },
             agreetoTermsandUse: {

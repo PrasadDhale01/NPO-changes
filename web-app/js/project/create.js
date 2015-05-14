@@ -67,7 +67,6 @@ $(function() {
             },
             postalCode: {
                 required: true,
-                number: true,
                 maxlength: 10,
                 minlength: 4
             },

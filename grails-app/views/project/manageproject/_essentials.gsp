@@ -33,7 +33,7 @@
 			<img src="//s3.amazonaws.com/crowdera/assets/tw-share@2x.png" alt="Twitter Share">
 		</a> 
         <a target="_blank" class="fb-like pull-right social fbShareForLargeDevices" id="fbshare">
-        	<img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share"/>
+        	<img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share">
         </a>
         <a target="_blank" class="fb-like pull-right social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
             <img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share">

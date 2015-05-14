@@ -497,9 +497,13 @@
 function showNavigation(){
 	document.getElementById('indicators').style.display = 'block';
 	document.getElementById('navigators').style.display = 'block';
+	document.getElementById('updateindicators').style.display = 'block';
+	document.getElementById('updatenavigators').style.display = 'block';
 }
 
 function hideNavigation(){
 	document.getElementById('indicators').style.display = 'none';
 	document.getElementById('navigators').style.display = 'none';
+	document.getElementById('updateindicators').style.display = 'none';
+	document.getElementById('updatenavigators').style.display = 'none';
 }

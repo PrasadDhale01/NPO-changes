@@ -41,7 +41,7 @@
 
 	</div>
 	<div class="panel-footer reward-footer">
-		<% def price = projectService.getDataType(reward.price); %>
+		<% def price = reward.price.round(); %>
 		<g:if test="${reward.id==1 }">
             <b>&nbsp;</b>
         </g:if><g:else>

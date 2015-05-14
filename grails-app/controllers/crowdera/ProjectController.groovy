@@ -141,7 +141,7 @@ class ProjectController {
     def validateshow() {
         def project = projectService.getProjectById(params.id)
         if (project) {
-            User user = userService.getUserByUsername(params.fr)
+            User user = project.user
             def currentUser = userService.getCurrentUser()
             def currentFundraiser = project.user
             def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
@@ -633,14 +633,24 @@ class ProjectController {
         Project project = projectService.getProjectById(params.id)
         User user = userService.getCurrentUser()
         if (project) {
-            def isCoAdmin=userService.isCampaignBeneficiaryOrAdmin(project,user)
-            if(project.user==user || isCoAdmin){
-                    render (view: 'manageproject/index',
-                    model: [project: project,
-                            FORMCONSTANTS: FORMCONSTANTS])
-            }else{
-                    flash.prj_mngprj_message = 'Campaign Not Found'
-                    render (view: 'manageproject/error', model: [project: project])
+            def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
+            def totalContribution = contributionService.getTotalContributionForProject(project)
+            def projectimages = projectService.getProjectImageLinks(project)
+            def validatedTeam = projectService.getValidatedTeam(project)
+            def discardedTeam = projectService.getDiscardedTeams(project)
+            boolean ended = projectService.isProjectDeadlineCrossed(project)
+            boolean isFundingOpen = projectService.isFundingOpen(project)
+            def rewards = rewardService.getSortedRewards(project);
+            def endDate = projectService.getProjectEndDate(project)
+            if(project.user==user || isCampaignOwnerOrAdmin){
+                render (view: 'manageproject/index',
+                        model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam,
+                                discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,
+                                ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user,
+                                FORMCONSTANTS: FORMCONSTANTS])
+            } else{
+                flash.prj_mngprj_message = 'Campaign Not Found'
+                render (view: 'manageproject/error', model: [project: project])
             }
         } else {
             render (view: '/error')

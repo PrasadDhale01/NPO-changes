@@ -21,8 +21,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<g:render template="manageproject/campaignStatisticsGrid"
-					model="[team:team, project:project]"></g:render>
+				<g:render template="manageproject/campaignStatisticsGrid" model="[teams : teams]"></g:render>
 			</tbody>
 		</table>
 	</div>

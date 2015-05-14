@@ -7,7 +7,6 @@
 	def achievedAmount = contributionService.getTotalContributionForUser(team.contributions)
 	def amountLeft = teamAmount-achievedAmount
 	def joiningDate = team.joiningDate
-	def endDate = projectService.getProjectEndDate(project)
 	SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d yyyy");
  %>
 <tr>

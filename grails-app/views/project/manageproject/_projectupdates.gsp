@@ -1,9 +1,6 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
-<%
-    boolean ended = projectService.isProjectDeadlineCrossed(project)
-%>
 
 <div class="col-md-offset-2 col-md-8 col-sm-8 col-xs-12">
     <g:if test="${project.validated}">
@@ -33,7 +30,7 @@
 		    <g:each in="${(1..rows).toList()}" var="row">
 			    <div class="col-md-12 col-sm-12 col-xs-12 campaignupdate">
 	                <% if (index < count) { %>
-	                    <g:render template="/project/manageproject/campaigngrid" model="['projectUpdate': projectUpdates.get(index++), 'i': i--]"></g:render>
+	                    <g:render template="/project/manageproject/campaigngrid" model="['projectUpdate': projectUpdates.get(index++), 'manageProject':'manageProject','i': i--]"></g:render>
 	                <% } %>
 			    </div>
 			</g:each>

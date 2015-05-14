@@ -1,5 +1,5 @@
 <%
-    def teams = projectService.getValidatedTeam(project)
+    def teams = validatedTeam
     def count = teams.size()
     def cols = 4
     def rows = (count / cols) + (count % cols > 0 ? 1 : 0)

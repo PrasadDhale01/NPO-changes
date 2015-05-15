@@ -259,15 +259,10 @@ class ProjectController {
         if(project.draft) {
             project.draft = false
             flash.prj_mngprj_message="Campaign has been submitted for approval."
-            
-            render (view: 'manageproject/index',
-                    model: [project: project,
-                            FORMCONSTANTS: FORMCONSTANTS])
+            redirect(controller: 'project', action: 'manageproject', id: project.id)
         } else {
             flash.prj_mngprj_message="This Campaign has already been submitted for approval, and under review."
-            render (view: 'manageproject/index',
-                    model: [project: project,
-                            FORMCONSTANTS: FORMCONSTANTS])
+            redirect(controller: 'project', action: 'manageproject', id: project.id)
         }
     }
     
@@ -895,9 +890,7 @@ class ProjectController {
             flash.prj_mngprj_message = 'Successfully deleted a Perk'
 			redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)            
         }else{
-             render (view: 'manageproject/index', fragment: 'rewards',
-                model: [project: project,
-                        FORMCONSTANTS: FORMCONSTANTS])
+             redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)
         }
     }
     

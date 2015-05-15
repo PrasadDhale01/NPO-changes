@@ -525,6 +525,30 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.crew-icons{
+		background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+		color: #fff !important;
+		display: none;
+		height: 31px;
+		left: 20px;
+		position: absolute;
+		top: 93px;
+		width: 119px;
+    }
+    div#aboutus {
+        padding-left: 20%;
+    }
+    div.container.crewpage > h1 {
+        text-align: center;
+    }
+    div.crew-content p {
+        padding-bottom: 20px;
+        line-height: 18px;
+    }
+    #aboutus .caption {
+        font-size: 11px;
+        width: 100%;
+    }
     .footer-mid-section-menu-mobile ul li {
     	list-style-type: none;
     	margin-left: -39px !important;
@@ -621,6 +645,27 @@ a {
 
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.crew-icons{
+		background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+		color: #fff !important;
+		display: none;
+		height: 31px;
+		left: 19px;
+		position: absolute;
+		top: 93px;
+		width: 120px;
+    }
+    #aboutus .caption {
+        font-size: 9px;
+        width: 100%;
+    }
+    div.container.crewpage > h1 {
+        text-align: center;
+    }
+    div.tabs {
+        margin-left: 18px;
+        margin-right: 0;
+    }
     .footer-mid-section p b {
         color: #cccccc;
         font-size: 18px;
@@ -737,7 +782,29 @@ a {
         width: 219px;
     }
 }
+@media only screen and (min-width:1025px) and (max-width: 1199px){
+    #aboutus .caption {
+        font-size: 11px;
+        width: 100%;
+    }
+    div.crew-icons{
+		background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+		color: #fff !important;
+		display: none;
+		height: 31px;
+		left: 19px;
+		position: absolute;
+		top: 93px;
+		width: 120px;
+    }
+    div.container.crewpage > h1 {
+        text-align: center;
+    }
+}
 @media only screen and (min-width:506px) and (max-width: 640px){
+	div#aboutus {
+        padding-left: 15% !important;
+    }
 	.footer-mid-section-menu-mobile ul li {
     		list-style-type: none;
     		margin-left: -39px !important;
@@ -2328,7 +2395,7 @@ textarea.form-control {
 	right: 2px;
 }
 #aboutus .caption { 
-	font-size:14px;
+	font-size:11px;
 }
 #aboutus .caption span{ 
 	display:block; 
@@ -3707,7 +3774,7 @@ textarea.form-control {
 	    font-size: 32px;
 	}
 	#aboutus.row{
-	    padding:0 25px;
+	    padding:0px;
 	}
 	.squarebox {
 	    width: 150px;
@@ -4062,6 +4129,26 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.crew-icons{
+		background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
+		color: #fff !important;
+		display: none;
+		height: 31px;
+		left: 35px;
+		position: absolute;
+		top: 93px;
+		width: 119px;
+    }
+    #aboutus .caption {
+        font-size: 9px;
+        width: 100%;
+    }
+    div#aboutus {
+       padding-left: 10%;
+    }
+    div.container.crewpage > h1 {
+        text-align: center;
+    }
     .footer-mid-section p b {
         color: #cccccc;
         font-size: 18px;
@@ -5308,4 +5395,28 @@ p.tile-text-size {
 .whycrowderacontainer {
 	padding-left: 0px !important;
     padding-right: 0px !important;
+}
+#hover-cap-4col .the-crews img {
+	position:relative;
+	overflow:hidden;	
+}
+.crew-icons{
+	display: none;
+	position: absolute;
+	top: 90px;
+	left: 19px;
+	background: rgba(0,0,0,0.8);
+	width: 40%;
+	height: 19%;
+	color:#fff !important;
+}
+img.fa-icon {
+    width: 31%;
+    padding-left: 8%;
+}
+.crew-icons.icons-manage img {
+    left: 13px;
+}
+.crew-icons.manage-mentors img {
+    left: 37px;
 }

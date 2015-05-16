@@ -156,7 +156,7 @@
 				<a href="https://www.linkedin.com/in/forpankil" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/linked-In.png" alt="Linkedin"></a>
 			    </div>
 	                </div>
-	                <div class="caption">PanKil Doshi</div>
+	                <div class="caption">Pankil Doshi</div>
 	                <div class="clear"></div>
 	            </div>
 	        </div>
@@ -254,7 +254,7 @@
 	        <div class="col-xs-6 col-sm-3 ">
 	            <div class="thumbnail">
 	                <div id="you-crew">
-	                    <img class="chet-image" src="//s3.amazonaws.com/crowdera/assets/you.jpg" alt="YOU">
+	                    <img src="//s3.amazonaws.com/crowdera/assets/you.jpg" alt="YOU">
 	                </div>
 	                <div class="caption">YOU</div>
 	                <div class="clear"></div>
@@ -273,7 +273,7 @@
 	                <div class="the-crews">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/raj-velgapudi.jpg" alt="Raj Velgapudi">
 	                    <div class="crew-icons manage-mentors">
-		                <a href="https://www.linkedin.com" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/linked-In.png" alt="Linkedin"></a>
+		                <a href="https://www.linkedin.com/pub/rajkumar-velagapudi/92/8b8/437" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/linked-In.png" alt="Linkedin"></a>
 			    </div>
 	                </div>
 	                <div class="caption">Raj Velgapudi</div>

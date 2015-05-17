@@ -62,6 +62,19 @@ $(function() {
         }
     });
     
+    $(document).ready(function(){
+        
+        $('#hover-cap-4col .the-crews').hover(
+            function(){
+                $(this).find('.crew-icons').fadeIn(250); 
+            },
+            function(){
+                $(this).find('.crew-icons').fadeOut(205);
+            }
+        );    
+     
+    });    
+    
   /*  $('.twittersocialicon').hover(function(){
     	$(this).attr('src',"/images/twitter-over.png");
     	}).mouseleave(function(){

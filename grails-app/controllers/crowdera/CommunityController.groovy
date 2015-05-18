@@ -3,12 +3,6 @@ package crowdera
 import grails.plugin.springsecurity.annotation.Secured
 import org.apache.commons.validator.EmailValidator
 
-import crowdera.Community;
-import crowdera.CommunityInvite;
-import crowdera.Credit;
-import crowdera.User;
-import crowdera.UserRole;
-
 class CommunityController {
     def userService
     def roleService

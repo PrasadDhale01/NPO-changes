@@ -1,10 +1,5 @@
 package crowdera
 
-import crowdera.Contribution;
-import crowdera.Project;
-import crowdera.ProjectAdmin;
-import crowdera.Team;
-import crowdera.User;
 import grails.plugin.springsecurity.annotation.Secured
 
 class UserController {
@@ -142,7 +137,7 @@ class UserController {
     @Secured(['ROLE_ADMIN'])
     def response() {
         def imageFile = request.getFile('file')
-        def services = userService.sendResponseToCustomer(params, imageFile)
+        userService.sendResponseToCustomer(params, imageFile)
         flash.servicemessage = "Successfully Responded"
         redirect action:'userquestionsList'
     }

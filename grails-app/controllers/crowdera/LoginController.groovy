@@ -1,7 +1,5 @@
 package crowdera
 
-import crowdera.User;
-import crowdera.UserRole;
 import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.plugin.springsecurity.annotation.Secured
 

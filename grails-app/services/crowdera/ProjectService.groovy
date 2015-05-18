@@ -383,7 +383,7 @@ class ProjectService {
 		 def contributorName = params.contributorName1
 		 if (amount && contributorName) {
 			 Contribution contribution = new Contribution(
-				 date: new Date(),
+				 dateAndTime: new Date(),
 				 user: user,
 				 reward: reward,
 				 amount: amount,

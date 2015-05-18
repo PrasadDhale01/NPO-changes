@@ -12,7 +12,7 @@
     def projectId = project.id
 %>
 <g:if test="${project.validated}">
-<div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+<div class="<g:if test="${project.contributions.empty || !project.validated}">col-md-12</g:if> <g:else>col-md-10 col-md-offset-1</g:else> col-sm-12 col-xs-12">
     <g:if test="${project.contributions.empty}">
         <div class="alert alert-info">No contributions yet.</div>
     </g:if>

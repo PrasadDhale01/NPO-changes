@@ -2,7 +2,7 @@
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
 
-<div class="col-md-offset-2 col-md-8 col-sm-8 col-xs-12">
+<div class="<g:if test="${!project.validated || ended || project.projectUpdates.empty}">col-md-12</g:if><g:else>col-md-offset-2 col-md-8</g:else> col-sm-12 col-xs-12">
     <g:if test="${project.validated}">
         <g:if test="${ended}">
 	    	<div class="alert alert-info">Campaign Ended.</div>

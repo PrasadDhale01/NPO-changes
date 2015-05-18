@@ -1,11 +1,8 @@
 package crowdera
 
-import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
 import java.text.SimpleDateFormat
-
-import crowdera.Blog;
 
 class BlogController {
 

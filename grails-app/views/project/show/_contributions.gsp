@@ -89,7 +89,7 @@
     <div class="commentsoncampaign">
         <g:each in="${list}" var="contribution">
             <%
-                def date = dateFormat.format(contribution.date)
+                def date = dateFormat.format(contribution.dateAndTime)
                 def friendlyName = userService.getFriendlyName(contribution.user)
                 def isFacebookUser = userService.isFacebookUser(contribution.user)
                 def userFacebookUrl = facebookService.getUserFacebookUrl(contribution.user)
@@ -236,7 +236,7 @@
                             <tbody>
                                 <g:each in="${list}" var="contributions">
                                     <%
-                                        def date = contributions.date.format('YYYY-MM-DD HH:mm:ss')
+                                        def date = contributions.dateAndTime.format('YYYY-MM-DD HH:mm:ss')
                                         def friendlyName = userService.getFriendlyName(contributions.user)
                                         def isFacebookUser = userService.isFacebookUser(contributions.user)
                                         def userFacebookUrl = facebookService.getUserFacebookUrl(contributions.user)

@@ -9,10 +9,14 @@
 </div>
 <div class="container crewpage">
     <h1 class="text-center">The Crew</h1>
-
-    <div id="aboutus" class="row tabs">
+    <g:if test="${flash.joinusmessage}">
+        <div class="alert alert-success" align="center">
+		    ${flash.joinusmessage}
+	    </div>
+	</g:if>
+	   <div id="aboutus" class="row tabs">
         <div class="row left-pad" id="hover-cap-4col">
-            <div class="col-xs-6 col-sm-3">
+            <div class="col-xs-push-3 col-sm-3 col-md-push-2 col-sm-push-2">
                 <div class="thumbnail">
                     <div class="the-crews">
                         <img src="//s3.amazonaws.com/crowdera/assets/chet.jpg" alt="chet jain">
@@ -27,7 +31,7 @@
                 </div>
             </div>
         
-            <div class="col-xs-6 col-sm-3">
+            <div class="col-xs-6 col-sm-3 col-md-push-2 col-sm-push-2">
                 <div class="thumbnail">
                     <div class="the-crews">
                         <img src="//s3.amazonaws.com/crowdera/assets/chai.jpg" alt="Chai Atreya">
@@ -41,9 +45,10 @@
                     <div class="clear"></div>
                 </div>
             </div>
-            <div class="col-xs-6 col-sm-3">
+            
+            <div class="col-xs-6 col-sm-3 col-md-push-2 col-sm-push-2">
                 <div class="thumbnail">
-                    <div class="the-crews">
+                 <div class="the-crews">
                         <img src="//s3.amazonaws.com/crowdera/assets/rich.jpg" alt="Rich Matsuura">
 			<div class="crew-icons">
 			    <a href="https://www.facebook.com/rich.matsuura?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/facebook.png" alt="facebook"></a>
@@ -56,7 +61,12 @@
                 </div>
             </div>
      
-            <div class="col-xs-6 col-sm-3">
+           
+        </div>
+    </div>
+    <div id="aboutus" class="row tabs">
+        <div class="row lft" id="hover-cap-4col">
+             <div class="col-xs-6 col-sm-3">
                 <div class="thumbnail">
                     <div class="the-crews">
 	                <img src="//s3.amazonaws.com/crowdera/assets/himanchan-malhotra.jpg" alt="Himanchan Malhotra">
@@ -70,10 +80,7 @@
 	            <div class="clear"></div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div id="aboutus" class="row tabs">
-        <div class="row" id="hover-cap-4col">
+        
             <div class="col-xs-6 col-sm-3 ">
                 <div class="thumbnail">
                     <div class="the-crews">
@@ -101,6 +108,21 @@
                     <div class="clear"></div>
                 </div>
             </div>
+            
+            <div class="col-xs-6 col-sm-3 ">
+	            <div class="thumbnail">
+	                <div class="the-crews">
+			    <img src="//s3.amazonaws.com/crowdera/assets/pankildoshi.jpeg" alt="PanKil Doshi">
+			    <div class="crew-icons">
+		                <a href="https://www.facebook.com/forpankil?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/facebook.png" alt="facebook"></a>
+				<a href="https://twitter.com/forpankil" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/twitter-over.png" alt="twitter"></a>
+				<a href="https://www.linkedin.com/in/forpankil" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/linked-In.png" alt="Linkedin"></a>
+			    </div>
+	                </div>
+	                <div class="caption">Pankil Doshi</div>
+	                <div class="clear"></div>
+	            </div>
+	        </div>
         
             <div class="col-xs-6 col-sm-3 ">
                 <div class="thumbnail">
@@ -145,22 +167,6 @@
                     <div class="clear"></div>
                 </div>
             </div>
-
-	        <div class="col-xs-6 col-sm-3 ">
-	            <div class="thumbnail">
-	                <div class="the-crews">
-			    <img src="//s3.amazonaws.com/crowdera/assets/pankildoshi.jpeg" alt="PanKil Doshi">
-			    <div class="crew-icons">
-		                <a href="https://www.facebook.com/forpankil?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/facebook.png" alt="facebook"></a>
-				<a href="https://twitter.com/forpankil" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/twitter-over.png" alt="twitter"></a>
-				<a href="https://www.linkedin.com/in/forpankil" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/linked-In.png" alt="Linkedin"></a>
-			    </div>
-	                </div>
-	                <div class="caption">Pankil Doshi</div>
-	                <div class="clear"></div>
-	            </div>
-	        </div>
-        
         
 	        <div class="col-xs-6 col-sm-3 ">
 	            <div class="thumbnail">
@@ -243,7 +249,7 @@
 			    <div class="crew-icons">
 				<a href="https://www.facebook.com/tushar.warhade?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/facebook.png" alt="facebook"></a>
 				<a href="https://twitter.com/tushar14830" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/twitter-over.png" alt="twitter"></a>
-				<a href="https://www.linkedin.com/profile/view?id=210384580&authType=NAME_SEARCH&authToken=rkwi&locale=en_US&trk=tyah&trkInfo=clickedVertical%3Amynetwork%2Cidx%3A1-1-1%2CtarId%3A1430743763870%2Ctas%3ATushar%20war" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/linked-In.png" alt="Linkedin"></a>
+				<a href="https://in.linkedin.com/in/tusharwarhade" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/linked-In.png" alt="Linkedin"></a>
 			    </div>
 	                </div>
 	                <div class="caption">Tushar Warhade</div>
@@ -261,11 +267,71 @@
 	            </div> 
 	        </div> 
        </div>  
-<%--     <h3><p class="text-center">Passionate enough to make a difference? We are hiring</p></h3>--%>
+     <h3><p class="text-center">Passionate enough to make a difference? We are hiring&nbsp;&nbsp;<a href="#myCrewDetails" class="btn btn-primary btn-sm" data-toggle="modal">Join Our Crew</a></p></h3>
+      <!-- Modal HTML -->
+           <div id="myCrewDetails" class="modal fade">
+	           <g:uploadForm action="crewRequest" controller="Home" role="form">
+	               <div class="modal-dialog">
+	                   <div class="modal-content">
+	                       <div class="modal-header">
+	                           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	                           <h3 class="text-center"><b>Join Our Crew</b></h3>
+	                           <hr>
+	                           <div class="form-group">
+	                                <label for="firstName">First Name</label>
+	                                <input type="text" class="form-control" name="firstName" placeholder="First Name"/>
+	                           </div>
+	                           <div class="form-group">
+	                                <label for="lastName">Last Name</label>
+	                                <input type="text" class="form-control" name="lastName" placeholder="Last Name"/>
+	                           </div>
+	                           <div class="form-group">
+	                                <label for="email">Email</label>
+	                                <input type="text" class="form-control" name="email" placeholder="Email"/>
+	                           </div>
+	                           <div class="form-group">
+	                               <label>Upload Resume</label>
+	                               <div class="clear"></div>
+	                               <div class="col-xs-12 col-sm-4 col-md-4">
+	                                   <div class="fileUpload btn btn-primary btn-sm">
+	                                       <span>Resume</span>
+	                                       <input type="file" class="upload " id="resumefile" name="resume"/>
+	                                   </div>  
+	                               </div>
+	                               <label class="" id="resumefilesize"></label>
+	                               <div class="col-xs-12 col-sm-8 col-md-8">
+	                                   <output id="result"></output>
+	                               </div>
+	                           </div>
+	                           <div class="clear"></div>
+	                           <div class="form-group">
+	                                <label for="letterDescriptions">Cover Letter (Optional)</label>
+	                                <textarea class="form-control" name="letterDescriptions"></textarea>
+	                           </div>
+	                           <div class="form-group">
+	                                <label for="title">Why should we hire you?</label>
+	                                <textarea class="form-control" name="crewDescriptions"></textarea>
+	                           </div>
+	                            <div class="form-group">
+	                                <label for="title">LinkedIn</label>
+	                                <input type="text" class="form-control" name="linkedIn" placeholder="LinkedIn Url"/>
+	                           </div>
+	                           <div class="form-group">
+	                                <label for="title">Facebook</label>
+	                                <input type="text" class="form-control" name="faceBook" placeholder="Facebook Url"/>
+	                           </div>
+	                           <div class="modal-footer">
+	                               <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+	                           </div>
+	                       </div>
+	                   </div>
+	               </div>
+	           </g:uploadForm>
+           </div> 
     </div>
  
     <hr>
-    <h1>Mentors, Advisors, Investors & Supporters</h1>
+    <h1 class="text-center">Mentors, Advisors, Investors & Supporters</h1>
 	<div id="aboutus" class="row tabs">
 	    <div class="row" id="hover-cap-4col">
 	        <div class="col-xs-6 col-sm-3">

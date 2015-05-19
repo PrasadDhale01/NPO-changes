@@ -525,6 +525,9 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.lft {
+        padding-left: 0%;
+    }
     div.crew-icons{
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
 	color: #fff !important;
@@ -645,6 +648,10 @@ a {
 
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.text-center {
+        line-height: 150%;
+        text-align: center;
+    }
     div.crew-icons{
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
 	color: #fff !important;
@@ -2395,7 +2402,7 @@ textarea.form-control {
 	right: 2px;
 }
 #aboutus .caption { 
-	font-size:11px;
+	font-size:9px;
 }
 #aboutus .caption span{ 
 	display:block; 
@@ -4129,6 +4136,13 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.text-center {
+        line-height: 150%;
+        text-align: center;
+    }
+	div.lft {
+        padding-left: 0%;
+    }
     div.crew-icons{
 	background: none repeat scroll 0 0 rgba(0, 0, 0, 0.8);
 	color: #fff !important;
@@ -5406,7 +5420,7 @@ p.tile-text-size {
     top: 90px;
     left: 19px;
     background: rgba(0,0,0,0.8);
-    width: 40%;
+    width: 120px;
     height: 19%;
     color:#fff !important;
 }
@@ -5419,4 +5433,7 @@ img.fa-icon {
 }
 .crew-icons.manage-mentors img {
     left: 37px;
+}
+.lft {
+  padding-left: 7%;
 }

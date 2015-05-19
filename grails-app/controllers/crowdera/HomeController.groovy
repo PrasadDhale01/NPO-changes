@@ -26,4 +26,15 @@ class HomeController {
     def customerService(){
     	render (view:'/contactus/index')
     }
+	
+	def crewRequest(){
+		def files = request.getFile('resume')
+		projectService.setResume(files,params)
+		flash.joinusmessage = "Thank you for applying! A confirmation has been sent to your email address: ${params.email}."
+		redirect action: "crewrequest"
+	}
+	
+	def crewrequest(){
+		render (view: '/aboutus/index')
+	}
 }

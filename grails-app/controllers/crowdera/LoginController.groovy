@@ -176,7 +176,7 @@ class LoginController {
             def query = User.where {
                 id == users
             }
-            int total = query.deleteAll()
+            query.deleteAll()
         }
         flash.login_message= "User deleted successfully"
             redirect (action:'list')

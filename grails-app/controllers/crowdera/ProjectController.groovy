@@ -6,8 +6,6 @@ import org.apache.poi.ss.usermodel.Workbook
 import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
-import java.text.SimpleDateFormat
-
 class ProjectController {
     def userService
     def excelImportService
@@ -263,7 +261,7 @@ class ProjectController {
 		} else {
 			flash.sentmessage = "Something went wrong saving comment. Please try again later."
 		}
-        redirect (action: 'show', id: params.id, fragment: 'comments')
+        redirect (action: 'show', id: params.id, fragment: 'comments', params:['fr':params.fr])
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])

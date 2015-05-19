@@ -1,7 +1,5 @@
 package crowdera
 
-import java.util.List;
-
 class Team {
 
     static hasMany = [contributions: Contribution, comments: TeamComment, imageUrl: ImageUrl]

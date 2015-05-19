@@ -426,7 +426,6 @@ class ProjectService {
 	
 	def getContributionEditedDetails(def params){
 		def contribution = Contribution.get(params.id)
-		def fundRaiser = userService.getUserByUsername(params.fr)
 		contribution.contributorName = params.contributorName
 		contribution.amount = Double.parseDouble(params.amount)
 	}
@@ -1575,6 +1574,49 @@ class ProjectService {
         mandrillService.sendEmailToCustomer(service);
         return service
     }
+	
+	def getCrewRequest(def params, def resumeUrl){
+		CrewReg crewrequest = new CrewReg()
+		crewrequest.firstName = params.firstName
+		crewrequest.lastName = params.lastName
+		crewrequest.email = params.email
+		crewrequest.letterDescription = params.letterDescriptions
+		crewrequest.crewDescription = params.crewDescriptions
+		crewrequest.linkedIn = params.linkedIn
+		crewrequest.faceBook = params.faceBook
+		crewrequest.resumeUrl = resumeUrl
+		crewrequest.date = new Date()
+		
+		crewrequest.save(failOnError: true)
+		mandrillService.sendEmailToCrew(crewrequest)
+	}
+	
+	def setResume(CommonsMultipartFile resume, def params) {
+		if (!resume?.empty && resume.size < 1024 * 1024 * 3) {
+			def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+			def awsSecretKey = "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"
+			def bucketName = "crowdera"
+			def folder = "Attachments"
+
+			def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+			def s3Service = new RestS3Service(awsCredentials);
+			def s3Bucket = new S3Bucket(bucketName)
+		
+			def tempFile = new File("${resume.getOriginalFilename()}")
+			println "tempFile : "+tempFile
+			def key = "${folder}/${resume.getOriginalFilename()}"
+			println "key : "+key
+			resume.transferTo(tempFile)
+			def object = new S3Object(tempFile)
+			object.key = key
+
+			s3Service.putObject(s3Bucket, object)
+			tempFile.delete()
+		
+			def resumeUrl = "//s3.amazonaws.com/crowdera/${key}"
+			getCrewRequest(params, resumeUrl)
+		}
+	}
     
     def setAttachments(CustomerService service, List<MultipartFile> files){
         def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"

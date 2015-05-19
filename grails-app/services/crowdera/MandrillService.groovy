@@ -564,6 +564,27 @@ class MandrillService {
 
         inviteToAdmin(email, 'send-email-to-customer', globalMergeVars, tags)
     }
+	
+	def sendEmailToCrew(def crewrequest){
+		def email = crewrequest.email
+		def date = new Date()
+		def globalMergeVars = [
+			[
+				'name': 'NAME',
+				'content': crewrequest.firstName
+			],[
+				'name': 'EMAIL',
+				'content': email
+			],[
+				'name': 'DATE',
+				'content': date.format("YYYY-MM-DD HH:mm:ss")
+			]
+		]
+		
+		def tags = ['send-email-to-crew']
+
+		inviteToAdmin(email, 'send-email-to-crew', globalMergeVars, tags)
+	}
     
     def sendResponseToCustomer(def adminResponse, def service, def attachmentUrl) {
         def email = service.email

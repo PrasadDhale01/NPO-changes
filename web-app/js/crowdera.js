@@ -35,7 +35,42 @@ $(function() {
      	    email: "" 
      	   } 
      	}); 
-    		      
+    	
+    	var validator = $('form').validate({
+            rules: {
+                firstName: {
+                    minlength: 2,
+                    required: true
+                },
+                lastName: {
+                    minlength: 2,
+                    required: true
+                },
+                resume: {
+                	required: true
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                letterDescriptions: {
+                	required: true
+                },
+                crewDescriptions: {
+                	required: true
+                }
+            },
+            messages:{
+            	resume: "Please upload your Resume"
+            },
+            errorPlacement: function(error, element) {
+                if($(element).prop("id") == "resumefile") {
+                    error.appendTo(element.parent().parent());
+                }else{ 
+                    error.insertAfter(element);
+                }
+            },
+        });		      
     }); 
     
     // Decode the blog post HTML so that <p></p> gets recognized.
@@ -74,6 +109,43 @@ $(function() {
         );    
      
     });    
+    
+    var isvalidsize =  false;
+	$('#resumefile').change(function(event) {
+        var files = event.target.files; // FileList object
+        var output = document.getElementById("result");
+        var fileName;
+        var isFileSizeExceeds = false;
+        $('#resumefilesize').hide();
+        
+        var x = document.querySelectorAll("#resumefileId");
+        for (var i = 0; i < x.length; i++) {
+        	$("#resumefileId").remove();
+        }
+        for ( var i = 0; i < files.length; i++) {
+            var file = files[i];
+            var filename = file.name;
+            if(file.size < 1024 * 1024 * 3) {
+            	isvalidsize =  true;
+                var div = document.createElement("div");
+                div.id = 'resumefileId';
+                div.innerHTML = "<div class='resumefile-div'>"+filename+"</div><div class='clear'></div>";
+                output.insertBefore(div, null);
+            } else {
+            	if (fileName) {
+            	    fileName = fileName +" "+ file.name;
+            	} else {
+            		fileName = file.name;
+            	}
+            	$('#resumefilesize').show();
+            	isFileSizeExceeds = true;
+            }
+        }
+        document.getElementById("resumefilesize").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
+        if (isFileSizeExceeds && !isvalidsize) {
+            $('#resumefile').val('');
+        }
+    });
     
   /*  $('.twittersocialicon').hover(function(){
     	$(this).attr('src',"/images/twitter-over.png");

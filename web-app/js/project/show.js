@@ -39,7 +39,7 @@
     /*************************Image upload on tinymce made working ***************************/
     
     $(document).on('focusin', function(e) {
-        if ($(event.target).closest(".mce-window").length) {
+        if ($(e.target).closest(".mce-window").length) {
             e.stopImmediatePropagation();
         }
     });
@@ -283,13 +283,6 @@
         return true;
      }, "Please upload a url of Youtube video");
     
-    $( "#projectImageFile" ).rules( "add", {
-        required: true,
-        messages: {
-          required: "Please upload at least one campaign image"
-        }
-      });
-    
     /***************************Multiple Image Selection*************** */
 
     var isvalidsize = false;
@@ -495,15 +488,34 @@
 });
 
 function showNavigation(){
-	document.getElementById('indicators').style.display = 'block';
-	document.getElementById('navigators').style.display = 'block';
-	document.getElementById('updateindicators').style.display = 'block';
-	document.getElementById('updatenavigators').style.display = 'block';
+	var indicator = document.getElementById('indicators');
+	var nav= document.getElementById('navigators');
+	var updateIndicator = document.getElementById('updateindicators');
+	var updateNav= document.getElementById('updatenavigators');
+	
+	if(indicator!=null && nav!=null){
+		document.getElementById('indicators').style.display = 'block';
+		document.getElementById('navigators').style.display = 'block';
+	}
+	if(updateIndicator!=null && updateNav!=null){
+		document.getElementById('updateindicators').style.display = 'block';
+		document.getElementById('updatenavigators').style.display = 'block';
+	}
 }
 
 function hideNavigation(){
-	document.getElementById('indicators').style.display = 'none';
-	document.getElementById('navigators').style.display = 'none';
-	document.getElementById('updateindicators').style.display = 'none';
-	document.getElementById('updatenavigators').style.display = 'none';
+	var indicator = document.getElementById('indicators');
+	var nav= document.getElementById('navigators');
+	var updateIndicator = document.getElementById('updateindicators');
+	var updateNav= document.getElementById('updatenavigators');
+	
+	if(indicator!=null && nav!=null){
+		document.getElementById('indicators').style.display = 'none';
+		document.getElementById('navigators').style.display = 'none';
+	}
+	
+	if(updateIndicator!=null && updateNav!=null){
+		document.getElementById('updateindicators').style.display = 'none';
+		document.getElementById('updatenavigators').style.display = 'none';
+	}	
 }

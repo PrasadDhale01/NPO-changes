@@ -91,7 +91,7 @@ class MandrillService {
         return ret
     }
 
-    private def sendMail(User user) {
+    def sendMail(User user) {
         def link = grailsLinkGenerator.link(controller: 'login', action: 'confirmUser', id: user.inviteCode, absolute: true)
 
         def globalMergeVars = [
@@ -114,7 +114,7 @@ class MandrillService {
         sendTemplate(user, 'admin_invitation', globalMergeVars, tags)
     }
 
-    private def sendBeneficiaryEmail(User user) {
+    def sendBeneficiaryEmail(User user) {
         def link = grailsLinkGenerator.link(controller: 'fund', action: 'fundingConfirmation',id:user.id, absolute: true)
 
         def globalMergeVars = [
@@ -138,7 +138,7 @@ class MandrillService {
 
     }
 
-    private def sendContributorEmail(User user, Project project){
+    def sendContributorEmail(User user, Project project){
 
         def link = grailsLinkGenerator.link(controller: 'fund', action: 'thankingContributors',id:project.id ,absolute: true)
 
@@ -162,7 +162,7 @@ class MandrillService {
         sendTemplate(user, 'thanks_to_contributors', globalMergeVars, tags)
     }
 
-    private def sendResetPassword(User user) {
+   def sendResetPassword(User user) {
         def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm_reset', id: user.resetCode, absolute: true)
 	def createButton = grailsLinkGenerator.link(controller: 'project', action: 'create',absolute: true)
 	def home = grailsLinkGenerator.link(controller: 'home', action: 'index', absolute: true)
@@ -191,7 +191,7 @@ class MandrillService {
         sendTemplate(user, 'reset-password', globalMergeVars, tags)
     }
 
-    private def inviteToShare(String email, String templateName, List globalMergeVars, List tags) {
+    def inviteToShare(String email, String templateName, List globalMergeVars, List tags) {
         def query =  [
             key: grailsApplication.config.mandrill.apiKey,
             template_name: templateName,
@@ -232,7 +232,6 @@ class MandrillService {
 
     def shareProject(def emailList, String name, String message, Project project, def fundRaiser) {
         def imageUrl = project.imageUrl
-		def imgUrl
 		def projectImageUrl
         if (imageUrl) {
             imageUrl = project.imageUrl[0].getUrl()

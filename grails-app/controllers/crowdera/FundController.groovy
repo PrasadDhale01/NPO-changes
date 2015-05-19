@@ -315,7 +315,6 @@ class FundController {
                 //TODO: fix this logic
                 def responseXML
                 reader.each{ key, value ->
-                    print key;
                     if(reader[key]) {
                         responseXML =key +":"+reader[key]
                     }
@@ -330,7 +329,6 @@ class FundController {
             // response handler for a failure response code
             response.failure = { resp, reader ->
                 result = false
-                print reader
                 render view: 'error', model: [message: 'There was an error charging. Don\'t worry, your card was not charged. Please try again.']
             }
         }

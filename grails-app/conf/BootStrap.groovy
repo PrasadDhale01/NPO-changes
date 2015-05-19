@@ -1,8 +1,6 @@
 import crowdera.Blog
-import crowdera.Contribution
 import crowdera.Project
 import crowdera.Reward
-import crowdera.Community
 
 class BootStrap {
     def blogService

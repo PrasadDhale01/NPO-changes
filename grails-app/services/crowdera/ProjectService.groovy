@@ -426,7 +426,6 @@ class ProjectService {
 	
 	def getContributionEditedDetails(def params){
 		def contribution = Contribution.get(params.id)
-		def fundRaiser = userService.getUserByUsername(params.fr)
 		contribution.contributorName = params.contributorName
 		contribution.amount = Double.parseDouble(params.amount)
 	}

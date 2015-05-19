@@ -6,8 +6,6 @@ import org.apache.poi.ss.usermodel.Workbook
 import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
-import java.text.SimpleDateFormat
-
 class ProjectController {
     def userService
     def excelImportService

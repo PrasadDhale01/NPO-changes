@@ -1,6 +1,5 @@
 package crowdera
 
-import org.codehaus.groovy.grails.commons.GrailsApplication
 import grails.util.Environment
 
 class ErrorController {

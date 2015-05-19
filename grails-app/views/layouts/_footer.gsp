@@ -6,7 +6,7 @@
        
       	<section class="row">  
       	      <div class="col-xs-12">
-      	      	<center><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a></center>
+      	      	<div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a></div>
       	      	<div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
             		<div class="footer-header-mobile footer-header-align">Quick Links</div>
            		   <ul>
@@ -35,18 +35,18 @@
       	<section class="row">
       	     <div class="col-xs-12 footer-first-section-mobile footer-text-align">
       	      	<p>Hands up for a Better World. See how you can make a difference with Crowdera.</p>
-      	      	<center>
+      	      
       	      	    <div class="footer-first-section-mobile footer-img-align">
      	  		 <img src="//s3.amazonaws.com/crowdera/assets/hand-image-mobile.png" alt="Crowdera">
         	  	 <a href="${resource(dir: '/campaigns/create')}"><img src="//s3.amazonaws.com/crowdera/assets/start-a-campaign-mobile.png" alt="Crowdera"></a>
         	    </div>
-        	 </center>
+        	
       	      </div>
       	</section>      	
        <!-- --------------------------Section three------------------------- -->
         <section class="row">
              <div class="col-xs-12 footer-mid-section footer-p-text-align">
-        	<center>
+        
         	 <br>
       	      	<div class="socialicon">
 		    <a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="twitter"></a>
@@ -60,7 +60,7 @@
 		    <p>"Through the Crowdera platform our scholars, parents, families, staff and parents can participate
         	        in building support for the Eagle Academy movement." <br><br><b>Thomas Owens</b><br><p class="egle">Eagle Academy</p>
         	  </div>
-        	</center>
+       
         	<br><br>
         	
         	<div class="footer-newsletter">
@@ -78,13 +78,12 @@
 		    </form>
 		</div>
 		<br>
-		</center>
       	     </div>
         </section>
         
         <!-- --------------------------Section four------------------------- -->
         <hr class="footer-hr">
-        <center>
+ 
          <section class="row">
           <div class="col-xs-12">
       	     <div class="text-primary">
@@ -95,7 +94,6 @@
       	  </div>
          </section>
          <br><br>
-   	 </center>
          </div>
    	  
    	  <!-- Footer Design for medium size device -->

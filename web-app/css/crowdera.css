@@ -1,3 +1,7 @@
+/* Carousel
+------------------------- */
+@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+
 body {
     margin-top: 50px;
     /* padding-bottom: 40px; */
@@ -283,7 +287,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 #carousel-example-generic {
-    .transition(.10s ease-in-out left);
+    transition: 10s ease-in-out left;
 }
 
 /*----------------------- End Image courasel new slider and button -------------------------------------- */
@@ -460,13 +464,6 @@ a {
    color: #cccccc; 
    text-decoration: none !important;
 }
-
-.foooter a:focus {
-  outline: thin dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-  outline-offset: -2px;
-}
-
 .footerbottomsection {
     padding: 25px 0 15px;
 }
@@ -537,6 +534,23 @@ a {
 	position: absolute;
 	top: 93px;
 	width: 119px;
+    }
+    .socialicon{
+    	display: flex;
+    	justify-content: center;
+    }
+    div.crowdera-title a img{
+  	display:block;
+   	margin-left:auto;
+   	margin-right:auto;
+    }
+    .footer-text-align .footer-first-section-mobile.footer-img-align img{
+   	display:block;
+   	margin-left:auto;
+   	margin-right:auto;
+    }
+    div.text-primary{
+        text-align:center;
     }
     div#aboutus {
         padding-left: 20%;
@@ -961,7 +975,6 @@ ul.unstyled {
     word-wrap: break-word;
     -webkit-hyphens: auto;
     -moz-hyphens: auto;
-    hyphens: auto;
     height:88px;
     white-space: normal;
     overflow: hidden;
@@ -1053,11 +1066,6 @@ ul.unstyled {
 .form-signin .form-control:focus {
     z-index: 2;
 }
-
-/* Carousel
-------------------------- */
-@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
-
 .col-item {
     border: 1px solid #E1E1E1;
     border-radius: 5px;
@@ -1644,7 +1652,6 @@ footer .footerbottomsection {
 }
 
 .imageWithTag{
-	positon: relative;
 	height:261px;
 	width:261px;
 }
@@ -1661,11 +1668,6 @@ footer .footerbottomsection {
 	top:0;
 	left:0;
 }
-
-.textFieldWithTag{
-	positon: relative;
-}
-
 .deleteIconAbove{
 	position: absolute;
     top: 0px;
@@ -2426,7 +2428,6 @@ textarea.form-control {
     .squarebox {
         width: 180px;
         height: 180px;
-        float: center;
         margin-right: -7px;
         text-align: center;
         margin: 0 auto;
@@ -2473,7 +2474,6 @@ textarea.form-control {
     .squarebox {
         width: 180px;
         height: 180px;
-        float: center;
         margin-right: -7px;
         text-align: center;
         margin: 0 auto;
@@ -2819,7 +2819,6 @@ textarea.form-control {
     .squarebox {
         width: 180px;
         height: 180px;
-        float: center;
         text-align: center;
     }
     .navbar-nav li span {
@@ -2830,7 +2829,7 @@ textarea.form-control {
 	/*************ManageTeamButtons************/
     .team-footer ,.button-team-footer {
 	    margin-left: 0px !important;
-	    margin-right: 0px 0px !important;
+	    margin-right: 0px !important;
 	    margin-top: 10px !important;
 	}
     .inviteteammember {
@@ -2878,7 +2877,7 @@ textarea.form-control {
         margin-top: -4%;
     }
     .nav > li > a{
-        padding:7px, 10px !important;
+        padding:7px 10px !important;
     }
     .validatebutton {
         float: right;
@@ -3670,7 +3669,7 @@ textarea.form-control {
         background-color:#FF7F50;
   		border-color: #FF7F50;
   		width: 109.38px;
-        height: 28.2px
+        height: 28.2px;
   		padding:0px;
 	}
 
@@ -3890,7 +3889,7 @@ textarea.form-control {
         background-color:#FF7F50;
         border-color: #FF7F50;
         width: 92% !important;
-        height: 28.2px
+        height: 28.2px;
         padding:0px;
     }
     .imageCarousellabel {
@@ -4125,7 +4124,7 @@ textarea.form-control {
                 background-color:#FF7F50;
                 border-color: #FF7F50;
                 width: 92% !important;
-                height: 28.2px
+                height: 28.2px;
                 padding:0px;
 	}
 	.fbButton{
@@ -4153,6 +4152,27 @@ textarea.form-control {
 	top: 93px;
 	width: 119px;
     }
+    div.footer-newsletter{
+	display: flex;
+    	justify-content: center;
+    }
+    .socialicon{
+    	display: flex;
+    	justify-content: center;
+    }
+    div.crowdera-title a img{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+    }
+   .footer-text-align .footer-first-section-mobile.footer-img-align img{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+   }
+   div.text-primary{
+	text-align:center;
+   }
     #aboutus .caption {
         font-size: 9px;
         width: 100%;
@@ -4371,7 +4391,7 @@ textarea.form-control {
         padding: 5px;
     }
     .crew-content {
-        widh:100% !important;
+        width:100% !important;
     }
     .crew-content h1 {
 	    font-size: 35px !important;
@@ -4393,10 +4413,6 @@ textarea.form-control {
     .squarebox img {
         width:100% ;
     }
-    
-	.timeline:before {
-	    background-color: none !important;
-	}
 	ul.timeline > li > .timeline-badge {
 	    display:none !important
 	}
@@ -4774,8 +4790,7 @@ a.footerlink {
 }
 .social img {
 	padding: 0; 
-	width: 30px; 
-	bottom-margin: 4px; 
+	width: 30px;
 	margin: 2px;
 }
 .shared span{
@@ -4786,7 +4801,7 @@ a.footerlink {
 	clear: both;
 }
 .center-fund{
-	align: center;
+	align-content: center;
 }
 .paypal-secured-image img{
 	width: 245px; 
@@ -4861,7 +4876,7 @@ a.footerlink {
 }
 .docfile-orglogo-css{
 	color: red;
-	dispaly: none;
+	display:block;
 }
 .orgicon-css-styles img{
 	margin: 2px; 
@@ -4872,7 +4887,7 @@ a.footerlink {
 	margin-left:-43px;
 }
 .perk-create-styls{
-	right-padding: 0px
+	padding-right: 0px
 }
 .perks-css-create{
 	padding: 3px 6px;
@@ -5036,7 +5051,7 @@ a.footerlink {
 	margin-top: 0;
 }
 .user-icon-edit{
-	right-padding: 0px;
+	padding-right: 0px;
 	align: right;
 }
 .user-dashboard-style{

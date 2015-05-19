@@ -5,10 +5,10 @@
  	<ol class="carousel-indicators manage-carousel" id="updateindicators">
     	<g:each in="${images}" var="img" status="count">
         	<g:if test="${count == 0}">
-        		<li data-target="#carousel-example-generic" data-slide-to="${ count }" class="active"></li>
+        		<li data-target="#carousel-examplee-generic" data-slide-to="${ count }" class="active"></li>
         	</g:if>
         	<g:else>
-        		<li data-target="#carousel-example-generic" data-slide-to="${ count }"></li>
+        		<li data-target="#carousel-examplee-generic" data-slide-to="${ count }"></li>
         	</g:else>
         </g:each>
     </ol>

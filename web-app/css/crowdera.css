@@ -535,20 +535,20 @@ a {
     .socialicon{
     	display: flex;
     	justify-content: center;
-	}
-	div.crowdera-title a img{
-		display:block;
-   		margin-left:auto;
-   		margin-right:auto;
-	}
-	.footer-text-align .footer-first-section-mobile.footer-img-align img{
-   		display:block;
-   		margin-left:auto;
-   		margin-right:auto;
+    }
+    div.crowdera-title a img{
+  	display:block;
+   	margin-left:auto;
+   	margin-right:auto;
+    }
+    .footer-text-align .footer-first-section-mobile.footer-img-align img{
+   	display:block;
+   	margin-left:auto;
+   	margin-right:auto;
     }
     div.text-primary{
-  	    text-align:center;
-   }
+        text-align:center;
+    }
     div#aboutus {
         padding-left: 20%;
     }
@@ -4139,25 +4139,25 @@ textarea.form-control {
 	width: 119px;
     }
     div.footer-newsletter{
-		display: flex;
+	display: flex;
     	justify-content: center;
-	}
-	.socialicon{
+    }
+    .socialicon{
     	display: flex;
     	justify-content: center;
-	}
+    }
     div.crowdera-title a img{
-		display:block;
-   		margin-left:auto;
-   		margin-right:auto;
-	}
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+    }
    .footer-text-align .footer-first-section-mobile.footer-img-align img{
-   		display:block;
-   		margin-left:auto;
-   		margin-right:auto;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
    }
    div.text-primary{
-   		text-align:center;
+	text-align:center;
    }
     #aboutus .caption {
         font-size: 9px;

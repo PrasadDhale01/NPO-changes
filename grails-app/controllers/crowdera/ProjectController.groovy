@@ -263,7 +263,7 @@ class ProjectController {
 		} else {
 			flash.sentmessage = "Something went wrong saving comment. Please try again later."
 		}
-        redirect (action: 'show', id: params.id, fragment: 'comments')
+        redirect (action: 'show', id: params.id, fragment: 'comments', params:['fr':params.fr])
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])

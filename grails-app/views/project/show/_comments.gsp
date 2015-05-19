@@ -39,7 +39,7 @@
             </g:form>
         </g:if>
         <g:else>
-            <g:form controller="project" action="savecomment" role="form" id="${project.id}" params="fragment: 'comments'">
+            <g:form controller="project" action="savecomment" role="form" id="${project.id}" params="['fr':fundRaiser]">
                 <div class="form-group">
                     <textarea class="form-control" name="comment" rows="4" required></textarea>
                 </div>

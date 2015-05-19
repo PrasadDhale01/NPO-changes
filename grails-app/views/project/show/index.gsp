@@ -102,7 +102,7 @@
                     </g:else>
                     <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                     <g:if test="${project.rewards.size()>1}">
-                    	<g:render template="show/rewards"/>
+                    	<g:render template="show/rewards" model="['username':username]"/>
                     </g:if>
                 </div>
                 <div class="col-md-8">

@@ -5,25 +5,8 @@ import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.apache.poi.ss.usermodel.Workbook
 import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
-import org.grails.plugins.excelimport.ExcelImportService
 
-import org.springframework.web.multipart.MultipartFile;
-import org.jets3t.service.impl.rest.httpclient.RestS3Service
-import org.jets3t.service.model.S3Bucket
-import org.jets3t.service.model.S3Object
-import org.jets3t.service.security.AWSCredentials
 import java.text.SimpleDateFormat
-
-import crowdera.Beneficiary;
-import crowdera.ImageUrl;
-import crowdera.Project;
-import crowdera.ProjectComment;
-import crowdera.ProjectUpdate;
-import crowdera.Reward;
-import crowdera.RewardShipping;
-import crowdera.Team;
-import crowdera.TeamComment;
-import crowdera.User;
 
 class ProjectController {
     def userService
@@ -259,15 +242,10 @@ class ProjectController {
         if(project.draft) {
             project.draft = false
             flash.prj_mngprj_message="Campaign has been submitted for approval."
-            
-            render (view: 'manageproject/index',
-                    model: [project: project,
-                            FORMCONSTANTS: FORMCONSTANTS])
+            redirect(controller: 'project', action: 'manageproject', id: project.id)
         } else {
             flash.prj_mngprj_message="This Campaign has already been submitted for approval, and under review."
-            render (view: 'manageproject/index',
-                    model: [project: project,
-                            FORMCONSTANTS: FORMCONSTANTS])
+            redirect(controller: 'project', action: 'manageproject', id: project.id)
         }
     }
     
@@ -280,7 +258,6 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def savecomment() {
-		Project project
 		if (params.id) {
 			projectService.getCommentsDetails(params)
 		} else {
@@ -351,7 +328,6 @@ class ProjectController {
     def update() {
         def project = projectService.getProjectById(params.projectId)
         User user = userService.getCurrentUser()
-        def fundRaiser = user.username
         if(project) {
             
             projectService.getProjectUpdateDetails(params, request, project)          
@@ -673,8 +649,6 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def customrewardsave() {
         def reward = rewardService.getRewardByParams(params)
-		int price = Double.parseDouble(params.price)
-		int amount = Double.parseDouble(params.amount)
         RewardShipping shippingInfo = new RewardShipping(params)
 		
         if(reward.save()) {
@@ -734,7 +708,7 @@ class ProjectController {
     def saveEditUpdate() {
         def project = projectService.getProjectById(params.projectId)
         def imageFiles = request.getFiles('thumbnail[]')
-        boolean isUpdateEdited = projectService.editCampaignUpdates(params, project, request, imageFiles)
+        projectService.editCampaignUpdates(params, project, imageFiles)
         
         flash.saveEditUpdateSuccessMsg = "Campaign Update Edited Successfully!"
         redirect(controller: 'project', action: 'manageproject', id: project.id, fragment: 'projectupdates')
@@ -895,9 +869,7 @@ class ProjectController {
             flash.prj_mngprj_message = 'Successfully deleted a Perk'
 			redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)            
         }else{
-             render (view: 'manageproject/index', fragment: 'rewards',
-                model: [project: project,
-                        FORMCONSTANTS: FORMCONSTANTS])
+             redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)
         }
     }
     

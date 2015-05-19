@@ -1,7 +1,5 @@
 package crowdera
 
-import crowdera.Contribution;
-import crowdera.Reward;
 import grails.plugin.springsecurity.annotation.Secured
 
 @Secured(['ROLE_ADMIN'])

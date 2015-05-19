@@ -12,7 +12,7 @@
     def projectId = project.id
 %>
 <g:if test="${project.validated}">
-<div class="col-md-10 col-md-offset-1 col-sm-12 col-xs-12">
+<div class="<g:if test="${project.contributions.empty || !project.validated}">col-md-12</g:if> <g:else>col-md-10 col-md-offset-1</g:else> col-sm-12 col-xs-12">
     <g:if test="${project.contributions.empty}">
         <div class="alert alert-info">No contributions yet.</div>
     </g:if>
@@ -74,7 +74,7 @@
 	    <div class="commentsoncampaign">
     		<g:each in="${project.contributions.reverse()}" var="contribution">
 		        <%
-		            def date = dateFormat.format(contribution.date)
+		            def date = dateFormat.format(contribution.dateAndTime)
 		            def friendlyName = userService.getFriendlyName(contribution.user)
 		            def isFacebookUser = userService.isFacebookUser(contribution.user)
 		            def userFacebookUrl = facebookService.getUserFacebookUrl(contribution.user)
@@ -295,7 +295,7 @@
 
                                 <g:each in="${project.contributions.reverse()}" var="contributions">
                                     <%
-                                        def date = contributions.date.format('YYYY-MM-DD HH:mm:ss')
+                                        def date = contributions.dateAndTime.format('YYYY-MM-DD HH:mm:ss')
                                         def friendlyName = userService.getFriendlyName(contributions.user)
                                         def isFacebookUser = userService.isFacebookUser(contributions.user)
                                         def userFacebookUrl = facebookService.getUserFacebookUrl(contributions.user)

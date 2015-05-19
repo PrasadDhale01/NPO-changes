@@ -5,7 +5,6 @@ import groovy.json.JsonSlurper
 import groovyx.net.http.ContentType
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.Method
-import java.text.SimpleDateFormat
 
 import org.apache.http.HttpEntity
 import org.apache.http.HttpResponse
@@ -14,15 +13,6 @@ import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
-
-import crowdera.Beneficiary;
-import crowdera.Contribution;
-import crowdera.PaykeyTemp;
-import crowdera.Project;
-import crowdera.Reward;
-import crowdera.Team;
-import crowdera.Transaction;
-import crowdera.User;
 
 class FundController {
     def contributionService
@@ -88,7 +78,6 @@ class FundController {
 		
         def fundRaiserUserName = params.fr
 	    User fundraiser = userService.getUserByUsername(params.fr)
-        def isCoAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
         def team = userService.getTeamByUser(fundraiser, project)
 
         def totalContribution= contributionService.getTotalContributionForProject(project)
@@ -380,11 +369,11 @@ class FundController {
             }
         }
         if(!str.equals("")){
-            paypalSecondCall(project, str ,reward, timestamp)
+            paypalSecondCall(str ,timestamp)
         }
     }
 
-    def paypalSecondCall(Project project,String str,Reward reward,String timestamp){
+    def paypalSecondCall(String str,String timestamp){
         //After fetching response paykey will be fetched by this method
         def json = new JsonSlurper().parseText(str)
 
@@ -411,7 +400,6 @@ class FundController {
         User user = userService.getUserById(params.userId)
         def fundRaiserUserName = params.fr
         User fundraiser = userService.getUserById(params.fr)
-        def amount = params.double(('amount'))
         def address = projectService.getAddress(params)
         
         if (project && reward && fundraiser) {

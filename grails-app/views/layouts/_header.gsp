@@ -35,7 +35,7 @@
                         </a>
                     </li>
                     <li><g:link controller="login" action="auth">Login</g:link></li>
-                    <li><g:link controller="login" action="register">Register</g:link></li>
+                    <li><g:link controller="login" action="register">Sign up</g:link></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img">

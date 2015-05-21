@@ -119,11 +119,11 @@ class ProjectService {
             }
             def fundRaiserName = contributionService.getFundRaiserName(it, project)
             if(project.rewards.size()>1){
-                def rows = [it.project.title, fundRaiserName, it.dateAndTime.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.reward.title, shippingDetails, it.amount, payMode]
+                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.reward.title, shippingDetails, it.amount, payMode]
                 results << rows
                 shippingDetails=""
             } else {
-                def rows = [it.project.title, fundRaiserName, it.dateAndTime.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
+                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
                 results << rows
                 shippingDetails=""
             }
@@ -279,7 +279,7 @@ class ProjectService {
 		 }
 		 
 		 Contribution contribution = new Contribution(
-				 dateAndTime: new Date(),
+				 date: new Date(),
 				 user: users,
 				 reward: reward,
 				 amount: amount,
@@ -357,7 +357,7 @@ class ProjectService {
 			} else {
 				userIdentity = "Non Anonymous"
 			}
-			def rows = [it.transactionId, dateFormat.format(it.contribution.dateAndTime), timeFormat.format(it.contribution.dateAndTime), it.project.title, it.contribution.contributorName, userIdentity, it.project.amount, getContributedAmount(it)]
+			def rows = [it.transactionId, dateFormat.format(it.contribution.date), timeFormat.format(it.contribution.date), it.project.title, it.contribution.contributorName, userIdentity, it.project.amount, getContributedAmount(it)]
 			results << rows
 		 }
 			
@@ -383,7 +383,7 @@ class ProjectService {
 		 def contributorName = params.contributorName1
 		 if (amount && contributorName) {
 			 Contribution contribution = new Contribution(
-				 dateAndTime: new Date(),
+				 date: new Date(),
 				 user: user,
 				 reward: reward,
 				 amount: amount,

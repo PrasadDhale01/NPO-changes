@@ -1,5 +1,11 @@
 package crowdera
 
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@ToString(includeNames = true, includeFields = true, excludes = 'joiningDate')
+@EqualsAndHashCode
+
 class Team {
 
     static hasMany = [contributions: Contribution, comments: TeamComment, imageUrl: ImageUrl]

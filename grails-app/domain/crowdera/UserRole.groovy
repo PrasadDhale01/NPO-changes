@@ -1,5 +1,9 @@
 package crowdera
 
+import groovy.transform.ToString
+
+@ToString(includeNames = true, includeFields = true)
+
 import org.apache.commons.lang.builder.HashCodeBuilder
 
 class UserRole implements Serializable {

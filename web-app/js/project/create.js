@@ -33,9 +33,6 @@ $(function() {
     /* Validate form on submit. */
     var validator = $('form').validate({
         rules: {
-            charitableId: {
-                required: true
-            },
             firstName: {
                 minlength: 2,
                 required: true
@@ -79,6 +76,11 @@ $(function() {
                 maxlength: 6,
                 max: 500000
             },
+            description : {
+            	required: true,
+                minlength: 10,
+                maxlength: 140
+        	},
             days: {
                 required: true
             },
@@ -87,40 +89,13 @@ $(function() {
                 minlength: 5,
                 maxlength: 100
             },
-            description: {
-                required: true,
-                minlength: 10,
-                maxlength: 140
-            },
             story: {
                 required: true,
                 minlength: 10,
                 maxlength: 5000
             },
-            thumbnail: {
-                required: true
-            },
             videoUrl: {
                 isYoutubeVideo: true
-            },
-            answer: {
-            	required: true
-            },
-             wel:{
-                required: true
-            },
-             organizationName: {
-                required: true
-            },
-            webAddress: {
-            	isWebUrl: true,
-            	required: true
-            },
-            textfile: {
-                required: true
-            },
-            iconfile: {
-                required: true
             },
             email1: {
                 email: true,
@@ -137,13 +112,6 @@ $(function() {
                 iscampaigncreator: true,
                 isequaltofirstadmin: true,
                 isequaltosecondadmin: true
-            },
-            paypalEmail:{
-            	required: true,
-            	email:true
-            },
-            pay:{
-            	required: true
             },
             checkBox:{
               required: true
@@ -184,12 +152,45 @@ $(function() {
         	needToConfirm = false;
         } 	
     });
+    
+    $('#submitProject').on('click', function() {
+    	$('[name="pay"], [name="iconfile"],[name="organizationName"],[name="thumbnail"],[name="answer"],[name="wel"],[name="charitableId"]').each(function () {
+            $(this).rules('add', {
+                required: true
+            });
+        });
+    	$("[name='webAddress']").rules("add", {
+    		isWebUrl: true,
+    		required: true
+    	});
+    	$('[name="paypalEmail"]').rules("add", {
+    		required: true,
+        	email:true
+    	});
+        $( "#projectImageFile" ).rules( "add", {
+            required: true,
+            messages: {
+                required: "Please upload at least one campaign image"
+            }
+        });
+    	
+    	if (validator.form()) {
+    		$('#isSubmitButton').attr('value',false);
+    		$('#campaigncreate').find('form').submit();
+    	}
+    });
 
-    $( "#projectImageFile" ).rules( "add", {
-      required: true,
-      messages: {
-        required: "Please upload at least one campaign image"
-      }
+    $('#saveasdraft').on('click', function(){  // capture the click
+    	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"]').each(function () {
+            $(this).rules('remove');
+        });
+    	
+    	$( "#projectImageFile" ).rules("remove");
+    	
+    	if (validator.form()) {
+    		$('#isSubmitButton').attr('value',true);
+    		$('#campaigncreate').find('form').submit();
+    	}
     });
 
      $.validator.addMethod('isYoutubeVideo', function (value, element) {

@@ -9,6 +9,9 @@ $(function() {
     $('#campaignfilesize').hide();
     $('#updatefilesize').hide();
     
+    $('#paypalemail').hide();
+    $('#charitableId').hide();
+    
     $('#editUpdateimg').hide();
     $('#campaignUpdatefilesize').hide();
     
@@ -152,6 +155,22 @@ $(function() {
             }
         }
     });
+    
+    $("input[name='pay']").change(function(){
+  	    if($(this).val()=="paypal") {
+  	        $('#organizationName').find('input').val('');
+  	       	$("#paypalemail").show();
+  	        $("#charitableId").hide();
+  	        $('#charitable').find('input').val('');
+  	        $("#paypalcheckbox").show();
+  	     } else if($(this).val()=="firstgiving") {
+   	         $('#organizationName').find('input').val('');
+  	       	 $("#charitableId").show(); 
+  	         $("#paypalemail").hide();
+  	         $("#paypalcheckbox").hide();
+   	         $('#paypalemail').find('input').val('');
+  	      }
+  	 });
 
     $('#videoUrl').focus(function(){
        var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;

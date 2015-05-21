@@ -510,9 +510,9 @@ class ProjectController {
                 beneficiary = userService.getBeneficiaryByParams(params)
                 def amount=project.amount
                 def boolPerk=false
-        
-                def button = params.button
-                if(button == 'draft'){
+                
+                def button = params.isSubmitButton
+                if(button == 'true'){
                     project.draft = true
                 }
 
@@ -576,7 +576,6 @@ class ProjectController {
                 projectService.getNumberofDays(days, project)
 
                 project.beneficiary = beneficiary
-        
                 if (project.save()) {
                     projectService.getFundRaisersForTeam(project, user)
                     projectService.getdefaultAdmin(project, user)

@@ -8,7 +8,7 @@
     <div class="container">
 
         <g:form class="form-signin" controller="login" action="create" role="form">
-            <h2 class="form-signin-heading register register-logo">Please register</h2>
+            <h2 class="form-signin-heading register register-logo">Please sign up</h2>
             <%--
             <facebookAuth:connect/>
             --%>
@@ -34,7 +34,7 @@
             <div class="form-group">
                 <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password">
             </div>
-            <button class="btn btn-primary btn-block" type="submit">Register</button>
+            <button class="btn btn-primary btn-block" type="submit">Sign me up!</button>
         </g:form>
 
     </div>

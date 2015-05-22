@@ -1,5 +1,11 @@
 package crowdera
 
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@ToString(includeNames = true, includeFields = true, excludes = 'dateCreated')
+@EqualsAndHashCode
+
 class Community {
 
     def userService

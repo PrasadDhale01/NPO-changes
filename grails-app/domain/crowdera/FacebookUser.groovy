@@ -1,5 +1,11 @@
 package crowdera
 
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@ToString(includeNames = true, includeFields = true, excludes = 'accessTokenExpires')
+@EqualsAndHashCode
+
 class FacebookUser {
     long uid
     String accessToken

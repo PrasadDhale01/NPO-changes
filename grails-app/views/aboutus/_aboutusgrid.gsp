@@ -8,15 +8,16 @@
   </div>
 </div>
 <div class="container crewpage">
-    <h1 class="text-center">The Crew</h1>
+    <br>
     <g:if test="${flash.joinusmessage}">
         <div class="alert alert-success" align="center">
 		    ${flash.joinusmessage}
 	    </div>
 	</g:if>
+    <h1 class="text-center">The Crew</h1>
 	   <div id="aboutus" class="row tabs">
         <div class="row left-pad" id="hover-cap-4col">
-            <div class="col-xs-push-3 col-sm-3 col-md-push-2 col-sm-push-2">
+            <div class="col-xs-push-3 col-sm-3 col-md-push-2 col-sm-push-2 left-pad">
                 <div class="thumbnail">
                     <div class="the-crews">
                         <img src="//s3.amazonaws.com/crowdera/assets/chet.jpg" alt="chet jain">
@@ -46,7 +47,7 @@
                 </div>
             </div>
             
-            <div class="col-xs-6 col-sm-3 col-md-push-2 col-sm-push-2">
+            <div class="col-xs-6 col-sm-3 col-md-push-2 col-sm-push-2 left-pads">
                 <div class="thumbnail">
                  <div class="the-crews">
                         <img src="//s3.amazonaws.com/crowdera/assets/rich.jpg" alt="Rich Matsuura">
@@ -279,29 +280,34 @@
 	                           <hr>
 	                           <div class="form-group">
 	                                <label for="firstName">First Name</label>
-	                                <input type="text" class="form-control" name="firstName" placeholder="First Name"/>
+	                                <input type="text" class="form-control" name="firstName"/>
 	                           </div>
 	                           <div class="form-group">
 	                                <label for="lastName">Last Name</label>
-	                                <input type="text" class="form-control" name="lastName" placeholder="Last Name"/>
+	                                <input type="text" class="form-control" name="lastName"/>
 	                           </div>
 	                           <div class="form-group">
 	                                <label for="email">Email</label>
-	                                <input type="text" class="form-control" name="email" placeholder="Email"/>
+	                                <input type="text" class="form-control" name="email"/>
 	                           </div>
 	                           <div class="form-group">
-	                               <label>Upload Resume</label>
+	                                <label for="email">Phone</label>
+	                                <input type="text" class="form-control" name="phone"/>
+	                           </div>
+	                           <div class="form-group">
+	                               <label>Resume</label>
 	                               <div class="clear"></div>
-	                               <div class="col-xs-12 col-sm-4 col-md-4">
+	                               <div class="col-xs-4 col-sm-4 col-md-4 upload-btn">
 	                                   <div class="fileUpload btn btn-primary btn-sm">
-	                                       <span>Resume</span>
-	                                       <input type="file" class="upload " id="resumefile" name="resume"/>
-	                                   </div>  
+	                                       <span>Upload</span>
+	                                       <input type="file" class="upload " id="resumefile" name="resume" accept="application/msword,application/pdf,.txt,.docx"/>
+	                                   </div>
 	                               </div>
-	                               <label class="" id="resumefilesize"></label>
-	                               <div class="col-xs-12 col-sm-8 col-md-8">
-	                                   <output id="result"></output>
+	                               <div class="col-xs-8 col-sm-8 col-md-8">
+	                                   <div id="result"></div>
 	                               </div>
+	                               <div class="clear"></div>
+	                               <label class="docfile-orglogo-css" id="resumefilesize"></label> 
 	                           </div>
 	                           <div class="clear"></div>
 	                           <div class="form-group">

@@ -157,16 +157,3 @@ p {
 .perkSupporter {
 	color: #505050;
 }
-
-.editCharitableId .findorganization {
-    position: relative !important;
-    min-height: 1px !important;
-    padding-left: 0px !important;
-    padding-right: 5px !important;
-}
-.charitableIdlabel {
-	padding-right: 30px !important;
-}
-.editPayPalId {
-	padding-right: 30px !important;
-}

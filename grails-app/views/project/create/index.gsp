@@ -171,8 +171,6 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 							</div>
 						</div>
 
-				
-					
 						<br><h3 class="panel-title">Campaign Co-Creators</h3><hr/>
 						<div class="row-fluid">
 						<div class="col-sm-4 divFirstAdmin lowRes highRes">

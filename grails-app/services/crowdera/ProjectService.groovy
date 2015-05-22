@@ -76,6 +76,12 @@ class ProjectService {
         project.webAddress = params.webAddress
         project.videoUrl = params.videoUrl
         
+        if (project.draft) {
+            project.paypalEmail = params.paypalEmail
+            project.charitableId = params.charitableId
+            project.organizationName = params.organizationName
+        }
+        
 		def days = params.days
         getUpdatedNumberofDays(days, project)
     }

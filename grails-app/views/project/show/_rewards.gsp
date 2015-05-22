@@ -23,7 +23,7 @@
                 def isTwitterHandled = rewardService.isTwitterHandled(reward)
             %>
             <g:if test="${isFundingOpen}">
-                <g:link controller="fund" action="fund" id="${project.id}" params="['fr': username, 'rewardId': rewardId]">
+                <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'rewardId': rewardId, 'projectTitle': vanityTitle]">
                     <div class="rewardsection-row">
                         <div class="rewardBottomBorder">
                             <g:if test="${reward.id==1 }">

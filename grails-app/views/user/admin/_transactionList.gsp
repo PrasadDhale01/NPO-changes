@@ -4,8 +4,8 @@
 <%  
     SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM, YYYY");
     SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
-    def date = dateFormat.format(transaction.contribution.dateAndTime); 
-    def time = timeFormat.format(transaction.contribution.dateAndTime);
+    def date = dateFormat.format(transaction.contribution.date); 
+    def time = timeFormat.format(transaction.contribution.date);
  %>
 <html>
 <body>

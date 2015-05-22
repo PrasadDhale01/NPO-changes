@@ -1,12 +1,18 @@
 package crowdera
 
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@ToString(includeNames = true, includeFields = true, excludes = 'date')
+@EqualsAndHashCode
+
 class Contribution {
 
     double amount
 
     static belongsTo = [user: User, project: Project, reward: Reward, credit: Credit]
 
-    Date dateAndTime
+    Date date
     String email
     String twitterHandle
     String custom

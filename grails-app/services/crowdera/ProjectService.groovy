@@ -54,7 +54,9 @@ class ProjectService {
          return project
     }
 
-    def getProjectUpdateDetails(def params, def request, def project){
+    def getProjectUpdateDetails(def params, def request, def project, def user){
+		def vanitytitle
+		def title = project.title
         def iconFile = request.getFile('iconfile')
         if(!iconFile.isEmpty()) {
           def uploadedFileUrl = getorganizationIconUrl(iconFile)
@@ -65,7 +67,7 @@ class ProjectService {
 
         def imageFiles = request.getFiles('thumbnail[]')
         if(!imageFiles.isEmpty()) {
-            getMultipleImageUrls(imageFiles,   project)
+            getMultipleImageUrls(imageFiles,project)
         }
 
         project.description = params.description
@@ -78,6 +80,27 @@ class ProjectService {
         
 		def days = params.days
         getUpdatedNumberofDays(days, project)
+		
+        String email1 = params.email1
+        String email2 = params.email2
+        String email3 = params.email3
+
+        updateAdminsAndSendUpdateEmail(email1, email2, email3, project, user)
+		
+        def result = false
+        if (params.title != title) {
+            def vanityObject = VanityTitle.findAllWhere(project:project)
+            if (vanityObject){
+                vanityObject.each{
+                    if (params.title == it.vanityTitle){
+                        result = true
+                    }
+                }
+            }
+            if (!result){
+                vanitytitle = getProjectVanityTitle(project)
+            }
+        }
     }
 
     def getCSVDetails(def params, def response){
@@ -119,11 +142,11 @@ class ProjectService {
             }
             def fundRaiserName = contributionService.getFundRaiserName(it, project)
             if(project.rewards.size()>1){
-                def rows = [it.project.title, fundRaiserName, it.dateAndTime.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.reward.title, shippingDetails, it.amount, payMode]
+                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.reward.title, shippingDetails, it.amount, payMode]
                 results << rows
                 shippingDetails=""
             } else {
-                def rows = [it.project.title, fundRaiserName, it.dateAndTime.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
+                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
                 results << rows
                 shippingDetails=""
             }
@@ -279,7 +302,7 @@ class ProjectService {
 		 }
 		 
 		 Contribution contribution = new Contribution(
-				 dateAndTime: new Date(),
+				 date: new Date(),
 				 user: users,
 				 reward: reward,
 				 amount: amount,
@@ -357,7 +380,7 @@ class ProjectService {
 			} else {
 				userIdentity = "Non Anonymous"
 			}
-			def rows = [it.transactionId, dateFormat.format(it.contribution.dateAndTime), timeFormat.format(it.contribution.dateAndTime), it.project.title, it.contribution.contributorName, userIdentity, it.project.amount, getContributedAmount(it)]
+			def rows = [it.transactionId, dateFormat.format(it.contribution.date), timeFormat.format(it.contribution.date), it.project.title, it.contribution.contributorName, userIdentity, it.project.amount, getContributedAmount(it)]
 			results << rows
 		 }
 			
@@ -383,7 +406,7 @@ class ProjectService {
 		 def contributorName = params.contributorName1
 		 if (amount && contributorName) {
 			 Contribution contribution = new Contribution(
-				 dateAndTime: new Date(),
+				 date: new Date(),
 				 user: user,
 				 reward: reward,
 				 amount: amount,
@@ -1889,6 +1912,74 @@ class ProjectService {
                 }
             }
         }
+    }
+	
+    def getProjectVanityTitle(Project project) {
+        def projectTitle = project.title.trim()
+        def title = projectTitle.replaceAll("[^a-zA-Z0-9]", "-")
+        def list = VanityTitle.list()
+        List result = []
+        def vanitytitle
+		def status = false
+		List same = []
+        list.each{
+            if (it.title == title) {
+                result.add(it)
+            }
+        }
+		
+        if (result.isEmpty())
+		    vanitytitle = title
+        else
+		    vanitytitle = title+"-"+result.size()
+
+        VanityTitle vanity = new VanityTitle(
+            project:project,
+            projectTitle:title,
+            vanityTitle:vanitytitle,
+			title:title
+        ).save(failOnError: true)
+
+        return vanitytitle
+    }
+
+    def getVanityTitleFromId(def projectId){
+        def project = Project.get(projectId)
+        def status = false
+        def title = project.title.trim()
+        def vanity_title = title.replaceAll("[^a-zA-Z0-9]", "-")
+        def vanity = VanityTitle.findAllWhere(project:project)
+        vanity.each{
+            if (it.title == vanity_title){
+                status = true
+				vanity_title = it.vanityTitle
+            }
+        }
+
+        if (!status)
+        getProjectVanityTitle(project)
+
+        return vanity_title
+    }
+
+    def getProjectIdFromVanityTitle(def title){
+        def projectId
+        def vanitytitle = VanityTitle.findByVanityTitle(title)
+        if (vanitytitle)
+            projectId = vanitytitle.project.id
+
+        return projectId
+    }
+
+    def getProjectFromVanityTitle(def title){
+        def projectId
+        def vanitytitle = VanityTitle.findByVanityTitle(title)
+        if (vanitytitle)
+            projectId = vanitytitle.project.id
+
+        def project = Project.get(projectId)
+        println"project"+" "+project
+        return project
     }
 
     @Transactional

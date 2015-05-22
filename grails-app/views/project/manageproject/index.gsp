@@ -81,10 +81,10 @@
 					
                     <div class="col-md-12 green-heading campaignTitle text-center">
 					    <g:if test="${!project.validated}">
-					        <h1 class="green-heading"><g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
+					        <h1 class="green-heading"><g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
 					    </g:if>
 					    <g:else>
-					        <h1 class="green-heading"><g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
+					        <h1 class="green-heading"><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
 					    </g:else>
 					</div>
 					<g:if test="${fundRaiser}">

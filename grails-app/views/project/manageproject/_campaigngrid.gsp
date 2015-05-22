@@ -9,7 +9,7 @@
 <g:if test="${manageProject}">
     <div class="col-md-6 col-sm-6 col-xs-6">
 	    <span>
-	        <g:form controller="project" action="editUpdate" method="post"  id="${projectUpdate.id}" params="['projectId': projectId]">
+	        <g:form controller="project" action="editCampaignUpdate" method="post"  id="${projectUpdate.id}" params="['projectId': projectId]">
                 <button class="projectedit close"  aria-label="Edit project" id="editproject">
                     <i class="glyphicon glyphicon-edit" ></i>
                 </button>

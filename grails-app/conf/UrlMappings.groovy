@@ -37,24 +37,27 @@ class UrlMappings {
 
         /* Project */
         "/campaigns/create"(controller:'project', action:'create')
-        "/campaign/saveRedirect/$id"(controller:'project', action:'saveRedirect')
-        "/campaign/managecampaign"(controller:'project', action:'manageproject')
-        "/campaign/edit"(controller:'project', action:'edit')
+        "/campaign/save/$projectTitle"(controller:'project', action:'saveProject')
+        "/campaign/draft/$projectTitle"(controller:'project', action:'draftProject')
+        "/campaign/managecampaign"(controller:'project', action:'manageCampaign')
+        "/campaign/managecampaign/$projectTitle"(controller:'project', action:'manageproject')
+        "/campaign/edit/$projectTitle"(controller:'project', action:'edit')
         "/campaigns/addFundRaiser/$id"(controller:'project', action:'addFundRaiser')
-        "/campaign/campaignupdate"(controller:'project', action:'projectupdate')
+        "/campaign/campaignupdate/$projectTitle"(controller:'project', action:'projectupdate')
         "/campaign/updatesaverender"(controller:'project', action:'updatesaverender')
         "/campaigns"(controller:'project', action:'list')
         "/campaigns-widget"(controller:'project', action:'listwidget')
-        "/campaigns/$id"(controller:'project', action:'show')
+        "/campaigns/$id"(controller:'project', action:'showCampaign')
+        "/campaigns/$projectTitle/$fr"(controller:'project', action:'show')
         "/campaigns/$id/thumbnail"(controller:'project', action:'thumbnail')
         "/campaigns/$id/fund"(controller:'fund', action:'fund')
         "/campaign/query"(controller:'project' , action:'search')
         "/campaign"(controller:'project' , action:'categoryFilter')
         "/campaign/validateList"(controller:'project', action:'validateList')
-        "/campaign/validateshow"(controller:'project', action:'validateshow')
+        "/campaign/validateshow/$projectTitle/$fr"(controller:'project', action:'validateshow')
         "/campaign/sendemail"(controller:'project', action:'sendemail')
         "/campaign/sortby"(controller:'project', action:'sortCampaign')
-        "/campaign/$projectId/update/edit/$id"(controller:'project', action:'editUpdate')
+        "/campaign/$projectTitle/update/edit/$id"(controller:'project', action:'editUpdate')
 
         /* Admin */
         "/admin/dashboard"(controller:'user', action:'admindashboard')
@@ -66,14 +69,14 @@ class UrlMappings {
         /* Facebook login */
         "/facebookauthfailure"(controller:'login', action:'facebook_user_denied')
         
-        /*Paypal*/
-        "/fund/paypalReturn"(controller: 'fund', action: 'paypalReturn')
+        /*fund*/
+        "/fund"(controller: 'fund', action: 'paypalReturn')
+        "/campaign/$projectTitle/fund/$fr"(controller:'fund', action: 'fund')
+        "/funds/$projectTitle/acknowledge/$fr/$id"(controller: 'fund', action: 'editContributionComment')
+        "/fund/$projectTitle/acknowledge/$fr/$cb"(controller: 'fund', action:'acknowledge')
 		
-	/*User*/
-	"/user/mycampaigns"(controller:'user', action:'myproject')
-       "/users/dashboard"(controller:'user', action:'accountSetting')
-       
-    /*contributionComments*/
-    "/funds/acknowledge"(controller: 'fund', action: 'editContributionComment')
+        /*User*/
+        "/user/mycampaigns"(controller:'user', action:'myproject')
+        "/users/dashboard"(controller:'user', action:'accountSetting')
     }
 }

@@ -58,7 +58,7 @@
         </g:if>
         
         <g:if test="${!ismanagepage || !isAdminOrBeneficiary}">
-            <g:link controller="project" action="show" id="${project.id}" params="['fr': username]">
+            <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]">
                 <g:if test="${userImageUrl != null}">
                     <img alt="${userName}" class="project-img" src="${userImageUrl}">
                 </g:if>
@@ -88,7 +88,7 @@
             </g:link>
         </g:if>
 	    <g:else>
-            <g:link controller="project" action="manageproject" id="${project.id}">
+            <g:link controller="project" action="manageCampaign" id="${project.id}">
                 <g:if test="${userImageUrl != null}">
                     <img alt="${userName}" class="project-img" src="${userImageUrl}">
                 </g:if>

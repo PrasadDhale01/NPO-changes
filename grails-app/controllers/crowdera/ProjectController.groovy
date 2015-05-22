@@ -78,11 +78,26 @@ class ProjectController {
             redirect(action: "list")
         }
      }
+	
+     def showCampaign() {
+         def title = projectService.getVanityTitleFromId(params.id)
+         def name = userService.getVanityNameFromUsername(params.fr, params.id)
+         redirect (action:'show', params:['projectTitle':title,'fr':name])
+    }
 
     def show() {
-        Project project = projectService.getProjectById(params.id)
+        def projectId
+        def username
+        if (params.projectTitle){
+            projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+            username = userService.getUsernameFromVanityName(params.fr)
+        } else {
+            projectId = params.id
+            username = params.fr
+        }
+        Project project = projectService.getProjectById(projectId)
         if (project) {
-            User user = userService.getUserByUsername(params.fr)
+            User user = userService.getUserByUsername(username)
             def currentUser = userService.getCurrentUser()
             def currentFundraiser = userService.getCurrentFundRaiser(user, project)
             def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
@@ -112,15 +127,28 @@ class ProjectController {
                     totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution,
                     teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,
                     isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
-                    isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS])
+                    isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS])
         } else {
             render (view: '/error')
         }
     }
+	
+    @Secured(['ROLE_ADMIN'])
+    def validateShowCampaign(){
+        def title = projectService.getVanityTitleFromId(params.id)
+        def name = userService.getVanityNameFromUsername(params.fr, params.id)
+        redirect (action:'validateshow', params:['projectTitle':title,'fr':name])
+    }
 
     @Secured(['ROLE_ADMIN'])
     def validateshow() {
-        def project = projectService.getProjectById(params.id)
+        def projectId
+        if (params.projectTitle){
+            projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+        } else {
+            projectId = params.id
+        }
+        def project = projectService.getProjectById(projectId)
         if (project) {
             User user = project.user
             def currentUser = userService.getCurrentUser()
@@ -227,7 +255,7 @@ class ProjectController {
         Project project = projectService.getProjectById(params.id)
         if (project) {
             if(project.validated == true){
-                redirect (action:'show')
+                redirect (action:'showCampaign', id:project.id)
             } else {
                 render (view: 'validate/validateerror', model: [projects: project])
             }       
@@ -237,13 +265,14 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def saveasdraft(){
         def project = projectService.getProjectById(params.id)
+        def title = projectService.getVanityTitleFromId(params.id)
         if(project.draft) {
             project.draft = false
             flash.prj_mngprj_message="Campaign has been submitted for approval."
-            redirect(controller: 'project', action: 'manageproject', id: project.id)
+            redirect(action:'manageproject', params:['projectTitle':title])
         } else {
             flash.prj_mngprj_message="This Campaign has already been submitted for approval, and under review."
-            redirect(controller: 'project', action: 'manageproject', id: project.id)
+            redirect(action:'manageproject', params:['projectTitle':title])
         }
     }
     
@@ -256,12 +285,14 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def savecomment() {
-		if (params.id) {
-			projectService.getCommentsDetails(params)
-		} else {
-			flash.sentmessage = "Something went wrong saving comment. Please try again later."
-		}
-        redirect (action: 'show', id: params.id, fragment: 'comments', params:['fr':params.fr])
+        def title = projectService.getVanityTitleFromId(params.id)
+        def name = userService.getVanityNameFromUsername(params.fr, params.id)
+        if (params.id) {
+            projectService.getCommentsDetails(params)
+        } else {
+            flash.sentmessage = "Something went wrong saving comment. Please try again later."
+        }
+        redirect (action: 'show', params:['projectTitle':title,'fr':name], fragment: 'comments')
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -302,11 +333,17 @@ class ProjectController {
                         FORMCONSTANTS: FORMCONSTANTS,
                         country:country,
                         state:state])
+	} 
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def editCampaign(){
+		def title = projectService.getVanityTitleFromId(params.id)
+		redirect (action : 'edit', params:['projectTitle':title])
 	}
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def edit() {
-        def project = projectService.getProjectById(params.projectId)
+        def project = projectService.getProjectFromVanityTitle(params.projectTitle)
         def categoryOptions = projectService.getCategoryList()
         if (project) {
             def beneficiary = project.beneficiary
@@ -326,20 +363,14 @@ class ProjectController {
     def update() {
         def project = projectService.getProjectById(params.projectId)
         User user = userService.getCurrentUser()
+        def title = projectService.getVanityTitleFromId(params.projectId)
         if(project) {
-            
-            projectService.getProjectUpdateDetails(params, request, project)          
-            
-            String email1 = params.email1
-            String email2 = params.email2
-            String email3 = params.email3
-
-            projectService.updateAdminsAndSendUpdateEmail(email1, email2, email3, project, user)
-
-            //projectService.sendEmailToAdminForProjectUpdate(project, user)
-            
-            flash.prj_mngprj_message = "Successfully saved the changes"
-            redirect (action: 'manageproject', id: project.id)
+            def vanityTitle = projectService.getProjectUpdateDetails(params, request, project,user)
+			flash.prj_mngprj_message = "Successfully saved the changes"
+			if (vanityTitle)
+			    redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
+			else
+			    redirect (action: 'manageproject', params:['projectTitle':title])
         } else {
             flash.prj_edit_message = "Campaign not found."
             render (view: 'edit/editerror')
@@ -491,120 +522,120 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def save() {
-        if (!session.isNew()) { // skip new sessions
-      
-            Date minuteAgo = new Date(System.currentTimeMillis() - 60 * 30 * 1000); // Timeout for 30 minutes
-            Date sessionCreated = new Date(session.getCreationTime());
-            if (minuteAgo.time > sessionCreated.time ) {
-                session.invalidate();
-                flash.session_message = "Session timeout, please login!"
-                render (view: 'manageproject/error')
-                //redirect(controller:'logout', action:'index')
-            }else{
-                Project project
-                Beneficiary beneficiary
-                User user = userService.getCurrentUser()
-                project = projectService.getProjectByParams(params)
-                beneficiary = userService.getBeneficiaryByParams(params)
-                def amount=project.amount
-                def boolPerk=false
-        
-                def button = params.button
-                if(button == 'draft'){
-                    project.draft = true
-                }
+        Project project
+        Beneficiary beneficiary
+        User user = userService.getCurrentUser()
+        project = projectService.getProjectByParams(params)
+        beneficiary = userService.getBeneficiaryByParams(params)
+        def amount=project.amount
+        def boolPerk=false
 
-                if(params.(FORMCONSTANTS.COUNTRY) != "US"){
-                    beneficiary.stateOrProvince = params.otherstate
-                }
-        
-                def rewardLength=Integer.parseInt(params.rewardCount)
-                if(rewardLength >= 1) {
-                    def rewardTitle = new Object[rewardLength]
-                    def rewardPrice = new Object[rewardLength]
-                    def rewardDescription = new Object[rewardLength]
-                    def mailingAddress = new Object[rewardLength]
-                    def emailAddress = new Object[rewardLength]
-                    def twitter = new Object[rewardLength]
-                    def custom = new Object[rewardLength]
+        def button = params.button
+        if(button == 'draft'){
+            project.draft = true
+        }
 
-                    for(def icount=0; icount< rewardLength; icount++){
-                        rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
-                        rewardPrice[icount] = params.("rewardPrice"+(icount+1))
-                        rewardDescription[icount] = params.("rewardDescription"+(icount+1))
-                        mailingAddress[icount] = params.("mailingAddress"+(icount+1))
-                        emailAddress[icount] = params.("emailAddress"+(icount+1))
-                        twitter[icount] = params.("twitter"+(icount+1))
-                        custom[icount] = params.("custom"+(icount+1))
-                        if(rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount])>amount){
-                            boolPerk=true;
-                        }
-						if(mailingAddress[icount]==null && emailAddress[icount]==null && twitter[icount]==null && custom[icount]==null){
-							emailAddress[icount]=true
-						}
-                    }
-                    if(boolPerk==true){
-                        flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
-                        render (view: 'manageproject/error')
-                        return
-                    }else{
-                        rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
-                    }
-                }
-               
-                def iconFile = request.getFile('iconfile')
-                if(!iconFile.isEmpty()) {
-                    def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
-                    project.organizationIconUrl = uploadedFileUrl
-                }
-        
-                def imageFiles = request.getFiles('thumbnail[]')
-                if(!imageFiles.isEmpty()) {
-                    projectService.getMultipleImageUrls(imageFiles, project)
-                }
-        
-                String email1 = params.email1
-                String email2 = params.email2
-                String email3 = params.email3
-        
-        
-                project.user = user
+        if(params.(FORMCONSTANTS.COUNTRY) != "US"){
+            beneficiary.stateOrProvince = params.otherstate
+        }
 
-                def days = params.days
-                projectService.getNumberofDays(days, project)
+        def rewardLength=Integer.parseInt(params.rewardCount)
+        if(rewardLength >= 1) {
+            def rewardTitle = new Object[rewardLength]
+            def rewardPrice = new Object[rewardLength]
+            def rewardDescription = new Object[rewardLength]
+            def mailingAddress = new Object[rewardLength]
+            def emailAddress = new Object[rewardLength]
+            def twitter = new Object[rewardLength]
+            def custom = new Object[rewardLength]
 
-                project.beneficiary = beneficiary
-        
-                if (project.save()) {
-                    projectService.getFundRaisersForTeam(project, user)
-                    projectService.getdefaultAdmin(project, user)
-                    projectService.getAdminForProjects(email1, project, user)
-                    projectService.getAdminForProjects(email2, project, user)
-                    projectService.getAdminForProjects(email3, project, user)
-                    redirect(controller: 'project', action: 'saveRedirect', id: project.id, params: [button: button])
-                } else {
-                    render (view: 'create/createerror', model: [project: project])
+            for(def icount=0; icount< rewardLength; icount++){
+                rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
+                rewardPrice[icount] = params.("rewardPrice"+(icount+1))
+                rewardDescription[icount] = params.("rewardDescription"+(icount+1))
+                mailingAddress[icount] = params.("mailingAddress"+(icount+1))
+                emailAddress[icount] = params.("emailAddress"+(icount+1))
+                twitter[icount] = params.("twitter"+(icount+1))
+                custom[icount] = params.("custom"+(icount+1))
+                if(rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount])>amount){
+                    boolPerk=true;
                 }
+				if(mailingAddress[icount]==null && emailAddress[icount]==null && twitter[icount]==null && custom[icount]==null){
+					emailAddress[icount]=true
+				}
             }
+            if(boolPerk==true){
+                flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
+                render (view: 'manageproject/error')
+                return
+            }else{
+                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
+            }
+        }
+       
+        def iconFile = request.getFile('iconfile')
+        if(!iconFile.isEmpty()) {
+            def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
+            project.organizationIconUrl = uploadedFileUrl
+        }
+
+        def imageFiles = request.getFiles('thumbnail[]')
+        if(!imageFiles.isEmpty()) {
+            projectService.getMultipleImageUrls(imageFiles, project)
+        }
+
+        String email1 = params.email1
+        String email2 = params.email2
+        String email3 = params.email3
+
+
+        project.user = user
+
+        def days = params.days
+        projectService.getNumberofDays(days, project)
+
+        project.beneficiary = beneficiary
+
+        if (project.save()) {
+            projectService.getFundRaisersForTeam(project, user)
+            projectService.getdefaultAdmin(project, user)
+            projectService.getAdminForProjects(email1, project, user)
+            projectService.getAdminForProjects(email2, project, user)
+            projectService.getAdminForProjects(email3, project, user)
+            def projectTitle = projectService.getProjectVanityTitle(project)
+            userService.getProjectVanityUsername(user)
+
+            if(params.button == 'draft') {
+                redirect(action:'draftProject', params:['projectTitle': projectTitle])
+            } else {
+                redirect(action:'saveProject', params:['projectTitle': projectTitle])
+            }
+        } else {
+            render (view: 'create/createerror', model: [project: project])
         }
 	}
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def saveRedirect() {
-        def button = params.button
-        def project = projectService.getProjectById(params.id)
-        
-        if(button == 'draft'){
-            render (view: 'create/saveasdraft', model: [project: project])
-        } else {
-            render (view: 'create/justcreated', model: [project: project])
-        }
+    def draftProject() {
+        def project = projectService.getProjectFromVanityTitle(params.projectTitle)
+        render (view: 'create/saveasdraft', model: [project: project])
     }
-    
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def saveProject() {
+        def project = projectService.getProjectFromVanityTitle(params.projectTitle)
+        render (view: 'create/justcreated', model: [project: project])
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def manageCampaign(){
+       def title = projectService.getVanityTitleFromId(params.id)
+       redirect (action:'manageproject', params:['projectTitle':title])
+    }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def manageproject() {
-        Project project = projectService.getProjectById(params.id)
+		def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+        Project project = projectService.getProjectById(projectId)
         User user = userService.getCurrentUser()
         if (project) {
             def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
@@ -620,8 +651,8 @@ class ProjectController {
                 render (view: 'manageproject/index',
                         model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam,
                                 discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,
-                                ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user,
-                                FORMCONSTANTS: FORMCONSTANTS])
+                                ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, 
+								vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS])
             } else{
                 flash.prj_mngprj_message = 'Campaign Not Found'
                 render (view: 'manageproject/error', model: [project: project])
@@ -648,6 +679,7 @@ class ProjectController {
     def customrewardsave() {
         def reward = rewardService.getRewardByParams(params)
         RewardShipping shippingInfo = new RewardShipping(params)
+        def title = projectService.getVanityTitleFromId(params.id)
 		
         if(reward.save()) {
             def project= projectService.getProjectById(params.id)
@@ -656,7 +688,7 @@ class ProjectController {
             project.addToRewards(reward)
             reward.obsolete = true
             flash.prj_mngprj_message = 'Successfully created a new perk'
-            redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)
+            redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', params:['projectTitle':title])
         } else {
             render (view: 'manageproject/error', model: [reward: reward])
         }
@@ -667,15 +699,16 @@ class ProjectController {
         def project = projectService.shareCampaignOrTeamByEmail(params,fundRaiser)
         flash.prj_mngprj_message= "Email sent successfully."
         if (params.ismanagepage) {
-             redirect(controller: 'project', action: 'manageproject', id: project.id)
+             redirect(controller: 'project', action: 'manageproject', params:['projectTitle': params.vanityTitle])
         } else {
-           redirect (action: 'show', id: project.id, params:[fr: fundRaiser])
+           redirect (action: 'show', params:[fr: params.vanityUsername, 'projectTitle': params.vanityTitle])
         }
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def projectupdate() {
-        def project = projectService.getProjectById(params.id)
+        def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+        def project = projectService.getProjectById(projectId)
         def currentUser =userService.getCurrentUser()
         def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
         if(project) {
@@ -688,11 +721,17 @@ class ProjectController {
             render (view: 'manageproject/error', model: [project: project])
         }
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def editCampaignUpdate(){
+		def title = projectService.getVanityTitleFromId(params.projectId)
+		redirect (action : 'editUpdate', id:params.id, params:['projectTitle':title])
+	}
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def editUpdate() {
         def projectUpdate = projectService.getProjectUpdateById(params.id)
-        def project = projectService.getProjectById(params.projectId)
+        def project = projectService.getProjectFromVanityTitle(params.projectTitle)
         def projectUpdates = project.projectUpdates
         if (projectUpdates.contains(projectUpdate)) {
             flash.editUpdateSuccessMsg = "Campaign Update Edited Successfully"
@@ -707,9 +746,10 @@ class ProjectController {
         def project = projectService.getProjectById(params.projectId)
         def imageFiles = request.getFiles('thumbnail[]')
         projectService.editCampaignUpdates(params, project, imageFiles)
+        def title = projectService.getVanityTitleFromId(params.projectId)
         
         flash.saveEditUpdateSuccessMsg = "Campaign Update Edited Successfully!"
-        redirect(controller: 'project', action: 'manageproject', id: project.id, fragment: 'projectupdates')
+        redirect(controller: 'project', action: 'manageproject', params:['projectTitle':title], fragment: 'projectupdates')
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -728,6 +768,7 @@ class ProjectController {
         def imageFiles = request.getFiles('thumbnail[]')
         def story = params.story
         def isImageFileEmpty = projectService.isImageFileEmpty(imageFiles)
+        def title = projectService.getVanityTitleFromId(params.id)
         
         if(project ) {
             if (!isImageFileEmpty || !story.isAllWhitespace()) {
@@ -742,10 +783,10 @@ class ProjectController {
                 mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user)
                 
                 flash.prj_mngprj_message= "Update added successfully."
-                redirect (action: 'manageproject', controller:'project', id: project.id, fragment: 'projectupdates')
+                redirect (action: 'manageproject', controller:'project', params:['projectTitle':title], fragment: 'projectupdates')
             } else {
                 flash.prj_mngprj_message= "No Updates added."
-                redirect (action: 'manageproject', controller:'project', id: project.id, fragment: 'projectupdates')
+                redirect (action: 'manageproject', controller:'project', params:['projectTitle':title], fragment: 'projectupdates')
             }
         } else {
             render (view: 'manageproject/error', model: [project: project])
@@ -783,13 +824,15 @@ class ProjectController {
         def fundraiser = project.user.username
         def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
         def message = projectService.getFundRaisersForTeam(project, user)
+		def title = projectService.getVanityTitleFromId(params.id)
+        def name = userService.getVanityNameFromUsername(fundraiser, params.id)
         
         if (iscampaignAdmin) {
             flash.prj_mngprj_message = message
-            redirect (action: 'manageproject', id: project.id)
+            redirect (action: 'manageproject', params:['projectTitle':title])
         } else {
             flash.prj_mngprj_message = message
-            redirect (action: 'show', id: project.id, params:[fr: fundraiser])
+            redirect (action: 'show', params:['projectTitle':title,'fr':name])
         }
     }
 
@@ -800,14 +843,16 @@ class ProjectController {
         String name = params.username
         String message = params.teammessage
         User user = userService.getCurrentUser()
-        def fundraiser =user.username  
+        def fundraiser =user.username
+        def title = projectService.getVanityTitleFromId(params.id)
+        def username = userService.getVanityNameFromUsername(fundraiser, params.id)
 
         if (params.ismanagepage) {
             sendEmailToTeam(emails, name, message, project)
-            redirect (action: 'manageproject', id: project.id, fragment: 'manageTeam')
+            redirect (action: 'manageproject', params:['projectTitle':title], fragment: 'manageTeam')
         } else {
             sendEmailToTeam(emails, name, message, project)
-            redirect (action: 'show', id: project.id, params:[fr: fundraiser], fragment: 'manageTeam')
+            redirect (action: 'show', params:['projectTitle':title,'fr':username], fragment: 'manageTeam')
         }
     }
 	
@@ -815,11 +860,13 @@ class ProjectController {
 	def editFundraiser(){
 		def team = projectService.getTeamById(params.id)
 		def fundRaiser = team.user.username
+        def title = projectService.getVanityTitleFromId(params.project)
+        def username = userService.getVanityNameFromUsername(fundRaiser, params.project)
 		if(params) {
 			def message = projectService.getEditedFundraiserDetails(params, team, request)
 			flash.teamUpdatemessage = message
 		}
-		redirect (action: 'show', id: params.project , params:[fr: fundRaiser], fragment: 'manageTeam')
+		redirect (action: 'show', params:['projectTitle':title,'fr':username], fragment: 'manageTeam')
 	}
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -833,12 +880,14 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def saveteamcomment() {
 		def message = projectService.getTeamCommentsDetails(params)
+        def title = projectService.getVanityTitleFromId(params.id)
+        def username = userService.getVanityNameFromUsername(params.fr, params.id)
 		flash.prj_mngprj_message = message
         
 		if (!params.ismanagepage) {
-	        redirect (action: 'show', id: params.id, params:[fr: params.fr], fragment: 'comments')
+	        redirect (action: 'show', params:['projectTitle':title,'fr':username], fragment: 'comments')
         } else {
-            redirect (action: 'manageproject', id: params.id, fragment: 'manageTeam')
+            redirect (action: 'manageproject', params:['projectTitle':title], fragment: 'manageTeam')
         }
 	}
     
@@ -859,16 +908,15 @@ class ProjectController {
         def rewardId = rewardService.getRewardById(params.id)
         def project = projectService.getProjectById(params.projectId)
         def shippingInfo = RewardShipping.findByReward(rewardId)
+        def title = projectService.getVanityTitleFromId(params.projectId)
         if(rewardId){
             project.rewards.remove(rewardId)
             shippingInfo.reward = null
             shippingInfo.delete()
             rewardId.delete()
             flash.prj_mngprj_message = 'Successfully deleted a Perk'
-			redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)            
-        }else{
-             redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)
         }
+        redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', params:['projectTitle':title])
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -876,9 +924,9 @@ class ProjectController {
         projectService.getContributionDeleteDetails(params)
         
         if (params.manageCampaign) {
-            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', id: params.projectId)
+            redirect(controller: 'project', action: 'manageCampaign',fragment: 'contributions', id: params.projectId)
         } else {
-            redirect (controller: 'project', action: 'show',fragment: 'contributions', id: params.projectId, params:[fr: params.fr])
+            redirect (controller: 'project', action: 'showCampaign',fragment: 'contributions', id: params.projectId, params:[fr: params.fr])
         }
     }
 
@@ -886,9 +934,9 @@ class ProjectController {
     def commentdelete() {
         projectService.getCommentDeletedDetails(params)
         if (params.manageCampaign) {
-            redirect(controller: 'project', action: 'manageproject',fragment: 'comments', id: params.projectId)
+            redirect(controller: 'project', action: 'manageCampaign',fragment: 'comments', id: params.projectId)
         } else {
-            redirect (controller: 'project', action: 'show',fragment: 'comments', id: params.projectId, params:[fr: params.fr])
+            redirect (controller: 'project', action: 'showCampaign',fragment: 'comments', id: params.projectId, params:[fr: params.fr])
         }
     }
     
@@ -896,9 +944,9 @@ class ProjectController {
     def contributionedit() {
         projectService.getContributionEditedDetails(params)
         if (params.manageCampaign) {
-            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', id: params.projectId)
+            redirect(controller: 'project', action: 'manageCampaign',fragment: 'contributions', id: params.projectId)
         } else {
-            redirect (controller: 'project', action: 'show',fragment: 'contributions', id: params.projectId, params:[fr: params.fr])
+            redirect (controller: 'project', action: 'showCampaign',fragment: 'contributions', id: params.projectId, params:[fr: params.fr])
         }
     }
 
@@ -912,17 +960,19 @@ class ProjectController {
     def validateteam() {
         def project = projectService.getProjectById(params.id);
         def team = projectService.getTeamById(params.teamId)
+        def title = projectService.getVanityTitleFromId(params.id)
         team.validated = true
         mandrillService.sendTeamValidatedConfirmation(project,team.user)
         flash.teamvalidationmessage = "Team validated Successfully."
-        redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', id: project.id)
+        redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', params:['projectTitle':title])
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def discardteam() {
         def project = projectService.discardTeam(params)
+        def title = projectService.getVanityTitleFromId(project.id)
         flash.teamdiscardedmessage = "Team Discarded Successfully."
-        redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', id: project.id)
+        redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', params:['projectTitle':title])
     }
 	
 	def campaignsSorts(){
@@ -946,12 +996,13 @@ class ProjectController {
         def isPerkPriceLess = rewardService.editCustomReward(params)
         def amount = params.amount
         def project = projectService.getProjectById(params.projectId)
+        def title = projectService.getVanityTitleFromId(params.projectId)
         if (isPerkPriceLess) {
             flash.perkupdate = 'Perk Updated Successfully!!'
-            redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)
+            redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', params:['projectTitle':title])
         } else {
             flash.perkupdate = 'Perk price should be less than campaign amount '+amount
-            redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', id: project.id)
+            redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', params:['projectTitle':title])
         }
     }
 }

@@ -417,7 +417,79 @@ class UserService {
             return false
         }
     }
-    
+	
+    def getUserUpdatedDetails(def params, User user){
+        def name = user.firstName
+        if(params.firstName){
+            user.firstName = params.firstName
+        }
+        if(params.lastName){
+            user.lastName = params.lastName
+        }
+        /* Password change is optional */
+        if (params.password) {
+            user.password = params.password
+        }
+
+        if (name != params.firstName){
+            getProjectVanityUsername(user)
+        }
+    }
+
+    def getProjectVanityUsername(User user){
+		def firstname = user.firstName.trim()
+        def vanityname = firstname.replaceAll("[^a-zA-Z0-9]", "-")+user.id
+        def vanity_username = VanityUsername.findAllWhere(vanityUsername:vanityname)
+        if (!vanity_username) {
+            VanityUsername vanity = new VanityUsername(
+                user:user,
+                username:user.username,
+                vanityUsername:vanityname
+            ).save(failOnError: true)
+        }
+    }
+
+    def getVanityNameFromUsername(def username,def projectId){
+        def status = false
+        def user
+        def project = Project.get(projectId)
+        if (username)
+            user = User.findByUsername(username)
+        else
+            user = User.findByUsername(project.user.username)
+        def vanityName = user.firstName.trim()
+		def vanityUsername = vanityName.replaceAll("[^a-zA-Z0-9]", "-")+user.id
+        def vanity = VanityUsername.findAllWhere(user:user)
+        vanity.each {
+            if (vanityUsername == it.vanityUsername){
+                status = true
+            }
+        }
+        if (!status){
+            getProjectVanityUsername(user)
+        }
+        return vanityUsername
+    }
+
+    def getUsernameFromVanityName(def username){
+        def fundRaiser
+        def vanityusername = VanityUsername.findByVanityUsername(username)
+        if (vanityusername)
+            fundRaiser = vanityusername.username
+        return fundRaiser
+    }
+	
+	def getUserFromVanityName(def username){
+		def fundRaiser
+		def user
+		def vanityusername = VanityUsername.findByVanityUsername(username)
+		if (vanityusername){
+			fundRaiser = vanityusername.username
+			user = User.findByUsername(fundRaiser)
+		}
+		return user
+	}
+
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

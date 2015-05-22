@@ -31,13 +31,13 @@
 <g:if test="${!projectValidate}">
     <div class="fedu thumbnail grow validate-paddings">
         <div class="blacknwhite validate-style">
-            <g:link controller="project" action="validateshow" id="${project.id}" title="${project.title}">
+            <g:link controller="project" action="validateShowCampaign" id="${project.id}" title="${project.title}">
                 <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
             </g:link>
         </div>
 	<div class="caption">
         <div class="project-title">
-            <g:link controller="project" action="validateshow" id="${project.id}" title="${project.title}">
+            <g:link controller="project" action="validateShowCampaign" id="${project.id}" title="${project.title}">
                 ${project.title}
             </g:link>
         </div>

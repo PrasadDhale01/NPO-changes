@@ -63,12 +63,13 @@
                     </g:else>
                     <g:hiddenField name="userId" value="${user.id}"/>
                     <g:hiddenField name="rewardId" value="${reward.id}"/>
-                    <g:hiddenField name="fr" value="${fundraiser.username}"/>
+                    <g:hiddenField name="fr" value="${username}"/>
                     <g:hiddenField name="amount" value="${amount}"/>
                     <g:hiddenField name="currencyCode" value="USD"/>
                     <g:hiddenField name="charityId" value="${project.charitableId}"/>
                     <g:hiddenField name="projectAmount" value="${project.amount}"/>
                     <g:hiddenField name="anonymous" value="${anonymous}" id="anonymous"/>
+                    <g:hiddenField name="projectTitle" value="${projectTitle}"/>
                     <!-- TDODO-->
 
                     <div class="panel panel-default">

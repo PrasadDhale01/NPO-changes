@@ -522,6 +522,12 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.left-pad {
+        left: 24%;
+    }
+    div.left-pads {
+        left: -1%;
+    }
 	div.lft {
         padding-left: 0%;
     }
@@ -662,6 +668,12 @@ a {
 
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.left-pad {
+        left: 18%;
+    }
+    div.left-pads {
+        left: 15%;
+    }
 	.text-center {
         line-height: 150%;
         text-align: center;
@@ -804,6 +816,12 @@ a {
     }
 }
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	div.left-pad {
+        left: 18%;
+    }
+    div.left-pads {
+        left: 14.8%;
+    }
     #aboutus .caption {
         font-size: 11px;
         width: 100%;
@@ -4135,6 +4153,12 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.left-pad {
+        left: 24%;
+    }
+    div.left-pads {
+        left: -1%;
+    }
 	.text-center {
         line-height: 150%;
         text-align: center;
@@ -5451,4 +5475,13 @@ img.fa-icon {
 }
 .lft {
   padding-left: 7%;
+}
+.upload-btn {
+    padding-left: 0%;
+}
+.left-pad {
+    left: 222px;
+}
+.left-pads { 
+    left: 181px;
 }

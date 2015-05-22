@@ -1580,6 +1580,7 @@ class ProjectService {
 		crewrequest.firstName = params.firstName
 		crewrequest.lastName = params.lastName
 		crewrequest.email = params.email
+		crewrequest.phone = params.phone
 		crewrequest.letterDescription = params.letterDescriptions
 		crewrequest.crewDescription = params.crewDescriptions
 		crewrequest.linkedIn = params.linkedIn

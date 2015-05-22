@@ -343,7 +343,7 @@
                     <span id="test"></span>
                     <script>
                     function deleteAdmin(current, projectId, email, username) {
-                       var stat= confirm("Are you sure you want delete this admin?");
+                       var stat= confirm("Are you sure you want to delete this admin?");
                        if(stat){
                        if(email == "email1"){
                            $('#firstadmin').val('');

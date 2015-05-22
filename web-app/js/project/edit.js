@@ -9,6 +9,9 @@ $(function() {
     $('#campaignfilesize').hide();
     $('#updatefilesize').hide();
     
+    $('#paypalemail').hide();
+    $('#charitableId').hide();
+    
     $('#editUpdateimg').hide();
     $('#campaignUpdatefilesize').hide();
     
@@ -69,31 +72,47 @@ $(function() {
                 iscampaigncreator: true,
                 isequaltofirstadmin: true,
                 isequaltosecondadmin: true
+            },
+            paypalEmail: {
+            	required: true,
+            	email:true
+            },
+            charitableId: {
+            	required: true
+            },
+            pay: {
+            	required: true
             }
         },
         messages:{
             thumbnail: "Please upload a thumbnail image for project",
-            iconfile: "Please upload your organization logo"
         },
         errorPlacement: function(error, element) {
         	if ( element.is(":radio") || element.is(":checkbox")) {
         		error.appendTo(element.parent().parent());
-        	}else{
+        	} else if($(element).prop("id") == "orgediticonfile") {
+                error.appendTo(element.parent().parent());
+            } else{
         		error.insertAfter(element);
         	}
         }//end error Placement
     });
 
-    $('#editsubmitbutton').click(function(event) {
-        if(validator.form()){
-        	needToConfirm = false;
-        } 	
-    });
-    
-    $('.updatesubmitbutton').click(function(event) {
-        if(validator.form()){
-        	needToConfirm = false;
-        } 	
+    $('#editsubmitbutton').on('click', function() {
+    	var iconUrl = $('#imgIcon').attr('src');
+    	if (!iconUrl) {
+    	    $('[name="iconfile"]').rules( "add", {
+                required: true,
+                messages: {
+                    required: "Please upload your organization logo."
+                }
+            });
+        }
+    	
+    	if (validator.form()) {
+    		needToConfirm = false;
+    		$('#campaignedit').find('form').submit();
+    	}
     });
     
     $.validator.addMethod('isYoutubeVideo', function (value, element) {
@@ -105,11 +124,6 @@ $(function() {
     }, "Please upload a url of Youtube video");
 
     /** ********************Organization Icon*************************** */
-
-    $('#chooseFile').click(function(event) {
-        event.preventDefault();
-        $('#orgediticonfile').trigger('click');
-    });
 
     $("#orgediticonfile").on("change", function() {
         var file =this.files[0];
@@ -152,6 +166,22 @@ $(function() {
             }
         }
     });
+    
+    $("input[name='pay']").change(function(){
+  	    if($(this).val()=="paypal") {
+  	        $('#organizationName').find('input').val('');
+  	       	$("#paypalemail").show();
+  	        $("#charitableId").hide();
+  	        $('#charitable').find('input').val('');
+  	        $("#paypalcheckbox").show();
+  	     } else if($(this).val()=="firstgiving") {
+   	         $('#organizationName').find('input').val('');
+  	       	 $("#charitableId").show(); 
+  	         $("#paypalemail").hide();
+  	         $("#paypalcheckbox").hide();
+   	         $('#paypalemail').find('input').val('');
+  	      }
+  	 });
 
     $('#videoUrl').focus(function(){
        var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;

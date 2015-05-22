@@ -66,13 +66,12 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	<input type="hidden" name="uuid" id="uuid" />
 	<input type="hidden" name="charity_name" id="charity_name" />
 	<div class="feducontent">
-		<div class="container">
+		<div class="container" id="campaigncreate">
 			<h1>
 				<img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-create.png" alt="Create Campaign"/>Create Campaign
 			</h1>
 
-			<g:uploadForm class="form-horizontal" controller="project"
-				action="save" role="form">
+			<g:uploadForm class="form-horizontal" controller="project" action="save" role="form" id="createcampaignform">
 
 						<h3 class="panel-title">Campaign Creator</h3><hr/>
 
@@ -172,8 +171,6 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 							</div>
 						</div>
 
-				
-					
 						<br><h3 class="panel-title">Campaign Co-Creators</h3><hr/>
 						<div class="row-fluid">
 						<div class="col-sm-4 divFirstAdmin lowRes highRes">
@@ -478,13 +475,13 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 						<div class="form-group">
 							<label class="col-md-2 col-sm-2 control-label">All Cool!</label>
 							<div class="col-md-4 col-sm-6 campaignsubmitbutton">
+							    <g:hiddenField name="isSubmitButton" value="true" id="isSubmitButton"></g:hiddenField>
 							    <div class="col-md-6 col-sm-6 col-xs-6 submitbutton">
-									<button type="submit" class="btn btn-primary btn-sm createsubmitbutton" name="button"
+									<button type="button" class="btn btn-primary btn-sm createsubmitbutton" name="button"
 										id="submitProject" value="submitProject">Submit Campaign</button>
 							    </div>
 							    <div class="col-md-6 col-sm-6 col-xs-6 draftbutton" >
-									<button type="submit" class="btn btn-primary btn-sm createsubmitbutton" name="button"
-										value="draft">Save as draft</button>
+									<button type="button" class="btn btn-primary btn-sm createsubmitbutton" id="saveasdraft" name="button" value="draft">Save as draft</button>
 							    </div>
  							</div>
 						</div>

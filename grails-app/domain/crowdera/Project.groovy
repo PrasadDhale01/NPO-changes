@@ -53,6 +53,7 @@ class Project {
 
 
     static constraints = {
+        title (nullable: true)
         image (nullable: true)
         imageUrl (nullable: true)
         videoUrl (nullable:true)

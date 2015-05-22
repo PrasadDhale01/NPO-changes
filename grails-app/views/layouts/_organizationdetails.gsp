@@ -12,21 +12,14 @@
 %>
 <div class="panel panel-default">
     <div class="panel-heading panel-css">
-    <g:if test="${currentFundraiser == beneficiary}">
-   	    Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
-   	</g:if>
-   	<g:else>
-   	    Benefiting ${beneficiary.firstName} ${beneficiary.lastName}
-   	</g:else>
-<%--        <g:if test="${isFundingOpen}">--%>
-<%--            <h3 class="panel-title">Fund this project</h3>--%>
-<%--        </g:if>--%>
-<%--        <g:else>--%>
-<%--            <h3 class="panel-title">Funding closed</h3>--%>
-<%--        </g:else>--%>
+        <g:if test="${currentFundraiser == beneficiary}">
+            Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
+        </g:if>
+        <g:else>
+            Benefiting ${beneficiary.firstName} ${beneficiary.lastName}
+        </g:else>
     </div>
-<%--<div class="blacknwhite" style="height: 100%; width: 100%; overflow: hidden; width: 100%;padding: 0; margin-top: 30px;">--%>
-<%--	<label class="col-sm-12" style="margin-top:10px"><h3>Project By</h3></label>--%>
+
    	<div class="organization-details text-center">
    	    <label class="col-sm-12"><h4><b>${project.organizationName}</b></h4></label>
    	    <g:if test="${!isAdminOrBeneficiary }">
@@ -51,13 +44,18 @@
    	            <img alt="Upload Icon" src="//s3.amazonaws.com/crowdera/assets/defaultOrgIcon.jpg" class="org-logo">
             </div>
         </g:else>
+        
+        <g:if test="${project.webAddress}">
+            <div class="col-sm-12">
+                <label>Web: <a href="${webUrl}" target="${webUrl}">${project.webAddress}</a></label>
+            </div>
+        </g:if>
+        
         <div class="col-sm-12">
-        <label>Web: <a href="${webUrl}" target="${webUrl}">${project.webAddress}</a></label>
-        </div>
-        <div class="col-sm-12">
-        <label><a href="#"></a></label>
+            <label><a href="#"></a></label>
         </div> 
         <div class="clear"></div>
+        
         <div class="tilesanstitletag banner-wid">
             <g:if test="${project.draft}">
                 <img src="//s3.amazonaws.com/crowdera/assets/DRAFT1.png" alt="draft"/>

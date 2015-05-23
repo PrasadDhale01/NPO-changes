@@ -24,6 +24,7 @@
 				<g:hiddenField name="userId" value="${user.id}"/>
 				<g:hiddenField name="amount" value="${amount}"/>
 				<g:hiddenField name="anonymous" value="${anonymous}" id="anonymous"/>
+				<g:hiddenField name="projectTitle" value="${projectTitle}"/>
 				<div class="row">
 					<div class="col-md-8">
 						<div class="panel panel-default">

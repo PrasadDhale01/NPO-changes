@@ -75,7 +75,7 @@
                     </div>
                 </g:if>
                 <div class="col-md-12 green-heading campaignTitle text-center">
-	                <h1><g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
+	                <h1><g:link controller="project" action="showCampaigns" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
 		            	 ${projectTitle} 
 	                </g:link></h1>
 	            </div>
@@ -158,7 +158,9 @@
 				                            <h4 class="modal-title">Recipient Email ID's</h4>
 				                        </div>
 				                        <div class="modal-body">
-				                            <g:hiddenField name="amount" value="${project.amount}"/>
+                                            <g:hiddenField name="amount" value="${project.amount}"/>
+                                            <g:hiddenField name="vanityTitle" value="${vanityTitle}"/>
+                                            <g:hiddenField name="vanityUsername" value="${vanityUsername}"/>
 				                            <div class="form-group">
 				                                <label>Your Name</label>
 				                                <input type="text" class="form-control" name="name" placeholder="Name"></input>
@@ -192,7 +194,7 @@
                     </g:elseif>
                     <g:else>
                         <g:if test="${project.paypalEmail || project.charitableId}">
-	                        <g:form controller="fund" action="fund" id="${project.id}" params="['fr': username]">
+	                        <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]">
 	                            <button name="submit" class="btn btn-success btn-lg btn-block">Fund this Campaign</button>
 	                        </g:form>
                         </g:if>

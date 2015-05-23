@@ -13,7 +13,7 @@
 		    </g:if>
 		</g:if>
         <g:if test="${!ended}">
-	        <g:uploadForm class="form-horizontal" controller="project" action="projectupdate" id="${project.id}" role="form">
+	        <g:uploadForm class="form-horizontal" controller="project" action="projectupdate" params="['projectTitle':vanityTitle]" role="form">
 	            <button type="submit" class="btn btn-sm btn-primary pull-right" name="button" value="draft"><i class="fa fa-plus-circle"></i> Create Update</button>
 	        </g:uploadForm>
 		    <div class="clear"></div>

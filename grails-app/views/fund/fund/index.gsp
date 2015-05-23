@@ -6,7 +6,7 @@
 <body>
 	<div class="feducontent">
 		<div class="container">
-		<% def base_url = grailsApplication.config.crowdera.BASE_URL %>
+        <% def base_url = grailsApplication.config.crowdera.BASE_URL %>
 			<div class="row">
 				<g:if test="${project.paypalEmail}">
 					<div class="col-md-4">
@@ -27,10 +27,11 @@
 						</div>
 						<g:form action="charge" method="POST" role="form">
 							<g:hiddenField name="projectId" id="projectId" value="${project.id}" />
-							<g:hiddenField name="fr" value="${fundraiser}" />
+							<g:hiddenField name="fr" value="${vanityUsername}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
 							<g:hiddenField name="anonymous" value="false" id="anonymous"/>
+                            <g:hiddenField name="projectTitle" value="${vanityTitle}"/>
 							
 							<!-- Value set by Javascript -->
                             <div class="row">
@@ -78,10 +79,11 @@
 						<g:form action="checkout" method="POST" role="form">
 
 							<g:hiddenField name="projectId" value="${project.id}" />
-							<g:hiddenField name="fr" value="${fundraiser}" />
+							<g:hiddenField name="fr" value="${vanityUsername}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
 							<g:hiddenField name="anonymous" value="false" id="anonymous"/>
+                            <g:hiddenField name="projectTitle" value="${vanityTitle}"/>
 							<!-- Value set by Javascript -->
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">

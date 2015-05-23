@@ -32,7 +32,7 @@
 <div class="fedu thumbnail grow user-tiles-style">
 	<div class="blacknwhite tile">
 	    <g:if test="${iscampaignAdmin}">
-			<g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">
+			<g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
 				<div class="imageWithTag">
 					<div class="under">
 						<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
@@ -93,7 +93,7 @@
 			</g:link>
 		</g:if>
 		<g:else>
-		    <g:link controller="project" action="show" id="${project.id}" params="['fr': username]" title="${project.title}">
+		    <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
 				<div class="imageWithTag">
 					<div class="under">
 						<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
@@ -141,12 +141,12 @@
 	<div class="caption">
 		<div class="project-title">
 		    <g:if test="${iscampaignAdmin}">
-				<g:link controller="project" action="manageproject" id="${project.id}" title="${project.title}">
+				<g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
 			        ${project.title}
 			    </g:link>
 		    </g:if>
 		    <g:else>
-		        <g:link controller="project" action="show" id="${project.id}" params="['fr': username]" title="${project.title}">
+		        <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
 			        ${project.title}
 			    </g:link>
 		    </g:else>
@@ -215,13 +215,12 @@
                     </g:form>
                 </g:if>
                 <g:if test="${isTeamAdmin || (user==project.user)}">
-                	<g:form controller="project" action="edit" method="post" id="${project.id}">
-                    	<g:hiddenField name="projectId" value="${project.id}" />
+                	<g:link controller="project" action="editCampaign" method="post" id="${project.id}">
                     	<button class="projectedit close pull-right" id="editproject">
                         	<i class="glyphicon glyphicon-edit"></i>
                     	</button>
-                	</g:form>
-                	<g:form controller="project" action="manageproject" method="post" id="${project.id}">
+                	</g:link>
+                	<g:form controller="project" action="manageCampaign" method="post" id="${project.id}">
                     	<button class="projectedit close pull-right" id="projectpreview">
                         	<i class="glyphicon glyphicon-picture"></i>
                     	</button>

@@ -104,18 +104,8 @@ class LoginController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def update() {
         User user = (User)userService.getCurrentUser()
-        if(params.firstName){ 
-            user.firstName = params.firstName
-        }
-        if(params.lastName){
-            user.lastName = params.lastName
-        }
-        
-        /* Password change is optional */
-        if (params.password) {
-              user.password = params.password
-        }
-
+        userService.getUserUpdatedDetails(params,user)
+		
         if (user.save()) {
             flash.user_message = "Profile updated successfully!"
             redirect (controller: 'user', action: 'accountSetting')

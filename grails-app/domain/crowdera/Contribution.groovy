@@ -6,7 +6,7 @@ class Contribution {
 
     static belongsTo = [user: User, project: Project, reward: Reward, credit: Credit]
 
-    Date dateAndTime
+    Date date
     String email
     String twitterHandle
     String custom

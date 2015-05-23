@@ -34,9 +34,10 @@
 	<g:elseif test="${imageUrl}">
 	     <meta property="og:image" content="${imageUrl}" />
 	</g:elseif>
-	<meta property="og:description" content="${project.description}" />
+	<g:if test="${project.description}">
+	     <meta property="og:description" content="${project.description}" />
+	</g:if>
 	<meta property="og:type" content="website" />
-	
 	<meta name="layout" content="main" />
 	<r:require modules="projectshowjs" />
 	<r:require modules="rewardjs" />

@@ -522,18 +522,18 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def save() {
-        Project project
-        Beneficiary beneficiary
-        User user = userService.getCurrentUser()
-        project = projectService.getProjectByParams(params)
-        beneficiary = userService.getBeneficiaryByParams(params)
-        def amount=project.amount
-        def boolPerk=false
-
-        def button = params.button
-        if(button == 'draft'){
-            project.draft = true
-        }
+		Project project
+		Beneficiary beneficiary
+		User user = userService.getCurrentUser()
+		project = projectService.getProjectByParams(params)
+		beneficiary = userService.getBeneficiaryByParams(params)
+		def amount=project.amount
+		def boolPerk=false
+		
+		def button = params.isSubmitButton
+		if(button == 'true'){
+			project.draft = true
+		}
 
         if(params.(FORMCONSTANTS.COUNTRY) != "US"){
             beneficiary.stateOrProvince = params.otherstate
@@ -588,7 +588,6 @@ class ProjectController {
         String email2 = params.email2
         String email3 = params.email3
 
-
         project.user = user
 
         def days = params.days
@@ -605,10 +604,22 @@ class ProjectController {
             def projectTitle = projectService.getProjectVanityTitle(project)
             userService.getProjectVanityUsername(user)
 
-            if(params.button == 'draft') {
+            if(button == 'true') {
                 redirect(action:'draftProject', params:['projectTitle': projectTitle])
             } else {
                 redirect(action:'saveProject', params:['projectTitle': projectTitle])
+
+                project.beneficiary = beneficiary
+                if (project.save()) {
+                    projectService.getFundRaisersForTeam(project, user)
+                    projectService.getdefaultAdmin(project, user)
+                    projectService.getAdminForProjects(email1, project, user)
+                    projectService.getAdminForProjects(email2, project, user)
+                    projectService.getAdminForProjects(email3, project, user)
+                    redirect(controller: 'project', action: 'saveRedirect', id: project.id, params: [button: button])
+                } else {
+                    render (view: 'create/createerror', model: [project: project])
+                }
             }
         } else {
             render (view: 'create/createerror', model: [project: project])

@@ -69,11 +69,14 @@
 <input type="hidden" name="uuid" id="uuid"/>
 <input type="hidden" name="charity_name" id="charity_name"/>
 <div class="feducontent">
-	<div class="container">
+	<div class="container" id="campaignedit">
 		<h1><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit Campaign"/> Edit Campaign</h1>
 
         <g:uploadForm class="form-horizontal" controller="project" action="update" method="post" role="form">
             <input type="hidden" name="_method" value="PUT" id="_method" />
+            <g:if test="${project.draft}">
+                 <g:hiddenField name="issavedraft" id="issavedraft" value="${project.draft}"/>
+            </g:if>
 
 			<div class="panel panel-default">
 				<div class="panel-heading">
@@ -155,91 +158,126 @@
                     <h3 class="panel-title">Organization</h3>
                 </div>
                 <div class="panel-body">
-                    <div class="form-group" id="charitableId">
-                    	<div class="row">
-                    	    <div class="col-sm-6" >
-                    	    	<g:if test="${project.charitableId}">
-	                    			<label class="col-sm-4 control-label">Charitable ID</label>
-	                   		    	<div class="col-sm-8" id="charitable">
-	                                	<input type="text"  class="form-control" name="${FORMCONSTANTS.CHARITABLE}" value="${project.charitableId}" placeholder="CharitableId" readonly>
-	                       	    	</div>
-	                       	    </g:if>
-	                       	    <g:else>
-	                       	    	<label class="col-sm-4 control-label">PaypalEmail ID</label>
-	                   		    	<div class="col-sm-8" id="charitable">
-	                                	<input type="text"  class="form-control" name="${FORMCONSTANTS.PAYPALEMAIL}" value="${project.paypalEmail}" placeholder="PaypalEmail Id" readonly>
-	                       	    	</div>
-	                       	    </g:else>
+                    <g:if test="${project.paypalEmail || project.charitableId}">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-sm-6" >
+                                    <g:if test="${project.charitableId}">
+                                        <label class="col-sm-4 control-label">Charitable ID</label>
+  	                                    <div class="col-sm-8">
+                                            <input type="text"  class="form-control" name="${FORMCONSTANTS.CHARITABLE}" value="${project.charitableId}" placeholder="CharitableId" readonly>
+                                        </div>
+                                    </g:if>
+                                    <g:else>
+                                        <label class="col-sm-4 control-label">PaypalEmail ID</label>
+                                        <div class="col-sm-8">
+                                            <input type="text"  class="form-control" name="${FORMCONSTANTS.PAYPALEMAIL}" value="${project.paypalEmail}" placeholder="PaypalEmail Id" readonly>
+                                        </div>
+                                    </g:else>
+                                </div>
                             </div>
-                            
-                            <div class="modal" id="myModal">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                            <h4 class="modal-title">Find your charity organization</h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div id="fgGraphWidgetContainer"></div>
-                                            <script>
-                                            var FG_GRAPHWIDGET_PARAMS = {
-                                                results : {
-                                                    selectaction : function(uuid,charity_name) {
-                                                        document.getElementById("uuid").value=uuid;
-                                                        document.getElementById("charity_name").value=charity_name;
+                        </div>
+                    </g:if>
+                    <g:else>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Preferred payment gateway</label>
+                            <div class="col-sm-10 form-group" id="payopt">
+                                <div class="col-sm-8">
+                                    <div class="btn-group btn-group-sm btnOrgBgColor">
+                                        <label class="btn btn-default"> <input type="radio" name="pay" value="paypal">&nbsp;Paypal</label>
+                                        <label class="btn btn-default"> <input type="radio" name="pay" value="firstgiving">&nbsp;First Giving</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12" id="paypalemail">
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">PayPal Email ID </label>
+                                    <div class="col-sm-4">
+                                        <input id="email" type="email" class="form-control paypal-create" name="${FORMCONSTANTS.PAYPALEMAIL}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-sm-12 col-xs-12" id="charitableId">	
+                            	<div class="row">	
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">Charitable ID</label>
+                                    <div class="col-sm-2">
+                                        <a data-toggle="modal" href="#myModal" class="charitableLink">Find your organization</a>
+                                    </div>
+                                    <div class="col-sm-6" id="charitable">
+                                        <input type="text" id="hiddencharId" name="${FORMCONSTANTS.CHARITABLE}" placeholder="charitableId" readonly>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="modal" id="myModal">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                <h4 class="modal-title">Find your charity organization</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div id="fgGraphWidgetContainer"></div>
+                                                <script>
+                                                    var FG_GRAPHWIDGET_PARAMS = {
+                                                        results : {
+                                                            selectaction : function(uuid,charity_name) {	
+                                                                document.getElementById("uuid").value = uuid;
+                                                                document.getElementById("charity_name").value = charity_name;
+                                                            }
+                                                        }
+                                                    };
+                                                    function setOrganization() {
+                                                        $('#charitable').find('input').val(document.getElementById("uuid").value);
+                                                        $('#organizationName').find('input').val(document.getElementById("charity_name").value);
                                                     }
-                                                }
-                                            };
-                                            function setOrganization() {
-                                                $('#charitable').find('input').val(document.getElementById("uuid").value);
-                                                $('#organizationName').find('input').val(document.getElementById("charity_name").value);
-                                            }
-                                            </script>
-                                            <script src="//assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button href="#" data-dismiss="modal" class="btn btn-primary">Close</button>
-                                            <button class="btn btn-primary" href="#" data-dismiss="modal" onclick="setOrganization()" id="saveButton">Save</button>
+                                                </script>
+                                                <script src="//assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button href="#" data-dismiss="modal" class="btn btn-primary">Close</button>
+                                                <button class="btn btn-primary" href="#" data-dismiss="modal" onclick="setOrganization()" id="saveButton">Save</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>        
+                            </div>
                         </div>
-                    </div>
+                    </g:else>
                     <hr>
                     <div class="row">
                         <div class="col col-sm-6">
                             <div class="form-group" id="organizationName">
                                 <label class="col-sm-4 control-label" id="organizationName">Organization Name</label>
                                 <div class="col-sm-8">
-                                    <input  class="form-control" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Organization Name" disabled>
+                                    <input  class="form-control" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Organization Name" <g:if test="${!project.draft}">disabled</g:if>>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-sm-4 control-label" id="iconfiles">Organization Logo</label>
                                 <div class="col-sm-4">
-                                    <input type="file" id="orgediticonfile" name="iconfile" accept="image/jpeg, image/png">
-                                    <button id="chooseFile" class="btn btn-primary btn-sm" type="button">
-                                            <i class="icon-file"></i> Choose File
-                                    </button>
+                                    <div class="fileUpload btn btn-primary btn-sm">
+                                        <span>Choose File</span>
+                                        <input type="file" class="upload" id="orgediticonfile" name="iconfile" accept="image/jpeg, image/png">
+                                    </div>
                                     <label class="docfile-orglogo-css" id="editlogo">Please select image file.</label>
                                     <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
                                 </div>
                                 <div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
-                                        <g:if test="${project.organizationIconUrl}">
-                                            <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
-                                            <div class="deleteicon orgicon-css-styles">
-                                                <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
-                                                src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete"/>
-                                            </div>
-                                        </g:if>
-                                        <g:else>
-                                            <img alt="cross" id="imgIcon" class="pr-icon-thumbnail edit-logo-icon"/>
-                                            <div class="deleteicon edit-delete">
-                                                 <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
-                                                 id="logoDelete"/>
-                                            </div>
-                                        </g:else>
+                                    <g:if test="${project.organizationIconUrl}">
+                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
+                                        <div class="deleteicon orgicon-css-styles">
+                                            <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
+                                            src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete"/>
+                                        </div>
+                                    </g:if>
+                                    <g:else>
+                                        <img alt="cross" id="imgIcon" class="pr-icon-thumbnail edit-logo-icon"/>
+                                        <div class="deleteicon edit-delete">
+                                             <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
+                                             id="logoDelete"/>
+                                        </div>
+                                    </g:else>
                                 </div>
                                 <script>
                                    function deleteOrganizationLogo(current, projectId) {
@@ -258,7 +296,7 @@
                                             alert('An error occured');
                                         });
                                     }
-                             </script>
+                                 </script>
                             </div>
                         </div>
                         <div class="col col-sm-6">
@@ -279,71 +317,71 @@
                 </div>
                 <div class="panel-body">
                     <div class="col-sm-6">
-	                <div class="form-group">
-	                    <label class="col-sm-4 control-label">First Admin</label>
-	                    <div class="col-sm-8">
-	                        <g:if test="${project.user == currentUser}">
-	                            <div class="textFieldWithTag">
-	                                <input type="text" class="form-control" name="email1" value="${email1}" id="firstadmin" placeholder="Email ID" ></input>
-					    <g:if test="${email1}">
-				            <div class="deleteIconAbove">
-                                                <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email1', '${email1}');"
-                                                    src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete1"/>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">First Admin</label>
+                            <div class="col-sm-8">
+                                <g:if test="${project.user == currentUser}">
+                                    <div class="textFieldWithTag">
+                                        <input type="text" class="form-control" name="email1" value="${email1}" id="firstadmin" placeholder="Email ID" ></input>
+                                        <g:if test="${email1}">
+                                            <div class="deleteIconAbove">
+                                                <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email1', '${email1}');" 
+                                                src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete1"/>
                                             </div>
                                         </g:if>
-                                   </div>
-				</g:if>
-				<g:else>
-				    <input type="text" class="form-control" name="email1" value="${email1}" id="firstadmin" placeholder="Email ID" readonly></input>
-				</g:else>
-		            </div>
-	                </div>
-	                <div class="form-group">
-	                   <label class="col-sm-4 control-label">Second Admin</label>
-	                   <div class="col-sm-8">
-	                       <g:if test="${project.user == currentUser}">
-	                           <div class="textFieldWithTag">
-	                               <input type="text" class="form-control" name="email2" value="${email2}" id="secondadmin" placeholder="Email ID"></input>
-	                                <g:if test="${email2}">
-	                                    <div class="deleteIconAbove">
+                                    </div>
+                                </g:if>
+                                <g:else>
+                                    <input type="text" class="form-control" name="email1" value="${email1}" id="firstadmin" placeholder="Email ID" readonly></input>
+                                </g:else>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Second Admin</label>
+                            <div class="col-sm-8">
+                                <g:if test="${project.user == currentUser}">
+                                    <div class="textFieldWithTag">
+                                        <input type="text" class="form-control" name="email2" value="${email2}" id="secondadmin" placeholder="Email ID"></input>
+                                        <g:if test="${email2}">
+                                            <div class="deleteIconAbove">
                                                 <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email2', '${email2}');"
                                                     src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete2"/>
                                             </div>
                                         </g:if>
-	                            </div>
-	                        </g:if>
-	                        <g:else>
-	                           <input type="text" class="form-control" name="email2" value="${email2}" id="secondadmin" placeholder="Email ID" readonly></input>
-			        </g:else>
-			    </div>
-	                 </div>
+	                                </div>
+	                            </g:if>
+                                <g:else>
+                                    <input type="text" class="form-control" name="email2" value="${email2}" id="secondadmin" placeholder="Email ID" readonly></input>
+                                </g:else>
+                            </div>
+                        </div>
                     </div>
                     
                     <div class="col-sm-6">
-	                <div class="form-group">
-	                    <label class="col-sm-4 control-label">Third Admin</label>
-	                    <div class="col-sm-8">
-	                        <g:if test="${project.user == currentUser}">
-	                            <div class="textFieldWithTag">
-	                                <input type="text" class="form-control" name="email3" id="thirdadmin" class="" value="${email3}" placeholder="Email ID"></input>
-	                                 <g:if test="${email3}">
-	                                    <div class="deleteIconAbove">
-                                                <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email3' ,'${email3}');"
-                                                    src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete3"/>
+                        <div class="form-group">
+                            <label class="col-sm-4 control-label">Third Admin</label>
+                            <div class="col-sm-8">
+                                <g:if test="${project.user == currentUser}">
+                                    <div class="textFieldWithTag">
+                                        <input type="text" class="form-control" name="email3" id="thirdadmin" class="" value="${email3}" placeholder="Email ID"></input>
+                                        <g:if test="${email3}">
+                                            <div class="deleteIconAbove">
+                                                <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email3' ,'${email3}');" 
+                                                src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete3"/>
                                             </div>
                                         </g:if>
                                     </div>
-	                        </g:if>
-	                        <g:else>
-	                            <input type="text" class="form-control" name="email3" id="thirdadmin" value="${email3}" placeholder="Email ID" readonly></input>
-				</g:else>
-			    </div>
-	                </div>
+	                            </g:if>
+                                <g:else>
+                                    <input type="text" class="form-control" name="email3" id="thirdadmin" value="${email3}" placeholder="Email ID" readonly></input>
+                                </g:else>
+                            </div>
+                        </div>
                     </div>
                     <span id="test"></span>
                     <script>
                     function deleteAdmin(current, projectId, email, username) {
-                       var stat= confirm("Are you sure you want delete this admin");
+                       var stat= confirm("Are you sure you want to delete this admin?");
                        if(stat){
                        if(email == "email1"){
                            $('#firstadmin').val('');
@@ -369,7 +407,7 @@
                              alert('An error occured');
                          });
                         }
-                     }
+                    }
                     </script>
                 </div>
             </div>
@@ -471,7 +509,7 @@
                         <div class="col-sm-8">
                                 <g:each var="imgurl" in="${project.imageUrl}">
                                     <div id="imgdiv" class="pr-thumb-div">
-                                        <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}"/>
+                                        <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
                                         <div class="deleteicon pictures-edit-deleteicon">
                                             <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}'
                                             src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete"/>
@@ -479,7 +517,7 @@
                                     </div> 
                                 </g:each>
                                 <script>
-                                   function deleteProjectImage(current,imgst, projectId) {
+                                    function deleteProjectImage(current,imgst, projectId) {
                                         $(current).parents('#imgdiv').remove();
                                         $.ajax({
                                             type:'post',
@@ -515,7 +553,7 @@
 		            <div class="form-group">
                         <label class="col-sm-2 control-label">Save changes?</label>
 		                <div class="col-sm-10">
-		                    <button type="submit" name="_action_update" id="editsubmitbutton" value="Update" class="btn btn-primary">Save</button>
+		                    <button type="button" name="_action_update" id="editsubmitbutton" value="Update" class="btn btn-primary">Save</button>
 		                </div>
 		            </div>
                 </div>

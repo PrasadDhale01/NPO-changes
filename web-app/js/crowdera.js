@@ -1,6 +1,9 @@
 $(function() {
     console.log("Crowdera is up");
     
+    $('#resumefilesize').hide();
+    $('#result').hide();
+    
     $(document).ready(function() { 
     	$("#mc-embedded-subscribe-form-lg").validate({ 
     	   rules: { 
@@ -53,11 +56,19 @@ $(function() {
                     required: true,
                     email: true
                 },
+                phone: {
+                    required: true,
+                    isValidTelephoneNumber: true,
+                    maxlength: 20,
+                    minlength: 8
+                },
                 letterDescriptions: {
-                	required: true
+                    required: true,
+                    maxlength: 250
                 },
                 crewDescriptions: {
-                	required: true
+                    required: true,
+                    maxlength: 140
                 }
             },
             messages:{
@@ -66,12 +77,22 @@ $(function() {
             errorPlacement: function(error, element) {
                 if($(element).prop("id") == "resumefile") {
                     error.appendTo(element.parent().parent());
+                }else if($(element).prop("id") == "resumefilesize") {
+                    error.appendTo(element.parent().parent());
                 }else{ 
                     error.insertAfter(element);
                 }
             },
         });		      
     }); 
+    
+    $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
+        if(value && value.length !=0){
+            var reg = /^((\+[1-9]{1,4}[ \-]*)|(\([0-9]{2,3}\)[ \-]*)|([0-9]{2,4})[ \-]*)*?[0-9]{3,4}?[ \-]*[0-9]{3,4}?$/;
+            return (value.match(reg)) ? RegExp.$1 : false;
+        }
+        return true;
+    }, "Please provide valid phone number");
     
     // Decode the blog post HTML so that <p></p> gets recognized.
     var text = $('.blogpost h4').html();
@@ -109,43 +130,43 @@ $(function() {
         );    
      
     });    
+	
+	$("#resumefile").change(function(event) {
+        var file =this.files[0];
+        if(validateExtension(file.name) == false){
+	        $('#result').hide();
+	        $("#resumefilesize").show();
+        	$("#resumefilesize").html("Only text,docx and pdf files are allowed.");
+	        this.value=null;
+	        return;
+	    }
+	    else{
+	        if (file.size > 1024 * 1024 * 3) {
+	            $('#result').hide();
+	            $('#resumefilesize').show();
+	            $("#resumefilesize").html("The file \"" +file.name+ "\" you are attempting to upload is larger than the permitted size of 3MB.");
+	            $('#resumefile').val('');
+	        } else {
+                $('#result').show();
+                $('#resumefilesize').hide();
+                $("#result").html(""+file.name);
+                
+	        }
+	    } 
+    });
     
-    var isvalidsize =  false;
-	$('#resumefile').change(function(event) {
-        var files = event.target.files; // FileList object
-        var output = document.getElementById("result");
-        var fileName;
-        var isFileSizeExceeds = false;
-        $('#resumefilesize').hide();
-        
-        var x = document.querySelectorAll("#resumefileId");
-        for (var i = 0; i < x.length; i++) {
-        	$("#resumefileId").remove();
-        }
-        for ( var i = 0; i < files.length; i++) {
-            var file = files[i];
-            var filename = file.name;
-            if(file.size < 1024 * 1024 * 3) {
-            	isvalidsize =  true;
-                var div = document.createElement("div");
-                div.id = 'resumefileId';
-                div.innerHTML = "<div class='resumefile-div'>"+filename+"</div><div class='clear'></div>";
-                output.insertBefore(div, null);
-            } else {
-            	if (fileName) {
-            	    fileName = fileName +" "+ file.name;
-            	} else {
-            		fileName = file.name;
-            	}
-            	$('#resumefilesize').show();
-            	isFileSizeExceeds = true;
+	function validateExtension(imgExt) {
+        var allowedExtensions = new Array("txt","docx","doc","pdf");
+        for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
+        {
+            imageFile = imgExt.lastIndexOf(allowedExtensions[imgExtImg]);
+            if(imageFile != -1){
+    	        return true;
             }
         }
-        document.getElementById("resumefilesize").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
-        if (isFileSizeExceeds && !isvalidsize) {
-            $('#resumefile').val('');
-        }
-    });
+        return false;
+	}
+	    
     
   /*  $('.twittersocialicon').hover(function(){
     	$(this).attr('src',"/images/twitter-over.png");

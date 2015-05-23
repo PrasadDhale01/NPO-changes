@@ -1928,7 +1928,6 @@ class ProjectService {
         List result = []
         def vanitytitle
 		def status = false
-		List same = []
         list.each{
             if (it.title == title) {
                 result.add(it)
@@ -1940,7 +1939,7 @@ class ProjectService {
         else
 		    vanitytitle = title+"-"+result.size()
 
-        VanityTitle vanity = new VanityTitle(
+        new VanityTitle(
             project:project,
             projectTitle:title,
             vanityTitle:vanitytitle,
@@ -1985,7 +1984,6 @@ class ProjectService {
             projectId = vanitytitle.project.id
 
         def project = Project.get(projectId)
-        println"project"+" "+project
         return project
     }
 

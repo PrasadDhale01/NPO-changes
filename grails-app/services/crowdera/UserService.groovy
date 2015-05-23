@@ -437,11 +437,11 @@ class UserService {
     }
 
     def getProjectVanityUsername(User user){
-		def firstname = user.firstName.trim()
+        def firstname = user.firstName.trim()
         def vanityname = firstname.replaceAll("[^a-zA-Z0-9]", "-")+user.id
         def vanity_username = VanityUsername.findAllWhere(vanityUsername:vanityname)
         if (!vanity_username) {
-            VanityUsername vanity = new VanityUsername(
+            new VanityUsername(
                 user:user,
                 username:user.username,
                 vanityUsername:vanityname
@@ -479,16 +479,16 @@ class UserService {
         return fundRaiser
     }
 	
-	def getUserFromVanityName(def username){
-		def fundRaiser
-		def user
-		def vanityusername = VanityUsername.findByVanityUsername(username)
-		if (vanityusername){
-			fundRaiser = vanityusername.username
-			user = User.findByUsername(fundRaiser)
-		}
-		return user
-	}
+    def getUserFromVanityName(def username){
+        def fundRaiser
+        def user
+        def vanityusername = VanityUsername.findByVanityUsername(username)
+        if (vanityusername){
+            fundRaiser = vanityusername.username
+            user = User.findByUsername(fundRaiser)
+        }
+        return user
+    }
 
     @Transactional
     def bootstrap() {

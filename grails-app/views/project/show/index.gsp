@@ -158,7 +158,7 @@
 				                            <h4 class="modal-title">Recipient Email ID's</h4>
 				                        </div>
 				                        <div class="modal-body">
-				                            <g:hiddenField name="amount" value="${project.amount}"/>
+                                            <g:hiddenField name="amount" value="${project.amount}"/>
                                             <g:hiddenField name="vanityTitle" value="${vanityTitle}"/>
                                             <g:hiddenField name="vanityUsername" value="${vanityUsername}"/>
 				                            <div class="form-group">

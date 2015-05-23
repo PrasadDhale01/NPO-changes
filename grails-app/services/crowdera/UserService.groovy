@@ -438,7 +438,7 @@ class UserService {
 
     def getProjectVanityUsername(User user){
         def firstname = user.firstName.trim()
-        def vanityname = firstname.replaceAll("[^a-zA-Z0-9]", "-")+user.id
+        def vanityname = firstname.replaceAll("[^a-zA-Z0-9]", "-")+"-"+user.id
         def vanity_username = VanityUsername.findAllWhere(vanityUsername:vanityname)
         if (!vanity_username) {
             new VanityUsername(
@@ -458,7 +458,7 @@ class UserService {
         else
             user = User.findByUsername(project.user.username)
         def vanityName = user.firstName.trim()
-		def vanityUsername = vanityName.replaceAll("[^a-zA-Z0-9]", "-")+user.id
+		def vanityUsername = vanityName.replaceAll("[^a-zA-Z0-9]", "-")+"-"+user.id
         def vanity = VanityUsername.findAllWhere(user:user)
         vanity.each {
             if (vanityUsername == it.vanityUsername){

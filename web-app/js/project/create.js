@@ -190,7 +190,7 @@ $(function() {
     	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"]').each(function () {
             $(this).closest('.form-group').removeClass('has-error');
         });
-    	
+    	$("#createthumbnail").removeClass('has-error');
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',true);
     		$('#campaigncreate').find('form').submit();

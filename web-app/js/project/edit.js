@@ -115,6 +115,12 @@ $(function() {
     	}
     });
     
+    $('.updatesubmitbutton').click(function(event) {
+        if(validator.form()){
+        	needToConfirm = false;
+        } 	
+    });
+    
     $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
            var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;

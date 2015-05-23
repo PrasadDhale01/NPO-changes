@@ -90,7 +90,9 @@ $(function() {
         errorPlacement: function(error, element) {
         	if ( element.is(":radio") || element.is(":checkbox")) {
         		error.appendTo(element.parent().parent());
-        	} else if($(element).prop("id") == "orgediticonfile") {
+        	} else if($(element).prop("id") == "projectImageFile") {
+                error.appendTo(element.parent().parent());
+            } else if($(element).prop("id") == "orgediticonfile") {
                 error.appendTo(element.parent().parent());
             } else{
         		error.insertAfter(element);
@@ -108,6 +110,15 @@ $(function() {
                 }
             });
         }
+    	
+    	if($('#campaignthumbnails').find('#imgdiv').length < 1) {
+    		$("#projectImageFile").rules( "add", {
+                required: true,
+                messages: {
+                    required: "Please upload at least one campaign image."
+                }
+            });
+    	}
     	
     	if (validator.form()) {
     		needToConfirm = false;

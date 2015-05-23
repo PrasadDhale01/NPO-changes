@@ -158,7 +158,7 @@
          					<label class="docfile-orglogo-css" id="editimg">Please select image file.</label>
          					<label class="docfile-orglogo-css" id="editTeamImg"></label>
       					</div>
-      					<div class="col-sm-6">
+      					<div class="col-sm-6" id="teamImages">
       					    <g:each var="imgurl" in="${currentTeam.imageUrl}">
                                 <div id="imgdiv" class="pr-thumb-div">
                                     <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}" alt="images">
@@ -201,7 +201,7 @@
                 <div class="clear"></div>
                 <div class="modal-footer">
                    <button data-dismiss="modal" class="btn btn-primary">Close</button>
-				   <button class="btn btn-primary" type="submit" id="saveButton">Save</button>
+				   <button class="btn btn-primary" type="submit" id="teamSaveButton">Save</button>
 		        </div>
 		    </div>
 		</div>

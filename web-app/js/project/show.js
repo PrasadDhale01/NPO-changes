@@ -233,7 +233,7 @@
     
     /**************************************Edit team*******************************************/
     
-    $('#editFundraiser').find('form').validate({
+    var validator = $('#editFundraiser').find('form').validate({
         rules: {
             amount: {
                 required: true,
@@ -253,6 +253,28 @@
             videoUrl: {
                 isYoutubeVideo: true
             }
+        },
+        errorPlacement: function(error, element) {
+        	if($(element).prop("id") == "projectImageFile") {
+                error.appendTo(element.parent().parent());
+            } else{
+        		error.insertAfter(element);
+        	}
+        }
+    });
+    
+    $('#teamSaveButton').on('click', function() {
+        if($('#teamImages').find('#imgdiv').length < 1) {
+            $("#projectImageFile").rules( "add", {
+                required: true,
+                messages: {
+                    required: "Please upload at least one team image."
+                }
+            });
+        }
+
+        if (validator.form()) {
+            $('#editFundraiser').find('form').submit();
         }
     });
     
@@ -342,8 +364,7 @@
         }
     });
     
-    function validateExtension(imgExt)
-    {
+    function validateExtension(imgExt) {
           var allowedExtensions = new Array("jpg","JPG","png","PNG");
           for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
           {

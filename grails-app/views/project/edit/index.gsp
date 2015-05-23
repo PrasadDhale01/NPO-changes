@@ -253,9 +253,21 @@
                                     <input  class="form-control" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Organization Name" <g:if test="${!project.draft}">disabled</g:if>>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col col-sm-6">
                             <div class="form-group">
-                                <label class="col-sm-4 control-label" id="iconfiles">Organization Logo</label>
-                                <div class="col-sm-4">
+                                <label class="col-sm-4 control-label" id="webAddress">Web Address</label>
+                                <div class="col-sm-8">
+                                    <input  class="form-control" name="${FORMCONSTANTS.WEBADDRESS }" value="${project.webAddress}" placeholder="Web Address">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" id="iconfiles">Organization Logo</label>
+                                <div class="col-sm-3">
                                     <div class="fileUpload btn btn-primary btn-sm">
                                         <span>Choose File</span>
                                         <input type="file" class="upload" id="orgediticonfile" name="iconfile" accept="image/jpeg, image/png">
@@ -263,7 +275,7 @@
                                     <label class="docfile-orglogo-css" id="editlogo">Please select image file.</label>
                                     <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
                                 </div>
-                                <div id="icondiv" class="pr-icon-thumbnail-div col-sm-4">
+                                <div id="icondiv" class="pr-icon-thumbnail-div col-sm-7">
                                     <g:if test="${project.organizationIconUrl}">
                                         <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
                                         <div class="deleteicon orgicon-css-styles">
@@ -297,14 +309,6 @@
                                         });
                                     }
                                  </script>
-                            </div>
-                        </div>
-                        <div class="col col-sm-6">
-                            <div class="form-group">
-                                <label class="col-sm-4 control-label" id="webAddress">Web Address</label>
-                                <div class="col-sm-8">
-                                    <input  class="form-control" name="${FORMCONSTANTS.WEBADDRESS }" value="${project.webAddress}" placeholder="Web Address">
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -490,7 +494,6 @@
                       
                 </div>
             </div>
-            
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Campaign Images and Video</h3>
@@ -498,7 +501,7 @@
                 <div class="panel-body">
                     <div class="form-group">
                         <label class="col-sm-2 control-label">Pictures</label>
-                        <div class="col-sm-2">
+                        <div class="col-sm-4">
                             <div class="fileUpload btn btn-primary btn-sm">
 	        					<span>Add Images</span>
                                 <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" class="upload" accept="image/jpeg, image/png" multiple>
@@ -506,7 +509,7 @@
 							<label class="docfile-orglogo-css" id="editimg">Please select image file.</label>
 							<label class="docfile-orglogo-css" id="campaignfilesize"></label>
                         </div>
-                        <div class="col-sm-8">
+                        <div class="col-sm-6" id="campaignthumbnails">
                                 <g:each var="imgurl" in="${project.imageUrl}">
                                     <div id="imgdiv" class="pr-thumb-div">
                                         <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">

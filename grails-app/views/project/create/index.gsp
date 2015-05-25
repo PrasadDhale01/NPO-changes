@@ -375,7 +375,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 				        </div>
 
     					<br><h3 class="panel-title">Campaign Images and Video</h3><hr/>
-    					<div class="form-group">
+    					<div class="form-group" id="createthumbnail">
       						<label class="col-sm-2 control-label">Pictures</label>
       						<div class="col-sm-4">
         						<div class="fileUpload btn btn-primary btn-sm">

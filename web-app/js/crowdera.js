@@ -2,7 +2,7 @@ $(function() {
     console.log("Crowdera is up");
     
     $('#resumefilesize').hide();
-    $('#result').hide();
+    $('#resultOutput').hide();
     
     $(document).ready(function() { 
     	$("#mc-embedded-subscribe-form-lg").validate({ 
@@ -134,7 +134,7 @@ $(function() {
 	$("#resumefile").change(function(event) {
         var file =this.files[0];
         if(validateExtension(file.name) == false){
-	        $('#result').hide();
+	        $('#resultOutput').hide();
 	        $("#resumefilesize").show();
         	$("#resumefilesize").html("Only text,docx and pdf files are allowed.");
 	        this.value=null;
@@ -142,14 +142,14 @@ $(function() {
 	    }
 	    else{
 	        if (file.size > 1024 * 1024 * 3) {
-	            $('#result').hide();
+	            $('#resultOutput').hide();
 	            $('#resumefilesize').show();
 	            $("#resumefilesize").html("The file \"" +file.name+ "\" you are attempting to upload is larger than the permitted size of 3MB.");
 	            $('#resumefile').val('');
 	        } else {
-                $('#result').show();
+                $('#resultOutput').show();
                 $('#resumefilesize').hide();
-                $("#result").html(""+file.name);
+                $("#resultOutput").html(""+file.name);
                 
 	        }
 	    } 

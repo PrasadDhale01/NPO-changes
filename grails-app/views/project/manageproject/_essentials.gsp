@@ -51,7 +51,7 @@
 	<div class="col-sm-12">
 	    <!-- Modal -->
 		<div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
-			<g:form action="sendemail" id="${project.id}" role="form">
+			<g:form action="sendemail" id="${project.id}" role="form" class="sendMailFormMng">
 		        <div class="modal-dialog">
 				    <div class="modal-content">
 					    <div class="modal-header">
@@ -77,7 +77,7 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-						    <button type="submit" class="btn btn-primary btn-block">Send Email</button>
+						    <button type="submit" class="btn btn-primary btn-block" id="btnSendMailMng">Send Email</button>
 						</div>
 				    </div>
 			    </div>

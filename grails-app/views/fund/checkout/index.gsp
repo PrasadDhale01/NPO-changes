@@ -39,7 +39,7 @@
 <div class="feducontent">
     <div class="container">
     <% def contributedAmount = projectService.getDataType(amount) %>
-    <g:form action="charge" method="POST" name="payment-form" role="form" id="payment-form">
+    <g:form action="charge" method="POST" name="payment-form" role="form" id="payment-form" class="payment-form">
         <div class="row">
             <div class="col-md-8">
                 <div class="panel panel-default">
@@ -340,7 +340,7 @@
                     </label>
                 </div>
                 <div class="center-fund">
-                	<button type="submit" class="btn btn-primary btn-block btn-lg checkoutsubmitbutton" name="fund-button" id="paypalsubmitbutton">Fund this Campaign</button>
+                	<button type="submit" class="btn btn-primary btn-block btn-lg checkoutsubmitbutton" name="fund-button" id="btnPaypal">Fund this Campaign</button>
                 </div>
                 <div class="powerdby">
                     <p>Powered By Firstgiving</p>

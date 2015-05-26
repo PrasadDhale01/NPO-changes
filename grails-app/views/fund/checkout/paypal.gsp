@@ -15,7 +15,7 @@
 <body>
 	<div class="feducontent">
 		<div class="container">
-			<g:form action="paypalurl" method="POST" name="payment-form" id="${project.id}" role="form">
+			<g:form action="paypalurl" method="POST" name="payment-form" id="${project.id}" role="form" class="payment-form">
 				<g:hiddenField name="fr" value="${fundraiser.id}"/>
 				<g:if test="${user1}">
 				    <g:hiddenField name="tempValue" value="${user1.id}"/>
@@ -168,7 +168,7 @@
                             </label>
                         </div>
 						<div class="center-fund">
-							<button class="btn btn-primary btn-block" name="fund-button">Fund this Campaign</button>
+							<button class="btn btn-primary btn-block" name="fund-button" id="btnPaypal">Fund this Campaign</button>
 						</div>
 						<div class="powerdby">
                             <p>Powered By Paypal</p>

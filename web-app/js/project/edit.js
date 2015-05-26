@@ -126,6 +126,13 @@ $(function() {
     	}
     });
     
+
+    $('form').submit(function(){
+    	if($('.editForm').valid()){
+    		$('#editsubmitbutton').attr('disabled','disabled');
+    	}
+    });
+    
     $('.updatesubmitbutton').click(function(event) {
         if(validator.form()){
         	needToConfirm = false;

@@ -18,7 +18,7 @@
         
         <!-- Modal -->
         <div class="modal fade" id="createRewardModal" tabindex="-1" role="dialog" aria-labelledby="createRewardModal" aria-hidden="true">
-            <g:form action="customrewardsave" id="${project.id}"role="form">
+            <g:form action="customrewardsave" id="${project.id}"role="form" class="perkForm">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -54,7 +54,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary btn-block createPerk">Create Perk</button>
+                            <button type="submit" class="btn btn-primary btn-block createPerk" id="btnCreatePerk">Create Perk</button>
                         </div>
                     </div>
                 </div>

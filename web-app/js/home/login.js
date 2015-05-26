@@ -13,4 +13,11 @@ $(function() {
             }
         }
     });
+    
+    $('form').submit(function() {
+		if($("#loginForm").valid()) {
+			$('#submit').attr('disabled','disabled');
+		}
+	});
+    
 });

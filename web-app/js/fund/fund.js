@@ -306,10 +306,10 @@ $(function() {
         .hover(showPopover, hidePopover);
         
         $('form').submit(function(){
-        	if($('.checkoutForm').valid()) {
+            if($('.checkoutForm').valid()) {
                 $('#btnCheckoutContinue').attr('disabled','disabled');
             }
-        	if($('.chargeForms').valid()) {
+            if($('.chargeForms').valid()) {
                 $('#btnChargeContinue').attr('disabled','disabled');
             }
         });

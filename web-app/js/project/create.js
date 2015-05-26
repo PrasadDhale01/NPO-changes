@@ -5,6 +5,33 @@ $(function() {
     $('#imgmsg').hide();
     $('#iconfilesize').hide();
     $('#campaignfilesize').hide();
+    
+    /********************* Create page Session timeout ***************************/
+        var SessionTime = 60* 1000 * 60; //set for 60 minute
+        var tickDuration = 1000;
+        var myInterval = setInterval(function() {
+        	SessionTimeout();
+        }, 1000);
+    
+        function SessionTimeout() {
+        	SessionTime = SessionTime - tickDuration;
+        	if(SessionTime ==900000){
+        		alert("15 minutes left for session timeout. Please save your data as draft or data will be lost.");
+        	}else if (SessionTime <= 0) {
+                alert("Your session has expired. Please login again.");
+                $.ajax({
+                    type:'post',
+                    url:$("#b_url").val()+'/project/invalidateSession',
+                    data:'status=true',
+                    success: function(data){
+                    	$('#test').html(data);
+                    }
+                }).error(function(){
+                	alert('An error occured');
+                });
+                window.location.href =$("#b_url").val()+"/logout";   
+             }   
+       }
   /*********************************************************************/
 
     $("#updatereward").hide();

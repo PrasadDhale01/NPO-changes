@@ -81,7 +81,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="inviteTeamMember" tabindex="-1" role="dialog" aria-hidden="true" params="['fr':currentFundraiser.username]">
+<div class="modal fade" id="inviteTeamMember" tabindex="-1" role="dialog" aria-hidden="true">
     <g:form action="inviteTeamMember" id="${project.id}" role="form" class="inviteTeamMember">
         <div class="modal-dialog">
             <div class="modal-content">

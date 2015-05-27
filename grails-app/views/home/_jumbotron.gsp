@@ -38,7 +38,7 @@
             <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/Mobile-slide-1.jpg" alt="Mobile Slider-1"/>
             <div class="carousel-caption">
                 <div class="fbButton">
-                    <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}"><img src="//s3.amazonaws.com/crowdera/assets/facebook_register.jpg" alt="facebook register" class="btn btn-fb"/></a>
+                    <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}"><img src="//s3.amazonaws.com/crowdera/assets/facebook_register_btn.png" alt="facebook register" class="btn btn-fb"/></a>
                     <img src="//s3.amazonaws.com/crowdera/assets/or.png" alt="or"/>
                 </div>
             </div>

@@ -64,6 +64,7 @@
 						    <g:hiddenField name="amount" value="${project.amount}" />
 						    <g:hiddenField name="ismanagepage" value="managepage" />
 						    <g:hiddenField name="fr" value="${fundRaiser}" />
+                                                   <g:hiddenField name="vanityTitle" value="${vanityTitle}"/>
 						    <div class="form-group">
 							    <label>Your Name</label> <input type="text" class="form-control" name="name" placeholder="Name" />
 						    </div>

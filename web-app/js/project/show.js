@@ -505,7 +505,26 @@
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
-
+    
+    $('form').submit(function() {
+        if($(".fundFormDesktop").valid()) {
+        	$('#btnFundDesktop').prop('disabled','disabled');
+        }
+    });
+    $('form').submit(function() {
+        if($(".fundFormMobile").valid()) {
+        	$('#btnFundMobile').attr('disabled','disabled');
+        }
+        if($(".inviteTeamMember").valid()) {
+        	$('#btnSendInvitation').attr('disabled','disabled');
+        }
+        if($(".sendMailForm").valid()) {
+        	$('#btnSendMail').attr('disabled','disabled');
+        }
+        if($(".sendMailFormMng").valid()) {
+        	$('#btnSendMailMng').attr('disabled','disabled');
+        }
+    });
 });
 
 function showNavigation(){

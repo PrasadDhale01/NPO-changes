@@ -25,7 +25,7 @@
 						        <h1>Amount</h1>
 						    </div>
 						</div>
-						<g:form action="charge" method="POST" role="form">
+						<g:form action="charge" method="POST" role="form" class="chargeForms">
 							<g:hiddenField name="projectId" id="projectId" value="${project.id}" />
 							<g:hiddenField name="fr" value="${vanityUsername}" />
 							<g:hiddenField name="rewardId" />
@@ -58,7 +58,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-							        <div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg">Continue</button></div>
+							        <div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg" id="btnChargeContinue">Continue</button></div>
 							    </div>
 							</div>
 						</g:form>
@@ -76,7 +76,8 @@
 						        <h1>Amount</h1>
 						    </div>
 						</div>
-						<g:form action="checkout" method="POST" role="form">
+						<g:form action="checkout" method="POST" role="form" class="checkoutForm">
+						
 
 							<g:hiddenField name="projectId" value="${project.id}" />
 							<g:hiddenField name="fr" value="${vanityUsername}" />
@@ -109,7 +110,7 @@
                 			</div>
                 			<div class="row">
                 			    <div class="col-md-12 col-sm-12 col-xs-12">
-								    <div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg">Continue</button></div>
+								    <div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg" id="btnCheckoutContinue">Continue</button></div>
 							    </div>
 							</div>
 						</g:form>

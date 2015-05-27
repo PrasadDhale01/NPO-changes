@@ -31,6 +31,11 @@ $(function() {
             error.appendTo(element.parent());
         }
     });
+    $('.regForm').submit(function() {
+        if($(".regForm").valid()) {
+            $('#btnSignUp').attr('disabled','disabled');
+        }
+    });
      $.validator.addMethod('isEqualToPassword', function (value, element) {
         var confirmpassword = value;
         var password = $("#password").val();
@@ -39,5 +44,5 @@ $(function() {
         }
         return true;
     }, "Passwords do not match! Please enter a valid password.");
-     
+    
 });

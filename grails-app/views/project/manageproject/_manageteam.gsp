@@ -60,7 +60,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="inviteTeamMember" tabindex="-1" role="dialog" aria-hidden="true">
-    <g:form action="inviteTeamMember" id="${project.id}" role="form">
+    <g:form action="inviteTeamMember" id="${project.id}" role="form" class="mng-inviteTeamMember">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -84,7 +84,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-block">Send Invitation</button>
+                    <button type="submit" class="btn btn-primary btn-block" id="btnSendInvitationMng">Send Invitation</button>
                 </div>
             </div>
         </div>

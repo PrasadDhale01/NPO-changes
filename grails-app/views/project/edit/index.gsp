@@ -72,7 +72,7 @@
 	<div class="container" id="campaignedit">
 		<h1><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit Campaign"/> Edit Campaign</h1>
 
-        <g:uploadForm class="form-horizontal" controller="project" action="update" method="post" role="form">
+        <g:uploadForm class="form-horizontal editForm" controller="project" action="update" method="post" role="form">
             <input type="hidden" name="_method" value="PUT" id="_method" />
             <g:if test="${project.draft}">
                  <g:hiddenField name="issavedraft" id="issavedraft" value="${project.draft}"/>

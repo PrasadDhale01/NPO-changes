@@ -304,5 +304,13 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-    	
+        
+        $('form').submit(function(){
+            if($('.checkoutForm').valid()) {
+                $('#btnCheckoutContinue').attr('disabled','disabled');
+            }
+            if($('.chargeForms').valid()) {
+                $('#btnChargeContinue').attr('disabled','disabled');
+            }
+        });
 });

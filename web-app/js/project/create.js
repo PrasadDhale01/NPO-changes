@@ -177,6 +177,8 @@ $(function() {
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',false);
     		$('#campaigncreate').find('form').submit();
+    		$('#submitProject').attr('disabled','disabled');
+    		$('#saveasdraft').attr('disabled','disabled');
     	}
     });
 
@@ -194,6 +196,8 @@ $(function() {
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',true);
     		$('#campaigncreate').find('form').submit();
+    		$('#saveasdraft').attr('disabled','disabled');
+    		$('#submitProject').attr('disabled','disabled');
     	}
     });
 

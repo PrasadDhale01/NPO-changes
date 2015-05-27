@@ -87,6 +87,12 @@ $(function() {
   	  }
     }, '');
     
+    $('.perkForm').submit(function() {
+        if($(".perkForm").valid()) {
+            $('#btnCreatePerk').prop('disabled',true);
+        }
+    });
+    
     /***************************Create Shipping Perk***********************************************************************/
     
     $.validator.addMethod('shippingInfo', function(value) {

@@ -112,7 +112,12 @@
 			            </g:else>
 			        </g:if>
                     <g:else>
-                        <dd>By ${contribution.contributorName}, on ${date}</dd>
+                        <g:if test="${contribution.contributorName}">
+                            <dd>By ${contribution.contributorName}, on ${date}</dd> 
+                        </g:if>
+                        <g:else>
+                            <dd>By ${friendlyName}, on ${date}</dd>
+                        </g:else>
                     </g:else>
                     <g:if test="${contribution.comments}">
 			            <p><b>Comment:</b> ${contribution.comments}</p>

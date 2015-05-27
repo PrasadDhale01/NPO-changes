@@ -87,7 +87,7 @@
 			                <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>
 			            </g:if>
 			            <g:else>
-			                <g:if test="${userService.isAnonymous(contribution.user)}">
+			                <g:if test="${contribution.contributorName}">
 		                        <dd>By ${contribution.contributorName}, on ${date}</dd>
 			                </g:if>
 			                <g:else>

@@ -506,7 +506,7 @@ class UserService {
         
         def anonymous = User.findByUsername('anonymous@example.com')
         if (!anonymous) {
-            anonymous = new User(username: 'anonymous@example.com', password: 'password',firstName: 'Anonymous Good Soul', lastName:'anonymousLastName', email: 'anonymous@example.com').save(failOnError: true)
+            anonymous = new User(username: 'anonymous@example.com', password: 'password',firstName: 'Anonymous Good Soul', lastName:'Good Soul', email: 'anonymous@example.com').save(failOnError: true)
         }
         UserRole.findOrSaveByUserAndRole(anonymous, roleService.anonymousRole())
 

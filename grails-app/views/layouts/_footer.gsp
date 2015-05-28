@@ -7,9 +7,10 @@
       	<section class="row">  
       	      <div class="col-xs-12">
       	      	<div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a></div>
+      	      	<div class="crowdera-menu">
       	      	<div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
             		<div class="footer-header-mobile footer-header-align">Quick Links</div>
-           		   <ul class="quicklinks-menu">
+           		   <div class="quicklinks-menu-div"><ul class="quicklinks-menu">
             		      <li><a href="${resource(dir: '/')}">Home</a></li>
 		       	      <li><a href="${resource(dir: '/aboutus')}">Crowdera Crew</a></li>
 		              <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
@@ -17,18 +18,17 @@
 		              
 		              <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
 		              <li><a href="http://crowdera.tumblr.com" target="_blank">Blog</a></li>
-            		   </ul>
+            		   </ul></div>
           		</div>
           		<div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
             		<div class="footer-header-mobile footer-header-align">Campaigning</div>
-            		  <ul class="campaigning-menu">
+            		 <div class="campaigning-menu-div"> <ul class="campaigning-menu">
                     	       <li><a href="${resource(dir: '/campaigns/create')}">Start Your Campaign</a></li>
                     	       <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
 		            	<!-- <li><b><a href="${resource(dir: '/aboutus')}">Success Stories</a></b></li>
 		            	<li><b><a href="${resource(dir: '/campaigns')}" >Pricing</a></b></li>
 		            	<li><b><a href="${resource(dir: '/campaigns/create')}">Campaign Playbook</a></b></li>-->
-            		 </ul>
-          	   </div>	
+            		 </ul></div>
       	       </div>
       	</section>
       <!-- --------------------------Section two------------------------- -->

@@ -29,6 +29,7 @@
 		            	<li><b><a href="${resource(dir: '/campaigns')}" >Pricing</a></b></li>
 		            	<li><b><a href="${resource(dir: '/campaigns/create')}">Campaign Playbook</a></b></li>-->
             		 </ul></div>
+          	   </div></div>
       	       </div>
       	</section>
       <!-- --------------------------Section two------------------------- -->

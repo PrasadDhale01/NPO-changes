@@ -4230,15 +4230,18 @@ textarea.form-control {
 	.footer-mid-section-menu-mobile ul li {
         list-style-type: none;
         margin-left: 31px !important;
+    		width: 135px;   	
     }
     .footer-mid-section-menu-mobile ul li a {
         font-size: 11px !important;
     }
     div.quicklinks-menu-div{
 		display: table-cell;
+    		vertical-align: middle;
 	}
 	div.campaigning-menu-div{
 		display: table-cell;
+    		vertical-align: middle;
 	}
 	div.crowdera-menu{
 		display:block;
@@ -4247,20 +4250,16 @@ textarea.form-control {
 	}
 	ul.quicklinks-menu{
 		margin-left: auto;
+    		margin-right: auto;
    	    width: 135px !important;
    	    padding-left:0px !important;
 	}
 	ul.campaigning-menu{
 		margin-left: auto;
+    		margin-right: auto;
    	    width: 135px;
    	    padding-left:0px !important;
 	}
-    ul.quicklinks-menu li{
-   		//margin-left:-31px;
-    }
-    ul.campaigning-menu li{
-   		//margin-left:-38px;
-    }
     div.left-pad {
         left: 24%;
     }

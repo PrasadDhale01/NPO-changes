@@ -30,6 +30,7 @@ class UrlMappings {
         
         /* Contact Us */
         "/customer-service"(view:'/contactus/index')
+        "/customer-support"(controller:'project', action:'customerSupport')
 
         /* Blogs */
         "/blogs"(controller:'blog', action:'list')

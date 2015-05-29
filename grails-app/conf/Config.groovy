@@ -132,6 +132,12 @@ environments {
         crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-80W284485P519543T'
         crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+        
+        /* FreshDesk Details */
+        crowdera.freshDesk.LOGIN_NAME = 'Krishnakumar sahu'
+        crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
+        crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
+        crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
@@ -170,6 +176,12 @@ environments {
         crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-80W284485P519543T'
         crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+        
+        /* FreshDesk Details */
+        crowdera.freshDesk.LOGIN_NAME = 'Krishnakumar sahu'
+        crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
+        crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
+        crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
@@ -208,6 +220,12 @@ environments {
         crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
         crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+        
+        /* FreshDesk Details */
+        crowdera.freshDesk.LOGIN_NAME = 'Krishnakumar sahu'
+        crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
+        crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
+        crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
@@ -246,7 +264,12 @@ environments {
         crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
         crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
-
+        
+        /* FreshDesk Details */
+        crowdera.freshDesk.LOGIN_NAME = 'Krishnakumar sahu'
+        crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
+        crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
+        crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
 
         /* Stripe live keys */
         /*

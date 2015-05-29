@@ -138,7 +138,7 @@
                         <i class="fa fa-user"></i> Manage User Questions
                     </div>
                     <div class="panel-footer">
-                        <g:link controller="user" action="userquestionsList">
+                        <g:link controller="home" action="customerSupport">
                             <button class="btn btn-block btn-primary"><i class="fa fa-user"></i> Manage User Questions</button>
                         </g:link>
                     </div>

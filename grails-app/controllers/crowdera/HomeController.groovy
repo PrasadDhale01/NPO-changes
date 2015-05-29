@@ -3,6 +3,7 @@ import grails.util.Environment
 
 class HomeController {
 	def projectService
+    def userService
 
     def index() {
 		if(Environment.DEVELOPMENT == Environment.current || Environment.TEST == Environment.current){
@@ -37,4 +38,13 @@ class HomeController {
 	def crewrequest(){
 		render (view: '/aboutus/index')
 	}
+    
+    def customerSupport() {
+        def loginurl = userService.getFreshDeskUrl()
+        if (loginurl)
+            redirect (url: loginurl)
+        else
+            render (view: '/error')
+    }
+    
 }

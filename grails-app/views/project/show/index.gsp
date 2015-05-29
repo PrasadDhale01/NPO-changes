@@ -75,7 +75,7 @@
                     </div>
                 </g:if>
                 <div class="col-md-12 green-heading campaignTitle text-center">
-	                <h1><g:link controller="project" action="showCampaigns" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
+	                <h1><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
 		            	 ${projectTitle} 
 	                </g:link></h1>
 	            </div>
@@ -94,7 +94,7 @@
                     </g:elseif>
                     <g:else>
                         <g:if test="${project.paypalEmail || project.charitableId}">
-	                        <g:form controller="fund" action="fund" id="${project.id}" params="['fr': username]" class="fundFormMobile">
+	                        <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
 	                            <button name="submit" class="btn btn-success btn-lg btn-block"  id="btnFundMobile">Fund this Campaign</button>
 	                        </g:form>
                         </g:if>

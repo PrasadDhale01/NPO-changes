@@ -372,7 +372,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 ------------------------- */
 footer {
     border-top: solid #ff784f 1px !important;
-    background-color: #363636;
+    background-color: #323232;
     padding: 30px 0 0 0;
     margin-top: 25px;
     
@@ -387,16 +387,17 @@ footer {
 }
 input#subscriberEmail{
 	height:37px;
+	width:260px;
 }
 hr.footer-hr{
     color: #666666;
     background-color: #666666;
-    height: 2px;
+    height: 1px;
     border: #666666;
 }
 .footer-first-section p{
-    color:#cccccc;
-    font-size:17px;
+    color:#ffffff;
+    font-size:18px;
     text-align:center;
     font-family: "OPEN SANS";
 }
@@ -406,21 +407,28 @@ hr.footer-hr{
     text-align:center;
     font-family: "OPEN SANS";	
 }
+.footer-mid-section-menu{
+	margin-top:21px;
+}
 .footer-mid-section p b{
-    color:#cccccc;
-    font-size:18px;	
+    color:#ffffff;
+    font-size:22px;	
     padding-left: 50%;	
 }
+.thomas-margin-align{
+	margin-top:-11px;
+}
 p.egle {
-    padding-left: 44%;
+    padding-left: 37%;
+    margin-top: -11px;
 }
 .footer-mid-section-menu ul li a{
-    font-size:14px;
+    font-size:15px;
     font-family: "OPEN SANS";
 }
 .footer-mid-section-menu .footer-header{
-    color:#999999;
-    font-size:19px;
+    color:#adadad;
+    font-size:20px;
     padding-bottom:5px;
     font-family: "OPEN SANS";
 }
@@ -429,7 +437,7 @@ p.egle {
     margin-left:-39px;
 }
 input.text-email{
-    width:125%;
+    width:130%;
     height:37px;
 }
 .footer-mid-section-menu  .subscribe-email{
@@ -445,10 +453,13 @@ input.button-signup{
     width: 84px;
 }
 input.signup-lg{
-	margin-left:28px;
+	margin-left:80px;
 }
 .footer-mid-section-img a{
     margin-left:-24px;
+}
+.footer-mid-section-img img{
+    margin-left:12px;
 }
 .flinks a , .flinks a:hover{
     display: block;
@@ -461,7 +472,7 @@ a {
 }
 
 .footer_links a:hover, .footer_links a:focus {
-   color: #cccccc; 
+   color: #ff784f; 
    text-decoration: none !important;
 }
 .footerbottomsection {
@@ -522,6 +533,48 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.crowdera-title img{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	div.footer-newsletter{
+		display: flex;
+    	justify-content: center;
+    }
+    .subscribeHeading{
+    	font-size:20px;
+    	color:#adadad;
+		margin-left:14px;
+    }
+	.footer-first-section-mobile p{
+		color:#ffffff;
+		font-size:15px;
+		text-align:center;
+	}
+	.footer-first-section-mobile img{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.socialicon{
+    	display: flex;
+    	justify-content: center;
+    }
+	.socialicon img {
+    	margin-left:auto !important;
+    	margin-right:auto !important;
+    	padding: 3px;
+	}
+	.thomas-testimonial p{
+		color:#ffffff;
+		font-size:13px;
+	}
+	.thomas-testimonial b{
+	   	color:#ffffff;
+		font-size:18px !important;
+		margin-left:-8%;
+	}
     div.left-pad {
         left: 24%;
     }
@@ -545,19 +598,6 @@ a {
     	display: flex;
     	justify-content: center;
     }
-    div.crowdera-title a img{
-  	display:block;
-   	margin-left:auto;
-   	margin-right:auto;
-    }
-    .footer-text-align .footer-first-section-mobile.footer-img-align img{
-   	display:block;
-   	margin-left:auto;
-   	margin-right:auto;
-    }
-    div.text-primary{
-        text-align:center;
-    }
     div#aboutus {
         padding-left: 20%;
     }
@@ -571,46 +611,6 @@ a {
     #aboutus .caption {
         font-size: 11px;
         width: 100%;
-    }
-    .footer-mid-section-menu-mobile ul li {
-    	list-style-type: none;
-    	margin-left: -39px !important;
-    }
-    .footer-mid-section-menu .subscribeHeading{
-   		margin-left:14px;
-   }
-    .footer-mid-section-menu-mobile ul li a {
-    	font-size: 14px !important;
-    }
-    .footer-mid-section-mobile p {
-    	color: #ffffff;
-    	font-size: 22px;
-    	text-align: center;
-    }
-    .footer-text-align p{
-	font-size:21px;
-	text-align:center;
-	color:#999999;
-    }
-    .footer-p-text-align p{
-	font-size:15px;
-	text-align:center;
-	color:#ffffff;
-    }
-    div.footer-header-align {
- 	font-size:21px;
-	color:#999999;
-    }
-    .footer-input-align .text-email{
-	width:109% !important;
-    }
-    .footer-img-align img{
-	margin-left:40px;
-	margin-right:40px;
-    }
-    .footer-menu-align {
-	margin-left:109px;
-	margin-right:-146px;
     }
     input.paypal-create {
         margin-left: -3% !important;
@@ -700,18 +700,26 @@ a {
         margin-right: 0;
     }
     .footer-mid-section p b {
-        color: #cccccc;
-        font-size: 18px;
+        color: #ffffff;
+        font-size: 22px;
         padding-left: 37%;
     }
+    .socialicon img {
+    	margin-left: 8px;
+    	margin-right: -4.5px !important;
+   		width: 49px;
+	}
     p.egle {
-        padding-left: 26%;
+        padding-left: 11%;
+    }
+    .footer-first-section p{
+    	font-size: 17px;
     }
     .footer-mid-section p {
         color: #ffffff;
-	font-family: "OPEN SANS";
-	font-size: 14px;
-	text-align: center;
+		font-family: "OPEN SANS";
+		font-size: 13px;
+		text-align: center;
     }
    input.text-email {
     	width: 193px;
@@ -720,7 +728,7 @@ a {
    	margin-left:13px;
    }
   .footer-mid-section-menu ul li a{
-	font-size:10px;
+	font-size:11px;
    }
    .footer-mid-section-menu .footer-header-align{
    	margin-left:14px;
@@ -842,48 +850,57 @@ a {
 }
 @media only screen and (min-width:506px) and (max-width: 640px){
         div#aboutus {
-                padding-left: 15% !important;
+            padding-left: 15% !important;
         }
-	.footer-mid-section-menu-mobile ul li {
-    		list-style-type: none;
-    		margin-left: -39px !important;
-	}
-	.footer-mid-section-menu .subscribeHeading{
-   			margin-left:14px;
-   	}
-	.footer-mid-section-menu-mobile.footer-menu-align ul li a {
-    		font-size: 14px !important;
-	}
-	.footer-mid-section-mobile p {
-    		color: #ffffff;
-    		font-size: 22px;
-    		text-align: center;
-	}
-	.footer-text-align p{
-		font-size:21px;
-		text-align:center;
-		color:#999999;
-	}
-	.footer-p-text-align p{
-		font-size:15px;
-		text-align:center;
-		color:#ffffff;
-	}
-	div.footer-header-align {
-	 	font-size:21px;
-		color:#999999;
-	}
-	.footer-input-align .text-email{
-		width:114% !important;
-	}
-	.footer-img-align img{
-		margin-left:40px;
-		margin-right:40px;
-	}
-	.footer-menu-align {
-		margin-left:50px;
-		margin-right:-62px;
-	}
+        div.crowdera-title img{
+			display:block;
+			margin-left:auto;
+			margin-right:auto;
+		}
+		.footer-header-mobile{
+			color:#adadad;
+			font-size:20px;
+			text-align:center;
+			margin-bottom:5px;
+		}
+    	.subscribeHeading{
+	   		margin-left:14px;
+    	}
+		.footer-first-section-mobile p{
+			color:#ffffff;
+			font-size:15px;
+			text-align:center;
+		}
+		.footer-first-section-mobile img{
+			display:block;
+			margin-left:auto;
+			margin-right:auto;
+		}
+		.socialicon{
+    		display: flex;
+    		justify-content: center;
+    	}
+		.socialicon img {
+    		margin-left:auto !important;
+    		margin-right:auto !important;
+    		padding: 3px;
+		}
+		.thomas-testimonial p{
+			color:#ffffff;
+			font-size:13px;
+		}
+		.thomas-testimonial b{
+		   	color:#ffffff;
+			font-size:18px !important;
+			margin-left:-8%;
+		}
+        ul.quicklinks-menu li {
+    		margin-left: 46px !important;
+		}
+		ul.campaigning-menu li {
+    		margin-left: 38px !important;
+		}
+	
 	
 }
 @media only screen and (min-width:599px) and (max-width: 600px){
@@ -2674,7 +2691,7 @@ textarea.form-control {
     .footer-text-align p{
 	font-size:21px;
 	text-align:center;
-	color:#999999;
+	color:#ffffff;
     }
     .footer-p-text-align p{
 	font-size:15px;
@@ -2683,10 +2700,10 @@ textarea.form-control {
     }
     div.footer-header-align {
  	font-size:21px;
-	color:#999999;
+	color:#adadad;
     }
     .footer-input-align .text-email{
-	width:109% !important;
+	width:120% !important;
     }
     .footer-img-align img{
 	padding-left:53px;
@@ -2922,6 +2939,9 @@ textarea.form-control {
 	}
 }
 @media only screen and (max-width: 1024px) {
+	.text-primary{
+		text-align:center;
+	}
 	.tile-goal {
         width: 150%;
     }
@@ -3386,6 +3406,12 @@ textarea.form-control {
         margin-left: -4% !important;
         width: 105%;
     }
+    ul.quicklinks-menu li {
+    	margin-left:9px !important;
+	}
+	ul.campaigning-menu li {
+    	margin-left: 0px !important;
+	}
     .tbFirstAdmin{
 	padding-left:7px;
         width:91% !important;
@@ -4153,6 +4179,87 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.crowdera-title img{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.footer-header-mobile{
+		color:#adadad;
+		font-size:20px;
+		text-align:center;
+		margin-bottom:5px;
+		margin-left:16px;
+		width:135px;
+	}
+	div.footer-newsletter{
+		display: flex;
+    	justify-content: center;
+    }
+    .subscribeHeading{
+   		margin-left:14px;
+    }
+	.footer-first-section-mobile p{
+		color:#ffffff;
+		font-size:15px;
+		text-align:center;
+	}
+	.footer-first-section-mobile img{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	.socialicon{
+    	display: flex;
+    	justify-content: center;
+    }
+	.socialicon img {
+    	margin-left:auto !important;
+    	margin-right:auto !important;
+    	padding: 3px;
+	}
+	.thomas-testimonial p{
+		color:#ffffff;
+		font-size:13px;
+	}
+	.thomas-testimonial b{
+	   	color:#ffffff;
+		font-size:18px !important;
+		margin-left:-8%;
+	}
+	.footer-mid-section-menu-mobile ul li {
+        list-style-type: none;
+        margin-left: 31px !important;
+    		width: 135px;   	
+    }
+    .footer-mid-section-menu-mobile ul li a {
+        font-size: 11px !important;
+    }
+    div.quicklinks-menu-div{
+		display: table-cell;
+    		vertical-align: middle;
+	}
+	div.campaigning-menu-div{
+		display: table-cell;
+    		vertical-align: middle;
+	}
+	div.crowdera-menu{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	ul.quicklinks-menu{
+		margin-left: auto;
+    		margin-right: auto;
+   	    width: 135px !important;
+   	    padding-left:0px !important;
+	}
+	ul.campaigning-menu{
+		margin-left: auto;
+    		margin-right: auto;
+   	    width: 135px;
+   	    padding-left:0px !important;
+	}
     div.left-pad {
         left: 24%;
     }
@@ -4176,27 +4283,7 @@ textarea.form-control {
 	top: 93px;
 	width: 119px;
     }
-    div.footer-newsletter{
-	display: flex;
-    	justify-content: center;
-    }
-    .socialicon{
-    	display: flex;
-    	justify-content: center;
-    }
-    div.crowdera-title a img{
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
-    }
-   .footer-text-align .footer-first-section-mobile.footer-img-align img{
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
-   }
-   div.text-primary{
-	text-align:center;
-   }
+    
     #aboutus .caption {
         font-size: 9px;
         width: 100%;
@@ -4207,33 +4294,7 @@ textarea.form-control {
     div.container.crewpage > h1 {
         text-align: center;
     }
-    .footer-mid-section p b {
-        color: #cccccc;
-        font-size: 18px;
-        padding-left: 40%;
-    }
-    p.egle {
-        padding-left: 33%;
-    }
-    .footer-first-section-mobile p {
-        color: #cccccc;
-        font-size: 15px;
-        text-align: center;
-    }
-   .footer-mid-section-menu .subscribeHeading{
-   		margin-left:14px;
-   }
-   .footer-mid-section-menu-mobile .footer-header-mobile {
-   	color: #999999;
-    	font-size: 19px;
-   }
-   .footer-mid-section-menu-mobile ul li {
-    	list-style-type: none;
-    	margin-left: -39px;
-   }
-   .footer-mid-section-menu-mobile ul li a {
-    	font-size: 10px !important;
-   }
+    
    .form-group.col-sm-6.rewardPriceClass{
         padding-left:16px;
         width:104% !important;
@@ -4732,8 +4793,8 @@ button.projectedit.close{
 	max-width:100%;
 }
 .footer_links a {
-	color: #cccccc;
-	font-size:15px;
+	color: #ffffff;
+	font-size:16px;
 	text-decoration: none;
 	
 }
@@ -4751,7 +4812,7 @@ button.projectedit.close{
 	margin-top: 15px;
 }
 a.footerlink {
-	color: #cccccc;
+	color: #adadad;
     	font-size: 14px;
     	text-decoration: none;
     	font-weight: 500;
@@ -4839,6 +4900,8 @@ a.footerlink {
 }
 .socialicon img{
 	width: 49px;
+	margin-left: 8px;
+    margin-right: 11.5px;
 }
 .banner-wid img{
 	width: 100px;

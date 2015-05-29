@@ -158,7 +158,7 @@ class UserController {
 	
     @Secured(['ROLE_ADMIN'])
     def responseforCrews() {
-       	def docfile = request.getFile('resume')
+	def docfile = request.getFile('resume')
 	userService.sendResponseToCrews(params,docfile)
 	CrewReg crewrequst = CrewReg.get(params.id)
 	crewrequst.adminReply = params.adminReply

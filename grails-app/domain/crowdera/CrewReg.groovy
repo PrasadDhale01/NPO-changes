@@ -17,7 +17,10 @@ class CrewReg {
 	String resumeUrl
 	String linkedIn
 	String faceBook
+	String adminReply
+	String docByAdmin
 	Date date
+	Date adminDate
 	boolean status = false
 	
 	static mapping = {
@@ -35,5 +38,7 @@ class CrewReg {
 		resumeUrl nullable: true
 		linkedIn nullable: true
 		faceBook nullable: true
+		adminReply nullable: true
+		docByAdmin nullable: true
     }
 }

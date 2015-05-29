@@ -144,6 +144,18 @@
                     </div>
                 </div>
             </div>
+            <div class="col-sm-4">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <i class="fa fa-user"></i> Manage Applicant
+                    </div>
+                    <div class="panel-footer">
+                        <g:link controller="user" action="crewsList">
+                            <button class="btn btn-block btn-primary"><i class="fa fa-user"></i> Manage Applicant</button>
+                        </g:link>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </div>

@@ -149,30 +149,30 @@ class UserController {
         redirect action:'userquestionsList'
     }
 	
-	@Secured(['ROLE_ADMIN'])
-	def crewsList() {
-		def nonRespondList = userService.getNonRespondList()
-		def respondedList = userService.getRespondedList()
-		render view: '/user/crew/index', model: [nonRespondList: nonRespondList, respondedList: respondedList]
-	}
+    @Secured(['ROLE_ADMIN'])
+    def crewsList() {
+	def nonRespondList = userService.getNonRespondList()
+	def respondedList = userService.getRespondedList()
+	render view: '/user/crew/index', model: [nonRespondList: nonRespondList, respondedList: respondedList]
+    }
 	
-	@Secured(['ROLE_ADMIN'])
-	def responseforCrews() {
-		def docfile = request.getFile('resume')
-		userService.sendResponseToCrews(params,docfile)
-		CrewReg crewrequst = CrewReg.get(params.id)
-		crewrequst.adminReply = params.adminReply
-		crewrequst.adminDate = new Date()
-		flash.crewsmessage = "Successfully Responded"
-		redirect action:'crewsList'
-	}
+    @Secured(['ROLE_ADMIN'])
+    def responseforCrews() {
+       	def docfile = request.getFile('resume')
+	userService.sendResponseToCrews(params,docfile)
+	CrewReg crewrequst = CrewReg.get(params.id)
+	crewrequst.adminReply = params.adminReply
+	crewrequst.adminDate = new Date()
+	flash.crewsmessage = "Successfully Responded"
+	redirect action:'crewsList'
+    }
 	
-	@Secured(['ROLE_ADMIN'])
-	def discardDetails() {
-		userService.discardMessage(params)
-		flash.discardMessage = "Applicant Query Discarded Successfully."
-		redirect action:'crewsList'
-	}
+    @Secured(['ROLE_ADMIN'])
+    def discardDetails() {
+	userService.discardMessage(params)
+	flash.discardMessage = "Applicant Query Discarded Successfully."
+	redirect action:'crewsList'
+    }
 
     @Secured(['ROLE_ADMIN'])
     def resendToUsers(){

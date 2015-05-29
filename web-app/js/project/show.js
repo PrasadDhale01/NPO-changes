@@ -85,7 +85,7 @@
             amount1: {
                 required: true,
                 number: true,
-                maxlength: 5,
+                maxlength: 6,
                 min: 1
             }
         }
@@ -101,7 +101,7 @@
                 amount: {
                     required: true,
                     number: true,
-                    maxlength: 5,
+                    maxlength: 6,
                     min: 1
                 }
         	}

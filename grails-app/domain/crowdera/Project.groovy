@@ -64,7 +64,7 @@ class Project {
         imageUrl (nullable: true)
         videoUrl (nullable:true)
         rewards (nullable: true)
-        amount (max: 500000 as double)
+        amount (max: 999999 as double)
         description (nullable: true)
         charitableId (nullable: true)
         story (nullable: true)

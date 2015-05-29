@@ -122,9 +122,11 @@ class FundController {
     def charge() {
         Project project
         Reward reward
+        def vanityTitle
 
         if (params.projectId) {
             project = projectService.getProjectById(params.projectId)
+            vanityTitle = projectService.getVanityTitleFromId(params.projectId)
         }
         
         def user1 = userService.getUserById(params.tempValue)
@@ -137,6 +139,7 @@ class FundController {
         def state = projectService.getState()
         def country = projectService.getCountry()
 		
+        def vanityUserName = params.fr
         User fundraiser = userService.getUserFromVanityName(params.fr)
         def anonymous = params.anonymous
 
@@ -166,7 +169,7 @@ class FundController {
 		
         if(percentage>999) {
             flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
-            redirect action: 'fund', id: project.id, params:[fr: fundRaiserUserName, rewardId:perk.id]
+            redirect action: 'fund', params:['fr': vanityUserName, 'rewardId': perk.id, 'projectTitle': vanityTitle]
         } else {
             if (project && reward) {
                 if (project.paypalEmail){

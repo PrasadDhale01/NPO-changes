@@ -15,7 +15,7 @@ $(function() {
             price: {
                 required: true,
                 number: true,
-                max : 50000,
+                max : 999999,
                 isPerk:true,
                 min: 0
             }
@@ -37,7 +37,7 @@ $(function() {
                 price: {
                     required: true,
                     number: true,
-                    max : 50000,
+                    max : 999999,
                     isPerk:true,
                     min: 0
                 }

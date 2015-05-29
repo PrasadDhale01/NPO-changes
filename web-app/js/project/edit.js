@@ -27,7 +27,7 @@ $(function() {
                 required: true,
                 number: true,
                 maxlength: 6,
-                max: 500000
+                max: 999999
             },
             days: {
                 required: true

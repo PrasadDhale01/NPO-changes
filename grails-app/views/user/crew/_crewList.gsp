@@ -36,7 +36,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type"button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">close</span></button>
-                    <h4 class="modal-title"><b>Applicant Details</b></h4>
+                    <h4 class="modal-title text-center"><b>Applicant Details</b></h4>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -101,7 +101,8 @@
                      </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-block">Send Response</button>
+                    <button data-dismiss="modal" class="btn btn-modal">Close</button>
+				    <button class="btn btn-modal" type="submit">Send</button>
                 </div>
             </div>
         </div>
@@ -114,20 +115,20 @@
          <div class="modal-content">
              <div class="modal-header">
                  <button type"button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">close</span></button>
-                 <h4 class="modal-title"><b>Applicant Details</b></h4>
+                 <h4 class="modal-title text-center"><b>Applicant Details</b></h4>
              </div>
-             <div class="modal-body">
+             <div class="modal-body font-lab">
                  <div class="form-group">
-                     <label for="Name"><b>Name:</b></label>
-                     <label for="Name"><h5>${crews.firstName} ${crews.lastName}</h5></label>
+                     <label for="Name"><b>Name:</b>&nbsp;&nbsp;</label>
+                     <label for="Name">${crews.firstName} ${crews.lastName}</label>
                  </div>
                  <div class="form-group">
-                     <label for="crews Email"><b>Email:</b></label>
-                     <label for="Name"><h5>${crews.email}</h5></label> 
+                     <label for="crews Email"><b>Email:</b>&nbsp;&nbsp;</label>
+                     <label for="Name">${crews.email}</label> 
                  </div>
                  <div class="form-group">
-                     <label for="crews Phone"><b>Phone:</b></label>
-                     <label for="Name"><h5>${crews.phone}</h5></label> 
+                     <label for="crews Phone"><b>Phone:</b>&nbsp;</label>
+                     <label for="Name">${crews.phone}</label> 
                  </div>
                  <div class="form-group">
                      <label for="crewDescription"><b>Description:</b></label>
@@ -161,7 +162,7 @@
                  <div class="form-group">
                      <label for="crewsReply"><b>Response to Applicant:</b></label>
                       <div class="clear"></div>
-                     <label for="Name"><h5>${crews.adminReply}</h5></label> 
+                     <label for="Name">${crews.adminReply}</label> 
                  </div>
                  <div class="form-group">
                   <g:if test="${crews.docByAdmin}">
@@ -175,9 +176,8 @@
                  </div>
              </div>
              <div class="modal-footer">
+                 <button type="button" class="btn btn-primary" data-dismiss="modal">close</button>
              </div>
          </div>
      </div>
 </div>
-
-

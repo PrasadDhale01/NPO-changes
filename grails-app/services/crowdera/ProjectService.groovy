@@ -1615,7 +1615,7 @@ class ProjectService {
 		crewrequest.linkedIn = params.linkedIn
 		crewrequest.faceBook = params.faceBook
 		crewrequest.resumeUrl = resumeUrl
-		crewrequest.requestDate = new Date()
+		crewrequest.date = new Date()
 		crewrequest.adminDate = new Date()
 		
 		crewrequest.save(failOnError: true)

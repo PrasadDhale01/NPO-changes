@@ -102,7 +102,7 @@
                 </div>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-modal">Close</button>
-				    <button class="btn btn-modal" type="submit">Send</button>
+		    <button class="btn btn-modal" type="submit">Send</button>
                 </div>
             </div>
         </div>

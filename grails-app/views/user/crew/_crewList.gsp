@@ -2,13 +2,13 @@
 <tr>
     <td>${index}</td>
     <td class="col-md-4 col-sm-4">${crews.firstName} ${crews.lastName}</td>
-    <td class="col-md-4 col-sm-4">${crews.date}</td>
+    <td class="col-md-4 col-sm-4">${crews.requestDate}</td>
     <td class="col-md-3 col-sm-3 text-center">
         <a href="#" class="btn btn-sm btn-primary" data-id="${crews}" data-toggle="modal" data-target="#crewRespond${crews.id}">View and Respond</a>
     </td>
     <td class="col-md-4 col-sm-4 text-center">
         <g:form action="discardDetails" controller="User" id="${crews.id}">
-            <button class="btn btn-sm btn-danger" onclick="return confirm(&#39;Are you sure you want to discard this Query?&#39;);">Discard</button>
+            <button class="btn btn-sm btn-danger" onclick="return confirm(&#39;Are you sure you want to discard this Applicant?&#39;);">Discard</button>
         </g:form>
     </td>    
 </tr>
@@ -23,7 +23,7 @@
     </td>
     <td class="col-md-4 col-sm-4 text-center">
         <g:form action="discardDetails" controller="User" id="${crews.id}">
-            <button class="btn btn-sm btn-danger" onclick="return confirm(&#39;Are you sure you want to discard this Query?&#39;);">Discard</button>
+            <button class="btn btn-sm btn-danger" onclick="return confirm(&#39;Are you sure you want to discard this Applicant?&#39;);">Discard</button>
         </g:form>
     </td>    
 </tr>

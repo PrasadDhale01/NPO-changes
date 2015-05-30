@@ -359,6 +359,11 @@ class UserService {
 		mandrillService.sendResponseToCrews(adminResponse,crewsResponse,attachmentUrl)
 	}
 	
+	def getCrewRegById(def crewId) {
+		def crew = CrewReg.get(crewId)
+		return crew
+	}
+	
 	def discardMessage(def params) {
 		CrewReg crewsRequest = CrewReg.get(params.id)
 		if (crewsRequest) {

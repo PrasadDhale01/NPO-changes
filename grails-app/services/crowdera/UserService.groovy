@@ -365,6 +365,11 @@ class UserService {
 			crewsRequest.delete();
 		}
 	}
+	
+	def getCrewRegById(def crewId) {
+		def crew = CrewReg.get(crewId)
+		return crew
+	}
     
     def contributionEmailToOwnerOrTeam(def fundRaiser, def project, def contribution) {
         def user = project.user

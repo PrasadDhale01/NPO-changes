@@ -160,9 +160,9 @@ class UserController {
 	def responseforCrews() {
 		def docfile = request.getFile('resume')
 		userService.sendResponseToCrews(params,docfile)
-		CrewReg crewrequst = CrewReg.get(params.id)
-		crewrequst.adminReply = params.adminReply
-		crewrequst.adminDate = new Date()
+		def crew = userService.getCrewRegById(params.id)
+		crew.adminReply = params.adminReply
+		crew.adminDate = new Date()
 		flash.crewsmessage = "Successfully Responded"
 		redirect action:'crewsList'
 	}

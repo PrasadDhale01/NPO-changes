@@ -3,7 +3,7 @@ package crowdera
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
-@ToString(includeNames = true, includeFields = true, excludes = 'date')
+@ToString(includeNames = true, includeFields = true, excludes = 'requestDate,adminDate')
 @EqualsAndHashCode
 
 class CrewReg {
@@ -19,7 +19,7 @@ class CrewReg {
 	String faceBook
 	String adminReply
 	String docByAdmin
-	Date date
+	Date requestDate
 	Date adminDate
 	boolean status = false
 	

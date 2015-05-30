@@ -1302,25 +1302,6 @@ ul.unstyled {
 .announcement-heading {
     font-size: 50px;
     margin: 0;
-    display: inline-block;
-}
-
-.for-greaterseven {
-    font-size: 31px;
-    padding-top: 17px;
-    display: inline-block;
-}
-
-.for-greaterEleven {
-    display: inline-block;
-    font-size: 24px;
-    padding-top: 26px;
-}
-
-.for-greaterFourteen {
-    display: inline-block;
-    font-size: 20px;
-    padding-top: 32px;
 }
 
 .announcement-text {

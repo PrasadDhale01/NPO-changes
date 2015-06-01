@@ -6,6 +6,11 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
+import java.security.NoSuchAlgorithmException;
+import java.security.InvalidKeyException;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 
 
 class UserService {
@@ -14,6 +19,7 @@ class UserService {
     def springSecurityService
     def roleService
     def mandrillService
+    def grailsApplication
 
     def getNumberOfUsers() {
         return User.count()
@@ -489,6 +495,60 @@ class UserService {
         }
         return user
     }
+    
+    /* Help Desk Integration*/
+    
+    def getFreshDeskUrl() throws NoSuchAlgorithmException, InvalidKeyException {
+        def hash
+        def url
+        def name = grailsApplication.config.crowdera.freshDesk.LOGIN_NAME;
+        def BASE_URL = grailsApplication.config.crowdera.freshDesk.BASE_URL;
+        def email = grailsApplication.config.crowdera.freshDesk.LOGIN_EMAIL;
+        long timeInSeconds = System.currentTimeMillis()/1000;
+        
+        try {
+            hash = getHMACHash(name,email,timeInSeconds);
+            url = BASE_URL + "?name="+name+"&email="+email+"&timestamp="+timeInSeconds+"&hash=" + hash;
+ 
+        }catch (Exception e) {
+            url = null
+        }
+        return url
+    }
+    
+    def hashToHexString(byte[] byteData) {
+        def hexString = new StringBuffer();
+        for (int i = 0; i < byteData.length; i++) {
+            def hex = Integer.toHexString(0xff & byteData[i]);
+            // NB! E.g.: Integer.toHexString(0x0C) will return "C", not "0C"
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
+    }
+
+    def String getHMACHash(String name,String email,long timeInMillis) throws Exception {
+        def sharedSecret = grailsApplication.config.crowdera.freshDesk.sharedSecret;
+        byte[] keyBytes = sharedSecret.getBytes();
+        def movingFact =name+email+timeInMillis;
+        byte[] text = movingFact.getBytes();
+
+        def hexString = "";
+        Mac hmacMD5;
+        try {
+            hmacMD5 = Mac.getInstance("HmacMD5");
+            SecretKeySpec macKey = new SecretKeySpec(keyBytes, "RAW");
+            hmacMD5.init(macKey);
+            byte[] hash =  hmacMD5.doFinal(text);
+            hexString = hashToHexString(hash);
+        } catch (Exception nsae) { }
+        
+        return hexString;
+    }
+    
+    /* End of Help Desk Integration*/
 
     @Transactional
     def bootstrap() {

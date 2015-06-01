@@ -65,6 +65,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	<input type="hidden" id="b_url" value="<%=base_url%>" /> 
 	<input type="hidden" name="uuid" id="uuid" />
 	<input type="hidden" name="charity_name" id="charity_name" />
+	<div id="test"></div>
 	<div class="feducontent">
 		<div class="container" id="campaigncreate">
 			<h1>

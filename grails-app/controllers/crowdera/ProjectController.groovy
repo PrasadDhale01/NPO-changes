@@ -519,6 +519,15 @@ class ProjectController {
     }
 
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def invalidateSession() {
+		def status =request.getParameter("status")
+		if(status==true)
+		session.invalidate()
+		render " "
+	}
+	
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def save() {

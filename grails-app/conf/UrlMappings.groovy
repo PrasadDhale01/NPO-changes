@@ -69,6 +69,8 @@ class UrlMappings {
         /* Facebook login */
         "/facebookauthfailure"(controller:'login', action:'facebook_user_denied')
         
+        "/facebookauthsuccess"(controller:'login', action:'facebook_user_login')
+        
         /*fund*/
         "/fund"(controller: 'fund', action: 'paypalReturn')
         "/campaign/$projectTitle/fund/$fr"(controller:'fund', action: 'fund')

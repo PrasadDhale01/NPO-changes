@@ -194,15 +194,14 @@
      function changeTeamStatus() {
          $('#teamStatusButton input[type="checkbox"]').each(function(index, value) {
              if ($(this).prop("checked") == true) {
-                 $('#check'+(index+1)).text(' Enable');
+                 $('#checkteam'+(index+1)).text(' Enable');
              } else {
-                 $('#check'+(index+1)).text(' Disable');
+                 $('#checkteam'+(index+1)).text(' Disable');
              }
          });
      }
      
-     function enableOrDisableTeam(checkstat,statusValue)
-     {
+     function enableOrDisableTeam(checkstat,statusValue) {
          var teamId=$(checkstat).val();
          $.ajax({
                  type:'post',

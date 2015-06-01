@@ -19,8 +19,6 @@
                 def backers = contributionService.getBackersForProjectByReward(project, reward);
         		def price = reward.price.round();
 				def rewardId = reward.id
-                def isOnlyTwitterHandled = rewardService.isOnlyTwitterHandled(reward)
-                def isTwitterHandled = rewardService.isTwitterHandled(reward)
             %>
             <g:if test="${isFundingOpen}">
                 <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'rewardId': rewardId, 'projectTitle': vanityTitle]">

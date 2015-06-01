@@ -19,7 +19,7 @@
 	<td>$${amountLeft}</td>
 	<td class="teamStatusButton" id="teamStatusButton">
 	    <input type="checkbox" name="link" id="${team.id}" value="${team.id}" 
-	        <% if(!team.enable) { %> checked="checked" <% } %> <% if(team.user == project.user) { %> disabled="true" <% } %>><span id="check${team.id}"> Disable</span>
+	        <% if(!team.enable) { %> checked="checked" <% } %> <% if(team.user == project.user) { %> disabled="true" <% } %>><span id="checkteam${team.id}"> Disable</span>
 	    </input>
 	</td>
 </tr>

@@ -18,8 +18,6 @@
                 <%
                     def backers = contributionService.getBackersForProjectByReward(project, reward);
             		def price = projectService.getDataType(reward.price);
-                    def isOnlyTwitterHandled = rewardService.isOnlyTwitterHandled(reward)
-                    def isTwitterHandled = rewardService.isTwitterHandled(reward)
                 %>
                 <br>
                 <a href="#" class="list-group-item <% if(perk == reward){%> active <%}%>" id="${reward.id}" data-rewardprice="${reward.price}">

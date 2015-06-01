@@ -4,7 +4,6 @@
     hideShowLabel();
     changeTeamStatus();
     $('#editimg').hide();
-    $('#ytVideo').hide();
     $('#editTeamImg').hide();
 
     var hash = window.location.hash;
@@ -377,26 +376,14 @@
     
     /*************************Edit video for team*************************/
     
-    $('#videoUrl').focus(function(){
-        var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-           var url= $('#videoUrl').val().trim();
-           var match = url.match(regExp);
-         
-           if (match && match[2].length == 11) {
-               $('#ytVideo').show();
-               var vurl=url.replace("watch?v=", "v/");
-               $('#ytVideo').attr('src',vurl);
-           }else if($(this)){
-               $('#ytVideo').hide();
-           }
-      }).change(function(){
+    $('#videoUrl').change(function(){
            var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
            var url= $('#videoUrl').val().trim();
            var match = url.match(regExp);
          
            if (match && match[2].length == 11) {
                $('#ytVideo').show();
-               var vurl=url.replace("watch?v=", "v/");
+               var vurl=url.replace("watch?v=", "embed/");
                $('#ytVideo').attr('src',vurl);
            }else if($(this)){
                $('#ytVideo').hide();
@@ -524,6 +511,25 @@
         	$('#btnSendMailMng').attr('disabled','disabled');
         }
     });
+    
+    $(document).ready(function (){
+     /*************************Edit video for team*************************/
+       var videoStatus=$('#videoUrl').val();
+       if(videoStatus){
+        	var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    	    var url= $('#videoUrl').val().trim();
+    	    var match = url.match(regExp);
+    	    if (match && match[2].length == 11) {
+    	       $('#ytVideo').show();
+    	       var vurl=url.replace("watch?v=", "embed/");
+    	       $('#ytVideo').attr('src',vurl);
+    	    }else if($(this)){
+    	       $('#ytVideo').hide();
+    	    }
+       }else{
+          	$('#ytVideo').hide();
+       }
+   });
 });
 
 function showNavigation(){

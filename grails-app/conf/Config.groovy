@@ -138,6 +138,11 @@ environments {
         crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
         crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
         crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
+		
+		/*MailChimp details*/
+		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
+		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
+		crowdera.MAILCHIMP.LISTID="e37aea1b78"
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
@@ -182,6 +187,11 @@ environments {
         crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
         crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
         crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
+		
+		/*MailChimp details*/
+		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
+		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
+		crowdera.MAILCHIMP.LISTID="e37aea1b78"
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
@@ -226,6 +236,14 @@ environments {
         crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
         crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
         crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
+		
+		/*MailChimp details*/
+		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
+		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
+		crowdera.MAILCHIMP.LISTID="e37aea1b78"
+		 
+		
+		
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
@@ -270,6 +288,11 @@ environments {
         crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
         crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
         crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
+		
+		/*MailChimp details*/
+		crowdera.MAILCHIMP.SUBSCRIBE_URL="https://crowdera.us3.list-manage.com/subscribe/post"
+		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
+		crowdera.MAILCHIMP.LISTID="e37aea1b78"
 
         /* Stripe live keys */
         /*

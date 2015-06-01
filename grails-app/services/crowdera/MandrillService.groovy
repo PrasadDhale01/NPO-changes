@@ -627,6 +627,46 @@ class MandrillService {
 
         inviteToAdmin(email, 'send-response-to-customer', globalMergeVars, tags)
     }
+	
+    def sendResponseToCrews(def adminResponse, def crews, def attachmentUrl) {
+	def email = crews.email
+	def date = new Date()
+	def base_url = grailsApplication.config.crowdera.BASE_URL
+	def url = base_url+"/howitworks"
+	def link = grailsLinkGenerator.link(controller: 'project', action: 'list', absolute: true)
+	def create_url = grailsLinkGenerator.link(controller: 'project', action: 'create', absolute: true)
+	def globalMergeVars = [
+		[
+			'name': 'LINK',
+			'content': link
+		],[
+			'name': 'CREATE_URL',
+			'content': create_url
+		],[
+			'name': 'URL',
+			'content': url
+		],[
+			'name': 'NAME',
+			'content': crews.firstName
+		],[
+			'name': 'EMAIL',
+			'content': email
+		],[
+			'name': 'RESPONSE',
+			'content': adminResponse
+		],[
+			'name': 'DATE',
+			'content': date.format("YYYY-MM-DD HH:mm:ss")
+		],[
+			'name': 'ATTACHMENTURL',
+			'content': attachmentUrl
+		]
+	]
+
+	def tags = ['send-response-to-crews']
+
+	inviteToAdmin(email, 'send-response-to-crews', globalMergeVars, tags)
+    }
     
     public def sendMandrillEmail(User user) {
         def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm', id: user.confirmCode, absolute: true)

@@ -3,7 +3,7 @@ package crowdera
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
-@ToString(includeNames = true, includeFields = true, excludes = 'date')
+@ToString(includeNames = true, includeFields = true, excludes = 'requestDate,adminDate')
 @EqualsAndHashCode
 
 class CrewReg {
@@ -17,7 +17,10 @@ class CrewReg {
 	String resumeUrl
 	String linkedIn
 	String faceBook
-	Date date
+	String adminReply
+	String docByAdmin
+	Date requestDate
+	Date adminDate
 	boolean status = false
 	
 	static mapping = {
@@ -35,5 +38,7 @@ class CrewReg {
 		resumeUrl nullable: true
 		linkedIn nullable: true
 		faceBook nullable: true
+		adminReply nullable: true
+		docByAdmin nullable: true
     }
 }

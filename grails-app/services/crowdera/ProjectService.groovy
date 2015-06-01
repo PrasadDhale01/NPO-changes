@@ -1615,7 +1615,8 @@ class ProjectService {
 		crewrequest.linkedIn = params.linkedIn
 		crewrequest.faceBook = params.faceBook
 		crewrequest.resumeUrl = resumeUrl
-		crewrequest.date = new Date()
+		crewrequest.requestDate = new Date()
+		crewrequest.adminDate = new Date()
 		
 		crewrequest.save(failOnError: true)
 		mandrillService.sendEmailToCrew(crewrequest)

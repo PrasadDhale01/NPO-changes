@@ -63,6 +63,7 @@ class UrlMappings {
         /* Admin */
         "/admin/dashboard"(controller:'user', action:'admindashboard')
         "/admin/importcampaigns"(controller: 'project', action: 'importprojects')
+	"/user/applicantsList"(controller: 'user', action: 'crewsList')
 
         /* Community */
         "/community/$communityId/manage"(controller: 'community', action: 'manage')

@@ -129,7 +129,7 @@
 					</div>
                         
                     <!-- Modal -->
-                    <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal fade sendmailmodal" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
                         <g:form action="sendemail" controller="fund" id="${project.id}" role="form">
                             <input type="hidden" name="cb" id="${contributionId }" value="${contributionId }"></input>
                             <input type="hidden" name="fr" id="${fundraiserId }" value="${fundraiserId }"></input>
@@ -141,9 +141,10 @@
                                     </div>
                                     <div class="modal-body">
                                         <g:hiddenField name="amount" value="${project.amount}"/>
+                                        <g:hiddenField name="projectTitle" value="${projectTitle}"/>
                                         <div class="form-group">
                                             <label>Your Name</label>
-                                            <input type="text" class="form-control" name="name" placeholder="Name"/>
+                                            <input type="text" class="form-control" name="name" placeholder="Name"></input>
                                         </div>
 	                                    <div class="form-group">
 	                                        <label>Email ID's (separated by comma)</label>

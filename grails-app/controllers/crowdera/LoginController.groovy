@@ -159,7 +159,7 @@ class LoginController {
     }
 
     def request_accept(){
-        def users = userService.getUserId(params.id)
+        def users = userService.getUserId(params.long('id'))
             users.enabled = true
             mandrillService.sendMail(users)
             flash.login_message = "User Invited"

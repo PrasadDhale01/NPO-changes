@@ -297,7 +297,7 @@ class UserService {
     }
     
     def sendResponseToCustomer(def params, CommonsMultipartFile attachedFile) {
-        def service = CustomerService.get(params.id);
+        def service = CustomerService.get(params.long('id'));
         def adminResponse = params.answer
         def attachmentUrl
         if (!attachedFile?.empty && attachedFile.size < 1024 * 1024 * 3) {
@@ -335,7 +335,7 @@ class UserService {
     }
 		
     def sendResponseToCrews(def params, CommonsMultipartFile attachedFile) {
-	def crewsResponse = CrewReg.get(params.id);
+	def crewsResponse = CrewReg.get(params.long('id'));
 	def adminResponse = params.adminReply
 	def attachmentUrl 
 	if (!attachedFile?.empty && attachedFile.size < 1024 * 1024 * 3) {
@@ -366,7 +366,7 @@ class UserService {
     }
 	
     def discardMessage(def params) {
-	CrewReg crewsRequest = CrewReg.get(params.id)
+	CrewReg crewsRequest = CrewReg.get(params.long('id'))
 	if (crewsRequest) {
 		crewsRequest.delete();
 	}
@@ -389,13 +389,17 @@ class UserService {
     }
 
     def getUserId(def userId){
-        def avatarUser = User.get(userId)
-        return avatarUser
+        if (userId) {
+            def avatarUser = User.get(userId)
+            return avatarUser
+        }
     }
     
     def getUserById(def userId) {
-        def user = User.get(userId)
-        return user
+        if(userId) {
+            def user = User.get(userId)
+            return user
+        }
     }
 
     def getUserByName(def userName){
@@ -437,7 +441,7 @@ class UserService {
     }
     
     def discardUserQuery(def params) {
-        CustomerService service = CustomerService.get(params.id)
+        CustomerService service = CustomerService.get(params.long('id'))
         if (service) {
             service.delete();
         }

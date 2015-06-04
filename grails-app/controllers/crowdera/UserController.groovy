@@ -33,7 +33,7 @@ class UserController {
 	
     @Secured(['ROLE_ADMIN'])
     def resendConfirmMailByAdmin(){
-	def user = userService.getUserId(params.id)
+	def user = userService.getUserId(params.long('id'))
 	user.confirmCode = UUID.randomUUID().toString()
 	mandrillService.reSendConfirmationMail(user)
 	flash.message = "Confirmation Email has been send to ${user.email}"
@@ -71,7 +71,7 @@ class UserController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def upload_avatar() {
-        def avatarUser = userService.getUserId(params.id)
+        def avatarUser = userService.getUserId(params.long('id'))
         def imageFile = request.getFile('avatar')
 
         if (!imageFile.isEmpty() && imageFile.size < 1024*1024) {
@@ -94,7 +94,7 @@ class UserController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def edit_avatar() {
-        def avatarUser = userService.getUserId(params.id)
+        def avatarUser = userService.getUserId(params.long('id'))
         def imageFile = request.getFile('profile')
         
         if (!imageFile.isEmpty() && imageFile.size < 1024*1024) {
@@ -117,7 +117,7 @@ class UserController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def deleteavatar() {
-        def avatarUser = userService.getUserId(params.id)
+        def avatarUser = userService.getUserId(params.long('id'))
         if(avatarUser) {
             avatarUser.userImageUrl = null
             flash.user_message = "Avatar deleted successfully"
@@ -160,7 +160,7 @@ class UserController {
     def responseforCrews() {
 	def docfile = request.getFile('resume')
 	userService.sendResponseToCrews(params,docfile)
-	def crew = userService.getCrewRegById(params.id)
+	def crew = userService.getCrewRegById(params.long('id'))
 	crew.adminReply = params.adminReply
 	crew.adminDate = new Date()
 	flash.crewsmessage = "Successfully Responded"
@@ -188,7 +188,7 @@ class UserController {
     
     @Secured(['ROLE_ADMIN'])
     def deleteUser() {
-        def user = userService.getUserById(params.id)
+        def user = userService.getUserById(params.long('id'))
         userService.deleteNonVerifiedUser(user)
         
         flash.deleteusermsg = "User Deleted Successfully"

@@ -5564,3 +5564,13 @@ img.fa-icon {
 .left-pads { 
     left: 181px;
 }
+.newsletter-reg-div input[type="checkbox"]{
+    margin-right: 5px;
+}
+.newsletter-reg-div label{
+   font-family: "open sans";
+   font-size: 16px;
+   font-weight: normal;
+   line-height: 20px;
+   margin: 0;
+}

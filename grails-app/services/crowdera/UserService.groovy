@@ -2,6 +2,14 @@ package crowdera
 
 import grails.transaction.Transactional
 import org.apache.commons.validator.EmailValidator
+import org.apache.http.HttpEntity
+import org.apache.http.HttpResponse
+import org.apache.http.NameValuePair
+import org.apache.http.client.HttpClient
+import org.apache.http.client.entity.UrlEncodedFormEntity
+import org.apache.http.client.methods.HttpPost
+import org.apache.http.impl.client.DefaultHttpClient
+import org.apache.http.message.BasicNameValuePair
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
@@ -604,6 +612,27 @@ class UserService {
     }
     
     /* End of Help Desk Integration*/
+	
+	def sendUserSubscription(def subscribeUrl,def userID, def listID, def email){
+		HttpClient httpclient = new DefaultHttpClient()
+		HttpPost httppost = new HttpPost(subscribeUrl)
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2)
+		nameValuePairs.add(new BasicNameValuePair("u",userID))
+		nameValuePairs.add(new BasicNameValuePair("id", listID))
+		nameValuePairs.add(new BasicNameValuePair("EMAIL", email))
+		httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		HttpResponse httpres = httpclient.execute(httppost)
+		int status = httpres.getStatusLine().getStatusCode()
+
+		if (status == 200){
+			HttpEntity entity = httpres.getEntity()
+			if (entity != null){
+				return true
+			}
+		}else{
+			return false
+		}
+	}
 
     @Transactional
     def bootstrap() {

@@ -194,4 +194,21 @@ class UserController {
         flash.deleteusermsg = "User Deleted Successfully"
         redirect (action: 'list')
     }
+	
+	//@Secured(['IS_AUTHENTICATED_FULLY'])
+	def subscribeNewsLetter(){
+	    def subscribeURL=grailsApplication.config.crowdera.MAILCHIMP.SUBSCRIBE_URL
+		def userID=grailsApplication.config.crowdera.MAILCHIMP.USERID
+		def listID=grailsApplication.config.crowdera.MAILCHIMP.LISTID
+		def email= request.getParameter('email')
+		def userName=userService.getUserByName(email)
+		def status
+	
+		if(userName){
+		  render ''
+		}else{
+		  status = userService.sendUserSubscription(subscribeURL,userID,listID, email)
+		}
+		render " "
+    }
 }

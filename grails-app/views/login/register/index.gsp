@@ -1,9 +1,13 @@
+<%  
+	def base_url = grailsApplication.config.crowdera.BASE_URL
+%>
 <html>
 <head>
     <meta name="layout" content="main" />
     <r:require modules="bootstrapsocialcss, registrationjs"/>
 </head>
 <body>
+<input type="hidden" id="b_url" value="<%=base_url%>" />
 <div class="feducontent">
     <div class="container">
 
@@ -26,7 +30,7 @@
                 <input type="text" name="lastName" class="form-control" placeholder="Last name">
             </div>
             <div class="form-group">
-                <input type="email" name="username" class="form-control" placeholder="Email address">
+                <input type="email" name="username" class="form-control subscriberEmail" placeholder="Email address">
             </div>
             <div class="form-group">
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password">
@@ -34,6 +38,11 @@
             <div class="form-group">
                 <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password">
             </div>
+            <div class="form-group newsletter-reg-div" id="newsletterDiv">
+				<input type="checkbox" name="subscribe" id="subscribeReg" value="1" checked="checked"/>
+				<label for="subscribeReg">Sign-up to our newsletter.</label>
+			</div>
+			<div id="test"></div>
             <button class="btn btn-primary btn-block" type="submit" id="btnSignUp">Sign me up!</button>
         </g:form>
 

@@ -31,9 +31,31 @@ $(function() {
             error.appendTo(element.parent());
         }
     });
+    $("#newsletterDiv input[type='checkbox']").click(function(){
+    	      
+        if($(this).prop("checked") == true){
+        	$(this).attr("value",1);
+        }else if($(this).prop("checked") == false){
+    	   	$(this).attr("value",0);
+        }
+    });
     $('.regForm').submit(function() {
+    	var email=$(".subscriberEmail").val();
         if($(".regForm").valid()) {
             $('#btnSignUp').attr('disabled','disabled');
+            var subscribe=$('#subscribeReg').val();
+            if(subscribe==1){
+               $.ajax({
+                 type:'post',
+                 url:$("#b_url").val()+'/user/subscribeNewsLetter',
+                 data:'email='+email,
+                 success: function(data){
+                	 $('#test').html(data);
+                 }
+               }).error(function(){
+                   	$('#test').html("");
+               })
+            }
         }
     });
      $.validator.addMethod('isEqualToPassword', function (value, element) {

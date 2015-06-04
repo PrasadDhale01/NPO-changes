@@ -9,6 +9,7 @@ class LoginController {
     def userService
     def roleService
     def grailsLinkGenerator
+    def facebookService
 
     boolean invite_user = false
 
@@ -26,6 +27,12 @@ class LoginController {
     /* User canceled during Facebook connect */
     def facebook_user_denied() {
         render(view: 'error', model: [message: "Can't authenticate using Facebook. Seems like you've canceled Facebook authentication."])
+    }
+    
+    def facebook_user_login() {
+        User user = userService.getCurrentUser();
+        facebookService.getFacebookUserDetails(user);
+        redirect (controller:'home', action:'index')
     }
 
     def user_request(){
@@ -46,7 +53,7 @@ class LoginController {
             mandrillService.sendUserResponseToUserRequest(user)
             }
         }           
-    } 
+    }
 
     @Secured(['ROLE_ADMIN'])
     def list() {

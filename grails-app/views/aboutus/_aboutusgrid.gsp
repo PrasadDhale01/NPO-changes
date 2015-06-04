@@ -304,7 +304,7 @@
 	                                   </div>
 	                               </div>
 	                               <div class="col-xs-8 col-sm-8 col-md-8">
-	                                   <div id="result"></div>
+	                                   <div id="resultOutput"></div>
 	                               </div>
 	                               <div class="clear"></div>
 	                               <label class="docfile-orglogo-css" id="resumefilesize"></label> 

@@ -89,12 +89,11 @@
         <div class="row">
             <div class="fullwidth pull-right">
                 <% if(percentage <= 999) { %>
-                    <g:form controller="project" action="edit" method="post"  id="${project.id}">
-                        <g:hiddenField name="projectId" value="${project.id}"/>               
+                    <g:link controller="project" action="editCampaign" method="post" id="${project.id}">
                         <button class="projectedit close"  aria-label="Edit project" id="editproject">
                             <i class="glyphicon glyphicon-edit" ></i>
                         </button>
-                    </g:form>
+                    </g:link>
                 <% } %>
                 <g:if test="${!project.validated || username.equals('campaignadmin@crowdera.co') }">
                     <g:form controller="project" action="projectdelete" method="post"  id="${project.id}">

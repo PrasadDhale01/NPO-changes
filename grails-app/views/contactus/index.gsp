@@ -11,11 +11,18 @@
 	    }
 	}
 </script>
+
+<script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
+<style type="text/css" media="screen, projection">
+    @import url(https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.css); 
+</style> 
+
 </head>
 <body>
 	<div class="feducontent">
 		<div class="container contactUs" id="contactUs">
-                        <g:if test="${flash.contactmessage}">
+		<%--
+            <g:if test="${flash.contactmessage}">
 			    <div class="alert alert-success" align="center">
 		                ${flash.contactmessage}
 			    </div>
@@ -71,6 +78,9 @@
 					</div>
 				</div>
 			</g:uploadForm>
+            --%>
+            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://fedu.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Crowdera+Customer+Help+&submitThanks=Your+Query+has+been+submitted.+We+will+get+back+to+you+soon.&screenshot=no" scrolling="no" height="600px" width="100%" frameborder="0" >
+            </iframe>
 		</div>
 	</div>
 </body>

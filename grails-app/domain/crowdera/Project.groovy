@@ -1,11 +1,17 @@
 package crowdera
 
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@ToString(includeNames = true, includeFields = true, excludes = 'created')
+@EqualsAndHashCode
+
 class Project {
 
     def rewardService
 
     static belongsTo = [user: User]
-    static hasMany = [contributions: Contribution, comments: ProjectComment, rewards: Reward, imageUrl: ImageUrl, projectAdmins: ProjectAdmin,projectUpdates: ProjectUpdate, teams: Team]
+    static hasMany = [contributions: Contribution, comments: ProjectComment, rewards: Reward, imageUrl: ImageUrl, projectAdmins: ProjectAdmin,projectUpdates: ProjectUpdate, teams: Team, vanityTitle: VanityTitle]
 
     Beneficiary beneficiary
     Date created
@@ -58,7 +64,7 @@ class Project {
         imageUrl (nullable: true)
         videoUrl (nullable:true)
         rewards (nullable: true)
-        amount (max: 500000 as double)
+        amount (max: 999999 as double)
         description (nullable: true)
         charitableId (nullable: true)
         story (nullable: true)

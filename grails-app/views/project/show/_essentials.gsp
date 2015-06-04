@@ -24,7 +24,7 @@
         <a class="share-mail pull-right" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
             <img src="//s3.amazonaws.com/crowdera/assets/mail-share@2x.png" alt="Mail Share"/>
         </a>
-        <a class="twitter-share pull-right" id="twitterShare" data-url="${base_url}/projects/${project.id}" target="_blank">
+        <a class="twitter-share pull-right" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">
             <img src="//s3.amazonaws.com/crowdera/assets/tw-share@2x.png" alt="Twitter Share"/>
         </a>
         <a target="_blank" class="fb-like pull-right fbShareForLargeDevices" id="fbshare">

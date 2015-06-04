@@ -15,7 +15,7 @@ $(function() {
             price: {
                 required: true,
                 number: true,
-                max : 50000,
+                max : 999999,
                 isPerk:true,
                 min: 0
             }
@@ -37,7 +37,7 @@ $(function() {
                 price: {
                     required: true,
                     number: true,
-                    max : 50000,
+                    max : 999999,
                     isPerk:true,
                     min: 0
                 }
@@ -86,6 +86,12 @@ $(function() {
   		  $('.editShippingError').html('This field is required').show();	  
   	  }
     }, '');
+    
+    $('.perkForm').submit(function() {
+        if($(".perkForm").valid()) {
+            $('#btnCreatePerk').prop('disabled',true);
+        }
+    });
     
     /***************************Create Shipping Perk***********************************************************************/
     

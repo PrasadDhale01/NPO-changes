@@ -4,7 +4,6 @@
     hideShowLabel();
     changeTeamStatus();
     $('#editimg').hide();
-    $('#ytVideo').hide();
     $('#editTeamImg').hide();
 
     var hash = window.location.hash;
@@ -85,7 +84,7 @@
             amount1: {
                 required: true,
                 number: true,
-                maxlength: 5,
+                maxlength: 6,
                 min: 1
             }
         }
@@ -101,7 +100,7 @@
                 amount: {
                     required: true,
                     number: true,
-                    maxlength: 5,
+                    maxlength: 6,
                     min: 1
                 }
         	}
@@ -194,15 +193,14 @@
      function changeTeamStatus() {
          $('#teamStatusButton input[type="checkbox"]').each(function(index, value) {
              if ($(this).prop("checked") == true) {
-                 $('#check'+(index+1)).text(' Enable');
+                 $('#checkteam'+(index+1)).text(' Enable');
              } else {
-                 $('#check'+(index+1)).text(' Disable');
+                 $('#checkteam'+(index+1)).text(' Disable');
              }
          });
      }
      
-     function enableOrDisableTeam(checkstat,statusValue)
-     {
+     function enableOrDisableTeam(checkstat,statusValue) {
          var teamId=$(checkstat).val();
          $.ajax({
                  type:'post',
@@ -233,7 +231,7 @@
     
     /**************************************Edit team*******************************************/
     
-    $('#editFundraiser').find('form').validate({
+    var validator = $('#editFundraiser').find('form').validate({
         rules: {
             amount: {
                 required: true,
@@ -253,6 +251,28 @@
             videoUrl: {
                 isYoutubeVideo: true
             }
+        },
+        errorPlacement: function(error, element) {
+        	if($(element).prop("id") == "projectImageFile") {
+                error.appendTo(element.parent().parent());
+            } else{
+        		error.insertAfter(element);
+        	}
+        }
+    });
+    
+    $('#teamSaveButton').on('click', function() {
+        if($('#teamImages').find('#imgdiv').length < 1) {
+            $("#projectImageFile").rules( "add", {
+                required: true,
+                messages: {
+                    required: "Please upload at least one team image."
+                }
+            });
+        }
+
+        if (validator.form()) {
+            $('#editFundraiser').find('form').submit();
         }
     });
     
@@ -342,8 +362,7 @@
         }
     });
     
-    function validateExtension(imgExt)
-    {
+    function validateExtension(imgExt) {
           var allowedExtensions = new Array("jpg","JPG","png","PNG");
           for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
           {
@@ -357,26 +376,14 @@
     
     /*************************Edit video for team*************************/
     
-    $('#videoUrl').focus(function(){
-        var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-           var url= $('#videoUrl').val().trim();
-           var match = url.match(regExp);
-         
-           if (match && match[2].length == 11) {
-               $('#ytVideo').show();
-               var vurl=url.replace("watch?v=", "v/");
-               $('#ytVideo').attr('src',vurl);
-           }else if($(this)){
-               $('#ytVideo').hide();
-           }
-      }).change(function(){
+    $('#videoUrl').change(function(){
            var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
            var url= $('#videoUrl').val().trim();
            var match = url.match(regExp);
          
            if (match && match[2].length == 11) {
                $('#ytVideo').show();
-               var vurl=url.replace("watch?v=", "v/");
+               var vurl=url.replace("watch?v=", "embed/");
                $('#ytVideo').attr('src',vurl);
            }else if($(this)){
                $('#ytVideo').hide();
@@ -484,7 +491,45 @@
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
-
+    
+    $('form').submit(function() {
+        if($(".fundFormDesktop").valid()) {
+        	$('#btnFundDesktop').prop('disabled','disabled');
+        }
+    });
+    $('form').submit(function() {
+        if($(".fundFormMobile").valid()) {
+        	$('#btnFundMobile').attr('disabled','disabled');
+        }
+        if($(".inviteTeamMember").valid()) {
+        	$('#btnSendInvitation').attr('disabled','disabled');
+        }
+        if($(".sendMailForm").valid()) {
+        	$('#btnSendMail').attr('disabled','disabled');
+        }
+        if($(".sendMailFormMng").valid()) {
+        	$('#btnSendMailMng').attr('disabled','disabled');
+        }
+    });
+    
+    $(document).ready(function (){
+     /*************************Edit video for team*************************/
+       var videoStatus=$('#videoUrl').val();
+       if(videoStatus){
+        	var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    	    var url= $('#videoUrl').val().trim();
+    	    var match = url.match(regExp);
+    	    if (match && match[2].length == 11) {
+    	       $('#ytVideo').show();
+    	       var vurl=url.replace("watch?v=", "embed/");
+    	       $('#ytVideo').attr('src',vurl);
+    	    }else if($(this)){
+    	       $('#ytVideo').hide();
+    	    }
+       }else{
+          	$('#ytVideo').hide();
+       }
+   });
 });
 
 function showNavigation(){

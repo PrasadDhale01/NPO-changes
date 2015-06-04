@@ -1,3 +1,8 @@
+<%
+	response.addHeader("X-Frame-Options","SAMEORIGIN")
+	response.addHeader("X-Content-Type-Options","nosniff")
+	response.addHeader("X-Xss-Protection","1; mode=block")
+ %>
 <!DOCTYPE html>
 <html lang="en">
 <head>

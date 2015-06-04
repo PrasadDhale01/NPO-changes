@@ -242,7 +242,7 @@ class MandrillService {
 			}
         }
         emailList.each { email ->
-            def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id,params:[fr:fundRaiser], absolute: true)
+            def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id,params:[fr:fundRaiser], absolute: true)
             def globalMergeVars = [
                 [
                     'name': 'LINK',
@@ -362,7 +362,7 @@ class MandrillService {
     }
 
     def inviteAdmin(def email, String name, Project project) {
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageproject', id: project.id, absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, absolute: true)
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', id: project.id, absolute: true)
         def imageUrl = project.imageUrl
 		def projectImageUrl
@@ -407,7 +407,7 @@ class MandrillService {
     }
 
     def sendUpdateEmailToAdmin(def email, String name, Project project) {
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageproject', id: project.id, absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, absolute: true)
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', absolute: true)
         def imageUrl = project.imageUrl
 		def projectImageUrl
@@ -446,7 +446,7 @@ class MandrillService {
     
     def sendUpdateEmailsToContributors(Project project,ProjectUpdate projectUpdate, User currentUser){
         def contributors=project.contributions
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
         List imageUrls = projectUpdate.imageUrls
 		def projectImageUrl
         def url
@@ -492,7 +492,7 @@ class MandrillService {
     
     def sendInvitationForTeam(def emailList, String name, String message, Project project) {
         emailList.each { email ->
-            def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, absolute: true)
+            def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
             def imageUrl = project.imageUrl
 			def projectImageUrl
             if (imageUrl) {
@@ -627,6 +627,46 @@ class MandrillService {
 
         inviteToAdmin(email, 'send-response-to-customer', globalMergeVars, tags)
     }
+	
+    def sendResponseToCrews(def adminResponse, def crews, def attachmentUrl) {
+	def email = crews.email
+	def date = new Date()
+	def base_url = grailsApplication.config.crowdera.BASE_URL
+	def url = base_url+"/howitworks"
+	def link = grailsLinkGenerator.link(controller: 'project', action: 'list', absolute: true)
+	def create_url = grailsLinkGenerator.link(controller: 'project', action: 'create', absolute: true)
+	def globalMergeVars = [
+		[
+			'name': 'LINK',
+			'content': link
+		],[
+			'name': 'CREATE_URL',
+			'content': create_url
+		],[
+			'name': 'URL',
+			'content': url
+		],[
+			'name': 'NAME',
+			'content': crews.firstName
+		],[
+			'name': 'EMAIL',
+			'content': email
+		],[
+			'name': 'RESPONSE',
+			'content': adminResponse
+		],[
+			'name': 'DATE',
+			'content': date.format("YYYY-MM-DD HH:mm:ss")
+		],[
+			'name': 'ATTACHMENTURL',
+			'content': attachmentUrl
+		]
+	]
+
+	def tags = ['send-response-to-crews']
+
+	inviteToAdmin(email, 'send-response-to-crews', globalMergeVars, tags)
+    }
     
     public def sendMandrillEmail(User user) {
         def link = grailsLinkGenerator.link(controller: 'login', action: 'confirm', id: user.confirmCode, absolute: true)
@@ -686,7 +726,7 @@ class MandrillService {
     public def sendThankYouMailToContributors(Contribution contribution, Project project, def amount, User fundraiser) {
         def fundRaiserUserName = fundraiser.username
         def beneficiary = project.user
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:fundRaiserUserName], absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:fundRaiserUserName], absolute: true)
         def globalMergeVars = [[
             'name': 'LINK',
             'content': link
@@ -762,9 +802,9 @@ class MandrillService {
         def username = fundRaiser.username
         def link
         if (project.user == fundRaiser) {
-            link = grailsLinkGenerator.link(controller: 'project', action: 'manageproject', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')
+            link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')
         } else {
-            link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')
+            link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')
         }
         
         def globalMergeVars = [
@@ -794,7 +834,7 @@ class MandrillService {
     public def sendTeamInvitation(Project project, User fundRaiser) {
         def user = project.user
         def username = user.username
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageproject', id: project.id, params:[fr:username], absolute: true, fragment: 'manageTeam')
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, params:[fr:username], absolute: true, fragment: 'manageTeam')
 
         def globalMergeVars = [
             [
@@ -819,7 +859,7 @@ class MandrillService {
     
     public def sendTeamValidatedConfirmation(Project project, User fundRaiser) {
         def username = fundRaiser.username
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:username], absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:username], absolute: true)
 		def imageUrl = project.organizationIconUrl
 		def projectImageUrl
 		if (imageUrl) {
@@ -854,7 +894,7 @@ class MandrillService {
     public def sendTeamUpdationEmail(Project project,Team team) {
         def teamUser = team.user
         def username = teamUser.username
-        def link = grailsLinkGenerator.link(controller: 'project', action: 'show', id: project.id, params:[fr:username], absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:username], absolute: true)
 		def imageUrl = project.organizationIconUrl
 		def projectImageUrl
 		if (imageUrl) {

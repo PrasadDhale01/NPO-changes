@@ -71,6 +71,42 @@ $(function() {
 	        }
 	    } 
     });
+    
+    $("#applicantfile").change(function(event) {
+        var file =this.files[0];
+        if(validateExtension(file.name) == false){
+	        $('#applicantOutput').hide();
+	        $("#applicantfilesize").show();
+        	$("#applicantfilesize").html("Only text,docx and pdf files are allowed.");
+	        this.value=null;
+	        return;
+	    }
+	    else{
+	        if (file.size > 1024 * 1024 * 3) {
+	            $('#applicantOutput').hide();
+	            $('#applicantfilesize').show();
+	            $("#applicantfilesize").html("The file \"" +file.name+ "\" you are attempting to upload is larger than the permitted size of 3MB.");
+	            $('#applicantfile').val('');
+	        } else {
+                $('#applicantOutput').show();
+                $('#applicantfilesize').hide();
+                $("#applicantOutput").html(""+file.name);
+                
+	        }
+	    } 
+    });
+    
+	function validateExtension(imgExt) {
+        var allowedExtensions = new Array("txt","docx","doc","pdf");
+        for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
+        {
+            imageFile = imgExt.lastIndexOf(allowedExtensions[imgExtImg]);
+            if(imageFile != -1){
+    	        return true;
+            }
+        }
+        return false;
+	}
 
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {

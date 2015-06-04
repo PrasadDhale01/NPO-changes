@@ -27,7 +27,7 @@ $(function() {
                 required: true,
                 number: true,
                 maxlength: 6,
-                max: 500000
+                max: 999999
             },
             days: {
                 required: true
@@ -90,7 +90,9 @@ $(function() {
         errorPlacement: function(error, element) {
         	if ( element.is(":radio") || element.is(":checkbox")) {
         		error.appendTo(element.parent().parent());
-        	} else if($(element).prop("id") == "orgediticonfile") {
+        	} else if($(element).prop("id") == "projectImageFile") {
+                error.appendTo(element.parent().parent());
+            } else if($(element).prop("id") == "orgediticonfile") {
                 error.appendTo(element.parent().parent());
             } else{
         		error.insertAfter(element);
@@ -109,10 +111,32 @@ $(function() {
             });
         }
     	
+    	if($('#campaignthumbnails').find('#imgdiv').length < 1) {
+    		$("#projectImageFile").rules( "add", {
+                required: true,
+                messages: {
+                    required: "Please upload at least one campaign image."
+                }
+            });
+    	}
+    	
     	if (validator.form()) {
     		needToConfirm = false;
     		$('#campaignedit').find('form').submit();
     	}
+    });
+    
+
+    $('form').submit(function(){
+    	if($('.editForm').valid()){
+    		$('#editsubmitbutton').attr('disabled','disabled');
+    	}
+    });
+    
+    $('.updatesubmitbutton').click(function(event) {
+        if(validator.form()){
+        	needToConfirm = false;
+        } 	
     });
     
     $.validator.addMethod('isYoutubeVideo', function (value, element) {

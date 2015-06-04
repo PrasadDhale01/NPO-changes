@@ -36,7 +36,7 @@ Expects the parent containers to be like so:
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow tile-pad">
     <div class="blacknwhite tile">
-        <g:link controller="project" action="show" id="${project.id}" title="${project.title}" params="['fr': username]">
+        <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
             <div class="imageWithTag">
                 <div class="under">
                     <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
@@ -57,7 +57,7 @@ Expects the parent containers to be like so:
 
     <div class="caption tile-title-descrp">
         <div class="project-title">
-            <g:link controller="project" action="show" id="${project.id}" title="${project.title}">
+            <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">
                 ${project.title}
             </g:link>
         </div>

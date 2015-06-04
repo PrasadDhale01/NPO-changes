@@ -157,3 +157,23 @@ p {
 .perkSupporter {
 	color: #505050;
 }
+.resume-urls {
+    padding-top: 20px;
+}
+.font-lab label {
+  font-size: 13px;
+}
+.btn-modal{
+    color: #ffffff;
+    background-color: #333;
+    border-color: #333;
+}
+.btn-modal:hover,
+.btn-modal:focus,
+.btn-modal.focus,
+.btn-modal:active,
+.btn-modal.active{
+    color: #ffffff;
+    background-color: #333;
+    border-color: #333;
+}

@@ -82,7 +82,7 @@
                 <g:if test="${contribution.comments == null || editedComment}">
                     <h4 class="lead">Leave a comment</h4>
                     <div id="commentBox">
-                        <g:form controller="fund" action="saveContributionComent" id="${contribution.id}" params="['fr': fundraiser.id]">
+                        <g:form controller="fund" action="saveContributionComent" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle]">
                             <div class="form-group">
                                 <textarea class="form-control" name="comment" rows="4" required><g:if test="${editedComment}">${editedComment}</g:if></textarea>
                             </div>
@@ -99,13 +99,13 @@
                     <div class="modal-body tile-footer show-comments-date">
                         <h6>By ${contribution.contributorName}, on ${date}</h6>
                         <p><b>${contribution.comments}</b></p>
-                        <g:link controller="fund" name="deletecomment" action="deleteContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id]">
+                        <g:link controller="fund" name="deletecomment" action="deleteContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle]">
                             <button type="submit" class="projectedit close pull-right" id="projectdelete"
                                  onclick="return confirm(&#39;Are you sure you want to delete this comment?&#39;);">
                                  <i class="glyphicon glyphicon-trash"></i>
                              </button>
                         </g:link>
-                        <g:link controller="fund" name="editcomment" action="editContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id]">
+                        <g:link controller="fund" name="editcomment" action="editContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle]">
                             <i class="glyphicon glyphicon-edit glyphicon-lg projectedit close pull-right"></i>
                         </g:link>
                        <div class="clear"></div>
@@ -129,7 +129,7 @@
 					</div>
                         
                     <!-- Modal -->
-                    <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal fade sendmailmodal" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
                         <g:form action="sendemail" controller="fund" id="${project.id}" role="form">
                             <input type="hidden" name="cb" id="${contributionId }" value="${contributionId }"></input>
                             <input type="hidden" name="fr" id="${fundraiserId }" value="${fundraiserId }"></input>
@@ -141,9 +141,10 @@
                                     </div>
                                     <div class="modal-body">
                                         <g:hiddenField name="amount" value="${project.amount}"/>
+                                        <g:hiddenField name="projectTitle" value="${projectTitle}"/>
                                         <div class="form-group">
                                             <label>Your Name</label>
-                                            <input type="text" class="form-control" name="name" placeholder="Name"/>
+                                            <input type="text" class="form-control" name="name" placeholder="Name"></input>
                                         </div>
 	                                    <div class="form-group">
 	                                        <label>Email ID's (separated by comma)</label>

@@ -5,6 +5,33 @@ $(function() {
     $('#imgmsg').hide();
     $('#iconfilesize').hide();
     $('#campaignfilesize').hide();
+    
+    /********************* Create page Session timeout ***************************/
+        var SessionTime = 60* 1000 * 60; //set for 60 minute
+        var tickDuration = 1000;
+        var myInterval = setInterval(function() {
+        	SessionTimeout();
+        }, 1000);
+    
+        function SessionTimeout() {
+        	SessionTime = SessionTime - tickDuration;
+        	if(SessionTime ==900000){
+        		alert("15 minutes left for session timeout. Please save your data as draft or data will be lost.");
+        	}else if (SessionTime <= 0) {
+                alert("Your session has expired. Please login again.");
+                $.ajax({
+                    type:'post',
+                    url:$("#b_url").val()+'/project/invalidateSession',
+                    data:'status=true',
+                    success: function(data){
+                    	$('#test').html(data);
+                    }
+                }).error(function(){
+                	alert('An error occured');
+                });
+                window.location.href =$("#b_url").val()+"/logout";   
+             }   
+       }
   /*********************************************************************/
 
     $("#updatereward").hide();
@@ -74,7 +101,7 @@ $(function() {
                 required: true,
                 number: true,
                 maxlength: 6,
-                max: 500000
+                max: 999999
             },
             description : {
             	required: true,
@@ -177,6 +204,8 @@ $(function() {
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',false);
     		$('#campaigncreate').find('form').submit();
+    		$('#submitProject').attr('disabled','disabled');
+    		$('#saveasdraft').attr('disabled','disabled');
     	}
     });
 
@@ -190,10 +219,12 @@ $(function() {
     	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"]').each(function () {
             $(this).closest('.form-group').removeClass('has-error');
         });
-    	
+    	$("#createthumbnail").removeClass('has-error');
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',true);
     		$('#campaigncreate').find('form').submit();
+    		$('#saveasdraft').attr('disabled','disabled');
+    		$('#submitProject').attr('disabled','disabled');
     	}
     });
 

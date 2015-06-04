@@ -33,7 +33,7 @@ class UserController {
 	
     @Secured(['ROLE_ADMIN'])
     def resendConfirmMailByAdmin(){
-	def user = userService.getUserId(params.id)
+	def user = userService.getUserId(params.long('id'))
 	user.confirmCode = UUID.randomUUID().toString()
 	mandrillService.reSendConfirmationMail(user)
 	flash.message = "Confirmation Email has been send to ${user.email}"
@@ -71,7 +71,7 @@ class UserController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def upload_avatar() {
-        def avatarUser = userService.getUserId(params.id)
+        def avatarUser = userService.getUserId(params.long('id'))
         def imageFile = request.getFile('avatar')
 
         if (!imageFile.isEmpty() && imageFile.size < 1024*1024) {
@@ -94,7 +94,7 @@ class UserController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def edit_avatar() {
-        def avatarUser = userService.getUserId(params.id)
+        def avatarUser = userService.getUserId(params.long('id'))
         def imageFile = request.getFile('profile')
         
         if (!imageFile.isEmpty() && imageFile.size < 1024*1024) {
@@ -117,7 +117,7 @@ class UserController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def deleteavatar() {
-        def avatarUser = userService.getUserId(params.id)
+        def avatarUser = userService.getUserId(params.long('id'))
         if(avatarUser) {
             avatarUser.userImageUrl = null
             flash.user_message = "Avatar deleted successfully"
@@ -148,6 +148,31 @@ class UserController {
         flash.discardQueryMessage = "User Query Discarded Successfully."
         redirect action:'userquestionsList'
     }
+	
+    @Secured(['ROLE_ADMIN'])
+    def crewsList() {
+	def nonRespondList = userService.getNonRespondList()
+	def respondedList = userService.getRespondedList()
+	render view: '/user/crew/index', model: [nonRespondList: nonRespondList, respondedList: respondedList]
+    }
+	
+    @Secured(['ROLE_ADMIN'])
+    def responseforCrews() {
+	def docfile = request.getFile('resume')
+	userService.sendResponseToCrews(params,docfile)
+	def crew = userService.getCrewRegById(params.long('id'))
+	crew.adminReply = params.adminReply
+	crew.adminDate = new Date()
+	flash.crewsmessage = "Successfully Responded"
+	redirect action:'crewsList'
+    }
+	
+    @Secured(['ROLE_ADMIN'])
+    def discardDetails() {
+	userService.discardMessage(params)
+	flash.discardMessage = "Applicant Query Discarded Successfully."
+	redirect action:'crewsList'
+    }
 
     @Secured(['ROLE_ADMIN'])
     def resendToUsers(){
@@ -163,10 +188,27 @@ class UserController {
     
     @Secured(['ROLE_ADMIN'])
     def deleteUser() {
-        def user = userService.getUserById(params.id)
+        def user = userService.getUserById(params.long('id'))
         userService.deleteNonVerifiedUser(user)
         
         flash.deleteusermsg = "User Deleted Successfully"
         redirect (action: 'list')
+    }
+	
+	//@Secured(['IS_AUTHENTICATED_FULLY'])
+	def subscribeNewsLetter(){
+	    def subscribeURL=grailsApplication.config.crowdera.MAILCHIMP.SUBSCRIBE_URL
+		def userID=grailsApplication.config.crowdera.MAILCHIMP.USERID
+		def listID=grailsApplication.config.crowdera.MAILCHIMP.LISTID
+		def email= request.getParameter('email')
+		def userName=userService.getUserByName(email)
+		def status
+	
+		if(userName){
+		  render ''
+		}else{
+		  status = userService.sendUserSubscription(subscribeURL,userID,listID, email)
+		}
+		render " "
     }
 }

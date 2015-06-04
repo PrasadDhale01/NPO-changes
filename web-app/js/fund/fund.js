@@ -17,7 +17,32 @@ $(function() {
         }
     });
     
-    $('form').validate({
+    $('.sendmailmodal').find('form').validate({
+        rules: {
+        	name: {
+                required: true
+            },
+        	emails: {
+        		required: true,
+                validateMultipleEmailsCommaSeparated: true
+            }
+        }
+    });
+    
+    $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value, element) {
+        var result = value.split(",");
+        for(var i = 0;i < result.length;i++) 
+            if(!validateEmail(result[i])) 
+                return false;    		
+        return true;
+    },"Please add valid emails only");
+    
+    function validateEmail(field) {
+        var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
+        return (regex.test(field)) ? true : false;
+    }
+    
+    $('#fundindex').find('form').validate({
         submitHandler: function(form) {
             if (getSelectedRewardId() == undefined) {
             	var rewardId = 1;
@@ -304,5 +329,13 @@ $(function() {
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-    	
+        
+        $('form').submit(function(){
+            if($('.checkoutForm').valid()) {
+                $('#btnCheckoutContinue').attr('disabled','disabled');
+            }
+            if($('.chargeForms').valid()) {
+                $('#btnChargeContinue').attr('disabled','disabled');
+            }
+        });
 });

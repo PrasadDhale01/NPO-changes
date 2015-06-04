@@ -21,19 +21,27 @@ class ProjectService {
 	def rewardService
 	
     def getProjectById(def projectId){
-        return Project.get(projectId)
+        if (projectId) {
+            return Project.get(projectId)
+        }
     }
 
     def getImageUrlById(def imageId){
-        return ImageUrl.get(imageId)
+        if (imageId) {
+            return ImageUrl.get(imageId)
+        }
     }
 
     def getTeamById(def teamId){
-        return Team.get(teamId)
+        if (teamId) {
+            return Team.get(teamId)
+        }
     }
 
     def getTeamCommentById(def teamCommentId){
-        return TeamComment.get(teamCommentId)
+        if (teamCommentId) {
+            return TeamComment.get(teamCommentId)
+        }
     }
 
     def getTeamByUserAndProject(def project, def user){
@@ -46,7 +54,9 @@ class ProjectService {
     } 
 
     def getProjectCommentById(def commentId){
-       return ProjectComment.get(commentId)
+        if (commentId) {
+            return ProjectComment.get(commentId)
+        }
     }
 
     def getProjectByParams(def projectParams){
@@ -54,7 +64,9 @@ class ProjectService {
          return project
     }
 
-    def getProjectUpdateDetails(def params, def request, def project){
+    def getProjectUpdateDetails(def params, def request, def project, def user){
+		def vanitytitle
+		def title = project.title
         def iconFile = request.getFile('iconfile')
         if(!iconFile.isEmpty()) {
           def uploadedFileUrl = getorganizationIconUrl(iconFile)
@@ -65,7 +77,7 @@ class ProjectService {
 
         def imageFiles = request.getFiles('thumbnail[]')
         if(!imageFiles.isEmpty()) {
-            getMultipleImageUrls(imageFiles,   project)
+            getMultipleImageUrls(imageFiles,project)
         }
 
         project.description = params.description
@@ -84,6 +96,27 @@ class ProjectService {
         
 		def days = params.days
         getUpdatedNumberofDays(days, project)
+		
+        String email1 = params.email1
+        String email2 = params.email2
+        String email3 = params.email3
+
+        updateAdminsAndSendUpdateEmail(email1, email2, email3, project, user)
+		
+        def result = false
+        if (params.title != title) {
+            def vanityObject = VanityTitle.findAllWhere(project:project)
+            if (vanityObject){
+                vanityObject.each{
+                    if (params.title == it.vanityTitle){
+                        result = true
+                    }
+                }
+            }
+            if (!result){
+                vanitytitle = getProjectVanityTitle(project)
+            }
+        }
     }
 
     def getCSVDetails(def params, def response){
@@ -230,7 +263,7 @@ class ProjectService {
      }
 
      def getContributionDeleteDetails(def params){
-         def contribution = contributionService.getContributionById(params.id)
+         def contribution = contributionService.getContributionById(params.long('id'))
          def project = Project.get(params.projectId)
          def fundraiser = params.fr
          def fundRaiser = User.findByUsername(fundraiser)
@@ -248,8 +281,8 @@ class ProjectService {
 	 
 	 def getEmailDetails(def params){
 		 def project = Project.get(params.id)
-		 def contribution = Contribution.get(params.cb)
-		 def fundraiser = User.get(params.fr)
+		 def contribution = Contribution.get(params.long('cb'))
+		 def fundraiser = User.get(params.long('fr'))
 		 String emails = params.emails
 		 String name = params.name
 		 String message = params.message
@@ -414,14 +447,14 @@ class ProjectService {
          def fundRaiser = userService.getUserByUsername(fundraiser)
          Team team = getTeamByUserAndProject(project, fundRaiser)
          if(team){
-             def teamcomment = TeamComment.get(params.id)
+             def teamcomment = TeamComment.get(params.long('id'))
              if (teamcomment) {
                  List teamComments = team.comments
                  teamComments.remove(teamcomment)
                  teamcomment.delete()
              }
          }else{
-             def projectcomment= ProjectComment.get(params.id)
+             def projectcomment= ProjectComment.get(params.long('id'))
              if (projectcomment) {
                  List projectComments = project.comments
                  projectComments.remove(projectcomment)
@@ -431,7 +464,7 @@ class ProjectService {
     }
 	
 	def getContributionEditedDetails(def params){
-		def contribution = Contribution.get(params.id)
+		def contribution = Contribution.get(params.long('id'))
 		contribution.contributorName = params.contributorName
 		contribution.amount = Double.parseDouble(params.amount)
 	}
@@ -1592,7 +1625,8 @@ class ProjectService {
 		crewrequest.linkedIn = params.linkedIn
 		crewrequest.faceBook = params.faceBook
 		crewrequest.resumeUrl = resumeUrl
-		crewrequest.date = new Date()
+		crewrequest.requestDate = new Date()
+		crewrequest.adminDate = new Date()
 		
 		crewrequest.save(failOnError: true)
 		mandrillService.sendEmailToCrew(crewrequest)
@@ -1684,7 +1718,7 @@ class ProjectService {
     
     def discardTeam(def params) {
         def project = Project.get(params.id);
-        def team = Team.get(params.teamId)
+        def team = Team.get(params.long('teamId'))
         List imageUrls = team.imageUrl
         def i = imageUrls.size()
         for (int j=0; j< i; j++) {
@@ -1870,7 +1904,7 @@ class ProjectService {
 	}
     
     def editCampaignUpdates(def params, def project, def imageFiles) {
-        ProjectUpdate projectUpdate = getProjectUpdateById(params.id)
+        ProjectUpdate projectUpdate = getProjectUpdateById(params.long('id'))
         def story = params.story
         def isImageFileEmpty = isImageFileEmpty(imageFiles)
         
@@ -1896,6 +1930,72 @@ class ProjectService {
                 }
             }
         }
+    }
+	
+    def getProjectVanityTitle(Project project) {
+        def projectTitle = project.title.trim()
+        def title = projectTitle.replaceAll("[^a-zA-Z0-9]", "-")
+        def list = VanityTitle.list()
+        List result = []
+        def vanitytitle
+		def status = false
+        list.each{
+            if (it.title == title) {
+                result.add(it)
+            }
+        }
+		
+        if (result.isEmpty())
+		    vanitytitle = title
+        else
+		    vanitytitle = title+"-"+result.size()
+
+        new VanityTitle(
+            project:project,
+            projectTitle:title,
+            vanityTitle:vanitytitle,
+			title:title
+        ).save(failOnError: true)
+
+        return vanitytitle
+    }
+
+    def getVanityTitleFromId(def projectId){
+        def project = Project.get(projectId)
+        def status = false
+        def title = project.title.trim()
+        def vanity_title = title.replaceAll("[^a-zA-Z0-9]", "-")
+        def vanity = VanityTitle.findAllWhere(project:project)
+        vanity.each{
+            if (it.title == vanity_title){
+                status = true
+				vanity_title = it.vanityTitle
+            }
+        }
+
+        if (!status)
+        getProjectVanityTitle(project)
+
+        return vanity_title
+    }
+
+    def getProjectIdFromVanityTitle(def title){
+        def projectId
+        def vanitytitle = VanityTitle.findByVanityTitle(title)
+        if (vanitytitle)
+            projectId = vanitytitle.project.id
+
+        return projectId
+    }
+
+    def getProjectFromVanityTitle(def title){
+        def projectId
+        def vanitytitle = VanityTitle.findByVanityTitle(title)
+        if (vanitytitle)
+            projectId = vanitytitle.project.id
+
+        def project = Project.get(projectId)
+        return project
     }
 
     @Transactional

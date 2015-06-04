@@ -29,7 +29,7 @@
 		<g:if test="${!isTeamExist}">
 		    <g:if test="${!ended}">
 			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
-			        <g:form controller="project" action="addFundRaiser" id="${project.id}" params="['fr':currentUserName]">
+			        <g:form controller="project" action="addFundRaiser" id="${project.id}"  params="['fr':currentFundraiser.username]">
 					    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md manage-team"/>
 					</g:form> 
 			    </li>
@@ -82,7 +82,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="inviteTeamMember" tabindex="-1" role="dialog" aria-hidden="true">
-    <g:form action="inviteTeamMember" id="${project.id}" role="form">
+    <g:form action="inviteTeamMember" id="${project.id}" role="form" class="inviteTeamMember">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -105,7 +105,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-block">Send Invitation</button>
+                    <button type="submit" class="btn btn-primary btn-block" id="btnSendInvitation">Send Invitation</button>
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@
 
 <!-- Edit Fundraiser Modal -->
 <div class="modal fade" id="editFundraiser" tabindex="-1" role="dialog" aria-hidden="true">
-    <g:uploadForm action="editFundraiser" id="${currentTeam.id}" role="form"> 
+    <g:uploadForm action="editFundraiser" id="${currentTeam.id}" role="form" params="['fr':currentFundraiser.username]"> 
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -158,7 +158,7 @@
          					<label class="docfile-orglogo-css" id="editimg">Please select image file.</label>
          					<label class="docfile-orglogo-css" id="editTeamImg"></label>
       					</div>
-      					<div class="col-sm-6">
+      					<div class="col-sm-6" id="teamImages">
       					    <g:each var="imgurl" in="${currentTeam.imageUrl}">
                                 <div id="imgdiv" class="pr-thumb-div">
                                     <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}" alt="images">
@@ -201,7 +201,7 @@
                 <div class="clear"></div>
                 <div class="modal-footer">
                    <button data-dismiss="modal" class="btn btn-primary">Close</button>
-				   <button class="btn btn-primary" type="submit" id="saveButton">Save</button>
+				   <button class="btn btn-primary" type="submit" id="teamSaveButton">Save</button>
 		        </div>
 		    </div>
 		</div>

@@ -2,10 +2,23 @@ package crowdera
 
 import grails.transaction.Transactional
 import org.apache.commons.validator.EmailValidator
+import org.apache.http.HttpEntity
+import org.apache.http.HttpResponse
+import org.apache.http.NameValuePair
+import org.apache.http.client.HttpClient
+import org.apache.http.client.entity.UrlEncodedFormEntity
+import org.apache.http.client.methods.HttpPost
+import org.apache.http.impl.client.DefaultHttpClient
+import org.apache.http.message.BasicNameValuePair
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
+import java.security.NoSuchAlgorithmException;
+import java.security.InvalidKeyException;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
 
 
 class UserService {
@@ -14,6 +27,7 @@ class UserService {
     def springSecurityService
     def roleService
     def mandrillService
+    def grailsApplication
 
     def getNumberOfUsers() {
         return User.count()
@@ -291,7 +305,7 @@ class UserService {
     }
     
     def sendResponseToCustomer(def params, CommonsMultipartFile attachedFile) {
-        def service = CustomerService.get(params.id);
+        def service = CustomerService.get(params.long('id'));
         def adminResponse = params.answer
         def attachmentUrl
         if (!attachedFile?.empty && attachedFile.size < 1024 * 1024 * 3) {
@@ -319,6 +333,57 @@ class UserService {
         service.status = true
         mandrillService.sendResponseToCustomer(adminResponse,service,attachmentUrl)
     }
+		
+    def getNonRespondList() {
+	return CrewReg.findAllWhere(status: false)
+    }
+	
+    def getRespondedList() {
+	return CrewReg.findAllWhere(status: true)
+    }
+		
+    def sendResponseToCrews(def params, CommonsMultipartFile attachedFile) {
+	def crewsResponse = CrewReg.get(params.long('id'));
+	def adminResponse = params.adminReply
+	def attachmentUrl 
+	if (!attachedFile?.empty && attachedFile.size < 1024 * 1024 * 3) {
+		def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+		def awsSecretKey = "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"
+		def bucketName = "crowdera"
+		def folder = "user-images"
+
+		def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+		def s3Service = new RestS3Service(awsCredentials);
+		def s3Bucket = new S3Bucket(bucketName)
+
+		def file = new File("${attachedFile.getOriginalFilename()}")
+		def key = "${folder}/${attachedFile.getOriginalFilename()}"
+
+		attachedFile.transferTo(file)
+		def object = new S3Object(file)
+		object.key = key
+
+		s3Service.putObject(s3Bucket, object)
+		file.delete()
+		attachmentUrl = "//s3.amazonaws.com/crowdera/${key}"
+		crewsResponse.docByAdmin = attachmentUrl
+	}
+	
+	crewsResponse.status = true
+	mandrillService.sendResponseToCrews(adminResponse,crewsResponse,attachmentUrl)
+    }
+	
+    def discardMessage(def params) {
+	CrewReg crewsRequest = CrewReg.get(params.long('id'))
+	if (crewsRequest) {
+		crewsRequest.delete();
+	}
+    }
+	
+    def getCrewRegById(def crewId) {
+	def crew = CrewReg.get(crewId)
+	return crew
+    }
     
     def contributionEmailToOwnerOrTeam(def fundRaiser, def project, def contribution) {
         def user = project.user
@@ -332,13 +397,17 @@ class UserService {
     }
 
     def getUserId(def userId){
-        def avatarUser = User.get(userId)
-        return avatarUser
+        if (userId) {
+            def avatarUser = User.get(userId)
+            return avatarUser
+        }
     }
     
     def getUserById(def userId) {
-        def user = User.get(userId)
-        return user
+        if(userId) {
+            def user = User.get(userId)
+            return user
+        }
     }
 
     def getUserByName(def userName){
@@ -380,7 +449,7 @@ class UserService {
     }
     
     def discardUserQuery(def params) {
-        CustomerService service = CustomerService.get(params.id)
+        CustomerService service = CustomerService.get(params.long('id'))
         if (service) {
             service.delete();
         }
@@ -417,7 +486,154 @@ class UserService {
             return false
         }
     }
+	
+    def getUserUpdatedDetails(def params, User user){
+        def name = user.firstName
+        if(params.firstName){
+            user.firstName = params.firstName
+        }
+        if(params.lastName){
+            user.lastName = params.lastName
+        }
+        /* Password change is optional */
+        if (params.password) {
+            user.password = params.password
+        }
+
+        if (name != params.firstName){
+            getProjectVanityUsername(user)
+        }
+    }
+
+    def getProjectVanityUsername(User user){
+        def firstname = user.firstName.trim()
+        def vanityname = firstname.replaceAll("[^a-zA-Z0-9]", "-")+"-"+user.id
+        def vanity_username = VanityUsername.findAllWhere(vanityUsername:vanityname)
+        if (!vanity_username) {
+            new VanityUsername(
+                user:user,
+                username:user.username,
+                vanityUsername:vanityname
+            ).save(failOnError: true)
+        }
+    }
+
+    def getVanityNameFromUsername(def username,def projectId){
+        def status = false
+        def user
+        def project = Project.get(projectId)
+        if (username)
+            user = User.findByUsername(username)
+        else
+            user = User.findByUsername(project.user.username)
+        def vanityName = user.firstName.trim()
+		def vanityUsername = vanityName.replaceAll("[^a-zA-Z0-9]", "-")+"-"+user.id
+        def vanity = VanityUsername.findAllWhere(user:user)
+        vanity.each {
+            if (vanityUsername == it.vanityUsername){
+                status = true
+            }
+        }
+        if (!status){
+            getProjectVanityUsername(user)
+        }
+        return vanityUsername
+    }
+
+    def getUsernameFromVanityName(def username){
+        def fundRaiser
+        def vanityusername = VanityUsername.findByVanityUsername(username)
+        if (vanityusername)
+            fundRaiser = vanityusername.username
+        return fundRaiser
+    }
+	
+    def getUserFromVanityName(def username){
+        def fundRaiser
+        def user
+        def vanityusername = VanityUsername.findByVanityUsername(username)
+        if (vanityusername){
+            fundRaiser = vanityusername.username
+            user = User.findByUsername(fundRaiser)
+        }
+        return user
+    }
     
+    /* Help Desk Integration*/
+    
+    def getFreshDeskUrl() throws NoSuchAlgorithmException, InvalidKeyException {
+        def hash
+        def url
+        def name = grailsApplication.config.crowdera.freshDesk.LOGIN_NAME;
+        def BASE_URL = grailsApplication.config.crowdera.freshDesk.BASE_URL;
+        def email = grailsApplication.config.crowdera.freshDesk.LOGIN_EMAIL;
+        long timeInSeconds = System.currentTimeMillis()/1000;
+        
+        try {
+            hash = getHMACHash(name,email,timeInSeconds);
+            url = BASE_URL + "?name="+name+"&email="+email+"&timestamp="+timeInSeconds+"&hash=" + hash;
+ 
+        }catch (Exception e) {
+            url = null
+        }
+        return url
+    }
+    
+    def hashToHexString(byte[] byteData) {
+        def hexString = new StringBuffer();
+        for (int i = 0; i < byteData.length; i++) {
+            def hex = Integer.toHexString(0xff & byteData[i]);
+            // NB! E.g.: Integer.toHexString(0x0C) will return "C", not "0C"
+            if (hex.length() == 1) {
+                hexString.append('0');
+            }
+            hexString.append(hex);
+        }
+        return hexString.toString();
+    }
+
+    def String getHMACHash(String name,String email,long timeInMillis) throws Exception {
+        def sharedSecret = grailsApplication.config.crowdera.freshDesk.sharedSecret;
+        byte[] keyBytes = sharedSecret.getBytes();
+        def movingFact =name+email+timeInMillis;
+        byte[] text = movingFact.getBytes();
+
+        def hexString = "";
+        Mac hmacMD5;
+        try {
+            hmacMD5 = Mac.getInstance("HmacMD5");
+            SecretKeySpec macKey = new SecretKeySpec(keyBytes, "RAW");
+            hmacMD5.init(macKey);
+            byte[] hash =  hmacMD5.doFinal(text);
+            hexString = hashToHexString(hash);
+        } catch (Exception nsae) { }
+        
+        return hexString;
+    }
+    
+    /* End of Help Desk Integration*/
+	
+	def sendUserSubscription(def subscribeUrl,def userID, def listID, def email){
+		HttpClient httpclient = new DefaultHttpClient()
+		HttpPost httppost = new HttpPost(subscribeUrl)
+		List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2)
+		nameValuePairs.add(new BasicNameValuePair("u",userID))
+		nameValuePairs.add(new BasicNameValuePair("id", listID))
+		nameValuePairs.add(new BasicNameValuePair("EMAIL", email))
+		httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+		HttpResponse httpres = httpclient.execute(httppost)
+		int status = httpres.getStatusLine().getStatusCode()
+
+		if (status == 200){
+			HttpEntity entity = httpres.getEntity()
+			if (entity != null){
+				return true
+			}
+		}else{
+			return false
+		}
+	}
+
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')
@@ -434,7 +650,7 @@ class UserService {
         
         def anonymous = User.findByUsername('anonymous@example.com')
         if (!anonymous) {
-            anonymous = new User(username: 'anonymous@example.com', password: 'password',firstName: 'Anonymous Good Soul', lastName:'anonymousLastName', email: 'anonymous@example.com').save(failOnError: true)
+            anonymous = new User(username: 'anonymous@example.com', password: 'password',firstName: 'Anonymous Good Soul', lastName:'Good Soul', email: 'anonymous@example.com').save(failOnError: true)
         }
         UserRole.findOrSaveByUserAndRole(anonymous, roleService.anonymousRole())
 

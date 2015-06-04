@@ -9,6 +9,7 @@ class LoginController {
     def userService
     def roleService
     def grailsLinkGenerator
+    def facebookService
 
     boolean invite_user = false
 
@@ -26,6 +27,12 @@ class LoginController {
     /* User canceled during Facebook connect */
     def facebook_user_denied() {
         render(view: 'error', model: [message: "Can't authenticate using Facebook. Seems like you've canceled Facebook authentication."])
+    }
+    
+    def facebook_user_login() {
+        User user = userService.getCurrentUser();
+        facebookService.getFacebookUserDetails(user);
+        redirect (controller:'home', action:'index')
     }
 
     def user_request(){
@@ -46,7 +53,7 @@ class LoginController {
             mandrillService.sendUserResponseToUserRequest(user)
             }
         }           
-    } 
+    }
 
     @Secured(['ROLE_ADMIN'])
     def list() {
@@ -104,18 +111,8 @@ class LoginController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def update() {
         User user = (User)userService.getCurrentUser()
-        if(params.firstName){ 
-            user.firstName = params.firstName
-        }
-        if(params.lastName){
-            user.lastName = params.lastName
-        }
-        
-        /* Password change is optional */
-        if (params.password) {
-              user.password = params.password
-        }
-
+        userService.getUserUpdatedDetails(params,user)
+		
         if (user.save()) {
             flash.user_message = "Profile updated successfully!"
             redirect (controller: 'user', action: 'accountSetting')
@@ -162,7 +159,7 @@ class LoginController {
     }
 
     def request_accept(){
-        def users = userService.getUserId(params.id)
+        def users = userService.getUserId(params.long('id'))
             users.enabled = true
             mandrillService.sendMail(users)
             flash.login_message = "User Invited"

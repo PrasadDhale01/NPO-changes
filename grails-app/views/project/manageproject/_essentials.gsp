@@ -51,7 +51,7 @@
 	<div class="col-sm-12">
 	    <!-- Modal -->
 		<div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
-			<g:form action="sendemail" id="${project.id}" role="form">
+			<g:form action="sendemail" id="${project.id}" role="form" class="sendMailFormMng">
 		        <div class="modal-dialog">
 				    <div class="modal-content">
 					    <div class="modal-header">
@@ -64,6 +64,7 @@
 						    <g:hiddenField name="amount" value="${project.amount}" />
 						    <g:hiddenField name="ismanagepage" value="managepage" />
 						    <g:hiddenField name="fr" value="${fundRaiser}" />
+                                                   <g:hiddenField name="vanityTitle" value="${vanityTitle}"/>
 						    <div class="form-group">
 							    <label>Your Name</label> <input type="text" class="form-control" name="name" placeholder="Name" />
 						    </div>
@@ -77,7 +78,7 @@
 							</div>
 						</div>
 						<div class="modal-footer">
-						    <button type="submit" class="btn btn-primary btn-block">Send Email</button>
+						    <button type="submit" class="btn btn-primary btn-block" id="btnSendMailMng">Send Email</button>
 						</div>
 				    </div>
 			    </div>

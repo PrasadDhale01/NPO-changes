@@ -1,10 +1,15 @@
 package crowdera
 
 import org.apache.commons.validator.EmailValidator
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@ToString(includeNames = true, includeFields = true, excludes = 'dateCreated,lastUpdated')
+@EqualsAndHashCode
 
 class User {
 
-    static hasMany = [projects: Project, contributions: Contribution, comments: ProjectComment, teams: Team]
+    static hasMany = [projects: Project, contributions: Contribution, comments: ProjectComment, teams: Team, vanityUsername: VanityUsername]
 
 	transient springSecurityService
 

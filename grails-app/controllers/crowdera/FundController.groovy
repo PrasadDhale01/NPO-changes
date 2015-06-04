@@ -32,10 +32,11 @@ class FundController {
     def fund() {
         Project project
         User user = userService.getCurrentUser()
-		def fundraiser = params.fr
-        
-        if (params.id) {
-            project = Project.findById(params.id)
+        def fundraiser = userService.getUsernameFromVanityName(params.fr)
+
+        def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+        if (projectId) {
+            project = Project.findById(projectId)
         }
 		
         perk = rewardService.getRewardById(params.long('rewardId'))
@@ -46,9 +47,9 @@ class FundController {
         if (!project) {
             render(view: 'error', model: [message: 'This project does not exist.'])
         } else if (fundingAchieved || ended) {
-            redirect(controller: 'project', action: 'show', id: project.id)
+            redirect(controller: 'project', action: 'showCampaign', id: project.id)
         } else {
-            render view: 'fund/index', model: [project: project, user:user, fundraiser:fundraiser, perk:perk]
+            render view: 'fund/index', model: [project: project, user:user, fundraiser:fundraiser, perk:perk, vanityTitle:params.projectTitle, vanityUsername:params.fr]
         }
     }
 
@@ -66,7 +67,7 @@ class FundController {
         perk = rewardService.getRewardById(params.long('rewardId'))
         def user1 = userService.getUserByUsername(params.tempValue)
 
-        def user = userService.getUserById(params.userId)
+        def user = userService.getUserById(params.long('userId'))
         if (user == null){
             user = userService.getUserByUsername('anonymous@example.com')
         }
@@ -76,8 +77,7 @@ class FundController {
         
         def anonymous = params.anonymous
 		
-        def fundRaiserUserName = params.fr
-	    User fundraiser = userService.getUserByUsername(params.fr)
+	    User fundraiser = userService.getUserFromVanityName(params.fr)
         def team = userService.getTeamByUser(fundraiser, project)
 
         def totalContribution= contributionService.getTotalContributionForProject(project)
@@ -88,7 +88,7 @@ class FundController {
         def percentage=((totalContribution + contPrice)/ amt)*100
         if(percentage>999) {
             flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
-            redirect action: 'fund', id: project.id, params:[fr: fundRaiserUserName, rewardId:perk.id]
+            redirect action: 'fund', id: project.id, params:[fr: params.fr, rewardId:perk.id]
         }
         else{
         if (project) {
@@ -111,7 +111,7 @@ class FundController {
             if(!team || ! project.user){
                 render view:"error", model: [message:'User not found']     
             }else{
-                render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1, anonymous:anonymous]
+                render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1, anonymous:anonymous, projectTitle:params.projectTitle, username:params.fr]
             }
         } else {
             render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
@@ -122,13 +122,15 @@ class FundController {
     def charge() {
         Project project
         Reward reward
+        def vanityTitle
 
         if (params.projectId) {
             project = projectService.getProjectById(params.projectId)
+            vanityTitle = projectService.getVanityTitleFromId(params.projectId)
         }
         
-        def user1 = userService.getUserById(params.tempValue)
-        def user = userService.getUserById(params.userId)
+        def user1 = userService.getUserById(params.long('tempValue'))
+        def user = userService.getUserById(params.long('userId'))
         if (user == null){
             user = userService.getUserByUsername('anonymous@example.com')
         }
@@ -137,8 +139,8 @@ class FundController {
         def state = projectService.getState()
         def country = projectService.getCountry()
 		
-        def fundRaiserUserName = params.fr
-        User fundraiser = userService.getUserByUsername(params.fr)
+        def vanityUserName = params.fr
+        User fundraiser = userService.getUserFromVanityName(params.fr)
         def anonymous = params.anonymous
 
         if (project) {
@@ -167,11 +169,11 @@ class FundController {
 		
         if(percentage>999) {
             flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
-            redirect action: 'fund', id: project.id, params:[fr: fundRaiserUserName, rewardId:perk.id]
+            redirect action: 'fund', params:['fr': vanityUserName, 'rewardId': perk.id, 'projectTitle': vanityTitle]
         } else {
             if (project && reward) {
                 if (project.paypalEmail){
-                render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser, user1:user1, state:state, country:country, anonymous:anonymous]
+                render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser, user1:user1, state:state, country:country, anonymous:anonymous, projectTitle:params.projectTitle]
                 } else {
                     payByFirstGiving(params,project,reward,user,fundraiser,address)
                 }
@@ -182,15 +184,15 @@ class FundController {
     }
     
     def acknowledge() {
-        def contribution = contributionService.getContributionById(params.cb)
+        def contribution = contributionService.getContributionById(params.long('cb'))
         def project = contribution.project
         def reward = contribution.reward
         def user = contribution.user
-        def fundraiser = userService.getUserById(params.fr)
+        def fundraiser = userService.getUserById(params.long('fr'))
 		if((contribution.id ==conId) && (fundraiser.id==frId)){
 			conId=contribution.id
 			frId=fundraiser.id
-	        render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser]
+	        render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser, projectTitle:params.projectTitle]
         }else{
            render view: 'error', model: [message: 'This contribution or fundraiser does not exist.']
         }
@@ -199,25 +201,25 @@ class FundController {
     def saveContributionComent(){
         Contribution contribution
         if(params.id){
-            contribution = contributionService.getContributionById(params.id)
+            contribution = contributionService.getContributionById(params.long('id'))
             if(contribution && params.comment){
                 contribution.comments = params.comment
             }
         } else {
             flash.sentmessage = "Something went wrong saving comment. Please try again later."
         }
-        redirect (action:"acknowledge", params:[cb : params.id, fr : params.fr])
+        redirect (action:"acknowledge", params:[cb : params.id, fr : params.fr, projectTitle:params.projectTitle])
     }
     
     def editContributionComment(){
-        Contribution contribution = contributionService.getContributionById(params.id)
+        Contribution contribution = contributionService.getContributionById(params.long('id'))
         if(Contribution){
             def project = contribution.project
             def reward = contribution.reward
             def user = contribution.user
-            def fundraiser = userService.getUserById(params.fr)
+            def fundraiser = userService.getUserById(params.long('fr'))
             def editedComment = contribution.comments
-            render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser,editedComment: editedComment]
+            render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser,editedComment: editedComment, projectTitle:params.projectTitle]
         } else {
             flash.sentmessage = "Something went wrong saving comment. Please try again later."
         }
@@ -227,25 +229,25 @@ class FundController {
     def deleteContributionComment() {
         Contribution contribution 
         if(params.id){
-            contribution = contributionService.getContributionById(params.id)
+            contribution = contributionService.getContributionById(params.long('id'))
             if(contribution && contribution.comments){
                 contribution.comments = null
             }
         } else {
             flash.sentmessage = "Something went wrong saving comment. Please try again later."
         }
-        redirect (action:"acknowledge", params:[cb : params.id, fr : params.fr])
+        redirect (action:"acknowledge", params:[cb : params.id, fr : params.fr, projectTitle:params.projectTitle])
     }
     
     def sendemail() {
         projectService.getEmailDetails(params)
         
 		flash.sentmessage= "Email sent successfully."
-        redirect(controller:'fund',action: 'acknowledge',id: params.id, params:[cb : params.cb, fr: params.fr])
+        redirect(controller:'fund',action: 'acknowledge', params:[cb : params.cb, fr: params.fr, projectTitle: params.projectTitle])
     }
 
     def fundingConfirmation(){
-        User users = userService.getUserById(params.id)
+        User users = userService.getUserById(params.long('id'))
         if (!users) {
             render(view: 'error', model: [message: 'Problem activating account. Please check your activation link.'])
         } else {
@@ -336,8 +338,8 @@ class FundController {
 
     def payByPaypal(def params,Project project,Reward reward,User user,User fundraiser,def address){
         String timestamp = UUID.randomUUID().toString()
-        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}&tempValue=${params.tempValue}&name=${params.receiptName}&email=${params.receiptEmail}&address=${address}&anonymous=${params.anonymous}"
-        def failureUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}"
+        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectTitle=${params.projectTitle}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}&tempValue=${params.tempValue}&name=${params.receiptName}&email=${params.receiptEmail}&address=${address}&anonymous=${params.anonymous}"
+        def failureUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectTitle=${params.projectTitle}&rewardId=${reward.id}&amount=${params.amount}&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}"
 
         def BASE_URL = grailsApplication.config.crowdera.paypal.BASE_URL
 
@@ -389,15 +391,20 @@ class FundController {
 		def contributionId = projectService.getUserContributionDetails(project, reward, amount, transactionId, users, fundraiser, params,  address, request)
 		conId = contributionId
 		frId = fundraiser.id
-		redirect(controller: 'fund', action: 'acknowledge' , id: project.id, params: [cb: contributionId, fr:fundraiser.id])
+        def projectTitle
+        if (project.charitableId) {
+            projectTitle = params.projectTitle
+        } else {
+            projectTitle = request.getParameter('projectTitle')
+        }
+		redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
     }
 
     def paypalurl(){
         Project project = projectService.getProjectById(params.id)
         Reward reward = rewardService.getRewardById(params.long('rewardId'))
-        User user = userService.getUserById(params.userId)
-        def fundRaiserUserName = params.fr
-        User fundraiser = userService.getUserById(params.fr)
+        User user = userService.getUserById(params.long('userId'))
+        User fundraiser = userService.getUserById(params.long('fr'))
         def address = projectService.getAddress(params)
         
         if (project && reward && fundraiser) {
@@ -406,7 +413,7 @@ class FundController {
                 redirect (url:grailsApplication.config.crowdera.paypal.PAYPAL_URL+paykey)
             } else {
                 flash.paypalFailureMessage = "Unable to connect to the paypal account."
-                redirect action: 'fund', id: project.id, params:[fr: fundRaiserUserName]
+                redirect action: 'fund', id: project.id, params:[fr: params.fr]
             }
         } else {
             render view: 'error', model: [message: 'This project,reward or fundraiser does not exist. Please try again.']
@@ -416,14 +423,14 @@ class FundController {
     def paypalReturn(){
         def result = (boolean)request.getParameter('result')
         def rewardId = request.getParameter('rewardId')
-        def projectId = request.getParameter('projectId')
+        def projectTitle  = request.getParameter('projectTitle')
         def amount = request.getParameter('amount')
         def timestamp = request.getParameter('timestamp')
         def userid = request.getParameter('userId')
 		def fundraiserId = request.getParameter('fundraiser')
         def address = request.getParameter('address')
 
-        Project project = projectService.getProjectById(projectId)
+        Project project = projectService.getProjectFromVanityTitle(projectTitle)
         User user = userService.getUserById(userid)
 		User fundraiser = userService.getUserById(fundraiserId)
         Reward reward = rewardService.getRewardById(rewardId)
@@ -468,12 +475,14 @@ class FundController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def saveOfflineContribution() {
 		def fundRaiser = userService.getCurrentUser()
+        def title = projectService.getVanityTitleFromId(params.id)
+        def name = userService.getVanityNameFromUsername(fundRaiser.username, params.id)
         projectService.getOfflineDetails(params)
         flash.offlineContributionMsg = "Offline Contribution Added Successfully."
         if (params.manageCampaign) {
-            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', id: params.id)
+            redirect(controller: 'project', action: 'manageproject',fragment: 'contributions', params:['projectTitle':title])
         } else {
-            redirect (controller: 'project', action: 'show',fragment: 'contributions', id: params.id, params:[fr: fundRaiser.username])
+            redirect (controller: 'project', action: 'show' ,fragment: 'contributions', params:['projectTitle':title,'fr':name])
         }
     }
 }

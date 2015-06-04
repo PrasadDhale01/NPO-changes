@@ -6,8 +6,8 @@
 <body>
 	<div class="feducontent">
 		<div class="container">
-		<% def base_url = grailsApplication.config.crowdera.BASE_URL %>
-			<div class="row">
+        <% def base_url = grailsApplication.config.crowdera.BASE_URL %>
+			<div class="row" id="fundindex">
 				<g:if test="${project.paypalEmail}">
 					<div class="col-md-4">
 						<g:if test="${flash.amt_message}">
@@ -25,12 +25,13 @@
 						        <h1>Amount</h1>
 						    </div>
 						</div>
-						<g:form action="charge" method="POST" role="form">
+						<g:form action="charge" method="POST" role="form" class="chargeForms">
 							<g:hiddenField name="projectId" id="projectId" value="${project.id}" />
-							<g:hiddenField name="fr" value="${fundraiser}" />
+							<g:hiddenField name="fr" value="${vanityUsername}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
 							<g:hiddenField name="anonymous" value="false" id="anonymous"/>
+                            <g:hiddenField name="projectTitle" value="${vanityTitle}"/>
 							
 							<!-- Value set by Javascript -->
                             <div class="row">
@@ -57,7 +58,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
-							        <div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg">Continue</button></div>
+							        <div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg" id="btnChargeContinue">Continue</button></div>
 							    </div>
 							</div>
 						</g:form>
@@ -75,13 +76,15 @@
 						        <h1>Amount</h1>
 						    </div>
 						</div>
-						<g:form action="checkout" method="POST" role="form">
+						<g:form action="checkout" method="POST" role="form" class="checkoutForm">
+						
 
 							<g:hiddenField name="projectId" value="${project.id}" />
-							<g:hiddenField name="fr" value="${fundraiser}" />
+							<g:hiddenField name="fr" value="${vanityUsername}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
 							<g:hiddenField name="anonymous" value="false" id="anonymous"/>
+                            <g:hiddenField name="projectTitle" value="${vanityTitle}"/>
 							<!-- Value set by Javascript -->
                             <div class="row">
                                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -107,7 +110,7 @@
                 			</div>
                 			<div class="row">
                 			    <div class="col-md-12 col-sm-12 col-xs-12">
-								    <div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg">Continue</button></div>
+								    <div  class="amount-button"><button type="submit" class="btn btn-primary btn-lg" id="btnCheckoutContinue">Continue</button></div>
 							    </div>
 							</div>
 						</g:form>

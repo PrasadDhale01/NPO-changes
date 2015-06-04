@@ -22,7 +22,9 @@ class RewardService {
     }
 
     def getRewardById(def rewardId){
-        return Reward.get(rewardId)
+        if (rewardId) {
+            return Reward.get(rewardId)
+        }
     }
 
     def numProjectsUsingReward(Reward reward) {

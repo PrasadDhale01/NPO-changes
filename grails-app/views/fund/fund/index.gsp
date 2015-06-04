@@ -7,7 +7,7 @@
 	<div class="feducontent">
 		<div class="container">
         <% def base_url = grailsApplication.config.crowdera.BASE_URL %>
-			<div class="row">
+			<div class="row" id="fundindex">
 				<g:if test="${project.paypalEmail}">
 					<div class="col-md-4">
 						<g:if test="${flash.amt_message}">

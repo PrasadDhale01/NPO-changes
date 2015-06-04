@@ -866,7 +866,7 @@ class ProjectController {
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editFundraiser(){
-		def team = projectService.getTeamById(params.id)
+		def team = projectService.getTeamById(params.long('id'))
 		def fundRaiser = team.user.username
         def title = projectService.getVanityTitleFromId(params.project)
         def username = userService.getVanityNameFromUsername(fundRaiser, params.project)
@@ -913,15 +913,15 @@ class ProjectController {
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def deletecustomrewards() {
-        def rewardId = rewardService.getRewardById(params.id)
+        def reward = rewardService.getRewardById(params.long('id'))
         def project = projectService.getProjectById(params.projectId)
-        def shippingInfo = RewardShipping.findByReward(rewardId)
+        def shippingInfo = RewardShipping.findByReward(reward)
         def title = projectService.getVanityTitleFromId(params.projectId)
-        if(rewardId){
-            project.rewards.remove(rewardId)
+        if(reward){
+            project.rewards.remove(reward)
             shippingInfo.reward = null
             shippingInfo.delete()
-            rewardId.delete()
+            reward.delete()
             flash.prj_mngprj_message = 'Successfully deleted a Perk'
         }
         redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', params:['projectTitle':title])
@@ -967,7 +967,7 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def validateteam() {
         def project = projectService.getProjectById(params.id);
-        def team = projectService.getTeamById(params.teamId)
+        def team = projectService.getTeamById(params.long('teamId'))
         def title = projectService.getVanityTitleFromId(params.id)
         team.validated = true
         mandrillService.sendTeamValidatedConfirmation(project,team.user)

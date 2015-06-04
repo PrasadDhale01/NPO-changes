@@ -13,7 +13,9 @@ class ContributionService {
     }
 	 
     def getContributionById(def contributionId){
-        return Contribution.get(contributionId)
+        if (contributionId) {
+            return Contribution.get(contributionId)
+        }
     }
 
     def getTotalContributors (Project project){

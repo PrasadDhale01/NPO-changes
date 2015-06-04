@@ -67,7 +67,7 @@ class FundController {
         perk = rewardService.getRewardById(params.long('rewardId'))
         def user1 = userService.getUserByUsername(params.tempValue)
 
-        def user = userService.getUserById(params.userId)
+        def user = userService.getUserById(params.long('userId'))
         if (user == null){
             user = userService.getUserByUsername('anonymous@example.com')
         }
@@ -129,8 +129,8 @@ class FundController {
             vanityTitle = projectService.getVanityTitleFromId(params.projectId)
         }
         
-        def user1 = userService.getUserById(params.tempValue)
-        def user = userService.getUserById(params.userId)
+        def user1 = userService.getUserById(params.long('tempValue'))
+        def user = userService.getUserById(params.long('userId'))
         if (user == null){
             user = userService.getUserByUsername('anonymous@example.com')
         }
@@ -184,11 +184,11 @@ class FundController {
     }
     
     def acknowledge() {
-        def contribution = contributionService.getContributionById(params.cb)
+        def contribution = contributionService.getContributionById(params.long('cb'))
         def project = contribution.project
         def reward = contribution.reward
         def user = contribution.user
-        def fundraiser = userService.getUserById(params.fr)
+        def fundraiser = userService.getUserById(params.long('fr'))
 		if((contribution.id ==conId) && (fundraiser.id==frId)){
 			conId=contribution.id
 			frId=fundraiser.id
@@ -201,7 +201,7 @@ class FundController {
     def saveContributionComent(){
         Contribution contribution
         if(params.id){
-            contribution = contributionService.getContributionById(params.id)
+            contribution = contributionService.getContributionById(params.long('id'))
             if(contribution && params.comment){
                 contribution.comments = params.comment
             }
@@ -212,12 +212,12 @@ class FundController {
     }
     
     def editContributionComment(){
-        Contribution contribution = contributionService.getContributionById(params.id)
+        Contribution contribution = contributionService.getContributionById(params.long('id'))
         if(Contribution){
             def project = contribution.project
             def reward = contribution.reward
             def user = contribution.user
-            def fundraiser = userService.getUserById(params.fr)
+            def fundraiser = userService.getUserById(params.long('fr'))
             def editedComment = contribution.comments
             render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser,editedComment: editedComment, projectTitle:params.projectTitle]
         } else {
@@ -229,7 +229,7 @@ class FundController {
     def deleteContributionComment() {
         Contribution contribution 
         if(params.id){
-            contribution = contributionService.getContributionById(params.id)
+            contribution = contributionService.getContributionById(params.long('id'))
             if(contribution && contribution.comments){
                 contribution.comments = null
             }
@@ -243,11 +243,11 @@ class FundController {
         projectService.getEmailDetails(params)
         
 		flash.sentmessage= "Email sent successfully."
-        redirect(controller:'fund',action: 'acknowledge',id: params.id, params:[cb : params.cb, fr: params.fr])
+        redirect(controller:'fund',action: 'acknowledge', params:[cb : params.cb, fr: params.fr, projectTitle: params.projectTitle])
     }
 
     def fundingConfirmation(){
-        User users = userService.getUserById(params.id)
+        User users = userService.getUserById(params.long('id'))
         if (!users) {
             render(view: 'error', model: [message: 'Problem activating account. Please check your activation link.'])
         } else {
@@ -403,8 +403,8 @@ class FundController {
     def paypalurl(){
         Project project = projectService.getProjectById(params.id)
         Reward reward = rewardService.getRewardById(params.long('rewardId'))
-        User user = userService.getUserById(params.userId)
-        User fundraiser = userService.getUserById(params.fr)
+        User user = userService.getUserById(params.long('userId'))
+        User fundraiser = userService.getUserById(params.long('fr'))
         def address = projectService.getAddress(params)
         
         if (project && reward && fundraiser) {

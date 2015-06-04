@@ -21,19 +21,27 @@ class ProjectService {
 	def rewardService
 	
     def getProjectById(def projectId){
-        return Project.get(projectId)
+        if (projectId) {
+            return Project.get(projectId)
+        }
     }
 
     def getImageUrlById(def imageId){
-        return ImageUrl.get(imageId)
+        if (imageId) {
+            return ImageUrl.get(imageId)
+        }
     }
 
     def getTeamById(def teamId){
-        return Team.get(teamId)
+        if (teamId) {
+            return Team.get(teamId)
+        }
     }
 
     def getTeamCommentById(def teamCommentId){
-        return TeamComment.get(teamCommentId)
+        if (teamCommentId) {
+            return TeamComment.get(teamCommentId)
+        }
     }
 
     def getTeamByUserAndProject(def project, def user){
@@ -46,7 +54,9 @@ class ProjectService {
     } 
 
     def getProjectCommentById(def commentId){
-       return ProjectComment.get(commentId)
+        if (commentId) {
+            return ProjectComment.get(commentId)
+        }
     }
 
     def getProjectByParams(def projectParams){
@@ -253,7 +263,7 @@ class ProjectService {
      }
 
      def getContributionDeleteDetails(def params){
-         def contribution = contributionService.getContributionById(params.id)
+         def contribution = contributionService.getContributionById(params.long('id'))
          def project = Project.get(params.projectId)
          def fundraiser = params.fr
          def fundRaiser = User.findByUsername(fundraiser)
@@ -271,8 +281,8 @@ class ProjectService {
 	 
 	 def getEmailDetails(def params){
 		 def project = Project.get(params.id)
-		 def contribution = Contribution.get(params.cb)
-		 def fundraiser = User.get(params.fr)
+		 def contribution = Contribution.get(params.long('cb'))
+		 def fundraiser = User.get(params.long('fr'))
 		 String emails = params.emails
 		 String name = params.name
 		 String message = params.message
@@ -437,14 +447,14 @@ class ProjectService {
          def fundRaiser = userService.getUserByUsername(fundraiser)
          Team team = getTeamByUserAndProject(project, fundRaiser)
          if(team){
-             def teamcomment = TeamComment.get(params.id)
+             def teamcomment = TeamComment.get(params.long('id'))
              if (teamcomment) {
                  List teamComments = team.comments
                  teamComments.remove(teamcomment)
                  teamcomment.delete()
              }
          }else{
-             def projectcomment= ProjectComment.get(params.id)
+             def projectcomment= ProjectComment.get(params.long('id'))
              if (projectcomment) {
                  List projectComments = project.comments
                  projectComments.remove(projectcomment)
@@ -454,7 +464,7 @@ class ProjectService {
     }
 	
 	def getContributionEditedDetails(def params){
-		def contribution = Contribution.get(params.id)
+		def contribution = Contribution.get(params.long('id'))
 		contribution.contributorName = params.contributorName
 		contribution.amount = Double.parseDouble(params.amount)
 	}
@@ -1708,7 +1718,7 @@ class ProjectService {
     
     def discardTeam(def params) {
         def project = Project.get(params.id);
-        def team = Team.get(params.teamId)
+        def team = Team.get(params.long('teamId'))
         List imageUrls = team.imageUrl
         def i = imageUrls.size()
         for (int j=0; j< i; j++) {
@@ -1894,7 +1904,7 @@ class ProjectService {
 	}
     
     def editCampaignUpdates(def params, def project, def imageFiles) {
-        ProjectUpdate projectUpdate = getProjectUpdateById(params.id)
+        ProjectUpdate projectUpdate = getProjectUpdateById(params.long('id'))
         def story = params.story
         def isImageFileEmpty = isImageFileEmpty(imageFiles)
         

@@ -1125,9 +1125,9 @@ class ProjectService {
             if( it.title.toLowerCase().contains(query.toLowerCase()) || it.description.toLowerCase().contains(query.toLowerCase()) ){
                 result.add(it)
             } else if (it.story){
-			    if (it.story.toLowerCase().contains(query.toLowerCase()))
-				    result.add(it)
-			}
+                if (it.story.toLowerCase().contains(query.toLowerCase()))
+                    result.add(it)
+            }
         }
         return result
     }

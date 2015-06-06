@@ -22,6 +22,28 @@
                 <li><a href="${resource(dir: '/campaigns')}" class="nav-text2"><b>DISCOVER</b></a></li>
 				<li><a href="${resource(dir: '/howitworks')}" class="nav-text3"><b>LEARN</b></a></li>
 			</ul>
+			<ul class="nav navbar-nav navbar-right searchengine">
+            <li class="dropdown searchengine-dropdown visible-md visible-lg visible-sm">
+                <a class="dropdown-toggle search-image glyphicon glyphicon-search" data-hover="dropdown" data-delay="2000" data-close-others="true"></a>
+                <ul class="dropdown-menu menu">
+                    <li class="search-engine">
+                        <form action="/home/searchOnHomePage" class="searchOnHomePage">
+                            <span class="form-group">
+                                <input type="text" id="query"  name="query" class="form-control search-box-on-home-page" value="${params.query}" placeholder="Search">
+                            </span>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+            <li class="search-engine-mob visible-xs">
+            <form action="/home/searchOnHomePage" class="searchOnHomePageMob">
+                <span class="form-group inner-addon left-addon">
+                    <i class="glyphicon glyphicon-search searchIconMob"></i>
+                    <input type="search" name="query" class="form-control search-box-xs" value="${params.query}" placeholder="Search">
+                </span>
+            </form>
+            </li>
+            </ul>
 			<ul class="nav navbar-nav navbar-right">
 			    <!-- Dont use form action here as its header file, it messes with other forms in the body part-->
 			    <!--<div class="searchbox"><form name="" action="" method="post">
@@ -39,7 +61,7 @@
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img">
-                        <a href="#" class="dropdown-toggle login" data-toggle="dropdown">
+                        <a href="#" class="dropdown-toggle login" data-hover="dropdown" data-delay="1500" data-close-others="true">
                             <g:if test="${userService.isFacebookUser()}">
                                 <i class="fa fa-facebook-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             </g:if>

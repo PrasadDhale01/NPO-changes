@@ -16,6 +16,7 @@ modules = {
     corejs {
         dependsOn 'jquery', 'handlebarsjs'
         resource url: 'vendor/bootstrap-3.2.0-dist/js/bootstrap.min.js'
+        resource url: 'vendor/bootstrap-hover-dropdown-master/bootstrap-hover-dropdown.min.js'
     }
     jqueryvalidate {
         dependsOn 'corejs'

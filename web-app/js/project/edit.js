@@ -21,7 +21,7 @@ $(function() {
     });
     
     /* Validate form on submit. */
-    var validator = $('form').validate({
+    var validator = $('#campaignedit').find('form').validate({
         rules: {
             amount: {
                 required: true,

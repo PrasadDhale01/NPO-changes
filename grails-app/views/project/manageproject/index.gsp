@@ -3,8 +3,6 @@
 <g:set var="projectService" bean="projectService" />
 <g:set var="userService" bean="userService" />
 <%
-    def percentage = contributionService.getPercentageContributionForProject(project)
-    boolean ended = projectService.isProjectDeadlineCrossed(project)
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def user = project.user
     def username = user.username

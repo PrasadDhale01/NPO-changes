@@ -8,19 +8,9 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM, YYYY");
     SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
     def currentTeamUser
-    List list = []
-    if(project.user == team.user) {
-        list = project.contributions.reverse();
-    }else {
-        list = team.contributions.reverse();
-    }
-    def user = userService.getCurrentUser()
-    def isCampaignOwnerOrAdmin
+    def user = currentUser
     def fundRaiser
-    def CurrentUserTeam
     if (user != null) {
-        isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
-        CurrentUserTeam = userService.getTeamByUser(user, project)
         fundRaiser = user.username
         if(user != project.user && user == team.user) {
             currentTeamUser = team.user
@@ -28,16 +18,16 @@
     }
     def projectId = project.id
 %>
-<g:if test="${list.empty}">
+<g:if test="${contributions.empty}">
     <div class="alert alert-info">No contributions yet. Yours can be the first one.</div>
 </g:if>
-<g:if test="${user && !isCampaignOwnerOrAdmin && CurrentUserTeam}">
+<g:if test="${user && !isCrUserCampBenOrAdmin && CurrentUserTeam}">
     <g:if test="${team.user == user}">
         <a href="#" class="btn btn-primary btn-sm pull-right offlinecontributionbtn" data-toggle="modal" data-target="#offlineContributionModal" model="['project': project]">
             Manage Offline Contribution
         </a>
         <!-- Button trigger modal -->
-        <g:if test="${!list.empty}">
+        <g:if test="${!contributions.empty}">
             <button class="btn btn-primary btn-sm btn-circle pull-right reportCls" data-toggle="modal" data-target="#reportModal">
                 Report
             </button>
@@ -85,9 +75,9 @@
         </g:form>
     </div>
 </g:if>
-<g:if test="${!list.empty}">
+<g:if test="${!contributions.empty}">
     <div class="commentsoncampaign">
-        <g:each in="${list}" var="contribution">
+        <g:each in="${contributions}" var="contribution">
             <%
                 def date = dateFormat.format(contribution.date)
                 def friendlyName = userService.getFriendlyName(contribution.user)
@@ -104,7 +94,7 @@
                         <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>
                     </g:if>
                     <g:if test="${contribution.isAnonymous}">
-                        <g:if test="${isCampaignOwnerOrAdmin && CurrentUserTeam && currentFundraiser == team}">
+                        <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
 			               <dd>By ${contribution.contributorName}, on ${date}</dd>
 			            </g:if>
 			            <g:else>
@@ -134,7 +124,7 @@
                     </div>
                     <p>By ${contribution.contributorName}, on ${date}</p>
                     <div class="clear"></div>
-		            <g:if test="${contribution.fundRaiser.equals(fundRaiser) && team.user == user && !isCampaignOwnerOrAdmin}">
+		            <g:if test="${contribution.fundRaiser.equals(fundRaiser) && team.user == user && !isCrUserCampBenOrAdmin}">
 		                <div class="editAndDeleteBtn">
 		                    <div class="pull-right">
 		                        <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
@@ -207,7 +197,7 @@
          <g:hiddenField name="projectId" value="${project.id}"/>
          <g:hiddenField name="teamId" value="${team.id}"/>
          <div class="modal-body">
-           <g:if test="${!list.empty}">
+           <g:if test="${!contributions.empty}">
                 <dl class="dl">
                     <div class="table table-responsive">
                         <table class="table table-bordered">
@@ -239,26 +229,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <g:each in="${list}" var="contributions">
+                                <g:each in="${contributions}" var="contribution">
                                     <%
-                                        def date = contributions.date.format('YYYY-MM-DD HH:mm:ss')
-                                        def friendlyName = userService.getFriendlyName(contributions.user)
-                                        def isFacebookUser = userService.isFacebookUser(contributions.user)
-                                        def userFacebookUrl = facebookService.getUserFacebookUrl(contributions.user)
-                                        def amount = projectService.getDataType(contributions.amount)
-                                        def pay_mode=contributions.isContributionOffline
-                                        def contributorName= contributions.contributorName
+                                        def date = contribution.date.format('YYYY-MM-DD HH:mm:ss')
+                                        def friendlyName = userService.getFriendlyName(contribution.user)
+                                        def isFacebookUser = userService.isFacebookUser(contribution.user)
+                                        def userFacebookUrl = facebookService.getUserFacebookUrl(contribution.user)
+                                        def amount = projectService.getDataType(contribution.amount)
+                                        def pay_mode=contribution.isContributionOffline
+                                        def contributorName= contribution.contributorName
                                         def contributorEmail
-                                        contributorEmail = contributions.contributorEmail
+                                        contributorEmail = contribution.contributorEmail
                                         if (!contributorEmail) {
                                             contributorEmail = " "
                                         }
-                                        def shippingDetails = contributionService.getShippingDetails(contributions)
+                                        def shippingDetails = contributionService.getShippingDetails(contribution)
                                     %>
                                     <tr>
                                         <td class="col-sm-2 text-center wordBreak">${project.title}</td>
                                         <td class="col-sm-2 text-center wordBreak">
-                                            ${contributionService.getFundRaiserName(contributions, project)}
+                                            ${contributionService.getFundRaiserName(contribution, project)}
                                         </td>
                                         <g:if test="${project.rewards.size()>1}">
                                             <td class="col-sm-1 text-center ">${date}</td>
@@ -275,7 +265,7 @@
                                         <td class="col-sm-2 wordBreak">${contributorEmail}</td>
 
                                         <g:if test="${project.rewards.size()>1}">
-                                            <td class="col-sm-2">${contributions.reward.title}</td>
+                                            <td class="col-sm-2">${contribution.reward.title}</td>
                                             <td class="col-sm-2 wordBreak">${raw(shippingDetails)}</td> 
                                         </g:if>
                                         

@@ -1697,7 +1697,7 @@ class ProjectService {
     }
     
     def getEnabledAndValidatedTeamsForCampaign(Project project) {
-        def teams = Team.findAllWhere(project : project,enable:true, validated: true);
+        List teams = Team.findAllWhere(project : project,enable:true, validated: true);
         return teams
     }
     

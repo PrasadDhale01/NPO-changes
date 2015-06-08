@@ -397,22 +397,22 @@ hr.footer-hr{
 }
 .footer-first-section p{
     color:#ffffff;
-    font-size:18px;
+    font-size:16px;
     text-align:center;
     font-family: "OPEN SANS";
 }
 .footer-mid-section p{
     color:#ffffff;
-    font-size:16px;
+    font-size:14px;
     text-align:center;
     font-family: "OPEN SANS";	
 }
-.footer-mid-section-menu{
-	margin-top:21px;
+.footer-mid-section-menu.newsletter{
+	margin-top:-7px;
 }
 .footer-mid-section p b{
     color:#ffffff;
-    font-size:22px;	
+    font-size:20px;	
     padding-left: 50%;	
 }
 .thomas-margin-align{
@@ -423,12 +423,12 @@ p.egle {
     margin-top: -11px;
 }
 .footer-mid-section-menu ul li a{
-    font-size:15px;
+    font-size:13px;
     font-family: "OPEN SANS";
 }
 .footer-mid-section-menu .footer-header{
     color:#adadad;
-    font-size:20px;
+    font-size:16px;
     padding-bottom:5px;
     font-family: "OPEN SANS";
 }
@@ -543,7 +543,7 @@ a {
     	justify-content: center;
     }
     .subscribeHeading{
-    	font-size:20px;
+    	font-size:16px;
     	color:#adadad;
 		margin-left:14px;
     }
@@ -713,7 +713,7 @@ a {
         padding-left: 11%;
     }
     .footer-first-section p{
-    	font-size: 17px;
+    	font-size: 15px;
     }
     .footer-mid-section p {
         color: #ffffff;
@@ -735,7 +735,7 @@ a {
    }
    a.footerlink {
     	color: #cccccc;
-    	font-size: 13px !important;
+    	font-size: 9px !important;
     	font-weight: 500;
     	text-decoration: none;
     }
@@ -2700,7 +2700,7 @@ textarea.form-control {
     	margin-left: -39px !important;
     }
     .footer-mid-section-menu-mobile ul li a {
-    	font-size: 14px !important;
+    	font-size: 12px !important;
     }
     .footer-mid-section-mobile p {
     	color: #ffffff;
@@ -2708,12 +2708,12 @@ textarea.form-control {
     	text-align: center;
     }
     .footer-text-align p{
-	font-size:21px;
+	font-size:13px;
 	text-align:center;
 	color:#ffffff;
     }
     .footer-p-text-align p{
-	font-size:15px;
+	font-size:13px;
 	text-align:center;
 	color:#ffffff;
     }
@@ -4155,7 +4155,7 @@ textarea.form-control {
     }
 	.footer_links a {
         color: #cccccc;
-        font-size: 10px !important;
+        font-size: 8px !important;
         text-decoration: none;
     }
 	.tile-goal {
@@ -4205,7 +4205,7 @@ textarea.form-control {
 	}
 	.footer-header-mobile{
 		color:#adadad;
-		font-size:20px;
+		font-size:16px;
 		text-align:center;
 		margin-bottom:5px;
 		margin-left:16px;
@@ -4220,7 +4220,7 @@ textarea.form-control {
     }
 	.footer-first-section-mobile p{
 		color:#ffffff;
-		font-size:15px;
+		font-size:13px;
 		text-align:center;
 	}
 	.footer-first-section-mobile img{
@@ -4830,11 +4830,18 @@ button.projectedit.close{
 .footerbottommainlinks {
 	margin-top: 15px;
 }
+.text-primary {
+    color: #008cba;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 74%;
+}
 a.footerlink {
 	color: #adadad;
-    	font-size: 14px;
-    	text-decoration: none;
-    	font-weight: 500;
+    font-size: 10px;
+    text-decoration: none;
+    font-weight: 500;
 	
 	/* color: #cccccc;
 	font-size: 14px;

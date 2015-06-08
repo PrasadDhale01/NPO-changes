@@ -8,6 +8,12 @@ $(function() {
     
     var validator = $('#validpass').find('form').validate({
         rules: {
+        	firstName: {
+        		maxlength: 20
+        	},
+        	lastName: {
+        		maxlength: 20
+        	},
         	password: {
                 minlength: 6
             },

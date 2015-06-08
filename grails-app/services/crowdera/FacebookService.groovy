@@ -23,16 +23,22 @@ class FacebookService {
             def fbUserInfo = facebookClient.fetchObject("me")
             
             if (user.firstName != fbUserInfo.first_name) {
-                user.firstName = fbUserInfo.first_name
-                isFbDetailsChanged = true
+                if (fbUserInfo.first_name) {
+                    user.firstName = fbUserInfo.first_name
+                    isFbDetailsChanged = true
+                }
             }
             if (user.lastName != fbUserInfo.last_name) {
-                user.lastName = fbUserInfo.last_name
-                isFbDetailsChanged = true
+                if (fbUserInfo.last_name) {
+                    user.lastName = fbUserInfo.last_name
+                    isFbDetailsChanged = true
+                }
             }
             if (user.email != fbUserInfo.email) {
-                user.email = fbUserInfo.email
-                isFbDetailsChanged = true
+                if (fbUserInfo.email) {
+                    user.email = fbUserInfo.email
+                    isFbDetailsChanged = true
+                }
             }
             if (!user.userImageUrl) {
                 user.userImageUrl = "//graph.facebook.com/"+fbUser.uid+"/picture?type=large"

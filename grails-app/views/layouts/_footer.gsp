@@ -9,10 +9,10 @@
       	      	<div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a></div>
       	      	<div class="crowdera-menu">
       	      	<div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
-            		<div class="footer-header-mobile footer-header-align">Quick Links</div>
+<%--            		<div class="footer-header-mobile footer-header-align">Quick Links</div>--%>
            		   <div class="quicklinks-menu-div"><ul class="quicklinks-menu">
             		      <li><a href="${resource(dir: '/')}">Home</a></li>
-		       	      <li><a href="${resource(dir: '/aboutus')}">Crowdera Crew</a></li>
+		       	      <li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
 		              <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
 <%--		              <li><b><a href="${resource(dir: '/campaigns/create')}">Create a Fundraiser</a></b></li>--%>
 		              
@@ -21,7 +21,7 @@
             		   </ul></div>
           		</div>
           		<div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
-            		<div class="footer-header-mobile footer-header-align">Campaigning</div>
+<%--            		<div class="footer-header-mobile footer-header-align">Campaigning</div>--%>
             		 <div class="campaigning-menu-div"> <ul class="campaigning-menu">
                     	       <li><a href="${resource(dir: '/campaigns/create')}">Start Your Campaign</a></li>
                     	       <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
@@ -119,10 +119,10 @@
    	  	<section class="row">
    	  	    <div class="col-sm-5">
    	  		  <div class="col-sm-6 footer-mid-section-menu">
-   	  		      <div class="footer-header">Quick Links</div>
+<%--   	  		      <div class="footer-header">Quick Links</div>--%>
            		         <ul>
             	  		    <li><a href="${resource(dir: '/')}">Home</a></li>
-            	  		    <li><a href="${resource(dir: '/aboutus')}">Crowdera Crew</a></li>
+            	  		    <li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
 		          	    <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
 <%--		          	    <li><a href="${resource(dir: '/campaigns/create')}">Create a Fundraiser</a></li>--%>
 		          	    <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
@@ -130,7 +130,7 @@
             			 </ul>
               	            </div>
                           <div class="col-sm-6 footer-mid-section-menu">
-          		     <div class="footer-header">Campaigning</div>
+<%--          		     <div class="footer-header">Campaigning</div>--%>
               	   		<ul>
                   		   <li><a href="${resource(dir: '/campaigns/create')}">Start Your Campaign</a></li>
                   		   <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
@@ -213,10 +213,10 @@
        <section class="row">
        		<div class="col-md-4">
        			<div class="col-md-6 footer-mid-section-menu">
-            		   <div class="footer-header">Quick Links</div>
+<%--            		   <div class="footer-header">Quick Links</div>--%>
            	            <ul>
             			<li><a href="${resource(dir: '/')}">Home</a></li>
-            			<li><a href="${resource(dir: '/aboutus')}">Crowdera Crew</a></li>
+            			<li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
 		        	<li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
 <%--		        	<li><a href="${resource(dir: '/campaigns/create')}">Create a Fundraiser</a></b></li>--%>
 		        	<li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
@@ -224,7 +224,7 @@
             		    </ul>
           		 </div>
           		<div class="col-md-6 footer-mid-section-menu">
-            		     <div class="footer-header">Campaigning</div>
+<%--            		     <div class="footer-header">Campaigning</div>--%>
             		     <ul>
                     		<li><a href="${resource(dir: '/campaigns/create')}">Start Your Campaign</a></li>
                     		<li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
@@ -247,10 +247,10 @@
         		<div><p>"Through the Crowdera platform<br> our scholars, parents, families, staff and<br> parents can participate
         			 in building support for<br> the Eagle Academy movement." <br><br><b class="thomas-margin-align">Thomas Owens</b><br><p class="egle">Eagle Academy</p>
         		</div>
-        		<div>
+        		<div><br><br>
 			   <form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
 				<div>
-				   <div class="footer-mid-section-menu"><span class="footer-header subscribe-email">Sign up for Newsletter</span></di>
+				   <div class="footer-mid-section-menu newsletter"><span class="footer-header subscribe-email">Sign up for Newsletter</span></di>
 				      <div class="col-md-6">
 				 	<input type="text" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">
 				      </div>

@@ -139,7 +139,6 @@ class FundController {
         def state = projectService.getState()
         def country = projectService.getCountry()
 		
-        def vanityUserName = params.fr
         User fundraiser = userService.getUserFromVanityName(params.fr)
         def anonymous = params.anonymous
 
@@ -166,6 +165,7 @@ class FundController {
         def remainAmt=reqAmt- totalContribution
         def percentage=((totalContribution + contPrice)/ amt)*100
         perk = Reward.get(params.long('rewardId'))
+        def vanityUserName = params.fr
 		
         if(percentage>999) {
             flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
@@ -173,7 +173,7 @@ class FundController {
         } else {
             if (project && reward) {
                 if (project.paypalEmail){
-                render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser, user1:user1, state:state, country:country, anonymous:anonymous, projectTitle:params.projectTitle]
+                    render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser, user1:user1, state:state, country:country, anonymous:anonymous, projectTitle:params.projectTitle]
                 } else {
                     payByFirstGiving(params,project,reward,user,fundraiser,address)
                 }

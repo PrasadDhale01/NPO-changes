@@ -39,7 +39,7 @@
         </g:else>
         
         <g:if test="${project.webAddress}">
-            <div class="col-sm-12">
+            <div class="col-sm-12 web-links">
                 <label>Web: <a href="${webUrl}" target="${webUrl}">${project.webAddress}</a></label>
             </div>
         </g:if>

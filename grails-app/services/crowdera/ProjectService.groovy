@@ -1940,7 +1940,7 @@ class ProjectService {
         def vanitytitle
 		def status = false
         list.each{
-            if (it.title == title) {
+            if (it.title.equalsIgnoreCase(title)) {
                 result.add(it)
             }
         }
@@ -1966,8 +1966,9 @@ class ProjectService {
         def title = project.title.trim()
         def vanity_title = title.replaceAll("[^a-zA-Z0-9]", "-")
         def vanity = VanityTitle.findAllWhere(project:project)
+		def count = 1
         vanity.each{
-            if (it.title == vanity_title){
+            if (it.title.equals(vanity_title)){
                 status = true
 				vanity_title = it.vanityTitle
             }

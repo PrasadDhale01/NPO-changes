@@ -21,6 +21,7 @@
 <body>
 	<div class="feducontent">
 		<div class="container contactUs" id="contactUs">
+		<div class="helpdesk">
 		<%--
             <g:if test="${flash.contactmessage}">
 			    <div class="alert alert-success" align="center">
@@ -79,8 +80,9 @@
 				</div>
 			</g:uploadForm>
             --%>
-            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://fedu.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Crowdera+Customer+Help+&submitThanks=Your+Query+has+been+submitted.+We+will+get+back+to+you+soon.&screenshot=no" scrolling="no" height="600px" width="100%" frameborder="0" >
+            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://crowdera.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Crowdera+Customer+Help+&submitThanks=Your+Query+has+been+submitted.+We+will+get+back+to+you+soon.&screenshot=no" scrolling="no" height="600px" width="100%" frameborder="0" >
             </iframe>
+        </div>
 		</div>
 	</div>
 </body>

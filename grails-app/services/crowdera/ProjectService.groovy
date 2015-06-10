@@ -1120,10 +1120,13 @@ class ProjectService {
 
     def search(String query) {
         List result = []
-        def project = getValidatedProjects()
+        List project = getValidatedProjects()
         project.each { 
-            if( it.title.toLowerCase().contains(query.toLowerCase()) || it.story.toLowerCase().contains(query.toLowerCase()) ){
+            if( it.title.toLowerCase().contains(query.toLowerCase()) || it.description.toLowerCase().contains(query.toLowerCase()) ){
                 result.add(it)
+            } else if (it.story){
+                if (it.story.toLowerCase().contains(query.toLowerCase()))
+                    result.add(it)
             }
         }
         return result

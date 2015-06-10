@@ -2,13 +2,6 @@
 <g:set var="userService" bean="userService"/>
 <% 
     def beneficiary = project.user
-    boolean ended = projectService.isProjectDeadlineCrossed(project)
-    def isteamexist = userService.isTeamEnabled(project, currentFundraiser) 
-    def webUrl = projectService.getWebUrl(project)
-    def percentage = contributionService.getPercentageContributionForProject(project)
-    def isCampaignAdmin = userService.isCampaignAdmin(project, username)
-	def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
-	def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, currentFundraiser)
 %>
 <div class="panel panel-default">
     <div class="panel-heading panel-css">
@@ -22,7 +15,7 @@
 
    	<div class="organization-details text-center">
    	    <label class="col-sm-12"><h4><b>${project.organizationName}</b></h4></label>
-   	    <g:if test="${!isAdminOrBeneficiary }">
+   	    <g:if test="${!isCrFrCampBenOrAdmin}">
    	    	<g:if test="${currentTeam.user.userImageUrl}">
    	        	<div class="col-sm-12">
    	            	<img alt="Organization" src="${currentTeam.user.userImageUrl}" class="org-logo">
@@ -75,7 +68,7 @@
 		    <g:elseif test="${isCampaignAdmin}">
                 <img src="//s3.amazonaws.com/crowdera/assets/Co-Owner.png" alt="CO-OWNER"/>
             </g:elseif>
-	        <g:elseif test="${isteamexist}">
+	        <g:elseif test="${isEnabledTeamExist}">
 	            <g:if test="${currentFundraiser == beneficiary}">
 					<img src="//s3.amazonaws.com/crowdera/assets/Owner-Bottom.png" alt="Owner"/>
 	            </g:if>

@@ -100,7 +100,7 @@ class ProjectController {
             User user = userService.getUserByUsername(username)
             def currentUser = userService.getCurrentUser()
             def currentFundraiser = userService.getCurrentFundRaiser(user, project)
-            def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
+            Team currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
             def totalContribution = contributionService.getTotalContributionForProject(project)
             def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
   
@@ -108,11 +108,23 @@ class ProjectController {
             def teamPercentage = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
   
             def isCrFrCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)
+            def isCampaignAdmin = userService.isCampaignAdmin(project, username)
+            def isEnabledTeamExist = userService.isTeamEnabled(project, currentFundraiser)
             def isCrUserCampBenOrAdmin
             def isTeamExist
+            def CurrentUserTeam
+            List contributions = []
+            
+            if(project.user == currentTeam.user) {
+                contributions = project.contributions.reverse();
+            }else {
+                contributions = currentTeam.contributions.reverse();
+            }
+            
             if (currentUser) {
                 isCrUserCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
                 isTeamExist = userService.isValidatedTeamExist(project, currentUser)
+                CurrentUserTeam = userService.getTeamByUser(currentUser, project)
             }
             def teams = projectService.getEnabledAndValidatedTeamsForCampaign(project)
   
@@ -121,11 +133,12 @@ class ProjectController {
             def rewards = rewardService.getSortedRewards(project);
             def day= projectService.getRemainingDay(project)
             def endDate = projectService.getProjectEndDate(project)
+            def webUrl = projectService.getWebUrl(project)
               
             render (view: 'show/index',
-            model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,
-                    totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution,
-                    teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,
+            model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin,
+                    totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, contributions: contributions, webUrl: webUrl,
+                    teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist,
                     isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
                     isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS])
         } else {
@@ -174,13 +187,13 @@ class ProjectController {
             def rewards = rewardService.getSortedRewards(project);
             def day= projectService.getRemainingDay(project)
             def endDate = projectService.getProjectEndDate(project)
-            
+            def webUrl = projectService.getWebUrl(project)
             def validatedPage = true
             if(project.validated == false) {
                 
                 render (view: 'validate/validateshow',
                     model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,
-                            totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution,
+                            totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, webUrl: webUrl,
                             teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,
                             isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
                             validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS])
@@ -281,7 +294,6 @@ class ProjectController {
         def projects = projectService.getNonValidatedProjects()
         render(view: 'validate/index', model: [projects: projects])
     }
-
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def savecomment() {
@@ -648,19 +660,27 @@ class ProjectController {
         if (project) {
             def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
             def totalContribution = contributionService.getTotalContributionForProject(project)
+            
             def projectimages = projectService.getProjectImageLinks(project)
             def validatedTeam = projectService.getValidatedTeam(project)
+            def unValidatedTeam = projectService.getTeamToBeValidated(project)
             def discardedTeam = projectService.getDiscardedTeams(project)
             boolean ended = projectService.isProjectDeadlineCrossed(project)
             boolean isFundingOpen = projectService.isFundingOpen(project)
             def rewards = rewardService.getSortedRewards(project);
             def endDate = projectService.getProjectEndDate(project)
+            def isCampaignAdmin = userService.isCampaignAdmin(project, user.username)
+            def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+            Team currentTeam = projectService.getCurrentTeam(project,user)
+            def isCrFrCampBenOrAdmin = isCampaignOwnerOrAdmin
+            def webUrl = projectService.getWebUrl(project)
+            
             if(project.user==user || isCampaignOwnerOrAdmin){
                 render (view: 'manageproject/index',
-                        model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam,
-                                discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,
-                                ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, 
-								vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS])
+                        model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,
+                                discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,
+                                ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,
+								unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS])
             } else{
                 flash.prj_mngprj_message = 'Campaign Not Found'
                 render (view: 'manageproject/error', model: [project: project])

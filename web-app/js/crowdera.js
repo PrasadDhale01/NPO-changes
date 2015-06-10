@@ -166,6 +166,24 @@ $(function() {
         }
         return false;
 	}
+	
+    $('.search-engine').find('.searchOnHomePage').validate({
+        rules: {
+            query: {
+                required: true,
+                minlength: 3
+            }
+        }
+    });
+
+    $('.search-engine-mob').find('.searchOnHomePageMob').validate({
+        rules: {
+            query: {
+                required: true,
+                minlength: 3
+            }
+        }
+    });
 	    
     
   /*  $('.twittersocialicon').hover(function(){

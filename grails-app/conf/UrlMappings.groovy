@@ -52,8 +52,8 @@ class UrlMappings {
         "/campaigns/$projectTitle/$fr"(controller:'project', action:'show')
         "/campaigns/$id/thumbnail"(controller:'project', action:'thumbnail')
         "/campaigns/$id/fund"(controller:'fund', action:'fund')
-        "/campaign/query"(controller:'project' , action:'search')
-        "/campaign"(controller:'project' , action:'categoryFilter')
+        "/campaign"(controller:'project' , action:'search')
+        "/campaigns/sortby"(controller:'project' , action:'categoryFilter')
         "/campaign/validateList"(controller:'project', action:'validateList')
         "/campaign/validateshow/$projectTitle/$fr"(controller:'project', action:'validateshow')
         "/campaign/sendemail"(controller:'project', action:'sendemail')
@@ -63,7 +63,7 @@ class UrlMappings {
         /* Admin */
         "/admin/dashboard"(controller:'user', action:'admindashboard')
         "/admin/importcampaigns"(controller: 'project', action: 'importprojects')
-	"/user/applicantsList"(controller: 'user', action: 'crewsList')
+        "/user/applicantsList"(controller: 'user', action: 'crewsList')
 
         /* Community */
         "/community/$communityId/manage"(controller: 'community', action: 'manage')
@@ -82,5 +82,6 @@ class UrlMappings {
         /*User*/
         "/user/mycampaigns"(controller:'user', action:'myproject')
         "/users/dashboard"(controller:'user', action:'accountSetting')
+		
     }
 }

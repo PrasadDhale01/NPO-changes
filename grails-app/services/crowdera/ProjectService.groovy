@@ -1120,10 +1120,13 @@ class ProjectService {
 
     def search(String query) {
         List result = []
-        def project = getValidatedProjects()
+        List project = getValidatedProjects()
         project.each { 
-            if( it.title.toLowerCase().contains(query.toLowerCase()) || it.story.toLowerCase().contains(query.toLowerCase()) ){
+            if( it.title.toLowerCase().contains(query.toLowerCase()) || it.description.toLowerCase().contains(query.toLowerCase()) ){
                 result.add(it)
+            } else if (it.story){
+                if (it.story.toLowerCase().contains(query.toLowerCase()))
+                    result.add(it)
             }
         }
         return result
@@ -1697,7 +1700,7 @@ class ProjectService {
     }
     
     def getEnabledAndValidatedTeamsForCampaign(Project project) {
-        def teams = Team.findAllWhere(project : project,enable:true, validated: true);
+        List teams = Team.findAllWhere(project : project,enable:true, validated: true);
         return teams
     }
     
@@ -1940,7 +1943,7 @@ class ProjectService {
         def vanitytitle
 		def status = false
         list.each{
-            if (it.title == title) {
+            if (it.title.equalsIgnoreCase(title)) {
                 result.add(it)
             }
         }
@@ -1966,8 +1969,9 @@ class ProjectService {
         def title = project.title.trim()
         def vanity_title = title.replaceAll("[^a-zA-Z0-9]", "-")
         def vanity = VanityTitle.findAllWhere(project:project)
+		def count = 1
         vanity.each{
-            if (it.title == vanity_title){
+            if (it.title.equals(vanity_title)){
                 status = true
 				vanity_title = it.vanityTitle
             }

@@ -5,7 +5,6 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     def fundRaiser
     def team
-    def currentUser= userService.getCurrentUser()
     def beneficiary = project.user 
     if (user) {
         fundRaiser = user.username

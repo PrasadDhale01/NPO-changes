@@ -49,22 +49,4 @@ $(window).load(function() {
         }
     });
     */
-
-    /* Show pop-over tooltip on hover for some fields. */
-    var showPopover = function () {
-            $(this).popover('show');
-        },
-        hidePopover = function () {
-            $(this).popover('hide');
-        };
-        
-    /* Initialize pop-overs (tooltips) */
-    $("input[name='query']").popover({
-        content: 'Search by title or story of campaign.',
-        trigger: 'manual',
-        placement: 'bottom'
-    })
-    .focus(showPopover)
-    .blur(hidePopover)
-    .hover(showPopover, hidePopover);
 });

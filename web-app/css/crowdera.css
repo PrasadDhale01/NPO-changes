@@ -428,7 +428,7 @@ p.egle {
 }
 .footer-mid-section-menu .footer-header{
     color:#adadad;
-    font-size:16px;
+    font-size:17px;
     padding-bottom:5px;
     font-family: "OPEN SANS";
 }
@@ -2223,6 +2223,12 @@ border-color: rgba(0,0,0,0.2);
 	}
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
+}
+
+@media only screen and (min-width: 980px) and (max-width: 991px){
+	.navbar {
+        font-size: 10px;
+    }
 }
 
 @media only screen and (max-width: 991px){
@@ -5580,4 +5586,34 @@ img.fa-icon {
    font-weight: normal;
    line-height: 20px;
    margin: 0;
+}
+
+input.search-box-on-home-page {
+  width: 210px;
+}
+
+input.search-box-xs{
+	width:80%;
+}
+
+ul.nav.navbar-nav.navbar-right.searchengine {
+	padding-left:3%;
+	margin-top: 20px;
+}
+
+a.search-image.glyphicon.glyphicon-search{
+	font-size: 16px;
+}
+
+i.glyphicon.glyphicon-search.searchIconMob{
+	font-size: 12px;
+}
+
+li.searchengine-dropdown a {
+  padding: 5px 11px 6px 12px;
+}
+
+ul.menu{
+	border:none !important;
+	box-shadow:none;
 }

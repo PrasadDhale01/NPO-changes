@@ -58,7 +58,7 @@ $(function() {
     });
 
     /* Validate form on submit. */
-    var validator = $('form').validate({
+    var validator = $('#campaigncreate').find('form').validate({
         rules: {
             firstName: {
                 minlength: 2,

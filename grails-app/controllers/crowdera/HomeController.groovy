@@ -46,5 +46,10 @@ class HomeController {
         else
             render (view: '/error')
     }
+	
+    def searchOnHomePage(){
+        def query = params.query
+        redirect (action:'search', controller:'project', params:[q:query])
+    }
     
 }

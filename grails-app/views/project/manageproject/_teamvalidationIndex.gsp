@@ -1,11 +1,7 @@
-<%
-   def team = projectService.getTeamToBeValidated(project)
-%>
-
 <div class="col-md-12 col-sm-12 col-xs-12"><br>
     <h2><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-validated.png" alt="Teams Validation"/>&nbsp;Teams Validation</h2>
     <br>
-    <g:if test="${team.size() > 0}">
+    <g:if test="${unValidatedTeam.size() > 0}">
         <div class="table table-responsive">
             <table class="table table-bordered">
                 <thead>
@@ -20,7 +16,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <g:render template="manageproject/teamvalidationgrid" model="[project:project]"></g:render>
+                    <g:render template="manageproject/teamvalidationgrid"></g:render>
                 </tbody>
              </table>
         </div>

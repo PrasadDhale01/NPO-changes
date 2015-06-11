@@ -1964,22 +1964,24 @@ class ProjectService {
     }
 
     def getVanityTitleFromId(def projectId){
+		def vanity_title
         def project = Project.get(projectId)
-        def status = false
-        def title = project.title.trim()
-        def vanity_title = title.replaceAll("[^a-zA-Z0-9]", "-")
-        def vanity = VanityTitle.findAllWhere(project:project)
-		def count = 1
-        vanity.each{
-            if (it.title.equals(vanity_title)){
-                status = true
-				vanity_title = it.vanityTitle
-            }
-        }
-
-        if (!status)
-        getProjectVanityTitle(project)
-
+		if(project){
+			def status = false
+			def title = project.title.trim()
+			vanity_title= title.replaceAll("[^a-zA-Z0-9]", "-")
+			def vanity = VanityTitle.findAllWhere(project:project)
+			def count = 1
+			vanity.each{
+				if (it.title.equals(vanity_title)){
+					status = true
+					vanity_title = it.vanityTitle
+				}
+			}
+	
+			if (!status)
+			getProjectVanityTitle(project)
+		}    
         return vanity_title
     }
 

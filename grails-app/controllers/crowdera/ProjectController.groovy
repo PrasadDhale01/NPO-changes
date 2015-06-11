@@ -82,11 +82,11 @@ class ProjectController {
      def showCampaign() {
          def title = projectService.getVanityTitleFromId(params.id)
          def name = userService.getVanityNameFromUsername(params.fr, params.id)
-		 if(title && name){
-			 redirect (action:'show', params:['projectTitle':title,'fr':name])
-		 }else{
-		 	render (view: '/error')
-		 }
+	 if(title && name){
+	    redirect (action:'show', params:['projectTitle':title,'fr':name])
+	 }else{
+	    render (view: '/error')
+	 }
     }
 
     def show() {

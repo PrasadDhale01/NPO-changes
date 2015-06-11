@@ -5617,3 +5617,6 @@ ul.menu{
 	border:none !important;
 	box-shadow:none;
 }
+.web-links label {
+    width: 57%;
+}

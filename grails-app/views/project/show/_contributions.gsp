@@ -90,9 +90,7 @@
                     <div class="rewardsection">
                         <b>$${amount}</b>
                     </div>
-                    <g:if test="${isFacebookUser}">
-                        <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>
-                    </g:if>
+                    
                     <g:if test="${contribution.isAnonymous}">
                         <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
 			               <dd>By ${contribution.contributorName}, on ${date}</dd>
@@ -109,6 +107,7 @@
                             <dd>By ${friendlyName}, on ${date}</dd>
                         </g:else>
                     </g:else>
+                    
                     <g:if test="${contribution.comments}">
 			            <p><b>Comment:</b> ${contribution.comments}</p>
 			        </g:if>

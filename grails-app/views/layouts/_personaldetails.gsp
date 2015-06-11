@@ -17,14 +17,18 @@
         <ul class="personalDetailClass">
           <li><span><b>Name : </b>${beneficiary.firstName} ${beneficiary.lastName}</span></li>
           <li><span><b>Email : </b> <a href="mailto:${beneficiary.email}">${beneficiary.email}</a></span></li>
+          <li><span><b>Country : </b>${project.beneficiary.country}</span></li>
           <g:if test="${project.beneficiary.telephone}">
           <li><span><b>Contact : </b>${project.beneficiary.telephone}</span></li>
           </g:if>
+          <li><span><b>Category : </b>${project.category}</span></li>
           <g:if test='${project.paypalEmail==null}'>
               <li><span><b>Payment mode : </b>FirstGiving</span></li>
+              <li><span><b>Charitable ID: </b>${project.charitableId }</span></li>
           </g:if>
           <g:else>
               <li><span><b>Payment mode : </b>Paypal</span></li>
+              <li><span><b>Paypal Email : </b>${project.paypalEmail}</span></li>
           </g:else>
         </ul>
    	    

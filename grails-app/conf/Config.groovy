@@ -135,10 +135,10 @@ environments {
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
         
         /* FreshDesk Details */
-        crowdera.freshDesk.LOGIN_NAME = 'Krishnakumar sahu'
-        crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
-        crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
-        crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
+        crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+        crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+        crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+        crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
 		
 		/*MailChimp details*/
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
@@ -184,10 +184,10 @@ environments {
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
         
         /* FreshDesk Details */
-        crowdera.freshDesk.LOGIN_NAME = 'Krishnakumar sahu'
-        crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
-        crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
-        crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
+        crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+        crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+        crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+        crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
 		
 		/*MailChimp details*/
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
@@ -233,10 +233,10 @@ environments {
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
         
         /* FreshDesk Details */
-        crowdera.freshDesk.LOGIN_NAME = 'Krishnakumar sahu'
-        crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
-        crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
-        crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
+        crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+        crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+        crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+        crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
 		
 		/*MailChimp details*/
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
@@ -285,10 +285,10 @@ environments {
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
         
         /* FreshDesk Details */
-        crowdera.freshDesk.LOGIN_NAME = 'Krishnakumar sahu'
-        crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
-        crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
-        crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
+        crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+        crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+        crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+        crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
 		
 		/*MailChimp details*/
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="https://crowdera.us3.list-manage.com/subscribe/post"

@@ -78,7 +78,7 @@ $(function() {
         //return false;
     });*/
 
-    var validator = $('form').validate({
+    var validator = $('#checkoutgsp').find('form').validate({
         rules: {
             ccNumber: {
                 required: true

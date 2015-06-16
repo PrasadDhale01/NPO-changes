@@ -571,7 +571,7 @@ class ProjectController {
         if(params.(FORMCONSTANTS.COUNTRY) != "US"){
             beneficiary.stateOrProvince = params.otherstate
         }
-
+		
         def rewardLength=Integer.parseInt(params.rewardCount)
         if(rewardLength >= 1) {
             def rewardTitle = new Object[rewardLength]
@@ -629,6 +629,7 @@ class ProjectController {
         project.beneficiary = beneficiary
 
         if (project.save()) {
+            projectService.getYoutubeUrlChanged(params.videoUrl, project)
             projectService.getFundRaisersForTeam(project, user)
             projectService.getdefaultAdmin(project, user)
             projectService.getAdminForProjects(email1, project, user)

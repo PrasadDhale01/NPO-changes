@@ -1,24 +1,11 @@
 $(function() {
     console.log("list.js initialized");
     
-    var validator = $('form').validate({
-        rules: {
-            q: {
-                minlength: 3,
-                required: true
-            }
-        }
-    });
-    
     /* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
     });
 });
-
-function searchList(){
-	$('#q').val();
-}
 
 function selectedCategory(){
 	document.categoryForm.submit();

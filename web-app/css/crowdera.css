@@ -666,6 +666,11 @@ a {
     }
 }
 
+@media only screen and (min-width:768px) and (max-width: 991px) {
+    .list-category{
+        width: 24%;
+    }
+}
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
     div.left-pad {
@@ -823,6 +828,19 @@ a {
         width: 219px;
     }
 }
+
+@media only screen and (min-width: 1025px) and (max-width: 1920px){
+    .sorts-dropdown{
+       left: 19%;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1024px){
+	.sorts-dropdown{
+       left: 29%;
+    }
+}
+
 @media only screen and (min-width:1025px) and (max-width: 1199px){
     div.left-pad {
         left: 18%;

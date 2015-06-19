@@ -1,7 +1,9 @@
 <!-- Fixed navbar -->
 <g:set var="facebookAuthService" bean="facebookAuthService"/>
 <g:set var="userService" bean="userService"/>
-
+<%
+    def userImage = userService.getCurrentUserImage()
+%>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -12,7 +14,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="${resource(dir: '/')}">
-                <img src="//s3.amazonaws.com/crowdera/assets/logo-small.png" alt="Crowdera"/>
+                <img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" alt="Crowdera"/>
             </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -47,7 +49,7 @@
                 <sec:ifNotLoggedIn>
                     <li class="hidden-xs hidden-sm headerFbButton">
                         <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
-                            <img src="//s3.amazonaws.com/crowdera/assets/facebook_register_header.png" alt="Register with Facebook">
+                            <img src="//s3.amazonaws.com/crowdera/assets/facebook-button-header.jpg" alt="Register with Facebook">
                         </a>
                     </li>
                     <li><g:link controller="login" action="auth">Login</g:link></li>
@@ -57,27 +59,27 @@
                     <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img">
                         <a href="#" class="dropdown-toggle login" data-hover="dropdown" data-delay="1500" data-close-others="true">
                             <g:if test="${userService.isFacebookUser()}">
-                                <i class="fa fa-facebook-square"></i>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <span><img class="user-img-header" src="${userImage}"></span>
                             </g:if>
                             <g:elseif test="${userService.isAdmin()}">
-                                <i class="fa fa-unlock"></i>
+                                <span><img class="user-img-header" src="${userImage}"></span>
                             </g:elseif>
                             <g:elseif test="${userService.isAuthor()}">
-                                <span class="glyphicon glyphicon-book"></span>
+                                <span><img class="user-img-header" src="${userImage}"></span>
                             </g:elseif>
                             <g:elseif test="${userService.isCommunityManager()}">
-                                <i class="fa fa-users"></i>
+                                <span><img class="user-img-header" src="${userImage}"></span>
                             </g:elseif>
                             <g:else>
-                                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span> <%--note: Span is using in dropdown --%>
+                                <span><img class="user-img-header" src="${userImage}"></span>
                             </g:else>
-                            ${userService.getFriendlyName()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            ${userService.getFriendlyName()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <span class="user-cl"></span>
                         </a>
                         <g:if test="${userService.isAdmin()}">
                             <ul class="dropdown-menu admin  admin-dropdown dropdown-menu-head admin-selected-drop">
                                 <li><g:link controller="user" action="dashboard">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting.png" alt="setting"/>&nbsp; Settings
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting.png" alt="setting"/>&nbsp; Dashboard
                                 </g:link></li>
                                 <sec:ifAllGranted roles="ROLE_AUTHOR">
                                     <li><g:link controller="blog" action="manage">

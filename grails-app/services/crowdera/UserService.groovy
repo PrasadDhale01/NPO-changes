@@ -79,7 +79,7 @@ class UserService {
             def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
             def awsSecretKey = "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"
             def bucketName = "crowdera"
-            def folder = "user-images"
+            def folder = "assets"
 
             def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
             def s3Service = new RestS3Service(awsCredentials);
@@ -95,7 +95,7 @@ class UserService {
             s3Service.putObject(s3Bucket, object)
             file.delete()
             def imageUrl = "//s3.amazonaws.com/crowdera/${key}"
-
+            println "cnfvnfvjfnvfdnknk === "+ imageUrl
             return imageUrl
         }
     }
@@ -633,6 +633,82 @@ class UserService {
 			return false
 		}
 	}
+    
+    def getCurrentUserImage() {
+        User user = getCurrentUser()
+        def userImage
+        if (user) {
+            if (user.userImageUrl) {
+                userImage = user.userImageUrl
+            } else {
+                String firstName = user.firstName
+                def valueAtIndex
+                if (firstName) 
+                    valueAtIndex = firstName.getAt(0).toLowerCase()
+                
+                switch (valueAtIndex) {
+                    case 'a':
+                        break;
+                    case 'b':
+                        break;
+                    case 'c':
+                        break;
+                    case 'd':
+                        break;
+                    case 'e':
+                        break;
+                    case 'f':
+                        break;
+                    case 'g':
+                        break;
+                    case 'h':
+                        break;
+                    case 'i':
+                        break;
+                    case 'j':
+                        break;
+                    case 'k':
+                        break;
+                    case 'l':
+                        break;
+                    case 'm':
+                        break;
+                    case 'n':
+                        break;
+                    case 'o':
+                        break;
+                    case 'p':
+                        break;
+                    case 'q':
+                        break;
+                    case 'r':
+                        break;
+                    case 's':
+                        break;
+                    case 't':
+                        break;
+                    case 'u':
+                        break;
+                    case 'v':
+                        break;
+                    case 'w':
+                        break;
+                    case 'x':
+                        break;
+                    case 'y':
+                        break;
+                    case 'z':
+                        break;
+                    default :
+                        userImage = "https://s3.amazonaws.com/crowdera/assets/dropdown-User-Black.png";
+                }
+            }
+        }
+        if (!userImage) {
+            userImage = "https://s3.amazonaws.com/crowdera/assets/dropdown-User-Black.png";
+        }
+        return userImage
+    }
 
     @Transactional
     def bootstrap() {

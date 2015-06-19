@@ -107,7 +107,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .navbar-brand {
@@ -115,7 +115,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .navbar-brand >img {
 	height: 48px;
-	margin-top: -4px;
+	margin-top: 0px;
 }
 
 .navbar-collapse {
@@ -2225,9 +2225,9 @@ border-color: rgba(0,0,0,0.2);
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 }
 
-@media only screen and (min-width: 980px) and (max-width: 991px){
+@media only screen and (min-width: 970px) and (max-width: 996px){
 	.navbar {
-        font-size: 10px;
+        font-size: 8px;
     }
 }
 
@@ -5238,33 +5238,35 @@ ul.dropdown-menu.admin.admin-dropdown.dropdown-menu-head.admin-selected-drop a:h
 }
 
 .user-img span{	
-	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-User-Black.png') no-repeat !important;
+/* 	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-User-Black.png') no-repeat !important; */
+    padding-right:12px !important;
+	padding-bottom:10px !important;
 	padding-left: 10px;
 	padding-bottom: 10px !important;
 }
-.user-img:hover span{
-	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-User-White.png') no-repeat !important;
-}
+/* .user-img:hover span{ */
+/* 	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-User-White.png') no-repeat !important; */
+/* } */
 
 .user-img span.user-cl{
 	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-Black.png') no-repeat !important;
-	padding-right:12px !important;
-	padding-bottom:10px !important;
 }
 .user-img:hover span.user-cl {
 	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-White.png') no-repeat !important;
-	
 }
 .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open span{
-	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-User-White.png') no-repeat !important;
+/* 	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-User-White.png') no-repeat !important; */
 	padding-bottom:10px !important;
 }
 .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open span.user-cl{
 	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-White.png') no-repeat !important;
 }
-/* li.drop a:focus { */
-/* 	background-color: #ff784f !important; */
-/* } */
+
+.user-img-header {
+	width: 30px;
+	height: 30px;
+	border-radius: 40px;
+}
 
 .crowderaFaq >h2{
     margin-top: 20px;

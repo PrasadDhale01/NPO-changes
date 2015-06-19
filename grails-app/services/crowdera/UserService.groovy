@@ -79,7 +79,7 @@ class UserService {
             def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
             def awsSecretKey = "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"
             def bucketName = "crowdera"
-            def folder = "assets"
+            def folder = "user-images"
 
             def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
             def s3Service = new RestS3Service(awsCredentials);
@@ -95,7 +95,7 @@ class UserService {
             s3Service.putObject(s3Bucket, object)
             file.delete()
             def imageUrl = "//s3.amazonaws.com/crowdera/${key}"
-            println "cnfvnfvjfnvfdnknk === "+ imageUrl
+
             return imageUrl
         }
     }
@@ -648,64 +648,87 @@ class UserService {
                 
                 switch (valueAtIndex) {
                     case 'a':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-A.png";
                         break;
                     case 'b':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-B.png";
                         break;
                     case 'c':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-C.png";
                         break;
                     case 'd':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-D.png";
                         break;
                     case 'e':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-E.png";
                         break;
                     case 'f':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-F.png";
                         break;
                     case 'g':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-G.png";
                         break;
                     case 'h':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-H.png";
                         break;
                     case 'i':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-I.png";
                         break;
                     case 'j':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-J.png";
                         break;
                     case 'k':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-K.png";
                         break;
                     case 'l':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-L.png";
                         break;
                     case 'm':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-M.png";
                         break;
                     case 'n':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-N.png";
                         break;
                     case 'o':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-O.png";
                         break;
                     case 'p':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-P.png";
                         break;
                     case 'q':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-Q.png";
                         break;
                     case 'r':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-R.png";
                         break;
                     case 's':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-S.png";
                         break;
                     case 't':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-T.png";
                         break;
                     case 'u':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-U.png";
                         break;
                     case 'v':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-V.png";
                         break;
                     case 'w':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-W.png";
                         break;
                     case 'x':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-X.png";
                         break;
                     case 'y':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-Y.png";
                         break;
                     case 'z':
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-Z.png";
                         break;
                     default :
-                        userImage = "https://s3.amazonaws.com/crowdera/assets/dropdown-User-Black.png";
+                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-D.png";
                 }
             }
-        }
-        if (!userImage) {
-            userImage = "https://s3.amazonaws.com/crowdera/assets/dropdown-User-Black.png";
         }
         return userImage
     }

@@ -3,6 +3,7 @@
 <g:set var="userService" bean="userService"/>
 <%
     def userImage = userService.getCurrentUserImage()
+    def user = userService.getCurrentUser()
 %>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -19,9 +20,9 @@
         </div>
         <div class="navbar-collapse collapse">
          <ul class="nav navbar-nav">
-                <li><g:link controller="project" action="create" class="nav-text1"><b>START</b></g:link></li>
-                <li><a href="${resource(dir: '/campaigns')}" class="nav-text2"><b>DISCOVER</b></a></li>
-                <li><a href="${resource(dir: '/howitworks')}" class="nav-text3"><b>LEARN</b></a></li>
+                <li><g:link controller="project" action="create" class="nav-text1">START</g:link></li>
+                <li><a href="${resource(dir: '/campaigns')}" class="nav-text2">DISCOVER</a></li>
+                <li><a href="${resource(dir: '/howitworks')}" class="nav-text3">LEARN</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right searchengine">
                 <li class="dropdown searchengine-dropdown visible-md visible-lg visible-sm">
@@ -45,7 +46,8 @@
                     </form>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            
+            <ul class="nav navbar-nav navbar-right <g:if test="${user}">navbar-right-logged-in</g:if>">
                 <sec:ifNotLoggedIn>
                     <li class="hidden-xs hidden-sm headerFbButton">
                         <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">

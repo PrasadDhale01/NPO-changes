@@ -375,25 +375,121 @@ footer {
     background-color: #323232;
     padding: 30px 0 0 0;
     margin-top: 25px;
-    
+}
+.payment-method-footer{
+	font-size:12px;
+	font-weight:normal;
+}
+.payment-method-footer img{
+	margin-top: -43px;
+    padding-left: 116px;
+}
+.footer-mid-section-hands-img{
+	top:-106px;
+}
+.footer-signup-margin{
+	margin-bottom:1px;
+}
+.secure-payment-footer{
+    margin-top:-9px;
+    padding-left: 136px;
+}
+.socialicon a img{
+	display:inline-block;
+	padding:22px;
+}
+.socialiconlinks{
+	margin-top:-14px;
+}
+.blogsocialicon{
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/blog-footer.png");
+	background-repeat:no-repeat;
+	display: block;
+	height:42px;
+	width:41px;
+}
+.blogsocialicon:hover{
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/hover-blog-footer.png");
+	height:42px;
+	width:41px;
+	
+}
+.facebooklink{
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/facebook-footer.png");
+	background-repeat:no-repeat;
+	display: block;
+	height:42px;
+	width:41px;
+}
+.facebooklink:hover{
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/hover-facebook-footer.png");
+	height:42px;
+	width:41px;
+}
+.twittersocialicon{
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/twitter-footer.png");
+	background-repeat:no-repeat;
+	display: block;
+	height:42px;
+	width:41px;
+}
+.twittersocialicon:hover{
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/hover-twitter-footer.png");
+	height:42px;
+	width:41px;
+}
+.linkedin-footer{
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/linkedin-footer.png");
+	background-repeat:no-repeat;
+	display: block;
+	height:42px;
+	width:41px;
+}
+.linkedin-footer:hover{
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/hover-linkedin-footer.png");
+	height:42px;
+	width:41px;
+}
+.instagram-footer{
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/instagram-footer.png");
+	background-repeat:no-repeat;
+	display: block;
+	height:42px;
+	width:41px;
+}
+.instagram-footer:hover{
+	background-image:url("https://s3.amazonaws.com/crowdera/assets/hover-instagram-footer.png");
+	height:42px;
+	width:41px;
+}
+.secure-payment-footer div{
+	display: inline-flex;
+	font-size:12px;
+    line-height: 14px;
+    width: 75px;
 }
 .footer-newsletter .help-block{
 	color:#f04124;
 	width:170%;
+	margin-left: 43px;
 }
 .footer-mid-section-menu .help-block{
 	color:#f04124;
 	width:140%;
 }
 input#subscriberEmail{
-	height:37px;
-	width:260px;
+	font-weight:normal;
+	height:30px;
+	width:184px;
+	margin-left: 43px;
 }
 hr.footer-hr{
     color: #666666;
     background-color: #666666;
     height: 1px;
     border: #666666;
+    float:left;
+    width:100%;
 }
 .footer-first-section p{
     color:#ffffff;
@@ -402,29 +498,36 @@ hr.footer-hr{
     font-family: "OPEN SANS";
 }
 .footer-mid-section p{
-    color:#ffffff;
-    font-size:14px;
+    color:#e3e3e3;
+    font-size:13px;
     text-align:center;
+    margin-left: 29px;
     font-family: "OPEN SANS";	
 }
 .footer-mid-section-menu.newsletter{
 	margin-top:-7px;
 }
-.footer-mid-section p b{
-    color:#ffffff;
-    font-size:20px;	
-    padding-left: 50%;	
+.footer-mid-section p span{
+    color:#e3e3e3;
+    font-size:16px;	
+    padding-left: 54%;	
 }
 .thomas-margin-align{
 	margin-top:-11px;
 }
 p.egle {
-    padding-left: 37%;
+    padding-left: 41%;
     margin-top: -11px;
+}
+.footer-hands-image-top{
+	top:-15px;
 }
 .footer-mid-section-menu ul li a{
     font-size:13px;
     font-family: "OPEN SANS";
+}
+.footer-mid-section-menu ul li a:hover{
+	color:#ff784f;
 }
 .footer-mid-section-menu .footer-header{
     color:#adadad;
@@ -438,13 +541,13 @@ p.egle {
 }
 input.text-email{
     width:130%;
-    height:37px;
+    height:30px;
 }
 .footer-mid-section-menu  .subscribe-email{
 	margin-left:13px;
 }
 input.button-signup{
-    background-image: url(https://s3.amazonaws.com/crowdera/assets/Signup-Button.png); 
+    background-image: url(https://s3.amazonaws.com/crowdera/assets/signup-footer.jpg); 
     background-color: transparent;
     background-repeat: no-repeat;  
     border: none;                   
@@ -453,13 +556,10 @@ input.button-signup{
     width: 84px;
 }
 input.signup-lg{
-	margin-left:80px;
+	margin-left:68px;
 }
 .footer-mid-section-img a{
-    margin-left:-24px;
-}
-.footer-mid-section-img img{
-    margin-left:12px;
+    margin-left:-30px;
 }
 .flinks a , .flinks a:hover{
     display: block;
@@ -472,7 +572,7 @@ a {
 }
 
 .footer_links a:hover, .footer_links a:focus {
-   color: #ff784f; 
+   color: #666666; 
    text-decoration: none !important;
 }
 .footerbottomsection {
@@ -533,6 +633,23 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.footer-input-align .text-email {
+    	width: 130% !important;
+	}
+	.footer-newsletter .help-block {
+    	color: #f04124;
+    	margin-left: 1px !important;
+    	width: 190% !important;
+	}
+	a.footerlink {
+    	color: #666666;
+    	font-size: 9px !important;
+    	font-weight: 500;
+    	text-decoration: none;
+	}
+	.footer-container {
+    	width: 320px !important;
+	}
 	div.crowdera-title img{
 		display:block;
 		margin-left:auto;
@@ -556,6 +673,7 @@ a {
 		display:block;
 		margin-left:auto;
 		margin-right:auto;
+		width: 100%
 	}
 	.socialicon{
     	display: flex;
@@ -570,10 +688,9 @@ a {
 		color:#ffffff;
 		font-size:13px;
 	}
-	.thomas-testimonial b{
+	.thomas-testimonial span{
 	   	color:#ffffff;
-		font-size:18px !important;
-		margin-left:-8%;
+		font-size:16px !important;
 	}
     div.left-pad {
         left: 24%;
@@ -668,6 +785,14 @@ a {
 
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.footer-newsletter .help-block {
+    	color: #f04124;
+    	margin-left: 1px !important;
+    	width: 170%;
+	}
+	.footer-container{
+		width:750px !important ;
+	}
     div.left-pad {
         left: 18%;
     }
@@ -699,19 +824,16 @@ a {
         margin-left: 18px;
         margin-right: 0;
     }
-    .footer-mid-section p b {
+    .footer-mid-section p span {
         color: #ffffff;
-        font-size: 22px;
-        padding-left: 37%;
+        font-size: 16px;
+        padding-left: 51%;
+        font-weight:normal;
     }
     .socialicon img {
     	margin-left: 8px;
     	margin-right: -4.5px !important;
-   		width: 49px;
 	}
-    p.egle {
-        padding-left: 11%;
-    }
     .footer-first-section p{
     	font-size: 15px;
     }
@@ -735,7 +857,7 @@ a {
    }
    a.footerlink {
     	color: #cccccc;
-    	font-size: 9px !important;
+    	font-size: 11px !important;
     	font-weight: 500;
     	text-decoration: none;
     }
@@ -849,6 +971,14 @@ a {
     }
 }
 @media only screen and (min-width:506px) and (max-width: 640px){
+		.footer-newsletter .help-block {
+    		color: #f04124;
+    		margin-left: 1px !important;
+    		width: 190% !important;
+		}
+		.footer-container {
+    		width: 320px !important;
+		}
         div#aboutus {
             padding-left: 15% !important;
         }
@@ -899,6 +1029,12 @@ a {
 		}
 		ul.campaigning-menu li {
     		margin-left: 38px !important;
+		}
+		a.footerlink {
+    		color: #666666;
+    		font-size: 9px !important;
+    		font-weight: 500;
+    		text-decoration: none;
 		}
 	
 	
@@ -2705,8 +2841,11 @@ textarea.form-control {
     	list-style-type: none;
     	margin-left: -39px !important;
     }
+    .footer-mid-section-menu-mobile ul li a:hover{
+    	color:#ff784f;
+    }
     .footer-mid-section-menu-mobile ul li a {
-    	font-size: 12px !important;
+    	font-size: 11px !important;
     }
     .footer-mid-section-mobile p {
     	color: #ffffff;
@@ -2728,15 +2867,15 @@ textarea.form-control {
 	color:#adadad;
     }
     .footer-input-align .text-email{
-	width:120% !important;
+	width:130% !important;
     }
     .footer-img-align img{
 	padding-left:53px;
 	padding-right:51px;
     }
     .footer-menu-align {
-	margin-left:109px;
-	margin-right:-146px;
+	margin-left:45px;
+	margin-right:-63px;
     }
 
 }
@@ -2745,7 +2884,7 @@ textarea.form-control {
 @media only screen and (min-width: 800px) and (max-width: 1280px){
     input.text-email{
         width:125%;
-        height:37px;
+        height:30px;
     }
     .form-group.col-sm-6.rewardPriceClass{
         padding-left:16px;
@@ -2966,6 +3105,7 @@ textarea.form-control {
 @media only screen and (max-width: 1024px) {
 	.text-primary{
 		text-align:center;
+		width:300px;
 	}
 	.tile-goal {
         width: 150%;
@@ -4204,6 +4344,23 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.footer-newsletter .help-block {
+    	color: #f04124;
+    	margin-left: 1px !important;
+    	width: 190% !important;
+	}
+	.footer-mid-section-menu-mobile ul li a:hover{
+		color:#ff784f;
+	}
+	a.footerlink {
+		color: #666666;
+    	font-size: 9px !important;
+    	text-decoration: none;
+    	font-weight: 500;
+	}
+	.footer-container {
+    	width: 320px !important;
+	}
 	div.crowdera-title img{
 		display:block;
 		margin-left:auto;
@@ -4255,18 +4412,18 @@ textarea.form-control {
 	.footer-mid-section-menu-mobile ul li {
         list-style-type: none;
         margin-left: 31px !important;
-    		width: 135px;   	
+    	width: 135px;   	
     }
     .footer-mid-section-menu-mobile ul li a {
         font-size: 11px !important;
     }
     div.quicklinks-menu-div{
 		display: table-cell;
-    		vertical-align: middle;
+    	vertical-align: middle;
 	}
 	div.campaigning-menu-div{
 		display: table-cell;
-    		vertical-align: middle;
+    	vertical-align: middle;
 	}
 	div.crowdera-menu{
 		display:block;
@@ -4275,13 +4432,13 @@ textarea.form-control {
 	}
 	ul.quicklinks-menu{
 		margin-left: auto;
-    		margin-right: auto;
+    	margin-right: auto;
    	    width: 135px !important;
    	    padding-left:0px !important;
 	}
 	ul.campaigning-menu{
 		margin-left: auto;
-    		margin-right: auto;
+    	margin-right: auto;
    	    width: 135px;
    	    padding-left:0px !important;
 	}
@@ -4818,7 +4975,7 @@ button.projectedit.close{
 	max-width:100%;
 }
 .footer_links a {
-	color: #ffffff;
+	color: #e3e3e3;
 	font-size:16px;
 	text-decoration: none;
 	
@@ -4838,14 +4995,11 @@ button.projectedit.close{
 }
 .text-primary {
     color: #008cba;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 74%;
+    margin-left:12px;
 }
 a.footerlink {
-	color: #adadad;
-    font-size: 10px;
+	color: #666666;
+    font-size: 12px;
     text-decoration: none;
     font-weight: 500;
 	
@@ -4929,11 +5083,6 @@ a.footerlink {
 }
 .foot {
 	display:none;
-}
-.socialicon img{
-	width: 49px;
-	margin-left: 8px;
-    margin-right: 11.5px;
 }
 .banner-wid img{
 	width: 100px;
@@ -5619,4 +5768,10 @@ ul.menu{
 }
 .web-links label {
     width: 57%;
+}
+.footer-lg{
+    width: 1000px;
+}
+.footer-container{
+	width:1000px ;
 }

@@ -32,8 +32,122 @@
                 Report
             </button>
         </g:if>
+        
+        <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
+            <g:form controller="project" action="generateCSV" role="form">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"> &times; </button>
+                            <h4 class="modal-title" id="reportModalLabel">
+                            <h4><b>CONTRIBUTION REPORT</b></h4>
+                        </h4>
+                    </div>
+                    <g:hiddenField name="projectId" value="${project.id}"/>
+                    <g:hiddenField name="teamId" value="${team.id}"/>
+                    <div class="modal-body">
+                        <g:if test="${!contributions.empty}">
+                            <dl class="dl">
+                                <div class="table table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr class="alert alert-title ">
+                                                <th class="col-sm-2 text-center">CAMPAIGN</th>
+                                                <th class="col-sm-2 text-center">FUNDRAISER</th>
+                                                <g:if test="${project.rewards.size()>1}">
+                                                    <th class="col-sm-1 text-center">DATE AND TIME</th>
+                                                </g:if>
+                                                <g:else>
+                                                    <th class="col-sm-2 text-center">DATE AND TIME</th>
+                                                </g:else>
+                                                <g:if test="${project.rewards.size()>1}">
+                                                    <th class="col-sm-1 text-center">CONTRIBUTOR NAME</th>
+                                                </g:if>
+                                                <g:else>
+                                                    <th class="col-sm-2 text-center">CONTRIBUTOR NAME</th>
+                                                </g:else>
+                                                <th class="col-sm-2 text-center">CONTRIBUTOR EMAIL</th>
+
+                                                <g:if test="${project.rewards.size()>1}">
+                                                    <th class="col-sm-2 text-center">PERK</th>
+                                                    <th class="col-sm-2 text-center">SHIPPING DETAILS</th>
+                                                </g:if>
+
+                                                <th class="text-center">AMOUNT</th>
+                                                <th class="text-center">MODE</th>                                
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <g:each in="${contributions}" var="contribution">
+                                            <%
+                                                def date = contribution.date.format('YYYY-MM-DD HH:mm:ss')
+                                                def friendlyName = userService.getFriendlyName(contribution.user)
+                                                def isFacebookUser = userService.isFacebookUser(contribution.user)
+                                                def userFacebookUrl = facebookService.getUserFacebookUrl(contribution.user)
+                                                def amount = projectService.getDataType(contribution.amount)
+                                                def pay_mode=contribution.isContributionOffline
+                                                def contributorName= contribution.contributorName
+                                                def contributorEmail
+                                                contributorEmail = contribution.contributorEmail
+                                                if (!contributorEmail) {
+                                                    contributorEmail = " "
+                                                }
+                                                def shippingDetails = contributionService.getShippingDetails(contribution)
+                                            %>
+                                            <tr>
+                                                <td class="col-sm-2 text-center wordBreak">${project.title}</td>
+                                                <td class="col-sm-2 text-center wordBreak">
+                                                    ${contributionService.getFundRaiserName(contribution, project)}
+                                                </td>
+                                                <g:if test="${project.rewards.size()>1}">
+                                                    <td class="col-sm-1 text-center ">${date}</td>
+                                                </g:if>
+                                                <g:else>
+                                                    <td class="col-sm-2 text-center ">${date}</td>
+                                                </g:else>
+                                                <g:if test="${project.rewards.size()>1}">
+                                                    <td class="col-sm-1 wordBreak">${contributorName}</td>
+                                                </g:if>
+                                                <g:else>
+                                                    <td class="col-sm-2 wordBreak">${contributorName}</td>
+                                                </g:else>
+                                                <td class="col-sm-2 wordBreak">${contributorEmail}</td>
+
+                                                <g:if test="${project.rewards.size()>1}">
+                                                    <td class="col-sm-2">${contribution.reward.title}</td>
+                                                    <td class="col-sm-2 wordBreak">${raw(shippingDetails)}</td> 
+                                                </g:if>
+                                        
+                                                <td class="text-center">$${amount}</td>
+                                        
+                                                <g:if test="${pay_mode}">
+                                                    <td class="text-center">Offline</td>
+                                                </g:if>
+                                                <g:else>
+                                                    <td class="text-center">Online</td>
+                                                </g:else>
+                                            </tr>
+                                        </g:each>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </dl>
+                    </g:if>
+                    <g:else>
+                        <div class="alert alert-info">No contributions yet. Yours can be the first one.</div>
+                    </g:else>
+                    </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Generate CSV</button>
+                        </div>
+                    </div> <!-- /.modal-dialog -->
+                </div><!-- /.modal-content -->
+            </g:form>
+        </div><!-- /.modal -->
     </g:if>
+    
     <div class="clear"></div>
+    
     <!-- Modal -->
     <div class="modal fade offlineContributionModal" id="offlineContributionModal" tabindex="-1" role="dialog" aria-labelledby="offlineContributionModal" aria-hidden="true">
         <g:form controller="fund" action="saveOfflineContribution" id="${project.id}" params="['fr':fundRaiser]" role="form">
@@ -179,120 +293,3 @@
         </g:each>
     </div>
 </g:if>
-
-<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
-   <g:form controller="project" action="generateCSV" role="form">
-   <div class="modal-dialog">
-      <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" 
-               data-dismiss="modal" aria-hidden="true">
-                  &times;
-            </button>
-            <h4 class="modal-title" id="reportModalLabel">
-               <h4><b>CONTRIBUTION REPORT</b></h4>
-            </h4>
-         </div>
-         <g:hiddenField name="projectId" value="${project.id}"/>
-         <g:hiddenField name="teamId" value="${team.id}"/>
-         <div class="modal-body">
-           <g:if test="${!contributions.empty}">
-                <dl class="dl">
-                    <div class="table table-responsive">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr class="alert alert-title ">
-                                    <th class="col-sm-2 text-center">CAMPAIGN</th>
-                                    <th class="col-sm-2 text-center">FUNDRAISER</th>
-                                    <g:if test="${project.rewards.size()>1}">
-                                        <th class="col-sm-1 text-center">DATE AND TIME</th>
-                                    </g:if>
-                                    <g:else>
-                                        <th class="col-sm-2 text-center">DATE AND TIME</th>
-                                    </g:else>
-                                    <g:if test="${project.rewards.size()>1}">
-                                        <th class="col-sm-1 text-center">CONTRIBUTOR NAME</th>
-                                    </g:if>
-                                    <g:else>
-                                        <th class="col-sm-2 text-center">CONTRIBUTOR NAME</th>
-                                    </g:else>
-                                    <th class="col-sm-2 text-center">CONTRIBUTOR EMAIL</th>
-
-                                    <g:if test="${project.rewards.size()>1}">
-                                        <th class="col-sm-2 text-center">PERK</th>
-                                        <th class="col-sm-2 text-center">SHIPPING DETAILS</th>
-                                    </g:if>
-
-                                    <th class="text-center">AMOUNT</th>
-                                    <th class="text-center">MODE</th>                                                      
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <g:each in="${contributions}" var="contribution">
-                                    <%
-                                        def date = contribution.date.format('YYYY-MM-DD HH:mm:ss')
-                                        def friendlyName = userService.getFriendlyName(contribution.user)
-                                        def isFacebookUser = userService.isFacebookUser(contribution.user)
-                                        def userFacebookUrl = facebookService.getUserFacebookUrl(contribution.user)
-                                        def amount = projectService.getDataType(contribution.amount)
-                                        def pay_mode=contribution.isContributionOffline
-                                        def contributorName= contribution.contributorName
-                                        def contributorEmail
-                                        contributorEmail = contribution.contributorEmail
-                                        if (!contributorEmail) {
-                                            contributorEmail = " "
-                                        }
-                                        def shippingDetails = contributionService.getShippingDetails(contribution)
-                                    %>
-                                    <tr>
-                                        <td class="col-sm-2 text-center wordBreak">${project.title}</td>
-                                        <td class="col-sm-2 text-center wordBreak">
-                                            ${contributionService.getFundRaiserName(contribution, project)}
-                                        </td>
-                                        <g:if test="${project.rewards.size()>1}">
-                                            <td class="col-sm-1 text-center ">${date}</td>
-                                        </g:if>
-                                        <g:else>
-                                            <td class="col-sm-2 text-center ">${date}</td>
-                                        </g:else>
-                                        <g:if test="${project.rewards.size()>1}">
-                                            <td class="col-sm-1 wordBreak">${contributorName}</td>
-                                        </g:if>
-                                        <g:else>
-                                            <td class="col-sm-2 wordBreak">${contributorName}</td>
-                                        </g:else>
-                                        <td class="col-sm-2 wordBreak">${contributorEmail}</td>
-
-                                        <g:if test="${project.rewards.size()>1}">
-                                            <td class="col-sm-2">${contribution.reward.title}</td>
-                                            <td class="col-sm-2 wordBreak">${raw(shippingDetails)}</td> 
-                                        </g:if>
-                                        
-                                        <td class="text-center">$${amount}</td>
-                                        
-                                        <g:if test="${pay_mode}">
-                                            <td class="text-center">Offline</td>
-                                        </g:if>
-                                        <g:else>
-                                            <td class="text-center">Online</td>
-                                        </g:else>
-                                    </tr>
-                                </g:each>
-                            </tbody>
-                        </table>
-                    </div>
-                </dl>
-            </g:if>
-            <g:else>
-                <div class="alert alert-info">No contributions yet. Yours can be the first one.</div>
-            </g:else>
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" 
-               >Generate CSV
-            </button>
-         </div>
-       </div> <!-- /.modal-dialog -->
-    </div><!-- /.modal-content -->
-    </g:form>
-</div><!-- /.modal -->

@@ -86,7 +86,14 @@ class ProjectService {
         project.title = params.title
         project.category = params.category
         project.webAddress = params.webAddress
-        project.videoUrl = params.videoUrl
+		
+        if (params.videoUrl) {
+            if (params.videoUrl.contains('embed')){
+                project.videoUrl = params.videoUrl
+            } else {
+                getYoutubeUrlChanged(params.videoUrl, project)
+            }
+        }
         
         if (project.draft) {
             project.paypalEmail = params.paypalEmail
@@ -231,7 +238,17 @@ class ProjectService {
              getMultipleImageUrlsForTeam(imageFiles, team)
          }
 
-         team.videoUrl = params.videoUrl
+         def video
+         if (params.videoUrl) {
+             if (params.videoUrl.contains('embed')) {
+                 video = params.videoUrl
+             } else {
+                 String videoUrl = params.videoUrl.replace("watch?v=","embed/")
+                 videoUrl = videoUrl + "?rel=0"
+                 video = videoUrl
+             }
+         }
+         team.videoUrl = video
          team.story = params.story
          team.description = params.description
          def message = "Team Updated Successfully"
@@ -1964,22 +1981,23 @@ class ProjectService {
     }
 
     def getVanityTitleFromId(def projectId){
+	def vanity_title
         def project = Project.get(projectId)
-        def status = false
-        def title = project.title.trim()
-        def vanity_title = title.replaceAll("[^a-zA-Z0-9]", "-")
-        def vanity = VanityTitle.findAllWhere(project:project)
-		def count = 1
-        vanity.each{
-            if (it.title.equals(vanity_title)){
-                status = true
-				vanity_title = it.vanityTitle
-            }
-        }
-
-        if (!status)
-        getProjectVanityTitle(project)
-
+	if(project){
+	   def status = false
+	   def title = project.title.trim()
+	   vanity_title= title.replaceAll("[^a-zA-Z0-9]", "-")
+	   def vanity = VanityTitle.findAllWhere(project:project)
+	   def count = 1
+	   vanity.each{
+		if (it.title.equals(vanity_title)){
+	  	   status = true
+		   vanity_title = it.vanityTitle
+		}
+	   }
+	   if (!status)
+		getProjectVanityTitle(project)
+	   }    
         return vanity_title
     }
 
@@ -2000,6 +2018,14 @@ class ProjectService {
 
         def project = Project.get(projectId)
         return project
+    }
+	
+    def getYoutubeUrlChanged(String video, Project project){
+        if (!video.contains('embed')) {
+            String videoUrl = video.replace("watch?v=","embed/")
+            videoUrl = videoUrl + "?rel=0"
+			project.videoUrl = videoUrl
+        }
     }
 
     @Transactional

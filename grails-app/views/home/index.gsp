@@ -1,3 +1,6 @@
+<%
+	def base_Url = grailsApplication.config.crowdera.BASE_URL
+ %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
 <meta property="og:title" content="Crowdera" />
@@ -13,11 +16,12 @@
 <script type="text/javascript">
     FreshWidget.init("", {"queryString": "&widgetType=popup&formTitle=Crowdera+Customer+Support&submitThanks=Your+Query+has+been+submitted.+We+will+get+back+to+you+soon.",
         "utf8": "✓", "widgetType": "popup", "buttonType": "text", "buttonText": "Support", "buttonColor": "white", "buttonBg": "#5a5a5a", "alignment": "2", "offset": "360px",
-        "submitThanks": "Your Query has been submitted. We will get back to you soon.", "formHeight": "500px", "url": "https://fedu.freshdesk.com"} );
+        "submitThanks": "Your Query has been submitted. We will get back to you soon.", "formHeight": "500px", "url": "https://crowdera.freshdesk.com"} );
 </script>
 
 </head>
 <body>
+	<input type="hidden" id="b_url" value="<%=base_Url%>" /> 
     <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
     	<g:render template="jumbotron"></g:render>
     </div>

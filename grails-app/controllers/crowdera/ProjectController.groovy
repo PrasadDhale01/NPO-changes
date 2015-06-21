@@ -82,7 +82,11 @@ class ProjectController {
      def showCampaign() {
          def title = projectService.getVanityTitleFromId(params.id)
          def name = userService.getVanityNameFromUsername(params.fr, params.id)
-         redirect (action:'show', params:['projectTitle':title,'fr':name])
+	 if(title && name){
+	    redirect (action:'show', params:['projectTitle':title,'fr':name])
+	 }else{
+	    render (view: '/error')
+	 }
     }
 
     def show() {
@@ -150,7 +154,11 @@ class ProjectController {
     def validateShowCampaign(){
         def title = projectService.getVanityTitleFromId(params.id)
         def name = userService.getVanityNameFromUsername(params.fr, params.id)
-        redirect (action:'validateshow', params:['projectTitle':title,'fr':name])
+		if(title && name){
+			redirect (action:'validateshow', params:['projectTitle':title,'fr':name])
+		}else{
+			render view:"/error"
+		}
     }
 
     @Secured(['ROLE_ADMIN'])
@@ -350,7 +358,11 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editCampaign(){
 		def title = projectService.getVanityTitleFromId(params.id)
-		redirect (action : 'edit', params:['projectTitle':title])
+		if(title){
+			redirect (action : 'edit', params:['projectTitle':title])
+		}else{
+			render view:'/error'
+		}
 	}
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -559,7 +571,7 @@ class ProjectController {
         if(params.(FORMCONSTANTS.COUNTRY) != "US"){
             beneficiary.stateOrProvince = params.otherstate
         }
-
+		
         def rewardLength=Integer.parseInt(params.rewardCount)
         if(rewardLength >= 1) {
             def rewardTitle = new Object[rewardLength]
@@ -617,6 +629,7 @@ class ProjectController {
         project.beneficiary = beneficiary
 
         if (project.save()) {
+            projectService.getYoutubeUrlChanged(params.videoUrl, project)
             projectService.getFundRaisersForTeam(project, user)
             projectService.getdefaultAdmin(project, user)
             projectService.getAdminForProjects(email1, project, user)
@@ -649,7 +662,11 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def manageCampaign(){
        def title = projectService.getVanityTitleFromId(params.id)
-       redirect (action:'manageproject', params:['projectTitle':title])
+	   if(title){
+		   redirect (action:'manageproject', params:['projectTitle':title])
+	   }else{
+	   	   render view:'/error'
+	   }
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -753,7 +770,11 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editCampaignUpdate(){
 		def title = projectService.getVanityTitleFromId(params.projectId)
-		redirect (action : 'editUpdate', id:params.id, params:['projectTitle':title])
+		if(title){
+			redirect (action : 'editUpdate', id:params.id, params:['projectTitle':title])
+		}else{
+			render view:'/error'
+		}
 	}
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -999,8 +1020,12 @@ class ProjectController {
     def discardteam() {
         def project = projectService.discardTeam(params)
         def title = projectService.getVanityTitleFromId(project.id)
-        flash.teamdiscardedmessage = "Team Discarded Successfully."
-        redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', params:['projectTitle':title])
+		if(project && title){
+			flash.teamdiscardedmessage = "Team Discarded Successfully."
+			redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', params:['projectTitle':title])
+		}else{
+			render view:'/error'
+		}
     }
 	
 	def campaignsSorts(){

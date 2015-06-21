@@ -85,6 +85,15 @@ $(function() {
 	    }
 	});
 	
+	$('.display-footer-text').hover(function(){
+		var url=$('#b_url').val();
+		$('.footer-start-cmpg-img').attr('src','https://s3.amazonaws.com/crowdera/assets/hover-start-a-campaign-footer-btn.png');
+		$(this).attr('href',url+'/campaigns/create');
+	}).mouseleave(function(){
+		$('.footer-start-cmpg-img').attr('src','https://s3.amazonaws.com/crowdera/assets/start-your-campaign-footer-button.png');
+		$(this).attr('href','#');
+	});
+	
 	var isvalidsize =  false;
 	$('#attachments').change(function(event) {
         var files = event.target.files; // FileList object

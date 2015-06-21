@@ -40,9 +40,9 @@ $ sudo iptables -L -t nat
 # Download Tomcat
 $ mkdir ~/Programs
 $ cd ~/Programs
-$ wget http://apache.cs.utah.edu/tomcat/tomcat-7/v7.0.61/bin/apache-tomcat-7.0.61.zip
-$ unzip apache-tomcat-7.0.61.zip
-$ mv apache-tomcat-7.0.61 tomcat
+$ wget http://apache.cs.utah.edu/tomcat/tomcat-7/v7.0.62/bin/apache-tomcat-7.0.62.zip
+$ unzip apache-tomcat-7.0.62.zip
+$ mv apache-tomcat-7.0.62 tomcat
 $ rm -rf ~/Programs/tomcat/webapps/ROOT
 $ cp ~/Projects/Crowdera/target/Crowdera-0.1.war ~/Programs/tomcat/webapps/ROOT.war
 $ cd tomcat

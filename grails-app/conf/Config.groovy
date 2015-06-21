@@ -135,10 +135,10 @@ environments {
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
         
         /* FreshDesk Details */
-        crowdera.freshDesk.LOGIN_NAME = 'Krishnakumar sahu'
-        crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
-        crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
-        crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
+        crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+        crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+        crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+        crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
 		
 		/*MailChimp details*/
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
@@ -184,10 +184,10 @@ environments {
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
         
         /* FreshDesk Details */
-        crowdera.freshDesk.LOGIN_NAME = 'Krishnakumar sahu'
-        crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
-        crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
-        crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
+        crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+        crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+        crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+        crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
 		
 		/*MailChimp details*/
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
@@ -233,10 +233,10 @@ environments {
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
         
         /* FreshDesk Details */
-        crowdera.freshDesk.LOGIN_NAME = 'Krishnakumar sahu'
-        crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
-        crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
-        crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
+        crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+        crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+        crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+        crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
 		
 		/*MailChimp details*/
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
@@ -285,10 +285,10 @@ environments {
         crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
         
         /* FreshDesk Details */
-        crowdera.freshDesk.LOGIN_NAME = 'Krishnakumar sahu'
-        crowdera.freshDesk.LOGIN_EMAIL = 'krishna.sahu@crowdera.co'
-        crowdera.freshDesk.sharedSecret = '47053d73d3826a43940b12ab373f76cf'
-        crowdera.freshDesk.BASE_URL = 'https://fedu.freshdesk.com/login/sso'
+        crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+        crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+        crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+        crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
 		
 		/*MailChimp details*/
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="https://crowdera.us3.list-manage.com/subscribe/post"
@@ -305,6 +305,56 @@ environments {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
         }
     }
+	
+	test-india {
+		/*  */
+		crowdera.facebook.appId = '554475128028127'
+		crowdera.facebook.secret = 'f1991f7bf85d445a346821967e2b1251'
+
+		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
+
+		crowdera.BASE_URL = 'http://test.crowdera.in'
+
+		grails.logging.jul.usebridge = false
+		grails.dbconsole.enabled = true
+		grails.dbconsole.urlRoot = '/secured/dbconsole'
+
+		/* Stripe test keys */
+		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
+		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+
+		/* FirstGiving Details */
+		crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
+		crowdera.firstgiving.uriPath= '/donation/creditcard'
+		crowdera.firstgiving.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
+		crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
+		
+		/* Paypal Details */
+		crowdera.paypal.PAYPAL_URL='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+		crowdera.paypal.BASE_URL= 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay'
+		crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info-facilitator_api1.crowdera.co'
+		crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'ZSD7Z9TJ4BLP8DBT'
+		crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AYDVpnDtJwzfma0uPoGG8ZXKdkDlAhPPZoBbxVRwh93AGi3eiDDGIznY'
+		crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-80W284485P519543T'
+		crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
+		crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+		
+		/* FreshDesk Details */
+		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+		crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+		crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+		crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
+		
+		/*MailChimp details*/
+		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
+		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
+		crowdera.MAILCHIMP.LISTID="e37aea1b78"
+
+		mandrill {
+			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
+		}
+	}
 }
 
 // log4j configuration

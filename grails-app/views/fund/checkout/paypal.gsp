@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="feducontent">
-		<div class="container">
+		<div class="container" id="checkoutgsp">
 			<g:form action="paypalurl" method="POST" name="payment-form" id="${project.id}" role="form" class="payment-form">
 				<g:hiddenField name="fr" value="${fundraiser.id}"/>
 				<g:if test="${user1}">
@@ -162,7 +162,7 @@
 					<span class="payment-errors"></span>
 					<div class="col-md-4">
 						<g:render template="/layouts/tile" />
-						<div>
+						<div class="form-group">
                             <label class="checkbox control-label">
                                 <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse">By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
                             </label>

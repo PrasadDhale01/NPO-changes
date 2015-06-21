@@ -37,7 +37,7 @@
 </head>
 <body>
 <div class="feducontent">
-    <div class="container">
+    <div class="container" id="checkoutgsp">
     <% def contributedAmount = projectService.getDataType(amount) %>
     <g:form action="charge" method="POST" name="payment-form" role="form" id="payment-form" class="payment-form">
         <div class="row">
@@ -110,30 +110,6 @@
                             </div>
                             <div class="clear"></div>
                     	</div>
-						<!--<div class="form-group">
-							<div class="input-group">
-                    			<span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
-                        		<input type="text" class="card-number form-control" placeholder="Card Number" data-stripe="number" name="ccNumber">
-
-                        		<span class="input-group-addon card-details"><span class="glyphicon glyphicon-credit-card"></span> </span>
-                        		<g:select class="selectpicker card-number" name="ccType" id="ccType"
-                           			from="${cardTypes}" optionKey="key" optionValue="value"/>
-                     		</div>
-                     	</div>
-                        <div class="clear"></div>
-                     	<div class="form-group">
-                        	<div class="input-group">
-	                           	<span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
-	                           	<input class="form-control" type="text" placeholder="CVC" data-stripe="cvc" name="ccCardValidationNum">
-	                           	
-                          		<span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
-                          		<g:select class="selectpicker" name="ccExpDateMonth" from="${month}" optionKey="key" data-stripe="exp-month" optionValue="value"/>
-                          		
-	                           	<span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
-	                           	<g:select class="selectpicker" name="ccExpDateYear" from="${year}" optionKey="key" data-stripe="exp-year" optionValue="value"/>
-                        	</div>
-                    	</div>
-                    	  -->
                     </div>
                 </div><br>
                 
@@ -334,7 +310,7 @@
             
             <div class="col-md-4 box">
                 	<g:render template="/layouts/tile"/>
-                <div>
+                <div class="form-group">
                     <label class="checkbox control-label">
                         <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse">By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
                     </label>

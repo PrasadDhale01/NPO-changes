@@ -1,3 +1,6 @@
+<%
+	def base_Url = grailsApplication.config.crowdera.BASE_URL
+ %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
 <meta property="og:title" content="Crowdera" />
@@ -18,6 +21,7 @@
 
 </head>
 <body>
+	<input type="hidden" id="b_url" value="<%=base_Url%>" /> 
     <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
     	<g:render template="jumbotron"></g:render>
     </div>

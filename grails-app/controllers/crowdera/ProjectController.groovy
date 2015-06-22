@@ -1062,9 +1062,10 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def addcampaignsupporter() {
         def project = projectService.getProjectById(params.projectId)
-        def fundRaiser = params.fundRaiser
-        render project.id +"    "+fundRaiser
-        userService.getCampaignSupporter(project)
-        redirect (action:'showCampaign', id: project.id, params:['fr': fundRaiser])
+        if (project) {
+            def fundRaiser = params.fundRaiser
+            userService.getCampaignSupporter(project)
+            redirect (action:'showCampaign', id: project.id, params:['fr': fundRaiser])
+        }
     }
 }

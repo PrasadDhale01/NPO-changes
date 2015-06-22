@@ -456,7 +456,6 @@ class MandrillService {
         }
         
         def supporters = project.supporters
-        println supporters
         supporters.each { supporter ->
             def name = supporter.user.firstName
             def email = supporter.user.email

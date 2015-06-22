@@ -37,12 +37,12 @@ class UserService {
         return User.findByEmail(email)
     }
     
-    def getUserRole(User users){
+    def getUserRole(User users) {
         def roletype
-	def userrole = UserRole.findAllWhere(user: users)
-	userrole.each {
-	    roletype = it.role.authority
-	}
+        def userrole = UserRole.findAllWhere(user: users)
+        userrole.each {
+            roletype = it.role.authority
+        }
         return roletype
     }
 
@@ -726,11 +726,22 @@ class UserService {
                         userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-Z.png";
                         break;
                     default :
-                        userImage = "//s3.amazonaws.com/crowdera/assets/alphabet-D.png";
+                        userImage = "//s3.amazonaws.com/crowdera/assets/default-user-icon.png";
                 }
             }
         }
         return userImage
+    }
+    
+    def getCampaignSupporter(Project project) {
+        User user = getCurrentUser()
+        def supporters = Supporter.findByUserAndProject(user, project)
+        if (!supporters) {
+            Supporter supporter = new Supporter(
+                user: user
+            )
+            project.addToSupporters(supporter).save(failOnError: true)
+        }
     }
 
     @Transactional

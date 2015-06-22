@@ -59,6 +59,7 @@ class UrlMappings {
         "/campaign/sendemail"(controller:'project', action:'sendemail')
         "/campaign/sortby"(controller:'project', action:'sortCampaign')
         "/campaign/$projectTitle/update/edit/$id"(controller:'project', action:'editUpdate')
+        "/campaign/supporter/$projectId/$fundRaiser"(controller:'project', action:'addcampaignsupporter')
 
         /* Admin */
         "/admin/dashboard"(controller:'user', action:'admindashboard')

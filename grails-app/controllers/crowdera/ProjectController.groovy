@@ -79,14 +79,14 @@ class ProjectController {
         }
      }
 	
-     def showCampaign() {
-         def title = projectService.getVanityTitleFromId(params.id)
-         def name = userService.getVanityNameFromUsername(params.fr, params.id)
-	 if(title && name){
-	    redirect (action:'show', params:['projectTitle':title,'fr':name])
-	 }else{
-	    render (view: '/error')
-	 }
+    def showCampaign() {
+        def title = projectService.getVanityTitleFromId(params.id)
+        def name = userService.getVanityNameFromUsername(params.fr, params.id)
+        if(title && name){
+            redirect (action:'show', params:['projectTitle':title,'fr':name])
+        } else {
+            render (view: '/error')
+        }
     }
 
     def show() {
@@ -1057,5 +1057,14 @@ class ProjectController {
             flash.perkupdate = 'Perk price should be less than campaign amount '+amount
             redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', params:['projectTitle':title])
         }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def addcampaignsupporter() {
+        def project = projectService.getProjectById(params.projectId)
+        def fundRaiser = params.fundRaiser
+        render project.id +"    "+fundRaiser
+        userService.getCampaignSupporter(project)
+        redirect (action:'showCampaign', id: project.id, params:['fr': fundRaiser])
     }
 }

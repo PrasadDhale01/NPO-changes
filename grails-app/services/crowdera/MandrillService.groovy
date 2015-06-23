@@ -448,11 +448,11 @@ class MandrillService {
         def contributors=project.contributions
         
         contributors.each { contributor ->
-			if(contributor.contributorEmail != "anonymous@example.com" && contributor.contributorEmail !=null){
+            if(contributor.contributorEmail != "anonymous@example.com" && contributor.contributorEmail !=null){
                 def contributorName = contributor.contributorName
                 def contributorEmail = contributor.contributorEmail
                 sendUpdateEmails(contributorName, contributorEmail, project, projectUpdate, currentUser)
-			}
+            }
         }
         
         def supporters = project.supporters

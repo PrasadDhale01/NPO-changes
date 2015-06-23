@@ -457,9 +457,11 @@ class MandrillService {
         
         def supporters = project.supporters
         supporters.each { supporter ->
-            def name = supporter.user.firstName
-            def email = supporter.user.email
-            sendUpdateEmails( name, email, project, projectUpdate, currentUser)
+            if (!contributor) {
+                def name = supporter.user.firstName
+                def email = supporter.user.email
+                sendUpdateEmails( name, email, project, projectUpdate, currentUser)
+            }
         }
     }
     

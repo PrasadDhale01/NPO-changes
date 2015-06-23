@@ -457,6 +457,7 @@ class MandrillService {
         
         def supporters = project.supporters
         supporters.each { supporter ->
+            def contributor = Contribution.findByUserAndProject(supporter.user, project)
             if (!contributor) {
                 def name = supporter.user.firstName
                 def email = supporter.user.email

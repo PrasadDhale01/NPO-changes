@@ -83,7 +83,7 @@ class LoginController {
         if (userName) {
             render(view: 'error', model: [message: 'A user with that email already exists. Please use a different email.'])
         } else if (userService.isFacebookUser(userObj)) {
-            render(view: 'error', model: [message: 'A facebook user with that email already exists. Please use a different email or login through facebook.'])
+            render(view: 'error', model: [message: 'A Facebook user with that email already exists. Please use a different email to register or login through Facebook.'])
         } else {
             def user = userService.getUserObject(params)
             user.enabled = false

@@ -736,12 +736,18 @@ class UserService {
     def getCampaignSupporter(Project project) {
         User user = getCurrentUser()
         def supporters = Supporter.findByUserAndProject(user, project)
-        if (!supporters) {
+        def message
+        if (supporters) {
+            message = "You are already following this campaign."
+        } else {
             Supporter supporter = new Supporter(
                 user: user
             )
             project.addToSupporters(supporter).save(failOnError: true)
+            
+            message = "You have followed "+project.title+". You will receive email updates for this campaign at "+user.email+"."
         }
+        return message
     }
 
     @Transactional

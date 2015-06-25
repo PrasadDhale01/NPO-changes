@@ -33,8 +33,8 @@
         <a target="_blank" class="fb-like pull-right social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
             <img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share"/>
         </a>
-        <g:link absolute="true" uri="/campaign/supporter/${project.id}/${username}" class="pull-right" id="add-campaign-supporter">
-            <img src="//s3.amazonaws.com/crowdera/assets/like-Share-icon.png" alt="campaign-supporter" onclick="return confirm(&#39;You will receive campaign updates from now.&#39;);"/>
+        <g:link absolute="true" uri="/campaign/supporter/${project.id}/${username}" class="pull-right">
+            <img src="//s3.amazonaws.com/crowdera/assets/like-Share-icon.png" alt="campaign-supporter" id="add-campaign-supporter"/>
         </g:link>
         <div class="shared">
         	<span><label>Share this Campaign</label></span>

@@ -1064,8 +1064,18 @@ class ProjectController {
         def project = projectService.getProjectById(params.projectId)
         if (project) {
             def fundRaiser = params.fundRaiser
-            userService.getCampaignSupporter(project)
-            redirect (action:'showCampaign', id: project.id, params:['fr': fundRaiser])
+            def message = userService.getCampaignSupporter(project)
+            flash.add_campaign_supporter = message
+            
+            def title = projectService.getVanityTitleFromId(params.projectId)
+            def name = userService.getVanityNameFromUsername(params.fundRaiser, params.projectId)
+            if(title && name){
+                redirect (action:'show', params:['projectTitle':title,'fr':name])
+            } else {
+                render (view: '/error')
+            }
+        } else {
+            render (view: '/error')
         }
     }
 }

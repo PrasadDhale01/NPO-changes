@@ -1832,8 +1832,6 @@ class ProjectService {
             emailList = emailList.collect { it.trim() }
             mandrillService.shareProject(emailList, name, message, project, fundRaiser)
         }
-        
-        return project
     }
 
     def getShippingDetails(def contibutions){

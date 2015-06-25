@@ -1,8 +1,10 @@
 package crowdera
 
+import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
 @ToString(includeNames = true, includeFields = true)
+@EqualsAndHashCode
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 

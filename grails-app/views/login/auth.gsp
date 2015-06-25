@@ -16,6 +16,7 @@
                href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
                 <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
             </a>
+
             <hr/>
             <g:if test='${flash.message}'>
                 <div class="alert alert-danger">${flash.message}</div>

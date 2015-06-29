@@ -638,6 +638,61 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.amount-centering {
+    	display: block;
+	    margin-left: auto;
+	    margin-right: auto;
+	    width:248px !important;
+	}
+	.icons-centering{
+    	display: block;
+    	margin-left: auto;
+    	margin-right: auto;
+    	width:248px !important;
+	}
+	.show-contri-tile.progressBarIcon {
+    	border-left: 1px solid #dddddd;
+    	border-right: 1px solid #dddddd;
+    	padding-left: 24px !important;
+    	padding-right: 24px !important;
+	}
+	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
+    	font-size: 10px;
+    	line-height: 5px;
+    	margin-bottom: 0;
+    	margin-top: 10px;
+    	padding-left: 18px;
+    	padding-right: 18px;
+	}
+	span.tile-day-num.show-contribution-amt-tile  {
+    	color: #000 !important;
+    	font-size: 19px !important;
+    	font-weight: bold;
+	}
+	.tile-goal.show-contribution-amt-tile {
+    	font-size: 19px !important;
+	}
+	span.tile-day-num {
+    	color: #000 !important;
+    	font-size: 22px !important;
+    	font-weight: bold;
+	}
+	.lead.show-contribution-amt-tile {
+    	font-size: 19px !important;
+    	font-weight: bold !important;
+	}
+	.lead{
+		font-size: 22px !important;
+    	font-weight: bold !important;
+	}
+	.show-tile-text-size {
+    	font-size: 9px !important;
+    	line-height: 5px;
+    	margin-bottom: 0;
+    	margin-top: 10px;
+    	padding-left: 22px;
+    	padding-right: 22px;
+	}
 	.footer-input-align .text-email {
     	width: 130% !important;
 	}
@@ -795,6 +850,61 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.amount-centering {
+    	display: block;
+	    margin-left: auto;
+	    margin-right: auto;
+	    width:248px !important;
+	}
+	.icons-centering{
+    	display: block;
+    	margin-left: auto;
+    	margin-right: auto;
+    	width:248px !important;
+	}
+	.show-contri-tile.progressBarIcon {
+    	border-left: 1px solid #dddddd;
+    	border-right: 1px solid #dddddd;
+    	padding-left: 24px !important;
+    	padding-right: 24px !important;
+	}
+	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
+    	font-size: 10px;
+    	line-height: 5px;
+    	margin-bottom: 0;
+    	margin-top: 10px;
+    	padding-left: 18px;
+    	padding-right: 18px;
+	}
+	span.tile-day-num.show-contribution-amt-tile  {
+    	color: #000 !important;
+    	font-size: 19px !important;
+    	font-weight: bold;
+	}
+	.tile-goal.show-contribution-amt-tile {
+    	font-size: 19px !important;
+	}
+	span.tile-day-num {
+    	color: #000 !important;
+    	font-size: 22px !important;
+    	font-weight: bold;
+	}
+	.lead.show-contribution-amt-tile {
+    	font-size: 19px !important;
+    	font-weight: bold !important;
+	}
+	.lead{
+		font-size: 22px !important;
+    	font-weight: bold !important;
+	}
+	.show-tile-text-size {
+    	font-size: 9px !important;
+    	line-height: 5px;
+    	margin-bottom: 0;
+    	margin-top: 10px;
+    	padding-left: 22px;
+    	padding-right: 22px;
+	}
 	.footer-newsletter .help-block {
     	color: #f04124;
     	margin-left: 1px !important;
@@ -1444,7 +1554,7 @@ ul.unstyled {
 }
 
 .tile {
-	height: 200px; 
+	height: 155px; 
     overflow: hidden;
 }
 
@@ -1506,7 +1616,7 @@ ul.unstyled {
 /* Rewards */
 
 .tile-footer {
-    background-color: #F0F0F0;
+    background-color: #FFFFFF;
 }
 
 .footer {
@@ -1865,8 +1975,8 @@ footer .footerbottomsection {
 }
 
 .imageWithTag{
-	height:261px;
-	width:261px;
+	height:155px;
+	width:310px;
 }
 
 .under{
@@ -1875,11 +1985,31 @@ footer .footerbottomsection {
     max-width:100%;
     width:100%;
 }
-
 .over{
-	position:absolute;
-	top:0;
+	left: 16px;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+.over.teamtile-banner{
+	left: -1px !important;
+    position: absolute;
+    top: 0;
+    z-index: 1;
+}
+.over.show-tile{
+	margin-left: 9px;
+	position:  absolute;
+	top:8px;
 	left:0;
+	z-index:1;
+}
+.over.user-tile{
+	margin-left: 9px;
+	position:  absolute;
+	top:8px;
+	left:0;
+	z-index:1;
 }
 .deleteIconAbove{
 	position: absolute;
@@ -1960,7 +2090,21 @@ footer .footerbottomsection {
 .lead,.tile-footer h6 {
 color: #000 !important;
 }
-
+.lead {
+    font-size: 24px !important;
+    font-weight: bold !important;
+}
+.daysleft{
+	padding-left:0 !important;
+	padding-right:0 !important;
+	text-align: center;
+}
+.daysleft .days-text{
+	margin-left:14px;
+}
+.daysleft .days-num{
+	margin-left:-30px;
+}
 .btn-primary {
 color: #ffffff;
 background-color: #333 !important;
@@ -1977,16 +2121,32 @@ border-color: rgba(0,0,0,0.2);
 .project-title{
      margin-top: 10px; 
      margin-bottom: 0px; 
-     /* text-align: justify; */
+     text-align: center;
      overflow: hidden;
      height:42px;
      word-wrap: break-word;
      font-weight:bold;
 }
-
+.project-title span{
+    text-align:center;
+    font-size: 14px;
+    font-weight: normal;
+    word-wrap: break-word;
+    text-decoration:none;
+}
+.project-title a{
+	color: black !important;
+    font-size: 16px;
+    font-weight: bold;
+    word-wrap: break-word;
+    text-decoration:none;
+}
+div.tile-min-height{
+	min-height:160px !important;
+}
 .project-img {
-    max-height:194px;
-    min-height:194px;
+    max-height:155px;
+    min-height:155px;
     width:100%;
 }
 
@@ -4367,6 +4527,77 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.amount-centering {
+    	display: block;
+	    margin-left: auto;
+	    margin-right: auto;
+	    width:248px !important;
+	}
+	.icons-centering{
+    	display: block;
+    	margin-left: auto;
+    	margin-right: auto;
+    	width:248px !important;
+	}
+	.show-contri-tile.progressBarIcon {
+    	border-left: 1px solid #dddddd;
+    	border-right: 1px solid #dddddd;
+    	padding-left: 24px !important;
+    	padding-right: 24px !important;
+	}
+	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
+    	font-size: 10px;
+    	line-height: 5px;
+    	margin-bottom: 0;
+    	margin-top: 10px;
+    	padding-left: 18px;
+    	padding-right: 18px;
+	}
+	span.tile-day-num.show-contribution-amt-tile  {
+    	color: #000 !important;
+    	font-size: 19px !important;
+    	font-weight: bold;
+	}
+	.tile-goal.show-contribution-amt-tile {
+    	font-size: 19px !important;
+	}
+	span.tile-day-num {
+    	color: #000 !important;
+    	font-size: 20px !important;
+    	font-weight: bold;
+	}
+	.lead.show-contribution-amt-tile {
+    	font-size: 19px !important;
+    	font-weight: bold !important;
+	}
+	.lead{
+		font-size: 20px !important;
+    	font-weight: bold !important;
+	}
+	.tile-goal{
+		font-size: 20px !important;
+    	font-weight:normal !important;
+	}
+	.show-tile-text-size {
+    	font-size: 9px !important;
+    	line-height: 5px;
+    	margin-bottom: 0;
+    	margin-top: 10px;
+    	padding-left: 22px;
+    	padding-right: 22px;
+	}
+	.validate-paddings {
+    	padding: 0;
+    	width: 300px !important;
+	}
+	.user-tiles-style {
+    	padding: 0;
+   	 	width: 300px !important;
+	}
+	.tile-pad {
+    	padding: 0;
+    	width: 290px !important;
+	}
 	.footer-newsletter .help-block {
     	color: #f04124;
     	margin-left: 1px !important;
@@ -4995,7 +5226,7 @@ button.projectedit.close{
     color: white;
 }
 .powerdby img{
-	max-width:100%;
+	max-width:90%;
 }
 .footer_links a {
 	color: #e3e3e3;
@@ -5093,6 +5324,7 @@ a.footerlink {
 }
 .center-fund{
 	align-content: center;
+	width: 318px;
 }
 .paypal-secured-image img{
 	width: 245px; 
@@ -5107,14 +5339,15 @@ a.footerlink {
 .foot {
 	display:none;
 }
-.banner-wid img{
-	width: 100px;
-}
 .tile-raised{
 	margin-top: 10px;
 }
 .tile-pad{
 	padding: 0;
+	width:310px;
+}
+.banner-wid img{
+	width: 100px;
 }
 .tile-title-descrp{
 	margin-bottom: 0;
@@ -5146,9 +5379,44 @@ a.footerlink {
 	margin-top: 10px;
 }
 .tileanstitle-goals{
-	text-align: left; 
-	margin-top: 15px; 
-	margin-bottom: 15px;
+	border-color: #dddddd;
+    border-style: solid;
+    border-width: 1px;
+    margin-bottom: 15px;
+    margin-top: 0;
+    text-align: left;
+}
+.goalIcon img{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+.show-tile.progressBarIcon{
+	padding-left: 25px;
+    padding-right: 25px;
+}
+.show-contri-tile{
+    margin-top:5px;
+}
+.contribution-border{
+	border-left:1px solid #dddddd;
+	border-right:1px solid #dddddd;
+}
+.show-contri-tile.progressBarIcon {
+	border-left:1px solid #dddddd;
+	border-right:1px solid #dddddd;
+    padding-left: 40px;
+    padding-right: 40px;
+}
+.campaign-tile-border{
+	border-left:1px solid #dddddd;
+	border-right:1px solid #dddddd;
+}
+.daysleftIcon img{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	padding-top: 5px;
 }
 .login-adminviews{
 	width: 180px;
@@ -5251,8 +5519,10 @@ a.footerlink {
 	margin-bottom: 2px;
 }
 .managedetails-nine-nine{
-	text-align: left; 
+	border-top: 0px none !important;
 	margin-top: 0;
+	padding-top:0px !important;
+	text-align: left; 
 }
 .show-comments-details{
 	margin-top: 30px;
@@ -5285,6 +5555,7 @@ a.footerlink {
 }
 .validate-paddings{
 	padding: 0px;
+	width: 310px;
 }
 .validate-style{
 	height: 200px; 
@@ -5319,6 +5590,7 @@ a.footerlink {
 }
 .user-tiles-style{
 	padding: 0;
+	width:310px;
 }
 .user-tiles-widths img{
 	width: 100px;
@@ -5676,6 +5948,27 @@ button.all-users{
 p.tile-text-size {
     font-size: 73%;
 }
+.show-tile-text-size{
+	font-size: 10px;
+    line-height: 5px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    padding-left: 22px;
+    padding-right: 22px;
+}
+.show-tile-text-size.contribution-tile {
+    font-size: 10px;
+    line-height: 5px;
+    margin-bottom: 0;
+    margin-top: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+span.tile-day-num{
+	color: #000 !important;
+	font-weight:bold;
+	font-size:24px;
+}
 .manage-tiles {
     width: 75%;
 }
@@ -5800,3 +6093,15 @@ ul.menu{
 .footer-container{
 	width:1000px ;
 }
+.tile-goal {
+    font-size:24px;
+}
+.amount-alignment{
+	padding:0px !important;
+}
+.pie, .c100 .bar.progressBar, .c100.p51 .fill.progressBar, .c100.p52 .fill.progressBar, .c100.p53 .fill.progressBar, .c100.p54 .fill.progressBar, .c100.p55 .fill.progressBar, .c100.p56 .fill.progressBar, .c100.p57 .fill.progressBar, .c100.p58 .fill.progressBar, .c100.p59 .fill.progressBar, .c100.p60 .fill.progressBar, .c100.p61 .fill.progressBar, .c100.p62 .fill.progressBar, .c100.p63 .fill.progressBar, .c100.p64 .fill.progressBar, .c100.p65 .fill.progressBar, .c100.p66 .fill.progressBar, .c100.p67 .fill.progressBar, .c100.p68 .fill.progressBar, .c100.p69 .fill.progressBar, .c100.p70 .fill.progressBar, .c100.p71 .fill.progressBar, .c100.p72 .fill.progressBar, .c100.p73 .fill.progressBar, .c100.p74 .fill.progressBar, .c100.p75 .fill.progressBar, .c100.p76 .fill.progressBar, .c100.p77 .fill.progressBar, .c100.p78 .fill.progressBar, .c100.p79 .fill.progressBar, .c100.p80 .fill.progressBar, .c100.p81 .fill.progressBar, .c100.p82 .fill.progressBar, .c100.p83 .fill.progressBar, .c100.p84 .fill.progressBar, .c100.p85 .fill.progressBar, .c100.p86 .fill.progressBar, .c100.p87 .fill.progressBar, .c100.p88 .fill.progressBar, .c100.p89 .fill.progressBar, .c100.p90 .fill.progressBar, .c100.p91 .fill.progressBar, .c100.p92 .fill.progressBar, .c100.p93 .fill.progressBar, .c100.p94 .fill.progressBar, .c100.p95 .fill.progressBar, .c100.p96 .fill.progressBar, .c100.p97 .fill.progressBar, .c100.p98 .fill.progressBar, .c100.p99 .fill.progressBar, .c100.p100 .fill.progressBar {
+    border: 0.08em solid #ff784f !important;
+} 
+.pie, .c100 .bar.showprogressBar, .c100.p51 .fill.showprogressBar, .c100.p52 .fill.showprogressBar, .c100.p53 .fill.showprogressBar, .c100.p54 .fill.showprogressBar, .c100.p55 .fill.showprogressBar, .c100.p56 .fill.showprogressBar, .c100.p57 .fill.showprogressBar, .c100.p58 .fill.showprogressBar, .c100.p59 .fill.showprogressBar, .c100.p60 .fill.showprogressBar, .c100.p61 .fill.showprogressBar, .c100.p62 .fill.showprogressBar, .c100.p63 .fill.showprogressBar, .c100.p64 .fill.showprogressBar, .c100.p65 .fill.showprogressBar, .c100.p66 .fill.showprogressBar, .c100.p67 .fill.showprogressBar, .c100.p68 .fill.showprogressBar, .c100.p69 .fill.showprogressBar, .c100.p70 .fill.showprogressBar, .c100.p71 .fill.showprogressBar, .c100.p72 .fill.showprogressBar, .c100.p73 .fill.showprogressBar, .c100.p74 .fill.showprogressBar, .c100.p75 .fill.showprogressBar, .c100.p76 .fill.showprogressBar, .c100.p77 .fill.showprogressBar, .c100.p78 .fill.showprogressBar, .c100.p79 .fill.showprogressBar, .c100.p80 .fill.showprogressBar, .c100.p81 .fill.showprogressBar, .c100.p82 .fill.showprogressBar, .c100.p83 .fill.showprogressBar, .c100.p84 .fill.showprogressBar, .c100.p85 .fill.showprogressBar, .c100.p86 .fill.showprogressBar, .c100.p87 .fill.showprogressBar, .c100.p88 .fill.showprogressBar, .c100.p89 .fill.showprogressBar, .c100.p90 .fill.showprogressBar, .c100.p91 .fill.showprogressBar, .c100.p92 .fill.showprogressBar, .c100.p93 .fill.showprogressBar, .c100.p94 .fill.showprogressBar, .c100.p95 .fill.showprogressBar, .c100.p96 .fill.showprogressBar, .c100.p97 .fill.showprogressBar, .c100.p98 .fill.showprogressBar, .c100.p99 .fill.showprogressBar, .c100.p100 .fill.showprogressBar {
+    border: 0.08em solid #f6bf0b !important;
+} 

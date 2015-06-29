@@ -252,7 +252,7 @@
       		<div class="col-md-4 footer-last-section-links">
         		<span class="text-primary">
 					<a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of  Use</a>&nbsp;&nbsp;
-					<a 	ref="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
+					<a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
 					<a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
 					<br>
 				</span>

@@ -178,85 +178,85 @@
   		
   		<!-- Footer Design for large size device -->	
       	<div class="visible-lg footer-lg">
-      		<section class="row footer-lg-first-section">
-      			<div class="col-md-4">
-        			<a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a>
-        			<div class="col-md-6 footer-mid-section-menu">
-           	         	<ul>
-            				<li><a href="${resource(dir: '/')}">Home</a></li>
-            				<li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
-		        			<li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
-		        			<li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
-		        			<li><a href="http://crowdera.tumblr.com" target="_blank">Blog</a></li>
-            		 	</ul>
-          		 	</div>
-          			<div class="col-md-6 footer-mid-section-menu">
-            			 <ul>
-                    		<li><a href="${resource(dir: '/campaigns/create')}">Start Your Campaign</a></li>
-                    		<li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
-                    		<li><a href="${resource(dir: '/faq')}">FAQ</a></li>
-            		 	</ul>
-          			</div>
-	        	</div>
-        		<div class="col-md-4 footer-hands-image-top ">
-      				<div class="footer-mid-section-img">
-        	  			<br>
-        	  			<img src="//s3.amazonaws.com/crowdera/assets/Hands-image-footer.png" alt="Crowdera" class="footer-hands-img">
-        	  			<a href="#" class="display-footer-text"><img class="footer-start-cmpg-img" src="//s3.amazonaws.com/crowdera/assets/Hands-up-for-a-better - button.jpg" alt="Crowdera"></a>
-        	  		</div>
-      			</div>
-	        	<div class="col-md-4 socialiconlinks footer-mid-section">
-        	   		<br>
-		       		<div class="socialicon pull-right">
-		        		<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon"></a>
-		           		<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink"></a>
-						<a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon"></a>
-						<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer"></a>
-						<a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" ></a>
-						<br><br>
-		        	</div>
-		        	<br><br>
-		        	<div class="footer-newsletter">
-        				<form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-							<div class="newsletter-alignment">
-								<div class="newsletter-input">
-				 					<input type="text" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">
-				    			</div>
-				    			<div class="newsletter-button footer-signup-margin">
-									<input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup signup-lg">
-									<br><br>
-				    			</div>
-				 			</div>
-						</form>
-        			</div>
-        		<div class="thomas-owens-testimonial-div">
-        			<p class="thomas-owens-testimonial">"Through the Crowdera platform<br> our scholars, parents, families, staff and<br> parents can participate
-        			 in building support<br> for the Eagle Academy movement." <br><br><span class="thomas-margin-align">Thomas Owens</span><br><p class="egle">Eagle Academy</p>
-        		</div>
+      	    <section class="row footer-lg-first-section">
+      	      <div class="col-md-4">
+                <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a>
+        	<div class="col-md-6 footer-mid-section-menu">
+           	  <ul>
+            	    <li><a href="${resource(dir: '/')}">Home</a></li>
+            	    <li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
+		    <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
+		    <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
+		    <li><a href="http://crowdera.tumblr.com" target="_blank">Blog</a></li>
+            	  </ul>
+          	</div>
+          	<div class="col-md-6 footer-mid-section-menu">
+            	 <ul>
+                   <li><a href="${resource(dir: '/campaigns/create')}">Start Your Campaign</a></li>
+                   <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
+                   <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
+            	 </ul>
+                </div>
+	     </div>
+             <div class="col-md-4 footer-hands-image-top ">
+      	        <div class="footer-mid-section-img">
+        	  <br>
+        	  <img src="//s3.amazonaws.com/crowdera/assets/Hands-image-footer.png" alt="Crowdera" class="footer-hands-img">
+        	  <a href="#" class="display-footer-text"><img class="footer-start-cmpg-img" src="//s3.amazonaws.com/crowdera/assets/Hands-up-for-a-better - button.jpg" alt="Crowdera"></a>
         	</div>
-        	<hr class="footer-hr">
-      	</section>
+      	     </div>
+	     <div class="col-md-4 socialiconlinks footer-mid-section">
+        	<br>
+		<div class="socialicon pull-right">
+		   <a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon"></a>
+		   <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink"></a>
+		   <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon"></a>
+		   <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer"></a>
+		   <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" ></a>
+		   <br><br>
+		</div>
+		<br><br>
+		<div class="footer-newsletter">
+        	   <form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+			<div class="newsletter-alignment">
+		            <div class="newsletter-input">
+			       <input type="text" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">
+			    </div>
+			    <div class="newsletter-button footer-signup-margin">
+			       <input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup signup-lg">
+			       <br><br>
+			   </div>
+		        </div>
+		    </form>
+        	</div>
+        	<div class="thomas-owens-testimonial-div">
+        	    <p class="thomas-owens-testimonial">"Through the Crowdera platform<br> our scholars, parents, families, staff and<br> parents can participate
+        		 in building support<br> for the Eagle Academy movement." <br><br><span class="thomas-margin-align">Thomas Owens</span><br><p class="egle">Eagle Academy</p>
+                </div>
+              </div>
+              <hr class="footer-hr">
+      	   </section>
       	 
-      	<section class="row">
+      	   <section class="row">
       		<div class="col-md-8 footer-last-section-payment-icon">
-      			<div class="col-md-6 payment-method-footer">
-      				<span>Payment Methods</span>
-      				<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png">
-      			</div>
-      			<div class="col-md-6 secure-payment-footer">
-      				<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png">
-      				<div class="footer-text-align">100% Secure Payment</div>
-      			</div>
+      		    <div class="col-md-6 payment-method-footer">
+      			<span>Payment Methods</span>
+      			<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png">
+      		    </div>
+      		    <div class="col-md-6 secure-payment-footer">
+      		 	<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png">
+      			<div class="footer-text-align">100% Secure Payment</div>
+      		    </div>
       		</div>
       		<div class="col-md-4 footer-last-section-links">
-        		<span class="text-primary">
-					<a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of  Use</a>&nbsp;&nbsp;
-					<a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
-					<a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
-				</span>
+        	    <span class="text-primary">
+			<a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of  Use</a>&nbsp;&nbsp;
+			<a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
+			<a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
+		   </span>
         	</div>
-      	</section>
+      	   </section>
       </div>
-  	</div>
+   </div>
  </div>
 </footer>

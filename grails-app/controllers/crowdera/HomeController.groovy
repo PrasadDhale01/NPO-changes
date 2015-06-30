@@ -6,12 +6,13 @@ class HomeController {
     def userService
 
     def index() {
+        def fb = params.fb
 		if(Environment.DEVELOPMENT == Environment.current || Environment.TEST == Environment.current){
 			def projects = projectService.showProjects()
-			return [projects: projects]
+			return [projects: projects, fb: fb]
 		}else{
 			def projects = projectService.projectOnHomePage()
-			return [projects: projects]
+			return [projects: projects, fb: fb]
 		}
     }
     

@@ -30,3 +30,23 @@
 	font-size: 18px;
 	font-weight: 500;
 }
+.footer-panel-group .breadcrumb {
+    border: 0px !important;
+    padding: 9px 15px !important;
+    font-size: 14px !important;
+}
+.faq-subheading {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.footer-panel-group h3, .footer-panel-group h1 {
+	font-weight: 500 !important;
+}
+.footer-panel-group a:hover, .footer-panel-group a:focus {
+    color: #FF7F50; 
+    text-decoration: none;
+    outline: medium none;
+}
+.faq-panel-height {
+	height: auto;
+}

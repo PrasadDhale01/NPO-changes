@@ -25,7 +25,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">What is Crowdera?</a>
                         </h4>
                     </div>
-                    <div id="collapseOne" class="panel-collapse collapse" style="height: auto;">
+                    <div id="collapseOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">
 			                    Crowdera is a newest crowdfunding platform that supports individuals
@@ -48,7 +48,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">What is Crowdfunding?</a>
                         </h4>
                     </div>
-                    <div id="collapseTwo" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseTwo" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">
 			                    Crowdfunding is a new way to fund projects from a large group of
@@ -71,7 +71,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">Why Crowdfunding?</a>
                         </h4>
                     </div>
-                    <div id="collapseThree" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseThree" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Crowdfunding is for people or
 			                organizations who have no direct means to fund their initiatives that
@@ -90,7 +90,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour">Who are the people that fund my campaign?</a>
                         </h4>
                     </div>
-                    <div id="collapseFour" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseFour" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Your funders will consist of your existing
 			                supporters, volunteers, friends, family, fans and extended circle of
@@ -106,7 +106,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFive">Why will someone fund my campaign? Why will people contribute towards my campaign?</a>
                         </h4>
                     </div>
-                    <div id="collapseFive" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseFive" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                              <p class="text-justify">People contribute towards campaigns they
 			                 relate to or if they connect with a cause. They love what you are
@@ -123,7 +123,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSix">How does Crowdera work?</a>
                         </h4>
                     </div>
-                    <div id="collapseSix" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseSix" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <ul>
 			                    <li>Crowdera lets you build your fundraising campaign on its
@@ -152,7 +152,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">What do I need to create a campaign?</a>
                         </h4>
                     </div>
-                    <div id="collapseSeven" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseSeven" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <ul>
 			                    <li>A compelling story</li>
@@ -174,7 +174,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEight">Will Crowdera assist in creating the campaign?</a>
                         </h4>
                     </div>
-                    <div id="collapseEight" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseEight" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                              <p class="text-justify">Yes we do!</p>
 		                     <ul>
@@ -196,7 +196,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNine">How much does Crowdera charge?</a>
                         </h4>
                     </div>
-                    <div id="collapseNine" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseNine" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">We are a free platform to help you do more
 			                    good. We do not charge a startup fee, no fee charged on funds raised
@@ -212,7 +212,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTen">Why do I need to build a strong social network and share my campaign?</a>
                         </h4>
                     </div>
-                    <div id="collapseTen" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseTen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">We have noticed that the campaigns that
 			                    can rally about 30% of the funding immediately upon launch have a
@@ -231,7 +231,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEleven">Do I get to see my contributors and how much they contributed?</a>
                         </h4>
                     </div>
-                    <div id="collapseEleven" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseEleven" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Yes, you do. You have complete access to
 			                    your campaign and check who contributed and how much by logging into
@@ -246,7 +246,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseforty">Can I offer rewards?</a>
                         </h4>
                     </div>
-                    <div id="collapseforty" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseforty" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Yes you can! You can create your own rewards as well.</p>
                         </div>
@@ -259,7 +259,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwelve">Are rewards mandatory?</a>
                         </h4>
                     </div>
-                    <div id="collapseTwelve" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseTwelve" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">No, rewards are not mandatory.</p>
                         </div>
@@ -272,7 +272,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseForteen">Can I edit my campaign after I submit it?</a>
                         </h4>
                     </div>
-                    <div id="collapseForteen" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseForteen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Yes you can edit certain sections of the campaign.</p>
                         </div>
@@ -285,7 +285,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFifteen">How will the funds be transferred?</a>
                         </h4>
                     </div>
-                    <div id="collapseFifteen" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseFifteen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Crowdera ensures complete transparency,
 			                    therefore the funds will be transferred directly into your account
@@ -301,7 +301,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSixteen">What if I don’t meet my fundraising goal? Do I still get the funds?</a>
                         </h4>
                     </div>
-                    <div id="collapseSixteen" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseSixteen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Crowdera believes that all effort put into
 			                    the campaign deserves to be paid off. Therefore, all the funds raised
@@ -316,7 +316,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseSeventeen">What if I raise more than my goal?</a>
                         </h4>
                     </div>
-                    <div id="collapseSeventeen" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseSeventeen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">You keep it!</p>
                         </div>
@@ -329,7 +329,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseEighteen">Why don’t I see my campaign on Crowdera after submitting?</a>
                         </h4>
                     </div>
-                    <div id="collapseEighteen" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseEighteen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">After submitting, the campaign go through an approval process. Once the campaign is approved it goes live.</p>
                         </div>
@@ -342,7 +342,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseNineteen">What benefits does Crowdera offer?</a>
                         </h4>
                     </div>
-                    <div id="collapseNineteen" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseNineteen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <ul type="decimal">
 			                    <li>Fundraising is FREE! Crowdera does not charge any fee, it’s free so do more good!</li>
@@ -363,7 +363,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFortyOne">What is the minimum amount that I can raise through Crowdera?</a>
                         </h4>
                     </div>
-                    <div id="collapseFortyOne" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseFortyOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">There is no minimum funding goal to be on the platform.</p>
                         </div>
@@ -376,7 +376,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwentyOne">What is the maximum amount that I can raise through Crowdera?</a>
                         </h4>
                     </div>
-                    <div id="collapseTwentyOne" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseTwentyOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">
 			                    The maximum funding goal is $100,000. If you would like to raise
@@ -395,7 +395,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwentyTwo">My campaign was rejected. How do I know the reason for rejection?</a>
                         </h4>
                     </div>
-                    <div id="collapseTwentyTwo" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseTwentyTwo" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Please read the FAQ section thoroughly and also read our crowdfunding
 		                        guidelines sections to understand the criterion of selection. If you feel you need more information, 
@@ -410,7 +410,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwenty">Who is responsible for delivering the rewards?</a>
                         </h4>
                     </div>
-                    <div id="collapseTwenty" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseTwenty" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">The beneficiary / campaign creator is responsible for shipping the rewards.</p>
                         </div>
@@ -425,7 +425,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwentyThree">How much of the funds raised reach the creator?</a>
                         </h4>
                     </div>
-                    <div id="collapseTwentyThree" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseTwentyThree" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">100% of the funds reach the campaign
 			                    creator, however the payment gateway charges transaction fee to the
@@ -441,7 +441,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwentyFour">Do I need to sign up to contribute?</a>
                         </h4>
                     </div>
-                    <div id="collapseTwentyFour" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseTwentyFour" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">No you do not need to sign up. You can
 			                    contribute without signing up. However, we recommend you to signup
@@ -457,7 +457,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwentyFive">What payment method do you provide?</a>
                         </h4>
                     </div>
-                    <div id="collapseTwentyFive" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseTwentyFive" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">We have partnered with PayPal and
 			                    FirstGiving as our payment gateway services, Campaign creators can
@@ -473,7 +473,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwentySix">I do not wish to use online methods of payment. How do I offer offline contributions?</a>
                         </h4>
                     </div>
-                    <div id="collapseTwentySix" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseTwentySix" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">
 			                    We do not entertain offline payments at this time. However, if you
@@ -490,7 +490,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwentySeven">Is your site secure for online credit / debit card transactions?</a>
                         </h4>
                     </div>
-                    <div id="collapseTwentySeven" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseTwentySeven" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">
 			                    Yes it is. Donations and Contributions are collected and processed by
@@ -510,7 +510,7 @@
 			I know whether the transaction was successful?</a>
                         </h4>
                     </div>
-                    <div id="collapseTwentyEight" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseTwentyEight" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">If you have received an error while
 			                    contributing, check your email for a payment confirmation from Paypal
@@ -528,7 +528,7 @@
 			contributing directly?</a>
                         </h4>
                     </div>
-                    <div id="collapseTwentyNine" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseTwentyNine" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <ul>
 			                    <li>Crowdera is curated platform, we review every application
@@ -552,7 +552,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFortyTwo">What is the minimum amount for a fund?</a>
                         </h4>
                     </div>
-                    <div id="collapseFortyTwo" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseFortyTwo" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">You can contribute a minimum of $1.</p>
                         </div>
@@ -565,7 +565,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThirty">How can I cancel my contribution?</a>
                         </h4>
                     </div>
-                    <div id="collapseThirty" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseThirty" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Crowdera doesn’t hold the payments and
 			                    money is directly transferred to the beneficiary’s account. You may
@@ -580,7 +580,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThirtyOne">How do I know my funds have reached the beneficiary?</a>
                         </h4>
                     </div>
-                    <div id="collapseThirtyOne" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseThirtyOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Crowdera ensures that all the funds are
 			                    directed from the Payment Gateway directly to the
@@ -597,7 +597,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThirtyTwo">How do I know that my contribution was utilized for the purpose?</a>
                         </h4>
                     </div>
-                    <div id="collapseThirtyTwo" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseThirtyTwo" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">We encourage campaign creators to provide
 			                    updates to their contributors. If you have any questions related to
@@ -612,7 +612,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThirtyThree">I am an International contributor. Can I still contribute to the cause?</a>
                         </h4>
                     </div>
-                    <div id="collapseThirtyThree" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseThirtyThree" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">PayPal and FirstGiving allows transaction
 			                    in US Dollars from all non-restricted countries where PayPal and
@@ -627,7 +627,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThirtyFour">How safe is it to login using Facebook?</a>
                         </h4>
                     </div>
-                    <div id="collapseThirtyFour" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseThirtyFour" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Please refer to the Personal Information section on our 
                                 <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a> page.
@@ -642,7 +642,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThirtyFive">Is it possible to make anonymous contribution? Can I do so after being logged in?</a>
                         </h4>
                     </div>
-                    <div id="collapseThirtyFive" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseThirtyFive" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Yes it is. You can make an anonymous contribution even after being logged in.</p>
                         </div>
@@ -657,7 +657,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThirtySix">Can I receive rewards after donating anonymously?</a>
                         </h4>
                     </div>
-                    <div id="collapseThirtySix" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseThirtySix" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Yes you can.</p>
                         </div>
@@ -670,7 +670,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThirtySeven">I have not received my rewards, what do I do now?</a>
                         </h4>
                     </div>
-                    <div id="collapseThirtySeven" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseThirtySeven" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Please contact the campaign creator.</p>
                         </div>
@@ -683,7 +683,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThirtyEight">Does my contribution amount show on Crowdera?</a>
                         </h4>
                     </div>
-                    <div id="collapseThirtyEight" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseThirtyEight" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Every contribution is displayed on
 			                    Crowdera under the contribution tab. Your name, date and amount
@@ -698,7 +698,7 @@
                             <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThirtyNine">Do I get tax deductions on my contributions?</a>
                         </h4>
                     </div>
-                    <div id="collapseThirtyNine" class="panel-collapse collapse" style="height: 0px;">
+                    <div id="collapseThirtyNine" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Not all contributions will be tax
 			                    deductible. Contributions made to NGOs with a registered 80G (India)

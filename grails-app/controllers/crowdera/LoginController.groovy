@@ -92,22 +92,25 @@ class LoginController {
 	
     def create() {
         def userName=userService.getUserByName(params.username)
+        def userObj = userService.findUserByEmail(params.username)
         if (userName) {
             render(view: 'error', model: [message: 'A user with that email already exists. Please use a different email.'])
+        } else if (userService.isFacebookUser(userObj)) {
+            render(view: 'error', model: [message: 'A Facebook user with that email already exists. Please use a different email to register or login through Facebook.'])
         } else {
             def user = userService.getUserObject(params)
             user.enabled = false
             user.confirmCode = UUID.randomUUID().toString()
-			
-	    if(params.name){
-	        StringTokenizer tokenizer = new StringTokenizer(params.name)
-		if (tokenizer.hasMoreTokens()) {
-		user.firstName = tokenizer.nextToken()
-	        }
-		if (tokenizer.hasMoreTokens()) {
-		    user.lastName = tokenizer.nextToken()
-		}
-	    }
+
+            if(params.name){
+                StringTokenizer tokenizer = new StringTokenizer(params.name)
+                if (tokenizer.hasMoreTokens()) {
+                    user.firstName = tokenizer.nextToken()
+                }
+                if (tokenizer.hasMoreTokens()) {
+                    user.lastName = tokenizer.nextToken()
+                }
+            }
 
             if (!user.save()) {
                 render(view: 'error', model: [message: 'Problem creating user. Please try again.'])

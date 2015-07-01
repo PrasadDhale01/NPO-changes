@@ -741,7 +741,7 @@ class ProjectController {
 
     def sendemail() {
         def fundRaiser = params.fr
-        def project = projectService.shareCampaignOrTeamByEmail(params,fundRaiser)
+        projectService.shareCampaignOrTeamByEmail(params,fundRaiser)
         flash.prj_mngprj_message= "Email sent successfully."
         if (params.ismanagepage) {
              redirect(controller: 'project', action: 'manageproject', params:['projectTitle': params.vanityTitle])
@@ -1048,7 +1048,6 @@ class ProjectController {
     def customrewardedit() {
         def isPerkPriceLess = rewardService.editCustomReward(params)
         def amount = params.amount
-        def project = projectService.getProjectById(params.projectId)
         def title = projectService.getVanityTitleFromId(params.projectId)
         if (isPerkPriceLess) {
             flash.perkupdate = 'Perk Updated Successfully!!'

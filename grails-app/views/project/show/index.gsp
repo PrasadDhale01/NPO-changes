@@ -112,7 +112,7 @@
                     	<g:render template="show/rewards" model="['username':username]"/>
                     </g:if>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 Top-tabs-mobile">
                     <ul class="nav nav-tabs nav-justified show-marginbottoms">
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span><span class="tab-text hidden-xs"> Story</span>

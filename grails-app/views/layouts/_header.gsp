@@ -2,8 +2,16 @@
 <g:set var="facebookAuthService" bean="facebookAuthService"/>
 <g:set var="userService" bean="userService"/>
 <%
-    def userImage = userService.getCurrentUserImage()
     def user = userService.getCurrentUser()
+	def userImage
+	if (user) {
+		if (user.userImageUrl) {
+			userImage = user.userImageUrl
+		} else {
+			def imageobj = userService.getCurrentUserImage(user.firstName)
+			userImage = imageobj.userImage
+		}
+	}
 %>
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">

@@ -654,6 +654,9 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.manage-Top-tabs-mobile{
+	    margin-top: 55px;
+	}
 	.footer_links a {
 		color: #e3e3e3;
 		font-size:13px !important;
@@ -872,9 +875,19 @@ a {
     .list-category{
         width: 24%;
     }
+    .nav-tabs.nav-justified > li > a {
+       font-size: 8px !important;
+    }
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.nav-tabs.nav-justified > li > a {
+        font-size: 8px;
+    }
+	.top-pan {
+        margin-top: 20px;
+        margin-bottom: 14px;
+    }
 	.amount-centering {
     	    display: block;
 	    margin-left: auto;
@@ -1098,12 +1111,82 @@ a {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	.nav-tabs.nav-justified > li > a {
+       font-size: 8px !important;
+    }
 	.sorts-dropdown{
        left: 29%;
+    }
+    div.edits i {
+        font-size: 12px;
+    }
+    div.pn-word h4 {
+	    font-weight: 500;
+	    margin-bottom: 0;
+	    overflow: hidden;
+	    padding: 12px 43px 5px 0;
+	    text-overflow: ellipsis;
+	    white-space: pre;
+	    width: 166px;
+	    word-wrap: normal;
+   }
+   div.cols {
+	    margin-top: -21px;
+	    width: 161px;
+   }
+    div dd.so-off-con {
+	    display: inline-block;
+	    font-size: 8px;
+	    white-space: pre;
+    }
+    span.font-usd {
+	    color: black;
+	    font-size: 9px !important;
+    }
+    span.sso {
+	    color: black;
+	    font-size: 17px !important;
+	    font-weight: 300;
+	    line-height: 0;
     }
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	.nav-tabs.nav-justified > li > a {
+       font-size: 12px !important;
+    }
+    span.font-usd {
+	    color: black;
+	    font-size: 9px !important;
+    }
+    span.sso {
+	    color: black;
+	    font-size: 17px !important;
+	    font-weight: 300;
+	    line-height: 0;
+    }
+	div.edits i {
+        font-size: 12px;
+    }
+    div.cols {
+	    margin-top: -21px;
+	    width: 161px;
+    }
+    div dd.so-off-con {
+	    display: inline-block;
+	    font-size: 8px;
+	    white-space: pre;
+    }
+	div.pn-word h4 {
+	    font-weight: 500;
+	    margin-bottom: 0;
+	    overflow: hidden;
+	    padding: 12px 43px 5px 0;
+	    text-overflow: ellipsis;
+	    white-space: pre;
+	    width: 159px;
+	    word-wrap: normal;
+    }
     div.left-pad {
         left: 18%;
     }
@@ -3763,6 +3846,34 @@ textarea.form-control {
 	}
 }
 
+@media only screen and (min-width: 481px) and (max-width:600px){
+	.contributions-panel{
+	    padding-left: 26%;
+	}
+	div.edits {
+        margin-top: -43px;
+    }
+    div.Top-tabs-mobile {
+        margin-top: 55px;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width:767px){
+	div.Top-tabs-mobile {
+        margin-top: 55px;
+    }
+    .contributions-panel{
+	    padding-left: 30%;
+	}
+	.top-pan {
+        margin-top: 20px;
+        margin-bottom: 14px;
+    }
+    div.edits {
+        margin-top: -43px;
+    }
+}
+
 @media only screen and (min-width: 480px) and (max-width: 481px){
     input.paypal-create {
         margin-left: -4% !important;
@@ -3916,7 +4027,6 @@ textarea.form-control {
    .mobileview-top{
         display:block;
         margin-bottom: 15px;
-        margin-top: 16% !important;
    }
    .mobileview-bottom{
         display:none;
@@ -4539,8 +4649,49 @@ textarea.form-control {
 	}
 }
 
+@media only screen and (min-width: 320px) and (max-width: 480px){
+	div.pan {
+		max-width: 225px;
+		height: 116px;
+		overflow: hidden;
+		display: table-cell;
+		word-wrap: break-word;
+    }
+    .contributions-panel{
+	    padding-left: 14%;
+	}
+	div.edits {
+        margin-top: -43px;
+    }
+    div dd.so-off-con {
+	    display: inline-block;
+	    font-size: 10px;
+	    padding-top: 7px;
+	    white-space: pre;
+    }
+    div.cols {
+        left: 14%;
+        padding-top: 21px;
+    }
+    div.edits i{
+        font-size: 12px;
+    }
+}
+
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.crowderasupport {
+	    font-size: 114%;
+	    margin-bottom: 20px;
+	    margin-top: 5px;
+    }
+	div.manage-Top-tabs-mobile{
+	    margin-top: 80px;
+	}
+	.top-pan {
+        margin-top: 20px;
+        margin-bottom: 14px;
+    }
 	.amount-centering {
     	    display: block;
 	    margin-left: auto;
@@ -6126,3 +6277,168 @@ ul.menu{
 	margin-top:15px;
 	margin-bottom:8px;
 }
+.pan{
+	max-width: 225px;
+	height: 100px;
+	overflow: hidden;
+	display: table-cell;
+	word-wrap: break-word;
+}
+.pn-word h4 {
+	text-overflow:ellipsis; 
+	-o-text-overow: ellipsis; 
+	word-wrap:normal; 
+	overflow: hidden;
+	color: black;
+	width: 195px;
+	white-space: pre;
+	padding: 12px 43px 5px 0px;
+	margin-bottom: 0px;
+	font-weight: 500;
+}
+.img-panel{
+	padding-top: 15px;
+	width: 50px;
+}
+.top-pan {
+	margin-top: 20px;
+}
+span.sso {
+	font-size: 22px;
+	line-height: 0px;
+	font-weight: 300;
+	color: black;
+}
+span.font-usd {
+	font-size: 12px;
+	color: black;
+}
+.font-days{
+	font-size: 12px;
+	padding: 8px 0px 0px 0px;
+	color: black;
+}
+dd.so-off-con {
+	font-size: 10px;
+	margin-left: 35px;
+	white-space: pre;
+	display: inline-block;
+	color: black;
+}
+.edit-del i {
+	font-size: 16px;
+	left: -25px;
+}
+.cols {
+	padding-top: 11px;
+    left: 22px;
+}
+.edits i{
+	font-size: 15px;
+}
+.edits {
+    margin-top: -12px;
+}
+.perk-des p {
+	text-overflow:ellipsis; 
+	-o-text-overow: ellipsis; 
+	word-wrap:normal; 
+	overflow: hidden;
+	white-space: pre;
+}
+span.font-anonymous {
+ 	font-size: 12px;
+ 	color: black;
+}
+.pans {
+    max-width: 225px;
+    height: 110px;
+    overflow: hidden;
+    display: table-cell;
+    word-wrap: break-word;
+}
+p.anonymous-top {
+    padding-top: 13px;
+}
+.alphabet-A {
+	background-color: rgb(239, 246, 253);
+}
+.alphabet-B {
+	background-color: rgb(252, 244, 207);
+}
+.alphabet-C{
+	background-color: rgb(237, 250, 220);
+}
+.alphabet-D {
+	background-color: #FEECd0;
+}
+.alphabet-E {
+	background-color: rgb(252, 237, 241);
+}
+.alphabet-F{
+	background-color: rgb(239, 246, 253);
+}
+.alphabet-G {
+	background-color: rgb(252, 244, 207);
+}
+.alphabet-H {
+	background-color: rgb(237, 250, 220);
+}
+.alphabet-I{
+	background-color: #FEECd0;
+}
+.alphabet-J {
+	background-color: rgb(252, 237, 241);
+}
+.alphabet-K {
+	background-color: rgb(239, 246, 253);
+}
+.alphabet-L{
+	background-color: rgb(252, 244, 207);
+}
+.alphabet-M {
+	background-color: rgb(237, 250, 220);
+}
+.alphabet-N {
+	background-color: #FEECd0;
+}
+.alphabet-O{
+	background-color: rgb(252, 237, 241);
+}
+.alphabet-P {
+	background-color: rgb(239, 246, 253);
+}
+.alphabet-Q {
+	background-color: rgb(252, 244, 207);
+}
+.alphabet-R{
+	background-color: rgb(237, 250, 220);
+}
+.alphabet-S {
+	background-color: #FEECd0;
+}
+.alphabet-T {
+	background-color: rgb(252, 237, 241);
+}
+.alphabet-U{
+	background-color: rgb(239, 246, 253);
+}
+.alphabet-V {
+	background-color: rgb(252, 244, 207);
+}
+.alphabet-W {
+	background-color: rgb(237, 250, 220);
+}
+.alphabet-X{
+	background-color: #FEECd0;
+}
+.alphabet-Y {
+	background-color: rgb(252, 237, 241);
+}
+.alphabet-Z {
+	background-color: rgb(239, 246, 253);
+}
+.userimagecolor {
+	background-color: rgb(239, 246, 253);
+}
+

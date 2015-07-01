@@ -31,8 +31,21 @@ class LoginController {
     
     def facebook_user_login() {
         User user = userService.getCurrentUser();
-        facebookService.getFacebookUserDetails(user);
-        redirect (controller:'home', action:'index')
+        boolean ifFbUserAlreadyExist = facebookService.getFacebookUserDetails(user);
+        if (ifFbUserAlreadyExist) {
+            redirect (controller:'home', action:'index', params:[fb: 'yes'])
+        } else {
+            redirect (controller:'home', action:'index')
+        }
+    }
+    
+    def facebook_login() {
+        if (params.userResponse.equalsIgnoreCase("yes")) {
+            facebookService.mergeFacebookUser()
+            redirect (controller:'home', action:'index')
+        } else {
+            redirect controller:'logout'
+        }
     }
 
     def user_request(){
@@ -52,7 +65,7 @@ class LoginController {
                 
             mandrillService.sendUserResponseToUserRequest(user)
             }
-        }           
+        }    
     }
 
     @Secured(['ROLE_ADMIN'])
@@ -79,22 +92,25 @@ class LoginController {
 	
     def create() {
         def userName=userService.getUserByName(params.username)
+        def userObj = userService.findUserByEmail(params.username)
         if (userName) {
             render(view: 'error', model: [message: 'A user with that email already exists. Please use a different email.'])
+        } else if (userService.isFacebookUser(userObj)) {
+            render(view: 'error', model: [message: 'A Facebook user with that email already exists. Please use a different email to register or login through Facebook.'])
         } else {
             def user = userService.getUserObject(params)
             user.enabled = false
             user.confirmCode = UUID.randomUUID().toString()
-			
-	    if(params.name){
-	        StringTokenizer tokenizer = new StringTokenizer(params.name)
-		if (tokenizer.hasMoreTokens()) {
-		user.firstName = tokenizer.nextToken()
-	        }
-		if (tokenizer.hasMoreTokens()) {
-		    user.lastName = tokenizer.nextToken()
-		}
-	    }
+
+            if(params.name){
+                StringTokenizer tokenizer = new StringTokenizer(params.name)
+                if (tokenizer.hasMoreTokens()) {
+                    user.firstName = tokenizer.nextToken()
+                }
+                if (tokenizer.hasMoreTokens()) {
+                    user.lastName = tokenizer.nextToken()
+                }
+            }
 
             if (!user.save()) {
                 render(view: 'error', model: [message: 'Problem creating user. Please try again.'])

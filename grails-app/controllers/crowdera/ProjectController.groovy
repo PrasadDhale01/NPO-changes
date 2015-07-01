@@ -79,14 +79,14 @@ class ProjectController {
         }
      }
 	
-     def showCampaign() {
-         def title = projectService.getVanityTitleFromId(params.id)
-         def name = userService.getVanityNameFromUsername(params.fr, params.id)
-	 if(title && name){
-	    redirect (action:'show', params:['projectTitle':title,'fr':name])
-	 }else{
-	    render (view: '/error')
-	 }
+    def showCampaign() {
+        def title = projectService.getVanityTitleFromId(params.id)
+        def name = userService.getVanityNameFromUsername(params.fr, params.id)
+        if(title && name){
+            redirect (action:'show', params:['projectTitle':title,'fr':name])
+        } else {
+            render (view: '/error')
+        }
     }
 
     def show() {
@@ -741,7 +741,7 @@ class ProjectController {
 
     def sendemail() {
         def fundRaiser = params.fr
-        def project = projectService.shareCampaignOrTeamByEmail(params,fundRaiser)
+        projectService.shareCampaignOrTeamByEmail(params,fundRaiser)
         flash.prj_mngprj_message= "Email sent successfully."
         if (params.ismanagepage) {
              redirect(controller: 'project', action: 'manageproject', params:['projectTitle': params.vanityTitle])
@@ -1048,7 +1048,6 @@ class ProjectController {
     def customrewardedit() {
         def isPerkPriceLess = rewardService.editCustomReward(params)
         def amount = params.amount
-        def project = projectService.getProjectById(params.projectId)
         def title = projectService.getVanityTitleFromId(params.projectId)
         if (isPerkPriceLess) {
             flash.perkupdate = 'Perk Updated Successfully!!'
@@ -1056,6 +1055,26 @@ class ProjectController {
         } else {
             flash.perkupdate = 'Perk price should be less than campaign amount '+amount
             redirect(controller: 'project', action: 'manageproject',fragment: 'rewards', params:['projectTitle':title])
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def addcampaignsupporter() {
+        def project = projectService.getProjectById(params.projectId)
+        if (project) {
+            def fundRaiser = params.fundRaiser
+            def message = userService.getCampaignSupporter(project)
+            flash.add_campaign_supporter = message
+            
+            def title = projectService.getVanityTitleFromId(params.projectId)
+            def name = userService.getVanityNameFromUsername(params.fundRaiser, params.projectId)
+            if(title && name){
+                redirect (action:'show', params:['projectTitle':title,'fr':name])
+            } else {
+                render (view: '/error')
+            }
+        } else {
+            render (view: '/error')
         }
     }
 }

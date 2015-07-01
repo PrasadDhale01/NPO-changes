@@ -74,6 +74,11 @@
                         ${flash.teamUpdatemessage}
                     </div>
                 </g:if>
+                <g:if test="${flash.add_campaign_supporter}">
+                    <div class="alert alert-success show-msz" align="center">
+                        ${flash.add_campaign_supporter}
+                    </div>
+                </g:if>
                 <div class="col-md-12 green-heading campaignTitle text-center">
 	                <h1><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
 		            	 ${projectTitle} 

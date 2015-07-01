@@ -85,15 +85,6 @@ $(function() {
 	    }
 	});
 	
-	$('.display-footer-text').hover(function(){
-		var url=$('#b_url').val();
-		$('.footer-start-cmpg-img').attr('src','https://s3.amazonaws.com/crowdera/assets/hover-start-a-campaign-footer-btn.png');
-		$(this).attr('href',url+'/campaigns/create');
-	}).mouseleave(function(){
-		$('.footer-start-cmpg-img').attr('src','https://s3.amazonaws.com/crowdera/assets/start-your-campaign-footer-button.png');
-		$(this).attr('href','#');
-	});
-	
 	var isvalidsize =  false;
 	$('#attachments').change(function(event) {
         var files = event.target.files; // FileList object
@@ -130,6 +121,7 @@ $(function() {
             $('#attachments').val('');
         }
     });
+	
 });
 
 $(window).load(function() {
@@ -168,3 +160,14 @@ function hideNavigation(){
 	document.getElementById('indicators').style.display = 'none';
 	document.getElementById('navigators').style.display = 'none';
 }
+
+$( document ).ready(function() {
+	var fb = $('#fbUser-login').val();
+	if (fb) {
+	    if (confirm('It looks like you already have another account with same email. Would you like to merge the accounts?')) {
+		    window.location.href =$("#b_url").val()+"/login/facebook_login/?userResponse=yes";
+	    } else {
+		    window.location.href =$("#b_url").val()+"/logout";
+	    }
+	}
+});

@@ -29,33 +29,52 @@
     username = currentFundraiser.email
 %>
 <div class="modal-footer tile-footer tileanstitle-goals">
-    <div class="row tilepadding">
-        <div class="manage-tiles">
-            <div class="col-md-5 col-xs-5">
-                <h5 class="text-center tile-goal"><span class="lead">$${amount}</span><br/><p class="tile-text-size">GOAL</p></h5>
-            </div>
-        </div>
-        <div class="col-md-3 col-md-offset-1 col-sm-3 col-sm-offset-2 col-xs-3 col-xs-offset-2 progress-pie-chart" data-percent="43">
+	<div class="row icons-centering">
+		<div class="col-xs-4 col-sm-4 col-md-4 goalIcon">
+			<img src="//s3.amazonaws.com/crowdera/assets/goal-icon.png">
+		</div>
+		<div class="col-xs-4 col-sm-4 col-md-4 progress-pie-chart show-contri-tile progressBarIcon" data-percent="43">
             <div class="c100  p${cents} pie-tile pie-css text-center mobile-pie">
                 <span class="c999">${percent}%</span>
                 <div class="slice">
-                    <div class="bar"></div>
-                    <div class="fill"></div>
+                    <div class="bar progressBar"></div>
+                    <div class="fill progressBar"></div>
                 </div>
             </div>
         </div>
+		<div class="col-xs-4 col-sm-4 col-md-4 daysleftIcon">
+			<img src="//s3.amazonaws.com/crowdera/assets/daysleft.png">
+		</div>
+	</div>
+    <div class="row amount-centering">
+    	<div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
+        		<span class="text-center tile-goal show-contribution-amt-tile">$<span class="lead show-contribution-amt-tile">${amount}</span></span>
+        </div>
+        <div class="col-md-4 col-xs-4 amount-alignment contribution-border amount-text-align text-center">
+			<span class="text-center tile-goal show-contribution-amt-tile">$<span class="lead show-contribution-amt-tile">${contributedSoFar}</span></span>
+		</div>
+        
         <g:if test="${ended}">
-            <div class="col-md-3 col-xs-3">
-                <h6 class="text-center"><span class="lead">0</span><br><p class="tile-text-size">DAYS TO GO</p></h6>
+            <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size contribution-tile show-contribution-amt-tile">
+                <span class="days-alignment show-contribution-amt-tile ">DAYS<br>LEFT</span>
+                <span class="tile-day-num show-contribution-amt-tile ">00</span>
             </div>
         </g:if>
         <g:else>
             <!-- Time left till end date. -->
-            <div class="manage-tileanstitle">
-                <div class="col-md-3 col-xs-3">
-                    <h6 class="text-center"><span class="lead">${day}</span><br><p class="tile-text-size">DAYS TO GO</p></h6>
-                </div>
-            </div> 
+<%--            <div class="col-xs-4 col-sm-4 col-md-4 daysleft">--%>
+<%--                <div class="col-xs-6 col-sm-6 col-md-6 daysleft days-text"><p class="tile-text-size">DAYS<br>LEFT</p></div>--%>
+<%--                <div class="col-xs-6 col-sm-6 col-md-6 daysleft days-num"><h6 class="text-center"><span class="lead tab-amount">${day}</span></h6></div>--%>
+<%--            </div>--%>
+            <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size contribution-tile show-contribution-amt-tile">
+               <span class="days-alignment">DAYS<br>LEFT</span>
+               <g:if test="${projectService.getRemainingDay(project) > 0 && projectService.getRemainingDay(project) < 10 }">
+                  	<span class="tile-day-num show-contribution-amt-tile ">0${projectService.getRemainingDay(project)}</span>
+               </g:if>
+               <g:else>
+                  	<span class="tile-day-num show-contribution-amt-tile ">${projectService.getRemainingDay(project)}</span>
+               </g:else>
+           </div>
         </g:else>
     </div>
 </div>

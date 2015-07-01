@@ -34,10 +34,12 @@
 <%--                <input type="checkbox" value="remember-me" id="remember_me" name='${rememberMeParameter}' <g:if test='${hasCookie}'>checked='checked'</g:if> />--%>
 <%--                Remember me--%>
 <%--            </label>--%>
+            <g:link controller="login" action="edit_reset">Forgot your password?</g:link><br><br>
             <button class="btn btn-primary btn-block" type="submit" id="submit">Sign in</button>
-            <g:link controller="login" action="edit_reset">Forgot your password?</g:link>
-        </form>
 
+            <p>New to Crowdera? <g:link controller="login" action="register">Sign up</g:link> </p>
+        </form>
+        
     </div>
 </div>
 </body>

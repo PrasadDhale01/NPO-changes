@@ -22,6 +22,7 @@
 </head>
 <body>
 	<input type="hidden" id="b_url" value="<%=base_Url%>" /> 
+	<input type="hidden" id="fbUser-login" value="${fb}"/>
     <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
     	<g:render template="jumbotron"></g:render>
     </div>

@@ -31,8 +31,21 @@ class LoginController {
     
     def facebook_user_login() {
         User user = userService.getCurrentUser();
-        facebookService.getFacebookUserDetails(user);
-        redirect (controller:'home', action:'index')
+        boolean ifFbUserAlreadyExist = facebookService.getFacebookUserDetails(user);
+        if (ifFbUserAlreadyExist) {
+            redirect (controller:'home', action:'index', params:[fb: 'yes'])
+        } else {
+            redirect (controller:'home', action:'index')
+        }
+    }
+    
+    def facebook_login() {
+        if (params.userResponse.equalsIgnoreCase("yes")) {
+            facebookService.mergeFacebookUser()
+            redirect (controller:'home', action:'index')
+        } else {
+            redirect controller:'logout'
+        }
     }
 
     def user_request(){
@@ -52,7 +65,7 @@ class LoginController {
                 
             mandrillService.sendUserResponseToUserRequest(user)
             }
-        }           
+        }    
     }
 
     @Secured(['ROLE_ADMIN'])

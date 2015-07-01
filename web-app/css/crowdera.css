@@ -665,62 +665,62 @@ a {
 		width: 158px;
 	}
 	.amount-centering {
-    	display: block;
+    	    display: block;
 	    margin-left: auto;
 	    margin-right: auto;
 	    width:248px !important;
 	}
 	.icons-centering{
-    	display: block;
-    	margin-left: auto;
-    	margin-right: auto;
-    	width:248px !important;
+    	    display: block;
+    	    margin-left: auto;
+    	    margin-right: auto;
+    	    width:248px !important;
 	}
 	.show-contri-tile.progressBarIcon {
-    	border-left: 1px solid #dddddd;
-    	border-right: 1px solid #dddddd;
-    	padding-left: 24px !important;
-    	padding-right: 24px !important;
+    	   border-left: 1px solid #dddddd;
+    	   border-right: 1px solid #dddddd;
+    	   padding-left: 24px !important;
+    	   padding-right: 24px !important;
 	}
 	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
-    	font-size: 10px;
-    	line-height: 5px;
-    	margin-bottom: 0;
-    	margin-top: 10px;
-    	padding-left: 18px;
-    	padding-right: 18px;
+    	   font-size: 10px;
+    	   line-height: 5px;
+    	   margin-bottom: 0;
+    	   margin-top: 10px;
+    	   padding-left: 18px;
+    	   padding-right: 18px;
 	}
 	span.tile-day-num.show-contribution-amt-tile  {
-    	color: #000 !important;
-    	font-size: 19px !important;
-    	font-weight: bold;
+    	   color: #000 !important;
+    	   font-size: 19px !important;
+    	   font-weight: bold;
 	}
 	.tile-goal.show-contribution-amt-tile {
-    	font-size: 19px !important;
+    	   font-size: 19px !important;
 	}
 	span.tile-day-num {
-    	color: #000 !important;
-    	font-size: 22px !important;
-    	font-weight: bold;
+    	   color: #000 !important;
+    	   font-size: 22px !important;
+    	   font-weight: bold;
 	}
 	.lead.show-contribution-amt-tile {
-    	font-size: 19px !important;
-    	font-weight: bold !important;
+    	   font-size: 19px !important;
+    	   font-weight: bold !important;
 	}
 	.lead{
-		font-size: 22px !important;
-    	font-weight: bold !important;
+	   font-size: 22px !important;
+    	   font-weight: bold !important;
 	}
 	.show-tile-text-size {
-    	font-size: 9px !important;
-    	line-height: 5px;
-    	margin-bottom: 0;
-    	margin-top: 10px;
-    	padding-left: 22px;
-    	padding-right: 22px;
+    	  font-size: 9px !important;
+    	  line-height: 5px;
+    	  margin-bottom: 0;
+    	  margin-top: 10px;
+    	  padding-left: 22px;
+    	  padding-right: 22px;
 	}
 	.footer-input-align .text-email {
-    	width: 130% !important;
+    	  width: 130% !important;
 	}
 	.footer-newsletter .help-block {
     	color: #f04124;
@@ -876,59 +876,59 @@ a {
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
 	.amount-centering {
-    	display: block;
+    	    display: block;
 	    margin-left: auto;
 	    margin-right: auto;
 	    width:248px !important;
 	}
 	.icons-centering{
-    	display: block;
-    	margin-left: auto;
-    	margin-right: auto;
-    	width:248px !important;
+    	   display: block;
+    	   margin-left: auto;
+    	   margin-right: auto;
+    	   width:248px !important;
 	}
 	.show-contri-tile.progressBarIcon {
-    	border-left: 1px solid #dddddd;
-    	border-right: 1px solid #dddddd;
-    	padding-left: 24px !important;
-    	padding-right: 24px !important;
+    	   border-left: 1px solid #dddddd;
+    	   border-right: 1px solid #dddddd;
+    	   padding-left: 24px !important;
+    	   padding-right: 24px !important;
 	}
 	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
-    	font-size: 10px;
-    	line-height: 5px;
-    	margin-bottom: 0;
-    	margin-top: 10px;
-    	padding-left: 18px;
-    	padding-right: 18px;
+    	  font-size: 10px;
+    	  line-height: 5px;
+    	  margin-bottom: 0;
+    	  margin-top: 10px;
+    	  padding-left: 18px;
+    	  padding-right: 18px;
 	}
 	span.tile-day-num.show-contribution-amt-tile  {
-    	color: #000 !important;
-    	font-size: 19px !important;
-    	font-weight: bold;
+    	  color: #000 !important;
+    	  font-size: 19px !important;
+    	  font-weight: bold;
 	}
 	.tile-goal.show-contribution-amt-tile {
-    	font-size: 19px !important;
+    	  font-size: 19px !important;
 	}
 	span.tile-day-num {
-    	color: #000 !important;
-    	font-size: 22px !important;
-    	font-weight: bold;
+    	  color: #000 !important;
+    	  font-size: 22px !important;
+    	  font-weight: bold;
 	}
 	.lead.show-contribution-amt-tile {
-    	font-size: 19px !important;
-    	font-weight: bold !important;
+    	  font-size: 19px !important;
+    	  font-weight: bold !important;
 	}
 	.lead{
-		font-size: 22px !important;
-    	font-weight: bold !important;
+	  font-size: 22px !important;
+    	  font-weight: bold !important;
 	}
 	.show-tile-text-size {
-    	font-size: 9px !important;
-    	line-height: 5px;
-    	margin-bottom: 0;
-    	margin-top: 10px;
-    	padding-left: 22px;
-    	padding-right: 22px;
+    	  font-size: 9px !important;
+    	  line-height: 5px;
+    	  margin-bottom: 0;
+    	  margin-top: 10px;
+    	  padding-left: 22px;
+    	  padding-right: 22px;
 	}
 	.footer-newsletter .help-block {
     	color: #f04124;
@@ -2011,30 +2011,30 @@ footer .footerbottomsection {
     width:100%;
 }
 .over{
-	left: 16px;
+    left: 16px;
     position: absolute;
     top: 0;
     z-index: 1;
 }
 .over.teamtile-banner{
-	left: -1px !important;
+    left: -1px !important;
     position: absolute;
     top: 0;
     z-index: 1;
 }
 .over.show-tile{
-	margin-left: 9px;
-	position:  absolute;
-	top:8px;
-	left:0;
-	z-index:1;
+    margin-left: 9px;
+    position:  absolute;
+    top:8px;
+    left:0;
+    z-index:1;
 }
 .over.user-tile{
-	margin-left: 9px;
-	position:  absolute;
-	top:8px;
-	left:0;
-	z-index:1;
+    margin-left: 9px;
+    position:  absolute;
+    top:8px;
+    left:0;
+    z-index:1;
 }
 .deleteIconAbove{
 	position: absolute;
@@ -4542,63 +4542,63 @@ textarea.form-control {
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
 	.amount-centering {
-    	display: block;
+    	    display: block;
 	    margin-left: auto;
 	    margin-right: auto;
 	    width:248px !important;
 	}
 	.icons-centering{
-    	display: block;
-    	margin-left: auto;
-    	margin-right: auto;
-    	width:248px !important;
+    	   display: block;
+    	   margin-left: auto;
+    	   margin-right: auto;
+    	   width:248px !important;
 	}
 	.show-contri-tile.progressBarIcon {
-    	border-left: 1px solid #dddddd;
-    	border-right: 1px solid #dddddd;
-    	padding-left: 24px !important;
-    	padding-right: 24px !important;
+    	   border-left: 1px solid #dddddd;
+    	   border-right: 1px solid #dddddd;
+    	   padding-left: 24px !important;
+    	   padding-right: 24px !important;
 	}
 	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
-    	font-size: 10px;
-    	line-height: 5px;
-    	margin-bottom: 0;
-    	margin-top: 10px;
-    	padding-left: 18px;
-    	padding-right: 18px;
+    	   font-size: 10px;
+    	   line-height: 5px;
+    	   margin-bottom: 0;
+    	   margin-top: 10px;
+    	   padding-left: 18px;
+    	   padding-right: 18px;
 	}
 	span.tile-day-num.show-contribution-amt-tile  {
-    	color: #000 !important;
-    	font-size: 19px !important;
-    	font-weight: bold;
+    	   color: #000 !important;
+    	   font-size: 19px !important;
+    	   font-weight: bold;
 	}
 	.tile-goal.show-contribution-amt-tile {
-    	font-size: 19px !important;
+    	   font-size: 19px !important;
 	}
 	span.tile-day-num {
-    	color: #000 !important;
-    	font-size: 20px !important;
-    	font-weight: bold;
+    	   color: #000 !important;
+    	   font-size: 20px !important;
+    	   font-weight: bold;
 	}
 	.lead.show-contribution-amt-tile {
-    	font-size: 19px !important;
-    	font-weight: bold !important;
+    	  font-size: 19px !important;
+    	  font-weight: bold !important;
 	}
 	.lead{
-		font-size: 20px !important;
-    	font-weight: bold !important;
+	  font-size: 20px !important;
+    	  font-weight: bold !important;
 	}
 	.tile-goal{
-		font-size: 20px !important;
-    	font-weight:normal !important;
+	  font-size: 20px !important;
+    	  font-weight:normal !important;
 	}
 	.show-tile-text-size {
-    	font-size: 9px !important;
-    	line-height: 5px;
-    	margin-bottom: 0;
-    	margin-top: 10px;
-    	padding-left: 22px;
-    	padding-right: 22px;
+    	  font-size: 9px !important;
+    	  line-height: 5px;
+    	  margin-bottom: 0;
+    	  margin-top: 10px;
+    	  padding-left: 22px;
+    	  padding-right: 22px;
 	}
 	.validate-paddings {
     	padding: 0;
@@ -5393,7 +5393,7 @@ a.footerlink {
 	margin-top: 10px;
 }
 .tileanstitle-goals{
-	border-color: #dddddd;
+    border-color: #dddddd;
     border-style: solid;
     border-width: 1px;
     margin-bottom: 15px;
@@ -5401,12 +5401,12 @@ a.footerlink {
     text-align: left;
 }
 .goalIcon img{
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
 }
 .show-tile.progressBarIcon{
-	padding-left: 25px;
+    padding-left: 25px;
     padding-right: 25px;
 }
 .show-contri-tile{
@@ -5417,8 +5417,8 @@ a.footerlink {
 	border-right:1px solid #dddddd;
 }
 .show-contri-tile.progressBarIcon {
-	border-left:1px solid #dddddd;
-	border-right:1px solid #dddddd;
+    border-left:1px solid #dddddd;
+    border-right:1px solid #dddddd;
     padding-left: 40px;
     padding-right: 40px;
 }
@@ -5963,7 +5963,7 @@ p.tile-text-size {
     font-size: 73%;
 }
 .show-tile-text-size{
-	font-size: 10px;
+    font-size: 10px;
     line-height: 5px;
     margin-bottom: 0;
     margin-top: 10px;
@@ -5979,9 +5979,9 @@ p.tile-text-size {
     padding-right: 30px;
 }
 span.tile-day-num{
-	color: #000 !important;
-	font-weight:bold;
-	font-size:24px;
+    color: #000 !important;
+    font-weight:bold;
+    font-size:24px;
 }
 .manage-tiles {
     width: 75%;

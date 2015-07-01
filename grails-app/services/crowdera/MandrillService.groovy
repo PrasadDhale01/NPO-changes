@@ -446,48 +446,65 @@ class MandrillService {
     
     def sendUpdateEmailsToContributors(Project project,ProjectUpdate projectUpdate, User currentUser){
         def contributors=project.contributions
+        
+        contributors.each { contributor ->
+            if(contributor.contributorEmail != "anonymous@example.com" && contributor.contributorEmail !=null){
+                def contributorName = contributor.contributorName
+                def contributorEmail = contributor.contributorEmail
+                sendUpdateEmails(contributorName, contributorEmail, project, projectUpdate, currentUser)
+            }
+        }
+        
+        def supporters = project.supporters
+        supporters.each { supporter ->
+            def contributor = Contribution.findByUserAndProject(supporter.user, project)
+            if (!contributor) {
+                def name = supporter.user.firstName
+                def email = supporter.user.email
+                sendUpdateEmails( name, email, project, projectUpdate, currentUser)
+            }
+        }
+    }
+    
+    def sendUpdateEmails(def name, def email, Project project, ProjectUpdate projectUpdate,User currentUser) {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
         List imageUrls = projectUpdate.imageUrls
-		def projectImageUrl
+        def projectImageUrl
         def url
         if(imageUrls) {
-            url = imageUrls[0].getUrl()    
-			if(url.startsWith("https") || url.startsWith("http")) {
-				projectImageUrl = url
-			} else {
-				projectImageUrl = "https:"+url
-			}
+            url = imageUrls[0].getUrl()
+            if(url.startsWith("https") || url.startsWith("http")) {
+                projectImageUrl = url
+            } else {
+                projectImageUrl = "https:"+url
+            }
         }
-        contributors.each {contributor ->
-			if(contributor.contributorEmail != "anonymous@example.com" && contributor.contributorEmail !=null){
-                def globalMergeVars = [[
-                   'name': 'LINK',
-                   'content': link
-                ],[
-                    'name': 'NAME',
-                    'content': contributor.contributorName
-                ],[
-                    'name': 'STORY',
-                    'content': projectUpdate.story
-                ],[
-                    'name': 'userName',
-                    'content': currentUser.firstName+" "+currentUser.lastName
-                ],[
-                    'name': 'EMAIL',
-                    'content': contributor.contributorEmail
-                ], [
-                    'name': 'TITLE',
-                    'content': project.title
-                ], [
-                    'name': 'IMAGEURL',
-                    'content': projectImageUrl
-                ]]
-                
-                def tags = ['campaign-update']
-                
-                inviteToAdmin(contributor.contributorEmail, 'campaign-update', globalMergeVars, tags)
-			}
-        }
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+         ],[
+             'name': 'NAME',
+             'content': name
+         ],[
+             'name': 'STORY',
+             'content': projectUpdate.story
+         ],[
+             'name': 'userName',
+             'content': currentUser.firstName+" "+currentUser.lastName
+         ],[
+             'name': 'EMAIL',
+             'content': email
+         ], [
+             'name': 'TITLE',
+             'content': project.title
+         ], [
+             'name': 'IMAGEURL',
+             'content': projectImageUrl
+         ]]
+         
+         def tags = ['campaign-update']
+         
+         inviteToAdmin(email, 'campaign-update', globalMergeVars, tags)
     }
     
     def sendInvitationForTeam(def emailList, String name, String message, Project project) {

@@ -492,6 +492,15 @@
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
     
+    $('#add-campaign-supporter').popover({
+        content: 'Follow this Campaign',
+        trigger: 'manual',
+        placement: 'bottom'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
+    
     $('form').submit(function() {
         if($(".fundFormDesktop").valid()) {
         	$('#btnFundDesktop').prop('disabled','disabled');

@@ -1,10 +1,24 @@
 package crowdera
 
 import grails.plugin.springsecurity.annotation.Secured
+
 import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.apache.poi.ss.usermodel.Workbook
 import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
+
+import groovy.json.JsonSlurper
+import groovyx.net.http.ContentType
+import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.Method
+
+import org.apache.http.HttpEntity
+import org.apache.http.HttpResponse
+import org.apache.http.client.HttpClient
+import org.apache.http.client.methods.HttpPost
+import org.apache.http.entity.StringEntity
+import org.apache.http.impl.client.DefaultHttpClient
+import org.apache.http.util.EntityUtils
 
 class ProjectController {
     def userService
@@ -1077,4 +1091,40 @@ class ProjectController {
             render (view: '/error')
         }
     }
+	
+	def paypalEmailVerification (){
+	    def email = request.getParameter("email")
+		String str
+		String ack
+		
+		def BASE_URL = grailsApplication.config.crowdera.paypal.GetVerifiedStatus_URL
+		
+		HttpClient httpclient = new DefaultHttpClient()
+		HttpPost httppost = new HttpPost(BASE_URL)
+
+		httppost.setHeader("X-PAYPAL-SECURITY-USERID","${grailsApplication.config.crowdera.paypal.X_PAYPAL_SECURITY_USERID}")
+		httppost.setHeader("X-PAYPAL-SECURITY-PASSWORD","${grailsApplication.config.crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD}")
+		httppost.setHeader("X-PAYPAL-SECURITY-SIGNATURE","${grailsApplication.config.crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE}")
+		// Global Sandbox Application ID
+		httppost.setHeader("X-PAYPAL-APPLICATION-ID","${grailsApplication.config.crowdera.paypal.X_PAYPAL_APPLICATION_ID}")
+		// Input and output formats
+		httppost.setHeader("X-PAYPAL-REQUEST-DATA-FORMAT","${grailsApplication.config.crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT}")
+		httppost.setHeader("X-PAYPAL-RESPONSE-DATA-FORMAT","${grailsApplication.config.crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT}")
+		
+		StringEntity input = new StringEntity("emailAddress="+email+"&matchCriteria=NONE")
+
+		httppost.setEntity(input)
+
+		HttpResponse httpres = httpclient.execute(httppost)
+		int status = httpres.getStatusLine().getStatusCode()
+		if (status == 200){
+			HttpEntity entity = httpres.getEntity()
+			if (entity != null){
+				str = EntityUtils.toString(entity)
+				def json = new JsonSlurper().parseText(str)
+				ack = json.responseEnvelope.ack
+			}
+		}
+		render ack
+	}
 }

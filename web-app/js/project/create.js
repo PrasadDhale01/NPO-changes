@@ -166,7 +166,7 @@ $(function() {
                 error.appendTo(element.parent().parent());
             }else if($(element).prop("id") == "iconfile") {
                 error.appendTo(element.parent().parent());
-            }else{ 
+            }else{
                 error.insertAfter(element);
             }
         },//end error Placement
@@ -192,7 +192,8 @@ $(function() {
     	});
     	$('[name="paypalEmail"]').rules("add", {
     		required: true,
-        	email:true
+        	email:true,
+        	isPaypalEmailVerified : true
     	});
         $( "#projectImageFile" ).rules( "add", {
             required: true,
@@ -200,7 +201,7 @@ $(function() {
                 required: "Please upload at least one campaign image"
             }
         });
-    	
+        
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',false);
     		$('#campaigncreate').find('form').submit();
@@ -208,6 +209,14 @@ $(function() {
     		$('#saveasdraft').attr('disabled','disabled');
     	}
     });
+    
+    $.validator.addMethod('isPaypalEmailVerified', function (value, element) {
+        var ack = $("#paypalEmailAck").val();
+        if(ack == 'Failure') {
+            return (ack == 'Success') ? ack : false;
+        }
+        return true;
+    }, "Please enter verified paypal email id");
 
     $('#saveasdraft').on('click', function(){  // capture the click
     	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"]').each(function () {
@@ -722,6 +731,22 @@ function setTitleText(){
               });
           });
         });
+   });
+    
+   $('#paypalEmailId').change(function(){
+	   var email =  $('#paypalEmailId').val();
+	   var firstName = $('#firstName').val();
+	   var lastName = $('#lastName').val();
+	   $.ajax({
+           type:'post',
+           url:$("#b_url").val()+'/project/paypalEmailVerification',
+           data:'email='+email+'&firstName='+firstName+'&lastName='+lastName,
+           success: function(data){
+               $('#paypalEmailAck').val(data);
+           }
+       }).error(function(){
+       	alert('An error occured');
+       });
    });
 
 /*Javascript error raised due to tooltip is resolved*/

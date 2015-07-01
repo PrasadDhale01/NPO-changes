@@ -295,7 +295,7 @@
 
                                 <g:each in="${project.contributions.reverse()}" var="contributions">
                                     <%
-                                        def date = contributions.date.format('YYYY-MM-DD HH:mm:ss')
+                                        def date = contributions.date.format('YYYY:MM:dd HH:mm:ss')
                                         def friendlyName = userService.getFriendlyName(contributions.user)
                                         def isFacebookUser = userService.isFacebookUser(contributions.user)
                                         def userFacebookUrl = facebookService.getUserFacebookUrl(contributions.user)

@@ -2,7 +2,7 @@
 <g:set var="userService" bean="userService" />
 <%@ page import="java.text.SimpleDateFormat" %>
 <%  
-    SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM, YYYY");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd");
     SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
     def date = dateFormat.format(transaction.contribution.date);
     def time = timeFormat.format(transaction.contribution.date);

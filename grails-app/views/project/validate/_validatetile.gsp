@@ -30,65 +30,61 @@
 
 <g:if test="${!projectValidate}">
     <div class="fedu thumbnail grow validate-paddings">
-        <div class="blacknwhite validate-style">
+        <div class="blacknwhite">
             <g:link controller="project" action="validateShowCampaign" id="${project.id}" title="${project.title}">
                 <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
             </g:link>
         </div>
-	<div class="caption">
-        <div class="project-title">
-            <g:link controller="project" action="validateShowCampaign" id="${project.id}" title="${project.title}">
-                ${project.title}
-            </g:link>
-        </div>
-        <hr class="tile-separator">
-        <div class="project-story-span">
-            ${project.description}
-        </div>
+	<div class="caption project-title project-story-span tile-min-height">
+        <g:link controller="project" action="validateShowCampaign" id="${project.id}" title="${project.title}">
+              ${project.title.toUpperCase()}
+        </g:link>
+        <br>
+        <span>${project.description}</span>
     </div>
-	<div class="modal-footer tile-footer validate-percentage-style">
-        <div class="row tilepadding">
-            <div class="col-sm-5 col-sm-offset-1 col-xs-5 col-xs-offset-1 progress-pie-chart" data-percent="43">
+	<div class="modal-footer tile-footer tile-fonts-footer">
+        <div class="row">
+        	<div class="col-xs-4 col-sm-4 col-md-4 goalIcon">
+				<img src="//s3.amazonaws.com/crowdera/assets/tile-goal-icon.png">
+			</div>
+			<div class="col-xs-4 col-sm-4 col-md-4 daysleftIcon campaign-tile-border">
+				<img src="//s3.amazonaws.com/crowdera/assets/timeleft.png">
+			</div>
+            <div class="col-sm-4 col-xs-4 progress-pie-chart show-tile progressBarIcon" data-percent="43">
 				<div class="c100 p${cents} small text-center">
                     <span>${percentage}%</span>
                     <div class="slice">
-                        <div class="bar"></div>
-                        <div class="fill"></div>
+                        <div class="bar showprogressBar"></div>
+                        <div class="fill showprogressBar"></div>
                     </div>
                 </div>
             </div>
-            <g:if test="${isFundingAchieved}">
-				<div class="col-md-6 col-xs-6">
-					<h6 class="text-center validate-achived-raised">
-						<span class="lead">$${contribution}</span><br />ACHIEVED
-					</h6>
-				</div>
-			</g:if>
-			<g:else>
-			    <div class="col-md-6 col-xs-6">
-					<h6 class="text-center validate-achived-raised">
-						<span class="lead">$${contribution}</span><br />RAISED
-					</h6>
-				</div>
-			</g:else>
-        </div>
-    </div>
-    <div class="modal-footer tile-footer validate-goal">
-        <div class="row tilepadding">
-            <div class="col-md-6 col-xs-6">
-                <h6 class="text-center"><span class="lead">$${amount}</span><br/>GOAL</h6>
-            </div>
-            <g:if test="${ended}">
-                <div class="col-md-6 col-xs-6">
-                    <h6 class="text-center"><span class="lead">0</span><br>DAYS TO GO</h6>
+         </div>
+         <div class="row tilepadding">
+            <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
+        		<span class="text-center tile-goal">$<span class="lead">${amount}</span></span>
+        	</div>
+			<g:if test="${ended}">
+                <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size  campaign-tile-border">
+                    <span class="days-alignment">DAYS<br>LEFT</span>
+                	<span class="tile-day-num">00</span>
                 </div>
             </g:if>
             <g:else>
                 <!-- Time left till end date. -->
-                <div class="col-md-6 col-xs-6">
-                    <h6 class="text-center"><span class="lead">${projectService.getRemainingDay(project)}</span><br>DAYS TO GO</h6>
+                <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size campaign-tile-border">
+                    <span class="days-alignment">DAYS<br>LEFT</span>
+                	<g:if test="${projectService.getRemainingDay(project) > 0 && projectService.getRemainingDay(project) < 10 }">
+                    	<span class="tile-day-num">0${projectService.getRemainingDay(project)}</span>
+                    </g:if>
+                    <g:else>
+                    	<span class="tile-day-num">${projectService.getRemainingDay(project)}</span>
+                    </g:else>
                 </div>
             </g:else>
+             <div class="col-md-4 col-xs-4 amount-alignment amount-text-align text-center">
+				<span class="text-center tile-goal">$<span class="lead">${contribution}</span></span>
+			</div>
         </div>
     </div>
 </div> 

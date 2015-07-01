@@ -285,4 +285,11 @@ class ContributionService {
         }
         return shippingDetails
     }
+	
+	def getNumberOfDaysForContribution(Contribution contribution) {
+		def contributionDate = contribution.date;
+		def currentDate = new Date();
+		def numberOfDays = currentDate - contributionDate
+		return numberOfDays
+    }
 }

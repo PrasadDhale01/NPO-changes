@@ -91,7 +91,7 @@
                             <h4 class="green-heading"> by ${fundRaiserName}</h4>
                         </div>
                     </g:if>
-					<div class="col-md-12">
+					<div class="col-md-12 manage-Top-tabs-mobile">
 						<ul class="nav nav-tabs manage-projects nav-justified"
 							style="margin-bottom: 10px;">
 							<li class="active"><a href="#essentials" data-toggle="tab">

@@ -75,7 +75,8 @@ $(function() {
             },
             paypalEmail: {
             	required: true,
-            	email:true
+            	email:true,
+                isPaypalEmailVerified : true
             },
             charitableId: {
             	required: true
@@ -126,6 +127,13 @@ $(function() {
     	}
     });
     
+    $.validator.addMethod('isPaypalEmailVerified', function (value, element) {
+        var ack = $("#paypalEmailAck").val();
+        if(ack == 'Failure') {
+            return (ack == 'Success') ? ack : false;
+        }
+        return true;
+    }, "Please enter verified paypal email id");
 
     $('form').submit(function(){
     	if($('.editForm').valid()){
@@ -383,6 +391,24 @@ $(function() {
                 $('#updateImageFile').val('');
             }
         }
+    });
+    
+    $('#paypalEmailId').change(function(){
+ 	   var email =  $('#paypalEmailId').val();
+ 	   $.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/paypalEmailVerification',
+            data:'email='+email,
+            success: function(data){
+                $('#paypalEmailAck').val(data);
+                if (data == 'Success') {
+             	   $('.paypalVerification').find("span").remove();
+             	   $('.paypalVerification').closest(".form-group").removeClass('has-error');
+                }
+            }
+        }).error(function(){
+        	alert('An error occured');
+        });
     });
     
     /***************************Multiple Image Selection for Edit Campaign Updates*************** */

@@ -146,6 +146,10 @@ $(function() {
             checkBox2:{
               required: true
             },
+            paypalEmail:{
+              email:true,
+              isPaypalEmailVerified : true
+            }
             /*
             imageUrl: {
                 url: true
@@ -180,8 +184,16 @@ $(function() {
         } 	
     });
     
+    $.validator.addMethod('isPaypalEmailVerified', function (value, element) {
+        var ack = $("#paypalEmailAck").val();
+        if(ack == 'Failure') {
+            return (ack == 'Success') ? ack : false;
+        }
+        return true;
+    }, "Please enter verified paypal email id");
+    
     $('#submitProject').on('click', function() {
-    	$('[name="pay"], [name="iconfile"],[name="organizationName"],[name="thumbnail"],[name="answer"],[name="wel"],[name="charitableId"]').each(function () {
+    	$('[name="pay"], [name="iconfile"],[name="organizationName"],[name="thumbnail"],[name="answer"],[name="wel"],[name="charitableId"],[name="paypalEmail"]').each(function () {
             $(this).rules('add', {
                 required: true
             });
@@ -189,11 +201,6 @@ $(function() {
     	$("[name='webAddress']").rules("add", {
     		isWebUrl: true,
     		required: true
-    	});
-    	$('[name="paypalEmail"]').rules("add", {
-    		required: true,
-        	email:true,
-        	isPaypalEmailVerified : true
     	});
         $( "#projectImageFile" ).rules( "add", {
             required: true,
@@ -210,14 +217,6 @@ $(function() {
     	}
     });
     
-    $.validator.addMethod('isPaypalEmailVerified', function (value, element) {
-        var ack = $("#paypalEmailAck").val();
-        if(ack == 'Failure') {
-            return (ack == 'Success') ? ack : false;
-        }
-        return true;
-    }, "Please enter verified paypal email id");
-
     $('#saveasdraft').on('click', function(){  // capture the click
     	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"]').each(function () {
             $(this).rules('remove');
@@ -735,14 +734,16 @@ function setTitleText(){
     
    $('#paypalEmailId').change(function(){
 	   var email =  $('#paypalEmailId').val();
-	   var firstName = $('#firstName').val();
-	   var lastName = $('#lastName').val();
 	   $.ajax({
            type:'post',
            url:$("#b_url").val()+'/project/paypalEmailVerification',
-           data:'email='+email+'&firstName='+firstName+'&lastName='+lastName,
+           data:'email='+email,
            success: function(data){
                $('#paypalEmailAck').val(data);
+               if (data == 'Success') {
+            	   $('.paypalVerification').find("span").remove();
+            	   $('.paypalVerification').closest(".form-group").removeClass('has-error');
+               }
            }
        }).error(function(){
        	alert('An error occured');

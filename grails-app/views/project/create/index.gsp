@@ -218,8 +218,8 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 							<div class="col-sm-12" id="paypalemail">
                                 <div class="form-group">
 									<label class="col-sm-2 control-label">PayPal Email ID </label>
-									<div class="col-sm-4">
-										<input id="paypalEmailId" type="email" class="form-control paypal-create" name="${FORMCONSTANTS.PAYPALEMAIL}">
+									<div class="col-sm-4 paypalVerification">
+										<input id="paypalEmailId" type="email" class="form-control paypal-create ignore" name="${FORMCONSTANTS.PAYPALEMAIL}">
 										<g:hiddenField name="paypalEmailAck" value="" id="paypalEmailAck"/>
 									</div>
 								</div>

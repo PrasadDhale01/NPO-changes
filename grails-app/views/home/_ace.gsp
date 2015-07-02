@@ -39,33 +39,33 @@
 <!-- /.row -->
 </div>--%>
 
-<div class="container">
+<div class="container how-it-work-container">
    <div class="row">
     <h1 class="text-center headingtext">How it works</h1>
    </div> 
 </div>
-<div class="container">
+<div class="container how-it-work-container">
 	<div class="row">
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<div class="col-md-3 col-sm-6 col-xs-12 text-center">
 				<h3 class="headingtext">Start Your Campaign</h3>
-				<span><img src="//s3.amazonaws.com/crowdera/assets/Start-Your-Campaign.jpg" alt="icon-1"></span><br>
+				<span><img src="//s3.amazonaws.com/crowdera/assets/how-start-your-campaign.png" alt="icon-1"></span><br>
 				<p class="how-it-content">Share your passion, idea, or cause in form of touching words, talking images and videos.</p>
 			</div>
 			<div class="col-md-3 col-sm-6 col-xs-12 text-center">
 				<h3 class="headingtext">Engage Your Crowd</h3>
-				<span class="navbar-brand-footer"><img src="//s3.amazonaws.com/crowdera/assets/Engage-Your-Crowd-1.jpg" alt="icon-2"></span>
+				<span class="navbar-brand-footer"><img src="//s3.amazonaws.com/crowdera/assets/how-engage-your-crowd.png" alt="icon-2"></span>
 				<p class="how-it-content">Water your campaign with your social connects and incentivize them with meaningful perks.</p>
 			</div>
 			<div class="clear-both hidden-md hidden-lg"></div>
 			<div class="col-md-3 col-sm-6 col-xs-12 text-center">
 				<h3 class="headingtext">Receive Your Funds</h3>
-				<span><img src="//s3.amazonaws.com/crowdera/assets/Receive-Your-Funds.jpg" alt="icon-3"></span>
+				<span><img src="//s3.amazonaws.com/crowdera/assets/how-receive-your-funds.png" alt="icon-3"></span>
 				<p class="how-it-content">Receive instant contributions via our secured payment gateway and show gratitude.</p>
 			</div>
 			<div class="col-md-3 col-sm-6 col-xs-12 text-center">
 				<h3 class="headingtext">Achieve Your Goals</h3>
-				<span><img src="//s3.amazonaws.com/crowdera/assets/Achieve-Your-Goals.jpg" alt="icon-4"></span>
+				<span><img src="//s3.amazonaws.com/crowdera/assets/how-achieve-your-fund.png" alt="icon-4"></span>
 				<p class="how-it-content">Achieve your goals with raised money, deliver promised perks and keep sharing updates.</p>
 			</div>
 			<div class="clear-both"></div>

@@ -29,13 +29,14 @@ h3.headingtext {
 
 .how-it-content {
     text-align: center;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .greenbg {
-    min-height: 140px;
-    background-color: #ff784f;
+    background-color: #01bbd2;
     color: #fff;
+    min-height: 140px;
+    text-align:center;
 }
 
 .tagline {
@@ -159,7 +160,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 .navbar-default {
     background-color: #fff;
     height: 70px;
-    border-bottom: solid #ff784f 1px;
+    border-bottom: solid #01bbd2 2px;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
@@ -376,7 +377,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 /* Footer
 ------------------------- */
 footer {
-    border-top: solid #ff784f 1px !important;
+    border-top: 2px solid  #01bbd2 !important;
     background-color: #323232;
     padding: 30px 0 0 0;
     margin-top: 25px;
@@ -654,6 +655,74 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.whycrowderadiv-sm{
+		display:inline-flex;
+		padding-left:0px !important;
+		padding-right:0px !important;
+		width:270px;
+	}
+	.whycrowderadiv-sm-padding{
+		padding-right:5px;
+	}
+	.whycrowderacontainer {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 300px !important;
+	}
+	.how-it-work-container {
+		width: 300px !important;
+	}
+	.fbButton{
+		margin-left: auto;
+		margin-top: -58px !important;
+	}
+	.testimonial-inner-container{
+		padding-left:0px !important;
+		padding-rignt:0px !important;
+	}
+	.right-inverted-comma img{
+		height:15px;
+		width:15px;
+	}
+	.left-inverted-comma img{
+		height:15px;
+		width:15px;
+	}
+	.right-inverted-comma{
+		margin-top:48px !important;
+	}
+	.testimonial-name {
+		font-family: "Open Sans";
+		font-size: 15px !important;
+		padding-right: 0px !important;
+	}
+	.testimonial-container{
+		margin-left:auto;
+		margin-right:auto;
+		width:608px !important;
+	}
+	.testimonial-name b{
+		font-size:15px !important;
+	}
+	.greenbg{
+		padding:5px !important;
+	}
+	.greenbg h1, .greenbg h3 {
+		padding: 0px !important;
+	}
+	.bannerheadbtmMargin b {
+		color: #fff;
+		font-family: "Open Sans";
+		font-size: 16px !important;
+		font-weight: 900;
+		line-height: 0px;
+	}
+	.carousel-buttons{
+		position: relative;
+		text-align: center;
+		top: -20px !important;
+	}
 	div.manage-Top-tabs-mobile{
 	    margin-top: 55px;
 	}
@@ -690,8 +759,8 @@ a {
     	   line-height: 5px;
     	   margin-bottom: 0;
     	   margin-top: 10px;
-    	   padding-left: 18px;
-    	   padding-right: 18px;
+    	   padding-left: 17px;
+    	   padding-right: 17px;
 	}
 	span.tile-day-num.show-contribution-amt-tile  {
     	   color: #000 !important;
@@ -853,7 +922,7 @@ a {
 	font-size: 14px;
     }
     .fbButton{
-  	margin-left: -100% !important;
+  	margin-left: auto !important;
   	margin-top: -16% !important;
     }
     .btn-create {
@@ -881,6 +950,82 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.container.whycrowderatemplate.how-it-work-container{
+		margin-left:40px !important;
+		margin-right:40px !important;
+	}
+	.whycrowderadiv-sm{
+		display:inline-flex;
+		padding-left:0px !important;
+		padding-right:0px !important;
+		width:270px;
+	}
+	.whycrowderadiv-sm-padding{
+		padding-right:5px;
+	}
+	.whycrowderacontainer {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 750px !important;
+	}
+	.how-it-work-container {
+		width: 750px !important;
+	}
+	.right-inverted-comma img{
+		height:15px;
+		width:15px;
+	}
+	.left-inverted-comma img{
+		height:15px;
+		width:15px;
+	}
+	.right-inverted-comma{
+		margin-top:48px !important;
+	}
+	.testimonial-name {
+    		font-family: "Open Sans";
+    		font-size: 15px !important;
+    		padding-right: 0px !important;
+	}
+	.testimonial-container{
+		margin-left:auto;
+		margin-right:auto;
+		width:608px !important;
+	}
+	.testimonial-name b{
+		font-size:15px !important;
+	}
+	.greenbg{
+		padding:5px !important;
+	}
+	.greenbg h1, .greenbg h3 {
+    		padding: 0px !important;
+	}
+	.bannerheadbtmMargin b {
+    		color: #fff;
+    		font-family: "Open Sans";
+    		font-size: 16px !important;
+    		font-weight: 900;
+    		line-height: 0px;
+	}
+	.carousel-buttons{
+		position: relative;
+    		text-align: center;
+    		top: -62px !important;
+	}
+	.progressBarIcon {
+		border-left: 1px solid #e7e7e7;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: 25px !important;
+		padding-right: 25px !important;
+	}
+	.teamtile-padding {
+		padding: 0;
+		width:195px !important;
+	}
 	div.nav-tabs.nav-justified > li > a {
         font-size: 8px;
     }
@@ -911,8 +1056,8 @@ a {
     	  line-height: 5px;
     	  margin-bottom: 0;
     	  margin-top: 10px;
-    	  padding-left: 18px;
-    	  padding-right: 18px;
+    	  padding-left: 17px;
+    	  padding-right: 17px;
 	}
 	span.tile-day-num.show-contribution-amt-tile  {
     	  color: #000 !important;
@@ -1058,6 +1203,43 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	.carousel-buttons{
+		position: relative;
+		text-align: center;
+		top: -62px !important;
+	}
+	.fbButton {
+		margin-left: auto;
+	 	margin-top: -55px;
+	}
+	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
+		font-size: 10px;
+		line-height: 5px;
+		margin-bottom: 0;
+		margin-top: 10px;
+		padding-left: 17px !important;
+		padding-right: 17px !important;
+	}
+	.show-tile-text-size.contribution-tile {
+		font-size: 10px;
+		line-height: 5px;
+		margin-bottom: 0;
+		margin-top: 10px;
+		padding-left: 17px !important;
+		padding-right: 17px !important;
+	}
+	.progressBarIcon {
+		border-left: 1px solid #e7e7e7;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: 25px !important;
+		padding-right: 25px !important;
+	}
+	.teamtile-padding {
+		padding: 0;
+		width:195px !important;
+	}
     .form-group.col-sm-6.rewardPriceClass{
         margin-left: -24px !important;
         width:55% !important;
@@ -1212,6 +1394,9 @@ a {
     }
 }
 @media only screen and (min-width:506px) and (max-width: 640px){
+		.shared.contributionShare {
+			margin-top: -61px !important;
+		}
 		.footer-newsletter .help-block {
     		color: #f04124;
     		margin-left: 1px !important;
@@ -2263,7 +2448,7 @@ div.tile-min-height{
 	color:#fff;
     padding: 5px 9px;
     font-size: 16px;
-    border-radius: 48px;
+    border-radius: 0px;
 }
 
 .rewardsection a {
@@ -2273,7 +2458,7 @@ div.tile-min-height{
 .rewardsection-row{
 	padding-bottom:15px;
 	padding-top:15px;
-	border-bottom: 2px solid #fff;
+	border-bottom: 1px solid #c9c9c9;
 }
 .rewardBottomBorder {
     padding-left: 20px;
@@ -2281,13 +2466,16 @@ div.tile-min-height{
 }
 .rewarddescription{
     color: #606060;
+    font-size: 13px;
 	margin-top:6px;
     word-wrap: break-word;
 }
 .rewardsectionheading{
+	font-size: 25px;
+	font-weight:normal;
 	margin-bottom: 0px;
 	margin-top: 0px;
-	font-size: 25px;
+	padding-left:6px;
 }
 .leftcard-column{
 	width:70%; 
@@ -4680,6 +4868,86 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.whycrowderadiv-sm{
+		display:inline-flex;
+		padding-left:0px !important;
+		padding-right:0px !important;
+		width:270px;
+	}
+	.whycrowderadiv-sm-padding{
+		padding-right:5px;
+	}
+	.whycrowderacontainer {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 300px !important;
+	}
+	.how-it-work-container {
+		width: 300px !important;
+	}
+	.fbButton{
+		margin-left: auto;
+		margin-top: -60px !important;
+	}
+	.testimonial-inner-container{
+		padding-left:0px !important;
+		padding-rignt:0px !important;
+		width:300px !important;
+	}
+	.right-inverted-comma img{
+		height:15px;
+		width:15px;
+	}
+	.left-inverted-comma img{
+		height:15px;
+		width:15px;
+	}
+	.right-inverted-comma{
+		margin-top:70px !important;
+	}
+	.testimonial-name {
+		font-family: "Open Sans";
+		font-size: 15px !important;
+		padding-right: 0px !important;
+	}
+	.testimonial-container{
+		margin-left:auto;
+		margin-right:auto;
+		width:300px !important;
+	}
+	.testimonial-name b{
+		font-size:12px !important;
+	}
+	.greenbg{
+		padding:5px !important;
+	}
+	.greenbg h1, .greenbg h3 {
+		padding: 0px !important;
+	}
+	.bannerheadbtmMargin b {
+		color: #fff;
+		font-family: "Open Sans";
+	    font-size: 10px !important;
+		font-weight: 900;
+		line-height: 0px;
+	}
+	.carousel-buttons{
+		position: relative;
+		text-align: center;
+		top: -30px !important;
+	}
+	.contributionShare {
+		margin-top: -18px !important;
+	}
+	.shared.ack-socialicon span {
+		float: right;
+		margin: 5px 5px 5px 3px !important;
+	}
+	.shared span {
+		float: right;
+		margin: 5px 5px 5px -10px !important;
+	}
 	.crowderasupport {
 	    font-size: 114%;
 	    margin-bottom: 20px;
@@ -4715,8 +4983,8 @@ textarea.form-control {
     	   line-height: 5px;
     	   margin-bottom: 0;
     	   margin-top: 10px;
-    	   padding-left: 18px;
-    	   padding-right: 18px;
+    	   padding-left: 17px;
+    	   padding-right: 17px;
 	}
 	span.tile-day-num.show-contribution-amt-tile  {
     	   color: #000 !important;
@@ -5477,7 +5745,6 @@ a.footerlink {
 }
 .social img {
 	padding: 0; 
-	width: 30px;
 	margin: 2px;
 }
 .shared span{
@@ -5658,6 +5925,7 @@ a.footerlink {
 }
 .teamtile-padding{
 	padding: 0;
+	width:220px;
 }
 .teamtile-style{
 	height: 200px; 
@@ -5695,13 +5963,24 @@ a.footerlink {
 .show-comments-date{
 	text-align: left;
 }
+.perk-title{
+	padding: 12px;
+}
 .perks-style{
+	border-bottom-style:solid;
+	border-bottom-width:1px;
+	border-left-width: 0px;
+    border-right-width: 0px;
+    border-top-width: 0px;
+    background-color: #e7e7e7;
+    border-color: #dadada #dadada #b2b2b2 #c9c9c9;
+	margin-top: 0px;
 	text-align: left;
-	margin-top: 30px;
 }
 .perks-supporters{
-	text-align: left; 
+	border: 1px solid #c9c9c9;
 	margin-top:2px;
+	text-align: left;
 }
 .show-team-comments{
 	margin-top: 30px;
@@ -6118,21 +6397,22 @@ p.tile-text-size {
     line-height: 5px;
     margin-bottom: 0;
     margin-top: 10px;
-    padding-left: 22px;
-    padding-right: 22px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 .show-tile-text-size.contribution-tile {
     font-size: 10px;
     line-height: 5px;
     margin-bottom: 0;
     margin-top: 10px;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 29px;
+    padding-right: 29px;
 }
 span.tile-day-num{
     color: #000 !important;
     font-weight:bold;
     font-size:24px;
+    padding-left: 3px;
 }
 .manage-tiles {
     width: 75%;
@@ -6141,7 +6421,7 @@ span.tile-day-num{
     width: 75%;
 }
 .bannerheadbtmMargin {
-	margin-bottom: 20px;
+	line-height:31px;
 }
 
 .wordBreak{
@@ -6170,8 +6450,10 @@ span.tile-day-num{
 	margin-top: -20px;
 }
 .whycrowderacontainer {
-	padding-left: 0px !important;
-    padding-right: 0px !important;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
 }
 #hover-cap-4col .the-crews img {
     position:relative;
@@ -6304,7 +6586,7 @@ ul.menu{
 	margin-top: 20px;
 }
 span.sso {
-	font-size: 22px;
+	font-size: 21px;
 	line-height: 0px;
 	font-weight: 300;
 	color: black;
@@ -6441,4 +6723,78 @@ p.anonymous-top {
 .userimagecolor {
 	background-color: rgb(239, 246, 253);
 }
-
+.shared label{
+	font-size:14px;
+	font-weight:normal;
+	font-family:Open Sans;
+	text-align:center;
+}
+.progressBarIcon{
+	border-left:1px solid #e7e7e7;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	padding-left:33px;
+	padding-right:33px;
+}
+.team-achieve-amt-border{
+	border-left:1px solid #e7e7e7;
+}
+.tile-goal.teamtile {
+    font-size: 19.5px;
+}
+.team-caption{
+	background: black;
+	height:45px;
+	padding:15px;
+	text-align:center;
+	color:#ffffff;
+	font-family:Open Sans;
+	position:absolute;
+	top:78%;
+	left:0px;
+	overflow:hidden;
+	opacity: 0.7;
+    filter: alpha(opacity=60);
+    width:100%;
+    font-weight:bolder;
+    font-size:15px;
+}
+.lead.teamtile{
+    font-size: 19.5px !important;
+    font-weight: bold !important;
+}
+.how-it-work-container{
+	width:1000px;
+}
+.right-inverted-comma{
+	margin-top:53px;
+}
+.header-testimonial{
+	display:inline-flex;
+	margin-top: 14px;
+}
+.testimonial-name{
+	font-family:"Open Sans";
+	font-size:16px;
+	padding-right:0px;
+}
+.testimonial-name img{
+	padding-right:9px;	
+}
+.testimonial-name b{
+	font-family:"Open Sans";
+	font-size:16px;
+	font-weight:900px;
+}
+.bannerheadbtmMargin b {
+	color:#fff;
+	font-family:"Open Sans";
+	font-size:22px;
+	font-weight:900;
+}
+.testimonial-container{
+	margin-left:auto;
+	margin-right:auto;
+	width:903px;
+}

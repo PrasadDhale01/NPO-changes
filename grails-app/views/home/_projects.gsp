@@ -99,9 +99,9 @@
                         </div>
                     </div>
                 </g:if><g:else>
-                    <div class="item">
+                    <div class="item home-campaign-tile-container">
                         <div class="row">
-                            <ul class="thumbnails list-unstyled">
+                            <ul class="thumbnails list-unstyled home-campaign-tile">
                                 <g:each in="${1..cols}">
                                     <% if (index < count) { %>
                                     <li class="col-md-6 col-lg-4 col-xs-12 col-sm-6">

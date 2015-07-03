@@ -153,7 +153,7 @@
 			        ${project.title.toUpperCase()}
 			    </g:link>
 		    </g:else>
-		    <br>
+		    <div class="campaign-title-margin-bottom"></div>
 			<span>${project.description}</span>
 	</div>
 

@@ -6910,7 +6910,8 @@ p.anonymous-top {
 	padding-right:0px;
 }
 .testimonial-name img{
-	padding-right:9px;	
+	padding-right:9px;
+	margin-bottom:5px;
 }
 .testimonial-name b{
 	font-family:"Open Sans";
@@ -6952,4 +6953,7 @@ p.anonymous-top {
 }
 .story-bottom-margin{
 	margin-bottom:10px;
+}
+div.campaign-title-margin-bottom{
+	margin-bottom:5px;
 }

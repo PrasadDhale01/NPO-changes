@@ -59,7 +59,7 @@ Expects the parent containers to be like so:
             <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">
                 ${project.title.toUpperCase()}
             </g:link>
-            <br>
+            <div class="campaign-title-margin-bottom"></div>
        		<span>${project.description}</span>
     </div>
 

@@ -217,10 +217,9 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .fbButton{
-  margin-left: -82%;
-  margin-top: -120px;
+  margin-left: auto;
+  margin-top: -73px;
 }
-
 .btn-fb {
    height:73px;
    width: 200px;
@@ -739,10 +738,6 @@ a {
 	.how-it-work-container {
 		width: 300px !important;
 	}
-	.fbButton{
-		margin-left: auto;
-		margin-top: -58px !important;
-	}
 	.testimonial-inner-container{
 		padding-left:0px !important;
 		padding-rignt:0px !important;
@@ -988,8 +983,8 @@ a {
 	font-size: 14px;
     }
     .fbButton{
-  	margin-left: auto !important;
-  	margin-top: -16% !important;
+		margin-left: auto !important;
+		margin-top: -59px !important;
     }
     .btn-create {
         background-color: white;
@@ -1016,6 +1011,10 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.fbButton{
+		margin-left: auto !important;
+		margin-top: -66px !important;
+    }
 	.subheadingtext {
 		color: #5f676f;
 		font-size: 21px !important;
@@ -1282,7 +1281,6 @@ a {
 	}
 	.fbButton {
 		margin-left: auto;
-	 	margin-top: -55px;
 	}
 	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
 		font-size: 10px;
@@ -2648,11 +2646,6 @@ div.tile-min-height{
         background: rgba(255, 255, 255, 0.3);
    	}
 
-	.fbButton{
-  		margin-left: -81%;
-  		margin-top: -115px;
-	}
-	
     a.left.carousel-control.left-css {
   		margin-top: -4%;
     }
@@ -2704,12 +2697,6 @@ div.tile-min-height{
   		height:30.2px;
   		padding:0px;
 	}
-
-	.fbButton{
-  		margin-left: -565px;
-		margin-top: -111px;
-	}
-
 	.btn-fb {
 		height:71px;
 	}
@@ -2825,12 +2812,6 @@ div.tile-min-height{
         height: 26.4px;
   		padding:0px;
 	}
-
-	.fbButton{
-  		margin-left: -81%;
-		margin-top: -91px;
-	}
-
 	.btn-fb {
 		height: 66px;
 		width: 170px;
@@ -2940,11 +2921,6 @@ div.tile-min-height{
   	padding:0px;
     }
 	
-    .fbButton{
-        margin-left: -81%;
-        margin-top: -84px;
-    }
-
     .btn-fb {
         height: 67px;
         width: 165px;
@@ -3284,12 +3260,6 @@ textarea.form-control {
   		height:30.2px;
   		padding:0px;
 	}
-
-	.fbButton{
-  		margin-left: -387px;
-		margin-top: -74px;
-	}
-
 	.btn-fb {
 		height: 67px;
 		width: 208px;
@@ -3474,16 +3444,10 @@ textarea.form-control {
   	padding:0px;
     }
 
-    .fbButton{
-        margin-left: -78%;
-        margin-top: -55px;
-    }
-
 	.btn-fb {
 		height: 60px;
 		width: 155px;
 	}
-
 	.imageCarouseltextbox .imageCoureselForm{
 	        height: 22px;
                 width: 17%;
@@ -3993,12 +3957,6 @@ textarea.form-control {
         height: 29px;
   		padding:0px;
 	}
-
-	.fbButton{
-  		margin-left: -94%;
-		margin-bottom: -3px;
-	}
-
 	.btn-fb {
 		height: 69px;
 		width: 176px;
@@ -4448,12 +4406,6 @@ textarea.form-control {
         height: 28.2px;
   		padding:0px;
 	}
-
-	.fbButton{
-  		margin-left: -88%;
-  		margin-bottom:-10px;
-	}
-
 	.btn-fb {
 		height: 70px;
         width: 170px;
@@ -4677,10 +4629,6 @@ textarea.form-control {
         margin-left: 73% !important;
         margin-bottom: -17px;
     }
-    .fbButton{
-  	margin-left: -84% !important;
-  	margin-bottom:-10px;
-    }
 	.arrow-mobile-css {
 		margin-right: -11px;
 	}
@@ -4903,10 +4851,6 @@ textarea.form-control {
                 height: 28.2px;
                 padding:0px;
 	}
-	.fbButton{
-  		margin-left: -79% !important;
-  		margin-bottom:-10px;
-	}
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
@@ -5014,7 +4958,7 @@ textarea.form-control {
 	}
 	.fbButton{
 		margin-left: auto;
-		margin-top: -60px !important;
+		margin-top: -65px !important;
 	}
 	.testimonial-inner-container{
 		padding-left:0px !important;
@@ -5359,7 +5303,7 @@ textarea.form-control {
     }
     .btn-fb {
 	height: 65px;
-        width: 151px;
+        width: 135px;
     }
 
 	.imageCarouseltextbox .imageCoureselForm{
@@ -6956,4 +6900,9 @@ p.anonymous-top {
 }
 div.campaign-title-margin-bottom{
 	margin-bottom:5px;
+}
+.carousel-buttons{
+	position: relative;
+    text-align: center;
+    top: -60px;
 }

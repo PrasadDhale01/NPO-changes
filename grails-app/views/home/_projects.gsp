@@ -104,7 +104,7 @@
                             <ul class="thumbnails list-unstyled">
                                 <g:each in="${1..cols}">
                                     <% if (index < count) { %>
-                                    <li class="col-md-4 col-xs-12 col-sm-6">
+                                    <li class="col-md-6 col-lg-4 col-xs-12 col-sm-6">
                                         <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
                                     </li>
                                     <% } %>

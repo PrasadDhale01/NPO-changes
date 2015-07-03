@@ -85,12 +85,12 @@
 <%--        <div class="carousel-inner">--%>
             <g:each in="${(1..pages).toList()}" var="row">
                 <g:if test="${row == 1}">
-                    <div class="item active">
+                    <div class="item active home-campaign-tile-container">
                         <div class="row">
-                            <ul class="thumbnails list-unstyled">
+                            <ul class="thumbnails list-unstyled home-campaign-tile">
                                 <g:each in="${1..cols}">
                                     <% if (index < count) { %>
-                                    <li class="col-md-4 col-xs-12 col-sm-6">
+                                    <li class="col-md-6 col-lg-4 col-xs-12 col-sm-6">
                                         <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
                                     </li>
                                     <% } %>
@@ -115,7 +115,7 @@
                 </g:else>
             </g:each>
             <div class="row text-center explorebtn">
-                <a href="${resource(dir: '/campaigns')}" class="btn btn-primary btn-lg">Explore Campaigns</a>
+                <a href="${resource(dir: '/campaigns')}"></a><img src="//s3.amazonaws.com/crowdera/assets/Explore-Campaigns -Button-img.jpg" class="Explore-Campaigns-Button-img"></a>
             </div>
         </div>
     </div>

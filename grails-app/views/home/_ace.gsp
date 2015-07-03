@@ -41,7 +41,7 @@
 
 <div class="container how-it-work-container">
    <div class="row">
-    <h1 class="text-center headingtext">How it works</h1>
+    <h1 class="text-center headingtext how-it-works-title">How it works</h1>
    </div> 
 </div>
 <div class="container how-it-work-container">
@@ -71,4 +71,7 @@
 			<div class="clear-both"></div>
 		</div>
 	</div>
+	<div class="row text-center explorebtn">
+                <a href="${resource(dir: '/campaigns/create')}" ><img src="//s3.amazonaws.com/crowdera/assets/Start-Your Campaign -Button-img.jpg" class="start-your-campaign-btn-img"></a>
+    </div>
 </div>

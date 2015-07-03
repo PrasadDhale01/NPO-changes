@@ -36,8 +36,8 @@
 		</div>
 	</g:if>
 	<g:elseif test="${project.rejected}">
-		<div class="over user-tiles-widths">
-			<img src="//s3.amazonaws.com/crowdera/assets/rejected.png"  alt="rejected"/>
+		<div class="over user-tile">
+			<img src="//s3.amazonaws.com/crowdera/assets/Rejected-tag.png"  alt="rejected"/>
 		</div>
 	</g:elseif>
 	<g:elseif test="${!project.validated}">

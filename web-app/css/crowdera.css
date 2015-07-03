@@ -12,9 +12,21 @@ body {
 .feduoutercontent {
     margin-top: 64px;
 }
-
-h1.headingtext {
+h1.headingtext.how-it-works-title {
+	color: #005f84;
+    font-size: 44px;
+	font-weight: 900;
     padding: 30px 0 20px;
+}
+h1.headingtext {
+	color:#303030;
+	font-size:44px;
+	font-weight: 900;
+    padding: 30px 0 20px;
+}
+span.headingtext{
+	font-size: 20px;
+    font-weight: normal;
 }
 
 h3.headingtext {
@@ -655,6 +667,60 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.home-campaign-tile-container{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:300px;
+	}
+	.home-campaign-tile .tile-pad {
+		margin-left:-16px;
+		padding: 0;
+		width: 300px !important;
+	}
+	.home-campaign-tile li div.tilepad{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	h1.headingtext.how-it-works-title {
+		color: #005f84;
+		font-size: 35px !important;
+		font-weight: 900;
+		padding: 30px 0 20px;
+	}
+	.subheadingtext {
+		color: #5f676f;
+		font-size: 20px !important;
+		font-weight: 600;
+		padding-top: 12px;
+	}
+	.success-story-title span {
+		color: #303030;
+		font-size: 35px !important;
+		font-weight: 900;
+	}
+	.headingtext1 {
+		color: #005f84;
+		font-size: 35px !important;
+		font-weight: 900;
+		margin-bottom: 20px;
+		margin-top: 20px;
+	}
+	h1.headingtext {
+		color: #303030;
+		font-size: 29px !important;
+		font-weight: 900;
+		padding: 30px 0 20px;
+	}
+	.Explore-Campaigns-Button-img{
+		height:60px;
+		width:230px;
+	}
+	.start-your-campaign-btn-img{
+		height:60px;
+		width:230px;
+	}
 	.whycrowderadiv-sm{
 		display:inline-flex;
 		padding-left:0px !important;
@@ -950,6 +1016,12 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.subheadingtext {
+		color: #5f676f;
+		font-size: 21px !important;
+		font-weight: 600;
+		padding-top: 12px;
+	}
 	.container.whycrowderatemplate.how-it-work-container{
 		margin-left:40px !important;
 		margin-right:40px !important;
@@ -4868,6 +4940,60 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.home-campaign-tile-container{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:300px;
+	}
+	.home-campaign-tile .tile-pad {
+		margin-left:-16px;
+		padding: 0;
+		width: 290px !important;
+	}
+	.home-campaign-tile li div.tilepad{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+	}
+	h1.headingtext.how-it-works-title {
+		color: #005f84;
+		font-size: 35px !important;
+		font-weight: 900;
+		padding: 30px 0 20px;
+	}
+	.subheadingtext {
+		color: #5f676f;
+		font-size: 20px !important;
+		font-weight: 600;
+		padding-top: 12px;
+	}
+	.success-story-title span {
+		color: #303030;
+		font-size: 35px !important;
+		font-weight: 900;
+	}
+	.headingtext1 {
+		color: #005f84;
+		font-size: 35px !important;
+		font-weight: 900;
+		margin-bottom: 20px;
+		margin-top: 20px;
+	}
+	h1.headingtext {
+		color: #303030;
+		font-size: 29px !important;
+		font-weight: 900;
+		padding: 30px 0 20px;
+	}
+	.Explore-Campaigns-Button-img{
+		height:60px;
+		width:230px;
+	}
+	.start-your-campaign-btn-img{
+		height:60px;
+		width:230px;
+	}
 	.whycrowderadiv-sm{
 		display:inline-flex;
 		padding-left:0px !important;
@@ -6431,17 +6557,21 @@ span.tile-day-num{
 	margin-top: -1%;
 }
 .headingtext1 {
-	font-weight: 300;
+	color:#005f84;
+	font-size:44px;
+	font-weight: 900;
 	margin-bottom: 20px;
 	margin-top: 20px;
 }
 .subheadingtext {
+	color: #5f676f;
+    font-size: 24px;
 	font-weight: 600;
 	padding-top: 12px;
 }
 .crowderacontent1 {
+	color: #5f676f;
 	font-size: 13px;
-	color: #505050;
 }
 .whycrowderadiv {
 	margin-bottom: 20px;
@@ -6797,4 +6927,29 @@ p.anonymous-top {
 	margin-left:auto;
 	margin-right:auto;
 	width:903px;
+}
+.econetwork-icon{
+	height:86px;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+.proudassociation-title{
+	margin-bottom:30px;
+	margin-top:15px;
+}
+.success-stories-container{
+	background-color:#e7e7e7;
+	padding-bottom:40px;
+	padding-top:30px;
+}
+.success-story-title{
+	margin-bottom:30px;
+}
+.success-story-title span{
+	color:#303030;
+	font-size:44px;
+	font-weight:900;	
+}
+.story-bottom-margin{
+	margin-bottom:10px;
 }

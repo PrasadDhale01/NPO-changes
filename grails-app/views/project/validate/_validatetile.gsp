@@ -39,7 +39,7 @@
         <g:link controller="project" action="validateShowCampaign" id="${project.id}" title="${project.title}">
               ${project.title.toUpperCase()}
         </g:link>
-        <br>
+        <div class="campaign-title-margin-bottom"></div>
         <span>${project.description}</span>
     </div>
 	<div class="modal-footer tile-footer tile-fonts-footer">

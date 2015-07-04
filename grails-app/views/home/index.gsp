@@ -35,6 +35,12 @@
     <div class="whycrowderacontainer">
         <g:render template="whycrowdera"></g:render>
     </div>
+    <div class="success-stories-container">
+        <g:render template="success-stories"></g:render>
+    </div>
+    <div class="proudassociates-container">
+        <g:render template="association"></g:render>
+    </div>
 <!--
 <div class="news">
 <div class="container">

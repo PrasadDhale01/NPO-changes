@@ -32,8 +32,12 @@
 	margin-bottom: 10px;
 }
 .rewardpricespan {
-	font-weight: 400;
 	font-size: 22px;
+	font-weight: 900;
+}
+.tile-goal-show{
+	font-size:22px;
+	font-weight:lighter;
 }
 .rewardtitlespan {
 	color: #505050;
@@ -41,7 +45,7 @@
 }
 .perksupporter {
 	font-weight: 500;
-	font-size: 14px;
+	font-size: 16px;
 }
 .perk-title-fund {
 	font-weight: 400;
@@ -49,12 +53,12 @@
 	color: #505050;
 }
 .perk-amount-fund {
-	font-weight: 400;
 	font-size: 22px;
+	font-weight: 800;
 }
 .perk-desc-fund {
-	font-weight: 400;
-	font-size: 14px;
+	font-size: 13px;
+	font-weight:normal !important;
 	word-wrap: break-word;
 }
 .rewardTileOnFundPage .list-group-item > .badge {

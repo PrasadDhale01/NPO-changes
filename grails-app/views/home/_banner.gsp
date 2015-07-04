@@ -7,25 +7,20 @@
     </div>
 </div> --%>
 <div class="greenbg">
-	<div class="container">
-		<div class="row">
-			<div class="text-center">
-			    <br>
-			    <h1 class="bannerheadbtmMargin"><b>Let's help you Raise Money FREE for what matters to you </b></h1>
-			    
-				    <a class="btn buttonOnBanner" href="${resource(dir: '/howitworks')}"><b>LEARN HOW</b></a>
-				    &nbsp;&nbsp;or&nbsp;&nbsp;
-				    <a class="btn buttonOnBanner" href="/project/create"><b>START NOW</b></a>
-			        <br>
-			    <!--<g:form class="form-horizontal" controller="project" action="create" role="form">
-			        <div class="form-group">
-			            <div class="col-sm-12">
-			                <a href="${resource(dir: '/projects/create')}" target="_blank"><img src="/images/StartFundrising-Button.jpg"></a>
-			            </div>
-			        </div>
-			    </g:form>-->
-			    <br>
+	<div class="container testimonial-inner-container">
+		<div class="row testimonial-container">
+			<div class="header-testimonial">
+				<div  class="left-inverted-comma">
+					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Left.png">
+				</div>
+				<div class="text-center">
+					<h1 class="bannerheadbtmMargin"><b>I ran my campaign through Crowdera in it's first initial phases and I greatly appreciated the support I received from the Crowdera team...</b></h1>
+				</div>
+				<div class="right-inverted-comma">
+					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png">
+				</div>
 			</div>
-	    </div>
+			<span class="testimonial-name pull-right"><img src="//s3.amazonaws.com/crowdera/assets/testimonial-lifevest-icon.png"><b>-Orly Wahba, founder of Life Vest Inside</b></span>
+		</div>
 	</div>
 </div>

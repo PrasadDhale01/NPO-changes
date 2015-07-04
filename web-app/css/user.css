@@ -26,3 +26,7 @@
 	float: none !important;
 	margin-left: 0px !important;
 }
+
+.paypalVerification span {
+    margin-left: -5% !important;
+}

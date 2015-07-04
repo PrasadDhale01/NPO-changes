@@ -79,6 +79,7 @@ class UrlMappings {
         "/campaign/$projectTitle/fund/$fr"(controller:'fund', action: 'fund')
         "/funds/$projectTitle/acknowledge/$fr/$id"(controller: 'fund', action: 'editContributionComment')
         "/fund/$projectTitle/acknowledge/$fr/$cb"(controller: 'fund', action:'acknowledge')
+        "/fund/$projectTitle/acknowledge/comment/$fr/$id"(controller:'fund', action:'saveContributionComent')
 		
         /*User*/
         "/user/mycampaigns"(controller:'user', action:'myproject')

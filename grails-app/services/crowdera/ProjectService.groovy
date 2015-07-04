@@ -165,11 +165,11 @@ class ProjectService {
             }
             def fundRaiserName = contributionService.getFundRaiserName(it, project)
             if(project.rewards.size()>1){
-                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.reward.title, shippingDetails, it.amount, payMode]
+                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.reward.title, shippingDetails, it.amount, payMode]
                 results << rows
                 shippingDetails=""
             } else {
-                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
+                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
                 results << rows
                 shippingDetails=""
             }
@@ -399,12 +399,12 @@ class ProjectService {
 	 }
 	 
 	 def generateCSV(def response){
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd");
 		 SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
 		 
 		 def transactions =Transaction.list()
 		 def results=[]
-	  
+	     
 		 response.setHeader("Content-disposition", "attachment; filename=Crowdera_Transaction_Report.csv")
 		 transactions.each{
 			def userIdentity
@@ -416,7 +416,7 @@ class ProjectService {
 			def rows = [it.transactionId, dateFormat.format(it.contribution.date), timeFormat.format(it.contribution.date), it.project.title, it.contribution.contributorName, userIdentity, it.project.amount, getContributedAmount(it)]
 			results << rows
 		 }
-			
+		 
 		 def result='Transaction Id, Contribution Date, Contribution Time, Project, Contributor Name, Identity, Project Amount, Contributed Amount, \n'
 		 results.each{ row->
 			row.each{
@@ -2025,7 +2025,71 @@ class ProjectService {
 			project.videoUrl = videoUrl
         }
     }
+    
+    def setContributorsComment(Project project,def comment,User fundRaiser,Contribution contribution) {
+        User user = contribution.user
+        def contributorName = contribution.contributorName
+        TeamComment teamComment
+        ProjectComment projectComment
+        if (project.user == fundRaiser) {
+            projectComment = new ProjectComment(
+                comment: comment,
+                userName: contributorName,
+                user: user,
+                project: project,
+                date: new Date()).save(failOnError: true)
+        } else {
+            Team team = Team.findByUserAndProject(fundRaiser,project)
+            if (team) {
+                teamComment = new TeamComment(
+                    comment: comment,
+                    userName: contributorName,
+                    user: user,
+                    team: team,
+                    date: new Date()).save(failOnError: true)
+            }
+        }
+        return [projectComment: projectComment, teamComment:teamComment]
+    }
+	
+    def getRedactorImageUrl(CommonsMultipartFile imageFile) {
+        if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "textEditor-Image"
 
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def s3Bucket = new S3Bucket(bucketName)
+
+            def tempFile = new File("${imageFile.getOriginalFilename()}")
+            def key = "${folder}/${imageFile.getOriginalFilename()}"
+            imageFile.transferTo(tempFile)
+            def object = new S3Object(tempFile)
+            object.key = key
+
+            s3Service.putObject(s3Bucket, object)
+            tempFile.delete()
+
+            def redactorImageUrl = "//s3.amazonaws.com/crowdera/${key}"
+            return redactorImageUrl
+        }
+    }
+
+    def deleteContributorsComment(def projectComment,def teamComment,def project, def team) {
+        if (project && projectComment) {
+            List projectComments = project.comments
+            projectComments.remove(projectComment)
+            projectComment.delete()
+        }
+        if (team && teamComment) {
+            List teamComments = team.comments
+            teamComments.remove(teamComment)
+            teamComment.delete()
+        }
+    }
+    
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

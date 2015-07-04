@@ -10,7 +10,6 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 <r:require modules="projectcreatejs" />
 <link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
 <link rel="stylesheet" href="/css/datepicker.css">
-<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 <script src="/js/main.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script>
@@ -28,21 +27,6 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 			});
 		});
 
-    tinymce.init({
-	    mode : "specific_textareas",
-	    menubar: "edit insert view format",
-        editor_selector : "mceEditor",
-	    plugins: [
-            "advlist media autolink lists link image charmap print preview hr anchor pagebreak emoticons",
-        ],
-        toolbar: "| undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media forecolor backcolor emoticons",
-        image_advtab: true,
-        templates: [
-           {title: 'Test template 1', content: 'Test 1'},
-           {title: 'Test template 2', content: 'Test 2'}
-        ]
-    });
-
 	function removeLogo(){
  		$('#delIcon').removeAttr('src');
 		$('#imgIcon').removeAttr('src');
@@ -59,7 +43,15 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
         }
     }
 </script>
-
+<g:javascript>
+    $(function() {
+        $('.redactorEditor').redactor({
+            imageUpload:'/project/getRedactorImage',
+            focus: true,
+            plugins: ['fontsize','fontfamily','fontcolor']
+        });
+    });
+</g:javascript>
 </head>
 <body>
 	<input type="hidden" id="b_url" value="<%=base_url%>" /> 
@@ -215,14 +207,15 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-12" id="paypalemail">
+                            <div class="col-sm-12" id="paypalemail">
                                 <div class="form-group">
-									<label class="col-sm-2 control-label">PayPal Email ID </label>
-									<div class="col-sm-4">
-										<input id="email" type="email" class="form-control paypal-create" name="${FORMCONSTANTS.PAYPALEMAIL}">
-									</div>
-								</div>
- 							</div>
+                                    <label class="col-sm-2 control-label">PayPal Email ID </label>
+                                    <div class="col-sm-4 paypalVerification">
+                                        <input id="paypalEmailId" type="email" class="form-control paypal-create" name="${FORMCONSTANTS.PAYPALEMAIL}">
+                                        <g:hiddenField name="paypalEmailAck" value="" id="paypalEmailAck"/>
+                                    </div>
+                                </div>
+                            </div>
          					
 							<div class="col-sm-12" id="charitableId">							
 								<div class="form-group">
@@ -370,7 +363,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 						<div class="form-group">
 							<label class="col-sm-2 control-label">Story</label>
 							<div class="col-sm-10">
-								<textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="mceEditor">
+								<textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="redactorEditor">
 									${initialValue}</textarea>
 							</div>
 				        </div>

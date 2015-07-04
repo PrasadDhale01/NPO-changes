@@ -142,7 +142,7 @@
                     <div class="clear"></div>
                     <div class="form-group">
                         <label>Story</label>
-                        <textarea row="4" col="6" class="mceEditor" name="story">
+                        <textarea row="4" col="6" class="redactorEditor" name="story">
 						     ${currentTeam.story}</textarea>
                     </div>
                     <div class="clear"></div>

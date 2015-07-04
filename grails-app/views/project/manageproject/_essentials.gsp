@@ -26,21 +26,30 @@
     <%-- Social features --%>
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <g:if test="${project.validated}">
-        <a class="share-mail pull-right social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
-            <img src="//s3.amazonaws.com/crowdera/assets/mail-share@2x.png">
+		<div class="shared pull-left">
+			<span><label>SHARE:</label></span>
+		</div>
+		<a target="_blank" class="fb-like pull-left social fbShareForLargeDevices" id="fbshare">
+			<img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
 		</a>
-		<a class="twitter-share pull-right social" id="twitterShare" target="_blank">
-			<img src="//s3.amazonaws.com/crowdera/assets/tw-share@2x.png" alt="Twitter Share">
-		</a> 
-        <a target="_blank" class="fb-like pull-right social fbShareForLargeDevices" id="fbshare">
-        	<img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share">
-        </a>
-        <a target="_blank" class="fb-like pull-right social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
-            <img src="//s3.amazonaws.com/crowdera/assets/fb-share@2x.png" alt="Facebook Share">
-        </a>
-		<div class="shared">
-		    <span><label>Share this campaign</label></span>
-		</div> 
+		<a target="_blank" class="fb-like pull-left social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
+			<img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
+		</a>
+		<a class="share-mail pull-left social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
+			<img src="//s3.amazonaws.com/crowdera/assets/email-share-icon.png">
+		</a>
+		<a class="twitter-share pull-left social" id="twitterShare" target="_blank">
+			<img src="//s3.amazonaws.com/crowdera/assets/twitter-share-icon.png" alt="Twitter Share">
+		</a>
+		<%--       	<a class="social like-share pull-left" id="likeShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">--%>
+		<%--            		<img src="//s3.amazonaws.com/crowdera/assets/like-share-icon.png" alt="Like Share"/>--%>
+		<%--        </a>--%>
+		<a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${fbShareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+			<img src="//s3.amazonaws.com/crowdera/assets/linked-in-share-icon.png" alt="LinkedIn Share">
+		</a>
+		<a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${fbShareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+			<img src="//s3.amazonaws.com/crowdera/assets/google-plus-share.png" alt="Google+ Share">
+		</a>
 	</g:if>
 
     <div class="col-md-12 col-sm-12 col-xs-12">

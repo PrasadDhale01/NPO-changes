@@ -36,8 +36,8 @@ Expects the parent containers to be like so:
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow tile-pad">
 	<g:if test="${ended}">
-		<div class="over banner-wid">
-			<img src="//s3.amazonaws.com/crowdera/assets/ended.png" alt="Ended"/>
+		<div class="over show-tile">
+			<img src="//s3.amazonaws.com/crowdera/assets/ended-tag.png" alt="Ended"/>
 		</div>
 	</g:if>
     <g:elseif test="${percentage >= 75}">
@@ -59,7 +59,7 @@ Expects the parent containers to be like so:
             <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">
                 ${project.title.toUpperCase()}
             </g:link>
-            <br>
+            <div class="campaign-title-margin-bottom"></div>
        		<span>${project.description}</span>
     </div>
 

@@ -11,6 +11,7 @@ class ProjectComment {
     static belongsTo = [project: Project, user: User]
 
     String comment
+    String userName
     Date date
     boolean status=false
 
@@ -19,5 +20,6 @@ class ProjectComment {
     }
 
     static constraints = {
+        userName nullable:true
     }
 }

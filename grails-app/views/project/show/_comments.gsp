@@ -61,19 +61,30 @@
             <div class="list-group">
                 <g:each in="${listcomment.reverse()}" var="comment">
                     <%
-		                def date = dateFormat.format(comment.date)
-		            %>
+                        def date = dateFormat.format(comment.date)
+                        def isAnonymous = userService.isAnonymous(comment.user)
+                    %>
                     <g:if test="${user== project.user}">
                         <g:if test="${!comment.status}">
                             <div class="modal-body tile-footer show-comments-date">
-				                <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
+				                <g:if test="${isAnonymous}">
+                                    <dt>By ${comment.userName}, on ${date}</dt>
+                                </g:if>
+                                <g:else>
+                                    <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
+                                </g:else>
 				                <dd>${comment.comment}</dd>
 			                </div>
 			            </g:if>
                     </g:if>
                     <g:else>
                         <div class="modal-body tile-footer show-comments-date">
-                            <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
+                            <g:if test="${isAnonymous}">
+                                <dt>By ${comment.userName}, on ${date}</dt>
+                            </g:if>
+                            <g:else>
+                                <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
+                            </g:else>
                             <dd>${comment.comment}</dd>
                             <g:if test="${team.user!=project.user}">
                             <g:if test="${team.user==currentUser}">

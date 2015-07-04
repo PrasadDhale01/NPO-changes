@@ -1,6 +1,3 @@
-.contributionShare {
-	margin-top: 20px;
-}
 .rewardTileOnFundPage a.list-group-item.active,
 .rewardTileOnFundPage a.list-group-item.active:hover,
 .rewardTileOnFundPage a.list-group-item.active:focus {
@@ -16,14 +13,14 @@
 	color: #fff;
     padding: 4px 8px;
     font-size: 15px;
-    border-radius: 48px;
+    border-radius: 0px;
 }
 .rewardTileOnFundPage .badge{
 	background-color:#000;
 	color:#fff;
     padding: 4px 8px;
     font-size: 15px;
-    border-radius: 48px;
+    border-radius: 0px;
 }
 .rewardTileOnFundPage .rewardHeading {
 	margin-top: 10px;

@@ -25,6 +25,10 @@ modules = {
     crowderajs {
         dependsOn 'corejs', 'bootstrapselectjs', 'bootstrapmultiselectjs', 'jqueryvalidate'
         resource url: 'js/crowdera.js'
+        resource url: 'js/redactor/redactor.js'
+        resource url: 'js/redactor/plugins/fontfamily.js'
+        resource url: 'js/redactor/plugins/fontsize.js'
+        resource url: 'js/redactor/plugins/fontcolor.js'
     }
     googleanalytics {
         resource url: 'js/ga.js'
@@ -117,6 +121,7 @@ modules = {
     crowderacss {
         dependsOn 'bootswatchcss', 'bootstrapselectcss', 'bootstrapmultiselectcss', 'fontawesomecss', 'piecss', 'campaigncss', 'usercss', 'fundcss', 'showcss', 'mediacss'
         resource url: 'css/crowdera.css'
+        resource url: 'js/redactor/redactor.css'
     }
     campaigncss {
         resource url: 'css/campaign.css'

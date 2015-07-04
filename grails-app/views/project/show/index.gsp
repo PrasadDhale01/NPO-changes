@@ -40,24 +40,15 @@
 	
 	<meta name="layout" content="main" />
 	<r:require modules="projectshowjs"/>
-	
-	<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-	<script>
-	tinymce.init({
-	    mode : "specific_textareas",
-	    menubar: "edit insert view format",
-        editor_selector : "mceEditor",
-	    plugins: [
-            "advlist autolink lists link image media charmap print preview hr anchor pagebreak emoticons",
-        ],
-        toolbar: "| undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media forecolor backcolor emoticons",
-        image_advtab: true,
-        templates: [
-           {title: 'Test template 1', content: 'Test 1'},
-           {title: 'Test template 2', content: 'Test 2'}
-        ]
-    });
-	</script>
+    <g:javascript>
+        $(function() {
+            $('.redactorEditor').redactor({
+                imageUpload:'/project/getRedactorImage',
+                focus: true,
+                plugins: ['fontsize','fontfamily','fontcolor']
+            });
+       });
+    </g:javascript>
 </head>
 <body>
 <div class="feducontent">
@@ -112,7 +103,7 @@
                     	<g:render template="show/rewards" model="['username':username]"/>
                     </g:if>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-8 Top-tabs-mobile">
                     <ul class="nav nav-tabs nav-justified show-marginbottoms">
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span><span class="tab-text hidden-xs"> Story</span>

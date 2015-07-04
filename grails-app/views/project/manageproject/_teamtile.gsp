@@ -21,6 +21,12 @@
     def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, user)
     def isCampaignAdmin = userService.isCampaignAdmin(project, username)
     def isCampaignAdminByUser=userService.isCampaignAdminByUserID(project, user)
+	
+	if(percentage >= 100) {
+		cents = 100
+	} else {
+		cents = percentage
+	}
 %>
 
 <div class="fedu thumbnail grow teamtile teamtile-padding">
@@ -28,7 +34,7 @@
         <g:if test="${userService.isFacebookUser() || project.user}">
             <g:if test="${!isAdminOrBeneficiary}">
                 <g:if test="${team.enable==false}">
-                    <div class="over user-tiles-widths">
+                    <div class="over teamtile-banner user-tiles-widths">
                         <img src="//s3.amazonaws.com/crowdera/assets/disabledTeam.png" alt="diabledTeam">
                     </div>
                 </g:if>
@@ -40,12 +46,12 @@
             </g:if>
             <g:elseif test="${isCampaignAdminByUser}">
                 <g:if test="${team.enable==false}">
-                    <div class="over user-tiles-widths">
+                    <div class="over teamtile-banner user-tiles-widths">
                         <img src="//s3.amazonaws.com/crowdera/assets/disabledTeam.png" alt="diabledTeam">
                     </div>
                 </g:if>
                 <g:else>
-                    <div class="over user-tiles-widths">
+                    <div class="over teamtile-banner user-tiles-widths">
                         <img alt="co-owner" src="//s3.amazonaws.com/crowdera/assets/Co-Owner1.png">
                     </div>
                 </g:else>
@@ -96,6 +102,9 @@
                     <div class="imageWithTag">
                         <div class="under">
                             <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="project-img" alt="Upload Photo">
+							<div class="team-caption">
+								<span>${userName.toUpperCase()}</span>
+							</div>
                         </div>
                         <div class="over teamtile-banner">
                             <g:if test="${!team.enable}">
@@ -117,21 +126,32 @@
                 </g:else>
             </g:link>
         </g:else>
+        <div class="team-caption">
+			<span>${userName.toUpperCase()}</span>
+		</div>
     </div>
 
     <div class="modal-footer tile-footer">
-        <div class="text-left">
-            <span>${userName}</span>
-        </div>
-    </div>
-
-    <div class="modal-footer tile-footer">
+		<div class="row">
+			<div class="col-md-6 col-xs-6 goalIcon">
+				<img src="//s3.amazonaws.com/crowdera/assets/goal-icon.png">
+			</div>
+			<div class="col-md-6 col-xs-6 progress-pie-chart progressBarIcon" data-percent="43">
+				<div class="c100  p${cents} pie-tile-manage pie-css text-center mobile-pie">
+					<span class="c999">${percentage}%</span>
+					<div class="slice">
+						<div class="bar progressBar"></div>
+						<div class="fill progressBar"></div>
+					</div>	
+				</div>
+			</div>
+		</div>
         <div class="row tilepadding">
-            <div class="col-md-6 col-xs-6">
-                <h6 class="text-center"><span class="lead goal-size">$${goal}</span><br/>GOAL</h6>
+            <div class="col-md-6 col-xs-6 text-center">
+                <span class="text-center tile-goal teamtile">$<span class="lead goal-size teamtile">${goal}</span></span>
             </div>
-            <div class="col-md-6 col-xs-6">
-                <h6 class="text-center"><span class="lead achived-size">$${amount}</span><br />ACHIEVED</h6>
+            <div class="col-md-6 col-xs-6 text-center team-achieve-amt-border">
+                <span class="text-center tile-goal teamtile">$<span class="lead achived-size teamtile">${amount}</span></span>
             </div>
         </div>
     </div>

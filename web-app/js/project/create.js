@@ -146,6 +146,10 @@ $(function() {
             checkBox2:{
               required: true
             },
+            paypalEmail:{
+              email:true,
+              isPaypalEmailVerified : true
+            }
             /*
             imageUrl: {
                 url: true
@@ -166,7 +170,7 @@ $(function() {
                 error.appendTo(element.parent().parent());
             }else if($(element).prop("id") == "iconfile") {
                 error.appendTo(element.parent().parent());
-            }else{ 
+            }else{
                 error.insertAfter(element);
             }
         },//end error Placement
@@ -180,8 +184,16 @@ $(function() {
         } 	
     });
     
+    $.validator.addMethod('isPaypalEmailVerified', function (value, element) {
+        var ack = $("#paypalEmailAck").val();
+        if(ack == 'Failure') {
+            return (ack == 'Success') ? ack : false;
+        }
+        return true;
+    }, "Please enter verified paypal email id");
+    
     $('#submitProject').on('click', function() {
-    	$('[name="pay"], [name="iconfile"],[name="organizationName"],[name="thumbnail"],[name="answer"],[name="wel"],[name="charitableId"]').each(function () {
+    	$('[name="pay"], [name="iconfile"],[name="organizationName"],[name="thumbnail"],[name="answer"],[name="wel"],[name="charitableId"],[name="paypalEmail"]').each(function () {
             $(this).rules('add', {
                 required: true
             });
@@ -190,17 +202,13 @@ $(function() {
     		isWebUrl: true,
     		required: true
     	});
-    	$('[name="paypalEmail"]').rules("add", {
-    		required: true,
-        	email:true
-    	});
         $( "#projectImageFile" ).rules( "add", {
             required: true,
             messages: {
                 required: "Please upload at least one campaign image"
             }
         });
-    	
+        
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',false);
     		$('#campaigncreate').find('form').submit();
@@ -208,7 +216,7 @@ $(function() {
     		$('#saveasdraft').attr('disabled','disabled');
     	}
     });
-
+    
     $('#saveasdraft').on('click', function(){  // capture the click
     	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"]').each(function () {
             $(this).rules('remove');
@@ -722,6 +730,24 @@ function setTitleText(){
               });
           });
         });
+   });
+    
+   $('#paypalEmailId').change(function(){
+	   var email =  $('#paypalEmailId').val();
+	   $.ajax({
+           type:'post',
+           url:$("#b_url").val()+'/project/paypalEmailVerification',
+           data:'email='+email,
+           success: function(data){
+               $('#paypalEmailAck').val(data);
+               if (data == 'Success') {
+            	   $('.paypalVerification').find("span").remove();
+            	   $('.paypalVerification').closest(".form-group").removeClass('has-error');
+               }
+           }
+       }).error(function(){
+       	alert('An error occured');
+       });
    });
 
 /*Javascript error raised due to tooltip is resolved*/

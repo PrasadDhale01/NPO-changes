@@ -70,7 +70,7 @@
         </g:form>
     </div>
 	<g:if test="${!project.contributions.empty}">
-        <h2 class="crowderasupport"><img src="//s3.amazonaws.com/crowdera/assets/icon-contribution.png" alt="Campaign Contributions"/>&nbsp;&nbsp;Campaign Contributions</h2>
+        <h2 class="crowderasupport text-center"><img src="//s3.amazonaws.com/crowdera/assets/icon-contribution.png" alt="Campaign Contributions"/>&nbsp;&nbsp;Campaign Contributions</h2>
 	    <div class="commentsoncampaign">
     		<g:each in="${project.contributions.reverse()}" var="contribution">
 		        <%
@@ -79,65 +79,82 @@
 		            def isFacebookUser = userService.isFacebookUser(contribution.user)
 		            def userFacebookUrl = facebookService.getUserFacebookUrl(contribution.user)
 		            def reward = contribution.reward
+					
+					def numberOfDays = contributionService.getNumberOfDaysForContribution(contribution)
+					def imageUrl
+					if (contribution.user.userImageUrl) {
+						imageUrl = contribution.user.userImageUrl
+						alphabet = 'userimagecolor'
+					} else if (contribution.contributorName){
+						obj = userService.getCurrentUserImage(contribution.contributorName)
+						alphabet = obj.alphabet
+						imageUrl = obj.userImage
+					}
 		        %>
        			<g:if test="${!contribution.isContributionOffline}">
-		            <div class="modal-body tile-footer manage-comments-footer">
-			            <b>$${contribution.amount}</b>
-			            <g:if test="${isFacebookUser}">
-			                <dd>By <a href="${userFacebookUrl}">${friendlyName}</a>, on ${date}</dd>
-			            </g:if>
-			            <g:else>
-			                <g:if test="${contribution.contributorName}">
-		                        <dd>By ${contribution.contributorName}, on ${date}</dd>
-			                </g:if>
-			                <g:else>
-		                        <p>By ${friendlyName}, on ${date}</p>
-		                    </g:else>
-			            </g:else>
-			            <g:if test="${contribution.comments}">
-			                <p><b>Comment:</b> ${contribution.comments}</p>
-			            </g:if>
-			            <g:if test="${reward.id == 1}">
-			                <b>No Perk</b>
-		                </g:if>
-		                <g:else>
-		                    <b>Perk</b>
-			            <div class="shiping-details">
-					<p>${reward.description}</p>
-					<a href="#" data-id="${contribution}" data-toggle="modal" data-target="#rewarddetails${contribution.id}" model="['contribution': contribution]">Shipping Details</a>
-				    </div>
-		                </g:else>
-		            </div>
+		            <div class="col-sm-4 top-pan contributions-panel">
+		                <div <g:if test='${contribution.isAnonymous}'>class ="pans alphabet-A"</g:if><g:else>class ="pans ${alphabet}"</g:else>>
+		                    <div class ="col-sm-4 col-xs-4 img-panel">
+	                            <img class="user-img-header" src="${imageUrl}">
+	                        </div>
+	                        
+				            <div class="col-sm-8 col-xs-8 pn-word">
+					            <g:if test="${isFacebookUser}">
+					                 <h4><a href="${userFacebookUrl}">${friendlyName}</a></h4>
+					                 <span class="sso">$<b>${contribution.amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
+					                 <dd class="font-days">${numberOfDays}&nbsp;&nbsp;Days Ago</dd>
+					            </g:if>
+					            <g:else>
+					                <g:if test="${contribution.contributorName}">
+				                        <h4>${contribution.contributorName}</h4>
+		                                <span class="sso">$<b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
+					                    <dd class="font-days">${numberOfDays}&nbsp;&nbsp;Days Ago</dd>
+					                </g:if>
+					                <g:else>
+					                    <h4>${friendlyName}</h4>
+				                        <dd class="font-days">${numberOfDays}&nbsp;&nbsp;Days Ago</dd>
+				                    </g:else>
+					            </g:else>
+				            </div>
+			            </div>
+ 		            </div>
 		        </g:if>
 		        <g:else>
-		            <div class="modal-body tile-footer manage-comments-footer">
-		                <div class="rewardsection">
-		                    <b>Offline Contribution</b>
-		                </div>
-		                <div class="rewardsection">
-                            <b>$${contribution.amount.round()}</b>
-                            <div class="clear"></div>
-                                By ${contribution.contributorName}, on ${date}
-                            </div>
-                            <div class="clear"></div>
-                            <g:if test="${contribution.fundRaiser.equals(fundRaiser)}">
-                            <div class="editAndDeleteBtn">
-                                <div class="pull-right">
-                                    <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
-                                        <i class="glyphicon glyphicon-edit" ></i>
-                                    </button>
-                                </div>
-                                <div class="pull-right">
-                                    <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser]">
-                                        <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
-                                        <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this contribution?&#39;);">
-                                            <i class="glyphicon glyphicon-trash" ></i>
-                                        </button>
-                                    </g:form>
-                                </div>
-                            </div>
-                        </g:if>
-                        <div class="clear"></div>
+		            <div class="col-sm-4 top-pan contributions-panel">
+                        <div class ="pans ${alphabet}">
+	                        <div class ="col-sm-4 col-xs-4 img-panel">
+	                            <img src="${imageUrl}">
+	                        </div>
+		                 
+	                        <div class="col-sm-8 col-xs-8 pn-word">
+	                            <h4>${contribution.contributorName}</h4> 
+	                            <span class="sso">$<b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
+					            <dd class="font-days">${numberOfDays}&nbsp;&nbsp;Days Ago</dd>
+	                        </div>
+	                        <div class="clear"></div>
+							<g:if test="${contribution.fundRaiser.equals(fundRaiser)}">
+								 <div class="col-sm-12"> 
+								     <div class="col-sm-6">
+								         <dd class="so-off-con">Offline Contribution</dd>
+								     </div>
+								     <div class="col-sm-6 cols">
+								         <div class="edits">
+								             <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
+								                 <i class="glyphicon glyphicon-edit" ></i>
+								             </button>
+								             
+								             <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser]">
+								                 <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
+								              <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this contribution?&#39;);">
+								                  <i class="glyphicon glyphicon-trash" ></i>
+								              </button>
+								             </g:form>
+								         </div>
+								     </div>
+								 </div>
+							</g:if>
+                         </div>
+                         <div class="clear"></div>
                         
                         <!-- EditContributionModal -->
                         <div class="modal fade offlineContributionModal contributionedit" id="contributionedit${contribution.id}" tabindex="-1" role="dialog" aria-labelledby="contributionedit${contribution.id}" aria-hidden="true">
@@ -295,7 +312,7 @@
 
                                 <g:each in="${project.contributions.reverse()}" var="contributions">
                                     <%
-                                        def date = contributions.date.format('YYYY-MM-DD HH:mm:ss')
+                                        def date = contributions.date.format('YYYY:MM:dd HH:mm:ss')
                                         def friendlyName = userService.getFriendlyName(contributions.user)
                                         def isFacebookUser = userService.isFacebookUser(contributions.user)
                                         def userFacebookUrl = facebookService.getUserFacebookUrl(contributions.user)

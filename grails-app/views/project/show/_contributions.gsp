@@ -216,10 +216,10 @@
                     <div <g:if test='${contribution.isAnonymous}'>class ="pan alphabet-A"</g:if><g:else>class ="pan ${alphabet}"</g:else>>
 	                    <div class ="col-sm-4 col-xs-4 img-panel">
 	                        <g:if test="${contribution.isAnonymous}">
-	                            <img class="user-img-header" src="//s3.amazonaws.com/crowdera/assets/alphabet-A.png">
+	                            <img class="user-img-header" src="//s3.amazonaws.com/crowdera/assets/alphabet-A.png" alt="alphabet">
 	                        </g:if>
 	                        <g:else>
-	                            <img class="user-img-header" src="${imageUrl}">
+	                            <img class="user-img-header" src="${imageUrl}" alt="alphabet">
 	                        </g:else>
 	                    </div>
 	                        
@@ -232,6 +232,7 @@
 			                   </g:if>
 			                   <g:else>
 				                   <h4 class="anonymous-top">Anonymous Good Soul</h4>
+				                   <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
 				                   <span class="font-anonymous">${numberOfDays}&nbsp;&nbsp;Days Ago</span>
 			                   </g:else>
 			               </g:if>
@@ -255,7 +256,7 @@
                 <div class="col-sm-4 top-pan">
 	                <div class ="pan ${alphabet}">
 		                <div class ="col-sm-4 col-xs-4 img-panel">
-		                    <img src="${imageUrl}">
+		                    <img class="user-img-header" src="${imageUrl}" alt="alphabet">
 		                </div>
                         <div class="col-sm-8 col-xs-8 pn-word">
                             <h4>${contribution.contributorName}</h4> 

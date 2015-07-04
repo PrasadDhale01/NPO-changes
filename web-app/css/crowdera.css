@@ -327,8 +327,8 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #ff784f !important;
-    color: #ffffff;
+    background-color: #006083 !important;
+    color: #576774;
 }
 .searchbox {
     position: relative;
@@ -557,7 +557,7 @@ p.egle {
     font-family: "OPEN SANS";
 }
 .footer-mid-section-menu ul li a:hover{
-	color:#ff784f;
+	color:#01bbd2;
 }
 .footer-mid-section-menu .footer-header{
     color:#adadad;
@@ -666,6 +666,19 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.fbButton.joinFOG{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: -27px !important;
+		width: 99px;
+	}
+
+	.carousel-buttons.joinFOG{
+		position: relative;
+		text-align: center;
+		top: -40px !important;
+	}
 	.home-campaign-tile-container{
 		display:block;
 		margin-left:auto;
@@ -1083,7 +1096,7 @@ a {
 	.carousel-buttons{
 		position: relative;
     		text-align: center;
-    		top: -62px !important;
+    		top: -26px !important;
 	}
 	.progressBarIcon {
 		border-left: 1px solid #e7e7e7;
@@ -2223,12 +2236,12 @@ footer .footerbottomsection {
 .navbar-default .dropdown-menu {
     background-color: #FDFCFB !important;
     border-style: solid;
-    border-color: #ff784f !important;
+    border-color: #01bbd2 !important;
     border-width: 1px;
 }
 
 .navbar-default .dropdown-menu > li > a, .navbar-default .dropdown-menu > li > a:focus {
-	color: #ff784f;
+	color: #596772;
 }
 
 .navbar-nav li.dropdown span {
@@ -3359,7 +3372,7 @@ textarea.form-control {
         width:102% !important;
     }
     .footer-mid-section-menu-mobile ul li a:hover{
-    	color:#ff784f;
+    	color:#01bbd2;
     }
     .footer-mid-section-mobile p {
     	color: #ffffff;
@@ -3895,7 +3908,7 @@ textarea.form-control {
 		width: 230px !important;
 	}
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
-		color: #ff784f !important;
+		color: #596772 !important;
 	}	
 }   
 
@@ -4680,7 +4693,7 @@ textarea.form-control {
         	margin-top: 0px !important;
     	}
     	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
-		color: #ff784f !important;
+		color: #596772 !important;
     	}
     	.user-img span {
 		padding-left: 10px;
@@ -4811,6 +4824,18 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 320px){
+	.home-campaign-tile .tile-pad {
+		margin-left:-16px;
+		padding: 0;
+		width: 290px !important;
+	}
+	.home-campaign-tile .over.show-tile{
+		left:0;
+		margin-left:-8px;
+		position: absolute;
+		top: 8px;
+		z-index: 1;
+	}
     .tips h2 {
         font-size: 156% !important;
     }
@@ -4884,6 +4909,13 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.over.show-tile{
+		left:0;
+		margin-left:9px;
+		position: absolute;
+		top: 8px;
+		z-index: 1;
+	}
     div.crew-scripts {
         color: #fff;
         margin: 5px auto 0;
@@ -4894,11 +4926,6 @@ textarea.form-control {
 		margin-left:auto;
 		margin-right:auto;
 		width:300px;
-	}
-	.home-campaign-tile .tile-pad {
-		margin-left:-16px;
-		padding: 0;
-		width: 290px !important;
 	}
 	.home-campaign-tile li div.tilepad{
 		display:block;
@@ -4965,6 +4992,13 @@ textarea.form-control {
 		margin-left: auto;
 		margin-top: -65px !important;
 	}
+	.fbButton.joinFOG{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: -27px !important;
+		width: 99px;
+	}
 	.testimonial-inner-container{
 		padding-left:0px !important;
 		padding-rignt:0px !important;
@@ -5010,7 +5044,12 @@ textarea.form-control {
 	.carousel-buttons{
 		position: relative;
 		text-align: center;
-		top: -30px !important;
+		top: -15px !important;
+	}
+	.carousel-buttons.joinFOG{
+		position: relative;
+		text-align: center;
+		top: -40px !important;
 	}
 	.contributionShare {
 		margin-top: -18px !important;
@@ -5112,7 +5151,7 @@ textarea.form-control {
     	width: 190% !important;
 	}
 	.footer-mid-section-menu-mobile ul li a:hover{
-		color:#ff784f;
+		color:#01bbd2;
 	}
 	a.footerlink {
 		color: #666666;
@@ -5307,7 +5346,7 @@ textarea.form-control {
         font-size: 11px;
     }
     .btn-fb {
-	height: 65px;
+		height: 65px;
         width: 135px;
     }
 
@@ -6176,28 +6215,28 @@ a.footerlink {
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #006083;
+    color: #ffffff;
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    background-color: #ff784f !important;
+    background-color: #006083 !important;
     color: #ffffff;
 /*      background-color: #FDF9F9 !important; */
 /*     color: #FFF; */
 /*     color: #0F0101; */
 }
 li.home-dropdown a:hover{
-    background-color: #ff784f !important;
+    background-color: #006083 !important;
     color: #ffffff !important;
 }
 ul.dropdown-menu.usr.user-dropdown.dropdown-menu-head.user-selected-drop a:hover {
-	background: rgb(252, 233, 236) !important;
-	color:  #ff784f !important;
+	background: #f8f8f8 !important;
+	color:  #596772 !important;
 }
 ul.dropdown-menu.admin.admin-dropdown.dropdown-menu-head.admin-selected-drop a:hover {
-	background: rgb(252, 233, 236) !important;
-	color:  #ff784f !important;
+	background: #f8f8f8 !important;
+	color:  #596772 !important;
 }
 
 .user-img span{	
@@ -6808,7 +6847,7 @@ p.anonymous-top {
 	font-family:Open Sans;
 	text-align:center;
 }
-.progressBarIcon{
+.team-tile-border.progressBarIcon{
 	border-left:1px solid #e7e7e7;
 	display:block;
 	margin-left:auto;

@@ -20,7 +20,7 @@
 					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png">
 				</div>
 			</div>
-			<span class="testimonial-name pull-right"><img src="//s3.amazonaws.com/crowdera/assets/testimonial-lifevest-icon.png"><b>-Orly Wahba, founder of Life Vest Inside</b></span>
+			<span class="testimonial-name pull-right"><img src="//s3.amazonaws.com/crowdera/assets/testimonial-lifevest-icon.png"><b>- Orly Wahba, Founder of Life Vest Inside</b></span>
 		</div>
 	</div>
 </div>

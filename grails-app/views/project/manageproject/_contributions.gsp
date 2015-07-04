@@ -95,7 +95,7 @@
 		            <div class="col-sm-4 top-pan contributions-panel">
 		                <div <g:if test='${contribution.isAnonymous}'>class ="pans alphabet-A"</g:if><g:else>class ="pans ${alphabet}"</g:else>>
 		                    <div class ="col-sm-4 col-xs-4 img-panel">
-	                            <img class="user-img-header" src="${imageUrl}">
+	                            <img class="user-img-header" src="${imageUrl}" alt="alphabet">
 	                        </div>
 	                        
 				            <div class="col-sm-8 col-xs-8 pn-word">
@@ -123,7 +123,7 @@
 		            <div class="col-sm-4 top-pan contributions-panel">
                         <div class ="pans ${alphabet}">
 	                        <div class ="col-sm-4 col-xs-4 img-panel">
-	                            <img src="${imageUrl}">
+	                            <img class="user-img-header" src="${imageUrl}" alt="alphabet">
 	                        </div>
 		                 
 	                        <div class="col-sm-8 col-xs-8 pn-word">

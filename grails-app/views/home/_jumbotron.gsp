@@ -31,7 +31,7 @@
             <img  src="//s3.amazonaws.com/crowdera/assets/FOG-Slide.jpg" alt="FOG-Slide">
             <div class="carousel-buttons">
                <div class="fbButton">
-                  <a href="${resource(dir: '/campaigns')}">
+                  <a href="${resource(dir: '/campaigns/Festival-of-Globe---FOG/The-Federation-of-Indo-Americans-of-Northern-California-594')}">
                   	<img src="//s3.amazonaws.com/crowdera/assets/JoinFOG-button.jpg" alt="Join FOG" class="btn btn-fb">
                   </a>
                </div>
@@ -41,7 +41,7 @@
             <img src="//s3.amazonaws.com/crowdera/assets/Prajwala-Slide.jpg" alt="Prajwala-Slide">
             <div class="carousel-buttons">
                <div class="fbButton">
-                  <a href="${resource(dir: '/campaigns')}">
+                  <a href="${resource(dir: '/campaigns/Securing-Prajwala--An-Anti-Trafficking-Intervention/Friends-of-680')}">
                   	<img src="//s3.amazonaws.com/crowdera/assets/Secure-Prajwala-Button.jpg" alt="Secure Prajwala" class="btn btn-fb">
                   </a>
                </div>

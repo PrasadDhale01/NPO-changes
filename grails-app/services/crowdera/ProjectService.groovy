@@ -2051,6 +2051,31 @@ class ProjectService {
         }
         return [projectComment: projectComment, teamComment:teamComment]
     }
+	
+    def getRedactorImageUrl(CommonsMultipartFile imageFile) {
+        if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "textEditor-Image"
+
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def s3Bucket = new S3Bucket(bucketName)
+
+            def tempFile = new File("${imageFile.getOriginalFilename()}")
+            def key = "${folder}/${imageFile.getOriginalFilename()}"
+            imageFile.transferTo(tempFile)
+            def object = new S3Object(tempFile)
+            object.key = key
+
+            s3Service.putObject(s3Bucket, object)
+            tempFile.delete()
+
+            def redactorImageUrl = "//s3.amazonaws.com/crowdera/${key}"
+            return redactorImageUrl
+        }
+    }
 
     def deleteContributorsComment(def projectComment,def teamComment,def project, def team) {
         if (project && projectComment) {

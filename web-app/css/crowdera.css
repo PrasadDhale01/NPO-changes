@@ -4884,6 +4884,11 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.crew-scripts {
+        color: #fff;
+        margin: 5px auto 0;
+        width: 91%;
+    }
 	.home-campaign-tile-container{
 		display:block;
 		margin-left:auto;
@@ -6905,4 +6910,9 @@ div.campaign-title-margin-bottom{
 	position: relative;
     text-align: center;
     top: -60px;
+}
+.crew-scripts {
+    color: #fff;
+    margin: 5px auto 0;
+    width: 50%;
 }

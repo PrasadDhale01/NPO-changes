@@ -4886,7 +4886,7 @@ textarea.form-control {
 @media only screen and (min-width: 320px) and (max-width: 640px){
     div.crew-scripts {
         color: #fff;
-        margin: 50px auto 0;
+        margin: 5px auto 0;
         width: 91%;
     }
 	.home-campaign-tile-container{
@@ -6913,6 +6913,6 @@ div.campaign-title-margin-bottom{
 }
 .crew-scripts {
     color: #fff;
-    margin: 50px auto 0;
+    margin: 5px auto 0;
     width: 50%;
 }

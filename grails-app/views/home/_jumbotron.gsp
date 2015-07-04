@@ -14,7 +14,8 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
         <div class="item active">
-            <img class="or-css" src="//s3.amazonaws.com/crowdera/assets/US-Flag-Slide.jpg" alt="Slider-1"/>
+            <img class="hidden-xs or-css" src="//s3.amazonaws.com/crowdera/assets/US-Flag-Slide.jpg" alt="Slider-1"/>
+            <img class="visible-xs or-css" src="//s3.amazonaws.com/crowdera/assets/US - Flag-mobile.jpg" alt="Slider-1"/>
             <div class="carousel-buttons">
                <div class="fbButton">
                   <a href="${resource(dir: '/howitworks')}">
@@ -28,17 +29,20 @@
            	</div>
         </div>
         <div class="item ">
-            <img  src="//s3.amazonaws.com/crowdera/assets/FOG-Slide.jpg" alt="FOG-Slide">
-            <div class="carousel-buttons">
-               <div class="fbButton">
+            <img  class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/FOG-Slide.jpg" alt="FOG-Slide">
+             <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/FOG-Slide-mobile.jpg" alt="FOG-Slide">
+            <div class="carousel-buttons joinFOG">
+               <div class="fbButton joinFOG">
                   <a href="${resource(dir: '/campaigns/Festival-of-Globe---FOG/The-Federation-of-Indo-Americans-of-Northern-California-594')}">
-                  	<img src="//s3.amazonaws.com/crowdera/assets/JoinFOG-button.jpg" alt="Join FOG" class="btn btn-fb">
-                  </a>
+                  	<img src="//s3.amazonaws.com/crowdera/assets/JoinFOG-button.jpg" alt="Join FOG" class=" hidden-xs btn btn-fb">
+                  	<img src="//s3.amazonaws.com/crowdera/assets/Join-FOG -Button-mobile.jpg" alt="Join FOG" class="visible-xs">
+                  </a> 
                </div>
            	</div>
         </div>
         <div class="item">
-            <img src="//s3.amazonaws.com/crowdera/assets/Prajwala-Slide.jpg" alt="Prajwala-Slide">
+            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/Prajwala-Slide.jpg" alt="Prajwala-Slide">
+            <img class="visible-xs"  src="//s3.amazonaws.com/crowdera/assets/Prajwala Slide-mobile.jpg" alt="Prajwala-Slide">
             <div class="carousel-buttons">
                <div class="fbButton">
                   <a href="${resource(dir: '/campaigns/Securing-Prajwala--An-Anti-Trafficking-Intervention/Friends-of-680')}">

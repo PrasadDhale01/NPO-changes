@@ -136,7 +136,7 @@
 			<div class="col-md-6 col-xs-6 goalIcon">
 				<img src="//s3.amazonaws.com/crowdera/assets/goal-icon.png">
 			</div>
-			<div class="col-md-6 col-xs-6 progress-pie-chart progressBarIcon" data-percent="43">
+			<div class="col-md-6 col-xs-6 progress-pie-chart team-tile-border progressBarIcon" data-percent="43">
 				<div class="c100  p${cents} pie-tile-manage pie-css text-center mobile-pie">
 					<span class="c999">${percentage}%</span>
 					<div class="slice">

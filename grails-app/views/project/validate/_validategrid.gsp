@@ -1,6 +1,6 @@
 <%
     def count = projects.size()
-    def cols = 4
+    def cols = 3
     def rows = (count / cols) + (count % cols > 0 ? 1 : 0)
     def index = 0
 %>

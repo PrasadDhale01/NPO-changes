@@ -115,7 +115,7 @@
                 </g:else>
             </g:each>
             <div class="row text-center explorebtn">
-                <a href="${resource(dir: '/campaigns')}"></a><img src="//s3.amazonaws.com/crowdera/assets/Explore-Campaigns -Button-img.jpg" class="Explore-Campaigns-Button-img"></a>
+                <a href="${resource(dir: '/campaigns')}"><img src="//s3.amazonaws.com/crowdera/assets/Explore-Campaigns -Button-img.jpg" class="Explore-Campaigns-Button-img"></a>
             </div>
         </div>
     </div>

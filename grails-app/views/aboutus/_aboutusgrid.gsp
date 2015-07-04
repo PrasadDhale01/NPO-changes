@@ -20,7 +20,7 @@
             <div class="col-xs-push-3 col-sm-3 col-md-push-2 col-sm-push-2 left-pad">
                 <div class="thumbnail">
                     <div class="the-crews">
-                        <img src="//s3.amazonaws.com/crowdera/assets/Chet-Jain.jpg" alt="chet jain">
+                        <img src="//s3.amazonaws.com/crowdera/assets/chet-jain-icon.jpg" alt="chet jain">
 			<div class="crew-icons">
 			    <a href="https://www.facebook.com/chetjain?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/facebook-icon.png" alt="facebook"></a>
 			    <a href="https://twitter.com/ChetJain" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>

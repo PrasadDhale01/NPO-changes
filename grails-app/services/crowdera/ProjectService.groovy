@@ -165,11 +165,11 @@ class ProjectService {
             }
             def fundRaiserName = contributionService.getFundRaiserName(it, project)
             if(project.rewards.size()>1){
-                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.reward.title, shippingDetails, it.amount, payMode]
+                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.reward.title, shippingDetails, it.amount, payMode]
                 results << rows
                 shippingDetails=""
             } else {
-                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY-MM-DD HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
+                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
                 results << rows
                 shippingDetails=""
             }
@@ -399,12 +399,12 @@ class ProjectService {
 	 }
 	 
 	 def generateCSV(def response){
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("d MMM YYYY");
+		 SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd");
 		 SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
 		 
 		 def transactions =Transaction.list()
 		 def results=[]
-	  
+	     
 		 response.setHeader("Content-disposition", "attachment; filename=Crowdera_Transaction_Report.csv")
 		 transactions.each{
 			def userIdentity
@@ -416,7 +416,7 @@ class ProjectService {
 			def rows = [it.transactionId, dateFormat.format(it.contribution.date), timeFormat.format(it.contribution.date), it.project.title, it.contribution.contributorName, userIdentity, it.project.amount, getContributedAmount(it)]
 			results << rows
 		 }
-			
+		 
 		 def result='Transaction Id, Contribution Date, Contribution Time, Project, Contributor Name, Identity, Project Amount, Contributed Amount, \n'
 		 results.each{ row->
 			row.each{

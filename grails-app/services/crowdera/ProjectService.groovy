@@ -2025,6 +2025,32 @@ class ProjectService {
 			project.videoUrl = videoUrl
         }
     }
+    
+    def setContributorsComment(Project project,def comment,User fundRaiser,Contribution contribution) {
+        User user = contribution.user
+        def contributorName = contribution.contributorName
+        TeamComment teamComment
+        ProjectComment projectComment
+        if (project.user == fundRaiser) {
+            projectComment = new ProjectComment(
+                comment: comment,
+                userName: contributorName,
+                user: user,
+                project: project,
+                date: new Date()).save(failOnError: true)
+        } else {
+            Team team = Team.findByUserAndProject(fundRaiser,project)
+            if (team) {
+                teamComment = new TeamComment(
+                    comment: comment,
+                    userName: contributorName,
+                    user: user,
+                    team: team,
+                    date: new Date()).save(failOnError: true)
+            }
+        }
+        return [projectComment: projectComment, teamComment:teamComment]
+    }
 	
     def getRedactorImageUrl(CommonsMultipartFile imageFile) {
         if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
@@ -2051,6 +2077,19 @@ class ProjectService {
         }
     }
 
+    def deleteContributorsComment(def projectComment,def teamComment,def project, def team) {
+        if (project && projectComment) {
+            List projectComments = project.comments
+            projectComments.remove(projectComment)
+            projectComment.delete()
+        }
+        if (team && teamComment) {
+            List teamComments = team.comments
+            teamComments.remove(teamComment)
+            teamComment.delete()
+        }
+    }
+    
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

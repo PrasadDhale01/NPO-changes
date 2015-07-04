@@ -791,7 +791,7 @@ class MandrillService {
     public def sendEmailToDevGroup(def exception) {
         
         def exceptionString = " "+ exception
-        def devList = ['kartiki.sahu@crowdera.co','krishna.sahu@crowdera.co','tushar@crowdera.co','prasad.dhale@crowdera.co','minal.ganatra@crowdera.co','roshan.mahant@crowdera.co']
+        def devList = ['krishna.sahu@crowdera.co','tushar@crowdera.co','minal.ganatra@crowdera.co']
         def date = new Date()
         
         devList.each { email ->

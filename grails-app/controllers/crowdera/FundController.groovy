@@ -189,26 +189,37 @@ class FundController {
         def reward = contribution.reward
         def user = contribution.user
         def fundraiser = userService.getUserById(params.long('fr'))
-		if((contribution.id ==conId) && (fundraiser.id==frId)){
-			conId=contribution.id
-			frId=fundraiser.id
-	        render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser, projectTitle:params.projectTitle]
-        }else{
-           render view: 'error', model: [message: 'This contribution or fundraiser does not exist.']
-        }
+	    render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser, projectTitle:params.projectTitle]
     }
     
     def saveContributionComent(){
-        Contribution contribution
-        if(params.id){
-            contribution = contributionService.getContributionById(params.long('id'))
-            if(contribution && params.comment){
-                contribution.comments = params.comment
+        Contribution contribution = contributionService.getContributionById(params.long('id'))
+        def projectComment = projectService.getProjectCommentById(params.long('commentId'))
+        def teamComment = projectService.getTeamCommentById(params.long('teamCommentId'))
+        def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+        def project = projectService.getProjectById(projectId)
+        def fundRaiser = userService.getUserById(params.long('fr'))
+
+        def user = contribution.user
+        def reward = contribution.reward
+   
+        if (projectComment || teamComment) {
+            if (projectComment) {
+                projectComment.comment = params.comment
             }
+            if (teamComment) {
+                teamComment.comment = params.comment
+            }
+            render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundRaiser,projectTitle:params.projectTitle, comment: projectComment, teamComment:teamComment]
         } else {
-            flash.sentmessage = "Something went wrong saving comment. Please try again later."
+            def commentObj
+            if(project && params.comment){
+                commentObj = projectService.setContributorsComment(project, params.comment, fundRaiser, contribution)
+            } else {
+                flash.sentmessage = "Something went wrong saving comment. Please try again later."
+            }
+            render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundRaiser,projectTitle:params.projectTitle, comment: commentObj.projectComment, teamComment:commentObj.teamComment]
         }
-        redirect (action:"acknowledge", params:[cb : params.id, fr : params.fr, projectTitle:params.projectTitle])
     }
     
     def editContributionComment(){
@@ -218,8 +229,10 @@ class FundController {
             def reward = contribution.reward
             def user = contribution.user
             def fundraiser = userService.getUserById(params.long('fr'))
-            def editedComment = contribution.comments
-            render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser,editedComment: editedComment, projectTitle:params.projectTitle]
+            def value = 'value'
+            def projectComment = projectService.getProjectCommentById(params.long('commentId'))
+            def teamComment = projectService.getTeamCommentById(params.long('teamCommentId'))
+            render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser,projectTitle:params.projectTitle, value: value, comment: projectComment, teamComment:teamComment]
         } else {
             flash.sentmessage = "Something went wrong saving comment. Please try again later."
         }
@@ -227,12 +240,16 @@ class FundController {
     }
     
     def deleteContributionComment() {
-        Contribution contribution 
-        if(params.id){
-            contribution = contributionService.getContributionById(params.long('id'))
-            if(contribution && contribution.comments){
-                contribution.comments = null
-            }
+        Contribution contribution
+        def projectComment = projectService.getProjectCommentById(params.long('commentId'))
+        def teamComment = projectService.getTeamCommentById(params.long('teamCommentId'))
+        def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+        def project = projectService.getProjectById(projectId)
+        
+        def fundraiser = userService.getUserById(params.long('fr'))
+        Team team = projectService.getTeamByUserAndProject(project, fundraiser)
+        if(params.id) {
+            projectService.deleteContributorsComment(projectComment, teamComment, project, team)
         } else {
             flash.sentmessage = "Something went wrong saving comment. Please try again later."
         }

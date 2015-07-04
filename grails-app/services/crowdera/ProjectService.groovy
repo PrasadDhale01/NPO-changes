@@ -1073,7 +1073,7 @@ class ProjectService {
 	}
 	
 	def projectOnHomePage() {
-		def projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f84884ce82e04014cecf509020000', ' 2c9f84884dd5a114014dead63c090003')
+		def projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f84884ce82e04014cecf509020000', '2c9f84884dd5a114014dead63c090003')
 	    return projects
 	}
 

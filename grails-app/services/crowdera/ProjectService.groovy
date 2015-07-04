@@ -2019,7 +2019,7 @@ class ProjectService {
     }
 	
     def getYoutubeUrlChanged(String video, Project project){
-        if (!video.contains('embed')) {
+        if (video && !video.contains('embed')) {
             String videoUrl = video.replace("watch?v=","embed/")
             videoUrl = videoUrl + "?rel=0"
 			project.videoUrl = videoUrl

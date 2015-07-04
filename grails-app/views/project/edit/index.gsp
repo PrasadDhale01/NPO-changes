@@ -511,21 +511,21 @@
                                         </div>
                                     </div> 
                                 </g:each>
-                                <script>
-                                    function deleteProjectImage(current,imgst, projectId) {
-                                        $(current).parents('#imgdiv').remove();
-                                        $.ajax({
-                                            type:'post',
-                                            url:$("#b_url").val()+'/project/deleteProjectImage',
-                                            data:'imgst='+imgst+'&projectId='+projectId,
-                                            success: function(data){
-                                            $('#test').html(data);
-                                        }
-                                        }).error(function(){
-                                            alert('An error occured');
-                                        });
-                                    }
-                             </script>
+                               <script>
+	                               function deleteProjectImage(current,imgst, projectId) {
+	                                   $(current).parents('#imgdiv').remove();
+	                                   $.ajax({
+	                                       type:'post',
+	                                       url:$("#b_url").val()+'/project/deleteProjectImage',
+	                                       data:'imgst='+imgst+'&projectId='+projectId,
+	                                       success: function(data){
+	                                       $('#test').html(data);
+	                                   }
+	                                   }).error(function(){
+	                                       alert('An error occured');
+	                                   });
+	                               }
+                               </script>
                                 <output id="result"></output>
                                 <div id="test"></div>
                         </div>
@@ -537,9 +537,8 @@
                         </div>
                         <iframe class="edits-video" id="ytVideo" src="${project.videoUrl}"></iframe>
                     </div>
-                </div>
+                    </div>
             </div>
-
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Get set, go</h3>
@@ -548,7 +547,7 @@
 		            <div class="form-group">
                         <label class="col-sm-2 control-label">Save changes?</label>
 		                <div class="col-sm-10">
-		                    <button type="button" name="_action_update" id="editsubmitbutton" value="Update" class="btn btn-primary">Save</button>
+		                    <button type="button" name="_action_update" id="editsubmitbutton" value="Update" class="btn btn-primary updatesubmitbutton">Save</button>
 		                </div>
 		            </div>
                 </div>

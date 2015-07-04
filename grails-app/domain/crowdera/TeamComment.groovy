@@ -11,10 +11,14 @@ class TeamComment {
     static belongsTo = [team: Team, user: User]
 
     String comment
+    String userName
     Date date
 
     static mapping = {
         comment type: 'text'
     }
 
+    static constraints = {
+        userName nullable:true
+    }
 }

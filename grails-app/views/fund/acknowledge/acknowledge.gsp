@@ -79,17 +79,33 @@
                 <g:else>
                 	<div class="alert alert-success">Receipt has been sent over email to ${contribution.contributorEmail}</div><br>
                 </g:else>
-                <g:if test="${contribution.comments == null || editedComment}">
+                <%
+                    def commentId
+                    def commentVal
+                    def teamCommentId
+                    def teamCommentVal
+                    if(comment) {
+                        commentId = comment.id
+                        commentVal = comment.comment
+                    }
+                    if(teamComment) {
+                        teamCommentId = teamComment.id
+                        commentVal = teamComment.comment
+                    }
+                %>
+                <g:if test="${commentVal == null || value}">
                     <h4 class="lead">Leave a comment</h4>
                     <div id="commentBox">
                         <g:form controller="fund" action="saveContributionComent" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle]">
+                            <g:hiddenField name='commentId' value="${commentId}"></g:hiddenField>
+                            <g:hiddenField name='teamCommentId' value="${teamCommentId}"></g:hiddenField>
                             <div class="form-group">
-                                <textarea class="form-control" name="comment" rows="4" required><g:if test="${editedComment}">${editedComment}</g:if></textarea>
+                                <textarea class="form-control" name="comment" rows="4" required><g:if test="${commentVal}">${commentVal}</g:if></textarea>
                             </div>
                             <button type="submit" class="btn btn-primary btn-sm pull-right">Post comment</button>
                             <div class="clear"></div>
                         </g:form>
-                    </div><br>
+                    </div>
                 </g:if>
                 <g:else>
                     <%
@@ -98,19 +114,24 @@
                     <h3>Contributor Comment</h3>
                     <div class="modal-body tile-footer show-comments-date">
                         <h6>By ${contribution.contributorName}, on ${date}</h6>
-                        <p><b>${contribution.comments}</b></p>
-                        <g:link controller="fund" name="deletecomment" action="deleteContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle]">
+                        <p><b>${commentVal}</b></p>
+                        <g:link controller="fund" name="deletecomment" action="deleteContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle, 'commentId': commentId, 'teamCommentId': teamCommentId]">
                             <button type="submit" class="projectedit close pull-right" id="projectdelete"
                                  onclick="return confirm(&#39;Are you sure you want to delete this comment?&#39;);">
                                  <i class="glyphicon glyphicon-trash"></i>
-                             </button>
+                            </button>
                         </g:link>
-                        <g:link controller="fund" name="editcomment" action="editContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle]">
-                            <i class="glyphicon glyphicon-edit glyphicon-lg projectedit close pull-right"></i>
-                        </g:link>
-                       <div class="clear"></div>
+                        <g:form controller="fund" name="editcomment" action="editContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle]">
+                            <g:hiddenField name='commentId' value="${commentId}"></g:hiddenField>
+                            <g:hiddenField name='teamCommentId' value="${teamCommentId}"></g:hiddenField>
+                            <button type="submit" class="projectedit close pull-right" id="projectedit">
+                                <i class="glyphicon glyphicon-edit glyphicon-lg projectedit"></i>
+                            </button>
+                        </g:form>
+                        <div class="clear"></div>
                     </div>
                 </g:else>
+                
                 <div class="row">
 					<div class="col-sm-12 shared contributionShare">
 						<div class="shared ack-socialicon pull-left">
@@ -128,9 +149,6 @@
 						<a class="twitter-share pull-left social" id="twitterShare" target="_blank">
 							<img src="//s3.amazonaws.com/crowdera/assets/twitter-share-icon.png" alt="Twitter Share">
 						</a>
-						<%--						<g:link absolute="true" uri='${fbShareUrl}' class="pull-left">--%>
-						<%--            					<img src="//s3.amazonaws.com/crowdera/assets/like-Share-icon.png" alt="campaign-supporter" id="add-campaign-supporter">--%>
-						<%--       					 </g:link>--%>
 						<a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${fbShareUrl}"  id="social share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
 							<img src="//s3.amazonaws.com/crowdera/assets/linked-in-share-icon.png" alt="LinkedIn Share">
 						</a>

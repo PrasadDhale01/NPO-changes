@@ -2,23 +2,7 @@
 <head>
 	<meta name="layout" content="main" />
 	<r:require modules="projecteditjs"/>
-	<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
 	<script>
-	    tinymce.init({
-		    mode : "specific_textareas",
-		    menubar: "edit insert view format",
-	        editor_selector : "mceEditor",
-	        plugins: [
-	                  "advlist autolink lists link image media charmap print preview hr anchor pagebreak emoticons",
-	              ],
-	              toolbar: "| undo redo | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media forecolor backcolor emoticons",
-	              image_advtab: true,
-	              templates: [
-	                  {title: 'Test template 1', content: 'Test 1'},
-	                  {title: 'Test template 2', content: 'Test 2'}
-	              ]
-	    });
-
 	    var needToConfirm = true;
         window.onbeforeunload = confirmExit;
         function confirmExit()
@@ -28,6 +12,15 @@
             }
         }
 	</script>
+    <g:javascript>
+        $(function() {
+            $('.redactorEditor').redactor({
+                imageUpload:'/project/getRedactorImage',
+                focus: true,
+                plugins: ['fontsize','fontfamily','fontcolor']
+            });
+        });
+    </g:javascript>
 </head>
 <body>
     <div class="feducontent">
@@ -43,7 +36,7 @@
 				        <div class="form-group">
 							<label class="col-sm-2 control-label">Story</label>
 							<div class="col-sm-10">
-								<textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" class="mceEditor">
+								<textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" class="redactorEditor">
 									${initialValue}</textarea>
 						    </div>
 						</div><br/>

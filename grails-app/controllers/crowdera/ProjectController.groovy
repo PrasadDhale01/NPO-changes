@@ -19,6 +19,7 @@ import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
+import org.codehaus.groovy.grails.web.json.JSONObject
 
 class ProjectController {
     def userService
@@ -1127,4 +1128,13 @@ class ProjectController {
 		}
 		render ack
 	}
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+    def getRedactorImage() {
+        def imageFile= params.file
+        def fileUrl = projectService.getRedactorImageUrl(imageFile)
+        JSONObject json = new JSONObject();
+        json.put("filelink",fileUrl);
+        render json
+    }
 }

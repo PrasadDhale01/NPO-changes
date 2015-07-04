@@ -15,6 +15,7 @@
     <g:javascript>
         $(function() {
             $('.redactorEditor').redactor({
+                imageUpload:'/project/getRedactorImage',
                 focus: true,
                 plugins: ['fontsize','fontfamily','fontcolor']
             });

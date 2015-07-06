@@ -1257,26 +1257,26 @@ a {
     }
     .footer-mid-section p {
         color: #ffffff;
-		font-family: "OPEN SANS";
-		font-size: 11px !important;
-		text-align: center;
-		margin-left:-31px !important;
+	font-family: "OPEN SANS";
+	font-size: 11px !important;
+	text-align: center;
+	margin-left:-31px !important;
     }
    input#subscriberEmail {
-		font-size: 13px;
-		font-weight: normal;
-		height: 30px;
-		margin-left: 7px;
-		width: 137px;
-	}
-	.text-primary {
-		color: #008cba;
-		margin-left: -60px !important;
-	}
-	.payment-card-icons{
-		height:20px;
-		width:284px;
-	}
+	font-size: 13px;
+	font-weight: normal;
+	height: 30px;
+	margin-left: 7px;
+	width: 137px;  
+   }
+   .text-primary {
+	color: #008cba;
+	margin-left: -60px !important;
+   }
+   .payment-card-icons{
+	height:20px;
+	width:284px;
+   }
    span.footer-header-align{
    	margin-left:13px;
    }

@@ -186,9 +186,12 @@ $(function() {
     
     $.validator.addMethod('isPaypalEmailVerified', function (value, element) {
         var ack = $("#paypalEmailAck").val();
-        if(ack == 'Failure') {
-            return (ack == 'Success') ? ack : false;
-        }
+        var base_url = $("#b_url").val();
+ 	    if (base_url != 'https://crowdera.co'){
+            if(ack == 'Failure') {
+                return (ack == 'Success') ? ack : false;
+            }
+ 	    }
         return true;
     }, "Please enter verified paypal email id");
     
@@ -733,21 +736,24 @@ function setTitleText(){
    });
     
    $('#paypalEmailId').change(function(){
-	   var email =  $('#paypalEmailId').val();
-	   $.ajax({
-           type:'post',
-           url:$("#b_url").val()+'/project/paypalEmailVerification',
-           data:'email='+email,
-           success: function(data){
-               $('#paypalEmailAck').val(data);
-               if (data == 'Success') {
-            	   $('.paypalVerification').find("span").remove();
-            	   $('.paypalVerification').closest(".form-group").removeClass('has-error');
+	   var base_url = $("#b_url").val();
+	   if (base_url != 'https://crowdera.co'){
+	       var email =  $('#paypalEmailId').val();
+	       $.ajax({
+               type:'post',
+               url:$("#b_url").val()+'/project/paypalEmailVerification',
+               data:'email='+email,
+               success: function(data){
+                   $('#paypalEmailAck').val(data);
+                   if (data == 'Success') {
+            	       $('.paypalVerification').find("span").remove();
+            	       $('.paypalVerification').closest(".form-group").removeClass('has-error');
+                   }
                }
-           }
-       }).error(function(){
-       	alert('An error occured');
-       });
+           }).error(function(){
+       	       alert('An error occured');
+           });
+	   }
    });
 
 /*Javascript error raised due to tooltip is resolved*/

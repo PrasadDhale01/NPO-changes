@@ -92,7 +92,7 @@
 					}
 		        %>
        			<g:if test="${!contribution.isContributionOffline}">
-		            <div class="col-sm-4 top-pan contributions-panel">
+		            <div class="col-sm-4 col-md-4 col-lg-3 top-pan contributions-panel">
 		                <div <g:if test='${contribution.isAnonymous}'>class ="pans alphabet-A"</g:if><g:else>class ="pans ${alphabet}"</g:else>>
 		                    <div class ="col-sm-4 col-xs-4 img-panel">
 	                            <img class="user-img-header" src="${imageUrl}" alt="alphabet">
@@ -120,7 +120,7 @@
  		            </div>
 		        </g:if>
 		        <g:else>
-		            <div class="col-sm-4 top-pan contributions-panel">
+		            <div class="col-sm-4 col-md-4 col-lg-3 top-pan contributions-panel">
                         <div class ="pans ${alphabet}">
 	                        <div class ="col-sm-4 col-xs-4 img-panel">
 	                            <img class="user-img-header" src="${imageUrl}" alt="alphabet">

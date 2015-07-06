@@ -522,17 +522,26 @@ class UserService {
     def getVanityNameFromUsername(def username,def projectId){
         def status = false
         def user
+        def vanityName
+        def vanityUsername
         def project = Project.get(projectId)
-        if (username)
+        if (username) {
             user = User.findByUsername(username)
-        else
-            user = User.findByUsername(project.user.username)
-        def vanityName = user.firstName.trim()
-		def vanityUsername = vanityName.replaceAll("[^a-zA-Z0-9]", "-")+"-"+user.id
-        def vanity = VanityUsername.findAllWhere(user:user)
-        vanity.each {
-            if (vanityUsername == it.vanityUsername){
-                status = true
+        } else {
+            if (project) {
+                user = User.findByUsername(project.user.username)
+            }
+        }
+        if (user) {
+            vanityName = user.firstName.trim()
+            if (vanityName) {
+                vanityUsername = vanityName.replaceAll("[^a-zA-Z0-9]", "-")+"-"+user.id
+            }
+            def vanity = VanityUsername.findAllWhere(user:user)
+            vanity.each {
+                if (vanityUsername == it.vanityUsername){
+                    status = true
+                }
             }
         }
         if (!status){
@@ -542,11 +551,11 @@ class UserService {
     }
 
     def getUsernameFromVanityName(def username){
-        def fundRaiser
+        def userName
         def vanityusername = VanityUsername.findByVanityUsername(username)
         if (vanityusername)
-            fundRaiser = vanityusername.username
-        return fundRaiser
+            userName = vanityusername.username
+        return userName
     }
 	
     def getUserFromVanityName(def username){

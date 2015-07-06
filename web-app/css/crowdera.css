@@ -532,7 +532,7 @@ hr.footer-hr{
 .footer-mid-section p span{
     color:#e3e3e3;
     font-size:15px;	
-    padding-left: 54%;	
+    padding-left: 50%;	
 }
 .thomas-margin-align{
 	line-height:1px;
@@ -917,11 +917,13 @@ a {
 	}
 	.thomas-testimonial p{
 		color:#ffffff;
-		font-size:13px;
+		font-size:11px !important;
+		margin-left:0px !important;
 	}
 	.thomas-testimonial span{
 	   	color:#ffffff;
 		font-size:16px !important;
+		padding-left:45% !important;
 	}
     div.left-pad {
         left: 24%;
@@ -1174,7 +1176,7 @@ a {
 	}
 	.footer-newsletter .help-block {
     	color: #f04124;
-    	margin-left: 1px !important;
+    	margin-left: 5px !important;
     	width: 170%;
 	}
 	.footer-container{
@@ -1211,14 +1213,43 @@ a {
         margin-left: 18px;
         margin-right: 0;
     }
+    .footer-hands-image-top div {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		padding-left: 30px;
+		padding-right: 30px;
+	}
+	.footer-hands-img{
+		height:80px;
+		width:200px;
+	}
+	.footer-start-cmpg-img{
+		height:50px;
+		width:240px;
+	}
+	.footer-mid-section-menu.tab-menu-padding{
+		padding-left:0px !important;
+		padding-right:0px !important;
+	}
+	.footer-mid-section-menu.tab-menu-padding ul{
+		padding-left:0px !important;
+	}
+	.footer-hands-image-top {
+		top: 105px !important;
+	}
+	.footer-mid-section-menu ul li {
+		list-style-type: none;
+		margin-left: 11px !important;
+	}
     .footer-mid-section p span {
         color: #ffffff;
-        font-size: 16px;
-        padding-left: 51%;
+        font-size: 15px !important;
+        padding-left: 35% !important;
         font-weight:normal;
     }
     .socialicon img {
-    	margin-left: 8px;
+    	margin-left: 1px;
     	margin-right: -4.5px !important;
 	}
     .footer-first-section p{
@@ -1227,17 +1258,30 @@ a {
     .footer-mid-section p {
         color: #ffffff;
 		font-family: "OPEN SANS";
-		font-size: 13px;
+		font-size: 11px !important;
 		text-align: center;
+		margin-left:-31px !important;
     }
-   input.text-email {
-    	width: 193px;
-   }
+   input#subscriberEmail {
+		font-size: 13px;
+		font-weight: normal;
+		height: 30px;
+		margin-left: 7px;
+		width: 137px;
+	}
+	.text-primary {
+		color: #008cba;
+		margin-left: -60px !important;
+	}
+	.payment-card-icons{
+		height:20px;
+		width:284px;
+	}
    span.footer-header-align{
    	margin-left:13px;
    }
   .footer-mid-section-menu ul li a{
-	font-size:11px;
+	font-size:10px;
    }
    .footer-mid-section-menu .footer-header-align{
    	margin-left:14px;
@@ -1373,6 +1417,13 @@ a {
     .sorts-dropdown{
        left: 19%;
     }
+    .footer-mid-section p {
+		color: #e3e3e3;
+		font-family: "OPEN SANS";
+		font-size: 12px !important;
+		margin-left: 7px !important;
+		text-align: center;
+	}
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1024px){
@@ -1417,6 +1468,33 @@ a {
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
+		font-size: 10px;
+		line-height: 5px;
+		margin-bottom: 0px;
+		margin-top: 11px !important;
+		padding-left: 17px !important;
+		padding-right: 17px !important;
+	}
+	span.tile-day-num {
+		color: #000 !important;
+		font-size: 20px !important;
+		font-weight: bold;
+		padding-left: 3px;
+	}
+	.show-contribution-amt-tile.lead {
+		font-size: 20px !important;
+		font-weight: bold !important;
+	}
+	.footer-mid-section-menu ul li a {
+		font-family: "OPEN SANS";
+		font-size: 12px !important;
+	}
+	.footer-mid-section p span {
+		color: #e3e3e3;
+		font-size: 15px;
+		padding-left: 48% !important;
+	}
 	.nav-tabs.nav-justified > li > a {
        font-size: 12px !important;
     }
@@ -1526,7 +1604,7 @@ a {
 		}
 		.thomas-testimonial p{
 			color:#ffffff;
-			font-size:13px;
+			font-size:11px !important;
 		}
 		.thomas-testimonial b{
 		   	color:#ffffff;
@@ -2381,11 +2459,13 @@ footer .footerbottomsection {
     z-index:1;
 }
 .over.user-tile{
-    margin-left: 9px;
-    position:  absolute;
-    top:8px;
-    left:0;
-    z-index:1;
+	display: block;
+	left: auto;
+	margin-left: -8px;
+	margin-right: auto;
+	position: absolute;
+	top: 8px;
+	z-index: 1;
 }
 .deleteIconAbove{
 	position: absolute;
@@ -5203,7 +5283,8 @@ textarea.form-control {
 	}
 	.thomas-testimonial p{
 		color:#ffffff;
-		font-size:13px;
+		font-size:11px;
+		margin-left:0px !important;
 	}
 	.thomas-testimonial b{
 	   	color:#ffffff;
@@ -5773,7 +5854,7 @@ button.projectedit.close{
     color: white;
 }
 .powerdby img{
-	max-width:90%;
+	max-width:85%;
 }
 .footer_links a {
 	color: #e3e3e3;
@@ -5800,7 +5881,7 @@ button.projectedit.close{
 }
 a.footerlink {
 	color: #666666;
-    font-size: 12px;
+    font-size: 11px;
     text-decoration: none;
     font-weight: 500;
 	
@@ -5870,7 +5951,7 @@ a.footerlink {
 }
 .center-fund{
 	align-content: center;
-	width: 318px;
+	width: 290px;
 }
 .paypal-secured-image img{
 	width: 245px; 
@@ -6038,6 +6119,9 @@ a.footerlink {
 	margin-top: 30px;
 }
 .teamtile-padding{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
 	padding: 0;
 	width:220px;
 }
@@ -6147,6 +6231,9 @@ a.footerlink {
 	margin: 0 auto;
 }
 .user-tiles-style{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
 	padding: 0;
 	width:310px;
 }
@@ -6747,9 +6834,10 @@ dd.so-off-con {
 	overflow: hidden;
 	white-space: pre;
 }
-span.font-anonymous {
+div.font-anonymous {
  	font-size: 12px;
  	color: black;
+ 	padding:8px 0 0;
 }
 .pans {
     max-width: 225px;

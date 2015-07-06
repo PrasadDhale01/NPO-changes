@@ -233,7 +233,7 @@
 			                   <g:else>
 				                   <h4 class="anonymous-top">Anonymous Good Soul</h4>
 				                   <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-				                   <span class="font-anonymous">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</span>
+				                   <div class="font-anonymous">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</div>
 			                   </g:else>
 			               </g:if>
 		                   <g:else>

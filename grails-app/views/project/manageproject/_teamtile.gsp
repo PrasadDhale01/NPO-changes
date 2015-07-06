@@ -21,6 +21,7 @@
     def isAdminOrBeneficiary = userService.isCampaignBeneficiaryOrAdmin(project, user)
     def isCampaignAdmin = userService.isCampaignAdmin(project, username)
     def isCampaignAdminByUser=userService.isCampaignAdminByUserID(project, user)
+	def percentage = contributionService.getPercentageContributionForTeam(team)
 	
 	if(percentage >= 100) {
 		cents = 100
@@ -69,7 +70,7 @@
                     <img alt="${userName}" class="project-img" src="${userImageUrl}">
                 </g:if>
                 <g:else>
-                    <div class="imageWithTag">
+                    <div>
                         <div class="under">
                             <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="project-img" alt="Upload Photo">
                         </div>

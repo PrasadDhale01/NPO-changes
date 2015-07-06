@@ -1418,12 +1418,12 @@ a {
        left: 19%;
     }
     .footer-mid-section p {
-		color: #e3e3e3;
-		font-family: "OPEN SANS";
-		font-size: 12px !important;
-		margin-left: 7px !important;
-		text-align: center;
-	}
+	color: #e3e3e3;
+	font-family: "OPEN SANS";
+	font-size: 12px !important;
+	margin-left: 7px !important;
+	text-align: center;
+    }
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1024px){
@@ -2459,13 +2459,13 @@ footer .footerbottomsection {
     z-index:1;
 }
 .over.user-tile{
-	display: block;
-	left: auto;
-	margin-left: -8px;
-	margin-right: auto;
-	position: absolute;
-	top: 8px;
-	z-index: 1;
+   display: block;
+   left: auto;
+   margin-left: -8px;
+   margin-right: auto;
+   position: absolute;
+   top: 8px;
+   z-index: 1;
 }
 .deleteIconAbove{
 	position: absolute;

@@ -1956,46 +1956,45 @@ class ProjectService {
         def list = VanityTitle.list()
         List result = []
         def vanitytitle
-		def status = false
+        def status = false
         list.each{
             if (it.title.equalsIgnoreCase(title)) {
                 result.add(it)
             }
         }
-		
+
         if (result.isEmpty())
-		    vanitytitle = title
+            vanitytitle = title
         else
-		    vanitytitle = title+"-"+result.size()
+            vanitytitle = title+"-"+result.size()
 
         new VanityTitle(
             project:project,
             projectTitle:title,
             vanityTitle:vanitytitle,
-			title:title
+            title:title
         ).save(failOnError: true)
 
         return vanitytitle
     }
 
     def getVanityTitleFromId(def projectId){
-	def vanity_title
+        def vanity_title
         def project = Project.get(projectId)
-	if(project){
-	   def status = false
-	   def title = project.title.trim()
-	   vanity_title= title.replaceAll("[^a-zA-Z0-9]", "-")
-	   def vanity = VanityTitle.findAllWhere(project:project)
-	   def count = 1
-	   vanity.each{
-		if (it.title.equals(vanity_title)){
-	  	   status = true
-		   vanity_title = it.vanityTitle
-		}
-	   }
-	   if (!status)
-		getProjectVanityTitle(project)
-	   }    
+        if(project){
+            def status = false
+            def title = project.title.trim()
+            vanity_title= title.replaceAll("[^a-zA-Z0-9]", "-")
+            def vanity = VanityTitle.findAllWhere(project:project)
+            vanity.each{
+                if (it.title.equals(vanity_title)){
+                    status = true
+                    vanity_title = it.vanityTitle
+                }
+            }
+            if (!status)
+                getProjectVanityTitle(project)
+        }
         return vanity_title
     }
 

@@ -41,7 +41,7 @@
                     <tbody>
                     <tr>
                         <td>Campaign</td>
-                        <td><g:link controller="project" action="show" id="${project.id}">${project.title}</g:link></td>
+                        <td><g:link controller="project" action="showCampaign" id="${project.id}">${project.title}</g:link></td>
                     </tr>
                     <tr>
                         <td>Beneficiary</td>

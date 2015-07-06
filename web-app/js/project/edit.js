@@ -142,9 +142,7 @@ $(function() {
     });
     
     $('.updatesubmitbutton').click(function(event) {
-        if(validator.form()){
-        	needToConfirm = false;
-        } 	
+        needToConfirm = false;
     });
     
     $.validator.addMethod('isYoutubeVideo', function (value, element) {

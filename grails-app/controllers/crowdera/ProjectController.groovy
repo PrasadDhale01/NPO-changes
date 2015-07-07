@@ -132,6 +132,9 @@ class ProjectController {
             def isCrUserCampBenOrAdmin
             def isTeamExist
             def CurrentUserTeam
+            def projectComment
+            def teamcomment
+            
             List contributions = []
             
             if(project.user == currentTeam.user) {
@@ -153,12 +156,19 @@ class ProjectController {
             def day= projectService.getRemainingDay(project)
             def endDate = projectService.getProjectEndDate(project)
             def webUrl = projectService.getWebUrl(project)
-              
+            
+            if (params.commentId) {
+                projectComment = projectService.getProjectCommentById(params.long('commentId'))
+            }
+            if (params.teamCommentId) {
+                teamcomment = projectService.getTeamCommentById(params.long('teamCommentId'))
+            }
+            
             render (view: 'show/index',
             model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin,
                     totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, contributions: contributions, webUrl: webUrl,
                     teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist,
-                    isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
+                    isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment, 
                     isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS])
         } else {
             render (view: '/error')
@@ -175,7 +185,7 @@ class ProjectController {
 			render view:"/error"
 		}
     }
-
+    
     @Secured(['ROLE_ADMIN'])
     def validateshow() {
         def projectId
@@ -1136,5 +1146,45 @@ class ProjectController {
         JSONObject json = new JSONObject();
         json.put("filelink",fileUrl);
         render json
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def editComment() {
+        def projectComment
+        def teamcomment
+        def project = projectService.getProjectById(params.projectId)
+        def vanityUserName = userService.getVanityNameFromUsername(params.fr, params.projectId)
+        if (params.commentId || params.teamCommentId) {
+            if (params.commentId) {
+                redirect (action:'show', controller:'project', fragment: 'comments', params:[projectTitle:params.projectTitle, fr: vanityUserName, commentId: params.commentId])
+            }
+            if (params.teamCommentId) {
+                redirect (action:'show', controller:'project', fragment: 'comments', params:[projectTitle:params.projectTitle, fr: vanityUserName, teamCommentId: params.teamCommentId])
+            }
+        } else {
+            render view:'error'
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def editCommentSave() {
+        ProjectComment projectComment
+        TeamComment teamcomment
+        def project = projectService.getProjectById(params.projectId)
+        def vanityUserName = userService.getVanityNameFromUsername(params.fr, params.projectId)
+        
+        if (params.commentId) {
+            projectComment = projectService.getProjectCommentById(params.long('commentId'))
+            if (projectComment) {
+                projectComment.comment = params.comment
+            }
+        }
+        if (params.teamCommentId) {
+            teamcomment = projectService.getTeamCommentById(params.long('teamCommentId'))
+            if (teamcomment) {
+                teamcomment.comment = params.comment
+            }
+        }
+        redirect (action:'show', controller:'project', fragment: 'comments', params:[projectTitle:params.projectTitle, fr:vanityUserName])
     }
 }

@@ -589,7 +589,9 @@ input.button-signup{
     width: 84px;
 }
 input.signup-lg{
-	margin-left:0px;
+	margin-left:-6px;
+	height: 30px;
+	width: 75px;
 }
 .footer-mid-section-img a{
     margin-left:-25px;
@@ -1276,9 +1278,14 @@ a {
 	font-size: 13px;
 	font-weight: normal;
 	height: 30px;
-	margin-left: 7px;
-	width: 137px;  
+	margin-left: 5px;
+	width: 160px;  
    }
+	input.signup-lg {
+		margin-left:-15px;
+		height:30px;
+		width:75px;
+	}
    .text-primary {
 	color: #008cba;
 	margin-left: -60px !important;

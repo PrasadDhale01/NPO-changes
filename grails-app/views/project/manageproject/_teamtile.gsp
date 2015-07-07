@@ -104,7 +104,7 @@
                         <div class="under">
                             <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="project-img" alt="Upload Photo">
 							<div class="team-caption">
-								<span>${userName.toUpperCase()}</span>
+								<p>${userName.toUpperCase()}</p>
 							</div>
                         </div>
                         <div class="over teamtile-banner">
@@ -128,7 +128,7 @@
             </g:link>
         </g:else>
         <div class="team-caption">
-			<span>${userName.toUpperCase()}</span>
+			<p>${userName.toUpperCase()}</p>
 		</div>
     </div>
 

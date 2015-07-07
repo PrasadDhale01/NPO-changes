@@ -5,7 +5,7 @@
     def fundRaiser = user.username
 %>
 
-<div class="col-md-4 mobileview-top">
+<div class="col-xs-12 col-md-4 mobileview-top">
 	<g:render template="/project/manageproject/tilesanstitle" />
 	<g:if test="${project.draft}">
 		<g:form controller="project" action="saveasdraft"
@@ -26,7 +26,7 @@
     <%-- Social features --%>
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <g:if test="${project.validated}">
-		<div class="shared pull-left">
+		<div class="shared pull-left mng-sharing-icon-alignment">
 			<span><label>SHARE:</label></span>
 		</div>
 		<a target="_blank" class="fb-like pull-left social fbShareForLargeDevices" id="fbshare">
@@ -96,7 +96,7 @@
 	</div>
 </div>
 
-<div class="col-md-4 mobileview-bottom">
+<div class="col-xs-12 col-md-4 mobileview-bottom">
 	<g:render template="/project/manageproject/tilesanstitle" />
 	<g:if test="${project.draft}">
 		<g:form controller="project" action="saveasdraft" id="${project.id}">

@@ -161,7 +161,7 @@
 		    </div>
 		</div>
 		<div class="col-sm-4 footer-last-section-links">
-		    <span class="text-primary">
+		    <span class="text-primary pull-right">
 			<a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of  Use</a>&nbsp;&nbsp;
 			<a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
 			<a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>

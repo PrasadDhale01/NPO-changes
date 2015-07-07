@@ -80,7 +80,7 @@
 	                	<h4 class="green-heading"> by ${fundRaiserName}</h4>
 	                </div>
                 </g:if>
-	            <div class="col-md-4 mobileview-top">
+	            <div class="col-xs-12 col-md-4 mobileview-top">
                     <g:render template="/layouts/organizationdetails"/>
                     <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
@@ -103,7 +103,7 @@
                     	<g:render template="show/rewards" model="['username':username]"/>
                     </g:if>
                 </div>
-                <div class="col-md-8 Top-tabs-mobile">
+                <div class="col-xs-12 col-md-8 Top-tabs-mobile">
                     <ul class="nav nav-tabs nav-justified show-marginbottoms">
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span><span class="tab-text hidden-xs"> Story</span>
@@ -180,7 +180,7 @@
 				    </div>
 				    
                 </div>
-                <div class="col-md-4 mobileview-bottom">
+                <div class="col-xs-12 col-md-4 mobileview-bottom">
                     <g:render template="/layouts/organizationdetails"/>
                     <g:if test="${percentage == 999}">
                         <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>

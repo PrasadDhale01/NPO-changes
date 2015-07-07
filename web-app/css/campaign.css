@@ -143,8 +143,8 @@ p {
 }
 .rewardsection-row:hover {
 	background-color: #fff;
-    border-color: #ff784f !important;
-    border: 1px solid #ff784f;
+    border-color: #01bbd2 !important;
+    border: 1px solid #01bbd2;
 }
 .rewardsection a:hover, .rewardsection a:active {
     text-decoration: none !important;

@@ -30,7 +30,7 @@
         </div>
         <div class="item ">
             <img  class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/FOG-Slide.jpg" alt="FOG-Slide">
-             <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/fog-slider-mobile-image.jpg" alt="FOG-Slide">
+             <img class="visible-xs" src="//s3.amazonaws.com/crowdera/assets/FOG-Slide-mobile.jpg" alt="FOG-Slide">
             <div class="carousel-buttons joinFOG">
                <div class="fbButton joinFOG">
                   <a href="${resource(dir: '/campaigns/Festival-of-Globe---FOG/The-Federation-of-Indo-Americans-of-Northern-California-594')}">

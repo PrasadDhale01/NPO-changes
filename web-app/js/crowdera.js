@@ -5,7 +5,7 @@ $(function() {
     $('#resultOutput').hide();
     
     $(document).ready(function() { 
-    	$("#mc-embedded-subscribe-form-lg").validate({ 
+    	$("#mvc-embedded-subscribe-form-lg").validate({ 
     	   rules: { 
     	    EMAIL: {// compound rule 
     		          required: true, 
@@ -188,10 +188,10 @@ $(function() {
     $('.display-footer-text').hover(function(){
 		var url=$('#b_url').val();
 		$('.footer-start-cmpg-img').attr('src','https://s3.amazonaws.com/crowdera/assets/Start-a-Campaign---Button-Over.jpg');
-		$(this).attr('href',url+'/campaigns/create');
+		$('.display-footer-text').attr('href',url+'/campaigns/create');
 	}).mouseleave(function(){
 		$('.footer-start-cmpg-img').attr('src','https://s3.amazonaws.com/crowdera/assets/Hands-up-for-a-better - button.jpg');
-		$(this).attr('href','#');
+		$('.display-footer-text').attr('href','#');
 	});
 	    
     

@@ -130,7 +130,7 @@
 		    </div>
 		    <br><br>
 		    <div class="footer-newsletter">
-			<form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+			<form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-md" name="mc-embedded-subscribe-form" class="validate" target="_blank">
 			    <div class="newsletter-alignment">
 			        <div class="newsletter-input">
 				    <input type="text" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">
@@ -213,7 +213,7 @@
 		    </div>
 		    <br><br>
 		    <div class="footer-newsletter">
-			<form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+			<form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mvc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
 			    <div class="newsletter-alignment">
 				<div class="newsletter-input">
 				    <input type="text" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">

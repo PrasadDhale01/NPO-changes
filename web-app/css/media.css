@@ -17,6 +17,37 @@
     .whycrowderacol-md .whycdradivpadding8 {
 	    margin-top: -20px !important;
     }
+    .whycrowderadiv3 {
+        margin-top: -15px !important;
+    }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1024px){
+	.whycrowderacol-sm .col-sm-6 ,.whycrowderacol-sm .col-sm-12{
+	    padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    .whycrowderacol-md-12 .whycrowderadiv1 {
+	    margin-top: 26px !important;
+    }
+    .whycrowderacol-md-12 .whycrowderadiv2 {
+	    margin-top: 16px !important;
+    }
+    .wwhycrowderacol-md-12 .whycrowderadiv3 {
+	    margin-top: -1px !important;
+    }
+    .whycrowderacol-md-12 .whycrowderadiv4 {
+	    margin-top: -5px !important;
+    }
+    .whycrowderacol-md-12 .whycrowderadiv6 {
+	    margin-top: -25px !important;
+    }
+    .whycrowderacol-md-12 .whycrowderadiv7 {
+	    margin-top: -25px !important;
+    }
+    .whycrowderacol-md-12 .whycrowderadiv8 {
+	    margin-top: -25px !important;
+    }
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px){
@@ -31,7 +62,7 @@
 	    margin-top: 4px !important;
     }
     .whycrowderacol-sm .whycdradivpadding4 {
-	    margin-top: -8px !important;
+	    margin-top: 10px !important;
     }
     .whycrowderacol-sm .whycdradivpadding6 {
 	    margin-top: -15px !important;
@@ -50,7 +81,7 @@
 
 @media only screen and (min-width: 668px) and (max-width: 767px){
     .whycrowderacol-sm .col-xs-3 {
-        width: 15% !important;
+        width: 25% !important;
     }
     .whycrowderacol-sm .col-xs-9 {
         width: 75% !important;
@@ -59,10 +90,10 @@
 
 @media only screen and (min-width: 568px) and (max-width: 667px){
     .whycrowderacol-sm .col-xs-3 {
-        width: 18% !important;
+        width: 25% !important;
     }
     .whycrowderacol-sm .col-xs-9 {
-        width: 80% !important;
+        width: 75% !important;
     }
 }
 
@@ -72,10 +103,10 @@
         padding-right: 0px !important;
     }
     .whycrowderacol-sm .col-xs-3 {
-        width: 20% !important;
+        width: 25% !important;
     }
     .whycrowderacol-sm .col-xs-9 {
-        width: 80% !important;
+        width: 75% !important;
     }
 }
 

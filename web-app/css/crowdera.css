@@ -1038,12 +1038,12 @@ a {
 		margin-left:40px !important;
 		margin-right:40px !important;
 	}
-	.whycrowderadiv-sm{
-		display:inline-flex;
-		padding-left:0px !important;
-		padding-right:0px !important;
-		width:270px;
-	}
+/* 	.whycrowderadiv-sm{ */
+/* 		display:inline-flex; */
+/* 		padding-left:0px !important; */
+/* 		padding-right:0px !important; */
+/* 		width:270px; */
+/* 	} */
 	.whycrowderadiv-sm-padding{
 		padding-right:5px;
 	}

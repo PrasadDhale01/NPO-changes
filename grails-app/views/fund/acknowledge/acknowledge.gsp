@@ -133,7 +133,7 @@
                 </g:else>
                 
                 <div class="row">
-					<div class="col-sm-12 shared contributionShare">
+					<div class="col-sm-6 shared contributionShare">
 						<div class="shared ack-socialicon pull-left">
 							<span><label>SHARE:</label></span>
 						</div>

@@ -183,7 +183,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 .dropdown-menu > li > a:focus {
     color: #ffffff;
     text-decoration: none;
-    background-color: #ff784f; /* change color of links in drop down here */
+    background-color: #006083; /* change color of links in drop down here */
 }
 
 .nav > li > a {
@@ -193,7 +193,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 .nav > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
-    background-color: #ff784f; /* Change rollover cell color here */
+    background-color: #006083; /* Change rollover cell color here */
 }
 
 /*-------------------- Image courasel new slider and button ------------------------------------*/
@@ -3200,7 +3200,7 @@ div.tile-min-height{
 
 .alert-title{
 	color: white;
-    background-color: #ff784f;
+    background-color: #006083;
 }
 h1.green-heading{
     text-transform: uppercase;
@@ -5816,7 +5816,7 @@ button.projectedit.close{
     color: white !important;
 }
 .nav-pills > li.active > a:hover{
-	background-color: #ff784f !important ;
+	background-color: #006083 !important ;
     color: white !important;
 }
 .team-footer h4,.team-footer h5{ font-weight:normal !important}
@@ -5826,7 +5826,7 @@ button.projectedit.close{
 .pill-buttons .active .btn-default:hover,
 .pill-buttons .btn-default:focus,
 .open > .dropdown-toggle.btn-default:hover{
-    background-color: #ff784f !important ;
+    background-color: #006083 !important ;
     color: white !important;
 }
 .open > .dropdown-toggle.btn-default {
@@ -5887,8 +5887,8 @@ button.projectedit.close{
     padding-left: 8px !important;
 }
 .panel-primary > .panel-heading{
-     background-color: #ff784f;
-     border-color: #ff784f;
+     background-color: #006083;
+     border-color: #006083;
      height: 48px;
      word-wrap: break-word;
 }
@@ -5995,7 +5995,7 @@ a.footerlink {
 .nav-pills-manageteam .dropdown-menu > li > a:focus {
     color: #ffffff !important;
     text-decoration: none;
-    background-color: #ff784f; /* change color of links in drop down here */
+    background-color: #006083; /* change color of links in drop down here */
 }
 .nav-pills-manageteam .dropdown-menu > .active > a, .nav-pills-manageteam .dropdown-menu > .active > a:focus {
 	color: #ffffff;
@@ -6007,7 +6007,7 @@ a.footerlink {
 	color: #ffffff;
 	text-decoration: none;
 	outline: 0;
-	background-color: #ff784f !important;
+	background-color: #006083 !important;
 }
 .aboutus{
 	display:none;
@@ -7125,4 +7125,8 @@ div.campaign-title-margin-bottom{
 }
 .contributionShare {
 	margin-top: -40px;
+}
+.table > thead > tr > td.info, .table > tbody > tr > td.info, .table > tfoot > tr > td.info, .table > thead > tr > th.info, .table > tbody > tr > th.info, .table > tfoot > tr > th.info, .table > thead > tr.info > td, .table > tbody > tr.info > td, .table > tfoot > tr.info > td, .table > thead > tr.info > th, .table > tbody > tr.info > th, .table > tfoot > tr.info > th {
+    background-color: #006083 !important;
+    color: #ffffff !important;
 }

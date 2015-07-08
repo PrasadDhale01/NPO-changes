@@ -16,9 +16,9 @@
 
     List listcomment=[]
     if(project.user==team.user){
-        listcomment= project.comments
+        listcomment= projectComments
     }else{
-        listcomment= team.comments
+        listcomment= teamComments
     }
     def projectId=project.id
     def teamCommentId
@@ -77,15 +77,14 @@
 <sec:ifNotLoggedIn>
     <div class="alert alert-warning">Please login to comment.</div>
 </sec:ifNotLoggedIn>
-
-<g:if test="${!listcomment.empty}">
+<g:if test="${!listcomment.isEmpty()}">
     <div class="panel panel-default show-comments-details">
         <div class="panel-heading">
             <h3 class="panel-title">Campaign Comments</h3>
         </div>
         <div class="panel-body commentsoncampaign">
             <div class="list-group">
-                <g:each in="${listcomment.reverse()}" var="comment">
+                <g:each in="${listcomment}" var="comment">
                     <%
                         def date = dateFormat.format(comment.date)
                         def isAnonymous = userService.isAnonymous(comment.user)
@@ -100,7 +99,7 @@
                                     <dt>By ${userService.getFriendlyFullName(comment.user)}, on ${date}</dt>
                                 </g:else>
 				                <dd>${comment.comment}</dd>
-                                <g:if test="${comment.user == currentUser}">
+                                <g:if test="${comment.user == currentUser || project.user == currentUser}">
                                     <div class="editAndDeleteBtn deleteComment">
                                         <g:form controller="project" action="commentdelete" method="post" params="['projectId':projectId, 'fr': fundRaiser]">
                                             <g:hiddenField name='commentId' value="${comment.id}"></g:hiddenField>
@@ -108,12 +107,14 @@
                                             <i class="glyphicon glyphicon-trash"></i>
                                             </button>
                                         </g:form>
-                                        <g:form controller="project" name="editComment" action="editComment" method="post" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
-                                            <g:hiddenField name='commentId' value="${comment.id}"></g:hiddenField>
-                                            <button type="submit" class="projectedit close" id="projectedit">
-                                                <i class="glyphicon glyphicon-edit glyphicon-lg projectedit"></i>
-                                            </button>
-                                        </g:form>
+                                        <g:if test="${comment.user == currentUser}">
+                                            <g:form controller="project" name="editComment" action="editComment" method="post" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
+                                                <g:hiddenField name='commentId' value="${comment.id}"></g:hiddenField>
+                                                <button type="submit" class="projectedit close" id="projectedit">
+                                                    <i class="glyphicon glyphicon-edit glyphicon-lg projectedit"></i>
+                                                </button>
+                                            </g:form>
+                                        </g:if>
                                     </div>
                                 </g:if>
 			                </div>
@@ -137,12 +138,14 @@
                                             <i class="glyphicon glyphicon-trash"></i>
                                             </button>
                                         </g:form>
-                                        <g:form controller="project" name="editcomment" action="editComment" method="post" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
-                                            <g:hiddenField name='teamCommentId' value="${comment.id}"></g:hiddenField>
-                                            <button type="submit" class="projectedit close pull-right" id="projectedit">
-                                                <i class="glyphicon glyphicon-edit glyphicon-lg projectedit"></i>
-                                            </button>
-                                        </g:form>
+                                        <g:if test="${comment.user == currentUser}">
+                                            <g:form controller="project" name="editcomment" action="editComment" method="post" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
+                                                <g:hiddenField name='teamCommentId' value="${comment.id}"></g:hiddenField>
+                                                    <button type="submit" class="projectedit close pull-right" id="projectedit">
+                                                        <i class="glyphicon glyphicon-edit glyphicon-lg projectedit"></i>
+                                                    </button>
+                                            </g:form>
+                                        </g:if>
                                     </div>
                                 </g:if>
                             </g:if>

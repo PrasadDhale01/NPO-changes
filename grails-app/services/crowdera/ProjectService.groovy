@@ -2090,6 +2090,16 @@ class ProjectService {
         }
     }
     
+    def getProjectComments(Project project) {
+        List comments = ProjectComment.findAllWhere(project: project, status: false)
+        return comments.reverse()
+    }
+    
+    def getTeamComments(Team team) {
+        List comments = TeamComment.findAllWhere(team: team)
+        return comments.reverse()
+    }
+    
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

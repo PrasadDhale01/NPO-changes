@@ -225,11 +225,14 @@ class ProjectController {
             def endDate = projectService.getProjectEndDate(project)
             def webUrl = projectService.getWebUrl(project)
             def validatedPage = true
+            def projectComments = projectService.getProjectComments(project)
+            def teamComments = projectService.getTeamComments(currentTeam)
+            
             if(project.validated == false) {
                 
                 render (view: 'validate/validateshow',
-                    model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,
-                            totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, webUrl: webUrl,
+                    model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,projectComments: projectComments,
+                            totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, webUrl: webUrl, teamComments: teamComments,
                             teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,
                             isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
                             validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS])

@@ -193,3 +193,11 @@ p {
 	font-size: 14px;
 	font-family: "Open Sans";
 }
+
+.whycrowderacol-md-2 .col-md-2, .whycrowderacol-md-12 .col-md-12, .whycrowderacol-sm .col-xs-12, .whycrowderacol-sm .col-xs-3{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.whycrowderacol-md-2 .col-md-10 {
+    padding-right: 0px !important;
+}

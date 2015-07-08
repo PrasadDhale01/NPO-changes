@@ -183,7 +183,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 .dropdown-menu > li > a:focus {
     color: #ffffff;
     text-decoration: none;
-    background-color: #ff784f; /* change color of links in drop down here */
+    background-color: #006083; /* change color of links in drop down here */
 }
 
 .nav > li > a {
@@ -193,7 +193,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 .nav > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
-    background-color: #ff784f; /* Change rollover cell color here */
+    background-color: #006083; /* Change rollover cell color here */
 }
 
 /*-------------------- Image courasel new slider and button ------------------------------------*/
@@ -532,7 +532,7 @@ hr.footer-hr{
 .footer-mid-section p span{
     color:#e3e3e3;
     font-size:15px;	
-    padding-left: 50%;	
+    padding-left: 44%;	
 }
 .thomas-margin-align{
 	line-height:1px;
@@ -589,7 +589,9 @@ input.button-signup{
     width: 84px;
 }
 input.signup-lg{
-	margin-left:0px;
+	margin-left:-6px;
+	height: 30px;
+	width: 75px;
 }
 .footer-mid-section-img a{
     margin-left:-25px;
@@ -666,6 +668,9 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.contributionShare {
+		margin-top: -40px !important;
+	}
 	.fbButton.joinFOG{
 		display: block;
 		margin-left: auto;
@@ -1026,6 +1031,9 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.contributionShare {
+		margin-top: -40px !important;
+	}
 	.fbButton{
 		margin-left: auto !important;
 		margin-top: -66px !important;
@@ -1040,12 +1048,12 @@ a {
 		margin-left:40px !important;
 		margin-right:40px !important;
 	}
-	.whycrowderadiv-sm{
-		display:inline-flex;
-		padding-left:0px !important;
-		padding-right:0px !important;
-		width:270px;
-	}
+/* 	.whycrowderadiv-sm{ */
+/* 		display:inline-flex; */
+/* 		padding-left:0px !important; */
+/* 		padding-right:0px !important; */
+/* 		width:270px; */
+/* 	} */
 	.whycrowderadiv-sm-padding{
 		padding-right:5px;
 	}
@@ -1213,6 +1221,10 @@ a {
         margin-left: 18px;
         margin-right: 0;
     }
+    div.footer-last-section-links{
+    	padding-left:0px !important;
+    	padding-right:0px !important;
+    }
     .footer-hands-image-top div {
 		display: block;
 		margin-left: auto;
@@ -1266,9 +1278,14 @@ a {
 	font-size: 13px;
 	font-weight: normal;
 	height: 30px;
-	margin-left: 7px;
-	width: 137px;  
+	margin-left: 5px;
+	width: 160px;  
    }
+	input.signup-lg {
+		margin-left:-15px;
+		height:30px;
+		width:75px;
+	}
    .text-primary {
 	color: #008cba;
 	margin-left: -60px !important;
@@ -1339,6 +1356,14 @@ a {
 	.fbButton {
 		margin-left: auto;
 	}
+	.tile-goal.show-contribution-amt-tile {
+		font-size: 19px !important;
+	}
+	span.tile-day-num.show-contribution-amt-tile {
+		color: #000 !important;
+		font-size: 19px !important;
+		font-weight: bold;
+	}
 	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
 		font-size: 10px;
 		line-height: 5px;
@@ -1348,12 +1373,32 @@ a {
 		padding-right: 17px !important;
 	}
 	.show-tile-text-size.contribution-tile {
-		font-size: 10px;
+		font-size: 10px !important;
 		line-height: 5px;
 		margin-bottom: 0;
 		margin-top: 10px;
 		padding-left: 17px !important;
 		padding-right: 17px !important;
+	}
+	.show-tile-text-size {
+		font-size: 9px !important;
+		line-height: 5px;
+	}
+	.lead.show-contribution-amt-tile {
+		font-size: 19px !important;
+		font-weight: bold !important;
+	}
+	.icons-centering {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 285px !important;
+	}
+	.amount-centering {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 285px !important;
 	}
 	.progressBarIcon {
 		border-left: 1px solid #e7e7e7;
@@ -1493,7 +1538,7 @@ a {
 	.footer-mid-section p span {
 		color: #e3e3e3;
 		font-size: 15px;
-		padding-left: 48% !important;
+		padding-left: 44% !important;
 	}
 	.nav-tabs.nav-justified > li > a {
        font-size: 12px !important;
@@ -2451,6 +2496,24 @@ footer .footerbottomsection {
     top: 0;
     z-index: 1;
 }
+.setting-user-contributions .over.show-tile {
+	display: block;
+	left: auto;
+	margin-left: -8px;
+	margin-right: auto;
+	position: absolute;
+	top: 94px;
+	z-index: 1;
+}
+.acknowledge-tile-tag .over.show-tile{
+	display: block;
+	left: auto;
+	margin-left: -8px;
+	margin-right: auto;
+	position: absolute;
+	top: 130px;
+	z-index: 1;
+}
 .over.show-tile{
     margin-left: 9px;
     position:  absolute;
@@ -3137,7 +3200,7 @@ div.tile-min-height{
 
 .alert-title{
 	color: white;
-    background-color: #ff784f;
+    background-color: #006083;
 }
 h1.green-heading{
     text-transform: uppercase;
@@ -4859,12 +4922,18 @@ textarea.form-control {
         font-size: 11px !important;
         text-decoration: none;
     }
+	.contributionShare {
+		margin-top: 0 !important;
+	}
 }
 
 @media only screen and (max-width: 360px){
 	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 		width: 81%;
 		margin-left: -28%;
+	}
+	.contributionShare {
+		margin-top: 0px !important;
 	}
 	.tips h2 {
 		padding-left: 68px !important;
@@ -5132,15 +5201,20 @@ textarea.form-control {
 		top: -40px !important;
 	}
 	.contributionShare {
-		margin-top: -18px !important;
+		margin-top: 0px !important;
 	}
 	.shared.ack-socialicon span {
 		float: right;
 		margin: 5px 5px 5px 3px !important;
 	}
-	.shared span {
+	.social.sharing-icon-alignment{
+		margin-left:-19px;
+		padding-left:0px !important;
+		padding-right:0px !important;
+	}
+	.shared.mng-sharing-icon-alignment span {
 		float: right;
-		margin: 5px 5px 5px -10px !important;
+		margin: 5px 5px 5px 10px !important;
 	}
 	.crowderasupport {
 	    font-size: 114%;
@@ -5742,7 +5816,7 @@ button.projectedit.close{
     color: white !important;
 }
 .nav-pills > li.active > a:hover{
-	background-color: #ff784f !important ;
+	background-color: #006083 !important ;
     color: white !important;
 }
 .team-footer h4,.team-footer h5{ font-weight:normal !important}
@@ -5752,7 +5826,7 @@ button.projectedit.close{
 .pill-buttons .active .btn-default:hover,
 .pill-buttons .btn-default:focus,
 .open > .dropdown-toggle.btn-default:hover{
-    background-color: #ff784f !important ;
+    background-color: #006083 !important ;
     color: white !important;
 }
 .open > .dropdown-toggle.btn-default {
@@ -5813,8 +5887,8 @@ button.projectedit.close{
     padding-left: 8px !important;
 }
 .panel-primary > .panel-heading{
-     background-color: #ff784f;
-     border-color: #ff784f;
+     background-color: #006083;
+     border-color: #006083;
      height: 48px;
      word-wrap: break-word;
 }
@@ -5854,7 +5928,7 @@ button.projectedit.close{
     color: white;
 }
 .powerdby img{
-	max-width:85%;
+	max-width:90%;
 }
 .footer_links a {
 	color: #e3e3e3;
@@ -5921,7 +5995,7 @@ a.footerlink {
 .nav-pills-manageteam .dropdown-menu > li > a:focus {
     color: #ffffff !important;
     text-decoration: none;
-    background-color: #ff784f; /* change color of links in drop down here */
+    background-color: #006083; /* change color of links in drop down here */
 }
 .nav-pills-manageteam .dropdown-menu > .active > a, .nav-pills-manageteam .dropdown-menu > .active > a:focus {
 	color: #ffffff;
@@ -5933,7 +6007,7 @@ a.footerlink {
 	color: #ffffff;
 	text-decoration: none;
 	outline: 0;
-	background-color: #ff784f !important;
+	background-color: #006083 !important;
 }
 .aboutus{
 	display:none;
@@ -5951,7 +6025,7 @@ a.footerlink {
 }
 .center-fund{
 	align-content: center;
-	width: 290px;
+	width: 315px;
 }
 .paypal-secured-image img{
 	width: 245px; 
@@ -6950,6 +7024,11 @@ p.anonymous-top {
 .tile-goal.teamtile {
     font-size: 19.5px;
 }
+.team-caption p{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
 .team-caption{
 	background: black;
 	height:45px;
@@ -7043,4 +7122,11 @@ div.campaign-title-margin-bottom{
     color: #fff;
     margin: 5px auto 0;
     width: 50%;
+}
+.contributionShare {
+	margin-top: -40px;
+}
+.table > thead > tr > td.info, .table > tbody > tr > td.info, .table > tfoot > tr > td.info, .table > thead > tr > th.info, .table > tbody > tr > th.info, .table > tfoot > tr > th.info, .table > thead > tr.info > td, .table > tbody > tr.info > td, .table > tfoot > tr.info > td, .table > thead > tr.info > th, .table > tbody > tr.info > th, .table > tfoot > tr.info > th {
+    background-color: #006083 !important;
+    color: #ffffff !important;
 }

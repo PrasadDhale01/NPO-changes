@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="shortcut icon" href="//s3.amazonaws.com/crowdera/assets/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="//s3.amazonaws.com/crowdera/assets/Crowdera-Favicon-blue.png" type="image/x-icon">
     <title><g:layoutTitle default="Crowdera" /></title>
 
     <!-- Twitter Bootstrap CSS -->

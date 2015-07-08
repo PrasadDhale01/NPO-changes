@@ -133,7 +133,7 @@
                 </g:else>
                 
                 <div class="row">
-					<div class="col-sm-12 shared contributionShare">
+					<div class="col-sm-6 shared contributionShare">
 						<div class="shared ack-socialicon pull-left">
 							<span><label>SHARE:</label></span>
 						</div>
@@ -193,7 +193,7 @@
             		</div>
         		</div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 acknowledge-tile-tag">
                 <g:if test="${project.rewards.size()>1 }">
                     <g:render template="rewardtile"/>
                 </g:if>

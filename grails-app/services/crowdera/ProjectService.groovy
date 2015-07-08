@@ -63,7 +63,7 @@ class ProjectService {
          Project project = new Project(projectParams)
          return project
     }
-
+    
     def getProjectUpdateDetails(def params, def request, def project, def user){
 		def vanitytitle
 		def title = project.title
@@ -463,15 +463,16 @@ class ProjectService {
          def fundraiser = params.fr
          def fundRaiser = userService.getUserByUsername(fundraiser)
          Team team = getTeamByUserAndProject(project, fundRaiser)
-         if(team){
-             def teamcomment = TeamComment.get(params.long('id'))
+         if (team && params.teamCommentId) {
+             def teamcomment = TeamComment.get(params.long('teamCommentId'))
              if (teamcomment) {
                  List teamComments = team.comments
                  teamComments.remove(teamcomment)
                  teamcomment.delete()
              }
-         }else{
-             def projectcomment= ProjectComment.get(params.long('id'))
+         }
+         if (project && params.commentId){
+             def projectcomment= ProjectComment.get(params.long('commentId'))
              if (projectcomment) {
                  List projectComments = project.comments
                  projectComments.remove(projectcomment)
@@ -2087,6 +2088,16 @@ class ProjectService {
             teamComments.remove(teamComment)
             teamComment.delete()
         }
+    }
+    
+    def getProjectComments(Project project) {
+        List comments = ProjectComment.findAllWhere(project: project, status: false)
+        return comments.reverse()
+    }
+    
+    def getTeamComments(Team team) {
+        List comments = TeamComment.findAllWhere(team: team)
+        return comments.reverse()
     }
     
     @Transactional

@@ -20,7 +20,7 @@
     <br>
     <%-- Social features --%>
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
-    <div class="col-sm-12 social">
+    <div class="col-sm-12 social sharing-icon-alignment">
 		<div class="shared pull-left">
 			<span><label>SHARE:</label></span>
 		</div>

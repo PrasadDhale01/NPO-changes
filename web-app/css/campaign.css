@@ -143,8 +143,8 @@ p {
 }
 .rewardsection-row:hover {
 	background-color: #fff;
-    border-color: #ff784f !important;
-    border: 1px solid #ff784f;
+    border-color: #01bbd2 !important;
+    border: 1px solid #01bbd2;
 }
 .rewardsection a:hover, .rewardsection a:active {
     text-decoration: none !important;
@@ -182,4 +182,22 @@ p {
 .helpdesk {
     margin-left: 15% !important;
     margin-right: 15% !important;
+}
+
+.commentsoncampaign dd {
+	font-size: 13px;
+	font-family: "Open Sans";
+}
+
+.commentsoncampaign dt {
+	font-size: 14px;
+	font-family: "Open Sans";
+}
+
+.whycrowderacol-md-2 .col-md-2, .whycrowderacol-md-12 .col-md-12, .whycrowderacol-sm .col-xs-12, .whycrowderacol-sm .col-xs-3{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.whycrowderacol-md-2 .col-md-10 {
+    padding-right: 0px !important;
 }

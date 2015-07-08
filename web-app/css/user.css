@@ -7,7 +7,7 @@
 .show-team-button .dropdown-menu > li > a:focus {
     color: #ffffff !important;
     text-decoration: none;
-    background-color: #ff784f; /* change color of links in drop down here */
+    background-color: #006083; /* change color of links in drop down here */
 }
 .show-team-button .dropdown-menu > .active > a, .nav-pills-manageteam .dropdown-menu > .active > a:focus {
 	color: #ffffff;

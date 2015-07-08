@@ -507,15 +507,22 @@ class UserService {
     }
 
     def getProjectVanityUsername(User user){
-        def firstname = user.firstName.trim()
-        def vanityname = firstname.replaceAll("[^a-zA-Z0-9]", "-")+"-"+user.id
-        def vanity_username = VanityUsername.findAllWhere(vanityUsername:vanityname)
-        if (!vanity_username) {
-            new VanityUsername(
-                user:user,
-                username:user.username,
-                vanityUsername:vanityname
-            ).save(failOnError: true)
+        def firstname
+        def vanityname
+        def vanity_username
+        if (user.firstName) {
+            firstname = user.firstName.trim()
+            if (firstname) {
+                vanityname = firstname.replaceAll("[^a-zA-Z0-9]", "-")+"-"+user.id
+            }
+            vanity_username = VanityUsername.findAllWhere(vanityUsername:vanityname)
+            if (!vanity_username) {
+                new VanityUsername(
+                    user:user,
+                    username:user.username,
+                    vanityUsername:vanityname
+                ).save(failOnError: true)
+            }
         }
     }
 

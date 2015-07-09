@@ -1,3 +1,7 @@
+<% 
+    def base_url = grailsApplication.config.crowdera.BASE_URL
+%>
+<input type="hidden" id="b_url" value="<%=base_url%>" /> 
 <!-- Footer -->
 <footer>    
     <div class="footer_links">

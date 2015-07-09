@@ -71,7 +71,7 @@
     </div>
 	<g:if test="${!project.contributions.empty}">
         <h2 class="crowderasupport text-center"><img src="//s3.amazonaws.com/crowdera/assets/icon-contribution.png" alt="Campaign Contributions"/>&nbsp;&nbsp;Campaign Contributions</h2>
-	    <div class="commentsoncampaign">
+	    <div class="commentsoncampaign mng-contribution-center-alignment">
     		<g:each in="${project.contributions.reverse()}" var="contribution">
 		        <%
 		            def date = dateFormat.format(contribution.date)

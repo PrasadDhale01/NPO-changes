@@ -584,9 +584,9 @@ input.button-signup{
     background-color: transparent;
     background-repeat: no-repeat;  
     border: none;                   
-    height: 38px;                
+    height: 30px;                
     vertical-align: middle;
-    width: 84px;
+    width: 75px;
 }
 input.signup-lg{
 	margin-left:-6px;
@@ -668,6 +668,32 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.mng-contribution-center-alignment{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:275px;
+	}
+	.contributions-panel{
+		padding-left: 32px;
+	}
+	.center-fund {
+		align-content: center;
+		width: 310px !important;
+	}
+	.powerdby img {
+		max-width: 310px !important;
+	}
+	.ack-panel-width{
+	 	display:block;
+	 	margin-left:auto;
+	 	margin-right:auto;
+	}
+	.acknowledge-tile-tag .tile-pad{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+	}
 	.contributionShare {
 		margin-top: -40px !important;
 	}
@@ -1031,6 +1057,10 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.btn-text-alignment{
+		padding-left:0px !important;
+		padding-right:0px !important;
+	}
 	.contributionShare {
 		margin-top: -40px !important;
 	}
@@ -1109,7 +1139,6 @@ a {
     		top: -26px !important;
 	}
 	.progressBarIcon {
-		border-left: 1px solid #e7e7e7;
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
@@ -1401,7 +1430,6 @@ a {
 		width: 285px !important;
 	}
 	.progressBarIcon {
-		border-left: 1px solid #e7e7e7;
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
@@ -1472,6 +1500,9 @@ a {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	.mng-text-size{
+		font-size:14px;
+	}
 	.nav-tabs.nav-justified > li > a {
        font-size: 8px !important;
     }
@@ -1513,6 +1544,9 @@ a {
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	.mng-text-size{
+		font-size:14px;
+	}
 	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
 		font-size: 10px;
 		line-height: 5px;
@@ -2068,7 +2102,7 @@ ul.unstyled {
 /* Nav Announcements */
 
 .announcement-heading {
-    font-size: 50px;
+    font-size: 40px;
     margin: 0;
     display: inline-block;
 }
@@ -4236,9 +4270,6 @@ textarea.form-control {
 	div.Top-tabs-mobile {
         margin-top: 55px;
     }
-    .contributions-panel{
-	    padding-left: 30%;
-	}
 	.top-pan {
         margin-top: 20px;
         margin-bottom: 14px;
@@ -4973,6 +5004,29 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 320px){
+	.static-content h1 {
+		color: #000;
+		font-family: "Lato",sans-serif;
+		font-size: 23px;
+		font-weight: 300;
+		line-height: 24px;
+		margin: 0 0 10px;
+		padding: 0;
+	}
+	.setting-user-contributions .over.show-tile {
+		display: block;
+		left:6px;
+		margin-left: -8px;
+		margin-right: auto;
+		position: absolute;
+		top: 94px;
+		z-index: 1;
+	}
+	.setting-user-contributions .tile-pad {
+		margin-left: -22px !important;
+		padding: 0;
+		width: 310px;
+	}
 	.home-campaign-tile .tile-pad {
 		margin-left:-16px;
 		padding: 0;
@@ -5035,9 +5089,6 @@ textarea.form-control {
 		display: table-cell;
 		word-wrap: break-word;
     }
-    .contributions-panel{
-	    padding-left: 14%;
-	}
 	div.edits {
         margin-top: -43px;
     }
@@ -5058,6 +5109,56 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.mng-contribution-center-alignment{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:275px;
+	}
+	.contributions-panel{
+		padding-left: 30px;
+	}
+	.contribution-center-alignment{
+		padding-left: 0px !important;
+	}
+	.contribution-center-alignment .contribution-inner-tile{
+		display:blockk;
+		margin-left:auto;
+		margin-right:auto;
+		width:275px;
+	}
+	.term-of-use-center-alignment{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		padding-left:11px;
+		width:315px;
+	}
+	.powerdby p.powerd-by-text{
+		display: block;
+	    margin-left: auto;
+	    margin-right: auto;
+	    padding-left:12px;
+	    width:315px;
+	}
+	.center-fund {
+		align-content: center;
+		width: 291px !important;
+	}
+	.powerdby img {
+		max-width: 291px !important;
+	}
+	.ack-panel-width{
+	 	display:block;
+	 	margin-left:auto;
+	 	margin-right:auto;
+		width:291px;
+	}
+	.acknowledge-tile-tag .tile-pad{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+	}
 	.over.show-tile{
 		left:0;
 		margin-left:9px;
@@ -5367,7 +5468,7 @@ textarea.form-control {
 	}
 	.footer-mid-section-menu-mobile ul li {
         list-style-type: none;
-        margin-left: 31px !important;
+        margin-left: 20px !important;
     	width: 135px;   	
     }
     .footer-mid-section-menu-mobile ul li a {
@@ -5910,7 +6011,7 @@ button.projectedit.close{
     color:#fff;
     padding: 5px 9px;
     font-size: 12px;
-    border-radius: 48px;
+    border-radius: 0px;
 }
 .has-error .datepicker-error {
     color: #6f6f6f !important;
@@ -5928,7 +6029,10 @@ button.projectedit.close{
     color: white;
 }
 .powerdby img{
-	max-width:90%;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+	max-width:315px;
 }
 .footer_links a {
 	color: #e3e3e3;
@@ -5951,7 +6055,7 @@ button.projectedit.close{
 }
 .text-primary {
     color: #008cba;
-    margin-left:12px;
+    margin-left:-7px;
 }
 a.footerlink {
 	color: #666666;
@@ -6023,8 +6127,28 @@ a.footerlink {
 .clear-both{
 	clear: both;
 }
+.fund-campaign-tile-center-align .tile-pad{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.term-of-use-center-alignment{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:315px;
+}
+.powerdby p.powerd-by-text{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:315px;
+}
 .center-fund{
 	align-content: center;
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
 	width: 315px;
 }
 .paypal-secured-image img{

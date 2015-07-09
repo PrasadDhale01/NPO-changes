@@ -84,7 +84,7 @@
             </div>
             <div class="col-sm-4">
                 <div class="panel panel-default">
-                    <div class="panel-body">
+                    <div class="panel-body mng-text-size">
                         <i class="glyphicon glyphicon-user"></i> Manage all the invite requests here.
                     </div>
                     <div class="panel-footer">
@@ -101,7 +101,7 @@
                     </div>
                     <div class="panel-footer">
                         <g:link controller="project" action="importprojects">
-                            <button class="btn btn-block btn-primary"><i class="fa fa-gift fa-lg"></i> Bulk Import Campaigns</button>
+                            <button class="btn btn-block btn-primary btn-text-alignment"><i class="fa fa-gift fa-lg"></i> Bulk Import Campaigns</button>
                         </g:link>
                     </div>
                 </div>
@@ -127,7 +127,7 @@
                     </div>
                     <div class="panel-footer">
                         <g:link controller="fund" action="transaction">
-                            <button class="btn btn-block btn-primary"><i class="fa fa-credit-card"></i> Manage Transactions</button>
+                            <button class="btn btn-block btn-primary btn-text-alignment"><i class="fa fa-credit-card"></i> Manage Transactions</button>
                         </g:link>
                     </div>
                 </div>
@@ -139,7 +139,7 @@
                     </div>
                     <div class="panel-footer">
                         <g:link controller="home" action="customerSupport">
-                            <button class="btn btn-block btn-primary"><i class="fa fa-user"></i> Manage User Questions</button>
+                            <button class="btn btn-block btn-primary btn-text-alignment"><i class="fa fa-user"></i> Manage User Questions</button>
                         </g:link>
                     </div>
                 </div>

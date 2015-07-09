@@ -1,5 +1,5 @@
 <g:set var="projectService" bean="projectService" />
-<div class="panel panel-default">
+<div class="panel panel-default ack-panel-width">
 	<div class="panel-heading">
 		<h3 class="panel-title">Your chosen Perk</h3>
 	</div>

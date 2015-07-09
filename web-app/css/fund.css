@@ -40,10 +40,13 @@
 	font-weight: 500 !important;
 }
 .footer-panel-group a:hover, .footer-panel-group a:focus {
-    color: #FF7F50; 
+    color: #01bbd2; 
     text-decoration: none;
     outline: medium none;
 }
 .faq-panel-height {
 	height: auto;
+}
+.ack-panel-width{
+	width:310px;
 }

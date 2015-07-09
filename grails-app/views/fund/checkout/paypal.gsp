@@ -160,9 +160,9 @@
 						
 					</div>
 					<span class="payment-errors"></span>
-					<div class="col-md-4">
+					<div class="col-md-4 fund-campaign-tile-center-align">
 						<g:render template="/layouts/tile" />
-						<div class="form-group">
+						<div class="form-group term-of-use-center-alignment">
                             <label class="checkbox control-label">
                                 <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse">By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
                             </label>
@@ -171,7 +171,7 @@
 							<button class="btn btn-primary btn-block" name="fund-button" id="btnPaypal">Fund this Campaign</button>
 						</div>
 						<div class="powerdby">
-                            <p>Powered By Paypal</p>
+                            <p class="powerd-by-text">Powered By Paypal</p>
                                 <p><img src="//s3.amazonaws.com/crowdera/assets/poweredByFirstgiving.jpg" alt="Powered By paypal"/></p>
                         </div>
 					</div>

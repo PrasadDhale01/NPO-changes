@@ -215,11 +215,43 @@ class FundController {
             def commentObj
             if(project && params.comment){
                 commentObj = projectService.setContributorsComment(project, params.comment, fundRaiser, contribution)
+                teamComment = commentObj.teamComment
+                projectComment = commentObj.projectComment
+                if(teamComment) {
+                    redirect (action:'saveTeamCommentRedirect', controller:'fund', id: params.id, params:[ fr: params.fr, projectTitle: params.projectTitle, teamCommentId: teamComment.id])
+                }
+                if(projectComment) {
+                    redirect (action:'saveCommentRedirect', controller:'fund', id: params.id, params:[fr: params.fr, projectTitle: params.projectTitle, commentId: projectComment.id])
+                }
             } else {
                 flash.sentmessage = "Something went wrong saving comment. Please try again later."
             }
-            render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundRaiser,projectTitle:params.projectTitle, comment: commentObj.projectComment, teamComment:commentObj.teamComment]
+            
         }
+    }
+    
+    def saveCommentRedirect() {
+        Contribution contribution = contributionService.getContributionById(params.long('id'))
+        def projectComment = projectService.getProjectCommentById(params.long('commentId'))
+        def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+        def project = projectService.getProjectById(projectId)
+        def fundRaiser = userService.getUserById(params.long('fr'))
+
+        def user = contribution.user
+        def reward = contribution.reward
+        render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundRaiser,projectTitle:params.projectTitle, comment: projectComment]
+    }
+    
+    def saveTeamCommentRedirect() {
+        Contribution contribution = contributionService.getContributionById(params.long('id'))
+        def teamComment = projectService.getTeamCommentById(params.long('teamCommentId'))
+        def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+        def project = projectService.getProjectById(projectId)
+        def fundRaiser = userService.getUserById(params.long('fr'))
+
+        def user = contribution.user
+        def reward = contribution.reward
+        render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundRaiser,projectTitle:params.projectTitle, teamComment:teamComment]
     }
     
     def editContributionComment(){

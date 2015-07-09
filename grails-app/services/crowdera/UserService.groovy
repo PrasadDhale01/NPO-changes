@@ -584,8 +584,10 @@ class UserService {
         def name = grailsApplication.config.crowdera.freshDesk.LOGIN_NAME;
         def BASE_URL = grailsApplication.config.crowdera.freshDesk.BASE_URL;
         def email = grailsApplication.config.crowdera.freshDesk.LOGIN_EMAIL;
-        long timeInSeconds = System.currentTimeMillis()/1000;
         
+        TimeZone.setDefault(TimeZone.getTimeZone('UTC'))
+        Date currentDate = new Date()
+        long timeInSeconds = currentDate.getTime()/1000;
         try {
             hash = getHMACHash(name,email,timeInSeconds);
             url = BASE_URL + "?name="+name+"&email="+email+"&timestamp="+timeInSeconds+"&hash=" + hash;

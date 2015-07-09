@@ -80,7 +80,9 @@ class UrlMappings {
         "/funds/$projectTitle/acknowledge/$fr/$id"(controller: 'fund', action: 'editContributionComment')
         "/fund/$projectTitle/acknowledge/$fr/$cb"(controller: 'fund', action:'acknowledge')
         "/fund/$projectTitle/acknowledge/comment/$fr/$id"(controller:'fund', action:'saveContributionComent')
-		
+        "/fund/$projectTitle/acknowledge/savecomment/$fr/$id/$commentId"(controller:'fund', action:'saveCommentRedirect')
+        "/fund/$projectTitle/acknowledge/saveteamcomment/$fr/$id/$teamCommentId"(controller:'fund', action:'saveTeamCommentRedirect')
+        
         /*User*/
         "/user/mycampaigns"(controller:'user', action:'myproject')
         "/users/dashboard"(controller:'user', action:'accountSetting')

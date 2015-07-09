@@ -668,6 +668,24 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.fund-campaign-tile-center-align .over.show-tile {
+		display: block;
+		left: auto;
+		margin-left: -8px;
+		margin-right: auto;
+		position: absolute;
+		top: 7px;
+		z-index: 1;
+	}
+	.contribution-center-alignment{
+		padding-left: 0px !important;
+	}
+	.contribution-center-alignment .contribution-inner-tile{
+		display:blockk;
+		margin-left:auto;
+		margin-right:auto;
+		width:275px;
+	}
 	.mng-contribution-center-alignment{
 		display:block;
 		margin-left:auto;
@@ -1057,6 +1075,15 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.fund-campaign-tile-center-align .over.show-tile {
+		display: block;
+		left: auto;
+		margin-left: -8px;
+		margin-right: auto;
+		position: absolute;
+		top: 7px;
+		z-index: 1;
+	}
 	.btn-text-alignment{
 		padding-left:0px !important;
 		padding-right:0px !important;
@@ -1490,6 +1517,15 @@ a {
     .sorts-dropdown{
        left: 19%;
     }
+    .fund-campaign-tile-center-align .over.show-tile {
+		display: block;
+		left: auto;
+		margin-left: -8px;
+		margin-right: auto;
+		position: absolute;
+		top: 7px;
+		z-index: 1;
+	}
     .footer-mid-section p {
 	color: #e3e3e3;
 	font-family: "OPEN SANS";
@@ -5015,7 +5051,7 @@ textarea.form-control {
 	}
 	.setting-user-contributions .over.show-tile {
 		display: block;
-		left:6px;
+		left:-1px;
 		margin-left: -8px;
 		margin-right: auto;
 		position: absolute;
@@ -5109,6 +5145,15 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.fund-campaign-tile-center-align .over.show-tile {
+		display: block;
+		left: auto;
+		margin-left: -8px;
+		margin-right: auto;
+		position: absolute;
+		top: 7px;
+		z-index: 1;
+	}
 	.mng-contribution-center-alignment{
 		display:block;
 		margin-left:auto;

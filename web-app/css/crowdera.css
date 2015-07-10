@@ -6080,8 +6080,8 @@ button.projectedit.close{
 }
 .powerdby img{
 	display: block;
-    margin-left: auto;
-    margin-right: auto;
+    	margin-left: auto;
+    	margin-right: auto;
 	max-width:315px;
 }
 .footer_links a {
@@ -6179,26 +6179,26 @@ a.footerlink {
 }
 .fund-campaign-tile-center-align .tile-pad{
 	display: block;
-    margin-left: auto;
-    margin-right: auto;
+    	margin-left: auto;
+    	margin-right: auto;
 }
 .term-of-use-center-alignment{
 	display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width:315px;
+    	margin-left: auto;
+    	margin-right: auto;
+    	width:315px;
 }
 .powerdby p.powerd-by-text{
 	display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width:315px;
+    	margin-left: auto;
+    	margin-right: auto;
+    	width:315px;
 }
 .center-fund{
 	align-content: center;
 	display: block;
-    margin-left: auto;
-    margin-right: auto;
+    	margin-left: auto;
+    	margin-right: auto;
 	width: 315px;
 }
 .paypal-secured-image img{
@@ -6416,10 +6416,10 @@ a.footerlink {
 	border-bottom-style:solid;
 	border-bottom-width:1px;
 	border-left-width: 0px;
-    border-right-width: 0px;
-    border-top-width: 0px;
-    background-color: #e7e7e7;
-    border-color: #dadada #dadada #b2b2b2 #c9c9c9;
+    	border-right-width: 0px;
+    	border-top-width: 0px;
+    	background-color: #e7e7e7;
+    	border-color: #dadada #dadada #b2b2b2 #c9c9c9;
 	margin-top: 0px;
 	text-align: left;
 }

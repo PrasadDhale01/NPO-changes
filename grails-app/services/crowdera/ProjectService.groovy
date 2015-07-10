@@ -1284,7 +1284,7 @@ class ProjectService {
         def bucketName = "crowdera"
         def s3Bucket = new S3Bucket(bucketName)
 
-        def Folder = "assets"
+        def Folder = "project-images"
 
         def tempImageUrl
         files.each {

@@ -3,6 +3,7 @@ $(function() {
     
     $('#resumefilesize').hide();
     $('#resultOutput').hide();
+    $('#search-container').hide();
     
     $(document).ready(function() { 
     	$("#mvc-embedded-subscribe-form-lg").validate({ 
@@ -193,6 +194,22 @@ $(function() {
 		$('.footer-start-cmpg-img').attr('src','https://s3.amazonaws.com/crowdera/assets/Hands-up-for-a-better - button.jpg');
 		$('.display-footer-text').attr('href','#');
 	});
+    
+    $('.trigger').click(function() {
+        $(this).hide();
+        $('.discover').hide();
+        $('#search-container').show();
+        $("#search-bar").animate({width: "100px"},function(){
+            $(this).focus(); // For bonus, the input will now get autofocus
+        });
+    });
+
+    $('#search-bar').blur(function(){
+        $(this).animate({width: "0px"});
+        $('.trigger').show();
+        $('.discover').show();
+        $('#search-container').hide();
+    });
 	    
     
   /*  $('.twittersocialicon').hover(function(){

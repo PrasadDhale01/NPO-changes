@@ -132,11 +132,6 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 0px;
 }
 
-.navbar-collapse {
-    width: 68%;
-    float: right;
-}
-
 .navbar-nav > li {
     /* background-color: white; */
     color: #000;
@@ -171,7 +166,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 
 .navbar-default {
     background-color: #fff;
-    height: 70px;
+/*     height: 70px; */
     border-bottom: solid #01bbd2 2px;
 }
 
@@ -3057,6 +3052,15 @@ div.tile-min-height{
 
 @media only screen and (max-width: 991px){
 	
+    .navbar-collapse {
+        width: 68%;
+        float: right;
+    }
+
+    .navbar-default {
+        height: 70px;
+    }
+	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
     .imageCarousellabel {
@@ -3302,7 +3306,7 @@ textarea.form-control {
 /* Media 980px */
 @media only screen and (min-width: 980px) {
     .nav > li > a {
-        padding: 7px 21px;
+        padding: 7px 8px;
     }
     .squarebox {
         width: 180px;
@@ -6789,9 +6793,9 @@ input.search-box-xs{
 	width:80%;
 }
 
-ul.nav.navbar-nav.navbar-right.searchengine {
-	padding-left:3%;
-	margin-top: 20px;
+ul.nav.navbar-nav.nav-icon-bar li.searchengine {
+    margin-top: 15px;
+    padding-right:4%;
 }
 
 a.search-image.glyphicon.glyphicon-search{
@@ -7129,4 +7133,44 @@ div.campaign-title-margin-bottom{
 .table > thead > tr > td.info, .table > tbody > tr > td.info, .table > tfoot > tr > td.info, .table > thead > tr > th.info, .table > tbody > tr > th.info, .table > tfoot > tr > th.info, .table > thead > tr.info > td, .table > tbody > tr.info > td, .table > tfoot > tr.info > td, .table > thead > tr.info > th, .table > tbody > tr.info > th, .table > tfoot > tr.info > th {
     background-color: #006083 !important;
     color: #ffffff !important;
+}
+
+li .create-button{
+/* 	left: 30%; */
+}
+
+ul.nav-icon-bar {
+    padding-left:3%;
+}
+
+#search-bar {
+    width :0;
+    background-color: activeborder;
+    color: black;
+}
+
+i.glyphicon.glyphicon-search.search-glyph-icon{
+    font-size: 17px;
+    color: grey;
+}
+
+.learn{
+    position: fixed;
+}
+
+ul.nav.navbar-nav.nav-icon-bar{
+    width: 30%;
+}
+
+.search-bar-nml {
+    width:0;
+}
+
+li a.nav-text1{
+	margin-top: 0;
+}
+
+ul.nav.navbar-nav.navbar-right.nav-create-button{
+	margin-top: 0;
+    padding-left: 1%;
 }

@@ -153,15 +153,16 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-nav {
-    margin-top: 8px;
+    margin-top: 13px;
 }
 
 .navbar-right {
-    margin-top: 16px;
+    margin-top: 20px;
 }
 
 .navbar-right-logged-in {
     margin-top: 7px !important;
+    padding-right: 2%;
 }
 
 .navbar-default {
@@ -182,7 +183,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .nav > li > a {
-    padding: 7px 21px;
+    padding: 7px 12px !important;
 }
 
 .nav > li > a:hover,
@@ -661,6 +662,12 @@ a {
     text-align: left;
     color: #999999;
 }
+@media only screen and (min-width: 768px){
+    ul.nav.navbar-nav.navbar-right.nav-create-button{
+        margin-top: 0;
+        padding-left: 1%;
+    }
+}
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
 	.contributionShare {
@@ -1022,6 +1029,9 @@ a {
     }
     .nav-tabs.nav-justified > li > a {
        font-size: 8px !important;
+    }
+    .nav{
+        font-size:11px;
     }
 }
 /* Screen resolution 768 x 1024*/
@@ -1450,6 +1460,15 @@ a {
     
     .categoryList .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
         width: 219px;
+    }
+    
+    .navbar-right {
+        padding-left: 3%;
+    }
+    
+    ul.nav.navbar-nav.navbar-right.nav-create-button {
+        margin-top: 0;
+        padding-left: 3%;
     }
 }
 
@@ -3044,21 +3063,19 @@ div.tile-min-height{
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 }
 
-@media only screen and (min-width: 970px) and (max-width: 996px){
-	.navbar {
-        font-size: 8px;
-    }
-}
-
 @media only screen and (max-width: 991px){
 	
     .navbar-collapse {
-        width: 68%;
+        width: 75%;
         float: right;
     }
 
     .navbar-default {
         height: 70px;
+    }
+    
+    span#search-container {
+        margin-top: -10% !important;
     }
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
@@ -3143,7 +3160,7 @@ div.tile-min-height{
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
   	.nav > li > a {
-	    padding: 7px 17px;
+	    padding: 7px 17px !important;
 	}
 	.input-group[class*="col-"] {
 	    width:100%;
@@ -3306,7 +3323,7 @@ textarea.form-control {
 /* Media 980px */
 @media only screen and (min-width: 980px) {
     .nav > li > a {
-        padding: 7px 8px;
+        padding: 7px 11x;
     }
     .squarebox {
         width: 180px;
@@ -3346,7 +3363,7 @@ textarea.form-control {
 		margin-left: -29px !important;
 	}
     .nav > li > a {
-        padding: 7px 13px;
+        padding: 7px 5px;
     }
     .btn-sm.btn-primary.validatebutton {
         margin-left: 207px;
@@ -3367,9 +3384,6 @@ textarea.form-control {
 		font-size: 9px;
 	}
 	 /**********************dropdown********************/
-	.navbar {
-		font-size: 9px !important;
-    }
 	.dropdown-menu-head {
 		top: 160%;
 /* 		margin: 0px 55px 0 !important; */
@@ -3493,7 +3507,7 @@ textarea.form-control {
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
 	.nav > li > a {
-	    padding: 7px 17px;
+	    padding: 7px 14px !important;
 	}
     .testimonial {
 	    max-width: 100%;
@@ -3677,7 +3691,7 @@ textarea.form-control {
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
     .nav > li > a {
-        padding: 7px 10px;
+        padding: 7px 10px !important;
     }
     .squarebox {
         width: 180px;
@@ -3746,9 +3760,6 @@ textarea.form-control {
         float: right;
     }
     /**********************dropdown********************/
-     .navbar {
-		font-size: 11px !important;
-    }
 	.dropdown-menu-head {
 		top: 160%;
 /* 		margin: 0px 55px 0 !important; */
@@ -3930,7 +3941,7 @@ textarea.form-control {
   }
   /**********************dropdown********************/
     .navbar {
-		font-size: 9px !important;
+		font-size: 13px !important;
     }
 	.dropdown-menu-head {
 		top: 160%;
@@ -6790,11 +6801,11 @@ input.search-box-on-home-page {
 }
 
 input.search-box-xs{
-	width:80%;
+	width:130px;
 }
 
 ul.nav.navbar-nav.nav-icon-bar li.searchengine {
-    margin-top: 15px;
+    margin-top: 14px;
     padding-right:4%;
 }
 
@@ -7159,7 +7170,7 @@ i.glyphicon.glyphicon-search.search-glyph-icon{
 }
 
 ul.nav.navbar-nav.nav-icon-bar{
-    width: 30%;
+    width: 36%;
 }
 
 .search-bar-nml {
@@ -7170,7 +7181,6 @@ li a.nav-text1{
 	margin-top: 0;
 }
 
-ul.nav.navbar-nav.navbar-right.nav-create-button{
-	margin-top: 0;
-    padding-left: 1%;
+span#search-container {
+  margin-top: -5%;
 }

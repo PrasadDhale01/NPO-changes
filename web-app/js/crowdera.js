@@ -84,7 +84,20 @@ $(function() {
                     error.insertAfter(element);
                 }
             },
-        });		      
+        });
+    	
+    	var images = ['//s3.amazonaws.com/crowdera/assets/create-Button-blue.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-Green-desk.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-Red-desk.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-yellow-desk.jpg'];
+    	var imagessm = ['//s3.amazonaws.com/crowdera/assets/create-Button-blue-tab.jpg','//s3.amazonaws.com/crowdera/assets/create-Button-Red -tab.jpg','//s3.amazonaws.com/crowdera/assets/create-Button-Green-tab.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-yellow-tab.jpg'];
+    	
+    	var time = setInterval(function() {
+    	          var newImage = images[Math.floor(Math.random()*images.length)];
+    	          var newSmImage = imagessm[Math.floor(Math.random()*imagessm.length)];
+    	          $('#createButton').attr('src', newImage);
+    	          $('#createButton-sm').attr('src', newSmImage);
+    	          
+
+    	       if (integer == 0) clearInterval(time);
+    	   },7000);
     }); 
     
     $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
@@ -204,12 +217,15 @@ $(function() {
         });
     });
 
-    $('#search-bar').blur(function(){
-        $(this).animate({width: "0px"});
-        $('.trigger').show();
-        $('.discover').show();
-        $('#search-container').hide();
-    });
+//    $('#search-bar').blur(function(){
+//        $(this).animate({width: "0px"});
+//        var delay = 260;
+//        setTimeout(function() {
+//        	$('#search-container').hide();
+//        	$('.trigger').show();
+//            $('.discover').show();
+//        }, delay);
+//    });
 	    
     
   /*  $('.twittersocialicon').hover(function(){

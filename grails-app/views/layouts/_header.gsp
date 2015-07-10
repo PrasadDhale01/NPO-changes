@@ -28,7 +28,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav nav-icon-bar">
-                <li class="searchengine">
+                <li class="searchengine hidden-xs">
                     <form action="/home/searchOnHomePage" name="SearchForm">
                         <span class="form-group inner-addon left-addon" id="search-container">
                             <i class="glyphicon glyphicon-search search-glyph-icon"></i>
@@ -37,33 +37,27 @@
                     </form>
                     <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" class="trigger">
                 </li>
-                <li class="discover"><a href="${resource(dir: '/campaigns')}" class="nav-text2">DISCOVER</a></li>
-                <li><a href="${resource(dir: '/howitworks')}" class="nav-text3">LEARN</a></li>
+                <li class="hidden-lg hidden-md hidden-sm">
+                    <form action="/home/searchOnHomePage" name="SearchForm">
+                        <span class="form-group inner-addon left-addon">
+                            <i class="glyphicon glyphicon-search search-glyph-icon"></i>
+                            <input type="search" name="query" class="form-control search-box-xs" value="${params.query}" placeholder="Search......">
+                        </span>
+                    </form>
+                </li>
+                <li class="discover"><a href="${resource(dir: '/campaigns')}" class="nav-text2">Discover</a></li>
+                <li><a href="${resource(dir: '/howitworks')}" class="nav-text3">Learn</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right nav-create-button">
-                <li class="">
-                <g:link controller="project" action="create" class="nav-text1">
-                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-blue.jpg" alt="create">
-                 </g:link>
-<%--                    <a class="dropdown-toggle search-image glyphicon glyphicon-search" data-hover="dropdown" data-delay="2000" data-close-others="true"></a>--%>
-<%--                    <ul class="dropdown-menu menu">--%>
-<%--                        <li class="search-engine">--%>
-<%--                            <form action="/home/searchOnHomePage" class="searchOnHomePage">--%>
-<%--                                <span class="form-group">--%>
-<%--                                    <input type="text" id="query"  name="query" class="form-control search-box-on-home-page" value="${params.query}" placeholder="Search">--%>
-<%--                                </span>--%>
-<%--                            </form>--%>
-<%--                        </li>--%>
-<%--                    </ul>--%>
+                <li class="hidden-xs">
+                    <g:link controller="project" action="create" class="nav-text1">
+                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-blue.jpg" alt="create" class="hidden-sm" id="createButton">
+                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-blue.jpg" alt="create" class="hidden-lg hidden-md" id="createButton-sm">
+                    </g:link> 
                 </li>
-<%--                <li class="search-engine-mob visible-xs">--%>
-<%--                    <form action="/home/searchOnHomePage" class="searchOnHomePageMob">--%>
-<%--                        <span class="form-group inner-addon left-addon">--%>
-<%--                            <i class="glyphicon glyphicon-search searchIconMob"></i>--%>
-<%--                            <input type="search" name="query" class="form-control search-box-xs" value="${params.query}" placeholder="Search">--%>
-<%--                        </span>--%>
-<%--                    </form>--%>
-<%--                </li>--%>
+                <li class="hidden-lg hidden-md hidden-sm">
+                    <g:link controller="project" action="create">Create</g:link>
+                </li>
             </ul>
             
             <ul class="nav navbar-nav navbar-right <g:if test="${user}">navbar-right-logged-in</g:if>">

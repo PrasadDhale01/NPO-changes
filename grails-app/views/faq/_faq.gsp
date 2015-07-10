@@ -7,11 +7,6 @@
             <h1 class="page-header">FAQs
                 <small>Frequently Asked Questions</small>
             </h1>
-            <ol class="breadcrumb">
-                <li><a href="${base_url}">Home</a>
-                </li>
-                <li class="active">FAQ</li>
-            </ol>
         </div>
     </div>
     

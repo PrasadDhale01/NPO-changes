@@ -190,8 +190,8 @@
     </div>
 </g:if>
 <g:if test="${!contributions.empty}">
-    <div class="row contributions-panel">
-       <div class="col-sm-12">
+    <div class="row contributions-panel contribution-center-alignment">
+       <div class="col-sm-12 contribution-inner-tile">
         <g:each in="${contributions}" var="contribution">
             <%
                 def date = dateFormat.format(contribution.date)

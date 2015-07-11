@@ -7416,5 +7416,14 @@ li a.nav-text1{
 }
 
 span#search-container {
-  margin-top: -5%;
+  	margin-top: -5%;
+}
+.home-campaign-tile li .over.show-tile{
+	display: block;
+	left: auto;
+	margin-left: -8px;
+	margin-right: auto;
+	position: absolute;
+	top: 8px;
+	z-index: 1;
 }

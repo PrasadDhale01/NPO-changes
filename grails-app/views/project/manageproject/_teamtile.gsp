@@ -31,38 +31,57 @@
 %>
 
 <div class="fedu thumbnail grow teamtile teamtile-padding">
+	<g:if test="${userService.isFacebookUser() || project.user}">
+		<g:if test="${!isAdminOrBeneficiary}">
+			<g:if test="${team.enable==false}">
+				<div class="over teamtile-banner">
+					<img src="//s3.amazonaws.com/crowdera/assets/Disabled-tag.png" alt="diabledTeam">
+				</div>
+			</g:if>
+			<g:else>
+				<div class="over teamtile-banner">
+					<img src="//s3.amazonaws.com/crowdera/assets/Team-tag.png" alt="team">
+				</div>
+			</g:else>
+		</g:if>
+		<g:elseif test="${isCampaignAdminByUser}">
+			<g:if test="${team.enable==false}">
+				<div class="over teamtile-banner">
+					<img src="//s3.amazonaws.com/crowdera/assets/Disabled-tag-tag.png" alt="diabledTeam">
+				</div>
+			</g:if>
+			<g:else>
+				<div class="over teamtile-banner">
+					<img alt="co-owner" src="//s3.amazonaws.com/crowdera/assets/Co-owner-tag.png">
+				</div>
+			</g:else>
+		</g:elseif>
+		<g:else>
+			<div class="over teamtile-banner">
+				<img src="//s3.amazonaws.com/crowdera/assets/owner-tag.png" alt="owner">
+			</div>
+		</g:else>
+	</g:if>
+	<g:if test="${!ismanagepage || !isAdminOrBeneficiary}">
+		<div class="over teamtile-banner">
+			<g:if test="${!team.enable}">
+				<img src="//s3.amazonaws.com/crowdera/assets/Disabled-tag.png" alt="diabledTeam">
+			</g:if>
+			<g:else>
+				<g:if test="${user == project.user}">
+					<img src="//s3.amazonaws.com/crowdera/assets/owner-tag.png" alt="owner">
+				</g:if>
+				<g:elseif test="${isCampaignAdmin}">
+					<img src="//s3.amazonaws.com/crowdera/assets/Co-owner-tag.png" alt="co-owner">
+				</g:elseif>
+				<g:else>
+					<img src="//s3.amazonaws.com/crowdera/assets/Team-tag.png" alt="team">
+				</g:else>
+			</g:else>
+		</div>
+	</g:if>
     <div class="blacknwhite teamtile-style">
-        <g:if test="${userService.isFacebookUser() || project.user}">
-            <g:if test="${!isAdminOrBeneficiary}">
-                <g:if test="${team.enable==false}">
-                    <div class="over teamtile-banner user-tiles-widths">
-                        <img src="//s3.amazonaws.com/crowdera/assets/disabledTeam.png" alt="diabledTeam">
-                    </div>
-                </g:if>
-                <g:else>
-                    <div class="over teamtile-banner">
-                        <img src="//s3.amazonaws.com/crowdera/assets/teamTop.png" alt="team">
-                    </div>
-                </g:else>
-            </g:if>
-            <g:elseif test="${isCampaignAdminByUser}">
-                <g:if test="${team.enable==false}">
-                    <div class="over teamtile-banner user-tiles-widths">
-                        <img src="//s3.amazonaws.com/crowdera/assets/disabledTeam.png" alt="diabledTeam">
-                    </div>
-                </g:if>
-                <g:else>
-                    <div class="over teamtile-banner user-tiles-widths">
-                        <img alt="co-owner" src="//s3.amazonaws.com/crowdera/assets/Co-Owner1.png">
-                    </div>
-                </g:else>
-            </g:elseif>
-            <g:else>
-                <div class="over teamtile-banner">
-                    <img src="//s3.amazonaws.com/crowdera/assets/OWNER.png" alt="owner">
-                </div>
-            </g:else>
-        </g:if>
+        
         
         <g:if test="${!ismanagepage || !isAdminOrBeneficiary}">
             <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]">
@@ -70,27 +89,9 @@
                     <img alt="${userName}" class="project-img" src="${userImageUrl}">
                 </g:if>
                 <g:else>
-                    <div>
                         <div class="under">
                             <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="project-img" alt="Upload Photo">
                         </div>
-                        <div class="over teamtile-banner">
-                            <g:if test="${!team.enable}">
-                                <img src="//s3.amazonaws.com/crowdera/assets/disabledTeam.png" alt="diabledTeam">
-                            </g:if>
-                            <g:else>
-                                <g:if test="${user == project.user}">
-                                    <img src="//s3.amazonaws.com/crowdera/assets/OWNER.png" alt="owner">
-                                </g:if>
-                                <g:elseif test="${isCampaignAdmin}">
-                                    <img src="//s3.amazonaws.com/crowdera/assets/Co-Owner1.png" alt="co-owner">
-                                </g:elseif>
-                                <g:else>
-                                    <img src="//s3.amazonaws.com/crowdera/assets/teamTop.png" alt="team">
-                                </g:else>
-                            </g:else>
-                        </div>
-                    </div>
                 </g:else>
             </g:link>
         </g:if>
@@ -106,22 +107,6 @@
 							<div class="team-caption">
 								<p>${userName.toUpperCase()}</p>
 							</div>
-                        </div>
-                        <div class="over teamtile-banner">
-                            <g:if test="${!team.enable}">
-                                <img src="//s3.amazonaws.com/crowdera/assets/disabledTeam.png" alt="diabledTeam">
-                            </g:if>
-                            <g:else>
-                                <g:if test="${user == project.user}">
-                                    <img src="//s3.amazonaws.com/crowdera/assets/OWNER.png" alt="owner">
-                                </g:if>
-                                <g:elseif test="${isCampaignAdmin}">
-                                    <img src="//s3.amazonaws.com/crowdera/assets/Co-Owner1.png" alt="co-owner">
-                                </g:elseif>
-                                <g:else>
-                                    <img src="//s3.amazonaws.com/crowdera/assets/teamTop.png" alt="team">
-                                </g:else>
-                            </g:else>
                         </div>
                     </div>
                 </g:else>

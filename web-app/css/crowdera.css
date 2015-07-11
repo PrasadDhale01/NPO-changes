@@ -100,7 +100,7 @@ text-decoration:none;
 }
 
 .feducontent {
-    padding-top: 20px;
+      padding-top: 44px;
 }
 
 .top-buffer {
@@ -132,11 +132,6 @@ h1, h2, h3, h4, h5, h6 {
 	margin-top: 0px;
 }
 
-.navbar-collapse {
-    width: 68%;
-    float: right;
-}
-
 .navbar-nav > li {
     /* background-color: white; */
     color: #000;
@@ -158,20 +153,21 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-nav {
-    margin-top: 8px;
+    margin-top: 13px;
 }
 
 .navbar-right {
-    margin-top: 16px;
+    margin-top: 20px;
 }
 
 .navbar-right-logged-in {
     margin-top: 7px !important;
+    padding-right: 2%;
 }
 
 .navbar-default {
     background-color: #fff;
-    height: 70px;
+/*     height: 70px; */
     border-bottom: solid #01bbd2 2px;
 }
 
@@ -187,7 +183,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .nav > li > a {
-    padding: 7px 21px;
+    padding: 11px 12px !important;
 }
 
 .nav > li > a:hover,
@@ -666,6 +662,12 @@ a {
     text-align: left;
     color: #999999;
 }
+@media only screen and (min-width: 768px){
+    ul.nav.navbar-nav.navbar-right.nav-create-button{
+        margin-top: 0;
+        padding-left: 1%;
+    }
+}
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
 	.fund-campaign-tile-center-align .over.show-tile {
@@ -1072,6 +1074,9 @@ a {
     }
     .nav-tabs.nav-justified > li > a {
        font-size: 8px !important;
+    }
+    .nav{
+        font-size:11px;
     }
     .ack-panel-width{
     	margin-top:21px;
@@ -1495,6 +1500,10 @@ a {
         border-bottom: 0 none;
         width: 100% !important;
     }
+    
+    .admin-selected-drop{
+        padding-left: 12px !important;
+    }
     .nav-tabs.nav-justified > li {
         float: none;
         width: 100% !important;
@@ -1515,6 +1524,54 @@ a {
     .categoryList .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
         width: 219px;
     }
+    
+    .navbar-right {
+        padding-left: 3%;
+    }
+    
+    ul.nav.navbar-nav.navbar-right.nav-create-button {
+        margin-top: 0;
+        padding-left: 3%;
+    }
+    
+    .navbar-collapse.collapse.in {
+        border-style: solid;
+        border-color: rgb(0, 140, 186);
+        border-width: 2px;
+        max-height:auto;
+        max-width:auto;
+/*         overflow-y : auto !important; */
+/*         overflow-x : auto !important; */
+    }
+    
+    .nav-text2 {
+        margin-left: 38px;
+    }
+
+    .nav-text3 {
+        margin-left: 38px;
+    }
+
+    li.search-mob {
+        margin-left: 42px;
+    }
+    
+    .nav-item-1{
+        margin-left: 38px;
+    }
+
+    .nav-item-2{
+        margin-left: 38px;
+    }
+
+    .nav-item-3{
+        margin-left: 38px;
+    }
+    
+    .navbar {
+        padding-top: 3px;
+    }
+
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
@@ -2459,9 +2516,10 @@ footer .footerbottomsection {
 }
 
 .tilesanstitletag {
-	right:0;
-	bottom:0;
-	position:absolute;
+	left: -9px;
+	position: absolute;
+	top: 13px;
+	z-index: 1;
 }
 
 .organization-details {
@@ -2565,9 +2623,12 @@ footer .footerbottomsection {
     z-index: 1;
 }
 .over.teamtile-banner{
-    left: -1px !important;
+    display: block;
+    left: auto;
+    margin-left: -8px;
+    margin-right: auto;
     position: absolute;
-    top: 0;
+    top: 8px;
     z-index: 1;
 }
 .setting-user-contributions .over.show-tile {
@@ -3123,13 +3184,37 @@ div.tile-min-height{
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 }
 
-@media only screen and (min-width: 970px) and (max-width: 996px){
-	.navbar {
-        font-size: 8px;
+@media only screen and (min-width :990px){
+    .navbar-brand {
+        padding: 17px 15px !important;
     }
+
 }
 
+
+
 @media only screen and (max-width: 991px){
+
+    li a.nav-text1 {
+        margin-top: 3px !important;
+    }
+
+    ul.nav.navbar-nav.nav-icon-bar li.searchengine {
+        margin-top: 13px !important;
+    }
+	
+    .navbar-collapse {
+        width: 75%;
+        float: right;
+    }
+
+    .navbar-default {
+        height: 75px;
+    }
+    
+    span#search-container {
+        margin-top: -5% !important;
+    }
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
 
@@ -3213,7 +3298,7 @@ div.tile-min-height{
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
   	.nav > li > a {
-	    padding: 7px 17px;
+	    padding: 7px 17px !important;
 	}
 	.input-group[class*="col-"] {
 	    width:100%;
@@ -3376,7 +3461,7 @@ textarea.form-control {
 /* Media 980px */
 @media only screen and (min-width: 980px) {
     .nav > li > a {
-        padding: 7px 21px;
+        padding: 7px 11x;
     }
     .squarebox {
         width: 180px;
@@ -3416,7 +3501,7 @@ textarea.form-control {
 		margin-left: -29px !important;
 	}
     .nav > li > a {
-        padding: 7px 13px;
+        padding: 7px 5px;
     }
     .btn-sm.btn-primary.validatebutton {
         margin-left: 207px;
@@ -3437,9 +3522,6 @@ textarea.form-control {
 		font-size: 9px;
 	}
 	 /**********************dropdown********************/
-	.navbar {
-		font-size: 9px !important;
-    }
 	.dropdown-menu-head {
 		top: 160%;
 /* 		margin: 0px 55px 0 !important; */
@@ -3563,7 +3645,7 @@ textarea.form-control {
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
 	.nav > li > a {
-	    padding: 7px 17px;
+	    padding: 7px 14px !important;
 	}
     .testimonial {
 	    max-width: 100%;
@@ -3747,7 +3829,7 @@ textarea.form-control {
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
     .nav > li > a {
-        padding: 7px 10px;
+        padding: 7px 10px !important;
     }
     .squarebox {
         width: 180px;
@@ -3816,9 +3898,6 @@ textarea.form-control {
         float: right;
     }
     /**********************dropdown********************/
-     .navbar {
-		font-size: 11px !important;
-    }
 	.dropdown-menu-head {
 		top: 160%;
 /* 		margin: 0px 55px 0 !important; */
@@ -3988,7 +4067,7 @@ textarea.form-control {
 }
 @media only screen and (min-width: 767px) and (max-width: 768px){
  .nav > li > a{
-        padding: 7px 13px !important;
+        padding: 7px 8px !important;
   }
   .dropdown-menu.usr > li > a {
     padding: 7px 21px !important;
@@ -4000,7 +4079,7 @@ textarea.form-control {
   }
   /**********************dropdown********************/
     .navbar {
-		font-size: 9px !important;
+		font-size: 13px !important;
     }
 	.dropdown-menu-head {
 		top: 160%;
@@ -6377,9 +6456,6 @@ a.footerlink {
 	height: 200px; 
 	overflow: hidden;
 }
-.teamtile-banner img{
-	width: 100px;
-}
 .managedetails-edit{
 	padding: 0; 
 	margin-top: 10px;
@@ -6960,12 +7036,12 @@ input.search-box-on-home-page {
 }
 
 input.search-box-xs{
-	width:80%;
+	width:130px;
 }
 
-ul.nav.navbar-nav.navbar-right.searchengine {
-	padding-left:3%;
-	margin-top: 20px;
+ul.nav.navbar-nav.nav-icon-bar li.searchengine {
+    margin-top: 19px;
+    padding-right:4%;
 }
 
 a.search-image.glyphicon.glyphicon-search{
@@ -7303,4 +7379,42 @@ div.campaign-title-margin-bottom{
 .table > thead > tr > td.info, .table > tbody > tr > td.info, .table > tfoot > tr > td.info, .table > thead > tr > th.info, .table > tbody > tr > th.info, .table > tfoot > tr > th.info, .table > thead > tr.info > td, .table > tbody > tr.info > td, .table > tfoot > tr.info > td, .table > thead > tr.info > th, .table > tbody > tr.info > th, .table > tfoot > tr.info > th {
     background-color: #006083 !important;
     color: #ffffff !important;
+}
+
+li .create-button{
+/* 	left: 30%; */
+}
+
+ul.nav-icon-bar {
+    padding-left:3%;
+}
+
+#search-bar {
+    width :0;
+    color: black;
+}
+
+i.glyphicon.glyphicon-search.search-glyph-icon{
+    font-size: 17px;
+    color: grey;
+}
+
+.learn{
+    position: fixed;
+}
+
+ul.nav.navbar-nav.nav-icon-bar{
+    width: 36%;
+}
+
+.search-bar-nml {
+    width:0;
+}
+
+li a.nav-text1{
+	margin-top: 0;
+}
+
+span#search-container {
+  margin-top: -5%;
 }

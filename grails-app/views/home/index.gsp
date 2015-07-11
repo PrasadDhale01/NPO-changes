@@ -12,13 +12,9 @@
 <meta name="layout" content="main" />
 <r:require modules="homejs"/>
 
-<script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
-<script type="text/javascript">
-    FreshWidget.init("", {"queryString": "&widgetType=popup&formTitle=Crowdera+Customer+Support&submitThanks=Your+Query+has+been+submitted.+We+will+get+back+to+you+soon.",
-        "utf8": "✓", "widgetType": "popup", "buttonType": "text", "buttonText": "Support", "buttonColor": "white", "buttonBg": "#5a5a5a", "alignment": "2", "offset": "360px",
-        "submitThanks": "Your Query has been submitted. We will get back to you soon.", "formHeight": "500px", "url": "https://crowdera.freshdesk.com"} );
-</script>
-
+<style type="text/css" media="screen, projection">
+    @import url(https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.css);
+</style>
 </head>
 <body>
 	<input type="hidden" id="b_url" value="<%=base_Url%>" /> 
@@ -40,6 +36,15 @@
     </div>
     <div class="proudassociates-container">
         <g:render template="association"></g:render>
+    </div>
+    <div class="customer-support">
+        <div class="willSlide customer-support-btn" id="customer-support-btn">
+            <a class='customer-support-a btn btn-primary'>Support</a>
+        </div>
+        <div class="willSlide text-center support" id="support">
+            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://crowdera.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Crowdera+Customer+Help+&submitThanks=Your+Query+has+been+submitted.+We+will+get+back+to+you+soon.&screenshot=no" scrolling="no" height="500px" width="100%" frameborder="0" >
+            </iframe>
+        </div>
     </div>
 <!--
 <div class="news">
@@ -81,5 +86,6 @@
 </div></div>
 </div>
 -->
+<script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
 </body>
 </html>

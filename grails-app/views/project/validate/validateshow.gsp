@@ -82,7 +82,7 @@
 						</div>
 					</div>
 
-                    <div  class="col-md-4">
+                    <div  class="col-xs-12 col-md-4">
                        <g:render template="/layouts/organizationdetails"/>
                        <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                     </div>

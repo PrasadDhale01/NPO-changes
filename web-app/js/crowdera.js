@@ -3,6 +3,15 @@ $(function() {
     
     $('#resumefilesize').hide();
     $('#resultOutput').hide();
+    $('#search-container').hide();
+    
+    function searchList(){
+        $('.searchForm').closest('#search-bar').val();
+    }
+    
+    function searchMobList(){
+        $('.searchableForm').closest('#q').val();
+    }
     
     $(document).ready(function() { 
     	$("#mvc-embedded-subscribe-form-lg").validate({ 
@@ -25,7 +34,7 @@ $(function() {
      	   }, 
      	   messages: { 
      	    email: "" 
-     	   } 
+     	   }
      	}); 
     	$("#mc-embedded-subscribe-form-sm").validate({ 
      	   rules: { 
@@ -83,7 +92,17 @@ $(function() {
                     error.insertAfter(element);
                 }
             },
-        });		      
+        });
+    	
+    	var images = ['//s3.amazonaws.com/crowdera/assets/create-Button-blue.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-Green-desk.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-yellow-desk.jpg'];
+    	var imagessm = ['//s3.amazonaws.com/crowdera/assets/create-Button-blue-tab.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-Green-tab.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-yellow-tab.jpg'];
+    	
+    	var time = setInterval(function() {
+    	          var newImage = images[Math.floor(Math.random()*images.length)];
+    	          var newSmImage = imagessm[Math.floor(Math.random()*imagessm.length)];
+    	          $('#createButton').attr('src', newImage);
+    	          $('#createButton-sm').attr('src', newSmImage);
+    	   },7000);
     }); 
     
     $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
@@ -167,24 +186,6 @@ $(function() {
         return false;
 	}
 	
-    $('.search-engine').find('.searchOnHomePage').validate({
-        rules: {
-            query: {
-                required: true,
-                minlength: 3
-            }
-        }
-    });
-
-    $('.search-engine-mob').find('.searchOnHomePageMob').validate({
-        rules: {
-            query: {
-                required: true,
-                minlength: 3
-            }
-        }
-    });
-    
     $('.display-footer-text').hover(function(){
 		var url=$('#b_url').val();
 		$('.footer-start-cmpg-img').attr('src','https://s3.amazonaws.com/crowdera/assets/Start-a-Campaign---Button-Over.jpg');
@@ -193,7 +194,25 @@ $(function() {
 		$('.footer-start-cmpg-img').attr('src','https://s3.amazonaws.com/crowdera/assets/Hands-up-for-a-better - button.jpg');
 		$('.display-footer-text').attr('href','#');
 	});
-	    
+    
+    $('.trigger').click(function() {
+    	$(this).hide();
+        $('.discover').hide();
+        $('#search-container').show();
+        $("#search-bar").animate({width: "100px"},'fast',function(){
+            $(this).focus(); // For bonus, the input will now get autofocus
+        });
+    });
+
+    $('#search-bar').blur(function(){
+        $(this).animate({width: "0px"},'fast');
+        var delay = 260;
+        setTimeout(function() {
+        	$('#search-container').hide();
+        	$('.trigger').show();
+            $('.discover').show();
+        }, delay);
+    });
     
   /*  $('.twittersocialicon').hover(function(){
     	$(this).attr('src',"/images/twitter-over.png");

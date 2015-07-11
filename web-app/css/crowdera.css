@@ -100,7 +100,7 @@ text-decoration:none;
 }
 
 .feducontent {
-    padding-top: 20px;
+      padding-top: 44px;
 }
 
 .top-buffer {
@@ -183,7 +183,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .nav > li > a {
-    padding: 7px 12px !important;
+    padding: 11px 12px !important;
 }
 
 .nav > li > a:hover,
@@ -1500,6 +1500,10 @@ a {
         border-bottom: 0 none;
         width: 100% !important;
     }
+    
+    .admin-selected-drop{
+        padding-left: 12px !important;
+    }
     .nav-tabs.nav-justified > li {
         float: none;
         width: 100% !important;
@@ -1529,6 +1533,45 @@ a {
         margin-top: 0;
         padding-left: 3%;
     }
+    
+    .navbar-collapse.collapse.in {
+        border-style: solid;
+        border-color: rgb(0, 140, 186);
+        border-width: 2px;
+        max-height:auto;
+        max-width:auto;
+/*         overflow-y : auto !important; */
+/*         overflow-x : auto !important; */
+    }
+    
+    .nav-text2 {
+        margin-left: 38px;
+    }
+
+    .nav-text3 {
+        margin-left: 38px;
+    }
+
+    li.search-mob {
+        margin-left: 42px;
+    }
+    
+    .nav-item-1{
+        margin-left: 38px;
+    }
+
+    .nav-item-2{
+        margin-left: 38px;
+    }
+
+    .nav-item-3{
+        margin-left: 38px;
+    }
+    
+    .navbar {
+        padding-top: 3px;
+    }
+
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
@@ -3137,7 +3180,24 @@ div.tile-min-height{
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 }
 
+@media only screen and (min-width :990px){
+    .navbar-brand {
+        padding: 17px 15px !important;
+    }
+
+}
+
+
+
 @media only screen and (max-width: 991px){
+
+    li a.nav-text1 {
+        margin-top: 3px !important;
+    }
+
+    ul.nav.navbar-nav.nav-icon-bar li.searchengine {
+        margin-top: 13px !important;
+    }
 	
     .navbar-collapse {
         width: 75%;
@@ -3145,11 +3205,11 @@ div.tile-min-height{
     }
 
     .navbar-default {
-        height: 70px;
+        height: 75px;
     }
     
     span#search-container {
-        margin-top: -10% !important;
+        margin-top: -5% !important;
     }
 	
 	/*-------------------- Image courasel new slider and button ------------------------------------*/
@@ -4003,7 +4063,7 @@ textarea.form-control {
 }
 @media only screen and (min-width: 767px) and (max-width: 768px){
  .nav > li > a{
-        padding: 7px 13px !important;
+        padding: 7px 8px !important;
   }
   .dropdown-menu.usr > li > a {
     padding: 7px 21px !important;
@@ -6979,7 +7039,7 @@ input.search-box-xs{
 }
 
 ul.nav.navbar-nav.nav-icon-bar li.searchengine {
-    margin-top: 14px;
+    margin-top: 19px;
     padding-right:4%;
 }
 
@@ -7330,7 +7390,6 @@ ul.nav-icon-bar {
 
 #search-bar {
     width :0;
-    background-color: activeborder;
     color: black;
 }
 

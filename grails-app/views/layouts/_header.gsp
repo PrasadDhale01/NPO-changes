@@ -29,19 +29,19 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav nav-icon-bar">
                 <li class="searchengine hidden-xs">
-                    <form action="/home/searchOnHomePage" name="SearchForm">
+                    <form action="/campaign" onClick="searchList()" name="SearchForm">
                         <span class="form-group inner-addon left-addon" id="search-container">
                             <i class="glyphicon glyphicon-search search-glyph-icon"></i>
-                            <input type="search" name="query" class="form-control search-bar-nml" id="search-bar" value="${params.query}" placeholder="Search......">
+                            <input type="search" name="q" class="form-control search-bar-nml" id="search-bar" value="${params.q}" placeholder="Search......">
                         </span>
                     </form>
                     <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" class="trigger">
                 </li>
-                <li class="hidden-lg hidden-md hidden-sm">
-                    <form action="/home/searchOnHomePage" name="SearchForm">
+                <li class="hidden-lg hidden-md hidden-sm search-mob">
+                    <form action="/campaign" onClick="searchMobList()" name="searchableForm">
                         <span class="form-group inner-addon left-addon">
                             <i class="glyphicon glyphicon-search search-glyph-icon"></i>
-                            <input type="search" name="query" class="form-control search-box-xs" value="${params.query}" placeholder="Search......">
+                            <input type="search" name="q" class="form-control search-box-xs" value="${params.q}" placeholder="Search......">
                         </span>
                     </form>
                 </li>
@@ -52,11 +52,11 @@
                 <li class="hidden-xs">
                     <g:link controller="project" action="create" class="nav-text1">
                         <img src="//s3.amazonaws.com/crowdera/assets/create-Button-blue.jpg" alt="create" class="hidden-sm" id="createButton">
-                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-blue.jpg" alt="create" class="hidden-lg hidden-md" id="createButton-sm">
+                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-blue-tab.jpg" alt="create" class="hidden-lg hidden-md" id="createButton-sm">
                     </g:link> 
                 </li>
                 <li class="hidden-lg hidden-md hidden-sm">
-                    <g:link controller="project" action="create">Create</g:link>
+                    <g:link controller="project" action="create" class="nav-item-1">Create</g:link>
                 </li>
             </ul>
             
@@ -67,8 +67,8 @@
                             <img src="//s3.amazonaws.com/crowdera/assets/facebook-button-header.jpg" alt="Register with Facebook">
                         </a>
                     </li>
-                    <li><g:link controller="login" action="auth">Login</g:link></li>
-                    <li><g:link controller="login" action="register">Sign up</g:link></li>
+                    <li><g:link controller="login" action="auth" class="nav-item-2">Login</g:link></li>
+                    <li><g:link controller="login" action="register" class="nav-item-3">Sign up</g:link></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img">

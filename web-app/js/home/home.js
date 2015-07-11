@@ -122,6 +122,18 @@ $(function() {
         }
     });
 	
+    $('#customer-support-btn').click(function() {
+    	var slider_width = $('#support').width();//get width automaticly
+        //check if slider is collapsed
+        var is_collapsed = $(this).css("margin-right") == slider_width+"px" && !$(this).is(':animated');
+        //minus margin or positive margin
+        var sign = (is_collapsed) ? '-' : '+'; 
+        if(!$(this).is('')) { //prevent double margin on double click
+            $('.willSlide').animate({"margin-right": sign+'='+slider_width},"slow","linear");
+        }
+    
+    });
+	
 });
 
 $(window).load(function() {

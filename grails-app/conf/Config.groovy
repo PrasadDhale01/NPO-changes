@@ -146,6 +146,12 @@ environments {
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
 		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
 		crowdera.MAILCHIMP.LISTID="e37aea1b78"
+		
+		/*PayUMoney details*/
+		crowdera.PAYU.BASE_URL = 'http://test.crowdera.inn'
+		crowdera.PAYU.TEST_URL='https://test.payu.in/_payment.php'
+		crowdera.PAYU.KEY='czBDue'
+		crowdera.PAYU.SALT='g57jz4Cw'
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
@@ -342,6 +348,12 @@ environments {
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
 		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
 		crowdera.MAILCHIMP.LISTID="e37aea1b78"
+		
+		/*PayUMoney details*/
+		crowdera.PAYU.BASE_URL = 'http://test.crowdera.in'
+		crowdera.PAYU.TEST_URL='https://test.payu.in/_payment.php'
+		crowdera.PAYU.KEY='czBDue'
+		crowdera.PAYU.SALT='g57jz4Cw'
 
 		mandrill {
 			apiKey = "R28ZHu6_5IkJWLFunpsJbw"

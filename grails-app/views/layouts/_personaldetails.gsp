@@ -22,10 +22,14 @@
           <li><span><b>Contact : </b>${project.beneficiary.telephone}</span></li>
           </g:if>
           <li><span><b>Category : </b>${project.category}</span></li>
-          <g:if test='${project.paypalEmail==null}'>
+          <g:if test='${project.paypalEmail==null && project.payuEmail==null }'>
               <li><span><b>Payment mode : </b>FirstGiving</span></li>
               <li><span><b>Charitable ID: </b>${project.charitableId }</span></li>
           </g:if>
+		  <g:elseif test='${project.paypalEmail==null && project.payuEmail!=null}'>
+			  <li><span><b>Payment mode : </b>payUMoney</span></li>
+			  <li><span><b>PayUMoney Email: </b>${project.payuEmail }</span></li>
+		  </g:elseif>
           <g:else>
               <li><span><b>Payment mode : </b>Paypal</span></li>
               <li><span><b>Paypal Email : </b>${project.paypalEmail}</span></li>

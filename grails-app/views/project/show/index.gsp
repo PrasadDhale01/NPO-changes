@@ -89,7 +89,7 @@
                         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
                     </g:elseif>
                     <g:else>
-                        <g:if test="${project.paypalEmail || project.charitableId}">
+                        <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
 	                        <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
 	                            <button name="submit" class="btn btn-success btn-lg btn-block"  id="btnFundMobile">Fund this Campaign</button>
 	                        </g:form>
@@ -189,7 +189,7 @@
                         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>CAMPAIGN ENDED!</button>
                     </g:elseif>
                     <g:else>
-                        <g:if test="${project.paypalEmail || project.charitableId}">
+                        <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
 	                        <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
 	                            <button name="submit" class="btn btn-success btn-lg btn-block" id="btnFundDesktop">Fund this Campaign</button>
 	                        </g:form>
@@ -200,7 +200,7 @@
                     </g:else>
                     <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                     <g:if test="${project.rewards.size()>1}">
-                        <g:if test="${project.paypalEmail || project.charitableId}">
+                        <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
                     	    <g:render template="show/rewards" model="['username':username]"/>
                     	</g:if>
                     </g:if>

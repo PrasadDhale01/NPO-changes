@@ -58,11 +58,16 @@ class ProjectController {
 		REWARDS: 'rewards',
 		PROJECTSEXCEL: 'projectsExcel',
 		VIDEO:'videoUrl',
-		PAYPALEMAIL:'paypalEmail'
+		PAYPALEMAIL:'paypalEmail',
+		PAYUEMAIL:'payuEmail',
+		PAYUSTATUS:'payuStatus'
 	]
 
 	def list = {
-		def projects = projectService.getValidatedProjects()
+		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+//		def projects = projectService.getValidatedProjects()
+		def projects = projectService.getValidatedProjects(payu_url, request_url)
 		def selectedCategory = "All Categories"
 		if(projects.size<1) {
 			flash.catmessage="There are no campaigns"
@@ -330,7 +335,10 @@ class ProjectController {
 
 	@Secured(['ROLE_ADMIN'])
 	def validateList() {
-		def projects = projectService.getNonValidatedProjects()
+		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+		def projects = projectService.getNonValidatedProjects(payu_url, request_url)
+//		def projects = projectService.getNonValidatedProjects()
 		render(view: 'validate/index', model: [projects: projects])
 	}
 

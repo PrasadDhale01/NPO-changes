@@ -3,6 +3,8 @@
 <g:set var="projectService" bean="projectService"/>
 <% def user = userService.getCurrentUser() 
 def base_url = grailsApplication.config.crowdera.BASE_URL
+def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 %>
 <html>
 <head>
@@ -198,15 +200,28 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 						<div class="clear"></div>
 						<br><h3 class="panel-title">Organization</h3><hr/>
 						<div class="form-group">
-							<label class="col-sm-2 control-label">Preferred payment gateway</label>
-							<div class="col-sm-10 form-group" id="payopt">
-								<div class="col-sm-8">
-									<div class="btn-group btn-group-sm btnOrgBgColor">
-										<label class="btn btn-default"> <input type="radio" name="pay" value="paypal">&nbsp;Paypal</label>
-										<label class="btn btn-default"> <input type="radio" name="pay" value="firstgiving">&nbsp;First Giving</label>
+							<g:if test ="${request_url==payu_url}">
+								<div class="col-sm-12" id="payuemail">
+                                	<div class="form-group">
+										<label class="col-sm-2 control-label">PayUMoney Email ID </label>
+										<div class="col-sm-4">
+											<input id="payuemail" type="email" class="form-control" name="${FORMCONSTANTS.PAYUEMAIL}">
+											<input id="payustatus" type="hidden" class="form-control" name="${FORMCONSTANTS.PAYUSTATUS}" value="true">
+										</div>
+									</div>
+ 								</div>
+							</g:if>
+							<g:else>
+								<label class="col-sm-2 control-label">Preferred payment gateway</label>
+								<div class="col-sm-10 form-group" id="payopt">
+									<div class="col-sm-8">
+										<div class="btn-group btn-group-sm btnOrgBgColor">
+											<label class="btn btn-default"> <input type="radio" name="pay" value="paypal">&nbsp;Paypal</label>
+											<label class="btn btn-default"> <input type="radio" name="pay" value="firstgiving">&nbsp;First Giving</label>
+										</div>
 									</div>
 								</div>
-							</div>
+							</g:else>
                             <div class="col-sm-12" id="paypalemail">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">PayPal Email ID </label>

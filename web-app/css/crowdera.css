@@ -3953,7 +3953,7 @@ textarea.form-control {
 		padding-left: 0px;
 		width: 48%;
 	}
-	tbThirdAdmin {
+	.tbThirdAdmin {
 		padding-left: 0px;
 		width: 60%;
 	}
@@ -4029,31 +4029,33 @@ textarea.form-control {
     .fbShareForLargeDevices {
         display: none !important;
     }
-}
-@media only screen and (max-width: 768px){
-.manage-tiles {
-    width: 65% !important;
-}
-.manage-tiles-details {
-    width: 65% !important;
-}
-.c100.pie-tile {
-    margin-top: -4%;
-}
-.c100.pie-tile-manage {
-    margin-top: -4%;
-}
-.nav > li > a {
-    padding: 7px 17px;
-}
-.dropdown-menu.usr > li > a {
-    padding: 7px 21px !important;
-    width:192px;
-}
-.dropdown-menu.admin > li > a {
-    padding: 7px 16px !important;
-    width:192px;
-}
+
+    .manage-tiles {
+        width: 65% !important;
+    }
+    .manage-tiles-details {
+        width: 65% !important;
+    }
+    .c100.pie-tile {
+        margin-top: -4%;
+    }
+    .c100.pie-tile-manage {
+        margin-top: -4%;
+    }
+    .nav > li > a {
+        padding: 7px 17px;
+    }
+    .dropdown-menu.usr > li > a {
+        padding: 7px 21px !important;
+        width:192px;
+    }
+    .dropdown-menu.admin > li > a {
+        padding: 7px 16px !important;
+        width:192px;
+    }
+    .navbar-collapse.in {
+        height: 275px !important;
+    }
 }
 /***only-use-homepage-Carousel*****/
 @media only screen and (min-width: 730px) and (max-width: 740px){

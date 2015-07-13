@@ -722,12 +722,13 @@ class ProjectController {
 			Team currentTeam = projectService.getCurrentTeam(project,user)
 			def isCrFrCampBenOrAdmin = isCampaignOwnerOrAdmin
 			def webUrl = projectService.getWebUrl(project)
+            def isEnabledTeamExist = userService.isTeamEnabled(project, user)
 
 			if(project.user==user || isCampaignOwnerOrAdmin){
 				render (view: 'manageproject/index',
 				model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,
 					discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,
-					ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,
+					ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist,
 					unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS])
 			} else{
 				flash.prj_mngprj_message = 'Campaign Not Found'

@@ -248,9 +248,9 @@ a.customer-support-a {
 	position: absolute;
 }
 .support {
-	width: 400px;
-	height: 500px;
-	position:fixed;
+    width: 400px;
+    height: 500px;
+    position:fixed;
     background-color: white;
     border: 2px solid;
     border-color: #005f84;

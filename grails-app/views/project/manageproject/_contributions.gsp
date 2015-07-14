@@ -12,11 +12,14 @@
     def projectId = project.id
 %>
 <g:if test="${project.validated}">
-<div class="<g:if test="${project.contributions.empty || !project.validated}">col-md-12</g:if> <g:else>col-md-10 col-md-offset-1</g:else> col-sm-12 col-xs-12">
+<div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
     <g:if test="${project.contributions.empty}">
-        <div class="alert alert-info">No contributions yet.</div>
+        <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="alert alert-info">No contributions yet.</div>
+        </div>
     </g:if>
     <g:if test="${project.validated}">
+        <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
         <a href="#" class="btn btn-primary btn-sm pull-right managecontribution" data-toggle="modal" data-target="#offlineContributionModal" model="['project': project]">
             Manage Offline Contribution
         </a>
@@ -25,6 +28,7 @@
                 Report
             </a>
         </g:if>
+        </div>
     </g:if>
     <div class="clear"></div>
     <!-- Modal -->
@@ -92,13 +96,13 @@
 					}
 		        %>
        			<g:if test="${!contribution.isContributionOffline}">
-		            <div class="col-sm-4 col-md-4 col-lg-3 top-pan contributions-panel">
+		            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 top-pan">
 		                <div <g:if test='${contribution.isAnonymous}'>class ="pans alphabet-A"</g:if><g:else>class ="pans ${alphabet}"</g:else>>
-		                    <div class ="col-sm-4 col-xs-4 img-panel">
+		                    <div class ="col-sm-3 col-xs-3 img-contribution">
 	                            <img class="user-img-header" src="${imageUrl}" alt="alphabet">
 	                        </div>
 	                        
-				            <div class="col-sm-8 col-xs-8 pn-word">
+				            <div class="col-sm-9 col-xs-9 pn-word">
 					            <g:if test="${isFacebookUser}">
 					                 <h4><a href="${userFacebookUrl}">${friendlyName}</a></h4>
 					                 <span class="sso">$<b>${contribution.amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
@@ -120,25 +124,23 @@
  		            </div>
 		        </g:if>
 		        <g:else>
-		            <div class="col-sm-4 col-md-4 col-lg-3 top-pan contributions-panel">
+		            <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 top-pan offline-contribution-pans">
                         <div class ="pans ${alphabet}">
-	                        <div class ="col-sm-4 col-xs-4 img-panel">
+	                        <div class ="col-sm-3 col-xs-3 img-contribution">
 	                            <img class="user-img-header" src="${imageUrl}" alt="alphabet">
 	                        </div>
 		                 
-	                        <div class="col-sm-8 col-xs-8 pn-word">
+	                        <div class="col-sm-9 col-xs-9 pn-word">
 	                            <h4>${contribution.contributorName}</h4> 
 	                            <span class="sso">$<b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
 					            <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
-	                        </div>
-	                        <div class="clear"></div>
-							<g:if test="${contribution.fundRaiser.equals(fundRaiser)}">
-								 <div class="col-sm-12"> 
-								     <div class="col-sm-6">
-								         <dd class="so-off-con">Offline Contribution</dd>
+	                            <div class="clear"></div>
+							    <g:if test="${contribution.fundRaiser.equals(fundRaiser)}">
+								     <div class="col-sm-8 col-xs-8">
+								         <div class="offline-contribution">Offline Contribution</div>
 								     </div>
-								     <div class="col-sm-6 cols">
-								         <div class="edits">
+								     <div class="col-sm-4 col-xs-4 edit-delete-fund">
+								         <div class="offline-edit-delete-btn">
 								             <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
 								                 <i class="glyphicon glyphicon-edit" ></i>
 								             </button>
@@ -151,8 +153,8 @@
 								             </g:form>
 								         </div>
 								     </div>
-								 </div>
-							</g:if>
+							     </g:if>
+	                        </div>
                          </div>
                          <div class="clear"></div>
                         

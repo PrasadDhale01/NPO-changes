@@ -13,6 +13,25 @@ $(function() {
         $('.searchableForm').closest('#q').val();
     }
     
+    $('.trigger').click(function() {
+    	$(this).hide();
+        $('.discover').hide();
+        $('#search-container').show();
+        $("#search-bar").animate({width: "100px"},'fast',function(){
+            $(this).focus(); // For bonus, the input will now get autofocus
+        });
+    });
+
+    $('#search-bar').blur(function(){
+        $(this).animate({width: "0px"},'fast');
+        var delay = 260;
+        setTimeout(function() {
+        	$('#search-container').hide();
+        	$('.trigger').show();
+            $('.discover').show();
+        }, delay);
+    });
+    
     $(document).ready(function() { 
     	$("#mvc-embedded-subscribe-form-lg").validate({ 
     	   rules: { 
@@ -195,24 +214,6 @@ $(function() {
 		$('.display-footer-text').attr('href','#');
 	});
     
-    $('.trigger').click(function() {
-    	$(this).hide();
-        $('.discover').hide();
-        $('#search-container').show();
-        $("#search-bar").animate({width: "100px"},'fast',function(){
-            $(this).focus(); // For bonus, the input will now get autofocus
-        });
-    });
-
-    $('#search-bar').blur(function(){
-        $(this).animate({width: "0px"},'fast');
-        var delay = 260;
-        setTimeout(function() {
-        	$('#search-container').hide();
-        	$('.trigger').show();
-            $('.discover').show();
-        }, delay);
-    });
     
   /*  $('.twittersocialicon').hover(function(){
     	$(this).attr('src',"/images/twitter-over.png");

@@ -8,7 +8,7 @@
 	def digitLen = length.toString().length()
 %>
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="row">
@@ -41,7 +41,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel-success">
             <div class="panel-heading">
                 <div class="row">
@@ -58,7 +58,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="row">
@@ -75,7 +75,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-3">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="panel panel-warning">
             <div class="panel-heading">
                 <div class="row">

@@ -259,3 +259,26 @@ a.customer-support-a {
     margin-right: -400px;
     overflow: scroll;
 }
+.offline-contribution {
+	font-size: 10px;
+	padding-top: 5px;
+}
+.img-contribution {
+	padding-top: 15px;
+}
+.edit-delete-fund {
+    padding-top: 11px;
+}
+.offline-contribution-pans .col-sm-8, .offline-contribution-pans .col-xs-8, .offline-contribution-pans .col-sm-4, .offline-contribution-pans .col-xs-4 {
+	padding-left: 0px !important;
+	padding-right: 0px !important;
+}
+.edit-delete-fund .close {
+    margin-left: 8px !important;
+}
+.offline-edit-delete-btn {
+    margin-top: -12px;	
+}
+.offline-edit-delete-btn i {
+    font-size: 15px;
+}

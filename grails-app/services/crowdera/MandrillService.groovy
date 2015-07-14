@@ -115,7 +115,7 @@ class MandrillService {
     }
 
     def sendBeneficiaryEmail(User user) {
-        def link = grailsLinkGenerator.link(controller: 'fund', action: 'fundingConfirmation',id:user.id, absolute: true)
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'create', absolute: true)
 
         def globalMergeVars = [
             [
@@ -154,7 +154,11 @@ class MandrillService {
             [
                 'name': 'EMAIL',
                 'content': user.email
-            ]
+            ],
+			[
+				'name':'TITLE',
+				'content':project.title
+			]
         ]
 
         def tags = ['thanking-contributors']
@@ -379,6 +383,10 @@ class MandrillService {
                 'name': 'LINK',
                 'content': link
             ],
+			[
+				'name':'OWNER_NAME',
+				'content':project.user.firstName + " " + project.user.lastName
+			],
             [
                 'name':'REGISTER_LINK',
                 'content':registerLink
@@ -432,6 +440,9 @@ class MandrillService {
             'name': 'EMAIL',
             'content': email
         ], [
+			'name':'STORY',
+			'content':project.story
+		], [
             'name': 'TITLE',
             'content': project.title
         ], [
@@ -757,6 +768,9 @@ class MandrillService {
             'name': 'AMOUNT',
             'content': amount
         ], [
+			'name':'TITLE',
+			'content':project.title
+		], [
             'name': 'EMAIL',
             'content': contribution.contributorEmail
         ]]

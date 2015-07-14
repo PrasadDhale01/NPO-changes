@@ -155,10 +155,10 @@ class MandrillService {
                 'name': 'EMAIL',
                 'content': user.email
             ],
-			[
-				'name':'TITLE',
-				'content':project.title
-			]
+	    [
+		'name':'TITLE',
+		'content':project.title
+	    ]
         ]
 
         def tags = ['thanking-contributors']
@@ -384,14 +384,14 @@ class MandrillService {
                 'name': 'LINK',
                 'content': link
             ],
-			[
-				'name':'BLOG_LINK',
-				'content':blogUrl
-			],
-			[
-				'name':'OWNER_NAME',
-				'content':project.user.firstName + " " + project.user.lastName
-			],
+	    [
+		'name':'BLOG_LINK',
+		'content':blogUrl
+	    ],
+	    [
+		'name':'OWNER_NAME',
+		'content':project.user.firstName + " " + project.user.lastName
+	    ],
             [
                 'name':'REGISTER_LINK',
                 'content':registerLink
@@ -445,9 +445,9 @@ class MandrillService {
             'name': 'EMAIL',
             'content': email
         ], [
-			'name':'STORY',
-			'content':project.story
-		], [
+		'name':'STORY',
+		'content':project.story
+	], [
             'name': 'TITLE',
             'content': project.title
         ], [
@@ -773,9 +773,9 @@ class MandrillService {
             'name': 'AMOUNT',
             'content': amount
         ], [
-			'name':'TITLE',
-			'content':project.title
-		], [
+		'name':'TITLE',
+		'content':project.title
+	], [
             'name': 'EMAIL',
             'content': contribution.contributorEmail
         ]]

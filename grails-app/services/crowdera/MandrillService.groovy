@@ -369,6 +369,7 @@ class MandrillService {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, absolute: true)
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', id: project.id, absolute: true)
         def imageUrl = project.imageUrl
+		def blogUrl = "http://crowdera.tumblr.com"
 		def projectImageUrl
         if (imageUrl) {
             imageUrl = project.imageUrl[0].getUrl()
@@ -383,6 +384,10 @@ class MandrillService {
                 'name': 'LINK',
                 'content': link
             ],
+			[
+				'name':'BLOG_LINK',
+				'content':blogUrl
+			],
 			[
 				'name':'OWNER_NAME',
 				'content':project.user.firstName + " " + project.user.lastName

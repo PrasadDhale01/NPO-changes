@@ -179,7 +179,7 @@ $( document ).ready(function() {
 	    if (confirm('It looks like you already have another account with same email. Would you like to merge the accounts?')) {
 		    window.location.href =$("#b_url").val()+"/login/facebook_login/?userResponse=yes";
 	    } else {
-		    window.location.href =$("#b_url").val()+"/logout";
+		    window.location.href =$("#b_url").val()+"/user/logout";
 	    }
 	}
 });

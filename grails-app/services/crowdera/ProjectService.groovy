@@ -1,6 +1,7 @@
 package crowdera
 
 import grails.transaction.Transactional
+import java.security.MessageDigest
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 
@@ -311,11 +312,20 @@ class ProjectService {
 	 }
 	 
 	 def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
-		 def emailId = request.getParameter('shippingEmail')
-		 def twitter = request.getParameter('twitterHandle')
-		 def custom = request.getParameter('shippingCustom')
-		 def userId = request.getParameter('tempValue')
-		 def anonymous = request.getParameter('anonymous')
+		 def emailId, twitter,custom, userId,anonymous 
+		 if (project.payuEmail){
+			emailId = request.getParameter('shippingEmail')
+			twitter =request.getParameter('shippingTwitter')
+			custom =  request.getParameter('shippingCustom')
+			userId = request.getParameter('tempValue')
+			anonymous = request.getParameter('anonymous')
+		 }else{
+			emailId = request.getParameter('shippingEmail')
+			twitter = request.getParameter('twitterHandle')
+			custom = request.getParameter('shippingCustom')
+			userId = request.getParameter('tempValue')
+			anonymous = request.getParameter('anonymous')
+		 }
 		 def shippingDetail=checkShippingDetail(emailId,twitter,address, custom)
 		 def name
 		 def username
@@ -324,7 +334,10 @@ class ProjectService {
 			 if (project.paypalEmail){
 				 name = request.getParameter('name')
 				 username = request.getParameter('email')
-			 } else {
+			 }else if (project.payuEmail){
+				 name = request.getParameter('name')
+				 username = request.getParameter('email')
+ 			 } else {
 				 name = params.billToFirstName + " " +params.billToLastName
 				 username = params.billToEmail
 			 }
@@ -1055,6 +1068,49 @@ class ProjectService {
 		return finalList
     }
 	
+	def getValidatedProjects(def base_url, def req_url) {
+		def popularProjectsList = getPopularProjects()
+		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
+		List endedProjects = []
+		List openProjects = []
+		List sortedProjects
+		finalList.each { project ->
+		if(req_url==base_url){
+		  def payuProject=isPayuProject(project)
+		  if(payuProject){
+			  boolean ended = isProjectDeadlineCrossed(project)
+			  if(ended) {
+				  endedProjects.add(project)
+			  }else {
+				  openProjects.add(project)
+			  }
+		  }
+		}else{
+		  def payuProject=isPayuProject(project)
+		  if(payuProject==false){
+			 boolean ended = isProjectDeadlineCrossed(project)
+			 if(ended) {
+				 endedProjects.add(project)
+			 }else {
+				  openProjects.add(project)
+			 }
+		  }
+		}
+		
+	}
+	sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
+	finalList =  sortedProjects.reverse() + endedProjects.reverse()
+	return finalList
+   }
+
+	def isPayuProject(Project project){
+		if(project.payuStatus==true){
+			return true
+		}else{
+		   return false
+		}
+	}
+	
 	def getPopularProjects(){
 		def results = PopularProject.getAll()
 		def popularProjectsList = []
@@ -1070,6 +1126,21 @@ class ProjectService {
 		/* Later on the criteria will be modified in order to display the admin selected projects as the popular projects*/
 		def popularProjectsList = getPopularProjects()
 		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
+		return finalList
+	}
+	
+	def showProjects(def base_url, def req_url){
+		/* Logic to fetch the latest comes first out of the validated projects.*/
+		//TO DO
+		/* Later on the criteria will be modified in order to display the admin selected projects as the popular projects*/
+		def finalList
+		if(base_url==req_url){
+			def popularProjectsList = getPopularProjects()
+			finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false, payuStatus:true) - popularProjectsList)
+		}else{
+			def popularProjectsList = getPopularProjects()
+			finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false, payuStatus:false) - popularProjectsList)
+		}
 		return finalList
 	}
 	
@@ -1123,6 +1194,66 @@ class ProjectService {
         }
         return list
     }
+	
+	def getProjects(def projects, def projectAdmins, def fundRaisers, def base_url, def req_url) {
+		def list = []
+		if(base_url==req_url){
+			projects.each {
+				if(it.inactive == false && it.payuStatus==true) {
+					list.add(it)
+				}
+			}
+			projectAdmins.each {
+				def project = Project.findById(it.projectId)
+				if(project.inactive == false && project.payuStatus==true) {
+					list.add(project)
+				}
+			}
+			fundRaisers.each { fundRaiser ->
+				def project = fundRaiser.project
+				def isProjectexist = false
+				list.each {
+					if (project == it && project.payuStatus==true) {
+						isProjectexist = true
+					}
+				}
+				if(!isProjectexist) {
+					if(project.inactive == false && project.payuStatus==true) {
+						list.add(project)
+					}
+				}
+			 }
+		  }else{
+			 projects.each {
+				 if(it.inactive == false && it.payuStatus==false) {
+						 list.add(it)
+				  }
+			 }
+		
+			 projectAdmins.each {
+				 def project = Project.findById(it.projectId)
+				 if(project.inactive == false && project.payuStatus==false) {
+						 list.add(project)
+				 }
+			 }
+		
+			 fundRaisers.each { fundRaiser ->
+				 def project = fundRaiser.project
+				 def isProjectexist = false
+				 list.each {
+					 if (project == it && project.payuStatus==false) {
+						isProjectexist = true
+					 }
+				  }
+				  if(!isProjectexist) {
+					 if(project.inactive == false && project.payuStatus==false) {
+						 list.add(project)
+					 }
+				  }
+			  }
+		 }
+		return list
+	}
     
     def getDataType(Double amount){
         if (amount) {
@@ -1135,6 +1266,14 @@ class ProjectService {
     def getNonValidatedProjects() {
         return Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false)
     }
+	
+	def getNonValidatedProjects(def base_url, def req_url) {
+		if(base_url==req_url){
+			return Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false, payuStatus:true)
+		}else{
+			return Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false, payuStatus:false)
+		}
+	}
 
     def search(String query) {
         List result = []
@@ -1665,9 +1804,7 @@ class ProjectService {
 			def s3Bucket = new S3Bucket(bucketName)
 		
 			def tempFile = new File("${resume.getOriginalFilename()}")
-			println "tempFile : "+tempFile
 			def key = "${folder}/${resume.getOriginalFilename()}"
-			println "key : "+key
 			resume.transferTo(tempFile)
 			def object = new S3Object(tempFile)
 			object.key = key
@@ -1782,6 +1919,62 @@ class ProjectService {
 	  
       return finalList
     }
+	
+	def getAllProjectByUser(User user, def base_url, def req_url){
+		def projects= Project.findAllByUser(user)
+		List activeProjects=[]
+		List draftProjects=[]
+		List pendingProjects=[]
+		List endedProjects=[]
+		List sortedProjects
+		def finalList
+		projects.each{ project->
+			if(base_url==req_url){
+				def payustatus= isPayuProject(project)
+				if(payustatus==true){
+					boolean ended = isProjectDeadlineCrossed(project)
+					if(ended && project.payuStatus==true) {
+						endedProjects.add(project)
+					}else{
+						if( project.payuStatus==true && project.validated==true && project.inactive==false){
+							activeProjects.add(project)
+						}
+					}
+					
+					if(project.draft==true && project.payuStatus==true){
+						draftProjects.add(project)
+					}
+		
+					if(project.inactive==false && project.validated==false && project.draft==false && project.payuStatus==true){
+					pendingProjects.add(project)
+					}
+				}
+			 }else{
+				def payustatus= isPayuProject(project)
+				if(payustatus==false){
+					boolean ended = isProjectDeadlineCrossed(project)
+					if(ended && project.payuStatus==false) {
+						endedProjects.add(project)
+					}else{
+						if(project.payuEmail==null && project.validated==true && project.inactive==false){
+							activeProjects.add(project)
+						}
+					}
+		
+					if(project.draft==true && project.payuStatus==false){
+						draftProjects.add(project)
+					}
+		
+					if(project.inactive==false && project.validated==false && project.draft==false && project.payuStatus==false){
+						pendingProjects.add(project)
+					}
+				}
+			}
+		}
+		sortedProjects =activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
+		finalList = draftProjects.reverse()+ pendingProjects.reverse() + sortedProjects.reverse() + endedProjects.reverse()
+		return finalList
+	}
 
     def getProjectAdminEmail(User user){
       def projectAdminEmail= ProjectAdmin.findAllByEmail(user.email)
@@ -1822,6 +2015,24 @@ class ProjectService {
       def contributions = Contribution.findAllByUser(user)
       return contributions
     }
+	
+	def getContibutionByUser(User user,def base_url, def req_url){
+		def contributions = Contribution.findAllByUser(user)
+		List payuContributions=[]
+		List otherContributions=[]
+		contributions.each{
+			if(it.project.payuStatus==true && it.project.payuEmail!=null){
+				payuContributions.add(it)
+			}else if(it.project.payuStatus==false){
+				otherContributions.add(it)
+			}
+		}
+		if(base_url==req_url){
+			return payuContributions
+		}else{
+			return otherContributions
+		}
+	}
 
     def shareCampaignOrTeamByEmail(def params, def fundRaiser) {
         def project = Project.get(params.id)
@@ -1957,17 +2168,17 @@ class ProjectService {
         def list = VanityTitle.list()
         List result = []
         def vanitytitle
-        def status = false
         list.each{
             if (it.title.equalsIgnoreCase(title)) {
                 result.add(it)
             }
         }
 
-        if (result.isEmpty())
-            vanitytitle = title
-        else
+        if (result.isEmpty()){
+			vanitytitle = title
+        }else{
             vanitytitle = title+"-"+result.size()
+        }
 
         new VanityTitle(
             project:project,
@@ -2099,6 +2310,32 @@ class ProjectService {
         List comments = TeamComment.findAllWhere(team: team)
         return comments.reverse()
     }
+	
+	/*******************Generate HASH for payu*********************/
+	String generateHash(String type, String hashstring){
+		byte[] hashseq=hashstring.getBytes();
+		StringBuffer hexString = new StringBuffer();
+		try{
+			MessageDigest algorithm = MessageDigest.getInstance(type);
+			algorithm.reset();
+			algorithm.update(hashseq);
+			byte[] messageDigest = algorithm.digest();
+			for (int i=0;i<messageDigest.length;i++) {
+				String hex=Integer.toHexString(0xFF & messageDigest[i]);
+				if(hex.length()==1) hexString.append("0");
+				hexString.append(hex);
+			}
+		}catch(Exception nsae){ }
+		return hexString.toString();
+	}
+	
+	/****************Generate unique transaction Id for payu*********************/
+	def generateTransId(){
+		Random rand = new Random();
+		String rndm = Integer.toString(rand.nextInt())+(System.currentTimeMillis() / 1000L);
+		def txnid=generateHash("SHA-256",rndm).substring(0,20);
+		return txnid
+	}
     
     @Transactional
     def bootstrap() {

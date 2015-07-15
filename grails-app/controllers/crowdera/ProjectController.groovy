@@ -8,10 +8,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 import groovy.json.JsonSlurper
-import groovyx.net.http.ContentType
-import groovyx.net.http.HTTPBuilder
-import groovyx.net.http.Method
-
 import org.apache.http.HttpEntity
 import org.apache.http.HttpResponse
 import org.apache.http.client.HttpClient
@@ -58,11 +54,16 @@ class ProjectController {
 		REWARDS: 'rewards',
 		PROJECTSEXCEL: 'projectsExcel',
 		VIDEO:'videoUrl',
-		PAYPALEMAIL:'paypalEmail'
+		PAYPALEMAIL:'paypalEmail',
+		PAYUEMAIL:'payuEmail',
+		PAYUSTATUS:'payuStatus'
 	]
 
 	def list = {
-		def projects = projectService.getValidatedProjects()
+		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+//		def projects = projectService.getValidatedProjects()
+		def projects = projectService.getValidatedProjects(payu_url, request_url)
 		def selectedCategory = "All Categories"
 		if(projects.size<1) {
 			flash.catmessage="There are no campaigns"
@@ -330,7 +331,10 @@ class ProjectController {
 
 	@Secured(['ROLE_ADMIN'])
 	def validateList() {
-		def projects = projectService.getNonValidatedProjects()
+		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+		def projects = projectService.getNonValidatedProjects(payu_url, request_url)
+//		def projects = projectService.getNonValidatedProjects()
 		render(view: 'validate/index', model: [projects: projects])
 	}
 
@@ -422,10 +426,11 @@ class ProjectController {
 		if(project) {
 			def vanityTitle = projectService.getProjectUpdateDetails(params, request, project,user)
 			flash.prj_mngprj_message = "Successfully saved the changes"
-			if (vanityTitle)
+			if (vanityTitle){
 				redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
-			else
+			}else{
 				redirect (action: 'manageproject', params:['projectTitle':title])
+			}
 		} else {
 			flash.prj_edit_message = "Campaign not found."
 			render (view: 'edit/editerror')
@@ -700,43 +705,44 @@ class ProjectController {
 		}
 	}
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def manageproject() {
-		def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
-		Project project = projectService.getProjectById(projectId)
-		User user = userService.getCurrentUser()
-		if (project) {
-			def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
-			def totalContribution = contributionService.getTotalContributionForProject(project)
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def manageproject() {
+        def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+        Project project = projectService.getProjectById(projectId)
+        User user = userService.getCurrentUser()
+        if (project) {
+            def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
+            def totalContribution = contributionService.getTotalContributionForProject(project)
 
-			def projectimages = projectService.getProjectImageLinks(project)
-			def validatedTeam = projectService.getValidatedTeam(project)
-			def unValidatedTeam = projectService.getTeamToBeValidated(project)
-			def discardedTeam = projectService.getDiscardedTeams(project)
-			boolean ended = projectService.isProjectDeadlineCrossed(project)
-			boolean isFundingOpen = projectService.isFundingOpen(project)
-			def rewards = rewardService.getSortedRewards(project);
-			def endDate = projectService.getProjectEndDate(project)
-			def isCampaignAdmin = userService.isCampaignAdmin(project, user.username)
-			def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
-			Team currentTeam = projectService.getCurrentTeam(project,user)
-			def isCrFrCampBenOrAdmin = isCampaignOwnerOrAdmin
-			def webUrl = projectService.getWebUrl(project)
+            def projectimages = projectService.getProjectImageLinks(project)
+            def validatedTeam = projectService.getValidatedTeam(project)
+            def unValidatedTeam = projectService.getTeamToBeValidated(project)
+            def discardedTeam = projectService.getDiscardedTeams(project)
+            boolean ended = projectService.isProjectDeadlineCrossed(project)
+            boolean isFundingOpen = projectService.isFundingOpen(project)
+            def rewards = rewardService.getSortedRewards(project);
+            def endDate = projectService.getProjectEndDate(project)
+            def isCampaignAdmin = userService.isCampaignAdmin(project, user.username)
+            def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+            Team currentTeam = projectService.getCurrentTeam(project,user)
+            def isCrFrCampBenOrAdmin = isCampaignOwnerOrAdmin
+            def webUrl = projectService.getWebUrl(project)
+            def isEnabledTeamExist = userService.isTeamEnabled(project, user)
 
-			if(project.user==user || isCampaignOwnerOrAdmin){
-				render (view: 'manageproject/index',
-				model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,
-					discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,
-					ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,
-					unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS])
-			} else{
-				flash.prj_mngprj_message = 'Campaign Not Found'
-				render (view: 'manageproject/error', model: [project: project])
-			}
-		} else {
-			render (view: '/error')
-		}
-	}
+            if(project.user==user || isCampaignOwnerOrAdmin){
+                render (view: 'manageproject/index',
+                        model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,
+                                discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,
+                                ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist,
+                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS])
+            } else{
+                flash.prj_mngprj_message = 'Campaign Not Found'
+                render (view: 'manageproject/error', model: [project: project])
+            }
+        } else {
+        render (view: '/error')
+    }
+}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def projectdelete() {
@@ -1093,7 +1099,6 @@ class ProjectController {
 	def addcampaignsupporter() {
 		def project = projectService.getProjectById(params.projectId)
 		if (project) {
-			def fundRaiser = params.fundRaiser
 			def message = userService.getCampaignSupporter(project)
 			flash.add_campaign_supporter = message
 
@@ -1156,9 +1161,6 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editComment() {
-		def projectComment
-		def teamcomment
-		def project = projectService.getProjectById(params.projectId)
 		def vanityUserName = userService.getVanityNameFromUsername(params.fr, params.projectId)
 		if (params.commentId || params.teamCommentId) {
 			if (params.commentId) {
@@ -1176,7 +1178,6 @@ class ProjectController {
 	def editCommentSave() {
 		ProjectComment projectComment
 		TeamComment teamcomment
-		def project = projectService.getProjectById(params.projectId)
 		def vanityUserName = userService.getVanityNameFromUsername(params.fr, params.projectId)
 
 		if (params.commentId) {

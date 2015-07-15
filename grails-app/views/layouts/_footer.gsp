@@ -57,8 +57,8 @@
 			</div>
 			<br>
 			<div class="thomas-testimonial">
-			   <p>"The idea of enabling non-profits to raise funds fee-free enabled Two Cents of Hope to avoid commissions and help more students in need. 
-			   The team at Crowdera provided excellent support and I'd recommend Crowdera to every serious fundraiser." <br><br><span>Two Cents of Hope</span><br>
+			   <p>"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
+			   I'd recommend Crowdera to every serious fundraiser." <br><br><span>Two Cents of Hope</span><br>
 			</div>
 			<div class="footer-newsletter">
 			   <form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-sm" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
@@ -96,7 +96,7 @@
 	<!-- Footer Design for medium size device -->
 	<div class="visible-sm visible-md">
 	    <section class="row">
-		<div class="col-sm-4">
+		<div class="col-sm-4 footer-logo-padding-left">
 	 	    <a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a>
 		    <div class="col-sm-6 footer-mid-section-menu tab-menu-padding">
 			<ul>
@@ -147,8 +147,8 @@
 			</form>
 		    </div>
 		   <div class="thomas-owens-testimonial-div">
-			<p class="thomas-owens-testimonial">"The idea of enabling non-profits to raise funds fee-free enabled Two Cents of Hope to avoid commissions and help more students in need. 
-			The team at Crowdera provided excellent support and I'd recommend Crowdera to every serious fundraiser." <br><br><span class="thomas-margin-align">Two Cents of Hope</span><br>
+			<p class="thomas-owens-testimonial">"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
+			I'd recommend Crowdera to every serious fundraiser." <br><br><span class="thomas-margin-align">Two Cents of Hope</span><br>
 		   </div>
 		</div>
 		<hr class="footer-hr">
@@ -230,8 +230,8 @@
 			</form>
 		    </div>
 		    <div class="thomas-owens-testimonial-div">
-			<p class="thomas-owens-testimonial">"The idea of enabling non-profits to raise funds fee-free enabled Two Cents of Hope to avoid commissions and help more students in need. 
-			The team at Crowdera provided excellent support and I'd recommend Crowdera to every serious fundraiser." <br><br><span class="thomas-margin-align">Two Cents of Hope</span><br>
+			<p class="thomas-owens-testimonial">"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
+			I'd recommend Crowdera to every serious fundraiser." <br><br><span class="thomas-margin-align">Two Cents of Hope</span><br>
 		    </div>
 		</div>
 		<hr class="footer-hr">

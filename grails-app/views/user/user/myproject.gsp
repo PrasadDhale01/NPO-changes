@@ -9,7 +9,7 @@
     <r:require modules="userjs"/>
 </head>
 <body>
-<div class="feducontent">
+<div class="feducontent text-center">
     <div class="container">
 
         <h2>My Campaigns</h2>

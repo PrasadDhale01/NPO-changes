@@ -1,6 +1,7 @@
 package crowdera
 
 import grails.plugin.springsecurity.annotation.Secured
+import org.springframework.security.core.context.SecurityContextHolder;
 
 class UserController {
     def userService
@@ -46,15 +47,19 @@ class UserController {
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
         } else {
-            def projects = projectService.getAllProjectByUser(user)
+			def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+			def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+			def projects = projectService.getAllProjectByUser(user, payu_url, request_url)
+//            def projects = projectService.getAllProjectByUser(user)
             // def email = user.email
             def projectAdmins = projectService.getProjectAdminEmail(user)
             def teams = projectService.getTeamByUserAndEnable(user, true)
-            def project = projectService.getProjects(projects, projectAdmins, teams)
-            def contributions = projectService.getContibutionByUser(user)
+//            def project = projectService.getProjects(projects, projectAdmins, teams)
+//            def contributions = projectService.getContibutionByUser(user)
+			def project = projectService.getProjects(projects, projectAdmins, teams, payu_url, request_url)
+			def contributions = projectService.getContibutionByUser(user, payu_url, request_url)
             render view: userViews, model: [user: user, projects: project, contributions: contributions, activeTab:activeTab]
         }
-        
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -210,5 +215,10 @@ class UserController {
 		  status = userService.sendUserSubscription(subscribeURL,userID,listID, email)
 		}
 		render " "
+    }
+    
+    def logout() {
+        SecurityContextHolder.clearContext()
+        render(view: '/login/error', model: [facelogoutmsg: 'A user with that email id already exists. Please log into your account.'])
     }
 }

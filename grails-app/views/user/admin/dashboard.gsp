@@ -9,7 +9,7 @@
     </div>
 </g:if>
 <div class="feducontent">
-    <div class="container">
+    <div class="container admindashboard">
 
         <h2><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-admin.png" alt="Admin Dashboard"/>Admin Dashboard</h2>
 
@@ -70,9 +70,9 @@
         --%>
 
 	    <div class="row">
-            <div class="col-sm-4">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="panel panel-default">
-                    <div class="panel-body">
+                    <div class="panel-body text-center">
                         <i class="glyphicon glyphicon-check"></i> Validate Campaigns here.
                     </div>
                     <div class="panel-footer">
@@ -82,9 +82,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="panel panel-default">
-                    <div class="panel-body mng-text-size">
+                    <div class="panel-body mng-text-size text-center">
                         <i class="glyphicon glyphicon-user"></i> Manage all the invite requests here.
                     </div>
                     <div class="panel-footer">
@@ -94,9 +94,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="panel panel-default">
-                    <div class="panel-body">
+                    <div class="panel-body text-center">
                         <i class="fa fa-leaf fa-lg"></i> Bulk import Campaigns here.
                     </div>
                     <div class="panel-footer">
@@ -106,11 +106,9 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-        	<div class="col-sm-4">
+        	<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="panel panel-default">
-                    <div class="panel-body">
+                    <div class="panel-body text-center">
                         <i class="fa fa-users"></i> Manage User
                     </div>
                     <div class="panel-footer">
@@ -120,9 +118,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="panel panel-default">
-                    <div class="panel-body">
+                    <div class="panel-body text-center">
                         <i class="fa fa-credit-card"></i> Manage Transactions
                     </div>
                     <div class="panel-footer">
@@ -132,9 +130,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="panel panel-default">
-                    <div class="panel-body">
+                    <div class="panel-body text-center">
                         <i class="fa fa-user"></i> Manage User Questions
                     </div>
                     <div class="panel-footer">
@@ -144,9 +142,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                 <div class="panel panel-default">
-                    <div class="panel-body">
+                    <div class="panel-body text-center">
                         <i class="fa fa-user"></i> Manage Applicant
                     </div>
                     <div class="panel-footer">

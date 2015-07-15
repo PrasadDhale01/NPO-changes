@@ -80,6 +80,10 @@ class FacebookService {
                         }
                         user.delete();
                     }
+                    if (!userObj.userImageUrl) {
+                        userObj.userImageUrl = "//graph.facebook.com/"+fbUser.uid+"/picture?type=large"
+                        userObj.save()
+                    }
                 }
             }
         }

@@ -1115,7 +1115,7 @@ a {
 		height: 1px;
 		margin-left: 9px !important;
 		margin-top: 0 !important;
-		width: 745px !important;
+		width: 756px !important;
 	}
 	.fund-campaign-tile-center-align .over.show-tile {
 		display: block;
@@ -5283,7 +5283,7 @@ textarea.form-control {
 		color: #666666;
 		float: left;
 		height: 1px;
-		margin-left: auto !important;
+		margin-left: 5px !important;
 		margin-top: 0 !important;
 		width: 100% !important;
 	}

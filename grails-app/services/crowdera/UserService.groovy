@@ -625,7 +625,9 @@ class UserService {
             hmacMD5.init(macKey);
             byte[] hash =  hmacMD5.doFinal(text);
             hexString = hashToHexString(hash);
-        } catch (Exception nsae) { }
+        } catch (Exception nsae) {
+			nsae.printStackTrace()
+		}
         
         return hexString;
     }

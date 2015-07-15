@@ -272,7 +272,6 @@ class FundController {
     }
     
     def deleteContributionComment() {
-        Contribution contribution
         def projectComment = projectService.getProjectCommentById(params.long('commentId'))
         def teamComment = projectService.getTeamCommentById(params.long('teamCommentId'))
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)

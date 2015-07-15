@@ -1665,9 +1665,7 @@ class ProjectService {
 			def s3Bucket = new S3Bucket(bucketName)
 		
 			def tempFile = new File("${resume.getOriginalFilename()}")
-			println "tempFile : "+tempFile
 			def key = "${folder}/${resume.getOriginalFilename()}"
-			println "key : "+key
 			resume.transferTo(tempFile)
 			def object = new S3Object(tempFile)
 			object.key = key
@@ -1957,17 +1955,17 @@ class ProjectService {
         def list = VanityTitle.list()
         List result = []
         def vanitytitle
-        def status = false
         list.each{
             if (it.title.equalsIgnoreCase(title)) {
                 result.add(it)
             }
         }
 
-        if (result.isEmpty())
-            vanitytitle = title
-        else
+        if (result.isEmpty()){
+			vanitytitle = title
+        }else{
             vanitytitle = title+"-"+result.size()
+        }
 
         new VanityTitle(
             project:project,

@@ -8,10 +8,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 import groovy.json.JsonSlurper
-import groovyx.net.http.ContentType
-import groovyx.net.http.HTTPBuilder
-import groovyx.net.http.Method
-
 import org.apache.http.HttpEntity
 import org.apache.http.HttpResponse
 import org.apache.http.client.HttpClient
@@ -422,10 +418,11 @@ class ProjectController {
 		if(project) {
 			def vanityTitle = projectService.getProjectUpdateDetails(params, request, project,user)
 			flash.prj_mngprj_message = "Successfully saved the changes"
-			if (vanityTitle)
+			if (vanityTitle){
 				redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
-			else
+			}else{
 				redirect (action: 'manageproject', params:['projectTitle':title])
+			}
 		} else {
 			flash.prj_edit_message = "Campaign not found."
 			render (view: 'edit/editerror')
@@ -1093,7 +1090,6 @@ class ProjectController {
 	def addcampaignsupporter() {
 		def project = projectService.getProjectById(params.projectId)
 		if (project) {
-			def fundRaiser = params.fundRaiser
 			def message = userService.getCampaignSupporter(project)
 			flash.add_campaign_supporter = message
 
@@ -1156,9 +1152,6 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editComment() {
-		def projectComment
-		def teamcomment
-		def project = projectService.getProjectById(params.projectId)
 		def vanityUserName = userService.getVanityNameFromUsername(params.fr, params.projectId)
 		if (params.commentId || params.teamCommentId) {
 			if (params.commentId) {
@@ -1176,7 +1169,6 @@ class ProjectController {
 	def editCommentSave() {
 		ProjectComment projectComment
 		TeamComment teamcomment
-		def project = projectService.getProjectById(params.projectId)
 		def vanityUserName = userService.getVanityNameFromUsername(params.fr, params.projectId)
 
 		if (params.commentId) {

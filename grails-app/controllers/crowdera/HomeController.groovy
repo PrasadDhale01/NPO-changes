@@ -42,10 +42,11 @@ class HomeController {
     
     def customerSupport() {
         def loginurl = userService.getFreshDeskUrl()
-        if (loginurl)
+        if (loginurl){
             redirect (url: loginurl)
-        else
+        }else{
             render (view: '/error')
+        }
     }
 	
 }

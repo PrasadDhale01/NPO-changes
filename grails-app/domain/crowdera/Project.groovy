@@ -44,8 +44,10 @@ class Project {
     String charitableId
     String organizationName
     String webAddress
-    String paypalEmail 
+    String paypalEmail
+	String payuEmail 
 
+	boolean payuStatus=false
     boolean validated = false
     boolean inactive = false
     boolean send_mail = false
@@ -74,6 +76,7 @@ class Project {
         organizationIconUrl (nullable: true)
         projectAdmins(nullable: true)
         paypalEmail(nullable: true)
+		payuEmail(nullable:true)
         projectUpdates(nullable: true)
     }
 

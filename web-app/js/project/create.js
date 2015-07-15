@@ -149,6 +149,10 @@ $(function() {
             paypalEmail:{
               email:true,
               isPaypalEmailVerified : true
+            },
+            payuEmail:{
+            	required:true,
+            	email:true
             }
             /*
             imageUrl: {

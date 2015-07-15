@@ -601,7 +601,7 @@ input.signup-lg{
 }
 
 a {
-	color: #ff784f;
+	color: #01bbd2;
 }
 
 .footer_links a:hover, .footer_links a:focus {
@@ -2689,7 +2689,7 @@ footer .footerbottomsection {
 	margin-left: -8px;
 	margin-right: auto;
 	position: absolute;
-	top: 130px;
+	top: 162px;
 	z-index: 1;
 }
 .over.show-tile{
@@ -7477,5 +7477,14 @@ li a.nav-text1{
 }
 
 span#search-container {
-  margin-top: -5%;
+  	margin-top: -5%;
+}
+.home-campaign-tile li .over.show-tile{
+	display: block;
+	left: auto;
+	margin-left: -8px;
+	margin-right: auto;
+	position: absolute;
+	top: 8px;
+	z-index: 1;
 }

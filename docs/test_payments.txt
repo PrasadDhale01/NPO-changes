@@ -2,3 +2,11 @@ Paypal - Test payment account:
 Email-id: tushar14830@gmail.com
 Password: tush@r@p@yp@l
 
+Payu- Test payment account:
+Email-id: tushar@crowdera.co
+Password: tushar123
+Card Type: VISA
+Card number: 5123456789012346
+CVV number: 123
+Month: May
+Year: 2017

@@ -7,9 +7,16 @@
 <div class="feducontent">
     <div class="container">
         <h1>Error</h1>
-        <div class="alert alert-danger">
-            ${message}
-        </div>
+        <g:if test="${facelogoutmsg}">
+            <div class="alert alert-danger">
+                ${facelogoutmsg}
+            </div>
+        </g:if>
+        <g:if test="${message}">
+            <div class="alert alert-danger">
+                ${message}
+            </div>
+        </g:if>
     </div>
 </div>
 </body>

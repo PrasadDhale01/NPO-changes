@@ -700,43 +700,44 @@ class ProjectController {
 		}
 	}
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def manageproject() {
-		def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
-		Project project = projectService.getProjectById(projectId)
-		User user = userService.getCurrentUser()
-		if (project) {
-			def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
-			def totalContribution = contributionService.getTotalContributionForProject(project)
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def manageproject() {
+        def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+        Project project = projectService.getProjectById(projectId)
+        User user = userService.getCurrentUser()
+        if (project) {
+            def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
+            def totalContribution = contributionService.getTotalContributionForProject(project)
 
-			def projectimages = projectService.getProjectImageLinks(project)
-			def validatedTeam = projectService.getValidatedTeam(project)
-			def unValidatedTeam = projectService.getTeamToBeValidated(project)
-			def discardedTeam = projectService.getDiscardedTeams(project)
-			boolean ended = projectService.isProjectDeadlineCrossed(project)
-			boolean isFundingOpen = projectService.isFundingOpen(project)
-			def rewards = rewardService.getSortedRewards(project);
-			def endDate = projectService.getProjectEndDate(project)
-			def isCampaignAdmin = userService.isCampaignAdmin(project, user.username)
-			def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
-			Team currentTeam = projectService.getCurrentTeam(project,user)
-			def isCrFrCampBenOrAdmin = isCampaignOwnerOrAdmin
-			def webUrl = projectService.getWebUrl(project)
+            def projectimages = projectService.getProjectImageLinks(project)
+            def validatedTeam = projectService.getValidatedTeam(project)
+            def unValidatedTeam = projectService.getTeamToBeValidated(project)
+            def discardedTeam = projectService.getDiscardedTeams(project)
+            boolean ended = projectService.isProjectDeadlineCrossed(project)
+            boolean isFundingOpen = projectService.isFundingOpen(project)
+            def rewards = rewardService.getSortedRewards(project);
+            def endDate = projectService.getProjectEndDate(project)
+            def isCampaignAdmin = userService.isCampaignAdmin(project, user.username)
+            def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+            Team currentTeam = projectService.getCurrentTeam(project,user)
+            def isCrFrCampBenOrAdmin = isCampaignOwnerOrAdmin
+            def webUrl = projectService.getWebUrl(project)
+            def isEnabledTeamExist = userService.isTeamEnabled(project, user)
 
-			if(project.user==user || isCampaignOwnerOrAdmin){
-				render (view: 'manageproject/index',
-				model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,
-					discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,
-					ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,
-					unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS])
-			} else{
-				flash.prj_mngprj_message = 'Campaign Not Found'
-				render (view: 'manageproject/error', model: [project: project])
-			}
-		} else {
-			render (view: '/error')
-		}
-	}
+            if(project.user==user || isCampaignOwnerOrAdmin){
+                render (view: 'manageproject/index',
+                        model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,
+                                discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,
+                                ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist,
+                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS])
+            } else{
+                flash.prj_mngprj_message = 'Campaign Not Found'
+                render (view: 'manageproject/error', model: [project: project])
+            }
+        } else {
+        render (view: '/error')
+    }
+}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def projectdelete() {

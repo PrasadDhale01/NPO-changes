@@ -522,6 +522,31 @@ class MandrillService {
          
          inviteToAdmin(email, 'campaign-update', globalMergeVars, tags)
     }
+	
+	def sendCampaignDeleteEmailsToOwner(Project project,User currentUser) {
+		project.projectAdmins.email.each{email ->
+			if(email!='campaignadmin@crowdera.co' && email!=null){
+				def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
+				def globalMergeVars = [[
+					'name': 'LINK',
+					'content': link
+				],[
+				 	'name': 'NAME',
+					 'content': currentUser.firstName +" " + currentUser.lastName
+				],[
+				 	'name': 'EMAIL',
+					 'content': email
+				], [
+				 	'name': 'TITLE',
+					 'content': project.title
+				]]
+			 
+				def tags = ['campaign-delete']
+			 
+				inviteToAdmin(email, 'campaign-delete', globalMergeVars, tags)
+			}
+		}
+	}
     
     def sendInvitationForTeam(def emailList, String name, String message, Project project) {
         emailList.each { email ->

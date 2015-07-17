@@ -525,7 +525,7 @@ class MandrillService {
 	
 	def sendCampaignDeleteEmailsToOwner(List emailList, Project project,User currentUser) {
 		emailList.each{email ->
-			if(email!= currentUser.email && email!=null){
+			if(email!=null){
 				def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
 				def globalMergeVars = [[
 					'name': 'LINK',

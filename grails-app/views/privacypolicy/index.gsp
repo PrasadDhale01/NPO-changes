@@ -67,7 +67,7 @@
 		</div>
 	</g:if>
 	<g:else>
-		<div class="static-content">
+		<br><div class="static-content">
 	  <br>
 	  <h1 > PRIVACY POLICY</h1>
 	  <br/>

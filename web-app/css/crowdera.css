@@ -1288,6 +1288,12 @@ a {
 	.footer-container{
 		width:750px !important ;
 	}
+	.policy-container{
+		width:750px !important;
+	}
+	.term-use-container{
+		width:750px !important;
+	}
     div.left-pad {
         left: 18%;
     }
@@ -5607,6 +5613,12 @@ textarea.form-control {
 	.footer-container {
     	width: 320px !important;
 	}
+	.policy-container{
+		width:320px !important;
+	}
+	.term-use-container{
+		width:320px !important;
+	}
 	div.crowdera-title img{
 		display:block;
 		margin-left:auto;
@@ -7131,6 +7143,12 @@ ul.menu{
 	width:1000px ;
 	padding-left: 0px !important;
 }
+.policy-container{
+	width:1000px;
+}
+.term-use-container{
+	width:1000px;
+}
 .tile-goal {
     font-size:24px;
 }
@@ -7487,4 +7505,39 @@ span#search-container {
 	position: absolute;
 	top: 8px;
 	z-index: 1;
+}
+.IN-TW-terms-use-ol-roman{
+	line-height:180%;
+	list-style-type:lower-roman;
+}
+.IN-TW-terms-use-ol-num{
+	line-height:180%;
+}
+.IN-TW-terms-use-ol-alpha{
+	line-height:180%;
+	list-style-type:lower-alpha;
+}
+.IN-TW-terms-use-ol-disc{
+	line-height:180%;
+	list-style-type:disc;
+}
+.IN-TW-terms-use-ol-circle{
+	line-height:180%;
+	list-style-type:circle;
+}
+.IN-TW-terms-use-div p{
+	line-height:155%;	
+}
+
+.IN-TW-terms-use-bold{
+	font-size:20px;
+	font-weight:bold;
+}
+.IN-TW-terms-use-h5{
+	font-weight:500;
+	padding-top:5px;
+}
+.IN-TW-terms-use-strong{
+	font-weight: 400 !important;
+  	color: black;	
 }

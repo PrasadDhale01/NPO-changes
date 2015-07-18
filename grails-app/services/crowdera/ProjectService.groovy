@@ -2310,6 +2310,15 @@ class ProjectService {
         List comments = TeamComment.findAllWhere(team: team)
         return comments.reverse()
     }
+	def getProjectAdminEmailList(Project project) {
+		List emailList = []
+		project.projectAdmins.each { projectAdmin ->
+			emailList.add(projectAdmin.email)
+		}
+		emailList.add(project.user.email)
+		return emailList
+	}
+
 	
 	/*******************Generate HASH for payu*********************/
 	String generateHash(String type, String hashstring){

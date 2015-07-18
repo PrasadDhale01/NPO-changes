@@ -747,8 +747,11 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def projectdelete() {
 		def project = projectService.getProjectById(params.id)
+		def currentUser= userService.getCurrentUser()
 		if (project) {
 			project.inactive = true
+			List emailList= projectService.getProjectAdminEmailList(project)
+			mandrillService.sendCampaignDeleteEmailsToOwner(emailList, project, currentUser)
 			flash.user_message= "Campaign Discarded Successfully"
 			redirect (action:'myproject' , controller:'user')
 		} else {

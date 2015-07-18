@@ -13,7 +13,7 @@
 		    <ul class="nav nav-pills nav-pills-manageteam">
                 <li data-toggle="tab" class="active team-footer col-md-3 col-sm-6 col-xs-12">
                     <a href="#manageTeam" class="text-center teammembers" id="loadTeamPage">
-                        ${validatedTeam.size()}&nbsp;&nbsp;Teams <g:if test="${discardedTeam.size() > 0}">&nbsp;&nbsp;(${discardedTeam.size()}&nbsp;&nbsp;Disabled)</g:if>
+                        ${totalteams.size()}&nbsp;&nbsp;Teams <g:if test="${discardedTeam.size() > 0}">&nbsp;&nbsp;(${discardedTeam.size()}&nbsp;&nbsp;Disabled)</g:if>
                     </a>
                 </li>
                 <li data-toggle="tab" class="col-md-3 col-sm-6 col-xs-12 button-team-footer">
@@ -48,7 +48,7 @@
 			    <g:render template="manageproject/teamvalidationIndex"/>
 			</div>
 			<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="campaignStatistics">
-			    <g:render template="manageproject/campaignStatisticsIndex" model="[teams:validatedTeam]"/>
+			    <g:render template="manageproject/campaignStatisticsIndex" model="[teams:totalteams]"/>
 			</div>
 		</div>
 	</g:if>

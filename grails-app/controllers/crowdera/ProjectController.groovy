@@ -153,8 +153,12 @@ class ProjectController {
 				isTeamExist = userService.isValidatedTeamExist(project, currentUser)
 				CurrentUserTeam = userService.getTeamByUser(currentUser, project)
 			}
-			def teams = projectService.getEnabledAndValidatedTeamsForCampaign(project)
-
+			
+			def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)
+			def teamOffset = teamObj.maxrange
+			def teams = teamObj.teamList
+			def totalteams = teamObj.teams
+			
 			boolean ended = projectService.isProjectDeadlineCrossed(project)
 			boolean isFundingOpen = projectService.isFundingOpen(project)
 			def rewards = rewardService.getSortedRewards(project);
@@ -174,14 +178,19 @@ class ProjectController {
 			def offset = params.int('offset') ?: 0
 
 			render (view: 'show/index',
-			model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin, projectComments: projectComments,
+			model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
 				totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
-				teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset,
+				teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
 				isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
 				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS])
 		} else {
 			render (view: '/error')
 		}
+	}
+	
+	def showMoreteam() {
+		def vanityTitle = params.projectTitle
+		redirect (controller: 'project', action: 'show', params:['projectTitle':vanityTitle,'fr': params.fr, teamOffset: params.teamOffset], fragment: 'manageTeam')
 	}
 
 	@Secured(['ROLE_ADMIN'])
@@ -222,7 +231,10 @@ class ProjectController {
 				isCrUserCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
 				isTeamExist = userService.isValidatedTeamExist(project, currentUser)
 			}
-			def teams = projectService.getEnabledAndValidatedTeamsForCampaign(project)
+			def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)
+			def teamOffset = teamObj.maxrange
+			def teams = teamObj.teamList
+			def totalteams = teamObj.teams
 
 			boolean ended = projectService.isProjectDeadlineCrossed(project)
 			boolean isFundingOpen = projectService.isFundingOpen(project)
@@ -239,8 +251,8 @@ class ProjectController {
 			if(project.validated == false) {
 
 				render (view: 'validate/validateshow',
-				model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,projectComments: projectComments,
-					totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, webUrl: webUrl, teamComments: teamComments,
+				model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,projectComments: projectComments,totalteams: totalteams,
+					totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, webUrl: webUrl, teamComments: teamComments, teamOffset: teamOffset,
 					teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,totalContributions: totalContributions,contributions: contributions,
 					isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
 					validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS])
@@ -722,7 +734,12 @@ class ProjectController {
             def totalContribution = contributionService.getTotalContributionForProject(project)
 
             def projectimages = projectService.getProjectImageLinks(project)
-            def validatedTeam = projectService.getValidatedTeam(project)
+            
+			def teamObj = projectService.getValidatedTeam(project, params)
+			def teamOffset = teamObj.maxrange
+			def validatedTeam = teamObj.teamList
+			def totalteams = teamObj.teams
+			
             def unValidatedTeam = projectService.getTeamToBeValidated(project)
             def discardedTeam = projectService.getDiscardedTeams(project)
             boolean ended = projectService.isProjectDeadlineCrossed(project)
@@ -745,9 +762,9 @@ class ProjectController {
 
             if(project.user==user || isCampaignOwnerOrAdmin){
                 render (view: 'manageproject/index',
-                        model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions,
+                        model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
                                 discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset,
-                                ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist,
+                                ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
                                 unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS])
             } else{
                 flash.prj_mngprj_message = 'Campaign Not Found'
@@ -755,8 +772,13 @@ class ProjectController {
             }
         } else {
         render (view: '/error')
+        }
     }
-}
+	
+	def showteams() {
+		def vanityTitle = params.projectTitle
+		redirect (controller: 'project', action: 'manageproject', params:['projectTitle':vanityTitle, teamOffset: params.teamOffset], fragment: 'manageTeam')
+	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def projectdelete() {

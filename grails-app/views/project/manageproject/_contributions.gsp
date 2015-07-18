@@ -13,7 +13,7 @@
 %>
 <g:if test="${project.validated}">
 <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
-    <g:if test="${project.contributions.empty}">
+    <g:if test="${totalContributions.empty}">
         <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
             <div class="alert alert-info">No contributions yet.</div>
         </div>
@@ -23,7 +23,7 @@
         <a href="#" class="btn btn-primary btn-sm pull-right managecontribution" data-toggle="modal" data-target="#offlineContributionModal" model="['project': project]">
             Manage Offline Contribution
         </a>
-        <g:if test="${!project.contributions.empty}">
+        <g:if test="${!totalContributions.empty}">
             <a href="#"class="btn btn-primary btn-sm btn-circle pull-right mngReportCls" data-toggle="modal" data-target="#reportModal">
                 Report
             </a>
@@ -73,10 +73,10 @@
             </div>
         </g:form>
     </div>
-    <g:if test="${!project.contributions.empty}">
+    <g:if test="${!contributions.empty}">
         <h2 class="crowderasupport text-center"><img src="//s3.amazonaws.com/crowdera/assets/icon-contribution.png" alt="Campaign Contributions"/>&nbsp;&nbsp;Campaign Contributions</h2>
         <div class="commentsoncampaign mng-contribution-center-alignment">
-            <g:each in="${project.contributions.reverse()}" var="contribution">
+            <g:each in="${contributions}" var="contribution">
                 <%
                     def date = dateFormat.format(contribution.date)
                     def friendlyName = userService.getFriendlyName(contribution.user)
@@ -145,7 +145,7 @@
                                             <i class="glyphicon glyphicon-edit" ></i>
                                         </button>
 
-                                        <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser]">
+                                        <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]">
                                             <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
                                             <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this contribution?&#39;);">
                                                 <i class="glyphicon glyphicon-trash" ></i>
@@ -160,7 +160,7 @@
                         
                         <!-- EditContributionModal -->
                         <div class="modal fade offlineContributionModal contributionedit" id="contributionedit${contribution.id}" tabindex="-1" role="dialog" aria-labelledby="contributionedit${contribution.id}" aria-hidden="true">
-                            <g:form action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser]" role="form">
+                            <g:form action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]" role="form">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-body">
@@ -256,6 +256,10 @@
    			</g:each>
    		</div>
 	</g:if>
+	<div class="clear"></div>
+	<div class="contributionPaginate">
+        <g:paginate controller="project" max="12" action="manageproject" total="${totalContributions.size()}" params="['projectTitle':vanityTitle]" fragment="contributions"/>
+    </div>
 </div>
 </g:if>
 <g:else>
@@ -278,7 +282,7 @@
          </div>
          <g:hiddenField name="projectId" value="${project.id}"/>
          <div class="modal-body">
-           <g:if test="${!project.contributions.empty}">
+           <g:if test="${!totalContributions.empty}">
                 <dl class="dl">
                     <div class="table table-responsive">
                         <table class="table table-bordered">

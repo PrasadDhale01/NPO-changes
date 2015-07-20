@@ -87,7 +87,7 @@ class ProjectService {
         project.title = params.title
         project.category = params.category
         project.webAddress = params.webAddress
-		
+		project.payuEmail= params.payuEmail		
         if (params.videoUrl) {
             if (params.videoUrl.contains('embed')){
                 project.videoUrl = params.videoUrl

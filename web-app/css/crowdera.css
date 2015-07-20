@@ -952,6 +952,12 @@ a {
 	.footer-container {
     	width: 320px !important;
 	}
+	.policy-container{
+		width:320px !important;
+	}
+	.term-use-container{
+		width:320px !important;
+	}
 	div.crowdera-title img{
 		display:block;
 		margin-left:auto;

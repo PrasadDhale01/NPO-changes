@@ -9,11 +9,11 @@ class HomeController {
 		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
 		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def fb = params.fb
-		if(Environment.DEVELOPMENT == Environment.current || Environment.TEST == Environment.current){
+		if(Environment.DEVELOPMENT == Environment.current || Environment.TEST == Environment.current || Environment.TESTINDIA == Environment.current){
 //			def projects = projectService.showProjects()
 			def projects = projectService.showProjects(payu_url, request_url)
 			return [projects: projects, fb: fb]
-		}else{
+		} else{
 			def projects = projectService.projectOnHomePage()
 			return [projects: projects, fb: fb]
 		}

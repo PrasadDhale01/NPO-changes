@@ -1854,9 +1854,21 @@ class ProjectService {
         }
     }
     
-    def getEnabledAndValidatedTeamsForCampaign(Project project) {
+    def getEnabledAndValidatedTeamsForCampaign(Project project, def params) {
         List teams = Team.findAllWhere(project : project,enable:true, validated: true);
-        return teams
+        List teamList = []
+        def max = Math.min(params.int('max') ?: 6, 100)
+        def offset = params.int('teamOffset') ? params.int('teamOffset') : 0
+        def count = teams.size()
+        def maxrange
+
+        if(offset + max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        teamList = teams.subList(0, maxrange)
+        return [teamList: teamList, maxrange: maxrange, teams: teams]
     }
     
     def getTeamToBeValidated(def project) {
@@ -1864,9 +1876,21 @@ class ProjectService {
         return teams
     }
     
-    def getValidatedTeam(def project) {
-        def teams = Team.findAllWhere(project: project,validated: true)
-        return teams
+    def getValidatedTeam(def project, def params) {
+        List teams = Team.findAllWhere(project: project,validated: true)
+        List teamList = []
+        def max = Math.min(params.int('max') ?: 8, 100)
+        def offset = params.int('teamOffset') ? params.int('teamOffset') : 0
+        def count = teams.size()
+        def maxrange
+
+        if(offset + max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        teamList = teams.subList(0, maxrange)
+        return [teamList: teamList, maxrange: maxrange, teams: teams]
     }
     
     def getDiscardedTeams(project) {

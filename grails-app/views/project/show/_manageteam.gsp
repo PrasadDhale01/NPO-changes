@@ -14,16 +14,16 @@
 </g:if>
 <div class="col-md-12 col-sm-12 col-xs-12"></div>
 <div class="pill-buttons">
-<g:if test="${!teams.isEmpty()}">
+<g:if test="${!totalteams.isEmpty()}">
 	<ul class="nav nav-pills">
 		<li data-toggle="tab" class="active show-team col-md-4 col-sm-4 col-xs-4 button-team-show">
 		    <g:if test="${currentUser}">
 		        <a href="#team" class="text-center teammembers">
-		            ${teams.size()}&nbsp;&nbsp;Teams
+		            ${totalteams.size()}&nbsp;&nbsp;<g:if test="${totalteams.size() > 1}">Teams</g:if><g:else>Team</g:else>
 		        </a>
 		    </g:if>
 		    <g:else>
-		        <div class="col-md-12 col-sm-12 col-xs-12 teammembers noOfteamsLabel disableteambutton text-center">${teams.size()}&nbsp;&nbsp;Teams</div>
+		        <div class="col-md-12 col-sm-12 col-xs-12 teammembers noOfteamsLabel disableteambutton text-center">${totalteams.size()}&nbsp;&nbsp;<g:if test="${totalteams.size() > 1}">Teams</g:if><g:else>Team</g:else></div>
 		    </g:else>
 		</li>
 		<g:if test="${!isTeamExist}">

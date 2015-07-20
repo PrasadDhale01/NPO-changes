@@ -320,7 +320,7 @@ environments {
         }
     }
 	
-	test-india {
+	testIndia {
 		/*  */
 		crowdera.facebook.appId = '554475128028127'
 		crowdera.facebook.secret = 'f1991f7bf85d445a346821967e2b1251'

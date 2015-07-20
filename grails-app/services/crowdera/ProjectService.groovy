@@ -1854,9 +1854,21 @@ class ProjectService {
         }
     }
     
-    def getEnabledAndValidatedTeamsForCampaign(Project project) {
+    def getEnabledAndValidatedTeamsForCampaign(Project project, def params) {
         List teams = Team.findAllWhere(project : project,enable:true, validated: true);
-        return teams
+        List teamList = []
+        def max = Math.min(params.int('max') ?: 6, 100)
+        def offset = params.int('teamOffset') ? params.int('teamOffset') : 0
+        def count = teams.size()
+        def maxrange
+
+        if(offset + max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        teamList = teams.subList(0, maxrange)
+        return [teamList: teamList, maxrange: maxrange, teams: teams]
     }
     
     def getTeamToBeValidated(def project) {
@@ -1864,9 +1876,21 @@ class ProjectService {
         return teams
     }
     
-    def getValidatedTeam(def project) {
-        def teams = Team.findAllWhere(project: project,validated: true)
-        return teams
+    def getValidatedTeam(def project, def params) {
+        List teams = Team.findAllWhere(project: project,validated: true)
+        List teamList = []
+        def max = Math.min(params.int('max') ?: 8, 100)
+        def offset = params.int('teamOffset') ? params.int('teamOffset') : 0
+        def count = teams.size()
+        def maxrange
+
+        if(offset + max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        teamList = teams.subList(0, maxrange)
+        return [teamList: teamList, maxrange: maxrange, teams: teams]
     }
     
     def getDiscardedTeams(project) {
@@ -2310,6 +2334,15 @@ class ProjectService {
         List comments = TeamComment.findAllWhere(team: team)
         return comments.reverse()
     }
+	def getProjectAdminEmailList(Project project) {
+		List emailList = []
+		project.projectAdmins.each { projectAdmin ->
+			emailList.add(projectAdmin.email)
+		}
+		emailList.add(project.user.email)
+		return emailList
+	}
+
 	
 	/*******************Generate HASH for payu*********************/
 	String generateHash(String type, String hashstring){
@@ -2335,6 +2368,44 @@ class ProjectService {
 		String rndm = Integer.toString(rand.nextInt())+(System.currentTimeMillis() / 1000L);
 		def txnid=generateHash("SHA-256",rndm).substring(0,20);
 		return txnid
+	}
+	
+	def getProjectContributions(def params, Project project) {
+		List totalContributions = []
+		List contributions = []
+		def max = Math.min(params.int('max') ?: 12, 100)
+		def offset = params.int('offset') ?: 0
+		totalContributions = project.contributions.reverse();
+		def count = totalContributions.size()
+		def maxrange
+		
+		if(offset+max <= count) {
+			maxrange = offset+max
+		} else {
+			maxrange = offset + (count - offset)
+		}
+		
+		contributions = totalContributions.subList(offset, maxrange)
+		return [totalContributions: totalContributions,contributions: contributions]
+	}
+	
+	def getTeamContributions(def params, Team currentTeam) {
+		List totalContributions = []
+		List contributions = []
+		def max = Math.min(params.int('max') ?: 12, 100)
+		def offset = params.int('offset') ?: 0
+		totalContributions = currentTeam.contributions.reverse();
+		def count = totalContributions.size()
+		def maxrange
+		
+		if(offset+max <= count) {
+			maxrange = offset+max
+		} else {
+			maxrange = offset + (count - offset)
+		}
+		
+		contributions = totalContributions.subList(offset, maxrange)
+		return [totalContributions: totalContributions,contributions: contributions]
 	}
     
     @Transactional

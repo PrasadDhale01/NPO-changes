@@ -18,7 +18,7 @@
     }
     def projectId = project.id
 %>
-<g:if test="${contributions.empty}">
+<g:if test="${totalContributions.empty}">
     <div class="alert alert-info">No contributions yet. Yours can be the first one.</div>
 </g:if>
 <g:if test="${user && !isCrUserCampBenOrAdmin && CurrentUserTeam}">
@@ -27,7 +27,7 @@
             Manage Offline Contribution
         </a>
         <!-- Button trigger modal -->
-        <g:if test="${!contributions.empty}">
+        <g:if test="${!totalContributions.empty}">
             <button class="btn btn-primary btn-sm btn-circle pull-right reportCls" data-toggle="modal" data-target="#reportModal">
                 Report
             </button>
@@ -46,7 +46,7 @@
                     <g:hiddenField name="projectId" value="${project.id}"/>
                     <g:hiddenField name="teamId" value="${team.id}"/>
                     <div class="modal-body">
-                        <g:if test="${!contributions.empty}">
+                        <g:if test="${!totalContributions.empty}">
                             <dl class="dl">
                                 <div class="table table-responsive">
                                     <table class="table table-bordered">
@@ -78,7 +78,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <g:each in="${contributions}" var="contribution">
+                                            <g:each in="${totalContributions}" var="contribution">
                                             <%
                                                 def date = contribution.date.format('YYYY:MM:dd HH:mm:ss')
                                                 def friendlyName = userService.getFriendlyName(contribution.user)
@@ -191,107 +191,104 @@
 </g:if>
 <g:if test="${!contributions.empty}">
     <div class="row contributions-panel contribution-center-alignment">
-       <div class="col-sm-12 contribution-inner-tile">
-        <g:each in="${contributions}" var="contribution">
+        <div class="col-sm-12 contribution-inner-tile">
+            <g:each in="${contributions}" var="contribution">
             <%
                 def date = dateFormat.format(contribution.date)
                 def friendlyName = userService.getFriendlyName(contribution.user)
                 def isFacebookUser = userService.isFacebookUser(contribution.user)
                 def userFacebookUrl = facebookService.getUserFacebookUrl(contribution.user)
                 def amount = projectService.getDataType(contribution.amount)
-				def numberOfDays = contributionService.getNumberOfDaysForContribution(contribution)
-				
-				def imageUrl
-				if (contribution.user.userImageUrl) {
-					imageUrl = contribution.user.userImageUrl
-					alphabet = 'userimagecolor'
-				} else if (contribution.contributorName){
-				    def obj = userService.getCurrentUserImage(contribution.contributorName)
-					alphabet = obj.alphabet
-					imageUrl = obj.userImage
-				}
+                def numberOfDays = contributionService.getNumberOfDaysForContribution(contribution)
+
+                def imageUrl
+                if (contribution.user.userImageUrl) {
+                    imageUrl = contribution.user.userImageUrl
+                    alphabet = 'userimagecolor'
+                } else if (contribution.contributorName){
+                    def obj = userService.getCurrentUserImage(contribution.contributorName)
+                    alphabet = obj.alphabet
+                    imageUrl = obj.userImage
+                }
             %>
             <g:if test="${!contribution.isContributionOffline}">
                 <div class="col-sm-4 top-pan">
                     <div <g:if test='${contribution.isAnonymous}'>class ="pan alphabet-A"</g:if><g:else>class ="pan ${alphabet}"</g:else>>
-	                    <div class ="col-sm-4 col-xs-4 img-panel">
-	                        <g:if test="${contribution.isAnonymous}">
-	                            <img class="user-img-header" src="//s3.amazonaws.com/crowdera/assets/alphabet-A.png" alt="alphabet">
-	                        </g:if>
-	                        <g:else>
-	                            <img class="user-img-header" src="${imageUrl}" alt="alphabet">
-	                        </g:else>
-	                    </div>
-	                        
-		               <div class="col-sm-8 col-xs-8 pn-word">
-		                   <g:if test="${contribution.isAnonymous}">
-		                       <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
-			                       <h4>${contribution.contributorName}</h4> 
-			                       <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-			                       <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
-			                   </g:if>
-			                   <g:else>
-				                   <h4 class="anonymous-top">Anonymous Good Soul</h4>
-				                   <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-				                   <div class="font-anonymous">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</div>
-			                   </g:else>
-			               </g:if>
-		                   <g:else>
-			                   <g:if test="${contribution.contributorName}">
-			                       <h4>${contribution.contributorName}</h4>
-			                       <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-					               <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
-			                   </g:if>
-			                   <g:else>
-			                       <h4>${friendlyName}</h4>
-			                       <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-					               <dd class="font-usd">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
-			                   </g:else>
-		                   </g:else>
-		               </div>
+                        <div class ="col-sm-4 col-xs-4 img-panel">
+                            <g:if test="${contribution.isAnonymous}">
+                                <img class="user-img-header" src="//s3.amazonaws.com/crowdera/assets/alphabet-A.png" alt="alphabet">
+                            </g:if>
+                            <g:else>
+                                <img class="user-img-header" src="${imageUrl}" alt="alphabet">
+                            </g:else>
+                        </div>
+                        <div class="col-sm-8 col-xs-8 pn-word">
+                            <g:if test="${contribution.isAnonymous}">
+                                <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
+                                    <h4>${contribution.contributorName}</h4> 
+                                    <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                    <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                </g:if>
+                                <g:else>
+                                    <h4 class="anonymous-top">Anonymous Good Soul</h4>
+                                    <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                    <div class="font-anonymous">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</div>
+                                </g:else>
+                            </g:if>
+                            <g:else>
+                                <g:if test="${contribution.contributorName}">
+                                    <h4>${contribution.contributorName}</h4>
+                                    <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                    <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                </g:if>
+                                <g:else>
+                                    <h4>${friendlyName}</h4>
+                                    <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                    <dd class="font-usd">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                </g:else>
+                            </g:else>
+                        </div>
                     </div>
                 </div>
             </g:if>
             <g:else>
                 <div class="col-sm-4 top-pan">
-	                <div class ="pan ${alphabet}">
-		                <div class ="col-sm-4 col-xs-4 img-panel">
-		                    <img class="user-img-header" src="${imageUrl}" alt="alphabet">
-		                </div>
+                    <div class ="pan ${alphabet}">
+                        <div class ="col-sm-4 col-xs-4 img-panel">
+                            <img class="user-img-header" src="${imageUrl}" alt="alphabet">
+                        </div>
                         <div class="col-sm-8 col-xs-8 pn-word">
                             <h4>${contribution.contributorName}</h4> 
                             <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-				            <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
-			            </div>
-	                    <div class="clear"></div>
-	                    <div class="col-sm-12"> 
-	                        <div class="col-sm-6">
-	                            <g:if test="${contribution.isContributionOffline && team.user == user && !isCrUserCampBenOrAdmin}">
-	                                <dd class="so-off-con">Offline Contribution</dd>
-	                            </g:if>
-	                        </div>
-	                        
-	                        <div class="col-sm-6 cols">
-	                            <g:if test="${contribution.fundRaiser.equals(fundRaiser) && team.user == user && !isCrUserCampBenOrAdmin}">
+                            <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col-sm-12"> 
+                            <div class="col-sm-6">
+                                <g:if test="${contribution.isContributionOffline && team.user == user && !isCrUserCampBenOrAdmin}">
+                                    <dd class="so-off-con">Offline Contribution</dd>
+                                </g:if>
+                            </div>
+                            <div class="col-sm-6 cols">
+                                <g:if test="${contribution.fundRaiser.equals(fundRaiser) && team.user == user && !isCrUserCampBenOrAdmin}">
                                     <div class="edits">
                                         <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
                                             <i class="glyphicon glyphicon-edit" ></i>
                                         </button>
-                                        <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser]">
+                                        <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]">
                                             <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this contribution?&#39;);">
                                                 <i class="glyphicon glyphicon-trash"></i>
                                             </button>
                                         </g:form>
                                     </div>
-	                            </g:if>
-	                        </div>
-	                    </div>
-	                </div>
+                                </g:if>
+                            </div>
+                        </div>
+                    </div>
                     <div class="clear"></div>
                     
-                    <!-- EditContributionModal -->
                     <div class="modal fade offlineContributionModal contributionedit" id="contributionedit${contribution.id}" tabindex="-1" role="dialog" aria-labelledby="contributionedit${contribution.id}" aria-hidden="true">
-                        <g:form action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser]" role="form">
+                        <g:form action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser, 'offset':offset]" role="form">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-body">
@@ -326,5 +323,9 @@
             </g:else>
         </g:each>
        </div>
+    </div>
+    <div class="clear"></div>
+    <div class="contributionPaginate">
+        <g:paginate controller="project" max="12" action="show" total="${totalContributions.size()}" params="['projectTitle':vanityTitle,'fr': vanityUsername]" fragment="contributions"/>
     </div>
 </g:if>

@@ -277,8 +277,41 @@ a.customer-support-a {
     margin-left: 8px !important;
 }
 .offline-edit-delete-btn {
-    margin-top: -12px;	
+    margin-top: -12px;
 }
 .offline-edit-delete-btn i {
     font-size: 15px;
+}
+.contributionPaginate {
+	margin-top: 30px;
+	padding-left: 10px;
+	margin-bottom: 15px;
+}
+.contributionPaginate a , .contributionPaginate .currentStep {
+	font-size: 13px;
+	text-align: center;
+	padding-left: 15px;
+	color: #31497B !important;
+	font-weight: 700 !important;
+}
+.contributionPaginate .currentStep {
+	color: black !important;
+}
+.showmoreteams a {
+	text-decoration: none;
+	color: #31497B !important;
+	font-weight: 700 !important;
+}
+.showmoreteams .btn:active, .showmoreteams .btn:hover {
+	text-decoration: none;
+	background-color: #31497B !important;
+	border-color: #31497B !important;
+	font-weight: 700 !important;
+}
+.showteambtn {
+	width: 195px;
+}
+.showmoreteams.col-md-4 , .showmoreteams.col-md-3{
+	padding-left: 0px !important;
+	margin-bottom: 15px;
 }

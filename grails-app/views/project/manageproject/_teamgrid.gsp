@@ -1,21 +1,14 @@
-<%
-    def teams = validatedTeam
-    def count = teams.size()
-    def cols = 4
-    def rows = (count / cols) + (count % cols > 0 ? 1 : 0)
-    def index = 0
-%>
-
-<g:each in="${(1..rows).toList()}" var="row">
-    <div class="row">
-        <ul class="thumbnails list-unstyled">
-            <g:each in="${1..cols}">
-                <% if (index < count) { %>
-                <li class="col-md-3 col-sm-6 col-xs-12">
-                    <g:render template="/project/manageproject/teamtile" model="['team': teams.get(index++)]"></g:render>
-                </li>
-                <% } %>
-            </g:each>
-        </ul>
+<div class="row">
+    <ul class="thumbnails list-unstyled">
+        <g:each in="${validatedTeam}" var="team">
+            <li class="col-md-3 col-sm-6 col-xs-12">
+                <g:render template="/project/manageproject/teamtile" model="['team': team]"></g:render>
+            </li>
+        </g:each>
+    </ul>
+</div>
+<g:if test="${totalteams.size() > validatedTeam.size()}">
+    <div class="showmoreteams col-md-3 col-sm-6 col-xs-12 text-center">
+        <g:link class="btn btn-primary btn-sm showteambtn" action="showteams" controller="project" params="['teamOffset': teamOffset, 'projectTitle':vanityTitle]">Show more</g:link>
     </div>
-</g:each>
+</g:if>

@@ -4099,6 +4099,16 @@ textarea.form-control {
     .navbar-collapse.in {
         height: 275px !important;
     }
+    .showteambtn {
+        width: 215px !important;
+    }
+    .showmoreteams.col-md-4 , .showmoreteams.col-md-3{
+        padding-left: 15px !important;
+        margin-bottom: 15px;
+    }
+    .contributionPaginate {
+        text-align: center !important;
+    }
 }
 /***only-use-homepage-Carousel*****/
 @media only screen and (min-width: 730px) and (max-width: 740px){

@@ -735,10 +735,10 @@ class ProjectController {
 
             def projectimages = projectService.getProjectImageLinks(project)
             
-			def teamObj = projectService.getValidatedTeam(project, params)
-			def teamOffset = teamObj.maxrange
-			def validatedTeam = teamObj.teamList
-			def totalteams = teamObj.teams
+            def teamObj = projectService.getValidatedTeam(project, params)
+            def teamOffset = teamObj.maxrange
+            def validatedTeam = teamObj.teamList
+            def totalteams = teamObj.teams
 			
             def unValidatedTeam = projectService.getTeamToBeValidated(project)
             def discardedTeam = projectService.getDiscardedTeams(project)

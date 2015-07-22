@@ -3,7 +3,6 @@
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
 <%
-    def amount = contributionService.getTotalContribution()
 	def length = projectService.getDataType(amount)
 	def digitLen = length.toString().length()
 %>
@@ -18,20 +17,20 @@
                     <div class="col-xs-10 text-right">
                         <g:if test="${contributionService.getTotalContribution()}">
                             <g:if test="${digitLen >= 7 && digitLen <= 10}">
-                                <p class="for-greaterseven">$${projectService.getDataType(amount)}</p>
+                                <p class="for-greaterseven"><g:if test="${currency == 'USD'}">$</g:if><g:else><span class="fa fa-inr fa fa-lgr"></span></g:else>${projectService.getDataType(amount)}</p>
                             </g:if>
                             <g:elseif test="${digitLen >= 11 && digitLen <= 13}">
-                                <p class="for-greaterEleven">$${projectService.getDataType(amount)}</p>
+                                <p class="for-greaterEleven"><g:if test="${currency == 'USD'}">$</g:if><g:else><span class="fa fa-inr fa fa-lgr"></span></g:else>${projectService.getDataType(amount)}</p>
                             </g:elseif>
                             <g:elseif test="${digitLen >= 14 && digitLen <= 16}">
-                                <p class="for-greaterFourteen">$${projectService.getDataType(amount)}</p>
+                                <p class="for-greaterFourteen"><g:if test="${currency == 'USD'}">$</g:if><g:else><span class="fa fa-inr fa fa-lgr"></span></g:else>${projectService.getDataType(amount)}</p>
                             </g:elseif>
                             <g:else>
-                                 <p class="announcement-heading">$${projectService.getDataType(amount)}</p>
+                                 <p class="announcement-heading"><g:if test="${currency == 'USD'}">$</g:if><g:else><span class="fa fa-inr fa fa-lgr"></span></g:else>${projectService.getDataType(amount)}</p>
                             </g:else>
                         </g:if>
                         <g:else>
-                            <p class="announcement-heading">$0</p>
+                            <p class="announcement-heading"><g:if test="${currency == 'USD'}">$</g:if><g:else><span class="fa fa-inr fa fa-lgr"></span></g:else>0</p>
                         </g:else>
                     </div>
                 </div>

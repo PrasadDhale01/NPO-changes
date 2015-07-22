@@ -7,11 +7,21 @@ class UserController {
     def userService
     def projectService
 	def mandrillService
+    def contributionService
 
     @Secured(['ROLE_ADMIN'])
     def admindashboard() {
         User user = (User)userService.getCurrentUser()
-        render view: 'admin/dashboard', model: [user: user]
+        def payu_url = grailsApplication.config.crowdera.PAYU.BASE_URL
+        def request_url = request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def totalContribution
+        if (request_url == payu_url) {
+            totalContribution = contributionService.getTotalINRContributions()
+            render view: 'admin/dashboard', model: [user: user, currency:'INR', amount:totalContribution]
+        } else {
+            totalContribution = contributionService.getTotalUSDContributions()
+            render view: 'admin/dashboard', model: [user: user, currency:'USD', amount:totalContribution]
+        }
     }
     
     @Secured(['ROLE_ADMIN'])

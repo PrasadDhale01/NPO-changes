@@ -9,6 +9,7 @@ import groovy.transform.ToString
 class Transaction {
     
     String transactionId
+    String currency = 'USD'
     
     static belongsTo = [user: User,project:Project,contribution:Contribution]
 

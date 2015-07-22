@@ -855,6 +855,44 @@ class ProjectService {
         return state
     }
 	
+	def getIndianState() {
+		def state = [
+			AP  :   'Andhra Pradesh',
+			AR  :   'Arunachal Pradesh',
+			AS  :   'Assam',
+			BR  :   'Bihar',
+			CG  :   'Chattisgarh',
+			CH  :	'Chandigarh',
+			DL	:	'Delhi',
+			GA  :   'Goa',
+			GJ  :   'Gujarat',
+			HR  :   'Haryana',
+			HP  :   'Himachal Pradesh',
+			JK  :   'Jammu and Kashmir',
+			JH  :   'Jharkhand',
+			KA  :   'Karnataka',
+			KL  :   'Kerala',
+			MP  :   'Madhya Pradesh',
+			MH  :   'Maharashtra',
+			MN  :   'Manipur',
+			ML  :   'Meghalaya',
+			MZ  :   'Mizoram',
+			NL  :   'Nagaland',
+			OR  :   'Orissa',
+			PB  :   'Punjab',
+			RJ  :   'Rajasthan',
+			SK  :   'Sikkim',
+			TN  :   'Tamil Nadu',
+			TL  :   'Telangana',
+			TR  :   'Tripura',
+			UK  :   'Uttarakhand',
+			UP  :   'Uttar Pradesh',
+			WB  :   'West Bengal',
+			other:  'Other'
+		]
+		return state
+	}
+	
 	def getSorts(){
 		def sortsOptions = [
 			All_Campaigns: "All Campaigns",

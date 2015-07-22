@@ -314,14 +314,14 @@ class ProjectService {
 	 def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
 		 def emailId, twitter,custom, userId,anonymous 
          def currency 
-		 if (project.payuEmail) {
+         if (project.payuEmail) {
             currency = 'INR'
 			emailId = request.getParameter('shippingEmail')
 			twitter =request.getParameter('shippingTwitter')
 			custom =  request.getParameter('shippingCustom')
 			userId = request.getParameter('tempValue')
 			anonymous = request.getParameter('anonymous')
-		 } else {
+         } else {
             currency = 'USD'
 			emailId = request.getParameter('shippingEmail')
 			twitter = request.getParameter('twitterHandle')
@@ -426,7 +426,7 @@ class ProjectService {
          } else {
              transactions = contributionService.getUSDTransactions()
          }
-		 List results=[]
+         List results=[]
 	     
 		 response.setHeader("Content-disposition", "attachment; filename=Crowdera_Transaction_Report.csv")
 		 transactions.each{

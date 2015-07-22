@@ -384,9 +384,17 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def create() {
+		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def categoryOptions = projectService.getCategoryList()
 		def country = projectService.getCountry()
-		def state = projectService.getState()
+		def state
+		
+		if(request_url==payu_url){
+			state=projectService.getIndianState()
+		}else{
+			state=projectService.getState()
+		}
 
 		def genderOptions = [
 			"MALE": (Beneficiary.Gender.MALE),
@@ -610,6 +618,8 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def save() {
+		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		Project project
 		Beneficiary beneficiary
 		User user = userService.getCurrentUser()
@@ -622,9 +632,19 @@ class ProjectController {
 		if(button == 'true'){
 			project.draft = true
 		}
-
-		if(params.(FORMCONSTANTS.COUNTRY) != "US"){
-			beneficiary.stateOrProvince = params.otherstate
+		
+		if(request_url==payu_url){
+			if(params.payuEmail){
+				project.payuStatus=true
+			}
+		
+			if(params.(FORMCONSTANTS.COUNTRY) != "IN"){
+				beneficiary.stateOrProvince = params.otherstate
+			}
+		}else{
+			if(params.(FORMCONSTANTS.COUNTRY) != "US"){
+				beneficiary.stateOrProvince = params.otherstate
+			}
 		}
 
 		def rewardLength=Integer.parseInt(params.rewardCount)

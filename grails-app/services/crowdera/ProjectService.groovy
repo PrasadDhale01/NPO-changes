@@ -855,6 +855,44 @@ class ProjectService {
         return state
     }
 	
+	def getIndianState() {
+		def state = [
+			AP  :   'Andhra Pradesh',
+			AR  :   'Arunachal Pradesh',
+			AS  :   'Assam',
+			BR  :   'Bihar',
+			CG  :   'Chattisgarh',
+			CH  :	'Chandigarh',
+			DL	:	'Delhi',
+			GA  :   'Goa',
+			GJ  :   'Gujarat',
+			HR  :   'Haryana',
+			HP  :   'Himachal Pradesh',
+			JK  :   'Jammu and Kashmir',
+			JH  :   'Jharkhand',
+			KA  :   'Karnataka',
+			KL  :   'Kerala',
+			MP  :   'Madhya Pradesh',
+			MH  :   'Maharashtra',
+			MN  :   'Manipur',
+			ML  :   'Meghalaya',
+			MZ  :   'Mizoram',
+			NL  :   'Nagaland',
+			OR  :   'Orissa',
+			PB  :   'Punjab',
+			RJ  :   'Rajasthan',
+			SK  :   'Sikkim',
+			TN  :   'Tamil Nadu',
+			TL  :   'Telangana',
+			TR  :   'Tripura',
+			UK  :   'Uttarakhand',
+			UP  :   'Uttar Pradesh',
+			WB  :   'West Bengal',
+			other:  'Other'
+		]
+		return state
+	}
+	
 	def getSorts(){
 		def sortsOptions = [
 			All_Campaigns: "All Campaigns",
@@ -2034,6 +2072,49 @@ class ProjectService {
         
         return address
     }
+	
+	def getAddress(def params, def req_url, def payu_url){
+		def address
+		def state
+		def country
+		if(req_url==payu_url){
+			if (params.addressLine1 !=null){
+				if (params.state == "other") {
+					state = params.otherstate
+				} else {
+					Map states = getIndianState()
+					state = states.getAt(params.state)
+				}
+				Map countries = getCountry()
+				country = countries.getAt(params.country)
+				if (params.addressLine2 == null || params.addressLine2.isAllWhitespace()){
+					address = params.addressLine1 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
+				} else {
+					address = params.addressLine1 +" "+params.addressLine2 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
+				}
+			} else {
+				address = null
+			}
+		}else{
+			if (params.addressLine1 !=null){
+				if (params.state == "other") {
+					state = params.otherstate
+				} else {
+					Map states = getState()
+					state = states.getAt(params.state)
+				}
+				Map countries = getCountry()
+				country = countries.getAt(params.country)
+				if (params.addressLine2 == null || params.addressLine2.isAllWhitespace()){
+					address = params.addressLine1 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
+				} else {
+					address = params.addressLine1 +" "+params.addressLine2 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
+				}
+			}
+		}
+		
+		return address
+	}
 
     def getContibutionByUser(User user){
       def contributions = Contribution.findAllByUser(user)

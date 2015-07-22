@@ -142,24 +142,24 @@ def request_url=request.getRequestURL().substring(0,request.getRequestURL().inde
 								<g:if test="${request_url==payu_url}">
 								    <div class="form-group country-create-project">
 									    <label class="col-sm-2 control-label">Country</label>
-										<div class="col-sm-10">
-										    <g:select type="text" id="countryList" class="selectpicker" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="IN" optionKey="key" optionValue="value"/>
-										</div>
+									    <div class="col-sm-10">
+									        <g:select type="text" id="countryList" class="selectpicker" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="IN" optionKey="key" optionValue="value"/>
+									    </div>
 									</div>
 								
 									<div class="form-group country-create-project">
 									    <label class="col-sm-2 control-label">State</label>
-										<div class="col-sm-10" id="stateList">
-										    <g:select  class="selectpicker" type="text" name="${FORMCONSTANTS.STATEORPROVINCE}" from="${state}" optionKey="key" optionValue="value"/>	
-										</div>
-										<div class="col-sm-10" id="txtState">
-										    <input type="text" placeholder="State" name="otherstate" class="form-control">
-										</div>
+									    <div class="col-sm-10" id="stateList">
+									        <g:select  class="selectpicker" type="text" name="${FORMCONSTANTS.STATEORPROVINCE}" from="${state}" optionKey="key" optionValue="value"/>	
+									    </div>
+									    <div class="col-sm-10" id="txtState">
+									        <input type="text" placeholder="State" name="otherstate" class="form-control">
+									    </div>
 									</div>
 								</g:if>
 								<g:else>
 									<div class="form-group country-create-project">
-									    <label class="col-sm-2 control-label">State</label>
+									        <label class="col-sm-2 control-label">State</label>
 										<div class="col-sm-10" id="val1">
 										    <g:select  class="selectpicker" type="text" name="${FORMCONSTANTS.STATEORPROVINCE}" from="${state}" optionKey="key" optionValue="value"/>	
 										</div>

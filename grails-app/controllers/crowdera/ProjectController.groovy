@@ -247,6 +247,8 @@ class ProjectController {
 			def teamComments = projectService.getTeamComments(currentTeam)
 			List totalContributions = []
 			List contributions = []
+			def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+			def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 
 			if(project.validated == false) {
 
@@ -254,7 +256,7 @@ class ProjectController {
 				model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,projectComments: projectComments,totalteams: totalteams,
 					totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, webUrl: webUrl, teamComments: teamComments, teamOffset: teamOffset,
 					teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,totalContributions: totalContributions,contributions: contributions,
-					isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
+					isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,payu_url: payu_url,request_url: request_url,
 					validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS])
 			}
 		} else {

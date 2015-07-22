@@ -63,9 +63,19 @@ $(function() {
                 min: function() {
                     var rewardPrice = getSelectedRewardPrice();
                     if (rewardPrice == undefined) {
-                        return 1;
+                    	var isINR = $('#isINR').val();
+                    	if(isINR == undefined) {
+                    		return 1;
+                    	} else {
+                    		return 10;
+                    	}
                     } else {
-                        return _.max([1, Number(rewardPrice)]);
+                    	var isINR = $('#isINR').val();
+                    	if(isINR == undefined) {
+                    		return _.max([1, Number(rewardPrice)]);
+                    	} else {
+                    		return _.max([10, Number(rewardPrice)]);
+                    	}
                     }
                 }
             }

@@ -134,10 +134,14 @@
 		</div>
         <div class="row tilepadding">
             <div class="col-md-6 col-xs-6 text-center">
-                <span class="text-center tile-goal teamtile">$<span class="lead goal-size teamtile">${goal}</span></span>
+                <span class="text-center tile-goal teamtile">
+                    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead goal-size teamtile">${goal}</span>
+                </span>
             </div>
             <div class="col-md-6 col-xs-6 text-center team-achieve-amt-border">
-                <span class="text-center tile-goal teamtile">$<span class="lead achived-size teamtile">${amount}</span></span>
+                <span class="text-center tile-goal teamtile">
+                    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead achived-size teamtile">${amount}</span>
+                </span>
             </div>
         </div>
     </div>

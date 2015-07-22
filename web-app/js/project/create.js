@@ -97,12 +97,6 @@ $(function() {
             country: {
                 required: true
             },
-            amount: {
-                required: true,
-                number: true,
-                maxlength: 6,
-                max: 999999
-            },
             description : {
             	required: true,
                 minlength: 10,
@@ -170,7 +164,7 @@ $(function() {
                 error.appendTo(element.parent().parent());
             } else if(element.is(":checkbox")) {
                 error.appendTo(element.parent());
-            } else if($(element).prop("id") == "projectImageFile") {
+            } else if($(element).prop("id") == "projectImageFile" || $(element).prop("id") == "amount") {
                 error.appendTo(element.parent().parent());
             }else if($(element).prop("id") == "iconfile") {
                 error.appendTo(element.parent().parent());
@@ -200,6 +194,8 @@ $(function() {
     }, "Please enter verified paypal email id");
     
     $('#submitProject').on('click', function() {
+        var url = $('#url').val();
+        var currentUrl = $('#currentUrl').val();
     	$('[name="pay"], [name="iconfile"],[name="organizationName"],[name="thumbnail"],[name="answer"],[name="wel"],[name="charitableId"],[name="paypalEmail"]').each(function () {
             $(this).rules('add', {
                 required: true
@@ -215,6 +211,22 @@ $(function() {
                 required: "Please upload at least one campaign image"
             }
         });
+        if(url == currentUrl) {
+            $("[name='amount']").rules("add", {
+                required: true,
+                number: true,
+                min: 5000,
+                maxlength: 6,
+                max: 999999
+            });
+        }else {
+        	$("[name='amount']").rules("add", {
+                required: true,
+                number: true,
+                maxlength: 6,
+                max: 999999
+            });
+        }
         
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',false);

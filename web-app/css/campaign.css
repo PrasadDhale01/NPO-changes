@@ -315,3 +315,43 @@ a.customer-support-a {
 	padding-left: 0px !important;
 	margin-bottom: 15px;
 }
+.campaignamount .fa-inr , .campaignamount .fa-usd{
+	font-size: 20px;
+}
+.campaignamount .input-group-addon, .campaignamount .input-group-btn .btn {
+    padding: 6px 14px !important;
+}
+#payuemail .col-sm-2, #payuemail .col-sm-4 {
+	padding-left: 0px !important;
+}
+#payuemail .control-label {
+	padding-right: 32px !important;
+}
+.tile-goal .fa-inr {
+	font-size: 20px !important;
+}
+.show-contribution-amt-tile .fa-inr{
+	font-size: large !important;
+}
+.teamtile .fa-inr {
+	font-size: large !important;
+}
+.rewardsection .fa-inr{
+	font-size: large !important;
+	color: #686868 !important;
+}
+.contribution-inr .fa-inr {
+	font-size: large !important;
+	color: #686868 !important;
+}
+.tile-goal-show .fa-inr {
+	font-size: large !important;
+	color: #686868 !important;
+}
+.fund-inr .fa-inr {
+	font-size: 17px !important;
+}
+.payu-inr .fa-inr {
+	font-size: 22px !important;
+	color: #686868 !important;
+}

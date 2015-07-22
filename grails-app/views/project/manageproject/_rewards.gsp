@@ -27,6 +27,9 @@
                         </div>
                         <div class="modal-body">
                             <g:hiddenField name="amount" value="${project.amount}" id="cAmount"/>
+                            <g:if test="${project.payuStatus}">
+                                <g:hiddenField name="isINR" value="${project.payuStatus}" id="isINR"/>
+                            </g:if>
                             <div class="form-group">
                                 <label for="title">Title</label>
                                 <input type="text" class="form-control" name="title" placeholder="Title"/>
@@ -38,8 +41,8 @@
                             </div>
                             <div class="clear"></div>
                             <div class="form-group">
-                                <label for="price">Price ($)</label>
-                                <input type="number" class="form-control perkPrice" name="price" id="perkPrice" min="0" placeholder="Price"/>
+                                <label for="price">Price (<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                <input type="number" class="form-control perkPrice" name="price" id="perkPrice" placeholder="Price"/>
                                 <span id="errormsg"></span>
                             </div>
                             <div class="form-group">

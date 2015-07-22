@@ -312,22 +312,22 @@ class ProjectService {
 	 }
 	 
 	 def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
-		 def emailId, twitter,custom, userId,anonymous 
-         def currency 
-         if (project.payuEmail) {
-            currency = 'INR'
-			emailId = request.getParameter('shippingEmail')
-			twitter =request.getParameter('shippingTwitter')
-			custom =  request.getParameter('shippingCustom')
-			userId = request.getParameter('tempValue')
-			anonymous = request.getParameter('anonymous')
-         } else {
-            currency = 'USD'
-			emailId = request.getParameter('shippingEmail')
-			twitter = request.getParameter('twitterHandle')
-			custom = request.getParameter('shippingCustom')
-			userId = request.getParameter('tempValue')
-			anonymous = request.getParameter('anonymous')
+            def emailId, twitter,custom, userId,anonymous 
+            def currency 
+            if (project.payuEmail) {
+                   currency = 'INR'
+	           emailId = request.getParameter('shippingEmail')
+		   twitter =request.getParameter('shippingTwitter')
+		   custom =  request.getParameter('shippingCustom')
+		   userId = request.getParameter('tempValue')
+		   anonymous = request.getParameter('anonymous')
+            } else {
+                   currency = 'USD'
+		   emailId = request.getParameter('shippingEmail')
+		   twitter = request.getParameter('twitterHandle')
+		   custom = request.getParameter('shippingCustom')
+		   userId = request.getParameter('tempValue')
+		   anonymous = request.getParameter('anonymous')
 		 }
 		 def shippingDetail=checkShippingDetail(emailId,twitter,address, custom)
 		 def name
@@ -405,7 +405,7 @@ class ProjectService {
 			 user:users,
 			 project:project,
 			 contribution:contribution,
-             currency : currency
+                         currency : currency
 		 )
 		 transaction.save(failOnError: true)
 		 
@@ -418,15 +418,15 @@ class ProjectService {
 	 }
 	 
 	 def generateCSV(def response, def params){
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd hh:mm:ss");
+             SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd hh:mm:ss");
 		 
-         def transactions
-         if (params.currency == 'INR'){
-             transactions = contributionService.getINRTransactions()
-         } else {
-             transactions = contributionService.getUSDTransactions()
-         }
-         List results=[]
+             def transactions
+             if (params.currency == 'INR'){
+                 transactions = contributionService.getINRTransactions()
+             } else {
+                 transactions = contributionService.getUSDTransactions()
+             }
+             List results=[]
 	     
 		 response.setHeader("Content-disposition", "attachment; filename=Crowdera_Transaction_Report.csv")
 		 transactions.each{
@@ -460,12 +460,12 @@ class ProjectService {
 		 def username = fundRaiser.username
 		 def amount = params.amount1
 		 def contributorName = params.contributorName1
-         def currency
-         if (project.payuEmail) {
-             currency = 'INR'
-         } else {
-             currency = 'USD'
-         }
+                 def currency
+                 if (project.payuEmail) {
+                     currency = 'INR'
+                 } else {
+                     currency = 'USD'
+                 }
 		 if (amount && contributorName) {
 			 Contribution contribution = new Contribution(
 				 date: new Date(),
@@ -475,7 +475,7 @@ class ProjectService {
 				 contributorName: contributorName,
 				 isContributionOffline: true,
 				 fundRaiser: username,
-                 currency:currency
+                                 currency:currency
 			 )
 			 project.addToContributions(contribution).save(failOnError: true)
  

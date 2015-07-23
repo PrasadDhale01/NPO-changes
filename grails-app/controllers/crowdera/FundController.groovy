@@ -510,13 +510,18 @@ class FundController {
 	
     @Secured(['ROLE_ADMIN'])
     def transaction(){
-        def transaction = Transaction.list();
-        render view: '/user/admin/transactionIndex', model: [transaction: transaction]
+        def transactionINR = contributionService.getINRTransactions()
+        def transactionUSD = contributionService.getUSDTransactions()
+        if (params.currency == 'INR'){
+            render view: '/user/admin/transactionIndex', model: [transaction: transactionINR, currency:'INR']
+        } else {
+            render view: '/user/admin/transactionIndex', model: [transaction: transactionUSD, currency:'USD']
+        }
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def generateCSV(){
-        def result = projectService.generateCSV(response)          
+        def result = projectService.generateCSV(response, params)          
         render (contentType:"text/csv", text:result)
     }
     

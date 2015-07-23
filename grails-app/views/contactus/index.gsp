@@ -13,7 +13,7 @@
 </script>
 
 <script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
-<style type="text/css" media="screen, projection">
+<style type="text/css" media="screen">
     @import url(https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.css); 
 </style> 
 

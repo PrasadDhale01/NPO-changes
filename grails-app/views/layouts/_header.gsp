@@ -35,7 +35,7 @@
                             <input type="search" name="q" class="form-control search-bar-nml" id="search-bar" value="${params.q}" placeholder="Search......">
                         </span>
                     </form>
-                    <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" class="trigger">
+                    <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" alt="Search" class="trigger">
                 </li>
                 <li class="hidden-lg hidden-md hidden-sm search-mob">
                     <form action="/campaign" onClick="searchMobList()" name="searchableForm">

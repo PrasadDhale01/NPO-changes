@@ -2,6 +2,7 @@ package crowdera
 
 import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.security.core.context.SecurityContextHolder;
+import grails.util.Environment
 
 class UserController {
     def userService
@@ -12,10 +13,8 @@ class UserController {
     @Secured(['ROLE_ADMIN'])
     def admindashboard() {
         User user = (User)userService.getCurrentUser()
-        def payu_url = grailsApplication.config.crowdera.PAYU.BASE_URL
-        def request_url = request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def totalContribution
-        if (request_url == payu_url) {
+        if (Environment.current.getName() == 'testIndia') {
             totalContribution = contributionService.getTotalINRContributions()
             render view: 'admin/dashboard', model: [user: user, currency:'INR', amount:totalContribution]
         } else {

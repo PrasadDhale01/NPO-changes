@@ -106,17 +106,17 @@
                                 <g:if test="${isFacebookUser}">
                                     <h4><a href="${userFacebookUrl}">${friendlyName}</a></h4>
                                     <span class="sso">$<b>${contribution.amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-                                    <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
                                 </g:if>
                                 <g:else>
                                     <g:if test="${contribution.contributorName}">
                                         <h4>${contribution.contributorName}</h4>
                                         <span class="sso">$<b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-                                        <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                        <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
                                     </g:if>
                                     <g:else>
                                         <h4>${friendlyName}</h4>
-                                        <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                        <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
                                     </g:else>
                                 </g:else>
                             </div>
@@ -133,7 +133,7 @@
                             <div class="col-sm-9 col-xs-9 pn-word">
                                 <h4>${contribution.contributorName}</h4> 
                                 <span class="sso">$<b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-                                <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
                             <div class="clear"></div>
                             <g:if test="${contribution.fundRaiser.equals(fundRaiser)}">
                                 <div class="col-sm-8 col-xs-8">

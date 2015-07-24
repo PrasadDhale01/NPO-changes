@@ -11,6 +11,32 @@ class ContributionService {
         }
         return totalContribution
     }
+    
+    def getTotalUSDContributions(){
+        def contribution = Contribution.createCriteria()
+        def totalContribution = contribution.get{
+            projections {
+                eq("currency", "USD")
+                projections {
+                    sum "amount"
+                }
+            }
+        }
+        return totalContribution
+    }
+    
+    def getTotalINRContributions(){
+        def contribution = Contribution.createCriteria()
+        def totalContribution = contribution.get{
+            projections {
+            eq("currency", "INR")
+                projections {
+                    sum "amount"
+                }
+            }
+        }
+        return totalContribution
+    }
 	 
     def getContributionById(def contributionId){
         if (contributionId) {
@@ -291,5 +317,13 @@ class ContributionService {
 	def currentDate = new Date();
 	def numberOfDays = currentDate - contributionDate
 	return numberOfDays
+    }
+    
+    def getUSDTransactions(){
+        return Transaction.findAllWhere(currency: 'USD')
+    }
+    
+    def getINRTransactions(){
+        return Transaction.findAllWhere(currency: 'INR')
     }
 }

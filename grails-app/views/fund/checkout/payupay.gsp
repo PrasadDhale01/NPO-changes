@@ -6,6 +6,16 @@
     def shippingInfo = rewardservice.getShippingInfo(reward)
     def currentUser = userService.getCurrentUser()
     isAnonymous = userService.isAnonymous(currentUser)
+	def state
+	if (params.state == "other") {
+		state = params.otherstate
+	} else {
+		Map states = projectService.getIndianState()
+		state = states.getAt(params.state)
+	}
+	Map countries = projectService.getCountry()
+	def country = countries.getAt(params.country)
+	
 %>
 <html>
 <head>
@@ -142,13 +152,46 @@
 										</div>
 										<div class="panel-body">
 											<g:if test="${shippingInfo.address != null}">
-												<div class="col-md-6">
-													<div class="form-group">
-														<div class="input-group col-md-12">
-															<input class="form-control" type="text" placeholder="Physical Address" name="physicalAddress" value="${params.physicalAddress}" readonly>
-														</div>
-													</div>
-												</div>
+												<div class="col-md-6" id="physicalAddress">
+                                                <div class="form-group">
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" type="text" placeholder="AddressLine1" name="addressLine1" value="${params.addressLine1}" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" type="text" placeholder="AddressLine2" name="addressLine2" value="${params.addressLine2}" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <input class="form-control" type="text" placeholder="City" name="city" id="city" value="${params.city}" readonly>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <input class="form-control" type="text" placeholder="Zip" name="zip" value="${params.zip}" readonly> 
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                            	<div class="form-group">
+                                                    <div class="input-group col-md-12">
+                                                    	<input class="form-control" type="text" placeholder="Country" name="country" value="${country}" readonly>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="input-group col-md-12">
+                                                        <input class="form-control" type="text" placeholder="State" name="state" value="${state}"  readonly>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                            <g:if test="${shippingInfo.email  != null || (shippingInfo.twitter  != null && !isAnonymous) || shippingInfo.custom  != null}">
+                                                <hr>
+                                            </g:if>
 											</g:if>
 											<g:if test="${shippingInfo.email  != null}">
 												<div class="col-md-6">

@@ -14,7 +14,7 @@
 					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Left.png">
 				</div>
 				<div class="text-center">
-					<h1 class="bannerheadbtmMargin"><b>I ran my campaign through Crowdera in it's first initial phases and I greatly appreciated the support I received from the Crowdera team...</b></h1>
+					<h1 class="bannerheadbtmMargin"><b>I ran my campaign through Crowdera in its initial phases and I greatly appreciated the support I received from the Crowdera team ...</b></h1>
 				</div>
 				<div class="right-inverted-comma">
 					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png">

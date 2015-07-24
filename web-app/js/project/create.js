@@ -40,6 +40,8 @@ $(function() {
     $("#paypalcheckbox").hide();
 
     $('#val2').hide();
+    $('#txtState').hide();
+    
 
     $("#charitableId").hide();
     $("#icondiv").hide();
@@ -327,6 +329,17 @@ $(function() {
           $('#val2').show();
         }  
     });
+     
+	$('#countryList').change(function(){
+	    var c = $('#countryList').val();
+	    if(c=='IN'){
+	       	$('#stateList').show();
+	       	$('#txtState').hide();
+	    }else{
+	       	$('#stateList').hide();
+	       	$('#txtState').show();
+	    }  
+	});
 
       /******************************Video Thumbnail***************************************/
      

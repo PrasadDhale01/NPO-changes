@@ -2,16 +2,25 @@ package crowdera
 
 import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.security.core.context.SecurityContextHolder;
+import grails.util.Environment
 
 class UserController {
     def userService
     def projectService
 	def mandrillService
+    def contributionService
 
     @Secured(['ROLE_ADMIN'])
     def admindashboard() {
         User user = (User)userService.getCurrentUser()
-        render view: 'admin/dashboard', model: [user: user]
+        def totalContribution
+        if (Environment.current.getName() == 'testIndia') {
+            totalContribution = contributionService.getTotalINRContributions()
+            render view: 'admin/dashboard', model: [user: user, currency:'INR', amount:totalContribution]
+        } else {
+            totalContribution = contributionService.getTotalUSDContributions()
+            render view: 'admin/dashboard', model: [user: user, currency:'USD', amount:totalContribution]
+        }
     }
     
     @Secured(['ROLE_ADMIN'])

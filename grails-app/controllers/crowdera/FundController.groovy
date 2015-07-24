@@ -510,13 +510,18 @@ class FundController {
 	
     @Secured(['ROLE_ADMIN'])
     def transaction(){
-        def transaction = Transaction.list();
-        render view: '/user/admin/transactionIndex', model: [transaction: transaction]
+        def transactionINR = contributionService.getINRTransactions()
+        def transactionUSD = contributionService.getUSDTransactions()
+        if (params.currency == 'INR'){
+            render view: '/user/admin/transactionIndex', model: [transaction: transactionINR, currency:'INR']
+        } else {
+            render view: '/user/admin/transactionIndex', model: [transaction: transactionUSD, currency:'USD']
+        }
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def generateCSV(){
-        def result = projectService.generateCSV(response)          
+        def result = projectService.generateCSV(response, params)          
         render (contentType:"text/csv", text:result)
     }
     
@@ -545,6 +550,8 @@ class FundController {
 		def projectTitle=params.projectTitle
 		def anonymous=params.anonymous
 		def vanityTitle
+		def country=projectService.getCountry()
+		def state=projectService.getIndianState()
 		
 		if (params.projectId) {
 			vanityTitle = projectService.getVanityTitleFromId(params.projectId)
@@ -571,15 +578,18 @@ class FundController {
 			flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
 			redirect action: 'fund', params:['fr': vanityUserName, 'rewardId': perk.id, 'projectTitle': vanityTitle]
 		}
-		render view:"checkout/payu" ,model:['amount':amount,'project':project, 'reward':reward, 'fundraiser':fundraiser, 'user':user,'projectTitle':projectTitle,'anonymous':anonymous]
+		render view:"checkout/payu" ,model:['amount':amount,'project':project, 'reward':reward, 'fundraiser':fundraiser, 'user':user,'projectTitle':projectTitle,'anonymous':anonymous, 'country':country, 'state':state]
 	}
 	
 	def payupayment(){
+	   def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+	   def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 	   def project= Project.get(params.projectId)
 	   def user = User.get(params.userId)
 	   def reward=Reward.get(params.rewardId)
 	   User fundraiser = User.findByEmail(params.fr)
 	   def anonymous=params.anonymous
+	   def address = projectService.getAddress(params, request_url, payu_url)
 		 
 	   if (user == null){
 		   user = userService.getUserByUsername('anonymous@example.com')
@@ -592,7 +602,7 @@ class FundController {
 	   def email=params.email
 	   def phone= params.phone
 	   def productinfo=params.productinfo
-	   def surl = grailsApplication.config.crowdera.PAYU.BASE_URL + "/fund/payureturn?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingCustom=${params.shippingCustom}&shippingEmail=${params.shippingEmail}&shippingTwitter=${params.twitterHandle}&name=${params.firstname} ${params.lastname}&email=${params.email}&anonymous=${params.anonymous}&projectTitle=${params.projectTitle}"
+	   def surl = grailsApplication.config.crowdera.PAYU.BASE_URL + "/fund/payureturn?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&fundraiser=${fundraiser.id}&physicalAddress=${address}&shippingCustom=${params.shippingCustom}&shippingEmail=${params.shippingEmail}&shippingTwitter=${params.twitterHandle}&name=${params.firstname} ${params.lastname}&email=${params.email}&anonymous=${params.anonymous}&projectTitle=${params.projectTitle}"
 		
 	   def furl= grailsApplication.config.crowdera.PAYU.BASE_URL + "/error"
 	   def service_provider="payu_paisa"

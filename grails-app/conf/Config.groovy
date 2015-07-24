@@ -156,6 +156,21 @@ environments {
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
         }
+        
+        /*google plus login*/
+        oauth {
+             providers {
+                 google {
+                     api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+                     key = '837867811198-pjgbmmqbalu9ddqtq6ijtk54u8f6kiuu.apps.googleusercontent.com'
+                     secret = 'xxwHTgLUigJ9BdHFl4c3iouA'
+                     successUri = '/login/googleSuccess'
+                     failureUri = '/login/googleFailure'
+                     callback = "http://localhost:8080/oauth/google/callback"
+                     scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+                }
+            }
+        }
     }
     test {
         /*  */

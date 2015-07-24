@@ -6,6 +6,12 @@
 <body>
 <div class="feducontent">
     <div class="container">
+    
+        <g:if test="${flash.googleFailureMessage}">
+            <div class="alert alert-error">
+                ${flash.googleFailureMessage}
+            </div>
+        </g:if>
 
         <form class="form-signin" role="form" action="${postUrl}" method="POST" id="loginForm">
             <h2 class="form-signin-heading signin login-logo">Please login</h2>
@@ -15,7 +21,11 @@
             <a class="btn btn-block btn-social btn-facebook"
                href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
                 <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
-            </a>
+            </a><br>
+            
+            <oauth:connect class="btn btn-block btn-social btn-google-plus" provider="google" id="google-connect-link">
+                <i class="fa fa-google-plus fa-facebook-styles"></i> Sign in with Google +
+            </oauth:connect>
 
             <hr/>
             <g:if test='${flash.message}'>

@@ -1,7 +1,8 @@
 package crowdera
 
-import grails.plugin.springsecurity.SpringSecurityUtils
-import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.SpringSecurityUtils;
+import grails.plugin.springsecurity.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 class LoginController {
 
@@ -10,6 +11,10 @@ class LoginController {
     def roleService
     def grailsLinkGenerator
     def facebookService
+    def googlePlusService
+    def oauthService
+
+    public static final String SPRING_SECURITY_OAUTH_TOKEN = 'springSecurityOAuthToken'
 
     boolean invite_user = false
 
@@ -274,5 +279,37 @@ class LoginController {
                 render(view: 'error', model: [message: 'Error while updating user password. Please try again later.'])
             }
         }
+    }
+    
+    def googleSuccess = {
+        def provider = 'google'
+        def sessionKey = oauthService.findSessionKeyForAccessToken(provider)
+        if (!session[sessionKey]) {
+            render "No OAuth token in the session for provider '${params.provider}'!"
+            return
+        }
+
+        // Create the relevant authentication token and attempt to log in.
+        def oAuthToken = googlePlusService.createAuthToken(session[sessionKey])
+
+        if (oAuthToken.principal instanceof User) {
+            authenticateAndRedirect(oAuthToken)
+        }
+    }
+
+    def authenticateAndRedirect(def oAuthToken) {
+        try {
+            session.removeAttribute SPRING_SECURITY_OAUTH_TOKEN
+            SecurityContextHolder.getContext().setAuthentication(oAuthToken);
+        }
+        catch (Exception e) {
+            log.errorEnabled = "Unable to login using spring security oAuthToken:\n${oAuthToken}"
+        }
+        redirect (controller:'home', action:'index')
+    }
+
+    def googleFailure = {
+        flash.googleFailureMessage = "Google authentication failed.Please try again"
+        redirect action:'auth'
     }
 }

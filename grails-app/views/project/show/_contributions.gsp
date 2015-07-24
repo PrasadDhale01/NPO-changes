@@ -237,11 +237,6 @@
                                         <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span>&nbsp;<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                                     </span>
                                     <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
-                                </g:if>
-                                <g:else>
-                                    <h4 class="anonymous-top">Anonymous Good Soul</h4>
-                                    <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-                                    <div class="font-anonymous"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></div>
                                 </g:else>
                             </g:if>
                             <g:else>
@@ -258,11 +253,6 @@
                                         <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span>&nbsp;<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                                     </span>
                                     <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
-                                </g:if>
-                                <g:else>
-                                    <h4>${friendlyName}</h4>
-                                    <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-                                    <dd class="font-usd"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
                                 </g:else>
                             </g:else>
                         </div>

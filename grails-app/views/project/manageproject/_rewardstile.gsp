@@ -45,7 +45,7 @@
 		<g:if test="${reward.id==1 }">
             <b>&nbsp;</b>
         </g:if><g:else>
-            <b><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${price}</b>
+            <b><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span>&nbsp;</g:if><g:else>$</g:else>${price}</b>
         </g:else>
 		<b class="pull-right">&nbsp;SUPPORTERS</b><span class="badge pull-right">${backers}</span>
 	</div>

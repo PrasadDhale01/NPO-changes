@@ -21,12 +21,14 @@ $(function() {
             var delay = 300;
             setTimeout(function() {
                 $('.search-box').hide();
+                $('.discover').show();
+                $('.learn').show();
             }, delay);
-            $('.discover').show();
             $('.search-image-header').css('paddingRight', '40px');
         } else {
             $('.search-box').show();
             $('.discover').hide();
+            $('.learn').hide();
             $(".search-box").animate({width: "150px"},'slow','linear',function(){
                 $(this).focus(); // For bonus, the input will now get autofocus
             });
@@ -39,8 +41,9 @@ $(function() {
          var delay = 300;
          setTimeout(function() {
         	 $('.search-box').hide();
+        	 $('.discover').show();
+             $('.learn').show();
          }, delay);
-         $('.discover').show();
          $('.search-image-header').css('paddingRight', '40px');
     });
     

@@ -10,7 +10,7 @@ body {
 }
 
 .feduoutercontent {
-    margin-top: 64px;
+    margin-top: 60px;
 }
 h1.headingtext.how-it-works-title {
 	color: #005f84;
@@ -125,7 +125,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-brand {
-    height: 70px;
+    height: 60px;
 }
 .navbar-brand >img {
 	height: 48px;
@@ -153,11 +153,13 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-nav {
-    margin-top: 13px;
+    margin-top: 10px;
 }
-
+.navbar-brand {
+    padding: 7px 15px !important;
+}
 .navbar-right {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .navbar-right-logged-in {
@@ -198,10 +200,14 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     padding-left: 12px;
 }
 .navbar-header {
-    height: 68px;
+    height: 60px;
 }
 .nav-create-button {
-	margin-right: -8px;
+	margin-right: -7px;
+}
+.nav-text1 img#createButton-sm {
+  vertical-align: middle;
+  padding-left: 12px;
 }
 
 /*-------------------- Image courasel new slider and button ------------------------------------*/
@@ -1703,6 +1709,10 @@ a {
 	    font-weight: 300;
 	    line-height: 0;
     }
+    .contribution-inr .fa-inr {
+        font-size: 15px !important;
+        color: #686868 !important;
+    }
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
@@ -1793,6 +1803,10 @@ a {
     }
     div.container.crewpage > h1 {
         text-align: center;
+    }
+    .contribution-inr .fa-inr {
+        font-size: 15px !important;
+        color: #686868 !important;
     }
 }
 @media only screen and (min-width:506px) and (max-width: 640px){
@@ -1959,6 +1973,12 @@ a {
         width: 100%;
         float: none;
         padding: 0;
+    }
+    .tile-goal .fa-inr {
+        font-size: 17px !important;
+    }
+    .payu-inr .fa-inr {
+        font-size: 18px !important;
     }
 }
 
@@ -3249,14 +3269,6 @@ div.tile-min-height{
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 }
 
-@media only screen and (min-width :990px){
-    .navbar-brand {
-        padding: 11px 15px !important;
-    }
-
-}
-
-
 
 @media only screen and (max-width: 991px){
 
@@ -3265,11 +3277,11 @@ div.tile-min-height{
     }
 
     .nav-create-button {
-        margin-right: -10px;
+        margin-right: -3px;
     }
 
     .navbar-default {
-        height: 70px;
+        height: 63px;
     }
     
     span#search-container {
@@ -3581,6 +3593,10 @@ textarea.form-control {
 		color: #b6bbc0;
 		font-size: 9px;
 	}
+	ul.nav.navbar-nav.nav-icon-bar {
+        width: 32% !important;
+    }
+	
 	 /**********************dropdown********************/
 	.dropdown-menu-head {
 		top: 160%;
@@ -3705,7 +3721,7 @@ textarea.form-control {
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
 	.nav > li > a {
-	    padding: 4px 14px !important;
+	    padding: 4px 8px !important;
 	}
     .testimonial {
 	    max-width: 100%;
@@ -3722,6 +3738,12 @@ textarea.form-control {
 	.input-group[class*="col-"] {
 	    width:100%;
 	}
+	ul.nav.navbar-nav.nav-icon-bar {
+        width: 25% !important;
+    }
+    ul.nav-icon-bar {
+        padding-left: 10px !important;
+    }
 }
 
 /*Screen resolution 644 x 767 */
@@ -3952,7 +3974,7 @@ textarea.form-control {
         margin-top: -4%;
     }
     .nav > li > a{
-        padding:4px 10px !important;
+        padding:4px 5px !important;
     }
     .validatebutton {
         float: right;
@@ -7134,7 +7156,7 @@ input.search-box-xs{
 }
 
 ul.nav.navbar-nav.nav-icon-bar li.searchengine {
-    margin-top: 4px;
+    margin-top: 5px;
 }
 
 a.search-image.glyphicon.glyphicon-search{
@@ -7565,6 +7587,8 @@ span#search-container {
 	padding-left:18px !important;
 }
 .nav-text1 #createButton-sm{
-    padding-top: 6px !important;
     padding-left: 15px !important;
+}
+.search-box{
+    display:none;
 }

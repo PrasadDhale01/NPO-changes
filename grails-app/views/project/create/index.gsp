@@ -468,7 +468,7 @@ def request_url=request.getRequestURL().substring(0,request.getRequestURL().inde
 											<label class="col-sm-3 control-label">Perk Price</label>
 											<div class="col-sm-9 rewardPriceDiv">
 												<input type="number" placeholder="Enter digits only" name="rewardPrice1"
-													class="form-control rewardPrice required" id="rewardPrice1" min="0">
+													class="form-control rewardPrice required" id="rewardPrice1">
 											</div>
 										</div>
 									</div>

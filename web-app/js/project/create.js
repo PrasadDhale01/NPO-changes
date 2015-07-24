@@ -189,7 +189,7 @@ $(function() {
             maxlength: 6,
             max: 999999
         });
-    }else {
+    } else {
     	$("[name='amount']").rules("add", {
             required: true,
             number: true,
@@ -231,6 +231,27 @@ $(function() {
                 required: "Please upload at least one campaign image"
             }
         });
+        if(url == currentUrl) {
+            $('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: 999999,
+                    min: 250
+                });
+            });
+        } else {
+        	$('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: 999999,
+                    min: 1
+                });
+            });
+        }
         
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',false);
@@ -250,6 +271,29 @@ $(function() {
     	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"]').each(function () {
             $(this).closest('.form-group').removeClass('has-error');
         });
+    	
+    	if(url == currentUrl) {
+            $('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: 999999,
+                    min: 250
+                });
+            });
+        } else {
+        	$('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: 999999,
+                    min: 1
+                });
+            });
+        }
+    	
     	$("#createthumbnail").removeClass('has-error');
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',true);
@@ -758,7 +802,6 @@ function setTitleText(){
                 //if the letter is not digit then display error and don't type anything
                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                   //display error message
-                  $(this).val('');
                   return false;
                 } 
               });

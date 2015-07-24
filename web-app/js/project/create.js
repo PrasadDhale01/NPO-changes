@@ -176,6 +176,26 @@ $(function() {
         //ignore: []
     });
     
+    var url = $('#url').val();
+    var currentUrl = $('#currentUrl').val();
+    
+    if(url == currentUrl) {
+        $("[name='amount']").rules("add", {
+            required: true,
+            number: true,
+            min: 5000,
+            maxlength: 6,
+            max: 999999
+        });
+    }else {
+    	$("[name='amount']").rules("add", {
+            required: true,
+            number: true,
+            maxlength: 6,
+            max: 999999
+        });
+    }
+    
     $('.createsubmitbutton').click(function(event) {
         if(validator.form()){
         	needToConfirm = false;
@@ -194,8 +214,6 @@ $(function() {
     }, "Please enter verified paypal email id");
     
     $('#submitProject').on('click', function() {
-        var url = $('#url').val();
-        var currentUrl = $('#currentUrl').val();
     	$('[name="pay"], [name="iconfile"],[name="organizationName"],[name="thumbnail"],[name="answer"],[name="wel"],[name="charitableId"],[name="paypalEmail"]').each(function () {
             $(this).rules('add', {
                 required: true
@@ -211,22 +229,6 @@ $(function() {
                 required: "Please upload at least one campaign image"
             }
         });
-        if(url == currentUrl) {
-            $("[name='amount']").rules("add", {
-                required: true,
-                number: true,
-                min: 5000,
-                maxlength: 6,
-                max: 999999
-            });
-        }else {
-        	$("[name='amount']").rules("add", {
-                required: true,
-                number: true,
-                maxlength: 6,
-                max: 999999
-            });
-        }
         
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',false);

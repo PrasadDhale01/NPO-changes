@@ -29,7 +29,7 @@
                             </g:if>
                             <g:else>
                                 <div class="tile-goal-show">
-                                    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
+                                    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span>&nbsp;</g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
                                 </div>
                                 <div class="rewardtitlespan">${reward.title}</div>
                             </g:else>
@@ -48,7 +48,7 @@
                 <div class="rewarddiv">
                     <div class="rewardBottomBorder">
 						<div class="tile-goal-show">
-						    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
+						    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span>&nbsp;</g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
 						</div>
 						<div class="rewardtitlespan">${reward.title}</div>
                         <p class="rewarddescription">${reward.description}</p>

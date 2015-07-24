@@ -345,13 +345,25 @@ a.customer-support-a {
 	color: #686868 !important;
 }
 .tile-goal-show .fa-inr {
-	font-size: large !important;
+	font-size: 20px !important;
 	color: #686868 !important;
 }
 .fund-inr .fa-inr {
 	font-size: 17px !important;
 }
 .payu-inr .fa-inr {
-	font-size: 22px !important;
+	font-size: 24px !important;
 	color: #686868 !important;
+}
+.search-icon-header img {
+	position: absolute;
+    padding-left: 5px;
+    padding-top: 7px;
+    display: inline-block;
+}
+.search-image-header {
+    padding-right: 40px;
+}
+.search-box {
+	width: 0px;
 }

@@ -3,7 +3,7 @@ $(function() {
     
     $('#resumefilesize').hide();
     $('#resultOutput').hide();
-    $('#search-container').hide();
+    $('.search-box').hide();
     
     function searchList(){
         $('.searchForm').closest('#search-bar').val();
@@ -14,22 +14,34 @@ $(function() {
     }
     
     $('.trigger').click(function() {
-    	$(this).hide();
-        $('.discover').hide();
-        $('#search-container').show();
-        $("#search-bar").animate({width: "100px"},'fast',function(){
-            $(this).focus(); // For bonus, the input will now get autofocus
-        });
+    	var slider_width = $('#support').width();
+    	var isAnimated = $(".search-box").is(':animated');
+    	if (isAnimated) {
+            $(".search-box").animate({width: "0px"},'slow','linear');
+            var delay = 300;
+            setTimeout(function() {
+                $('.search-box').hide();
+            }, delay);
+            $('.discover').show();
+            $('.search-image-header').css('paddingRight', '40px');
+        } else {
+            $('.search-box').show();
+            $('.discover').hide();
+            $(".search-box").animate({width: "150px"},'slow','linear',function(){
+                $(this).focus(); // For bonus, the input will now get autofocus
+            });
+            $('.search-image-header').css('paddingRight', '20px');
+        }
     });
 
-    $('#search-bar').blur(function(){
-        $(this).animate({width: "0px"},'fast');
-        var delay = 260;
-        setTimeout(function() {
-        	$('#search-container').hide();
-        	$('.trigger').show();
-            $('.discover').show();
-        }, delay);
+    $('.search-box').blur(function() {
+         $(this).animate({width: "0px"},'slow','linear');
+         var delay = 300;
+         setTimeout(function() {
+        	 $('.search-box').hide();
+         }, delay);
+         $('.discover').show();
+         $('.search-image-header').css('paddingRight', '40px');
     });
     
     $(document).ready(function() { 

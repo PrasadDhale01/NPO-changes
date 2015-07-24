@@ -437,7 +437,7 @@
                 <div class="panel-body">
                 <div class="col-sm-6 col-md-6 col-xs-12">
                     <div class="form-group">
-                        <label class="col-sm-4 col-md-4 col-xs-4 control-label">Amount</label>
+                        <label class="col-sm-4 col-md-4 control-label">Amount</label>
                         <div class="col-sm-8 col-md-8 campaignamount">
                             <div class="input-group">
                                 <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" id="${FORMCONSTANTS.AMOUNT}" placeholder="Amount" value="${amount}">
@@ -486,7 +486,7 @@
                     </div>
                 </div>
             </div>
-
+            </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Tell us about your Campaign</h3>

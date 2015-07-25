@@ -222,6 +222,21 @@ environments {
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
         }
+        
+        /*google plus login*/
+        oauth {
+            providers {
+                google {
+                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+                    key = '837867811198-t23m00r907r9o4ubsdr3dlsse38gooqd.apps.googleusercontent.com'
+                    secret = '0fE42pditvlL8Yzgw9Jw1PhL'
+                    successUri = '/login/googleSuccess'
+                    failureUri = '/login/googleFailure'
+                    callback = "http://test.crowdera.co/oauth/google/callback"
+                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+                }
+            }
+        }
     }
     staging {
         crowdera.facebook.appId = '354215177926850'
@@ -270,12 +285,39 @@ environments {
 		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
 		crowdera.MAILCHIMP.LISTID="e37aea1b78"
 		 
-		
-		
-
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
         }
+        
+        /*google plus login*/
+        oauth {
+            providers {
+                google {
+                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+                    key = '1049378830663-cr6s49lmtiuo29b0rkpj015irpls5rsf.apps.googleusercontent.com'
+                    secret = 'zbanKIejo4qofwXdtyaOnaq-'
+                    successUri = '/login/googleSuccess'
+                    failureUri = '/login/googleFailure'
+                    callback = "http://staging.crowdera.co/oauth/google/callback"
+                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+                }
+            }
+        }
+        
+//        staging.crowdera.in
+//        oauth {
+//            providers {
+//                google {
+//                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+//                    key = '1049378830663-joskj39vnpba4ju66dvah4q969g6c5ch.apps.googleusercontent.com'
+//                    secret = '7h9_YkP2UhVcVxt6OsFYGjxG'
+//                    successUri = '/login/googleSuccess'
+//                    failureUri = '/login/googleFailure'
+//                    callback = "http://staging.crowdera.in/oauth/google/callback"
+//                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+//                }
+//            }
+//        }
     }
     production {
         crowdera.facebook.appId = '354215177926850'
@@ -333,6 +375,36 @@ environments {
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
         }
+        
+        /*google plus login*/
+        oauth {
+            providers {
+                google {
+                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+                    key = '1049378830663-jqkmicdbahs4rgr7er4013re8mjkd0rd.apps.googleusercontent.com'
+                    secret = 'zIubdLkqqwlATWRESK6BYssK'
+                    successUri = '/login/googleSuccess'
+                    failureUri = '/login/googleFailure'
+                    callback = "https://crowdera.co/oauth/google/callback"
+                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+                }
+            }
+        }
+        
+//        crowdera.in
+//        oauth {
+//            providers {
+//                google {
+//                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+//                    key = '1049378830663-juk0psg991qlapckdegi2pfhieo33gjc.apps.googleusercontent.com'
+//                    secret = 'nweSovW1WxgeJ5EHKLPnYi7W'
+//                    successUri = '/login/googleSuccess'
+//                    failureUri = '/login/googleFailure'
+//                    callback = "https://crowdera.in/oauth/google/callback"
+//                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+//                }
+//            }
+//        }
     }
 	
 	testIndia {
@@ -373,7 +445,22 @@ environments {
 		mandrill {
 			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
 		}
-	}
+        
+        /*google plus login*/
+        oauth {
+            providers {
+                google {
+                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+                    key = '837867811198-l7ajlniufpo6vovi53ujcrfvq8u86fba.apps.googleusercontent.com'
+                    secret = 'ErukSE0YqIHfHfXdLEcM8n5p'
+                    successUri = '/login/googleSuccess'
+                    failureUri = '/login/googleFailure'
+                    callback = "http://test.crowdera.in/oauth/google/callback"
+                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+                }
+            }
+        }
+    }
 }
 
 // log4j configuration

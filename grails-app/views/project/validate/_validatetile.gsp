@@ -61,17 +61,17 @@
             </div>
          </div>
          <div class="row tilepadding">
-            <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
-        		<span class="text-center tile-goal">
-        		    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead">${amount}</span>
-        		</span>
-        	</div>
-			<g:if test="${ended}">
-                <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size  campaign-tile-border">
-                    <span class="days-alignment">DAYS<br>LEFT</span>
-                	<span class="tile-day-num">00</span>
-                </div>
-            </g:if>
+             <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
+                 <span class="text-center tile-goal">
+                     <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead">${amount}</span>
+                 </span>
+             </div>
+             <g:if test="${ended}">
+                 <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size  campaign-tile-border">
+                     <span class="days-alignment">DAYS<br>LEFT</span>
+                     <span class="tile-day-num">00</span>
+                 </div>
+             </g:if>
             <g:else>
                 <!-- Time left till end date. -->
                 <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size campaign-tile-border">
@@ -84,10 +84,10 @@
                     </g:else>
                 </div>
             </g:else>
-             <div class="col-md-4 col-xs-4 amount-alignment amount-text-align text-center">
-				<span class="text-center tile-goal">
-				    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead">${contribution}</span>
-        		</span>
+            <div class="col-md-4 col-xs-4 amount-alignment amount-text-align text-center">
+                <span class="text-center tile-goal">
+                    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead">${contribution}</span>
+                </span>
 			</div>
         </div>
     </div>

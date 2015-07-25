@@ -60,7 +60,7 @@
 					<div class="col-md-8">
 						<div class="panel panel-default">
 							<div class="panel-body payu-inr">
-								<h3>Your Contribution: <span class="pull-right"><span class="fa fa-inr"></span>&nbsp;<b>${contributedAmount}</b></span></h3>
+								<h3>Your Contribution: <span class="pull-right"><span class="fa fa-inr"></span><b>${contributedAmount}</b></span></h3>
 								<h4>Your Perk: <span class="pull-right">${reward.title}</span></h4>
 								<g:if test="${fundraiser != project.user}">
 									<h4>Fundraiser: <span class="pull-right">${fundraiser.firstName} ${fundraiser.lastName}</span></h4>

@@ -23,7 +23,7 @@
                 <div class="timeline-badge info"><i class="glyphicon glyphicon-credit-card"></i></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
-                        <h4 class="timeline-title">You contributed &nbsp;&nbsp;&nbsp;<b><g:if test="${contribution.project.payuStatus}"><span class="fa fa-inr"></span>&nbsp;</g:if><g:else>$</g:else>${projectService.getDataType(contribution.amount)}</b></h4>
+                        <h4 class="timeline-title">You contributed &nbsp;&nbsp;&nbsp;<b><g:if test="${contribution.project.payuStatus}"><span class="mycontribution fa fa-inr"></span></g:if><g:else>$</g:else>${projectService.getDataType(contribution.amount)}</b></h4>
                         <p><small class="text-muted">
                             <i class="glyphicon glyphicon-time"></i> on ${dateFormat.format(contribution.date)}, towards
                         </small></p>

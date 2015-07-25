@@ -9,7 +9,7 @@
 			${reward.title}
 		</h4>
 		<g:if test="${reward.id>1}">
-			<p>Worth <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span>&nbsp;</g:if><g:else>$</g:else>${price}</p>
+			<p>Worth <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${price}</p>
 		</g:if>
 	</div>
 </div>

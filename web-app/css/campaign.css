@@ -339,21 +339,33 @@ a.customer-support-a {
 .rewardsection .fa-inr{
 	font-size: large !important;
 	color: #686868 !important;
+	padding-right: 2px;
 }
 .contribution-inr .fa-inr {
 	font-size: large !important;
 	color: #686868 !important;
+	padding-right: 2px;
 }
 .tile-goal-show .fa-inr {
 	font-size: 20px !important;
 	color: #686868 !important;
+	padding-right: 2px;
 }
 .fund-inr .fa-inr {
 	font-size: 17px !important;
+	padding-right: 2px;
 }
 .payu-inr .fa-inr {
-	font-size: 24px !important;
-	color: #686868 !important;
+    font-size: 24px !important;
+    color: #686868 !important;
+    padding-right: 2px;
+}
+.mycontribution.fa-inr {
+    font-size: 18px !important;
+    padding-right: 2px;
+}
+.managcampaign-rewardtile .fa-inr {
+    padding-right: 2px;
 }
 .search-icon-header img {
 	position: absolute;

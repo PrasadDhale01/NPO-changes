@@ -4018,6 +4018,12 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 768px) {
+    ul.nav.navbar-nav.nav-icon-bar {
+        width: 24% !important;
+    }
+    ul.nav-icon-bar {
+        padding-left: 6px !important;
+    }
 	.arrow-top {
 		margin-Top: -33px !important;
         }
@@ -4205,6 +4211,9 @@ textarea.form-control {
 }
 }
 @media only screen and (max-width: 767px){
+    .navbar-collapse {
+        float: right;
+    }
 	.rewarddesc,.rewarddesctitle {
 	    margin-left: 1px !important;
 	}

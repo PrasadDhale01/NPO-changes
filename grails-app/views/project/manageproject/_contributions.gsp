@@ -108,7 +108,7 @@
                                     <span class="sso">
                                         <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                                     </span>
-                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
+                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                 </g:if>
                                 <g:else>
                                     <g:if test="${contribution.contributorName}">
@@ -116,11 +116,11 @@
                                         <span class="sso">
                                             <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                                         </span>
-                                        <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
+                                        <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                     </g:if>
                                     <g:else>
                                         <h4>${friendlyName}</h4>
-                                        <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
+                                        <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                     </g:else>
                                 </g:else>
                             </div>
@@ -139,7 +139,7 @@
                                 <span class="sso">
                                     <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                                 </span>
-                                <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
+                                <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                             <div class="clear"></div>
                             <g:if test="${contribution.fundRaiser.equals(fundRaiser)}">
                                 <div class="col-sm-8 col-xs-8">

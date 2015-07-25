@@ -689,6 +689,17 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.allCampaign-dropdown > .btn {
+		width: 100% !important;
+		padding-right: 25px;
+	}
+	.allCampaign-dropdown > .dropdown-menu {
+		min-width: 100% !important;
+		z-index: 2000;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
 	.text-primary {
 		color: #008cba;
 		display: block;
@@ -1558,7 +1569,6 @@ a {
     }
     .sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 		margin-left: 28% !important;
-		width:  56%;
     }
 	.text-primary {
 		color: #008cba;
@@ -5331,6 +5341,17 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.allCampaign-dropdown > .btn {
+		width: 100% !important;
+		padding-right: 25px;
+	}
+	.allCampaign-dropdown > .dropdown-menu {
+		min-width: 100% !important;
+		z-index: 2000;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+	}
 	.text-primary {
 		color: #008cba;
 		display: block;
@@ -7600,4 +7621,15 @@ span#search-container {
 }
 .search-box{
     display:none;
+}
+.btn-group.bootstrap-select.allCampaign-dropdown > .btn {
+    width: 106%;
+    padding-right: 25px;
+}
+.btn-group.bootstrap-select.allCampaign-dropdown > .dropdown-menu {
+    min-width: 105%;
+    z-index: 2000;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }

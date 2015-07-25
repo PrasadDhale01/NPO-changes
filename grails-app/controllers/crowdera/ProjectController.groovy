@@ -79,9 +79,11 @@ class ProjectController {
 	}
 
 	def search () {
+		def base_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def query = params.q
 		if(query) {
-			List searchResults = projectService.search(query)
+			List searchResults = projectService.search(query, base_url, request_url)
 			if (searchResults.empty){
 				flash.catmessage = "No Campaign found matching your input."
 				redirect(action:"list")
@@ -946,14 +948,16 @@ class ProjectController {
 	}
 
 	def categoryFilter() {
+		def base_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def category = params.category
 		def project
 		if (category == "Social Innovation"){
-			project = projectService.filterByCategory("SOCIAL_INNOVATION")
+			project = projectService.filterByCategory("SOCIAL_INNOVATION", base_url, request_url)
 		} else if (category == "All Categories"){
-			project = projectService.filterByCategory("All")
+			project = projectService.filterByCategory("All", base_url, request_url)
 		} else {
-			project = projectService.filterByCategory(category)
+			project = projectService.filterByCategory(category, base_url, request_url)
 		}
 		if(!project){
 			flash.catmessage="No campaign found."
@@ -1136,8 +1140,11 @@ class ProjectController {
 	}
 
 	def sortCampaign(){
+		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def sorts = params.query
-		def campaignsorts = projectService.isCampaignsorts(sorts)
+		def campaignsorts = projectService.isCampaignsorts(sorts, request_url, payu_url)
+		
 		if(!campaignsorts){
 			flash.catmessage="No campaign found."
 			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])

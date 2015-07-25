@@ -913,39 +913,57 @@ class ProjectService {
 	def getSorts(){
 		def sortsOptions = [
 			All_Campaigns: "All Campaigns",
-			More_than_ninety: "More than 90",
-			Less_than_ten: "Less than 10",
-			Ten_days_remaining: "10 days remaining"
+			Live_Campaigns: "Live",
+			Ending_Soon: "Ending Soon",
+			Most_Funded: "Most Funded",
+			Successful_Campaigns:"Successful (100% +)",
+			Ended_Campaign:"Ended"
 		]
 		return sortsOptions
 	}
 	
-	def isCampaignsorts(def sorts){
-		List projects = getValidatedProjects()
+	def isCampaignsorts(def sorts ,def request_url, def payu_url){
+		List projects = getValidatedProjects(payu_url, request_url)
 		List p = []
 		if(sorts == 'All Campaigns'){
 			return projects
 		}
-		if(sorts == 'More than 90'){
+		if(sorts == 'Most Funded'){
 			projects.each {
 				def percentage = contributionService.getPercentageContributionForProject(it)
-				if(percentage > 90){
+				if(percentage >= 90 && percentage <100){
 					p.add(it)
 				}
 			}
 		}
-		if(sorts == 'Less than 10'){
+		if(sorts == 'Successful (100% +)'){
 			projects.each {
 				def percentage = contributionService.getPercentageContributionForProject(it)
-				if(percentage < 10){
+				if(percentage >= 100){
 					p.add(it)
 				}
 			}
 		}
-		if(sorts == '10 days remaining'){
+		if(sorts == 'Live'){
+			projects.each {project ->
+				boolean ended = isProjectDeadlineCrossed(project)
+				if(project.validated && ended ==false){
+					p.add(project)
+				}
+			}
+		}
+		if(sorts == 'Ending Soon'){
 			projects.each {
 				def day = getRemainingDay(it)
 				if(day <= 10 && day!=0){
+					p.add(it)
+				}
+			}
+		}
+		if(sorts=='Ended'){
+			projects.each{
+				boolean ended_campaigns = isProjectDeadlineCrossed(it)
+				if(ended_campaigns){
 					p.add(it)
 				}
 			}
@@ -1330,9 +1348,9 @@ class ProjectService {
 		}
 	}
 
-    def search(String query) {
+    def search(String query, def base_url, def request_url) {
         List result = []
-        List project = getValidatedProjects()
+        List project = getValidatedProjects(base_url, request_url)
         project.each { 
             if( it.title.toLowerCase().contains(query.toLowerCase()) || it.description.toLowerCase().contains(query.toLowerCase()) ){
                 result.add(it)
@@ -1737,8 +1755,8 @@ class ProjectService {
         return endDate
     }
     
-    def filterByCategory(def categories){
-        def projects = getValidatedProjects()
+    def filterByCategory(def categories, def base_url, def request_url){
+        def projects = getValidatedProjects(base_url, request_url)
         List list =[]
         if (categories == "All"){
             return projects

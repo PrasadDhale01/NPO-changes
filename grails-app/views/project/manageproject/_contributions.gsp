@@ -57,7 +57,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="title" class="text">Amount</label>
+                                <label for="title" class="text">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
                                 <input type="text" class="form-control contributioninput" name="amount1" id="offlineAmount1"/>
                             </div>
                             <div id="errormsg1"></div>
@@ -96,7 +96,7 @@
                     }
                 %>
                 <g:if test="${!contribution.isContributionOffline}">
-                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 top-pan">
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 top-pan contribution-inr">
                         <div <g:if test='${contribution.isAnonymous}'>class ="pans alphabet-A"</g:if><g:else>class ="pans ${alphabet}"</g:else>>
                             <div class ="col-sm-3 col-xs-3 img-contribution">
                                 <img class="user-img-header" src="${imageUrl}" alt="alphabet">
@@ -105,18 +105,22 @@
                             <div class="col-sm-9 col-xs-9 pn-word">
                                 <g:if test="${isFacebookUser}">
                                     <h4><a href="${userFacebookUrl}">${friendlyName}</a></h4>
-                                    <span class="sso">$<b>${contribution.amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-                                    <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                    <span class="sso">
+                                        <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
+                                    </span>
+                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                 </g:if>
                                 <g:else>
                                     <g:if test="${contribution.contributorName}">
                                         <h4>${contribution.contributorName}</h4>
-                                        <span class="sso">$<b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-                                        <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                        <span class="sso">
+                                            <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
+                                        </span>
+                                        <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                     </g:if>
                                     <g:else>
                                         <h4>${friendlyName}</h4>
-                                        <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                        <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                     </g:else>
                                 </g:else>
                             </div>
@@ -125,15 +129,17 @@
                 </g:if>
                 <g:else>
                     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 top-pan offline-contribution-pans">
-                        <div class ="pans ${alphabet}">
+                        <div class ="pans ${alphabet} contribution-inr">
                             <div class ="col-sm-3 col-xs-3 img-contribution">
                                 <img class="user-img-header" src="${imageUrl}" alt="alphabet">
                             </div>
 
                             <div class="col-sm-9 col-xs-9 pn-word">
                                 <h4>${contribution.contributorName}</h4> 
-                                <span class="sso">$<b>${contribution.amount.round()}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-                                <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                <span class="sso">
+                                    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${contribution.amount.round()}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
+                                </span>
+                                <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                             <div class="clear"></div>
                             <g:if test="${contribution.fundRaiser.equals(fundRaiser)}">
                                 <div class="col-sm-8 col-xs-8">
@@ -169,15 +175,15 @@
                                                 <h4 class="heading crowderasupport"><img src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit offline contribution"/>&nbsp;&nbsp;EDIT OFFLINE CONTRIBUTION</h4>
                                             </div>
                                             <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
-                                            <div class="col-sm-8">
+                                            <div class="col-md-8">
                                                 <div class="form-group">
                                                     <label class="text" for="title">Display Name</label>
                                                     <input type="text" class="form-control contributioninput" name="contributorName" value="${contribution.contributorName}"/>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4">
+                                            <div class="col-md-4">
                                                 <div class="form-group">
-                                                    <label for="title" class="text">Amount</label>
+                                                    <label for="title" class="text">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
                                                     <input type="text" class="form-control contributioninput offlineAmount" name="amount" value="${contribution.amount.round()}" id="offlineAmount"/>
                                                 </div>
                                                 <div class="contributionerrormsg"></div>
@@ -356,7 +362,7 @@
                                             <td class="col-sm-2 wordBreak">${raw(shippingDetails)}</td> 
                                         </g:if>
 
-                                        <td class="text-center">$${amount}</td>
+                                        <td class="text-center">${amount}</td>
 
                                         <g:if test="${pay_mode}">
                                             <td class="text-center">Offline</td>

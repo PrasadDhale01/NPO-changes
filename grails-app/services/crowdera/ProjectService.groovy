@@ -146,7 +146,7 @@ class ProjectService {
             contributions = project.contributions.reverse()
         }
 
-        response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll(' ','_')+".csv")
+        response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll("[,;\\s]",'_')+".csv")
         def results=[]
         def  contributorName
         def payMode
@@ -166,11 +166,11 @@ class ProjectService {
             }
             def fundRaiserName = contributionService.getFundRaiserName(it, project)
             if(project.rewards.size()>1){
-                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.reward.title, shippingDetails, it.amount, payMode]
+                def rows = [it.project.title.replaceAll("[,;]",' '), fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.reward.title.replaceAll("[,;]",' '), shippingDetails.replaceAll("[,]",' '), it.amount, payMode]
                 results << rows
                 shippingDetails=""
             } else {
-                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
+                def rows = [it.project.title.replaceAll("[,;]",' '), fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
                 results << rows
                 shippingDetails=""
             }
@@ -312,19 +312,22 @@ class ProjectService {
 	 }
 	 
 	 def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
-		 def emailId, twitter,custom, userId,anonymous 
-		 if (project.payuEmail){
-			emailId = request.getParameter('shippingEmail')
-			twitter =request.getParameter('shippingTwitter')
-			custom =  request.getParameter('shippingCustom')
-			userId = request.getParameter('tempValue')
-			anonymous = request.getParameter('anonymous')
-		 }else{
-			emailId = request.getParameter('shippingEmail')
-			twitter = request.getParameter('twitterHandle')
-			custom = request.getParameter('shippingCustom')
-			userId = request.getParameter('tempValue')
-			anonymous = request.getParameter('anonymous')
+            def emailId, twitter,custom, userId,anonymous 
+            def currency 
+            if (project.payuEmail) {
+                   currency = 'INR'
+	           emailId = request.getParameter('shippingEmail')
+		   twitter =request.getParameter('shippingTwitter')
+		   custom =  request.getParameter('shippingCustom')
+		   userId = request.getParameter('tempValue')
+		   anonymous = request.getParameter('anonymous')
+            } else {
+                   currency = 'USD'
+		   emailId = request.getParameter('shippingEmail')
+		   twitter = request.getParameter('twitterHandle')
+		   custom = request.getParameter('shippingCustom')
+		   userId = request.getParameter('tempValue')
+		   anonymous = request.getParameter('anonymous')
 		 }
 		 def shippingDetail=checkShippingDetail(emailId,twitter,address, custom)
 		 def name
@@ -357,7 +360,8 @@ class ProjectService {
 				 custom: shippingDetail.custom,
 				 contributorName: name,
 				 contributorEmail:username,
-				 physicalAddress: shippingDetail.address
+				 physicalAddress: shippingDetail.address,
+                 currency : currency
 				 )
 		 project.addToContributions(contribution).save(failOnError: true)
 		 
@@ -395,28 +399,34 @@ class ProjectService {
 			 }
 		 }
 		 
+         
 		 Transaction transaction = new Transaction(
 			 transactionId:transactionId,
 			 user:users,
 			 project:project,
-			 contribution:contribution
+			 contribution:contribution,
+                         currency : currency
 		 )
 		 transaction.save(failOnError: true)
 		 
 		 return contribution.id
 	 }
-	 
+     
 	 def getpayKeytempObject(def timestamp){
 		 PaykeyTemp paykeytemp = PaykeyTemp.findByTimestamp(timestamp)
 		 return paykeytemp
 	 }
 	 
-	 def generateCSV(def response){
-		 SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd");
-		 SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm:ss");
+	 def generateCSV(def response, def params){
+             SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd hh:mm:ss");
 		 
-		 def transactions =Transaction.list()
-		 def results=[]
+             def transactions
+             if (params.currency == 'INR'){
+                 transactions = contributionService.getINRTransactions()
+             } else {
+                 transactions = contributionService.getUSDTransactions()
+             }
+             List results=[]
 	     
 		 response.setHeader("Content-disposition", "attachment; filename=Crowdera_Transaction_Report.csv")
 		 transactions.each{
@@ -426,11 +436,11 @@ class ProjectService {
 			} else {
 				userIdentity = "Non Anonymous"
 			}
-			def rows = [it.transactionId, dateFormat.format(it.contribution.date), timeFormat.format(it.contribution.date), it.project.title, it.contribution.contributorName, userIdentity, it.project.amount, getContributedAmount(it)]
+			def rows = [it.transactionId, dateFormat.format(it.contribution.date), it.project.title.replaceAll('[,;] ',' '), it.contribution.contributorName, userIdentity, it.project.amount, getContributedAmount(it)]
 			results << rows
 		 }
 		 
-		 def result='Transaction Id, Contribution Date, Contribution Time, Project, Contributor Name, Identity, Project Amount, Contributed Amount, \n'
+		 def result='Transaction Id, Contribution Date & Time, Project, Contributor Name, Identity, Goal, Contributed Amount, \n'
 		 results.each{ row->
 			row.each{
 			col -> result+=col +','
@@ -450,6 +460,12 @@ class ProjectService {
 		 def username = fundRaiser.username
 		 def amount = params.amount1
 		 def contributorName = params.contributorName1
+                 def currency
+                 if (project.payuEmail) {
+                     currency = 'INR'
+                 } else {
+                     currency = 'USD'
+                 }
 		 if (amount && contributorName) {
 			 Contribution contribution = new Contribution(
 				 date: new Date(),
@@ -458,7 +474,8 @@ class ProjectService {
 				 amount: amount,
 				 contributorName: contributorName,
 				 isContributionOffline: true,
-				 fundRaiser: username
+				 fundRaiser: username,
+                                 currency:currency
 			 )
 			 project.addToContributions(contribution).save(failOnError: true)
  
@@ -855,42 +872,98 @@ class ProjectService {
         return state
     }
 	
+	def getIndianState() {
+		def state = [
+			AP  :   'Andhra Pradesh',
+			AR  :   'Arunachal Pradesh',
+			AS  :   'Assam',
+			BR  :   'Bihar',
+			CG  :   'Chattisgarh',
+			CH  :	'Chandigarh',
+			DL	:	'Delhi',
+			GA  :   'Goa',
+			GJ  :   'Gujarat',
+			HR  :   'Haryana',
+			HP  :   'Himachal Pradesh',
+			JK  :   'Jammu and Kashmir',
+			JH  :   'Jharkhand',
+			KA  :   'Karnataka',
+			KL  :   'Kerala',
+			MP  :   'Madhya Pradesh',
+			MH  :   'Maharashtra',
+			MN  :   'Manipur',
+			ML  :   'Meghalaya',
+			MZ  :   'Mizoram',
+			NL  :   'Nagaland',
+			OR  :   'Orissa',
+			PB  :   'Punjab',
+			RJ  :   'Rajasthan',
+			SK  :   'Sikkim',
+			TN  :   'Tamil Nadu',
+			TL  :   'Telangana',
+			TR  :   'Tripura',
+			UK  :   'Uttarakhand',
+			UP  :   'Uttar Pradesh',
+			WB  :   'West Bengal',
+			other:  'Other'
+		]
+		return state
+	}
+	
 	def getSorts(){
 		def sortsOptions = [
 			All_Campaigns: "All Campaigns",
-			More_than_ninety: "More than 90",
-			Less_than_ten: "Less than 10",
-			Ten_days_remaining: "10 days remaining"
+			Live_Campaigns: "Live",
+			Ending_Soon: "Ending Soon",
+			Most_Funded: "Most Funded",
+			Successful_Campaigns:"Successful (100% +)",
+			Ended_Campaign:"Ended"
 		]
 		return sortsOptions
 	}
 	
-	def isCampaignsorts(def sorts){
-		List projects = getValidatedProjects()
+	def isCampaignsorts(def sorts ,def request_url, def payu_url){
+		List projects = getValidatedProjects(payu_url, request_url)
 		List p = []
 		if(sorts == 'All Campaigns'){
 			return projects
 		}
-		if(sorts == 'More than 90'){
+		if(sorts == 'Most Funded'){
 			projects.each {
 				def percentage = contributionService.getPercentageContributionForProject(it)
-				if(percentage > 90){
+				if(percentage >= 90 && percentage <100){
 					p.add(it)
 				}
 			}
 		}
-		if(sorts == 'Less than 10'){
+		if(sorts == 'Successful (100% +)'){
 			projects.each {
 				def percentage = contributionService.getPercentageContributionForProject(it)
-				if(percentage < 10){
+				if(percentage >= 100){
 					p.add(it)
 				}
 			}
 		}
-		if(sorts == '10 days remaining'){
+		if(sorts == 'Live'){
+			projects.each {project ->
+				boolean ended = isProjectDeadlineCrossed(project)
+				if(project.validated && ended ==false){
+					p.add(project)
+				}
+			}
+		}
+		if(sorts == 'Ending Soon'){
 			projects.each {
 				def day = getRemainingDay(it)
 				if(day <= 10 && day!=0){
+					p.add(it)
+				}
+			}
+		}
+		if(sorts=='Ended'){
+			projects.each{
+				boolean ended_campaigns = isProjectDeadlineCrossed(it)
+				if(ended_campaigns){
 					p.add(it)
 				}
 			}
@@ -1275,9 +1348,9 @@ class ProjectService {
 		}
 	}
 
-    def search(String query) {
+    def search(String query, def base_url, def request_url) {
         List result = []
-        List project = getValidatedProjects()
+        List project = getValidatedProjects(base_url, request_url)
         project.each { 
             if( it.title.toLowerCase().contains(query.toLowerCase()) || it.description.toLowerCase().contains(query.toLowerCase()) ){
                 result.add(it)
@@ -1682,8 +1755,8 @@ class ProjectService {
         return endDate
     }
     
-    def filterByCategory(def categories){
-        def projects = getValidatedProjects()
+    def filterByCategory(def categories, def base_url, def request_url){
+        def projects = getValidatedProjects(base_url, request_url)
         List list =[]
         if (categories == "All"){
             return projects
@@ -2034,6 +2107,49 @@ class ProjectService {
         
         return address
     }
+	
+	def getAddress(def params, def req_url, def payu_url){
+		def address
+		def state
+		def country
+		if(req_url==payu_url){
+			if (params.addressLine1 !=null){
+				if (params.state == "other") {
+					state = params.otherstate
+				} else {
+					Map states = getIndianState()
+					state = states.getAt(params.state)
+				}
+				Map countries = getCountry()
+				country = countries.getAt(params.country)
+				if (params.addressLine2 == null || params.addressLine2.isAllWhitespace()){
+					address = params.addressLine1 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
+				} else {
+					address = params.addressLine1 +" "+params.addressLine2 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
+				}
+			} else {
+				address = null
+			}
+		}else{
+			if (params.addressLine1 !=null){
+				if (params.state == "other") {
+					state = params.otherstate
+				} else {
+					Map states = getState()
+					state = states.getAt(params.state)
+				}
+				Map countries = getCountry()
+				country = countries.getAt(params.country)
+				if (params.addressLine2 == null || params.addressLine2.isAllWhitespace()){
+					address = params.addressLine1 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
+				} else {
+					address = params.addressLine1 +" "+params.addressLine2 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
+				}
+			}
+		}
+		
+		return address
+	}
 
     def getContibutionByUser(User user){
       def contributions = Contribution.findAllByUser(user)

@@ -13,7 +13,7 @@
 		}
 	}
 %>
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top header-section" role="navigation">
     <div class="header-container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -30,29 +30,28 @@
             <ul class="nav navbar-nav nav-icon-bar">
                 <li class="searchengine hidden-xs">
                     <form action="/campaign" onClick="searchList()" name="SearchForm">
-                        <span class="form-group inner-addon left-addon" id="search-container">
-                            <i class="glyphicon glyphicon-search search-glyph-icon"></i>
-                            <input type="search" name="q" class="form-control search-bar-nml" id="search-bar" value="${params.q}" placeholder="Search......">
-                        </span>
+                        <div class="inner-addon left-addon search-icon-header search-image-header">
+                           <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" alt="search" class="trigger" id="trigger">
+                           <input type="text" class="form-control search-box" name="q" value="${params.q}" id="search-bar" placeholder="Search....."/>
+                        </div>
                     </form>
-                    <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" class="trigger">
                 </li>
                 <li class="hidden-lg hidden-md hidden-sm search-mob">
                     <form action="/campaign" onClick="searchMobList()" name="searchableForm">
                         <span class="form-group inner-addon left-addon">
                             <i class="glyphicon glyphicon-search search-glyph-icon"></i>
-                            <input type="search" name="q" class="form-control search-box-xs" value="${params.q}" placeholder="Search......">
+                            <input type="search" name="q" class="form-control search-box-xs" value="${params.q}" placeholder="Search.....">
                         </span>
                     </form>
                 </li>
                 <li class="discover"><a href="${resource(dir: '/campaigns')}" class="nav-text2">Discover</a></li>
-                <li><a href="${resource(dir: '/howitworks')}" class="nav-text3">Learn</a></li>
+                <li class="learn"><a href="${resource(dir: '/howitworks')}" class="nav-text3">Learn</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right nav-create-button">
                 <li class="hidden-xs">
                     <g:link controller="project" action="create" class="nav-text1">
-                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-blue.jpg" alt="create" class="hidden-sm" id="createButton">
-                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-blue-tab.jpg" alt="create" class="hidden-lg hidden-md" id="createButton-sm">
+<%--                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-blue.jpg" alt="create" class="hidden-lg hidden-md hidden-sm" id="createButton">--%>
+                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-blue-tab.jpg" alt="create" class="" id="createButton-sm">
                     </g:link> 
                 </li>
                 <li class="hidden-lg hidden-md hidden-sm">

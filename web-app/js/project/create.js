@@ -40,6 +40,8 @@ $(function() {
     $("#paypalcheckbox").hide();
 
     $('#val2').hide();
+    $('#txtState').hide();
+    
 
     $("#charitableId").hide();
     $("#icondiv").hide();
@@ -96,12 +98,6 @@ $(function() {
             },
             country: {
                 required: true
-            },
-            amount: {
-                required: true,
-                number: true,
-                maxlength: 6,
-                max: 999999
             },
             description : {
             	required: true,
@@ -170,7 +166,7 @@ $(function() {
                 error.appendTo(element.parent().parent());
             } else if(element.is(":checkbox")) {
                 error.appendTo(element.parent());
-            } else if($(element).prop("id") == "projectImageFile") {
+            } else if($(element).prop("id") == "projectImageFile" || $(element).prop("id") == "amount") {
                 error.appendTo(element.parent().parent());
             }else if($(element).prop("id") == "iconfile") {
                 error.appendTo(element.parent().parent());
@@ -181,6 +177,26 @@ $(function() {
         
         //ignore: []
     });
+    
+    var url = $('#url').val();
+    var currentUrl = $('#currentUrl').val();
+    
+    if(url == currentUrl) {
+        $("[name='amount']").rules("add", {
+            required: true,
+            number: true,
+            min: 5000,
+            maxlength: 6,
+            max: 999999
+        });
+    } else {
+    	$("[name='amount']").rules("add", {
+            required: true,
+            number: true,
+            maxlength: 6,
+            max: 999999
+        });
+    }
     
     $('.createsubmitbutton').click(function(event) {
         if(validator.form()){
@@ -215,6 +231,27 @@ $(function() {
                 required: "Please upload at least one campaign image"
             }
         });
+        if(url == currentUrl) {
+            $('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: 999999,
+                    min: 250
+                });
+            });
+        } else {
+        	$('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: 999999,
+                    min: 1
+                });
+            });
+        }
         
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',false);
@@ -234,6 +271,29 @@ $(function() {
     	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"]').each(function () {
             $(this).closest('.form-group').removeClass('has-error');
         });
+    	
+    	if(url == currentUrl) {
+            $('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: 999999,
+                    min: 250
+                });
+            });
+        } else {
+        	$('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: 999999,
+                    min: 1
+                });
+            });
+        }
+    	
     	$("#createthumbnail").removeClass('has-error');
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',true);
@@ -313,6 +373,17 @@ $(function() {
           $('#val2').show();
         }  
     });
+     
+	$('#countryList').change(function(){
+	    var c = $('#countryList').val();
+	    if(c=='IN'){
+	       	$('#stateList').show();
+	       	$('#txtState').hide();
+	    }else{
+	       	$('#stateList').hide();
+	       	$('#txtState').show();
+	    }  
+	});
 
       /******************************Video Thumbnail***************************************/
      
@@ -731,7 +802,6 @@ function setTitleText(){
                 //if the letter is not digit then display error and don't type anything
                 if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                   //display error message
-                  $(this).val('');
                   return false;
                 } 
               });

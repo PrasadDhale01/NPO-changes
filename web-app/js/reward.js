@@ -17,7 +17,14 @@ $(function() {
                 number: true,
                 max : 999999,
                 isPerk:true,
-                min: 0
+                min: function() {
+                	var isINR = $('#isINR').val();
+                    if (isINR == undefined) {
+                        return 0;
+                    } else {
+                        return 250;
+                    }
+                }
             }
         }
     });
@@ -39,7 +46,14 @@ $(function() {
                     number: true,
                     max : 999999,
                     isPerk:true,
-                    min: 0
+                    min: function() {
+                    	var isINR = $('#isINR').val();
+                        if (isINR == undefined) {
+                            return 0;
+                        } else {
+                            return 250;
+                        }
+                    }
                 }
         	}
         });
@@ -59,11 +73,11 @@ $(function() {
     $.validator.addMethod('isPerk', function (value, element) {
         var price =  $('.perkPrice').val();
         var cAmount = parseFloat($('#cAmount').val());
-        if(price > cAmount){
+        if(value > cAmount){
            return false;
         }
         return true;
-    }, "Enter a price less than Campaign amount: $" +$('#cAmount').val());
+    }, "Enter a price less than Campaign amount: " +$('#cAmount').val());
 
     $("#perkPrice").keypress(function (e) {
             //if the letter is not digit then display error and don't type anything

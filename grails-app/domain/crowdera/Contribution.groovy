@@ -21,6 +21,8 @@ class Contribution {
     String contributorEmail
     String comments
     
+    String currency = 'USD'
+    
     boolean shippingDone = false
     boolean isContributionOffline = false
     boolean isAnonymous = false

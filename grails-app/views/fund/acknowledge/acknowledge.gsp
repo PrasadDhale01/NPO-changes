@@ -67,7 +67,7 @@
                     </g:else>
                         <tr>
                             <td>Amount</td>
-                            <td>$${contribution.amount.round()}</td>
+                            <td><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${contribution.amount.round()}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -156,7 +156,7 @@
 							<img src="//s3.amazonaws.com/crowdera/assets/google-plus-share.png" alt="Google+ Share">
 						</a> 
 					</div>
-                        
+                    
                     <!-- Modal -->
                     <div class="modal fade sendmailmodal" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
                         <g:form action="sendemail" controller="fund" id="${project.id}" role="form">
@@ -193,7 +193,7 @@
             		</div>
         		</div>
             </div>
-            <div class="col-md-4 acknowledge-tile-tag">
+            <div class="col-md-4 <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag</g:if>" >
                 <g:if test="${project.rewards.size()>1 }">
                     <g:render template="rewardtile"/>
                 </g:if>

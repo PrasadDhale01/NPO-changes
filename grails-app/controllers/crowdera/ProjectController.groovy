@@ -79,9 +79,11 @@ class ProjectController {
 	}
 
 	def search () {
+		def base_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def query = params.q
 		if(query) {
-			List searchResults = projectService.search(query)
+			List searchResults = projectService.search(query, base_url, request_url)
 			if (searchResults.empty){
 				flash.catmessage = "No Campaign found matching your input."
 				redirect(action:"list")
@@ -247,6 +249,8 @@ class ProjectController {
 			def teamComments = projectService.getTeamComments(currentTeam)
 			List totalContributions = []
 			List contributions = []
+			def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+			def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 
 			if(project.validated == false) {
 
@@ -254,7 +258,7 @@ class ProjectController {
 				model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,projectComments: projectComments,totalteams: totalteams,
 					totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, webUrl: webUrl, teamComments: teamComments, teamOffset: teamOffset,
 					teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,totalContributions: totalContributions,contributions: contributions,
-					isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
+					isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,payu_url: payu_url,request_url: request_url,
 					validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS])
 			}
 		} else {
@@ -384,9 +388,17 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def create() {
+		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def categoryOptions = projectService.getCategoryList()
 		def country = projectService.getCountry()
-		def state = projectService.getState()
+		def state
+		
+		if(request_url==payu_url){
+			state=projectService.getIndianState()
+		}else{
+			state=projectService.getState()
+		}
 
 		def genderOptions = [
 			"MALE": (Beneficiary.Gender.MALE),
@@ -610,6 +622,8 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def save() {
+		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		Project project
 		Beneficiary beneficiary
 		User user = userService.getCurrentUser()
@@ -622,9 +636,19 @@ class ProjectController {
 		if(button == 'true'){
 			project.draft = true
 		}
-
-		if(params.(FORMCONSTANTS.COUNTRY) != "US"){
-			beneficiary.stateOrProvince = params.otherstate
+		
+		if(request_url==payu_url){
+			if(params.payuEmail){
+				project.payuStatus=true
+			}
+		
+			if(params.(FORMCONSTANTS.COUNTRY) != "IN"){
+				beneficiary.stateOrProvince = params.otherstate
+			}
+		}else{
+			if(params.(FORMCONSTANTS.COUNTRY) != "US"){
+				beneficiary.stateOrProvince = params.otherstate
+			}
 		}
 
 		def rewardLength=Integer.parseInt(params.rewardCount)
@@ -924,14 +948,16 @@ class ProjectController {
 	}
 
 	def categoryFilter() {
+		def base_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def category = params.category
 		def project
 		if (category == "Social Innovation"){
-			project = projectService.filterByCategory("SOCIAL_INNOVATION")
+			project = projectService.filterByCategory("SOCIAL_INNOVATION", base_url, request_url)
 		} else if (category == "All Categories"){
-			project = projectService.filterByCategory("All")
+			project = projectService.filterByCategory("All", base_url, request_url)
 		} else {
-			project = projectService.filterByCategory(category)
+			project = projectService.filterByCategory(category, base_url, request_url)
 		}
 		if(!project){
 			flash.catmessage="No campaign found."
@@ -1114,8 +1140,11 @@ class ProjectController {
 	}
 
 	def sortCampaign(){
+		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def sorts = params.query
-		def campaignsorts = projectService.isCampaignsorts(sorts)
+		def campaignsorts = projectService.isCampaignsorts(sorts, request_url, payu_url)
+		
 		if(!campaignsorts){
 			flash.catmessage="No campaign found."
 			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])

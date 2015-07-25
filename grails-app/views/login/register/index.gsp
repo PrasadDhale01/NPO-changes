@@ -20,7 +20,11 @@
             <a class="btn btn-block btn-social btn-facebook"
                href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
                 <i class="fa fa-facebook fa-facebook-styles"></i> Register with Facebook
-            </a>
+            </a><br>
+            
+            <oauth:connect class="btn btn-block btn-social btn-google-plus" provider="google" id="google-connect-link">
+                <i class="fa fa-google-plus fa-facebook-styles"></i> Sign in with Google +
+            </oauth:connect>
 
             <hr/>
             <div class="form-group">

@@ -2,16 +2,25 @@ package crowdera
 
 import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.security.core.context.SecurityContextHolder;
+import grails.util.Environment
 
 class UserController {
     def userService
     def projectService
 	def mandrillService
+    def contributionService
 
     @Secured(['ROLE_ADMIN'])
     def admindashboard() {
         User user = (User)userService.getCurrentUser()
-        render view: 'admin/dashboard', model: [user: user]
+        def totalContribution
+        if (Environment.current.getName() == 'testIndia') {
+            totalContribution = contributionService.getTotalINRContributions()
+            render view: 'admin/dashboard', model: [user: user, currency:'INR', amount:totalContribution]
+        } else {
+            totalContribution = contributionService.getTotalUSDContributions()
+            render view: 'admin/dashboard', model: [user: user, currency:'USD', amount:totalContribution]
+        }
     }
     
     @Secured(['ROLE_ADMIN'])
@@ -44,6 +53,7 @@ class UserController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def userprofile(String userViews, String activeTab){
         User user = (User)userService.getCurrentUser()
+        def environment = Environment.current.getName()
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
         } else {
@@ -58,7 +68,7 @@ class UserController {
 //            def contributions = projectService.getContibutionByUser(user)
 			def project = projectService.getProjects(projects, projectAdmins, teams, payu_url, request_url)
 			def contributions = projectService.getContibutionByUser(user, payu_url, request_url)
-            render view: userViews, model: [user: user, projects: project, contributions: contributions, activeTab:activeTab]
+            render view: userViews, model: [user: user, projects: project, contributions: contributions, activeTab:activeTab, environment: environment]
         }
     }
     

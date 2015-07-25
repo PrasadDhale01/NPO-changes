@@ -30,3 +30,11 @@
 .paypalVerification span {
     margin-left: -5% !important;
 }
+
+.fa.fa-sm{
+	font-size: small !important;
+}
+
+.fa.fa-lgr{
+	font-size: 35px !important;
+}

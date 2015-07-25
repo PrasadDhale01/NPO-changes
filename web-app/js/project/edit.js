@@ -23,12 +23,6 @@ $(function() {
     /* Validate form on submit. */
     var validator = $('#campaignedit').find('form').validate({
         rules: {
-            amount: {
-                required: true,
-                number: true,
-                maxlength: 6,
-                max: 999999
-            },
             days: {
                 required: true
             },
@@ -91,7 +85,7 @@ $(function() {
         errorPlacement: function(error, element) {
         	if ( element.is(":radio") || element.is(":checkbox")) {
         		error.appendTo(element.parent().parent());
-        	} else if($(element).prop("id") == "projectImageFile") {
+        	} else if($(element).prop("id") == "projectImageFile" || $(element).prop("id") == "amount") {
                 error.appendTo(element.parent().parent());
             } else if($(element).prop("id") == "orgediticonfile") {
                 error.appendTo(element.parent().parent());
@@ -102,6 +96,8 @@ $(function() {
     });
 
     $('#editsubmitbutton').on('click', function() {
+    	var url = $('#url').val();
+        var currentUrl = $('#currentUrl').val();
     	var iconUrl = $('#imgIcon').attr('src');
     	if (!iconUrl) {
     	    $('[name="iconfile"]').rules( "add", {
@@ -120,7 +116,22 @@ $(function() {
                 }
             });
     	}
-    	
+        if(url == currentUrl) {
+            $("[name='amount']").rules("add", {
+                required: true,
+                number: true,
+                min: 5000,
+                maxlength: 6,
+                max: 999999
+            });
+        }else {
+            $("[name='amount']").rules("add", {
+                required: true,
+                number: true,
+                maxlength: 6,
+                max: 999999
+            });
+        }
     	if (validator.form()) {
     		needToConfirm = false;
     		$('#campaignedit').find('form').submit();

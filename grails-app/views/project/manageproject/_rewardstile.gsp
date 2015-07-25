@@ -4,7 +4,7 @@
 	def projectId = project.id
 	def backers = contributionService.getBackersForProjectByReward(project, reward);
 %>
-<div class="panel panel-primary reward-tile">
+<div class="panel panel-primary reward-tile managcampaign-rewardtile">
 	<div class="panel-heading">
 		<h3 class="panel-title"><b>${reward.title}</b></h3>
 	</div>
@@ -45,7 +45,7 @@
 		<g:if test="${reward.id==1 }">
             <b>&nbsp;</b>
         </g:if><g:else>
-            <b>$${price}</b>
+            <b><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${price}</b>
         </g:else>
 		<b class="pull-right">&nbsp;SUPPORTERS</b><span class="badge pull-right">${backers}</span>
 	</div>
@@ -61,6 +61,9 @@
                 <div class="modal-body">
                     <g:hiddenField name="amount" value="${project.amount}" id="cAmount"/>
                     <g:hiddenField name="projectId" value="${project.id}"/>
+                    <g:if test="${project.payuStatus}">
+                        <g:hiddenField name="isINR" value="${project.payuStatus}" id="isINR"/>
+                    </g:if>
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" class="form-control" name="title" value="${reward.title}" placeholder="Title"/>
@@ -72,8 +75,8 @@
                     </div>
                     <div class="clear"></div>
                     <div class="form-group">
-                        <label for="price">Price ($)</label>
-                        <input type="number" class="form-control perkPrice" name="price" value="${reward.price.round()}" id="perkPrice" min="0" placeholder="Price"/>
+                        <label for="price">Price (<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                        <input type="number" class="form-control perkPrice" name="price" value="${reward.price.round()}" id="perkPrice" placeholder="Price"/>
                         <span id="errormsg" class="errormsg"></span>
                     </div>
                     <div class="form-group">

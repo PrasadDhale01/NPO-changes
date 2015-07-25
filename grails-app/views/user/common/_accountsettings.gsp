@@ -53,6 +53,17 @@
             </div>
         </div>
     </g:if>
+    <g:if test="${userService.isGooglePlusUser()}">
+        <div class="form-signin">
+            <h2><i class="fa fa-google-plus-square"></i> Google Plus User</h2>
+            <div class="form-group">
+                <input type="text" name="firstName" class="form-control" value="${user.firstName}" readonly>
+            </div>
+            <div class="form-group">
+                <input type="text" name="lastName" class="form-control" value="${user.lastName}" readonly>
+            </div>
+        </div>
+    </g:if>
     <g:else>
         <div id="validpass">
             <g:form class="form-signin" controller="login" action="update" role="form">

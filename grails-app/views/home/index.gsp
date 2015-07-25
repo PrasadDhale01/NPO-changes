@@ -12,20 +12,22 @@
 <meta name="layout" content="main" />
 <r:require modules="homejs"/>
 
-<style type="text/css" media="screen, projection">
+<style type="text/css" media="screen">
     @import url(https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.css);
 </style>
 </head>
 <body>
 	<input type="hidden" id="b_url" value="<%=base_Url%>" /> 
 	<input type="hidden" id="fbUser-login" value="${fb}"/>
+	<input type="hidden" id="googlPlusUser-login" value="${isDuplicate}"/>
+	<input type="hidden" id="userEmail" value="${email}"/>
     <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
     	<g:render template="jumbotron"></g:render>
     </div>
     <g:render template="banner"></g:render>
     
     <g:render template="ace"></g:render>
-    <div class="greycolorbg"> 
+    <div class="greycolorbg">
     	<g:render template="projects"></g:render>
     </div>
     <div class="whycrowderacontainer">

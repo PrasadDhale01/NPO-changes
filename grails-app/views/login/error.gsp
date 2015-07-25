@@ -12,6 +12,11 @@
                 ${facelogoutmsg}
             </div>
         </g:if>
+        <g:if test="${flash.googlePlusErrorMessage}">
+            <div class="alert alert-danger">
+                ${flash.googlePlusErrorMessage}
+            </div>
+        </g:if>
         <g:if test="${message}">
             <div class="alert alert-danger">
                 ${message}

@@ -11,6 +11,7 @@ class RoleService {
     def ROLE_AUTHOR = 'ROLE_AUTHOR'
     def ROLE_FACEBOOK = 'ROLE_FACEBOOK'
     def ROLE_COMMUNITY_MGR = 'ROLE_COMMUNITY_MGR'
+    def ROLE_GOOGLE_PLUS = 'ROLE_GOOGLE_PLUS'
 
     /* Helpers */
     def adminRole() {
@@ -36,6 +37,10 @@ class RoleService {
     def communityManagerRole() {
         return Role.findByAuthority(ROLE_COMMUNITY_MGR)
     }
+    
+    def googlePlusRole() {
+        return Role.findByAuthority(ROLE_GOOGLE_PLUS)
+    }
 
     /* Bootstrap */
     @Transactional
@@ -46,5 +51,6 @@ class RoleService {
         def facebookRole = Role.findOrSaveByAuthority(ROLE_FACEBOOK)
         def communityManagerRole = Role.findOrSaveByAuthority(ROLE_COMMUNITY_MGR)
         def anonymousRole = Role.findOrSaveByAuthority(ROLE_ANONYMOUS)
+        def googlePlusRole = Role.findOrSaveByAuthority(ROLE_GOOGLE_PLUS)
     }
 }

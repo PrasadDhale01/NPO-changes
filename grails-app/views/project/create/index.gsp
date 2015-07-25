@@ -15,7 +15,7 @@ def request_url=request.getRequestURL().substring(0,request.getRequestURL().inde
 <script src="/js/main.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script>
-        var nowTemp = new Date();
+    var nowTemp = new Date();
 	var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
 	now.setDate(now.getDate()+91);
 	var j = jQuery.noConflict();
@@ -59,6 +59,8 @@ def request_url=request.getRequestURL().substring(0,request.getRequestURL().inde
 	<input type="hidden" id="b_url" value="<%=base_url%>" /> 
 	<input type="hidden" name="uuid" id="uuid" />
 	<input type="hidden" name="charity_name" id="charity_name" />
+	<input type="hidden" name="url" value="${payu_url}" id="url"/>
+	<input type="hidden" name="currentUrl" value="${request_url}" id="currentUrl"/>
 	<div id="test"></div>
 	<div class="feducontent">
 		<div class="container" id="campaigncreate">
@@ -139,23 +141,43 @@ def request_url=request.getRequestURL().substring(0,request.getRequestURL().inde
 								</div>
 								
 								<div class="clear"></div>
-								<div class="form-group country-create-project">
-									<label class="col-sm-2 control-label">State</label>
-									<div class="col-sm-10" id="val1">
-										<g:select  class="selectpicker" type="text" name="${FORMCONSTANTS.STATEORPROVINCE}" from="${state}" optionKey="key" optionValue="value"/>	
+								<g:if test="${request_url==payu_url}">
+								    <div class="form-group country-create-project">
+									    <label class="col-sm-2 control-label">Country</label>
+									    <div class="col-sm-10">
+									        <g:select type="text" id="countryList" class="selectpicker" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="IN" optionKey="key" optionValue="value"/>
+									    </div>
 									</div>
-									<div class="col-sm-10" id="val2">
-										<input type="text" placeholder="State"
-											name="otherstate" class="form-control">
+								
+									<div class="form-group country-create-project">
+									    <label class="col-sm-2 control-label">State</label>
+									    <div class="col-sm-10" id="stateList">
+									        <g:select  class="selectpicker" type="text" name="${FORMCONSTANTS.STATEORPROVINCE}" from="${state}" optionKey="key" optionValue="value"/>	
+									    </div>
+									    <div class="col-sm-10" id="txtState">
+									        <input type="text" placeholder="State" name="otherstate" class="form-control">
+									    </div>
 									</div>
-								</div>
-
-								<div class="form-group country-create-project">
-									<label class="col-sm-2 control-label">Country</label>
-									<div class="col-sm-10">
-										<g:select type="text" id="val3" class="selectpicker" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="US" optionKey="key" optionValue="value"/>
+								</g:if>
+								<g:else>
+									<div class="form-group country-create-project">
+									        <label class="col-sm-2 control-label">State</label>
+										<div class="col-sm-10" id="val1">
+										    <g:select  class="selectpicker" type="text" name="${FORMCONSTANTS.STATEORPROVINCE}" from="${state}" optionKey="key" optionValue="value"/>	
+										</div>
+										<div class="col-sm-10" id="val2">
+											<input type="text" placeholder="State" name="otherstate" class="form-control">
+										</div>
 									</div>
-								</div>
+								
+									<div class="form-group country-create-project">
+										<label class="col-sm-2 control-label">Country</label>
+										<div class="col-sm-10">
+											<g:select type="text" id="val3" class="selectpicker" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="US" optionKey="key" optionValue="value"/>
+										</div>
+									</div>
+									
+								</g:else>
 
 								<div class="form-group">
                              		<label class="col-sm-2 control-label">&nbsp;</label>
@@ -206,7 +228,6 @@ def request_url=request.getRequestURL().substring(0,request.getRequestURL().inde
 										<label class="col-sm-2 control-label">PayUMoney Email ID </label>
 										<div class="col-sm-4">
 											<input id="payuemail" type="email" class="form-control" name="${FORMCONSTANTS.PAYUEMAIL}">
-											<input id="payustatus" type="hidden" class="form-control" name="${FORMCONSTANTS.PAYUSTATUS}" value="true">
 										</div>
 									</div>
  								</div>
@@ -320,16 +341,25 @@ def request_url=request.getRequestURL().substring(0,request.getRequestURL().inde
 
 					
 					<br><h3 class="panel-title">Funding Goal and Campaign End Date</h3><hr/>
-					<div class="row">
-						<div class="col-sm-6">
-						<div class="form-group">
-							<label class="col-sm-4 control-label">Amount</label>
-							<div class="col-sm-8">
-								<input class="form-control" name="${FORMCONSTANTS.AMOUNT}"
-									id="${FORMCONSTANTS.AMOUNT}" placeholder="Amount"> <span
-									id="errormsg"></span>
-							</div>
-						</div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">Amount</label>
+                                <div class="col-sm-8 campaignamount">
+                                    <div class="input-group">
+                                        <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" id="${FORMCONSTANTS.AMOUNT}" placeholder="Amount">
+                                        <span class="input-group-addon">
+                                            <g:if test="${payu_url == request_url}">
+                                                <i class="fa fa-inr"></i>
+                                            </g:if>
+                                            <g:else>
+                                                <i class="fa fa-usd"></i>
+                                            </g:else>
+                                        </span>
+                                    </div>
+								    <span id="errormsg"></span>
+							    </div>
+						    </div>
 						</div>
 						<div class="col-sm-6">
 						<div class="form-group">
@@ -438,7 +468,7 @@ def request_url=request.getRequestURL().substring(0,request.getRequestURL().inde
 											<label class="col-sm-3 control-label">Perk Price</label>
 											<div class="col-sm-9 rewardPriceDiv">
 												<input type="number" placeholder="Enter digits only" name="rewardPrice1"
-													class="form-control rewardPrice required" id="rewardPrice1" min="0">
+													class="form-control rewardPrice required" id="rewardPrice1">
 											</div>
 										</div>
 									</div>

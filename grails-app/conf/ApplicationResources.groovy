@@ -114,59 +114,59 @@ modules = {
 
     /* CSS */
     fontawesomecss {
-        resource url: 'vendor/font-awesome-4.2.0/css/font-awesome.min.css'
+        resource url: 'vendor/font-awesome-4.2.0/css/font-awesome.min.css', attrs: [media: 'screen']
     }
     piecss {
-        resource url: 'css/pie.css'
+        resource url: 'css/pie.css', attrs: [media: 'screen']
     }
     crowderacss {
         dependsOn 'bootswatchcss', 'bootstrapselectcss', 'bootstrapmultiselectcss', 'fontawesomecss', 'piecss', 'campaigncss', 'usercss', 'fundcss', 'showcss', 'mediacss'
-        resource url: 'css/crowdera.css'
-        resource url: 'js/redactor/redactor.css'
+        resource url: 'css/crowdera.css', attrs: [media: 'screen']
+        resource url: 'js/redactor/redactor.css', attrs: [media: 'screen']
     }
     campaigncss {
-        resource url: 'css/campaign.css'
+        resource url: 'css/campaign.css', attrs: [media: 'screen']
     }
     usercss {
-        resource url: 'css/user.css'
+        resource url: 'css/user.css', attrs: [media: 'screen']
     }
     fundcss {
-        resource url: 'css/fund.css'
+        resource url: 'css/fund.css', attrs: [media: 'screen']
     }
     showcss {
-        resource url: 'css/show.css'
+        resource url: 'css/show.css', attrs: [media: 'screen']
     }
     mediacss {
-        resource url: 'css/media.css'
+        resource url: 'css/media.css', attrs: [media: 'screen']
     }
     timelinecss {
         dependsOn 'crowderacss'
-        resource url: 'css/timeline.css'
+        resource url: 'css/timeline.css', attrs: [media: 'screen']
     }
     bootstrapcss {
-        resource url: 'vendor/bootstrap-3.2.0-dist/css/bootstrap.min.css'
+        resource url: 'vendor/bootstrap-3.2.0-dist/css/bootstrap.min.css', attrs: [media: 'screen']
     }
     bootstrapselectcss {
-        resource url: 'vendor/bootstrap-select/bootstrap-select.css'
+        resource url: 'vendor/bootstrap-select/bootstrap-select.css', attrs: [media: 'screen']
     }
     bootstrapmultiselectcss {
-        resource url: 'vendor/bootstrap-multiselect/bootstrap-multiselect.css'
+        resource url: 'vendor/bootstrap-multiselect/bootstrap-multiselect.css', attrs: [media: 'screen']
     }
     bootstrapsocialcss {
         /* http://lipis.github.io/bootstrap-social/ */
         dependsOn 'bootswatchcss', 'fontawesomecss'
-        resource url: 'vendor/bootstrap-social/bootstrap-social.min.css'
+        resource url: 'vendor/bootstrap-social/bootstrap-social.min.css', attrs: [media: 'screen']
     }
     bootswatchcss {
         dependsOn 'bootswatchyeticss'
     }
     tableclothcss {
         dependsOn 'bootswatchcss'
-        resource url: 'tablecloth/css/bootstrap-tables.css'
-        resource url: 'tablecloth/css/tablecloth.css'
+        resource url: 'tablecloth/css/bootstrap-tables.css', attrs: [media: 'screen']
+        resource url: 'tablecloth/css/tablecloth.css', attrs: [media: 'screen']
     }
 
     bootswatchyeticss {
-        resource url: 'bootswatch-yeti/bootstrap.css'
+        resource url: 'bootswatch-yeti/bootstrap.css', attrs: [media: 'screen']
     }
 }

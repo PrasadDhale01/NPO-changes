@@ -124,9 +124,10 @@
                         <i class="fa fa-credit-card"></i> Manage Transactions
                     </div>
                     <div class="panel-footer">
-                        <g:link controller="fund" action="transaction">
+                        <g:form controller="fund" action="transaction">
+                            <g:hiddenField name="currency" value="${currency}"/>
                             <button class="btn btn-block btn-primary btn-text-alignment"><i class="fa fa-credit-card"></i> Manage Transactions</button>
-                        </g:link>
+                        </g:form>
                     </div>
                 </div>
             </div>

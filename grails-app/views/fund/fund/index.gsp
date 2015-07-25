@@ -36,13 +36,16 @@
 							<g:hiddenField name="anonymous" value="false" id="anonymous"/>
 							<g:hiddenField name="url" value="${payu_url}" id="url"/>
 							<g:hiddenField name="projectTitle" value="${vanityTitle}"/>
+                            <g:if test="${project.payuStatus}">
+                                <g:hiddenField name="isINR" value="${project.payuStatus}" id="isINR"/>
+                            </g:if>
 
 							<!-- Value set by Javascript -->
 							<div class="row">
 								<div class="col-md-12 col-sm-12 col-xs-12">
-									<div class="form-group">
+									<div class="form-group fund-inr">
 										<div class="input-group">
-											<span class="amount input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
+											<span class="amount input-group-addon"><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else><span class="glyphicon glyphicon-usd"></span></g:else></span>
 											<input class="amount form-control" id="amount" name="amount" type="text">
 										</div>
 										<span id="errormsg"></span>

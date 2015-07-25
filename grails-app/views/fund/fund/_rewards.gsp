@@ -22,7 +22,9 @@
                 <br>
                 <a href="#" class="list-group-item <% if(perk == reward){%> active <%}%>" id="${reward.id}" data-rewardprice="${reward.price}">
                     <g:if test="${reward.id!=1 }">
-                        <div class="tile-goal-show">$<span class="perk-amount-fund">${price}</span></div>
+                        <div class="tile-goal-show">
+                            <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="perk-amount-fund">${price}</span>
+                        </div>
                     </g:if>
                     <g:if test="${reward.id==1 }">
                     	<h4 class="perk-title-fund">I just want to help.</h4><br>

@@ -118,7 +118,7 @@
                                                     <td class="col-sm-2 wordBreak">${raw(shippingDetails)}</td> 
                                                 </g:if>
                                         
-                                                <td class="text-center">$${amount}</td>
+                                                <td class="text-center">${amount}</td>
                                         
                                                 <g:if test="${pay_mode}">
                                                     <td class="text-center">Offline</td>
@@ -172,7 +172,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="title" class="text">Amount</label>
+                                <label for="title" class="text">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
                                 <input type="text" class="form-control contributioninput" name="amount1" id="offlineAmount1"/>
                             </div>
                             <div id="errormsg1"></div>
@@ -222,29 +222,37 @@
                                 <img class="user-img-header" src="${imageUrl}" alt="alphabet">
                             </g:else>
                         </div>
-                        <div class="col-sm-8 col-xs-8 pn-word">
+                        <div class="col-sm-8 col-xs-8 pn-word contribution-inr">
                             <g:if test="${contribution.isAnonymous}">
                                 <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
                                     <h4>${contribution.contributorName}</h4> 
-                                    <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-                                    <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                    <span class="sso">
+                                        <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
+                                    </span>
+                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                 </g:if>
                                 <g:else>
                                     <h4 class="anonymous-top">Anonymous Good Soul</h4>
-                                    <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-                                    <div class="font-anonymous">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</div>
+                                    <span class="sso">
+                                        <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
+                                    </span>
+                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                 </g:else>
                             </g:if>
                             <g:else>
                                 <g:if test="${contribution.contributorName}">
                                     <h4>${contribution.contributorName}</h4>
-                                    <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-                                    <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                    <span class="sso">
+                                        <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
+                                    </span>
+                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                 </g:if>
                                 <g:else>
                                     <h4>${friendlyName}</h4>
-                                    <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-                                    <dd class="font-usd">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                    <span class="sso">
+                                        <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
+                                    </span>
+                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                 </g:else>
                             </g:else>
                         </div>
@@ -257,10 +265,12 @@
                         <div class ="col-sm-4 col-xs-4 img-panel">
                             <img class="user-img-header" src="${imageUrl}" alt="alphabet">
                         </div>
-                        <div class="col-sm-8 col-xs-8 pn-word">
+                        <div class="col-sm-8 col-xs-8 pn-word contribution-inr">
                             <h4>${contribution.contributorName}</h4> 
-                            <span class="sso">$<b>${amount}</b></span><span class="font-usd">&nbsp;&nbsp;USD</span>
-                            <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                            <span class="sso">
+                                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
+                            </span>
+                            <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                         </div>
                         <div class="clear"></div>
                         <div class="col-sm-12"> 
@@ -304,7 +314,7 @@
                                         </div>
                                         <div class="col-sm-4">
                                             <div class="form-group">
-                                                <label for="title" class="text">Amount</label>
+                                                <label for="title" class="text">Amount(<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
                                                 <input type="text" class="form-control contributioninput offlineAmount" name="amount" value="${contribution.amount.round()}" id="offlineAmount"/>
                                             </div>
                                             <div class="contributionerrormsg"></div>

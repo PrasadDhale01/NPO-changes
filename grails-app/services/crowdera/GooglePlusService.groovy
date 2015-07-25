@@ -11,7 +11,6 @@ class GooglePlusService {
     def userService
 
     def createAuthToken(accessToken) {
-        println "kartiki"
         def response = oauthService.getGoogleResource(accessToken, 'https://www.googleapis.com/oauth2/v1/userinfo')
         def userDetails
         User user
@@ -32,14 +31,13 @@ class GooglePlusService {
             if (googlePlusUser) {
                 user = updateUser(googlePlusUser.user, userDetails)
             } else {
-            def newuser = User.findByEmail(userDetails.email)
-            
+                def newuser = User.findByEmail(userDetails.email)
                 user = new User()
                 user.username = userDetails.id
                 if(newuser){
-                user.email = null
+                    user.email = null
                 } else {
-                user.email = userDetails.email
+                    user.email = userDetails.email
                 }
                 user.password = userDetails.id
                 if (userDetails.picture){

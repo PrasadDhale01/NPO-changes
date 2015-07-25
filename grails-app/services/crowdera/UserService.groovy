@@ -124,7 +124,6 @@ class UserService {
 
     def getFriendlyName() {
         return getFriendlyName(getCurrentUser())
-        println "getCurrentUser() : "+getCurrentUser()
     }
 
     def getFriendlyName(User user) {

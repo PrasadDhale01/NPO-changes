@@ -13,7 +13,7 @@
 		}
 	}
 %>
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top header-section" role="navigation">
     <div class="header-container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -31,7 +31,7 @@
                 <li class="searchengine hidden-xs">
                     <form action="/campaign" onClick="searchList()" name="SearchForm">
                         <div class="inner-addon left-addon search-icon-header search-image-header">
-                           <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" alt="search" class="trigger">
+                           <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" alt="search" class="trigger" id="trigger">
                            <input type="text" class="form-control search-box" name="q" value="${params.q}" id="search-bar" placeholder="Search....."/>
                         </div>
                     </form>

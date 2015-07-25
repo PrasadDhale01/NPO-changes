@@ -184,7 +184,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     background-color: #006083; /* change color of links in drop down here */
 }
 
-.nav > li > a {
+.header-section .nav > li > a {
     padding: 4px 12px !important;
 }
 
@@ -3369,7 +3369,7 @@ div.tile-min-height{
 	}
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
-  	.nav > li > a {
+  	.header-section .nav > li > a {
 	    padding: 4px 8px !important;
 	}
 	.input-group[class*="col-"] {
@@ -3532,7 +3532,7 @@ textarea.form-control {
 
 /* Media 980px */
 @media only screen and (min-width: 980px) {
-    .nav > li > a {
+    .header-section .nav > li > a {
         padding: 4px 11x;
     }
     .squarebox {
@@ -3572,7 +3572,7 @@ textarea.form-control {
 	.divThirdAdmin {
 		margin-left: -29px !important;
 	}
-    .nav > li > a {
+    .header-section .nav > li > a {
         padding: 4px 5px;
     }
     .btn-sm.btn-primary.validatebutton {
@@ -3720,7 +3720,7 @@ textarea.form-control {
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
-	.nav > li > a {
+	.header-section .nav > li > a {
 	    padding: 4px 8px !important;
 	}
     .testimonial {
@@ -3910,7 +3910,7 @@ textarea.form-control {
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
-    .nav > li > a {
+    .header-section .nav > li > a {
         padding: 4px 10px !important;
     }
     .squarebox {
@@ -3973,7 +3973,7 @@ textarea.form-control {
     .c100.pie-tile-manage {
         margin-top: -4%;
     }
-    .nav > li > a{
+    .header-section .nav > li > a{
         padding:4px 5px !important;
     }
     .validatebutton {
@@ -4130,7 +4130,7 @@ textarea.form-control {
     .c100.pie-tile-manage {
         margin-top: -4%;
     }
-    .nav > li > a {
+    .header-section .nav > li > a {
         padding: 4px 17px;
     }
     .dropdown-menu.usr > li > a {
@@ -4166,7 +4166,7 @@ textarea.form-control {
     }
 }
 @media only screen and (min-width: 767px) and (max-width: 768px){
- .nav > li > a{
+  .header-section .nav > li > a{
         padding: 4px 8px !important;
   }
   .dropdown-menu.usr > li > a {

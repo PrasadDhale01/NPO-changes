@@ -502,14 +502,6 @@
     .hover(showPopover, hidePopover);
     
     $('form').submit(function() {
-        if($(".fundFormDesktop").valid()) {
-        	$('#btnFundDesktop').prop('disabled','disabled');
-        }
-    });
-    $('form').submit(function() {
-        if($(".fundFormMobile").valid()) {
-        	$('#btnFundMobile').attr('disabled','disabled');
-        }
         if($(".inviteTeamMember").valid()) {
         	$('#btnSendInvitation').attr('disabled','disabled');
         }

@@ -229,14 +229,14 @@
                                     <span class="sso">
                                         <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                                     </span>
-                                    <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                 </g:if>
                                 <g:else>
                                     <h4 class="anonymous-top">Anonymous Good Soul</h4>
                                     <span class="sso">
                                         <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                                     </span>
-                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
+                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                 </g:else>
                             </g:if>
                             <g:else>
@@ -245,14 +245,14 @@
                                     <span class="sso">
                                         <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                                     </span>
-                                    <dd class="font-days">${numberOfDays}&nbsp;&nbsp;<g:if test="${numberOfDays >1}">Days</g:if><g:else>Day</g:else> Ago</dd>
+                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                 </g:if>
                                 <g:else>
                                     <h4>${friendlyName}</h4>
                                     <span class="sso">
                                         <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                                     </span>
-                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
+                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                                 </g:else>
                             </g:else>
                         </div>
@@ -270,7 +270,7 @@
                             <span class="sso">
                                 <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                             </span>
-                            <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:else>Today</g:else></dd>
+                            <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
                         </div>
                         <div class="clear"></div>
                         <div class="col-sm-12"> 

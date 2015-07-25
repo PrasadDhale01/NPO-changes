@@ -146,7 +146,7 @@ class ProjectService {
             contributions = project.contributions.reverse()
         }
 
-        response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll(' ','_')+".csv")
+        response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll("[,;\\s]",'_')+".csv")
         def results=[]
         def  contributorName
         def payMode
@@ -166,11 +166,11 @@ class ProjectService {
             }
             def fundRaiserName = contributionService.getFundRaiserName(it, project)
             if(project.rewards.size()>1){
-                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.reward.title, shippingDetails, it.amount, payMode]
+                def rows = [it.project.title.replaceAll("[,;]",' '), fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.reward.title.replaceAll("[,;]",' '), shippingDetails.replaceAll("[,]",' '), it.amount, payMode]
                 results << rows
                 shippingDetails=""
             } else {
-                def rows = [it.project.title, fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
+                def rows = [it.project.title.replaceAll("[,;]",' '), fundRaiserName, it.date.format('YYYY:MM:dd HH:mm:ss'), contributorName, contributorEmail, it.amount, payMode]
                 results << rows
                 shippingDetails=""
             }
@@ -436,7 +436,7 @@ class ProjectService {
 			} else {
 				userIdentity = "Non Anonymous"
 			}
-			def rows = [it.transactionId, dateFormat.format(it.contribution.date), it.project.title, it.contribution.contributorName, userIdentity, it.project.amount, getContributedAmount(it)]
+			def rows = [it.transactionId, dateFormat.format(it.contribution.date), it.project.title.replaceAll('[,;] ',' '), it.contribution.contributorName, userIdentity, it.project.amount, getContributedAmount(it)]
 			results << rows
 		 }
 		 

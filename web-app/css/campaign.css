@@ -328,32 +328,32 @@ a.customer-support-a {
 	padding-right: 32px !important;
 }
 .tile-goal .fa-inr {
-	font-size: 20px !important;
+    font-size: 20px !important;
 }
 .show-contribution-amt-tile .fa-inr{
-	font-size: large !important;
+    font-size: large !important;
 }
 .teamtile .fa-inr {
-	font-size: large !important;
+    font-size: large !important;
 }
 .rewardsection .fa-inr{
-	font-size: large !important;
-	color: #686868 !important;
-	padding-right: 2px;
+    font-size: large !important;
+    color: #686868 !important;
+    padding-right: 2px;
 }
 .contribution-inr .fa-inr {
-	font-size: large !important;
-	color: #686868 !important;
-	padding-right: 2px;
+    font-size: large !important;
+    color: #686868 !important;
+    padding-right: 2px;
 }
 .tile-goal-show .fa-inr {
-	font-size: 20px !important;
-	color: #686868 !important;
-	padding-right: 2px;
+    font-size: 20px !important;
+    color: #686868 !important;
+    padding-right: 2px;
 }
 .fund-inr .fa-inr {
-	font-size: 17px !important;
-	padding-right: 2px;
+    font-size: 17px !important;
+    padding-right: 2px;
 }
 .payu-inr .fa-inr {
     font-size: 24px !important;
@@ -368,7 +368,7 @@ a.customer-support-a {
     padding-right: 2px;
 }
 .search-icon-header img {
-	position: absolute;
+    position: absolute;
     padding-left: 5px;
     padding-top: 7px;
     display: inline-block;
@@ -377,5 +377,5 @@ a.customer-support-a {
     padding-right: 40px;
 }
 .search-box {
-	width: 0px;
+    width: 0px;
 }

@@ -346,7 +346,7 @@ def request_url=request.getRequestURL().substring(0,request.getRequestURL().inde
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">Amount</label>
                                 <div class="col-sm-8 campaignamount">
-							        <div class="input-group">
+                                    <div class="input-group">
                                         <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" id="${FORMCONSTANTS.AMOUNT}" placeholder="Amount">
                                         <span class="input-group-addon">
                                             <g:if test="${payu_url == request_url}">

@@ -53,7 +53,7 @@ class UserController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def userprofile(String userViews, String activeTab){
         User user = (User)userService.getCurrentUser()
-		def environment = Environment.current.getName()
+        def environment = Environment.current.getName()
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
         } else {

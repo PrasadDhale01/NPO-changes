@@ -36,7 +36,7 @@
 							<g:hiddenField name="anonymous" value="false" id="anonymous"/>
 							<g:hiddenField name="url" value="${payu_url}" id="url"/>
 							<g:hiddenField name="projectTitle" value="${vanityTitle}"/>
-							<g:if test="${project.payuStatus}">
+                            <g:if test="${project.payuStatus}">
                                 <g:hiddenField name="isINR" value="${project.payuStatus}" id="isINR"/>
                             </g:if>
 

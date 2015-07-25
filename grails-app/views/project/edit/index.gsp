@@ -61,6 +61,9 @@
 <input type="hidden" class="campaigndate" value="<%=numberOfDays%>"/>
 <input type="hidden" name="uuid" id="uuid"/>
 <input type="hidden" name="charity_name" id="charity_name"/>
+<input type="hidden" name="url" value="${payu_url}" id="url"/>
+<input type="hidden" name="currentUrl" value="${request_url}" id="currentUrl"/>
+
 <div class="feducontent">
 	<div class="container" id="campaignedit">
 		<h1><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit Campaign"/> Edit Campaign</h1>
@@ -432,16 +435,29 @@
                     <h3 class="panel-title">Funding Goal and Campaign End Date</h3>
                 </div>
                 <div class="panel-body">
+                <div class="col-sm-6 col-md-6 col-xs-12">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Amount</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" value="${amount}" id="amount">
+                        <label class="col-sm-4 col-md-4 control-label">Amount</label>
+                        <div class="col-sm-8 col-md-8 campaignamount">
+                            <div class="input-group">
+                                <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" id="${FORMCONSTANTS.AMOUNT}" placeholder="Amount" value="${amount}">
+                                <span class="input-group-addon">
+                                    <g:if test="${payu_url == request_url}">
+                                        <i class="fa fa-inr"></i>
+                                    </g:if>
+                                    <g:else>
+                                        <i class="fa fa-usd"></i>
+                                    </g:else>
+                                </span>
+                            </div>
                             <span id="errormsg"></span>
                         </div>
                     </div>
+                </div>
+                <div class="col-sm-6 col-md-6 col-xs-12">
                     <div class="form-group">
-                        <label class="col-sm-2 control-label">Campaign end date</label>
-                        <div class="col-sm-10">
+                        <label class="col-sm-4 col-md-4 control-label">Campaign end date</label>
+                        <div class="col-sm-8 col-md-8">
                             <div class="input-group enddate"><span class="input-group-addon datepicker-error"><span class="glyphicon glyphicon-calendar"></span></span>
                                 <input class="datepicker pull-left" id="datepicker" name="${FORMCONSTANTS.DAYS}" value="${campaigndate}" readonly="readonly" placeholder="Campaign end date"> 
                             </div>
@@ -465,9 +481,12 @@
                             </script>
                         </div>
                     </div>
+                    <div class="form-group">
+                        
+                    </div>
                 </div>
             </div>
-
+            </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Tell us about your Campaign</h3>
@@ -517,36 +536,36 @@
 	        					<span>Add Images</span>
                                 <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" class="upload" accept="image/jpeg, image/png" multiple>
                             </div>
-							<label class="docfile-orglogo-css" id="editimg">Please select image file.</label>
-							<label class="docfile-orglogo-css" id="campaignfilesize"></label>
+                            <label class="docfile-orglogo-css" id="editimg">Please select image file.</label>
+                            <label class="docfile-orglogo-css" id="campaignfilesize"></label>
                         </div>
                         <div class="col-sm-6" id="campaignthumbnails">
-                                <g:each var="imgurl" in="${project.imageUrl}">
-                                    <div id="imgdiv" class="pr-thumb-div">
-                                        <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
-                                        <div class="deleteicon pictures-edit-deleteicon">
-                                            <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}'
-                                            src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete"/>
-                                        </div>
-                                    </div> 
-                                </g:each>
-                               <script>
-	                               function deleteProjectImage(current,imgst, projectId) {
-	                                   $(current).parents('#imgdiv').remove();
-	                                   $.ajax({
-	                                       type:'post',
-	                                       url:$("#b_url").val()+'/project/deleteProjectImage',
-	                                       data:'imgst='+imgst+'&projectId='+projectId,
-	                                       success: function(data){
-	                                       $('#test').html(data);
-	                                   }
-	                                   }).error(function(){
-	                                       alert('An error occured');
-	                                   });
-	                               }
-                               </script>
-                                <output id="result"></output>
-                                <div id="test"></div>
+                            <g:each var="imgurl" in="${project.imageUrl}">
+                                <div id="imgdiv" class="pr-thumb-div">
+                                    <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
+                                    <div class="deleteicon pictures-edit-deleteicon">
+                                        <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}'
+                                        src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete"/>
+                                    </div>
+                                </div> 
+                            </g:each>
+                            <script>
+                             function deleteProjectImage(current,imgst, projectId) {
+                                 $(current).parents('#imgdiv').remove();
+                                 $.ajax({
+                                     type:'post',
+                                     url:$("#b_url").val()+'/project/deleteProjectImage',
+                                     data:'imgst='+imgst+'&projectId='+projectId,
+                                     success: function(data){
+                                     $('#test').html(data);
+                                 }
+                                 }).error(function(){
+                                     alert('An error occured');
+                                 });
+                             }
+                            </script>
+                            <output id="result"></output>
+                            <div id="test"></div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -556,7 +575,7 @@
                         </div>
                         <iframe class="edits-video" id="ytVideo" src="${project.videoUrl}"></iframe>
                     </div>
-                    </div>
+                </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -578,3 +597,4 @@
 
 </body>
 </html>
+            

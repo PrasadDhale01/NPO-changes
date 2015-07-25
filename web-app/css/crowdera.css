@@ -10,7 +10,7 @@ body {
 }
 
 .feduoutercontent {
-    margin-top: 64px;
+    margin-top: 60px;
 }
 h1.headingtext.how-it-works-title {
 	color: #005f84;
@@ -125,7 +125,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-brand {
-    height: 70px;
+    height: 60px;
 }
 .navbar-brand >img {
 	height: 48px;
@@ -153,11 +153,13 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-nav {
-    margin-top: 13px;
+    margin-top: 10px;
 }
-
+.navbar-brand {
+    padding: 7px 15px !important;
+}
 .navbar-right {
-    margin-top: 20px;
+    margin-top: 15px;
 }
 
 .navbar-right-logged-in {
@@ -183,13 +185,29 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .nav > li > a {
-    padding: 11px 12px !important;
+    padding: 4px 12px !important;
 }
 
 .nav > li > a:hover,
 .nav > li > a:focus {
     text-decoration: none;
     background-color: #006083; /* Change rollover cell color here */
+}
+
+.nav-text1 img#createButton {
+    vertical-align: middle;
+    height: 60px;
+    padding-left: 12px;
+}
+.navbar-header {
+    height: 60px;
+}
+.nav-create-button {
+	margin-right: -7px;
+}
+.nav-text1 img#createButton-sm {
+  vertical-align: middle;
+  padding-left: 12px;
 }
 
 /*-------------------- Image courasel new slider and button ------------------------------------*/
@@ -667,7 +685,6 @@ a {
 @media only screen and (min-width: 768px){
     ul.nav.navbar-nav.navbar-right.nav-create-button{
         margin-top: 0;
-        padding-left: 1%;
     }
 }
 /* Screen resolution 641 x 767*/
@@ -1100,7 +1117,7 @@ a {
        font-size: 8px !important;
     }
     .nav{
-        font-size:11px;
+        font-size:14px;
     }
     .ack-panel-width{
     	margin-top:21px;
@@ -1586,7 +1603,6 @@ a {
     
     ul.nav.navbar-nav.navbar-right.nav-create-button {
         margin-top: 0;
-        padding-left: 3%;
     }
     
     .navbar-collapse.collapse.in {
@@ -1693,6 +1709,10 @@ a {
 	    font-weight: 300;
 	    line-height: 0;
     }
+    .contribution-inr .fa-inr {
+        font-size: 15px !important;
+        color: #686868 !important;
+    }
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
@@ -1783,6 +1803,10 @@ a {
     }
     div.container.crewpage > h1 {
         text-align: center;
+    }
+    .contribution-inr .fa-inr {
+        font-size: 15px !important;
+        color: #686868 !important;
     }
 }
 @media only screen and (min-width:506px) and (max-width: 640px){
@@ -1949,6 +1973,12 @@ a {
         width: 100%;
         float: none;
         padding: 0;
+    }
+    .tile-goal .fa-inr {
+        font-size: 17px !important;
+    }
+    .payu-inr .fa-inr {
+        font-size: 18px !important;
     }
 }
 
@@ -3239,32 +3269,19 @@ div.tile-min-height{
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 }
 
-@media only screen and (min-width :990px){
-    .navbar-brand {
-        padding: 17px 15px !important;
-    }
-
-}
-
-
 
 @media only screen and (max-width: 991px){
 
-    li a.nav-text1 {
-        margin-top: 3px !important;
+    ul.nav.navbar-nav.nav-icon-bar li.searchengine {
+        margin-top: 4px !important;
     }
 
-    ul.nav.navbar-nav.nav-icon-bar li.searchengine {
-        margin-top: 13px !important;
-    }
-	
-    .navbar-collapse {
-        width: 75%;
-        float: right;
+    .nav-create-button {
+        margin-right: -3px;
     }
 
     .navbar-default {
-        height: 75px;
+        height: 63px;
     }
     
     span#search-container {
@@ -3285,10 +3302,10 @@ div.tile-min-height{
 
     .btn-image {
         background-color:#FF7F50;
-  	border-color: #FF7F50;
-  	width:86.38px;
-  	height:28.1px;
-  	padding:0px;
+  	    border-color: #FF7F50;
+  	    width:86.38px;
+  	    height:28.1px;
+  	    padding:0px;
     }
 	
     .btn-fb {
@@ -3353,14 +3370,14 @@ div.tile-min-height{
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
   	.nav > li > a {
-	    padding: 7px 17px !important;
+	    padding: 4px 8px !important;
 	}
 	.input-group[class*="col-"] {
 	    width:100%;
-	}	
+	}
 	.leftcard-column {
 	    width: 75%;
-	}	
+	}
 	.leftcard-column .form-control {
 	    width: 91%;
 	}
@@ -3516,7 +3533,7 @@ textarea.form-control {
 /* Media 980px */
 @media only screen and (min-width: 980px) {
     .nav > li > a {
-        padding: 7px 11x;
+        padding: 4px 11x;
     }
     .squarebox {
         width: 180px;
@@ -3556,7 +3573,7 @@ textarea.form-control {
 		margin-left: -29px !important;
 	}
     .nav > li > a {
-        padding: 7px 5px;
+        padding: 4px 5px;
     }
     .btn-sm.btn-primary.validatebutton {
         margin-left: 207px;
@@ -3576,6 +3593,10 @@ textarea.form-control {
 		color: #b6bbc0;
 		font-size: 9px;
 	}
+	ul.nav.navbar-nav.nav-icon-bar {
+        width: 32% !important;
+    }
+	
 	 /**********************dropdown********************/
 	.dropdown-menu-head {
 		top: 160%;
@@ -3700,7 +3721,7 @@ textarea.form-control {
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
 	.nav > li > a {
-	    padding: 7px 14px !important;
+	    padding: 4px 8px !important;
 	}
     .testimonial {
 	    max-width: 100%;
@@ -3717,6 +3738,12 @@ textarea.form-control {
 	.input-group[class*="col-"] {
 	    width:100%;
 	}
+	ul.nav.navbar-nav.nav-icon-bar {
+        width: 25% !important;
+    }
+    ul.nav-icon-bar {
+        padding-left: 10px !important;
+    }
 }
 
 /*Screen resolution 644 x 767 */
@@ -3884,7 +3911,7 @@ textarea.form-control {
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
     .nav > li > a {
-        padding: 7px 10px !important;
+        padding: 4px 10px !important;
     }
     .squarebox {
         width: 180px;
@@ -3947,7 +3974,7 @@ textarea.form-control {
         margin-top: -4%;
     }
     .nav > li > a{
-        padding:7px 10px !important;
+        padding:4px 5px !important;
     }
     .validatebutton {
         float: right;
@@ -3991,6 +4018,12 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 768px) {
+    ul.nav.navbar-nav.nav-icon-bar {
+        width: 24% !important;
+    }
+    ul.nav-icon-bar {
+        padding-left: 6px !important;
+    }
 	.arrow-top {
 		margin-Top: -33px !important;
         }
@@ -4098,7 +4131,7 @@ textarea.form-control {
         margin-top: -4%;
     }
     .nav > li > a {
-        padding: 7px 17px;
+        padding: 4px 17px;
     }
     .dropdown-menu.usr > li > a {
         padding: 7px 21px !important;
@@ -4134,7 +4167,7 @@ textarea.form-control {
 }
 @media only screen and (min-width: 767px) and (max-width: 768px){
  .nav > li > a{
-        padding: 7px 8px !important;
+        padding: 4px 8px !important;
   }
   .dropdown-menu.usr > li > a {
     padding: 7px 21px !important;
@@ -4178,6 +4211,9 @@ textarea.form-control {
 }
 }
 @media only screen and (max-width: 767px){
+    .navbar-collapse {
+        float: right;
+    }
 	.rewarddesc,.rewarddesctitle {
 	    margin-left: 1px !important;
 	}
@@ -7129,8 +7165,7 @@ input.search-box-xs{
 }
 
 ul.nav.navbar-nav.nav-icon-bar li.searchengine {
-    margin-top: 19px;
-    padding-right:4%;
+    margin-top: 5px;
 }
 
 a.search-image.glyphicon.glyphicon-search{
@@ -7481,7 +7516,7 @@ li .create-button{
 }
 
 ul.nav-icon-bar {
-    padding-left:3%;
+    padding-left:2%;
 }
 
 #search-bar {
@@ -7559,4 +7594,10 @@ span#search-container {
 }
 .IN-TW-policy-ol-padding{
 	padding-left:18px !important;
+}
+.nav-text1 #createButton-sm{
+    padding-left: 15px !important;
+}
+.search-box{
+    display:none;
 }

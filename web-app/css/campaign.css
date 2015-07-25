@@ -315,3 +315,67 @@ a.customer-support-a {
 	padding-left: 0px !important;
 	margin-bottom: 15px;
 }
+.campaignamount .fa-inr , .campaignamount .fa-usd{
+	font-size: 20px;
+}
+.campaignamount .input-group-addon, .campaignamount .input-group-btn .btn {
+    padding: 6px 14px !important;
+}
+#payuemail .col-sm-2, #payuemail .col-sm-4 {
+	padding-left: 0px !important;
+}
+#payuemail .control-label {
+	padding-right: 32px !important;
+}
+.tile-goal .fa-inr {
+	font-size: 20px !important;
+}
+.show-contribution-amt-tile .fa-inr{
+	font-size: large !important;
+}
+.teamtile .fa-inr {
+	font-size: large !important;
+}
+.rewardsection .fa-inr{
+	font-size: large !important;
+	color: #686868 !important;
+	padding-right: 2px;
+}
+.contribution-inr .fa-inr {
+	font-size: large !important;
+	color: #686868 !important;
+	padding-right: 2px;
+}
+.tile-goal-show .fa-inr {
+	font-size: 20px !important;
+	color: #686868 !important;
+	padding-right: 2px;
+}
+.fund-inr .fa-inr {
+	font-size: 17px !important;
+	padding-right: 2px;
+}
+.payu-inr .fa-inr {
+    font-size: 24px !important;
+    color: #686868 !important;
+    padding-right: 2px;
+}
+.mycontribution.fa-inr {
+    font-size: 18px !important;
+    padding-right: 2px;
+}
+.managcampaign-rewardtile .fa-inr {
+    padding-right: 2px;
+}
+.search-icon-header img {
+	position: absolute;
+    padding-left: 5px;
+    padding-top: 7px;
+    display: inline-block;
+}
+.search-image-header {
+    padding-right: 40px;
+}
+.search-box {
+	width: 0px;
+}

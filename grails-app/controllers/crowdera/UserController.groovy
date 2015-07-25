@@ -53,6 +53,7 @@ class UserController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def userprofile(String userViews, String activeTab){
         User user = (User)userService.getCurrentUser()
+		def environment = Environment.current.getName()
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
         } else {
@@ -67,7 +68,7 @@ class UserController {
 //            def contributions = projectService.getContibutionByUser(user)
 			def project = projectService.getProjects(projects, projectAdmins, teams, payu_url, request_url)
 			def contributions = projectService.getContibutionByUser(user, payu_url, request_url)
-            render view: userViews, model: [user: user, projects: project, contributions: contributions, activeTab:activeTab]
+            render view: userViews, model: [user: user, projects: project, contributions: contributions, activeTab:activeTab, environment: environment]
         }
     }
     

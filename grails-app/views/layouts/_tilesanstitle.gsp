@@ -47,12 +47,16 @@
 		</div>
 	</div>
     <div class="row amount-centering">
-    	<div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
-        		<span class="text-center tile-goal show-contribution-amt-tile">$<span class="lead show-contribution-amt-tile">${amount}</span></span>
+        <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
+            <span class="text-center tile-goal show-contribution-amt-tile">
+                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead show-contribution-amt-tile">${amount}</span>
+            </span>
         </div>
         <div class="col-md-4 col-xs-4 amount-alignment contribution-border amount-text-align text-center">
-			<span class="text-center tile-goal show-contribution-amt-tile">$<span class="lead show-contribution-amt-tile">${contributedSoFar}</span></span>
-		</div>
+            <span class="text-center tile-goal show-contribution-amt-tile">
+                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead show-contribution-amt-tile">${contributedSoFar}</span>
+            </span>
+        </div>
         
         <g:if test="${ended}">
             <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size contribution-tile show-contribution-amt-tile">

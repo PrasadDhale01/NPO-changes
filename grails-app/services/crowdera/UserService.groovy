@@ -162,7 +162,19 @@ class UserService {
             return false;
         }
     }
+    
+    def isGooglePlusUser() {
+        return isGooglePlusUser(getCurrentUser())
+    }
 
+    def isGooglePlusUser(User user) {
+        if (GooglePlusUser.findByUser(user)) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    
     def isCommunityManager(User user) {
         if (UserRole.findByUserAndRole(user, roleService.communityManagerRole())) {
             return true

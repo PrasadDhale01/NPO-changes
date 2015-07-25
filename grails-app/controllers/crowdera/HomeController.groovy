@@ -6,17 +6,16 @@ class HomeController {
     def userService
 
     def index() {
-		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
+        def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def fb = params.fb
-		if(Environment.DEVELOPMENT == Environment.current || Environment.TEST == Environment.current || Environment.current.getName() == 'testIndia'){
-//			def projects = projectService.showProjects()
-			def projects = projectService.showProjects(payu_url, request_url)
-			return [projects: projects, fb: fb]
-		} else{
-			def projects = projectService.projectOnHomePage()
-			return [projects: projects, fb: fb]
-		}
+        if(Environment.DEVELOPMENT == Environment.current || Environment.TEST == Environment.current || Environment.current.getName() == 'testIndia'){
+            def projects = projectService.showProjects(payu_url, request_url)
+            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email]
+        } else {
+            def projects = projectService.projectOnHomePage()
+            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email]
+        }
     }
     
     def crowderacustomerhelp() {

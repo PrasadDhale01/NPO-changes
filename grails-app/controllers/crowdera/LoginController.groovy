@@ -1,7 +1,8 @@
 package crowdera
 
-import grails.plugin.springsecurity.SpringSecurityUtils
-import grails.plugin.springsecurity.annotation.Secured
+import grails.plugin.springsecurity.SpringSecurityUtils;
+import grails.plugin.springsecurity.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 class LoginController {
 
@@ -10,6 +11,10 @@ class LoginController {
     def roleService
     def grailsLinkGenerator
     def facebookService
+    def googlePlusService
+    def oauthService
+
+    public static final String SPRING_SECURITY_OAUTH_TOKEN = 'springSecurityOAuthToken'
 
     boolean invite_user = false
 
@@ -97,6 +102,8 @@ class LoginController {
             render(view: 'error', model: [message: 'A user with that email already exists. Please use a different email.'])
         } else if (userService.isFacebookUser(userObj)) {
             render(view: 'error', model: [message: 'A Facebook user with that email already exists. Please use a different email to register or login through Facebook.'])
+        } else if (userService.isGooglePlusUser(userObj)) {
+            render(view: 'error', model: [message: 'A Google Plus user with that email already exists. Please use a different email to register or login through Google Plus.'])
         } else {
             def user = userService.getUserObject(params)
             user.enabled = false
@@ -273,6 +280,59 @@ class LoginController {
             } else {
                 render(view: 'error', model: [message: 'Error while updating user password. Please try again later.'])
             }
+        }
+    }
+    
+    def googleSuccess (){
+        def provider = 'google'
+        def sessionKey = oauthService.findSessionKeyForAccessToken(provider)
+        if (!session[sessionKey]) {
+            flash.googlePlusErrorMessage =  "No OAuth token in the session for provider google!"
+            render (view:'/login/error')
+        }
+
+        // Create the relevant authentication token and attempt to log in.
+        def oAuth = googlePlusService.createAuthToken(session[sessionKey])
+        def email = oAuth.userEmail
+        def oAuthToken = oAuth.oAuthToken
+        if (oAuthToken){
+            if (oAuthToken.principal instanceof User) {
+                authenticateAndRedirect(oAuthToken, email)
+            }
+        } else {
+            flash.googlePlusErrorMessage = "Cannot get Google response.Please try again"
+            render (view:'/login/error')
+        }
+    }
+
+    def authenticateAndRedirect(def oAuthToken, def email) {
+        try {
+            session.removeAttribute SPRING_SECURITY_OAUTH_TOKEN
+            SecurityContextHolder.getContext().setAuthentication(oAuthToken);
+        }
+        catch (Exception e) {
+            log.errorEnabled = "Unable to login using spring security : "+e
+        }
+        def currentUser = userService.getCurrentUser();
+        def user = User.findByEmail(email)
+        if (currentUser.id == user.id){
+            redirect (controller:'home', action:'index')
+        } else {
+            redirect (controller:'home', action:'index', params:[isDuplicate: 'yes', email:email])
+        }
+        
+        
+    }
+
+    def googleFailure = {
+        flash.googleFailureMessage = "Google authentication failed.Please try again"
+        redirect action:'auth'
+    }
+    
+    def googlePlusAccountsMerge(){
+        if (params.userResponse.equalsIgnoreCase("yes")) {
+            googlePlusService.mergeGooglePlusUser(params.email)
+            redirect (action : 'googleSuccess')
         }
     }
 }

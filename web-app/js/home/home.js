@@ -182,4 +182,14 @@ $( document ).ready(function() {
 		    window.location.href =$("#b_url").val()+"/user/logout";
 	    }
 	}
+	
+	var googlePlus = $('#googlPlusUser-login').val();
+    var email = $('#userEmail').val();
+	if (googlePlus) {
+	    if (confirm('It looks like you already have another account with same email. Would you like to merge the accounts?')) {
+		    window.location.href =$("#b_url").val()+"/login/googlePlusAccountsMerge/?userResponse=yes&email="+email;
+	    } else {
+		    window.location.href =$("#b_url").val()+"/user/logout";
+	    }
+	}
 });

@@ -23,7 +23,7 @@
             </a><br>
             
             <oauth:connect class="btn btn-block btn-social btn-google-plus" provider="google" id="google-connect-link">
-                <i class="fa fa-google-plus fa-facebook-styles"></i> Sign in with Google +
+                <i class="fa fa-google-plus fa-facebook-styles"></i> Register with Google +
             </oauth:connect>
 
             <hr/>

@@ -6,6 +6,11 @@ $(function() {
     $('#iconfilesize').hide();
     $('#campaignfilesize').hide();
     
+    $('#PayUMoney').hide();
+    
+    var url = $('#url').val();
+    var currentUrl = $('#currentUrl').val();
+    
     /********************* Create page Session timeout ***************************/
         var SessionTime = 60* 1000 * 60; //set for 60 minute
         var tickDuration = 1000;
@@ -47,7 +52,7 @@ $(function() {
     $("#icondiv").hide();
         
     $("#payopt").show(); // paypal option
-    $("#paypalemail").hide(); // paypal button
+//    $("#paypalemail").hide(); // paypal button
     
     /* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
@@ -149,6 +154,33 @@ $(function() {
             payuEmail:{
             	required:true,
             	email:true
+            },
+            secretKey: {
+            	required:true,
+            },
+            pay: {
+            	required:true
+            },
+            charitableId: {
+            	required:true
+            },
+            organizationName: {
+            	required:true
+            },
+            webAddress: {
+            	required:true,
+            	isWebUrl:true
+            },
+            iconfile: {
+            	required:true
+            },
+            answer: {
+            	required:true
+            },
+            amount: {
+               required: true,
+               number: true,
+               maxlength: 6
             }
             /*
             imageUrl: {
@@ -166,7 +198,7 @@ $(function() {
                 error.appendTo(element.parent().parent());
             } else if(element.is(":checkbox")) {
                 error.appendTo(element.parent());
-            } else if($(element).prop("id") == "projectImageFile" || $(element).prop("id") == "amount") {
+            } else if($(element).prop("id") == "projectImageFile") {
                 error.appendTo(element.parent().parent());
             }else if($(element).prop("id") == "iconfile") {
                 error.appendTo(element.parent().parent());
@@ -178,25 +210,34 @@ $(function() {
         //ignore: []
     });
     
-    var url = $('#url').val();
-    var currentUrl = $('#currentUrl').val();
+//    if(url == currentUrl) {
+//        $("[name='amount']").rules("add", {
+//            required: true,
+//            number: true,
+//            min: 5000,
+//            maxlength: 6,
+//            max: 999999
+//        });
+//    } else {
+//    	$("[name='amount']").rules("add", {
+//            required: true,
+//            number: true,
+//            maxlength: 6,
+//            max: 999999
+//        });
+//    }
     
-    if(url == currentUrl) {
-        $("[name='amount']").rules("add", {
-            required: true,
-            number: true,
-            min: 5000,
-            maxlength: 6,
-            max: 999999
-        });
-    } else {
-    	$("[name='amount']").rules("add", {
-            required: true,
-            number: true,
-            maxlength: 6,
-            max: 999999
-        });
-    }
+    $("#fbshare").click(function(){
+        var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl').val());
+        window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+        return false;
+    });
+    
+    $("#twitterShare").click(function(){
+        var url = 'https://twitter.com/share?text=Check campaign at crowdera.co!';
+        window.open(url, 'Share on Twitter', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+        return false;
+    });
     
     $('.createsubmitbutton').click(function(event) {
         if(validator.form()){
@@ -216,15 +257,7 @@ $(function() {
     }, "Please enter verified paypal email id");
     
     $('#submitProject').on('click', function() {
-    	$('[name="pay"], [name="iconfile"],[name="organizationName"],[name="thumbnail"],[name="answer"],[name="wel"],[name="charitableId"],[name="paypalEmail"]').each(function () {
-            $(this).rules('add', {
-                required: true
-            });
-        });
-    	$("[name='webAddress']").rules("add", {
-    		isWebUrl: true,
-    		required: true
-    	});
+    	
         $( "#projectImageFile" ).rules( "add", {
             required: true,
             messages: {
@@ -374,6 +407,33 @@ $(function() {
         }  
     });
      
+     $('#payment').change(function(){
+    	 var pay = $('#payment').val();
+    	 if(pay=='FIR'){
+    		 $('#paypalemail').hide();
+    		 $('#charitableId').show();
+    		 
+    	 }else if(pay=='PAY'){
+    		 $('#charitableId').hide();
+    		 $('#paypalemail').show();
+    	 }else if(pay=='PMT'){
+    		 if(pay == 'selected'){
+    			 $('#paypalemail').show();
+    		 }
+    		 $('#paypalemail').hide();
+    		 $('#charitableId').hide();
+    	 }
+     });
+     
+     $('#payment').change(function(){
+    	 var payind = $('#payment').val();
+    	 if(payind=='PAYU'){
+    		 $('#PayUMoney').show();
+    	 }else if(payind=='PMT'){
+    		 $('#PayUMoney').hide();
+    	 }
+     });
+     
 	$('#countryList').change(function(){
 	    var c = $('#countryList').val();
 	    if(c=='IN'){
@@ -387,19 +447,22 @@ $(function() {
 
       /******************************Video Thumbnail***************************************/
      
-     $('#videoUrl').change(function(){
-          var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-          var url= $('#videoUrl').val().trim();
-          var match = url.match(regExp);
-        
-          if (match && match[2].length == 11) {
-              $('#ytVideo').show();
-              var vurl=url.replace("watch?v=", "v/");
-              $('#ytVideo').html('<iframe style="width:200px;height:100px; display:block;" src='+ vurl +'></iframe>');
-          }else if($(this)){
-              $('#ytVideo').hide();
-          }
-     });
+	$('#add').on('click',function(){
+        var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var url= $('#videoUrl').val().trim();
+        var match = url.match(regExp);
+      
+        if (match && match[2].length == 11) {
+            $('#ytVideo').show();
+            var vurl=url.replace("watch?v=", "v/");
+            $('#ytVideo').html('<iframe style="width:218%;height:170px; display:block;" src='+ vurl +'></iframe>');
+        }else if($(this)){
+            $('#ytVideo').hide();
+        }
+    });
+    $('#videoUrl').change(function(){
+        $('#ytVideo').hide();
+    });
 
 
      /** ********************Organization Icon*************************** */
@@ -527,7 +590,7 @@ $(function() {
   
   event.altKey==true;
   var currentstring = $('#campaignTitle').val().length;
-  if(currentstring <=99) {
+  if(currentstring <=54) {
       var text = currentstring + 1;
   }
   if (event.keyCode > 31) {
@@ -535,7 +598,7 @@ $(function() {
     	setTitleText();
     }
     else{
-  	  if(currentstring <99)
+  	  if(currentstring <54)
   		currentstring++;
         $('#titleLength').text(text);
     }
@@ -666,52 +729,66 @@ function setTitleText(){
           return false;
     }
     
-  $('#createreward').click(function(){
-     count++;
-     $('#addNewRewards').append(
-         '<div class="rewardsTemplate" id="rewardTemplate">'+
-           '<div>'+
-             '<div class="form-group col-sm-6">'+
-                '<label class="col-sm-4 control-label">Perk Title</label>'+
-                '<div class="col-sm-8 rewardTitle">'+
-                   '<input type="text" placeholder="Title" name="rewardTitle'+count+'" id="rewardTitle'+count+
-                      '"  class="form-control required rewardTitle">'+
-                '</div>'+
-              '</div>'+
-              '<div class="form-group col-sm-6 rewardPriceClass">'+
-                 '<label class="col-sm-3 control-label" id="lblrPrice">Perk Price</label>'+
-                 '<div class="col-sm-9 rewardPriceDiv">'+
-                   '<input type="number" placeholder="Enter digits only"  name="rewardPrice'+count+'" id="rewardPrice'+count+
-                      '" style="width:100%;" class="form-control  rewardPrice required" min="0" >'+
-                  '</div>'+
-              '</div>'+
-            '</div>'+
-            '<div class="form-group row">'+
-                '<div class="col-sm-12">'+
-                   '<label class="col-sm-2 control-label rewarddesctitle">Perk Description</label>'+
-                    '<div class="col-sm-10">'+
-                      '<textarea class="form-control required rewardDescription" name="rewardDescription'+count+
-                         '" id="rewardDesc'+count+'" rows="2" placeholder="Description" maxlength="250"></textarea>'+
-                    '</div>'+
-                '</div>'+
-            '</div>'+
-            '<div class="form-group row">'+
-                '<div class="col-sm-12">'+
-                    '<div class="col-sm-2">'+
-                        '<label class="control-label">Which of the following is necessary to ship this perk:</label>'+
-                    '</div>'+
-                    '<div class="col-sm-10 shippingreward">'+
-                        '<label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing address</label>'+
-                        '<label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email address</label>'+
-                        '<label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter handle</label>'+
-                        '<label class="btn btn-primary btn-sm checkbox-inline control-label lblCustom"><input type="checkbox" name="custom'+count+'" value="true" id="customcheckbox'+count+'">Custom</label>'+
-                    '</div>'+
-                '</div>'+
-            '</div><hr>'+
-          '</div>'
-      );
-      $('#rewardCount').attr('value',count);
-  });
+    $('#createreward').click(function(){
+        count++;
+        var str ='<div class="rewardsTemplate cr-perks-spec" id="rewardTemplate">'+
+        
+        '<div class="col-sm-2">'+
+           '<div class="form-group">'+
+               '<div class="col-sm-12">';
+        
+        if(url==currentUrl){
+           	str = str + '<span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>';
+             }else{
+           	str = str + '<span class="cr2-currency-label">$</span>' ;
+             }
+               
+             str = str +  '<input type="text" placeholder="Amount"  name="rewardPrice'+count+'" id="rewardPrice'+count+
+                       '" style="width:100%;" class="form-control cr-input-digit required" min="0" >'+
+           '</div>'+
+       '</div>'+
+    '</div>'+
+       
+    '<div class="col-sm-5">'+
+       '<div class="form-group">'+
+           '<div class="col-sm-12">'+
+              '<input type="text" placeholder="Name of Perk" name="rewardTitle'+count+'" id="rewardTitle'+count+
+                      '"  class="form-control cr-perk-title-number required">'+
+           '</div>'+
+       '</div>'+
+    '</div>'+
+    
+    '<div class="col-sm-5">'+
+       '<div class="form-group">'+
+           '<div class="col-sm-12">'+
+               '<input type="text" placeholder="Number available" name="rewardNumberAvailable'+count+'" id="rewardNumberAvailable'+count+'" class="form-control cr-perk-title-number required">'+
+           '</div>'+
+       '</div>'+
+    '</div>'+
+  
+   '<div class="form-group row">'+
+       '<div class="col-sm-12">'+
+           '<div class="col-sm-12">'+
+             '<textarea class="form-control required rewardDescription" name="rewardDescription'+count+
+                '" id="rewardDesc'+count+'" rows="2" placeholder="Description" maxlength="250"></textarea>'+
+                '<p class="cr-perk-des-font">Please refer to our Terms of Use for more details on perks.</p>'+
+           '</div>'+
+       '</div>'+
+   '</div>'+
+   '<div class="col-sm-12">'+
+       '<div class="form-group">'+
+           '<div class="btn-group col-sm-12 cr-perk-check" data-toggle="buttons">'+
+               '<label class="btn btn-default col-sm-3"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing address</label>'+
+               '<label class="btn btn-default col-sm-3"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email address</label>'+
+               '<label class="btn btn-default col-sm-3"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter handle</label>'+
+               '<label class="btn btn-default col-sm-3"><input type="checkbox" name="custom'+count+'" value="true" id="customcheckbox'+count+'">Custom</label>'+
+           '</div>'+
+       '</div>'+
+   '</div>'+
+ '</div>';
+        $('#addNewRewards').append(str);
+         $('#rewardCount').attr('value',count);
+     });
     
   $('#removereward').click(function(){
     if($('#addNewRewards').find('.rewardsTemplate').length > 1) {

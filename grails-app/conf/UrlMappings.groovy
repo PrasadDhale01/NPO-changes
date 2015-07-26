@@ -37,7 +37,10 @@ class UrlMappings {
         "/blogs/$id"(controller:'blog', action:'show')
 
         /* Project */
-        "/campaigns/create"(controller:'project', action:'create')
+        "/campaign/create"(controller:'project', action:'create')
+        "/campaign/start/$title"(controller:'project', action:'redirectCreateNow')
+        "/campaign/success/$title"(controller:'project', action:'launch')
+		
         "/campaign/save/$projectTitle"(controller:'project', action:'saveProject')
         "/campaign/draft/$projectTitle"(controller:'project', action:'draftProject')
         "/campaign/managecampaign"(controller:'project', action:'manageCampaign')

@@ -304,20 +304,6 @@ environments {
             }
         }
         
-//        staging.crowdera.in
-//        oauth {
-//            providers {
-//                google {
-//                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
-//                    key = '1049378830663-joskj39vnpba4ju66dvah4q969g6c5ch.apps.googleusercontent.com'
-//                    secret = '7h9_YkP2UhVcVxt6OsFYGjxG'
-//                    successUri = '/login/googleSuccess'
-//                    failureUri = '/login/googleFailure'
-//                    callback = "http://staging.crowdera.in/oauth/google/callback"
-//                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
-//                }
-//            }
-//        }
     }
     production {
         crowdera.facebook.appId = '354215177926850'
@@ -390,21 +376,6 @@ environments {
                 }
             }
         }
-        
-//        crowdera.in
-//        oauth {
-//            providers {
-//                google {
-//                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
-//                    key = '1049378830663-juk0psg991qlapckdegi2pfhieo33gjc.apps.googleusercontent.com'
-//                    secret = 'nweSovW1WxgeJ5EHKLPnYi7W'
-//                    successUri = '/login/googleSuccess'
-//                    failureUri = '/login/googleFailure'
-//                    callback = "https://crowdera.in/oauth/google/callback"
-//                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
-//                }
-//            }
-//        }
     }
 	
 	testIndia {
@@ -461,6 +432,114 @@ environments {
             }
         }
     }
+	
+    stagingIndia {
+		crowdera.facebook.appId = '354215177926850'
+		crowdera.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
+
+		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
+
+		crowdera.BASE_URL = 'http://staging.crowdera.in'
+
+		grails.logging.jul.usebridge = false
+		grails.dbconsole.enabled = true
+		grails.dbconsole.urlRoot = '/secured/dbconsole'
+		// TODO: grails.serverURL = "http://www.changeme.com"
+
+		/* Stripe test keys */
+		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
+		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+
+		/* FreshDesk Details */
+		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+		crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+		crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+		crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
+
+		/*MailChimp details*/
+		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
+		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
+		crowdera.MAILCHIMP.LISTID="e37aea1b78"
+
+		/*PayUMoney details*/
+		crowdera.PAYU.BASE_URL = 'http://staging.crowdera.in'
+		crowdera.PAYU.TEST_URL='https://payu.in/_payment.php'
+		crowdera.PAYU.KEY='czBDue'
+		crowdera.PAYU.SALT='g57jz4Cw'
+
+		mandrill {
+			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
+		}
+		
+        oauth {
+            providers {
+                google {
+                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+                    key = '1049378830663-joskj39vnpba4ju66dvah4q969g6c5ch.apps.googleusercontent.com'
+                    secret = '7h9_YkP2UhVcVxt6OsFYGjxG'
+                    successUri = '/login/googleSuccess'
+                    failureUri = '/login/googleFailure'
+                    callback = "http://staging.crowdera.in/oauth/google/callback"
+                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+                }
+            }
+        }
+	}
+
+	prodIndia {
+		crowdera.facebook.appId = '354215177926850'
+		crowdera.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
+
+		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
+		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
+
+		crowdera.BASE_URL = 'http://crowdera.in'
+
+		grails.logging.jul.usebridge = false
+		grails.dbconsole.enabled = true
+		grails.dbconsole.urlRoot = '/secured/dbconsole'
+		// TODO: grails.serverURL = "http://www.changeme.com"
+
+		/* Stripe test keys */
+		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
+		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+
+		/* FreshDesk Details */
+		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
+		crowdera.freshDesk.LOGIN_EMAIL = 'info@crowdera.co'
+		crowdera.freshDesk.sharedSecret = '9073b71999fbe30aa3967720181d3eab'
+		crowdera.freshDesk.BASE_URL = 'https://crowdera.freshdesk.com/login/sso'
+
+		/*MailChimp details*/
+		crowdera.MAILCHIMP.SUBSCRIBE_URL="https://crowdera.us3.list-manage.com/subscribe/post"
+		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
+		crowdera.MAILCHIMP.LISTID="e37aea1b78"
+
+		/*PayUMoney details*/
+		crowdera.PAYU.BASE_URL = 'http://crowdera.in'
+		crowdera.PAYU.TEST_URL='https://payu.in/_payment.php'
+		crowdera.PAYU.KEY='czBDue'
+		crowdera.PAYU.SALT='g57jz4Cw'
+
+		mandrill {
+			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
+		}
+		
+        oauth {
+            providers {
+                google {
+                    api = org.grails.plugin.springsecurity.oauth.GoogleApi20
+                    key = '1049378830663-juk0psg991qlapckdegi2pfhieo33gjc.apps.googleusercontent.com'
+                    secret = 'nweSovW1WxgeJ5EHKLPnYi7W'
+                    successUri = '/login/googleSuccess'
+                    failureUri = '/login/googleFailure'
+                    callback = "http://crowdera.in/oauth/google/callback"
+                    scope = 'https://www.googleapis.com/auth/plus.me https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email'
+                }
+            }
+        }
+	}
 }
 
 // log4j configuration

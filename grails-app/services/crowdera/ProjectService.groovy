@@ -62,6 +62,12 @@ class ProjectService {
 
     def getProjectByParams(def projectParams){
          Project project = new Project(projectParams)
+		 Beneficiary beneficiary = new Beneficiary();
+         project.beneficiary = beneficiary
+         project.category = "OTHER"
+         project.created = new Date()
+         User user = userService.getCurrentUser()
+         project.user = user
          return project
     }
     
@@ -562,6 +568,7 @@ class ProjectService {
     
     def getCountry(){
         def country = [
+           CT:'Country',
            AF:'Afghanistan',
            AX:'Aland Islands',
            AL:'Albania',
@@ -809,6 +816,23 @@ class ProjectService {
         ]
         return country
     }
+	
+    def getPayment(){
+        def payment = [
+            PMT:'Payment',
+            PAY:'Paypal',
+            FIR:'FirstGiving',
+        ]
+        return payment
+    }
+	
+	def getIndiaPaymentGateway() {
+		def payment = [
+			PMT:'Payment',
+			PAYU:'PayUMoney',
+		]
+		return payment
+	}
     
     def getState() {
         def state = [
@@ -1088,6 +1112,7 @@ class ProjectService {
     
     def getCategoryList() {
         def categoryOptions = [
+            (Project.Category.CATEGORY): 'Category',
             (Project.Category.ANIMALS): "Animals",
             (Project.Category.ARTS): "Arts",
             (Project.Category.CHILDREN): "Children",
@@ -1995,20 +2020,16 @@ class ProjectService {
 	  def finalList
 	  projects.each{ project->
 		  boolean ended = isProjectDeadlineCrossed(project)
-		  if(ended) {
+          if(ended) {
 			  endedProjects.add(project)
-		  }else{
+		  } else if(project.draft==true){
+			  draftProjects.add(project)
+		  } else if(project.inactive==false && project.validated==false && project.draft==false){
+			  pendingProjects.add(project)
+		  } else{
 		  	  if(project.validated==true && project.inactive==false){
 			      activeProjects.add(project)
 			  }
-		  }
-		  
-		  if(project.draft==true){
-			  draftProjects.add(project)
-		  }
-		  
-		  if(project.inactive==false && project.validated==false && project.draft==false){
-			  pendingProjects.add(project)
 		  }
 	  }
       sortedProjects =activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
@@ -2030,20 +2051,16 @@ class ProjectService {
 				def payustatus= isPayuProject(project)
 				if(payustatus==true){
 					boolean ended = isProjectDeadlineCrossed(project)
-					if(ended && project.payuStatus==true) {
+                    if(ended && project.payuStatus==true) {
 						endedProjects.add(project)
-					}else{
+					} else if(project.draft==true && project.payuStatus==true){
+						draftProjects.add(project)
+					} else if(project.inactive==false && project.validated==false && project.draft==false && project.payuStatus==true){
+					    pendingProjects.add(project)
+					} else{
 						if( project.payuStatus==true && project.validated==true && project.inactive==false){
 							activeProjects.add(project)
 						}
-					}
-					
-					if(project.draft==true && project.payuStatus==true){
-						draftProjects.add(project)
-					}
-		
-					if(project.inactive==false && project.validated==false && project.draft==false && project.payuStatus==true){
-					pendingProjects.add(project)
 					}
 				}
 			 }else{
@@ -2052,18 +2069,14 @@ class ProjectService {
 					boolean ended = isProjectDeadlineCrossed(project)
 					if(ended && project.payuStatus==false) {
 						endedProjects.add(project)
-					}else{
+					} else if(project.draft==true && project.payuStatus==false){
+						draftProjects.add(project)
+					} else if(project.inactive==false && project.validated==false && project.draft==false && project.payuStatus==false){
+						pendingProjects.add(project)
+					} else{
 						if(project.payuEmail==null && project.validated==true && project.inactive==false){
 							activeProjects.add(project)
 						}
-					}
-		
-					if(project.draft==true && project.payuStatus==false){
-						draftProjects.add(project)
-					}
-		
-					if(project.inactive==false && project.validated==false && project.draft==false && project.payuStatus==false){
-						pendingProjects.add(project)
 					}
 				}
 			}

@@ -46,6 +46,7 @@ class Project {
     String webAddress
     String paypalEmail
 	String payuEmail 
+	String secretKey
 
 	boolean payuStatus=false
     boolean validated = false
@@ -78,6 +79,7 @@ class Project {
         paypalEmail(nullable: true)
 		payuEmail(nullable:true)
         projectUpdates(nullable: true)
+        secretKey(nullable: true)
     }
 
     def beforeInsert() {
@@ -91,6 +93,7 @@ class Project {
     }
 
     enum Category {
+		CATEGORY,
         ANIMALS,
         ARTS,
         CHILDREN,

@@ -133,7 +133,7 @@ class RewardService {
         return rewardList
     }
     
-    def getMultipleRewards(def project, def rewardTitle ,def rewardPrice ,def rewardDescription, def mailingAddress, def emailAddress, def twitter, def custom) {
+    def getMultipleRewards(def project, def rewardTitle ,def rewardPrice ,def rewardNumberAvailable ,def rewardDescription, def mailingAddress, def emailAddress, def twitter, def custom) {
         def amount
         for(int i=0; i<rewardTitle.size();i++ ) {
             Reward reward = new Reward()
@@ -144,6 +144,7 @@ class RewardService {
                 reward.price = Double.parseDouble(rewardPrice[i])
             }
             reward.description = rewardDescription[i]
+			reward.numberAvailable = rewardNumberAvailable[i]
             reward.obsolete = true
             reward.save(failOnError: true)
             

@@ -1136,6 +1136,10 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.cr1-mob-tb-pd{
+        padding-left: 9px;
+        padding-right: 9px;
+	} 
 	.payment-method-footer{
 		font-size:12px;
 		font-weight:normal;
@@ -4503,6 +4507,10 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 601px) and (max-width:767px){
+	div.cr1-mob-tb{
+        padding-left: 1px;
+        padding-right: 9px;
+    }
 	div#ytVideo > iframe {
         width: 100% !important;
         height: 50% !important;
@@ -5353,6 +5361,19 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	h1.cr-header-name {
+        color: white;
+        font-size: 30px !important;
+        font-weight: 900;
+    }
+    h3.cr-sub-name {
+        color: white;
+        font-size: 18px !important;
+    }
+    div.cr1-mob-tb{
+        padding-left: 1px;
+        padding-right: 9px;
+    }
     .tab-content.panel.panel-default.col-sm-12.cr-tab-panel-top {
 	    height: 100%;
 	    width: 100%;
@@ -7738,6 +7759,7 @@ form.form-horizontal.cr-top-spaces {
   border-color: orange;
   color: orange;
   padding-left: 40px;
+  font-weight: 900;
 }
 .font-list span{
   font-size: 16px;
@@ -7798,7 +7820,7 @@ a.btn.btn-primary.btn-colors {
   position: absolute;
   color: orange;
   font-size: 41px;
-  top: 10px;
+/*   top: 10px; */
   left: 28px;
 }
 .cr2-currency-label {
@@ -7829,9 +7851,11 @@ span.cr-perks-amts {
 }
 img.cr-ineed-icons {
     padding-left: 23px;
+    padding-bottom: 43px;
 }
-.col-sm-5.tops {
-    padding-top: 10px;
+.tops {
+/*     padding-top: 10px; */
+    margin-top: -39px;
 }
 .cr-bg-create-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/create-now-Button.jpg) no-repeat !important;
@@ -7900,4 +7924,71 @@ img.cr-ineed-icons {
 }
 .cr-payments-pad {
     padding-top: 63px;
+}
+label.text-color {
+    color: #6d6e6e;
+}
+.text-color {
+    color: #c7c7c7;
+    border-color: #e3e3e3;
+    font-size: 14px;
+}
+.box-size {
+    height: 60px;
+}
+
+/****Chrome-Placeholder*******/
+#firstName::-webkit-input-placeholder {
+	font-size: 14px;
+	color: #c7c7c7;
+}
+#campaignTitle::-webkit-input-placeholder {
+	font-size: 14px;
+	color: #c7c7c7;
+}
+#descarea::-webkit-input-placeholder {
+	font-size: 14px;
+	color: #c7c7c7;
+}
+/*******Mozila-placeholder******/
+#firstName::-moz-placeholder{ 
+	font-size: 14px;
+	color: #c7c7c7;
+}
+#campaignTitle::-moz-placeholder{ 
+	font-size: 14px;
+	color: #c7c7c7;
+}
+#descarea::-moz-placeholder{
+	font-size: 14px;
+	color: #c7c7c7;
+}
+.cr1-radio-tab {
+    padding-top: 39px;
+    width: 103%;
+}
+.cr1-check-btn {
+    background-color: #f6f8f8;
+    border-color: #dddddd;
+    color: #6d6e6e;
+    height: 66px;
+    padding-top: 5px;
+}
+.cr1-tab-title {
+    font-size: 14px;
+}
+.cr1-tb-text-sm {
+    font-size: 12px;
+}
+.cr1-tb-text-lg {
+    font-size: 21px;
+    font-weight: 900;
+}
+.cr1-tb-color:hover{
+	color: white;
+	background: gray;
+}
+.cr1-tb-color.active{
+	color: white;
+	background: gray;
 }

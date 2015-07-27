@@ -25,8 +25,6 @@
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def numberOfDays = projectService.getDaysFromStartDate(project)
     def currentUser = userService.getCurrentUser()
-	def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-	def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 %>
 <html>
 <head>
@@ -61,8 +59,7 @@
 <input type="hidden" class="campaigndate" value="<%=numberOfDays%>"/>
 <input type="hidden" name="uuid" id="uuid"/>
 <input type="hidden" name="charity_name" id="charity_name"/>
-<input type="hidden" name="url" value="${payu_url}" id="url"/>
-<input type="hidden" name="currentUrl" value="${request_url}" id="currentUrl"/>
+<input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
 
 <div class="feducontent">
 	<div class="container" id="campaignedit">
@@ -154,7 +151,7 @@
                     <h3 class="panel-title">Organization</h3>
                 </div>
                 <div class="panel-body">
-		    <g:if test ="${request_url==payu_url}">
+		    <g:if test ="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 		        <div id="payuemail">
 			    <div class="form-group">
 				<div class="row">
@@ -442,7 +439,7 @@
                             <div class="input-group">
                                 <input class="form-control" name="${FORMCONSTANTS.AMOUNT}" id="${FORMCONSTANTS.AMOUNT}" placeholder="Amount" value="${amount}">
                                 <span class="input-group-addon">
-                                    <g:if test="${payu_url == request_url}">
+                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                         <i class="fa fa-inr"></i>
                                     </g:if>
                                     <g:else>

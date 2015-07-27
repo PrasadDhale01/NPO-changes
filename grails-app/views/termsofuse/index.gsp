@@ -1,6 +1,6 @@
+<g:set var="projectService" bean="projectService"/>
 <%
-	def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-	def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+	def currentEnv = projectService.getCurrentEnvironment()
 %>
 <html>
 <head>
@@ -9,7 +9,7 @@
 
 <body>
 <div class="container term-use-container">
-<g:if test="${payu_url==request_url}">
+<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 		<div class="static-content">
 			<br><br>
 			<h1 class="text-center">TERMS AND CONDITIONS</h1>

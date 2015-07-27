@@ -6,8 +6,6 @@ if(user==null){
 	user= userService.getUserByUsername('anonymous@example.com')
 }
 def base_url = grailsApplication.config.crowdera.BASE_URL
-def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 %>
 <html>
 <head>
@@ -22,8 +20,7 @@ def request_url=request.getRequestURL().substring(0,request.getRequestURL().inde
 <body>
 <input type="hidden" name="uuid" id="uuid" />
 <input type="hidden" name="charity_name" id="charity_name" />
-<input type="hidden" name="url" value="${payu_url}" id="url"/>
-<input type="hidden" name="currentUrl" value="${request_url}" id="currentUrl"/>
+<input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
 <div class="">
     <div class="cr-headerA">
         <h1 class="text-center cr-header-name">
@@ -51,7 +48,7 @@ def request_url=request.getRequestURL().substring(0,request.getRequestURL().inde
 					                </div>
 					                <div class="clear"></div>
 						            <div class="col-sm-5 tops">
-						            <g:if test="${request_url==payu_url}">
+						            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 							            <span class="i-currency-label fa fa-inr"></span>
 							         </g:if>
 							         <g:else>
@@ -83,7 +80,7 @@ def request_url=request.getRequestURL().substring(0,request.getRequestURL().inde
 	                    </div>
 	            
 	            <div class="text-center">
-	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-create-btn" name="button" value=""></button>
+	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-create-btn" name="button" value="" id="campaigncreatebtn"></button>
 	            </div>
 	        </g:uploadForm>
 	     </div>

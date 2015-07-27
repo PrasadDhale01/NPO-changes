@@ -1,6 +1,5 @@
 <%
 	def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-	def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 %>
 <html>
 <head>
@@ -12,7 +11,7 @@
 		<div class="container">
         <% def base_url = grailsApplication.config.crowdera.BASE_URL %>
 			<div class="row" id="fundindex">
-				<g:if test="${request_url==payu_url}">
+				<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 					<div class="col-md-4">
 						<g:if test="${flash.amt_message}">
 							<div class="alert alert-danger">

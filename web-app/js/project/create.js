@@ -6,10 +6,7 @@ $(function() {
     $('#iconfilesize').hide();
     $('#campaignfilesize').hide();
     
-    $('#PayUMoney').hide();
-    
-    var url = $('#url').val();
-    var currentUrl = $('#currentUrl').val();
+    var currentEnv = $('#currentEnv').val();
     
     /********************* Create page Session timeout ***************************/
         var SessionTime = 60* 1000 * 60; //set for 60 minute
@@ -152,8 +149,7 @@ $(function() {
               isPaypalEmailVerified : true
             },
             payuEmail:{
-            	required:true,
-            	email:true
+            	required:true
             },
             secretKey: {
             	required:true,
@@ -176,17 +172,7 @@ $(function() {
             },
             answer: {
             	required:true
-            },
-            amount: {
-               required: true,
-               number: true,
-               maxlength: 6
             }
-            /*
-            imageUrl: {
-                url: true
-            }
-            */
         },
         messages:{
             thumbnail: "Please upload a thumbnail image for campaign",
@@ -209,23 +195,6 @@ $(function() {
         
         //ignore: []
     });
-    
-//    if(url == currentUrl) {
-//        $("[name='amount']").rules("add", {
-//            required: true,
-//            number: true,
-//            min: 5000,
-//            maxlength: 6,
-//            max: 999999
-//        });
-//    } else {
-//    	$("[name='amount']").rules("add", {
-//            required: true,
-//            number: true,
-//            maxlength: 6,
-//            max: 999999
-//        });
-//    }
     
     $("#fbshare").click(function(){
         var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl').val());
@@ -256,15 +225,41 @@ $(function() {
         return true;
     }, "Please enter verified paypal email id");
     
+    $('#campaigncreatebtn').on('click', function() {
+    	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+        	$("[name='amount']").rules("add", {
+                required: true,
+                number: true,
+                min: 5000,
+                maxlength: 6,
+                max: 999999
+            });
+        } else {
+        	$("[name='amount']").rules("add", {
+                required: true,
+                number: true,
+                min: 500,
+                maxlength: 6,
+                max: 999999
+            });
+        }
+    });
+    
     $('#submitProject').on('click', function() {
-    	
         $( "#projectImageFile" ).rules( "add", {
             required: true,
             messages: {
                 required: "Please upload at least one campaign image"
             }
         });
-        if(url == currentUrl) {
+        $('.rewardNumberAvailable').each(function () {
+            $(this).rules("add", {
+                required: true,
+                number: true,
+                min: 0
+            });
+        });
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
                     required: true,
@@ -304,28 +299,6 @@ $(function() {
     	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"]').each(function () {
             $(this).closest('.form-group').removeClass('has-error');
         });
-    	
-    	if(url == currentUrl) {
-            $('.rewardPrice').each(function () {
-                $(this).rules("add", {
-                    required: true,
-                    number: true,
-                    maxlength: 6,
-                    max: 999999,
-                    min: 250
-                });
-            });
-        } else {
-        	$('.rewardPrice').each(function () {
-                $(this).rules("add", {
-                    required: true,
-                    number: true,
-                    maxlength: 6,
-                    max: 999999,
-                    min: 1
-                });
-            });
-        }
     	
     	$("#createthumbnail").removeClass('has-error');
     	if (validator.form()) {
@@ -429,8 +402,6 @@ $(function() {
     	 var payind = $('#payment').val();
     	 if(payind=='PAYU'){
     		 $('#PayUMoney').show();
-    	 }else if(payind=='PMT'){
-    		 $('#PayUMoney').hide();
     	 }
      });
      
@@ -737,14 +708,14 @@ function setTitleText(){
            '<div class="form-group">'+
                '<div class="col-sm-12">';
         
-        if(url==currentUrl){
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
            	str = str + '<span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>';
              }else{
            	str = str + '<span class="cr2-currency-label">$</span>' ;
              }
                
              str = str +  '<input type="text" placeholder="Amount"  name="rewardPrice'+count+'" id="rewardPrice'+count+
-                       '" style="width:100%;" class="form-control cr-input-digit required" min="0" >'+
+                       '" style="width:100%;" class="form-control cr-input-digit rewardPrice">'+
            '</div>'+
        '</div>'+
     '</div>'+
@@ -761,7 +732,7 @@ function setTitleText(){
     '<div class="col-sm-5">'+
        '<div class="form-group">'+
            '<div class="col-sm-12">'+
-               '<input type="text" placeholder="Number available" name="rewardNumberAvailable'+count+'" id="rewardNumberAvailable'+count+'" class="form-control cr-perk-title-number required">'+
+               '<input type="text" placeholder="Number available" name="rewardNumberAvailable'+count+'" id="rewardNumberAvailable'+count+'" class="form-control rewardNumberAvailable cr-perk-title-number">'+
            '</div>'+
        '</div>'+
     '</div>'+

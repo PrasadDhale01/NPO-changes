@@ -10,7 +10,7 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
-
+import grails.util.Environment
 
 class ProjectService {
     def userService
@@ -58,6 +58,10 @@ class ProjectService {
         if (commentId) {
             return ProjectComment.get(commentId)
         }
+    }
+    
+    def getCurrentEnvironment() {
+        return Environment.current.getName()
     }
 
     def getProjectByParams(def projectParams){
@@ -946,8 +950,8 @@ class ProjectService {
 		return sortsOptions
 	}
 	
-	def isCampaignsorts(def sorts ,def request_url, def payu_url){
-		List projects = getValidatedProjects(payu_url, request_url)
+	def isCampaignsorts(def sorts ,def currentEnv){
+		List projects = getValidatedProjects(currentEnv)
 		List p = []
 		if(sorts == 'All Campaigns'){
 			return projects
@@ -979,7 +983,7 @@ class ProjectService {
 		if(sorts == 'Ending Soon'){
 			projects.each {
 				def day = getRemainingDay(it)
-				if(day <= 10 && day!=0){
+				if(day > 0 && day <10){
 					p.add(it)
 				}
 			}
@@ -1166,42 +1170,41 @@ class ProjectService {
 		return finalList
     }
 	
-	def getValidatedProjects(def base_url, def req_url) {
-		def popularProjectsList = getPopularProjects()
-		def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
-		List endedProjects = []
-		List openProjects = []
-		List sortedProjects
-		finalList.each { project ->
-		if(req_url==base_url){
-		  def payuProject=isPayuProject(project)
-		  if(payuProject){
-			  boolean ended = isProjectDeadlineCrossed(project)
-			  if(ended) {
-				  endedProjects.add(project)
-			  }else {
-				  openProjects.add(project)
-			  }
-		  }
-		}else{
-		  def payuProject=isPayuProject(project)
-		  if(payuProject==false){
-			 boolean ended = isProjectDeadlineCrossed(project)
-			 if(ended) {
-				 endedProjects.add(project)
-			 }else {
-				  openProjects.add(project)
-			 }
-		  }
-		}
-		
-	}
-	sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
-	finalList =  sortedProjects.reverse() + endedProjects.reverse()
-	return finalList
-   }
+    def getValidatedProjects(def currentEnv) {
+        def popularProjectsList = getPopularProjects()
+        def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
+        List endedProjects = []
+        List openProjects = []
+        List sortedProjects
+        finalList.each { project ->
+        if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            def payuProject=isPayuProject(project)
+                if(payuProject){
+                    boolean ended = isProjectDeadlineCrossed(project)
+                    if(ended) {
+                        endedProjects.add(project)
+                    } else {
+                        openProjects.add(project)
+                    }
+                }
+            } else{
+            def payuProject=isPayuProject(project)
+                if(payuProject==false){
+                    boolean ended = isProjectDeadlineCrossed(project)
+                    if(ended) {
+                        endedProjects.add(project)
+                    } else {
+                        openProjects.add(project)
+                    }
+                }
+            }
+	    }
+        sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
+        finalList =  sortedProjects.reverse() + endedProjects.reverse()
+        return finalList
+    }
 
-	def isPayuProject(Project project){
+    def isPayuProject(Project project){
 		if(project.payuStatus==true){
 			return true
 		}else{
@@ -1227,20 +1230,20 @@ class ProjectService {
 		return finalList
 	}
 	
-	def showProjects(def base_url, def req_url){
-		/* Logic to fetch the latest comes first out of the validated projects.*/
-		//TO DO
-		/* Later on the criteria will be modified in order to display the admin selected projects as the popular projects*/
-		def finalList
-		if(base_url==req_url){
-			def popularProjectsList = getPopularProjects()
-			finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false, payuStatus:true) - popularProjectsList)
-		}else{
-			def popularProjectsList = getPopularProjects()
-			finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false, payuStatus:false) - popularProjectsList)
-		}
-		return finalList
-	}
+    def showProjects(def currentEnv){
+        /* Logic to fetch the latest comes first out of the validated projects.*/
+        //TO DO
+        /* Later on the criteria will be modified in order to display the admin selected projects as the popular projects*/
+        def finalList
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            def popularProjectsList = getPopularProjects()
+            finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false, payuStatus:true) - popularProjectsList)
+        } else {
+            def popularProjectsList = getPopularProjects()
+            finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false, payuStatus:false) - popularProjectsList)
+        }
+        return finalList
+    }
 	
 	def projectOnHomePage() {
 		def projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f84884ce82e04014cecf509020000', '2c9f84884dd5a114014dead63c090003')
@@ -1268,7 +1271,7 @@ class ProjectService {
                 list.add(it)           
             }
         }
-        
+    
         projectAdmins.each {
             def project = Project.findById(it.projectId)
             if(project.inactive == false) {
@@ -1293,65 +1296,65 @@ class ProjectService {
         return list
     }
 	
-	def getProjects(def projects, def projectAdmins, def fundRaisers, def base_url, def req_url) {
-		def list = []
-		if(base_url==req_url){
-			projects.each {
-				if(it.inactive == false && it.payuStatus==true) {
-					list.add(it)
-				}
-			}
-			projectAdmins.each {
-				def project = Project.findById(it.projectId)
-				if(project.inactive == false && project.payuStatus==true) {
-					list.add(project)
-				}
-			}
-			fundRaisers.each { fundRaiser ->
-				def project = fundRaiser.project
-				def isProjectexist = false
-				list.each {
-					if (project == it && project.payuStatus==true) {
-						isProjectexist = true
-					}
-				}
-				if(!isProjectexist) {
-					if(project.inactive == false && project.payuStatus==true) {
-						list.add(project)
-					}
-				}
-			 }
-		  }else{
-			 projects.each {
-				 if(it.inactive == false && it.payuStatus==false) {
-						 list.add(it)
-				  }
-			 }
-		
-			 projectAdmins.each {
-				 def project = Project.findById(it.projectId)
-				 if(project.inactive == false && project.payuStatus==false) {
-						 list.add(project)
-				 }
-			 }
-		
-			 fundRaisers.each { fundRaiser ->
-				 def project = fundRaiser.project
-				 def isProjectexist = false
-				 list.each {
-					 if (project == it && project.payuStatus==false) {
-						isProjectexist = true
-					 }
-				  }
-				  if(!isProjectexist) {
-					 if(project.inactive == false && project.payuStatus==false) {
-						 list.add(project)
-					 }
-				  }
-			  }
-		 }
-		return list
-	}
+    def getProjects(def projects, def projectAdmins, def fundRaisers, def environment) {
+        def list = []
+        if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+            projects.each {
+                if(it.inactive == false && it.payuStatus==true) {
+                    list.add(it)
+                }
+            }
+            projectAdmins.each {
+                def project = Project.findById(it.projectId)
+                if(project.inactive == false && project.payuStatus==true) {
+                    list.add(project)
+                }
+            }
+            fundRaisers.each { fundRaiser ->
+                def project = fundRaiser.project
+                def isProjectexist = false
+                list.each {
+                    if (project == it && project.payuStatus==true) {
+                        isProjectexist = true
+                    }
+                }
+                if (!isProjectexist) {
+                    if (project.inactive == false && project.payuStatus==true) {
+                        list.add(project)
+                    }
+                }
+            }
+        } else{
+            projects.each {
+                if(it.inactive == false && it.payuStatus==false) {
+                   list.add(it)
+                }
+            }
+
+            projectAdmins.each {
+                def project = Project.findById(it.projectId)
+                if(project.inactive == false && project.payuStatus==false) {
+                    list.add(project)
+                }
+            }
+
+            fundRaisers.each { fundRaiser ->
+                def project = fundRaiser.project
+                def isProjectexist = false
+                list.each {
+                    if (project == it && project.payuStatus==false) {
+                        isProjectexist = true
+                    }
+                }
+                if(!isProjectexist) {
+                    if(project.inactive == false && project.payuStatus==false) {
+                       list.add(project)
+                    }
+                }
+            }
+        }
+        return list
+    }
     
     def getDataType(Double amount){
         if (amount) {
@@ -1365,17 +1368,17 @@ class ProjectService {
         return Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false)
     }
 	
-	def getNonValidatedProjects(def base_url, def req_url) {
-		if(base_url==req_url){
-			return Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false, payuStatus:true)
-		}else{
-			return Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false, payuStatus:false)
-		}
-	}
+    def getNonValidatedProjects(currentEnv) {
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            return Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false, payuStatus:true)
+        } else {
+            return Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false, payuStatus:false)
+        }
+    }
 
-    def search(String query, def base_url, def request_url) {
+    def search(String query, def currentEnv) {
         List result = []
-        List project = getValidatedProjects(base_url, request_url)
+        List project = getValidatedProjects(currentEnv)
         project.each { 
             if( it.title.toLowerCase().contains(query.toLowerCase()) || it.description.toLowerCase().contains(query.toLowerCase()) ){
                 result.add(it)
@@ -1780,8 +1783,8 @@ class ProjectService {
         return endDate
     }
     
-    def filterByCategory(def categories, def base_url, def request_url){
-        def projects = getValidatedProjects(base_url, request_url)
+    def filterByCategory(def categories, def currentEnv){
+        def projects = getValidatedProjects(currentEnv)
         List list =[]
         if (categories == "All"){
             return projects
@@ -2038,53 +2041,53 @@ class ProjectService {
       return finalList
     }
 	
-	def getAllProjectByUser(User user, def base_url, def req_url){
-		def projects= Project.findAllByUser(user)
-		List activeProjects=[]
-		List draftProjects=[]
-		List pendingProjects=[]
-		List endedProjects=[]
-		List sortedProjects
-		def finalList
-		projects.each{ project->
-			if(base_url==req_url){
-				def payustatus= isPayuProject(project)
-				if(payustatus==true){
-					boolean ended = isProjectDeadlineCrossed(project)
+    def getAllProjectByUser(User user, def environment){
+        def projects= Project.findAllByUser(user)
+        List activeProjects=[]
+        List draftProjects=[]
+        List pendingProjects=[]
+        List endedProjects=[]
+        List sortedProjects
+        def finalList
+        projects.each{ project->
+            if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+                def payustatus= isPayuProject(project)
+                if(payustatus==true){
+                    boolean ended = isProjectDeadlineCrossed(project)
                     if(ended && project.payuStatus==true) {
-						endedProjects.add(project)
-					} else if(project.draft==true && project.payuStatus==true){
-						draftProjects.add(project)
-					} else if(project.inactive==false && project.validated==false && project.draft==false && project.payuStatus==true){
-					    pendingProjects.add(project)
-					} else{
-						if( project.payuStatus==true && project.validated==true && project.inactive==false){
-							activeProjects.add(project)
-						}
-					}
-				}
-			 }else{
-				def payustatus= isPayuProject(project)
-				if(payustatus==false){
-					boolean ended = isProjectDeadlineCrossed(project)
-					if(ended && project.payuStatus==false) {
-						endedProjects.add(project)
-					} else if(project.draft==true && project.payuStatus==false){
-						draftProjects.add(project)
-					} else if(project.inactive==false && project.validated==false && project.draft==false && project.payuStatus==false){
-						pendingProjects.add(project)
-					} else{
-						if(project.payuEmail==null && project.validated==true && project.inactive==false){
-							activeProjects.add(project)
-						}
-					}
-				}
-			}
-		}
-		sortedProjects =activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
-		finalList = draftProjects.reverse()+ pendingProjects.reverse() + sortedProjects.reverse() + endedProjects.reverse()
-		return finalList
-	}
+                        endedProjects.add(project)
+                    } else if(project.draft==true && project.payuStatus==true){
+                        draftProjects.add(project)
+                    } else if(project.inactive==false && project.validated==false && project.draft==false && project.payuStatus==true){
+                        pendingProjects.add(project)
+                    } else {
+                        if( project.payuStatus==true && project.validated==true && project.inactive==false){
+                            activeProjects.add(project)
+                        }
+                    }
+                }
+            } else{
+                def payustatus= isPayuProject(project)
+                if(payustatus==false){
+                    boolean ended = isProjectDeadlineCrossed(project)
+                    if(ended && project.payuStatus==false) {
+                        endedProjects.add(project)
+                    } else if(project.draft==true && project.payuStatus==false){
+                        draftProjects.add(project)
+                    } else if(project.inactive==false && project.validated==false && project.draft==false && project.payuStatus==false){
+                        pendingProjects.add(project)
+                    } else{
+                        if(project.payuEmail==null && project.validated==true && project.inactive==false){
+                            activeProjects.add(project)
+                        }
+                    }
+                }
+            }
+        }
+        sortedProjects =activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
+        finalList = draftProjects.reverse()+ pendingProjects.reverse() + sortedProjects.reverse() + endedProjects.reverse()
+        return finalList
+    }
 
     def getProjectAdminEmail(User user){
       def projectAdminEmail= ProjectAdmin.findAllByEmail(user.email)
@@ -2121,11 +2124,11 @@ class ProjectService {
         return address
     }
 	
-	def getAddress(def params, def req_url, def payu_url){
+	def getAddress(def params, def currentEnv ){
 		def address
 		def state
 		def country
-		if(req_url==payu_url){
+		if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
 			if (params.addressLine1 !=null){
 				if (params.state == "other") {
 					state = params.otherstate
@@ -2143,7 +2146,7 @@ class ProjectService {
 			} else {
 				address = null
 			}
-		}else{
+		} else{
 			if (params.addressLine1 !=null){
 				if (params.state == "other") {
 					state = params.otherstate
@@ -2165,27 +2168,27 @@ class ProjectService {
 	}
 
     def getContibutionByUser(User user){
-      def contributions = Contribution.findAllByUser(user)
-      return contributions
+        def contributions = Contribution.findAllByUser(user)
+        return contributions
     }
 	
-	def getContibutionByUser(User user,def base_url, def req_url){
-		def contributions = Contribution.findAllByUser(user)
-		List payuContributions=[]
-		List otherContributions=[]
-		contributions.each{
-			if(it.project.payuStatus==true && it.project.payuEmail!=null){
-				payuContributions.add(it)
-			}else if(it.project.payuStatus==false){
-				otherContributions.add(it)
-			}
-		}
-		if(base_url==req_url){
-			return payuContributions
-		}else{
-			return otherContributions
-		}
-	}
+    def getContibutionByUser(User user,def environment){
+        def contributions = Contribution.findAllByUser(user)
+        List payuContributions=[]
+        List otherContributions=[]
+        contributions.each{
+            if(it.project.payuStatus==true && it.project.payuEmail!=null){
+                payuContributions.add(it)
+            } else if(it.project.payuStatus==false){
+                otherContributions.add(it)
+            }
+        }
+        if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+            return payuContributions
+        } else {
+            return otherContributions
+        }
+   }
 
     def shareCampaignOrTeamByEmail(def params, def fundRaiser) {
         def project = Project.get(params.id)

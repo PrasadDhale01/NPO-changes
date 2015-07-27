@@ -96,8 +96,7 @@ $(function() {
     });
 
     $('#editsubmitbutton').on('click', function() {
-    	var url = $('#url').val();
-        var currentUrl = $('#currentUrl').val();
+    	var currentEnv = $('#currentEnv').val();
     	var iconUrl = $('#imgIcon').attr('src');
     	if (!iconUrl) {
     	    $('[name="iconfile"]').rules( "add", {
@@ -116,7 +115,7 @@ $(function() {
                 }
             });
     	}
-        if(url == currentUrl) {
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
             $("[name='amount']").rules("add", {
                 required: true,
                 number: true,

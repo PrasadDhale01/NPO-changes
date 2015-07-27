@@ -15,6 +15,7 @@ import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
+import grails.util.Environment
 
 class ProjectController {
 	def userService
@@ -60,20 +61,18 @@ class ProjectController {
 		SECRETKEY:'secretKey'
 	]
 
-	def list = {
-		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-//		def projects = projectService.getValidatedProjects()
-		def projects = projectService.getValidatedProjects(payu_url, request_url)
-		def selectedCategory = "All Categories"
-		if(projects.size<1) {
-			flash.catmessage="There are no campaigns"
-			render (view: 'list/index')
-		}
-		else {
-			render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory ])
-		}
-	}
+    def list = {
+        def currentEnv = Environment.current.getName()
+        def projects = projectService.getValidatedProjects(currentEnv)
+        def selectedCategory = "All Categories"
+        if (projects.size < 1) {
+            flash.catmessage="There are no campaigns"
+            render (view: 'list/index')
+        }
+        else {
+            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory ])
+        }
+    }
 
 	def listwidget = {
 		def projects = projectService.getValidatedProjects()
@@ -81,11 +80,10 @@ class ProjectController {
 	}
 
 	def search () {
-		def base_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def currentEnv = Environment.current.getName()
 		def query = params.q
 		if(query) {
-			List searchResults = projectService.search(query, base_url, request_url)
+			List searchResults = projectService.search(query, currentEnv)
 			if (searchResults.empty){
 				flash.catmessage = "No Campaign found matching your input."
 				redirect(action:"list")
@@ -251,8 +249,6 @@ class ProjectController {
 			def teamComments = projectService.getTeamComments(currentTeam)
 			List totalContributions = []
 			List contributions = []
-			def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-			def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 
 			if(project.validated == false) {
 
@@ -260,7 +256,7 @@ class ProjectController {
 				model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,projectComments: projectComments,totalteams: totalteams,
 					totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, webUrl: webUrl, teamComments: teamComments, teamOffset: teamOffset,
 					teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,totalContributions: totalContributions,contributions: contributions,
-					isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,payu_url: payu_url,request_url: request_url,
+					isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
 					validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS])
 			}
 		} else {
@@ -356,10 +352,8 @@ class ProjectController {
 
 	@Secured(['ROLE_ADMIN'])
 	def validateList() {
-		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-		def projects = projectService.getNonValidatedProjects(payu_url, request_url)
-//		def projects = projectService.getNonValidatedProjects()
+        def currentEnv = Environment.current.getName()
+		def projects = projectService.getNonValidatedProjects(currentEnv)
 		render(view: 'validate/index', model: [projects: projects])
 	}
 
@@ -390,72 +384,45 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def create() {
-//		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-//		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def categoryOptions = projectService.getCategoryList()
 		def country = projectService.getCountry()
-//		def state
-//		
-//		if(request_url==payu_url){
-//			state=projectService.getIndianState()
-//		}else{
-//			state=projectService.getState()
-//		}
-//
-//		def genderOptions = [
-//			"MALE": (Beneficiary.Gender.MALE),
-//			"FEMALE": (Beneficiary.Gender.FEMALE),
-//			"UNSPECIFIED": (Beneficiary.Gender.UNSPECIFIED)
-//		]
-//
-//		def rewardOptions = [:]
-//		def rewards = rewardService.getNonObsoleteRewards()
-//		rewards.each {
-//			rewardOptions.put(it.id, it)
-//		}
-//
-//		render (view: 'create/index',
-//		model: [categoryOptions: categoryOptions,
-//			rewardOptions: rewardOptions,
-//			genderOptions: genderOptions,
-//			FORMCONSTANTS: FORMCONSTANTS,
-//			country:country,
-//			state:state])
-		render(view: 'create/index1', model: [categoryOptions: categoryOptions, country:country, FORMCONSTANTS: FORMCONSTANTS])
+        def currentEnv = Environment.current.getName()
+        
+		render(view: 'create/index1', model: [categoryOptions: categoryOptions, country:country, FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv])
 	}
 	
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def createNow() {
-		def projectTitle
-		def userName
-		def project = projectService.getProjectByParams(params)
-		User user=userService.getCurrentUser()
-		def beneficiary = userService.getBeneficiaryByParams(params)
-		project.amount = params.double('amount')
-		project.title = params.title
-		project.description = params.description;
-		project.beneficiary.firstName = params.(FORMCONSTANTS.FIRSTNAME)
-		project.draft = true;
-		if (params.payfirst == "firstgiving") {
-			project.isPaypal = false
-		}
-		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-		
-		if(request_url==payu_url){
-			project.payuStatus=true
-		}
-		project.save(failOnError: true);
-		if(project.save()){
-			projectTitle = projectService.getProjectVanityTitle(project)
-			userName = userService.getVanityNameFromUsername(user.username, project.id)
-			projectService.getFundRaisersForTeam(project, user)
-			projectService.getdefaultAdmin(project, user)
-			redirect(action:'redirectCreateNow', params:[title:projectTitle])
-		} else {
-			render view:'/project/createerror'
-		}
-	}
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def createNow() {
+        def projectTitle
+        def userName
+        def project = projectService.getProjectByParams(params)
+        User user=userService.getCurrentUser()
+        def beneficiary = userService.getBeneficiaryByParams(params)
+        project.amount = params.double('amount')
+        project.title = params.title
+        project.description = params.description;
+        project.beneficiary.firstName = params.(FORMCONSTANTS.FIRSTNAME)
+        project.draft = true;
+        if (params.payfirst == "firstgiving") {
+            project.isPaypal = false
+        }
+
+        def currentEnv = Environment.current.getName()
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            project.payuStatus = true
+        }
+
+        project.save(failOnError: true);
+        if(project.save()){
+            projectTitle = projectService.getProjectVanityTitle(project)
+            userName = userService.getVanityNameFromUsername(user.username, project.id)
+            projectService.getFundRaisersForTeam(project, user)
+            projectService.getdefaultAdmin(project, user)
+            redirect(action:'redirectCreateNow', params:[title:projectTitle])
+        } else {
+            render view:'/project/createerror'
+        }
+    }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def redirectCreateNow() {
@@ -464,124 +431,124 @@ class ProjectController {
 		def user = project.user
 		def categoryOptions = projectService.getCategoryList()
 		def country = projectService.getCountry()
+        def currentEnv = Environment.current.getName()
 		render(view: 'create/index2',
 			   model: ['categoryOptions': categoryOptions,
-						'country': country,
+						'country': country, currentEnv: currentEnv,
 						FORMCONSTANTS: FORMCONSTANTS,
 						project:project, user:user,
 						vanityTitle: vanityTitle])
 	}
 	
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def campaignOnDraftAndLaunch() {
-		def project = projectService.getProjectById(params.id)
-		User user = userService.getCurrentUser()
-		def beneficiary = userService.getBeneficiaryByParams(params)
-		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-		
-		if(request_url==payu_url){
-			if(params.payuEmail){
-				project.payuEmail = params.payuEmail
-			}
-			project.secretKey = params.(FORMCONSTANTS.SECRETKEY)
-		}
-		
-		project.category = params.(FORMCONSTANTS.CATEGORY)
-		if (user == null || beneficiary==null){
-			user = userService.getUserByUsername('anonymous@example.com')
-		}
-		def days = params.days
-		projectService.getNumberofDays(days, project)
-		
-		def button = params.isSubmitButton
-		
-		if(button == 'true'){
-			project.draft = true
-		} else {
-			project.draft = false
-		}
-		
-		project.videoUrl = params.(FORMCONSTANTS.VIDEO)
-		
-		def imageFiles = request.getFiles('thumbnail[]')
-		if(!imageFiles.isEmpty()) {
-			projectService.getMultipleImageUrls(imageFiles, project)
-		}
-		
-		def country = projectService.getCountry()
-		project.beneficiary.country = params.(FORMCONSTANTS.COUNTRY)
-		
-		project.story = params.(FORMCONSTANTS.STORY)
-		
-		String email1 = params.email1
-		String email2 = params.email2
-		String email3 = params.email3
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def campaignOnDraftAndLaunch() {
+        def project = projectService.getProjectById(params.id)
+        User user = userService.getCurrentUser()
+        def beneficiary = userService.getBeneficiaryByParams(params)
+ 
+        def currentEnv = Environment.current.getName()
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+            if(params.payuEmail){
+                project.payuEmail = params.payuEmail
+            }
+            project.secretKey = params.(FORMCONSTANTS.SECRETKEY)
+        }
 
-		projectService.getAdminForProjects(email1, project, user)
-		projectService.getAdminForProjects(email2, project, user)
-		projectService.getAdminForProjects(email3, project, user)
-		
-		project.organizationName = params.(FORMCONSTANTS.ORGANIZATIONNAME)
-		project.webAddress = params.(FORMCONSTANTS.WEBADDRESS)
-		project.beneficiary.firstName = params.(FORMCONSTANTS.FIRSTNAME)
-		project.beneficiary.lastName = params.(FORMCONSTANTS.LASTNAME)
-		project.beneficiary.telephone = params.(FORMCONSTANTS.TELEPHONE)
-		
-		def iconFile = request.getFile('iconfile')
-		if(!iconFile.isEmpty()) {
-			def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
-			project.organizationIconUrl = uploadedFileUrl
-		}
-		
-		project.paypalEmail = params.paypalEmail
-		project.charitableId = params.charitableId
-		
-		def amount=project.amount
-		def boolPerk=false
-		def rewardLength=Integer.parseInt(params.rewardCount)
-		if(rewardLength >= 1) {
-			def rewardTitle = new Object[rewardLength]
-			def rewardPrice = new Object[rewardLength]
-			def rewardDescription = new Object[rewardLength]
-			def rewardNumberAvailable = new Object[rewardLength]
-			def mailingAddress = new Object[rewardLength]
-			def emailAddress = new Object[rewardLength]
-			def twitter = new Object[rewardLength]
-			def custom = new Object[rewardLength]
+        project.category = params.(FORMCONSTANTS.CATEGORY)
+        if (user == null || beneficiary==null){
+            user = userService.getUserByUsername('anonymous@example.com')
+        }
+        def days = params.days
+        projectService.getNumberofDays(days, project)
 
-			for(def icount=0; icount< rewardLength; icount++){
-				rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
-				rewardPrice[icount] = params.("rewardPrice"+(icount+1))
-				rewardDescription[icount] = params.("rewardDescription"+(icount+1))
-				rewardNumberAvailable[icount] = params.("rewardNumberAvailable"+(icount+1))
-				mailingAddress[icount] = params.("mailingAddress"+(icount+1))
-				emailAddress[icount] = params.("emailAddress"+(icount+1))
-				twitter[icount] = params.("twitter"+(icount+1))
-				custom[icount] = params.("custom"+(icount+1))
-				
-				if(rewardPrice[icount]==null || Integer.parseInt(rewardPrice[icount]) > (int)amount){
-					boolPerk=true;
-				}
-				if(mailingAddress[icount]==null && emailAddress[icount]==null && twitter[icount]==null && custom[icount]==null){
-					emailAddress[icount]=true
-				}
-			}
-			if(boolPerk==true){
-				flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
-				render (view: 'manageproject/error')
-				return
-			}else{
-				rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardNumberAvailable, rewardDescription,mailingAddress, emailAddress, twitter, custom)
-			}
-		}
-		
-		if (project.draft) {
-			redirect (action:'campaignOnDraft', params:[title:params.title])
-		} else {
-			redirect (action:'launch' ,  params:[title:params.title])
-		}
-	}
+        def button = params.isSubmitButton
+
+        if(button == 'true'){
+            project.draft = true
+        } else {
+            project.draft = false
+        }
+
+        project.videoUrl = params.(FORMCONSTANTS.VIDEO)
+
+        def imageFiles = request.getFiles('thumbnail[]')
+        if(!imageFiles.isEmpty()) {
+            projectService.getMultipleImageUrls(imageFiles, project)
+        }
+
+        def country = projectService.getCountry()
+        project.beneficiary.country = params.(FORMCONSTANTS.COUNTRY)
+
+        project.story = params.(FORMCONSTANTS.STORY)
+
+        String email1 = params.email1
+        String email2 = params.email2
+        String email3 = params.email3
+
+        projectService.getAdminForProjects(email1, project, user)
+        projectService.getAdminForProjects(email2, project, user)
+        projectService.getAdminForProjects(email3, project, user)
+
+        project.organizationName = params.(FORMCONSTANTS.ORGANIZATIONNAME)
+        project.webAddress = params.(FORMCONSTANTS.WEBADDRESS)
+        project.beneficiary.firstName = params.(FORMCONSTANTS.FIRSTNAME)
+        project.beneficiary.lastName = params.(FORMCONSTANTS.LASTNAME)
+        project.beneficiary.telephone = params.(FORMCONSTANTS.TELEPHONE)
+
+        def iconFile = request.getFile('iconfile')
+        if(!iconFile.isEmpty()) {
+            def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
+            project.organizationIconUrl = uploadedFileUrl
+        }
+
+        project.paypalEmail = params.paypalEmail
+        project.charitableId = params.charitableId
+
+        def amount=project.amount
+        def boolPerk=false
+        def rewardLength=Integer.parseInt(params.rewardCount)
+        if(rewardLength >= 1) {
+            def rewardTitle = new Object[rewardLength]
+            def rewardPrice = new Object[rewardLength]
+            def rewardDescription = new Object[rewardLength]
+            def rewardNumberAvailable = new Object[rewardLength]
+            def mailingAddress = new Object[rewardLength]
+            def emailAddress = new Object[rewardLength]
+            def twitter = new Object[rewardLength]
+            def custom = new Object[rewardLength]
+
+            for (def icount=0; icount< rewardLength; icount++){
+                rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
+                rewardPrice[icount] = params.("rewardPrice"+(icount+1))
+                rewardDescription[icount] = params.("rewardDescription"+(icount+1))
+                rewardNumberAvailable[icount] = params.("rewardNumberAvailable"+(icount+1))
+                mailingAddress[icount] = params.("mailingAddress"+(icount+1))
+                emailAddress[icount] = params.("emailAddress"+(icount+1))
+                twitter[icount] = params.("twitter"+(icount+1))
+                custom[icount] = params.("custom"+(icount+1))
+	
+                if (rewardPrice[icount]==null || Integer.parseInt(rewardPrice[icount]) > (int)amount){
+                    boolPerk=true;
+                }
+                if (mailingAddress[icount]==null && emailAddress[icount]==null && twitter[icount]==null && custom[icount]==null){
+                    emailAddress[icount]=true
+                }
+            }
+            if (boolPerk==true) {
+                flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
+                render (view: 'manageproject/error')
+                return
+            } else {
+                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardNumberAvailable, rewardDescription,mailingAddress, emailAddress, twitter, custom)
+            }
+        }
+
+        if (project.draft) {
+            redirect (action:'campaignOnDraft', params:[title:params.title])
+        } else {
+            redirect (action:'launch' ,  params:[title:params.title])
+        }
+    }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def campaignOnDraft() {
@@ -616,10 +583,11 @@ class ProjectController {
 	def edit() {
 		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
 		def categoryOptions = projectService.getCategoryList()
+        def currentEnv = Environment.current.getName()
 		if (project) {
 			def beneficiary = project.beneficiary
 			render (view: 'edit/index',
-			model: [project: project,
+			model: [project: project, currentEnv: currentEnv,
 				beneficiary: beneficiary,
 				categoryOptions: categoryOptions,
 				FORMCONSTANTS: FORMCONSTANTS])
@@ -801,112 +769,111 @@ class ProjectController {
 	}
 
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def save() {
-		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-		Project project
-		Beneficiary beneficiary
-		User user = userService.getCurrentUser()
-		project = projectService.getProjectByParams(params)
-		beneficiary = userService.getBeneficiaryByParams(params)
-		def amount=project.amount
-		def boolPerk=false
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def save() {
+        def environment = Environment.current.getName()
+        Project project
+        Beneficiary beneficiary
+        User user = userService.getCurrentUser()
+        project = projectService.getProjectByParams(params)
+        beneficiary = userService.getBeneficiaryByParams(params)
+        def amount=project.amount
+        def boolPerk=false
 
-		def button = params.isSubmitButton
-		if(button == 'true'){
-			project.draft = true
-		}
-		
-		if(request_url==payu_url){
-			if(params.payuEmail){
-				project.payuStatus=true
-			}
-		
-			if(params.(FORMCONSTANTS.COUNTRY) != "IN"){
-				beneficiary.stateOrProvince = params.otherstate
-			}
-		}else{
-			if(params.(FORMCONSTANTS.COUNTRY) != "US"){
-				beneficiary.stateOrProvince = params.otherstate
-			}
-		}
+        def button = params.isSubmitButton
+        if (button == 'true') {
+            project.draft = true
+        }
 
-		def rewardLength=Integer.parseInt(params.rewardCount)
-		if(rewardLength >= 1) {
-			def rewardTitle = new Object[rewardLength]
-			def rewardPrice = new Object[rewardLength]
-			def rewardDescription = new Object[rewardLength]
-			def mailingAddress = new Object[rewardLength]
-			def emailAddress = new Object[rewardLength]
-			def twitter = new Object[rewardLength]
-			def custom = new Object[rewardLength]
+        if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+            if(params.payuEmail) {
+                project.payuStatus=true
+            }
 
-			for(def icount=0; icount< rewardLength; icount++){
-				rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
-				rewardPrice[icount] = params.("rewardPrice"+(icount+1))
-				rewardDescription[icount] = params.("rewardDescription"+(icount+1))
-				mailingAddress[icount] = params.("mailingAddress"+(icount+1))
-				emailAddress[icount] = params.("emailAddress"+(icount+1))
-				twitter[icount] = params.("twitter"+(icount+1))
-				custom[icount] = params.("custom"+(icount+1))
-				if(rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount])>amount){
-					boolPerk=true;
-				}
-				if(mailingAddress[icount]==null && emailAddress[icount]==null && twitter[icount]==null && custom[icount]==null){
-					emailAddress[icount]=true
-				}
-			}
-			if(boolPerk==true){
-				flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
-				render (view: 'manageproject/error')
-				return
-			}else{
-				rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
-			}
-		}
+            if(params.(FORMCONSTANTS.COUNTRY) != "IN"){
+                beneficiary.stateOrProvince = params.otherstate
+            }
+        } else{
+            if(params.(FORMCONSTANTS.COUNTRY) != "US"){
+                beneficiary.stateOrProvince = params.otherstate
+            }
+        }
 
-		def iconFile = request.getFile('iconfile')
-		if(!iconFile.isEmpty()) {
-			def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
-			project.organizationIconUrl = uploadedFileUrl
-		}
+        def rewardLength=Integer.parseInt(params.rewardCount)
+        if (rewardLength >= 1) {
+            def rewardTitle = new Object[rewardLength]
+            def rewardPrice = new Object[rewardLength]
+            def rewardDescription = new Object[rewardLength]
+            def mailingAddress = new Object[rewardLength]
+            def emailAddress = new Object[rewardLength]
+            def twitter = new Object[rewardLength]
+            def custom = new Object[rewardLength]
 
-		def imageFiles = request.getFiles('thumbnail[]')
-		if(!imageFiles.isEmpty()) {
-			projectService.getMultipleImageUrls(imageFiles, project)
-		}
+            for(def icount=0; icount< rewardLength; icount++){
+                rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
+                rewardPrice[icount] = params.("rewardPrice"+(icount+1))
+                rewardDescription[icount] = params.("rewardDescription"+(icount+1))
+                mailingAddress[icount] = params.("mailingAddress"+(icount+1))
+                emailAddress[icount] = params.("emailAddress"+(icount+1))
+                twitter[icount] = params.("twitter"+(icount+1))
+                custom[icount] = params.("custom"+(icount+1))
+                if(rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount])>amount){
+                    boolPerk=true;
+                }
+                if (mailingAddress[icount]==null && emailAddress[icount]==null && twitter[icount]==null && custom[icount]==null) {
+                    emailAddress[icount]=true
+                }
+            }
+            if(boolPerk==true){
+                flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
+                render (view: 'manageproject/error')
+                return
+            } else {
+                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
+            }
+        }
 
-		String email1 = params.email1
-		String email2 = params.email2
-		String email3 = params.email3
+        def iconFile = request.getFile('iconfile')
+        if(!iconFile.isEmpty()) {
+            def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
+            project.organizationIconUrl = uploadedFileUrl
+        }
 
-		project.user = user
+        def imageFiles = request.getFiles('thumbnail[]')
+        if (!imageFiles.isEmpty()) {
+            projectService.getMultipleImageUrls(imageFiles, project)
+        }
 
-		def days = params.days
-		projectService.getNumberofDays(days, project)
+        String email1 = params.email1
+        String email2 = params.email2
+        String email3 = params.email3
 
-		project.beneficiary = beneficiary
+        project.user = user
 
-		if (project.save()) {
-			projectService.getYoutubeUrlChanged(params.videoUrl, project)
-			projectService.getFundRaisersForTeam(project, user)
-			projectService.getdefaultAdmin(project, user)
-			projectService.getAdminForProjects(email1, project, user)
-			projectService.getAdminForProjects(email2, project, user)
-			projectService.getAdminForProjects(email3, project, user)
-			def projectTitle = projectService.getProjectVanityTitle(project)
-			userService.getProjectVanityUsername(user)
+        def days = params.days
+        projectService.getNumberofDays(days, project)
 
-			if(button == 'true') {
-				redirect(action:'draftProject', params:['projectTitle': projectTitle])
-			} else {
-				redirect(action:'saveProject', params:['projectTitle': projectTitle])
-			}
-		} else {
-			render (view: 'create/createerror', model: [project: project])
-		}
-	}
+        project.beneficiary = beneficiary
+
+        if (project.save()) {
+            projectService.getYoutubeUrlChanged(params.videoUrl, project)
+            projectService.getFundRaisersForTeam(project, user)
+            projectService.getdefaultAdmin(project, user)
+            projectService.getAdminForProjects(email1, project, user)
+            projectService.getAdminForProjects(email2, project, user)
+            projectService.getAdminForProjects(email3, project, user)
+            def projectTitle = projectService.getProjectVanityTitle(project)
+            userService.getProjectVanityUsername(user)
+
+            if(button == 'true') {
+                redirect(action:'draftProject', params:['projectTitle': projectTitle])
+            } else {
+                redirect(action:'saveProject', params:['projectTitle': projectTitle])
+            }
+        } else {
+            render (view: 'create/createerror', model: [project: project])
+        }
+    }
 
 	def draftProject() {
 		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
@@ -1129,16 +1096,15 @@ class ProjectController {
 	}
 
 	def categoryFilter() {
-		def base_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def currentEnv = Environment.current.getName()
 		def category = params.category
 		def project
 		if (category == "Social Innovation"){
-			project = projectService.filterByCategory("SOCIAL_INNOVATION", base_url, request_url)
+			project = projectService.filterByCategory("SOCIAL_INNOVATION", currentEnv)
 		} else if (category == "All Categories"){
-			project = projectService.filterByCategory("All", base_url, request_url)
+			project = projectService.filterByCategory("All", currentEnv)
 		} else {
-			project = projectService.filterByCategory(category, base_url, request_url)
+			project = projectService.filterByCategory(category, currentEnv)
 		}
 		if(!project){
 			flash.catmessage="No campaign found."
@@ -1321,10 +1287,9 @@ class ProjectController {
 	}
 
 	def sortCampaign(){
-		def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+		def environment = Environment.current.getName()
 		def sorts = params.query
-		def campaignsorts = projectService.isCampaignsorts(sorts, request_url, payu_url)
+		def campaignsorts = projectService.isCampaignsorts(sorts, environment)
 		
 		if(!campaignsorts){
 			flash.catmessage="No campaign found."
@@ -1333,7 +1298,7 @@ class ProjectController {
 			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])
 		}
 	}
-
+    
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def customrewardedit() {
 		def isPerkPriceLess = rewardService.editCustomReward(params)

@@ -13,6 +13,7 @@ import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
+import grails.util.Environment
 
 class FundController {
     def contributionService
@@ -33,6 +34,7 @@ class FundController {
         Project project
         User user = userService.getCurrentUser()
         def fundraiser = userService.getUsernameFromVanityName(params.fr)
+        def currentEnv = Environment.current.getName()
 
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
         if (projectId) {
@@ -49,7 +51,7 @@ class FundController {
         } else if (fundingAchieved || ended) {
             redirect(controller: 'project', action: 'showCampaign', id: project.id)
         } else {
-            render view: 'fund/index', model: [project: project, user:user, fundraiser:fundraiser, perk:perk, vanityTitle:params.projectTitle, vanityUsername:params.fr]
+            render view: 'fund/index', model: [project: project, user:user, currentEnv: currentEnv, fundraiser:fundraiser, perk:perk, vanityTitle:params.projectTitle, vanityUsername:params.fr]
         }
     }
 
@@ -582,19 +584,18 @@ class FundController {
 	}
 	
 	def payupayment(){
-	   def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-	   def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+       def currentEnv = Environment.current.getName()
 	   def project= Project.get(params.projectId)
 	   def user = User.get(params.userId)
 	   def reward=Reward.get(params.rewardId)
 	   User fundraiser = User.findByEmail(params.fr)
 	   def anonymous=params.anonymous
-	   def address = projectService.getAddress(params, request_url, payu_url)
-		 
+	   def address = projectService.getAddress(params, currentEnv)
+       
 	   if (user == null){
 		   user = userService.getUserByUsername('anonymous@example.com')
 	   }
-		 
+       
 	   def key=grailsApplication.config.crowdera.PAYU.KEY
 	   def salt=grailsApplication.config.crowdera.PAYU.SALT
 	   def amount=params.amount

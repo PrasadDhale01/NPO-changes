@@ -3,12 +3,7 @@
 <g:set var="projectService" bean="projectService"/>
 <% 
     def user = userService.getCurrentUser() 
-	
     def base_url = grailsApplication.config.crowdera.BASE_URL
-   
-		
-	def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-	def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 %>
 <html>
 <head>
@@ -56,8 +51,7 @@ $(function() {
 <input type="hidden" id="b_url" value="<%=base_url%>" /> 
 <input type="hidden" name="uuid" id="uuid" />
 <input type="hidden" name="charity_name" id="charity_name" />
-<input type="hidden" name="url" value="${payu_url}" id="url"/>
-<input type="hidden" name="currentUrl" value="${request_url}" id="currentUrl"/>
+<input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
     <div class="">
         <div class="text-center">
            <header>
@@ -93,7 +87,7 @@ $(function() {
                         </div>
                           
                         <div class="col-sm-3">
-	                        <g:if test="${request_url==payu_url}">
+	                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 		                        <div class="font-list">
 		                            <g:select class="selectpicker" name="${FORMCONSTANTS.PAYMENT}" from="${projectService.getIndiaPaymentGateway()}" id="payment" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" />
 		                        </div>
@@ -156,7 +150,7 @@ $(function() {
 	                                                                    and make your campaign go viral. Be passionate and make 
 	                                                                    them believe and trust your goal.</label>
                        	   </div>
-                           <textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="redactorEditor" placeholder="Biref summary:-
+                           <textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="redactorEditor" placeholder="Brief summary:-
                                                                                                                                                    Your story needs to be like the book readers never want to 
                                                                                                                                                    keep down! Tell your contributors what you are raising funds for
                                                                                                                                                    and how will it make difference to you. Your organization
@@ -307,7 +301,7 @@ $(function() {
 							<div class="form-group">
 								<div class="col-sm-12" id="perk">
 									<div class="btn-group btnPerkBgColor col-sm-12 cr-perk-yesno-tab" data-target="buttons">
-										<span class="btn btn-info col-sm-2 pull-left">offering PERKS ?</span>
+										<span class="btn btn-info col-sm-2 pull-left">Offering PERKS ?</span>
 										<label class="btn btn-default col-sm-2 pull-right"> <input type="radio" name="answer" value="no"> NO</label>
 										<label class="btn btn-default col-sm-2 pull-right"> <input type="radio" name="answer" value="yes"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
 									</div>
@@ -320,15 +314,15 @@ $(function() {
 								        <div class="col-sm-2">
 										    <div class="form-group">
 												<div class="col-sm-12">
-													<g:if test="${request_url==payu_url}">
+													<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 													    <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
 														<input type="text" placeholder="Amount" name="rewardPrice1"
-															class="form-control rewardPrice cr-input-digit required" id="rewardPrice1" min="0">
+															class="form-control rewardPrice cr-input-digit rewardPrice" id="rewardPrice1">
 													</g:if>
 													<g:else>
 													    <span class="cr2-currency-label">$</span>
 														<input type="text" placeholder="Amount" name="rewardPrice1"
-															class="form-control rewardPrice cr-input-digit required" id="rewardPrice1" min="0">
+															class="form-control rewardPrice cr-input-digit rewardPrice" id="rewardPrice1">
 													</g:else>
 												</div>
 											</div>	
@@ -347,7 +341,7 @@ $(function() {
 											<div class="form-group">
 												<div class="col-sm-12">
 													<input type="text" placeholder="Number available" name="rewardNumberAvailable1"
-														class="form-control cr-perk-title-number required" id="rewardNumberAvailable1">
+														class="form-control cr-perk-title-number rewardNumberAvailable" id="rewardNumberAvailable1">
 												</div>
 											</div>
 									   </div>
@@ -408,13 +402,13 @@ $(function() {
 							</div>
                           
 						<div class="form-group">
-						    <g:if test ="${request_url==payu_url}">
+						    <g:if test ="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 							    <div id="PayUMoney">
 								    <div class="col-sm-12">
 									    <div class="form-group">
 									        <label class="col-sm-4 control-label">Marchant ID </label>
 											<div class="col-sm-6">
-												<input id="payuemail" type="email" class="form-control" name="${FORMCONSTANTS.PAYUEMAIL}">
+												<input type="text" id="payuemail" class="form-control" name="${FORMCONSTANTS.PAYUEMAIL}">
 											</div>
 										</div>
 									</div>

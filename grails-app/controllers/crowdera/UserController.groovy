@@ -26,28 +26,27 @@ class UserController {
     @Secured(['ROLE_ADMIN'])
     def list() {
         def verifiedUsers = userService.getVerifiedUserList()
-	    def nonVerifiedUsers = userService.getNonVerifiedUserList()
+        def nonVerifiedUsers = userService.getNonVerifiedUserList()
         render(view: 'admin/userList', model: [verifiedUsers:verifiedUsers,nonVerifiedUsers:nonVerifiedUsers])
     }
 
-
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def dashboard() {
-       userprofile('user/dashboard','myprojects')
+        userprofile('user/dashboard','myprojects')
     }
-    
+
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def accountSetting() {
-       userprofile('user/dashboard','account-settings')
+        userprofile('user/dashboard','account-settings')
     }
 	
     @Secured(['ROLE_ADMIN'])
     def resendConfirmMailByAdmin(){
-	def user = userService.getUserId(params.long('id'))
-	user.confirmCode = UUID.randomUUID().toString()
-	mandrillService.reSendConfirmationMail(user)
-	flash.message = "Confirmation Email has been send to ${user.email}"
-	redirect(action:'list')
+        def user = userService.getUserId(params.long('id'))
+        user.confirmCode = UUID.randomUUID().toString()
+        mandrillService.reSendConfirmationMail(user)
+        flash.message = "Confirmation Email has been send to ${user.email}"
+        redirect(action:'list')
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -57,26 +56,20 @@ class UserController {
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
         } else {
-			def payu_url=	grailsApplication.config.crowdera.PAYU.BASE_URL
-			def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-			def projects = projectService.getAllProjectByUser(user, payu_url, request_url)
-//            def projects = projectService.getAllProjectByUser(user)
-            // def email = user.email
+            def projects = projectService.getAllProjectByUser(user, environment)
             def projectAdmins = projectService.getProjectAdminEmail(user)
             def teams = projectService.getTeamByUserAndEnable(user, true)
-//            def project = projectService.getProjects(projects, projectAdmins, teams)
-//            def contributions = projectService.getContibutionByUser(user)
-			def project = projectService.getProjects(projects, projectAdmins, teams, payu_url, request_url)
-			def contributions = projectService.getContibutionByUser(user, payu_url, request_url)
+            def project = projectService.getProjects(projects, projectAdmins, teams, environment)
+            def contributions = projectService.getContibutionByUser(user, environment)
             render view: userViews, model: [user: user, projects: project, contributions: contributions, activeTab:activeTab, environment: environment]
         }
     }
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def myproject() {
-         userprofile('user/myproject',null)
+        userprofile('user/myproject',null)
     }
-    
+
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def mycontribution() {
         userprofile('user/mycontribution',null)

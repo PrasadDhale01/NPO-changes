@@ -2542,26 +2542,26 @@ class ProjectService {
 		}
 	}
 	
-	def autoSaveProjectDetails(def variable, def varValue, def projectId){
-		Project project = Project.get(projectId);
-		User user = userService.getCurrentUser()
-		Beneficiary beneficiary = project.beneficiary;
-		def isValueChanged = false;
-		switch (variable) {
-			case 'category':
-				project.category = varValue;
-				isValueChanged = true;
-				break;
+    def autoSaveProjectDetails(def variable, def varValue, def projectId){
+        Project project = Project.get(projectId);
+        User user = userService.getCurrentUser()
+        Beneficiary beneficiary = project.beneficiary;
+        def isValueChanged = false; 
+        switch (variable) {
+            case 'category':
+                project.category = varValue;
+                isValueChanged = true;
+                break;
 
             case 'country':
-                    beneficiary.country = varValue;
-                    isValueChanged = true;
-                    break;
+                beneficiary.country = varValue;
+                isValueChanged = true;
+                break;
 
-			case 'videoUrl':
-				project.videoUrl = varValue;
-				isValueChanged = true;
-				break;
+            case 'videoUrl':
+                project.videoUrl = varValue;
+                isValueChanged = true;
+                break;
 				
 //			case 'email1':
 //				getAdminForProjects(varValue, project, user)
@@ -2582,51 +2582,52 @@ class ProjectService {
                 project.organizationName = varValue;
                 isValueChanged = true;
                 break;
-				
-			case 'webAddress':
-				project.webAddress = varValue;
-				isValueChanged = true;
-				break;
-				
-			case 'firstName':
-				beneficiary.firstName = varValue;
-				isValueChanged = true;
+	
+            case 'webAddress':
+                project.webAddress = varValue;
+                isValueChanged = true;
                 break;
-				
-			case 'lastName':
-				beneficiary.lastName = varValue;
-				isValueChanged = true;
-				break;
-				
-			case 'telephone':
-				beneficiary.telephone = varValue;
-				isValueChanged = true;
-				break;
-				
-			case 'paypalEmailId':
-			    if (!varValue.isAllWhitespace()){
-				project.paypalEmail = varValue;
-				project.charitableId = null;
-				project.organizationName = null;
-				isValueChanged = true;
-			    }
-				break;
-			case 'charitableId':
-				project.charitableId = varValue;
-				isValueChanged = true;
-				project.paypalEmail = null;
-				break;
-				
+	
+            case 'firstName':
+                beneficiary.firstName = varValue;
+                isValueChanged = true;
+                break;
+	
+            case 'lastName':
+                beneficiary.lastName = varValue;
+                isValueChanged = true;
+                break;
+	
+            case 'telephone':
+                beneficiary.telephone = varValue;
+                isValueChanged = true;
+                break;
+	
+            case 'paypalEmailId':
+                if (!varValue.isAllWhitespace()){
+                project.paypalEmail = varValue;
+                project.charitableId = null;
+                project.organizationName = null;
+                isValueChanged = true;
+            }
+            break;
+
+            case 'charitableId':
+                project.charitableId = varValue;
+                isValueChanged = true;
+                project.paypalEmail = null;
+                break;
+	
             case 'story':
                 project.story = varValue;
                 isValueChanged = true;
                 break;
-		}
-		
-		if (isValueChanged){
-			project.save();
-		}
-	}
+        }
+
+        if (isValueChanged){
+            project.save();
+        }
+     }
     
     @Transactional
     def bootstrap() {

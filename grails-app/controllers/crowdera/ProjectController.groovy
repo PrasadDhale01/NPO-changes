@@ -225,8 +225,8 @@ class ProjectController {
 			def teamContribution
 			def teamPercentage
 			if (currentTeam) {
-                teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
-                teamPercentage = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
+                        teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
+                        teamPercentage = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
 			}
 			def isCrFrCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)
 			def isCrUserCampBenOrAdmin

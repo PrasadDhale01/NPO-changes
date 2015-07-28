@@ -16,13 +16,6 @@
 <script src="/js/main.js"></script>
 <script src="/js/bootstrap-datepicker.js"></script>
 <script type="text/javascript">
-$(function() {
-    $('.redactorEditor').redactor({
-        imageUpload:'/project/getRedactorImage',
-        focus: true,
-        plugins: ['fontsize','fontfamily','fontcolor','video']
-    });
-});
 
     function removeLogo(){
 		$('#delIcon').removeAttr('src');
@@ -65,7 +58,8 @@ $(function() {
         </div>
         <div class="bg-color">
         <div class="container footer-container" id="campaigncreate">
-            <g:uploadForm class="form-horizontal cr-top-space"  controller="project" action="campaignOnDraftAndLaunch" id="${project.id}" role="form" params="['title': vanityTitle]">
+            <g:uploadForm class="form-horizontal cr-top-space"  controller="project" action="campaignOnDraftAndLaunch" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
+                <g:hiddenField name="projectId" value="${project.id}"/>
                 <div class="col-sm-12">
                     <div class="form-group" id="start">
                         <div class="col-sm-3">
@@ -76,13 +70,13 @@ $(function() {
                     
                         <div class="col-sm-3">
                             <div class="font-list">
-                                <g:select class="selectpicker" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" optionKey="key" optionValue="value" />
+                                <g:select class="selectpicker" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" id="category" optionKey="key" optionValue="value" />
                             </div>
                         </div>
                          
                         <div class="col-sm-3">
 	                        <div class="cr-dropdown-alignment font-list">
-	                            <g:select style="width:0px !important;" class="selectpicker" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="#" optionKey="key" optionValue="value" />
+	                            <g:select style="width:0px !important;" class="selectpicker" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="#" optionKey="key" optionValue="value" />
 	                        </div>
                         </div>
                           
@@ -123,7 +117,7 @@ $(function() {
                             <div class="form-group" id="createthumbnail">
                                 <div class="col-sm-12">
                                     <div class="fileUpload btn btn-info btn-sm">
-                                        <span>Upload Pictuers</span>
+                                        <span>Upload Pictures</span>
                                         <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" accept="image/jpeg, image/png" multiple>
                                     </div>
                                     <div class="clear"></div>
@@ -216,7 +210,7 @@ $(function() {
 		                            <div class="col-sm-4">
 			                            <div class="form-group">
 			                                <div class="col-sm-12">
-			                                    <input class="form-control" name="${FORMCONSTANTS.WEBADDRESS}" placeholder="Web Address">
+			                                    <input class="form-control" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="Web Address">
 			                                </div>
 			                            </div>
 		                            </div>
@@ -261,7 +255,7 @@ $(function() {
 		                            <div class="col-sm-4">
 			                            <div class="form-group">
 											<div class="col-sm-12">
-												<input type="tel" class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
+												<input type="tel" id="telephone" class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
 											</div>
 									    </div>
 								    </div>
@@ -408,18 +402,18 @@ $(function() {
 									    <div class="form-group">
 									        <label class="col-sm-4 control-label">Marchant ID </label>
 											<div class="col-sm-6">
-												<input type="text" id="payuemail" class="form-control" name="${FORMCONSTANTS.PAYUEMAIL}">
+												<input type="email" id="payuemail" class="form-control" name="${FORMCONSTANTS.PAYUEMAIL}">
 											</div>
 										</div>
 									</div>
-									 <div class="col-sm-12">
-									    <div class="form-group">
-									        <label class="col-sm-4 control-label">Secret Key</label>
-											<div class="col-sm-6">
-												<input type="text" class="form-control" name="${FORMCONSTANTS.SECRETKEY}">
-											</div>
-										</div>
-									</div>
+<%--									 <div class="col-sm-12">--%>
+<%--									    <div class="form-group">--%>
+<%--									        <label class="col-sm-4 control-label">Secret Key</label>--%>
+<%--											<div class="col-sm-6">--%>
+<%--												<input type="text" class="form-control" name="${FORMCONSTANTS.SECRETKEY}">--%>
+<%--											</div>--%>
+<%--										</div>--%>
+<%--									</div>--%>
 								</div>
 						    </g:if>
 						    <g:else>
@@ -460,16 +454,12 @@ $(function() {
 																}
 															}
 														};
-														function setOrganization() {
-															$('#charitable').find('input').val(document.getElementById("uuid").value);
-															$('#organizationName').find('input').val(document.getElementById("charity_name").value);
-														}
 													</script>
 													<script src="//assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
 												</div>
 												<div class="modal-footer">
 													<button href="#" data-dismiss="modal" class="btn btn-primary">Close</button>
-													<button class="btn btn-primary" href="#" data-dismiss="modal" onclick="setOrganization()" id="saveButton">Save</button>
+													<button class="btn btn-primary" href="#" data-dismiss="modal" id="saveButton">Save</button>
 												</div>
 											</div>
 										</div>

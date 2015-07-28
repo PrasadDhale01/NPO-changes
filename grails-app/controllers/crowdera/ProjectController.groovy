@@ -398,15 +398,9 @@ class ProjectController {
         def project = projectService.getProjectByParams(params)
         User user=userService.getCurrentUser()
         def beneficiary = userService.getBeneficiaryByParams(params)
-        project.amount = params.double('amount')
-        project.title = params.title
-        project.description = params.description;
-        project.beneficiary.firstName = params.(FORMCONSTANTS.FIRSTNAME)
         project.draft = true;
-        if (params.payfirst == "firstgiving") {
-            project.isPaypal = false
-        }
-
+		project.beneficiary = beneficiary;
+		
         def currentEnv = Environment.current.getName()
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
             project.payuStatus = true
@@ -418,7 +412,7 @@ class ProjectController {
             userName = userService.getVanityNameFromUsername(user.username, project.id)
             projectService.getFundRaisersForTeam(project, user)
             projectService.getdefaultAdmin(project, user)
-            redirect(action:'redirectCreateNow', params:[title:projectTitle])
+            redirect(action:'redirectCreateNow', params:[title:projectTitle, userName:userName])
         } else {
             render view:'/project/createerror'
         }
@@ -427,6 +421,7 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def redirectCreateNow() {
 		def vanityTitle = params.title
+		def vanityUsername = params.userName
 		def project = projectService. getProjectFromVanityTitle(vanityTitle)
 		def user = project.user
 		def categoryOptions = projectService.getCategoryList()
@@ -437,14 +432,13 @@ class ProjectController {
 						'country': country, currentEnv: currentEnv,
 						FORMCONSTANTS: FORMCONSTANTS,
 						project:project, user:user,
-						vanityTitle: vanityTitle])
+						vanityTitle: vanityTitle, vanityUsername:vanityUsername])
 	}
 	
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def campaignOnDraftAndLaunch() {
-        def project = projectService.getProjectById(params.id)
+        def project = projectService.getProjectById(params.projectId)
         User user = userService.getCurrentUser()
-        def beneficiary = userService.getBeneficiaryByParams(params)
  
         def currentEnv = Environment.current.getName()
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
@@ -454,7 +448,6 @@ class ProjectController {
             project.secretKey = params.(FORMCONSTANTS.SECRETKEY)
         }
 
-        project.category = params.(FORMCONSTANTS.CATEGORY)
         if (user == null || beneficiary==null){
             user = userService.getUserByUsername('anonymous@example.com')
         }
@@ -469,31 +462,14 @@ class ProjectController {
             project.draft = false
         }
 
-        project.videoUrl = params.(FORMCONSTANTS.VIDEO)
-
         def imageFiles = request.getFiles('thumbnail[]')
         if(!imageFiles.isEmpty()) {
             projectService.getMultipleImageUrls(imageFiles, project)
         }
 
         def country = projectService.getCountry()
-        project.beneficiary.country = params.(FORMCONSTANTS.COUNTRY)
 
         project.story = params.(FORMCONSTANTS.STORY)
-
-        String email1 = params.email1
-        String email2 = params.email2
-        String email3 = params.email3
-
-        projectService.getAdminForProjects(email1, project, user)
-        projectService.getAdminForProjects(email2, project, user)
-        projectService.getAdminForProjects(email3, project, user)
-
-        project.organizationName = params.(FORMCONSTANTS.ORGANIZATIONNAME)
-        project.webAddress = params.(FORMCONSTANTS.WEBADDRESS)
-        project.beneficiary.firstName = params.(FORMCONSTANTS.FIRSTNAME)
-        project.beneficiary.lastName = params.(FORMCONSTANTS.LASTNAME)
-        project.beneficiary.telephone = params.(FORMCONSTANTS.TELEPHONE)
 
         def iconFile = request.getFile('iconfile')
         if(!iconFile.isEmpty()) {
@@ -1411,5 +1387,23 @@ class ProjectController {
 			}
 		}
 		redirect (action:'show', controller:'project', fragment: 'comments', params:[projectTitle:params.projectTitle, fr:vanityUserName])
+	}
+	
+    def autoSave() {
+        def variable = request.getParameter("variable")
+        def varValue = request.getParameter("varValue")
+        def projectId = request.getParameter("projectId")
+        projectService.autoSaveProjectDetails(variable, varValue, projectId)
+        render ''
+    }
+	
+	def redactorCallback(){
+		def content = params.story
+		
+		println "redactor callback"
+		println "content : "+content
+		JSONObject json = new JSONObject();
+		json.put("story",content);
+		render json
 	}
 }

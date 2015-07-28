@@ -689,6 +689,44 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	 div.cr-story-flx {
+        display: inline;
+    }
+    div.cr-tabs-admins{
+	    display: inline;
+    }
+    div.cr-story-padding {
+        padding-left: 0;
+        padding-right: 8px;
+    }
+    div.cr-perks-flex {
+        display:flex;
+    }
+    div.cr-lab-rd-flex {
+        display: inline;
+    }
+    label.cr-wid{
+       width: 44px;
+    }
+    label.cr-width{
+       width: 30px;
+    }
+    label.cr-story-size {
+	    font-size: 14px;
+	    padding-top: 10px;
+	    padding-bottom: 10px;
+	    padding-left: 117px;
+	    padding-right: 117px;
+    }
+    label.cr-admin-title{
+        background-color: #01bbd2;
+        margin-bottom: 0;
+        padding: 10px 117px;
+    }
+    label.cr-payments-lab {
+        padding-left: 107px;
+        padding-right: 107px;
+    }
 	.allCampaign-dropdown > .btn {
 		width: 100% !important;
 		padding-right: 25px;
@@ -5361,6 +5399,57 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.cr-space{
+	    display: inline-table !important;
+	}
+    div.cr-story-flx {
+        display: inline;
+    }
+    div.cr-tabs-admins{
+	    display: inline;
+    }
+    div.cr-story-padding {
+        padding-left: 0;
+        padding-right: 8px;
+    }
+    div.cr-perks-flex {
+        display:flex;
+    }
+    div.cr-lab-rd-flex {
+        display: inline;
+    }
+    label.cr-wid{
+       width: 44px;
+    }
+    label.cr-width{
+       width: 30px;
+    }
+    label.cr-story-size {
+	    font-size: 14px;
+	    padding-top: 10px;
+	    padding-bottom: 10px;
+	    padding-left: 117px;
+	    padding-right: 117px;
+    }
+    label.cr-admin-title{
+        background-color: #01bbd2;
+        margin-bottom: 0;
+        padding: 10px 117px;
+    }
+    label.cr-payments-lab {
+        padding-left: 107px;
+        padding-right: 180px;
+    }
+    div.cr-payment-marg{
+        margin-left: -15px;
+    }
+    .cr-btn-margin {
+        margin-left: -10px;
+    }
+    .cr-btn-launch {
+        margin-bottom: 0;
+        margin-top: 62px;
+    }
 	h1.cr-header-name {
         color: white;
         font-size: 30px !important;
@@ -7804,7 +7893,7 @@ p.cr-perk-des-font {
     padding: 10px 16px;
 }
 .cr-perk-yesno-tab {
-  padding-top: 25px;
+/*   padding-top: 25px; */
 }
 .cr-story-padding {
   padding-top: 10px;
@@ -7834,7 +7923,7 @@ a.btn.btn-primary.btn-colors {
   padding-top: 24px;
 }
 span.fa-inr {
-  top: 23px;
+  top: 72px;
 }
 span.cr-perks-amts {
 	top: 18px !important;
@@ -7878,7 +7967,7 @@ img.cr-ineed-icons {
     border-color: #dddddd;
 }
 .cr-panel-story{
-	width: 860px; 
+/* 	width: 860px;  */
 	border: 1px solid #dddddd; 
 	font-size: 14px;
 	margin-bottom: 0px;
@@ -7907,7 +7996,7 @@ img.cr-ineed-icons {
 	height: 60px;
 }
 .cr-payments{
-	width: 830px; 
+	width: 100%; 
 	border: 1px solid #dddddd; 
 	margin-bottom: 0px;
     font-size: 14px;
@@ -7991,4 +8080,47 @@ label.text-color {
 .cr1-tb-color.active{
 	color: white;
 	background: gray;
+}
+.cr-story-size {
+    background-color: #01bbd2;
+    margin-bottom: 0;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    font-size: 14px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.cr-admin-title {
+	background-color: #01bbd2;
+    font-size: 14px;
+    margin-bottom: 0;
+    padding: 10px 50px
+}
+.cr-perks-flex{
+	display: flex;
+}
+.cr-perks-size {
+	background-color: #01bbd2;
+    margin-bottom: 0;
+    padding: 23px;
+    width: 155px;
+    font-size: 14px;
+}
+.cr-lab-rd-flex {
+	display:flex;
+}
+.cr-space{
+	padding-bottom: 24px;
+    padding-top: 20px;
+}
+.cr-payments-lab {
+	background-color: #01bbd2;
+    font-size: 14px;
+    margin-bottom: 0;
+    padding-top: 25px;
+    padding-left: 35px;
+    width: 178px;
+}
+.cr-perks-space{
+	 padding-right: 82px;
 }

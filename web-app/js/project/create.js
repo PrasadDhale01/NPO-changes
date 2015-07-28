@@ -749,10 +749,10 @@ function setTitleText(){
    '<div class="col-sm-12">'+
        '<div class="form-group">'+
            '<div class="btn-group col-sm-12 cr-perk-check" data-toggle="buttons">'+
-               '<label class="btn btn-default col-sm-3"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing address</label>'+
-               '<label class="btn btn-default col-sm-3"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email address</label>'+
-               '<label class="btn btn-default col-sm-3"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter handle</label>'+
-               '<label class="btn btn-default col-sm-3"><input type="checkbox" name="custom'+count+'" value="true" id="customcheckbox'+count+'">Custom</label>'+
+               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing address</label>'+
+               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email address</label>'+
+               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter handle</label>'+
+               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="custom'+count+'" value="true" id="customcheckbox'+count+'">Custom</label>'+
            '</div>'+
        '</div>'+
    '</div>'+

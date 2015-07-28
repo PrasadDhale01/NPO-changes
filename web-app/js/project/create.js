@@ -254,6 +254,10 @@ $(function() {
                 max: 999999
             });
         }
+    	if (validator.form()) {
+    		$('#campaigncreatebtn').attr('disabled','disabled');
+    		$('#campaigncreate').find('form').submit();
+    	}
     });
     
     $('#submitProject').on('click', function() {
@@ -941,12 +945,12 @@ function setTitleText(){
         autoSave('telephone', telephone);
     });
     
-$('#paypalEmailId').change(function (){
-var paypalEmailId = $(this).val();
-$('#organizationName').find('input').val('');
-$('#charitable').find('input').val('');
-autoSave('paypalEmailId', paypalEmailId);
-});
+    $('#paypalEmailId').change(function (){
+        var paypalEmailId = $(this).val();
+        $('#organizationName').find('input').val('');
+        $('#charitable').find('input').val('');
+        autoSave('paypalEmailId', paypalEmailId);
+    });
 
 //$('#hiddencharId').change(function (){
 //var charitableId = $(this).val();

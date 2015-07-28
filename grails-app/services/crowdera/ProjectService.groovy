@@ -2553,10 +2553,10 @@ class ProjectService {
 				isValueChanged = true;
 				break;
 
-			case 'country':
-		        beneficiary.country = varValue;
-				isValueChanged = true;
-				break;
+            case 'country':
+                    beneficiary.country = varValue;
+                    isValueChanged = true;
+                    break;
 
 			case 'videoUrl':
 				project.videoUrl = varValue;
@@ -2578,10 +2578,10 @@ class ProjectService {
 //				isValueChanged = true;
 //				break;
 				
-			case 'organizationname':
-			    project.organizationName = varValue;
-				isValueChanged = true;
-			    break;
+            case 'organizationname':
+                project.organizationName = varValue;
+                isValueChanged = true;
+                break;
 				
 			case 'webAddress':
 				project.webAddress = varValue;
@@ -2591,7 +2591,7 @@ class ProjectService {
 			case 'firstName':
 				beneficiary.firstName = varValue;
 				isValueChanged = true;
-			    break;
+                break;
 				
 			case 'lastName':
 				beneficiary.lastName = varValue;
@@ -2617,10 +2617,10 @@ class ProjectService {
 				project.paypalEmail = null;
 				break;
 				
-			case 'story':
-			    project.story = varValue;
-				isValueChanged = true;
-				break;
+            case 'story':
+                project.story = varValue;
+                isValueChanged = true;
+                break;
 		}
 		
 		if (isValueChanged){

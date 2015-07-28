@@ -450,9 +450,6 @@ class ProjectController {
             project.secretKey = params.(FORMCONSTANTS.SECRETKEY)
         }
 
-        if (user == null || beneficiary==null){
-            user = userService.getUserByUsername('anonymous@example.com')
-        }
         def days = params.days
         projectService.getNumberofDays(days, project)
 
@@ -471,16 +468,11 @@ class ProjectController {
 
         def country = projectService.getCountry()
 
-        project.story = params.(FORMCONSTANTS.STORY)
-
         def iconFile = request.getFile('iconfile')
         if(!iconFile.isEmpty()) {
             def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
             project.organizationIconUrl = uploadedFileUrl
         }
-
-        project.paypalEmail = params.paypalEmail
-        project.charitableId = params.charitableId
 
         def amount=project.amount
         def boolPerk=false
@@ -1398,14 +1390,4 @@ class ProjectController {
         projectService.autoSaveProjectDetails(variable, varValue, projectId)
         render ''
     }
-	
-	def redactorCallback(){
-		def content = params.story
-		
-		println "redactor callback"
-		println "content : "+content
-		JSONObject json = new JSONObject();
-		json.put("story",content);
-		render json
-	}
 }

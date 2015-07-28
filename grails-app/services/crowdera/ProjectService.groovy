@@ -2524,20 +2524,22 @@ class ProjectService {
 	def getTeamContributions(def params, Team currentTeam) {
 		List totalContributions = []
 		List contributions = []
-		def max = Math.min(params.int('max') ?: 12, 100)
-		def offset = params.int('offset') ?: 0
-		totalContributions = currentTeam.contributions.reverse();
-		def count = totalContributions.size()
-		def maxrange
+		if (currentTeam) {
+		    def max = Math.min(params.int('max') ?: 12, 100)
+		    def offset = params.int('offset') ?: 0
+		    totalContributions = currentTeam.contributions.reverse();
+		    def count = totalContributions.size()
+		    def maxrange
 		
-		if(offset+max <= count) {
-			maxrange = offset+max
-		} else {
-			maxrange = offset + (count - offset)
+		    if(offset+max <= count) {
+			    maxrange = offset+max
+		    } else {
+			    maxrange = offset + (count - offset)
+		    }
+		
+	     	contributions = totalContributions.subList(offset, maxrange)
+		    return [totalContributions: totalContributions,contributions: contributions]
 		}
-		
-		contributions = totalContributions.subList(offset, maxrange)
-		return [totalContributions: totalContributions,contributions: contributions]
 	}
 	
 	def autoSaveProjectDetails(def variable, def varValue, def projectId){

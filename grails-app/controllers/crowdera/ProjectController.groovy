@@ -134,8 +134,8 @@ class ProjectController {
 			def isCrUserCampBenOrAdmin
 			def isTeamExist
 			def CurrentUserTeam
-			List projectComment
-			List teamcomment
+			def projectComment
+			def teamcomment
 
 			List contributions = []
 			List totalContributions = []

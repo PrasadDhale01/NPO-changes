@@ -14,10 +14,10 @@ $(function() {
     }
     
     $('.trigger').click(function() {
-    	var slider_width = $('#support').width();
+    	var slider_width = $('#hiddensearch').width();
     	var isAnimated = $(".search-box").is(':animated');
     	if (isAnimated) {
-            $(".search-box").animate({width: "0px"},'slow','linear');
+            $(".search-box").animate({width: "0px"});
             var delay = 300;
             setTimeout(function() {
                 $('.search-box').hide();
@@ -29,7 +29,7 @@ $(function() {
             $('.search-box').show();
             $('.discover').hide();
             $('.learn').hide();
-            $(".search-box").animate({width: "150px"},'slow','linear',function(){
+            $(".search-box").animate({width: slider_width},function(){
                 $(this).focus(); // For bonus, the input will now get autofocus
             });
             $('.search-image-header').css('paddingRight', '20px');
@@ -37,7 +37,7 @@ $(function() {
     });
 
     $('.search-box').blur(function() {
-         $(this).animate({width: "0px"},'slow','linear');
+         $(this).animate({width: "0px"});
          var delay = 300;
          setTimeout(function() {
         	 $('.search-box').hide();

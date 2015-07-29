@@ -3455,7 +3455,10 @@ div.tile-min-height{
 
 
 @media only screen and (max-width: 991px){
-
+    #hiddensearch {
+        display: none;
+        width: 250px !important;
+    }
     ul.nav.navbar-nav.nav-icon-bar li.searchengine {
         margin-top: 4px !important;
     }
@@ -3928,6 +3931,10 @@ textarea.form-control {
     ul.nav-icon-bar {
         padding-left: 10px !important;
     }
+    #hiddensearch {
+        display: none;
+        width: 230px !important;
+    }
 }
 
 /*Screen resolution 644 x 767 */
@@ -4125,6 +4132,14 @@ textarea.form-control {
 		margin-top: 16px !important;
 	}
 	/*************EndManageTeamButtons************/	
+	
+	ul.nav.navbar-nav.nav-icon-bar {
+        width: 24% !important;
+    }
+    #hiddensearch {
+        display: none;
+        width: 210px !important;
+    }
 }
 
 .charitableLink {
@@ -8213,6 +8228,7 @@ label.text-color {
 	color: white;
 	background: gray;
 }
+
 .cr-story-size {
     background-color: #01bbd2;
     margin-bottom: 0;
@@ -8255,4 +8271,8 @@ label.text-color {
 }
 .cr-perks-space{
 	 padding-right: 82px;
+
+#hiddensearch{
+    display: none;
+    width: 270px;
 }

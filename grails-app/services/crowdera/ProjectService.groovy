@@ -2524,21 +2524,110 @@ class ProjectService {
 	def getTeamContributions(def params, Team currentTeam) {
 		List totalContributions = []
 		List contributions = []
-		def max = Math.min(params.int('max') ?: 12, 100)
-		def offset = params.int('offset') ?: 0
-		totalContributions = currentTeam.contributions.reverse();
-		def count = totalContributions.size()
-		def maxrange
+		if (currentTeam) {
+		    def max = Math.min(params.int('max') ?: 12, 100)
+		    def offset = params.int('offset') ?: 0
+		    totalContributions = currentTeam.contributions.reverse();
+		    def count = totalContributions.size()
+		    def maxrange
 		
-		if(offset+max <= count) {
-			maxrange = offset+max
-		} else {
-			maxrange = offset + (count - offset)
+		    if(offset+max <= count) {
+			    maxrange = offset+max
+		    } else {
+			    maxrange = offset + (count - offset)
+		    }
+		
+	     	contributions = totalContributions.subList(offset, maxrange)
+		    return [totalContributions: totalContributions,contributions: contributions]
 		}
-		
-		contributions = totalContributions.subList(offset, maxrange)
-		return [totalContributions: totalContributions,contributions: contributions]
 	}
+	
+    def autoSaveProjectDetails(def variable, def varValue, def projectId){
+        Project project = Project.get(projectId);
+        User user = userService.getCurrentUser()
+        Beneficiary beneficiary = project.beneficiary;
+        def isValueChanged = false; 
+        switch (variable) {
+            case 'category':
+                project.category = varValue;
+                isValueChanged = true;
+                break;
+
+            case 'country':
+                beneficiary.country = varValue;
+                isValueChanged = true;
+                break;
+
+            case 'videoUrl':
+                project.videoUrl = varValue;
+                isValueChanged = true;
+                break;
+				
+//			case 'email1':
+//				getAdminForProjects(varValue, project, user)
+//				isValueChanged = true;
+//				break;
+//				
+//			case 'email2':
+//				getAdminForProjects(varValue, project, user)
+//				isValueChanged = true;
+//				break;
+//				
+//			case 'email3':
+//				getAdminForProjects(varValue, project, user)
+//				isValueChanged = true;
+//				break;
+				
+            case 'organizationname':
+                project.organizationName = varValue;
+                isValueChanged = true;
+                break;
+	
+            case 'webAddress':
+                project.webAddress = varValue;
+                isValueChanged = true;
+                break;
+	
+            case 'firstName':
+                beneficiary.firstName = varValue;
+                isValueChanged = true;
+                break;
+	
+            case 'lastName':
+                beneficiary.lastName = varValue;
+                isValueChanged = true;
+                break;
+	
+            case 'telephone':
+                beneficiary.telephone = varValue;
+                isValueChanged = true;
+                break;
+	
+            case 'paypalEmailId':
+                if (!varValue.isAllWhitespace()){
+                project.paypalEmail = varValue;
+                project.charitableId = null;
+                project.organizationName = null;
+                isValueChanged = true;
+            }
+            break;
+
+            case 'charitableId':
+                project.charitableId = varValue;
+                isValueChanged = true;
+                project.paypalEmail = null;
+                break;
+	
+            case 'story':
+                project.story = varValue;
+                isValueChanged = true;
+                break;
+        }
+
+        if (isValueChanged){
+            project.save();
+        }
+     }
     
     @Transactional
     def bootstrap() {

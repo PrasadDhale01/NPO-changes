@@ -1,5 +1,15 @@
 $(function() {
     console.log("create.js initialized");
+    
+    $('.redactorEditor').redactor({
+        imageUpload:'/project/getRedactorImage',
+        focus: true,
+        changeCallback: function(){
+        	autoSave('story', this.code.get());
+        },
+        
+        plugins: ['fontsize','fontfamily','fontcolor','video']
+    });
 
     $('#logomsg').hide();
     $('#imgmsg').hide();
@@ -149,11 +159,12 @@ $(function() {
               isPaypalEmailVerified : true
             },
             payuEmail:{
-            	required:true
-            },
-            secretKey: {
             	required:true,
+            	email:true
             },
+//            secretKey: {
+//            	required:true,
+//            },
             pay: {
             	required:true
             },
@@ -243,6 +254,10 @@ $(function() {
                 max: 999999
             });
         }
+    	if (validator.form()) {
+    		$('#campaigncreatebtn').attr('disabled','disabled');
+    		$('#campaigncreate').find('form').submit();
+    	}
     });
     
     $('#submitProject').on('click', function() {
@@ -433,6 +448,8 @@ $(function() {
     });
     $('#videoUrl').change(function(){
         $('#ytVideo').hide();
+        var selectedVideoUrl = $(this).val();
+        autoSave('videoUrl', selectedVideoUrl);
     });
 
 
@@ -877,6 +894,93 @@ function setTitleText(){
            });
         }
     });
+   
+    $('#category').change(function(){
+        var selectedCategory = $(this).val();
+        autoSave('category', selectedCategory);
+    });
+   
+    $('#country').change(function(){
+        var selectedCountry = $(this).val();
+        autoSave('country', selectedCountry);
+    });
+    
+//    $('#firstadmin').change(function(){
+//        var emailValue = $(this).val();
+//        autoSave('email1', emailValue);
+//    });
+//    
+//    $('#secondadmin').change(function(){
+//        var emailValue = $(this).val();
+//        autoSave('email2', emailValue);
+//    });
+//    
+//    $('#thirdadmin').change(function(){
+//        var emailValue = $(this).val();
+//        autoSave('email3', emailValue);
+//    });
+    
+    $('#organizationname').change(function (){
+    	var name = $(this).val();
+    	autoSave('organizationname', name);
+    });
+    
+    $('#webAddress').change(function (){
+    	var webAddress = $(this).val();
+    	autoSave('webAddress', webAddress);
+    });
+    
+    $('#firstName').change(function (){
+        var firstName = $(this).val();
+        autoSave('firstName', firstName);
+    });
+
+    $('#lastName').change(function (){
+        var lastName = $(this).val();
+        autoSave('lastName', lastName);
+    });
+
+    $('#telephone').change(function (){
+        var telephone = $(this).val();
+        autoSave('telephone', telephone);
+    });
+    
+    $('#paypalEmailId').change(function (){
+        var paypalEmailId = $(this).val();
+        $('#organizationName').find('input').val('');
+        $('#charitable').find('input').val('');
+        autoSave('paypalEmailId', paypalEmailId);
+    });
+
+//$('#hiddencharId').change(function (){
+//var charitableId = $(this).val();
+//alert('charitableId : '+charitableId);
+//autoSave('charitableId', charitableId);
+//});
+   
+    function autoSave(variable, varValue) {
+        var projectId = $('#projectId').val();
+        $.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/autoSave',
+            data:'projectId='+projectId+'&variable='+variable+'&varValue='+varValue,
+            success: function(data) {
+                $('#test').val('test');
+            }
+        }).error(function() {
+            alert('An error occured');
+        });
+     }
+    
+    $('#saveButton').click(function (){
+    	var uuid = $('#uuid').val();
+    	var charityName = $('#charity_name').val();
+    	$('#charitable').find('input').val(uuid);
+		$('#organizationName').find('input').val(charityName);
+		$('#paypalemail').find('input').val('');
+		autoSave('charitableId', uuid);
+		autoSave('organizationname', charityName);
+    })
 
 /*Javascript error raised due to tooltip is resolved*/
     /* Show pop-over tooltip on hover for some fields. */

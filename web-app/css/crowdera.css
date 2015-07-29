@@ -725,7 +725,7 @@ a {
     }
     label.cr-payments-lab {
         padding-left: 107px;
-        padding-right: 107px;
+        padding-right: 181px;
     }
     .cr-btn-launch {
         margin-bottom: 0;
@@ -734,6 +734,9 @@ a {
     .tab-content.panel.panel-default.col-sm-12.cr-tab-panel-top {
 		height: 100%;
 		width: 100%;
+    }
+    .cr-payment-marg {
+        padding-left: 0;
     }
 	.allCampaign-dropdown > .btn {
 		width: 100% !important;
@@ -1220,8 +1223,9 @@ a {
         padding: 10px 43px;
     }
     label.cr-payments-lab {
-        padding-left: 107px;
-        padding-right: 180px;
+        padding-left: 37px;
+        padding-right: 100px;
+        width: 153px;
     }
     div.cr-payment-marg{
         margin-left: -15px;
@@ -1671,6 +1675,11 @@ a {
 	}
     .cr-btn-launch{
         margin-top: 0px;
+    }
+    label.cr-payments-lab {
+		padding-left: 40px;
+		padding-right: 116px;
+		width: 100px;
     }
     
 	.carousel-buttons{
@@ -5588,14 +5597,14 @@ textarea.form-control {
     label.cr-admin-title{
         background-color: #01bbd2;
         margin-bottom: 0;
-        padding: 10px 117px;
+        padding: 10px 112px;
     }
     label.cr-payments-lab {
         padding-left: 107px;
         padding-right: 180px;
     }
     div.cr-payment-marg{
-        margin-left: -15px;
+        padding: 0;
     }
     .cr-btn-margin {
         margin-left: -10px;
@@ -8177,7 +8186,7 @@ label.text-color {
     color: #6d6e6e;
 }
 .text-color {
-    color: #c7c7c7;
+    color: #6d6e6e;
     border-color: #e3e3e3;
     font-size: 14px;
 }
@@ -8186,7 +8195,7 @@ label.text-color {
 }
 
 /****Chrome-Placeholder*******/
-#firstName::-webkit-input-placeholder {
+#name::-webkit-input-placeholder {
 	font-size: 14px;
 	color: #c7c7c7;
 }
@@ -8199,7 +8208,7 @@ label.text-color {
 	color: #c7c7c7;
 }
 /*******Mozila-placeholder******/
-#firstName::-moz-placeholder{ 
+#name::-moz-placeholder{ 
 	font-size: 14px;
 	color: #c7c7c7;
 }
@@ -8293,8 +8302,15 @@ label.text-color {
 }
 .cr-perks-space{
 	 padding-right: 82px;
-
+}
 #hiddensearch{
     display: none;
     width: 270px;
+}
+.cr-pay-rd {
+    font-size: 12px;
+}
+.cr-reci-siz{
+	font-size: 14px;
+	font-weight:900;
 }

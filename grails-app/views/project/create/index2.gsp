@@ -139,7 +139,7 @@
                        <div class="col-sm-12 cr-story-padding">
                            <div class="cr-story-flx">
                            <label class="panel body cr-story-size">STORY</label>
-                      	   <label class="panel-body cr-panel-story">A good enga story is the backbone of your Campaign.
+                      	   <label class="panel-body cr-panel-story">A good engaging story is the backbone of your Campaign.
 	                                                                    you want your readers to be compelled to share your story
 	                                                                    and make your campaign go viral. Be passionate and make 
 	                                                                    them believe and trust your goal.</label>
@@ -390,10 +390,11 @@
 	                                </div>
 	                               <label class="cr-pad-who">Who will recieve the funds</label>
 									<div class="btn-group col-sm-12 cr-perk-check cr-radio-option" data-toggle="buttons">
-										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="yes">Person</label> 
-										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="no">Non-profit</label>
-										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="no">NGO</label>
-										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="no">Others</label>
+									    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" value="yes" name=""><span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label> 
+										<label class="btn btn-default cr-check-btn col-sm-2 col-xs-12"> <input type="radio" name="" value="yes">Person</label> 
+										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A US 501CC1</span><span class="cr-reci-siz"> Non-profit</span></label>
+										<label class="btn btn-default cr-check-btn col-sm-2 col-xs-12"> <input type="radio" name="" value="no"><span class="cr-reci-siz">NGO</span></label>
+										<label class="btn btn-default cr-check-btn col-sm-2 col-xs-12"> <input type="radio" name="" value="no"><span class="cr-reci-siz">Others</span></label>
 									</div>
 								</div>
 							</div>

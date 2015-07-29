@@ -138,8 +138,8 @@
                    <div class="form-group">
                        <div class="col-sm-12 cr-story-padding">
                            <div class="cr-story-flx">
-	                       	   <label class="btn btn-info btn-text">Story</label>
-	                       	   <label class="panel-body cr-panel-story">A good engaging story is the backbone of your Campaign.
+                           <label class="panel body cr-story-size">STORY</label>
+                      	   <label class="panel-body cr-panel-story">A good enga story is the backbone of your Campaign.
 	                                                                    you want your readers to be compelled to share your story
 	                                                                    and make your campaign go viral. Be passionate and make 
 	                                                                    them believe and trust your goal.</label>
@@ -156,7 +156,7 @@
 	                    
                         <div class="col-sm-12 manage-Top-tabs-mobile" id="admins">
 						    <div class="cr-tabs-admins">
-  								<label class="btn btn-info">ADMIN</label>
+  								 <label class="panel body cr-admin-title">ADMIN</label>
 						    	<ul class="nav nav-tabs manage-projects nav-justified cr-ul-tabs">
 									<li class="cr-li-tabs"><a href="#admin" data-toggle="tab" aria-expanded="false">
 									   <span class="tab-text hidden-xs cr-add-tabs-title">Add Campaign co-creators</span><i class="glyphicon glyphicon-chevron-down pull-right"></i>
@@ -273,7 +273,7 @@
 		                                       <a class="twitter-share pull-left" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">
 			                                       <img src="//s3.amazonaws.com/crowdera/assets/twitter-share-icon.png" alt="Twitter Share">
 		                                       </a>
-		                                       <a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${fbShareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+		                                       <a class="social share-linkedin pull-left" >
 			                                       <img src="//s3.amazonaws.com/crowdera/assets/linked-in-share-icon.png" alt="LinkedIn Share">
 		                                       </a>
 			                                </div>
@@ -292,14 +292,16 @@
 	
 						</div>
 	                   
-							<div class="form-group">
-								<div class="col-sm-12" id="perk">
-									<div class="btn-group btnPerkBgColor col-sm-12 cr-perk-yesno-tab" data-target="buttons">
-										<span class="btn btn-info col-sm-2 pull-left">Offering PERKS ?</span>
-										<label class="btn btn-default col-sm-2 pull-right"> <input type="radio" name="answer" value="no"> NO</label>
-										<label class="btn btn-default col-sm-2 pull-right"> <input type="radio" name="answer" value="yes"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
+							<div class="">
+								<div class="col-sm-12 cr-lab-rd-flex cr-space" id="perk">
+								    <div class="cr-perks-flex cr-perks-space">
+								        <label class="panel-body cr-perks-size ">Offering PERKS?</label>
+								        </div>
+									<div class="btn-group btnPerkBgColor col-sm-12 col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp" data-target="buttons">
+										<label class="btn btn-default col-sm-2 cr-lbl-mobile"> <input type="radio" name="answer" value="yes"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
+									    <label class="btn btn-default col-sm-2 cr-lbl-mobiles"> <input type="radio" name="answer" value="no"> NO</label>
 									</div>
-								</div>
+						
 							</div>
 						
 							<input type="hidden" name="rewardCount" id="rewardCount" value='0'/>
@@ -353,10 +355,10 @@
 										<div class="col-sm-12">
 	                                        <div class="form-group">
 	                                            <div class="btn-group col-sm-12 cr-perk-check" data-toggle="buttons">
-	                                                <label class="btn btn-default col-sm-3"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing address</label>
-	                                                <label class="btn btn-default col-sm-3 "><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email address</label>
-	                                                <label class="btn btn-default col-sm-3 "><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter handle</label>
-	                                                <label class="btn btn-default col-sm-3"><input type="checkbox" name="custom1" value="true" id="customcheckbox1">Custom</label>
+	                                                <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing address</label>
+	                                                <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email address</label>
+	                                                <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter handle</label>
+	                                                <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="custom1" value="true" id="customcheckbox1">Custom</label>
 	                                            </div>
 	                                        </div>
 	                                    </div>
@@ -379,18 +381,19 @@
                           
                          <div class="form-group" id="payFirst">
 								<div class="col-sm-12 cr-payments-pad">
-								    <div class="cr-story-flx col-sm-12">
-										    <label class="btn btn-info btn-text">Payments</label>
+								    <div class="cr-story-flx cr-payment-marg col-sm-12">
+										    <label class="panel-body cr-payments-lab">PAYMENTS</label>
+<%--                                            <img alt="" src="/images/Payment-Button.jpg">--%>
 	                       	                <label class="panel-body cr-payments">Payments are sent and received via your choice of Payment Gateway.
 	                                                                              You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>
 	                                         
 	                                </div>
 	                               <label class="cr-pad-who">Who will recieve the funds</label>
 									<div class="btn-group col-sm-12 cr-perk-check cr-radio-option" data-toggle="buttons">
-										<label class="btn btn-default cr-check-btn col-sm-3"> <input type="radio" name="" value="yes">Person</label> 
-										<label class="btn btn-default cr-check-btn col-sm-3"> <input type="radio" name="" value="no">Non-profit</label>
-										<label class="btn btn-default cr-check-btn col-sm-3"> <input type="radio" name="" value="no">NGO</label>
-										<label class="btn btn-default cr-check-btn col-sm-3"> <input type="radio" name="" value="no">Others</label>
+										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="yes">Person</label> 
+										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="no">Non-profit</label>
+										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="no">NGO</label>
+										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="no">Others</label>
 									</div>
 								</div>
 							</div>
@@ -469,14 +472,14 @@
 								
                     <div class="col-sm-12 cr-paddingspace" id="launch">
                         <div class="col-sm-6 text-center " >
-                            <g:link class="cr-bg-preview-btn" id="${project.id}" controller="project" action="manageCampaign"></g:link>
+                            <g:link class="cr-bg-preview-btn cr-btn-margin" id="${project.id}" controller="project" action="manageCampaign"></g:link>
                         </div>
                         <g:hiddenField name="isSubmitButton" value="true" id="isSubmitButton"></g:hiddenField>
 <%--                        <div class="col-sm-4 text-center padding-btn" >--%>
 <%--                            <button type="button" class="btn  btn-primary btn-colors" name="button" id="saveasdraft"  value="draft">Save</button>--%>
 <%--                        </div>--%>
                         <div class="col-sm-6 text-center" >
-                            <button type="button" class="cr-bg-Launch-btn" id="submitProject" name="button" value="submitProject"></button>
+                            <button type="button" class="cr-bg-Launch-btn cr-btn-launch" id="submitProject" name="button" value="submitProject"></button>
                         </div>
                     </div>
                 </div>

@@ -1,5 +1,15 @@
 $(function() {
     console.log("create.js initialized");
+    
+    $('.redactorEditor').redactor({
+        imageUpload:'/project/getRedactorImage',
+        focus: true,
+        changeCallback: function(){
+        	autoSave('story', this.code.get());
+        },
+        
+        plugins: ['fontsize','fontfamily','fontcolor','video']
+    });
 
     $('#logomsg').hide();
     $('#imgmsg').hide();
@@ -149,11 +159,12 @@ $(function() {
               isPaypalEmailVerified : true
             },
             payuEmail:{
-            	required:true
-            },
-            secretKey: {
             	required:true,
+            	email:true
             },
+//            secretKey: {
+//            	required:true,
+//            },
             pay: {
             	required:true
             },
@@ -196,18 +207,6 @@ $(function() {
         //ignore: []
     });
     
-    $("#fbshare").click(function(){
-        var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl').val());
-        window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
-        return false;
-    });
-    
-    $("#twitterShare").click(function(){
-        var url = 'https://twitter.com/share?text=Check campaign at crowdera.co!';
-        window.open(url, 'Share on Twitter', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
-        return false;
-    });
-    
     $('.createsubmitbutton').click(function(event) {
         if(validator.form()){
         	needToConfirm = false;
@@ -243,6 +242,10 @@ $(function() {
                 max: 999999
             });
         }
+    	if (validator.form()) {
+    		$('#campaigncreatebtn').attr('disabled','disabled');
+    		$('#campaigncreate').find('form').submit();
+    	}
     });
     
     $('#submitProject').on('click', function() {
@@ -433,6 +436,8 @@ $(function() {
     });
     $('#videoUrl').change(function(){
         $('#ytVideo').hide();
+        var selectedVideoUrl = $(this).val();
+        autoSave('videoUrl', selectedVideoUrl);
     });
 
 
@@ -749,10 +754,10 @@ function setTitleText(){
    '<div class="col-sm-12">'+
        '<div class="form-group">'+
            '<div class="btn-group col-sm-12 cr-perk-check" data-toggle="buttons">'+
-               '<label class="btn btn-default col-sm-3"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing address</label>'+
-               '<label class="btn btn-default col-sm-3"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email address</label>'+
-               '<label class="btn btn-default col-sm-3"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter handle</label>'+
-               '<label class="btn btn-default col-sm-3"><input type="checkbox" name="custom'+count+'" value="true" id="customcheckbox'+count+'">Custom</label>'+
+               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing address</label>'+
+               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email address</label>'+
+               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter handle</label>'+
+               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="custom'+count+'" value="true" id="customcheckbox'+count+'">Custom</label>'+
            '</div>'+
        '</div>'+
    '</div>'+
@@ -877,6 +882,93 @@ function setTitleText(){
            });
         }
     });
+   
+    $('#category').change(function(){
+        var selectedCategory = $(this).val();
+        autoSave('category', selectedCategory);
+    });
+   
+    $('#country').change(function(){
+        var selectedCountry = $(this).val();
+        autoSave('country', selectedCountry);
+    });
+    
+//    $('#firstadmin').change(function(){
+//        var emailValue = $(this).val();
+//        autoSave('email1', emailValue);
+//    });
+//    
+//    $('#secondadmin').change(function(){
+//        var emailValue = $(this).val();
+//        autoSave('email2', emailValue);
+//    });
+//    
+//    $('#thirdadmin').change(function(){
+//        var emailValue = $(this).val();
+//        autoSave('email3', emailValue);
+//    });
+    
+    $('#organizationname').change(function (){
+    	var name = $(this).val();
+    	autoSave('organizationname', name);
+    });
+    
+    $('#webAddress').change(function (){
+    	var webAddress = $(this).val();
+    	autoSave('webAddress', webAddress);
+    });
+    
+    $('#firstName').change(function (){
+        var firstName = $(this).val();
+        autoSave('firstName', firstName);
+    });
+
+    $('#lastName').change(function (){
+        var lastName = $(this).val();
+        autoSave('lastName', lastName);
+    });
+
+    $('#telephone').change(function (){
+        var telephone = $(this).val();
+        autoSave('telephone', telephone);
+    });
+    
+    $('#paypalEmailId').change(function (){
+        var paypalEmailId = $(this).val();
+        $('#organizationName').find('input').val('');
+        $('#charitable').find('input').val('');
+        autoSave('paypalEmailId', paypalEmailId);
+    });
+
+//$('#hiddencharId').change(function (){
+//var charitableId = $(this).val();
+//alert('charitableId : '+charitableId);
+//autoSave('charitableId', charitableId);
+//});
+   
+    function autoSave(variable, varValue) {
+        var projectId = $('#projectId').val();
+        $.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/autoSave',
+            data:'projectId='+projectId+'&variable='+variable+'&varValue='+varValue,
+            success: function(data) {
+                $('#test').val('test');
+            }
+        }).error(function() {
+            alert('An error occured');
+        });
+     }
+    
+    $('#saveButton').click(function (){
+    	var uuid = $('#uuid').val();
+    	var charityName = $('#charity_name').val();
+    	$('#charitable').find('input').val(uuid);
+		$('#organizationName').find('input').val(charityName);
+		$('#paypalemail').find('input').val('');
+		autoSave('charitableId', uuid);
+		autoSave('organizationname', charityName);
+    })
 
 /*Javascript error raised due to tooltip is resolved*/
     /* Show pop-over tooltip on hover for some fields. */

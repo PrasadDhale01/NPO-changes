@@ -33,7 +33,7 @@
     <div class="clear"></div>
     <!-- Modal -->
     <div class="modal fade offlineContributionModal" id="offlineContributionModal" tabindex="-1" role="dialog" aria-labelledby="offlineContributionModal" aria-hidden="true">
-        <g:form action="saveOfflineContribution" controller="fund" id="${project.id}"  params="['fr':fundRaiser]" role="form">
+        <g:form action="saveOfflineContribution" controller="fund" id="${project.id}"  params="['fr':fundRaiser]" role="form" name="saveOfflineContribution-form">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -151,7 +151,7 @@
                                             <i class="glyphicon glyphicon-edit" ></i>
                                         </button>
 
-                                        <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]">
+                                        <g:form name="ContributionDelete-form" controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]">
                                             <g:hiddenField name="manageCampaign" value="${manageCampaign}"></g:hiddenField>
                                             <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this contribution?&#39;);">
                                                 <i class="glyphicon glyphicon-trash" ></i>
@@ -166,7 +166,7 @@
                         
                         <!-- EditContributionModal -->
                         <div class="modal fade offlineContributionModal contributionedit" id="contributionedit${contribution.id}" tabindex="-1" role="dialog" aria-labelledby="contributionedit${contribution.id}" aria-hidden="true">
-                            <g:form action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]" role="form">
+                            <g:form name="contributionEdit-form" action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]" role="form">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-body">
@@ -274,7 +274,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
-   <g:form controller="project" action="generateCSV" role="form">
+   <g:form controller="project" action="generateCSV" role="form" name="generateCSV-form" id="generateCSV-form">
    <div class="modal-dialog">
       <div class="modal-content">
          <div class="modal-header">
@@ -382,8 +382,7 @@
             </g:else>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" 
-               >Generate CSV
+            <button type="submit" class="btn btn-primary" class="btnGenerateCSV">Generate CSV
             </button>
          </div>
        </div> <!-- /.modal-dialog -->

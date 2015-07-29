@@ -303,9 +303,9 @@ $(function() {
 								    <div class="cr-perks-flex cr-perks-space">
 								        <label class="panel-body cr-perks-size ">Offering PERKS?</label>
 								        </div>
-									<div class="btn-group btnPerkBgColor col-sm-12 cr-perk-yesno-tab col-sm-push-6" data-target="buttons">
-										<label class="btn btn-default col-sm-2 "> <input type="radio" name="answer" value="yes"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
-									    <label class="btn btn-default col-sm-2 "> <input type="radio" name="answer" value="no"> NO</label>
+									<div class="btn-group btnPerkBgColor col-sm-12 col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp" data-target="buttons">
+										<label class="btn btn-default col-sm-2 cr-lbl-mobile"> <input type="radio" name="answer" value="yes"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
+									    <label class="btn btn-default col-sm-2 cr-lbl-mobiles"> <input type="radio" name="answer" value="no"> NO</label>
 									</div>
 						
 							</div>

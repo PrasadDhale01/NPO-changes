@@ -689,7 +689,7 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	 div.cr-story-flx {
+	div.cr-story-flx {
         display: inline;
     }
     div.cr-tabs-admins{
@@ -726,6 +726,10 @@ a {
     label.cr-payments-lab {
         padding-left: 107px;
         padding-right: 107px;
+    }
+    .cr-btn-launch {
+        margin-bottom: 0;
+        margin-top: 62px;
     }
 	.allCampaign-dropdown > .btn {
 		width: 100% !important;
@@ -1174,6 +1178,54 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.cr-space{
+	    display: inline-table !important;
+	}
+    div.cr-story-flx {
+        display: flex;
+    }
+    div.cr-tabs-admins{
+	    display: flex;
+    }
+    div.cr-story-padding {
+        padding-left: 0;
+        padding-right: 8px;
+    }
+    div.cr-perks-flex {
+        display:flex;
+    }
+    div.cr-lab-rd-flex {
+        display: flex !important;
+    }
+    label.cr-wid{
+       width: 44px;
+    }
+    label.cr-width{
+       width: 30px;
+    }
+    label.cr-story-size {
+	    font-size: 14px;
+	    padding: 36px 43px;
+    }
+    label.cr-admin-title{
+        background-color: #01bbd2;
+        margin-bottom: 0;
+        padding: 10px 43px;
+    }
+    label.cr-payments-lab {
+        padding-left: 107px;
+        padding-right: 180px;
+    }
+    div.cr-payment-marg{
+        margin-left: -15px;
+    }
+    .cr-btn-margin {
+        margin-left: -10px;
+    }
+    .cr-btn-launch {
+        margin-bottom: 0;
+        margin-top: 62px;
+    }
 	.cr1-mob-tb-pd{
         padding-left: 9px;
         padding-right: 9px;
@@ -1183,6 +1235,25 @@ a {
 		font-weight:normal;
 		margin-left: -20px !important;
 	}
+	div.cr-mobile-sp{
+	    padding-left: 0px;
+	    width: -1px;
+	    margin-left: -138px;
+	}
+	label.cr-lbl-mobile{
+	    padding-left: 40px; 
+	    width: 131px; 
+	    margin-left: 0px;
+	}
+	label.cr-lbl-mobiles{
+	    width: 130px;
+	}
+	.cr-perks-space {
+        padding-right: 0px;
+    }
+    .cr-btn-launch{
+        margin-top: 0px;
+    }
 	hr.footer-hr {
 		background-color: #666666;
 		border: medium none #666666;
@@ -1534,6 +1605,67 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	div.cr-space{
+	    display: inline-table !important;
+	}
+    div.cr-story-flx {
+        display: flex;
+    }
+    div.cr-tabs-admins{
+	    display: flex;
+    }
+    div.cr-story-padding {
+        padding-left: 0;
+        padding-right: 8px;
+    }
+    div.cr-perks-flex {
+        display:flex;
+    }
+    div.cr-lab-rd-flex {
+        display: flex !important;
+    }
+    label.cr-wid{
+       width: 44px;
+    }
+    label.cr-width{
+       width: 30px;
+    }
+    label.cr-story-size {
+	    font-size: 14px;
+	    padding: 36px 43px;
+    }
+    label.cr-admin-title{
+        background-color: #01bbd2;
+        margin-bottom: 0;
+        padding: 10px 43px;
+    }
+    label.cr-payments-lab {
+        padding-left: 107px;
+        padding-right: 180px;
+    }
+    div.cr-payment-marg{
+        margin-left: -15px;
+    }
+    .cr-btn-margin {
+        margin-left: -10px;
+    }
+    .cr-btn-launch {
+        margin-bottom: 0;
+        margin-top: 62px;
+    }
+	.cr1-mob-tb-pd{
+        padding-left: 9px;
+        padding-right: 9px;
+	} 
+	.payment-method-footer{
+		font-size:12px;
+		font-weight:normal;
+		margin-left: -20px !important;
+	}
+    .cr-btn-launch{
+        margin-top: 0px;
+    }
+    
 	.carousel-buttons{
 		position: relative;
 		text-align: center;

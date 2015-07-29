@@ -1,7 +1,7 @@
 $(function() {
     console.log("login.js initialized");
 
-    $('form').validate({
+    $('.login-form').find('form').validate({
         rules: {
             j_username: {
                 minlength: 2,

@@ -5,7 +5,7 @@
 </head>
 <body>
 <div class="feducontent">
-    <div class="container">
+    <div class="container login-form">
     
         <g:if test="${flash.googleFailureMessage}">
             <div class="alert alert-error">

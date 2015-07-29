@@ -32,8 +32,8 @@
 		  </g:elseif>
           <g:else>
               <li><span><b>Payment mode : </b>Paypal</span></li>
-              <li><span><b>Merchant Id : </b>${project.paypalEmail}</span></li>
-              <li><span><b>Secret Key : </b>${project.secretKey}</span></li>
+              <li><span><b>Paypal Email : </b>${project.paypalEmail}</span></li>
+<%--              <li><span><b>Secret Key : </b>${project.secretKey}</span></li>--%>
           </g:else>
         </ul>
    	    

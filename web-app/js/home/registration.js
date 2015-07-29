@@ -1,7 +1,7 @@
 $(function() {
     console.log("registration.js initialized");
 
-    $('form').validate({
+    $('.registration-form').find('form').validate({
         rules: {
             username: {
                 minlength: 2,

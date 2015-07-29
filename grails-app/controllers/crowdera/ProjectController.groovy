@@ -134,17 +134,17 @@ class ProjectController {
 			def isCrUserCampBenOrAdmin
 			def isTeamExist
 			def CurrentUserTeam
-			def projectComment
-			def teamcomment
+			List projectComment
+			List teamcomment
 
 			List contributions = []
 			List totalContributions = []
 			
-			if(project.user == currentTeam.user) {
+			if (project.user == currentTeam.user) {
 				def contribution = projectService.getProjectContributions(params, project)
 				totalContributions = contribution.totalContributions
 				contributions = contribution.contributions
-			}else {
+			} else {
 			    def contribution = projectService.getTeamContributions(params, currentTeam)
 				totalContributions = contribution.totalContributions
 				contributions = contribution.contributions
@@ -1338,14 +1338,17 @@ class ProjectController {
 		render ack
 	}
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def getRedactorImage() {
-		def imageFile= params.file
-		def fileUrl = projectService.getRedactorImageUrl(imageFile)
-		JSONObject json = new JSONObject();
-		json.put("filelink",fileUrl);
-		render json
-	}
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def getRedactorImage() {
+        def imageFile= params.file
+        def fileUrl
+        if (imageFile) {
+            fileUrl = projectService.getRedactorImageUrl(imageFile)
+        }
+        JSONObject json = new JSONObject();
+        json.put("filelink",fileUrl);
+        render json
+    }
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editComment() {

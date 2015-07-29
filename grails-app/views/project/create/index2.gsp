@@ -273,7 +273,7 @@
 		                                       <a class="twitter-share pull-left" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">
 			                                       <img src="//s3.amazonaws.com/crowdera/assets/twitter-share-icon.png" alt="Twitter Share">
 		                                       </a>
-		                                       <a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${fbShareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+		                                       <a class="social share-linkedin pull-left" >
 			                                       <img src="//s3.amazonaws.com/crowdera/assets/linked-in-share-icon.png" alt="LinkedIn Share">
 		                                       </a>
 			                                </div>

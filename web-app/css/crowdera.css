@@ -7656,10 +7656,6 @@ span#search-container {
 	line-height:155%;	
 }
 
-.IN-TW-terms-use-bold{
-	font-size:20px;
-	font-weight:bold;
-}
 .IN-TW-terms-use-h5{
 	font-weight:500;
 	line-height:180%;
@@ -7667,7 +7663,6 @@ span#search-container {
 }
 .IN-TW-terms-use-strong{
 	font-weight: 400 !important;
-  	color: black;	
 }
 .IN-TW-policy-ol-padding{
 	padding-left:18px !important;

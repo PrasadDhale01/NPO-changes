@@ -103,7 +103,7 @@
                                     <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
                                 </div>
                                 <div class="pad-btn col-xs-6 col-sm-4">
-                                    <input type="button" id="add" class="btn  btn-info btn-sm" name="Add" value="Add Video"/>
+                                    <input type="button" id="add" class="btn  btn-info btn-sm cr-btn-color" name="Add" value="Add Video"/>
                                 </div>
                                 <div class="col-sm-6" id="ytVideo"></div>
                             </div>
@@ -116,7 +116,7 @@
                         <div class="panel-body">
                             <div class="form-group" id="createthumbnail">
                                 <div class="col-sm-12">
-                                    <div class="fileUpload btn btn-info btn-sm">
+                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color">
                                         <span>Upload Pictures</span>
                                         <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" accept="image/jpeg, image/png" multiple>
                                     </div>
@@ -218,7 +218,7 @@
 		                             <div class="col-sm-4">
 					                    <div class="form-group">
 			                                <div class="col-sm-6">
-			                                    <div class="fileUpload btn btn-info btn-sm">
+			                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color">
 			                                        <span>Organization Logo</span>
 			                                        <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">
 			                                    </div>
@@ -264,17 +264,17 @@
 			                            <div class="form-group">
 			                                <div class="col-sm-12">
 			                                <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
-			                                  <a target="_blank" class="fb-like pull-left social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
-			                                      <img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
+			                                  <a target="_blank" class="fb-like pull-left  cr-tab-icon-padding fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
+			                                      <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">
 		                                      </a>
-												<a target="_blank" class="fb-like pull-left fbShareForLargeDevices" id="fbshare">
-													<img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
+												<a target="_blank" class="fb-like pull-left fbShareForLargeDevices cr-tab-icon-padding" id="fbshare">
+													<img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">
 												</a>
-		                                       <a class="twitter-share pull-left" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">
-			                                       <img src="//s3.amazonaws.com/crowdera/assets/twitter-share-icon.png" alt="Twitter Share">
+		                                       <a class="share-linkedin pull-left cr-tab-icon-padding">
+			                                       <img src="//s3.amazonaws.com/crowdera/assets/twitter-Icon.png" alt="LinkedIn Share">
 		                                       </a>
-		                                       <a class="social share-linkedin pull-left" >
-			                                       <img src="//s3.amazonaws.com/crowdera/assets/linked-in-share-icon.png" alt="LinkedIn Share">
+		                                        <a class="twitter-share pull-left" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">
+			                                       <img src="//s3.amazonaws.com/crowdera/assets/linked-In--Icon.png" alt="Twitter Share">
 		                                       </a>
 			                                </div>
 			                            </div>

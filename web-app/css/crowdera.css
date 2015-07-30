@@ -8314,3 +8314,9 @@ label.text-color {
 	font-size: 14px;
 	font-weight:900;
 }
+.cr-btn-color {
+    background-color: #46b8da !important;
+}
+.cr-tab-icon-padding {
+	padding-right: 10px;
+}

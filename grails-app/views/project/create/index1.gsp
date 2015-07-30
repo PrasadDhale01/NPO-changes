@@ -35,7 +35,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	                <div class="form-group">
 						<label class="col-sm-12 text-color">My Name is...</label>
 						<div class="col-sm-12">
-							<input class="form-control text-color box-size"
+							<input class="form-control text-color box-size" id="name"
 								name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name">
 						</div>
 	                </div>

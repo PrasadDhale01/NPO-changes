@@ -47,18 +47,18 @@
 <input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
     <div class="">
         <div class="text-center">
-           <header>
-	            <a class="cr-ancher-tab" href="#start">Start</a>
-                <a class="cr-ancher-tab" href="#story">Story</a>
-	            <a class="cr-ancher-tab" href="#admins">Admin</a>
-	            <a class="cr-ancher-tab" href="#perk">Perks</a>
-	            <a class="cr-ancher-tab" href="#payFirst">Payment</a>
-	            <a class="cr-ancher-tab" href="#launch">Launch</a>
+           <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
+	            <a class=" col-sm-2 col-xs-6 cr-img-start-icon" href="#start"><div class="col-sm-0"><img class="cr-start" src="//s3.amazonaws.com/crowdera/assets/start-Icon-Blue.png" alt="Start"></div>Start</a>
+                <a class=" col-sm-2 col-xs-6 cr-img-story-icon" href="#story"><div class="col-sm-0"><img class="cr-story" src="//s3.amazonaws.com/crowdera/assets/story-Icon-Blue.png" alt="Story"></div>Story</a>
+	            <a class=" col-sm-2 col-xs-6 cr-img-admin-icon" href="#admins"><div class="col-sm-0"><img class="cr-admin" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---Blue.png" alt="Admin"></div>Admin</a>
+	            <a class=" col-sm-2 col-xs-6 cr-img-perk-icon" href="#perk"><div class="col-sm-0"><img class="cr-perk" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-Blue.png" alt="Perk"></div>Perks</a>
+	            <a class=" col-sm-2 col-xs-6 cr-img-payment-icon" href="#payFirst"><div class="col-sm-0"><img class="cr-payment" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-Blue.png" alt="Payment"></div>Payment</a>
+	            <a class=" col-sm-2 col-xs-6 cr-img-launch-icon" href="#launch"><div class="col-sm-0"><img class="cr-launch" src="//s3.amazonaws.com/crowdera/assets/launch-Icon--Blue.png" alt="Launch"></div>Launch</a>
             </header>
         </div>
-        <div class="bg-color">
+        <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
         <div class="container footer-container" id="campaigncreate">
-            <g:uploadForm class="form-horizontal cr-top-space"  controller="project" action="campaignOnDraftAndLaunch" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
+            <g:uploadForm class="form-horizontal"  controller="project" action="campaignOnDraftAndLaunch" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
                 <g:hiddenField name="projectId" value="${project.id}"/>
                 <div class="col-sm-12">
                     <div class="form-group" id="start">
@@ -103,7 +103,7 @@
                                     <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
                                 </div>
                                 <div class="pad-btn col-xs-6 col-sm-4">
-                                    <input type="button" id="add" class="btn  btn-info btn-sm" name="Add" value="Add Video"/>
+                                    <input type="button" id="add" class="btn  btn-info btn-sm cr-btn-color" name="Add" value="Add Video"/>
                                 </div>
                                 <div class="col-sm-6" id="ytVideo"></div>
                             </div>
@@ -116,7 +116,7 @@
                         <div class="panel-body">
                             <div class="form-group" id="createthumbnail">
                                 <div class="col-sm-12">
-                                    <div class="fileUpload btn btn-info btn-sm">
+                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color">
                                         <span>Upload Pictures</span>
                                         <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" accept="image/jpeg, image/png" multiple>
                                     </div>
@@ -139,7 +139,7 @@
                        <div class="col-sm-12 cr-story-padding">
                            <div class="cr-story-flx">
                            <label class="panel body cr-story-size">STORY</label>
-                      	   <label class="panel-body cr-panel-story">A good enga story is the backbone of your Campaign.
+                      	   <label class="panel-body cr-panel-story">A good engaging story is the backbone of your Campaign.
 	                                                                    you want your readers to be compelled to share your story
 	                                                                    and make your campaign go viral. Be passionate and make 
 	                                                                    them believe and trust your goal.</label>
@@ -218,7 +218,7 @@
 		                             <div class="col-sm-4">
 					                    <div class="form-group">
 			                                <div class="col-sm-6">
-			                                    <div class="fileUpload btn btn-info btn-sm">
+			                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color">
 			                                        <span>Organization Logo</span>
 			                                        <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">
 			                                    </div>
@@ -264,17 +264,17 @@
 			                            <div class="form-group">
 			                                <div class="col-sm-12">
 			                                <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
-			                                  <a target="_blank" class="fb-like pull-left social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
-			                                      <img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
+			                                  <a target="_blank" class="fb-like pull-left  cr-tab-icon-padding fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
+			                                      <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">
 		                                      </a>
-												<a target="_blank" class="fb-like pull-left fbShareForLargeDevices" id="fbshare">
-													<img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
+												<a target="_blank" class="fb-like pull-left fbShareForLargeDevices cr-tab-icon-padding" id="fbshare">
+													<img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">
 												</a>
-		                                       <a class="twitter-share pull-left" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">
-			                                       <img src="//s3.amazonaws.com/crowdera/assets/twitter-share-icon.png" alt="Twitter Share">
+		                                       <a class="share-linkedin pull-left cr-tab-icon-padding">
+			                                       <img src="//s3.amazonaws.com/crowdera/assets/twitter-Icon.png" alt="LinkedIn Share">
 		                                       </a>
-		                                       <a class="social share-linkedin pull-left" >
-			                                       <img src="//s3.amazonaws.com/crowdera/assets/linked-in-share-icon.png" alt="LinkedIn Share">
+		                                        <a class="twitter-share pull-left" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">
+			                                       <img src="//s3.amazonaws.com/crowdera/assets/linked-In--Icon.png" alt="Twitter Share">
 		                                       </a>
 			                                </div>
 			                            </div>
@@ -390,10 +390,11 @@
 	                                </div>
 	                               <label class="cr-pad-who">Who will recieve the funds</label>
 									<div class="btn-group col-sm-12 cr-perk-check cr-radio-option" data-toggle="buttons">
-										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="yes">Person</label> 
-										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="no">Non-profit</label>
-										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="no">NGO</label>
-										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="no">Others</label>
+									    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" value="yes" name=""><span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label> 
+										<label class="btn btn-default cr-check-btn col-sm-2 col-xs-12"> <input type="radio" name="" value="yes">Person</label> 
+										<label class="btn btn-default cr-check-btn col-sm-3 col-xs-12"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A US 501CC1</span><span class="cr-reci-siz"> Non-profit</span></label>
+										<label class="btn btn-default cr-check-btn col-sm-2 col-xs-12"> <input type="radio" name="" value="no"><span class="cr-reci-siz">NGO</span></label>
+										<label class="btn btn-default cr-check-btn col-sm-2 col-xs-12"> <input type="radio" name="" value="no"><span class="cr-reci-siz">Others</span></label>
 									</div>
 								</div>
 							</div>
@@ -483,7 +484,8 @@
                         </div>
                     </div>
                 </div>
-                       
+                   
+             
             </g:uploadForm>
 		</div>
 		</div>

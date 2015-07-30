@@ -689,6 +689,27 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	label.cr-perks-size{
+        padding-left: 56px;
+        padding-right: 61px;
+        width: 232px;
+	} 
+	div.cr-mobile-sp{
+	    padding-left: 0;
+        padding-right: 0;
+	}
+	label.cr-lbl-mobile{
+	    padding-left: 26px;
+        width: 128px;
+	}
+	label.cr-lbl-mobiles{
+	    width: 108px;
+	}
+	header.cr-tabs-link {
+	    padding-left: 23px !important; 
+	    padding-right: 23px !important; 
+	    font-size: 24px;
+    }
 	div.cr-story-flx {
         display: inline;
     }
@@ -1185,6 +1206,11 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	header.cr-tabs-link {
+	    padding-left: 16px !important; 
+	    padding-right: 16px !important; 
+	    font-size: 20px !important;
+    }
 	div.cr-space{
 	    display: inline-table !important;
 	}
@@ -1616,6 +1642,10 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	header.cr-tabs-link {
+	    padding-left: 90px !important; 
+	    padding-right: 90px !important; 
+    }
 	div.cr-space{
 	    display: inline-table !important;
 	}
@@ -5562,6 +5592,30 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	label.cr-perks-size{
+        padding-left: 56px;
+        padding-right: 61px;
+        width: 232px;
+	} 
+	div.cr-mobile-sp{
+	    padding-left: 0;
+        padding-right: 0;
+	}
+	label.cr-lbl-mobile{
+	    padding-left: 26px;
+        width: 128px;
+	}
+	label.cr-lbl-mobiles{
+	    width: 108px;
+	}
+	header {
+        display: inline !important;
+    }
+	header.cr-tabs-link {
+	    padding-left: 25px !important; 
+	    padding-right: 20px !important; 
+	    font-size: 24px;
+    }
 	div.cr-space{
 	    display: inline-table !important;
 	}
@@ -7973,18 +8027,25 @@ a.btn.btn-primary.btn-colors:hover {
 header {
     background-color: #01bbd2;
     padding: 4%;
+    display: flex;
 }
-a.cr-ancher-tab {
+header.cr-tabs-link {
+	color: rgb(164, 220, 249);
+	padding-bottom: 30px;
+    padding-top: 30px;
+	padding-left: 190px; 
+	padding-right: 205px; 
+	font-size: 24px;
+}
+.cr-ancher-tab a{
   color: rgb(164, 220, 249);
-    margin: 1%;
-  font-weight: 900;
-  font-size: 25px;
+  text-decoration: none !important;
 }
-.cr-ancher-tab:hover{
+.cr-ancher-tab a:hover{
 	color: white;
 }
 .cr-top-space {
-  padding-top: 5%;
+  padding-top: 20px;
 }
 input#datepicker {
   font-size: 20px;
@@ -8320,3 +8381,4 @@ label.text-color {
 .cr-tab-icon-padding {
 	padding-right: 10px;
 }
+

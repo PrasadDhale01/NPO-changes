@@ -47,18 +47,18 @@
 <input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
     <div class="">
         <div class="text-center">
-           <header>
-	            <a class="cr-ancher-tab" href="#start">Start</a>
-                <a class="cr-ancher-tab" href="#story">Story</a>
-	            <a class="cr-ancher-tab" href="#admins">Admin</a>
-	            <a class="cr-ancher-tab" href="#perk">Perks</a>
-	            <a class="cr-ancher-tab" href="#payFirst">Payment</a>
-	            <a class="cr-ancher-tab" href="#launch">Launch</a>
+           <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
+	            <a class=" col-sm-2 col-xs-6 cr-img-start-icon" href="#start"><div class="col-sm-0"><img class="cr-start" src="//s3.amazonaws.com/crowdera/assets/start-Icon-Blue.png" alt="Start"></div>Start</a>
+                <a class=" col-sm-2 col-xs-6 cr-img-story-icon" href="#story"><div class="col-sm-0"><img class="cr-story" src="//s3.amazonaws.com/crowdera/assets/story-Icon-Blue.png" alt="Story"></div>Story</a>
+	            <a class=" col-sm-2 col-xs-6 cr-img-admin-icon" href="#admins"><div class="col-sm-0"><img class="cr-admin" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---Blue.png" alt="Admin"></div>Admin</a>
+	            <a class=" col-sm-2 col-xs-6 cr-img-perk-icon" href="#perk"><div class="col-sm-0"><img class="cr-perk" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-Blue.png" alt="Perk"></div>Perks</a>
+	            <a class=" col-sm-2 col-xs-6 cr-img-payment-icon" href="#payFirst"><div class="col-sm-0"><img class="cr-payment" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-Blue.png" alt="Payment"></div>Payment</a>
+	            <a class=" col-sm-2 col-xs-6 cr-img-launch-icon" href="#launch"><div class="col-sm-0"><img class="cr-launch" src="//s3.amazonaws.com/crowdera/assets/launch-Icon--Blue.png" alt="Launch"></div>Launch</a>
             </header>
         </div>
-        <div class="bg-color">
+        <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
         <div class="container footer-container" id="campaigncreate">
-            <g:uploadForm class="form-horizontal cr-top-space"  controller="project" action="campaignOnDraftAndLaunch" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
+            <g:uploadForm class="form-horizontal"  controller="project" action="campaignOnDraftAndLaunch" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
                 <g:hiddenField name="projectId" value="${project.id}"/>
                 <div class="col-sm-12">
                     <div class="form-group" id="start">
@@ -484,7 +484,8 @@
                         </div>
                     </div>
                 </div>
-                       
+                   
+             
             </g:uploadForm>
 		</div>
 		</div>

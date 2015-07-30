@@ -236,6 +236,9 @@
 				<ol class="IN-TW-terms-use-ol-roman"><li> In no event shall Crowdera be liable for any incidental, indirect or consequential damages of any kind in connection with theses terms of use.</li></ol>
 					<li class="IN-TW-terms-use-bold"> Contact Us</li>
 					<h5 class="IN-TW-terms-use-h5">Please send any questions or comments regarding this Website to <a href="mailto:info@crowdera.co">info@crowdera.co</a></h5>
+					<li class="IN-TW-terms-use-bold">Grievance Officer</li>
+						<h5 class="IN-TW-terms-use-h5">In acordance with Information Technology Act 2000 and rules made there under, the name and contact details of the Grievance Officer are provided below:
+						<br>Name: Kshitij Ingle<br>Email: <a href="mailto:kshitij@crowdera.co">kshitij@crowdera.co</a></h5>
 				</ol>
 			</ol>
 		</div>

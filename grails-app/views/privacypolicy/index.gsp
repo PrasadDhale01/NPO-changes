@@ -59,9 +59,9 @@
 						<p>The donors/contributors hereby permit Crowdera to share their personal information such as name, email address, contact information to the respective Project Creators and beneficiaries of the donations made by the donors via Crowdera.in</p>
 					<li class="IN-TW-terms-use-bold">Retention of Information</li>
 						<p>Information provided by you to Crowdera is processed, stored and retained through our servers and web hosts <strong class="IN-TW-terms-use-strong">as per applicable legal guidelines under Information Technology Act 2000.</strong></p>
-					<%--	<li class="IN-TW-terms-use-bold">Grievance Officer</li>--%>
-					<%--	<p>In acordance with Information Technology Act 2000 and rules made there under, the name and contact details of the Grievance Officer are provided below:--%>
-					<%--		Needs to be named.</p>--%>
+					<li class="IN-TW-terms-use-bold">Grievance Officer</li>
+						<p>In acordance with Information Technology Act 2000 and rules made there under, the name and contact details of the Grievance Officer are provided below:
+						<br>Name: Kshitij Ingle<br>Email: <a href="mailto:kshitij@crowdera.co">kshitij@crowdera.co</a></p>
 				</ol>
 			</div>
 		</div>

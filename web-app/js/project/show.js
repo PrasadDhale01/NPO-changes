@@ -501,17 +501,6 @@
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
     
-    $('form').submit(function() {
-        if($(".inviteTeamMember").valid()) {
-        	$('#btnSendInvitation').attr('disabled','disabled');
-        }
-        if($(".sendMailForm").valid()) {
-        	$('#btnSendMail').attr('disabled','disabled');
-        }
-        if($(".sendMailFormMng").valid()) {
-        	$('#btnSendMailMng').attr('disabled','disabled');
-        }
-    });
     
     $(document).ready(function (){
      /*************************Edit video for team*************************/

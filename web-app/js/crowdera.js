@@ -5,14 +5,6 @@ $(function() {
     $('#resultOutput').hide();
     $('.search-box').hide();
     
-    function searchList(){
-        $('.searchForm').closest('#search-bar').val();
-    }
-    
-    function searchMobList(){
-        $('.searchableForm').closest('#q').val();
-    }
-    
     $('.trigger').click(function() {
     	var slider_width = $('#hiddensearch').width();
     	var isAnimated = $(".search-box").is(':animated');

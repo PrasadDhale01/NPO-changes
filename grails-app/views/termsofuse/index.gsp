@@ -46,7 +46,7 @@
 				be bound by the Crowdera Privacy Policy.</p>
 			</div>
 		<div>
-		<p class="IN-TW-terms-use-bold">A. Services of Crowdera</p>
+		<h2>A. Services of Crowdera</h2>
 		<ol class="IN-TW-terms-use-ol-roman">
 			<li> <strong class="IN-TW-terms-use-strong">Crowdera is an intermediary service provider and the Website merely provides platform services which can be utilized by Users 
 				(being Donors / Contributors and Project Creators ) and persons browsing / visiting the Website to reach a larger base of 
@@ -59,12 +59,12 @@
 			<li> Crowdera has limited/no control over all campaigns and information listed and / or advertised on the Website the Campaign generated information and is merely an intermediary and does not interfere in the transaction between Donors / Contributors and Project Creators.</li>
 			<li> It is hereby clarified that at no time shall Crowdera hold any right, title or interest over the funds or rewards (except to the extent as stated herein) or have any obligations or liabilities in respect of such providing the same to the Donor / Contributor. Crowdera is not responsible for unsatisfactory or delayed performance of the campaign by the Project Creator.</li>
 		</ol>
-		<p class="IN-TW-terms-use-bold">B. Eligibility of the User (as defined herein below)</p>
+		<h2>B. Eligibility of the User (as defined herein below)</h2>
 		<ol class="IN-TW-terms-use-ol-roman">
 			<li>Use of the Site/Website is available only to persons who can form legally binding contracts under the Indian Contract Act, 1872.<strong class="IN-TW-terms-use-strong"> Persons who are "incompetent to contract" within the meaning of the Indian Contract Act, 1872 including minors, un-discharged insolvents etc. are not eligible to use the Site/Website. If you are a minor </strong>i.e. under the age of 18 years, you shall not register as a member on Crowdera and shall not transact directly (either contribute or campaign to receive donations / contributions) or use the website. As a minor if you wish to use or transact on website, such use or transaction may be made by your legal guardian, parents or through an organization / NGO competent to Contract on the Website. Crowdera reserves the right to terminate your membership and / or refuse to provide you with access to the Website if it is brought to Crowdera's notice or if it is discovered that you are under the age of 18 years.</li>
 			<li> Organizational Project Creators  / Legal Person's Registration: If you are registering as an Organization / Entity or generally Legal Person, not being a natural person, you represent that you are duly authorized by the Organization / Entity Management to accept these Terms of Use and you have the authority to bind the Organization / Entity to these Terms of Use.</li>
 		</ol>
-		<p class="IN-TW-terms-use-bold">C. Project Creators</p>
+		<h2>C. Project Creators</h2>
 		<ol class="IN-TW-terms-use-ol-roman"> 
 			<li> A Non Profit Organization, which is registered on Crowdera and/or an person who is a supporter or intends to further the cause of such Non Profit Organizations, is permitted to present/host a campaigns on the Website of Crowdera in accordance with the Policies which are incorporated by way of reference in this Terms of Use and any agreement entered into by Crowdera and any such person (a Non Profit Organization registered with or is a member of Crowdera and/or any person hosting a campaign on the Website of Crowdera shall hereinafter collectively be referred to as a “<b>Project Creator</b>”).</li>
 			<li> A Project Creator is bound and legally liable to provide accurate, true and correct information in respect of the details of the cause for which the campaign is hosted for and raising funds on our Website.</li>
@@ -74,7 +74,7 @@
 			<li> You further agree that by listing your campaign on the Website, you shall at all times abide by various laws applicable to You including but not limited to the Income Tax Act, 1961, the Foreign Contributions Regulation Act, 2010, the Information Technology Act, 2000 as well as all rules and regulations made under the respective laws and as amended from time to time in India.</li>
 		</ol>
 					
-		<p class="IN-TW-terms-use-bold">D. Donor</p>
+		<h2>D. Donor</h2>
 		<ol class="IN-TW-terms-use-ol-num">
 			<li> Any person who fulfills the eligibility criteria set out in clause B above shall be permitted to donate an amount higher than Rs. 10 in value to any campaign started/listed on the Website by any of the Project Creators  (“<b>Donor</b>”).</li>
 			<li>The Donor hereby agrees to make the payments for any campaign as per the terms and conditions stated herein.</li>
@@ -82,7 +82,7 @@
 			<li> The Donor shall conduct their independent due diligence with respect to any information/campaign listed by a Project Creator (which includes the non- profit organization) before making any donations on the Website as Crowdera shall not be responsible in any manner for any misrepresentation and/or false information that may be listed on the Website.</li>
 			<li> In the event a campaign is listed by any person on behalf of a non –profit organization, the Donor shall approach <b>only</b> the particular non- profit organization for which the Donor has donated the money to track the utilization of the funds or any other information that may be required by the Donor. The Donor hereby agrees and declares that the Donor is aware that Crowdera shall at no point of time be held answerable or accountable for any money(s) once the funds donated have been handed over to the non-profit organization in respect of which donations have been made.</li>
 		
-			<li class="IN-TW-terms-use-bold"> User Account and Registration Obligations</li>
+			<h2><li> User Account and Registration Obligations</li></h2>
 			<ol class="IN-TW-terms-use-ol-roman">
 				<li>By using the Website, You shall be responsible for maintaining the confidentiality of 
 					your Login Name and Password, and you shall be responsible for all activities that occur under your Login Name. You agree that
@@ -91,9 +91,9 @@
 					Use, We reserve the right to indefinitely suspend or terminate  or block access of your membership
 					<strong class="IN-TW-terms-use-strong">and report the matter to appropriate authorities </strong>on the Website and refuse You access to the Website.</li>
 			</ol>
-			<li class="IN-TW-terms-use-bold"> Communications</li>
+			<h2><li> Communications</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman"><li> When You use the Website or send emails or other data, information or communication to Crowdera, You agree and understand that You are communicating with Crowdera through electronic records and You consent to receive communications via electronic records from Crowdera periodically and as and when required. Crowdera may communicate with You by email or by such other mode of communication, electronic or otherwise.</li></ol>
-					<li class="IN-TW-terms-use-bold">Platform for Information, Communication and Transaction</li>
+			<h2><li>Platform for Information, Communication and Transaction</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman"><li>The Website is a platform that Donors utilize to meet and interact with various Project Creators and the representatives of several non profit organizations based on the representations of the campaigns started by such person(s) and/or a cause supported by such Project Creators  and Non Profit Organisations, enter into transactions for making contributions or sharing information. All information provided about the campaigns, is that which various Project Creators provide.</li>
 					<li> The User acknowledges that Crowdera <strong class="IN-TW-terms-use-strong">is only an intermediary</strong> service provider and Crowdera does not verify the bona fides and genuineness of campaigns, Crowdera cannot and does not verify specific data provided by Project Creators. Therefore, Crowdera shall not in any manner be responsible or held accountable for any transaction between the Users and the campaign.</li>
 					<li> All commercial/contractual terms are offered by and agreed to between the Project Creators and Donors / Contributors alone. The commercial/contractual terms include without limitation the representations made by the Project Creators including, amounts to be raised, use of the funds raised, costs incurred, payment methods, payment terms, warranties related to the final use of the funds, the effectiveness of the utilization of the funds, the impact of the campaign, the rewards offered by the Project Creators and the contributions made by the Users. Crowdera does not have any control or does not determine or advise or in any way involve itself in either determining any details of the campaign or the offers of Project Creators or acceptance of such commercial/contractual terms between the Donors / Contributors and the Project Creators .</li>
@@ -101,10 +101,10 @@
 					<li> Crowdera is not responsible for any non-performance or under-performance of any of the commitments made by the Project Creators or for any contractual obligations (E.g. Rewards) entered into between Contributors and the Project Creators. Crowdera cannot and does not guarantee that the concerned Project Creators will perform any commitment concluded on the Website. The Project Creators shall at all times be responsible for and ensure that the performance of the Rewards offered by them, in the event of any failure of the fulfillment of the obligations of the Project Creators, the same shall be settled between the parties directly and Crowdera shall not be held responsible for any such default/non performance of the obligations of the Project Creator and at no time shall Crowdera be required to mediate or resolve any dispute or disagreement between Contributors and Project Creators. However, Crowdera does welcome feedback as well as grievances of Users to be brought to its attention so that it may take steps that it deems appropriate for improvement of the User experience on the Website</li>
 					<li> Crowdera does not make any representation or warranty as to the campaign specifics (such as the eventual impact, use of funds, efficiency of Project Creators, etc) of any of its Project Creators. You are advised to independently verify the bona fides of any particular Fundraiser that you choose to donate or contribute to, on the Website and use your best judgment in that behalf.</li>
 				</ol>
-			<li class="IN-TW-terms-use-bold"> Charges</li>            
+			<h2><li> Charges</li></h2>            
 				<ol class="IN-TW-terms-use-ol-roman"><li>Crowdera does not charge any fee for browsing on the Website or donating through the website. Crowdera presently does not charge the facilitation fee (including platform / collection fees and transactional charges). Crowdera reserves the right to change its Fee Policy. Crowdera may at its sole discretion introduce new services and modify some or all of the existing services offered on the Website. In such an event Crowdera reserves the right to
 					introduce fees for the new services offered or amend/introduce fees for existing services, as the case may be.</li></ol>
-					<li class="IN-TW-terms-use-bold">General Rules for the Use of the Website</li>
+			<h2><li>General Rules for the Use of the Website</li></h2>
 							You agree, undertake and confirm that your use of Website shall be strictly governed by the following binding principles:
 					<ol class="IN-TW-terms-use-ol-roman">
 						<li> You shall not host, display, upload, modify, publish, transmit, update or share any information which:</li>
@@ -150,17 +150,17 @@
 				<li> It is possible that other Users (including unauthorized users or "hackers") may post or transmit offensive or obscene materials on the Website and that You may be involuntarily exposed to such offensive and obscene materials. It also is possible for others to obtain personal information about You due to your use of the Website, and that the recipient may use such information to harass or injure You. We do not approve of such unauthorized uses, but by using the Website You acknowledge and agree that we are not responsible for the use of any personal information that You publicly disclose or share with others on the Website. Please carefully select the type of information that You publicly disclose or share with others on the Website.</li>
 				<li> Crowdera shall have all the rights to take necessary action and claim damages that may occur due to your involvement/participation in any way on your own or through group/s of people, intentionally or unintentionally in DoS/DDoS (Distributed Denial of Services).</li>
 			</ol>
-			<li class="IN-TW-terms-use-bold"> Contents Posted on Site</li>
+			<h2><li> Contents Posted on Site</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman"><li>All text, graphics, user interfaces, visual interfaces, photographs, trademarks, logos, sounds, music and artwork (collectively, "Content"), is a third party user generated content and Crowdera has no control over such third party user generated content as Crowdera is merely an intermediary for the purposes of this Terms of Use.</li>
 					<li> Except as expressly provided in these Terms of Use, no part of the Website and no Content may be copied, reproduced, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted or distributed in any way (including "mirroring") to any other computer, server, Website or other medium for publication or distribution or for any commercial enterprise, without Crowdera's express prior written consent.</li>
 				</ol>
-			<li class="IN-TW-terms-use-bold"> Limited License</li>
+			<h2><li> Limited License</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman"><li>Crowdera grants Project Creator a limited, non-transferable, non-exclusive, non-sub licensable, non-assignable and personal license to use "Funds raised through Crowdera", "Powered by Crowdera" and/or "via Crowdera" name and/or logo on Project Creators ' invoice / certificate of donation for transactions concluded on the Website. Further, Crowdera grants Project Creator a limited, non-transferable, non-exclusive, non-sub licensable, non-assignable and personal license to use <strong class="IN-TW-terms-use-strong">"Crowdera.in" name </strong>and/or logo on stationery used by the Project Creator for delivery of Communications / Receipts / Certificates, etc. provided on the Website.</li></ol>
-			<li class="IN-TW-terms-use-bold"> Linked Websites / APIs</li>
+			<h2><li> Linked Websites / APIs</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman"><li>Crowdera does not take responsibility or liability for the actions, products, content and services on the Website, which are linked to Affiliates and / or third party websites using the Website's APIs or otherwise. In addition, Website may provide links to the third party websites of our affiliated companies and certain other businesses for which, Crowdera assumes no responsibility for examining or evaluating the products and services or generally information offered by them. Crowdera does not warrant the offerings of, any of these businesses or individuals or the content of such third party website(s). Crowdera does not endorse, in any way, any third party website(s) or content thereof.</li></ol>
-			<li class="IN-TW-terms-use-bold"> Privacy</li>
+			<h2><li> Privacy</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman"><li> We view protection of Your privacy as a very important principle. We understand clearly that You and Your Personal Information is one of our most important assets. We store and process Your Information including any sensitive financial information collected (as defined under the Information Technology Act, 2000), if any, on computers that may be protected by physical as well as reasonable technological security measures and procedures in accordance with Information Technology Act 2000 and Rules there under. Our current Privacy Policy is available at (link to Crowdera's Privacy Policy). If You object to Your Information being transferred or used in this way please do not use Website.</li></ol>
-			<li class="IN-TW-terms-use-bold">Disclaimer of Warranties and Liability</li>
+			<h2><li>Disclaimer of Warranties and Liability</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman">
 					<li>This Website, all the materials and information (including but not limited to campaigns) and services, included or otherwise made available to You through this site are provided on a "as is" and "as available" basis without any representation or warranties, express or implied except otherwise specified in writing. Without prejudice to the forgoing paragraph, Crowdera does not warrant that:
 					<ol class="IN-TW-terms-use-ol-disc">
@@ -171,7 +171,7 @@
 					<li> You will be required to enter a valid e-mail address while making a donation / contribution on the Website. By providing your e-mail address with us, You consent to be contacted by us and/or the Project Creators, in case of any reward or delivery related updates. We will not use your personal information to initiate any promotional email unless the same is consented to by you.</li>
 					<li> Crowdera would be presently availing payment gateway services from PAYU Money and all payment transactions will be independent contacts between payment gateway and you donor/contributor/fund raiser and Crowdera will be in no way responsible for any liability for such transaction. You will be required to create a PAYU Money account for disbursement of funds.</li>
 				</ol> 
-			<li class="IN-TW-terms-use-bold"> Financial Transaction Facility - Donors / Contributors</li> 
+			<h2><li> Financial Transaction Facility - Donors / Contributors</li></h2> 
 				<ol class="IN-TW-terms-use-ol-roman">
 					<li> While availing any of the payment / donation / contribution method/s available on the Website, we will not be responsible or assume any liability, whatsoever in respect of any loss or damage arising directly or indirectly to You due to:</li>
 					<ol class="IN-TW-terms-use-ol-disc">
@@ -188,20 +188,20 @@
 					<li> The Donor / Contributor acknowledge that Crowdera will not be liable for any damages, interests or claims etc. resulting from not processing a Transaction / Transaction Price or any delay in processing a Transaction / Transaction Price which is beyond control of Crowdera.</li>
 					<li> <strong class="IN-TW-terms-use-strong">Payment Gateway shall make payments, net of its costs, charges and fees into the bank account provided by the Project Creator. Once Payment Gateway has made payments into such bank account number Payment Gateway shall be discharged of any/all liability towards the Project Creator and the Project Creator shall not be eligible for any claims thereof.</strong></li> 
 				</ol>
-			<li class="IN-TW-terms-use-bold"> Financial Transaction Facility - Project Creators</li> 
+			<h2><li> Financial Transaction Facility - Project Creators</li></h2> 
 				<ol class="IN-TW-terms-use-ol-roman">
 					<li> You, as a Project Creator, shall be required to register yourself with Crowdera and provide Crowdera with all the necessary information as may be deemed by Crowdera from time to time including but not limited to banking details / income tax details such as PAN and registration certificates under various provisions and laws, etc. Further, fulfill the commitments made to the Donor / Contributor in the manner as detailed in the Campaign and in a timely manner. Crowdera may seek information regarding the use of the funds raised by the Project Creator even after the Campaign has ended and provide the details to the Donors / Contributors.</li>
 					<li><strong class="IN-TW-terms-use-strong">The funds collected towards each Campaign shall be transferred to You, as per the details provided to you during the creation of the Campaign and net of the Payment Gateway’s facility fees. If at any time either during or after the Campaign, You are unable to fulfill your commitments, or out of requirement under law, You shall return the money to the Donor / Contributor within a timely manner.</strong></li> 
 					<li><strong class="IN-TW-terms-use-strong">Remittances to the Project Creator by the Payment Gateway for their successful transactions under Payment Facility excluding Cheque Payments transactions would be in compliance with directions issued by Reserve Bank of India for opening and operation of accounts and settlement of payments for electronic payment transactions involving intermediaries vide its notification RBI/2009-10/231 DPSS.CO.PD.No.1102 / 02.14.08/ 2009-10 dated November 24, 2009 ("RBI Intermediary Guidelines"). Remittance to the Project Creator by the Payment Gateway for Cheque Donations / Contributions shall be made through Cheque/ Demand Draft or Online Bank Transfer to Project Creators  Bank A/c.</strong></li> 
 					<li> As per the above guidelines, the Project Creator expressly agrees that the next working day following the day the Campaign ends or is determined, shall be deemed to be the day that the transaction between the Donor / Contributor is completed. Payment Gateway shall settle all amounts net of its fees to the accounts of the Project Creators  in accordance with the rules set out by the Reserve Bank of India in the Intermediary Guidelines.</li>
 				</ol>
-			<li class="IN-TW-terms-use-bold"> Compliance with Laws:</li>
+			<h2><li> Compliance with Laws:</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman"><li>The Donor / Contributor shall comply with all the applicable laws (including without limitation Foreign Exchange Management Act, 1999 and the rules made and notifications issued there under and the Exchange Control Manual as may be issued by Reserve Bank of India from time to time, Customs Act, Information and Technology Act, 2000 as amended by the Information Technology (Amendment) Act 2008, Prevention of Money Laundering Act, 2002 and the rules made there under, Foreign Contribution Regulation Act, 2010 and the rules made there under, Income Tax Act, 1961 and the rules made there under, Export Import Policy of government of India) applicable to them respectively for using Payment Facility and Crowdera Website.</li></ol>
-					<li class="IN-TW-terms-use-bold"> Donor's / Contributors arrangement with Issuing Bank:</li>
+			<h2><li> Donor's / Contributors arrangement with Issuing Bank:</li></h2>
 					<ol class="IN-TW-terms-use-ol-roman">	<li>All Valid Credit/Debit/Cash Card and other payment instruments are processed using a Credit Card payment gateway or appropriate payment system infrastructure and the same will also be governed by the terms and conditions agreed to between the Donor / Contributor and the respective Issuing Bank and payment instrument issuing company.</li>
 					<li>All Online Bank Transfers from Valid Bank Accounts are processed using the gateway provided by the respective Issuing Bank, which support Payment Facility to provide these services to the Users. All such Online Bank Transfers on Payment Facility are also governed by the terms and conditions agreed to between the Donor / Contributor and the respective Issuing Bank.</li>
 				</ol>
-			<li class="IN-TW-terms-use-bold"> Breach</li>
+			<h2><li> Breach</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman">
 					<li> Without limiting other remedies, we may limit Your activity, immediately remove Your information, warn other Users of Your actions, immediately temporarily/indefinitely suspend or terminate or block Your membership, and/or refuse to provide You with access to the Website in the event, but not limited to:</li>
 						<ol class="IN-TW-terms-use-ol-circle">
@@ -211,31 +211,34 @@
 						</ol>
 					<li> We may at any time at our sole discretion reinstate suspended users. A user that has been suspended or blocked may not register or attempt to register with us or use the Website in any manner whatsoever until such time that such user is reinstated by us. Notwithstanding the foregoing, if You breach the Terms of Use or Privacy Policy or other ruler and policies, we reserves the right to recover any amounts due and owing by You to us and to take strict legal action including but not limited to a referral to the appropriate police or other authorities for initiating criminal or other proceedings against You.</li>
 				</ol> 
-			<li class="IN-TW-terms-use-bold"> Indemnity</li>
+			<h2><li> Indemnity</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman">
 					<li> The Project Creator shall indemnify and hold harmless Crowdera, its owner, licensee, affiliates, subsidiaries, group companies (as applicable) and their respective officers, directors, agents, and employees, against all claim, actions, penalties, prosecution, proceedings demand losses, disputes, charges, penalty, costs and expenses including reasonable attorneys' fees, that may arise or may be incurred by Crowdera as consequence of any default, breach, non-observance, non performance or negligent act whatsoever by the Project Creator of any terms , conditions, stipulations, provisions and/or violation of any law, rules or regulations or the rights (including infringement of intellectual property rights) of a third party more particularly stated herein and/or in any individual agreements executed by Crowdera and the User.</li>
 				</ol>
-			<li class="IN-TW-terms-use-bold"> Waiver</li>
+			<h2><li> Waiver</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman">
 					<li> The User hereby agree and state that Crowdera is only a service provider to enable the Non profit organizations and individuals to market/publicize/create awareness/advertise their respective cause/campaigns and Crowdera shall in no way be responsible for the performance and/or liable for any mis-representation of any information provided by the Project Creators in any manner whatsoever and the User hereby waives his/her/their/its right to bring any action/cause/dispute against Crowdera for any reason whatsoever.</li>
 				</ol>
-			<li class="IN-TW-terms-use-bold"> Modifications and Alterations</li>
+			<h2><li> Modifications and Alterations</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman">
 					<li>The User shall be entitled to avail the service of Crowdera via its website and otherwise subject to the terms, conditions, provisions and stipulations mentioned in this Terms of Use and/or any other document, agreement or writing executed/ entered into by Crowdera and the User individually and any modifications alterations made therein by Crowdera from time to time.</li>
 					<li> Further, Crowdera shall at its discretion be entitled to modify the terms and conditions of the terms of use and qualifications and conditions mentioned herein. The User at all rimes shall be bound by the rules/regulations/qualifications/conditions (as may be altered) at all times and no person shall be entitled to dispute/challenge any such modifications/alterations undertaken by Crowdera from time to time.</li>
 				</ol>
-			<li class="IN-TW-terms-use-bold"> Applicable Law & Jurisdiction</li>
+			<h2><li> Applicable Law & Jurisdiction</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman">
 					<li> Terms of Use shall be governed by and interpreted and construed in accordance with the laws of India. By agreeing to these Terms of Use you expressly agree that the place of jurisdiction shall be exclusively in <b>Nagpur</b>. Crowdera has a registered office in Nagpur, India. The Campaigns that are hosted by Crowdera are also based in India. The Website may be accessed by persons residing / living in India</li>
 				</ol>
-			<li class="IN-TW-terms-use-bold"> Dispute Resolution</li>
+			<h2><li> Dispute Resolution</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman">
 					<li>Any dispute involving Crowdera, whether as a formal party or otherwise shall be resolved by Arbitration of a sole Arbitrator appointed by Crowdera and in accordance with the Indian Arbitration and Conciliation Act, 1996. The seat of Arbitration shall be in <b>Nagpur</b> and the language to be used in all proceedings shall be English.</li>
 				</ol> 
-			<li class="IN-TW-terms-use-bold"> Limitation of Liability</li>
+			<h2><li> Limitation of Liability</li></h2>
 				<ol class="IN-TW-terms-use-ol-roman"><li> In no event shall Crowdera be liable for any incidental, indirect or consequential damages of any kind in connection with theses terms of use.</li></ol>
-					<li class="IN-TW-terms-use-bold"> Contact Us</li>
-					<h5 class="IN-TW-terms-use-h5">Please send any questions or comments regarding this Website to <a href="mailto:info@crowdera.co">info@crowdera.co</a></h5>
+			<h2><li> Contact Us</li></h2>
+				<h5 class="IN-TW-terms-use-h5">Please send any questions or comments regarding this Website to <a href="mailto:info@crowdera.co">info@crowdera.co</a></h5>
+			<h2><li>Grievance Officer</li></h2>
+					<h5 class="IN-TW-terms-use-h5">In acordance with Information Technology Act 2000 and rules made there under, the name and contact details of the Grievance Officer are provided below:
+					<br>Name: Kshitij Ingle<br>Email: <a href="mailto:kshitij@crowdera.co">kshitij@crowdera.co</a></h5>
 				</ol>
 			</ol>
 		</div>

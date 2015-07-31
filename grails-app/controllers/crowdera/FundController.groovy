@@ -58,6 +58,7 @@ class FundController {
     def checkout() {
         Project project
         Reward reward
+        def vanityTitle
 
         def country = projectService.getCountry()
         def cardTypes = projectService.getcardtypes()
@@ -75,6 +76,7 @@ class FundController {
         }
         if (params.projectId) {
             project = projectService.getProjectById(params.projectId)
+            vanityTitle = projectService.getVanityTitleFromId(params.projectId)
         }
         
         def anonymous = params.anonymous
@@ -88,9 +90,12 @@ class FundController {
         def reqAmt=(999/100)*amt
         def remainAmt=reqAmt- totalContribution
         def percentage=((totalContribution + contPrice)/ amt)*100
+        
+        def vanityUserName = params.fr
+        
         if(percentage>999) {
             flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
-            redirect action: 'fund', id: project.id, params:[fr: params.fr, rewardId:perk.id]
+            redirect action: 'fund', params:['fr': vanityUserName, 'rewardId': perk.id, 'projectTitle': vanityTitle]
         }
         else{
         if (project) {

@@ -72,9 +72,6 @@
         <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
             <g:render template="show/teamgrid"/>
         </div>
-        <div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamComment">
-            <g:render template="show/teamcomment"/>
-        </div>
     </div>
 	
 </g:if>

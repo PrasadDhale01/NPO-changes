@@ -1,6 +1,8 @@
 $(function() {
     console.log("create.js initialized");
     
+    $('#rewardTemplate').hide();
+    
     $('.redactorEditor').redactor({
         imageUpload:'/project/getRedactorImage',
         focus: true,
@@ -144,7 +146,8 @@ $(function() {
             },
             paypalEmail:{
               email:true,
-              isPaypalEmailVerified : true
+              isPaypalEmailVerified : true,
+              required: true
             },
             payuEmail:{
             	required:true,
@@ -799,8 +802,8 @@ function setTitleText(){
    '</div>'+
  '</div>';
         $('#addNewRewards').append(str);
-         $('#rewardCount').attr('value',count);
-     });
+        $('#rewardCount').attr('value',count);
+     });  
     
   $('#removereward').click(function(){
     if($('#addNewRewards').find('.rewardsTemplate').length > 1) {

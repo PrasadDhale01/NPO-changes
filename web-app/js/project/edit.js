@@ -1,25 +1,14 @@
 $(function() {
 	console.log("create.js initialized");
-	
-	$('#editlogo').hide();
-	$('#editimg').hide();
-    $('#ytVideo').hide();
-    $('#imgupdatemsg').hide();
-    $('#iconfilesize').hide();
-    $('#campaignfilesize').hide();
-    $('#updatefilesize').hide();
-    
+
     $('#paypalemail').hide();
     $('#charitableId').hide();
-    
-    $('#editUpdateimg').hide();
-    $('#campaignUpdatefilesize').hide();
-    
+
 	/* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
     });
-    
+
     /* Validate form on submit. */
     var validator = $('#campaignedit').find('form').validate({
         rules: {

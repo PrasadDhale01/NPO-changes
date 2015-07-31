@@ -88,12 +88,16 @@
                             <h1 class="green-heading text-center">${projectTitle}</h1>
                             </div>
                         </g:if>
-					    <g:elseif test="${!project.validated}">
-					        <h1 class="green-heading text-center"><g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
-					    </g:elseif>
-					    <g:else>
-					        <h1 class="green-heading text-center"><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
-					    </g:else>
+                        <g:elseif test="${!project.validated}">
+                            <div class="campaignTitle">
+                                <h1 class="green-heading text-center"><g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
+                            </div>
+                        </g:elseif>
+                        <g:else>
+                            <div class="campaignTitle">
+                                <h1 class="green-heading text-center"><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
+                            </div>
+                        </g:else>
 					</div>
 					<g:if test="${fundRaiser}">
                         <div class="col-md-12 col-sm-12 col-xs-12 text-center campaignFundRaiser">

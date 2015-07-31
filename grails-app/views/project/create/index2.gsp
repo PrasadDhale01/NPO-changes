@@ -151,7 +151,7 @@
                     </div>
                 </div>
                
-                <div class="col-sm-12">
+                <div class="col-sm-12" id="story">
                     <div class="form-group">
                         <div class="col-sm-12 cr-story-padding">
                             <div class="cr-story-flx">
@@ -161,7 +161,7 @@
 	                                                                    and make your campaign go viral. Be passionate and make 
 	                                                                    them believe and trust your goal.</label>
                        	    </div>
-                            <textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="redactorEditor" placeholder="Brief summary:-
+                            <textarea name="${FORMCONSTANTS.STORY}" row="4" col="6" class="redactorEditor" placeholder="Brief summary:-
                                                                                                                                                    Your story needs to be like the book readers never want to 
                                                                                                                                                    keep down! Tell your contributors what you are raising funds for
                                                                                                                                                    and how will it make difference to you. Your organization

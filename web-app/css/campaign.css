@@ -423,11 +423,43 @@ a.customer-support-a {
     display:none;
 }
 
-#rewardTemplate{
+#updatereward{
     display:none;
 }
 
-#updatereward{
+#updatefilesize{
+    display:none;
+}
+
+#campaignfilesize{
+    display:none;
+}
+
+#iconfilesize{
+    display:none;
+}
+
+#imgupdatemsg{
+    display:none;
+}
+
+#ytVideo{
+    display:none;
+}
+
+#editimg{
+    display:none;
+}
+
+#editlogo{
+    display:none;
+}
+
+#campaignUpdatefilesize{
+    display:none;
+}
+
+#editUpdateimg{
     display:none;
 }
 

@@ -1407,7 +1407,4 @@ class ProjectController {
         render ''
     }
 	
-	def saveStory(){
-		render ''
-	}
 }

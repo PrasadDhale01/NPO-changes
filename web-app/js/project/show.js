@@ -262,6 +262,16 @@
     });
     
     $('#teamSaveButton').on('click', function() {
+    	var storyValue = $('.redactorEditor').redactor('code.get');
+        var storyEmpty = false;
+        if (storyValue == '' || storyValue == undefined){
+            $('#storyRequired').show();
+            storyEmpty = true;
+        } else {
+            $('#storyRequired').hide();
+            storyEmpty = false;
+        }
+        
         if($('#teamImages').find('#imgdiv').length < 1) {
             $("#projectImageFile").rules( "add", {
                 required: true,
@@ -271,7 +281,7 @@
             });
         }
 
-        if (validator.form()) {
+        if (validator.form() && !storyEmpty) {
             $('#editFundraiser').find('form').submit();
         }
     });

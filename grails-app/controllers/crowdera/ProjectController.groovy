@@ -396,10 +396,9 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def createNow() {
         def projectTitle
-        def userName
         def project = projectService.getProjectByParams(params)
-        User user=userService.getCurrentUser()
         def beneficiary = userService.getBeneficiaryByParams(params)
+		def user = userService.getCurrentUser()
         project.draft = true;
 		project.beneficiary = beneficiary;
 		
@@ -411,10 +410,9 @@ class ProjectController {
         project.save(failOnError: true);
         if(project.save()){
             projectTitle = projectService.getProjectVanityTitle(project)
-            userName = userService.getVanityNameFromUsername(user.username, project.id)
             projectService.getFundRaisersForTeam(project, user)
             projectService.getdefaultAdmin(project, user)
-            redirect(action:'redirectCreateNow', params:[title:projectTitle, userName:userName])
+            redirect(action:'redirectCreateNow', params:[title:projectTitle])
         } else {
             render view:'/project/createerror'
         }
@@ -423,14 +421,20 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def redirectCreateNow() {
 		def vanityTitle = params.title
-		def vanityUsername = params.userName
 		def project = projectService. getProjectFromVanityTitle(vanityTitle)
 		def user = project.user
 		def categoryOptions = projectService.getCategoryList()
 		def country = projectService.getCountry()
+		def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
         def currentEnv = Environment.current.getName()
+		def payOpts
+		if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+			payOpts = projectService.getIndiaPaymentGateway()
+		} else {
+		    payOpts = projectService.getPayment()
+		}
 		render(view: 'create/index2',
-			   model: ['categoryOptions': categoryOptions,
+			   model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,
 						'country': country, currentEnv: currentEnv,
 						FORMCONSTANTS: FORMCONSTANTS,
 						project:project, user:user,
@@ -856,14 +860,23 @@ class ProjectController {
 		render (view: 'create/justcreated', model: [project: project])
 	}
 
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def manageCampaign() {
+        def title = projectService.getVanityTitleFromId(params.id)
+        if(title) {
+            if (params.isPreview){
+                redirect (action :'preview', params:['projectTitle':title]);
+            } else {
+                redirect (action:'manageproject', params:['projectTitle':title])
+            }
+        } else {
+            render view:'/error'
+        }
+    }
+	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def manageCampaign(){
-		def title = projectService.getVanityTitleFromId(params.id)
-		if(title){
-			redirect (action:'manageproject', params:['projectTitle':title])
-		}else{
-			render view:'/error'
-		}
+	def preview(){
+		forward(action:'manageproject', params:['projectTitle':params.projectTitle, 'isPreview':true])
 	}
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -907,7 +920,7 @@ class ProjectController {
                         model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
                                 discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset,
                                 ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
-                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS])
+                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview])
             } else{
                 flash.prj_mngprj_message = 'Campaign Not Found'
                 render (view: 'manageproject/error', model: [project: project])
@@ -1390,4 +1403,8 @@ class ProjectController {
         projectService.autoSaveProjectDetails(variable, varValue, projectId)
         render ''
     }
+	
+	def saveStory(){
+		render ''
+	}
 }

@@ -516,6 +516,7 @@
                         <div class="col-sm-10">
                             <textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="redactorEditor">
 									 ${project.story}</textarea>
+                            <span id="storyRequired">Ths field is required</span>
                         </div>
                     </div>
                       

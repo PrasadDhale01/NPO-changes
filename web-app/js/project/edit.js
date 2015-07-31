@@ -96,6 +96,16 @@ $(function() {
     });
 
     $('#editsubmitbutton').on('click', function() {
+        var storyValue = $('.redactorEditor').redactor('code.get');
+        var storyEmpty = false;
+        if (storyValue == '' || storyValue == undefined){
+            $('#storyRequired').show();
+            storyEmpty = true;
+        } else {
+            $('#storyRequired').hide();
+            storyEmpty = false;
+        }
+
     	var currentEnv = $('#currentEnv').val();
     	var iconUrl = $('#imgIcon').attr('src');
     	if (!iconUrl) {
@@ -133,7 +143,9 @@ $(function() {
         }
     	if (validator.form()) {
     		needToConfirm = false;
-    		$('#campaignedit').find('form').submit();
+            if (!storyEmpty){
+                $('#campaignedit').find('form').submit();
+            }
     	}
     });
     
@@ -152,7 +164,21 @@ $(function() {
     });
     
     $('.updatesubmitbutton').click(function(event) {
-        needToConfirm = false;
+    	event.preventDefault();  //prevent form from submitting
+    	var storyValue = $('.redactorEditor').redactor('code.get');
+        var storyEmpty = false;
+        if (storyValue == '' || storyValue == undefined){
+            $('#storyRequired').show();
+            storyEmpty = true;
+        } else {
+        $('#storyRequired').hide();
+            storyEmpty = false;
+        }
+        
+        if(!storyEmpty){
+        	needToConfirm = false;
+        	$('.editUpdateForm').find('form').submit();
+        }
     });
     
     $.validator.addMethod('isYoutubeVideo', function (value, element) {

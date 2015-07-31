@@ -4,17 +4,13 @@ $(function() {
     $('.redactorEditor').redactor({
         imageUpload:'/project/getRedactorImage',
         focus: true,
-        changeCallback: function(){
+        autosave: '/project/saveStory',
+        autosaveInterval: 15, // seconds
+        autosaveCallback: function(){
         	autoSave('story', this.code.get());
         },
-        
         plugins: ['fontsize','fontfamily','fontcolor','video']
     });
-
-    $('#logomsg').hide();
-    $('#imgmsg').hide();
-    $('#iconfilesize').hide();
-    $('#campaignfilesize').hide();
     
     var currentEnv = $('#currentEnv').val();
     
@@ -44,20 +40,8 @@ $(function() {
                 window.location.href =$("#b_url").val()+"/logout";   
              }   
        }
-  /*********************************************************************/
+    /*********************************************************************/
 
-    $("#updatereward").hide();
-    $("#rewardTemplate").hide();
-    
-    $("#paypalcheckbox").hide();
-
-    $('#val2').hide();
-    $('#txtState').hide();
-    
-
-    $("#charitableId").hide();
-    $("#icondiv").hide();
-        
     $("#payopt").show(); // paypal option
 //    $("#paypalemail").hide(); // paypal button
     
@@ -249,6 +233,16 @@ $(function() {
     });
     
     $('#submitProject').on('click', function() {
+        var storyValue = $('.redactorEditor').redactor('code.get');
+        var storyEmpty = false;
+        if (storyValue == '' || storyValue == undefined){
+            $('#storyRequired').show();
+            storyEmpty = true;
+        } else {
+        $('#storyRequired').hide();
+            storyEmpty = false;
+        }
+
         $( "#projectImageFile" ).rules( "add", {
             required: true,
             messages: {
@@ -286,9 +280,11 @@ $(function() {
         
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',false);
-    		$('#campaigncreate').find('form').submit();
-    		$('#submitProject').attr('disabled','disabled');
-    		$('#saveasdraft').attr('disabled','disabled');
+            if (!storyEmpty){
+                $('#campaigncreate').find('form').submit();
+                $('#submitProject').attr('disabled','disabled');
+                $('#saveasdraft').attr('disabled','disabled');
+            }
     	}
     });
     
@@ -908,44 +904,42 @@ function setTitleText(){
 //        autoSave('email3', emailValue);
 //    });
     
-    $('#organizationname').change(function (){
+    $('#organizationname').blur(function (){
     	var name = $(this).val();
     	autoSave('organizationname', name);
     });
     
-    $('#webAddress').change(function (){
+    $('#webAddress').blur(function (){
     	var webAddress = $(this).val();
     	autoSave('webAddress', webAddress);
     });
     
-    $('#firstName').change(function (){
+    $('#firstName').blur(function (){
         var firstName = $(this).val();
         autoSave('firstName', firstName);
     });
 
-    $('#lastName').change(function (){
+    $('#lastName').blur(function (){
         var lastName = $(this).val();
         autoSave('lastName', lastName);
     });
 
-    $('#telephone').change(function (){
+    $('#telephone').blur(function (){
         var telephone = $(this).val();
         autoSave('telephone', telephone);
     });
     
-    $('#paypalEmailId').change(function (){
+    $('#paypalEmailId').blur(function (){
         var paypalEmailId = $(this).val();
-        $('#organizationName').find('input').val('');
         $('#charitable').find('input').val('');
         autoSave('paypalEmailId', paypalEmailId);
     });
+    
+    $('#payuemail').blur(function (){
+        var payUEmailId = $(this).val();
+        autoSave('payuEmail', payUEmailId);
+    });
 
-//$('#hiddencharId').change(function (){
-//var charitableId = $(this).val();
-//alert('charitableId : '+charitableId);
-//autoSave('charitableId', charitableId);
-//});
-   
     function autoSave(variable, varValue) {
         var projectId = $('#projectId').val();
         $.ajax({
@@ -968,8 +962,8 @@ function setTitleText(){
 		$('#paypalemail').find('input').val('');
 		autoSave('charitableId', uuid);
 		autoSave('organizationname', charityName);
-    })
-
+    });
+ 
 /*Javascript error raised due to tooltip is resolved*/
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {

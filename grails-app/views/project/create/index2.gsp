@@ -264,7 +264,7 @@
 			                            <div class="form-group">
 			                                <div class="col-sm-12">
 			                                <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
-			                                  <a target="_blank" class="fb-like pull-left  cr-tab-icon-padding fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
+			                                  <a target="_blank" class="fb-like pull-left  cr-tab-icon-padding fbShareForSmallDevices" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
 			                                      <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">
 		                                      </a>
 												<a target="_blank" class="fb-like pull-left fbShareForLargeDevices cr-tab-icon-padding" id="fbshare">

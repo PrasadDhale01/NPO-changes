@@ -47,6 +47,8 @@ class Project {
     String paypalEmail
 	String payuEmail 
 	String secretKey
+    String usedFor
+    String fundsRecievedBy
 
 	boolean payuStatus=false
     boolean validated = false
@@ -80,6 +82,8 @@ class Project {
 		payuEmail(nullable:true)
         projectUpdates(nullable: true)
         secretKey(nullable: true)
+        usedFor(nullable:true)
+        fundsRecievedBy(nullable:true)
     }
 
     def beforeInsert() {

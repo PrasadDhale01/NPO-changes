@@ -2624,6 +2624,16 @@ class ProjectService {
                 project.story = varValue;
                 isValueChanged = true;
                 break;
+				
+            case 'usedFor':
+                project.usedFor = varValue;
+                isValueChanged = true;
+                break;
+	
+           case 'fundsRecievedBy':
+               project.fundsRecievedBy = varValue;
+               isValueChanged = true;
+               break;
         }
 
         if (isValueChanged){

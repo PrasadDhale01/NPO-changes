@@ -1009,6 +1009,42 @@ function setTitleText(){
             autoSave('organizationname', charityName);
         }, delay);
     });
+    
+    $('#impact').click(function(){
+        $('#usedFor').val('IMPACT');
+    });
+
+    $('#passion').click(function(){
+        $('#usedFor').val('PASSION');
+    });
+
+    $('#innovating').click(function(){
+        $('#usedFor').val('SOCIAL_NEEDS');
+    });
+
+    $('#personal').click(function(){
+        $('#usedFor').val('PERSONAL_NEEDS');
+    });
+    
+    $('#recipient').click(function(){
+        autoSave('fundsRecievedBy', 'RECIEPIENT');
+    });
+    
+    $('#person').click(function(){
+        autoSave('fundsRecievedBy', 'PERSON');
+    });
+    
+    $('#non-profit').click(function(){
+        autoSave('fundsRecievedBy', 'NON-PROFITS');
+    });
+    
+    $('#ngo').click(function(){
+        autoSave('fundsRecievedBy', 'NGO');
+    });
+    
+    $('#others').click(function(){
+        autoSave('fundsRecievedBy', 'OTHERS');
+    });
  
 /*Javascript error raised due to tooltip is resolved*/
     /* Show pop-over tooltip on hover for some fields. */

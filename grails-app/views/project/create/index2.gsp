@@ -222,26 +222,20 @@
                                 </div>
                             </div>       
 					    </div>
-								
                         <div class="tab-pane panel-body active row" id="organization">
                             <div class="col-sm-4">
                                 <div class="form-group" id="organizationName">
                                     <div class="col-sm-12">
-                                        <g:if test="${project.organizationName}">
-                                            <input class="form-control" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Organization Name">
-                                        </g:if>
-                                        <g:else>
-                                            <input class="form-control" name="${FORMCONSTANTS.ORGANIZATIONNAME}" id="organizationname" placeholder="Organization Name">
-                                        </g:else>
+                                        <input class="form-control" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Organization Name">
                                     </div>
                                 </div>
                             </div>
-            
+                 
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <g:if test="${project.webAddress}">
-                                            <input class="form-control" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" value="${project.webAddress}" placeholder="Web Address">
+                                            <input class="form-control" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="Web Address" value="${project.webAddress}">
                                         </g:if>
                                         <g:else>
                                             <input class="form-control" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="Web Address">
@@ -249,7 +243,7 @@
                                     </div>
                                 </div>
                             </div>
-		                            
+
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-6">
@@ -269,7 +263,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="tab-pane panel-body row" id="personal">
                             <div class="col-sm-4">
                                 <div class="form-group">
@@ -286,6 +280,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
@@ -298,47 +293,47 @@
                                     </div>
                                 </div>
                             </div>
+                   
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
-                                        <a target="_blank" class="fb-like pull-left  cr-tab-icon-padding fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
-                                            <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">
-                                        </a>
-                                        <a target="_blank" class="fb-like pull-left fbShareForLargeDevices cr-tab-icon-padding" id="fbshare">
-                                            <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">
-                                        </a>
-                                        <a class="share-linkedin pull-left cr-tab-icon-padding">
-                                            <img src="//s3.amazonaws.com/crowdera/assets/twitter-Icon.png" alt="LinkedIn Share">
-                                        </a>
-                                        <a class="twitter-share pull-left" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">
-                                            <img src="//s3.amazonaws.com/crowdera/assets/linked-In--Icon.png" alt="Twitter Share">
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <p class="cr-para">We will use this information to contact you if there are any issues with the campaign.This information will not be shared publicly.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-				    </div>
-                </div>
-                       
-                <div class="">
-                    <div class="col-sm-12 cr-lab-rd-flex cr-space" id="perk">
-                        <div class="cr-perks-flex cr-perks-space">
-                            <label class="panel-body cr-perks-size ">Offering PERKS?</label>
-                        </div>
-                        <div class="btn-group btnPerkBgColor col-sm-12 col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp" data-target="buttons">
-                            <label class="btn btn-default col-sm-2 cr-lbl-mobile"> <input type="radio" name="answer" value="yes"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
-                            <label class="btn btn-default col-sm-2 cr-lbl-mobiles"> <input type="radio" name="answer" value="no"> NO</label>
+                                         <a target="_blank" class="fb-like pull-left  cr-tab-icon-padding fbShareForSmallDevices" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
+                                             <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">
+                                         </a>
+                                         <a target="_blank" class="fb-like pull-left fbShareForLargeDevices cr-tab-icon-padding" id="fbshare">
+                                             <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">
+                                         </a>
+                                         <a class="share-linkedin pull-left cr-tab-icon-padding">
+                                             <img src="//s3.amazonaws.com/crowdera/assets/twitter-Icon.png" alt="LinkedIn Share">
+                                         </a>
+                                         <a class="twitter-share pull-left" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">
+                                             <img src="//s3.amazonaws.com/crowdera/assets/linked-In--Icon.png" alt="Twitter Share">
+                                         </a>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="col-sm-12">
+                                 <div class="form-group">
+                                     <div class="col-sm-12">
+                                         <p class="cr-para">We will use this information to contact you if there are any issues with the campaign.This information will not be shared publicly.</p>
+                                     </div>
+                                 </div>
+                             </div>
                         </div>
                     </div>
+
                 </div>
+              
+                <div class="col-sm-12 cr-lab-rd-flex cr-space" id="perk">
+                    <div class="cr-perks-flex cr-perks-space">
+                        <label class="panel-body cr-perks-size ">Offering PERKS?</label>
+                    </div>
+                    <div class="btn-group btnPerkBgColor col-sm-12 col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp" data-target="buttons">
+                        <label class="btn btn-default col-sm-2 cr-lbl-mobile"> <input type="radio" name="answer" value="yes"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
+                        <label class="btn btn-default col-sm-2 cr-lbl-mobiles"> <input type="radio" name="answer" value="no"> NO</label>
+                    </div>
+                 </div>
 						
                 <input type="hidden" name="rewardCount" id="rewardCount" value='0'/>
                 <div id="addNewRewards">

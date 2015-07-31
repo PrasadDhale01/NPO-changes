@@ -60,31 +60,33 @@
         <div class="container footer-container" id="campaigncreate">
             <g:uploadForm class="form-horizontal"  controller="project" action="campaignOnDraftAndLaunch" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
                 <g:hiddenField name="projectId" value="${project.id}"/>
-                <div class="col-sm-12">
+                <div class="col-sm-12 cr-start-flex">
+                    <label class="panel body cr-start-size">START</label>
                     <div class="form-group" id="start">
                         <div class="col-sm-3">
-                             <div class="input-group enddate"><span class="input-group-addon datepicker-error cr-datepicker-icon"><span class="glyphicon glyphicon-calendar"></span></span>
-                                 <input class="datepicker pull-left" id="datepicker" name="${FORMCONSTANTS.DAYS}" readonly="readonly" placeholder="Deadline"> 
+                             <div class="input-group enddate">
+                                 <input class="datepicker pull-left cr-datepicker-height cr-mob-datepicker" id="datepicker" name="${FORMCONSTANTS.DAYS}" readonly="readonly" placeholder="Deadline"> 
+                                 <i class="fa fa-caret-down cr-caret-size" style="position:absolute;"></i>
                              </div>
                         </div>
                     
                         <div class="col-sm-3">
                             <div class="font-list">
                                     <g:if test="${project.category && project.category.toString() != 'OTHER'}">
-                                        <g:select class="selectpicker" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" id="category" optionKey="key" optionValue="value" value="${project.category}"/>
+                                        <g:select class="selectpicker cr-start-dropdown-category cr-all-mobile-dropdown" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" id="category" optionKey="key" optionValue="value" value="${project.category}"/>
                                     </g:if>
                                     <g:else>
-                                        <g:select class="selectpicker" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" id="category" optionKey="key" optionValue="value" />
+                                        <g:select class="selectpicker cr-start-dropdown-category cr-all-mobile-dropdown" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" id="category" optionKey="key" optionValue="value" />
                                     </g:else>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="cr-dropdown-alignment font-list">
                                     <g:if test="${project.beneficiary.country}">
-                                        <g:select style="width:0px !important;" class="selectpicker" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="${project.beneficiary.country}" optionKey="key" optionValue="value" />
+                                        <g:select style="width:0px !important;" class="selectpicker cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="${project.beneficiary.country}" optionKey="key" optionValue="value" />
                                     </g:if>
                                     <g:else>
-                                        <g:select style="width:0px !important;" class="selectpicker" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="#" optionKey="key" optionValue="value" />
+                                        <g:select style="width:0px !important;" class="selectpicker cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="#" optionKey="key" optionValue="value" />
                                     </g:else>
                                 </div>
                             </div>
@@ -92,16 +94,16 @@
                             <div class="col-sm-3">
 	                            <div class="font-list">
 	                                <g:if test="${project.payuEmail}">
-	                                    <g:select class="selectpicker" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="payment" value="PAYU" optionKey="key" optionValue="value" />
+	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="payment" value="PAYU" optionKey="key" optionValue="value" />
 	                                </g:if>
 	                                <g:elseif test="${project.charitableId}">
-	                                    <g:select class="selectpicker" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="payment" value="FIR" optionKey="key" optionValue="value" />
+	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="payment" value="FIR" optionKey="key" optionValue="value" />
 	                                </g:elseif>
 	                                <g:elseif test="${project.paypalEmail}">
-	                                    <g:select class="selectpicker" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="payment" value="PAY" optionKey="key" optionValue="value" />
+	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="payment" value="PAY" optionKey="key" optionValue="value" />
 	                                </g:elseif>
 	                                <g:else>
-	                                    <g:select class="selectpicker" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="payment" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" />
+	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="payment" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" />
 	                                </g:else>
 	                            </div>
                             </div>
@@ -439,7 +441,7 @@
                     <g:else>
                         <div class="col-sm-12" id="paypalemail">
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">PayPal Email ID </label>
+                                <img class="col-sm-4 cr-paypal-image" src="//s3.amazonaws.com/crowdera/assets/paypal-Image.png">
                                 <div class="col-sm-6 paypalVerification">
                                     <g:if test="${project.paypalEmail}">
                                         <input id="paypalEmailId" type="email" class="form-control paypal-create" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}">

@@ -38,13 +38,14 @@ class UrlMappings {
 
         /* Project */
         "/campaign/create"(controller:'project', action:'create')
-        "/campaign/start/$title/$userName"(controller:'project', action:'redirectCreateNow')
+        "/campaign/start/$title"(controller:'project', action:'redirectCreateNow')
         "/campaign/success/$title"(controller:'project', action:'launch')
 		
         "/campaign/save/$projectTitle"(controller:'project', action:'saveProject')
         "/campaign/draft/$projectTitle"(controller:'project', action:'draftProject')
         "/campaign/managecampaign"(controller:'project', action:'manageCampaign')
         "/campaign/managecampaign/$projectTitle"(controller:'project', action:'manageproject')
+		"/campaign/managecampaign/$projectTitle/preview"(controller:'project', action:'preview')
 		"/campaign/managecampaign/$projectTitle/$offset"(controller:'project', action:'manageproject')
 		"/campaign/managecampaign/$projectTitle/$offset/$max"(controller:'project', action:'manageproject')
         "/campaign/edit/$projectTitle"(controller:'project', action:'edit')

@@ -141,6 +141,7 @@
                         <label>Story</label>
                         <textarea row="4" col="6" class="redactorEditor" name="story">
 						     ${currentTeam.story}</textarea>
+                        <span id="storyRequired">Ths field is required</span>
                     </div>
                     <div class="clear"></div>
                     <hr>

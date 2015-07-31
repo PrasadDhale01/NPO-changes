@@ -28,7 +28,7 @@
 </head>
 <body>
 <div class="feducontent">
-    <div class="container">
+    <div class="container editUpdateForm">
         <h1><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit Campaign"/> Edit Campaign Update</h1>
         <g:uploadForm class="form-horizontal" controller="project" action="saveEditUpdate" method="post" role="form" id="${projectUpdate.id}" params="['projectId': projectId]">
             <input type="hidden" id="baseUrl" value="${baseUrl}"/>
@@ -41,6 +41,7 @@
                         <label class="col-sm-2 control-label">Story</label>
                         <div class="col-sm-10">
                             <textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" class="redactorEditor">${projectUpdate.story}</textarea>
+                            <span id="storyRequired">Ths field is required</span>
                         </div>
                     </div><br/>
 					

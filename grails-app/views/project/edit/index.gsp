@@ -303,7 +303,7 @@
                                     <label class="docfile-orglogo-css" id="editlogo">Please select image file.</label>
                                     <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
                                 </div>
-                                <div id="icondiv" class="pr-icon-thumbnail-div col-sm-7">
+                                <div class="pr-icon-thumbnail-div col-sm-7">
                                     <g:if test="${project.organizationIconUrl}">
                                         <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
                                         <div class="deleteicon orgicon-css-styles">
@@ -515,6 +515,7 @@
                         <div class="col-sm-10">
                             <textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="redactorEditor">
 									 ${project.story}</textarea>
+                            <span id="storyRequired">Ths field is required</span>
                         </div>
                     </div>
                       

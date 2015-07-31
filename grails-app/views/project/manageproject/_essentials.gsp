@@ -97,13 +97,20 @@
 </div>
 
 <div class="col-xs-12 col-md-4 mobileview-bottom">
-	<g:render template="/project/manageproject/tilesanstitle" />
-	<g:if test="${project.draft}">
-		<g:form controller="project" action="saveasdraft" id="${project.id}">
-			<button class="btn btn-block btn-primary">
-				<i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-			</button>
-		</g:form>
-	</g:if>
-	<br>
+    <g:render template="/project/manageproject/tilesanstitle" />
+    <g:if test="${project.draft}">
+        <g:if test="${isPreview}">
+            <button class="btn btn-block btn-primary">
+                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+            </button>
+        </g:if>
+        <g:else>
+            <g:form controller="project" action="saveasdraft" id="${project.id}">
+                <button class="btn btn-block btn-primary">
+                    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                </button>
+            </g:form>
+        </g:else>
+    </g:if>
+    <br>
 </div>

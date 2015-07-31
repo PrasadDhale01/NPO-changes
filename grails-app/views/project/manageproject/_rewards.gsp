@@ -13,7 +13,9 @@
 	        </a>
         </g:if>
         <g:else>
-        	<div class="alert alert-info">Campaign Ended.</div>
+            <g:if test="${project.validated}">
+                <div class="alert alert-info">Campaign Ended.</div>
+            </g:if>
         </g:else>
         
         <!-- Modal -->

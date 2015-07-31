@@ -24,7 +24,7 @@
 </head>
 <body>
     <div class="feducontent">
-		<div class="container">
+		<div class="container editUpdateForm">
 		    <g:uploadForm class="form-horizontal" controller="project" action="updatesave" id="${project.id}" role="form">
 		    <div class="row">
 				<h1><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-create.png" alt="Post an update"/> Post an update</h1>
@@ -38,6 +38,7 @@
 							<div class="col-sm-10">
 								<textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" class="redactorEditor">
 									${initialValue}</textarea>
+                                <span id="storyRequired">Ths field is required</span>
 						    </div>
 						</div><br/>
 						

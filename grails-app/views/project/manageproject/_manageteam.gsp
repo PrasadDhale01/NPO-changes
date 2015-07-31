@@ -41,9 +41,6 @@
 		    <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="manageTeam">
 			    <g:render template="manageproject/teamgrid"/>
 			</div>
-			<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamComment">
-			    <g:render template="manageproject/teamcomment"/>
-			</div>
 			<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamValidation">
 			    <g:render template="manageproject/teamvalidationIndex"/>
 			</div>

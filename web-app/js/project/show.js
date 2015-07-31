@@ -262,6 +262,16 @@
     });
     
     $('#teamSaveButton').on('click', function() {
+    	var storyValue = $('.redactorEditor').redactor('code.get');
+        var storyEmpty = false;
+        if (storyValue == '' || storyValue == undefined){
+            $('#storyRequired').show();
+            storyEmpty = true;
+        } else {
+            $('#storyRequired').hide();
+            storyEmpty = false;
+        }
+        
         if($('#teamImages').find('#imgdiv').length < 1) {
             $("#projectImageFile").rules( "add", {
                 required: true,
@@ -271,7 +281,7 @@
             });
         }
 
-        if (validator.form()) {
+        if (validator.form() && !storyEmpty) {
             $('#editFundraiser').find('form').submit();
         }
     });
@@ -501,17 +511,6 @@
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
     
-    $('form').submit(function() {
-        if($(".inviteTeamMember").valid()) {
-        	$('#btnSendInvitation').attr('disabled','disabled');
-        }
-        if($(".sendMailForm").valid()) {
-        	$('#btnSendMail').attr('disabled','disabled');
-        }
-        if($(".sendMailFormMng").valid()) {
-        	$('#btnSendMailMng').attr('disabled','disabled');
-        }
-    });
     
     $(document).ready(function (){
      /*************************Edit video for team*************************/

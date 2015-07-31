@@ -23,13 +23,13 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="${resource(dir: '/')}">
-                <img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" alt="Crowdera"/>
+                <img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" alt="Crowdera">
             </a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav nav-icon-bar">
                 <li class="searchengine hidden-xs">
-                    <form action="/campaign" onClick="searchList()" name="SearchForm">
+                    <form action="/campaign" name="SearchForm">
                         <div class="inner-addon left-addon search-icon-header search-image-header">
                            <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" alt="search" class="trigger" id="trigger">
                            <input type="text" class="form-control search-box" name="q" value="${params.q}" id="search-bar" placeholder="Search....."/>
@@ -38,7 +38,7 @@
                     </form>
                 </li>
                 <li class="hidden-lg hidden-md hidden-sm search-mob">
-                    <form action="/campaign" onClick="searchMobList()" name="searchableForm">
+                    <form action="/campaign"  name="searchableForm">
                         <span class="form-group inner-addon left-addon">
                             <i class="glyphicon glyphicon-search search-glyph-icon"></i>
                             <input type="search" name="q" class="form-control search-box-xs" value="${params.q}" placeholder="Search.....">
@@ -74,19 +74,19 @@
                     <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img">
                         <a href="#" class="dropdown-toggle login" data-hover="dropdown" data-delay="1500" data-close-others="true">
                             <g:if test="${userService.isFacebookUser()}">
-                                <span><img class="user-img-header" src="${userImage}"></span>
+                                <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
                             </g:if>
                             <g:elseif test="${userService.isAdmin()}">
-                                <span><img class="user-img-header" src="${userImage}"></span>
+                                <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
                             </g:elseif>
                             <g:elseif test="${userService.isAuthor()}">
-                                <span><img class="user-img-header" src="${userImage}"></span>
+                                <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
                             </g:elseif>
                             <g:elseif test="${userService.isCommunityManager()}">
-                                <span><img class="user-img-header" src="${userImage}"></span>
+                                <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
                             </g:elseif>
                             <g:else>
-                                <span><img class="user-img-header" src="${userImage}"></span>
+                                <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
                             </g:else>
                             ${userService.getFriendlyName()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <span class="user-cl"></span>
@@ -94,7 +94,7 @@
                         <g:if test="${userService.isAdmin()}">
                             <ul class="dropdown-menu admin  admin-dropdown dropdown-menu-head admin-selected-drop">
                                 <li><g:link controller="user" action="dashboard">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting"/>&nbsp; Dashboard
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting">&nbsp; Dashboard
                                 </g:link></li>
                                 <sec:ifAllGranted roles="ROLE_AUTHOR">
                                     <li><g:link controller="blog" action="manage">
@@ -106,21 +106,21 @@
                                 </sec:ifAllGranted>
                                 <li class="divider"></li>
                                 <li><g:link controller="logout">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-Logout-icon.png" alt="Logout"/>&nbsp; Log out
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-Logout-icon.png" alt="Logout">&nbsp; Log out
                                 </g:link></li>
                             </ul>
                         </g:if>
                         <g:else>
                             <ul class="dropdown-menu usr user-dropdown dropdown-menu-head user-selected-drop">
                                 <li><g:link class="myprojects" controller="user" action="myproject">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-My-Campaigns-icon.png" alt="My-Campaigns"/>&nbsp;&nbsp;&nbsp;&nbsp; My Campaigns
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-My-Campaigns-icon.png" alt="My-Campaigns">&nbsp;&nbsp;&nbsp;&nbsp; My Campaigns
                                 </g:link></li>
 
                                 <li><g:link class="mycontributions" controller="user" action="mycontribution">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-My-Contributions-icon.png" alt="My-Contributions"/>&nbsp;&nbsp;&nbsp;&nbsp; My Contributions
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-My-Contributions-icon.png" alt="My-Contributions">&nbsp;&nbsp;&nbsp;&nbsp; My Contributions
                                 </g:link></li>
                                 <li><g:link controller="user" action="dashboard">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting"/>&nbsp;&nbsp;&nbsp;&nbsp; Settings
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting">&nbsp;&nbsp;&nbsp;&nbsp; Settings
                                 </g:link></li>
                                 <sec:ifAllGranted roles="ROLE_AUTHOR">
                                     <li><g:link controller="blog" action="manage"><span class="glyphicon glyphicon-book"></span> Manage blogs</g:link></li>
@@ -130,7 +130,7 @@
                                 </sec:ifAllGranted>
                                 <li class="divider"></li>
                                 <li><g:link controller="logout">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-Logout-icon.png" alt="Logout"/>&nbsp;&nbsp;&nbsp;&nbsp; Log out
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-Logout-icon.png" alt="Logout">&nbsp;&nbsp;&nbsp;&nbsp; Log out
                                 </g:link></li>
                             </ul>
                         </g:else>

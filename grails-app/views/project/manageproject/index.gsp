@@ -77,14 +77,27 @@
 							${flash.saveEditUpdateSuccessMsg}
 						</div>
 					</g:if>
-					
-                    <div class="col-md-12 green-heading campaignTitle text-center">
-					    <g:if test="${!project.validated}">
-					        <h1 class="green-heading"><g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
-					    </g:if>
-					    <g:else>
-					        <h1 class="green-heading"><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
-					    </g:else>
+					 
+					 
+                    <div class="col-md-12">
+                        <g:if test="${isPreview}">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <a href="/campaign/start/${vanityTitle}"><< Back to create page</a>
+                            </div>
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 campaignTitle">
+                            <h1 class="green-heading text-center">${projectTitle}</h1>
+                            </div>
+                        </g:if>
+                        <g:elseif test="${!project.validated}">
+                            <div class="campaignTitle">
+                                <h1 class="green-heading text-center"><g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
+                            </div>
+                        </g:elseif>
+                        <g:else>
+                            <div class="campaignTitle">
+                                <h1 class="green-heading text-center"><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
+                            </div>
+                        </g:else>
 					</div>
 					<g:if test="${fundRaiser}">
                         <div class="col-md-12 col-sm-12 col-xs-12 text-center campaignFundRaiser">

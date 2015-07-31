@@ -72,9 +72,6 @@
         <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
             <g:render template="show/teamgrid"/>
         </div>
-        <div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamComment">
-            <g:render template="show/teamcomment"/>
-        </div>
     </div>
 	
 </g:if>
@@ -144,6 +141,7 @@
                         <label>Story</label>
                         <textarea row="4" col="6" class="redactorEditor" name="story">
 						     ${currentTeam.story}</textarea>
+                        <span id="storyRequired">Ths field is required</span>
                     </div>
                     <div class="clear"></div>
                     <hr>

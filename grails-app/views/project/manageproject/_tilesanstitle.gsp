@@ -84,22 +84,32 @@
     <div class="modal-footer tile-footer managedetails-nine-nine">
         <div class="row">
             <div class="fullwidth pull-right">
-                <% if(percentage <= 999) { %>
-                    <g:link controller="project" action="editCampaign" method="post" id="${project.id}">
-                        <button class="projectedit close"  aria-label="Edit project" id="editproject">
-                            <i class="glyphicon glyphicon-edit" ></i>
-                        </button>
-                    </g:link>
-                <% } %>
-                <g:if test="${!project.validated || username.equals('campaignadmin@crowdera.co') }">
-                    <g:form controller="project" action="projectdelete" method="post"  id="${project.id}">
-                        <button class="projectedit close" aria-label="Edit project" id="projectdelete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
-                            <i class="glyphicon glyphicon-trash" ></i>
-                        </button>
-                    </g:form>
+                <g:if test="${isPreview}">
+                    <button class="projectedit close"  aria-label="Edit project" id="editproject">
+                        <i class="glyphicon glyphicon-edit" ></i>
+                    </button>
+                    <button class="projectedit close" aria-label="Edit project" id="projectdelete">
+                        <i class="glyphicon glyphicon-trash" ></i>
+                    </button>
                 </g:if>
+                <g:else>
+                    <g:if test="${percentage <= 999}">
+                        <g:link controller="project" action="editCampaign" method="post" id="${project.id}">
+                            <button class="projectedit close"  aria-label="Edit project" id="editproject">
+                                <i class="glyphicon glyphicon-edit" ></i>
+                            </button>
+                        </g:link>
+                    </g:if>
+                    <g:if test="${!project.validated || username.equals('campaignadmin@crowdera.co') }">
+                        <g:form controller="project" action="projectdelete" method="post"  id="${project.id}">
+                            <button class="projectedit close" aria-label="Edit project" id="projectdelete" onclick="return confirm(&#39;Are you sure you want to discard this campaign?&#39;);">
+                                <i class="glyphicon glyphicon-trash" ></i>
+                            </button>
+                        </g:form>
+                    </g:if>
+                </g:else>
             </div>
         </div>
     </div>
-    
+
 </div>

@@ -379,3 +379,90 @@ a.customer-support-a {
 .search-box {
     width: 0px;
 }
+
+#storyRequired{
+    display:none;
+    color: #f04124;
+    font-size: 12px;
+    font-weight: normal;
+}
+
+#logomsg{
+    display:none;
+}
+
+#campaignfilesize{
+    display:none;
+}
+
+#iconfilesize{
+    display:none;
+}
+
+#imgmsg{
+    display:none;
+}
+
+#charitableId{
+    display:none;
+}
+
+#icondiv{
+    display:none;
+}
+
+#txtState{
+    display:none;
+}
+
+#val2{
+    display:none;
+}
+
+#paypalcheckbox{
+    display:none;
+}
+
+#updatereward{
+    display:none;
+}
+
+#updatefilesize{
+    display:none;
+}
+
+#campaignfilesize{
+    display:none;
+}
+
+#iconfilesize{
+    display:none;
+}
+
+#imgupdatemsg{
+    display:none;
+}
+
+#ytVideo{
+    display:none;
+}
+
+#editimg{
+    display:none;
+}
+
+#editlogo{
+    display:none;
+}
+
+#campaignUpdatefilesize{
+    display:none;
+}
+
+#editUpdateimg{
+    display:none;
+}
+
+.back-link{
+	color: #006083 !important;
+}

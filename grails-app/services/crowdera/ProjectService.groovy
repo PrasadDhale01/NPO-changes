@@ -2604,13 +2604,15 @@ class ProjectService {
                 break;
 	
             case 'paypalEmailId':
-                if (!varValue.isAllWhitespace()){
                 project.paypalEmail = varValue;
                 project.charitableId = null;
-                project.organizationName = null;
                 isValueChanged = true;
-            }
-            break;
+                break;
+			
+            case 'payuEmail':
+                project.payuEmail = varValue;
+                isValueChanged = true;
+                break;
 
             case 'charitableId':
                 project.charitableId = varValue;

@@ -34,7 +34,7 @@
 			</div>
 		    </div>
 		</section>
-		<!-- --------------------------Section two------------------------- -->
+		<!-- ***********************************Section two************************ -->
 		<section class="row">
 		    <div class="col-xs-12 footer-first-section-mobile footer-text-align">
 			<p>Hands up for a Better World. See how you can make a difference with Crowdera.</p>
@@ -44,16 +44,16 @@
 			</div>
 		    </div>
 		</section>      	
-		<!-- --------------------------Section three------------------------- -->
+		<!-- ********************************Section three************************* -->
 		<section class="row">
 		    <div class="col-xs-12 footer-mid-section footer-p-text-align">
 			<br>
 			<div class="socialicon">
-			    <a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon"></a>
-			    <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink"></a>
-			    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon"></a>
-			    <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer"></a>
-			    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer"></a>
+			    <a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src=""></a>
+			    <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src=""></a>
+			    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src=""></a>
+			    <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src=""></a>
+			    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" src=""></a>
 			</div>
 			<br>
 			<div class="thomas-testimonial">
@@ -78,7 +78,7 @@
 		    </div>
 		</section>
         
-		<!-- --------------------------Section four------------------------- -->
+		<!-- *********************Section four*****************-->
 		<hr class="footer-hr">
  
 		<section class="row">
@@ -126,10 +126,10 @@
 		    <br>
 		   <div class="socialicon pull-right">
 			<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon"></a>
-			<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink"></a>
-			<a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon"></a>
-			<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer"></a>
-			<a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" ></a>
+			<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src=""></a>
+			<a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src=""></a>
+			<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src=""></a>
+			<a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" src=""></a>
 			<br><br>
 		    </div>
 		    <br><br>
@@ -157,10 +157,10 @@
 		<div class="col-sm-8 footer-last-section-payment-icon">
 		    <div class="col-sm-6 payment-method-footer">
 		        <span>Payment Methods</span>
-			<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" class="payment-card-icons">
+			<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" class="payment-card-icons" alt="payment-icon">
 		    </div>
 		    <div class="col-sm-6 secure-payment-footer">
-			<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png">
+			<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
 			<div class="footer-text-align">100% Secure Payment</div>
 		    </div>
 		</div>
@@ -208,11 +208,11 @@
 		<div class="col-md-4 socialiconlinks footer-mid-section">
 		    <br>
 		    <div class="socialicon pull-right">
-			<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon"></a>
-			<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink"></a>	
-			<a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon"></a>
-			<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer"></a>
-			<a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" ></a>
+			<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src=""></a>
+			<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src=""></a>	
+			<a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src=""></a>
+			<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src=""></a>
+			<a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" src=""></a>
 			<br><br>
 		    </div>
 		    <br><br>
@@ -241,10 +241,10 @@
 		<div class="col-md-8 footer-last-section-payment-icon">
 		    <div class="col-md-6 payment-method-footer">
 			<span>Payment Methods</span>
-		        <img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png">
+		        <img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" alt="payment-icon">
 		    </div>
 		    <div class="col-md-6 secure-payment-footer">
-			<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png">
+			<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
 			<div class="footer-text-align">100% Secure Payment</div>
 		    </div>
 		</div>

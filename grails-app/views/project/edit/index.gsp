@@ -43,6 +43,23 @@
             	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
             }
         }
+
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+        var days = $('.campaigndate').val();
+        nowTemp.setDate(now.getDate()-days);
+	    now.setDate(now.getDate()+90-days);
+
+	    var j = jQuery.noConflict();
+		    j(function(){
+			    j('#datepicker').datepicker({
+				    onRender: function(date) {    
+					    if (date.valueOf() < nowTemp.valueOf() || date.valueOf() > now.valueOf()){
+						    return  'disabled';
+					    } 
+				    }
+			    });
+		    });
     </script>
     <g:javascript>
         $(function() {
@@ -286,7 +303,7 @@
                                     <label class="docfile-orglogo-css" id="editlogo">Please select image file.</label>
                                     <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
                                 </div>
-                                <div id="icondiv" class="pr-icon-thumbnail-div col-sm-7">
+                                <div class="pr-icon-thumbnail-div col-sm-7">
                                     <g:if test="${project.organizationIconUrl}">
                                         <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
                                         <div class="deleteicon orgicon-css-styles">
@@ -458,24 +475,6 @@
                             <div class="input-group enddate"><span class="input-group-addon datepicker-error"><span class="glyphicon glyphicon-calendar"></span></span>
                                 <input class="datepicker pull-left" id="datepicker" name="${FORMCONSTANTS.DAYS}" value="${campaigndate}" readonly="readonly" placeholder="Campaign end date"> 
                             </div>
-                            <script>
-                                var nowTemp = new Date();
-                                var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-                                var days = $('.campaigndate').val();
-                                nowTemp.setDate(now.getDate()-days);
-                        	    now.setDate(now.getDate()+90-days);
-         
-                        	    var j = jQuery.noConflict();
-                        		    j(function(){
-                        			    j('#datepicker').datepicker({
-                        				    onRender: function(date) {    
-                        					    if (date.valueOf() < nowTemp.valueOf() || date.valueOf() > now.valueOf()){
-                        						    return  'disabled';
-                        					    } 
-                        				    }
-                        			    });
-                        		    });
-                            </script>
                         </div>
                     </div>
                     <div class="form-group">
@@ -516,6 +515,7 @@
                         <div class="col-sm-10">
                             <textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" row="4" col="6" class="redactorEditor">
 									 ${project.story}</textarea>
+                            <span id="storyRequired">Ths field is required</span>
                         </div>
                     </div>
                       

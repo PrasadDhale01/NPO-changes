@@ -1,12 +1,12 @@
 /* Carousel
 ------------------------- */
-@import url(http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
+@import url(https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css);
 
 body {
     margin-top: 50px;
     /* padding-bottom: 40px; */
     color: #5a5a5a;
-    /* background-image: url('http://www.candiedphotography.co.uk/wp-content/uploads/paper_background.jpg'); */
+    /* background-image: url('https://www.candiedphotography.co.uk/wp-content/uploads/paper_background.jpg'); */
 }
 
 .feduoutercontent {
@@ -689,6 +689,27 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	label.cr-perks-size{
+        padding-left: 56px;
+        padding-right: 61px;
+        width: 232px;
+	} 
+	div.cr-mobile-sp{
+	    padding-left: 0;
+        padding-right: 0;
+	}
+	label.cr-lbl-mobile{
+	    padding-left: 26px;
+        width: 128px;
+	}
+	label.cr-lbl-mobiles{
+	    width: 108px;
+	}
+	header.cr-tabs-link {
+	    padding-left: 23px !important; 
+	    padding-right: 23px !important; 
+	    font-size: 24px;
+    }
 	div.cr-story-flx {
         display: inline;
     }
@@ -725,7 +746,7 @@ a {
     }
     label.cr-payments-lab {
         padding-left: 107px;
-        padding-right: 107px;
+        padding-right: 181px;
     }
     .cr-btn-launch {
         margin-bottom: 0;
@@ -734,6 +755,9 @@ a {
     .tab-content.panel.panel-default.col-sm-12.cr-tab-panel-top {
 		height: 100%;
 		width: 100%;
+    }
+    .cr-payment-marg {
+        padding-left: 0;
     }
 	.allCampaign-dropdown > .btn {
 		width: 100% !important;
@@ -1182,6 +1206,11 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	header.cr-tabs-link {
+	    padding-left: 16px !important; 
+	    padding-right: 16px !important; 
+	    font-size: 20px !important;
+    }
 	div.cr-space{
 	    display: inline-table !important;
 	}
@@ -1220,8 +1249,9 @@ a {
         padding: 10px 43px;
     }
     label.cr-payments-lab {
-        padding-left: 107px;
-        padding-right: 180px;
+        padding-left: 37px;
+        padding-right: 100px;
+        width: 153px;
     }
     div.cr-payment-marg{
         margin-left: -15px;
@@ -1612,6 +1642,10 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	header.cr-tabs-link {
+	    padding-left: 90px !important; 
+	    padding-right: 90px !important; 
+    }
 	div.cr-space{
 	    display: inline-table !important;
 	}
@@ -1671,6 +1705,11 @@ a {
 	}
     .cr-btn-launch{
         margin-top: 0px;
+    }
+    label.cr-payments-lab {
+		padding-left: 40px;
+		padding-right: 116px;
+		width: 100px;
     }
     
 	.carousel-buttons{
@@ -5553,6 +5592,30 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	label.cr-perks-size{
+        padding-left: 56px;
+        padding-right: 61px;
+        width: 232px;
+	} 
+	div.cr-mobile-sp{
+	    padding-left: 0;
+        padding-right: 0;
+	}
+	label.cr-lbl-mobile{
+	    padding-left: 26px;
+        width: 128px;
+	}
+	label.cr-lbl-mobiles{
+	    width: 108px;
+	}
+	header {
+        display: inline !important;
+    }
+	header.cr-tabs-link {
+	    padding-left: 25px !important; 
+	    padding-right: 20px !important; 
+	    font-size: 24px;
+    }
 	div.cr-space{
 	    display: inline-table !important;
 	}
@@ -5588,14 +5651,14 @@ textarea.form-control {
     label.cr-admin-title{
         background-color: #01bbd2;
         margin-bottom: 0;
-        padding: 10px 117px;
+        padding: 10px 112px;
     }
     label.cr-payments-lab {
         padding-left: 107px;
         padding-right: 180px;
     }
     div.cr-payment-marg{
-        margin-left: -15px;
+        padding: 0;
     }
     .cr-btn-margin {
         margin-left: -10px;
@@ -7884,17 +7947,13 @@ span#search-container {
 	line-height:155%;	
 }
 
-.IN-TW-terms-use-bold{
-	font-size:20px;
-	font-weight:bold;
-}
 .IN-TW-terms-use-h5{
 	font-weight:500;
+	line-height:180%;
 	padding-top:5px;
 }
 .IN-TW-terms-use-strong{
 	font-weight: 400 !important;
-  	color: black;	
 }
 .IN-TW-policy-ol-padding{
 	padding-left:18px !important;
@@ -7964,18 +8023,25 @@ a.btn.btn-primary.btn-colors:hover {
 header {
     background-color: #01bbd2;
     padding: 4%;
+    display: flex;
 }
-a.cr-ancher-tab {
+header.cr-tabs-link {
+	color: rgb(164, 220, 249);
+	padding-bottom: 30px;
+    padding-top: 30px;
+	padding-left: 190px; 
+	padding-right: 205px; 
+	font-size: 24px;
+}
+.cr-ancher-tab a{
   color: rgb(164, 220, 249);
-    margin: 1%;
-  font-weight: 900;
-  font-size: 25px;
+  text-decoration: none !important;
 }
-.cr-ancher-tab:hover{
+.cr-ancher-tab a:hover{
 	color: white;
 }
 .cr-top-space {
-  padding-top: 5%;
+  padding-top: 20px;
 }
 input#datepicker {
   font-size: 20px;
@@ -8177,7 +8243,7 @@ label.text-color {
     color: #6d6e6e;
 }
 .text-color {
-    color: #c7c7c7;
+    color: #6d6e6e;
     border-color: #e3e3e3;
     font-size: 14px;
 }
@@ -8186,7 +8252,7 @@ label.text-color {
 }
 
 /****Chrome-Placeholder*******/
-#firstName::-webkit-input-placeholder {
+#name::-webkit-input-placeholder {
 	font-size: 14px;
 	color: #c7c7c7;
 }
@@ -8199,7 +8265,7 @@ label.text-color {
 	color: #c7c7c7;
 }
 /*******Mozila-placeholder******/
-#firstName::-moz-placeholder{ 
+#name::-moz-placeholder{ 
 	font-size: 14px;
 	color: #c7c7c7;
 }
@@ -8293,8 +8359,22 @@ label.text-color {
 }
 .cr-perks-space{
 	 padding-right: 82px;
-
+}
 #hiddensearch{
     display: none;
     width: 270px;
 }
+.cr-pay-rd {
+    font-size: 12px;
+}
+.cr-reci-siz{
+	font-size: 14px;
+	font-weight:900;
+}
+.cr-btn-color {
+    background-color: #46b8da !important;
+}
+.cr-tab-icon-padding {
+	padding-right: 10px;
+}
+

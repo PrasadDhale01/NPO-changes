@@ -11,7 +11,6 @@
     
     <link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
     <link rel="stylesheet" href="/css/datepicker.css">
-    <script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
     <script src="/js/main.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">
@@ -197,13 +196,13 @@
 
 				    <!-- Tab panes -->
 					<div class="tab-content panel panel-default col-sm-12 cr-tab-panel-top">
-						<div class="tab-pane panel-body row" id="admin">
-					        <div class="col-sm-4">
-					             <div class="form-group">
-	                                 <div class="col-sm-12">
-	                                     <input type="text" class="form-control" name="email1" id="firstadmin" placeholder="First Admin"></input>
-	                                 </div>
-                                 </div>
+                        <div class="tab-pane panel-body row" id="admin">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <input type="text" class="form-control" name="email1" id="firstadmin" placeholder="First Admin"></input>
+                                    </div>
+                                </div>
                             </div>
 		                                    
                             <div class="col-sm-4">
@@ -285,7 +284,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <g:if test="${project.beneficiary.telephone}">
-                                            <input type="tel" id="telephone" class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
+                                            <input type="tel" id="telephone" class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone" value="${project.beneficiary.telephone}">
                                         </g:if>
                                         <g:else>
                                             <input type="tel" id="telephone" class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">

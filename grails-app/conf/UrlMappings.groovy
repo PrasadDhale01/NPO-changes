@@ -12,6 +12,9 @@ class UrlMappings {
         "404"(view: '/404error')
         "401"(view:'/401error')
         "403"(view:'/401error')
+        "/manager"(view:'/401error')
+        "/manager/*"(view:'/401error')
+        "/manager/*/*"(view:'/401error')
         
         "/logout/$action?"(controller: "logout")
 

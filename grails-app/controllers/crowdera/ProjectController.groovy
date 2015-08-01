@@ -406,8 +406,9 @@ class ProjectController {
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
             project.payuStatus = true
         }
-
-        project.save(failOnError: true);
+		
+		project.usedFor = params.usedFor;
+		
         if(project.save()){
             projectTitle = projectService.getProjectVanityTitle(project)
             projectService.getFundRaisersForTeam(project, user)

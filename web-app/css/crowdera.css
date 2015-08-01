@@ -689,6 +689,21 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.cr-start-flex {
+        display: inline;
+        margin-bottom: 17px;
+    }
+    label.cr-start-size{
+       margin-bottom: 0;
+       padding-left: 79px;
+       padding-right: 78px;
+    }
+    div.cr-all-mobile-dropdown{
+       margin-left: 4px !important;
+    }
+	.cr-paypal-image {
+        padding-left: 7px !important;
+    }
 	label.cr-perks-size{
         padding-left: 56px;
         padding-right: 61px;
@@ -1206,6 +1221,35 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    i.cr-caret-size{
+	    left: 120px !important;
+        position: absolute;
+	}
+    label.cr-start-size {
+        margin-bottom: 17px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    .cr-mob-datepicker{
+        margin-left: -17px;
+        width: 159px !important;
+    }
+    div.cr-start-dropdown-category.btn-group.bootstrap-select{
+         margin-left: -3px !important;
+         width: 135px !important;
+    }
+    div.cr-start-dropdown-country.btn-group.bootstrap-select{
+        margin-left: -16px !important;
+        width: 143px !important;
+    }
+    div.cr-start-dropdown-payment.btn-group.bootstrap-select{
+         margin-left: -22px !important;
+         width: 143px !important;
+    }
+	.cr-paypal-image {
+        padding-left: 112px !important;
+        padding-right: 25px !important;
+    }
 	header.cr-tabs-link {
 	    padding-left: 16px !important; 
 	    padding-right: 16px !important; 
@@ -1642,6 +1686,28 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    .cr-mob-datepicker{
+        margin-left: -17px;
+        padding-left: 5px;
+	}
+	i.cr-caret-size{
+	    left: 159px;
+        position: absolute;
+	}
+	div.cr-start-dropdown-category.btn-group.bootstrap-select{
+	    margin-left: -17px;
+	}
+	div.cr-start-dropdown-country.btn-group.bootstrap-select{
+	    margin-left: -21px;
+	}
+	div.cr-start-dropdown-payment.btn-group.bootstrap-select{
+	    margin-left: -26px;
+	}
+	.cr-paypal-image {
+        padding-left: 209px;
+        padding-right: 28px;
+        padding-top: 7px;
+    }
 	header.cr-tabs-link {
 	    padding-left: 90px !important; 
 	    padding-right: 90px !important; 
@@ -5592,6 +5658,21 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+     div.cr-start-flex {
+        display: inline;
+        margin-bottom: 17px;
+    }
+    label.cr-start-size{
+       margin-bottom: 0;
+       padding-left: 79px;
+       padding-right: 78px;
+    }
+    div.cr-all-mobile-dropdown{
+       margin-left: 4px !important;
+    }
+	.cr-paypal-image {
+        padding-left: 7px !important;
+    }
 	label.cr-perks-size{
         padding-left: 56px;
         padding-right: 61px;
@@ -8045,6 +8126,7 @@ header.cr-tabs-link {
 }
 input#datepicker {
   font-size: 20px;
+  background-color: #f6f8f8;
 }
 .cr-headerA {
   background-color: #f6bf0b;
@@ -8074,8 +8156,9 @@ form.form-horizontal.cr-top-spaces {
   font-size: 16px;
 }
 .font-list button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default {
-  background-color: white;
+  background-color: #f6f8f8;
   color: black;
+  height: 53px;
 }
 p.cr-para {
   font-size: 75%;
@@ -8376,5 +8459,43 @@ label.text-color {
 }
 .cr-tab-icon-padding {
 	padding-right: 10px;
+}
+.cr-paypal-image{
+	padding-left: 220px;
+}
+.cr-start-dropdown-category.btn-group.bootstrap-select{
+	margin-left: -4px;
+    width: 200px !important;
+}
+.cr-start-dropdown-country.btn-group.bootstrap-select{
+	margin-left: -12px;
+    width: 200px !important;
+}
+.cr-start-dropdown-payment.btn-group.bootstrap-select{
+	margin-left: -12px;
+    width: 200px !important;
+}
+.cr-start-dropdown-payment.btn-group.bootstrap-select{
+	margin-left: -21px;
+    width: 200px !important;
+}
+.cr-start-flex{
+	display:flex;
+}
+.cr-start-size {
+    background-color: #01bbd2;
+    color: white;
+    font-size: 14px;
+    font-weight: 900;
+    margin-bottom: 12px;
+    padding: 16px 57px;
+}
+.cr-datepicker-height{
+	 height: 52px;
+}
+.cr-caret-size{
+	left: 177px;
+    position: absolute;
+    top: 19px;
 }
 

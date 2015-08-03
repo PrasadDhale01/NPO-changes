@@ -460,17 +460,29 @@ $(function() {
 
       /******************************Video Thumbnail***************************************/
      
+	if($('#addvideoUrl').val()) {
+		var url= $('#videoUrl').val().trim();
+		$('#ytVideo').show();
+        $('#media').hide();
+        $('#media-video').show();
+        var vurl=url.replace("watch?v=", "v/");
+        $('#ytVideo').html('<iframe style="width:192%;height:194px; display:block;" src='+ vurl +'></iframe>');
+	}
 	$('#add').on('click',function(){
-        var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/
         var url= $('#videoUrl').val().trim();
-        var match = url.match(regExp);
-      
+        var match = url.match(youtube);
         if (match && match[2].length == 11) {
             $('#ytVideo').show();
+            $('#media').hide();
+            $('#media-video').show();
             var vurl=url.replace("watch?v=", "v/");
-            $('#ytVideo').html('<iframe style="width:218%;height:170px; display:block;" src='+ vurl +'></iframe>');
+            $('#ytVideo').html('<iframe style="width:192%;height:194px; display:block;" src='+ vurl +'></iframe>');
         }else if($(this)){
             $('#ytVideo').hide();
+            $('#media').show();
+            $('#media-video').hide();
         }
     });
     $('#videoUrl').change(function(){
@@ -796,7 +808,7 @@ function setTitleText(){
                '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing address</label>'+
                '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email address</label>'+
                '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter handle</label>'+
-               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="custom'+count+'" value="true" id="customcheckbox'+count+'">Custom</label>'+
+               '<input type="text" name="custom'+count+'" id="customcheckbox'+count+'" class="customText" placeholder="Custom">'+
            '</div>'+
        '</div>'+
    '</div>'+
@@ -1045,7 +1057,7 @@ function setTitleText(){
     $('#others').click(function(){
         autoSave('fundsRecievedBy', 'OTHERS');
     });
- 
+    
 /*Javascript error raised due to tooltip is resolved*/
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {

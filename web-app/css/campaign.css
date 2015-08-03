@@ -445,6 +445,7 @@ a.customer-support-a {
 
 #ytVideo{
     display:none;
+    padding:0;
 }
 
 #editimg{
@@ -465,4 +466,40 @@ a.customer-support-a {
 
 .back-link{
 	color: #006083 !important;
+}
+
+.customText{
+    color: #333333;
+    background-color: #e7e7e7;
+    height:52px;
+}
+
+.customText::-webkit-input-placeholder{
+	color:#333333;
+	padding-left:35%;
+}
+
+img.addVideoIcon.img-responsive{
+    margin: 0 auto;
+    padding-top: 90px;
+}
+
+#addVideo .modal-dialog .modal-content{
+	height:325px;
+}
+
+#addVideo .modal-dialog .modal-content .modal-body{
+	padding-top: 15%;
+}
+
+.video-modal{
+	background-color: #46b8da ;
+	color:white;
+}
+#media-video {
+	display: none;
+}
+button.videoUrledit.close {
+  margin-left: 15px;
+  padding-bottom: 5px;
 }

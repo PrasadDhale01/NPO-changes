@@ -109,28 +109,29 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <g:hiddenField name="videoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
                     <div class="col-sm-6" id="media">
-                        <div class="panel panel-default panel-create-size">
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <div class="col-sm-8">
-                                    <g:if test="${project.videoUrl}">
-                                        <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
-                                    </g:if>
-                                    <g:else>
-                                        <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
-                                    </g:else>
-                                </div>
-                                <div class="pad-btn col-xs-6 col-sm-4">
-                                    <input type="button" id="add" class="btn  btn-info btn-sm cr-btn-color" name="Add" value="Add Video"/>
-                                </div>
-                                <div class="col-sm-6" id="ytVideo"></div>
+                        <a href="#addVideo" data-toggle="modal">
+                            <div class="panel panel-default panel-create-size" id="videoBox">
+                                <img id="addVideoIcon" class="addVideoIcon img-responsive" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png">
                             </div>
+                        </a>
+                    </div>
+                    <div class="col-sm-6" id="media-video">
+                        <div class="panel panel-default panel-create-size" id="videoBox">
+                           <a href="#addVideo" data-toggle="modal">
+                               <button class="videoUrledit close" id="videoUrledit">
+                                   <i class="glyphicon glyphicon-edit" ></i>
+                               </button>
+                           </a>
+                           <div class="panel-body">
+                               <div class="form-group">
+                                   <div class="col-sm-6" id="ytVideo"></div>
+                               </div>
+                           </div>
                         </div>
                     </div>
-                </div>
-                        
+                    
                 <div class="col-sm-6 ">
                     <div class="panel panel-default panel-create-size">
                         <div class="panel-body">
@@ -383,7 +384,7 @@
                                     <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing address</label>
                                     <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email address</label>
                                     <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter handle</label>
-                                    <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="custom1" value="true" id="customcheckbox1">Custom</label>
+                                    <input type="text" name="custom1" id="customcheckbox1" class="customText" placeholder="Custom">
                                 </div>
                             </div>
                         </div>
@@ -412,11 +413,11 @@
                         </div>
                         <label class="cr-pad-who">Who will recieve the funds</label>
                         <div class="btn-group col-sm-12 cr-perk-check cr-radio-option" data-toggle="buttons">
-                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 <g:if test="${project.usedFor == 'RECIEPIENT'}">active</g:if>" id="recipient"> <input type="radio" value="yes" name=""><span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label> 
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 <g:if test="${project.usedFor == 'PERSON'}">active</g:if>" id="person"> <input type="radio" name="" value="yes">Person</label> 
-                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 <g:if test="${project.usedFor == 'NON-PROFITS'}">active</g:if>" id="non-profit"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A US 501CC1</span><span class="cr-reci-siz"> Non-profit</span></label>
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 <g:if test="${project.usedFor == 'NGO'}">active</g:if>" id="ngo"> <input type="radio" name="" value="no"><span class="cr-reci-siz">NGO</span></label>
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 <g:if test="${project.usedFor == 'OTHERS'}">active</g:if>" id="others"> <input type="radio" name="" value="no"><span class="cr-reci-siz">Others</span></label>
+                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 <g:if test="${project.fundsRecievedBy == 'RECIEPIENT'}">active</g:if>" id="recipient"> <input type="radio" value="yes" name=""><span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label> 
+                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 <g:if test="${project.fundsRecievedBy == 'PERSON'}">active</g:if>" id="person"> <input type="radio" name="" value="yes">Person</label> 
+                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 <g:if test="${project.fundsRecievedBy == 'NON-PROFITS'}">active</g:if>" id="non-profit"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A US 501CC1</span><span class="cr-reci-siz"> Non-profit</span></label>
+                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 <g:if test="${project.fundsRecievedBy == 'NGO'}">active</g:if>" id="ngo"> <input type="radio" name="" value="no"><span class="cr-reci-siz">NGO</span></label>
+                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 <g:if test="${project.fundsRecievedBy == 'OTHERS'}">active</g:if>" id="others"> <input type="radio" name="" value="no"><span class="cr-reci-siz">Others</span></label>
                         </div>
                     </div>
                 </div>
@@ -515,5 +516,35 @@
             </div>
         </div>
 	</div>
+	
+	<!-- Modal -->
+<div class="modal fade" id="addVideo" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header video-modal">
+                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                  <h3 class="modal-title text-center"><b>Upload Video</b></h3>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+		              <div class="col-sm-10">
+		                  <g:if test="${project.videoUrl}">
+		                      <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
+			              </g:if>
+			              <g:else>
+			                  <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
+			              </g:else>
+		              </div>
+		              <div class="col-sm-2">
+		                  <button class="btn btn-info btn-sm cr-btn-color" href="#" data-dismiss="modal" id="add">Add</button>
+		              <div>
+	              </div>
+              </div>
+          </div>
+      </div>
+      </div>
+      </div>
+</div>
+	
 </body>
 </html>

@@ -465,7 +465,7 @@ a.customer-support-a {
 }
 
 .back-link{
-	color: #006083 !important;
+    color: #006083 !important;
 }
 
 .customText{
@@ -475,8 +475,8 @@ a.customer-support-a {
 }
 
 .customText::-webkit-input-placeholder{
-	color:#333333;
-	padding-left:35%;
+    color:#333333;
+    padding-left:35%;
 }
 
 img.addVideoIcon.img-responsive{
@@ -485,21 +485,21 @@ img.addVideoIcon.img-responsive{
 }
 
 #addVideo .modal-dialog .modal-content{
-	height:325px;
+    height:325px;
 }
 
 #addVideo .modal-dialog .modal-content .modal-body{
-	padding-top: 15%;
+    padding-top: 15%;
 }
 
 .video-modal{
-	background-color: #46b8da ;
-	color:white;
+    background-color: #46b8da ;
+    color:white;
 }
 #media-video {
-	display: none;
+    display: none;
 }
 button.videoUrledit.close {
-  margin-left: 15px;
-  padding-bottom: 5px;
+    margin-left: 15px;
+    padding-bottom: 5px;
 }

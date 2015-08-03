@@ -460,14 +460,14 @@ $(function() {
 
       /******************************Video Thumbnail***************************************/
      
-	if($('#addvideoUrl').val()) {
-		var url= $('#videoUrl').val().trim();
-		$('#ytVideo').show();
+    if($('#addvideoUrl').val()) {
+        var url= $('#videoUrl').val().trim();
+        $('#ytVideo').show();
         $('#media').hide();
         $('#media-video').show();
         var vurl=url.replace("watch?v=", "v/");
         $('#ytVideo').html('<iframe style="width:192%;height:194px; display:block;" src='+ vurl +'></iframe>');
-	}
+    }
 	$('#add').on('click',function(){
         var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/

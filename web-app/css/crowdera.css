@@ -689,14 +689,14 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	.mentor-container{
-		width:320px !important ;
-	}
-	.mentor-container.mentor-centering{
-		display:block;
-		margin-left:auto;
-		margin-right:auto;
-	}
+    .mentor-container{
+        width:320px !important ;
+    }
+    .mentor-container.mentor-centering{
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+    }
 	div.cr-start-flex {
         display: inline;
         margin-bottom: 17px;
@@ -1229,14 +1229,14 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	.mentor-container{
-		width:750px !important;
-	}
-	.mentor-container.mentor-centering{
-		display:block;
-		margin-left:auto;
-		margin-right:auto;
-	}
+    .mentor-container{
+        width:750px !important;
+    }
+    .mentor-container.mentor-centering{
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+    }
     i.cr-caret-size{
 	    left: 120px !important;
         position: absolute;
@@ -5675,15 +5675,15 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-	.mentor-container{
-		width:320px !important;
-	}
-	.mentor-container.mentor-centering{
-		display:block;
-		margin-left:auto;
-		margin-right:auto;
-	}
-     div.cr-start-flex {
+    .mentor-container{
+        width:320px !important;
+    }
+    .mentor-container.mentor-centering{
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    div.cr-start-flex {
         display: inline;
         margin-bottom: 17px;
     }
@@ -7664,13 +7664,13 @@ ul.menu{
     width: 1000px;
 }
 .mentor-container{
-	width:1000px;
-	padding-left:0px !important;
+    width:1000px;
+    padding-left:0px !important;
 }
 .mentor-container.mentor-centering{
-	display:block;
-	margin-left:auto;
-	margin-right:auto;
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
 }
 .footer-container{
 	width:1000px ;

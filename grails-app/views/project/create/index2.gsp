@@ -109,7 +109,7 @@
                             </div>
                         </div>
                     </div>
-                    <g:hiddenField name="videoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
+                    <g:hiddenField name="campaignvideoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
                     <div class="col-sm-6" id="media">
                         <a href="#addVideo" data-toggle="modal">
                             <div class="panel panel-default panel-create-size" id="videoBox">
@@ -517,33 +517,33 @@
         </div>
 	</div>
 	
-	<!-- Modal -->
-<div class="modal fade" id="addVideo" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header video-modal">
-                  <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                  <h3 class="modal-title text-center"><b>Upload Video</b></h3>
-              </div>
-              <div class="modal-body">
-                  <div class="row">
-		              <div class="col-sm-10">
-		                  <g:if test="${project.videoUrl}">
-		                      <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
-			              </g:if>
-			              <g:else>
-			                  <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
-			              </g:else>
-		              </div>
-		              <div class="col-sm-2">
-		                  <button class="btn btn-info btn-sm cr-btn-color" href="#" data-dismiss="modal" id="add">Add</button>
-		              <div>
-	              </div>
-              </div>
-          </div>
-      </div>
-      </div>
-      </div>
+    <!-- Modal -->
+    <div class="modal fade" id="addVideo" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header video-modal">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title text-center"><b>Upload Video</b></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-10">
+                            <g:if test="${project.videoUrl}">
+                                <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
+                            </g:if>
+                            <g:else>
+                                <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
+                            </g:else>
+                        </div>
+                        <div class="col-sm-2">
+                            <button class="btn btn-info btn-sm cr-btn-color" href="#" data-dismiss="modal" id="add">Add</button>
+                        <div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 	
 </body>

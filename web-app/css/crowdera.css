@@ -689,6 +689,14 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    .mentor-container{
+        width:320px !important ;
+    }
+    .mentor-container.mentor-centering{
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+    }
 	div.cr-start-flex {
         display: inline;
         margin-bottom: 17px;
@@ -1128,9 +1136,9 @@ a {
 	color: #fff !important;
 	display: none;
 	height: 31px;
-	left: 20px;
+	left: 15px;
 	position: absolute;
-	top: 93px;
+	top: 110px;
 	width: 119px;
     }
     .socialicon{
@@ -1221,6 +1229,14 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    .mentor-container{
+        width:750px !important;
+    }
+    .mentor-container.mentor-centering{
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+    }
     i.cr-caret-size{
 	    left: 120px !important;
         position: absolute;
@@ -1537,9 +1553,9 @@ a {
 	color: #fff !important;
 	display: none;
 	height: 31px;
-	left: 19px;
+	left: 15px;
 	position: absolute;
-	top: 93px;
+	top: 110px;
 	width: 120px;
     }
     #aboutus .caption {
@@ -2092,9 +2108,9 @@ a {
 	color: #fff !important;
 	display: none;
 	height: 31px;
-	left: 19px;
+	left: 15px;
 	position: absolute;
-	top: 93px;
+	top: 110px;
 	width: 120px;
     }
     div.container.crewpage > h1 {
@@ -2339,6 +2355,7 @@ ul.unstyled {
 ------------------------- */
 #aboutus .thumbnail {
     /*max-width: 200px;*/
+    display:inline;
 }
 
 #aboutus .thumbnail img {
@@ -5658,7 +5675,15 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-     div.cr-start-flex {
+    .mentor-container{
+        width:320px !important;
+    }
+    .mentor-container.mentor-centering{
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+    }
+    div.cr-start-flex {
         display: inline;
         margin-bottom: 17px;
     }
@@ -6219,9 +6244,9 @@ textarea.form-control {
 	color: #fff !important;
 	display: none;
 	height: 31px;
-	left: 35px;
+	left: 15px;
 	position: absolute;
-	top: 93px;
+	top: 110px;
 	width: 119px;
     }
     
@@ -7564,11 +7589,11 @@ span.tile-day-num{
 .crew-icons{
     display: none;
     position: absolute;
-    top: 90px;
-    left: 19px;
+    top: 111px;
+    left: 15px;
     background: rgba(0,0,0,0.8);
     width: 120px;
-    height: 19%;
+    height: 30px;
     color:#fff !important;
 }
 img.fa-icon {
@@ -7637,6 +7662,15 @@ ul.menu{
 }
 .footer-lg{
     width: 1000px;
+}
+.mentor-container{
+    width:1000px;
+    padding-left:0px !important;
+}
+.mentor-container.mentor-centering{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
 }
 .footer-container{
 	width:1000px ;

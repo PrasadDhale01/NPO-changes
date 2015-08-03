@@ -2634,6 +2634,15 @@ class ProjectService {
                project.fundsRecievedBy = varValue;
                isValueChanged = true;
                break;
+
+           case 'secretKey':
+               project.secretKey = varValue;
+               isValueChanged = true;
+               break;
+               
+           default : 
+               isValueChanged = false;
+               
         }
 
         if (isValueChanged){

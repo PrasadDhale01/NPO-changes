@@ -52,7 +52,7 @@
                 <li class="hidden-xs">
                     <g:link controller="project" action="create" class="nav-text1">
 <%--                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-blue.jpg" alt="create" class="hidden-lg hidden-md hidden-sm" id="createButton">--%>
-                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-blue-tab.jpg" alt="create" class="" id="createButton-sm">
+                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-yellow-tab.jpg" alt="create" class="" id="createButton-sm">
                     </g:link> 
                 </li>
                 <li class="hidden-lg hidden-md hidden-sm">

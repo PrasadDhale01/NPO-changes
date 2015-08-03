@@ -120,15 +120,15 @@ $(function() {
             },
         });
     	
-    	var images = ['//s3.amazonaws.com/crowdera/assets/create-Button-blue.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-Green-desk.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-yellow-desk.jpg'];
-    	var imagessm = ['//s3.amazonaws.com/crowdera/assets/create-Button-blue-tab.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-Green-tab.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-yellow-tab.jpg'];
+//    	var images = ['//s3.amazonaws.com/crowdera/assets/create-Button-blue.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-Green-desk.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-yellow-desk.jpg'];
+//    	var imagessm = ['//s3.amazonaws.com/crowdera/assets/create-Button-blue-tab.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-Green-tab.jpg', '//s3.amazonaws.com/crowdera/assets/create-Button-yellow-tab.jpg'];
     	
-    	var time = setInterval(function() {
-    	          var newImage = images[Math.floor(Math.random()*images.length)];
-    	          var newSmImage = imagessm[Math.floor(Math.random()*imagessm.length)];
-    	          $('#createButton').attr('src', newImage);
-    	          $('#createButton-sm').attr('src', newSmImage);
-    	   },7000);
+//    	var time = setInterval(function() {
+//    	          var newImage = images[Math.floor(Math.random()*images.length)];
+//    	          var newSmImage = imagessm[Math.floor(Math.random()*imagessm.length)];
+//    	          $('#createButton').attr('src', newImage);
+//    	          $('#createButton-sm').attr('src', newSmImage);
+//    	   },7000);
     }); 
     
     $.validator.addMethod('isValidTelephoneNumber', function (value, element) {

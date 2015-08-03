@@ -469,8 +469,11 @@ $(function() {
         $('#ytVideo').html('<iframe style="width:192%;height:194px; display:block;" src='+ vurl +'></iframe>');
     }
 	$('#add').on('click',function(){
+        $( "#videoUrl" ).rules( "add", {
+            isYoutubeVideo: true
+        });
         var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/
+        //var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/
         var url= $('#videoUrl').val().trim();
         var match = url.match(youtube);
         if (match && match[2].length == 11) {
@@ -479,7 +482,7 @@ $(function() {
             $('#media-video').show();
             var vurl=url.replace("watch?v=", "v/");
             $('#ytVideo').html('<iframe style="width:192%;height:194px; display:block;" src='+ vurl +'></iframe>');
-        }else if($(this)){
+        } else if($(this)){
             $('#ytVideo').hide();
             $('#media').show();
             $('#media-video').hide();
@@ -490,7 +493,6 @@ $(function() {
         var selectedVideoUrl = $(this).val();
         autoSave('videoUrl', selectedVideoUrl);
     });
-
 
      /** ********************Organization Icon*************************** */
 
@@ -994,6 +996,11 @@ function setTitleText(){
         var payUEmailId = $(this).val();
         autoSave('payuEmail', payUEmailId);
     });
+    
+    $('#secretKey').blur(function (){
+        var secretKey = $(this).val();
+        autoSave('secretKey', secretKey);
+    });
 
     function autoSave(variable, varValue) {
         var projectId = $('#projectId').val();
@@ -1036,10 +1043,6 @@ function setTitleText(){
 
     $('#personal').click(function(){
         $('#usedFor').val('PERSONAL_NEEDS');
-    });
-    
-    $('#recipient').click(function(){
-        autoSave('fundsRecievedBy', 'RECIEPIENT');
     });
     
     $('#person').click(function(){

@@ -430,9 +430,11 @@
                                     <div class="col-sm-6">
                                         <g:if test="${project.payuEmail}">
                                             <input type="email" id="payuemail" class="form-control" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
+                                            <input type="text" id="secretKey" class="form-control" name="${FORMCONSTANTS.SECRETKEY}" value="${project.secretKey}">
                                         </g:if>
                                         <g:else test="${project.payuEmail}">
                                              <input type="email" id="payuemail" class="form-control" name="${FORMCONSTANTS.PAYUEMAIL}">
+                                             <input type="text" id="secretKey" class="form-control" name="${FORMCONSTANTS.SECRETKEY}">
                                         </g:else>
                                     </div>
                                 </div>

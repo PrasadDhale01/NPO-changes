@@ -295,6 +295,61 @@ $(function() {
     	}
     });
     
+    $('#submitProjectXS').on('click', function() {
+        var storyValue = $('.redactorEditor').redactor('code.get');
+        var storyEmpty = false;
+        if (storyValue == '' || storyValue == undefined){
+            $('#storyRequired').show();
+            storyEmpty = true;
+        } else {
+        $('#storyRequired').hide();
+            storyEmpty = false;
+        }
+
+        $( "#projectImageFile" ).rules( "add", {
+            required: true,
+            messages: {
+                required: "Please upload at least one campaign image"
+            }
+        });
+        $('.rewardNumberAvailable').each(function () {
+            $(this).rules("add", {
+                required: true,
+                number: true,
+                min: 0
+            });
+        });
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+            $('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: 999999,
+                    min: 250
+                });
+            });
+        } else {
+        	$('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: 999999,
+                    min: 1
+                });
+            });
+        }
+        
+    	if (validator.form()) {
+    		$('#isSubmitButton').attr('value',false);
+            if (!storyEmpty){
+                $('#campaigncreate').find('form').submit();
+                $('#submitProjectXS').attr('disabled','disabled');
+            }
+    	}
+    });
+    
     $('#saveasdraft').on('click', function(){  // capture the click
     	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"]').each(function () {
             $(this).rules('remove');
@@ -807,10 +862,11 @@ function setTitleText(){
    '<div class="col-sm-12">'+
        '<div class="form-group">'+
            '<div class="btn-group col-sm-12" data-toggle="buttons">'+
-               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing address</label>'+
-               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email address</label>'+
-               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter handle</label>'+
-               '<input type="text" name="custom'+count+'" id="customcheckbox'+count+'" class="customText col-sm-3 col-xs-12" placeholder="Custom">'+
+               '<label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Shipping</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing <br> address</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email <br> address</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter <br> handle</label>'+
+               '<input type="text" name="custom'+count+'" id="customcheckbox'+count+'" class="customText col-sm-4 col-xs-12" placeholder="Custom">'+
            '</div>'+
        '</div>'+
    '</div>'+

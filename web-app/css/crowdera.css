@@ -689,6 +689,23 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	a.cr-xs-mobile {
+        margin-left: 64px;
+    }
+    button.cr-xs-mobile {
+        margin-left: 64px;
+    }
+	label.cr-check-btn-perks{
+	    margin-bottom: 0;
+	}
+	div.cr-start-dropdown-category.btn-group.bootstrap-select{
+	    margin-left: -4px;
+        width: 199px !important;
+    }
+    div.cr-start-dropdown-country.btn-group.bootstrap-select{
+	    margin-left: -12px;
+        width: 200px !important;
+    }
     label.cr-check-btn-first{
 	    margin-bottom: 0;
 	}
@@ -1858,7 +1875,7 @@ a {
     label.cr-admin-title{
         background-color: #01bbd2;
         margin-bottom: 0;
-        padding: 10px 43px;
+        padding: 10px 54px;
     }
     label.cr-payments-lab {
         padding-left: 107px;
@@ -5774,6 +5791,17 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	label.cr-check-btn-perks{
+	    margin-bottom: 0;
+	}
+	div.cr-start-dropdown-category.btn-group.bootstrap-select{
+	    margin-left: -4px;
+        width: 199px !important;
+    }
+    div.cr-start-dropdown-country.btn-group.bootstrap-select{
+	    margin-left: -12px;
+        width: 200px !important;
+    }
 	label.cr-check-btn-first{
 	    margin-bottom: 0;
 	    padding-top: 20px;
@@ -8454,6 +8482,7 @@ img.cr-ineed-icons {
 }
 .cr-tabs-admins{
 	display: flex;
+	height:70px;
 }
 .cr-ul-tabs{
 	margin-bottom: 0px;
@@ -8513,7 +8542,7 @@ label.text-color {
 #datepicker::-webkit-input-placeholder {
 	font-size: 18px;
 	color: #000000;
-	font-weight: 600;
+	font-weight: 400;
 }
 #name::-webkit-input-placeholder {
 	font-size: 14px;
@@ -8531,7 +8560,7 @@ label.text-color {
 #datepicker::-moz-placeholder{ 
 	font-size: 18px;
 	color: #000000;
-	font-weight: 600;
+	font-weight: 400;
 }
 #name::-moz-placeholder{ 
 	font-size: 14px;
@@ -8590,7 +8619,7 @@ label.text-color {
 	background-color: #01bbd2;
     font-size: 21px;
     margin-bottom: 0;
-    padding: 9px 54px 10px;
+    padding: 13px 54px 10px;
     color: white;
     font-weight: 900;
 }
@@ -8679,6 +8708,7 @@ label.text-color {
     font-weight: 900;
     margin-bottom: 15px;
     padding: 10px 57px;
+    height: 53px;
 }
 .cr-datepicker-height{
 	 height: 52px;
@@ -8705,4 +8735,47 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
     text-decoration: none;
     background-color: #6d6e6e;
     color: #ffffff !important; 
+}
+.cr-check-btn-perks{ 
+    background-color: #6d6e6e;
+    border-color: #dddddd;
+    color: White;
+    font-size: 14px;
+    height: 73px;
+}
+.cr-bg-xs-create-btn{
+	background: url(https://s3.amazonaws.com/crowdera/assets/create-now-Button-mobile.jpg) no-repeat !important;
+	margin-left: 89px;
+    padding-top: 22px;
+    width: 152px;
+}
+.cr-bg-xs-preview-btn {
+    background: url(https://s3.amazonaws.com/crowdera/assets/preview-button-mobile.jpg) no-repeat !important;
+    margin-left: 47px;
+    padding-top: 40px;
+}
+.cr-bg-xs-Launch-btn{
+    background: url(https://s3.amazonaws.com/crowdera/assets/launch-button-mobile.jpg) no-repeat !important;
+    margin-left: 47px;
+    padding-left: 142px;
+    padding-top: 38px;
+    margin-top: 15px;
+}
+.cr-icon-tabs-user{
+	font-size: 18px;
+    padding: 13px;
+    width: 34px;
+}
+.cr-icon-tabs-eye{
+    font-size: 18px;
+    padding: 10px;
+    width: 18px;
+}
+.cr-icon-tabs-info{
+	font-size: 18px;
+    padding: 10px;
+    width: 29px;
+}
+.cr-tab-in{
+	margin-top: -9px;
 }

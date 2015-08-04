@@ -180,18 +180,18 @@
 	                   <label class="panel body cr-admin-title">ADMIN</label>
                        <ul class="nav nav-tabs manage-projects nav-justified cr-ul-tabs">
                            <li class="cr-li-tabs cr-hover-color">
-                               <a href="#admin" data-toggle="tab" aria-expanded="false">
-                                   <span class="tab-text hidden-xs cr-add-tabs-title cr-font-title">Add Campaign Admin<i class="glyphicon glyphicon-chevron-down cr-tab-icons pull-right"></i></span>
+                              <a href="#admin" data-toggle="tab" aria-expanded="false">
+                                   <span class="glyphicon glyphicon-user cr-icon-tabs-user visible-xs"></span><span class="tab-text hidden-xs cr-add-tabs-title cr-font-title">Add Campaign <br> Admin<i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i></span>
 	                           </a>
 	                       </li>
 	                       <li class="active cr-tabs-update cr-hover-color">
 	                           <a data-toggle="tab" href="#organization" aria-expanded="true">
-	                           <span class="tab-text hidden-xs cr-font-title">Update Display Information<i class="glyphicon glyphicon-chevron-down  cr-tab-icons pull-right"></i></span>
+	                               <span class="glyphicon glyphicon-eye-open cr-icon-tabs-eye visible-xs"></span><span class="tab-text hidden-xs cr-font-title">Update Display <br> Information<i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i></span>
 	                           </a>
 	                       </li>
 	                       <li class="cr-tabs-update cr-hover-color">
 	                           <a data-toggle="tab" href="#personal"> 
-		                       <span class="tab-text hidden-xs cr-font-title">Update Personal Information<i class="glyphicon glyphicon-chevron-down cr-tab-icons pull-right"></i></span>
+		                            <span class="glyphicon glyphicon-info-sign cr-icon-tabs-info visible-xs"></span><span class="tab-text hidden-xs cr-font-title">Update Personal <br> Information<i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i></span>
 		                       </a>
 		                   </li>
 		               </ul>
@@ -381,10 +381,11 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <div class="btn-group col-sm-12" data-toggle="buttons">
-                                    <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing address</label>
-                                    <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email address</label>
-                                    <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter handle</label>
-                                    <input type="text" name="custom1" id="customcheckbox1" class="customText col-sm-3 col-xs-12" placeholder="Custom">
+                                    <label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Shipping</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12"><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12"><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter <br> handle</label>
+                                    <input type="text" name="custom1" id="customcheckbox1" class="customText col-sm-4 col-xs-12" placeholder="Custom">
                                 </div>
                             </div>
                         </div>
@@ -409,7 +410,7 @@
                             <label class="panel-body cr-payments-lab">PAYMENTS</label>
 <%--                                            <img alt="" src="/images/Payment-Button.jpg">--%>
                             <label class="panel-body cr-payments">Payments are sent and received via your choice of Payment Gateway.
-                                <br>You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>
+                               You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>
                         </div>
                         <label class="cr-pad-who">Who will recieve the funds</label>
                         <div class="btn-group col-sm-12 cr-perk-check cr-radio-option" data-toggle="buttons">
@@ -502,15 +503,17 @@
                         </div>
                     </g:else>
                     <div class="col-sm-12 cr-paddingspace" id="launch">
-                        <div class="col-sm-6 text-center " >
-                            <g:link class="cr-bg-preview-btn cr-btn-margin" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
+                        <div class="col-sm-6 text-center">
+                            <g:link class="cr-bg-preview-btn cr-btn-margin hidden-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
+                            <g:link class="cr-bg-xs-preview-btn cr-xs-mobile visible-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
                         </div>
                         <g:hiddenField name="isSubmitButton" value="true" id="isSubmitButton"></g:hiddenField>
 <%--                        <div class="col-sm-4 text-center padding-btn" >--%>
 <%--                            <button type="button" class="btn  btn-primary btn-colors" name="button" id="saveasdraft"  value="draft">Save</button>--%>
 <%--                        </div>--%>
-                        <div class="col-sm-6 text-center" >
-                            <button type="button" class="cr-bg-Launch-btn cr-btn-launch" id="submitProject" name="button" value="submitProject"></button>
+                        <div class="col-sm-6 text-center">
+                            <button type="button" class="cr-bg-Launch-btn cr-btn-launch hidden-xs" id="submitProject" name="button" value="submitProject"></button>
+                            <button type="button" class="cr-bg-xs-Launch-btn cr-xs-mobile visible-xs" id="submitProjectXS" name="button" value="submitProject"></button>
                         </div>
                     </div>
                 </div>

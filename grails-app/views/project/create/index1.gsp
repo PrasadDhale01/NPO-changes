@@ -84,7 +84,8 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	                    </div>
 	            
 	            <div class="text-center">
-	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-create-btn" name="button" value="" id="campaigncreatebtn"></button>
+	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-create-btn hidden-xs" name="button" value="" id="campaigncreatebtn"></button>
+	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-xs-create-btn visible-xs" name="button" value="" id="campaigncreatebtn"></button>
 	            </div>
 	        </g:uploadForm>
 	     </div>

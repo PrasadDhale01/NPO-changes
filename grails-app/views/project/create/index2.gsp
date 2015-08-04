@@ -179,19 +179,19 @@
                    <div class="cr-tabs-admins">
 	                   <label class="panel body cr-admin-title">ADMIN</label>
                        <ul class="nav nav-tabs manage-projects nav-justified cr-ul-tabs">
-                           <li class="cr-li-tabs">
+                           <li class="cr-li-tabs cr-hover-color">
                                <a href="#admin" data-toggle="tab" aria-expanded="false">
-                                   <span class="tab-text hidden-xs cr-add-tabs-title">Add Campaign co-creators</span><i class="glyphicon glyphicon-chevron-down pull-right"></i>
+                                   <span class="tab-text hidden-xs cr-add-tabs-title cr-font-title">Add Campaign Admin<i class="glyphicon glyphicon-chevron-down cr-tab-icons pull-right"></i></span>
 	                           </a>
 	                       </li>
-	                       <li class="active cr-tabs-update">
+	                       <li class="active cr-tabs-update cr-hover-color">
 	                           <a data-toggle="tab" href="#organization" aria-expanded="true">
-	                           <span class="tab-text hidden-xs">Update Display Information<i class="glyphicon glyphicon-chevron-down pull-right"></i></span>
+	                           <span class="tab-text hidden-xs cr-font-title">Update Display Information<i class="glyphicon glyphicon-chevron-down  cr-tab-icons pull-right"></i></span>
 	                           </a>
 	                       </li>
-	                       <li class="cr-tabs-update">
+	                       <li class="cr-tabs-update cr-hover-color">
 	                           <a data-toggle="tab" href="#personal"> 
-		                       <span class="tab-text hidden-xs">Update Personal Information<i class="glyphicon glyphicon-chevron-down pull-right"></i></span>
+		                       <span class="tab-text hidden-xs cr-font-title">Update Personal Information<i class="glyphicon glyphicon-chevron-down cr-tab-icons pull-right"></i></span>
 		                       </a>
 		                   </li>
 		               </ul>
@@ -329,7 +329,7 @@
               
                 <div class="col-sm-12 cr-lab-rd-flex cr-space" id="perk">
                     <div class="cr-perks-flex cr-perks-space">
-                        <label class="panel-body cr-perks-size ">Offering PERKS?</label>
+                        <label class="panel-body cr-perks-size "><span class="cr-offering">Offering</span> PERKS?</label>
                     </div>
                     <div class="btn-group btnPerkBgColor col-sm-12 col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp" data-target="buttons">
                         <label class="btn btn-default col-sm-2 cr-lbl-mobile"> <input type="radio" name="answer" value="yes"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
@@ -345,11 +345,11 @@
                                 <div class="col-sm-12">
                                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
-                                        <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control rewardPrice cr-input-digit rewardPrice" id="rewardPrice1">
+                                        <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice1">
                                     </g:if>
                                     <g:else>
                                         <span class="cr2-currency-label">$</span>
-                                        <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control rewardPrice cr-input-digit rewardPrice" id="rewardPrice1">
+                                        <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice1">
                                     </g:else>
                                 </div>
                             </div>
@@ -358,7 +358,7 @@
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input type="text" placeholder="Name of Perk" name="rewardTitle1" class="form-control cr-perk-title-number required" id="rewardTitle1">
+                                    <input type="text" placeholder="Name of Perk" name="rewardTitle1" class="form-control cr-tablet-left cr-perk-title-number required" id="rewardTitle1">
                                 </div>
                             </div>
                         </div>
@@ -380,11 +380,11 @@
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <div class="btn-group col-sm-12 cr-perk-check" data-toggle="buttons">
+                                <div class="btn-group col-sm-12" data-toggle="buttons">
                                     <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing address</label>
                                     <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email address</label>
                                     <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter handle</label>
-                                    <input type="text" name="custom1" id="customcheckbox1" class="customText" placeholder="Custom">
+                                    <input type="text" name="custom1" id="customcheckbox1" class="customText col-sm-3 col-xs-12" placeholder="Custom">
                                 </div>
                             </div>
                         </div>
@@ -409,14 +409,14 @@
                             <label class="panel-body cr-payments-lab">PAYMENTS</label>
 <%--                                            <img alt="" src="/images/Payment-Button.jpg">--%>
                             <label class="panel-body cr-payments">Payments are sent and received via your choice of Payment Gateway.
-                                You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>
+                                <br>You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>
                         </div>
                         <label class="cr-pad-who">Who will recieve the funds</label>
                         <div class="btn-group col-sm-12 cr-perk-check cr-radio-option" data-toggle="buttons">
-                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 <g:if test="${project.fundsRecievedBy == 'RECIEPIENT'}">active</g:if>" id="recipient"> <input type="radio" value="yes" name=""><span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label> 
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 <g:if test="${project.fundsRecievedBy == 'PERSON'}">active</g:if>" id="person"> <input type="radio" name="" value="yes">Person</label> 
-                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 <g:if test="${project.fundsRecievedBy == 'NON-PROFITS'}">active</g:if>" id="non-profit"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A US 501CC1</span><span class="cr-reci-siz"> Non-profit</span></label>
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 <g:if test="${project.fundsRecievedBy == 'NGO'}">active</g:if>" id="ngo"> <input type="radio" name="" value="no"><span class="cr-reci-siz">NGO</span></label>
+                            <label class="panel-body cr-check-btn-first text-center col-sm-3 col-xs-12 <g:if test="${project.usedFor == 'RECIEPIENT'}">active</g:if>" id="recipient"> <span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label>  
+                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-reci-siz <g:if test="${project.fundsRecievedBy == 'PERSON'}">active</g:if>" id="person"> <input type="radio" name="" value="yes">Person</label> 
+                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments <g:if test="${project.fundsRecievedBy == 'NON-PROFITS'}">active</g:if>" id="non-profit"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A US 501CC1</span><span class="cr-reci-siz"> Non-profit</span></label>
+                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-mob-payments <g:if test="${project.fundsRecievedBy == 'NGO'}">active</g:if>" id="ngo"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A non-US </span><span class="cr-reci-siz">NGO</span></label>
                             <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 <g:if test="${project.fundsRecievedBy == 'OTHERS'}">active</g:if>" id="others"> <input type="radio" name="" value="no"><span class="cr-reci-siz">Others</span></label>
                         </div>
                     </div>

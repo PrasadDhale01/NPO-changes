@@ -773,7 +773,7 @@ function setTitleText(){
              }
                
              str = str +  '<input type="text" placeholder="Amount"  name="rewardPrice'+count+'" id="rewardPrice'+count+
-                       '" style="width:100%;" class="form-control cr-input-digit rewardPrice">'+
+                       '" style="width:100%;" class="form-control cr-input-digit cr-tablat-padd rewardPrice">'+
            '</div>'+
        '</div>'+
     '</div>'+
@@ -782,7 +782,7 @@ function setTitleText(){
        '<div class="form-group">'+
            '<div class="col-sm-12">'+
               '<input type="text" placeholder="Name of Perk" name="rewardTitle'+count+'" id="rewardTitle'+count+
-                      '"  class="form-control cr-perk-title-number required">'+
+                      '"  class="form-control cr-perk-title-number cr-tablet-left required">'+
            '</div>'+
        '</div>'+
     '</div>'+
@@ -806,11 +806,11 @@ function setTitleText(){
    '</div>'+
    '<div class="col-sm-12">'+
        '<div class="form-group">'+
-           '<div class="btn-group col-sm-12 cr-perk-check" data-toggle="buttons">'+
+           '<div class="btn-group col-sm-12" data-toggle="buttons">'+
                '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing address</label>'+
                '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email address</label>'+
                '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter handle</label>'+
-               '<input type="text" name="custom'+count+'" id="customcheckbox'+count+'" class="customText" placeholder="Custom">'+
+               '<input type="text" name="custom'+count+'" id="customcheckbox'+count+'" class="customText col-sm-3 col-xs-12" placeholder="Custom">'+
            '</div>'+
        '</div>'+
    '</div>'+

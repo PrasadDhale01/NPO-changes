@@ -689,6 +689,30 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    label.cr-check-btn-first{
+	    margin-bottom: 0;
+	}
+	div#addNewRewards {
+	    margin-left: -16px;
+        width: 328px !important;
+    }
+	div.panel-create-size {
+	     width: 283px;
+	}
+    div.perk-create-styls{
+        padding-right: 3px;
+    }
+	ul.nav.cr-ul-tabs {
+        width: 284px;
+    }
+    .tab-content.panel.panel-default.col-sm-12.cr-tab-panel-top {
+        width: 284px !important;
+    }
+	.panel-create-size {
+        height: 250px;
+        overflow: hidden;
+        width: 256px;
+    }
     .mentor-container{
         width:320px !important ;
     }
@@ -703,8 +727,8 @@ a {
     }
     label.cr-start-size{
        margin-bottom: 0;
-       padding-left: 79px;
-       padding-right: 78px;
+       padding-left: 68px;
+       padding-right: 68px;
     }
     div.cr-all-mobile-dropdown{
        margin-left: 4px !important;
@@ -713,9 +737,9 @@ a {
         padding-left: 7px !important;
     }
 	label.cr-perks-size{
-        padding-left: 56px;
-        padding-right: 61px;
-        width: 232px;
+        padding-left: 82px;
+        padding-right: 67px;
+        width: 283px;
 	} 
 	div.cr-mobile-sp{
 	    padding-left: 0;
@@ -723,10 +747,11 @@ a {
 	}
 	label.cr-lbl-mobile{
 	    padding-left: 26px;
-        width: 128px;
+	    margin-left: 0 !important;
+        width: 149px;
 	}
 	label.cr-lbl-mobiles{
-	    width: 108px;
+	    width: 136px;
 	}
 	header.cr-tabs-link {
 	    padding-left: 23px !important; 
@@ -756,20 +781,28 @@ a {
        width: 30px;
     }
     label.cr-story-size {
-	    font-size: 14px;
-	    padding-top: 10px;
-	    padding-bottom: 10px;
-	    padding-left: 117px;
-	    padding-right: 117px;
+/* 	    font-size: 14px; */
+	    padding: 10px 106px;
     }
     label.cr-admin-title{
         background-color: #01bbd2;
         margin-bottom: 0;
         padding: 10px 112px;
+        width: 284px;
     }
     label.cr-payments-lab {
-        padding-left: 107px;
-        padding-right: 181px;
+        padding-left: 84px;
+        padding-right: 85px;
+    }
+    label.cr-payments{
+        width: 282px;
+    }
+    label.cr-pad-who{
+        margin-left: -30px;
+    }
+    div.cr-radio-option{
+        padding-left: 0;
+        padding-right: 1px;
     }
     .cr-btn-launch {
         margin-bottom: 0;
@@ -1229,6 +1262,50 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.cr-tablet-left{
+	    margin-left: 43px;
+	}
+	.cr-tablat-padd {
+	    width: 163px !important;
+    }
+	div#addNewRewards {
+        margin-left: -12px;
+    }
+	div.cr-radio-option{
+        padding-left: 3px;
+        padding-right: 9px;
+        width: 719px;
+	}
+	label.cr-perks-size {
+	    margin-left: 3px;
+	}
+	div.manage-Top-tabs-mobile{
+	    padding-left: 17px;
+	}
+	i.cr-tab-icons{
+	     margin-top: -9px;
+	}
+	label.cr-pad-who {
+        padding-left: 2px;
+    }
+    div.pad-btn{
+         padding-left: 0;
+    }
+    span.cr-font-title {
+        font-size: 14px;
+        font-weight: 900;
+    }
+	span.cr-pay-rd {
+        font-size: 12px;
+    }
+    span.cr-reci-siz {
+        font-size: 16px;
+        font-weight: 900;
+    }
+    label.cr-mob-payments{
+        padding-left: 6px;
+        padding-right: 6px;
+    }
     .mentor-container{
         width:750px !important;
     }
@@ -1260,7 +1337,7 @@ a {
     }
     div.cr-start-dropdown-payment.btn-group.bootstrap-select{
          margin-left: -22px !important;
-         width: 143px !important;
+         width: 136px !important;
     }
 	.cr-paypal-image {
         padding-left: 112px !important;
@@ -1283,6 +1360,7 @@ a {
     div.cr-story-padding {
         padding-left: 0;
         padding-right: 8px;
+        width: 711px;
     }
     div.cr-perks-flex {
         display:flex;
@@ -1297,8 +1375,8 @@ a {
        width: 30px;
     }
     label.cr-story-size {
-	    font-size: 14px;
-	    padding: 15px 43px;
+/* 	    font-size: 14px; */
+	    padding: 10px 38px;
     }
     label.cr-panel-story{
         font-size: 11px;
@@ -1309,12 +1387,13 @@ a {
         padding: 10px 43px;
     }
     label.cr-payments-lab {
-        padding-left: 37px;
-        padding-right: 100px;
-        width: 153px;
+        padding-left: 35px;
+        padding-right: 35px;
+/*         width: 153px; */
     }
     div.cr-payment-marg{
         margin-left: -15px;
+        width: 733px;
     }
     .cr-btn-margin {
         margin-left: -10px;
@@ -1343,7 +1422,7 @@ a {
 	    margin-left: 0px;
 	}
 	label.cr-lbl-mobiles{
-	    width: 130px;
+	    width: 124px;
 	}
 	.cr-perks-space {
         padding-right: 0px;
@@ -1702,6 +1781,24 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	div.cr-perk-check {
+        padding-left: 0;
+        padding-right: 10px;
+    }
+	label.cr-pad-who {
+        font-size: 12px;
+        padding-left: 0;
+    }
+	.cr-radio-option{
+	    padding-left: 0;
+        width: 969px;
+	}
+	.cr-pad-who {
+        padding-left: 0px;
+    }
+	div#addNewRewards {
+        margin-left: -16px;
+    }
     .cr-mob-datepicker{
         margin-left: -17px;
         padding-left: 5px;
@@ -1740,6 +1837,7 @@ a {
     div.cr-story-padding {
         padding-left: 0;
         padding-right: 8px;
+        width: 962px;
     }
     div.cr-perks-flex {
         display:flex;
@@ -1754,8 +1852,8 @@ a {
        width: 30px;
     }
     label.cr-story-size {
-	    font-size: 14px;
-	    padding: 17px 43px;
+/* 	    font-size: 14px; */
+        padding: 10px 55px;
     }
     label.cr-admin-title{
         background-color: #01bbd2;
@@ -1767,7 +1865,8 @@ a {
         padding-right: 180px;
     }
     div.cr-payment-marg{
-        margin-left: -15px;
+        margin-left: -16px;
+        width: 985px;
     }
     .cr-btn-margin {
         margin-left: -10px;
@@ -1789,9 +1888,9 @@ a {
         margin-top: 0px;
     }
     label.cr-payments-lab {
-		padding-left: 40px;
-		padding-right: 116px;
-		width: 100px;
+		padding-left: 35px;
+		padding-right: 35px;
+/* 		width: 100px; */
     }
     
 	.carousel-buttons{
@@ -5675,6 +5774,28 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	label.cr-check-btn-first{
+	    margin-bottom: 0;
+	    padding-top: 20px;
+	}
+	div#addNewRewards {
+        width: 303px;
+        margin-left: -16px;
+    }
+    div.perk-create-styls{
+        padding-right: 29px;
+    }
+	ul.nav.cr-ul-tabs {
+        width: 257px;
+    }
+    .tab-content.panel.panel-default.col-sm-12.cr-tab-panel-top {
+        width: 256px !important;
+    }
+	.panel-create-size {
+        height: 250px;
+        overflow: hidden;
+        width: 256px;
+    }
     .mentor-container{
         width:320px !important;
     }
@@ -5689,8 +5810,8 @@ textarea.form-control {
     }
     label.cr-start-size{
        margin-bottom: 0;
-       padding-left: 79px;
-       padding-right: 78px;
+       padding-left: 68px;
+       padding-right: 68px;
     }
     div.cr-all-mobile-dropdown{
        margin-left: 4px !important;
@@ -5699,20 +5820,21 @@ textarea.form-control {
         padding-left: 7px !important;
     }
 	label.cr-perks-size{
-        padding-left: 56px;
-        padding-right: 61px;
-        width: 232px;
+        padding-left: 63px;
+        padding-right: 60px;
+        width: 257px;
 	} 
 	div.cr-mobile-sp{
 	    padding-left: 0;
         padding-right: 0;
 	}
 	label.cr-lbl-mobile{
-	    padding-left: 26px;
-        width: 128px;
+	    padding-left: 28px;
+        width: 132px;
+        margin-left: 0 !important;
 	}
 	label.cr-lbl-mobiles{
-	    width: 108px;
+	    width: 127px;
 	}
 	header {
         display: inline !important;
@@ -5748,20 +5870,34 @@ textarea.form-control {
        width: 30px;
     }
     label.cr-story-size {
-	    font-size: 14px;
-	    padding-top: 10px;
-	    padding-bottom: 10px;
-	    padding-left: 117px;
-	    padding-right: 117px;
+/* 	    font-size: 14px; */
+	    padding: 10px 92px 10px 93px;
+    }
+    label.cr-panel-story {
+        width: 254px;
     }
     label.cr-admin-title{
         background-color: #01bbd2;
         margin-bottom: 0;
-        padding: 10px 112px;
+        padding: 10px 91px;
     }
     label.cr-payments-lab {
-        padding-left: 107px;
-        padding-right: 180px;
+        padding-left: 71px;
+        padding-right: 71px;
+    }
+    label.cr-payments {
+        width: 255px;
+    }
+    label.cr-pad-who {
+        padding-left: 1px;
+    }
+    div.cr-radio-option {
+         padding-left: 2px;
+         padding-right: 33px;
+    }
+    input.paypal-create {
+         margin-left: 0;
+         width: 254px;
     }
     div.cr-payment-marg{
         padding: 0;
@@ -8299,9 +8435,14 @@ img.cr-ineed-icons {
     width: 251px;
 }
 .cr-check-btn {
-    color: #333333;
-    background-color: white;
+    background-color: #f6f8f8;
     border-color: #dddddd;
+    color: #6d6e6e;
+    height: 60px;
+}
+.cr-check-btn:hover {
+    background-color: gray;
+    color: white;
 }
 .cr-panel-story{
 /* 	width: 860px;  */
@@ -8369,6 +8510,11 @@ label.text-color {
 }
 
 /****Chrome-Placeholder*******/
+#datepicker::-webkit-input-placeholder {
+	font-size: 18px;
+	color: #000000;
+	font-weight: 600;
+}
 #name::-webkit-input-placeholder {
 	font-size: 14px;
 	color: #c7c7c7;
@@ -8382,6 +8528,11 @@ label.text-color {
 	color: #c7c7c7;
 }
 /*******Mozila-placeholder******/
+#datepicker::-moz-placeholder{ 
+	font-size: 18px;
+	color: #000000;
+	font-weight: 600;
+}
 #name::-moz-placeholder{ 
 	font-size: 14px;
 	color: #c7c7c7;
@@ -8427,9 +8578,9 @@ label.text-color {
 .cr-story-size {
     background-color: #01bbd2;
     margin-bottom: 0;
-    padding-top: 16px;
-    padding-bottom: 16px;
-    font-size: 14px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 21px;
     padding-left: 57px;
     padding-right: 57px;
     color: white;
@@ -8437,10 +8588,9 @@ label.text-color {
 }
 .cr-admin-title {
 	background-color: #01bbd2;
-    font-size: 14px;
+    font-size: 21px;
     margin-bottom: 0;
-    padding: 10px 54px;
-    padding-top: 15px;
+    padding: 9px 54px 10px;
     color: white;
     font-weight: 900;
 }
@@ -8450,11 +8600,17 @@ label.text-color {
 .cr-perks-size {
 	background-color: #01bbd2;
     margin-bottom: 0;
-    padding: 16px;
-    width: 158px;
-    font-size: 14px;
+/*     padding: 16px; */
+    padding-left: 18px;
+    padding-right: 18px;
+    width: 183px;
+    font-size: 21px;
     color: white;
     font-weight: 900;
+}
+.cr-offering {
+    font-size: 14px;
+    font-weight: normal;
 }
 .cr-lab-rd-flex {
 	display:flex;
@@ -8465,17 +8621,17 @@ label.text-color {
 }
 .cr-payments-lab {
 	background-color: #01bbd2;
-    font-size: 14px;
+    font-size: 21px;
     margin-bottom: 0;
-    padding-top: 17px;
-    padding-left: 43px;
+    padding-top: 11px;
+    padding-left: 39px;
     padding-right: 32px;
-    width: 178px;
+/*     width: 178px; */
     color: white;
     font-weight: 900;
 }
 .cr-perks-space{
-	 padding-right: 82px;
+	 padding-right: 57px;
 }
 #hiddensearch{
     display: none;
@@ -8485,7 +8641,7 @@ label.text-color {
     font-size: 12px;
 }
 .cr-reci-siz{
-	font-size: 14px;
+	font-size: 18px;
 	font-weight:900;
 }
 .cr-btn-color {
@@ -8499,11 +8655,11 @@ label.text-color {
 }
 .cr-start-dropdown-category.btn-group.bootstrap-select{
 	margin-left: -4px;
-    width: 200px !important;
+    width: 193px !important;
 }
 .cr-start-dropdown-country.btn-group.bootstrap-select{
 	margin-left: -12px;
-    width: 200px !important;
+    width: 192px !important;
 }
 .cr-start-dropdown-payment.btn-group.bootstrap-select{
 	margin-left: -12px;
@@ -8511,7 +8667,7 @@ label.text-color {
 }
 .cr-start-dropdown-payment.btn-group.bootstrap-select{
 	margin-left: -21px;
-    width: 200px !important;
+    width: -194px !important;
 }
 .cr-start-flex{
 	display:flex;
@@ -8519,10 +8675,10 @@ label.text-color {
 .cr-start-size {
     background-color: #01bbd2;
     color: white;
-    font-size: 14px;
+    font-size: 21px;
     font-weight: 900;
-    margin-bottom: 12px;
-    padding: 16px 57px;
+    margin-bottom: 15px;
+    padding: 10px 57px;
 }
 .cr-datepicker-height{
 	 height: 52px;
@@ -8532,4 +8688,21 @@ label.text-color {
     position: absolute;
     top: 19px;
 }
-
+.cr-check-btn-first{
+	background-color: #6d6e6e;
+    border-color: #dddddd;
+    color: White;
+    height: 60px;
+}
+span.cr-font-title {
+    font-size: 14px;
+    font-weight: 900;
+}
+ul.cr-ul-tabs.nav > li > a:hover,
+ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hover,
+.nav-tabs > li.cr-hover-color > a > span:focus,
+.nav-tabs > li.cr-hover-color active > a > span:active{
+    text-decoration: none;
+    background-color: #6d6e6e;
+    color: #ffffff !important; 
+}

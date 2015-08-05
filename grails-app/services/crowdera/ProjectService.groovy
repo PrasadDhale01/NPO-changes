@@ -321,109 +321,107 @@ class ProjectService {
 		 mandrillService.shareContribution(emailList, name, message,project,contribution,fundraiser)
 	 }
 	 
-	 def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
-            def emailId, twitter,custom, userId,anonymous 
-            def currency 
-            if (project.payuEmail) {
-                   currency = 'INR'
-	           emailId = request.getParameter('shippingEmail')
-		   twitter =request.getParameter('shippingTwitter')
-		   custom =  request.getParameter('shippingCustom')
-		   userId = request.getParameter('tempValue')
-		   anonymous = request.getParameter('anonymous')
+    def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
+        def emailId, twitter,custom, userId,anonymous 
+        def currency 
+        if (project.payuEmail) {
+            currency = 'INR'
+            emailId = request.getParameter('shippingEmail')
+            twitter =request.getParameter('shippingTwitter')
+            custom =  request.getParameter('shippingCustom')
+            userId = request.getParameter('tempValue')
+            anonymous = request.getParameter('anonymous')
+        } else {
+            currency = 'USD'
+            emailId = request.getParameter('shippingEmail')
+            twitter = request.getParameter('twitterHandle')
+            custom = request.getParameter('shippingCustom')
+            userId = request.getParameter('tempValue')
+            anonymous = request.getParameter('anonymous')
+        }
+        def shippingDetail=checkShippingDetail(emailId,twitter,address, custom)
+        def name
+        def username
+ 
+        if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
+            if (project.paypalEmail){
+                name = request.getParameter('name')
+                username = request.getParameter('email')
+            } else if (project.payuEmail){
+                name = request.getParameter('name')
+                username = request.getParameter('email')
             } else {
-                   currency = 'USD'
-		   emailId = request.getParameter('shippingEmail')
-		   twitter = request.getParameter('twitterHandle')
-		   custom = request.getParameter('shippingCustom')
-		   userId = request.getParameter('tempValue')
-		   anonymous = request.getParameter('anonymous')
-		 }
-		 def shippingDetail=checkShippingDetail(emailId,twitter,address, custom)
-		 def name
-		 def username
-		 
-		 if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
-			 if (project.paypalEmail){
-				 name = request.getParameter('name')
-				 username = request.getParameter('email')
-			 }else if (project.payuEmail){
-				 name = request.getParameter('name')
-				 username = request.getParameter('email')
- 			 } else {
-				 name = params.billToFirstName + " " +params.billToLastName
-				 username = params.billToEmail
-			 }
-		 } else {
-			 def orgUser = User.get(userId)
-			 name = orgUser.firstName + " " + orgUser.lastName
-			 username = orgUser.email
-		 }
-		 
-		 Contribution contribution = new Contribution(
-				 date: new Date(),
-				 user: users,
-				 reward: reward,
-				 amount: amount,
-				 email: shippingDetail.emailid,
-				 twitterHandle: shippingDetail.twitter,
-				 custom: shippingDetail.custom,
-				 contributorName: name,
-				 contributorEmail:username,
-				 physicalAddress: shippingDetail.address,
-                 currency : currency
-				 )
-		 project.addToContributions(contribution).save(failOnError: true)
-		 
-		 Team team = Team.findByUserAndProject(fundraiser,project)
-		 if (team) {
-			 contribution.fundRaiser = fundraiser.username
-			 team.addToContributions(contribution).save(failOnError: true)
-		 }
-		 
-		 contribution.isAnonymous = anonymous.toBoolean()
+                name = params.billToFirstName + " " +params.billToLastName
+                username = params.billToEmail
+            }
+        } else {
+            def orgUser = User.get(userId)
+            name = orgUser.firstName + " " + orgUser.lastName
+            username = orgUser.email
+        }
  
-		 mandrillService.sendThankYouMailToContributors(contribution, project,amount,fundraiser)
+        Contribution contribution = new Contribution(
+            date: new Date(),
+            user: users,
+            reward: reward,
+            amount: amount,
+            email: shippingDetail.emailid,
+            twitterHandle: shippingDetail.twitter,
+            custom: shippingDetail.custom,
+            contributorName: name,
+            contributorEmail:username,
+            physicalAddress: shippingDetail.address,
+            currency : currency
+        )
+        project.addToContributions(contribution).save(failOnError: true)
 		 
-		 userService.contributionEmailToOwnerOrTeam(fundraiser, project, contribution)
+        Team team = Team.findByUserAndProject(fundraiser,project)
+        if (team) {
+            contribution.fundRaiser = fundraiser.username
+            team.addToContributions(contribution).save(failOnError: true)
+        }
+		 
+        contribution.isAnonymous = anonymous.toBoolean()
  
-		 def totalContribution = contributionService.getTotalContributionForProject(project)
-		 if(totalContribution >= project.amount){
-			 if(project.send_mail == false){
-				 def contributor = contributionService.getTotalContributors(project)
-				 contributor.each {
-					 def user = User.get(it)
-					 if (user.email != 'anonymous@example.com'){
-						 mandrillService.sendContributorEmail(user, project)
-					 }
-				 }
-				 def beneficiaryId = getBeneficiaryId(project)
-				 def beneficiary = Beneficiary.get(beneficiaryId)
-				 def user = User.list()
-				 user.each{
-					 if(it.email == beneficiary.email){
-						 mandrillService.sendBeneficiaryEmail(it)
-					 }
-				 }
-				 project.send_mail = true
-			 }
-		 }
+        mandrillService.sendThankYouMailToContributors(contribution, project,amount,fundraiser)
 		 
-         
-		 Transaction transaction = new Transaction(
-			 transactionId:transactionId,
-			 user:users,
-			 project:project,
-			 contribution:contribution,
-                         currency : currency
-		 )
-		 transaction.save(failOnError: true)
+        userService.contributionEmailToOwnerOrTeam(fundraiser, project, contribution)
+ 
+        def totalContribution = contributionService.getTotalContributionForProject(project)
+        if(totalContribution >= project.amount){
+            if(project.send_mail == false){
+                def contributor = contributionService.getTotalContributors(project)
+                contributor.each {
+                    def user = User.get(it)
+                    if (user.email != 'anonymous@example.com'){
+                        mandrillService.sendContributorEmail(user, project)
+                    }
+                }
+                def beneficiaryId = getBeneficiaryId(project)
+                def beneficiary = Beneficiary.get(beneficiaryId)
+                def user = User.list()
+                user.each{
+                   if(it.email == beneficiary.email){
+                       mandrillService.sendBeneficiaryEmail(it)
+                   }
+                }
+                project.send_mail = true
+             }
+         }
 		 
-		 return contribution.id
-	 }
+         Transaction transaction = new Transaction(
+             transactionId:transactionId,
+             user:users,
+             project:project,
+             contribution:contribution,
+             currency : currency
+         )
+         transaction.save(failOnError: true)
+         return contribution.id
+     }
      
-	 def getpayKeytempObject(def timestamp){
-		 PaykeyTemp paykeytemp = PaykeyTemp.findByTimestamp(timestamp)
+     def getpayKeytempObject(def timestamp){
+     PaykeyTemp paykeytemp = PaykeyTemp.findByTimestamp(timestamp)
 		 return paykeytemp
 	 }
 	 
@@ -1172,30 +1170,28 @@ class ProjectService {
 	
     def getValidatedProjects(def currentEnv) {
         def popularProjectsList = getPopularProjects()
-        def finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
+        def finalList
         List endedProjects = []
         List openProjects = []
         List sortedProjects
-        finalList.each { project ->
         if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-            def payuProject=isPayuProject(project)
-                if(payuProject){
-                    boolean ended = isProjectDeadlineCrossed(project)
-                    if(ended) {
-                        endedProjects.add(project)
-                    } else {
-                        openProjects.add(project)
-                    }
+            finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
+            finalList.each { project ->
+                boolean ended = isProjectDeadlineCrossed(project)
+                if(ended) {
+                    endedProjects.add(project)
+                } else {
+                    openProjects.add(project)
                 }
-            } else{
-            def payuProject=isPayuProject(project)
-                if(payuProject==false){
-                    boolean ended = isProjectDeadlineCrossed(project)
-                    if(ended) {
-                        endedProjects.add(project)
-                    } else {
-                        openProjects.add(project)
-                    }
+            }
+        } else {
+            finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false, payuStatus: false) - popularProjectsList)
+            finalList.each { project ->
+                boolean ended = isProjectDeadlineCrossed(project)
+                if(ended) {
+                    endedProjects.add(project)
+                } else {
+                    openProjects.add(project)
                 }
             }
 	    }
@@ -1300,13 +1296,13 @@ class ProjectService {
         def list = []
         if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
             projects.each {
-                if(it.inactive == false && it.payuStatus==true) {
+                if(it.inactive == false) {
                     list.add(it)
                 }
             }
             projectAdmins.each {
                 def project = Project.findById(it.projectId)
-                if(project.inactive == false && project.payuStatus==true) {
+                if(project.inactive == false) {
                     list.add(project)
                 }
             }
@@ -1314,12 +1310,12 @@ class ProjectService {
                 def project = fundRaiser.project
                 def isProjectexist = false
                 list.each {
-                    if (project == it && project.payuStatus==true) {
+                    if (project == it) {
                         isProjectexist = true
                     }
                 }
                 if (!isProjectexist) {
-                    if (project.inactive == false && project.payuStatus==true) {
+                    if (project.inactive == false) {
                         list.add(project)
                     }
                 }
@@ -2042,50 +2038,44 @@ class ProjectService {
     }
 	
     def getAllProjectByUser(User user, def environment){
-        def projects= Project.findAllByUser(user)
         List activeProjects=[]
         List draftProjects=[]
         List pendingProjects=[]
         List endedProjects=[]
         List sortedProjects
         def finalList
-        projects.each{ project->
-            if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
-                def payustatus= isPayuProject(project)
-                if(payustatus==true){
-                    boolean ended = isProjectDeadlineCrossed(project)
-                    if(ended && project.payuStatus==true) {
-                        endedProjects.add(project)
-                    } else if(project.draft==true && project.payuStatus==true){
-                        draftProjects.add(project)
-                    } else if(project.inactive==false && project.validated==false && project.draft==false && project.payuStatus==true){
-                        pendingProjects.add(project)
-                    } else {
-                        if( project.payuStatus==true && project.validated==true && project.inactive==false){
-                            activeProjects.add(project)
-                        }
-                    }
+        
+        if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+            def projects= Project.findAllWhere(user:user)
+            projects.each { project->
+                boolean ended = isProjectDeadlineCrossed(project)
+                if (ended) {
+                    endedProjects.add(project)
+                } else if(project.draft==true){
+                    draftProjects.add(project)
+                } else if(project.inactive==false && project.validated==false && project.draft==false){
+                    pendingProjects.add(project)
+                } else if(project.validated==true && project.inactive==false){
+                     activeProjects.add(project)
                 }
-            } else{
-                def payustatus= isPayuProject(project)
-                if(payustatus==false){
-                    boolean ended = isProjectDeadlineCrossed(project)
-                    if(ended && project.payuStatus==false) {
-                        endedProjects.add(project)
-                    } else if(project.draft==true && project.payuStatus==false){
-                        draftProjects.add(project)
-                    } else if(project.inactive==false && project.validated==false && project.draft==false && project.payuStatus==false){
-                        pendingProjects.add(project)
-                    } else{
-                        if(project.payuEmail==null && project.validated==true && project.inactive==false){
-                            activeProjects.add(project)
-                        }
-                    }
+            }
+        } else{
+            def projects= Project.findAllWhere(user:user,payuStatus: false)
+            projects.each { project->
+                boolean ended = isProjectDeadlineCrossed(project)
+                if(ended) {
+                    endedProjects.add(project)
+                } else if(project.draft==true){
+                    draftProjects.add(project)
+                } else if(project.inactive==false && project.validated==false && project.draft==false){
+                    pendingProjects.add(project)
+                } else if(project.payuEmail==null && project.validated==true){
+                    activeProjects.add(project)
                 }
             }
         }
         sortedProjects =activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
-        finalList = draftProjects.reverse()+ pendingProjects.reverse() + sortedProjects.reverse() + endedProjects.reverse()
+        finalList = draftProjects.reverse()+ pendingProjects.reverse() + sortedProjects.reverse() + endedProjects.reverse() 
         return finalList
     }
 
@@ -2630,17 +2620,32 @@ class ProjectService {
                 isValueChanged = true;
                 break;
 	
-           case 'fundsRecievedBy':
-               project.fundsRecievedBy = varValue;
-               isValueChanged = true;
-               break;
+            case 'fundsRecievedBy':
+                project.fundsRecievedBy = varValue;
+                isValueChanged = true;
+                break;
 
-           case 'secretKey':
-               project.secretKey = varValue;
-               isValueChanged = true;
-               break;
+            case 'secretKey':
+                project.secretKey = varValue;
+                isValueChanged = true;
+                break;
                
-           default : 
+            case 'facebookUrl':
+                beneficiary.facebookUrl = varValue;
+                isValueChanged = true;
+                break;
+               
+            case 'twitterUrl':
+                beneficiary.twitterUrl = varValue;
+                isValueChanged = true;
+                break;
+               
+            case 'linkedinUrl':
+                beneficiary.linkedinUrl = varValue;
+                isValueChanged = true;
+                break;
+               
+            default : 
                isValueChanged = false;
                
         }
@@ -2648,7 +2653,7 @@ class ProjectService {
         if (isValueChanged){
             project.save();
         }
-     }
+    }
     
     @Transactional
     def bootstrap() {

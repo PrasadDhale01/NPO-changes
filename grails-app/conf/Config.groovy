@@ -395,6 +395,24 @@ environments {
 		/* Stripe test keys */
 		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
 		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+        
+       /* FirstGiving Details */
+       crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
+       crowdera.firstgiving.uriPath= '/donation/creditcard'
+       crowdera.firstgiving.JG_APPLICATIONKEY = 'b1d5db6b-1368-49cc-917c-e98758f28b36'
+       crowdera.firstgiving.JG_SECURITYTOKEN = '277ce2dd-7d4e-4bf2-978d-f91af2624fad'
+
+       /* Paypal Details */
+       crowdera.paypal.PAYPAL_URL='https://www.sandbox.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+       crowdera.paypal.BASE_URL= 'https://svcs.sandbox.paypal.com/AdaptivePayments/Pay'
+       crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info-facilitator_api1.crowdera.co'
+       crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'ZSD7Z9TJ4BLP8DBT'
+       crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AYDVpnDtJwzfma0uPoGG8ZXKdkDlAhPPZoBbxVRwh93AGi3eiDDGIznY'
+       crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-80W284485P519543T'
+       crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
+       crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+       crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.sandbox.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
+       crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
 
 		/* FreshDesk Details */
 		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
@@ -450,6 +468,24 @@ environments {
 		/* Stripe test keys */
 		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
 		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+        
+        /* FirstGiving Details */
+        crowdera.firstgiving.BASE_URL= 'https://api.firstgiving.com'
+        crowdera.firstgiving.uriPath= '/donation/creditcard'
+        crowdera.firstgiving.JG_APPLICATIONKEY = '7d2ba10c-b005-4115-a6e4-8336c5071c9d'
+        crowdera.firstgiving.JG_SECURITYTOKEN = '8724ab81-a4ba-4d52-8374-1e2f6f2311ca'
+
+        /* Paypal Details */
+        crowdera.paypal.PAYPAL_URL='https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+        crowdera.paypal.BASE_URL= 'https://svcs.paypal.com/AdaptivePayments/Pay'
+        crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info_api1.crowdera.co'
+        crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'AHEFPRUXWJFMCCDE'
+        crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AFcWxV21C7fd0v3bYYYRCpSSRl31AZyNu3X6Z3O2eTTYLGFEQuwRsUm2'
+        crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
+        crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
+        crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+        crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
+        crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
 
 		/* FreshDesk Details */
 		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'
@@ -504,6 +540,24 @@ environments {
 		/* Stripe test keys */
 		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
 		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
+        
+        /* FirstGiving Details */
+        crowdera.firstgiving.BASE_URL= 'https://api.firstgiving.com'
+        crowdera.firstgiving.uriPath= '/donation/creditcard'
+        crowdera.firstgiving.JG_APPLICATIONKEY = '7d2ba10c-b005-4115-a6e4-8336c5071c9d'
+        crowdera.firstgiving.JG_SECURITYTOKEN = '8724ab81-a4ba-4d52-8374-1e2f6f2311ca'
+ 
+        /* Paypal Details */
+        crowdera.paypal.PAYPAL_URL='https://www.paypal.com/cgi-bin/webscr?cmd=_ap-payment&paykey='
+        crowdera.paypal.BASE_URL= 'https://svcs.paypal.com/AdaptivePayments/Pay'
+        crowdera.paypal.X_PAYPAL_SECURITY_USERID= 'info_api1.crowdera.co'
+        crowdera.paypal.X_PAYPAL_SECURITY_PASSWORD= 'AHEFPRUXWJFMCCDE'
+        crowdera.paypal.X_PAYPAL_SECURITY_SIGNATURE= 'AFcWxV21C7fd0v3bYYYRCpSSRl31AZyNu3X6Z3O2eTTYLGFEQuwRsUm2'
+        crowdera.paypal.X_PAYPAL_APPLICATION_ID= 'APP-4SR18911AP980871P'
+        crowdera.paypal.X_PAYPAL_REQUEST_DATA_FORMAT= 'JSON'
+        crowdera.paypal.X_PAYPAL_RESPONSE_DATA_FORMAT= 'JSON'
+        crowdera.paypal.GetVerifiedStatus_URL = 'https://svcs.paypal.com/AdaptiveAccounts/GetVerifiedStatus'
+        crowdera.paypal.GetVerifiedStatus_REQUEST_DATA_FORMAT = 'NV'
 
 		/* FreshDesk Details */
 		crowdera.freshDesk.LOGIN_NAME = 'Crowdera Team'

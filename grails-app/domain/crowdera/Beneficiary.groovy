@@ -30,6 +30,9 @@ class Beneficiary {
     String stateOrProvince
     String postalCode
     String country
+    String facebookUrl
+    String twitterUrl
+    String linkedinUrl
 
     static constraints = {
         firstName nullable: true
@@ -44,6 +47,9 @@ class Beneficiary {
         stateOrProvince nullable: true
         postalCode nullable: true
         country nullable: true
+        facebookUrl nullable: true
+        twitterUrl nullable: true
+        linkedinUrl nullable: true
     }
 
     enum Gender {

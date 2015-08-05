@@ -1,7 +1,9 @@
+<g:set var="projectService" bean="projectService"/>
 <% 
     def base_url = grailsApplication.config.crowdera.BASE_URL
+    def currentEnv = projectService.getCurrentEnvironment()
 %>
-<input type="hidden" id="b_url" value="<%=base_url%>" /> 
+<input type="hidden" id="b_url" value="<%=base_url%>" />
 <!-- Footer -->
 <footer>    
     <div class="footer_links">
@@ -57,8 +59,10 @@
 			</div>
 			<br>
 			<div class="thomas-testimonial">
-			   <p>"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
-			   I'd recommend Crowdera to every serious fundraiser." <br><br><span>Two Cents of Hope</span><br>
+			    <p>"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
+			    I'd recommend Crowdera to every serious fundraiser." <br><br>
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">Swaroop Ramchandra,</span></g:if>
+                <span class="thomas-margin-align">Two Cents of Hope</span><br>
 			</div>
 			<div class="footer-newsletter">
 			   <form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-sm" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
@@ -146,10 +150,12 @@
 			    </div>
 			</form>
 		    </div>
-		   <div class="thomas-owens-testimonial-div">
-			<p class="thomas-owens-testimonial">"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
-			I'd recommend Crowdera to every serious fundraiser." <br><br><span class="thomas-margin-align">Two Cents of Hope</span><br>
-		   </div>
+            <div class="thomas-owens-testimonial-div">
+                <p class="thomas-owens-testimonial">"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
+                    I'd recommend Crowdera to every serious fundraiser." <br><br>
+                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">Swaroop Ramchandra,</span><br></g:if>
+                        <span class="thomas-margin-align">Two Cents of Hope</span><br>
+            </div>
 		</div>
 		<hr class="footer-hr">
 	    </section>
@@ -229,10 +235,12 @@
 			    </div>
 			</form>
 		    </div>
-		    <div class="thomas-owens-testimonial-div">
-			<p class="thomas-owens-testimonial">"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
-			I'd recommend Crowdera to every serious fundraiser." <br><br><span class="thomas-margin-align">Two Cents of Hope</span><br>
-		    </div>
+            <div class="thomas-owens-testimonial-div">
+                <p class="thomas-owens-testimonial">"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
+                    I'd recommend Crowdera to every serious fundraiser." <br><br>
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">Swaroop Ramchandra,</span><br></g:if>
+                <span class="thomas-margin-align">Two Cents of Hope</span><br>
+             </div>
 		</div>
 		<hr class="footer-hr">
 	    </section>

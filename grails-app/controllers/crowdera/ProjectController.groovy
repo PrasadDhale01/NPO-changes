@@ -58,8 +58,11 @@ class ProjectController {
 		PAYPALEMAIL:'paypalEmail',
 		PAYUEMAIL:'payuEmail',
 		PAYUSTATUS:'payuStatus',
-		SECRETKEY:'secretKey'
-	]
+		SECRETKEY:'secretKey',
+        FACEBOOKURl:'facebookUrl',
+        TWITTERURl:'twitterUrl',
+        LINKEDINURL:'linkedinUrl'
+    ]
 
     def list = {
         def currentEnv = Environment.current.getName()
@@ -1407,5 +1410,57 @@ class ProjectController {
         projectService.autoSaveProjectDetails(variable, varValue, projectId)
         render ''
     }
+    
+    def contributionList() {
+        def projectId
+        def username
+        if (params.projectId && params.fr){
+            username = userService.getUsernameFromVanityName(params.fr)
+            User user = userService.getUserByUsername(username)
+            Project project = projectService.getProjectById(params.projectId)
+            Team currentTeam = projectService.getCurrentTeam(project,user)
+
+            List contributions = []
+            List totalContributions = []
+
+            if (project.user == user) {
+                def contribution = projectService.getProjectContributions(params, project)
+                totalContributions = contribution.totalContributions
+                contributions = contribution.contributions
+            } else {
+                def contribution = projectService.getTeamContributions(params, currentTeam)
+                totalContributions = contribution.totalContributions
+                contributions = contribution.contributions
+            }
+            def model = [totalContributions : totalContributions, contributions: contributions, project: project, team: currentTeam, vanityUsername:params.fr]
+            if (request.xhr) {
+                render(template: "show/contributionlist", model: model)
+            }
+       } else {
+            render ''
+       }
+    }
 	
+    def teamsList() {
+        def projectId
+        def username
+        if (params.projectId && params.fr){
+            username = userService.getUsernameFromVanityName(params.fr)
+            User user = userService.getUserByUsername(username)
+            Project project = projectService.getProjectById(params.projectId)
+            
+            def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)
+            def teamOffset = teamObj.maxrange
+            def teams = teamObj.teamList
+            def totalteams = teamObj.teams
+            
+            def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr]
+            if (request.xhr) {
+                render(template: "show/teamgrid", model: model)
+            }
+        } else {
+            render ''
+        }
+    }
+    
 }

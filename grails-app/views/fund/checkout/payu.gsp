@@ -83,7 +83,7 @@
 											</div>
 											<div class="form-group">
 												<div class="input-group col-md-12">
-													<input class="form-control" type="text" placeholder="lastname" name="lastname">
+													<input class="form-control" type="text" placeholder="Last Name" name="lastname">
 												</div>
 											</div>
 											<div class="form-group">

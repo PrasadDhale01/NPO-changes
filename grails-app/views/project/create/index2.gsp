@@ -270,7 +270,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input id="firstName" class="form-control" name="${FORMCONSTANTS.FIRSTNAME}" value="${user.firstName}" placeholder="First Name">
+                                        <input type="text" id="firstName" class="form-control" name="${FORMCONSTANTS.FIRSTNAME}" value="${user.firstName}" placeholder="First Name">
                                     </div>
                                 </div>
                             </div>
@@ -278,7 +278,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input id="lastName" class="form-control" name="${FORMCONSTANTS.LASTNAME}" value="${user.lastName}" placeholder="Last Name">
+                                        <input type="text" id="lastName" class="form-control" name="${FORMCONSTANTS.LASTNAME}" value="${user.lastName}" placeholder="Last Name">
                                     </div>
                                 </div>
                             </div>
@@ -295,26 +295,65 @@
                                     </div>
                                 </div>
                             </div>
-                   
+                            
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
-                                         <a target="_blank" class="fb-like pull-left  cr-tab-icon-padding fbShareForSmallDevices" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
-                                             <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">
-                                         </a>
-                                         <a target="_blank" class="fb-like pull-left fbShareForLargeDevices cr-tab-icon-padding" id="fbshare">
-                                             <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">
-                                         </a>
-                                         <a class="share-linkedin pull-left cr-tab-icon-padding">
-                                             <img src="//s3.amazonaws.com/crowdera/assets/twitter-Icon.png" alt="LinkedIn Share">
-                                         </a>
-                                         <a class="twitter-share pull-left" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">
-                                             <img src="//s3.amazonaws.com/crowdera/assets/linked-In--Icon.png" alt="Twitter Share">
-                                         </a>
-                                     </div>
-                                 </div>
-                             </div>
+                                        <g:if test="${project.beneficiary.facebookUrl}">
+                                            <input type="text" id="facebookUrl" class="form-control" name="${FORMCONSTANTS.FACEBOOKURl}" value="${project.beneficiary.facebookUrl}" placeholder="Facebook Url">
+                                        </g:if>
+                                        <g:else>
+                                            <input type="text" id="facebookUrl" class="form-control" name="${FORMCONSTANTS.FACEBOOKURl}" placeholder="Facebook Url">
+                                        </g:else>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <g:if test="${project.beneficiary.twitterUrl}">
+                                            <input type="text" id="twitterUrl" class="form-control" name="${FORMCONSTANTS.TWITTERURl}" value="${project.beneficiary.twitterUrl}" placeholder="Twitter Url">
+                                        </g:if>
+                                        <g:else>
+                                            <input type="text" id="twitterUrl" class="form-control" name="${FORMCONSTANTS.TWITTERURl}" placeholder="Twitter Url">
+                                        </g:else>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <g:if test="${project.beneficiary.linkedinUrl}">
+                                            <input type="text" id="linkedinUrl" class="form-control" name="${FORMCONSTANTS.LINKEDINURL}" placeholder="Linkedin Url" value="${project.beneficiary.linkedinUrl}">
+                                        </g:if>
+                                        <g:else>
+                                            <input type="text" id="linkedinUrl" class="form-control" name="${FORMCONSTANTS.LINKEDINURL}" placeholder="Linkedin Url">
+                                        </g:else>
+                                    </div>
+                                </div>
+                            </div>
+                            
+<%--                            <div class="col-sm-4">--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <div class="col-sm-12">--%>
+<%--                                        <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>--%>
+<%--                                         <a target="_blank" class="fb-like pull-left  cr-tab-icon-padding fbShareForSmallDevices" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">--%>
+<%--                                             <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">--%>
+<%--                                         </a>--%>
+<%--                                         <a target="_blank" class="fb-like pull-left fbShareForLargeDevices cr-tab-icon-padding" id="fbshare">--%>
+<%--                                             <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">--%>
+<%--                                         </a>--%>
+<%--                                         <a class="share-linkedin pull-left cr-tab-icon-padding">--%>
+<%--                                             <img src="//s3.amazonaws.com/crowdera/assets/twitter-Icon.png" alt="LinkedIn Share">--%>
+<%--                                         </a>--%>
+<%--                                         <a class="twitter-share pull-left" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">--%>
+<%--                                             <img src="//s3.amazonaws.com/crowdera/assets/linked-In--Icon.png" alt="Twitter Share">--%>
+<%--                                         </a>--%>
+<%--                                     </div>--%>
+<%--                                 </div>--%>
+<%--                             </div>--%>
                              <div class="col-sm-12">
                                  <div class="form-group">
                                      <div class="col-sm-12">
@@ -430,10 +469,21 @@
                                     <div class="col-sm-6">
                                         <g:if test="${project.payuEmail}">
                                             <input type="email" id="payuemail" class="form-control" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
+                                        </g:if>
+                                        <g:else>
+                                             <input type="email" id="payuemail" class="form-control" name="${FORMCONSTANTS.PAYUEMAIL}">
+                                        </g:else>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Bank Details</label>
+                                    <div class="col-sm-6">
+                                        <g:if test="${project.secretKey}">
                                             <input type="text" id="secretKey" class="form-control" name="${FORMCONSTANTS.SECRETKEY}" value="${project.secretKey}">
                                         </g:if>
-                                        <g:else test="${project.payuEmail}">
-                                             <input type="email" id="payuemail" class="form-control" name="${FORMCONSTANTS.PAYUEMAIL}">
+                                        <g:else>
                                              <input type="text" id="secretKey" class="form-control" name="${FORMCONSTANTS.SECRETKEY}">
                                         </g:else>
                                     </div>
@@ -514,39 +564,37 @@
                         </div>
                     </div>
                 </div>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="addVideo" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header video-modal">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h3 class="modal-title text-center"><b>Upload Video</b></h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-10 form-group">
+                                        <g:if test="${project.videoUrl}">
+                                            <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
+                                        </g:if>
+                                        <g:else>
+                                            <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
+                                        </g:else>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-info btn-sm cr-btn-color" href="#" data-dismiss="modal" id="add">Add</button>
+                                    <div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </g:uploadForm>
             </div>
         </div>
 	</div>
-	
-    <!-- Modal -->
-    <div class="modal fade" id="addVideo" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header video-modal">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h3 class="modal-title text-center"><b>Upload Video</b></h3>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-10">
-                            <g:if test="${project.videoUrl}">
-                                <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
-                            </g:if>
-                            <g:else>
-                                <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
-                            </g:else>
-                        </div>
-                        <div class="col-sm-2">
-                            <button class="btn btn-info btn-sm cr-btn-color" href="#" data-dismiss="modal" id="add">Add</button>
-                        <div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
 	
 </body>
 </html>

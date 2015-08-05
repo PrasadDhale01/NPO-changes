@@ -95,7 +95,7 @@
 												</div>
 												<div class="form-group">
 													<div class="input-group col-md-12">
-														<input class="form-control" type="text" placeholder="lastname" name="lastname" value="${params.lastname}" readonly>
+														<input class="form-control" type="text" placeholder="Last Name" name="lastname" value="${params.lastname}" readonly>
 													</div>
 												</div>
 												<div class="form-group">

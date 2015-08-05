@@ -1412,7 +1412,6 @@ class ProjectController {
     }
     
     def contributionList() {
-        def projectId
         def username
         if (params.projectId && params.fr){
             username = userService.getUsernameFromVanityName(params.fr)
@@ -1442,7 +1441,6 @@ class ProjectController {
     }
 	
     def teamsList() {
-        def projectId
         def username
         if (params.projectId && params.fr){
             username = userService.getUsernameFromVanityName(params.fr)

@@ -548,7 +548,7 @@ hr.footer-hr{
 .footer-mid-section p span{
     color:#e3e3e3;
     font-size:15px;	
-    padding-left: 38%;
+    padding-left: 44%;
 }
 .thomas-margin-align{
 	line-height:1px;
@@ -1153,6 +1153,7 @@ a {
 	.thomas-testimonial span{
 	   	color:#ffffff;
 		font-size:16px !important;
+		padding-left:45% !important;
 	}
     div.left-pad {
         left: 24%;
@@ -1689,7 +1690,7 @@ a {
     .footer-mid-section p span {
         color: #ffffff;
         font-size: 15px !important;
-        padding-left: 28% !important;
+        padding-left: 40% !important;
         font-weight:normal;
     }
     .socialicon img {
@@ -2154,7 +2155,7 @@ a {
 	.footer-mid-section p span {
 		color: #e3e3e3;
 		font-size: 15px;
-		padding-left: 38% !important;
+		padding-left: 44% !important;
 	}
 	.nav-tabs.nav-justified > li > a {
        font-size: 12px !important;

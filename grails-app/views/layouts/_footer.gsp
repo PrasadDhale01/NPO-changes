@@ -58,12 +58,12 @@
 			    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" src=""></a>
 			</div>
 			<br>
-			<div class="thomas-testimonial">
-			    <p>"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
-			    I'd recommend Crowdera to every serious fundraiser." <br><br>
+            <div class="thomas-testimonial">
+                <p>"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
+                    I'd recommend Crowdera to every serious fundraiser." <br><br>
                 <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">Swaroop Ramchandra,</span></g:if>
                 <span class="thomas-margin-align">Two Cents of Hope</span><br>
-			</div>
+            </div>
 			<div class="footer-newsletter">
 			   <form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-sm" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 			        <div class="col-xs-offset-1 newsletter-align">
@@ -152,9 +152,9 @@
 		    </div>
             <div class="thomas-owens-testimonial-div">
                 <p class="thomas-owens-testimonial">"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
-                    I'd recommend Crowdera to every serious fundraiser." <br><br>
-                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">Swaroop Ramchandra,</span><br></g:if>
-                        <span class="thomas-margin-align">Two Cents of Hope</span><br>
+                I'd recommend Crowdera to every serious fundraiser." <br><br>
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">Swaroop Ramchandra,</span><br></g:if>
+                <span class="thomas-margin-align">Two Cents of Hope</span><br>
             </div>
 		</div>
 		<hr class="footer-hr">
@@ -240,7 +240,7 @@
                     I'd recommend Crowdera to every serious fundraiser." <br><br>
                 <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">Swaroop Ramchandra,</span><br></g:if>
                 <span class="thomas-margin-align">Two Cents of Hope</span><br>
-             </div>
+            </div>
 		</div>
 		<hr class="footer-hr">
 	    </section>

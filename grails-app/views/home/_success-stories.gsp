@@ -26,7 +26,7 @@
                     <span><a href="${resource(dir: '/campaigns/Dance-For-Kindness-Flashmob-Anthem/Orly-155')}"><img src="//s3.amazonaws.com/crowdera/assets/Dace-for-kindness-story-img.jpg" alt="Eco Netwrork"></a></span>
                 </div>
                 <div class="clear-both"></div>
-		    </div>
-	    </div>
+            </div>
+        </div>
     </div>
 </g:if>

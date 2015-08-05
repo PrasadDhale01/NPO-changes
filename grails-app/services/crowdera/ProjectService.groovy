@@ -1233,7 +1233,7 @@ class ProjectService {
         def finalList
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
             def popularProjectsList = getPopularProjects()
-            finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false, payuStatus:true) - popularProjectsList)
+            finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
         } else {
             def popularProjectsList = getPopularProjects()
             finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false, payuStatus:false) - popularProjectsList)

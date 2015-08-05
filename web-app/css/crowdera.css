@@ -741,6 +741,7 @@ a {
 	div.cr-start-flex {
         display: inline;
         margin-bottom: 17px;
+        left: 39px;
     }
     label.cr-start-size{
        margin-bottom: 0;
@@ -5835,6 +5836,7 @@ textarea.form-control {
     div.cr-start-flex {
         display: inline;
         margin-bottom: 17px;
+        left: 29px;
     }
     label.cr-start-size{
        margin-bottom: 0;

@@ -174,6 +174,9 @@ $(function() {
             },
             answer: {
             	required:true
+            },
+            facebookUrl: {
+            	required:true
             }
         },
         messages:{
@@ -469,9 +472,6 @@ $(function() {
         $('#ytVideo').html('<iframe style="width:192%;height:194px; display:block;" src='+ vurl +'></iframe>');
     }
 	$('#add').on('click',function(){
-        $( "#videoUrl" ).rules( "add", {
-            isYoutubeVideo: true
-        });
         var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         //var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/
         var url= $('#videoUrl').val().trim();
@@ -480,18 +480,16 @@ $(function() {
             $('#ytVideo').show();
             $('#media').hide();
             $('#media-video').show();
+            autoSave('videoUrl', url);
             var vurl=url.replace("watch?v=", "v/");
             $('#ytVideo').html('<iframe style="width:192%;height:194px; display:block;" src='+ vurl +'></iframe>');
         } else if($(this)){
-            $('#ytVideo').hide();
-            $('#media').show();
-            $('#media-video').hide();
+        	if(!$('#addvideoUrl').val()) {
+                $('#ytVideo').hide();
+                $('#media').show();
+                $('#media-video').hide();
+        	}
         }
-    });
-    $('#videoUrl').change(function(){
-        $('#ytVideo').hide();
-        var selectedVideoUrl = $(this).val();
-        autoSave('videoUrl', selectedVideoUrl);
     });
 
      /** ********************Organization Icon*************************** */
@@ -968,7 +966,9 @@ function setTitleText(){
     
     $('#webAddress').blur(function (){
     	var webAddress = $(this).val();
-    	autoSave('webAddress', webAddress);
+    	if (validator.element( "#webAddress")) {
+            autoSave('webAddress', webAddress);
+    	}
     });
     
     $('#firstName').blur(function (){
@@ -988,20 +988,41 @@ function setTitleText(){
     
     $('#paypalEmailId').blur(function (){
         var paypalEmailId = $(this).val();
-        $('#charitable').find('input').val('');
-        autoSave('paypalEmailId', paypalEmailId);
+        if (validator.element( "#paypalEmailId")) {
+            $('#charitable').find('input').val('');
+            autoSave('paypalEmailId', paypalEmailId);
+        }
     });
     
     $('#payuemail').blur(function (){
         var payUEmailId = $(this).val();
-        autoSave('payuEmail', payUEmailId);
+        if (validator.element( "#payuemail")) {
+            autoSave('payuEmail', payUEmailId);
+        }
     });
     
     $('#secretKey').blur(function (){
         var secretKey = $(this).val();
         autoSave('secretKey', secretKey);
     });
-
+    
+    $('#facebookUrl').blur(function (){
+        var facebookUrl = $(this).val();
+        if (validator.element( "#facebookUrl")) {
+            autoSave('facebookUrl', facebookUrl);
+        }
+    });
+    
+    $('#twitterUrl').blur(function (){
+        var twitterUrl = $(this).val();
+        autoSave('twitterUrl', twitterUrl);
+    });
+    
+    $('#linkedinUrl').blur(function (){
+        var linkedinUrl = $(this).val();
+        autoSave('linkedinUrl', linkedinUrl);
+    });
+    
     function autoSave(variable, varValue) {
         var projectId = $('#projectId').val();
         $.ajax({

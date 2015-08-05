@@ -10,10 +10,10 @@ class HomeController {
         def fb = params.fb
         if(Environment.DEVELOPMENT == Environment.current || Environment.TEST == Environment.current || currentEnv == 'testIndia'){
             def projects = projectService.showProjects(currentEnv)
-            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email]
+            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv]
         } else {
             def projects = projectService.projectOnHomePage()
-            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email]
+            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv]
         }
     }
     

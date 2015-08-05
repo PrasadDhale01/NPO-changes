@@ -11,7 +11,7 @@
 <body>
 <div class="feducontent">
     <div class="container">
-
+        <g:hiddenField name='currentEnv' value='${environment}' id='currentEnv'/>
         <h2>User Profile</h2>
         <g:if test="${flash.user_message}">
             <div class="alert alert-success" align="center">

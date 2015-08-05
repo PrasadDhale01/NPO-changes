@@ -17,10 +17,12 @@
 </style>
 </head>
 <body>
-	<input type="hidden" id="b_url" value="<%=base_Url%>" /> 
-	<input type="hidden" id="fbUser-login" value="${fb}"/>
-	<input type="hidden" id="googlPlusUser-login" value="${isDuplicate}"/>
-	<input type="hidden" id="userEmail" value="${email}"/>
+	<g:hiddenField id="b_url" name="b_url" value="${base_Url}" />
+	<g:hiddenField id="fbUser-login" name="fbUser-login" value="${fb}"/>
+	<g:hiddenField id="googlPlusUser-login" name="googlPlusUser-login" value="${isDuplicate}"/>
+	<g:hiddenField id="userEmail" name='userEmail' value="${email}"/>
+	<g:hiddenField name='currentEnv' value='${currentEnv}' id='currentEnv'/>
+	
     <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
     	<g:render template="jumbotron"></g:render>
     </div>

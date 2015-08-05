@@ -826,7 +826,7 @@ function setTitleText(){
              }
                
              str = str +  '<input type="text" placeholder="Amount"  name="rewardPrice'+count+'" id="rewardPrice'+count+
-                       '" style="width:100%;" class="form-control cr-input-digit cr-tablat-padd rewardPrice">'+
+                       '" style="width:100%;" class="form-control cr-input-digit cr-tablat-padd form-control-no-border-amt rewardPrice">'+
            '</div>'+
        '</div>'+
     '</div>'+
@@ -835,7 +835,7 @@ function setTitleText(){
        '<div class="form-group">'+
            '<div class="col-sm-12">'+
               '<input type="text" placeholder="Name of Perk" name="rewardTitle'+count+'" id="rewardTitle'+count+
-                      '"  class="form-control cr-perk-title-number cr-tablet-left required">'+
+                      '"  class="form-control cr-perk-title-number cr-tablet-left form-control-no-border cr-placeholder cr-chrome-place text-color required">'+
            '</div>'+
        '</div>'+
     '</div>'+
@@ -843,7 +843,7 @@ function setTitleText(){
     '<div class="col-sm-5">'+
        '<div class="form-group">'+
            '<div class="col-sm-12">'+
-               '<input type="text" placeholder="Number available" name="rewardNumberAvailable'+count+'" id="rewardNumberAvailable'+count+'" class="form-control rewardNumberAvailable cr-perk-title-number">'+
+               '<input type="text" placeholder="Number available" name="rewardNumberAvailable'+count+'" id="rewardNumberAvailable'+count+'" class="form-control rewardNumberAvailable cr-perk-title-number text-color cr-placeholder cr-chrome-place form-control-no-border">'+
            '</div>'+
        '</div>'+
     '</div>'+
@@ -851,7 +851,7 @@ function setTitleText(){
    '<div class="form-group row">'+
        '<div class="col-sm-12">'+
            '<div class="col-sm-12">'+
-             '<textarea class="form-control required rewardDescription" name="rewardDescription'+count+
+             '<textarea class="form-control required rewardDescription form-control-no-border cr-placeholder cr-chrome-place text-color" name="rewardDescription'+count+
                 '" id="rewardDesc'+count+'" rows="2" placeholder="Description" maxlength="250"></textarea>'+
                 '<p class="cr-perk-des-font">Please refer to our Terms of Use for more details on perks.</p>'+
            '</div>'+
@@ -861,10 +861,10 @@ function setTitleText(){
        '<div class="form-group">'+
            '<div class="btn-group col-sm-12" data-toggle="buttons">'+
                '<label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Shipping</label>'+
-               '<label class="btn btn-default col-sm-2 col-xs-12"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing <br> address</label>'+
-               '<label class="btn btn-default col-sm-2 col-xs-12"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email <br> address</label>'+
-               '<label class="btn btn-default col-sm-2 col-xs-12"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter <br> handle</label>'+
-               '<input type="text" name="custom'+count+'" id="customcheckbox'+count+'" class="customText col-sm-4 col-xs-12" placeholder="Custom">'+
+               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing <br> address</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email <br> address</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter <br> handle</label>'+
+               '<input type="text" name="custom'+count+'" id="customcheckbox'+count+'" class="customText form-control-no-border cr-custom-place cr-customchrome-place text-color col-sm-4 col-xs-12" placeholder="Custom">'+
            '</div>'+
        '</div>'+
    '</div>'+

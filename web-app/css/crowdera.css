@@ -689,6 +689,9 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.cr-perks-space {
+        margin-left: 0;
+    }
 	a.cr-xs-mobile {
         margin-left: 64px;
     }
@@ -1280,6 +1283,14 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.cr-perks-space {
+        margin-left: 0;
+        padding-right: 47px;
+    }
+	a.cr-btn-alignment-pre {
+        margin-left: 68px;
+        padding-bottom: 40px;
+    }
 	.cr-tablet-left{
 	    margin-left: 43px;
 	}
@@ -1801,6 +1812,10 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	div.cr-perks-space {
+        margin-left: -1px;
+        padding-right: 37px;
+    }
 	div.cr-perk-check {
         padding-left: 0;
         padding-right: 10px;
@@ -5798,6 +5813,9 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.cr-perks-space {
+        margin-left: 0;
+    }
 	label.cr-check-btn-perks{
 	    margin-bottom: 0;
 	}
@@ -8305,7 +8323,7 @@ a.btn.btn-primary.btn-colors:hover {
 }
 .cr-tab-panel-top {
     top: -10px;
-    height: 150px;
+/*     height: 150px; */
 }
 header {
     background-color: #01bbd2;
@@ -8379,8 +8397,8 @@ div.cr-perks-spec {
  padding-top: 10%;
 }
 .cr-perk-check {
-  padding-left: 19px;
-  padding-right: 10px;
+  padding-left: 15px;
+  padding-right: 13px;
 }
 .cr-input-digit{
   background-color: rgb(253, 234, 180);
@@ -8668,7 +8686,8 @@ label.text-color {
     font-weight: 900;
 }
 .cr-perks-space{
-	 padding-right: 57px;
+	margin-left: 16px;
+    padding-right: 26px;
 }
 #hiddensearch{
     display: none;
@@ -8750,6 +8769,11 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
     color: White;
     font-size: 14px;
     height: 73px;
+    font-weight: 900;
+}
+.cr-font-perks{
+/* 	font-size: 14px; */
+    font-weight: 900;
 }
 .cr-bg-xs-create-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/create-now-Button-mobile.jpg) no-repeat !important;
@@ -8786,4 +8810,53 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 }
 .cr-tab-in{
 	margin-top: -9px;
+}
+.form-control-no-border:focus {
+    border-color: #e3e3e3;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.form-control-no-border-amt:focus {
+    border-color: orange;
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+/***placeholder-css****/
+.cr-placeholder::-moz-placeholder{ 
+	font-size: 14px;
+	color: #c7c7c7;
+	font-weight: 400;
+}
+.cr-chrome-place::-webkit-input-placeholder {
+	font-size: 14px;
+	color: #c7c7c7;
+}
+body {
+    overflow-x: hidden !important;
+}
+.cr-hovers:hover{
+	background-color: gray;  /***.cr-hovers.active****/
+	color: white;
+}
+/***perks-custom-placeholder***/
+.cr-custom-place::-moz-placeholder{ 
+	font-size: 14px;
+	color: black;
+	font-weight: 900;
+}
+.cr-customchrome-place::-webkit-input-placeholder {
+	font-size: 14px;
+	color: black;
+	font-weight: 900;
+}
+.cr-btn-alignment-pre{
+	margin-left: 198px;
+    padding-bottom: 40px;
+}
+.cr-btn-alignment-lac{
+	margin-right: 204px;
+    margin-top: -2px;
+    border:none;
 }

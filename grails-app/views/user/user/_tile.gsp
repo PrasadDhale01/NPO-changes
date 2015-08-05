@@ -121,41 +121,81 @@
 			</div>
 		</g:else>
 	</g:else>
-	<div class="blacknwhite tile">
-	    <g:if test="${iscampaignAdmin}">
-			<g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
-				<div class="imageWithTag">
-					<div class="under">
-						<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
-					</div>
-				</div>
-			</g:link>
-		</g:if>
-		<g:else>
-		    <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
-				<div class="imageWithTag">
-					<div class="under">
-						<img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
-					</div>
-				</div>
-			</g:link>
-		</g:else>
-	</div>
+    <div class="blacknwhite tile">
+        <g:if test="${(project.payuStatus == false) && (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia')}">
+            <div id="redirectCampaign">
+                <g:if test="${iscampaignAdmin}">
+                    <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
+                        <div class="imageWithTag">
+                            <div class="under">
+                                <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
+                            </div>
+                        </div>
+                    </g:link>
+                </g:if>
+                <g:else>
+                    <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
+                        <div class="imageWithTag">
+                            <div class="under">
+                                <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
+                            </div>
+                        </div>
+                    </g:link>
+                </g:else>
+            </div>
+        </g:if>
+        <g:else>
+            <g:if test="${iscampaignAdmin}">
+                <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
+                    <div class="imageWithTag">
+                        <div class="under">
+                            <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
+                        </div>
+                    </div>
+                </g:link>
+            </g:if>
+            <g:else>
+                <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
+                    <div class="imageWithTag">
+                        <div class="under">
+                            <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
+                        </div>
+                    </div>
+                </g:link>
+            </g:else>
+        </g:else>
+    </div>
 
-	<div class="caption project-title project-story-span tile-min-height">
-		    <g:if test="${iscampaignAdmin}">
-				<g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
-			        ${project.title.toUpperCase()}
-			    </g:link>
-		    </g:if>
-		    <g:else>
-		        <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
-			        ${project.title.toUpperCase()}
-			    </g:link>
-		    </g:else>
-		    <div class="campaign-title-margin-bottom"></div>
-			<span>${project.description}</span>
-	</div>
+    <div class="caption project-title project-story-span tile-min-height">
+        <g:if test="${(project.payuStatus == false) && (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia')}">
+            <div id="redirectCampaignTitle">
+                <g:if test="${iscampaignAdmin}">
+                    <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
+                        ${project.title.toUpperCase()}
+                    </g:link>
+                </g:if>
+                <g:else>
+                    <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
+                        ${project.title.toUpperCase()}
+                    </g:link>
+                </g:else>
+            </div>
+        </g:if>
+        <g:else>
+            <g:if test="${iscampaignAdmin}">
+                <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">
+                    ${project.title.toUpperCase()}
+                </g:link>
+            </g:if>
+            <g:else>
+                <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]" title="${project.title}">
+                    ${project.title.toUpperCase()}
+                </g:link>
+            </g:else>
+        </g:else>
+        <div class="campaign-title-margin-bottom"></div>
+        <span>${project.description}</span>
+    </div>
 
 	<div class="modal-footer tile-footer tile-fonts-footer">
 		<div class="row">

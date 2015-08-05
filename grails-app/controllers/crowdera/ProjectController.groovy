@@ -73,7 +73,7 @@ class ProjectController {
             render (view: 'list/index')
         }
         else {
-            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory ])
+            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv ])
         }
     }
 

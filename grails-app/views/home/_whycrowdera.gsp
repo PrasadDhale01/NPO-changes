@@ -36,17 +36,19 @@
 				    <p class="pull-left crowderacontent1">You can extend your deadline if needed</p>
 				</div>
 			</div>
-			<div class="col-md-12 whycrowderadiv whycrowderadiv4 whycrowderacol-md">
-			    <div class="col-md-2">
-				    <img src="//s3.amazonaws.com/crowdera/assets/multiple-secure-payment-gateways-icon.png" alt="Free-Crowdfunding">
-				</div>
-				<div class="col-md-10">
-                    <h4 class="pull-left subheadingtext">Multiple Secure Payment Gateways</h4>
-				    <div class="clear"></div>
-				    <p class="pull-left crowderacontent1">You select between PayPal, PayU or FirstGiving</p>
-				</div>
-			</div>
-		</div>
+            <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'}">
+                <div class="col-md-12 whycrowderadiv whycrowderadiv4 whycrowderacol-md">
+                    <div class="col-md-2">
+                        <img src="//s3.amazonaws.com/crowdera/assets/multiple-secure-payment-gateways-icon.png" alt="Free-Crowdfunding">
+                    </div>
+                    <div class="col-md-10">
+                        <h4 class="pull-left subheadingtext">Multiple Secure Payment Gateways</h4>
+                        <div class="clear"></div>
+                        <p class="pull-left crowderacontent1">You select between PayPal, PayU or FirstGiving</p>
+                    </div>
+                </div>
+            </g:if>
+        </div>
 		<div class="col-md-6 whycrowderacol-md-12">
 			<div class="col-md-12 whycrowderadiv whycrowderacol-md">
 			    <div class="col-md-2">
@@ -68,16 +70,18 @@
 				    <p class="pull-left crowderacontent1">Your fundraising page can be accessed from any phone.</p>
 				</div>
 			</div>
-			<div class="col-md-12 whycrowderadiv whycrowderadiv7 whycrowderacol-md">
-			    <div class="col-md-2">
-				    <img src="//s3.amazonaws.com/crowdera/assets/instant-fundraising-icon.png" alt="Multiple-Secure-Payment-Gateways">
-				</div>
-				<div class="col-md-10">
-                    <h4 class="pull-left subheadingtext">Instant Fundraising</h4>
-                    <div class="clear"></div>
-				    <p class="pull-left crowderacontent1">Donor funds are instantly transferred to your account</p>
-				</div>
-			</div>
+            <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'}">
+                <div class="col-md-12 whycrowderadiv whycrowderadiv7 whycrowderacol-md">
+                    <div class="col-md-2">
+                        <img src="//s3.amazonaws.com/crowdera/assets/instant-fundraising-icon.png" alt="Multiple-Secure-Payment-Gateways">
+                    </div>
+                    <div class="col-md-10">
+                        <h4 class="pull-left subheadingtext">Instant Fundraising</h4>
+                        <div class="clear"></div>
+                        <p class="pull-left crowderacontent1">Donor funds are instantly transferred to your account</p>
+                    </div>
+                </div>
+            </g:if>
 			<div class="col-md-12 whycrowderadiv whycrowderadiv8 whycrowderacol-md whycdradivpadding8">
 				<div class="col-md-2">
 				    <img src="//s3.amazonaws.com/crowdera/assets/free-crowdfunding-icon.png" alt="Teams-to-Multiply-Results">
@@ -122,17 +126,19 @@
 				    <p class="pull-left crowderacontent1">You can extend your deadline if needed</p>
 				</div>
 			</div>
-			<div class="col-sm-12 col-xs-12 whycdradivpadding4 whycrowderadiv">
-			    <div class="col-sm-3 col-xs-3">
-				    <img src="//s3.amazonaws.com/crowdera/assets/multiple-secure-payment-gateways-icon.png" alt="Free-Crowdfunding">
-				</div>
-				<div class="col-sm-9 col-xs-9">
-                    <h4 class="pull-left subheadingtext">Multiple Secure Payment Gateways</h4>
-				    <div class="clear"></div>
-				    <p class="pull-left crowderacontent1">You select between PayPal, PayU or FirstGiving</p>
-				</div>
-			</div>
-		</div>
+            <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'}">
+                <div class="col-sm-12 col-xs-12 whycdradivpadding4 whycrowderadiv">
+                    <div class="col-sm-3 col-xs-3">
+                        <img src="//s3.amazonaws.com/crowdera/assets/multiple-secure-payment-gateways-icon.png" alt="Free-Crowdfunding">
+                    </div>
+                    <div class="col-sm-9 col-xs-9">
+                        <h4 class="pull-left subheadingtext">Multiple Secure Payment Gateways</h4>
+                        <div class="clear"></div>
+                        <p class="pull-left crowderacontent1">You select between PayPal, PayU or FirstGiving</p>
+                    </div>
+                </div>
+            </g:if>
+        </div>
 		<div class="col-sm-6 col-xs-12">
 			<div class="col-sm-12 col-xs-12 whycrowderadiv">
 			    <div class="col-sm-3 col-xs-3">
@@ -154,16 +160,18 @@
 				    <p class="pull-left crowderacontent1">Your fundraising page can be accessed from any phone.</p>
 				</div>
 			</div>
-			<div class="col-sm-12 col-xs-12 whycdradivpadding7 whycrowderadiv">
-			    <div class="col-sm-3 col-xs-3">
-				    <img src="//s3.amazonaws.com/crowdera/assets/instant-fundraising-icon.png" alt="Multiple-Secure-Payment-Gateways">
-				</div>
-				<div class="col-sm-9 col-xs-9">
-                    <h4 class="pull-left subheadingtext">Instant Fundraising</h4>
-                    <div class="clear"></div>
-				    <p class="pull-left crowderacontent1">Donor funds are instantly transferred to your account</p>
-				</div>
-			</div>
+            <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'}">
+                <div class="col-sm-12 col-xs-12 whycdradivpadding7 whycrowderadiv">
+                    <div class="col-sm-3 col-xs-3">
+                        <img src="//s3.amazonaws.com/crowdera/assets/instant-fundraising-icon.png" alt="Multiple-Secure-Payment-Gateways">
+                    </div>
+                    <div class="col-sm-9 col-xs-9">
+                        <h4 class="pull-left subheadingtext">Instant Fundraising</h4>
+                        <div class="clear"></div>
+                        <p class="pull-left crowderacontent1">Donor funds are instantly transferred to your account</p>
+                    </div>
+                </div>
+            </g:if>
 			<div class="col-sm-12 col-xs-12 whycdradivpadding8 whycrowderadiv">
 				<div class="col-sm-3 col-xs-3">
 				    <img src="//s3.amazonaws.com/crowdera/assets/free-crowdfunding-icon.png" alt="Teams-to-Multiply-Results">

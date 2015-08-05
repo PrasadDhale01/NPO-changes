@@ -1296,6 +1296,8 @@ a {
 	}
 	label.cr-perks-size {
 	    margin-left: 3px;
+	    padding-left: 15px;
+        padding-right: 7px; 
 	}
 	div.manage-Top-tabs-mobile{
 	    padding-left: 17px;
@@ -2075,6 +2077,10 @@ a {
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
+	label.cr-perks-size{
+        padding-left: 15px;
+        padding-right: 7px;
+	}
     .sorts-dropdown{
        left: 19%;
     }

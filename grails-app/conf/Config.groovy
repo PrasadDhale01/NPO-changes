@@ -386,7 +386,7 @@ environments {
 		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
 		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-		crowdera.BASE_URL = 'http://localhost:8080'
+		crowdera.BASE_URL = 'http://test.crowdera.in'
 
 		grails.logging.jul.usebridge = false
 		grails.dbconsole.enabled = true
@@ -426,7 +426,7 @@ environments {
 		crowdera.MAILCHIMP.LISTID="e37aea1b78"
 		
 		/*PayUMoney details*/
-		crowdera.PAYU.BASE_URL = 'http://localhost:8080'
+		crowdera.PAYU.BASE_URL = 'http://test.crowdera.in'
 		crowdera.PAYU.TEST_URL='https://test.payu.in/_payment.php'
 		crowdera.PAYU.KEY='czBDue'
 		crowdera.PAYU.SALT='g57jz4Cw'

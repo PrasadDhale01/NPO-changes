@@ -12,6 +12,7 @@
 <body>
     <div class="feducontent">
         <div class="container">
+            <g:hiddenField name='currentEnv' value='${currentEnv}' id='currentEnv'/>
             <div class="row">
                 <div class="col-md-6">
                     <h1><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-contribution.png" alt="contribution"> Contribute</h1>

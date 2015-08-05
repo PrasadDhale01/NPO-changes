@@ -35,7 +35,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	                <div class="form-group">
 						<label class="col-sm-12 text-color">My Name is...</label>
 						<div class="col-sm-12">
-							<input class="form-control text-color box-size" id="name"
+							<input class="form-control form-control-no-border text-color box-size" id="name"
 								name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name">
 						</div>
 	                </div>
@@ -50,7 +50,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 							         <g:else>
 							             <span class="i-currency-label">$</span>
 				                     </g:else>   
-				                     <input class="form-control cr-amt" name="amount" id="${FORMCONSTANTS.AMOUNT}"> 
+				                     <input class="form-control form-control-no-border-amt cr-amt" name="amount" id="${FORMCONSTANTS.AMOUNT}"> 
 						             <span id="errormsg"></span>
 			                       
 	                           </div>
@@ -70,7 +70,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	                    <div class="form-group">
 	                        <label class="col-sm-12 text-color">My plan is...</label>
 	                        <div class="col-sm-12">
-	                            <textarea class="form-control  text-color" name="title" rows="2" placeholder="Campaign title is the gateway to view your campaign, create an impactful and actionable title." id="campaignTitle" maxlength="55"></textarea>
+	                            <textarea class="form-control form-control-no-border text-color" name="title" rows="2" placeholder="Campaign title is the gateway to view your campaign, create an impactful and actionable title." id="campaignTitle" maxlength="55"></textarea>
 	                            <label class="pull-right " id="titleLength"></label>
 	                        </div>
 	                    </div>
@@ -78,13 +78,14 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	                
 	                    <div class="form-group">
 	                        <div class="col-sm-12">
-	                            <textarea class="form-control  text-color" id="descarea" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Campaign Description" maxlength="140"></textarea>
+	                            <textarea class="form-control form-control-no-border text-color" id="descarea" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Campaign Description" maxlength="140"></textarea>
 	                            <label class="pull-right " id="desclength"></label>
 	                        </div>
 	                    </div>
 	            
 	            <div class="text-center">
-	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-create-btn" name="button" value="" id="campaigncreatebtn"></button>
+	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-create-btn hidden-xs" name="button" value="" id="campaigncreatebtn"></button>
+	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-xs-create-btn visible-xs" name="button" value="" id="campaigncreatebtn"></button>
 	            </div>
 	        </g:uploadForm>
 	     </div>

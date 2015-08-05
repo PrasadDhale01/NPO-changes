@@ -133,6 +133,27 @@ $(function() {
         }
     
     });
+    
+    $('#redirectCampaign a, #redirectCampaignTitle a').click(function(event) {
+        event.preventDefault();
+        var url = $(this).attr('href');
+        var redirectUrl;
+        var currentEnv = $('#currentEnv').val();
+        if (currentEnv == 'testIndia') {
+            redirectUrl = 'http://test.crowdera.co'+url;
+        } else if(currentEnv == 'stagingIndia') {
+            redirectUrl = 'http://staging.crowdera.co'+url;
+        } else if(currentEnv == 'prodIndia') {
+            redirectUrl = 'https://crowdera.co'+url;
+        } else {
+            redirectUrl = url;
+        }
+        if (confirm('You are being redirected to global site www.crowdera.co')) {
+            window.location.href = redirectUrl;
+        } else {
+            window.location.href = url;
+        }
+    });
 	
 });
 

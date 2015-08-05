@@ -179,19 +179,19 @@
                    <div class="cr-tabs-admins">
 	                   <label class="panel body cr-admin-title">ADMIN</label>
                        <ul class="nav nav-tabs manage-projects nav-justified cr-ul-tabs">
-                           <li class="cr-li-tabs">
-                               <a href="#admin" data-toggle="tab" aria-expanded="false">
-                                   <span class="tab-text hidden-xs cr-add-tabs-title">Add Campaign co-creators</span><i class="glyphicon glyphicon-chevron-down pull-right"></i>
+                           <li class="cr-li-tabs cr-hover-color">
+                              <a href="#admin" data-toggle="tab" aria-expanded="false">
+                                   <span class="glyphicon glyphicon-user cr-icon-tabs-user visible-xs"></span><span class="tab-text hidden-xs cr-add-tabs-title cr-font-title">Add Campaign <br> Admin<i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i></span>
 	                           </a>
 	                       </li>
-	                       <li class="active cr-tabs-update">
+	                       <li class="active cr-tabs-update cr-hover-color">
 	                           <a data-toggle="tab" href="#organization" aria-expanded="true">
-	                           <span class="tab-text hidden-xs">Update Display Information<i class="glyphicon glyphicon-chevron-down pull-right"></i></span>
+	                               <span class="glyphicon glyphicon-eye-open cr-icon-tabs-eye visible-xs"></span><span class="tab-text hidden-xs cr-font-title">Update Display <br> Information<i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i></span>
 	                           </a>
 	                       </li>
-	                       <li class="cr-tabs-update">
+	                       <li class="cr-tabs-update cr-hover-color">
 	                           <a data-toggle="tab" href="#personal"> 
-		                       <span class="tab-text hidden-xs">Update Personal Information<i class="glyphicon glyphicon-chevron-down pull-right"></i></span>
+		                            <span class="glyphicon glyphicon-info-sign cr-icon-tabs-info visible-xs"></span><span class="tab-text hidden-xs cr-font-title">Update Personal <br> Information<i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i></span>
 		                       </a>
 		                   </li>
 		               </ul>
@@ -203,7 +203,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control" name="email1" id="firstadmin" placeholder="First Admin"></input>
+                                        <input type="text" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email1" id="firstadmin" placeholder="First Admin"></input>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +211,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                  <div class="col-sm-12">
-                                     <input type="text" class="form-control" name="email2" id="secondadmin" placeholder="Second Admin"></input>
+                                     <input type="text" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email2" id="secondadmin" placeholder="Second Admin"></input>
                                  </div>
                                 </div>
                             </div>
@@ -219,7 +219,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                  <div class="col-sm-12">
-                                     <input type="text" class="form-control" name="email3" id="thirdadmin" placeholder="Third Admin"></input>
+                                     <input type="text" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email3" id="thirdadmin" placeholder="Third Admin"></input>
                                  </div>
                                 </div>
                             </div>       
@@ -228,7 +228,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group" id="organizationName">
                                     <div class="col-sm-12">
-                                        <input class="form-control" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Organization Name">
+                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Organization Name">
                                     </div>
                                 </div>
                             </div>
@@ -237,10 +237,10 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <g:if test="${project.webAddress}">
-                                            <input class="form-control" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="Web Address" value="${project.webAddress}">
+                                            <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="Web Address" value="${project.webAddress}">
                                         </g:if>
                                         <g:else>
-                                            <input class="form-control" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="Web Address">
+                                            <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="Web Address">
                                         </g:else>
                                     </div>
                                 </div>
@@ -270,7 +270,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input id="firstName" class="form-control" name="${FORMCONSTANTS.FIRSTNAME}" value="${user.firstName}" placeholder="First Name">
+                                        <input type="text" id="firstName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.FIRSTNAME}" value="${user.firstName}" placeholder="First Name">
                                     </div>
                                 </div>
                             </div>
@@ -278,7 +278,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input id="lastName" class="form-control" name="${FORMCONSTANTS.LASTNAME}" value="${user.lastName}" placeholder="Last Name">
+                                        <input type="text" id="lastName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.LASTNAME}" value="${user.lastName}" placeholder="Last Name">
                                     </div>
                                 </div>
                             </div>
@@ -287,34 +287,73 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <g:if test="${project.beneficiary.telephone}">
-                                            <input type="tel" id="telephone" class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone" value="${project.beneficiary.telephone}">
+                                            <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone" value="${project.beneficiary.telephone}">
                                         </g:if>
                                         <g:else>
-                                            <input type="tel" id="telephone" class="form-control" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
+                                            <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
                                         </g:else>
                                     </div>
                                 </div>
                             </div>
-                   
+                            <div class="clear"></div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
-                                         <a target="_blank" class="fb-like pull-left  cr-tab-icon-padding fbShareForSmallDevices" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
-                                             <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">
-                                         </a>
-                                         <a target="_blank" class="fb-like pull-left fbShareForLargeDevices cr-tab-icon-padding" id="fbshare">
-                                             <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">
-                                         </a>
-                                         <a class="share-linkedin pull-left cr-tab-icon-padding">
-                                             <img src="//s3.amazonaws.com/crowdera/assets/twitter-Icon.png" alt="LinkedIn Share">
-                                         </a>
-                                         <a class="twitter-share pull-left" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">
-                                             <img src="//s3.amazonaws.com/crowdera/assets/linked-In--Icon.png" alt="Twitter Share">
-                                         </a>
-                                     </div>
-                                 </div>
-                             </div>
+                                        <g:if test="${project.beneficiary.facebookUrl}">
+                                            <input type="text" id="facebookUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.FACEBOOKURl}" value="${project.beneficiary.facebookUrl}" placeholder="Facebook Url">
+                                        </g:if>
+                                        <g:else>
+                                            <input type="text" id="facebookUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.FACEBOOKURl}" placeholder="Facebook Url">
+                                        </g:else>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <g:if test="${project.beneficiary.twitterUrl}">
+                                            <input type="text" id="twitterUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.TWITTERURl}" value="${project.beneficiary.twitterUrl}" placeholder="Twitter Url">
+                                        </g:if>
+                                        <g:else>
+                                            <input type="text" id="twitterUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.TWITTERURl}" placeholder="Twitter Url">
+                                        </g:else>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <g:if test="${project.beneficiary.linkedinUrl}">
+                                            <input type="text" id="linkedinUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.LINKEDINURL}" placeholder="Linkedin Url" value="${project.beneficiary.linkedinUrl}">
+                                        </g:if>
+                                        <g:else>
+                                            <input type="text" id="linkedinUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.LINKEDINURL}" placeholder="Linkedin Url">
+                                        </g:else>
+                                    </div>
+                                </div>
+                            </div>
+                            
+<%--                            <div class="col-sm-4">--%>
+<%--                                <div class="form-group">--%>
+<%--                                    <div class="col-sm-12">--%>
+<%--                                        <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>--%>
+<%--                                         <a target="_blank" class="fb-like pull-left  cr-tab-icon-padding fbShareForSmallDevices" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">--%>
+<%--                                             <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">--%>
+<%--                                         </a>--%>
+<%--                                         <a target="_blank" class="fb-like pull-left fbShareForLargeDevices cr-tab-icon-padding" id="fbshare">--%>
+<%--                                             <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">--%>
+<%--                                         </a>--%>
+<%--                                         <a class="share-linkedin pull-left cr-tab-icon-padding">--%>
+<%--                                             <img src="//s3.amazonaws.com/crowdera/assets/twitter-Icon.png" alt="LinkedIn Share">--%>
+<%--                                         </a>--%>
+<%--                                         <a class="twitter-share pull-left" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">--%>
+<%--                                             <img src="//s3.amazonaws.com/crowdera/assets/linked-In--Icon.png" alt="Twitter Share">--%>
+<%--                                         </a>--%>
+<%--                                     </div>--%>
+<%--                                 </div>--%>
+<%--                             </div>--%>
                              <div class="col-sm-12">
                                  <div class="form-group">
                                      <div class="col-sm-12">
@@ -326,17 +365,18 @@
                     </div>
 
                 </div>
-              
-                <div class="col-sm-12 cr-lab-rd-flex cr-space" id="perk">
-                    <div class="cr-perks-flex cr-perks-space">
-                        <label class="panel-body cr-perks-size ">Offering PERKS?</label>
-                    </div>
-                    <div class="btn-group btnPerkBgColor col-sm-12 col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp" data-target="buttons">
-                        <label class="btn btn-default col-sm-2 cr-lbl-mobile"> <input type="radio" name="answer" value="yes"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
-                        <label class="btn btn-default col-sm-2 cr-lbl-mobiles"> <input type="radio" name="answer" value="no"> NO</label>
-                    </div>
-                 </div>
-						
+                <div class="form-group">
+	                <div class="col-sm-12 cr-lab-rd-flex cr-space" id="perk">
+	                    <div class="cr-perks-flex cr-perks-space">
+	                        <label class="panel-body cr-perks-size "><span class="cr-offering">Offering</span> PERKS?</label>
+	                    </div>
+	                    <div class="btn-group btnPerkBgColor col-sm-12 col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp" data-target="buttons">
+	                        <label class="btn btn-default col-sm-2 cr-lbl-mobile"> <input type="radio" name="answer" value="yes"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
+	                        <label class="btn btn-default col-sm-2 cr-lbl-mobiles"> <input type="radio" name="answer" value="no"> NO</label>
+	                    </div>
+	                </div>
+                </div>
+					
                 <input type="hidden" name="rewardCount" id="rewardCount" value='0'/>
                 <div id="addNewRewards">
                     <div class="rewardsTemplate" id="rewardTemplate">
@@ -345,11 +385,11 @@
                                 <div class="col-sm-12">
                                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
-                                        <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control rewardPrice cr-input-digit rewardPrice" id="rewardPrice1">
+                                        <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice1">
                                     </g:if>
                                     <g:else>
                                         <span class="cr2-currency-label">$</span>
-                                        <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control rewardPrice cr-input-digit rewardPrice" id="rewardPrice1">
+                                        <input type="text" placeholder="Amount" name="rewardPrice1" class="form-control rewardPrice form-control-no-border-amt cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice1">
                                     </g:else>
                                 </div>
                             </div>
@@ -358,14 +398,14 @@
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input type="text" placeholder="Name of Perk" name="rewardTitle1" class="form-control cr-perk-title-number required" id="rewardTitle1">
+                                    <input type="text" placeholder="Name of Perk" name="rewardTitle1" class="form-control cr-tablet-left cr-perk-title-number form-control-no-border text-color cr-placeholder cr-chrome-place required" id="rewardTitle1">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input type="text" placeholder="Number available" name="rewardNumberAvailable1" class="form-control cr-perk-title-number rewardNumberAvailable" id="rewardNumberAvailable1">
+                                    <input type="text" placeholder="Number available" name="rewardNumberAvailable1" class="form-control cr-perk-title-number form-control-no-border text-color cr-placeholder cr-chrome-place  rewardNumberAvailable" id="rewardNumberAvailable1">
                                 </div>
                             </div>
                         </div>
@@ -373,18 +413,19 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="col-sm-12">
-                                    <textarea class="form-control rewardDescription required" name="rewardDescription1" id="rewardDesc1" rows="2" placeholder="Description" maxlength="250"></textarea>
+                                    <textarea class="form-control rewardDescription form-control-no-border text-color cr-placeholder cr-chrome-place required" name="rewardDescription1" id="rewardDesc1" rows="2" placeholder="Description" maxlength="250"></textarea>
                                     <p class="cr-perk-des-font">Please refer to our Terms of Use for more details on perks.</p>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <div class="btn-group col-sm-12 cr-perk-check" data-toggle="buttons">
-                                    <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing address</label>
-                                    <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email address</label>
-                                    <label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter handle</label>
-                                    <input type="text" name="custom1" id="customcheckbox1" class="customText" placeholder="Custom">
+                                <div class="btn-group col-sm-12" data-toggle="buttons">
+                                    <label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Shipping</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks"><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks"><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter <br> handle</label>
+                                    <input type="text" name="custom1" id="customcheckbox1" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place col-sm-4 col-xs-12" placeholder="Custom">
                                 </div>
                             </div>
                         </div>
@@ -409,14 +450,14 @@
                             <label class="panel-body cr-payments-lab">PAYMENTS</label>
 <%--                                            <img alt="" src="/images/Payment-Button.jpg">--%>
                             <label class="panel-body cr-payments">Payments are sent and received via your choice of Payment Gateway.
-                                You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>
+                               You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>
                         </div>
                         <label class="cr-pad-who">Who will recieve the funds</label>
                         <div class="btn-group col-sm-12 cr-perk-check cr-radio-option" data-toggle="buttons">
-                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 <g:if test="${project.fundsRecievedBy == 'RECIEPIENT'}">active</g:if>" id="recipient"> <input type="radio" value="yes" name=""><span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label> 
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 <g:if test="${project.fundsRecievedBy == 'PERSON'}">active</g:if>" id="person"> <input type="radio" name="" value="yes">Person</label> 
-                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 <g:if test="${project.fundsRecievedBy == 'NON-PROFITS'}">active</g:if>" id="non-profit"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A US 501CC1</span><span class="cr-reci-siz"> Non-profit</span></label>
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 <g:if test="${project.fundsRecievedBy == 'NGO'}">active</g:if>" id="ngo"> <input type="radio" name="" value="no"><span class="cr-reci-siz">NGO</span></label>
+                            <label class="panel-body cr-check-btn-first text-center col-sm-3 col-xs-12 <g:if test="${project.usedFor == 'RECIEPIENT'}">active</g:if>" id="recipient"> <span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label>  
+                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-reci-siz <g:if test="${project.fundsRecievedBy == 'PERSON'}">active</g:if>" id="person"> <input type="radio" name="" value="yes">Person</label> 
+                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments <g:if test="${project.fundsRecievedBy == 'NON-PROFITS'}">active</g:if>" id="non-profit"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A US 501CC1</span><span class="cr-reci-siz"> Non-profit</span></label>
+                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-mob-payments <g:if test="${project.fundsRecievedBy == 'NGO'}">active</g:if>" id="ngo"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A non-US </span><span class="cr-reci-siz">NGO</span></label>
                             <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 <g:if test="${project.fundsRecievedBy == 'OTHERS'}">active</g:if>" id="others"> <input type="radio" name="" value="no"><span class="cr-reci-siz">Others</span></label>
                         </div>
                     </div>
@@ -429,12 +470,23 @@
                                     <label class="col-sm-4 control-label">PayU Email</label>
                                     <div class="col-sm-6">
                                         <g:if test="${project.payuEmail}">
-                                            <input type="email" id="payuemail" class="form-control" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
-                                            <input type="text" id="secretKey" class="form-control" name="${FORMCONSTANTS.SECRETKEY}" value="${project.secretKey}">
+                                            <input type="email" id="payuemail" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
                                         </g:if>
-                                        <g:else test="${project.payuEmail}">
-                                             <input type="email" id="payuemail" class="form-control" name="${FORMCONSTANTS.PAYUEMAIL}">
-                                             <input type="text" id="secretKey" class="form-control" name="${FORMCONSTANTS.SECRETKEY}">
+                                        <g:else>
+                                             <input type="email" id="payuemail" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.PAYUEMAIL}">
+                                        </g:else>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">Bank Details</label>
+                                    <div class="col-sm-6">
+                                        <g:if test="${project.secretKey}">
+                                            <input type="text" id="secretKey" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.SECRETKEY}" value="${project.secretKey}">
+                                        </g:if>
+                                        <g:else>
+                                             <input type="text" id="secretKey" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.SECRETKEY}">
                                         </g:else>
                                     </div>
                                 </div>
@@ -447,10 +499,10 @@
                                 <img class="col-sm-4 cr-paypal-image" src="//s3.amazonaws.com/crowdera/assets/paypal-Image.png">
                                 <div class="col-sm-6 paypalVerification">
                                     <g:if test="${project.paypalEmail}">
-                                        <input id="paypalEmailId" type="email" class="form-control paypal-create" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}">
+                                        <input id="paypalEmailId" type="email" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}" placeholder="Paypal email address">
                                     </g:if>
                                     <g:else>
-                                        <input id="paypalEmailId" type="email" class="form-control paypal-create" name="${FORMCONSTANTS.PAYPALEMAIL}">
+                                        <input id="paypalEmailId" type="email" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" name="${FORMCONSTANTS.PAYPALEMAIL}" placeholder="Paypal email address">
                                     </g:else>
                                     <g:hiddenField name="paypalEmailAck" value="" id="paypalEmailAck"/>
                                 </div>
@@ -502,15 +554,44 @@
                         </div>
                     </g:else>
                     <div class="col-sm-12 cr-paddingspace" id="launch">
-                        <div class="col-sm-6 text-center " >
-                            <g:link class="cr-bg-preview-btn cr-btn-margin" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
+                        <div class="col-sm-6 text-center">
+                            <g:link class="cr-bg-preview-btn cr-btn-alignment-pre cr-btn-margin hidden-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
+                            <g:link class="cr-bg-xs-preview-btn cr-xs-mobile visible-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
                         </div>
                         <g:hiddenField name="isSubmitButton" value="true" id="isSubmitButton"></g:hiddenField>
 <%--                        <div class="col-sm-4 text-center padding-btn" >--%>
 <%--                            <button type="button" class="btn  btn-primary btn-colors" name="button" id="saveasdraft"  value="draft">Save</button>--%>
 <%--                        </div>--%>
-                        <div class="col-sm-6 text-center" >
-                            <button type="button" class="cr-bg-Launch-btn cr-btn-launch" id="submitProject" name="button" value="submitProject"></button>
+                        <div class="col-sm-6 text-center">
+                            <button type="button" class="cr-bg-Launch-btn cr-btn-alignment-lac cr-btn-launch hidden-xs" id="submitProject" name="button" value="submitProject"></button>
+                            <button type="button" class="cr-bg-xs-Launch-btn cr-xs-mobile visible-xs" id="submitProjectXS" name="button" value="submitProject"></button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modal -->
+                <div class="modal fade" id="addVideo" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header video-modal">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h3 class="modal-title text-center"><b>Upload Video</b></h3>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-sm-10 form-group">
+                                        <g:if test="${project.videoUrl}">
+                                            <input id="videoUrl" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
+                                        </g:if>
+                                        <g:else>
+                                            <input id="videoUrl" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
+                                        </g:else>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <button class="btn btn-info btn-sm cr-btn-color" href="#" data-dismiss="modal" id="add">Add</button>
+                                    <div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -518,35 +599,6 @@
             </div>
         </div>
 	</div>
-	
-    <!-- Modal -->
-    <div class="modal fade" id="addVideo" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header video-modal">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h3 class="modal-title text-center"><b>Upload Video</b></h3>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-sm-10">
-                            <g:if test="${project.videoUrl}">
-                                <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
-                            </g:if>
-                            <g:else>
-                                <input id="videoUrl" class="form-control" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
-                            </g:else>
-                        </div>
-                        <div class="col-sm-2">
-                            <button class="btn btn-info btn-sm cr-btn-color" href="#" data-dismiss="modal" id="add">Add</button>
-                        <div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div>
 	
 </body>
 </html>

@@ -174,6 +174,9 @@ $(function() {
             },
             answer: {
             	required:true
+            },
+            facebookUrl: {
+            	required:true
             }
         },
         messages:{
@@ -291,6 +294,61 @@ $(function() {
                 $('#campaigncreate').find('form').submit();
                 $('#submitProject').attr('disabled','disabled');
                 $('#saveasdraft').attr('disabled','disabled');
+            }
+    	}
+    });
+    
+    $('#submitProjectXS').on('click', function() {
+        var storyValue = $('.redactorEditor').redactor('code.get');
+        var storyEmpty = false;
+        if (storyValue == '' || storyValue == undefined){
+            $('#storyRequired').show();
+            storyEmpty = true;
+        } else {
+        $('#storyRequired').hide();
+            storyEmpty = false;
+        }
+
+        $( "#projectImageFile" ).rules( "add", {
+            required: true,
+            messages: {
+                required: "Please upload at least one campaign image"
+            }
+        });
+        $('.rewardNumberAvailable').each(function () {
+            $(this).rules("add", {
+                required: true,
+                number: true,
+                min: 0
+            });
+        });
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+            $('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: 999999,
+                    min: 250
+                });
+            });
+        } else {
+        	$('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: 999999,
+                    min: 1
+                });
+            });
+        }
+        
+    	if (validator.form()) {
+    		$('#isSubmitButton').attr('value',false);
+            if (!storyEmpty){
+                $('#campaigncreate').find('form').submit();
+                $('#submitProjectXS').attr('disabled','disabled');
             }
     	}
     });
@@ -469,9 +527,6 @@ $(function() {
         $('#ytVideo').html('<iframe style="width:192%;height:194px; display:block;" src='+ vurl +'></iframe>');
     }
 	$('#add').on('click',function(){
-        $( "#videoUrl" ).rules( "add", {
-            isYoutubeVideo: true
-        });
         var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         //var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/
         var url= $('#videoUrl').val().trim();
@@ -480,18 +535,16 @@ $(function() {
             $('#ytVideo').show();
             $('#media').hide();
             $('#media-video').show();
+            autoSave('videoUrl', url);
             var vurl=url.replace("watch?v=", "v/");
             $('#ytVideo').html('<iframe style="width:192%;height:194px; display:block;" src='+ vurl +'></iframe>');
         } else if($(this)){
-            $('#ytVideo').hide();
-            $('#media').show();
-            $('#media-video').hide();
+        	if(!$('#addvideoUrl').val()) {
+                $('#ytVideo').hide();
+                $('#media').show();
+                $('#media-video').hide();
+        	}
         }
-    });
-    $('#videoUrl').change(function(){
-        $('#ytVideo').hide();
-        var selectedVideoUrl = $(this).val();
-        autoSave('videoUrl', selectedVideoUrl);
     });
 
      /** ********************Organization Icon*************************** */
@@ -773,7 +826,7 @@ function setTitleText(){
              }
                
              str = str +  '<input type="text" placeholder="Amount"  name="rewardPrice'+count+'" id="rewardPrice'+count+
-                       '" style="width:100%;" class="form-control cr-input-digit rewardPrice">'+
+                       '" style="width:100%;" class="form-control cr-input-digit cr-tablat-padd form-control-no-border-amt rewardPrice">'+
            '</div>'+
        '</div>'+
     '</div>'+
@@ -782,7 +835,7 @@ function setTitleText(){
        '<div class="form-group">'+
            '<div class="col-sm-12">'+
               '<input type="text" placeholder="Name of Perk" name="rewardTitle'+count+'" id="rewardTitle'+count+
-                      '"  class="form-control cr-perk-title-number required">'+
+                      '"  class="form-control cr-perk-title-number cr-tablet-left form-control-no-border cr-placeholder cr-chrome-place text-color required">'+
            '</div>'+
        '</div>'+
     '</div>'+
@@ -790,7 +843,7 @@ function setTitleText(){
     '<div class="col-sm-5">'+
        '<div class="form-group">'+
            '<div class="col-sm-12">'+
-               '<input type="text" placeholder="Number available" name="rewardNumberAvailable'+count+'" id="rewardNumberAvailable'+count+'" class="form-control rewardNumberAvailable cr-perk-title-number">'+
+               '<input type="text" placeholder="Number available" name="rewardNumberAvailable'+count+'" id="rewardNumberAvailable'+count+'" class="form-control rewardNumberAvailable cr-perk-title-number text-color cr-placeholder cr-chrome-place form-control-no-border">'+
            '</div>'+
        '</div>'+
     '</div>'+
@@ -798,7 +851,7 @@ function setTitleText(){
    '<div class="form-group row">'+
        '<div class="col-sm-12">'+
            '<div class="col-sm-12">'+
-             '<textarea class="form-control required rewardDescription" name="rewardDescription'+count+
+             '<textarea class="form-control required rewardDescription form-control-no-border cr-placeholder cr-chrome-place text-color" name="rewardDescription'+count+
                 '" id="rewardDesc'+count+'" rows="2" placeholder="Description" maxlength="250"></textarea>'+
                 '<p class="cr-perk-des-font">Please refer to our Terms of Use for more details on perks.</p>'+
            '</div>'+
@@ -806,11 +859,12 @@ function setTitleText(){
    '</div>'+
    '<div class="col-sm-12">'+
        '<div class="form-group">'+
-           '<div class="btn-group col-sm-12 cr-perk-check" data-toggle="buttons">'+
-               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing address</label>'+
-               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email address</label>'+
-               '<label class="btn btn-default col-sm-3 col-xs-12"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter handle</label>'+
-               '<input type="text" name="custom'+count+'" id="customcheckbox'+count+'" class="customText" placeholder="Custom">'+
+           '<div class="btn-group col-sm-12" data-toggle="buttons">'+
+               '<label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Shipping</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing <br> address</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email <br> address</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter <br> handle</label>'+
+               '<input type="text" name="custom'+count+'" id="customcheckbox'+count+'" class="customText form-control-no-border cr-custom-place cr-customchrome-place text-color col-sm-4 col-xs-12" placeholder="Custom">'+
            '</div>'+
        '</div>'+
    '</div>'+
@@ -968,7 +1022,9 @@ function setTitleText(){
     
     $('#webAddress').blur(function (){
     	var webAddress = $(this).val();
-    	autoSave('webAddress', webAddress);
+    	if (validator.element( "#webAddress")) {
+            autoSave('webAddress', webAddress);
+    	}
     });
     
     $('#firstName').blur(function (){
@@ -988,20 +1044,41 @@ function setTitleText(){
     
     $('#paypalEmailId').blur(function (){
         var paypalEmailId = $(this).val();
-        $('#charitable').find('input').val('');
-        autoSave('paypalEmailId', paypalEmailId);
+        if (validator.element( "#paypalEmailId")) {
+            $('#charitable').find('input').val('');
+            autoSave('paypalEmailId', paypalEmailId);
+        }
     });
     
     $('#payuemail').blur(function (){
         var payUEmailId = $(this).val();
-        autoSave('payuEmail', payUEmailId);
+        if (validator.element( "#payuemail")) {
+            autoSave('payuEmail', payUEmailId);
+        }
     });
     
     $('#secretKey').blur(function (){
         var secretKey = $(this).val();
         autoSave('secretKey', secretKey);
     });
-
+    
+    $('#facebookUrl').blur(function (){
+        var facebookUrl = $(this).val();
+        if (validator.element( "#facebookUrl")) {
+            autoSave('facebookUrl', facebookUrl);
+        }
+    });
+    
+    $('#twitterUrl').blur(function (){
+        var twitterUrl = $(this).val();
+        autoSave('twitterUrl', twitterUrl);
+    });
+    
+    $('#linkedinUrl').blur(function (){
+        var linkedinUrl = $(this).val();
+        autoSave('linkedinUrl', linkedinUrl);
+    });
+    
     function autoSave(variable, varValue) {
         var projectId = $('#projectId').val();
         $.ajax({

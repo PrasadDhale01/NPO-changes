@@ -11,7 +11,7 @@
 		<div class="container">
         <% def base_url = grailsApplication.config.crowdera.BASE_URL %>
 			<div class="row" id="fundindex">
-				<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+				<g:if test="${project.payuStatus}">
 					<div class="col-md-4">
 						<g:if test="${flash.amt_message}">
 							<div class="alert alert-danger">

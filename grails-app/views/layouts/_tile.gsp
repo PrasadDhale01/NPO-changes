@@ -2,6 +2,7 @@
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
 <%
+    
     def isFundingAchieved = contributionService.isFundingAchievedForProject(project)
     def percentage = contributionService.getPercentageContributionForProject(project)
     def achievedDate
@@ -22,9 +23,11 @@
     } else {
         cents = percentage
     }
+    def currentEnv = projectService.getCurrentEnvironment()
 %>
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow tile-pad">
+    <g:hiddenField name="projectId" class="projectId" id="projectId" value="${project.id}"/>
 	<g:if test="${ended}">
 		<div class="over show-tile">
 			<img src="//s3.amazonaws.com/crowdera/assets/ended-tag.png" alt="Ended"/>
@@ -35,23 +38,46 @@
 			<img src="//s3.amazonaws.com/crowdera/assets/Funded-Tag.png" alt="Funded"/>
 		</div>
 	</g:elseif>
+	
     <div class="blacknwhite tile">
-        <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
-            <div class="imageWithTag">
-                <div class="under">
-                    <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
-                </div>
+        <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+            <div id="redirectCampaign">
+                <g:link action='showCampaign' controller='project' id="${project.id}" params="['fr': username]">
+                    <div class="imageWithTag">
+                        <div class="under">
+                            <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
+                        </div>
+                    </div>
+                </g:link>
             </div>
-        </g:link>
+        </g:if>
+        <g:else>
+            <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
+                <div class="imageWithTag">
+                    <div class="under">
+                        <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
+                    </div>
+                </div>
+            </g:link>
+        </g:else>
     </div>
 
     <div class="caption tile-title-descrp project-title project-story-span tile-min-height">
+        <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+            <div id="redirectCampaignTitle">
+                <g:link action='showCampaign' controller='project' id="${project.id}" params="['fr': username]">
+                    ${project.title.toUpperCase()}
+                </g:link>
+            </div>
+        </g:if>
+        <g:else>
             <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">
                 ${project.title.toUpperCase()}
             </g:link>
-            <div class="campaign-title-margin-bottom"></div>
-       		<span>${project.description}</span>
-    </div>
+        </g:else>
+        <div class="campaign-title-margin-bottom"></div>
+            <span>${project.description}</span>
+        </div>
 
     <div class="modal-footer tile-footer tile-fonts-footer">
     	<div class="row">

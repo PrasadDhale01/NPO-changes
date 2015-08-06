@@ -1,4 +1,7 @@
-<div class="row">
+<%
+    def projectId = project.id
+%>
+<div class="row" id="">
     <ul class="thumbnails list-unstyled">
         <g:each in="${teams}" var="team">
             <li class="col-md-4 col-sm-6 col-xs-12">
@@ -8,8 +11,26 @@
     </ul>
 </div>
 
-<g:if test="${totalteams.size() > teams.size()}">
-    <div class="showmoreteams col-md-4 col-sm-6 col-xs-12 text-center">
-        <g:link class="btn btn-primary btn-sm showteambtn" action="showMoreteam" controller="project" params="['teamOffset': teamOffset, 'projectTitle':vanityTitle,'fr': vanityUsername]">Show more</g:link>
-    </div>
-</g:if>
+<div class="showmoreteams col-md-4 col-sm-6 col-xs-12 text-center">
+    <g:if test="${totalteams.size() > teamOffset}">
+        <g:link class="btn btn-primary btn-sm showteambtn" action="teamsList" controller="project" params="['teamOffset': teamOffset, 'projectId':projectId,'fr': vanityUsername]">Show more</g:link>
+    </g:if>
+</div>
+
+<script>
+    $('.showmoreteams a').click(function(event) {
+        event.preventDefault();
+        var url = $(this).attr('href');
+        var grid = $('.showmoreteams');
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function(data) {
+               // $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                $('#teamList').append(data);
+                $('#teamList').find('.showmoreteams').first().remove();
+            }
+        });
+    });
+</script>

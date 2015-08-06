@@ -357,7 +357,7 @@
 	                <div class="clear"></div>
 	        </div>
 	
-	        <div class="col-xs-6 col-sm-3">
+	        <div class="col-xs-6 col-sm-3 position-top">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/ratinder-ahuja.jpg" alt="Ratinder Ahuja">
 			    <div class="crew-icons icons-manage">
@@ -369,7 +369,7 @@
 	                <div class="clear"></div>
 	        </div>
 	
-	        <div class="col-xs-6 col-sm-3">
+	        <div class="col-xs-6 col-sm-3 position-top">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/abhijitdas.png" alt="Abhijit Das">
 			    <div class="crew-icons icons-manage">

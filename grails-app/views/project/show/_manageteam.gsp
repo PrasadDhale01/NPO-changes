@@ -70,7 +70,9 @@
 
     <div class="tab-content">
         <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
-            <g:render template="show/teamgrid"/>
+            <div class="teamList" id="teamList">
+                <g:render template="show/teamgrid"/>
+            </div>
         </div>
     </div>
 	

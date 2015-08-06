@@ -548,7 +548,7 @@ hr.footer-hr{
 .footer-mid-section p span{
     color:#e3e3e3;
     font-size:15px;	
-    padding-left: 44%; 
+    padding-left: 38%; 
 }
 .thomas-margin-align{
 	line-height:1px;
@@ -689,6 +689,14 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.founder-centering {
+	    display: block;
+	    margin-left: -13px !important;
+	    margin-right: auto;
+	}
+	.crew-title-centering {
+	    margin-left: 6% !important;
+	}
 	div.cr-perks-space {
         margin-left: 0;
     }
@@ -1174,7 +1182,6 @@ a {
 	.thomas-testimonial span{
 	   	color:#ffffff;
 		font-size:16px !important;
-		padding-left:45% !important;
 	}
     div.left-pad {
         left: 24%;
@@ -1190,9 +1197,9 @@ a {
 	color: #fff !important;
 	display: none;
 	height: 31px;
-	left: 15px;
+	left: 16px;
 	position: absolute;
-	top: 110px;
+	top: 90px;
 	width: 119px;
     }
     .socialicon{
@@ -1283,6 +1290,44 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.crew-icons-founder {
+		background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
+		color: #fff !important;
+		display: none;
+		height: 31px;
+		left: 43px !important;
+		position: absolute;
+		top: 93px !important;
+		width: 120px;
+	}
+	.founder-centering {
+	    display: block;
+	    margin-left: -48px !important;
+	    margin-right: auto;
+	}
+	.crew-title-centering {
+	    margin-left: 7% !important;
+	}
+	.lft {
+	    padding-left: 0% !important;
+	}
+	.footer-disclaimer {
+		font-size: 9px !important ;
+		font-weight: normal;
+	}
+	div.footer-disclaimer-lg{
+		padding-left: 0px !important;
+		padding-right: 0px !important;
+	}
+	.crew-name-centering{
+		text-align:center;
+	}
+	.crew-img-centering{
+		display: block !important;
+		margin-left: auto !important;
+		margin-right: auto !important; 
+		width: 124px;
+	}
 	div.cr-perks-space {
         margin-left: 0;
         padding-right: 47px;
@@ -1663,9 +1708,9 @@ a {
 	color: #fff !important;
 	display: none;
 	height: 31px;
-	left: 15px;
+	left: 36px;
 	position: absolute;
-	top: 110px;
+	top: 93px;
 	width: 120px;
     }
     #aboutus .caption {
@@ -1676,7 +1721,7 @@ a {
         text-align: center;
     }
     div.tabs {
-        margin-left: 18px;
+        margin-left: 8px;
         margin-right: 0;
     }
     div.footer-last-section-links{
@@ -1721,7 +1766,7 @@ a {
     .footer-mid-section p span {
         color: #ffffff;
         font-size: 15px !important;
-        padding-left: 40% !important;
+        padding-left: 28% !important;
         font-weight:normal;
     }
     .socialicon img {
@@ -1917,7 +1962,7 @@ a {
 	.payment-method-footer{
 		font-size:12px;
 		font-weight:normal;
-		margin-left: -20px !important;
+		margin-left: -2px !important;
 	}
     .cr-btn-launch{
         margin-top: 0px;
@@ -2166,6 +2211,37 @@ a {
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	.founder-centering {
+	    display: block;
+	    margin-left: -90px !important;
+	    margin-right: auto;
+	}
+	.crew-title-centering{
+		margin-left:0% !important;
+	}
+	.lft {
+	    padding-left: 2px !important;
+	}
+	.footer-disclaimer {
+		font-size: 9px !important ;
+		font-weight: normal;
+	}
+	div.footer-disclaimer-lg{
+		padding-left: 16px !important;
+		padding-right: 10px !important;
+	}
+	.crew-container{
+		width:1000px;
+	}
+	.crew-img-centering{
+		display: block !important;
+		margin-left: auto !important;
+		margin-right: auto !important; 
+		width: 124px;
+	}
+	.crew-name-centering{
+		text-align:center;
+	}
 	.mng-text-size{
 		font-size:14px;
 	}
@@ -2194,7 +2270,7 @@ a {
 	.footer-mid-section p span {
 		color: #e3e3e3;
 		font-size: 15px;
-		padding-left: 44% !important;
+		padding-left: 38% !important;
 	}
 	.nav-tabs.nav-justified > li > a {
        font-size: 12px !important;
@@ -2246,9 +2322,9 @@ a {
 	color: #fff !important;
 	display: none;
 	height: 31px;
-	left: 15px;
+	left: 72px;
 	position: absolute;
-	top: 110px;
+	top: 93px;
 	width: 120px;
     }
     div.container.crewpage > h1 {
@@ -2266,14 +2342,11 @@ a {
 		.footer-newsletter .help-block {
     		color: #f04124;
     		margin-left: 1px !important;
-    		width: 190% !important;
+    		width: 190% !important;l
 		}
 		.footer-container {
     		width: 320px !important;
 		}
-        div#aboutus {
-            padding-left: 15% !important;
-        }
         div.crowdera-title img{
 			display:block;
 			margin-left:auto;
@@ -3969,6 +4042,7 @@ textarea.form-control {
 }
 #aboutus .caption { 
 	font-size:9px;
+	padding-left:3px !important;
 }
 #aboutus .caption span{ 
 	display:block; 
@@ -5395,7 +5469,10 @@ textarea.form-control {
 	    font-size: 32px;
 	}
 	#aboutus.row{
-	    padding:0px;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 240px !important;
 	}
 	.squarebox {
 	    width: 150px;
@@ -5813,6 +5890,9 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.crew-title-centering {
+	    margin-left: 7% !important;
+	}
 	div.cr-perks-space {
         margin-left: 0;
     }
@@ -6434,9 +6514,9 @@ textarea.form-control {
 	color: #fff !important;
 	display: none;
 	height: 31px;
-	left: 15px;
+	left: 16px;
 	position: absolute;
-	top: 110px;
+	top: 90px;
 	width: 119px;
     }
     
@@ -6445,7 +6525,10 @@ textarea.form-control {
         width: 100%;
     }
     div#aboutus {
-       padding-left: 10%;
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 240px !important;
     }
     div.container.crewpage > h1 {
         text-align: center;
@@ -7779,7 +7862,7 @@ span.tile-day-num{
 .crew-icons{
     display: none;
     position: absolute;
-    top: 111px;
+    top: 90px;
     left: 15px;
     background: rgba(0,0,0,0.8);
     width: 120px;
@@ -7797,7 +7880,7 @@ img.fa-icon {
     left: 37px;
 }
 .lft {
-  padding-left: 7%;
+  padding-left: 4%;
 }
 .upload-btn {
     padding-left: 0%;
@@ -8859,4 +8942,35 @@ body {
 	margin-right: 204px;
     margin-top: -2px;
     border:none;
+}
+.crew-iconss{
+	display: none;
+	position: absolute;
+	top: 90px;
+	left: 15px;
+	background: rgba(0,0,0,0.8);
+	width: 120px;
+	height: 30px;
+	color:#fff !important;
+}
+.position-top{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+.footer-disclaimer{
+	font-size:10px;
+	font-weight:normal;
+}
+.footer-disclaimer-lg{
+	bottom:5px;
+	padding-left:27px !important;
+	text-align:center;
+} 
+.founder-centering{
+	display:block;
+	margin-left: -35px;
+	margin-right:auto;
+}
+.crew-title-centering{
+	margin-left:-7%;
 }

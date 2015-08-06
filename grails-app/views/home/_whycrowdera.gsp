@@ -11,7 +11,7 @@
 				    <img class="whycrowderaimg" src="//s3.amazonaws.com/crowdera/assets/crowdera-is-free-icon.png" alt="crowdera-is-free">
                 </div>
                 <div class="col-md-10">
-                    <h4 class="pull-left subheadingtext">Crowdera is FREE</h4>
+                    <h4 class="pull-left subheadingtext">Crowdera is FREE*</h4>
                     <div class="clear"></div>
 				    <p class="pull-left crowderacontent1">We don't dip into your donor dollars - No Fee at all.</p>
 				</div>
@@ -101,7 +101,7 @@
 				    <img src="//s3.amazonaws.com/crowdera/assets/crowdera-is-free-icon.png" alt="crowdera-is-free">
                 </div>
                 <div class="col-sm-9 col-xs-9">
-                    <h4 class="pull-left subheadingtext">Crowdera is FREE</h4>
+                    <h4 class="pull-left subheadingtext">Crowdera is FREE*</h4>
                     <div class="clear"></div>
 				    <p class="pull-left crowderacontent1">We don't dip into your donor dollars - No Fee at all.</p>
 				</div>

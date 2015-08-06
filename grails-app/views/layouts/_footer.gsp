@@ -51,11 +51,11 @@
 		    <div class="col-xs-12 footer-mid-section footer-p-text-align">
 			<br>
 			<div class="socialicon">
-			    <a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src=""></a>
-			    <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src=""></a>
-			    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src=""></a>
-			    <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src=""></a>
-			    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" src=""></a>
+			    <a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
+			    <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>
+			    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
+			    <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
+			    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
 			</div>
 			<br>
             <div class="thomas-testimonial">
@@ -65,7 +65,7 @@
                 <span class="thomas-margin-align">Two Cents of Hope</span><br>
             </div>
 			<div class="footer-newsletter">
-			   <form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-sm" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+			   <form action="//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&amp;id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-sm" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 			        <div class="col-xs-offset-1 newsletter-align">
 				   <br>
 				   <div class="footer-mid-section-menu"><span class="footer-header-mobile subscribeHeading">Sign up for Newsletter</span></div>
@@ -94,6 +94,15 @@
 			</div>
 		    </div>
 		</section>
+		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia' || currentEnv=='development'}">
+	    	<section class="row">
+	    		<div class="col-lg-12 footer-disclaimer-lg">
+    				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
+	     			Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
+	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform.</span>
+	     		</div>
+    		</section>
+	    </g:if>
 		<br><br>  			
 	</div>
   		
@@ -129,16 +138,16 @@
 		<div class="col-sm-4 socialiconlinks footer-mid-section">
 		    <br>
 		   <div class="socialicon pull-right">
-			<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon"></a>
-			<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src=""></a>
-			<a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src=""></a>
-			<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src=""></a>
-			<a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" src=""></a>
+			<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
+			<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>
+			<a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
+			<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
+			<a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
 			<br><br>
 		    </div>
 		    <br><br>
 		    <div class="footer-newsletter">
-			<form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-md" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+			<form action="//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&amp;id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-md" name="mc-embedded-subscribe-form" class="validate" target="_blank">
 			    <div class="newsletter-alignment">
 			        <div class="newsletter-input">
 				    <input type="text" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">
@@ -160,16 +169,18 @@
 		<hr class="footer-hr">
 	    </section>
       	    <section class="row">
-		<div class="col-sm-8 footer-last-section-payment-icon">
-		    <div class="col-sm-6 payment-method-footer">
-		        <span>Payment Methods</span>
-			<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" class="payment-card-icons" alt="payment-icon">
-		    </div>
-		    <div class="col-sm-6 secure-payment-footer">
-			<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
-			<div class="footer-text-align">100% Secure Payment</div>
-		    </div>
-		</div>
+				<div class="col-sm-8 footer-last-section-payment-icon">
+					<g:if test="${currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv=='development'}">
+		    			<div class="col-sm-6 payment-method-footer">
+		        			<span>Payment Methods</span>
+							<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" class="payment-card-icons" alt="payment-icon">
+		    			</div>
+		    			<div class="col-sm-6 secure-payment-footer">
+							<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
+							<div class="footer-text-align">100% Secure Payment</div>
+		    			</div>
+		    		</g:if>
+				</div>
 		<div class="col-sm-4 footer-last-section-links">
 		    <span class="text-primary pull-right">
 			<a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of  Use</a>&nbsp;&nbsp;
@@ -178,6 +189,15 @@
 		    </span>
 		</div>
 	    </section>
+	    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia' || currentEnv=='development'}">
+	    	<section class="row">
+	    		<div class="col-lg-12 footer-disclaimer-lg">
+    				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
+	     			Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
+	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform.</span>
+	     		</div>
+    		</section>
+	    </g:if>
 	</div>
   		
 	<!-- Footer Design for large size device -->	
@@ -214,16 +234,16 @@
 		<div class="col-md-4 socialiconlinks footer-mid-section">
 		    <br>
 		    <div class="socialicon pull-right">
-			<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src=""></a>
-			<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src=""></a>	
-			<a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src=""></a>
-			<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src=""></a>
-			<a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" src=""></a>
+			<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
+			<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>	
+			<a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
+			<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
+			<a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
 			<br><br>
 		    </div>
 		    <br><br>
 		    <div class="footer-newsletter">
-			<form action="//fedu.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=e37aea1b78" method="post" id="mvc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+			<form action="//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&amp;id=e37aea1b78" method="post" id="mvc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
 			    <div class="newsletter-alignment">
 				<div class="newsletter-input">
 				    <input type="text" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">
@@ -247,14 +267,16 @@
       	 
 	    <section class="row">
 		<div class="col-md-8 footer-last-section-payment-icon">
-		    <div class="col-md-6 payment-method-footer">
-			<span>Payment Methods</span>
-		        <img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" alt="payment-icon">
-		    </div>
-		    <div class="col-md-6 secure-payment-footer">
-			<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
-			<div class="footer-text-align">100% Secure Payment</div>
-		    </div>
+			<g:if test="${currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv=='development'}">
+		    	<div class="col-md-6 payment-method-footer">
+					<span>Payment Methods</span>
+		        	<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" alt="payment-icon">
+		    	</div>
+		    	<div class="col-md-6 secure-payment-footer">
+					<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
+					<div class="footer-text-align">100% Secure Payment</div>
+		    	</div>
+		    </g:if>
 		</div>
 		<div class="col-md-4 footer-last-section-links">
 		    <span class="text-primary">
@@ -264,6 +286,15 @@
 		    </span>
 		</div>
 	    </section>
+	    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia' || currentEnv=='development'}">
+	    	<section class="row">
+	    		<div class="col-lg-12 footer-disclaimer-lg">
+    				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
+	     			Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
+	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform.</span>
+	     		</div>
+    		</section>
+	    </g:if>
 	</div>
     </div>
   </div>

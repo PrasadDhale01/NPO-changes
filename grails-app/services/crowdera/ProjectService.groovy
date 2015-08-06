@@ -1964,7 +1964,7 @@ class ProjectService {
         } else {
             maxrange = offset + (count - offset)
         }
-        teamList = teams.subList(0, maxrange)
+        teamList = teams.subList(offset, maxrange)
         return [teamList: teamList, maxrange: maxrange, teams: teams]
     }
     
@@ -1986,7 +1986,7 @@ class ProjectService {
         } else {
             maxrange = offset + (count - offset)
         }
-        teamList = teams.subList(0, maxrange)
+        teamList = teams.subList(offset, maxrange)
         return [teamList: teamList, maxrange: maxrange, teams: teams]
     }
     

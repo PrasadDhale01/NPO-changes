@@ -37,18 +37,20 @@
 		</g:if>
 		<div class="teamtileseperator"></div>
 
-		<div class="tab-content">
-		    <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="manageTeam">
-			    <g:render template="manageproject/teamgrid"/>
-			</div>
-			<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamValidation">
-			    <g:render template="manageproject/teamvalidationIndex"/>
-			</div>
-			<div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="campaignStatistics">
-			    <g:render template="manageproject/campaignStatisticsIndex" model="[teams:totalteams]"/>
-			</div>
-		</div>
-	</g:if>
+        <div class="tab-content">
+            <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="manageTeam">
+                <div class="teamList" id="teamList">
+                    <g:render template="manageproject/teamgrid"/>
+                </div>
+            </div>
+            <div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="teamValidation">
+                <g:render template="manageproject/teamvalidationIndex"/>
+            </div>
+            <div class="tab-pane col-md-12 col-sm-12 col-xs-12" id="campaignStatistics">
+                <g:render template="manageproject/campaignStatisticsIndex" model="[teams:totalteams]"/>
+            </div>
+        </div>
+    </g:if>
 </g:if>
 <g:else>
     <div class="col-md-12 col-sm-12 col-xs-12 alert alert-info">You can manage your team once the campaign is published.</div>

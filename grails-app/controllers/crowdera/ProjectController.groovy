@@ -1418,9 +1418,16 @@ class ProjectController {
             User user = userService.getUserByUsername(username)
             Project project = projectService.getProjectById(params.projectId)
             Team currentTeam = projectService.getCurrentTeam(project,user)
-
+            def currentUser = userService.getCurrentUser()
             List contributions = []
             List totalContributions = []
+            
+            def isCrUserCampBenOrAdmin
+            def CurrentUserTeam
+            if (currentUser) {
+                isCrUserCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
+                CurrentUserTeam = userService.getTeamByUser(currentUser, project)
+            }
 
             if (project.user == user) {
                 def contribution = projectService.getProjectContributions(params, project)
@@ -1431,7 +1438,7 @@ class ProjectController {
                 totalContributions = contribution.totalContributions
                 contributions = contribution.contributions
             }
-            def model = [totalContributions : totalContributions, contributions: contributions, project: project, team: currentTeam, vanityUsername:params.fr]
+            def model = [totalContributions : totalContributions, CurrentUserTeam: CurrentUserTeam,isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, contributions: contributions, project: project, team: currentTeam, vanityUsername:params.fr, currentUser: currentUser]
             if (request.xhr) {
                 render(template: "show/contributionlist", model: model)
             }
@@ -1439,7 +1446,7 @@ class ProjectController {
             render ''
        }
     }
-	
+    
     def teamsList() {
         def username
         if (params.projectId && params.fr){
@@ -1455,6 +1462,45 @@ class ProjectController {
             def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr]
             if (request.xhr) {
                 render(template: "show/teamgrid", model: model)
+            }
+        } else {
+            render ''
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def contributionsList() {
+        if (params.projectId){
+            Project project = projectService.getProjectById(params.projectId)
+            def user = userService.getCurrentUser();
+            List contributions = []
+            List totalContributions = []
+            
+            def contribution = projectService.getProjectContributions(params, project)
+            totalContributions = contribution.totalContributions
+            contributions = contribution.contributions
+            
+            def model = [totalContributions : totalContributions, contributions: contributions, project: project, user:user]
+            if (request.xhr) {
+                render(template: "manageproject/contributionlist", model: model)
+            }
+       } else {
+            render ''
+       }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def teamList() {
+        if (params.projectId){
+            Project project = projectService.getProjectById(params.projectId)
+            def teamObj = projectService.getValidatedTeam(project, params)
+            def teamOffset = teamObj.maxrange
+            def validatedTeam = teamObj.teamList
+            def totalteams = teamObj.teams
+            
+            def model = [teamOffset : teamOffset, validatedTeam: validatedTeam, totalteams: totalteams, project: project]
+            if (request.xhr) {
+                render(template: "manageproject/teamgrid", model: model)
             }
         } else {
             render ''

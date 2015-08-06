@@ -169,18 +169,18 @@
 		<hr class="footer-hr">
 	    </section>
       	    <section class="row">
-      	    <g:if test="${currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv=='development'}">
 				<div class="col-sm-8 footer-last-section-payment-icon">
-		    		<div class="col-sm-6 payment-method-footer">
-		        		<span>Payment Methods</span>
-						<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" class="payment-card-icons" alt="payment-icon">
-		    		</div>
-		    		<div class="col-sm-6 secure-payment-footer">
-						<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
-						<div class="footer-text-align">100% Secure Payment</div>
-		    		</div>
+					<g:if test="${currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv=='development'}">
+		    			<div class="col-sm-6 payment-method-footer">
+		        			<span>Payment Methods</span>
+							<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" class="payment-card-icons" alt="payment-icon">
+		    			</div>
+		    			<div class="col-sm-6 secure-payment-footer">
+							<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
+							<div class="footer-text-align">100% Secure Payment</div>
+		    			</div>
+		    		</g:if>
 				</div>
-			</g:if>
 		<div class="col-sm-4 footer-last-section-links">
 		    <span class="text-primary pull-right">
 			<a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of  Use</a>&nbsp;&nbsp;

@@ -94,6 +94,15 @@
 			</div>
 		    </div>
 		</section>
+		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia' || currentEnv=='development'}">
+	    	<section class="row">
+	    		<div class="col-lg-12 footer-disclaimer-lg">
+    				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
+	     			Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
+	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform.</span>
+	     		</div>
+    		</section>
+	    </g:if>
 		<br><br>  			
 	</div>
   		
@@ -160,16 +169,18 @@
 		<hr class="footer-hr">
 	    </section>
       	    <section class="row">
-		<div class="col-sm-8 footer-last-section-payment-icon">
-		    <div class="col-sm-6 payment-method-footer">
-		        <span>Payment Methods</span>
-			<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" class="payment-card-icons" alt="payment-icon">
-		    </div>
-		    <div class="col-sm-6 secure-payment-footer">
-			<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
-			<div class="footer-text-align">100% Secure Payment</div>
-		    </div>
-		</div>
+      	    <g:if test="${currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv=='development'}">
+				<div class="col-sm-8 footer-last-section-payment-icon">
+		    		<div class="col-sm-6 payment-method-footer">
+		        		<span>Payment Methods</span>
+						<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" class="payment-card-icons" alt="payment-icon">
+		    		</div>
+		    		<div class="col-sm-6 secure-payment-footer">
+						<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
+						<div class="footer-text-align">100% Secure Payment</div>
+		    		</div>
+				</div>
+			</g:if>
 		<div class="col-sm-4 footer-last-section-links">
 		    <span class="text-primary pull-right">
 			<a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of  Use</a>&nbsp;&nbsp;
@@ -178,6 +189,15 @@
 		    </span>
 		</div>
 	    </section>
+	    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia' || currentEnv=='development'}">
+	    	<section class="row">
+	    		<div class="col-lg-12 footer-disclaimer-lg">
+    				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
+	     			Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
+	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform.</span>
+	     		</div>
+    		</section>
+	    </g:if>
 	</div>
   		
 	<!-- Footer Design for large size device -->	
@@ -247,14 +267,16 @@
       	 
 	    <section class="row">
 		<div class="col-md-8 footer-last-section-payment-icon">
-		    <div class="col-md-6 payment-method-footer">
-			<span>Payment Methods</span>
-		        <img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" alt="payment-icon">
-		    </div>
-		    <div class="col-md-6 secure-payment-footer">
-			<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
-			<div class="footer-text-align">100% Secure Payment</div>
-		    </div>
+			<g:if test="${currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv=='development'}">
+		    	<div class="col-md-6 payment-method-footer">
+					<span>Payment Methods</span>
+		        	<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" alt="payment-icon">
+		    	</div>
+		    	<div class="col-md-6 secure-payment-footer">
+					<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
+					<div class="footer-text-align">100% Secure Payment</div>
+		    	</div>
+		    </g:if>
 		</div>
 		<div class="col-md-4 footer-last-section-links">
 		    <span class="text-primary">
@@ -264,6 +286,15 @@
 		    </span>
 		</div>
 	    </section>
+	    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia' || currentEnv=='development'}">
+	    	<section class="row">
+	    		<div class="col-lg-12 footer-disclaimer-lg">
+    				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
+	     			Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
+	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform.</span>
+	     		</div>
+    		</section>
+	    </g:if>
 	</div>
     </div>
   </div>

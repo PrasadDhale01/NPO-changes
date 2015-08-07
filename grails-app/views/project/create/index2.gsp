@@ -3,6 +3,21 @@
 <g:set var="projectService" bean="projectService"/>
 <% 
     def base_url = grailsApplication.config.crowdera.BASE_URL
+    def firstAdmins = project.projectAdmins[1]
+    def secondAdmins = project.projectAdmins[2]
+    def thirdAdmins = project.projectAdmins[3]
+    def email1
+    def email2
+    def email3
+    if (firstAdmins) {
+        email1 = firstAdmins.getEmail()
+    }
+    if (secondAdmins) {
+        email2 = secondAdmins.getEmail()
+    }
+    if (thirdAdmins) {
+        email3 = thirdAdmins.getEmail()
+    }
 %>
 <html>
 <head>
@@ -11,32 +26,6 @@
     
     <link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
     <link rel="stylesheet" href="/css/datepicker.css">
-    <script src="/js/main.js"></script>
-    <script src="/js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript">
-
-    function removeLogo(){
-        $('#delIcon').removeAttr('src');
-        $('#imgIcon').removeAttr('src');
-        $('#icondiv').hide();
-        $('#iconfile').val(''); 
-    }
-
-    var nowTemp = new Date();
-    var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-    now.setDate(now.getDate()+91);
-    var j = jQuery.noConflict();
-    j(function(){
-        j('#datepicker').datepicker({
-            onRender: function(date) {    
-                if (date.valueOf() < nowTemp.valueOf() || date.valueOf() >= now.valueOf()){
-                    return  'disabled';
-                }
-            }
-        });
-    });
- 
-    </script>
 </head>
 <body>
     <input type="hidden" id="b_url" value="<%=base_url%>" /> 
@@ -65,7 +54,12 @@
                     <div class="form-group" id="start">
                         <div class="col-sm-3">
                              <div class="input-group enddate">
-                                 <input class="datepicker pull-left cr-datepicker-height cr-mob-datepicker" id="datepicker" name="${FORMCONSTANTS.DAYS}" readonly="readonly" placeholder="Deadline"> 
+                                 <g:if test="${campaignEndDate}">
+                                     <input class="datepicker pull-left cr-datepicker-height cr-mob-datepicker" id="datepicker" name="${FORMCONSTANTS.DAYS}" readonly="readonly" value="${campaignEndDate}" placeholder="Deadline"> 
+                                 </g:if>
+                                 <g:else>
+                                     <input class="datepicker pull-left cr-datepicker-height cr-mob-datepicker" id="datepicker" name="${FORMCONSTANTS.DAYS}" readonly="readonly" placeholder="Deadline">
+                                 </g:else>
                                  <i class="fa fa-caret-down cr-caret-size" style="position:absolute;"></i>
                              </div>
                         </div>
@@ -163,14 +157,11 @@
 	                                                                    and make your campaign go viral. Be passionate and make 
 	                                                                    them believe and trust your goal.</label>
                        	    </div>
-                            <textarea name="${FORMCONSTANTS.STORY}" row="4" col="6" class="redactorEditor" placeholder="Brief summary:-
-                                                                                                                                                   Your story needs to be like the book readers never want to 
-                                                                                                                                                   keep down! Tell your contributors what you are raising funds for
-                                                                                                                                                   and how will it make difference to you. Your organization
-                                                                                                                                                   and the community at large.">
+                            <textarea name="${FORMCONSTANTS.STORY}" row="4" col="6" class="redactorEditor">
                                 <g:if test="${project.story}">${project.story}</g:if>
                             </textarea>
                             <span id="storyRequired">Ths field is required</span>
+                            <g:hiddenField name="projectHasStory" id="projectHasStory" value="${project.story}"/>
                         </div>
                     </div>
                 </div>
@@ -203,7 +194,16 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="text" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email1" id="firstadmin" placeholder="First Admin"></input>
+                                        <g:if test="${email1}">
+                                            <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email1" id="firstadmin" value="${email1}" placeholder="First Admin"></input>
+                                            <div class="deleteIconAbove">
+                                                <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email1', '${email1}');" 
+                                                    src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete1"/>
+                                            </div>
+                                        </g:if>
+                                        <g:else>
+                                            <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email1" id="firstadmin" placeholder="First Admin"></input>
+                                        </g:else>
                                     </div>
                                 </div>
                             </div>
@@ -211,7 +211,16 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                  <div class="col-sm-12">
-                                     <input type="text" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email2" id="secondadmin" placeholder="Second Admin"></input>
+                                     <g:if test="${email2}">
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email2" id="secondadmin" value="${email2}" placeholder="Second Admin"></input>
+                                         <div class="deleteIconAbove">
+                                             <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email2', '${email2}');"
+                                                 src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete2"/>
+                                         </div>
+                                     </g:if>
+                                     <g:else>
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email2" id="secondadmin" placeholder="Second Admin"></input>
+                                     </g:else>
                                  </div>
                                 </div>
                             </div>
@@ -219,7 +228,16 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                  <div class="col-sm-12">
-                                     <input type="text" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email3" id="thirdadmin" placeholder="Third Admin"></input>
+                                     <g:if test="${email3}">
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email3" id="thirdadmin" value="${email3}" placeholder="Third Admin"></input>
+                                         <div class="deleteIconAbove">
+                                             <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email3' ,'${email3}');" 
+                                                 src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete3"/>
+                                         </div>
+                                     </g:if>
+                                     <g:else>
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email3" id="thirdadmin" placeholder="Third Admin"></input>
+                                     </g:else>
                                  </div>
                                 </div>
                             </div>       
@@ -478,19 +496,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">Bank Details</label>
-                                    <div class="col-sm-6">
-                                        <g:if test="${project.secretKey}">
-                                            <input type="text" id="secretKey" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.SECRETKEY}" value="${project.secretKey}">
-                                        </g:if>
-                                        <g:else>
-                                             <input type="text" id="secretKey" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.SECRETKEY}">
-                                        </g:else>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </g:if>
                     <g:else>
@@ -599,6 +604,76 @@
             </div>
         </div>
 	</div>
-	
+    <script src="/js/main.js"></script>
+    <script src="/js/bootstrap-datepicker.js"></script>
+    <script type="text/javascript">
+
+        function removeLogo(){
+            $('#delIcon').removeAttr('src');
+            $('#imgIcon').removeAttr('src');
+            $('#icondiv').hide();
+            $('#iconfile').val(''); 
+        }
+
+        var nowTemp = new Date();
+        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+        now.setDate(now.getDate()+91);
+        var j = jQuery.noConflict();
+        j(function(){
+            j('#datepicker').datepicker({
+                onRender: function(date) {    
+                    if (date.valueOf() < nowTemp.valueOf() || date.valueOf() >= now.valueOf()){
+                        return  'disabled';
+                    }
+                }
+            }).on('changeDate', function(){
+                autoSave('date', $('#datepicker').val());
+            });
+        });
+
+        function autoSave(variable, varValue) {
+            var projectId = $('#projectId').val();
+            $.ajax({
+                type:'post',
+                url:$("#b_url").val()+'/project/autoSave',
+                data:'projectId='+projectId+'&variable='+variable+'&varValue='+varValue,
+                success: function(data) {
+                    $('#test').val('test');
+                }
+            }).error(function() {
+                alert('An error occured');
+            });
+        }
+
+        function deleteAdmin(current, projectId, email, username) {
+            var stat= confirm("Are you sure you want to delete this admin?");
+            if(stat){
+            if(email == "email1"){
+                $('#firstadmin').val('');
+                $('#logoDelete1').hide();  
+             }
+             if(email == "email2"){
+                 $('#secondadmin').val('');
+                 $('#logoDelete2').hide();  
+             }
+             if(email == "email3"){
+                 $('#thirdadmin').val('');
+                 $('#logoDelete3').hide();  
+             }
+         	                      
+             $.ajax({
+                  type:'post',
+                  url:$("#b_url").val()+'/project/deleteCampaignAdmin',
+                  data:'projectId='+projectId+'&username='+username,
+                  success: function(data){
+                  $('#test').html(data);
+              }
+              }).error(function(){
+                  alert('An error occured');
+              });
+             }
+         }
+
+    </script>
 </body>
 </html>

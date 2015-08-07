@@ -4559,6 +4559,10 @@ textarea.form-control {
 	.divThirdAdmin {
 		margin-left: -68px !important;
 	}
+    .deleteIconAbove{
+        top: -3px;
+        right: 7%;
+    }
 }
 
 @media only screen and (max-width: 768px) {

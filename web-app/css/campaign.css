@@ -178,10 +178,32 @@ p {
     background-color: #333;
     border-color: #333;
 }
-
 .helpdesk {
-    margin-left: 15% !important;
-    margin-right: 15% !important;
+	
+}
+.contact-details .contact-details-heading{
+    margin-top: 47px;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 0px 0px 0 0px;
+}
+.contact-details .col-sm-4, .contact-details .col-sm-8{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.contact-details-body {
+    padding: 0px 0px 0 0px;
+}
+/* .modal-header { */
+/*     padding: 9px 0px 0 0px !important; */
+/* } */
+/* .modal-body { */
+/*     padding: 15px 0px 0 0px !important; */
+/* } */
+
+.contactUs {
+    width: 1000px;
+    margin: 0 auto;
 }
 
 .commentsoncampaign dd {

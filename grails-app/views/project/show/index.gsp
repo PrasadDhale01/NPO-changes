@@ -54,6 +54,10 @@
 <div class="feducontent">
 	<div class="container">
 		<g:if test="${project}">
+		    <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
+		    <div class="redirectUrl">
+		        <g:link controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"></g:link>
+		    </div>
             <div class="row">
              	<g:if test="${flash.prj_mngprj_message}">
                     <div class="alert alert-success show-msz" align="center">
@@ -190,9 +194,16 @@
                     </g:elseif>
                     <g:else>
                         <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
-	                        <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
-	                            <button name="submit" class="btn btn-success btn-lg btn-block" id="btnFundDesktop">Fund this Campaign</button>
-	                        </g:form>
+                            <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+	                            <div class="redirectCampaign">
+	                                <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-success btn-lg btn-block" id="btnFundDesktop">Fund this Campaign</button></g:link>
+	                            </div>
+	                        </g:if>
+	                        <g:else>
+	                            <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
+	                                <button name="submit" class="btn btn-success btn-lg btn-block" id="btnFundDesktop">Fund this Campaign</button>
+	                            </g:form>
+	                        </g:else>
                         </g:if>
                         <g:else>
                             <button name="contributeButton" class="btn btn-success btn-lg btn-block">Fund this Campaign</button>

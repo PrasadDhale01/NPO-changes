@@ -503,3 +503,9 @@ button.videoUrledit.close {
     margin-left: 15px;
     padding-bottom: 5px;
 }
+.redirectCampaign a {
+    text-decoration: none !important;	
+}
+.redirectUrl a {
+    display: none;
+}

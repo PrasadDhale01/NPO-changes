@@ -84,12 +84,22 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	                    </div>
 	            
 	            <div class="text-center">
-	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-create-btn hidden-xs" name="button" value="" id="campaigncreatebtn"></button>
-	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-xs-create-btn visible-xs" name="button" value="" id="campaigncreatebtn"></button>
+	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-create-btn createsubmitbutton hidden-xs" name="button" value="" id="campaigncreatebtn"></button>
+	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-xs-create-btn createsubmitbutton visible-xs" name="button" value="" id="campaigncreatebtn"></button>
 	            </div>
 	        </g:uploadForm>
 	     </div>
      </div>
 </div>
+<script type="text/javascript">
+	var needToConfirm = true;
+    window.onbeforeunload = confirmExit;
+    function confirmExit()
+    {
+        if(needToConfirm){
+        	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+        }
+    }
+</script>
 </body>
 </html>

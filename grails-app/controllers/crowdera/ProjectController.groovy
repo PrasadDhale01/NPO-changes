@@ -1409,6 +1409,7 @@ class ProjectController {
 		redirect (action:'show', controller:'project', fragment: 'comments', params:[projectTitle:params.projectTitle, fr:vanityUserName])
 	}
 	
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def autoSave() {
         def variable = request.getParameter("variable")
         def varValue = request.getParameter("varValue")
@@ -1416,7 +1417,25 @@ class ProjectController {
         projectService.autoSaveProjectDetails(variable, varValue, projectId)
         render ''
     }
-    
+	
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def saveReward() {
+        rewardService.autoSaveRewardDetails(params)
+        render ''
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def deleteReward(){
+        rewardService.deleteReward(params)
+        render ''
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def deleteAllRewards(){
+        rewardService.deleteAllRewards(params)
+        render ''
+    }
+   
     def contributionList() {
         def username
         if (params.projectId && params.fr){

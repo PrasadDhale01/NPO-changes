@@ -452,6 +452,9 @@
                 <div class="row">
                     <div class="col-sm-12 perk-css" id="updatereward">
                         <div class="col-sm-12 perk-create-styls" align="right">
+                            <div class="btn btn-primary btn-circle perks-css-create" id="savereward">
+                                <i class="glyphicon glyphicon-floppy-save"></i>
+                            </div>
                             <div class="btn btn-primary btn-circle perks-css-create" id="createreward">
                                 <i class="glyphicon glyphicon-plus"></i>
                             </div>

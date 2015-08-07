@@ -168,7 +168,78 @@ class RewardService {
         def sortedRewards = rewards.sort {it.price}
         return sortedRewards
     }
-    
+	
+    def autoSaveRewardDetails(def params) {
+        Project project = Project.get(params.projectId);
+        List rewards = project.rewards
+        Reward reward
+        RewardShipping shippingInfo
+        def newreward
+        rewards.each{
+            if (it.rewardCount == Integer.parseInt(params.rewardNum)){
+                reward = it
+                shippingInfo = RewardShipping.findByReward(it)
+            }
+        }
+        if (!reward) {
+            reward = new Reward();
+            shippingInfo = new RewardShipping();
+            newreward = true
+        }
+        reward.title = params.rewardTitle
+        reward.price = Double.parseDouble(params.rewardPrice);
+        reward.rewardCount = Integer.parseInt(params.rewardNum);
+        reward.description = params.rewardDesc;
+        reward.numberAvailable = params.rewardNumberAvailable;
+        reward.obsolete = true;
+        reward.save(failOnError: true);
+
+        shippingInfo.email = (params.email == true || params.email == 'true') ? true : null;
+        shippingInfo.address = (params.address == true || params.address == 'true') ? true : null;
+        shippingInfo.twitter = (params.twitter == true || params.twitter == 'true') ? true : null;
+        shippingInfo.custom = (params.custom) ? params.custom : null;
+        shippingInfo.reward = reward
+        shippingInfo.save(failOnError: true)
+
+        if (newreward){
+            project.addToRewards(reward)
+        }
+    }
+
+    def deleteReward(def params){
+        Project project = Project.get(params.projectId)
+        RewardShipping rewardShippingInfo
+        def rewards = project.rewards
+        rewards.each{
+            if(it.rewardCount == Integer.parseInt(params.rewardCount)){
+                rewards.remove(it);
+                rewardShippingInfo = RewardShipping.findByReward(it)
+                if (rewardShippingInfo)
+                    rewardShippingInfo.delete();
+                it.delete();
+            }
+        }
+     }
+
+     def deleteAllRewards(def params){
+         Project project = Project.get(params.projectId)
+         RewardShipping rewardShippingInfo
+         List temprewards = []
+         List rewards = project.rewards
+         rewards.each {
+             temprewards.add(it)
+         }
+         if (!rewards.isEmpty()){
+             rewards.removeAll(rewards)
+             temprewards.each{
+                 rewardShippingInfo = RewardShipping.findByReward(it)
+                 if (rewardShippingInfo)
+                     rewardShippingInfo.delete();
+                 it.delete();
+             }
+         }
+     }
+
     @Transactional
     def bootstrap() {
         new Reward(

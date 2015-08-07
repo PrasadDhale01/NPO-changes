@@ -431,6 +431,12 @@ class ProjectController {
 		def country = projectService.getCountry()
 		def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
         def currentEnv = Environment.current.getName()
+        def endDate = projectService.getProjectEndDate(project)
+        def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
+        def date = new Date();
+        if(campaignEndDate == date.format('MM/dd/yyyy')){
+            campaignEndDate = null
+        }
 		def payOpts
 		if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
 			payOpts = projectService.getIndiaPaymentGateway()
@@ -441,7 +447,7 @@ class ProjectController {
 			   model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,
 						'country': country, currentEnv: currentEnv,
 						FORMCONSTANTS: FORMCONSTANTS,
-						project:project, user:user,
+						project:project, user:user,campaignEndDate:campaignEndDate,
 						vanityTitle: vanityTitle, vanityUsername:vanityUsername])
 	}
 	

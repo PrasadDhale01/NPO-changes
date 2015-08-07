@@ -1290,6 +1290,10 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    .contactUs {
+        width: 750px;
+        margin: 0 auto;
+    }
 	.crew-icons-founder {
 		background: rgba(0, 0, 0, 0.8) none repeat scroll 0 0;
 		color: #fff !important;
@@ -4555,6 +4559,10 @@ textarea.form-control {
 	.divThirdAdmin {
 		margin-left: -68px !important;
 	}
+    .deleteIconAbove{
+        top: -3px;
+        right: 7%;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -4693,6 +4701,16 @@ textarea.form-control {
     }
     .contributionPaginate {
         text-align: center !important;
+    }
+    .contactUs {
+        width: 320px;
+        margin: 0 auto;
+    }
+    .contact-details .contact-details-heading{
+        padding: 0px 0px 0 18px;
+    }
+    .contact-details-body {
+        padding: 10px 0px 0 18px;
     }
 }
 /***only-use-homepage-Carousel*****/

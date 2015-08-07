@@ -6,7 +6,7 @@
     def firstAdmins = project.projectAdmins[1]
     def secondAdmins = project.projectAdmins[2]
     def thirdAdmins = project.projectAdmins[3]
-    def eamil1
+    def email1
     def email2
     def email3
     if (firstAdmins) {
@@ -65,7 +65,6 @@
         $(function() {
             $('.redactorEditor').redactor({
                 imageUpload:'/project/getRedactorImage',
-                focus: true,
                 plugins: ['fontsize','fontfamily','fontcolor','video']
             });
         });

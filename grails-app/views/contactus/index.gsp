@@ -19,9 +19,9 @@
 
 </head>
 <body>
-	<div class="feducontent">
-		<div class="container contactUs" id="contactUs">
-		<div class="helpdesk">
+    <div class="feducontent">
+        <div class="container contactUs" id="contactUs">
+        <div class="helpdesk col-sm-8 col-md-8 col-sm-8 col-xs-12">
 		<%--
             <g:if test="${flash.contactmessage}">
 			    <div class="alert alert-success" align="center">
@@ -80,9 +80,17 @@
 				</div>
 			</g:uploadForm>
             --%>
-            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://crowdera.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Crowdera+Customer+Help+&submitThanks=Your+Query+has+been+submitted.+We+will+get+back+to+you+soon.&screenshot=no" scrolling="no" height="600px" width="100%" frameborder="0" >
+            <iframe class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://crowdera.freshdesk.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Crowdera+Customer+Help+&submitThanks=Your+Query+has+been+submitted.+We+will+get+back+to+you+soon.&screenshot=no" scrolling="no" height="400px" width="100%" frameborder="0" >
             </iframe>
         </div>
-		</div>
-	</div>
+        <div class="col-sm-4 col-md-4 col-sm-4 col-xs-12 contact-details">
+            <div class="contact-details-heading"><b>Contact Details</b></div>
+            <div class="contact-details-body">
+                <label class="col-sm-4 col-xs-5"><b>Phone number</b></label> <span class="col-sm-8 col-xs-7">+91 77 5592 2037</span>
+                <div class="clear"></div>
+                <label class="col-sm-4 col-xs-5"><b>Contact</b></label><span class="col-sm-8 col-xs-7">206,<br> Sankalp Nagar,<br>Wathoda Layout,<br>Nagpur - 440009</span>
+            </div>
+        </div>
+        </div>
+    </div>
 </body>

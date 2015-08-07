@@ -11,10 +11,10 @@ class ProjectAdmin {
     static belongsTo = [project: Project]
     
     String email
-	int adminCount
+    int adminCount
     
     static constraints = {
         email email: true, nullable: true
-		adminCount nullable:true
+        adminCount nullable:true
     }
 }

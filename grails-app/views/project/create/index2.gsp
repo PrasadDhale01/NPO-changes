@@ -195,7 +195,7 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <g:if test="${email1}">
-                                            <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email1" id="firstadmin" value="${email1}" placeholder="First Admin" readonly></input>
+                                            <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email1" id="firstadmin" value="${email1}" placeholder="First Admin"></input>
                                             <div class="deleteIconAbove">
                                                 <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email1', '${email1}');" 
                                                     src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete1"/>
@@ -212,7 +212,7 @@
                                 <div class="form-group">
                                  <div class="col-sm-12">
                                      <g:if test="${email2}">
-                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email2" id="secondadmin" value="${email2}" placeholder="Second Admin" readonly></input>
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email2" id="secondadmin" value="${email2}" placeholder="Second Admin"></input>
                                          <div class="deleteIconAbove">
                                              <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email2', '${email2}');"
                                                  src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete2"/>
@@ -229,7 +229,7 @@
                                 <div class="form-group">
                                  <div class="col-sm-12">
                                      <g:if test="${email3}">
-                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email3" id="thirdadmin" value="${email3}" placeholder="Third Admin" readonly></input>
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email3" id="thirdadmin" value="${email3}" placeholder="Third Admin"></input>
                                          <div class="deleteIconAbove">
                                              <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email3' ,'${email3}');" 
                                                  src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete3"/>

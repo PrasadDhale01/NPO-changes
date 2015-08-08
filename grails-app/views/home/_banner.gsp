@@ -18,18 +18,18 @@
 				        <h1 class="bannerheadbtmMargin"><b>I have seen Crowdera grow from idea to reality. It truly amazes me to see the energy and passion at Crowdera and their determination to keep the platform fee free!</b></h1>
 				    </g:if>
 				    <g:else>
-					    <h1 class="bannerheadbtmMargin"><b>I ran my campaign through Crowdera in its initial phases and I greatly appreciated the support I received from the Crowdera team ...</b></h1>
-					</g:else>
+					<h1 class="bannerheadbtmMargin"><b>I ran my campaign through Crowdera in its initial phases and I greatly appreciated the support I received from the Crowdera team ...</b></h1>
+				    </g:else>
 				</div>
 				<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 				    <div class="hm-right-inverted-India">
-						<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png">
-					</div>
+					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png">
+				    </div>
 				</g:if>
 				<g:else>
-					<div class="right-inverted-comma">
-						<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png">
-					</div>
+				    <div class="right-inverted-comma">
+					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png">
+				    </div>
 				</g:else>
 			</div>
 			<span class="testimonial-name pull-right">

@@ -547,7 +547,7 @@ hr.footer-hr{
 }
 .footer-mid-section p span{
     color:#e3e3e3;
-    font-size:15px;	
+    font-size:14px;	
     padding-left: 38%; 
 }
 .thomas-margin-align{
@@ -1019,6 +1019,13 @@ a {
 	.right-inverted-comma{
 		margin-top:48px !important;
 	}
+	div.hm-right-inverted-India {
+        margin-top: 74px;
+    }
+	.hm-right-inverted-India img{
+	    height:15px;
+		width:15px;
+	}
 	.testimonial-name {
 		font-family: "Open Sans";
 		font-size: 15px !important;
@@ -1290,6 +1297,9 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	span.ft-text-termsofUse{
+	    padding-left: 60px;
+	}
     .contactUs {
         width: 750px;
         margin: 0 auto;
@@ -1579,6 +1589,13 @@ a {
 	.right-inverted-comma{
 		margin-top:48px !important;
 	}
+	div.hm-right-inverted-India {
+        margin-top: 74px;
+    }
+	.hm-right-inverted-India img{
+	    height:15px;
+		width:15px;
+	}
 	.testimonial-name {
     		font-family: "Open Sans";
     		font-size: 15px !important;
@@ -1769,7 +1786,7 @@ a {
 	}
     .footer-mid-section p span {
         color: #ffffff;
-        font-size: 15px !important;
+        font-size: 14px !important;
         padding-left: 28% !important;
         font-weight:normal;
     }
@@ -2273,7 +2290,7 @@ a {
 	}
 	.footer-mid-section p span {
 		color: #e3e3e3;
-		font-size: 15px;
+		font-size: 14px;
 		padding-left: 38% !important;
 	}
 	.nav-tabs.nav-justified > li > a {
@@ -5908,6 +5925,13 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.hm-right-inverted-India {
+        margin-top: 98px;
+    }
+	.hm-right-inverted-India img{
+	    height:15px;
+		width:15px;
+	}
 	.crew-title-centering {
 	    margin-left: 7% !important;
 	}
@@ -6286,6 +6310,9 @@ textarea.form-control {
 	}
 	.testimonial-name b{
 		font-size:12px !important;
+	}
+	b.hm-testimonial-font{
+	    font-size:11px !important;
 	}
 	.greenbg{
 		padding:5px !important;
@@ -8208,6 +8235,9 @@ p.anonymous-top {
 }
 .right-inverted-comma{
 	margin-top:53px;
+}
+.hm-right-inverted-India{
+	margin-top:83px;
 }
 .header-testimonial{
 	display:inline-flex;

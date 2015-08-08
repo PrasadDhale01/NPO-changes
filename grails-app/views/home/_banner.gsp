@@ -14,13 +14,32 @@
 					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Left.png">
 				</div>
 				<div class="text-center">
-					<h1 class="bannerheadbtmMargin"><b>I ran my campaign through Crowdera in its initial phases and I greatly appreciated the support I received from the Crowdera team ...</b></h1>
+				    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+				        <h1 class="bannerheadbtmMargin"><b>I have seen Crowdera grow from idea to reality. It truly amazes me to see the energy and passion at Crowdera and their determination to keep the platform fee free!</b></h1>
+				    </g:if>
+				    <g:else>
+					    <h1 class="bannerheadbtmMargin"><b>I ran my campaign through Crowdera in its initial phases and I greatly appreciated the support I received from the Crowdera team ...</b></h1>
+					</g:else>
 				</div>
-				<div class="right-inverted-comma">
-					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png">
-				</div>
+				<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+				    <div class="hm-right-inverted-India">
+						<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png">
+					</div>
+				</g:if>
+				<g:else>
+					<div class="right-inverted-comma">
+						<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png">
+					</div>
+				</g:else>
 			</div>
-			<span class="testimonial-name pull-right"><img src="//s3.amazonaws.com/crowdera/assets/testimonial-lifevest-icon.png"><b>- Orly Wahba, Founder of Life Vest Inside</b></span>
+			<span class="testimonial-name pull-right">
+			    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+			        <img src="//s3.amazonaws.com/crowdera/assets/testimonial-lifevest-icon.png"><b class="hm-testimonial-font">- Sandeep Nath,Bollywood Lyricist & Writer</b>
+			    </g:if>
+			    <g:else>
+			        <img src="//s3.amazonaws.com/crowdera/assets/testimonial-lifevest-icon.png"><b>- Orly Wahba, Founder of Life Vest Inside</b>
+			    </g:else>
+		    </span>
 		</div>
 	</div>
 </div>

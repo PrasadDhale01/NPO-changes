@@ -61,7 +61,7 @@
             <div class="thomas-testimonial">
                 <p>"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
                     I'd recommend Crowdera to every serious fundraiser." <br><br>
-                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">Swaroop Ramchandra,</span></g:if>
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">- Swaroop Ramchandra</span></g:if>
                 <span class="thomas-margin-align">Two Cents of Hope</span><br>
             </div>
 			<div class="footer-newsletter">
@@ -87,14 +87,14 @@
  
 		<section class="row">
 		    <div class="col-xs-12">
-			<div class="text-primary">
-		 	    <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of  Use</a>&nbsp;&nbsp;
-			    <a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
-			    <a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
-			</div>
+				<div class="text-primary">
+			 	    <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of  Use</a>&nbsp;&nbsp;
+				    <a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
+				    <a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
+				</div>
 		    </div>
 		</section>
-		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia' || currentEnv=='development'}">
+		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 	    	<section class="row">
 	    		<div class="col-lg-12 footer-disclaimer-lg">
     				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
@@ -162,7 +162,7 @@
             <div class="thomas-owens-testimonial-div">
                 <p class="thomas-owens-testimonial">"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
                 I'd recommend Crowdera to every serious fundraiser." <br><br>
-                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">Swaroop Ramchandra,</span><br></g:if>
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">- Swaroop Ramchandra</span><br></g:if>
                 <span class="thomas-margin-align">Two Cents of Hope</span><br>
             </div>
 		</div>
@@ -181,15 +181,26 @@
 		    			</div>
 		    		</g:if>
 				</div>
-		<div class="col-sm-4 footer-last-section-links">
-		    <span class="text-primary pull-right">
-			<a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of  Use</a>&nbsp;&nbsp;
-			<a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
-			<a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
-		    </span>
-		</div>
+	    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+			<div class="col-sm-12 text-center footer-last-section-links">
+			    <span class="text-primary ft-text-termsofUse">
+				<a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of Use</a>&nbsp;&nbsp;
+				<a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
+				<a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
+			    </span>
+			</div>
+		</g:if>
+		<g:else>
+		    <div class="col-md-4 footer-last-section-links">
+			    <span class="text-primary">
+			        <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms Of  Use</a>&nbsp;&nbsp;
+				<a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
+				<a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
+			    </span>
+			</div>
+		</g:else>
 	    </section>
-	    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia' || currentEnv=='development'}">
+	    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 	    	<section class="row">
 	    		<div class="col-lg-12 footer-disclaimer-lg">
     				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
@@ -258,7 +269,7 @@
             <div class="thomas-owens-testimonial-div">
                 <p class="thomas-owens-testimonial">"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
                     I'd recommend Crowdera to every serious fundraiser." <br><br>
-                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">Swaroop Ramchandra,</span><br></g:if>
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="thomas-margin-align">- Swaroop Ramchandra</span><br></g:if>
                 <span class="thomas-margin-align">Two Cents of Hope</span><br>
             </div>
 		</div>
@@ -278,15 +289,26 @@
 		    	</div>
 		    </g:if>
 		</div>
-		<div class="col-md-4 footer-last-section-links">
-		    <span class="text-primary">
-		        <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms  Of  Use</a>&nbsp;&nbsp;
-			<a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
-			<a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
-		    </span>
-		</div>
+		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+			<div class="col-md-12 text-center footer-last-section-links">
+			    <span class="text-primary ft-text-terms-privacy">
+			        <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms Of  Use</a>&nbsp;&nbsp;
+				<a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
+				<a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
+			    </span>
+			</div>
+		</g:if>
+		<g:else>
+		    <div class="col-md-4 footer-last-section-links">
+			    <span class="text-primary">
+			        <a href="${resource(dir: '/termsofuse')}" class="footerlink">Terms Of  Use</a>&nbsp;&nbsp;
+				<a href="${resource(dir: '/privacypolicy')}" class="footerlink">Privacy Policy &nbsp;&nbsp;</a>
+				<a class="footerlink">&copy;&nbsp; Crowdera,inc, 2015</a>
+			    </span>
+			</div>
+		</g:else>
 	    </section>
-	    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia' || currentEnv=='development'}">
+	    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 	    	<section class="row">
 	    		<div class="col-lg-12 footer-disclaimer-lg">
     				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.

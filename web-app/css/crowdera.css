@@ -1019,12 +1019,12 @@ a {
 	.right-inverted-comma{
 		margin-top:48px !important;
 	}
-	div.hm-right-inverted-India {
-        margin-top: 74px;
-    }
+        div.hm-right-inverted-India {
+            margin-top: 74px
+        }
 	.hm-right-inverted-India img{
 	    height:15px;
-		width:15px;
+	    width:15px;
 	}
 	.testimonial-name {
 		font-family: "Open Sans";
@@ -1590,11 +1590,11 @@ a {
 		margin-top:48px !important;
 	}
 	div.hm-right-inverted-India {
-        margin-top: 74px;
-    }
+            margin-top: 74px;
+        }
 	.hm-right-inverted-India img{
 	    height:15px;
-		width:15px;
+	    width:15px;
 	}
 	.testimonial-name {
     		font-family: "Open Sans";
@@ -5926,11 +5926,11 @@ textarea.form-control {
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
 	div.hm-right-inverted-India {
-        margin-top: 98px;
-    }
+            margin-top: 98px;
+        }
 	.hm-right-inverted-India img{
 	    height:15px;
-		width:15px;
+            width:15px;
 	}
 	.crew-title-centering {
 	    margin-left: 7% !important;

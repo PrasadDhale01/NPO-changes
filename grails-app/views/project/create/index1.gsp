@@ -67,7 +67,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	                       </div>
 	                    </div>
 	                    
-	                    <div class="form-group">
+	                    <div class="form-group createTitleDiv">
 	                        <label class="col-sm-12 text-color">My plan is...</label>
 	                        <div class="col-sm-12">
 	                            <textarea class="form-control form-control-no-border text-color" name="title" rows="2" placeholder="Campaign title is the gateway to view your campaign, create an impactful and actionable title." id="campaignTitle" maxlength="55"></textarea>
@@ -76,7 +76,7 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	                    </div>
 	                
 	                
-	                    <div class="form-group">
+	                    <div class="form-group createDescDiv">
 	                        <div class="col-sm-12">
 	                            <textarea class="form-control form-control-no-border text-color" id="descarea" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Campaign Description" maxlength="140"></textarea>
 	                            <label class="pull-right " id="desclength"></label>

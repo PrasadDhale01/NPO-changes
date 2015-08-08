@@ -536,16 +536,16 @@
                     </g:else>
                     <div class="col-sm-12 cr-paddingspace" id="launch">
                         <div class="col-sm-6 text-center">
-                            <g:link class="cr-bg-preview-btn cr-btn-alignment-pre cr-btn-margin hidden-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
-                            <g:link class="cr-bg-xs-preview-btn cr-xs-mobile visible-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
+                            <g:link class="cr-bg-preview-btn cr-btn-alignment-pre cr-btn-margin createsubmitbutton hidden-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
+                            <g:link class="cr-bg-xs-preview-btn cr-xs-mobile createsubmitbutton visible-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
                         </div>
                         <g:hiddenField name="isSubmitButton" value="true" id="isSubmitButton"></g:hiddenField>
 <%--                        <div class="col-sm-4 text-center padding-btn" >--%>
 <%--                            <button type="button" class="btn  btn-primary btn-colors" name="button" id="saveasdraft"  value="draft">Save</button>--%>
 <%--                        </div>--%>
                         <div class="col-sm-6 text-center">
-                            <button type="button" class="cr-bg-Launch-btn cr-btn-alignment-lac cr-btn-launch hidden-xs" id="submitProject" name="button" value="submitProject"></button>
-                            <button type="button" class="cr-bg-xs-Launch-btn cr-xs-mobile visible-xs" id="submitProjectXS" name="button" value="submitProject"></button>
+                            <button type="button" class="cr-bg-Launch-btn cr-btn-alignment-lac cr-btn-launch createsubmitbutton hidden-xs" id="submitProject" name="button" value="submitProject"></button>
+                            <button type="button" class="cr-bg-xs-Launch-btn cr-xs-mobile createsubmitbutton visible-xs" id="submitProjectXS" name="button" value="submitProject"></button>
                         </div>
                     </div>
                 </div>
@@ -580,6 +580,16 @@
             </div>
         </div>
 	</div>
+	<script type="text/javascript">
+		var needToConfirm = true;
+	    window.onbeforeunload = confirmExit;
+	    function confirmExit()
+	    {
+	        if(needToConfirm){
+	        	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+	        }
+	    }
+    </script>
     <script src="/js/main.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">

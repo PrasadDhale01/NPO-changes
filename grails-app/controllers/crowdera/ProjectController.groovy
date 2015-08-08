@@ -123,6 +123,7 @@ class ProjectController {
 		if (project) {
 			User user = userService.getUserByUsername(username)
 			def currentUser = userService.getCurrentUser()
+            def currentEnv = projectService.getCurrentEnvironment()
 			def currentFundraiser = userService.getCurrentFundRaiser(user, project)
 			Team currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
 			def totalContribution = contributionService.getTotalContributionForProject(project)
@@ -186,10 +187,10 @@ class ProjectController {
 			model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
 				totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
 				teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
-				isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,
+				isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
 				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS])
 		} else {
-			render (view: '/error')
+			render (view: '/404error')
 		}
 	}
 	
@@ -265,7 +266,7 @@ class ProjectController {
 					validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS])
 			}
 		} else {
-			render (view: '/error')
+			render (view: '/404error')
 		}
 	}
 
@@ -897,7 +898,7 @@ class ProjectController {
         if (project) {
             def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
             def totalContribution = contributionService.getTotalContributionForProject(project)
-
+            def currentEnv = projectService.getCurrentEnvironment()
             def projectimages = projectService.getProjectImageLinks(project)
             
             def teamObj = projectService.getValidatedTeam(project, params)
@@ -930,13 +931,13 @@ class ProjectController {
                         model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
                                 discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset,
                                 ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
-                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview])
+                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv])
             } else{
                 flash.prj_mngprj_message = 'Campaign Not Found'
                 render (view: 'manageproject/error', model: [project: project])
             }
         } else {
-        render (view: '/error')
+        render (view: '/404error')
         }
     }
 	

@@ -107,6 +107,29 @@
         });
     });
     
+    $('.redirectCampaign a').click(function(event) {
+        event.preventDefault();
+        var url = $('.redirectUrl a').attr('href');
+        var redirectUrl;
+        var currentEnv = $('#currentEnv').val();
+        if (currentEnv == 'testIndia') {
+            redirectUrl = 'http://test.crowdera.co'+url;
+            if (confirm('You are being redirected to our global site www.test.crowdera.co')) {
+                window.location.href = redirectUrl;
+            }
+        } else if(currentEnv == 'stagingIndia') {
+            redirectUrl = 'http://staging.crowdera.co'+url;
+            if (confirm('You are being redirected to our global site www.staging.crowdera.co')) {
+                window.location.href = redirectUrl;
+            }
+        } else if(currentEnv == 'prodIndia') {
+            redirectUrl = 'https://crowdera.co'+url;
+            if (confirm('You are being redirected to our global site www.crowdera.co')) {
+                window.location.href = redirectUrl;
+            }
+        }
+    });
+    
     $('#loadTeamPage').click(function() {
         location.reload(true);
     });

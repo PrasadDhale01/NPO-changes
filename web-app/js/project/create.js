@@ -460,14 +460,14 @@ $(function() {
                     for (var i=count; i > 1; i--) {
                     	$('#addNewRewards').find('.rewardsTemplate').last().remove();
                     }
-                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find("#emailcheckbox").attr('checked', false);
-                    $('#addNewRewards').find('.rewardsTemplate').find("#mailaddcheckbox").attr('checked', false);
-                    $('#addNewRewards').find('.rewardsTemplate').find("#twittercheckbox").attr('checked', false);
-                    $('#addNewRewards').find('.rewardsTemplate').find('#customcheckbox').val('');
+                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice1').val('');
+                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').val('');
+                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle1').val('');
+                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable1').val('');
+                    $('#addNewRewards').find('.rewardsTemplate').find("#emailcheckbox1").attr('checked', false);
+                    $('#addNewRewards').find('.rewardsTemplate').find("#mailaddcheckbox1").attr('checked', false);
+                    $('#addNewRewards').find('.rewardsTemplate').find("#twittercheckbox1").attr('checked', false);
+                    $('#addNewRewards').find('.rewardsTemplate').find('#customcheckbox1').val('');
                     $("#updatereward").hide();
                     $('#addNewRewards').find('.rewardsTemplate').hide();
                     count = 0;
@@ -885,7 +885,7 @@ function setTitleText(){
                 '<i class="glyphicon glyphicon-floppy-save"></i>'+
             '</div>'+
         '</div>'+
-    '</div>'+
+    '</div><br><br><br>'+
     '<div class="col-sm-2">'+
         '<div class="form-group">'+
             '<div class="col-sm-12">';

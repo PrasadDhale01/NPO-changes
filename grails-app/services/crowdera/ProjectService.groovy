@@ -2662,9 +2662,10 @@ class ProjectService {
 	
     def getFirstAdminForProjects(String adminEmail, Project project, User user) {
         def fullName = user.firstName + ' ' + user.lastName
+        List projectAdmins = project.projectAdmins
+        ProjectAdmin projectAdmin = ProjectAdmin.findByProjectAndAdminCount(project, 1)
         if (adminEmail) {
             mandrillService.inviteAdmin(adminEmail, fullName, project)
-            ProjectAdmin projectAdmin = ProjectAdmin.findByProjectAndAdminCount(project, 1)
             if (projectAdmin){
                 projectAdmin.email = adminEmail
                 projectAdmin.save()
@@ -2674,14 +2675,18 @@ class ProjectService {
                 projectAdmin.adminCount = 1
                 project.addToProjectAdmins(projectAdmin)
             }
-        }
+        } else if ((adminEmail == '' || adminEmail == null) && projectAdmin) {
+                projectAdmins.remove(projectAdmin);
+                projectAdmin.delete()
+         }
     }
 
     def getSecondAdminForProjects(String adminEmail, Project project, User user) {
         def fullName = user.firstName + ' ' + user.lastName
+        List projectAdmins = project.projectAdmins
+		ProjectAdmin projectAdmin = ProjectAdmin.findByProjectAndAdminCount(project, 2)
         if (adminEmail) {
             mandrillService.inviteAdmin(adminEmail, fullName, project)
-            ProjectAdmin projectAdmin = ProjectAdmin.findByProjectAndAdminCount(project, 2)
             if (projectAdmin){
                 projectAdmin.email = adminEmail
                 projectAdmin.save()
@@ -2690,26 +2695,54 @@ class ProjectService {
                 projectAdmin.email = adminEmail
                 projectAdmin.adminCount = 2
                 project.addToProjectAdmins(projectAdmin)
-            }
+            } 
+        } else if ((adminEmail == '' || adminEmail == null) && projectAdmin){
+                projectAdmins.remove(projectAdmin);
+                projectAdmin.delete()
         }
     }
 
     def getThirdAdminForProjects(String adminEmail, Project project, User user) {
         def fullName = user.firstName + ' ' + user.lastName
+        List projectAdmins = project.projectAdmins
+		ProjectAdmin projectAdmin = ProjectAdmin.findByProjectAndAdminCount(project, 3)
         if (adminEmail) {
             mandrillService.inviteAdmin(adminEmail, fullName, project)
-            ProjectAdmin projectAdmin = ProjectAdmin.findByProjectAndAdminCount(project, 3)
             if (projectAdmin){
                 projectAdmin.email = adminEmail
                 projectAdmin.save()
-            } else {
+           } else {
                 projectAdmin = new ProjectAdmin()
                 projectAdmin.email = adminEmail
                 projectAdmin.adminCount = 3
                 project.addToProjectAdmins(projectAdmin)
              }
+         } else if ((adminEmail == '' || adminEmail == null) && projectAdmin) {
+                projectAdmins.remove(projectAdmin);
+                projectAdmin.delete()
          }
      }
+	
+	def getAdminEmail(Project project){
+		List admins = project.projectAdmins
+		def email1
+		def email2
+		def email3
+		admins.each{
+			if (it.adminCount == 1){
+				email1 = it.email
+			}
+			if (it.adminCount == 2){
+				email2 = it.email
+			}
+			if (it.adminCount == 3){
+				email3 = it.email
+			}
+		}
+		
+		return ['email1':email1, 'email2':email2, 'email3':email3]
+		
+	}
     
     @Transactional
     def bootstrap() {

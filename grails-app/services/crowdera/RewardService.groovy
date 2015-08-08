@@ -209,8 +209,12 @@ class RewardService {
     def deleteReward(def params){
         Project project = Project.get(params.projectId)
         RewardShipping rewardShippingInfo
-        def rewards = project.rewards
-        rewards.each{
+		List temprewards = []
+		List rewards = project.rewards
+		rewards.each {
+			temprewards.add(it)
+		}
+        temprewards.each{
             if(it.rewardCount == Integer.parseInt(params.rewardCount)){
                 rewards.remove(it);
                 rewardShippingInfo = RewardShipping.findByReward(it)

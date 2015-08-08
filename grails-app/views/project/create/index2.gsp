@@ -3,21 +3,6 @@
 <g:set var="projectService" bean="projectService"/>
 <% 
     def base_url = grailsApplication.config.crowdera.BASE_URL
-    def firstAdmins = project.projectAdmins[1]
-    def secondAdmins = project.projectAdmins[2]
-    def thirdAdmins = project.projectAdmins[3]
-    def email1
-    def email2
-    def email3
-    if (firstAdmins) {
-        email1 = firstAdmins.getEmail()
-    }
-    if (secondAdmins) {
-        email2 = secondAdmins.getEmail()
-    }
-    if (thirdAdmins) {
-        email3 = thirdAdmins.getEmail()
-    }
 %>
 <html>
 <head>
@@ -196,10 +181,6 @@
                                     <div class="col-sm-12">
                                         <g:if test="${email1}">
                                             <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email1" id="firstadmin" value="${email1}" placeholder="First Admin"></input>
-                                            <div class="deleteIconAbove">
-                                                <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email1', '${email1}');" 
-                                                    src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete1"/>
-                                            </div>
                                         </g:if>
                                         <g:else>
                                             <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email1" id="firstadmin" placeholder="First Admin"></input>
@@ -213,10 +194,6 @@
                                  <div class="col-sm-12">
                                      <g:if test="${email2}">
                                          <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email2" id="secondadmin" value="${email2}" placeholder="Second Admin"></input>
-                                         <div class="deleteIconAbove">
-                                             <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email2', '${email2}');"
-                                                 src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete2"/>
-                                         </div>
                                      </g:if>
                                      <g:else>
                                          <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email2" id="secondadmin" placeholder="Second Admin"></input>
@@ -230,10 +207,6 @@
                                  <div class="col-sm-12">
                                      <g:if test="${email3}">
                                          <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email3" id="thirdadmin" value="${email3}" placeholder="Third Admin"></input>
-                                         <div class="deleteIconAbove">
-                                             <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email3' ,'${email3}');" 
-                                                 src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete3"/>
-                                         </div>
                                      </g:if>
                                      <g:else>
                                          <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email3" id="thirdadmin" placeholder="Third Admin"></input>

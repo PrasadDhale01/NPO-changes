@@ -437,6 +437,7 @@ class ProjectController {
         if(campaignEndDate == date.format('MM/dd/yyyy')){
             campaignEndDate = null
         }
+		def adminemails = projectService.getAdminEmail(project)
 		def payOpts
 		if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
 			payOpts = projectService.getIndiaPaymentGateway()
@@ -448,7 +449,8 @@ class ProjectController {
 						'country': country, currentEnv: currentEnv,
 						FORMCONSTANTS: FORMCONSTANTS,
 						project:project, user:user,campaignEndDate:campaignEndDate,
-						vanityTitle: vanityTitle, vanityUsername:vanityUsername])
+						vanityTitle: vanityTitle, vanityUsername:vanityUsername,
+						email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
 	}
 	
     @Secured(['IS_AUTHENTICATED_FULLY'])

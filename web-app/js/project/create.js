@@ -457,13 +457,21 @@ $(function() {
             if (count > 0){
                 if (confirm('Are you sure you want to discard all the perks for this campaign?')){
                     removeAllPerks();
-                    count = 0;
-                    $('#rewardCount').attr('value',count);
-                    $('#addNewRewards').find('.rewardsTemplate').find('input').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardDescription').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find("input[type='checkbox']").attr('checked', false);
+                    for (var i=count; i > 1; i--) {
+                    	$('#addNewRewards').find('.rewardsTemplate').last().remove();
+                    }
+                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice').val('');
+                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc').val('');
+                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle').val('');
+                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable').val('');
+                    $('#addNewRewards').find('.rewardsTemplate').find("#emailcheckbox").attr('checked', false);
+                    $('#addNewRewards').find('.rewardsTemplate').find("#mailaddcheckbox").attr('checked', false);
+                    $('#addNewRewards').find('.rewardsTemplate').find("#twittercheckbox").attr('checked', false);
+                    $('#addNewRewards').find('.rewardsTemplate').find('#customcheckbox').val('');
                     $("#updatereward").hide();
                     $('#addNewRewards').find('.rewardsTemplate').hide();
+                    count = 0;
+                    $('#rewardCount').attr('value',count);
                 }
             }
         }

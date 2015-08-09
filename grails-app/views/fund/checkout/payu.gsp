@@ -54,7 +54,7 @@
 	
 						<span class="payment-errors"></span>
 		
-						<g:hiddenField name="projectId" value="${project.id}"/>
+						<g:hiddenField name="campaignId" value="${project.id}"/>
 						<g:if test="${user1}">
 							<g:hiddenField name="tempValue" value="${user.id}"/>
 						</g:if>

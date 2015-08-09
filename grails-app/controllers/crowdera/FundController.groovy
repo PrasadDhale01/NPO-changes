@@ -592,13 +592,12 @@ class FundController {
 	
 	def payupayment(){
        def currentEnv = Environment.current.getName()
-	   def project= Project.get(params.projectId)
+	   def project= Project.get(params.campaignId)
 	   def user = User.get(params.userId)
 	   def reward=Reward.get(params.rewardId)
 	   User fundraiser = User.findByEmail(params.fr)
 	   def anonymous=params.anonymous
 	   def address = projectService.getAddress(params, currentEnv)
-       
 	   if (user == null){
 		   user = userService.getUserByUsername('anonymous@example.com')
 	   }

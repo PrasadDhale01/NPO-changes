@@ -219,9 +219,9 @@ $( document ).ready(function() {
 		type: 'POST', 
 		dataType: 'jsonp',
 		success: function(location) {
-		// If the visitor is browsing from Canada.
+			// If the visitor is browsing from India.
 			if (location.country_code == 'IN' &&(currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production')) {
-			// Tell him about the canadian store.
+			// Tell him about the India store.
 					$('#bannerModal').modal('show');
 			}
 		}

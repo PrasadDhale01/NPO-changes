@@ -1535,4 +1535,10 @@ class ProjectController {
         }
     }
     
+    @Secured(['ROLE_ADMIN'])
+    def paymentslist() {
+        def bankInfos = userService.getBankInfoList()
+        render (view:'/user/payments/index', model:[bankInfos: bankInfos])
+    }
+    
 }

@@ -14,12 +14,13 @@ class UserController {
     def admindashboard() {
         User user = (User)userService.getCurrentUser()
         def totalContribution
-        if (Environment.current.getName() == 'testIndia') {
+        def environment = Environment.current.getName()
+        if ( environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
             totalContribution = contributionService.getTotalINRContributions()
-            render view: 'admin/dashboard', model: [user: user, currency:'INR', amount:totalContribution]
+            render view: 'admin/dashboard', model: [user: user, currency:'INR', amount:totalContribution, environment: environment]
         } else {
             totalContribution = contributionService.getTotalUSDContributions()
-            render view: 'admin/dashboard', model: [user: user, currency:'USD', amount:totalContribution]
+            render view: 'admin/dashboard', model: [user: user, currency:'USD', amount:totalContribution, environment: environment]
         }
     }
     

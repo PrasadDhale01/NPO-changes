@@ -107,6 +107,28 @@
         });
     });
     
+    $('#paymentInfo').find('form').validate({
+        rules: {
+            beneficiaryName: {
+                maxlength: 40,
+                required: true
+            },
+            branch: {
+                maxlength: 20,
+                required: true
+            },
+            ifscCode: {
+                minlength: 2
+            },
+            accountType: {
+                minlength: 2
+            },
+            accountNumber: {
+                minlength: 2
+            }
+        }
+    });
+    
     $('.redirectCampaign a').click(function(event) {
         event.preventDefault();
         var url = $('.redirectUrl a').attr('href');

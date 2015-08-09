@@ -5,12 +5,19 @@
 	def backers = contributionService.getBackersForProjectByReward(project, reward);
 %>
 <div class="panel panel-primary reward-tile managcampaign-rewardtile">
-	<div class="panel-heading">
-		<h3 class="panel-title"><b>${reward.title}</b></h3>
-	</div>
+    <div class="panel-heading">
+        <g:if test="${reward.id==1 }">
+            <h3 class="panel-title"><b>I just want to help.</b></h3>
+        </g:if>
+        <g:else>
+            <h3 class="panel-title"><b>${reward.title}</b></h3>
+        </g:else>
+    </div>
 	<div class="panel-body perktile">
 	    <div class="containrewards">
-		    <p>${raw(reward.description)}</p>
+	        <g:if test="${reward.id !=1 }">
+		        <p>${raw(reward.description)}</p>
+		    </g:if>
 		</div>
 		<g:if test="${project.draft}">
 			<g:if test="${reward.id != 1}">

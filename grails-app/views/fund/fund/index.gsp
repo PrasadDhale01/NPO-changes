@@ -88,7 +88,7 @@
 						    </div>
 						</div>
 						<g:form action="charge" method="POST" role="form" class="chargeForms">
-							<g:hiddenField name="projectId" id="projectId" value="${project.id}" />
+							<g:hiddenField name="campaignId" id="projectId" value="${project.id}" />
 							<g:hiddenField name="fr" value="${vanityUsername}" />
 							<g:hiddenField name="rewardId" />
 							<g:hiddenField name="url" value="${base_url}" id="url"/>

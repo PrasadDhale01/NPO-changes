@@ -47,14 +47,24 @@
             <g:else>
                 <div class="rewarddiv">
                     <div class="rewardBottomBorder">
-                        <div class="tile-goal-show">
-                            <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span>&nbsp;</g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
-                        </div>
-						<div class="rewardtitlespan">${reward.title}</div>
-                        <p class="rewarddescription">${reward.description}</p>
+                        <g:if test="${reward.id==1 }">
+                            <div class="rewardtitlespan">I just want to help.</div>
+                        </g:if>
+                        <g:else>
+                            <div class="tile-goal-show">
+                                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span>&nbsp;</g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
+                            </div>
+                            <div class="rewardtitlespan">${reward.title}</div>
+                        </g:else>
+                        <g:if test="${reward.id==1 }">
+                            <p class="rewarddescription"></p>
+                        </g:if>
+                        <g:else>
+                            <p class="rewarddescription">${reward.description}</p>
+                        </g:else>
                         <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
-                     </div>
-                 </div>
+                    </div>
+                </div>
             </g:else>
         </g:each>
     </div>

@@ -3,21 +3,6 @@
 <g:set var="projectService" bean="projectService"/>
 <% 
     def base_url = grailsApplication.config.crowdera.BASE_URL
-    def firstAdmins = project.projectAdmins[1]
-    def secondAdmins = project.projectAdmins[2]
-    def thirdAdmins = project.projectAdmins[3]
-    def email1
-    def email2
-    def email3
-    if (firstAdmins) {
-        email1 = firstAdmins.getEmail()
-    }
-    if (secondAdmins) {
-        email2 = secondAdmins.getEmail()
-    }
-    if (thirdAdmins) {
-        email3 = thirdAdmins.getEmail()
-    }
 %>
 <html>
 <head>
@@ -196,10 +181,6 @@
                                     <div class="col-sm-12">
                                         <g:if test="${email1}">
                                             <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email1" id="firstadmin" value="${email1}" placeholder="First Admin"></input>
-                                            <div class="deleteIconAbove">
-                                                <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email1', '${email1}');" 
-                                                    src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete1"/>
-                                            </div>
                                         </g:if>
                                         <g:else>
                                             <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email1" id="firstadmin" placeholder="First Admin"></input>
@@ -213,10 +194,6 @@
                                  <div class="col-sm-12">
                                      <g:if test="${email2}">
                                          <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email2" id="secondadmin" value="${email2}" placeholder="Second Admin"></input>
-                                         <div class="deleteIconAbove">
-                                             <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email2', '${email2}');"
-                                                 src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete2"/>
-                                         </div>
                                      </g:if>
                                      <g:else>
                                          <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email2" id="secondadmin" placeholder="Second Admin"></input>
@@ -230,10 +207,6 @@
                                  <div class="col-sm-12">
                                      <g:if test="${email3}">
                                          <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email3" id="thirdadmin" value="${email3}" placeholder="Third Admin"></input>
-                                         <div class="deleteIconAbove">
-                                             <img alt="admin delete" onClick="deleteAdmin(this,'${project.id}', 'email3' ,'${email3}');" 
-                                                 src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete3"/>
-                                         </div>
                                      </g:if>
                                      <g:else>
                                          <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email3" id="thirdadmin" placeholder="Third Admin"></input>
@@ -452,6 +425,9 @@
                 <div class="row">
                     <div class="col-sm-12 perk-css" id="updatereward">
                         <div class="col-sm-12 perk-create-styls" align="right">
+                            <div class="btn btn-primary btn-circle perks-css-create" id="savereward">
+                                <i class="glyphicon glyphicon-floppy-save"></i>
+                            </div>
                             <div class="btn btn-primary btn-circle perks-css-create" id="createreward">
                                 <i class="glyphicon glyphicon-plus"></i>
                             </div>
@@ -560,16 +536,16 @@
                     </g:else>
                     <div class="col-sm-12 cr-paddingspace" id="launch">
                         <div class="col-sm-6 text-center">
-                            <g:link class="cr-bg-preview-btn cr-btn-alignment-pre cr-btn-margin hidden-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
-                            <g:link class="cr-bg-xs-preview-btn cr-xs-mobile visible-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
+                            <g:link class="cr-bg-preview-btn cr-btn-alignment-pre cr-btn-margin createsubmitbutton hidden-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
+                            <g:link class="cr-bg-xs-preview-btn cr-xs-mobile createsubmitbutton visible-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
                         </div>
                         <g:hiddenField name="isSubmitButton" value="true" id="isSubmitButton"></g:hiddenField>
 <%--                        <div class="col-sm-4 text-center padding-btn" >--%>
 <%--                            <button type="button" class="btn  btn-primary btn-colors" name="button" id="saveasdraft"  value="draft">Save</button>--%>
 <%--                        </div>--%>
                         <div class="col-sm-6 text-center">
-                            <button type="button" class="cr-bg-Launch-btn cr-btn-alignment-lac cr-btn-launch hidden-xs" id="submitProject" name="button" value="submitProject"></button>
-                            <button type="button" class="cr-bg-xs-Launch-btn cr-xs-mobile visible-xs" id="submitProjectXS" name="button" value="submitProject"></button>
+                            <button type="button" class="cr-bg-Launch-btn cr-btn-alignment-lac cr-btn-launch createsubmitbutton hidden-xs" id="submitProject" name="button" value="submitProject"></button>
+                            <button type="button" class="cr-bg-xs-Launch-btn cr-xs-mobile createsubmitbutton visible-xs" id="submitProjectXS" name="button" value="submitProject"></button>
                         </div>
                     </div>
                 </div>
@@ -604,6 +580,16 @@
             </div>
         </div>
 	</div>
+	<script type="text/javascript">
+		var needToConfirm = true;
+	    window.onbeforeunload = confirmExit;
+	    function confirmExit()
+	    {
+	        if(needToConfirm){
+	        	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+	        }
+	    }
+    </script>
     <script src="/js/main.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript">

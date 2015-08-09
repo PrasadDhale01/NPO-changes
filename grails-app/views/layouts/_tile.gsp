@@ -23,7 +23,6 @@
     } else {
         cents = percentage
     }
-    def currentEnv = projectService.getCurrentEnvironment()
 %>
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow tile-pad">
@@ -40,41 +39,19 @@
 	</g:elseif>
 	
     <div class="blacknwhite tile">
-        <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
-            <div id="redirectCampaign">
-                <g:link action='showCampaign' controller='project' id="${project.id}" params="['fr': username]">
-                    <div class="imageWithTag">
-                        <div class="under">
-                            <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
-                        </div>
-                    </div>
-                </g:link>
-            </div>
-        </g:if>
-        <g:else>
-            <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
-                <div class="imageWithTag">
-                    <div class="under">
-                        <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
-                    </div>
+        <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
+            <div class="imageWithTag">
+                <div class="under">
+                    <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
                 </div>
-            </g:link>
-        </g:else>
+            </div>
+        </g:link>
     </div>
 
     <div class="caption tile-title-descrp project-title project-story-span tile-min-height">
-        <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
-            <div id="redirectCampaignTitle">
-                <g:link action='showCampaign' controller='project' id="${project.id}" params="['fr': username]">
-                    ${project.title.toUpperCase()}
-                </g:link>
-            </div>
-        </g:if>
-        <g:else>
-            <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">
-                ${project.title.toUpperCase()}
-            </g:link>
-        </g:else>
+        <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">
+            ${project.title.toUpperCase()}
+        </g:link>
         <div class="campaign-title-margin-bottom"></div>
             <span>${project.description}</span>
         </div>

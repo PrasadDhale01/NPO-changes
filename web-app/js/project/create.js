@@ -454,15 +454,28 @@ $(function() {
      		$("#rewardTemplate").show();
      	    $("#updatereward").show();
      	} else {
-     		count = 0;
-     		$('#rewardCount').attr('value',count);
-     		$('#addNewRewards').find('.rewardsTemplate').find('input').val('');
-     		$('#addNewRewards').find('.rewardsTemplate').find('#rewardDescription').val('');
-     		$('#addNewRewards').find('.rewardsTemplate').find("input[type='checkbox']").attr('checked', false);
-     	    $("#updatereward").hide();
-          $('#addNewRewards').find('.rewardsTemplate').hide();
-     	}
-     });
+            if (count > 0){
+                if (confirm('Are you sure you want to discard all the perks for this campaign?')){
+                    removeAllPerks();
+                    for (var i=count; i > 1; i--) {
+                    	$('#addNewRewards').find('.rewardsTemplate').last().remove();
+                    }
+                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice1').val('');
+                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').val('');
+                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle1').val('');
+                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable1').val('');
+                    $('#addNewRewards').find('.rewardsTemplate').find("#emailcheckbox1").attr('checked', false);
+                    $('#addNewRewards').find('.rewardsTemplate').find("#mailaddcheckbox1").attr('checked', false);
+                    $('#addNewRewards').find('.rewardsTemplate').find("#twittercheckbox1").attr('checked', false);
+                    $('#addNewRewards').find('.rewardsTemplate').find('#customcheckbox1').val('');
+                    $("#updatereward").hide();
+                    $('#addNewRewards').find('.rewardsTemplate').hide();
+                    count = 0;
+                    $('#rewardCount').attr('value',count);
+                }
+            }
+        }
+    });
 
      $("input[name='pay']").change(function(){
   	    if($(this).val()=="paypal") {
@@ -861,12 +874,21 @@ function setTitleText(){
     }
     
     $('#createreward').click(function(){
+        var rewardSaved = rewardValidationAndSaving(count);
+        if (rewardSaved){
+        var updateCount = count;
         count++;
         var str ='<div class="rewardsTemplate cr-perks-spec" id="rewardTemplate">'+
-        
-        '<div class="col-sm-2">'+
-           '<div class="form-group">'+
-               '<div class="col-sm-12">';
+   '<div class="col-sm-12 perk-css">'+
+       '<div class="col-sm-12 perk-create-styls" align="right">'+
+            '<div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward" value="'+updateCount+'">'+
+                '<i class="glyphicon glyphicon-floppy-save"></i>'+
+            '</div>'+
+        '</div>'+
+    '</div><br><br><br>'+
+    '<div class="col-sm-2">'+
+        '<div class="form-group">'+
+            '<div class="col-sm-12">';
         
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
            	str = str + '<span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>';
@@ -920,20 +942,73 @@ function setTitleText(){
  '</div>';
         $('#addNewRewards').append(str);
         $('#rewardCount').attr('value',count);
+        }
      });  
     
-  $('#removereward').click(function(){
-    if($('#addNewRewards').find('.rewardsTemplate').length > 1) {
-         count--;
-         $('#rewardCount').attr('value',count);
-         $('#addNewRewards').find('.rewardsTemplate').last().remove();
-    }else{
-         $('.rewardTitle').val('');
-         $('.rewardDescription').val('');
-         $('.rewardPrice').val('');
+    $('#removereward').click(function(){
+        if($('#addNewRewards').find('.rewardsTemplate').length > 1) {
+            if (confirm('Are you sure you want to discard this perk?')){
+                removeRewards();
+                count--;
+                $('#rewardCount').attr('value',count);
+                $('#addNewRewards').find('.rewardsTemplate').last().remove();
+            }
+        }
+    });
+    
+    $('#savereward').click(function(){
+        rewardValidationAndSaving(count);
+    });
+  
+    function rewardValidationAndSaving(rewardCount){
+        $('.rewardNumberAvailable').each(function () {
+            $(this).rules("add", {
+                required: true,
+                number: true,
+                min: 0
+            });
+        });
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+           $('.rewardPrice').each(function () {
+               $(this).rules("add", {
+                   required: true,
+                   number: true,
+                   maxlength: 6,
+                   max: 999999,
+                   min: 250
+               });
+           });
+       } else {
+           $('.rewardPrice').each(function () {
+               $(this).rules("add", {
+                   required: true,
+                   number: true,
+                   maxlength: 6,
+                   max: 999999,
+                   min: 1
+               });
+           });
+        }
+        if((validator.element( "#rewardPrice"+rewardCount)) && (validator.element( "#rewardTitle"+rewardCount)) && (validator.element( "#rewardNumberAvailable"+rewardCount)) && (validator.element( "#rewardDesc"+rewardCount))){
+            var rewardPrice = $('#rewardPrice'+rewardCount).val();
+            var rewardTitle = $('#rewardTitle'+rewardCount).val();
+            var rewardNumberAvailable = $('#rewardNumberAvailable'+rewardCount).val();
+            var rewardDesc = $('#rewardDesc'+rewardCount).val();
+            var email = $('#emailcheckbox'+rewardCount).prop("checked");
+            var address = $('#mailaddcheckbox'+rewardCount).prop("checked");
+            var twitter = $('#twittercheckbox'+rewardCount).prop("checked");
+            var custom = $('#customcheckbox'+rewardCount).val();
+            saveRewards(rewardCount,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom);
+            return true
+        } else {
+            validator.element( "#rewardPrice"+count);
+            validator.element( "#rewardTitle"+count);
+            validator.element( "#rewardNumberAvailable"+count);
+            validator.element( "#rewardDesc"+count);
+            return false
+        }
     }
-  });
-     
+
      $.validator.addMethod('isequaltofirstadmin', function(value, element){
     	 var emailId = $('#firstadmin').val();
  	     if(value.length != 0 && value == emailId) {
@@ -1005,17 +1080,22 @@ function setTitleText(){
             } 
         });
 
-        $("form").on("click", ".rewardPrice", function () {
-          $('.rewardPrice').each(function () {
-              $(this).keypress(function (e) {
-                //if the letter is not digit then display error and don't type anything
-                if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-                  //display error message
-                  return false;
-                } 
-              });
-          });
+        $("form").on("click", ".editreward", function () {
+        	var editCount = $(this).attr('value');
+        	rewardValidationAndSaving(editCount);
         });
+        
+        $("form").on("click", ".rewardPrice", function () {
+            $('.rewardPrice').each(function () {
+                $(this).keypress(function (e) {
+                  //if the letter is not digit then display error and don't type anything
+                  if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                    return false;
+                  } 
+                });
+            });
+          });
    });
     
    $('#paypalEmailId').change(function(){
@@ -1192,7 +1272,49 @@ function setTitleText(){
     $('#others').click(function(){
         autoSave('fundsRecievedBy', 'OTHERS');
     });
-    
+
+    function saveRewards(rewardNum,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom){
+        var projectId = $('#projectId').val();
+        $.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/saveReward',
+            data:'projectId='+projectId+'&rewardNum='+rewardNum+'&rewardPrice='+rewardPrice+'&rewardTitle='+rewardTitle+'&rewardNumberAvailable='+rewardNumberAvailable+'&rewardDesc='+rewardDesc+'&email='+email+'&address='+address+'&twitter='+twitter+'&custom='+custom,
+            success: function(data) {
+               $('#test').val('test');
+            }
+        }).error(function() {
+            console.log('error occured saving'+rewardNum+'no. reward');
+        });
+     }
+
+     function removeRewards(){
+         var projectId = $('#projectId').val();
+         $.ajax({
+             type:'post',
+             url:$("#b_url").val()+'/project/deleteReward',
+             data:'projectId='+projectId+'&rewardCount='+count,
+             success: function(data) {
+                 $('#test').val('test');
+             }
+         }).error(function() {
+             console.log('error occured deleting'+count+'no. reward');
+         });
+     }
+
+     function removeAllPerks(){
+         var projectId = $('#projectId').val();
+         $.ajax({
+             type:'post',
+             url:$("#b_url").val()+'/project/deleteAllRewards',
+             data:'projectId='+projectId,
+             success: function(data) {
+                 $('#test').val('test');
+             }
+         }).error(function() {
+             console.log('error occured while deleting all perks');
+          });
+    }
+
 /*Javascript error raised due to tooltip is resolved*/
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {

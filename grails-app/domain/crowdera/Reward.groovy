@@ -11,6 +11,7 @@ class Reward {
     String description
 	String numberAvailable
     double price
+    int rewardCount
     Image image
     boolean obsolete = false
 
@@ -23,6 +24,7 @@ class Reward {
         title nullable: true
         description nullable: true
 		numberAvailable nullable:true
+		rewardCount nullable:true
     }
 
     static mapping = {

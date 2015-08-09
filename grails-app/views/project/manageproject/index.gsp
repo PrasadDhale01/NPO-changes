@@ -18,8 +18,11 @@
     def fundRaiser = userService.getCurrentUser()
     def fundRaiserName
     if (fundRaiser) {
-        fundRaiserName = fundRaiser.firstName+" "+fundRaiser.lastName
-        fundRaiserName = fundRaiserName.toUpperCase()
+        if (fundRaiser.email == project.beneficiary.email){
+            fundRaiserName = project.beneficiary.firstName.toUpperCase()
+        } else {
+            fundRaiserName = (fundRaiser.firstName+" "+fundRaiser.lastName).toUpperCase()
+        }
     }
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">

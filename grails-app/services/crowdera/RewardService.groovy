@@ -230,11 +230,17 @@ class RewardService {
          RewardShipping rewardShippingInfo
          List temprewards = []
          List rewards = project.rewards
+		 def defaultReward
          rewards.each {
-             temprewards.add(it)
+             if (it.id == 1){
+                 defaultReward = it
+             } else {
+                 temprewards.add(it)
+             }
          }
          if (!rewards.isEmpty()){
              rewards.removeAll(rewards)
+             rewards.add(defaultReward)
              temprewards.each{
                  rewardShippingInfo = RewardShipping.findByReward(it)
                  if (rewardShippingInfo)
@@ -243,6 +249,11 @@ class RewardService {
              }
          }
      }
+
+	 def getRewardShippingObjectByReward(def reward){
+         RewardShipping shippingInfo = RewardShipping.findByReward(reward)
+		 return shippingInfo
+	 }
 
     @Transactional
     def bootstrap() {

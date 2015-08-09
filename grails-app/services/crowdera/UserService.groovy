@@ -805,14 +805,42 @@ class UserService {
     }
     
     def setBankInfoDetails(def params, Project project) {
-        BankInfo bankInfo = new BankInfo(
-            project: project,
-            fullName: params.beneficiaryName,
-            branch: params.branch,
-            ifscCode: params.ifscCode,
-            accountType: params.accountType,
-            accountNumber: params.accountNumber
-        ).save(failOnError: true)
+        BankInfo bankInfo = BankInfo.findByProject(project)
+        if (bankInfo) {
+            boolean isbankInfoChanged = false
+            if (bankInfo.fullName != params.beneficiaryName) {
+                bankInfo.fullName= params.beneficiaryName
+                isbankInfoChanged = true
+            }
+            if (bankInfo.branch != params.branch) {
+                bankInfo.branch = params.branch
+                isbankInfoChanged = true
+            }
+            if (bankInfo.ifscCode != params.ifscCode) {
+                bankInfo.ifscCode = params.ifscCode
+                isbankInfoChanged = true
+            }
+            if (bankInfo.accountType !=  params.accountType) {
+                bankInfo.accountType=  params.accountType
+                isbankInfoChanged = true
+            }
+            if (bankInfo.accountNumber != params.accountNumber) {
+                bankInfo.accountNumber= params.accountNumber
+                isbankInfoChanged = true
+            }
+            if (isbankInfoChanged) {
+                bankInfo.save()
+            }
+        } else {
+            new BankInfo(
+                project: project,
+                fullName: params.beneficiaryName,
+                branch: params.branch,
+                ifscCode: params.ifscCode,
+                accountType: params.accountType,
+                accountNumber: params.accountNumber
+            ).save(failOnError: true)
+        }
     }
     
     @Transactional

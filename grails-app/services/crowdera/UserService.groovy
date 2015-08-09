@@ -54,7 +54,7 @@ class UserService {
      def getRequesteUsers() {
         return User.findAllWhere(enabled:false,confirmed:false)
     }
-
+     
     def getCommunitiesUserIn(User user) {
         def communities = Community.findAll {
             members {
@@ -803,7 +803,18 @@ class UserService {
         }
         return message
     }
-
+    
+    def setBankInfoDetails(def params, Project project) {
+        BankInfo bankInfo = new BankInfo(
+            project: project,
+            fullName: params.beneficiaryName,
+            branch: params.branch,
+            ifscCode: params.ifscCode,
+            accountType: params.accountType,
+            accountNumber: params.accountNumber
+        ).save(failOnError: true)
+    }
+    
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

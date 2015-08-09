@@ -111,13 +111,18 @@
 									<span class="glyphicon glyphicon-leaf"></span> <span class="tab-text hidden-xs"> Story</span>
 							</a></li>
 							<li><a href="#projectupdates" data-toggle="tab"> <span
-									class="glyphicon glyphicon-asterisk"></span> <span class="tab-text hidden-xs">Manage Updates</span>
+									class="glyphicon glyphicon-asterisk"></span> <span class="tab-text hidden-xs">Updates</span>
 							</a></li>
-							<li><a href="#manageTeam" data-toggle="tab"> <span class="fa fa-users"></span><span class="tab-text hidden-xs"> Manage Teams</span>
+							<li><a href="#manageTeam" data-toggle="tab"> <span class="fa fa-users"></span><span class="tab-text hidden-xs">Teams</span>
  							</a></li>
  							<li><a href="#rewards" data-toggle="tab"> <i
-									class="fa fa-gift fa-lg"></i> <span class="tab-text hidden-xs">Manage Perks</span>
+									class="fa fa-gift fa-lg"></i> <span class="tab-text hidden-xs">Perks</span>
 							</a></li>
+							<g:if test="${project.payuStatus}">
+								<li><a href="#payments" data-toggle="tab">
+                                	<span class="glyphicon glyphicon-tint"></span><span class="tab-text hidden-xs"> Payments</span>
+                            	</a></li>
+                            </g:if>
 							<li><a href="#contributions" data-toggle="tab"> <span
 									class="glyphicon glyphicon-tint"></span> <span class="tab-text hidden-xs"> Contributions</span>
 							</a></li>
@@ -140,6 +145,11 @@
 							<div class="tab-pane" id="rewards">
 								<g:render template="/project/manageproject/rewards" />
 							</div>
+							<g:if test="${project.payuStatus}">
+								<div class="tab-pane" id="payments">
+									<g:render template="/project/manageproject/payments"/>
+								</div>
+							</g:if>
 							<div class="tab-pane" id="contributions">
 								<g:render template="/project/manageproject/contributions" />
 							</div>

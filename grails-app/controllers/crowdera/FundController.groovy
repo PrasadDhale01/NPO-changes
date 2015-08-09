@@ -116,7 +116,7 @@ class FundController {
 
         if (project && reward) {
             if(!team || ! project.user){
-                render view:"error", model: [message:'User not found']     
+                render view:"error", model: [message:'User not found'] 
             }else{
                 render view: 'checkout/index', model: [project: project, reward: reward, amount: amount, country:country, cardTypes:cardTypes, user:user, title:title, state:state, defaultCountry:defaultCountry, month:month, year:year, fundraiser:fundraiser, user1:user1, anonymous:anonymous, projectTitle:params.projectTitle, username:params.fr]
             }
@@ -131,25 +131,25 @@ class FundController {
         Reward reward
         def vanityTitle
 
-        if (params.projectId) {
-            project = projectService.getProjectById(params.projectId)
-            vanityTitle = projectService.getVanityTitleFromId(params.projectId)
+        if (params.campaignId) {
+            project = projectService.getProjectById(params.campaignId)
+            vanityTitle = projectService.getVanityTitleFromId(params.campaignId)
         }
         
-        def user1 = userService.getUserById(params.long('tempValue'))
-        def user = userService.getUserById(params.long('userId'))
-        if (user == null){
-            user = userService.getUserByUsername('anonymous@example.com')
-        }
-        
-        def address = projectService.getAddress(params)
-        def state = projectService.getState()
-        def country = projectService.getCountry()
-		
-        User fundraiser = userService.getUserFromVanityName(params.fr)
-        def anonymous = params.anonymous
-
         if (project) {
+            def user1 = userService.getUserById(params.long('tempValue'))
+            def user = userService.getUserById(params.long('userId'))
+            if (user == null){
+                user = userService.getUserByUsername('anonymous@example.com')
+            }
+        
+            def address = projectService.getAddress(params)
+            def state = projectService.getState()
+            def country = projectService.getCountry()
+		
+            User fundraiser = userService.getUserFromVanityName(params.fr)
+            def anonymous = params.anonymous
+
             if (params.int('rewardId')) {
                 reward = project.rewards.find {
                     it.id == params.int('rewardId')
@@ -157,36 +157,38 @@ class FundController {
             } else {
                 reward = rewardService.getNoReward()
             }
-        }
-
-        def amount = params.double(('amount'))
-        if (amount < reward.price) {
-            render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
-            return
-        }
-
-        def totalContribution= contributionService.getTotalContributionForProject(project)
-        def contPrice = params.double(('amount'))
-        def amt =project.amount
-        def reqAmt=(999/100)*amt
-        def remainAmt=reqAmt- totalContribution
-        def percentage=((totalContribution + contPrice)/ amt)*100
-        perk = Reward.get(params.long('rewardId'))
-        def vanityUserName = params.fr
-		
-        if(percentage>999) {
-            flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
-            redirect action: 'fund', params:['fr': vanityUserName, 'rewardId': perk.id, 'projectTitle': vanityTitle]
-        } else {
-            if (project && reward) {
-                if (project.paypalEmail){
-                    render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser, user1:user1, state:state, country:country, anonymous:anonymous, projectTitle:params.projectTitle]
-                } else {
-                    payByFirstGiving(params,project,reward,user,fundraiser,address)
-                }
-            } else {
-                render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
+            
+            def amount = params.double(('amount'))
+            if (amount < reward.price) {
+                render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
+                return
             }
+
+            def totalContribution= contributionService.getTotalContributionForProject(project)
+            def contPrice = params.double(('amount'))
+            def amt =project.amount
+            def reqAmt=(999/100)*amt
+            def remainAmt=reqAmt- totalContribution
+            def percentage=((totalContribution + contPrice)/ amt)*100
+            perk = Reward.get(params.long('rewardId'))
+            def vanityUserName = params.fr
+
+            if(percentage>999) {
+                flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
+                redirect action: 'fund', params:['fr': vanityUserName, 'rewardId': perk.id, 'projectTitle': vanityTitle]
+            } else {
+                if (project && reward) {
+                    if (project.paypalEmail){
+                        render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser, user1:user1, state:state, country:country, anonymous:anonymous, projectTitle:params.projectTitle]
+                    } else {
+                        payByFirstGiving(params,project,reward,user,fundraiser,address)
+                    }
+                } else {
+                    render view: 'error', model: [message: 'This project or reward does not exist. Please try again.']
+                }
+            }
+        } else {
+            render view: 'error', model: [message: 'This project does not exist. Please try again.']
         }
     }
     

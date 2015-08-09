@@ -224,4 +224,16 @@ class UserController {
         SecurityContextHolder.clearContext()
         render(view: '/login/error', model: [facelogoutmsg: 'A user with that email id already exists. Please log into your account.'])
     }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def paymentInfo() {
+        def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+        def project = projectService.getProjectById(projectId)
+        if (project) {
+        userService.setBankInfoDetails(params, project)
+        redirect (action: 'manageproject', controller:'project', params:['projectTitle': params.projectTitle], fragment:'payments')
+        } else {
+            render view:'404error'
+        }
+    }
 }

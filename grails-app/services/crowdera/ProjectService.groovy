@@ -63,6 +63,10 @@ class ProjectService {
     def getCurrentEnvironment() {
         return Environment.current.getName()
     }
+    
+    def getBankInfoByProject(Project project) {
+        return BankInfo.findByProject(project)
+    }
 
     def getProjectByParams(def projectParams){
          Project project = new Project(projectParams)

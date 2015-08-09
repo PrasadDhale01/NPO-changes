@@ -105,7 +105,7 @@ class ProjectController {
 		if(title && name){
 			redirect (action:'show', params:['projectTitle':title,'fr':name])
 		} else {
-			render (view: '/error')
+			render (view: '404error')
 		}
 	}
 
@@ -190,7 +190,7 @@ class ProjectController {
 				isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
 				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS])
 		} else {
-			render (view: '/404error')
+			render (view: '404error')
 		}
 	}
 	
@@ -206,7 +206,7 @@ class ProjectController {
 		if(title && name){
 			redirect (action:'validateshow', params:['projectTitle':title,'fr':name])
 		}else{
-			render view:"/error"
+			render view:"404error"
 		}
 	}
 
@@ -266,7 +266,7 @@ class ProjectController {
 					validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS])
 			}
 		} else {
-			render (view: '/404error')
+			render (view: '404error')
 		}
 	}
 
@@ -560,7 +560,7 @@ class ProjectController {
 		if(title){
 			redirect (action : 'edit', params:['projectTitle':title])
 		}else{
-			render view:'/error'
+			render view:'404error'
 		}
 	}
 
@@ -881,7 +881,7 @@ class ProjectController {
                 redirect (action:'manageproject', params:['projectTitle':title])
             }
         } else {
-            render view:'/error'
+            render view:'404error'
         }
     }
 	
@@ -924,20 +924,20 @@ class ProjectController {
 			totalContributions = contribution.totalContributions
 			contributions = contribution.contributions
 			def offset = params.int('offset') ?: 0
-			
+			def bankInfo = projectService.getBankInfoByProject(project)
 
             if(project.user==user || isCampaignOwnerOrAdmin){
                 render (view: 'manageproject/index',
                         model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
                                 discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset,
                                 ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
-                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv])
+                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo])
             } else{
                 flash.prj_mngprj_message = 'Campaign Not Found'
                 render (view: 'manageproject/error', model: [project: project])
             }
         } else {
-        render (view: '/404error')
+            render view: '404error'
         }
     }
 	
@@ -1015,7 +1015,7 @@ class ProjectController {
 		if(title){
 			redirect (action : 'editUpdate', id:params.id, params:['projectTitle':title])
 		}else{
-			render view:'/error'
+			render view:'404error'
 		}
 	}
 
@@ -1271,7 +1271,7 @@ class ProjectController {
 			flash.teamdiscardedmessage = "Team Discarded Successfully."
 			redirect(controller: 'project', action: 'manageproject',fragment: 'manageTeam', params:['projectTitle':title])
 		}else{
-			render view:'/error'
+			render view:'404error'
 		}
 	}
 
@@ -1319,10 +1319,10 @@ class ProjectController {
 			if(title && name){
 				redirect (action:'show', params:['projectTitle':title,'fr':name])
 			} else {
-				render (view: '/error')
+				render (view: '404error')
 			}
 		} else {
-			render (view: '/error')
+			render (view: '404error')
 		}
 	}
 
@@ -1385,7 +1385,7 @@ class ProjectController {
 				redirect (action:'show', controller:'project', fragment: 'comments', params:[projectTitle:params.projectTitle, fr: vanityUserName, teamCommentId: params.teamCommentId])
 			}
 		} else {
-			render view:'error'
+			render view:'404error'
 		}
 	}
 

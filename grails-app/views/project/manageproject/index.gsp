@@ -104,63 +104,58 @@
                             <h4 class="green-heading"> by ${fundRaiserName}</h4>
                         </div>
                     </g:if>
-					<div class="col-md-12 manage-Top-tabs-mobile">
-						<ul class="nav nav-tabs manage-projects nav-justified"
-							style="margin-bottom: 10px;">
-							<li class="active"><a href="#essentials" data-toggle="tab">
-									<span class="glyphicon glyphicon-leaf"></span> <span class="tab-text hidden-xs"> Story</span>
-							</a></li>
-							<li><a href="#projectupdates" data-toggle="tab"> <span
-									class="glyphicon glyphicon-asterisk"></span> <span class="tab-text hidden-xs">Updates</span>
-							</a></li>
-							<li><a href="#manageTeam" data-toggle="tab"> <span class="fa fa-users"></span><span class="tab-text hidden-xs">Teams</span>
- 							</a></li>
- 							<li><a href="#rewards" data-toggle="tab"> <i
-									class="fa fa-gift fa-lg"></i> <span class="tab-text hidden-xs">Perks</span>
-							</a></li>
-							<g:if test="${project.payuStatus}">
-								<li><a href="#payments" data-toggle="tab">
-                                	<span class="glyphicon glyphicon-tint"></span><span class="tab-text hidden-xs"> Payments</span>
-                            	</a></li>
+                    <div class="col-md-12 manage-Top-tabs-mobile">
+                        <ul class="nav nav-tabs manage-projects nav-justified" style="margin-bottom: 10px;">
+                            <li class="active"><a href="#essentials" data-toggle="tab">
+                                <span class="glyphicon glyphicon-leaf"></span> <span class="tab-text hidden-xs"> Story</span>
+                            </a></li>
+                            <li><a href="#projectupdates" data-toggle="tab"> <span class="glyphicon glyphicon-asterisk"></span> <span class="tab-text hidden-xs">Updates</span>
+                            </a></li>
+                            <li><a href="#manageTeam" data-toggle="tab"> <span class="fa fa-users"></span><span class="tab-text hidden-xs">Teams</span>
+                            </a></li>
+                            <li><a href="#rewards" data-toggle="tab"> <i class="fa fa-gift fa-lg"></i> <span class="tab-text hidden-xs">Perks</span>
+                            </a></li>
+                            <g:if test="${project.payuStatus}">
+                                <li><a href="#payments" data-toggle="tab">
+                                    <span class="glyphicon glyphicon-tint"></span><span class="tab-text hidden-xs"> Payments</span>
+                                </a></li>
                             </g:if>
-							<li><a href="#contributions" data-toggle="tab"> <span
-									class="glyphicon glyphicon-tint"></span> <span class="tab-text hidden-xs"> Contributions</span>
-							</a></li>
-							<li><a href="#comments" data-toggle="tab"> <span
-									class="glyphicon glyphicon-comment"></span> <span class="tab-text hidden-xs"> Comments</span>
-							</a></li>
-						</ul>
+                            <li><a href="#contributions" data-toggle="tab"> <span class="glyphicon glyphicon-tint"></span> <span class="tab-text hidden-xs"> Contributions</span>
+                            </a></li>
+                            <li><a href="#comments" data-toggle="tab"> <span class="glyphicon glyphicon-comment"></span> <span class="tab-text hidden-xs"> Comments</span>
+                            </a></li>
+                        </ul>
 
-						<!-- Tab panes -->
-						<div class="tab-content">
-							<div class="tab-pane active row" id="essentials">
-								<g:render template="/project/manageproject/essentials" />
-							</div>
-							<div class="tab-pane row" id="projectupdates">
-								<g:render template="/project/manageproject/projectupdates" />
-							</div>
-							<div class="tab-pane" id="manageTeam">
-								<g:render template="/project/manageproject/manageteam" />
-							</div>
-							<div class="tab-pane" id="rewards">
-								<g:render template="/project/manageproject/rewards" />
-							</div>
-							<g:if test="${project.payuStatus}">
-								<div class="tab-pane" id="payments">
-									<g:render template="/project/manageproject/payments"/>
-								</div>
-							</g:if>
-							<div class="tab-pane" id="contributions">
-								<g:render template="/project/manageproject/contributions" />
-							</div>
-							<div class="tab-pane" id="comments">
-								<g:render template="/project/manageproject/comments" />
-							</div>
-						</div>
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active row" id="essentials">
+                                <g:render template="/project/manageproject/essentials" />
+                            </div>
+                            <div class="tab-pane row" id="projectupdates">
+                                <g:render template="/project/manageproject/projectupdates" />
+                            </div>
+                            <div class="tab-pane" id="manageTeam">
+                                <g:render template="/project/manageproject/manageteam" />
+                            </div>
+                            <div class="tab-pane" id="rewards">
+                                <g:render template="/project/manageproject/rewards" />
+                            </div>
+                            <g:if test="${project.payuStatus}">
+                                <div class="tab-pane" id="payments">
+                                    <g:render template="/project/manageproject/payments"/>
+                                </div>
+                            </g:if>
+                            <div class="tab-pane" id="contributions">
+                                <g:render template="/project/manageproject/contributions" />
+                            </div>
+                            <div class="tab-pane" id="comments">
+                                <g:render template="/project/manageproject/comments" />
+                            </div>
+                        </div>
 
-					</div>
-				</div>
-			</g:if>
+                    </div>
+                </div>
+            </g:if>
 			<g:else>
 				<h1>Project not found</h1>
 				<div class="alert alert-danger">Oh snap! Looks like that

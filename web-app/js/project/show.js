@@ -109,22 +109,22 @@
     
     $('#paymentInfo').find('form').validate({
         rules: {
-        	beneficiaryName: {
-        		maxlength: 40,
-        		required: true
-        	},
-        	branch: {
-        		maxlength: 20,
-        		required: true
-        	},
-        	ifscCode: {
+            beneficiaryName: {
+                maxlength: 40,
+                required: true
+            },
+            branch: {
+                maxlength: 20,
+                required: true
+            },
+            ifscCode: {
                 minlength: 2
             },
             accountType: {
-            	minlength: 2
+                minlength: 2
             },
             accountNumber: {
-            	minlength: 2
+                minlength: 2
             }
         }
     });

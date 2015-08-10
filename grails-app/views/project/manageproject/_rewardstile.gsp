@@ -75,6 +75,10 @@
                         <label for="title">Title</label>
                         <input type="text" class="form-control" name="title" value="${reward.title}" placeholder="Title"/>
                     </div>
+                    <div class="form-group">
+                        <label for="title">Number available</label>
+                        <input type="text" class="form-control" name="numberAvailable" value="${reward.numberAvailable}" placeholder="Number available"/>
+                    </div>
                     <div class="form-group descriptionDiv createDescDiv">
                         <label for="description">Description</label>
                         <textarea class="form-control" id="descarea" name="description" maxlength="250" rows="4" placeholder="Description">${reward.description}</textarea>
@@ -96,7 +100,7 @@
                             <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="editShippingInfo" name="address" value="true" id="mailaddcheckbox" <g:if test="${rewarShipping.address}">checked="checked"</g:if> >Mailing address</label>
                             <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="editShippingInfo" name="email" value="true" id="emailcheckbox" <g:if test="${rewarShipping.email}">checked="checked"</g:if>>Email address</label>
                             <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="editShippingInfo" name="twitter" value="true" id="twittercheckbox" <g:if test="${rewarShipping.twitter}">checked="checked"</g:if>>Twitter handle</label>
-                            <label class="btn btn-primary btn-sm checkbox-inline control-label lblCustom"><input type="checkbox" class="editShippingInfo" name="custom" value="true" id="customcheckbox" <g:if test="${rewarShipping.custom}">checked="checked"</g:if>>Custom</label>
+                            <input type="tex" class="editShippingInfo pull-right" name="custom" value="${rewarShipping.custom}" id="custombox"/>
                         </div>
                         <div class="editShippingError"></div>
                         </g:if>

@@ -64,6 +64,11 @@ class RewardService {
             if (params.description != reward.description) {
                 reward.description = params.description
             }
+            
+            if (Integer.parseInt(params.numberAvailable) != reward.numberAvailable) {
+                reward.numberAvailable = Integer.parseInt(params.numberAvailable)
+            }
+            
             def rewardShipping = RewardShipping.findByReward(reward)
 			if (rewardShipping) {
                 rewardShipping.address = params.address

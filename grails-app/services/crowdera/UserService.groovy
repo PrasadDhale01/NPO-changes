@@ -568,7 +568,9 @@ class UserService {
             }
         }
         if (!status){
-            getProjectVanityUsername(user)
+            if (user) {
+                getProjectVanityUsername(user)
+            }
         }
         return vanityUsername
     }

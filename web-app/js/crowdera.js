@@ -215,7 +215,7 @@ $(function() {
     $('.display-footer-text').hover(function(){
 		var url=$('#b_url').val();
 		$('.footer-start-cmpg-img').attr('src','https://s3.amazonaws.com/crowdera/assets/Start-a-Campaign---Button-Over.jpg');
-		$('.display-footer-text').attr('href',url+'/campaigns/create');
+		$('.display-footer-text').attr('href',url+'/campaign/create');
 	}).mouseleave(function(){
 		$('.footer-start-cmpg-img').attr('src','https://s3.amazonaws.com/crowdera/assets/Hands-up-for-a-better - button.jpg');
 		$('.display-footer-text').attr('href','#');

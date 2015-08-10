@@ -15,6 +15,5 @@ class ProjectAdmin {
     
     static constraints = {
         email email: true, nullable: true
-        adminCount nullable:true
     }
 }

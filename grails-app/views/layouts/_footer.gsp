@@ -5,7 +5,7 @@
 %>
 <input type="hidden" id="b_url" value="<%=base_url%>" />
 <!-- Footer -->
-<footer>    
+<footer>
     <div class="footer_links">
         <div class="container footer-container">
 	    <div class="visible-xs">
@@ -27,7 +27,7 @@
 				<div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
 				    <div class="campaigning-menu-div">
 					<ul class="campaigning-menu">
-					    <li><a href="${resource(dir: '/campaigns/create')}">Start Your Campaign</a></li>
+					    <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
 					    <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
 					    <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
 					</ul>
@@ -42,7 +42,7 @@
 			<p>Hands up for a Better World. See how you can make a difference with Crowdera.</p>
 		 	<div class="footer-first-section-mobile footer-img-align">
 			    <img src="//s3.amazonaws.com/crowdera/assets/hand-image-mobile.png" alt="Crowdera">
-			    <a href="${resource(dir: '/campaigns/create')}"><img src="//s3.amazonaws.com/crowdera/assets/start-a-campaign-mobile.png" alt="Crowdera"></a>
+			    <g:link controller="project" action="create"><img src="//s3.amazonaws.com/crowdera/assets/start-a-campaign-mobile.png" alt="Crowdera"></g:link>
 			</div>
 		    </div>
 		</section>      	
@@ -53,9 +53,9 @@
 			<div class="socialicon">
 			    <a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
 			    <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>
-			    <a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
+			    <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
 			    <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
-			    <a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
+			    <a href="https://instagram.com/gocrowdera"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
 			</div>
 			<br>
             <div class="thomas-testimonial">
@@ -98,7 +98,7 @@
 	    		<div class="col-lg-12 footer-disclaimer-lg">
     				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
 	     			Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
-	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform.</span>
+	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform. *Crowdera does not charge a fee, however payment gateway and bank transfer fee are applicable.</span>
 	     		</div>
     		</section>
 	    </g:if>
@@ -121,7 +121,7 @@
 		   </div>
 		   <div class="col-sm-6 footer-mid-section-menu tab-menu-padding">
 			<ul>
-			    <li><a href="${resource(dir: '/campaigns/create')}">Start Your Campaign</a></li>
+			    <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
 			    <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
 			    <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
 			</ul>
@@ -139,9 +139,9 @@
 		   <div class="socialicon pull-right">
 			<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
 			<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>
-			<a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
+			<a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
 			<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
-			<a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
+			<a href="https://instagram.com/gocrowdera"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
 			<br><br>
 		    </div>
 		    <br><br>
@@ -204,7 +204,7 @@
 	    		<div class="col-lg-12 footer-disclaimer-lg">
     				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
 	     			Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
-	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform.</span>
+	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform. *Crowdera does not charge a fee, however payment gateway and bank transfer fee are applicable.</span>
 	     		</div>
     		</section>
 	    </g:if>
@@ -227,7 +227,7 @@
  		    </div>
 		    <div class="col-md-6 footer-mid-section-menu">
 			<ul>
-			    <li><a href="${resource(dir: '/campaigns/create')}">Start Your Campaign</a></li>
+			    <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
 			    <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
 			    <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
 			</ul>
@@ -246,9 +246,9 @@
 		    <div class="socialicon pull-right">
 			<a href="http://crowdera.tumblr.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
 			<a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>	
-			<a href="https://twitter.com/CrowderaInc"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
+			<a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
 			<a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
-			<a href="http://instagram.com/crowderacrew"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
+			<a href="https://instagram.com/gocrowdera"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
 			<br><br>
 		    </div>
 		    <br><br>
@@ -312,7 +312,7 @@
 	    		<div class="col-lg-12 footer-disclaimer-lg">
     				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
 	     			Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
-	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform.</span>
+	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform. *Crowdera does not charge a fee, however payment gateway and bank transfer fee are applicable.</span>
 	     		</div>
     		</section>
 	    </g:if>

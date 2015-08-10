@@ -990,4 +990,40 @@ class MandrillService {
         sendTemplate(teamUser,'team-updation-email', globalMergeVars, tags)
     }
     
+    public def sendEmailToCampaignOwner(Project project, Contribution contribution) {
+        def beneficiary = project.beneficiary
+        def user = project.user
+        def name = beneficiary.firstName
+        if (!name) {
+            name = user.firstName + ' ' + user.lastName
+        }
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', fragment:'payments', id: project.id, absolute: true)
+        
+        def globalMergeVars = [
+            [
+                'name': 'LINK',
+                'content': link
+            ],[
+                'name': 'NAME',
+                'content': name
+            ],[
+                'name': 'TITLE',
+                'content': project.title
+            ],[
+                'name': 'AMOUNT',
+                'content': contribution.amount
+            ],[
+                'name': 'CONTRIBUTOR',
+                'content': contribution.contributorName
+            ],,[
+                'name': 'CONTRIBUTOREMAIL',
+                'content': contribution.contributorEmail
+            ]
+        ]
+        
+        def tags = ['payments-info-email']
+        
+        sendTemplate(user,'payments-info-email', globalMergeVars, tags)
+    }
+    
 }

@@ -531,3 +531,27 @@ button.videoUrledit.close {
 .redirectUrl a {
     display: none;
 }
+.shippingreward .checkbox-inline + .checkbox-inline {
+	margin-left: 0px !important;
+}
+.shippingreward .btn-sm {
+  padding: 10px 16px !important;
+}
+.shippingreward #custombox {
+    color: #333 !important;
+    display: inline-block;
+}
+
+.editShippingreward .checkbox-inline + .checkbox-inline {
+	margin-left: 0px !important;
+}
+.editShippingreward .btn-sm {
+  padding: 10px 16px !important;
+}
+.editShippingreward #custombox {
+    color: #333 !important;
+    display: inline-block;
+}
+.editShippingreward >.btn-primary {
+  width: 116px !important;
+}

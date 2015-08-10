@@ -190,7 +190,7 @@ class ProjectController {
 				isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
 				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS])
 		} else {
-			render (view: '404error')
+			render(view: 'error', model: [message: 'This project does not exist.'])
 		}
 	}
 	
@@ -1540,6 +1540,12 @@ class ProjectController {
         } else {
             render ''
         }
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def paymentslist() {
+        def bankInfos = userService.getBankInfoList()
+        render (view:'/user/payments/index', model:[bankInfos: bankInfos])
     }
     
 }

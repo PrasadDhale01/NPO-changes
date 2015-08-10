@@ -386,11 +386,14 @@ class ProjectService {
         }
 		 
         contribution.isAnonymous = anonymous.toBoolean()
- 
+        
+        if (project.payuStatus && project.contributions.size() == 1) {
+            mandrillService.sendEmailToCampaignOwner(project, contribution) //Send Email to Campaign Owner when first contribution is done for INR
+        }
         mandrillService.sendThankYouMailToContributors(contribution, project,amount,fundraiser)
 		 
         userService.contributionEmailToOwnerOrTeam(fundraiser, project, contribution)
- 
+        
         def totalContribution = contributionService.getTotalContributionForProject(project)
         if(totalContribution >= project.amount){
             if(project.send_mail == false){
@@ -425,9 +428,9 @@ class ProjectService {
      }
      
      def getpayKeytempObject(def timestamp){
-     PaykeyTemp paykeytemp = PaykeyTemp.findByTimestamp(timestamp)
-		 return paykeytemp
-	 }
+         PaykeyTemp paykeytemp = PaykeyTemp.findByTimestamp(timestamp)
+         return paykeytemp
+     }
 	 
 	 def generateCSV(def response, def params){
              SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd hh:mm:ss");

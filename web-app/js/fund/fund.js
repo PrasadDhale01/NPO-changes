@@ -67,14 +67,14 @@ $(function() {
                     	if(isINR == undefined) {
                     		return 1;
                     	} else {
-                    		return 10;
+                    		return 100;
                     	}
                     } else {
                     	var isINR = $('#isINR').val();
                     	if(isINR == undefined) {
                     		return _.max([1, Number(rewardPrice)]);
                     	} else {
-                    		return _.max([10, Number(rewardPrice)]);
+                    		return _.max([100, Number(rewardPrice)]);
                     	}
                     }
                 }

@@ -225,6 +225,10 @@ class UserService {
         return communitymgrs
     }
     
+    def getBankInfoList() {
+        return BankInfo.list()
+    }
+    
     def isTeamAlreadyExist(def project, def user) {
         def isFundRaiserExist = false
         def fundRaisers = project.teams
@@ -564,7 +568,9 @@ class UserService {
             }
         }
         if (!status){
-            getProjectVanityUsername(user)
+            if (user) {
+                getProjectVanityUsername(user)
+            }
         }
         return vanityUsername
     }
@@ -842,6 +848,7 @@ class UserService {
             ).save(failOnError: true)
         }
     }
+    
     
     @Transactional
     def bootstrap() {

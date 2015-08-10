@@ -144,7 +144,7 @@ class RewardService {
                 reward.price = Double.parseDouble(rewardPrice[i])
             }
             reward.description = rewardDescription[i]
-			reward.numberAvailable = rewardNumberAvailable[i]
+			reward.numberAvailable = Integer.parseInt(rewardNumberAvailable[i])
             reward.obsolete = true
             reward.save(failOnError: true)
             
@@ -190,7 +190,7 @@ class RewardService {
         reward.price = Double.parseDouble(params.rewardPrice);
         reward.rewardCount = Integer.parseInt(params.rewardNum);
         reward.description = params.rewardDesc;
-        reward.numberAvailable = params.rewardNumberAvailable;
+        reward.numberAvailable = Integer.parseInt(params.rewardNumberAvailable);
         reward.obsolete = true;
         reward.save(failOnError: true);
 

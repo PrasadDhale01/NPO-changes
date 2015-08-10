@@ -9,7 +9,7 @@ import groovy.transform.ToString
 class Reward {
     String title
     String description
-	String numberAvailable
+	int numberAvailable
     double price
     int rewardCount
     Image image
@@ -23,8 +23,6 @@ class Reward {
         image (nullable: true)
         title nullable: true
         description nullable: true
-		numberAvailable nullable:true
-		rewardCount nullable:true
     }
 
     static mapping = {

@@ -155,6 +155,20 @@
                     </div>
                 </div>
             </div>
+            <g:if test="${environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'}">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center">
+                            <i class="glyphicon glyphicon-tint"></i> Payment Details for Campaign.
+                        </div>
+                        <div class="panel-footer">
+                            <g:link controller="project" action="paymentslist">
+                                <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-tint"></i> Payment details</button>
+                            </g:link>
+                        </div>
+                    </div>
+                </div>
+            </g:if>
         </div>
 
     </div>

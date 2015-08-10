@@ -192,4 +192,17 @@ $( document ).ready(function() {
 		    window.location.href =$("#b_url").val()+"/user/logout";
 	    }
 	}
+	var currentEnv=$('#currentEnv').val();
+	$.ajax( { 
+		url: 'https://freegeoip.net/json/', 
+		type: 'POST', 
+		dataType: 'jsonp',
+		success: function(location) {
+			// If the visitor is browsing from India.
+			if (location.country_code == 'IN' &&(currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production')) {
+			// Tell him about the India store.
+					$('#bannerModal').modal('show');
+			}
+		}
+	});
 });

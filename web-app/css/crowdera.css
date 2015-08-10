@@ -1297,6 +1297,10 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	span.cr-offering {
+        font-size: 12px;
+        font-weight: normal;
+    }
 	span.ft-text-termsofUse{
 	    padding-left: 60px;
 	}
@@ -1343,8 +1347,9 @@ a {
 		width: 124px;
 	}
 	div.cr-perks-space {
+	    height: 64px;
         margin-left: 0;
-        padding-right: 47px;
+        padding-right: 68px;
     }
 	a.cr-btn-alignment-pre {
         margin-left: 68px;
@@ -1368,6 +1373,7 @@ a {
 	    margin-left: 3px;
 	    padding-left: 15px;
         padding-right: 7px; 
+        width: 162px;
 	}
 	div.manage-Top-tabs-mobile{
 	    padding-left: 17px;
@@ -1477,8 +1483,8 @@ a {
         padding: 10px 43px;
     }
     label.cr-payments-lab {
-        padding-left: 35px;
-        padding-right: 35px;
+        padding-left: 28px;
+        padding-right: 28px;
 /*         width: 153px; */
     }
     div.cr-payment-marg{
@@ -1880,7 +1886,7 @@ a {
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
 	div.cr-perks-space {
         margin-left: -1px;
-        padding-right: 37px;
+        padding-right: 79px;
     }
 	div.cr-perk-check {
         padding-left: 0;
@@ -2161,6 +2167,7 @@ a {
 	label.cr-perks-size{
         padding-left: 15px;
         padding-right: 7px;
+        height: 64px;
 	}
     .sorts-dropdown{
        left: 19%;
@@ -8818,7 +8825,7 @@ label.text-color {
 }
 .cr-perks-space{
 	margin-left: 16px;
-    padding-right: 26px;
+    padding-right: 70px;
 }
 #hiddensearch{
     display: none;

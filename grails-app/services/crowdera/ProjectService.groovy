@@ -2587,16 +2587,6 @@ class ProjectService {
                 isValueChanged = true;
                 break;
 	
-            case 'firstName':
-                beneficiary.firstName = varValue;
-                isValueChanged = true;
-                break;
-	
-            case 'lastName':
-                beneficiary.lastName = varValue;
-                isValueChanged = true;
-                break;
-	
             case 'telephone':
                 beneficiary.telephone = varValue;
                 isValueChanged = true;

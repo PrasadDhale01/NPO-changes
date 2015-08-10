@@ -6,9 +6,12 @@
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def beneficiary = project.user
     def beneficiaryUserName = beneficiary.username
-    
-    def fundRaiser = currentFundraiser.firstName + " " + currentFundraiser.lastName
-    def fundRaiserName = fundRaiser.toUpperCase()
+    def fundRaiserName
+    if(currentFundraiser.email == project.beneficiary.email){
+        fundRaiserName = project.beneficiary.firstName.toUpperCase()
+    } else {
+        fundRaiserName = (currentFundraiser.firstName + " " + currentFundraiser.lastName).toUpperCase()
+    }
     def username = currentFundraiser.username
     
     def projectTitle = project.title

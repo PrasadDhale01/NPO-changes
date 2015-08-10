@@ -9022,3 +9022,22 @@ body {
 .crew-title-centering{
 	margin-left:-7%;
 }
+.info-banner{
+	background-color: #000000;
+	color: #ffffff;
+	display:none;
+	height: 30px;
+	padding:5px;
+	text-align: center;
+	width: 100%;
+}
+.banner-link{
+	color:#ffffff;
+}
+.info-banner a:hover{
+	color:#ffffff;
+}
+.banner-close{
+	color:#ffffff;
+	margin-left:70px;
+}

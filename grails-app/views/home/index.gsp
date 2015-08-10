@@ -50,26 +50,6 @@
             </iframe>
         </div>
     </div>
-    
-    
-    <!-- Modal -->
-<div id="bannerModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Welcome to Crowdera</h4>
-      </div>
-      <div class="modal-body">
-        <p>We noticed that you are browsing from India and would like to invite you to visit our local site.</p>
-        <a href="http://crowdera.in" class="btn  btn-primary">Take me to the India Site</a>
-      </div>
-    </div>
-    
-  </div>
-</div>
 <!--
 <div class="news">
 <div class="container">

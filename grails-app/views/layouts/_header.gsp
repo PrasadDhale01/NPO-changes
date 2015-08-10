@@ -15,6 +15,10 @@
 %>
 <div class="navbar navbar-default navbar-fixed-top header-section" role="navigation">
     <div class="header-container">
+		<div class="info-banner">
+			Doing good from India? Visit <u><a href="http://crowdera.in" class="banner-link">www.crowdera.in</a></u>
+			<u><a href="#" class="banner-close" style="color:white;">close</a></u>
+		</div>
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="sr-only">Toggle navigation</span>

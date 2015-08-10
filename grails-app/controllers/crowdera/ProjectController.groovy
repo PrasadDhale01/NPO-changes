@@ -578,13 +578,38 @@ class ProjectController {
 		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
 		def categoryOptions = projectService.getCategoryList()
         def currentEnv = Environment.current.getName()
+		def vanityTitle = params.title
+		def user = project.user
+		def country = projectService.getCountry()
+		def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
+		def endDate = projectService.getProjectEndDate(project)
+		def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
+		def date = new Date();
+		List projectRewards = []
+		project.rewards.each {
+			if (it.id != 1) {
+				projectRewards.add(it)
+			}
+		}
+		if(campaignEndDate == date.format('MM/dd/yyyy')){
+			campaignEndDate = null
+		}
+		def adminemails = projectService.getAdminEmail(project)
+		def payOpts
+		if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+			payOpts = projectService.getIndiaPaymentGateway()
+		} else {
+			payOpts = projectService.getPayment()
+		}
 		if (project) {
 			def beneficiary = project.beneficiary
 			render (view: 'edit/index',
-			model: [project: project, currentEnv: currentEnv,
-				beneficiary: beneficiary,
-				categoryOptions: categoryOptions,
-				FORMCONSTANTS: FORMCONSTANTS])
+			model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,
+						'country': country, currentEnv: currentEnv,beneficiary:beneficiary,
+						FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,
+						project:project, user:user,campaignEndDate:campaignEndDate,
+						vanityTitle: vanityTitle, vanityUsername:vanityUsername,
+						email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
 		} else {
 			flash.prj_edit_message = "Campaign not found."
 			render (view: 'edit/editerror')

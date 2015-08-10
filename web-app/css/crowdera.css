@@ -8626,6 +8626,12 @@ img.cr-ineed-icons {
 	height: 66px;
     width: 251px;
 }
+.cr-bg-edit-btn{
+	background: url(https://s3.amazonaws.com/crowdera/assets/save-button.jpg) no-repeat !important;
+	height: 66px;
+    width: 251px;
+}
+
 .cr-check-btn {
     background-color: #f6f8f8;
     border-color: #dddddd;

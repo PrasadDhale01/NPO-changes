@@ -98,7 +98,7 @@
 	    		<div class="col-lg-12 footer-disclaimer-lg">
     				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
 	     			Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
-	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform.</span>
+	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform. *Crowdera does not charge a fee, however payment gateway and bank transfer fee are applicable.</span>
 	     		</div>
     		</section>
 	    </g:if>
@@ -204,7 +204,7 @@
 	    		<div class="col-lg-12 footer-disclaimer-lg">
     				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
 	     			Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
-	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform.</span>
+	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform. *Crowdera does not charge a fee, however payment gateway and bank transfer fee are applicable.</span>
 	     		</div>
     		</section>
 	    </g:if>
@@ -312,7 +312,7 @@
 	    		<div class="col-lg-12 footer-disclaimer-lg">
     				<span class="footer-disclaimer">Disclaimer: Contributing through Crowdera Ventures India Pvt Ltd (Crowdera) is not always a tax exempt charitable donation.
 	     			Crowdera does not guarantee that beneficiary projects will be fully or partially funded. Crowdera is an internet platform to connect individuals, non-profits and contributors to collaborate published purposes. Crowdera does not take any responsibility for any promises made by campaign creators on our platform.
-	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform.</span>
+	     			Please read the Terms of Use and Privacy Policy prior performing any transactions on our platform. *Crowdera does not charge a fee, however payment gateway and bank transfer fee are applicable.</span>
 	     		</div>
     		</section>
 	    </g:if>

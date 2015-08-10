@@ -1,8 +1,11 @@
 <g:set var="userService" bean="userService" />
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
+<g:set var="rewardService" bean="rewardService"/>
 <% 
     def base_url = grailsApplication.config.crowdera.BASE_URL
+	def iteratorCount = 1
+	def rewardItrCount = projectRewards.size()
 %>
 <html>
 <head>
@@ -19,6 +22,7 @@
     <input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
     <g:hiddenField name="payfir" value="${project.charitableId}" id="payfir"/>
     <g:hiddenField name="paypal" value="${project.paypalEmail}"/>
+    <g:hiddenField name="projectamount" value="${project.amount}" id="projectamount"/>
     <div class="">
         <div class="text-center">
              <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
@@ -261,7 +265,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="text" id="firstName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.FIRSTNAME}" value="${user.firstName}" placeholder="First Name">
+                                        <input type="text" id="firstName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.FIRSTNAME}" value="${user.firstName}" placeholder="First Name" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -269,7 +273,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="text" id="lastName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.LASTNAME}" value="${user.lastName}" placeholder="Last Name">
+                                        <input type="text" id="lastName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.LASTNAME}" value="${user.lastName}" placeholder="Last Name" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -362,14 +366,101 @@
 	                        <label class="panel-body cr-perks-size "><span class="cr-offering">Offering</span> PERKS?</label>
 	                    </div>
 	                    <div class="btn-group btnPerkBgColor col-sm-12 col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp" data-target="buttons">
-	                        <label class="btn btn-default col-sm-2 cr-lbl-mobile"> <input type="radio" name="answer" value="yes"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
-	                        <label class="btn btn-default col-sm-2 cr-lbl-mobiles"> <input type="radio" name="answer" value="no"> NO</label>
+	                        <label class="btn btn-default col-sm-2 cr-lbl-mobile"> <input type="radio" name="answer" value="yes" id="yesradio"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
+	                        <label class="btn btn-default col-sm-2 cr-lbl-mobiles"> <input type="radio" name="answer" value="no" id="noradio"> NO</label>
 	                    </div>
 	                </div>
                 </div>
-					
-                <input type="hidden" name="rewardCount" id="rewardCount" value='0'/>
+
+                <input type="hidden" name="rewardCount" id="rewardCount" value="${projectRewards.size()}"/>
                 <div id="addNewRewards">
+                <g:if test="${rewardItrCount > 0}">
+                <g:each in="${projectRewards}" var="reward">
+                <% 
+				    def shippingInfo = rewardService.getRewardShippingObjectByReward(reward);
+				%>
+				    <g:if test="${iteratorCount > 1}">
+				        <br><br><br>
+				    </g:if>
+                    <div class="rewardsTemplate" id="rewardTemplate">
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                        <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
+                                        <input type="text" placeholder="Amount" name="rewardPrice${iteratorCount}" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${iteratorCount}" value="${reward.price}">
+                                    </g:if>
+                                    <g:else>
+                                        <span class="cr2-currency-label">$</span>
+                                        <input type="text" placeholder="Amount" name="rewardPrice${iteratorCount}" class="form-control rewardPrice form-control-no-border-amt cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${iteratorCount}" value="${reward.price}">
+                                    </g:else>
+                                </div>
+                            </div>
+                        </div>
+										
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="text" placeholder="Name of Perk" name="rewardTitle${iteratorCount}" class="form-control cr-tablet-left cr-perk-title-number form-control-no-border text-color cr-placeholder cr-chrome-place required" id="rewardTitle${iteratorCount}" value="${reward.title}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <input type="text" placeholder="Number available" name="rewardNumberAvailable${iteratorCount}" class="form-control cr-perk-title-number form-control-no-border text-color cr-placeholder cr-chrome-place  rewardNumberAvailable" id="rewardNumberAvailable${iteratorCount}" value="${reward.numberAvailable}">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <div class="col-sm-12">
+                                    <textarea class="form-control rewardDescription form-control-no-border text-color cr-placeholder cr-chrome-place required" name="rewardDescription${iteratorCount}" id="rewardDesc${iteratorCount}" rows="2" placeholder="Description" maxlength="250">${reward.description}</textarea>
+                                    <p class="cr-perk-des-font">Please refer to our Terms of Use for more details on perks.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="btn-group col-sm-12" data-toggle="buttons">
+                                    <label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Shipping</label>
+                                    <g:if test="${shippingInfo.address}">
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblmail${iteratorCount} active"><input type="checkbox" checked="checked" name="mailingAddress${iteratorCount}" value="true" id="mailaddcheckbox${iteratorCount}">Mailing <br> address</label>
+                                    </g:if>
+                                    <g:else>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblmail${iteratorCount}"><input type="checkbox" name="mailingAddress${iteratorCount}" value="true" id="mailaddcheckbox${iteratorCount}">Mailing <br> address</label>
+                                    </g:else>
+                                    <g:if test="${shippingInfo.email}">
+                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblemail${iteratorCount} active"><input type="checkbox" checked="checked" name="emailAddress${iteratorCount}" value="true" id="emailcheckbox${iteratorCount}">Email <br> address</label>
+                                    </g:if>
+                                    <g:else>
+                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblemail${iteratorCount}"><input type="checkbox" name="emailAddress${iteratorCount}" value="true" id="emailcheckbox${iteratorCount}">Email <br> address</label>
+                                    </g:else>
+                                    <g:if test="${shippingInfo.twitter}">
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lbltwitter${iteratorCount} active"><input type="checkbox" checked="checked" name="twitter${iteratorCount}" value="true" id="twittercheckbox${iteratorCount}">Twitter <br> handle</label>
+                                    </g:if>
+                                    <g:else>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lbltwitter${iteratorCount}"><input type="checkbox" name="twitter${iteratorCount}" value="true" id="twittercheckbox${iteratorCount}">Twitter <br> handle</label>
+                                    </g:else>
+                                    <input type="text" name="custom${iteratorCount}" id="customcheckbox${iteratorCount}" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place col-sm-4 col-xs-12" placeholder="Custom" value="${shippingInfo.custom}">
+                                </div>
+                            </div>
+                        </div>
+                        <g:if test="${rewardItrCount > iteratorCount}">
+                        <div class="col-sm-12 perk-css">
+                            <div class="col-sm-12 perk-create-styls" align="right">
+                                <div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward" value="${iteratorCount}">
+                                    <i class="glyphicon glyphicon-floppy-save"></i>
+                                </div>
+                            </div>
+                        </div><br><br><br>
+                        </g:if>
+                    </div>
+                    <% iteratorCount++; %>
+                    </g:each>
+                    </g:if>
+                    <g:else>
                     <div class="rewardsTemplate" id="rewardTemplate">
                         <div class="col-sm-2">
                             <div class="form-group">
@@ -421,6 +512,7 @@
                             </div>
                         </div>
                     </div>
+                    </g:else>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 perk-css" id="updatereward">

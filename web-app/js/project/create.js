@@ -1,7 +1,16 @@
 $(function() {
     console.log("create.js initialized");
     
-    $('#rewardTemplate').hide();
+    var rewardIteratorCount = $('#rewardCount').val();
+    if (rewardIteratorCount > 0){
+    	$('#rewardTemplate').show();
+    	$('#yesradio').prop('checked', true);
+	    $("#updatereward").show();
+    } else {
+    	$('#rewardTemplate').hide();
+    }
+    
+    var count = $('#rewardCount').val()
     
     var storyContent
     var storyPlaceholder = "<p><h3>Introduce Your Campaign</h3></p>"+
@@ -449,7 +458,11 @@ $(function() {
      
      $("input[name='answer']").change(function(){
      	if($(this).val()=="yes") {
-     		count = 1;
+     		if($('#rewardCount').val() > 0){
+     			count = rewardIteratorCount;
+     		} else {
+     			count = 1;
+     		}
      		$('#rewardCount').attr('value',count);
      		$("#rewardTemplate").show();
      	    $("#updatereward").show();
@@ -464,14 +477,20 @@ $(function() {
                     $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').val('');
                     $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle1').val('');
                     $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable1').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find("#emailcheckbox1").attr('checked', false);
-                    $('#addNewRewards').find('.rewardsTemplate').find("#mailaddcheckbox1").attr('checked', false);
-                    $('#addNewRewards').find('.rewardsTemplate').find("#twittercheckbox1").attr('checked', false);
+                    $('#addNewRewards').find('.rewardsTemplate').find(".lblmail1").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblmail1');
+                    $('#addNewRewards').find('.rewardsTemplate').find(".lblemail1").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblemail1');
+                    $('#addNewRewards').find('.rewardsTemplate').find(".lbltwitter1").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lbltwitter1');
+                    $('#addNewRewards').find('.rewardsTemplate').find("#mailaddcheckbox1").prop('checked', false);
+                    $('#addNewRewards').find('.rewardsTemplate').find("#emailcheckbox1").prop('checked', false);
+                    $('#addNewRewards').find('.rewardsTemplate').find("#twittercheckbox1").prop('checked', false);
                     $('#addNewRewards').find('.rewardsTemplate').find('#customcheckbox1').val('');
                     $("#updatereward").hide();
                     $('#addNewRewards').find('.rewardsTemplate').hide();
                     count = 0;
                     $('#rewardCount').attr('value',count);
+                } else {
+                	$('#noradio').prop('checked', false);
+                	$('#yesradio').prop('checked', true);
                 }
             }
         }
@@ -1095,6 +1114,7 @@ function setTitleText(){
                   } 
                 });
             });
+            
           });
    });
     
@@ -1162,16 +1182,6 @@ function setTitleText(){
     	}
     });
     
-    $('#firstName').blur(function (){
-        var firstName = $(this).val();
-        autoSave('firstName', firstName);
-    });
-
-    $('#lastName').blur(function (){
-        var lastName = $(this).val();
-        autoSave('lastName', lastName);
-    });
-
     $('#telephone').blur(function (){
         var telephone = $(this).val();
         autoSave('telephone', telephone);
@@ -1276,6 +1286,7 @@ function setTitleText(){
     function saveRewards(rewardNum,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom){
         var projectId = $('#projectId').val();
         $.ajax({
+        	cache: true,
             type:'post',
             url:$("#b_url").val()+'/project/saveReward',
             data:'projectId='+projectId+'&rewardNum='+rewardNum+'&rewardPrice='+rewardPrice+'&rewardTitle='+rewardTitle+'&rewardNumberAvailable='+rewardNumberAvailable+'&rewardDesc='+rewardDesc+'&email='+email+'&address='+address+'&twitter='+twitter+'&custom='+custom,
@@ -1323,7 +1334,27 @@ function setTitleText(){
         hidePopover = function () {
             $(this).popover('hide');
         };
-
+        
+        $('.editreward').each(function(){
+            $(this).popover({
+                content: 'Save Perk',
+                trigger: 'manual',
+                placement: 'bottom'
+            })
+            .focus(showPopover)
+            .blur(hidePopover)
+            .hover(showPopover, hidePopover);
+        });
+        
+        $('#savereward').popover({
+            content: 'Save Perk',
+            trigger: 'manual',
+            placement: 'bottom'
+        })
+        .focus(showPopover)
+        .blur(hidePopover)
+        .hover(showPopover, hidePopover);
+        
     /* Initialize pop-overs (tooltips) */
    /* $("input[name='days']").popover({
         content: 'Number of days to raise the funds by.',

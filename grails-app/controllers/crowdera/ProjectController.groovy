@@ -405,7 +405,8 @@ class ProjectController {
 		def user = userService.getCurrentUser()
         project.draft = true;
 		project.beneficiary = beneficiary;
-		
+		project.beneficiary.email = user.email;
+
         def currentEnv = Environment.current.getName()
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
             project.payuStatus = true
@@ -435,6 +436,12 @@ class ProjectController {
         def endDate = projectService.getProjectEndDate(project)
         def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
         def date = new Date();
+		List projectRewards = []
+		project.rewards.each {
+			if (it.id != 1) {
+				projectRewards.add(it)
+			}
+		}
         if(campaignEndDate == date.format('MM/dd/yyyy')){
             campaignEndDate = null
         }
@@ -448,7 +455,7 @@ class ProjectController {
 		render(view: 'create/index2',
 			   model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,
 						'country': country, currentEnv: currentEnv,
-						FORMCONSTANTS: FORMCONSTANTS,
+						FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,
 						project:project, user:user,campaignEndDate:campaignEndDate,
 						vanityTitle: vanityTitle, vanityUsername:vanityUsername,
 						email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
@@ -514,7 +521,7 @@ class ProjectController {
                 twitter[icount] = params.("twitter"+(icount+1))
                 custom[icount] = params.("custom"+(icount+1))
 	
-                if (rewardPrice[icount]==null || Integer.parseInt(rewardPrice[icount]) > (int)amount){
+                if (rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount]) > (double)amount){
                     boolPerk=true;
                 }
                 if (mailingAddress[icount]==null && emailAddress[icount]==null && twitter[icount]==null && custom[icount]==null){

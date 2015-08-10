@@ -34,7 +34,7 @@
 			</div>
 			<span class="testimonial-name pull-right">
 			    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-			        <img src="//s3.amazonaws.com/crowdera/assets/sandeep-Nath-Testimonial-Image.png"><b class="hm-testimonial-font">- Sandeep Nath,Bollywood Lyricist & Writer</b>
+			        <img src="//s3.amazonaws.com/crowdera/assets/sandeep-Nath-Testimonial-Image.png"><b class="hm-testimonial-font">- Sandeep Nath, Bollywood Lyricist & Writer</b>
 			    </g:if>
 			    <g:else>
 			        <img src="//s3.amazonaws.com/crowdera/assets/testimonial-lifevest-icon.png"><b>- Orly Wahba, Founder of Life Vest Inside</b>

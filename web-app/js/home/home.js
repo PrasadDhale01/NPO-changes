@@ -199,10 +199,23 @@ $( document ).ready(function() {
 		dataType: 'jsonp',
 		success: function(location) {
 			// If the visitor is browsing from India.
-			if (location.country_code == 'IN' &&(currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production')) {
-			// Tell him about the India store.
-					$('#bannerModal').modal('show');
+			if (location.country_code == 'IN' && currentEnv == 'test') {
+			// Tell him about the India.
+					$('.info-banner').css('display','block');
+					$('.banner-link').text('test.crowdera.in');
+					$('.banner-link').attr('href','test.crowdera.in');
+			}else if(location.country_code == 'IN' && currentEnv == 'staging'){
+				$('.info-banner').css('display','block');
+				$('.banner-link').text('staging.crowdera.in');
+				$('.banner-link').attr('href','http://staging.crowdera.in');
+			}else if(location.country_code == 'IN' && currentEnv == 'production'){
+				$('.info-banner').css('display','block');
+				$('.banner-link').text('crowdera.in');
+				$('.banner-link').attr('href','http://crowdera.in');
 			}
 		}
+	});
+	$('.banner-close').click(function(){
+		$('.info-banner').css('display','none');
 	});
 });

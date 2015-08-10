@@ -7,6 +7,11 @@ $(function() {
             	required: true,
                 minlength: 2
             },
+            numberAvailable: {
+                required: true,
+                number: true,
+                min: 0
+            },
             description: {
                 required: true,
                 minlength: 2,
@@ -40,6 +45,11 @@ $(function() {
                     required: true,
                     minlength: 2,
                     maxlength: 250
+                },
+                numberAvailable: {
+                    required: true,
+                    number: true,
+                    min: 0
                 },
                 price: {
                     required: true,
@@ -90,11 +100,18 @@ $(function() {
     
     /****************************Edit Shipping Perk**************************************************/
     $.validator.addMethod('editShippingInfo', function(value) {
-  	  var si =$('.editShippingInfo:checked').size() ;
+      var si = 0;
+  	  var checkbox = $('.editShippingInfo:checked').size();
+  	  var custom = $('#custombox').val();
+  	  if (custom) {
+  		  si = si+1;
+  	  } else {
+  		  si = checkbox;
+  	  }
   	  if(si >0){
   		  $('.editShippingreward').removeClass('dynCSS');
   		  $('.editShippingError').hide();
-  		  return $('.editShippingInfo:checked').size() > 0;
+  		  return true;
   	  }else{
   		  $('.editShippingreward').addClass('dynCSS');
   		  $('.editShippingError').html('This field is required').show();	  
@@ -110,11 +127,18 @@ $(function() {
     /***************************Create Shipping Perk***********************************************************************/
     
     $.validator.addMethod('shippingInfo', function(value) {
-	  var si =$('.shippingInfo:checked').size() ;
+      var si = 0;
+	  var checkbox = $('.shippingInfo:checked').size();
+	  var custom = $('#custombox').val();
+	  if (custom) {
+		  si = si+1;
+	  } else {
+		  si = checkbox;
+	  }
 	  if(si >0){
 		  $('.shippingreward').removeClass('dynCSS');
 		  $('.shippingError').hide();
-		  return $('.shippingInfo:checked').size() > 0;
+		  return true;
 	  }else{
 		  $('.shippingreward').addClass('dynCSS');
 		  $('.shippingError').html('This field is required').show();	  

@@ -36,6 +36,10 @@
                                 <label for="title">Title</label>
                                 <input type="text" class="form-control" name="title" placeholder="Title"/>
                             </div>
+                            <div class="form-group">
+                                <label for="title">Number available</label>
+                                <input type="text" class="form-control" name="numberAvailable" placeholder="Number available"/>
+                            </div>
                             <div class="form-group descriptionDiv createDescDiv">
                                 <label for="description">Description</label>
                                 <textarea class="form-control" id="descarea" name="description" maxlength="250" rows="4" placeholder="Description"></textarea>
@@ -53,7 +57,7 @@
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="shippingInfo" name="address" value="true" id="mailaddcheckbox">Mailing address</label>
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="shippingInfo" name="email" value="true" id="emailcheckbox">Email address</label>
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="shippingInfo" name="twitter" value="true" id="twittercheckbox">Twitter handle</label>
-                                    <label class="btn btn-primary btn-sm checkbox-inline control-label lblCustom"><input type="checkbox" class="shippingInfo" name="custom" value="true" id="customcheckbox">Custom</label>
+                                    <input type="text" class="shippingInfo pull-right" name="custom" placeholder="Custom" id="custombox"/>
                                 </div>
                                 <div class="shippingError"></div>
                             </div>

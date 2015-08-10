@@ -95,13 +95,6 @@ class ProjectService {
             getMultipleImageUrls(imageFiles,project)
         }
 
-        project.description = params.description
-        project.story = params.story
-        project.amount = Double.parseDouble(params.amount)
-        project.title = params.title
-        project.category = params.category
-        project.webAddress = params.webAddress
-	project.payuEmail= params.payuEmail		
         if (params.videoUrl) {
             if (params.videoUrl.contains('embed')){
                 project.videoUrl = params.videoUrl
@@ -116,15 +109,6 @@ class ProjectService {
             project.organizationName = params.organizationName
         }
         
-		def days = params.days
-        getUpdatedNumberofDays(days, project)
-		
-        String email1 = params.email1
-        String email2 = params.email2
-        String email3 = params.email3
-
-        updateAdminsAndSendUpdateEmail(email1, email2, email3, project, user)
-		
         def result = false
         if (params.title != title) {
             def vanityObject = VanityTitle.findAllWhere(project:project)
@@ -2646,8 +2630,33 @@ class ProjectService {
                 beneficiary.linkedinUrl = varValue;
                 isValueChanged = true;
                 break;
-               
-            default : 
+				
+			case 'name':
+				beneficiary.firstName = varValue;
+				isValueChanged = true;
+				break;
+				
+			case 'amount':
+				project.amount = Double.parseDouble(varValue);
+				isValueChanged = true;
+				break;
+				
+			case 'campaignTitle':
+				project.title = varValue;
+				isValueChanged = true;
+				break;
+				
+			case 'descarea':
+				project.description = varValue;
+				isValueChanged = true;
+				break;
+		    
+			case 'usedFor':
+				project.usedFor = varValue;
+				isValueChanged = true;
+				break;
+
+            default :
                isValueChanged = false;
                
         }

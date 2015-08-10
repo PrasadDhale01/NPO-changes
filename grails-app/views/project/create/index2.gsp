@@ -30,7 +30,7 @@
                 <a class=" col-sm-2 col-xs-6 cr-img-story-icon" href="#story"><div class="col-sm-0"><img class="cr-story" src="//s3.amazonaws.com/crowdera/assets/story-Icon-Blue.png" alt="Story"></div>Story</a>
 	            <a class=" col-sm-2 col-xs-6 cr-img-admin-icon" href="#admins"><div class="col-sm-0"><img class="cr-admin" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---Blue.png" alt="Admin"></div>Admin</a>
 	            <a class=" col-sm-2 col-xs-6 cr-img-perk-icon" href="#perk"><div class="col-sm-0"><img class="cr-perk" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-Blue.png" alt="Perk"></div>Perks</a>
-	            <a class=" col-sm-2 col-xs-6 cr-img-payment-icon" href="#payFirst"><div class="col-sm-0"><img class="cr-payment" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-Blue.png" alt="Payment"></div>Payment</a>
+	            <a class=" col-sm-2 col-xs-6 cr-img-payment-icon" href="#payment"><div class="col-sm-0"><img class="cr-payment" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-Blue.png" alt="Payment"></div>Payment</a>
 	            <a class=" col-sm-2 col-xs-6 cr-img-launch-icon" href="#launch"><div class="col-sm-0"><img class="cr-launch" src="//s3.amazonaws.com/crowdera/assets/launch-Icon--Blue.png" alt="Launch"></div>Launch</a>
             </header>
         </div>
@@ -77,16 +77,16 @@
                             <div class="col-sm-3">
 	                            <div class="font-list">
 	                                <g:if test="${project.payuEmail}">
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="payment" value="PAYU" optionKey="key" optionValue="value" />
+	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAYU" optionKey="key" optionValue="value" />
 	                                </g:if>
 	                                <g:elseif test="${project.charitableId}">
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="payment" value="FIR" optionKey="key" optionValue="value" />
+	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="FIR" optionKey="key" optionValue="value" />
 	                                </g:elseif>
 	                                <g:elseif test="${project.paypalEmail}">
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="payment" value="PAY" optionKey="key" optionValue="value" />
+	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" />
 	                                </g:elseif>
 	                                <g:else>
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="payment" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" />
+	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" />
 	                                </g:else>
 	                            </div>
                             </div>
@@ -530,8 +530,8 @@
                     </div>
                 </div>
                 <div class="clear"></div>
-                <div class="form-group" id="payFirst">
-                    <div class="col-sm-12 cr-payments-pad">
+                <div class="form-group">
+                    <div class="col-sm-12 cr-payments-pad" id="payment">
                         <div class="cr-story-flx cr-payment-marg col-sm-12">
                             <label class="panel-body cr-payments-lab">PAYMENTS</label>
 <%--                                            <img alt="" src="/images/Payment-Button.jpg">--%>

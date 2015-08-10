@@ -15,6 +15,34 @@ function selectedCampaigns(){
 	document.sortsForm.submit();
 }
 
+$(document).ready(function(){
+	var currentEnv=$('#currentEnv').val();
+	$.ajax( { 
+		url: 'https://freegeoip.net/json/', 
+		type: 'POST', 
+		dataType: 'jsonp',
+		success: function(location) {
+			// If the visitor is browsing from India.
+			if (location.country_code == 'IN' && currentEnv == 'test') {
+			// Tell him about the India store.
+					$('.info-banner').css('display','block');
+					$('.banner-link').text('test.crowdera.in');
+					$('.banner-link').attr('href','http://test.crowdera.in');
+			}else if(location.country_code == 'IN' && currentEnv == 'staging'){
+				$('.info-banner').css('display','block');
+				$('.banner-link').text('staging.crowdera.in');
+				$('.banner-link').attr('href','http://staging.crowdera.in');
+			}else if(location.country_code == 'IN' && currentEnv == 'production'){
+				$('.info-banner').css('display','block');
+				$('.banner-link').text('crowdera.in');
+				$('.banner-link').attr('href','http://crowdera.in');
+			}
+		}
+	});
+	$('.banner-close').click(function(){
+		$('.info-banner').css('display','none');
+	});
+});
 $(window).load(function() {
     /*
     $('.blacknwhite').BlackAndWhite({

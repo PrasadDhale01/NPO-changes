@@ -227,9 +227,6 @@ $(function() {
             	required:true,
             	isWebUrl:true
             },
-            iconfile: {
-            	required:true
-            },
             answer: {
             	required:true
             },
@@ -250,6 +247,10 @@ $(function() {
             } else if($(element).prop("id") == "projectImageFile") {
                 error.appendTo(element.parent().parent());
             }else if($(element).prop("id") == "iconfile") {
+                error.appendTo(element.parent().parent());
+            }else if($(element).prop("id") == "projectEditImageFile") {
+                error.appendTo(element.parent().parent());
+            }else if($(element).prop("id") == "editiconfile") {
                 error.appendTo(element.parent().parent());
             }else{
                 error.insertAfter(element);
@@ -322,6 +323,11 @@ $(function() {
                 required: true,
                 number: true,
                 min: 0
+            });
+        });
+        $('#iconfile').each(function () {
+            $(this).rules("add", {
+                required: true
             });
         });
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
@@ -561,8 +567,8 @@ $(function() {
            $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/launch-Icon--Blue.png");
        });
      
-     $('#payment').change(function(){
-    	 var pay = $('#payment').val();
+     $('#paymentOpt').change(function(){
+    	 var pay = $('#paymentOpt').val();
     	 if(pay=='FIR'){
     		 $('#paypalemail').hide();
     		 $('#charitableId').show();
@@ -579,8 +585,8 @@ $(function() {
     	 }
      });
      
-     $('#payment').change(function(){
-    	 var payind = $('#payment').val();
+     $('#paymentOpt').change(function(){
+    	 var payind = $('#paymentOpt').val();
     	 if(payind=='PAYU'){
     		 $('#PayUMoney').show();
     	 }
@@ -1281,6 +1287,42 @@ function setTitleText(){
     
     $('#others').click(function(){
         autoSave('fundsRecievedBy', 'OTHERS');
+    });
+    
+    $('#name1').blur(function (){
+        var name = $(this).val();
+        autoSave('name', name);
+    });
+    
+    $('#amount1').blur(function (){
+        var amount = $(this).val();
+        autoSave('amount', amount);
+    });
+    
+    $('#campaignTitle1').blur(function (){
+        var title = $(this).val();
+        autoSave('campaignTitle', title);
+    });
+    
+    $('#descarea1').blur(function (){
+        var descarea = $(this).val();
+        autoSave('descarea', descarea);
+    });
+    
+    $('#impact1').click(function(){
+    	autoSave('usedFor', 'IMPACT');
+    });
+
+    $('#passion1').click(function(){
+    	autoSave('usedFor', 'PASSION');
+    });
+
+    $('#innovating1').click(function(){
+    	autoSave('usedFor', 'SOCIAL_NEEDS');
+    });
+
+    $('#personal1').click(function(){
+    	autoSave('usedFor', 'PERSONAL_NEEDS');
     });
 
     function saveRewards(rewardNum,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom){

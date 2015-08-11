@@ -183,7 +183,12 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     text-decoration: none;
     background-color: #006083; /* change color of links in drop down here */
 }
-
+.cr-drops .dropdown-menu > li > a:hover,
+.cr-drops.dropdown-menu > li > a:focus {
+    color: #ffffff;
+    text-decoration: none;
+    background-color: #e7e7e7 !important; /* change color of links in drop down here */
+}
 .header-section .nav > li > a {
     padding: 4px 12px !important;
 }
@@ -1410,7 +1415,8 @@ a {
 	    padding-left: 17px;
 	}
 	i.cr-tab-icons{
-	     margin-top: -9px;
+	    font-size: 12px;
+        margin-top: 8px;
 	}
 	label.cr-pad-who {
         padding-left: 2px;
@@ -1964,8 +1970,8 @@ a {
         padding-top: 7px;
     }
 	header.cr-tabs-link {
-	    padding-left: 90px !important; 
-	    padding-right: 90px !important; 
+	    padding-left: 120px !important; 
+	    padding-right: 120px !important; 
     }
 	div.cr-space{
 	    display: inline-table !important;
@@ -2200,6 +2206,14 @@ a {
         width: 105%;
     }
 
+}
+
+@media only screen and (min-width: 1281px) and (max-width: 1330px){
+    header.cr-tabs-link {
+        color: #01bbd3;
+        font-size: 22px;
+        padding: 30px 278px !important;
+    }
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
@@ -8507,12 +8521,12 @@ header {
     display: flex;
 }
 header.cr-tabs-link {
-	color: rgb(164, 220, 249);
+	color: #01bbd3;
 	padding-bottom: 30px;
     padding-top: 30px;
-	padding-left: 190px; 
-	padding-right: 205px; 
-	font-size: 24px;
+	padding-left: 300px;
+    padding-right: 300px;
+	font-size: 22px;
 }
 .cr-ancher-tab a{
   color: rgb(164, 220, 249);
@@ -8554,6 +8568,9 @@ form.form-horizontal.cr-top-spaces {
 }
 .font-list span{
   font-size: 16px;
+  font-weight: bold;
+  color: #6d6e6e;
+  text-align: center !important;
 }
 .font-list button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default {
   background-color: #f6f8f8;
@@ -8562,6 +8579,7 @@ form.form-horizontal.cr-top-spaces {
 }
 p.cr-para {
   font-size: 75%;
+  margin-bottom: 0px;
 }
 .cr-perk-chevron-icon {
 	left: 20px;
@@ -8685,8 +8703,11 @@ img.cr-ineed-icons {
     height: 60px;
 }
 .cr-check-btn:hover {
-    background-color: gray;
-    color: white;
+    background-color: #D3D3D4;  
+	color: #6d6e6e;
+}
+label.cr-panel-story{
+	background-color: #ffffff;
 }
 .cr-panel-story{
 /* 	width: 860px;  */
@@ -8727,6 +8748,9 @@ img.cr-ineed-icons {
     font-size: 14px;
     padding: 7px; 
 }
+label.cr-payments{
+	background-color: #ffffff;
+}
 .btn-text {
     padding: 26px 28px;
 }
@@ -8757,8 +8781,9 @@ label.text-color {
 /****Chrome-Placeholder*******/
 #datepicker::-webkit-input-placeholder {
 	font-size: 18px;
-	color: #000000;
-	font-weight: 400;
+	color: #6d6e6e;
+	font-weight: bold;
+	text-align: center;
 }
 #name::-webkit-input-placeholder {
 	font-size: 14px;
@@ -8772,11 +8797,12 @@ label.text-color {
 	font-size: 14px;
 	color: #c7c7c7;
 }
-/*******Mozila-placeholder******/
+/*******Mozilder******/
 #datepicker::-moz-placeholder{ 
 	font-size: 18px;
-	color: #000000;
-	font-weight: 400;
+	color: #6d6e6e;
+	font-weight: bold;
+	text-align: center;
 }
 #name::-moz-placeholder{ 
 	font-size: 14px;
@@ -8917,6 +8943,8 @@ label.text-color {
 }
 .cr-start-flex{
 	display:flex;
+	margin-bottom: 15px;
+    margin-top: 25px;
 }
 .cr-start-size {
     background-color: #01bbd2;
@@ -8936,7 +8964,7 @@ label.text-color {
     top: 19px;
 }
 .cr-check-btn-first{
-	background-color: #6d6e6e;
+	background-color: #889299;
     border-color: #dddddd;
     color: White;
     height: 60px;
@@ -8944,17 +8972,23 @@ label.text-color {
 span.cr-font-title {
     font-size: 14px;
     font-weight: 900;
+    text-align:left;
+    width:120px;
+}
+ .nav-tabs > li.cr-li-tabsss > a {
+    background-color: #ffffff;
+    color: #6d6e6e;
 }
 ul.cr-ul-tabs.nav > li > a:hover,
 ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hover,
 .nav-tabs > li.cr-hover-color > a > span:focus,
 .nav-tabs > li.cr-hover-color active > a > span:active{
     text-decoration: none;
-    background-color: #6d6e6e;
+    background-color: #889299;
     color: #ffffff !important; 
 }
 .cr-check-btn-perks{ 
-    background-color: #6d6e6e;
+    background-color: #889299;
     border-color: #dddddd;
     color: White;
     font-size: 14px;
@@ -8999,7 +9033,7 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
     width: 29px;
 }
 .cr-tab-in{
-	margin-top: -9px;
+	margin-top: 5px;
 }
 .form-control-no-border:focus {
     border-color: #e3e3e3;
@@ -9027,8 +9061,8 @@ body {
     overflow-x: hidden !important;
 }
 .cr-hovers:hover{
-	background-color: gray;  /***.cr-hovers.active****/
-	color: white;
+	background-color: #D3D3D4;  /***.cr-hovers.active****/
+	color: #6d6e6e;
 }
 /***perks-custom-placeholder***/
 .cr-custom-place::-moz-placeholder{ 
@@ -9102,6 +9136,19 @@ body {
 .banner-close{
 	color:#ffffff;
 	margin-left:70px;
+}
+
+.cr-drop-color.open > .dropdown-toggle.btn-default {
+	background-color: #f6f8f8!important ;
+    color: white !important;
+}
+.cr-drop-color > .dropdown-toggle.btn-default:hover,
+.cr-drop-color.open > .dropdown-toggle.btn-default{
+	background-color: #dcdcdc!important ;
+}
+.cr-perks-back-color {
+    background-color: #f6f8f8;
+    color: #6d6e6e;
 }
 .header-container .info-banner a {
     text-decoration: underline !important;

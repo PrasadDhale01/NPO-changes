@@ -40,6 +40,7 @@
 			<% def contributedAmount = projectService.getDataType(Double.parseDouble(amount)) %>
 			<g:form action="payupayment" controller="fund" method="POST"  role="form">
 				<input type="hidden"  name="anonymous" value="${anonymous}" id="anonymous"/>
+				<g:hiddenField name="customField" id="customField" value="${shippingInfo.custom}"/>
 				<div class="row">
 					<div class="col-md-8">
 						<div class="panel panel-default payu-inr">
@@ -211,7 +212,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<div class="input-group col-md-12">
-														<input class="form-control" type="text" placeholder="Custom Details ex. Size of T-shirts etc" name="shippingCustom">
+														<input class="form-control" type="text" id="customShippingInfo" name="shippingCustom">
 													</div>
 												</div>
 											</div>

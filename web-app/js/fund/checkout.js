@@ -289,6 +289,24 @@ $(function() {
            } 
         });
     });
+    
+    var showPopover = function () {
+        $(this).popover('show');
+    },
+    hidePopover = function () {
+        $(this).popover('hide');
+    };
+    
+    var custom = $('#customField').val();
+    
+    $('#customShippingInfo').popover({
+        content: custom,
+        trigger: 'manual',
+        placement: 'bottom'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
 
 
 });

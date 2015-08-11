@@ -6,7 +6,7 @@
     def base_url = grailsApplication.config.crowdera.BASE_URL
 	def iteratorCount = 1
 	def rewardItrCount = projectRewards.size()
-	def amount = projectService.getDataType(project.amount)
+	def amount = (project.amount).round()
 %>
 <html>
 <head>
@@ -32,7 +32,7 @@
 	            <a class=" col-sm-2 col-xs-6 cr-img-admin-icon" href="#admins"><div class="col-sm-0"><img class="cr-admin" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---Blue.png" alt="Admin"></div>Admin</a>
 	            <a class=" col-sm-2 col-xs-6 cr-img-perk-icon" href="#perk"><div class="col-sm-0"><img class="cr-perk" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-Blue.png" alt="Perk"></div>Perks</a>
 	            <a class=" col-sm-2 col-xs-6 cr-img-payment-icon" href="#payment"><div class="col-sm-0"><img class="cr-payment" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-Blue.png" alt="Payment"></div>Payment</a>
-	            <a class=" col-sm-2 col-xs-6 cr-img-launch-icon" href="#save"><div class="col-sm-0"><img class="cr-launch" src="//s3.amazonaws.com/crowdera/assets/launch-Icon--Blue.png" alt="Save"></div>Save</a>
+	            <a class=" col-sm-2 col-xs-6 cr-img-save-icon" href="#save"><div class="col-sm-0"><img class="cr-launch" src="//s3.amazonaws.com/crowdera/assets/Save-Icon-Blue.png" alt="Save"></div>Save</a>
             </header>
         </div>
         <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
@@ -169,22 +169,24 @@
                     <g:hiddenField name="campaignvideoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
                     <div class="col-sm-6" id="media">
                         <a href="#addVideo" data-toggle="modal">
-                            <div class="panel panel-default panel-create-size" id="videoBox">
+                            <div class="panel panel-default panel-create-size lblIcon text-center" id="videoBox">
+                                <label id="addVideolbl">Add Video</label>
                                 <img id="addVideoIcon" class="addVideoIcon img-responsive" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png">
                             </div>
                         </a>
                     </div>
                     <div class="col-sm-6" id="media-video">
                         <div class="panel panel-default panel-create-size" id="videoBox">
-                           <a href="#addVideo" data-toggle="modal">
-                               <button class="videoUrledit close" id="videoUrledit">
-                                   <i class="glyphicon glyphicon-edit" ></i>
-                               </button>
-                           </a>
                            <div class="panel-body">
                                <div class="form-group">
                                    <div class="col-sm-6" id="ytVideo"></div>
                                </div>
+                               <a href="#addVideo" data-toggle="modal" class="videoUrledit close" id="videoUrledit">
+                                   <i class="glyphicon glyphicon-edit" ></i>
+                               </a>
+                               <span class="videoUrledit close" id="videoUrledit">
+                                   <i class="glyphicon glyphicon-trash" id="deleteVideo"></i>
+                               </span>
                            </div>
                         </div>
                     </div>
@@ -345,7 +347,7 @@
                                     <div class="col-sm-6">
                                         <div class="fileUpload btn btn-info btn-sm cr-btn-color">
                                             <span>Organization Logo</span>
-                                            <input type="file" class="upload" id="editiconfile" name="iconfile" accept="image/jpeg, image/png">
+                                            <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">
                                         </div>
                                         <label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>
                                         <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
@@ -487,10 +489,10 @@
                     </div>
 
                 </div>
-                                <div class="form-group">
+                <div class="form-group">
 	                <div class="col-sm-12 cr-lab-rd-flex cr-space" id="perk">
-	                    <div class="cr-perks-flex cr-perks-space">
-	                        <label class="panel-body cr-perks-size "><span class="cr-offering">Offering</span> PERKS?</label>
+	                    <div class="cr-perks-flex cr-perks-space edit-perk-space">
+	                        <label class="panel-body cr-perks-size edit-perk-size"><span class="cr-offering">Offering</span> PERKS?</label>
 	                    </div>
 	                    <div class="btn-group btnPerkBgColor col-sm-12 col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp" data-target="buttons">
 	                        <label class="btn btn-default col-sm-2 cr-lbl-mobile"> <input type="radio" name="answer" value="yes" id="yesradio"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
@@ -505,9 +507,10 @@
                 <g:each in="${projectRewards}" var="reward">
                 <% 
 				    def shippingInfo = rewardService.getRewardShippingObjectByReward(reward);
+					def price = (reward.price).round();
 				%>
 				    <g:if test="${iteratorCount > 1}">
-				        <br><br><br>
+				        <div class="hidden-xs break-div"></div>
 				    </g:if>
                     <div class="rewardsTemplate" id="rewardTemplate">
                         <div class="col-sm-2">
@@ -515,11 +518,11 @@
                                 <div class="col-sm-12">
                                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
-                                        <input type="text" placeholder="Amount" name="rewardPrice${iteratorCount}" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${iteratorCount}" value="${reward.price}">
+                                        <input type="text" placeholder="Amount" name="rewardPrice${iteratorCount}" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${iteratorCount}" value="${price}">
                                     </g:if>
                                     <g:else>
                                         <span class="cr2-currency-label">$</span>
-                                        <input type="text" placeholder="Amount" name="rewardPrice${iteratorCount}" class="form-control rewardPrice form-control-no-border-amt cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${iteratorCount}" value="${reward.price}">
+                                        <input type="text" placeholder="Amount" name="rewardPrice${iteratorCount}" class="form-control rewardPrice form-control-no-border-amt cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${iteratorCount}" value="${price}">
                                     </g:else>
                                 </div>
                             </div>
@@ -543,7 +546,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="col-sm-12">
-                                    <textarea class="form-control rewardDescription form-control-no-border text-color cr-placeholder cr-chrome-place required" name="rewardDescription${iteratorCount}" id="rewardDesc${iteratorCount}" rows="2" placeholder="Description" maxlength="250">${reward.description}</textarea>
+                                    <textarea class="form-control rewardDescription form-control-no-border text-color cr-placeholder cr-chrome-place required" name="rewardDescription${iteratorCount}" id="rewardDesc${iteratorCount}" rows="2" placeholder="Let your contributors feel special by rewarding them.Think out of the box and leave your contributors awestruck.Make sure you have calculated the costs associated with the perk; you do not want to lose money!" maxlength="250">${reward.description}</textarea>
                                     <p class="cr-perk-des-font">Please refer to our Terms of Use for more details on perks.</p>
                                 </div>
                             </div>
@@ -778,8 +781,8 @@
 <%--                        <div class="col-sm-4 text-center padding-btn" >--%>
 <%--                            <button type="button" class="btn  btn-primary btn-colors" name="button" id="saveasdraft"  value="draft">Save</button>--%>
 <%--                        </div>--%>
-                            <button type="submit" class="cr-bg-edit-btn cr-btn-alignment-lac cr-btn-launch createsubmitbutton hidden-xs" name="button" id="campaigncreatebtn" value="submitProject"></button>
-                            <button type="submit" class="cr-bg-xs-Launch-btn cr-xs-mobile createsubmitbutton visible-xs" name="button" id="campaigncreatebtn" value="submitProject"></button>
+                            <button type="submit" class="cr-bg-edit-btn cr-btn-edit createsubmitbutton" name="button" id="campaigncreatebtn" value="submitProject"></button>
+<%--                            <button type="submit" class="cr-bg-xs-edit-btn cr-xs-mobile createsubmitbutton visible-xs" name="button" id="campaigncreatebtn" value="submitProject"></button>--%>
                     </div>
                 </div>
                 
@@ -813,6 +816,8 @@
             </div>
         </div>
 	</div>
+	<script src="/js/main.js"></script>
+    <script src="/js/bootstrap-datepicker.js"></script>
 	<script type="text/javascript">
 		var needToConfirm = true;
 	    window.onbeforeunload = confirmExit;
@@ -822,16 +827,11 @@
 	        	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
 	        }
 	    }
-    </script>
-    <script src="/js/main.js"></script>
-    <script src="/js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript">
-
         function removeLogo(){
             $('#delIcon').removeAttr('src');
             $('#imgIcon').removeAttr('src');
             $('#icondiv').hide();
-            $('#editiconfile').val(''); 
+            $('#iconfile').val(''); 
         }
 
         var nowTemp = new Date();

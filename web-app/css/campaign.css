@@ -467,7 +467,6 @@ a.customer-support-a {
 
 #ytVideo{
     display:none;
-    padding:0;
 }
 
 #editimg{
@@ -503,7 +502,10 @@ a.customer-support-a {
 
 img.addVideoIcon.img-responsive{
     margin: 0 auto;
-    padding-top: 90px;
+}
+
+div.lblIcon {
+  padding: 85px;
 }
 
 #addVideo .modal-dialog .modal-content{
@@ -521,9 +523,11 @@ img.addVideoIcon.img-responsive{
 #media-video {
     display: none;
 }
-button.videoUrledit.close {
+.videoUrledit.close {
     margin-left: 15px;
-    padding-bottom: 5px;
+  /* margin-bottom: 142px; */
+  padding-top: -15px;
+  margin-top: -6px;
 }
 .redirectCampaign a {
     text-decoration: none !important;	
@@ -554,4 +558,20 @@ button.videoUrledit.close {
 }
 .editShippingreward >.btn-primary {
   width: 116px !important;
+}
+
+div.break-div{
+	  height: 115px;
+}
+
+div.break-div-js{
+	height:80px;
+}
+
+div.edit-perk-space{
+    padding-right: 50px !important;
+}
+
+label.edit-perk-size{
+    width: 220px !important;
 }

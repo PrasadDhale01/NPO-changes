@@ -414,7 +414,7 @@ class ProjectController {
 		
 		project.usedFor = params.usedFor;
 		
-        if(project.save()){
+        if(project.save(failOnError: true)){
             projectTitle = projectService.getProjectVanityTitle(project)
             projectService.getFundRaisersForTeam(project, user)
             projectService.getdefaultAdmin(project, user)
@@ -463,7 +463,7 @@ class ProjectController {
 	
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def campaignOnDraftAndLaunch() {
-        def project = projectService.getProjectById(params.projectId)
+        Project project = projectService.getProjectById(params.projectId)
         User user = userService.getCurrentUser()
  
         def currentEnv = Environment.current.getName()
@@ -473,17 +473,8 @@ class ProjectController {
             }
             project.secretKey = params.(FORMCONSTANTS.SECRETKEY)
         }
-
-        def days = params.days
-        projectService.getNumberofDays(days, project)
-
-        def button = params.isSubmitButton
-
-        if(button == 'true'){
-            project.draft = true
-        } else {
-            project.draft = false
-        }
+		
+		project.draft = false;
 
         def imageFiles = request.getFiles('thumbnail[]')
         if(!imageFiles.isEmpty()) {
@@ -498,50 +489,9 @@ class ProjectController {
             project.organizationIconUrl = uploadedFileUrl
         }
 
-        def amount=project.amount
-        def boolPerk=false
-        def rewardLength=Integer.parseInt(params.rewardCount)
-        if(rewardLength >= 1) {
-            def rewardTitle = new Object[rewardLength]
-            def rewardPrice = new Object[rewardLength]
-            def rewardDescription = new Object[rewardLength]
-            def rewardNumberAvailable = new Object[rewardLength]
-            def mailingAddress = new Object[rewardLength]
-            def emailAddress = new Object[rewardLength]
-            def twitter = new Object[rewardLength]
-            def custom = new Object[rewardLength]
-
-            for (def icount=0; icount< rewardLength; icount++){
-                rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
-                rewardPrice[icount] = params.("rewardPrice"+(icount+1))
-                rewardDescription[icount] = params.("rewardDescription"+(icount+1))
-                rewardNumberAvailable[icount] = params.("rewardNumberAvailable"+(icount+1))
-                mailingAddress[icount] = params.("mailingAddress"+(icount+1))
-                emailAddress[icount] = params.("emailAddress"+(icount+1))
-                twitter[icount] = params.("twitter"+(icount+1))
-                custom[icount] = params.("custom"+(icount+1))
-	
-                if (rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount]) > (double)amount){
-                    boolPerk=true;
-                }
-                if (mailingAddress[icount]==null && emailAddress[icount]==null && twitter[icount]==null && custom[icount]==null){
-                    emailAddress[icount]=true
-                }
-            }
-            if (boolPerk==true) {
-                flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
-                render (view: 'manageproject/error')
-                return
-            } else {
-                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardNumberAvailable, rewardDescription,mailingAddress, emailAddress, twitter, custom)
-            }
-        }
-
-        if (project.draft) {
-            redirect (action:'campaignOnDraft', params:[title:params.title])
-        } else {
-            redirect (action:'launch' ,  params:[title:params.title])
-        }
+		rewardService.saveRewardDetails(params);
+		
+        redirect (action:'launch' ,  params:[title:params.title])
     }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])

@@ -1221,7 +1221,7 @@ class ProjectService {
         /* Logic to fetch the latest comes first out of the validated projects.*/
         //TO DO
         /* Later on the criteria will be modified in order to display the admin selected projects as the popular projects*/
-        def finalList
+        List finalList = []
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
             def popularProjectsList = getPopularProjects()
             finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
@@ -1229,7 +1229,13 @@ class ProjectService {
             def popularProjectsList = getPopularProjects()
             finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false, payuStatus:false) - popularProjectsList)
         }
-        return finalList
+        List subFinalList = []
+        if (finalList.size() > 3) {
+            subFinalList = finalList.subList(0, 3)
+        } else {
+            subFinalList = finalList
+        }
+        return subFinalList
     }
 	
 	def projectOnHomePage() {
@@ -2540,7 +2546,7 @@ class ProjectService {
                 break;
 
             case 'videoUrl':
-                project.videoUrl = varValue;
+                project.videoUrl = (varValue == ' ') ? null : varValue ;
                 isValueChanged = true;
                 break;
 				

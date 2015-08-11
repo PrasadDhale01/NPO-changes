@@ -282,9 +282,9 @@ $(function() {
         	$("[name='amount']").rules("add", {
                 required: true,
                 number: true,
-                min: 5000,
+                min: 500,
                 maxlength: 6,
-                max: 999999
+                max: 99999999
             });
         } else {
         	$("[name='amount']").rules("add", {
@@ -325,10 +325,8 @@ $(function() {
                 min: 0
             });
         });
-        $('#iconfile').each(function () {
-            $(this).rules("add", {
-                required: true
-            });
+        $('#iconfile').rules("add", {
+            required: true
         });
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
             $('.rewardPrice').each(function () {
@@ -392,7 +390,10 @@ $(function() {
                     required: true,
                     number: true,
                     maxlength: 6,
-                    max: 999999,
+                    max: function() {
+                    	var campaignAmount = $('#projectamount').val();
+                        return Number(campaignAmount);
+                    },
                     min: 250
                 });
             });
@@ -402,7 +403,10 @@ $(function() {
                     required: true,
                     number: true,
                     maxlength: 6,
-                    max: 999999,
+                    max: function() {
+                    	var campaignAmount = $('#projectamount').val();
+                        return Number(campaignAmount);
+                    },
                     min: 1
                 });
             });
@@ -567,6 +571,12 @@ $(function() {
            $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/launch-Icon--Blue.png");
        });
      
+     $('.cr-img-save-icon').hover(function(){
+        	$('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/Save-Icon-White.png");
+        	}).mouseleave(function(){
+            $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/Save-Icon-Blue.png");
+        });
+     
      $('#paymentOpt').change(function(){
     	 var pay = $('#paymentOpt').val();
     	 if(pay=='FIR'){
@@ -611,7 +621,7 @@ $(function() {
         $('#media').hide();
         $('#media-video').show();
         var vurl=url.replace("watch?v=", "v/");
-        $('#ytVideo').html('<iframe style="width:192%;height:194px; display:block;" src='+ vurl +'></iframe>');
+        $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'></iframe>');
     }
 	$('#add').on('click',function(){
         var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -623,8 +633,9 @@ $(function() {
             $('#media').hide();
             $('#media-video').show();
             autoSave('videoUrl', url);
+            $('#addvideoUrl').val(url);
             var vurl=url.replace("watch?v=", "v/");
-            $('#ytVideo').html('<iframe style="width:192%;height:194px; display:block;" src='+ vurl +'></iframe>');
+            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ vurl +'></iframe>');
         } else if($(this)){
         	if(!$('#addvideoUrl').val()) {
                 $('#ytVideo').hide();
@@ -906,11 +917,12 @@ function setTitleText(){
         var str ='<div class="rewardsTemplate cr-perks-spec" id="rewardTemplate">'+
    '<div class="col-sm-12 perk-css">'+
        '<div class="col-sm-12 perk-create-styls" align="right">'+
-            '<div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward" value="'+updateCount+'">'+
+            '<button class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward" value="'+updateCount+'">'+
                 '<i class="glyphicon glyphicon-floppy-save"></i>'+
-            '</div>'+
+            '</button>'+
         '</div>'+
-    '</div><br><br><br>'+
+    '</div>'+
+    '<div class="hidden-xs break-div-js"></div>'+
     '<div class="col-sm-2">'+
         '<div class="form-group">'+
             '<div class="col-sm-12">';
@@ -922,7 +934,7 @@ function setTitleText(){
              }
                
              str = str +  '<input type="text" placeholder="Amount"  name="rewardPrice'+count+'" id="rewardPrice'+count+
-                       '" style="width:100%;" class="form-control cr-input-digit cr-tablat-padd form-control-no-border-amt rewardPrice">'+
+                       '" class="form-control cr-input-digit cr-tablat-padd form-control-no-border-amt rewardPrice">'+
            '</div>'+
        '</div>'+
     '</div>'+
@@ -948,7 +960,7 @@ function setTitleText(){
        '<div class="col-sm-12">'+
            '<div class="col-sm-12">'+
              '<textarea class="form-control required rewardDescription form-control-no-border cr-placeholder cr-chrome-place text-color" name="rewardDescription'+count+
-                '" id="rewardDesc'+count+'" rows="2" placeholder="Description" maxlength="250"></textarea>'+
+                '" id="rewardDesc'+count+'" rows="2" placeholder="Let your contributors feel special by rewarding them.Think out of the box and leave your contributors awestruck. Make sure you have calculated the costs associated with the perk; you do not want to lose money!" maxlength="250"></textarea>'+
                 '<p class="cr-perk-des-font">Please refer to our Terms of Use for more details on perks.</p>'+
            '</div>'+
        '</div>'+
@@ -999,7 +1011,10 @@ function setTitleText(){
                    required: true,
                    number: true,
                    maxlength: 6,
-                   max: 999999,
+                   max: function() {
+                   	   var campaignAmount = $('#projectamount').val();
+                       return Number(campaignAmount);
+                   },
                    min: 250
                });
            });
@@ -1009,7 +1024,10 @@ function setTitleText(){
                    required: true,
                    number: true,
                    maxlength: 6,
-                   max: 999999,
+                   max: function() {
+                   	   var campaignAmount = $('#projectamount').val();
+                       return Number(campaignAmount);
+                   },
                    min: 1
                });
            });
@@ -1324,6 +1342,16 @@ function setTitleText(){
     $('#personal1').click(function(){
     	autoSave('usedFor', 'PERSONAL_NEEDS');
     });
+    
+    $('#deleteVideo').click(function(){
+    	if (confirm('Are you sure you want to delete this video')){
+    	    autoSave('videoUrl', '');
+    	    $('#ytVideo').hide();
+            $('#media').show();
+            $('#media-video').hide();
+            $('#videoUrl').val('');
+    	}
+    });
 
     function saveRewards(rewardNum,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom){
         var projectId = $('#projectId').val();
@@ -1381,7 +1409,7 @@ function setTitleText(){
             $(this).popover({
                 content: 'Save Perk',
                 trigger: 'manual',
-                placement: 'bottom'
+                placement: 'left'
             })
             .focus(showPopover)
             .blur(hidePopover)

@@ -95,22 +95,24 @@
                     <g:hiddenField name="campaignvideoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
                     <div class="col-sm-6" id="media">
                         <a href="#addVideo" data-toggle="modal">
-                            <div class="panel panel-default panel-create-size" id="videoBox">
-                                <img id="addVideoIcon" class="addVideoIcon img-responsive" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png">
+                            <div class="panel panel-default panel-create-size lblIcon text-center" id="videoBox">
+                                <span><img id="addVideoIcon" class="addVideoIcon" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png"></span>
+                                <span id="addVideolbl">Add Video</span>
                             </div>
                         </a>
                     </div>
                     <div class="col-sm-6" id="media-video">
                         <div class="panel panel-default panel-create-size" id="videoBox">
-                           <a href="#addVideo" data-toggle="modal">
-                               <button class="videoUrledit close" id="videoUrledit">
-                                   <i class="glyphicon glyphicon-edit" ></i>
-                               </button>
-                           </a>
                            <div class="panel-body">
                                <div class="form-group">
                                    <div class="col-sm-6" id="ytVideo"></div>
                                </div>
+                               <a href="#addVideo" data-toggle="modal" class="videoUrledit close" id="videoUrledit">
+                                   <i class="glyphicon glyphicon-edit" ></i>
+                               </a>
+                               <span class="videoUrledit close" id="videoUrledit">
+                                   <i class="glyphicon glyphicon-trash" id="deleteVideo"></i>
+                               </span>  
                            </div>
                         </div>
                     </div>
@@ -378,9 +380,10 @@
                 <g:each in="${projectRewards}" var="reward">
                 <% 
 				    def shippingInfo = rewardService.getRewardShippingObjectByReward(reward);
+					def price = (reward.price).round()
 				%>
 				    <g:if test="${iteratorCount > 1}">
-				        <br><br><br>
+				        <div class="hidden-xs break-div"></div>
 				    </g:if>
                     <div class="rewardsTemplate" id="rewardTemplate">
                         <div class="col-sm-2">
@@ -388,11 +391,11 @@
                                 <div class="col-sm-12">
                                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
-                                        <input type="text" placeholder="Amount" name="rewardPrice${iteratorCount}" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${iteratorCount}" value="${reward.price}">
+                                        <input type="text" placeholder="Amount" name="rewardPrice${iteratorCount}" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${iteratorCount}" value="${price}">
                                     </g:if>
                                     <g:else>
                                         <span class="cr2-currency-label">$</span>
-                                        <input type="text" placeholder="Amount" name="rewardPrice${iteratorCount}" class="form-control rewardPrice form-control-no-border-amt cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${iteratorCount}" value="${reward.price}">
+                                        <input type="text" placeholder="Amount" name="rewardPrice${iteratorCount}" class="form-control rewardPrice form-control-no-border-amt cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${iteratorCount}" value="${price}">
                                     </g:else>
                                 </div>
                             </div>
@@ -416,7 +419,8 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="col-sm-12">
-                                    <textarea class="form-control rewardDescription form-control-no-border text-color cr-placeholder cr-chrome-place required" name="rewardDescription${iteratorCount}" id="rewardDesc${iteratorCount}" rows="2" placeholder="Description" maxlength="250">${reward.description}</textarea>
+                                    <textarea class="form-control rewardDescription form-control-no-border text-color cr-placeholder cr-chrome-place required" name="rewardDescription${iteratorCount}" id="rewardDesc${iteratorCount}" rows="2" placeholder="Let your contributors feel special by rewarding them.Think out of the box and leave your contributors awestruck.Make sure you have calculated the costs associated with the perk; you do not want to lose money!" 
+                                        maxlength="250">${reward.description}</textarea>
                                     <p class="cr-perk-des-font">Please refer to our Terms of Use for more details on perks.</p>
                                 </div>
                             </div>

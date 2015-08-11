@@ -694,6 +694,15 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.info-banner{
+		background-color: #000000;
+		color: #ffffff;
+		display:none !important;
+		height: 30px;
+		padding:5px;
+		text-align: center;
+		width: 100%;
+	}
 	.founder-centering {
 	    display: block;
 	    margin-left: -13px !important;
@@ -1302,6 +1311,28 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.info-banner{
+		background-color: #000000;
+		color: #ffffff;
+		display:none !important;
+		height: 30px;
+		padding:5px;
+		text-align: center;
+		width: 100%;
+	}
+	.banner-link{
+		color:#ffffff;
+	}
+	.info-banner a:hover{
+		color:#ffffff;
+	}
+	.banner-close{
+		color:#ffffff;
+		margin-left:70px;
+	}
+	.header-container .info-banner a {
+	    text-decoration: underline !important;
+	}
 	span.cr-offering {
         font-size: 12px;
         font-weight: normal;
@@ -1378,7 +1409,7 @@ a {
 	    margin-left: 3px;
 	    padding-left: 15px;
         padding-right: 7px; 
-        width: 162px;
+        width: 160px;
 	}
 	div.manage-Top-tabs-mobile{
 	    padding-left: 17px;
@@ -1886,13 +1917,17 @@ a {
     a.right.carousel-control.right-css {
 	margin-top: -4%;
     }
+    
+    .youtubeVideoIframe {
+        width: 255%;
+    }
 }
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
 	div.cr-perks-space {
         margin-left: -1px;
-        padding-right: 79px;
+        padding-right: 96px;
     }
 	div.cr-perk-check {
         padding-left: 0;
@@ -2166,6 +2201,10 @@ a {
     .navbar {
         padding-top: 3px;
     }
+    
+    .youtubeVideoIframe {
+        width: 105%;
+    }
 
 }
 
@@ -2182,6 +2221,7 @@ a {
         padding-left: 15px;
         padding-right: 7px;
         height: 64px;
+        width: 163px;
 	}
     .sorts-dropdown{
        left: 19%;
@@ -5073,10 +5113,6 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 481px) and (max-width:600px){
-	div#ytVideo > iframe {
-        width: 100% !important;
-        height: 50% !important;
-    }
 	.contributions-panel{
 	    padding-left: 26%;
 	}
@@ -5092,10 +5128,6 @@ textarea.form-control {
 	div.cr1-mob-tb{
         padding-left: 1px;
         padding-right: 9px;
-    }
-	div#ytVideo > iframe {
-        width: 100% !important;
-        height: 50% !important;
     }
 	div.Top-tabs-mobile {
         margin-top: 55px;
@@ -5915,10 +5947,6 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
-	div#ytVideo > iframe {
-        width: 100% !important;
-        height: 50% !important;
-    }
 	div.pan {
 		max-width: 225px;
 		height: 116px;
@@ -5946,6 +5974,15 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.info-banner{
+		background-color: #000000;
+		color: #ffffff;
+		display:none !important;
+		height: 30px;
+		padding:5px;
+		text-align: center;
+		width: 100%;
+	}
 	div.hm-right-inverted-India {
             margin-top: 98px;
         }
@@ -8438,7 +8475,8 @@ span#search-container {
 	overflow:hidden;
 }
 div#ytVideo {
-    padding-top: 3%;
+    margin-top: -13px;
+    margin-left: -28px;
 }
 .pad-result{
 	padding-top: 3%;
@@ -8563,6 +8601,7 @@ div.cr-perks-spec {
   color: orange;
   padding-left: 31px;
   font-size: 25px;
+  width: 140px;
 }
 .cr-perk-title-number {
   height: 60px;
@@ -8631,7 +8670,7 @@ img.cr-ineed-icons {
 }
 .cr-bg-create-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/create-now-Button.jpg) no-repeat !important;
-    padding-top: 46px;
+    height: 63px;
     width: 315px;
 }
 .cr-bg-preview-btn{
@@ -8644,8 +8683,15 @@ img.cr-ineed-icons {
 	height: 66px;
     width: 251px;
 }
+
 .cr-bg-edit-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/save-button.jpg) no-repeat !important;
+	height: 66px;
+    width: 251px;
+}
+
+.cr-bg-xs-edit-btn{
+	background: url(https://s3.amazonaws.com/crowdera/assets/save-button-mobile.jpg) no-repeat !important;
 	height: 66px;
     width: 251px;
 }
@@ -9081,13 +9127,17 @@ body {
 .banner-link{
 	color:#ffffff;
 }
-.info-banner a:hover{
+.banner-link:hover, .banner-link:active, .banner-link:visited, .banner-link:focus{
+	color:#ffffff;
+}
+.banner-close:hover, .banner-close:active, .banner-close:visited, .banner-close:focus{
 	color:#ffffff;
 }
 .banner-close{
 	color:#ffffff;
 	margin-left:70px;
 }
+
 .cr-drop-color.open > .dropdown-toggle.btn-default {
 	background-color: #f6f8f8!important ;
     color: white !important;
@@ -9099,4 +9149,7 @@ body {
 .cr-perks-back-color {
     background-color: #f6f8f8;
     color: #6d6e6e;
+}    
+.header-container .info-banner a {
+    text-decoration: underline !important;
 }

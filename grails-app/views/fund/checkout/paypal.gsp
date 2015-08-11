@@ -25,6 +25,7 @@
 				<g:hiddenField name="amount" value="${amount}"/>
 				<g:hiddenField name="anonymous" value="${anonymous}" id="anonymous"/>
 				<g:hiddenField name="projectTitle" value="${projectTitle}"/>
+				<g:hiddenField name="customField" id="customField" value="${shippingInfo.custom}"/>
 				<div class="row">
 					<div class="col-md-8">
 						<div class="panel panel-default">
@@ -147,7 +148,7 @@
 							                <div class="col-md-6">
 							                    <div class="form-group">
 							                        <div class="input-group col-md-12">
-							                            <input class="form-control" type="text" placeholder="Custom Details ex. Size of T-shirts etc" name="shippingCustom">
+							                            <input class="form-control" type="text" id="customShippingInfo" name="shippingCustom">
 							                        </div>
 							                    </div>
 							                </div>

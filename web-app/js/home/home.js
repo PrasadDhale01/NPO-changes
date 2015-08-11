@@ -204,7 +204,7 @@ $( document ).ready(function() {
 			// Tell him about the India.
 					$('.info-banner').css('display','block');
 					$('.banner-link').text('test.crowdera.in');
-					$('.banner-link').attr('href','test.crowdera.in');
+					$('.banner-link').attr('href','http://test.crowdera.in');
 			}else if(location.country_code == 'IN' && currentEnv == 'staging'){
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('staging.crowdera.in');

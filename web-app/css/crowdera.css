@@ -1911,6 +1911,10 @@ a {
     a.right.carousel-control.right-css {
 	margin-top: -4%;
     }
+    
+    .youtubeVideoIframe {
+        width: 255%;
+    }
 }
 
 /* Screen resolution 1025 x 1280*/
@@ -2190,6 +2194,10 @@ a {
     
     .navbar {
         padding-top: 3px;
+    }
+    
+    .youtubeVideoIframe {
+        width: 105%;
     }
 
 }
@@ -5091,10 +5099,6 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 481px) and (max-width:600px){
-	div#ytVideo > iframe {
-        width: 100% !important;
-        height: 50% !important;
-    }
 	.contributions-panel{
 	    padding-left: 26%;
 	}
@@ -5110,10 +5114,6 @@ textarea.form-control {
 	div.cr1-mob-tb{
         padding-left: 1px;
         padding-right: 9px;
-    }
-	div#ytVideo > iframe {
-        width: 100% !important;
-        height: 50% !important;
     }
 	div.Top-tabs-mobile {
         margin-top: 55px;
@@ -5933,10 +5933,6 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
-	div#ytVideo > iframe {
-        width: 100% !important;
-        height: 50% !important;
-    }
 	div.pan {
 		max-width: 225px;
 		height: 116px;

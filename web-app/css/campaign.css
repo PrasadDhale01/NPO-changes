@@ -500,12 +500,8 @@ a.customer-support-a {
     padding-left:35%;
 }
 
-img.addVideoIcon.img-responsive{
-    margin: 0 auto;
-}
-
 div.lblIcon {
-  padding: 85px;
+  padding-top: 100px;
 }
 
 #addVideo .modal-dialog .modal-content{
@@ -523,6 +519,12 @@ div.lblIcon {
 #media-video {
     display: none;
 }
+
+#media a{
+	text-decoration: none;
+	color:black;
+}
+
 .videoUrledit.close {
     margin-left: 15px;
   /* margin-bottom: 142px; */
@@ -574,4 +576,10 @@ div.edit-perk-space{
 
 label.edit-perk-size{
     width: 220px !important;
+}
+
+.youtubeVideoIframe {
+	width: 236%;
+	height:206px;
+	display:block;
 }

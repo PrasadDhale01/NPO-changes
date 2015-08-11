@@ -96,8 +96,8 @@
                     <div class="col-sm-6" id="media">
                         <a href="#addVideo" data-toggle="modal">
                             <div class="panel panel-default panel-create-size lblIcon text-center" id="videoBox">
-                                <label id="addVideolbl">Add Video</label>
-                                <img id="addVideoIcon" class="addVideoIcon img-responsive" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png">
+                                <span><img id="addVideoIcon" class="addVideoIcon" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png"></span>
+                                <span id="addVideolbl">Add Video</span>
                             </div>
                         </a>
                     </div>

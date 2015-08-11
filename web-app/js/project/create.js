@@ -282,9 +282,9 @@ $(function() {
         	$("[name='amount']").rules("add", {
                 required: true,
                 number: true,
-                min: 5000,
+                min: 500,
                 maxlength: 6,
-                max: 999999
+                max: 99999999
             });
         } else {
         	$("[name='amount']").rules("add", {
@@ -621,7 +621,7 @@ $(function() {
         $('#media').hide();
         $('#media-video').show();
         var vurl=url.replace("watch?v=", "v/");
-        $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ vurl +'></iframe>');
+        $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'></iframe>');
     }
 	$('#add').on('click',function(){
         var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;

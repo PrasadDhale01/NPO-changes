@@ -689,6 +689,15 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.info-banner{
+		background-color: #000000;
+		color: #ffffff;
+		display:none !important;
+		height: 30px;
+		padding:5px;
+		text-align: center;
+		width: 100%;
+	}
 	.founder-centering {
 	    display: block;
 	    margin-left: -13px !important;
@@ -1297,6 +1306,28 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.info-banner{
+		background-color: #000000;
+		color: #ffffff;
+		display:none !important;
+		height: 30px;
+		padding:5px;
+		text-align: center;
+		width: 100%;
+	}
+	.banner-link{
+		color:#ffffff;
+	}
+	.info-banner a:hover{
+		color:#ffffff;
+	}
+	.banner-close{
+		color:#ffffff;
+		margin-left:70px;
+	}
+	.header-container .info-banner a {
+	    text-decoration: underline !important;
+	}
 	span.cr-offering {
         font-size: 12px;
         font-weight: normal;
@@ -5932,6 +5963,15 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.info-banner{
+		background-color: #000000;
+		color: #ffffff;
+		display:none !important;
+		height: 30px;
+		padding:5px;
+		text-align: center;
+		width: 100%;
+	}
 	div.hm-right-inverted-India {
             margin-top: 98px;
         }
@@ -9047,7 +9087,10 @@ body {
 .banner-link{
 	color:#ffffff;
 }
-.info-banner a:hover{
+.banner-link:hover, .banner-link:active, .banner-link:visited, .banner-link:focus{
+	color:#ffffff;
+}
+.banner-close:hover, .banner-close:active, .banner-close:visited, .banner-close:focus{
 	color:#ffffff;
 }
 .banner-close{

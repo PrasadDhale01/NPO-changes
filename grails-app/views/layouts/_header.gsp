@@ -17,7 +17,7 @@
     <div class="header-container">
 		<div class="info-banner">
 			Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a>
-			<a href="#" class="banner-close" style="color:white;">close</a>
+			<a href="#" class="banner-close">Close</a>
 		</div>
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">

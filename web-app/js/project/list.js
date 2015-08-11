@@ -34,11 +34,11 @@ $(document).ready(function(){
 				$('.banner-link').attr('href','http://staging.crowdera.in');
 			}else if(location.country_code == 'IN' && currentEnv == 'production'){
 				$('.info-banner').css('display','block');
-				$('.banner-link').text('crowdera.in');
+				$('.banner-link').text('www.crowdera.in');
 				$('.banner-link').attr('href','http://crowdera.in');
 			} else if(location.country_code == 'IN' && currentEnv == 'development'){
 				$('.info-banner').css('display','block');
-				$('.banner-link').text('crowdera.in');
+				$('.banner-link').text('www.crowdera.in');
 				$('.banner-link').attr('href','http://localhost:8080');
 			}
 		}

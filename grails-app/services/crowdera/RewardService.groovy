@@ -259,6 +259,41 @@ class RewardService {
          RewardShipping shippingInfo = RewardShipping.findByReward(reward)
 		 return shippingInfo
 	 }
+	 
+	 def saveRewardDetails(def params){
+		 Reward reward
+		 RewardShipping shippingInfo
+		 Project project = Project.get(params.projectId)
+		 def rewardLength = Integer.parseInt(params.rewardCount)
+		 List rewardsList = project.rewards
+		 rewardsList.each{
+			 if (it.rewardCount == Integer.parseInt(params.rewardCount)){
+				  reward = it
+			 }
+		 }
+		 if (!reward){
+		 reward = new Reward();
+		 shippingInfo = new RewardShipping();
+		 
+		 reward.title = params.('rewardTitle'+params.rewardCount)
+		 reward.price = Double.parseDouble(params.('rewardPrice'+params.rewardCount));
+		 reward.rewardCount = Integer.parseInt(params.('rewardNum'+params.rewardCount));
+		 reward.description = params.('rewardDesc'+params.rewardCount);
+		 reward.numberAvailable = Integer.parseInt(params.('rewardNumberAvailable'+params.rewardCount));
+		 reward.obsolete = true;
+		 reward.save(failOnError: true);
+ 
+		 shippingInfo.email = (params.('mailingAddress'+params.rewardCount) == true || params.('mailingAddress'+params.rewardCount) == 'true') ? true : null;
+		 shippingInfo.address = (params.('address'+params.rewardCount) == true || params.('address'+params.rewardCount) == 'true') ? true : null;
+		 shippingInfo.twitter = (params.('twitter'+params.rewardCount) == true || params.('twitter'+params.rewardCount) == 'true') ? true : null;
+		 shippingInfo.custom = (params.('custom'+params.rewardCount)) ? params.custom : null;
+		 shippingInfo.reward = reward
+		 shippingInfo.save(failOnError: true)
+ 
+	     project.addToRewards(reward)
+		 return
+		 }
+	 }
 
     @Transactional
     def bootstrap() {

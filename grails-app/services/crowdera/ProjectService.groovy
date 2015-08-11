@@ -2540,7 +2540,7 @@ class ProjectService {
                 break;
 
             case 'videoUrl':
-                project.videoUrl = varValue;
+                project.videoUrl = (varValue == ' ') ? null : varValue ;
                 isValueChanged = true;
                 break;
 				

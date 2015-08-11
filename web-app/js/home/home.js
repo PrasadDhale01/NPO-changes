@@ -192,6 +192,7 @@ $( document ).ready(function() {
 		    window.location.href =$("#b_url").val()+"/user/logout";
 	    }
 	}
+	
 	var currentEnv=$('#currentEnv').val();
 	$.ajax( { 
 		url: 'https://freegeoip.net/json/', 
@@ -212,6 +213,10 @@ $( document ).ready(function() {
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('crowdera.in');
 				$('.banner-link').attr('href','http://crowdera.in');
+			}else if(location.country_code == 'IN' && currentEnv == 'development'){
+				$('.info-banner').css('display','block');
+				$('.banner-link').text('crowdera.in');
+				$('.banner-link').attr('href','http://localhost:8080');
 			}
 		}
 	});

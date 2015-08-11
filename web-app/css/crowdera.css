@@ -9087,7 +9087,7 @@ body {
 .banner-link{
 	color:#ffffff;
 }
-.info-banner a:hover{
+.info-banner a:hover, a:active, a:visited, a:focus{
 	color:#ffffff;
 }
 .banner-close{

@@ -88,7 +88,7 @@
             <div class="contact-details-body">
                 <label class="col-sm-4 col-xs-5"><b>Phone number</b></label> <span class="col-sm-8 col-xs-7">+91 77 5592 2037</span>
                 <div class="clear"></div>
-                <label class="col-sm-4 col-xs-5"><b>Contact</b></label><span class="col-sm-8 col-xs-7">206,<br> Sankalp Nagar,<br>Wathoda Layout,<br>Nagpur - 440009</span>
+                <label class="col-sm-4 col-xs-5"><b>Contact</b></label><span class="col-sm-8 col-xs-7">206, Sankalp Nagar,<br>Wathoda Layout,<br>Nagpur - 440009</span>
             </div>
         </div>
         </div>

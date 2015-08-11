@@ -282,9 +282,9 @@ $(function() {
         	$("[name='amount']").rules("add", {
                 required: true,
                 number: true,
-                min: 5000,
+                min: 500,
                 maxlength: 6,
-                max: 999999
+                max: 99999999
             });
         } else {
         	$("[name='amount']").rules("add", {

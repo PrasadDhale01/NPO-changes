@@ -1311,6 +1311,18 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    img.deadlineInfo-img {
+        padding-left: 104px;
+    }
+    
+    img.videoInfo-img {
+       padding-left: 311px;
+    }
+    
+    img.pictureInfo-img {
+       padding-left: 311px;
+    }
+
 	.info-banner{
 		background-color: #000000;
 		color: #ffffff;
@@ -2127,6 +2139,22 @@ a {
 
 @media only screen and (max-width: 767px){
 	
+    img.amountInfo-img {
+        padding-top: 0;
+        padding-left: 264px;
+        margin-left: 0;
+    }
+	
+    img.pictureInfo-img {
+        padding-left: 254px;
+        margin-bottom: 12px;
+    }
+
+    img.videoInfo-img {
+        padding-left: 250px;
+        padding-bottom: 20px;
+    }
+    
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
         width: 100% !important;
@@ -6028,6 +6056,7 @@ textarea.form-control {
         height: 250px;
         overflow: hidden;
         width: 256px;
+        margin-bottom: 0;
     }
     .mentor-container{
         width:320px !important;
@@ -8473,6 +8502,7 @@ span#search-container {
 .panel-create-size {
 	height: 250px;
 	overflow:hidden;
+	margin-bottom: 0;
 }
 div#ytVideo {
     margin-top: -13px;

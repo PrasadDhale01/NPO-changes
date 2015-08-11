@@ -51,6 +51,7 @@
                                  </g:else>
                                  <i class="fa fa-caret-down cr-caret-size" style="position:absolute;"></i>
                              </div>
+                             <img class="hidden-xs deadlineInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                         </div>
                     
                         <div class="col-sm-3">
@@ -100,6 +101,7 @@
                                 <span id="addVideolbl">Add Video</span>
                             </div>
                         </a>
+                        <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
                     <div class="col-sm-6" id="media-video">
                         <div class="panel panel-default panel-create-size" id="videoBox">
@@ -115,6 +117,7 @@
                                </span>  
                            </div>
                         </div>
+                        <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
                     
                 <div class="col-sm-6 ">
@@ -136,6 +139,7 @@
                             </div>
                         </div>
                     </div>
+                    <img class="pictureInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                 </div>
                
                 <div class="col-sm-12" id="story">

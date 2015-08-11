@@ -583,3 +583,21 @@ label.edit-perk-size{
 	height:206px;
 	display:block;
 }
+
+img.deadlineInfo-img {
+  padding-left: 144px;
+}
+
+img.videoInfo-img {
+  padding-left: 438px;
+}
+
+img.pictureInfo-img {
+  padding-left: 434px;
+}
+
+img.amountInfo-img {
+  padding-top: 102px;
+  padding-left: 0;
+  margin-left: -25px;
+}

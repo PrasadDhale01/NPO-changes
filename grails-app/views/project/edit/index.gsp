@@ -52,6 +52,7 @@
                                  </g:else>
                                  <i class="fa fa-caret-down cr-caret-size" style="position:absolute;"></i>
                              </div>
+                             <img class="hidden-xs deadlineInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                         </div>
                     
                         <div class="col-sm-3">
@@ -118,7 +119,10 @@
 			                       
 	                           </div>
 	                       </div>
-	                       <div class="col-sm-9">
+	                       <g:if test="${currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'prod' || currentEnv='development'}">
+	                           <div class="col-sm-1"><img class="amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon"></div>
+	                       </g:if>
+	                       <div class="col-sm-8">
 	                           <div class="btn-group col-sm-12 cr1-radio-tab cr1-mob-tb" data-toggle="buttons">
 	                                    <div class="cr1-tab-title">and I will be using it for</div>
 	                                    <g:if test="${project.usedFor == 'IMPACT'}">
@@ -174,6 +178,7 @@
                                 <span id="addVideolbl">Add Video</span>
                             </div>
                         </a>
+                        <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
                     <div class="col-sm-6" id="media-video">
                         <div class="panel panel-default panel-create-size" id="videoBox">
@@ -189,6 +194,7 @@
                                </span>
                            </div>
                         </div>
+                        <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
                     
                 <div class="col-sm-6 ">
@@ -235,6 +241,7 @@
                             </div>
                         </div>
                     </div>
+                    <img class="pictureInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                 </div>
                
                 <div class="col-sm-12" id="story">

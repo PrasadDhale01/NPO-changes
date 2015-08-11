@@ -184,10 +184,10 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     background-color: #006083; /* change color of links in drop down here */
 }
 .cr-drops .dropdown-menu > li > a:hover,
-.cr-drops.dropdown-menu > li > a:focus {
+.cr-drops .dropdown-menu > li > a:focus {
     color: #ffffff;
     text-decoration: none;
-    background-color: #e7e7e7 !important; /* change color of links in drop down here */
+    background-color: #dcdcdc !important; /* change color of links in drop down here */
 }
 .header-section .nav > li > a {
     padding: 4px 12px !important;
@@ -7031,6 +7031,10 @@ button.projectedit.close{
 .pill-buttons .btn-default:focus,
 .open > .dropdown-toggle.btn-default:hover{
     background-color: #006083 !important ;
+    color: white !important;
+}
+.cr-drops .dropdown-toggle.btn-default:hover{
+    background-color: #e7e7e7 !important ;
     color: white !important;
 }
 .open > .dropdown-toggle.btn-default {

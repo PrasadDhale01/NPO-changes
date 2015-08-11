@@ -16,8 +16,8 @@
 <div class="navbar navbar-default navbar-fixed-top header-section" role="navigation">
     <div class="header-container">
 		<div class="info-banner">
-			Doing good from India? Visit <u><a href="http://crowdera.in" class="banner-link">www.crowdera.in</a></u>
-			<u><a href="#" class="banner-close" style="color:white;">close</a></u>
+			Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a>
+			<a href="#" class="banner-close" style="color:white;">close</a>
 		</div>
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -30,6 +30,7 @@
                 <img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" alt="Crowdera">
             </a>
         </div>
+        <input type="text" name="search" id="hiddensearch"/>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav nav-icon-bar">
                 <li class="searchengine hidden-xs">
@@ -37,10 +38,10 @@
                         <div class="inner-addon left-addon search-icon-header search-image-header">
                            <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" alt="search" class="trigger" id="trigger">
                            <input type="text" class="form-control search-box" name="q" value="${params.q}" id="search-bar" placeholder="Search....."/>
-                           <input type="text" name="search" id="hiddensearch"/>  
                         </div>
                     </form>
                 </li>
+                
                 <li class="hidden-lg hidden-md hidden-sm search-mob">
                     <form action="/campaign"  name="searchableForm">
                         <span class="form-group inner-addon left-addon">

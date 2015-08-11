@@ -8613,7 +8613,7 @@ img.cr-ineed-icons {
 }
 .cr-bg-create-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/create-now-Button.jpg) no-repeat !important;
-    padding-top: 46px;
+    height: 63px;
     width: 315px;
 }
 .cr-bg-preview-btn{
@@ -9053,4 +9053,7 @@ body {
 .banner-close{
 	color:#ffffff;
 	margin-left:70px;
+}
+.header-container .info-banner a {
+    text-decoration: underline !important;
 }

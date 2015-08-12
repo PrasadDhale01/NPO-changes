@@ -694,6 +694,14 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	img.amountInfo-img {
+        padding-top: 0;
+        padding-left: 254px;
+        margin-left: 0;
+    }
+	div.cr-start-dropdown-payment.btn-group.bootstrap-select{
+        width: 200px !important;
+    }
 	.info-banner{
 		background-color: #000000;
 		color: #ffffff;
@@ -1312,6 +1320,23 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.edit-image-mobile{
+	    margin-left: 40px;
+	}
+	div.cr-image-mobile{
+	    margin-left: 40px;
+	}
+    label.cr1-mob-tb-pd {
+        padding-left: 6px;
+        padding-right: 9px;
+    }
+    span.cr1-tb-text-lg {
+        font-size: 18px;
+        font-weight: 900;
+    }
+	div.edit-btn-space {
+       left: 354px;
+    }
     img.deadlineInfo-img {
         padding-left: 104px;
     }
@@ -1940,9 +1965,12 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
-	div.cr-perk-yesno-tab {
-	      left: 347px;
+	div.edit-btn-space {
+       left: 346px;
     }
+/* 	div.cr-perk-yesno-tab { */
+/* 	      left: 347px; */
+/*     } */
 	label.cr-perks-size{
         padding-left: 15px;
         padding-right: 7px;
@@ -1994,8 +2022,8 @@ a {
         padding-top: 7px;
     }
 	header.cr-tabs-link {
-	    padding-left: 120px !important; 
-	    padding-right: 120px !important; 
+	    padding-left: 215px !important; 
+	    padding-right: 215px !important; 
     }
 	div.cr-space{
 	    display: inline-table !important;
@@ -2154,12 +2182,6 @@ a {
     div.amount-popover .popover{
         width:700px;
         margin-left: 42%;
-    }
-	
-    img.amountInfo-img {
-        padding-top: 0;
-        padding-left: 264px;
-        margin-left: 0;
     }
 	
     img.pictureInfo-img {
@@ -2334,6 +2356,10 @@ a {
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	header.cr-tabs-link {
+	    padding-left: 130px !important; 
+	    padding-right: 130px !important; 
+    }
 	.founder-centering {
 	    display: block;
 	    margin-left: -90px !important;
@@ -6032,6 +6058,20 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	button.cr-bg-xs-edit-btn{
+	    margin-left: 65px;
+	}
+	div.cr-start-dropdown-payment.btn-group.bootstrap-select{
+        width: 200px !important;
+    }
+	div.edt-mobile-reso{
+	   width: 286px;
+	}
+	img.amountInfo-img {
+        padding-top: 0;
+        padding-left: 234px;
+        margin-left: 0;
+    }
 	.info-banner{
 		background-color: #000000;
 		color: #ffffff;
@@ -8598,6 +8638,7 @@ header.cr-tabs-link {
 input#datepicker {
   font-size: 20px;
   background-color: #f6f8f8;
+  text-align: center;
 }
 .cr-headerA {
   background-color: #f6bf0b;
@@ -8898,11 +8939,11 @@ label.text-color {
 }
 .cr1-tb-color:hover{
 	color: white;
-	background: gray;
+	background: #889299;
 }
 .cr1-tb-color.active{
 	color: white;
-	background: gray;
+	background: #889299;
 }
 
 .cr-story-size {
@@ -9038,6 +9079,10 @@ span.cr-font-title {
  .nav-tabs > li.cr-li-tabsss > a {
     background-color: #ffffff;
     color: #6d6e6e;
+}
+.nav-tabs > li.active.cr-li-tabsss > a {
+    background-color: #889299;
+    color: #ffffff;
 }
 ul.cr-ul-tabs.nav > li > a:hover,
 ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hover,
@@ -9235,4 +9280,14 @@ body {
 .btnPerkBgColor > label:hover{
     background-color: #889299;
     color:#fff;
+}
+.ed-perks-css {
+    left: 359px;
+}
+.edit-btn-space{
+    left: 352px;
+}
+.edit-margin{
+	margin-left: 0 !important;
+    margin-right: 0 !important;
 }

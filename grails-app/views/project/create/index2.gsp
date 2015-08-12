@@ -256,7 +256,7 @@
                                         <label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>
                                         <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
                                     </div>
-                                    <div id="icondiv" class="pr-icon-thumbnail-div col-sm-2">
+                                    <div id="icondiv" class="pr-icon-thumbnail-div cr-image-mobile col-sm-2">
                                         <img id="imgIcon" alt="cross" class="pr-icon-thumbnail">
                                         <div class="deleteicon orgicon-css-styles">
                                             <img alt="cross" onClick="removeLogo();" id="delIcon">

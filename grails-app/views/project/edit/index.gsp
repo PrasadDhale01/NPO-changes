@@ -114,7 +114,7 @@
 							         <g:else>
 							             <span class="i-currency-label">$</span>
 				                     </g:else>   
-				                     <input class="form-control form-control-no-border-amt cr-amt" name="amount1" value="${amount}" id="amount"> 
+				                     <input class="form-control form-control-no-border-amt cr-amt" name="amount" value="${amount}" id="amount1"> 
 						             <span id="errormsg"></span>
 			                       
 	                           </div>
@@ -252,7 +252,7 @@
                             <div class="cr-story-flx">
                             <label class="panel body cr-story-size">STORY</label>
                       	    <label class="panel-body cr-panel-story">A good engaging story is the backbone of your Campaign.
-	                                                                    you want your readers to be compelled to share your story
+	                                                                    You want your readers to be compelled to share your story
 	                                                                    and make your campaign go viral. Be passionate and make 
 	                                                                    them believe and trust your goal.</label>
                        	    </div>

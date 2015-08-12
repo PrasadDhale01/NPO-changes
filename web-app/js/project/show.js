@@ -557,7 +557,7 @@
     .hover(showPopover, hidePopover);
     
     $('#submitForApprovalBtn').popover({
-        content: 'Sorry, you will not be able to submit your campaign for approval, as you have not filled all the required details.Please fill the details and the proceed with the approval.',
+        content: 'Sorry, you will not be able to submit your campaign for approval, as you have not filled all the required details. Please fill the details and then proceed with the approval.',
         trigger: 'manual',
         placement: 'left'
     })

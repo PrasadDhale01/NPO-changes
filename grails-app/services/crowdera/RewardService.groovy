@@ -150,6 +150,7 @@ class RewardService {
             }
             reward.description = rewardDescription[i]
 			reward.numberAvailable = Integer.parseInt(rewardNumberAvailable[i])
+            reward.rewardCount = project.rewards.size();
             reward.obsolete = true
             reward.save(failOnError: true)
             
@@ -277,7 +278,7 @@ class RewardService {
 		 
 		 reward.title = params.('rewardTitle'+params.rewardCount)
 		 reward.price = Double.parseDouble(params.('rewardPrice'+params.rewardCount));
-		 reward.rewardCount = Integer.parseInt(params.('rewardNum'+params.rewardCount));
+		 reward.rewardCount = Integer.parseInt(params.rewardCount);
 		 reward.description = params.('rewardDesc'+params.rewardCount);
 		 reward.numberAvailable = Integer.parseInt(params.('rewardNumberAvailable'+params.rewardCount));
 		 reward.obsolete = true;

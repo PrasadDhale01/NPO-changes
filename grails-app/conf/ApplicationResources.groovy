@@ -26,9 +26,6 @@ modules = {
         dependsOn 'corejs', 'bootstrapselectjs', 'bootstrapmultiselectjs', 'jqueryvalidate'
         resource url: 'js/crowdera.js'
         resource url: 'js/redactor/redactor.js'
-        resource url: 'js/redactor/plugins/fontfamily.js'
-        resource url: 'js/redactor/plugins/fontsize.js'
-        resource url: 'js/redactor/plugins/fontcolor.js'
         resource url: 'js/redactor/plugins/video.js'
     }
     googleanalytics {

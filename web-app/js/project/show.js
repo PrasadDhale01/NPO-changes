@@ -556,6 +556,15 @@
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
     
+    $('#submitForApprovalBtn').popover({
+        content: 'Sorry, you will not be able to submit your campaign for approval, as you have not filled all the required details.Please fill the details and the proceed with the approval.',
+        trigger: 'manual',
+        placement: 'left'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
+    
     
     $(document).ready(function (){
      /*************************Edit video for team*************************/

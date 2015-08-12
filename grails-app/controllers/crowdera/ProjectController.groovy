@@ -909,11 +909,12 @@ class ProjectController {
 			contributions = contribution.contributions
 			def offset = params.int('offset') ?: 0
 			def bankInfo = projectService.getBankInfoByProject(project)
+            def day = projectService.getRemainingDay(project)
 
             if(project.user==user || isCampaignOwnerOrAdmin){
                 render (view: 'manageproject/index',
                         model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
-                                discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset,
+                                discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,
                                 ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
                                 unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo])
             } else{

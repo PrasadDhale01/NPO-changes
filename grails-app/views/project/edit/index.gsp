@@ -42,7 +42,7 @@
                 <div class="col-sm-12 cr-start-flex">
                     <label class="panel body cr-start-size">START</label>
                     <div class="form-group" id="start">
-                        <div class="col-sm-3">
+                        <div class="col-sm-3 deadline-popover">
                              <div class="input-group enddate">
                                  <g:if test="${campaignEndDate}">
                                      <input class="datepicker pull-left cr-datepicker-height cr-mob-datepicker" id="datepicker" name="${FORMCONSTANTS.DAYS}" readonly="readonly" value="${campaignEndDate}" placeholder="Deadline"> 
@@ -52,6 +52,7 @@
                                  </g:else>
                                  <i class="fa fa-caret-down cr-caret-size" style="position:absolute;"></i>
                              </div>
+                             <img class="hidden-xs deadlineInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                         </div>
                     
                         <div class="col-sm-3">
@@ -118,7 +119,12 @@
 			                       
 	                           </div>
 	                       </div>
-	                       <div class="col-sm-9">
+	                       <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'}">
+	                           <div class="col-sm-1 amount-popover">
+	                               <img class="amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
+	                           </div>
+	                       </g:if>
+	                       <div class="col-sm-8">
 	                           <div class="btn-group col-sm-12 cr1-radio-tab cr1-mob-tb" data-toggle="buttons">
 	                                    <div class="cr1-tab-title">and I will be using it for</div>
 	                                    <g:if test="${project.usedFor == 'IMPACT'}">
@@ -167,15 +173,16 @@
 	                    </div>
 	            
                     <g:hiddenField name="campaignvideoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
-                    <div class="col-sm-6" id="media">
+                    <div class="col-sm-6 video-popover" id="media">
                         <a href="#addVideo" data-toggle="modal">
                             <div class="panel panel-default panel-create-size lblIcon text-center" id="videoBox">
                                 <span><img id="addVideoIcon" class="addVideoIcon" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png"></span>
                                 <span id="addVideolbl">Add Video</span>
                             </div>
                         </a>
+                        <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
-                    <div class="col-sm-6" id="media-video">
+                    <div class="col-sm-6 video-popover" id="media-video">
                         <div class="panel panel-default panel-create-size" id="videoBox">
                            <div class="panel-body">
                                <div class="form-group">
@@ -189,9 +196,10 @@
                                </span>
                            </div>
                         </div>
+                        <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
                     
-                <div class="col-sm-6 ">
+                <div class="col-sm-6 image-popover">
                     <div class="panel panel-default panel-create-size">
                         <div class="panel-body">
                             <div class="form-group" id="createthumbnail">
@@ -235,6 +243,7 @@
                             </div>
                         </div>
                     </div>
+                    <img class="pictureInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                 </div>
                
                 <div class="col-sm-12" id="story">
@@ -781,8 +790,8 @@
 <%--                        <div class="col-sm-4 text-center padding-btn" >--%>
 <%--                            <button type="button" class="btn  btn-primary btn-colors" name="button" id="saveasdraft"  value="draft">Save</button>--%>
 <%--                        </div>--%>
-                            <button type="submit" class="cr-bg-edit-btn cr-btn-edit createsubmitbutton" name="button" id="campaigncreatebtn" value="submitProject"></button>
-<%--                            <button type="submit" class="cr-bg-xs-edit-btn cr-xs-mobile createsubmitbutton visible-xs" name="button" id="campaigncreatebtn" value="submitProject"></button>--%>
+                            <button type="submit" class="cr-bg-edit-btn cr-btn-edit createsubmitbutton hidden-xs" name="button" id="campaigncreatebtn" value="submitProject"></button>
+                            <button type="submit" class="cr-bg-xs-edit-btn cr-btn-edit createsubmitbutton visible-xs" name="button" id="campaigncreatebtn" value="submitProject"></button>
                     </div>
                 </div>
                 

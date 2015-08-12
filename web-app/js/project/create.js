@@ -283,7 +283,7 @@ $(function() {
                 required: true,
                 number: true,
                 min: 500,
-                maxlength: 6,
+                maxlength: 8,
                 max: 99999999
             });
         } else {
@@ -841,7 +841,7 @@ function setTitleText(){
      
       /** *************************Multiple Image Selection*************** */
     var isvalidsize =  false;
-    $('#projectImageFile').change(function(event) {
+    $('#projectImageFile, #projectEditImageFile').change(function(event) {
         var file =this.files[0];
         if(validateExtension(file.name) == false){
         	 $('.pr-thumbnail-div').hide();
@@ -1418,6 +1418,51 @@ function setTitleText(){
         
         $('#savereward').popover({
             content: 'Save Perk',
+            trigger: 'manual',
+            placement: 'bottom'
+        })
+        .focus(showPopover)
+        .blur(hidePopover)
+        .hover(showPopover, hidePopover);
+        
+        $('.amountInfo-img').popover({
+            content: 'Maximum $50,000, If you want to raise more contact our Crowdfunding Expert.',
+            trigger: 'manual',
+            placement: 'bottom'
+        })
+        .focus(showPopover)
+        .blur(hidePopover)
+        .hover(showPopover, hidePopover);
+        
+        $('amountInfoInd-img').popover({
+            content: 'Maximum Rs.99999999, If you want to raise more contact our Crowdfunding Expert.',
+            trigger: 'manual',
+            placement: 'bottom'
+        })
+        .focus(showPopover)
+        .blur(hidePopover)
+        .hover(showPopover, hidePopover);
+        
+        $('.deadlineInfo-img').popover({
+            content: 'Campaign End Date - At Least 30 days and maximum 90 days.',
+            trigger: 'manual',
+            placement: 'bottom'
+        })
+        .focus(showPopover)
+        .blur(hidePopover)
+        .hover(showPopover, hidePopover);
+        
+        $('.pictureInfo-img').popover({
+            content: 'Pictures help contributors connect with you and your cause. Maximum 3MB.',
+            trigger: 'manual',
+            placement: 'bottom'
+        })
+        .focus(showPopover)
+        .blur(hidePopover)
+        .hover(showPopover, hidePopover);
+        
+        $('.videoInfo-img').popover({
+            content: 'Add a 3 minute video that can hold the attention of the viewer. It is your chance to pitch to your contributors, make it heartfelt.',
             trigger: 'manual',
             placement: 'bottom'
         })

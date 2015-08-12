@@ -69,7 +69,8 @@ $(function() {
                 this.code.set(storyPlaceholder);
             }
         },
-        plugins: ['fontsize','fontfamily','fontcolor','video']
+        plugins: ['video'],
+        buttonsHide: ['indent', 'outdent', 'horizontalrule']
     });
 
     var currentEnv = $('#currentEnv').val();

@@ -602,6 +602,12 @@ img.amountInfo-img {
   margin-left: -25px;
 }
 
+img.amountInfoInd-img {
+  padding-top: 102px;
+  padding-left: 0;
+  margin-left: -25px;
+}
+
 div.amount-popover .popover{
 	width:700px;
 }

@@ -2161,6 +2161,12 @@ a {
         padding-left: 264px;
         margin-left: 0;
     }
+    
+    img.amountInfoInd-img {
+        padding-top: 0;
+        padding-left: 264px;
+        margin-left: 0;
+    }
 	
     img.pictureInfo-img {
         padding-left: 254px;

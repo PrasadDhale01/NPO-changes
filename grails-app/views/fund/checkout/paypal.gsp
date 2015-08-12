@@ -25,7 +25,6 @@
 				<g:hiddenField name="amount" value="${amount}"/>
 				<g:hiddenField name="anonymous" value="${anonymous}" id="anonymous"/>
 				<g:hiddenField name="projectTitle" value="${projectTitle}"/>
-				<g:hiddenField name="customField" id="customField" value="${shippingInfo.custom}"/>
 				<div class="row">
 					<div class="col-md-8">
 						<div class="panel panel-default">
@@ -145,6 +144,7 @@
 							                </div>
 							            </g:if>
 							            <g:if test="${shippingInfo.custom != null}">
+							                <g:hiddenField name="customField" id="customField" value="${shippingInfo.custom}"/>
 							                <div class="col-md-6">
 							                    <div class="form-group">
 							                        <div class="input-group col-md-12">

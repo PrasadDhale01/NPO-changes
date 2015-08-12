@@ -790,8 +790,8 @@
 <%--                        <div class="col-sm-4 text-center padding-btn" >--%>
 <%--                            <button type="button" class="btn  btn-primary btn-colors" name="button" id="saveasdraft"  value="draft">Save</button>--%>
 <%--                        </div>--%>
-                            <button type="submit" class="cr-bg-edit-btn cr-btn-edit createsubmitbutton" name="button" id="campaigncreatebtn" value="submitProject"></button>
-<%--                            <button type="submit" class="cr-bg-xs-edit-btn cr-xs-mobile createsubmitbutton visible-xs" name="button" id="campaigncreatebtn" value="submitProject"></button>--%>
+                            <button type="submit" class="cr-bg-edit-btn cr-btn-edit createsubmitbutton hidden-xs" name="button" id="campaigncreatebtn" value="submitProject"></button>
+                            <button type="submit" class="cr-bg-xs-edit-btn cr-btn-edit createsubmitbutton visible-xs" name="button" id="campaigncreatebtn" value="submitProject"></button>
                     </div>
                 </div>
                 

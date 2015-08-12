@@ -1316,10 +1316,12 @@ a {
     }
     
     img.videoInfo-img {
+       padding-top:2px;
        padding-left: 311px;
     }
     
     img.pictureInfo-img {
+       padding-top:2px;
        padding-left: 311px;
     }
 
@@ -2153,11 +2155,13 @@ a {
     img.pictureInfo-img {
         padding-left: 254px;
         margin-bottom: 12px;
+        padding-top:2px;
     }
 
     img.videoInfo-img {
         padding-left: 250px;
         padding-bottom: 20px;
+        padding-top:2px;
     }
     
     .nav-tabs.nav-justified.show-marginbottoms {
@@ -2562,6 +2566,23 @@ a {
 
 }    
 @media only screen and (max-width: 640px) {
+    img.videoInfo-img {
+        padding-left: 229px !important;
+        padding-top:2px  !important;
+    }
+    
+    img.pictureInfo-img {
+        padding-left: 233px !important;
+        padding-top:2px !important;
+    }
+    
+    div.video-popover .popover{
+        margin-left:40%;
+    }
+
+    div.image-popover .popover{
+        margin-left:40%;
+    }
     .divFirstAdmin.lowRes.highRes {
 	margin-left: -32px !important;
 	width: 105% !important;
@@ -8727,8 +8748,10 @@ img.cr-ineed-icons {
 
 .cr-bg-xs-edit-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/save-button-mobile.jpg) no-repeat !important;
-	height: 66px;
-    width: 251px;
+	margin-left: 89px;
+    padding-top: 22px;
+    width: 131px;
+    height:38px;
 }
 
 .cr-check-btn {

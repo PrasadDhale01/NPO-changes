@@ -119,7 +119,6 @@
                         </div>
                         <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
-                    
                 <div class="col-sm-6 image-popover">
                     <div class="panel panel-default panel-create-size">
                         <div class="panel-body">

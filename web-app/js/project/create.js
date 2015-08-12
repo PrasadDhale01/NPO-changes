@@ -841,7 +841,7 @@ function setTitleText(){
      
       /** *************************Multiple Image Selection*************** */
     var isvalidsize =  false;
-    $('#projectImageFile').change(function(event) {
+    $('#projectImageFile, #projectEditImageFile').change(function(event) {
         var file =this.files[0];
         if(validateExtension(file.name) == false){
         	 $('.pr-thumbnail-div').hide();
@@ -1427,6 +1427,15 @@ function setTitleText(){
         
         $('.amountInfo-img').popover({
             content: 'Maximum $50,000, If you want to raise more contact our Crowdfunding Expert.',
+            trigger: 'manual',
+            placement: 'bottom'
+        })
+        .focus(showPopover)
+        .blur(hidePopover)
+        .hover(showPopover, hidePopover);
+        
+        $('amountInfoInd-img').popover({
+            content: 'Maximum Rs.99999999, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
             placement: 'bottom'
         })

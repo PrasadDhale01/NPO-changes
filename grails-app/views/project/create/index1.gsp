@@ -59,6 +59,11 @@ def base_url = grailsApplication.config.crowdera.BASE_URL
 	                               <img class="amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
 	                           </div>
 	                       </g:if>
+	                       <g:else>
+	                           <div class="col-sm-1 amount-popover">
+	                               <img class="amountInfoInd-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
+	                           </div>
+	                       </g:else>
 	                       <div class="col-sm-8">
 	                           <div class="btn-group col-sm-12 cr1-radio-tab cr1-mob-tb" data-toggle="buttons">
 	                                    <div class="cr1-tab-title">and I will be using it for</div>

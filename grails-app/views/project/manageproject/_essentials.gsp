@@ -105,11 +105,16 @@
             </button>
         </g:if>
         <g:else>
-            <g:form controller="project" action="saveasdraft" id="${project.id}">
-                <button class="btn btn-block btn-primary">
-                    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-                </button>
-            </g:form>
+            <g:if test="${project.videoUrl && project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                <g:form controller="project" action="saveasdraft" id="${project.id}">
+                    <button class="btn btn-block btn-primary">
+                        <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                    </button>
+                </g:form>
+            </g:if>
+            <g:else>
+                <button class="btn btn-block btn-primary" id="submitForApprovalBtn"><i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval</button>
+            </g:else>
         </g:else>
     </g:if>
     <br>

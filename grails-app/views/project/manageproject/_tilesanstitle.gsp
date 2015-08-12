@@ -3,18 +3,7 @@
 <g:set var="projectService" bean="projectService"/>
 <g:set var="userService" bean="userService"/>
 <%
-    def isFundingAchieved = contributionService.isFundingAchievedForProject(project)
-    def percentage = contributionService.getPercentageContributionForProject(project)
-    def achievedDate
-    if (isFundingAchieved) {
-        achievedDate = contributionService.getFundingAchievedDate(project)
-    }
-    def endDate = projectService.getProjectEndDate(project)
-    boolean ended = projectService.isProjectDeadlineCrossed(project)
-    def isFundingOpen = projectService.isFundingOpen(project)
-    def contributedSoFar = contributionService.getTotalContributionForProject(project)
-    def contribution = projectService.getDataType(contributedSoFar)
-    def amount = projectService.getDataType(project.amount)
+    def amount = project.amount.round()
     def currentUser = userService.getCurrentUser()
     def username = currentUser.username
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
@@ -53,7 +42,7 @@
         </div>
         <div class="col-md-4 col-xs-4 amount-alignment contribution-border amount-text-align text-center">
             <span class="text-center tile-goal show-contribution-amt-tile">
-                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead show-contribution-amt-tile">${contributedSoFar}</span>
+                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead show-contribution-amt-tile">${amount}</span>
             </span>
         </div>
         
@@ -71,11 +60,11 @@
 <%--            </div>--%>
             <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size contribution-tile show-contribution-amt-tile">
                <span class="days-alignment">DAYS<br>LEFT</span>
-               <g:if test="${projectService.getRemainingDay(project) > 0 && projectService.getRemainingDay(project) < 10 }">
-                  	<span class="tile-day-num show-contribution-amt-tile ">0${projectService.getRemainingDay(project)}</span>
+               <g:if test="${day > 0 && day < 10 }">
+                  	<span class="tile-day-num show-contribution-amt-tile ">0${day}</span>
                </g:if>
                <g:else>
-                  	<span class="tile-day-num show-contribution-amt-tile ">${projectService.getRemainingDay(project)}</span>
+                  	<span class="tile-day-num show-contribution-amt-tile ">${day}</span>
                </g:else>
            </div>
         </g:else>

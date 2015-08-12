@@ -1425,7 +1425,6 @@ function setTitleText(){
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
         
-        if(currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'prod' || currentEnv='development'){
         $('.amountInfo-img').popover({
             content: 'Maximum $50,000, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
@@ -1434,7 +1433,6 @@ function setTitleText(){
         .focus(showPopover)
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
-        }
         
         $('.deadlineInfo-img').popover({
             content: 'Campaign End Date - At Least 30 days and maximum 90 days.',

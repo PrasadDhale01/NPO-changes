@@ -41,7 +41,7 @@
                 <div class="col-sm-12 cr-start-flex">
                     <label class="panel body cr-start-size">START</label>
                     <div class="form-group" id="start">
-                        <div class="col-sm-3">
+                        <div class="col-sm-3 deadline-popover">
                              <div class="input-group enddate">
                                  <g:if test="${campaignEndDate}">
                                      <input class="datepicker pull-left cr-datepicker-height cr-mob-datepicker" id="datepicker" name="${FORMCONSTANTS.DAYS}" readonly="readonly" value="${campaignEndDate}" placeholder="Deadline"> 
@@ -94,7 +94,7 @@
                         </div>
                     </div>
                     <g:hiddenField name="campaignvideoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
-                    <div class="col-sm-6" id="media">
+                    <div class="col-sm-6 video-popover" id="media">
                         <a href="#addVideo" data-toggle="modal">
                             <div class="panel panel-default panel-create-size lblIcon text-center" id="videoBox">
                                 <span><img id="addVideoIcon" class="addVideoIcon" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png"></span>
@@ -103,7 +103,7 @@
                         </a>
                         <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
-                    <div class="col-sm-6" id="media-video">
+                    <div class="col-sm-6 video-popover" id="media-video">
                         <div class="panel panel-default panel-create-size" id="videoBox">
                            <div class="panel-body">
                                <div class="form-group">
@@ -120,7 +120,7 @@
                         <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
                     
-                <div class="col-sm-6 ">
+                <div class="col-sm-6 image-popover">
                     <div class="panel panel-default panel-create-size">
                         <div class="panel-body">
                             <div class="form-group" id="createthumbnail">

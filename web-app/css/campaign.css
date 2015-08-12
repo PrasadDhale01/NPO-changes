@@ -601,3 +601,22 @@ img.amountInfo-img {
   padding-left: 0;
   margin-left: -25px;
 }
+
+div.amount-popover .popover{
+	width:700px;
+}
+
+div.deadline-popover .popover{
+	margin-left:38%;
+	width:700px;
+}
+
+div.video-popover .popover{
+	margin-left:45%;
+	width:800px;
+}
+
+div.image-popover .popover{
+	margin-left:45%;
+	width:700px;
+}

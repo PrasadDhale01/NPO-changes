@@ -773,7 +773,7 @@ $(function() {
       $('#desclength').text(currentString);
     }
   }
-  
+
   /*******************************Title text length******************** */
   var counter = 1;
   $('#campaignTitle').on('keydown', function(event) {
@@ -1329,12 +1329,12 @@ function setTitleText(){
         }
     });
     
-    $('#campaignTitle1').blur(function (){
+    $('.campaignTitle1').blur(function (){
         var title = $(this).val();
         autoSave('campaignTitle', title);
     });
     
-    $('#descarea1').blur(function (){
+    $('.descarea').blur(function (){
         var descarea = $(this).val();
         autoSave('descarea', descarea);
     });

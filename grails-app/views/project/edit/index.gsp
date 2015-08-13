@@ -159,7 +159,7 @@
 	                    <div class="form-group createTitleDiv edit-margin">
 	                        <label class="col-sm-12 text-color">My plan is...</label>
 	                        <div class="col-sm-12 edt-mobile-reso">
-	                            <textarea class="form-control form-control-no-border text-color" name="title" rows="2" placeholder="Campaign title is the gateway to view your campaign, create an impactful and actionable title." id="campaignTitle1" maxlength="55">${project.title}</textarea>
+	                            <textarea class="form-control form-control-no-border text-color campaignTitle1" name="title" rows="2" placeholder="Campaign title is the gateway to view your campaign, create an impactful and actionable title." id="campaignTitle" maxlength="55">${project.title}</textarea>
 	                            <label class="pull-right " id="titleLength"></label>
 	                        </div>
 	                    </div>
@@ -167,7 +167,7 @@
 	                
 	                    <div class="form-group createDescDiv edit-margin">
 	                        <div class="col-sm-12 edt-mobile-reso">
-	                            <textarea class="form-control form-control-no-border text-color" id="descarea1" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Campaign Description" maxlength="140">${project.description}</textarea>
+	                            <textarea class="form-control form-control-no-border text-color descarea1" id="descarea" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Campaign Description" maxlength="140">${project.description}</textarea>
 	                            <label class="pull-right " id="desclength"></label>
 	                        </div>
 	                    </div>

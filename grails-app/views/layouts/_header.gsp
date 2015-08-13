@@ -37,7 +37,7 @@
                     <form action="/campaign" name="SearchForm">
                         <div class="inner-addon left-addon search-icon-header search-image-header">
                            <img src="//s3.amazonaws.com/crowdera/assets/search-icon.png" alt="search" class="trigger" id="trigger">
-                           <input type="text" class="form-control search-box" name="q" value="${params.q}" id="search-bar" placeholder="Search....."/>
+                           <input type="text" class="form-control form-control-no-border search-box" name="q" value="${params.q}" id="search-bar" placeholder="Search....."/>
                         </div>
                     </form>
                 </li>
@@ -46,7 +46,7 @@
                     <form action="/campaign"  name="searchableForm">
                         <span class="form-group inner-addon left-addon">
                             <i class="glyphicon glyphicon-search search-glyph-icon"></i>
-                            <input type="search" name="q" class="form-control search-box-xs" value="${params.q}" placeholder="Search.....">
+                            <input type="search" name="q" class="form-control form-control-no-border search-box-xs" value="${params.q}" placeholder="Search.....">
                         </span>
                     </form>
                 </li>

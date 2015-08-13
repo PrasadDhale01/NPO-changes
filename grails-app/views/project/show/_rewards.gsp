@@ -21,28 +21,56 @@
 				def rewardId = reward.id
             %>
             <g:if test="${isFundingOpen}">
-                <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'rewardId': rewardId, 'projectTitle': vanityTitle]">
-                    <div class="rewardsection-row">
-                        <div class="rewardBottomBorder">
-                            <g:if test="${reward.id==1 }">
-                                <div class="rewardtitlespan">I just want to help.</div>
-                            </g:if>
-                            <g:else>
-                                <div class="tile-goal-show">
-                                    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
+                <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+                    <div class="redirectCampaignOnPerk">
+                        <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'rewardId': rewardId, 'projectTitle': vanityTitle]">
+                            <div class="rewardsection-row">
+                                <div class="rewardBottomBorder">
+                                    <g:if test="${reward.id==1 }">
+                                        <div class="rewardtitlespan">I just want to help.</div>
+                                    </g:if>
+                                    <g:else>
+                                        <div class="tile-goal-show">
+                                            <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
+                                        </div>
+                                        <div class="rewardtitlespan">${reward.title}</div>
+                                    </g:else>
+							        <g:if test="${reward.id==1 }">
+								        <p class="rewarddescription"></p>
+							        </g:if>
+							        <g:else>
+								        <p class="rewarddescription">${raw(reward.description)}</p>
+							        </g:else>
+                                    <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                                 </div>
-                                <div class="rewardtitlespan">${reward.title}</div>
-                            </g:else>
-							<g:if test="${reward.id==1 }">
-								<p class="rewarddescription"></p>
-							</g:if>
-							<g:else>
-								<p class="rewarddescription">${raw(reward.description)}</p>
-							</g:else>
-                            <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
-                        </div>
+                            </div>
+                        </g:link>
                     </div>
-                </g:link>
+                </g:if>
+                <g:else>
+                    <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'rewardId': rewardId, 'projectTitle': vanityTitle]">
+                        <div class="rewardsection-row">
+                            <div class="rewardBottomBorder">
+                                <g:if test="${reward.id==1 }">
+                                    <div class="rewardtitlespan">I just want to help.</div>
+                                </g:if>
+                                <g:else>
+                                    <div class="tile-goal-show">
+                                        <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
+                                    </div>
+                                    <div class="rewardtitlespan">${reward.title}</div>
+                                </g:else>
+							    <g:if test="${reward.id==1 }">
+								    <p class="rewarddescription"></p>
+							    </g:if>
+							    <g:else>
+								    <p class="rewarddescription">${raw(reward.description)}</p>
+							    </g:else>
+                                <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
+                            </div>
+                        </div>
+                    </g:link>
+                </g:else>
             </g:if>
             <g:else>
                 <div class="rewarddiv">

@@ -5,15 +5,16 @@
 	            <h1 class="text-center headingtext">Latest Campaigns</h1><br>
 	        </div>
         </div>
-        
-        <div class="row">
-            <ul class="thumbnails list-unstyled">
-                <g:each in="${projects}" var="project">
-                    <li class="col-md-6 col-lg-4 col-sm-6 col-xs-12">
-                        <g:render template="/layouts/tile" model="['project': project]"></g:render>
-                    </li>
-                </g:each>
-            </ul>
+        <div class="item active home-campaign-tile-container">
+            <div class="row">
+                <ul class="thumbnails list-unstyled home-campaign-tile">
+                    <g:each in="${projects}" var="project">
+                        <li class="col-md-6 col-lg-4 col-sm-6 col-xs-12">
+                            <g:render template="/layouts/tile" model="['project': project]"></g:render>
+                        </li>
+                    </g:each>
+                </ul>
+            </div>
         </div>
 
         <div class="row text-center explorebtn">

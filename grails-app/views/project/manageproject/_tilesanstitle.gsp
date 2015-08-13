@@ -42,7 +42,7 @@
         </div>
         <div class="col-md-4 col-xs-4 amount-alignment contribution-border amount-text-align text-center">
             <span class="text-center tile-goal show-contribution-amt-tile">
-                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead show-contribution-amt-tile">${amount}</span>
+                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead show-contribution-amt-tile">${totalContribution}</span>
             </span>
         </div>
         

@@ -694,6 +694,12 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.edit-tool-icon img{
+	    margin-left: -10px;
+	}
+	input.cr-payu-space-mobile{
+	    width: 285px;
+	}
 	img.amountInfo-img {
         padding-top: 0;
         padding-left: 254px;
@@ -811,9 +817,9 @@ a {
 	    width: 141px !important;
 	}
 	header.cr-tabs-link {
-	    padding-left: 23px !important; 
-	    padding-right: 23px !important; 
-	    font-size: 24px;
+	    padding-left: 8px !important; 
+	    padding-right: 8px !important; 
+	    font-size: 17px !important;
     }
 	div.cr-story-flx {
         display: inline;
@@ -3991,10 +3997,10 @@ div.tile-min-height{
     }
 
     .navbar-default {
-        height: 93px;
+        height: 63px;
     }
     .banner-nav{
-    	height:63px !important;
+    	height:93px !important;
     }
     span#search-container {
         margin-top: -5% !important;
@@ -6084,6 +6090,12 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.edit-tool-icon img{
+	    margin-left: -29px;
+	}
+	input.cr-payu-space-mobile{
+	    width: 254px;
+	}
 	button.cr-bg-xs-edit-btn{
 	    margin-left: 65px;
 	}

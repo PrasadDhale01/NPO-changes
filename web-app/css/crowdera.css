@@ -2184,6 +2184,18 @@ a {
         margin-left: 42%;
     }
 	
+    img.amountInfo-img {
+        padding-top: 0;
+        padding-left: 264px;
+        margin-left: 0;
+    }
+    
+    img.amountInfoInd-img {
+        padding-top: 0;
+        padding-left: 264px;
+        margin-left: 0;
+    }
+	
     img.pictureInfo-img {
         padding-left: 254px;
         margin-bottom: 12px;

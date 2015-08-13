@@ -147,7 +147,7 @@
                             <div class="cr-story-flx">
                             <label class="panel body cr-story-size">STORY</label>
                       	    <label class="panel-body cr-panel-story">A good engaging story is the backbone of your Campaign.
-	                                                                    you want your readers to be compelled to share your story
+	                                                                    You want your readers to be compelled to share your story
 	                                                                    and make your campaign go viral. Be passionate and make 
 	                                                                    them believe and trust your goal.</label>
                        	    </div>

@@ -17,7 +17,8 @@
             $('.redactorEditor').redactor({
                 imageUpload:'/project/getRedactorImage',
                 focus: true,
-                plugins: ['fontsize','fontfamily','fontcolor','video']
+                plugins: ['video'],
+                buttonsHide: ['indent', 'outdent', 'horizontalrule']
             });
         });
     </g:javascript>

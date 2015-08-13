@@ -56,7 +56,6 @@
 				<input type="hidden" name="surl" value="${surl}"></input>
 				<input type="hidden" name="furl" value="${furl}"></input>
 				<input type="hidden" name="service_provider" value="${service_provider}"></input>
-				<g:hiddenField name="customField" id="customField" value="${shippingInfo.custom}"/>
 				<div class="row">
 					<div class="col-md-8">
 						<div class="panel panel-default">
@@ -216,7 +215,7 @@
 												<div class="col-md-6">
 													<div class="form-group">
 														<div class="input-group col-md-12">
-															<input class="form-control" type="text" id="customShippingInfo" placeholder="Custom Details ex. Size of T-shirts etc" name="shippingCustom"  value="${params.shippingCustom}" readonly>
+															<input class="form-control" type="text" placeholder="Custom Details ex. Size of T-shirts etc" name="shippingCustom"  value="${params.shippingCustom}" readonly>
 														</div>
 													</div>
 												</div>

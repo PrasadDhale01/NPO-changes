@@ -570,14 +570,6 @@ div.break-div-js{
 	height:80px;
 }
 
-div.edit-perk-space{
-    padding-right: 50px !important;
-}
-
-label.edit-perk-size{
-    width: 220px !important;
-}
-
 .youtubeVideoIframe {
 	width: 236%;
 	height:206px;
@@ -597,6 +589,12 @@ img.pictureInfo-img {
 }
 
 img.amountInfo-img {
+  padding-top: 102px;
+  padding-left: 0;
+  margin-left: -25px;
+}
+
+img.amountInfoInd-img {
   padding-top: 102px;
   padding-left: 0;
   margin-left: -25px;

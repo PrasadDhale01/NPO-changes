@@ -694,14 +694,27 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	img.amountInfo-img {
+        padding-top: 0;
+        padding-left: 254px;
+        margin-left: 0;
+    }
+	div.cr-start-dropdown-payment.btn-group.bootstrap-select{
+        width: 200px !important;
+    }
 	.info-banner{
 		background-color: #000000;
 		color: #ffffff;
-		display:none !important;
+		display:none;
+		font-size:12px !important;
 		height: 30px;
 		padding:5px;
 		text-align: center;
 		width: 100%;
+	}
+	.banner-close {
+		color: #ffffff;
+		margin-left: 20px !important;
 	}
 	.founder-centering {
 	    display: block;
@@ -842,7 +855,7 @@ a {
         width: 282px;
     }
     label.cr-pad-who{
-        margin-left: -30px;
+        margin-left: -14px;
     }
     div.cr-radio-option{
         padding-left: 0;
@@ -1312,6 +1325,23 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.edit-image-mobile{
+	    margin-left: 40px;
+	}
+	div.cr-image-mobile{
+	    margin-left: 40px;
+	}
+    label.cr1-mob-tb-pd {
+        padding-left: 6px;
+        padding-right: 9px;
+    }
+    span.cr1-tb-text-lg {
+        font-size: 18px;
+        font-weight: 900;
+    }
+	div.edit-btn-space {
+       left: 354px;
+    }
     img.deadlineInfo-img {
         padding-left: 104px;
     }
@@ -1329,7 +1359,7 @@ a {
 	.info-banner{
 		background-color: #000000;
 		color: #ffffff;
-		display:none !important;
+		display:none;
 		height: 30px;
 		padding:5px;
 		text-align: center;
@@ -1940,9 +1970,12 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
-	div.cr-perk-yesno-tab {
-	      left: 347px;
+	div.edit-btn-space {
+       left: 346px;
     }
+/* 	div.cr-perk-yesno-tab { */
+/* 	      left: 347px; */
+/*     } */
 	label.cr-perks-size{
         padding-left: 15px;
         padding-right: 7px;
@@ -1994,8 +2027,8 @@ a {
         padding-top: 7px;
     }
 	header.cr-tabs-link {
-	    padding-left: 120px !important; 
-	    padding-right: 120px !important; 
+	    padding-left: 215px !important; 
+	    padding-right: 215px !important; 
     }
 	div.cr-space{
 	    display: inline-table !important;
@@ -2161,6 +2194,12 @@ a {
         padding-left: 264px;
         margin-left: 0;
     }
+    
+    img.amountInfoInd-img {
+        padding-top: 0;
+        padding-left: 264px;
+        margin-left: 0;
+    }
 	
     img.pictureInfo-img {
         padding-left: 254px;
@@ -2246,7 +2285,7 @@ a {
     }
     
     .navbar {
-        padding-top: 3px;
+        padding-top: 0px;
     }
     
     .youtubeVideoIframe {
@@ -2334,6 +2373,10 @@ a {
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	header.cr-tabs-link {
+	    padding-left: 130px !important; 
+	    padding-right: 130px !important; 
+    }
 	.founder-centering {
 	    display: block;
 	    margin-left: -90px !important;
@@ -3948,9 +3991,11 @@ div.tile-min-height{
     }
 
     .navbar-default {
-        height: 63px;
+        height: 93px;
     }
-    
+    .banner-nav{
+    	height:63px !important;
+    }
     span#search-container {
         margin-top: -5% !important;
     }
@@ -4846,7 +4891,14 @@ textarea.form-control {
         padding: 0px 0px 0 18px;
     }
     .contact-details-body {
-        padding: 10px 0px 0 18px;
+        padding: 10px 0px 0 4px;
+    }
+    .contact-details-bottom {
+        margin-bottom: 30px;
+    }
+    .contact-details-bottom .col-xs-7{
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 /***only-use-homepage-Carousel*****/
@@ -6032,14 +6084,34 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	button.cr-bg-xs-edit-btn{
+	    margin-left: 65px;
+	}
+	div.cr-start-dropdown-payment.btn-group.bootstrap-select{
+        width: 200px !important;
+    }
+	div.edt-mobile-reso{
+	   width: 286px;
+	}
+	img.amountInfo-img {
+        padding-top: 0;
+        padding-left: 234px;
+        margin-left: 0;
+    }
 	.info-banner{
 		background-color: #000000;
 		color: #ffffff;
-		display:none !important;
+		display:none;
+		font-size:11px !important;
 		height: 30px;
 		padding:5px;
 		text-align: center;
 		width: 100%;
+		
+	}
+	.banner-close {
+		color: #ffffff;
+		margin-left: 20px !important;
 	}
 	div.hm-right-inverted-India {
             margin-top: 98px;
@@ -8583,7 +8655,7 @@ header.cr-tabs-link {
     padding-top: 30px;
 	padding-left: 300px;
     padding-right: 300px;
-	font-size: 22px;
+	font-size: 21px;
 }
 .cr-ancher-tab a{
   color: rgb(164, 220, 249);
@@ -8598,6 +8670,7 @@ header.cr-tabs-link {
 input#datepicker {
   font-size: 20px;
   background-color: #f6f8f8;
+  text-align: center;
 }
 .cr-headerA {
   background-color: #f6bf0b;
@@ -8898,11 +8971,11 @@ label.text-color {
 }
 .cr1-tb-color:hover{
 	color: white;
-	background: gray;
+	background: #889299;
 }
 .cr1-tb-color.active{
 	color: white;
-	background: gray;
+	background: #889299;
 }
 
 .cr-story-size {
@@ -9038,6 +9111,10 @@ span.cr-font-title {
  .nav-tabs > li.cr-li-tabsss > a {
     background-color: #ffffff;
     color: #6d6e6e;
+}
+.nav-tabs > li.active.cr-li-tabsss > a {
+    background-color: #889299;
+    color: #ffffff;
 }
 ul.cr-ul-tabs.nav > li > a:hover,
 ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hover,
@@ -9235,4 +9312,14 @@ body {
 .btnPerkBgColor > label:hover{
     background-color: #889299;
     color:#fff;
+}
+.ed-perks-css {
+    left: 359px;
+}
+.edit-btn-space{
+    left: 352px;
+}
+.edit-margin{
+	margin-left: 0 !important;
+    margin-right: 0 !important;
 }

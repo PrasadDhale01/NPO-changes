@@ -23,10 +23,10 @@ $(function() {
     		"<p>The key here is to keep your information brief and concise; this is the hook to getting the attention of your crowd! </p><br>"+
 
     		"<p><h3>Share details about your need and plan</h3><p>"+
-    		"<p>Now that your audience is familiar with your mission, it/s time to go more in-depth. In this section you should: </p>"+
+    		"<p>Now that your audience is familiar with your mission, it's time to go more in-depth. In this section you should: </p>"+
     			"<ul>"+
     		    "<li>	Explain your funding goal and delineate precisely how the funds will be used</li>"+
-    			"<li>	Describe your plan if your campaign doesn/t reach its goal</li>"+
+    			"<li>	Describe your plan if your campaign doesn't reach it's goal</li>"+
     			"<li>	Share your plan for any risks or obstacles you may face</li>"+
     			"<li>	Outline the information for any rewards or perks programs! </li>"+
     			"</ul>"+
@@ -49,7 +49,7 @@ $(function() {
     			"<li>	Call your audience to action and discuss any other ways they can get involved</li>"+
     			"<li>	Wear your enthusiasm loud and proud - get your crowd excited! </li>"+
     			"</ul>"+
-    			"<p>Your mission is the heart of your campaign; it/s what makes your fundraising efforts unique. Don/t be shy in making your goal clear! Energize your crowd with your passion and get ready to make a difference! </p>";
+    			"<p>Your mission is the heart of your campaign; it's what makes your fundraising efforts unique. Don't be shy in making your goal clear! Energize your crowd with your passion and get ready to make a difference! </p>";
     
     $('.redactorEditor').redactor({
         imageUpload:'/project/getRedactorImage',
@@ -212,9 +212,6 @@ $(function() {
             	required:true,
             	email:true
             },
-//            secretKey: {
-//            	required:true,
-//            },
             pay: {
             	required:true
             },
@@ -229,9 +226,6 @@ $(function() {
             	isWebUrl:true
             },
             answer: {
-            	required:true
-            },
-            facebookUrl: {
             	required:true
             }
         },
@@ -296,6 +290,33 @@ $(function() {
                 max: 999999
             });
         }
+    	$('.rewardNumberAvailable').each(function () {
+            $(this).rules("add", {
+                required: true,
+                number: true,
+                min: 0
+            });
+        });
+    	
+    	var iconUrl = $('#imgIcon').attr('src');
+    	
+    	if (!iconUrl) {
+    	    $('[name="iconfile"]').rules( "add", {
+                required: true,
+                messages: {
+                    required: "Please upload your organization logo."
+                }
+            });
+        }
+    	if($('#campaignthumbnails').find('#imgdiv').length < 1) {
+    		$("#projectEditImageFile").rules( "add", {
+                required: true,
+                messages: {
+                    required: "Please upload at least one campaign image."
+                }
+            });
+    	}
+    	
     	if (validator.form()) {
     		$('#campaigncreatebtn').attr('disabled','disabled');
     		$('#campaigncreate').find('form').submit();
@@ -334,8 +355,11 @@ $(function() {
                 $(this).rules("add", {
                     required: true,
                     number: true,
-                    maxlength: 6,
-                    max: 999999,
+                    maxlength: 8,
+                    max: function() {
+                    	var campaignAmount = $('#projectamount').val();
+                        return Number(campaignAmount);
+                    },
                     min: 250
                 });
             });
@@ -345,7 +369,10 @@ $(function() {
                     required: true,
                     number: true,
                     maxlength: 6,
-                    max: 999999,
+                    max: function() {
+                    	var campaignAmount = $('#projectamount').val();
+                        return Number(campaignAmount);
+                    },
                     min: 1
                 });
             });
@@ -385,12 +412,13 @@ $(function() {
                 min: 0
             });
         });
+        
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
                     required: true,
                     number: true,
-                    maxlength: 6,
+                    maxlength: 8,
                     max: function() {
                     	var campaignAmount = $('#projectamount').val();
                         return Number(campaignAmount);
@@ -422,26 +450,6 @@ $(function() {
     	}
     });
     
-    $('#saveasdraft').on('click', function(){  // capture the click
-    	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"]').each(function () {
-            $(this).rules('remove');
-        });
-    	
-    	$( "#projectImageFile" ).rules("remove");
-    	
-    	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"]').each(function () {
-            $(this).closest('.form-group').removeClass('has-error');
-        });
-    	
-    	$("#createthumbnail").removeClass('has-error');
-    	if (validator.form()) {
-    		$('#isSubmitButton').attr('value',true);
-    		$('#campaigncreate').find('form').submit();
-    		$('#saveasdraft').attr('disabled','disabled');
-    		$('#submitProject').attr('disabled','disabled');
-    	}
-    });
-
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
            var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
@@ -673,6 +681,7 @@ $(function() {
                 $('#icondiv').show();
                 $('#logomsg').hide();
                 $('#iconfilesize').hide();
+                $('.edit-logo-icon').show();
                 var file = this.files[0];
                 var fileName = file.name;
                 var fileSize = file.size;
@@ -764,7 +773,7 @@ $(function() {
       $('#desclength').text(currentString);
     }
   }
-  
+
   /*******************************Title text length******************** */
   var counter = 1;
   $('#campaignTitle').on('keydown', function(event) {
@@ -969,7 +978,7 @@ function setTitleText(){
    '<div class="col-sm-12">'+
        '<div class="form-group">'+
            '<div class="btn-group col-sm-12" data-toggle="buttons">'+
-               '<label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Shipping</label>'+
+               '<label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Delivery</label>'+
                '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing <br> address</label>'+
                '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email <br> address</label>'+
                '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter <br> handle</label>'+
@@ -1315,15 +1324,17 @@ function setTitleText(){
     
     $('#amount1').blur(function (){
         var amount = $(this).val();
-        autoSave('amount', amount);
+        if(validator.element( "#amount1") && amount) {
+            autoSave('amount', amount);
+        }
     });
     
-    $('#campaignTitle1').blur(function (){
+    $('.campaignTitle1').blur(function (){
         var title = $(this).val();
         autoSave('campaignTitle', title);
     });
     
-    $('#descarea1').blur(function (){
+    $('.descarea').blur(function (){
         var descarea = $(this).val();
         autoSave('descarea', descarea);
     });
@@ -1435,7 +1446,7 @@ function setTitleText(){
         .blur(hidePopover)
         .hover(showPopover, hidePopover);
         
-        $('amountInfoInd-img').popover({
+        $('.amountInfoInd-img').popover({
             content: 'Maximum Rs.99999999, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
             placement: 'bottom'

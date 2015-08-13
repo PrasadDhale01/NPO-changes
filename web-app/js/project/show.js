@@ -118,18 +118,21 @@
                 required: true
             },
             ifscCode: {
+            	required: true,
                 minlength: 2
             },
             accountType: {
+            	required: true,
                 minlength: 2
             },
             accountNumber: {
+            	required: true,
                 minlength: 2
             }
         }
     });
     
-    $('.redirectCampaign a').click(function(event) {
+    $('.redirectCampaign a, .redirectCampaignOnPerk a').click(function(event) {
         event.preventDefault();
         var url = $('.redirectUrl a').attr('href');
         var redirectUrl;
@@ -557,7 +560,7 @@
     .hover(showPopover, hidePopover);
     
     $('#submitForApprovalBtn').popover({
-        content: 'Sorry, you will not be able to submit your campaign for approval, as you have not filled all the required details.Please fill the details and the proceed with the approval.',
+        content: 'Sorry, you will not be able to submit your campaign for approval, as you have not filled all the required details. Please fill the details and then proceed with the approval.',
         trigger: 'manual',
         placement: 'left'
     })
@@ -613,6 +616,7 @@
    	});
    	$('.banner-close').click(function(){
    		$('.info-banner').css('display','none');
+   		$('.home-header-section').addClass('banner-nav');
    	});
        
    });

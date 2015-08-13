@@ -13,7 +13,7 @@
 		}
 	}
 %>
-<div class="navbar navbar-default navbar-fixed-top header-section" role="navigation">
+<div class="navbar navbar-default navbar-fixed-top header-section home-header-section" role="navigation">
     <div class="header-container">
 		<div class="info-banner">
 			Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a>

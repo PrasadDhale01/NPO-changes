@@ -697,11 +697,16 @@ a {
 	.info-banner{
 		background-color: #000000;
 		color: #ffffff;
-		display:none !important;
+		display:none;
+		font-size:12px !important;
 		height: 30px;
 		padding:5px;
 		text-align: center;
 		width: 100%;
+	}
+	.banner-close {
+		color: #ffffff;
+		margin-left: 20px !important;
 	}
 	.founder-centering {
 	    display: block;
@@ -1329,7 +1334,7 @@ a {
 	.info-banner{
 		background-color: #000000;
 		color: #ffffff;
-		display:none !important;
+		display:none;
 		height: 30px;
 		padding:5px;
 		text-align: center;
@@ -2252,7 +2257,7 @@ a {
     }
     
     .navbar {
-        padding-top: 3px;
+        padding-top: 0px;
     }
     
     .youtubeVideoIframe {
@@ -3954,9 +3959,11 @@ div.tile-min-height{
     }
 
     .navbar-default {
-        height: 63px;
+        height: 93px;
     }
-    
+    .banner-nav{
+    	height:63px !important;
+    }
     span#search-container {
         margin-top: -5% !important;
     }
@@ -6041,11 +6048,17 @@ textarea.form-control {
 	.info-banner{
 		background-color: #000000;
 		color: #ffffff;
-		display:none !important;
+		display:none;
+		font-size:11px !important;
 		height: 30px;
 		padding:5px;
 		text-align: center;
 		width: 100%;
+		
+	}
+	.banner-close {
+		color: #ffffff;
+		margin-left: 20px !important;
 	}
 	div.hm-right-inverted-India {
             margin-top: 98px;

@@ -613,6 +613,7 @@
    	});
    	$('.banner-close').click(function(){
    		$('.info-banner').css('display','none');
+   		$('.home-header-section').addClass('banner-nav');
    	});
        
    });

@@ -17,7 +17,7 @@ $(function() {
     	"<p>Contributors want to know all about your cause and the details related to your organization, so think of this section as an executive summary to get your audience introduced to your campaign! Here are some essential components of a campaign introduction:</p>"+ 
     		"<ul>"+
     	    "<li>	Introduce yourself and your organization </li>"+
-    		"<li>	Describe your campaign and why it/s important to you </li>"+
+    		"<li>	Describe your campaign and why it's important to you </li>"+
     		"<li>	Convey the importance of a single contribution </li>"+
     		"</ul>"+
     		"<p>The key here is to keep your information brief and concise; this is the hook to getting the attention of your crowd! </p><br>"+
@@ -1447,7 +1447,7 @@ function setTitleText(){
         .hover(showPopover, hidePopover);
         
         $('.amountInfoInd-img').popover({
-            content: 'Maximum Rs.99999999, If you want to raise more contact our Crowdfunding Expert.',
+            content: 'Maximum Rs.9,99,99,999, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
             placement: 'bottom'
         })

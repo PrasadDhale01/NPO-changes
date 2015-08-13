@@ -120,7 +120,7 @@
                             </a></li>
                             <g:if test="${project.payuStatus}">
                                 <li><a href="#payments" data-toggle="tab">
-                                    <span class="glyphicon glyphicon-tint"></span><span class="tab-text hidden-xs"> Payments</span>
+                                    <span class="glyphicon glyphicon-credit-card"></span><span class="tab-text hidden-xs"> Payments</span>
                                 </a></li>
                             </g:if>
                             <li><a href="#contributions" data-toggle="tab"> <span class="glyphicon glyphicon-tint"></span> <span class="tab-text hidden-xs"> Contributions</span>

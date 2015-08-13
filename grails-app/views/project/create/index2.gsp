@@ -558,19 +558,17 @@
                 <div class="form-group">
                     <g:if test ="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                         <div id="PayUMoney">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">PayU Email</label>
-                                    <div class="col-sm-6">
-                                        <g:if test="${project.payuEmail}">
-                                            <input type="email" id="payuemail" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
-                                        </g:if>
-                                        <g:else>
-                                             <input type="email" id="payuemail" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.PAYUEMAIL}">
-                                        </g:else>
-                                    </div>
-                                </div>
-                            </div>
+                              <div class="form-group">
+                                  <label class="col-sm-4 control-label">PayU Email</label>
+                                  <div class="col-sm-6 col-xs-10">
+                                      <g:if test="${project.payuEmail}">
+                                          <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
+                                      </g:if>
+                                      <g:else>
+                                           <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}">
+                                      </g:else>
+                                  </div>
+                              </div>
                         </div>
                     </g:if>
                     <g:else>

@@ -23,10 +23,10 @@ $(function() {
     		"<p>The key here is to keep your information brief and concise; this is the hook to getting the attention of your crowd! </p><br>"+
 
     		"<p><h3>Share details about your need and plan</h3><p>"+
-    		"<p>Now that your audience is familiar with your mission, it/s time to go more in-depth. In this section you should: </p>"+
+    		"<p>Now that your audience is familiar with your mission, it's time to go more in-depth. In this section you should: </p>"+
     			"<ul>"+
     		    "<li>	Explain your funding goal and delineate precisely how the funds will be used</li>"+
-    			"<li>	Describe your plan if your campaign doesn/t reach its goal</li>"+
+    			"<li>	Describe your plan if your campaign doesn't reach it's goal</li>"+
     			"<li>	Share your plan for any risks or obstacles you may face</li>"+
     			"<li>	Outline the information for any rewards or perks programs! </li>"+
     			"</ul>"+
@@ -49,7 +49,7 @@ $(function() {
     			"<li>	Call your audience to action and discuss any other ways they can get involved</li>"+
     			"<li>	Wear your enthusiasm loud and proud - get your crowd excited! </li>"+
     			"</ul>"+
-    			"<p>Your mission is the heart of your campaign; it/s what makes your fundraising efforts unique. Don/t be shy in making your goal clear! Energize your crowd with your passion and get ready to make a difference! </p>";
+    			"<p>Your mission is the heart of your campaign; it's what makes your fundraising efforts unique. Don't be shy in making your goal clear! Energize your crowd with your passion and get ready to make a difference! </p>";
     
     $('.redactorEditor').redactor({
         imageUpload:'/project/getRedactorImage',
@@ -773,7 +773,7 @@ $(function() {
       $('#desclength').text(currentString);
     }
   }
-  
+
   /*******************************Title text length******************** */
   var counter = 1;
   $('#campaignTitle').on('keydown', function(event) {
@@ -1329,12 +1329,12 @@ function setTitleText(){
         }
     });
     
-    $('#campaignTitle1').blur(function (){
+    $('.campaignTitle1').blur(function (){
         var title = $(this).val();
         autoSave('campaignTitle', title);
     });
     
-    $('#descarea1').blur(function (){
+    $('.descarea').blur(function (){
         var descarea = $(this).val();
         autoSave('descarea', descarea);
     });

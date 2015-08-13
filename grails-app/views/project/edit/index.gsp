@@ -58,20 +58,20 @@
                         <div class="col-sm-3">
                             <div class="font-list">
                                     <g:if test="${project.category && project.category.toString() != 'OTHER'}">
-                                        <g:select class="selectpicker cr-start-dropdown-category cr-all-mobile-dropdown" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" id="category" optionKey="key" optionValue="value" value="${project.category}"/>
+                                        <g:select class="selectpicker cr-drops cr-drop-color cr-start-dropdown-category cr-all-mobile-dropdown" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" id="category" optionKey="key" optionValue="value" value="${project.category}"/>
                                     </g:if>
                                     <g:else>
-                                        <g:select class="selectpicker cr-start-dropdown-category cr-all-mobile-dropdown" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" id="category" optionKey="key" optionValue="value" />
+                                        <g:select class="selectpicker cr-drops cr-drop-color cr-start-dropdown-category cr-all-mobile-dropdown" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" id="category" optionKey="key" optionValue="value" />
                                     </g:else>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="cr-dropdown-alignment font-list">
                                     <g:if test="${project.beneficiary.country}">
-                                        <g:select style="width:0px !important;" class="selectpicker cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="${project.beneficiary.country}" optionKey="key" optionValue="value" />
+                                        <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="${project.beneficiary.country}" optionKey="key" optionValue="value" />
                                     </g:if>
                                     <g:else>
-                                        <g:select style="width:0px !important;" class="selectpicker cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="#" optionKey="key" optionValue="value" />
+                                        <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="#" optionKey="key" optionValue="value" />
                                     </g:else>
                                 </div>
                             </div>
@@ -79,16 +79,16 @@
                             <div class="col-sm-3">
 	                            <div class="font-list">
 	                                <g:if test="${project.payuEmail}">
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAYU" optionKey="key" optionValue="value" />
+	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAYU" optionKey="key" optionValue="value" />
 	                                </g:if>
 	                                <g:elseif test="${project.charitableId}">
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="FIR" optionKey="key" optionValue="value" />
+	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="FIR" optionKey="key" optionValue="value" />
 	                                </g:elseif>
 	                                <g:elseif test="${project.paypalEmail}">
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" />
+	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" />
 	                                </g:elseif>
 	                                <g:else>
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" />
+	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" />
 	                                </g:else>
 	                            </div>
                             </div>
@@ -96,16 +96,16 @@
                     </div>
                     
                     <input type="hidden" value="${user.id}" name="userid">
-	                <div class="form-group">
+	                <div class="form-group edit-margin">
 						<label class="col-sm-12 text-color">My Name is...</label>
-						<div class="col-sm-12">
+						<div class="col-sm-12 edt-mobile-reso">
 							<input class="form-control form-control-no-border text-color box-size" id="name1"
 								name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name" value="${project.beneficiary.firstName}">
 						</div>
 	                </div>
 	                
-	                    <div class="form-group">
-	                       <div class="col-sm-3">
+	                    <div class="form-group edit-margin">
+	                       <div class="col-sm-3 edt-mobile-reso">
 					           <span class="cr-need">I need</span><img class="cr-ineed-icons" src="//s3.amazonaws.com/crowdera/assets/i-need-Icon.png" alt="Ineed">
 						       <div class="tops">
 						            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
@@ -124,7 +124,7 @@
 	                               <img class="amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
 	                           </div>
 	                       </g:if>
-	                       <div class="col-sm-8">
+	                       <div class="col-sm-8 edt-mobile-reso">
 	                           <div class="btn-group col-sm-12 cr1-radio-tab cr1-mob-tb" data-toggle="buttons">
 	                                    <div class="cr1-tab-title">and I will be using it for</div>
 	                                    <g:if test="${project.usedFor == 'IMPACT'}">
@@ -156,18 +156,18 @@
 	                       </div>
 	                    </div>
 	                    
-	                    <div class="form-group createTitleDiv">
+	                    <div class="form-group createTitleDiv edit-margin">
 	                        <label class="col-sm-12 text-color">My plan is...</label>
-	                        <div class="col-sm-12">
-	                            <textarea class="form-control form-control-no-border text-color" name="title" rows="2" placeholder="Campaign title is the gateway to view your campaign, create an impactful and actionable title." id="campaignTitle1" maxlength="55">${project.title}</textarea>
+	                        <div class="col-sm-12 edt-mobile-reso">
+	                            <textarea class="form-control form-control-no-border text-color campaignTitle1" name="title" rows="2" placeholder="Campaign title is the gateway to view your campaign, create an impactful and actionable title." id="campaignTitle" maxlength="55">${project.title}</textarea>
 	                            <label class="pull-right " id="titleLength"></label>
 	                        </div>
 	                    </div>
 	                
 	                
-	                    <div class="form-group createDescDiv">
-	                        <div class="col-sm-12">
-	                            <textarea class="form-control form-control-no-border text-color" id="descarea1" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Campaign Description" maxlength="140">${project.description}</textarea>
+	                    <div class="form-group createDescDiv edit-margin">
+	                        <div class="col-sm-12 edt-mobile-reso">
+	                            <textarea class="form-control form-control-no-border text-color descarea1" id="descarea" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Campaign Description" maxlength="140">${project.description}</textarea>
 	                            <label class="pull-right " id="desclength"></label>
 	                        </div>
 	                    </div>
@@ -269,19 +269,19 @@
                    <div class="cr-tabs-admins">
 	                   <label class="panel body cr-admin-title">ADMIN</label>
                        <ul class="nav nav-tabs manage-projects nav-justified cr-ul-tabs">
-                           <li class="cr-li-tabs cr-hover-color">
+                           <li class="cr-li-tabs cr-li-tabsss cr-hover-color">
                               <a href="#admin" data-toggle="tab" aria-expanded="false">
-                                   <span class="glyphicon glyphicon-user cr-icon-tabs-user visible-xs"></span><span class="tab-text hidden-xs cr-add-tabs-title cr-font-title">Add Campaign <br> Admin<i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i></span>
+                                   <span class="glyphicon glyphicon-user cr-icon-tabs-user visible-xs"></span><span class="tab-text hidden-xs cr-add-tabs-title cr-font-title pull-left">Add Campaign Admin</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i>
 	                           </a>
 	                       </li>
-	                       <li class="active cr-tabs-update cr-hover-color">
+	                       <li class="active cr-tabs-update  cr-li-tabsss cr-hover-color">
 	                           <a data-toggle="tab" href="#organization" aria-expanded="true">
-	                               <span class="glyphicon glyphicon-eye-open cr-icon-tabs-eye visible-xs"></span><span class="tab-text hidden-xs cr-font-title">Update Display <br> Information<i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i></span>
+	                               <span class="glyphicon glyphicon-eye-open cr-icon-tabs-eye visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Display Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i>
 	                           </a>
 	                       </li>
-	                       <li class="cr-tabs-update cr-hover-color">
+	                       <li class="cr-tabs-update  cr-li-tabsss cr-hover-color">
 	                           <a data-toggle="tab" href="#personals">
-		                            <span class="glyphicon glyphicon-info-sign cr-icon-tabs-info visible-xs"></span><span class="tab-text hidden-xs cr-font-title">Update Personal <br> Information<i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i></span>
+		                            <span class="glyphicon glyphicon-info-sign cr-icon-tabs-info visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Personal Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i>
 		                       </a>
 		                   </li>
 		               </ul>
@@ -361,7 +361,7 @@
                                         <label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>
                                         <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
                                     </div>
-                                    <div class="pr-icon-thumbnail-div col-sm-2">
+                                    <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-2">
                                      <g:if test="${project.organizationIconUrl}">
                                         <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
                                         <div class="deleteicon orgicon-css-styles">
@@ -503,9 +503,9 @@
 	                    <div class="cr-perks-flex cr-perks-space edit-perk-space">
 	                        <label class="panel-body cr-perks-size edit-perk-size"><span class="cr-offering">Offering</span> PERKS?</label>
 	                    </div>
-	                    <div class="btn-group btnPerkBgColor col-sm-12 col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp" data-target="buttons">
-	                        <label class="btn btn-default col-sm-2 cr-lbl-mobile"> <input type="radio" name="answer" value="yes" id="yesradio"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
-	                        <label class="btn btn-default col-sm-2 cr-lbl-mobiles"> <input type="radio" name="answer" value="no" id="noradio"> NO</label>
+	                    <div class="btn-group btnPerkBgColor col-sm-push-6 edit-btn-space cr-perk-yesno-tab ed-perks-css cr-mobile-sp" data-target="buttons">
+	                        <label class="btn btn-default cr-lbl-mobile"> <input type="radio" name="answer" value="yes" id="yesradio"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
+	                        <label class="btn btn-default cr-lbl-mobiles"> <input type="radio" name="answer" value="no" id="noradio"> NO</label>
 	                    </div>
 	                </div>
                 </div>
@@ -565,24 +565,24 @@
                                 <div class="btn-group col-sm-12" data-toggle="buttons">
                                     <label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Shipping</label>
                                     <g:if test="${shippingInfo.address}">
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblmail${iteratorCount} active"><input type="checkbox" checked="checked" name="mailingAddress${iteratorCount}" value="true" id="mailaddcheckbox${iteratorCount}">Mailing <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblmail${iteratorCount} active"><input type="checkbox" checked="checked" name="mailingAddress${iteratorCount}" value="true" id="mailaddcheckbox${iteratorCount}">Mailing <br> address</label>
                                     </g:if>
                                     <g:else>
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblmail${iteratorCount}"><input type="checkbox" name="mailingAddress${iteratorCount}" value="true" id="mailaddcheckbox${iteratorCount}">Mailing <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblmail${iteratorCount}"><input type="checkbox" name="mailingAddress${iteratorCount}" value="true" id="mailaddcheckbox${iteratorCount}">Mailing <br> address</label>
                                     </g:else>
                                     <g:if test="${shippingInfo.email}">
-                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblemail${iteratorCount} active"><input type="checkbox" checked="checked" name="emailAddress${iteratorCount}" value="true" id="emailcheckbox${iteratorCount}">Email <br> address</label>
+                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblemail${iteratorCount} active"><input type="checkbox" checked="checked" name="emailAddress${iteratorCount}" value="true" id="emailcheckbox${iteratorCount}">Email <br> address</label>
                                     </g:if>
                                     <g:else>
-                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblemail${iteratorCount}"><input type="checkbox" name="emailAddress${iteratorCount}" value="true" id="emailcheckbox${iteratorCount}">Email <br> address</label>
+                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblemail${iteratorCount}"><input type="checkbox" name="emailAddress${iteratorCount}" value="true" id="emailcheckbox${iteratorCount}">Email <br> address</label>
                                     </g:else>
                                     <g:if test="${shippingInfo.twitter}">
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lbltwitter${iteratorCount} active"><input type="checkbox" checked="checked" name="twitter${iteratorCount}" value="true" id="twittercheckbox${iteratorCount}">Twitter <br> handle</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lbltwitter${iteratorCount} active"><input type="checkbox" checked="checked" name="twitter${iteratorCount}" value="true" id="twittercheckbox${iteratorCount}">Twitter <br> handle</label>
                                     </g:if>
                                     <g:else>
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lbltwitter${iteratorCount}"><input type="checkbox" name="twitter${iteratorCount}" value="true" id="twittercheckbox${iteratorCount}">Twitter <br> handle</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lbltwitter${iteratorCount}"><input type="checkbox" name="twitter${iteratorCount}" value="true" id="twittercheckbox${iteratorCount}">Twitter <br> handle</label>
                                     </g:else>
-                                    <input type="text" name="custom${iteratorCount}" id="customcheckbox${iteratorCount}" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place col-sm-4 col-xs-12" placeholder="Custom" value="${shippingInfo.custom}">
+                                    <input type="text" name="custom${iteratorCount}" id="customcheckbox${iteratorCount}" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place cr-perks-back-color col-sm-4 col-xs-12" placeholder="Custom" value="${shippingInfo.custom}">
                                 </div>
                             </div>
                         </div>
@@ -643,10 +643,10 @@
                             <div class="form-group">
                                 <div class="btn-group col-sm-12" data-toggle="buttons">
                                     <label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Shipping</label>
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing <br> address</label>
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks"><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email <br> address</label>
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks"><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter <br> handle</label>
-                                    <input type="text" name="custom1" id="customcheckbox1" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place col-sm-4 col-xs-12" placeholder="Custom">
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color"><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color "><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter <br> handle</label>
+                                    <input type="text" name="custom1" id="customcheckbox1" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place cr-perks-back-color  col-sm-4 col-xs-12" placeholder="Custom">
                                 </div>
                             </div>
                         </div>

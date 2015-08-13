@@ -118,12 +118,15 @@
                 required: true
             },
             ifscCode: {
+            	required: true,
                 minlength: 2
             },
             accountType: {
+            	required: true,
                 minlength: 2
             },
             accountNumber: {
+            	required: true,
                 minlength: 2
             }
         }

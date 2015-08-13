@@ -129,7 +129,7 @@
         }
     });
     
-    $('.redirectCampaign a').click(function(event) {
+    $('.redirectCampaign a, .redirectCampaignOnPerk a').click(function(event) {
         event.preventDefault();
         var url = $('.redirectUrl a').attr('href');
         var redirectUrl;

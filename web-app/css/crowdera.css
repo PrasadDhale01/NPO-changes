@@ -4852,7 +4852,14 @@ textarea.form-control {
         padding: 0px 0px 0 18px;
     }
     .contact-details-body {
-        padding: 10px 0px 0 18px;
+        padding: 10px 0px 0 4px;
+    }
+    .contact-details-bottom {
+        margin-bottom: 30px;
+    }
+    .contact-details-bottom .col-xs-7{
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 /***only-use-homepage-Carousel*****/

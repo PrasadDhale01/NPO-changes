@@ -124,6 +124,11 @@
 	                               <img class="amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
 	                           </div>
 	                       </g:if>
+	                       <g:else>
+	                           <div class="col-sm-1 amount-popover edit-tool-icon">
+	                               <img class="amountInfoInd-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
+	                           </div>
+	                       </g:else>
 	                       <div class="col-sm-8 edt-mobile-reso">
 	                           <div class="btn-group col-sm-12 cr1-radio-tab cr1-mob-tb" data-toggle="buttons">
 	                                    <div class="cr1-tab-title">and I will be using it for</div>
@@ -134,10 +139,10 @@
 	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 " id="impact1"> <input type="radio" value="yes"><span class="cr1-tb-text-sm">Making an</span><br><span class="cr1-tb-text-lg">Impact</span></label> 
 	                                    </g:else>
 	                                    <g:if test="${project.usedFor == 'PASSION'}">
-	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active" id="passion1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-sm">following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
+	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active" id="passion1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-sm">Following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
 	                                    </g:if>
 	                                    <g:else>
-	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="passion1"> <input type="radio" value="no"><span class="cr1-tb-text-sm">following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
+	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="passion1"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
 	                                    </g:else>
 	                                    <g:if test="${project.usedFor == 'SOCIAL_NEEDS'}">
 	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active"  id="innovating1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-lg">Innovating</span><br><span class="cr1-tb-text-sm">for Social Goal</span></label>
@@ -711,19 +716,17 @@
                 <div class="form-group">
                     <g:if test ="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                         <div id="PayUMoney">
-                            <div class="col-sm-12">
-                                <div class="form-group">
-                                    <label class="col-sm-4 control-label">PayU Email</label>
-                                    <div class="col-sm-6">
-                                        <g:if test="${project.payuEmail}">
-                                            <input type="email" id="payuemail" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
-                                        </g:if>
-                                        <g:else>
-                                             <input type="email" id="payuemail" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.PAYUEMAIL}">
-                                        </g:else>
-                                    </div>
-                                </div>
-                            </div>
+                             <div class="form-group">
+                                 <label class="col-sm-4 control-label">PayU Email</label>
+                                 <div class="col-sm-6 col-xs-10">
+                                     <g:if test="${project.payuEmail}">
+                                         <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
+                                     </g:if>
+                                     <g:else>
+                                          <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}">
+                                     </g:else>
+                                 </div>
+                             </div>
                         </div>
                     </g:if>
                     <g:else>

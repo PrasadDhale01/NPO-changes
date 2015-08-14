@@ -508,11 +508,6 @@ class ProjectController {
 		render (view: 'create/justcreated', model:[project:project, FORMCONSTANTS: FORMCONSTANTS, vanityTitle: vanityTitle])
 	}
 	
-	
-	
-	
-	
-
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editCampaign(){
 		def title = projectService.getVanityTitleFromId(params.id)
@@ -574,6 +569,7 @@ class ProjectController {
 		def title = projectService.getVanityTitleFromId(params.projectId)
 		if(project) {
 			def vanityTitle = projectService.getProjectUpdateDetails(params, request, project,user)
+			rewardService.saveRewardDetails(params);
 			flash.prj_mngprj_message = "Successfully saved the changes"
 			if (vanityTitle){
 				redirect (action: 'manageproject', params:['projectTitle':vanityTitle])

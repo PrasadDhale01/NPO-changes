@@ -390,6 +390,7 @@ a.customer-support-a {
     padding-right: 2px;
 }
 .search-icon-header img {
+	cursor: pointer;
     position: absolute;
     padding-left: 5px;
     padding-top: 7px;

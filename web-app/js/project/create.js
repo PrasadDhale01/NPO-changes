@@ -970,8 +970,8 @@ function setTitleText(){
        '<div class="col-sm-12">'+
            '<div class="col-sm-12">'+
              '<textarea class="form-control required rewardDescription form-control-no-border cr-placeholder cr-chrome-place text-color" name="rewardDescription'+count+
-                '" id="rewardDesc'+count+'" rows="2" placeholder="Let your contributors feel special by rewarding them.Think out of the box and leave your contributors awestruck. Make sure you have calculated the costs associated with the perk; you do not want to lose money!" maxlength="250"></textarea>'+
-                '<p class="cr-perk-des-font">Please refer to our Terms of Use for more details on perks.</p>'+
+                '" id="rewardDesc'+count+'" rows="2" placeholder="Let your contributors feel special by rewarding them. Think out of the box and leave your contributors awestruck. Make sure you have calculated the costs associated with the perk; you do not want to lose money!" maxlength="250"></textarea>'+
+                '<p class="cr-perk-des-font">Please refer to our <a href="/termsofuse" target="_blank">Terms  Of  Use</a> for more details on perks.</p>'+
            '</div>'+
        '</div>'+
    '</div>'+

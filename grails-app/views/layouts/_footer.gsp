@@ -175,8 +175,16 @@
 							<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" class="payment-card-icons" alt="payment-icon">
 		    			</div>
 		    			<div class="col-sm-6 secure-payment-footer">
-							<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
-							<div class="footer-text-align">100% Secure Payment</div>
+		    				<table>
+		    					<tr>
+		    						<td>
+										<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
+									</td>
+									<td>
+										<div class="footer-text-align">100% Secure Payment</div>
+									</td>
+								</tr>
+							</table>
 		    			</div>
 		    		</g:if>
 				</div>
@@ -283,8 +291,16 @@
 		        	<img src="//s3.amazonaws.com/crowdera/assets/payment-icon-Card.png" alt="payment-icon">
 		    	</div>
 		    	<div class="col-md-6 secure-payment-footer">
-					<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
-					<div class="footer-text-align">100% Secure Payment</div>
+		    		<table>
+		    			<tr>
+		    				<td>
+								<img src="//s3.amazonaws.com/crowdera/assets/secure-payment-icon-footer.png" alt="secure-payment">
+							</td>
+							<td>
+								<div class="footer-text-align">100% Secure Payment</div>
+							</td>
+						</tr>
+					</table>
 		    	</div>
 		    </g:if>
 		</div>

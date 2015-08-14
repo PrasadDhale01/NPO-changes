@@ -561,7 +561,6 @@ class ProjectService {
     
     def getCountry(){
         def country = [
-           CT:'Country',
            AF:'Afghanistan',
            AX:'Aland Islands',
            AL:'Albania',
@@ -812,7 +811,6 @@ class ProjectService {
 	
     def getPayment(){
         def payment = [
-            PMT:'Payment',
             PAY:'Paypal',
             FIR:'FirstGiving',
         ]
@@ -821,7 +819,6 @@ class ProjectService {
 	
 	def getIndiaPaymentGateway() {
 		def payment = [
-			PMT:'Payment',
 			PAYU:'PayUMoney',
 		]
 		return payment
@@ -1105,7 +1102,6 @@ class ProjectService {
     
     def getCategoryList() {
         def categoryOptions = [
-            (Project.Category.CATEGORY): 'Category',
             (Project.Category.ANIMALS): "Animals",
             (Project.Category.ARTS): "Arts",
             (Project.Category.CHILDREN): "Children",

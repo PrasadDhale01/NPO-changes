@@ -267,14 +267,19 @@ class RewardService {
 		 Project project = Project.get(params.projectId)
 		 def rewardLength = Integer.parseInt(params.rewardCount)
 		 List rewardsList = project.rewards
+		 def newReward = false
+		 if(rewardLength > 0){
 		 rewardsList.each{
 			 if (it.rewardCount == Integer.parseInt(params.rewardCount)){
 				  reward = it
+				  shippingInfo = RewardShipping.findByReward(it) 
 			 }
 		 }
 		 if (!reward){
 		 reward = new Reward();
 		 shippingInfo = new RewardShipping();
+		 newReward = true;
+		 }
 		 
 		 reward.title = params.('rewardTitle'+params.rewardCount)
 		 reward.price = Double.parseDouble(params.('rewardPrice'+params.rewardCount));
@@ -291,9 +296,11 @@ class RewardService {
 		 shippingInfo.reward = reward
 		 shippingInfo.save(failOnError: true)
  
-	     project.addToRewards(reward)
-		 return
+		 if (newReward){
+			 project.addToRewards(reward)
 		 }
+		 }
+		 return
 	 }
 
     @Transactional

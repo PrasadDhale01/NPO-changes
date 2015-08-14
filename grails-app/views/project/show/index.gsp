@@ -8,7 +8,10 @@
     def beneficiaryUserName = beneficiary.username
     def fundRaiserName
     if(currentFundraiser.email == project.beneficiary.email){
-        fundRaiserName = project.beneficiary.firstName.toUpperCase()
+		if (project.beneficiary.lastName)
+            fundRaiserName = (project.beneficiary.firstName + " " + project.beneficiary.lastName).toUpperCase()
+		else 
+            fundRaiserName = (project.beneficiary.firstName).toUpperCase()
     } else {
         fundRaiserName = (currentFundraiser.firstName + " " + currentFundraiser.lastName).toUpperCase()
     }

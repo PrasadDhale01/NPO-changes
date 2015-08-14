@@ -1,6 +1,13 @@
 <g:set var="userService" bean="userService"/>
 <%
     def imageUrl = user.userImageUrl
+	def isAccountMerged = false
+    if (user.email == user.username){
+        isAccountMerged = true
+    }
+	
+	def fbUser = userService.isFacebookUser()
+	def googlePlusUser = userService.isGooglePlusUser()
 %>
 
 <div class="col-sm-6">
@@ -42,7 +49,7 @@
 	</div>
 </div>
 <div class="col-sm-6">
-    <g:if test="${userService.isFacebookUser()}">
+    <g:if test="${fbUser && !isAccountMerged}">
         <div class="form-signin">
             <h2><i class="fa fa-facebook-square"></i> Facebook user</h2>
             <div class="form-group">
@@ -53,7 +60,7 @@
             </div>
         </div>
     </g:if>
-    <g:if test="${userService.isGooglePlusUser()}">
+    <g:elseif test="${googlePlusUser && !isAccountMerged}">
         <div class="form-signin">
             <h2><i class="fa fa-google-plus-square"></i> Google Plus User</h2>
             <div class="form-group">
@@ -63,7 +70,7 @@
                 <input type="text" name="lastName" class="form-control" value="${user.lastName}" readonly>
             </div>
         </div>
-    </g:if>
+    </g:elseif>
     <g:else>
         <div id="validpass">
             <g:form class="form-signin" controller="login" action="update" role="form">

@@ -799,7 +799,7 @@ a {
         padding-left: 7px !important;
     }
 	label.cr-perks-size{
-        padding-left: 82px;
+        padding-left: 81px;
         padding-right: 67px;
         width: 283px;
 	} 
@@ -6090,6 +6090,12 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	header.cr-tabs-link {
+		color: #01bbd3;
+		font-size: 21px;
+		height: 265px !important;
+		position: unset !important;
+	}
 	div.edit-tool-icon img{
 	    margin-left: -29px;
 	}
@@ -6197,7 +6203,7 @@ textarea.form-control {
         padding-left: 7px !important;
     }
 	label.cr-perks-size{
-        padding-left: 63px;
+        padding-left: 60px;
         padding-right: 60px;
         width: 257px;
 	} 
@@ -8663,11 +8669,15 @@ header {
 }
 header.cr-tabs-link {
 	color: #01bbd3;
+	height:120px;
 	padding-bottom: 30px;
     padding-top: 30px;
 	padding-left: 300px;
     padding-right: 300px;
+	position:fixed;
+	top:-10px;
 	font-size: 21px;
+	z-index:500;
 }
 .cr-ancher-tab a{
   color: rgb(164, 220, 249);
@@ -9334,4 +9344,11 @@ body {
 .edit-margin{
 	margin-left: 0 !important;
     margin-right: 0 !important;
+}
+.cr-subheader-icons{
+	height:40px !important;
+	margin-bottom:10px;
+}
+#start{
+	padding-top:25px;
 }

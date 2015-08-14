@@ -93,7 +93,7 @@
                             <g:else>
                                 <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
                             </g:else>
-                            ${userService.getFriendlyName()}&nbsp;&nbsp;&nbsp;&nbsp;
+                            ${userService.getFriendlyName()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <span class="user-cl"></span>
                         </a>
                         <g:if test="${userService.isAdmin()}">

@@ -14,10 +14,7 @@
         contributedSoFar = teamContribution
         amount = currentTeamAmount.round()
     }
-    def achievedDate
-    if (percent == 100) {
-        achievedDate = contributionService.getFundingAchievedDate(project)
-    }
+    
     def cents
     if(percent >= 100) {
         cents = 100
@@ -72,11 +69,11 @@
 <%--            </div>--%>
             <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size contribution-tile show-contribution-amt-tile">
                <span class="days-alignment">DAYS<br>LEFT</span>
-               <g:if test="${projectService.getRemainingDay(project) > 0 && projectService.getRemainingDay(project) < 10 }">
-                  	<span class="tile-day-num show-contribution-amt-tile ">0${projectService.getRemainingDay(project)}</span>
+               <g:if test="${day > 0 && day < 10 }">
+                  	<span class="tile-day-num show-contribution-amt-tile ">0${day}</span>
                </g:if>
                <g:else>
-                  	<span class="tile-day-num show-contribution-amt-tile ">${projectService.getRemainingDay(project)}</span>
+                  	<span class="tile-day-num show-contribution-amt-tile ">${day}</span>
                </g:else>
            </div>
         </g:else>

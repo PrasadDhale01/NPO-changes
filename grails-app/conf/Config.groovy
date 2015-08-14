@@ -524,8 +524,8 @@ environments {
 	}
 
 	prodIndia {
-		crowdera.facebook.appId = '505848252914450'
-		crowdera.facebook.secret = '552845eb4539d1c1a918c4d1a98c82e2'
+		crowdera.facebook.appId = '354215177926850'
+		crowdera.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
 
 		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
 		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'

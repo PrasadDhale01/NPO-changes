@@ -99,24 +99,24 @@ $(function() {
     });
     
     /****************************Edit Shipping Perk**************************************************/
-    $.validator.addMethod('editShippingInfo', function(value) {
-      var si = 0;
-  	  var checkbox = $('.editShippingInfo:checked').size();
-  	  var custom = $('#custombox').val();
-  	  if (custom) {
-  		  si = si+1;
-  	  } else {
-  		  si = checkbox;
-  	  }
-  	  if(si >0){
-  		  $('.editShippingreward').removeClass('dynCSS');
-  		  $('.editShippingError').hide();
-  		  return true;
-  	  }else{
-  		  $('.editShippingreward').addClass('dynCSS');
-  		  $('.editShippingError').html('This field is required').show();	  
-  	  }
-    }, '');
+//    $.validator.addMethod('editShippingInfo', function(value) {
+//      var si = 0;
+//  	  var checkbox = $('.editShippingInfo:checked').size();
+//  	  var custom = $('#custombox').val();
+//  	  if (custom) {
+//  		  si = si+1;
+//  	  } else {
+//  		  si = checkbox;
+//  	  }
+//  	  if(si >0){
+//  		  $('.editShippingreward').removeClass('dynCSS');
+//  		  $('.editShippingError').hide();
+//  		  return true;
+//  	  }else{
+//  		  $('.editShippingreward').addClass('dynCSS');
+//  		  $('.editShippingError').html('This field is required').show();	  
+//  	  }
+//    }, '');
     
     $('.perkForm').submit(function() {
         if($(".perkForm").valid()) {

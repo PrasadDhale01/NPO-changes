@@ -25,7 +25,7 @@
      <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 	     <div class="carousel-inner">
 	        <div class="item active">
-	            <img class="hidden-xs or-css" src="//s3.amazonaws.com/crowdera/assets/indian-Flag-slide1.jpg" alt="Slider-1"/>
+	            <img class="hidden-xs or-css" src="//s3.amazonaws.com/crowdera/assets/indian-Flag-in2.jpg" alt="Slider-1"/>
 	            <img class="visible-xs or-css" src="//s3.amazonaws.com/crowdera/assets/mobile-slide-1.jpg" alt="Slider-1"/>
 	            <div class="carousel-buttons">
 	               <div class="fbButton">

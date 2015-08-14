@@ -3515,7 +3515,7 @@ footer .footerbottomsection {
 	height: 200px;
 	width: 200px;
 	border-style: solid;
-	border-color: rgb(249, 177, 141) !important;
+	border-color: #01bbd3;
 	border-width: 1px;
 }
 
@@ -3536,7 +3536,7 @@ footer .footerbottomsection {
 	height: 200px;
 	width: 200px;
 	border-style: solid;
-	border-color: rgb(249, 177, 141) !important;
+	border-color: #01bbd3;
 	border-width: 1px;
 }
 .lead,.tile-footer h6 {

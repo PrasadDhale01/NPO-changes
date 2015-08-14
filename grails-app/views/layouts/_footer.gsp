@@ -147,11 +147,11 @@
 		    <br><br>
 		    <div class="footer-newsletter">
 			<form action="//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&amp;id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-md" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-			    <div class="newsletter-alignment">
-			        <div class="newsletter-input">
+			    <div class="newsletter-alignment col-sm-12 col-md-12">
+			        <div class="newsletter-input col-sm-10 col-md-10">
 				    <input type="text" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">
 				</div>
-				<div class="newsletter-button footer-signup-margin">
+				<div class="newsletter-button footer-signup-margin col-sm-2 col-md-2">
 				    <input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup signup-lg">
 				    <br><br>
 				</div>
@@ -254,11 +254,11 @@
 		    <br><br>
 		    <div class="footer-newsletter">
 			<form action="//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&amp;id=e37aea1b78" method="post" id="mvc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
-			    <div class="newsletter-alignment">
-				<div class="newsletter-input">
+			    <div class="newsletter-alignment col-lg-12">
+				<div class="newsletter-input col-lg-10">
 				    <input type="text" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">
 				</div>
-				<div class="newsletter-button footer-signup-margin">
+				<div class="newsletter-button footer-signup-margin col-lg-2">
 				    <input type="submit" value="" name="subscribe" id="mc-embedded-subscribe"  class="button-signup signup-lg">
 				    <br><br>
 			    	    </div>

@@ -284,7 +284,7 @@ class RewardService {
 		 reward.title = params.('rewardTitle'+params.rewardCount)
 		 reward.price = Double.parseDouble(params.('rewardPrice'+params.rewardCount));
 		 reward.rewardCount = Integer.parseInt(params.rewardCount);
-		 reward.description = params.('rewardDesc'+params.rewardCount);
+		 reward.description = params.('rewardDescription'+params.rewardCount);
 		 reward.numberAvailable = Integer.parseInt(params.('rewardNumberAvailable'+params.rewardCount));
 		 reward.obsolete = true;
 		 reward.save(failOnError: true);

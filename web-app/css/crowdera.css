@@ -1323,7 +1323,7 @@ a {
        font-size: 8px !important;
     }
     .nav{
-        font-size:14px;
+        font-size:13px;
     }
     .ack-panel-width{
     	margin-top:21px;
@@ -4666,11 +4666,14 @@ textarea.form-control {
 	/*************EndManageTeamButtons************/	
 	
 	ul.nav.navbar-nav.nav-icon-bar {
-        width: 24% !important;
+        width: 23% !important;
     }
     #hiddensearch {
         display: none;
-        width: 210px !important;
+        width: 180px !important;
+    }
+    .nav {
+        font-size: 12px !important;
     }
 }
 
@@ -4918,9 +4921,7 @@ textarea.form-control {
     }
 }
 @media only screen and (min-width: 767px) and (max-width: 768px){
-  .header-section .nav > li > a{
-        padding: 4px 8px !important;
-  }
+ 
   .dropdown-menu.usr > li > a {
     padding: 7px 21px !important;
     width:180px;
@@ -8916,6 +8917,7 @@ label.cr-payments{
 .cr-pad-who{
 	padding-left: 15px;
     font-size: 12px;
+    padding-bottom: 8px;
 }
 .cr-payments-pad {
     padding-top: 63px;
@@ -9248,7 +9250,6 @@ body {
 }
 .cr-btn-alignment-lac{
 	margin-right: 204px;
-    margin-top: -2px;
     border:none;
 }
 .crew-iconss{

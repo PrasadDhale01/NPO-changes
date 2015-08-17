@@ -9,7 +9,10 @@
 <body>
 	<div class="feducontent">
 		<div class="container">
-        <% def base_url = grailsApplication.config.crowdera.BASE_URL %>
+        <% 
+            def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        %>
 			<div class="row" id="fundindex">
 				<g:if test="${project.payuStatus}">
 					<div class="col-md-4">

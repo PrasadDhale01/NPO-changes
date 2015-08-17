@@ -395,8 +395,10 @@ class FundController {
 
     def payByPaypal(def params,Project project,Reward reward,User user,User fundraiser,def address){
         String timestamp = UUID.randomUUID().toString()
-        def successUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectTitle=${params.projectTitle}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}&tempValue=${params.tempValue}&name=${params.receiptName}&email=${params.receiptEmail}&address=${address}&anonymous=${params.anonymous}"
-        def failureUrl = grailsApplication.config.crowdera.BASE_URL + "/fund/paypalReturn/paypalcallback?projectTitle=${params.projectTitle}&rewardId=${reward.id}&amount=${params.amount}&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}"
+        def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        def successUrl = base_url + "/fund/paypalReturn/paypalcallback?projectTitle=${params.projectTitle}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}&tempValue=${params.tempValue}&name=${params.receiptName}&email=${params.receiptEmail}&address=${address}&anonymous=${params.anonymous}"
+        def failureUrl = base_url + "/fund/paypalReturn/paypalcallback?projectTitle=${params.projectTitle}&rewardId=${reward.id}&amount=${params.amount}&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}"
 
         def BASE_URL = grailsApplication.config.crowdera.paypal.BASE_URL
 

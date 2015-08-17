@@ -1,6 +1,9 @@
 <g:set var="redirectToCreatePage" value="${redirectFromUrl}/projects/create"/>
 <g:set var="userService" bean="userService"/>
-<%  def base_url = grailsApplication.config.crowdera.BASE_URL %>
+<%
+    def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+%>
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">

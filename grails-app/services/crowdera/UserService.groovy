@@ -359,7 +359,7 @@ class UserService {
 	return CrewReg.findAllWhere(status: true)
     }
 		
-    def sendResponseToCrews(def params, CommonsMultipartFile attachedFile) {
+    def sendResponseToCrews(def params, CommonsMultipartFile attachedFile, def base_url) {
 	def crewsResponse = CrewReg.get(params.long('id'));
 	def adminResponse = params.adminReply
 	def attachmentUrl 
@@ -387,7 +387,7 @@ class UserService {
 	}
 	
 	crewsResponse.status = true
-	mandrillService.sendResponseToCrews(adminResponse,crewsResponse,attachmentUrl)
+	mandrillService.sendResponseToCrews(adminResponse,crewsResponse,attachmentUrl, base_url)
     }
 	
     def discardMessage(def params) {

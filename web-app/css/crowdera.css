@@ -695,6 +695,15 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.shippingInfo#custombox{
+		margin-bottom:5px;
+		margin-top:8px;
+		width:25%;
+	}
+	.editShippingInfo#custombox{
+		margin-bottom:5px;
+		width:25%;
+	}
 	div.edit-tool-icon img{
 	    margin-left: -10px;
 	}
@@ -1317,6 +1326,14 @@ a {
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	.shippingInfo#custombox{
+		margin-bottom:5px;
+		width:25%;
+	}
+	.editShippingInfo#custombox{
+		margin-bottom:5px;
+		width:25%;
+	}
     .list-category{
         width: 24%;
     }
@@ -6092,6 +6109,18 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.shippingInfo#custombox{
+		margin-bottom:5px;
+		margin-top:8px;
+		width:116px;
+	}
+	.editShippingInfo#custombox{
+		margin-bottom:5px;
+		width:116px;
+	}
+	.editshipping-margin {
+	    margin-right: 12px !important;
+	}
 	header.cr-tabs-link {
 		color: #01bbd3;
 		font-size: 21px;
@@ -7231,7 +7260,7 @@ button.projectedit.close{
 	margin-right: 3px
 }
 .shippingreward >.btn-primary{
-    width:116px !important;
+    width:116px;
 }
 .shippingreward > .lblCustom{
     padding-right:82px;
@@ -9353,4 +9382,14 @@ body {
 }
 #start{
 	padding-top:25px;
+}
+div.shipping-inline{
+	padding-left:0px !important;
+	padding-right:0px !important;
+}
+.shipping-margin{
+	margin-right:22px;
+}
+.editshipping-margin{
+	margin-right:20px;
 }

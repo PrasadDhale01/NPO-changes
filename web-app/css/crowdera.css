@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar {
-    font-size: 14px;
+    font-size: 13px;
     font-family: Open Sans;
 }
 
@@ -190,7 +190,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     background-color: #dcdcdc !important; /* change color of links in drop down here */
 }
 .header-section .nav > li > a {
-    padding: 4px 12px !important;
+    padding: 4px 8px !important;
 }
 
 .nav > li > a:hover,
@@ -1341,7 +1341,7 @@ a {
        font-size: 8px !important;
     }
     .nav{
-        font-size:13px;
+        font-size:11px;
     }
     .ack-panel-width{
     	margin-top:21px;
@@ -4688,10 +4688,10 @@ textarea.form-control {
     }
     #hiddensearch {
         display: none;
-        width: 180px !important;
+        width: 150px !important;
     }
     .nav {
-        font-size: 12px !important;
+        font-size: 11px !important;
     }
 }
 
@@ -4775,7 +4775,7 @@ textarea.form-control {
 
 @media only screen and (max-width: 768px) {
     ul.nav.navbar-nav.nav-icon-bar {
-        width: 24% !important;
+        width: 21% !important;
     }
     ul.nav-icon-bar {
         padding-left: 6px !important;
@@ -9392,4 +9392,4 @@ div.shipping-inline{
 }
 .editshipping-margin{
 	margin-right:20px;
-}
+} 

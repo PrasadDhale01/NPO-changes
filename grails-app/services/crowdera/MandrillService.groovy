@@ -685,11 +685,10 @@ class MandrillService {
 
         inviteToAdmin(email, 'send-response-to-customer', globalMergeVars, tags)
     }
-	
-    def sendResponseToCrews(def adminResponse, def crews, def attachmentUrl) {
+
+    def sendResponseToCrews(def adminResponse, def crews, def attachmentUrl, def base_url) {
 	def email = crews.email
 	def date = new Date()
-	def base_url = grailsApplication.config.crowdera.BASE_URL
 	def url = base_url+"/howitworks"
 	def link = grailsLinkGenerator.link(controller: 'project', action: 'list', absolute: true)
 	def create_url = grailsLinkGenerator.link(controller: 'project', action: 'create', absolute: true)

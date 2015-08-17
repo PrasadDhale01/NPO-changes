@@ -1,6 +1,7 @@
 <%
-	def base_Url = grailsApplication.config.crowdera.BASE_URL
- %>
+    def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+%>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
 <meta property="og:title" content="Crowdera" />

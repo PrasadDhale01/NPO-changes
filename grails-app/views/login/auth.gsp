@@ -10,7 +10,7 @@
 <body>
 <div class="feducontent">
     <div class="container login-form">
-    
+
         <g:if test="${flash.googleFailureMessage}">
             <div class="alert alert-error">
                 ${flash.googleFailureMessage}

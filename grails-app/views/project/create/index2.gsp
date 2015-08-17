@@ -2,10 +2,11 @@
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
 <g:set var="rewardService" bean="rewardService"/>
-<% 
-    def base_url = grailsApplication.config.crowdera.BASE_URL
-	def iteratorCount = 1
-	def rewardItrCount = projectRewards.size()
+<%
+    def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def iteratorCount = 1
+    def rewardItrCount = projectRewards.size()
 %>
 <html>
 <head>

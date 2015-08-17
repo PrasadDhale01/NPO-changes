@@ -53,11 +53,11 @@
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Which of the following is necessary to fulfill this perk:</label>
-                                <div class="shippingreward">
-                                    <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="shippingInfo" name="address" value="true" id="mailaddcheckbox">Mailing address</label>
-                                    <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="shippingInfo" name="email" value="true" id="emailcheckbox">Email address</label>
-                                    <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="shippingInfo" name="twitter" value="true" id="twittercheckbox">Twitter handle</label>
-                                    <input type="text" class="shippingInfo pull-right" name="custom" placeholder="Custom" id="custombox"/>
+                                <div class="shippingreward shipping-inline col-lg-12 col-xs-12 col-md-12 col-sm-12">
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="address" value="true" id="mailaddcheckbox">Mailing address</label>
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="email" value="true" id="emailcheckbox">Email address</label>
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="twitter" value="true" id="twittercheckbox">Twitter handle</label>
+                                    <input type="text" class="shippingInfo col-lg-3 col-xs-6 col-md-3 col-sm-4" name="custom" placeholder="Custom" id="custombox"/>
                                 </div>
                                 <div class="shippingError"></div>
                             </div>

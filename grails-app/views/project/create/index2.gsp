@@ -38,9 +38,9 @@
         <div class="container footer-container" id="campaigncreate">
             <g:uploadForm class="form-horizontal"  controller="project" action="campaignOnDraftAndLaunch" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
                 <g:hiddenField name="projectId" value="${project.id}"/>
-                <div class="col-sm-12 cr-start-flex" id="start">
-                    <label class="panel body cr-start-size">START</label>
-                    <div class="form-group" >
+                <div class="col-sm-12 cr-start-flex cr-safari" id="start">
+                    <label class="panel body cr-start-size cr-safari">START</label>
+                    <div class="form-group col-sm-10 cr-start-space">
                         <div class="col-sm-3 deadline-popover">
                              <div class="input-group enddate">
                                  <g:if test="${campaignEndDate}">
@@ -144,8 +144,8 @@
                 <div class="col-sm-12" id="story">
                     <div class="form-group">
                         <div class="col-sm-12 cr-story-padding">
-                            <div class="cr-story-flx">
-                            <label class="panel body cr-story-size">STORY</label>
+                            <div class="cr-story-flx cr-safari">
+                            <label class="panel body cr-story-size cr-safari">STORY</label>
                       	    <label class="panel-body cr-panel-story">A good engaging story is the backbone of your Campaign.
 	                                                                    You want your readers to be compelled to share your story
 	                                                                    and make your campaign go viral. Be passionate and make 
@@ -161,8 +161,8 @@
                 </div>
 	                    
                <div class="col-sm-12 manage-Top-tabs-mobile" id="admins">
-                   <div class="cr-tabs-admins">
-	                   <label class="panel body cr-admin-title">ADMIN</label>
+                   <div class="cr-tabs-admins cr-safari">
+	                   <label class="panel body cr-admin-title cr-safari">ADMIN</label>
                        <ul class="nav nav-tabs manage-projects nav-justified cr-ul-tabs">
                            <li class="cr-li-tabs cr-li-tabsss cr-hover-color">
                               <a href="#admin" data-toggle="tab" aria-expanded="false">
@@ -366,8 +366,8 @@
 
                 </div>
                 <div class="form-group">
-	                <div class="col-sm-12 cr-lab-rd-flex cr-space" id="perk">
-	                    <div class="cr-perks-flex cr-perks-space">
+	                <div class="col-sm-12 cr-lab-rd-flex cr-space cr-safari" id="perk">
+	                    <div class="cr-perks-flex cr-perks-space cr-safari">
 	                        <label class="panel-body cr-perks-size "><span class="cr-offering">Offering</span> PERKS?</label>
 	                    </div>
 	                    <div class="btn-group btnPerkBgColor col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp" data-target="buttons">
@@ -539,8 +539,8 @@
                 <div class="clear"></div>
                 <div class="form-group">
                     <div class="col-sm-12 cr-payments-pad" id="payment">
-                        <div class="cr-story-flx cr-payment-marg col-sm-12">
-                            <label class="panel-body cr-payments-lab">PAYMENTS</label>
+                        <div class="cr-story-flx cr-payment-marg col-sm-12 cr-safari">
+                            <label class="panel-body cr-payments-lab cr-safari">PAYMENTS</label>
 <%--                                            <img alt="" src="/images/Payment-Button.jpg">--%>
                             <label class="panel-body cr-payments">Payments are sent and received via your choice of Payment Gateway.
                                You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>

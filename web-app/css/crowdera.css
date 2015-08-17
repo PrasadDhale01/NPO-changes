@@ -695,6 +695,13 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	label.cr-panel-story {
+         width: 100.6% !important;
+    }
+	ul.cr-ul-tabs {
+        margin-bottom: 0;
+        width: 103% !important;
+    }
 	div.edit-tool-icon img{
 	    margin-left: -10px;
 	}
@@ -1513,16 +1520,16 @@ a {
         width: 159px !important;
     }
     div.cr-start-dropdown-category.btn-group.bootstrap-select{
-         margin-left: -3px !important;
+         right: 6% !important;
          width: 135px !important;
     }
     div.cr-start-dropdown-country.btn-group.bootstrap-select{
-        margin-left: -16px !important;
-        width: 143px !important;
+        right: 11px !important;
+        width: 135px !important;
     }
     div.cr-start-dropdown-payment.btn-group.bootstrap-select{
-         margin-left: -22px !important;
-         width: 136px !important;
+         right: 16px !important;
+         width: 135px !important;
     }
 	.cr-paypal-image {
         padding-left: 112px !important;
@@ -2020,13 +2027,13 @@ a {
         position: absolute;
 	}
 	div.cr-start-dropdown-category.btn-group.bootstrap-select{
-	    margin-left: -17px;
+	    right: 10%;
 	}
 	div.cr-start-dropdown-country.btn-group.bootstrap-select{
-	    margin-left: -21px;
+	     right: 14px;
 	}
 	div.cr-start-dropdown-payment.btn-group.bootstrap-select{
-	    margin-left: -26px;
+	    right: 12px;
 	}
 	.cr-paypal-image {
         padding-left: 209px;
@@ -6092,6 +6099,10 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	ul.cr-ul-tabs {
+        margin-bottom: 0;
+        width: 93% !important;
+    }
 	header.cr-tabs-link {
 		color: #01bbd3;
 		font-size: 21px;
@@ -8631,7 +8642,7 @@ div#ytVideo {
 	padding-top: 3%;
 }
 .cr-dropdown-alignment .btn-group.bootstrap-select.open .dropdown-menu.open ul{
-	width:0px !important;
+	width:1px !important;
 }
 a.charitableLink.color-blue {
   color: #01bbd2 !important;
@@ -8872,6 +8883,7 @@ label.cr-panel-story{
 	margin-bottom: 0px;
 	padding-bottom: 7px; 
 	padding-top: 5px;
+	width: 81%;
 }
 .cr-tabs-admins{
 	display: flex;
@@ -8879,6 +8891,7 @@ label.cr-panel-story{
 }
 .cr-ul-tabs{
 	margin-bottom: 0px;
+	width: 81% !important;
 }
 .cr-li-tabs{
 	height: 41px;
@@ -8898,7 +8911,7 @@ label.cr-panel-story{
 	height: 60px;
 }
 .cr-payments{
-	width: 100%; 
+	width: 81%; 
 	border: 1px solid #dddddd; 
 	margin-bottom: 0px;
     font-size: 14px;
@@ -9084,20 +9097,16 @@ label.text-color {
 	padding-left: 220px;
 }
 .cr-start-dropdown-category.btn-group.bootstrap-select{
-	margin-left: -4px;
+	margin-left: 11px;
     width: 193px !important;
 }
 .cr-start-dropdown-country.btn-group.bootstrap-select{
-	margin-left: -12px;
+	margin-left: 11px;
     width: 192px !important;
 }
 .cr-start-dropdown-payment.btn-group.bootstrap-select{
-	margin-left: -12px;
+	margin-left: 11px;
     width: 196px !important;
-}
-.cr-start-dropdown-payment.btn-group.bootstrap-select{
-	margin-left: -21px;
-    width: -194px !important;
 }
 .cr-start-flex{
 	display:flex;
@@ -9353,4 +9362,14 @@ body {
 }
 #start{
 	padding-top:25px;
+}
+/*******safari-css******/
+.cr-safari{
+	display: -webkit-box;
+	display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+}
+/***********************/
+.cr-start-space{
+    left: -16px;	
 }

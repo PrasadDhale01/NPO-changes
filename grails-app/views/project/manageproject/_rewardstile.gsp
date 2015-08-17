@@ -100,7 +100,7 @@
                             <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="editShippingInfo" name="address" value="true" id="mailaddcheckbox" <g:if test="${rewarShipping.address}">checked="checked"</g:if> >Mailing address</label>
                             <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="editShippingInfo" name="email" value="true" id="emailcheckbox" <g:if test="${rewarShipping.email}">checked="checked"</g:if>>Email address</label>
                             <label class="btn btn-primary btn-sm checkbox-inline control-label"><input type="checkbox" class="editShippingInfo" name="twitter" value="true" id="twittercheckbox" <g:if test="${rewarShipping.twitter}">checked="checked"</g:if>>Twitter handle</label>
-                            <input type="tex" class="editShippingInfo pull-right" name="custom" value="${rewarShipping.custom}" id="custombox"/>
+                            <input type="text" class="editShippingInfo pull-right" name="custom" placeholder="Custom" value="${rewarShipping.custom}" id="custombox" <g:if test="${rewarShipping.custom}">value = "${rewarShipping.custom}"</g:if>/>
                         </div>
                         <div class="editShippingError"></div>
                         </g:if>

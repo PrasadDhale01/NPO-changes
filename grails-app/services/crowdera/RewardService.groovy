@@ -284,7 +284,7 @@ class RewardService {
 		 reward.title = params.('rewardTitle'+params.rewardCount)
 		 reward.price = Double.parseDouble(params.('rewardPrice'+params.rewardCount));
 		 reward.rewardCount = Integer.parseInt(params.rewardCount);
-		 reward.description = params.('rewardDesc'+params.rewardCount);
+		 reward.description = params.('rewardDescription'+params.rewardCount);
 		 reward.numberAvailable = Integer.parseInt(params.('rewardNumberAvailable'+params.rewardCount));
 		 reward.obsolete = true;
 		 reward.save(failOnError: true);
@@ -292,7 +292,7 @@ class RewardService {
 		 shippingInfo.email = (params.('mailingAddress'+params.rewardCount) == true || params.('mailingAddress'+params.rewardCount) == 'true') ? true : null;
 		 shippingInfo.address = (params.('address'+params.rewardCount) == true || params.('address'+params.rewardCount) == 'true') ? true : null;
 		 shippingInfo.twitter = (params.('twitter'+params.rewardCount) == true || params.('twitter'+params.rewardCount) == 'true') ? true : null;
-		 shippingInfo.custom = (params.('custom'+params.rewardCount)) ? params.custom : null;
+		 shippingInfo.custom = (params.('custom'+params.rewardCount)) ? params.('custom'+params.rewardCount) : null;
 		 shippingInfo.reward = reward
 		 shippingInfo.save(failOnError: true)
  

@@ -1,7 +1,9 @@
 <!-- Fixed navbar -->
 <g:set var="facebookAuthService" bean="facebookAuthService"/>
 <g:set var="userService" bean="userService"/>
+<g:set var="projectService" bean="projectService"/>
 <%
+	def currentEnv = projectService.getCurrentEnvironment()
     def user = userService.getCurrentUser()
 	def userImage
 	if (user) {
@@ -67,11 +69,13 @@
             
             <ul class="nav navbar-nav navbar-right <g:if test="${user}">navbar-right-logged-in</g:if>">
                 <sec:ifNotLoggedIn>
-                    <li class="hidden-xs hidden-sm headerFbButton">
-                        <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
-                            <img src="//s3.amazonaws.com/crowdera/assets/facebook-button-header.jpg" alt="Register with Facebook">
-                        </a>
-                    </li>
+                    <g:if test="${currentEnv != 'prodIndia'}">
+                        <li class="hidden-xs hidden-sm headerFbButton">
+                            <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
+                                <img src="//s3.amazonaws.com/crowdera/assets/facebook-button-header.jpg" alt="Register with Facebook">
+                            </a>
+                        </li>
+                    </g:if>
                     <li><g:link controller="login" action="auth" class="nav-item-2">Login</g:link></li>
                     <li><g:link controller="login" action="register" class="nav-item-3">Sign up</g:link></li>
                 </sec:ifNotLoggedIn>
@@ -93,7 +97,7 @@
                             <g:else>
                                 <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
                             </g:else>
-                            ${userService.getFriendlyName()}&nbsp;&nbsp;&nbsp;&nbsp;
+                            ${userService.getFriendlyName()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <span class="user-cl"></span>
                         </a>
                         <g:if test="${userService.isAdmin()}">

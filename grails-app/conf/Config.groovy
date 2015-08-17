@@ -313,6 +313,7 @@ environments {
         grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
         crowdera.BASE_URL = 'https://crowdera.co'
+        crowdera.BASE_URL1 = 'https://www.crowdera.co'
 
         grails.logging.jul.usebridge = false
         grails.dbconsole.enabled = true
@@ -531,6 +532,7 @@ environments {
 		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
 		crowdera.BASE_URL = 'http://crowdera.in'
+        crowdera.BASE_URL1 = 'http://www.crowdera.in'
 
 		grails.logging.jul.usebridge = false
 		grails.dbconsole.enabled = true

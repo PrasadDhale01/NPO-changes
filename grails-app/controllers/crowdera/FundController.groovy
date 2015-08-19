@@ -14,6 +14,7 @@ import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
 import grails.util.Environment
+import org.codehaus.groovy.grails.web.json.JSONObject
 
 class FundController {
     def contributionService
@@ -551,96 +552,80 @@ class FundController {
     }
 	
 	def payByPayUmoney(){
-		
-		def project= Project.get(params.projectId)
-		def user = User.get(params.userId)
-		def reward=Reward.get(params.rewardId)
-		User fundraiser = userService.getUserFromVanityName(params.fr)
-		def vanityUserName = params.fr
-		def amount=params.amount
-		def projectTitle=params.projectTitle
-		def anonymous=params.anonymous
-		def vanityTitle
-		def country=projectService.getCountry()
-		def state=projectService.getIndianState()
-		
-		if (params.projectId) {
-			vanityTitle = projectService.getVanityTitleFromId(params.projectId)
-		}
-		
-		if (user == null){
-			user = userService.getUserByUsername('anonymous@example.com')
-		}
-		
-		if (Double.parseDouble(amount) < reward.price) {
-			render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
-			return false
-		}
-		
-		perk = rewardService.getRewardById(params.long('rewardId'))
-		def totalContribution= contributionService.getTotalContributionForProject(project)
-		def contPrice =Double.parseDouble(amount)
-		def amt =project.amount
-		def reqAmt=(999/100)*amt
-		def remainAmt=reqAmt- totalContribution
-		def percentage=((totalContribution + contPrice)/ amt)*100
-		
-		if(percentage>999) {
-			flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
-			redirect action: 'fund', params:['fr': vanityUserName, 'rewardId': perk.id, 'projectTitle': vanityTitle]
-		}
-		render view:"checkout/payu" ,model:['amount':amount,'project':project, 'reward':reward, 'fundraiser':fundraiser, 'user':user,'projectTitle':projectTitle,'anonymous':anonymous, 'country':country, 'state':state]
-	}
+        def project= Project.get(params.projectId)
+        def user = User.get(params.userId)
+        def reward = Reward.get(params.rewardId)
+        User fundraiser = userService.getUserFromVanityName(params.fr)
+        def vanityUserName = params.fr
+        def amount = params.amount
+        def projectTitle = params.projectTitle
+        def anonymous = params.anonymous
+        def vanityTitle
+        def country = projectService.getCountry()
+        def state = projectService.getIndianState()
+
+        if (params.projectId) {
+            vanityTitle = projectService.getVanityTitleFromId(params.projectId)
+        }
+
+        if (user == null){
+            user = userService.getUserByUsername('anonymous@example.com')
+        }
+
+        if (Double.parseDouble(amount) < reward.price) {
+            render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
+            return false
+        }
+
+        perk = rewardService.getRewardById(params.long('rewardId'))
+        def totalContribution = contributionService.getTotalContributionForProject(project)
+        def contPrice = Double.parseDouble(amount)
+        def amt = project.amount
+        def reqAmt = (999/100) * amt
+        def remainAmt = reqAmt- totalContribution
+        def percentage = ((totalContribution + contPrice)/ amt)*100
+
+        def key = grailsApplication.config.crowdera.PAYU.KEY
+        def salt = grailsApplication.config.crowdera.PAYU.SALT
+        def service_provider = "payu_paisa"
+
+        if(percentage > 999) {
+            flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
+            redirect action: 'fund', params:['fr': vanityUserName, 'rewardId': perk.id, 'projectTitle': vanityTitle]
+        }
+        render view:"checkout/payu" ,model:['service_provider': service_provider, 'key': key, 'salt': salt, 'amount':amount,'project':project, 'reward':reward, 'fundraiser':fundraiser, 'user':user,'projectTitle':projectTitle,'anonymous':anonymous, 'country':country, 'state':state]
+    }
+
+	 def payupayment(){
+        JSONObject json = new JSONObject();
+        def request_url = request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        json = projectService.getPayuInfo(params, base_url)
+        render json
+    }
 	
-	def payupayment(){
-       def currentEnv = Environment.current.getName()
-	   def project= Project.get(params.campaignId)
-	   def user = User.get(params.userId)
-	   def reward=Reward.get(params.rewardId)
-	   User fundraiser = User.findByEmail(params.fr)
-	   def anonymous=params.anonymous
-	   def address = projectService.getAddress(params, currentEnv)
-	   if (user == null){
-		   user = userService.getUserByUsername('anonymous@example.com')
-	   }
-       
-	   def key=grailsApplication.config.crowdera.PAYU.KEY
-	   def salt=grailsApplication.config.crowdera.PAYU.SALT
-	   def amount=params.amount
-	   def firstname= params.firstname
-	   def email=params.email
-	   def phone= params.phone
-	   def productinfo=params.productinfo
-	   def surl = grailsApplication.config.crowdera.PAYU.BASE_URL + "/fund/payureturn?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&fundraiser=${fundraiser.id}&physicalAddress=${address}&shippingCustom=${params.shippingCustom}&shippingEmail=${params.shippingEmail}&shippingTwitter=${params.twitterHandle}&name=${params.firstname} ${params.lastname}&email=${params.email}&anonymous=${params.anonymous}&projectTitle=${params.projectTitle}"
-		
-	   def furl= grailsApplication.config.crowdera.PAYU.BASE_URL + "/error"
-	   def service_provider="payu_paisa"
-	   def txnid=projectService.generateTransId()
-	   String hashstring= key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + firstname + "|" + email + "|||||||||||" + salt;
-	   def hash = projectService.generateHash("SHA-512",hashstring)
-		 
-	   render view:"checkout/payupay" ,model:['key':key,'txnid':txnid,'amount':amount,'project':project, 'reward':reward, 'fundraiser':fundraiser, 'email':email, 'phone':phone, 'user':user, 'surl':surl, 'furl':furl, 'hash':hash,'service_provider': service_provider, "params":params,'anonymous':anonymous]
-	}
-	
-	def payureturn(){
-		def result = (boolean)request.getParameter('result')
-		def paramss = request.getParameter('params')
-		def rewardId = request.getParameter('rewardId')
-		def projectId = request.getParameter('projectId')
-		def amount = request.getParameter('amount')
-		def userid = request.getParameter('userId')
-		def fundraiserId = request.getParameter('fundraiser')
-		def address=request.getParameter("physicalAddress")
-		def txnid = request.getParameter('txnid')
-			
-		Project project = Project.get(projectId)
-		User user = User.get(userid)
-		User fundraiser = User.get(fundraiserId)
-		Reward reward = Reward.get(rewardId)
-		if (result){
-			userContribution(project,reward,amount,txnid,user,fundraiser,paramss,address)
-		} else {
-			render view: 'fund/index', model: [project: project]
-		}
-	}
+    def payureturn(){
+        def result = (boolean)request.getParameter('result')
+        def paramss = request.getParameter('params')
+        def rewardId = request.getParameter('rewardId')
+        def projectId = request.getParameter('projectId')
+        def amount = request.getParameter('amount')
+        def userid = request.getParameter('userId')
+        def fundraiserId = request.getParameter('fundraiser')
+        def address=request.getParameter("physicalAddress")
+        def txnid = request.getParameter('txnid')
+
+        def shippingtwitter =request.getParameter("shippingTwitter")
+        println "\n request"+ request
+        
+        Project project = Project.get(projectId)
+        User user = User.get(userid)
+        User fundraiser = User.get(fundraiserId)
+        Reward reward = Reward.get(rewardId)
+        if (result){
+            userContribution(project,reward,amount,txnid,user,fundraiser,paramss,address)
+        } else {
+            render view: 'fund/index', model: [project: project]
+        }
+    }
 }

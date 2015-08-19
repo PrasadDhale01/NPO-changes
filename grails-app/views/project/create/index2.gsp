@@ -27,19 +27,19 @@
     <div class="">
         <div class="text-center">
              <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
-	            <a class=" col-sm-2 col-xs-6 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start" src="//s3.amazonaws.com/crowdera/assets/start-Icon-Blue.png" alt="Start"></div>Start</a>
-                <a class=" col-sm-2 col-xs-6 cr-img-story-icon" href="#story"><div class="col-sm-0 cr-subheader-icons"><img class="cr-story" src="//s3.amazonaws.com/crowdera/assets/story-Icon-Blue.png" alt="Story"></div>Story</a>
-	            <a class=" col-sm-2 col-xs-6 cr-img-admin-icon" href="#admins"><div class="col-sm-0 cr-subheader-icons"><img class="cr-admin" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---Blue.png" alt="Admin"></div>Admin</a>
-	            <a class=" col-sm-2 col-xs-6 cr-img-perk-icon" href="#perk"><div class="col-sm-0 cr-subheader-icons"><img class="cr-perk" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-Blue.png" alt="Perk"></div>Perks</a>
-	            <a class=" col-sm-2 col-xs-6 cr-img-payment-icon" href="#payment"><div class="col-sm-0 cr-subheader-icons"><img class="cr-payment" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-Blue.png" alt="Payment"></div>Payment</a>
-	            <a class=" col-sm-2 col-xs-6 cr-img-launch-icon" href="#launch"><div class="col-sm-0 cr-subheader-icons"><img class="cr-launch" src="//s3.amazonaws.com/crowdera/assets/launch-Icon--Blue.png" alt="Launch"></div>Launch</a>
+	            <a class=" col-sm-2 col-xs-2 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start" src="//s3.amazonaws.com/crowdera/assets/start-Icon-Blue.png" alt="Start"></div><div class="hidden-xs">Start</div></a>
+                <a class=" col-sm-2 col-xs-2 cr-img-story-icon" href="#story"><div class="col-sm-0 cr-subheader-icons"><img class="cr-story" src="//s3.amazonaws.com/crowdera/assets/story-Icon-Blue.png" alt="Story"></div><div class="hidden-xs">Story</div></a>
+	            <a class=" col-sm-2 col-xs-2 cr-img-admin-icon" href="#admins"><div class="col-sm-0 cr-subheader-icons"><img class="cr-admin" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---Blue.png" alt="Admin"></div><div class="hidden-xs">Admin</div></a>
+	            <a class=" col-sm-2 col-xs-2 cr-img-perk-icon" href="#perk"><div class="col-sm-0 cr-subheader-icons"><img class="cr-perk" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-Blue.png" alt="Perk"></div><div class="hidden-xs">Perks</div></a>
+	            <a class=" col-sm-2 col-xs-2 cr-img-payment-icon" href="#payment"><div class="col-sm-0 cr-subheader-icons"><img class="cr-payment" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-Blue.png" alt="Payment"></div><div class="hidden-xs">Payment</div></a>
+	            <a class=" col-sm-2 col-xs-2 cr-img-launch-icon" href="#launch"><div class="col-sm-0 cr-subheader-icons"><img class="cr-launch" src="//s3.amazonaws.com/crowdera/assets/launch-Icon--Blue.png" alt="Launch"></div><div class="hidden-xs">Launch</div></a>
             </header>
         </div>
         <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
         <div class="container footer-container" id="campaigncreate">
             <g:uploadForm class="form-horizontal"  controller="project" action="campaignOnDraftAndLaunch" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
                 <g:hiddenField name="projectId" value="${project.id}"/>
-                <div class="col-sm-12 cr-start-flex cr-safari" id="start">
+                <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari" id="start">
                     <label class="panel body cr-start-size cr-safari">START</label>
                     <div class="form-group col-sm-10 cr-start-space">
                         <div class="col-sm-3 deadline-popover">
@@ -167,17 +167,17 @@
                        <ul class="nav nav-tabs manage-projects nav-justified cr-ul-tabs">
                            <li class="cr-li-tabs cr-li-tabsss cr-hover-color">
                               <a href="#admin" data-toggle="tab" aria-expanded="false">
-                                   <span class="glyphicon glyphicon-user cr-icon-tabs-user visible-xs"></span><span class="tab-text hidden-xs cr-add-tabs-title cr-font-title pull-left">Add Campaign Admin</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i>
+                                   <span class="glyphicon glyphicon-user cr-icon-tabs-user visible-xs"></span><span class="tab-text hidden-xs cr-add-tabs-title cr-font-title pull-left">Add Campaign Admin</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
 	                           </a>
 	                       </li>
 	                       <li class="active cr-tabs-update cr-li-tabsss cr-hover-color">
 	                           <a data-toggle="tab" href="#organization" aria-expanded="true">
-	                               <span class="glyphicon glyphicon-eye-open cr-icon-tabs-eye visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Display Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i>
+	                               <span class="glyphicon glyphicon-eye-open cr-icon-tabs-eye visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Display Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
 	                           </a>
 	                       </li>
 	                       <li class="cr-tabs-update cr-li-tabsss cr-hover-color">
 	                           <a data-toggle="tab" href="#personal"> 
-		                            <span class="glyphicon glyphicon-info-sign cr-icon-tabs-info visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Personal Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i>
+		                            <span class="glyphicon glyphicon-info-sign cr-icon-tabs-info visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Personal Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
 		                       </a>
 		                   </li>
 		               </ul>

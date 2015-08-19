@@ -241,6 +241,57 @@ $(function() {
         } 	
     });
     
+    $('.payucheckoutsubmitbutton').click(function(event) {
+        if(validator.form()) {
+            needToConfirm = false;
+            var redirect = $('.payment-form').attr('action');
+            event.preventDefault();
+            var formData = {
+                'anonymous'     : $('input[name= anonymous]').val(),
+                'userId'        : $('input[name= userId]').val(),
+                'rewardId'      : $('input[name= rewardId]').val(),
+                'fr'            : $('input[name= fr]').val(),
+                'projectAmount' : $('input[name= projectAmount]').val(),
+                'projectTitle'  : $('input[name= projectTitle]').val(),
+                'tempValue'     : $('input[name= tempValue]').val(),
+                'billToTitle'   : $('input[name= billToTitle]').val(),
+                'firstname'     : $('input[name= firstname]').val(),
+                'lastname'      : $('input[name= lastname]').val(),
+                'email'         : $('input[name= email]').val(),
+                'phone'         : $('input[name= phone]').val(),
+                'productinfo'   : $('input[name= productinfo]').val(),
+                'amount'        : $('input[name= amount]').val(),
+                'campaignId'    : $('input[name= campaignId]').val(),
+                'addressLine1'  : $('input[name= addressLine1]').val(),
+                'addressLine2'  : $('input[name= addressLine2]').val(),
+                'city'          : $('input[name= city]').val(),
+                'zip'           : $('input[name= zip]').val(),
+                'country'       : $('input[name= country]').val(),
+                'state'         : $('input[name= state]').val(),
+                'otherstate'    : $('input[name= otherstate]').val(),
+                'shippingEmail' : $('input[name= shippingEmail]').val(),
+                'twitterHandle' : $('input[name= twitterHandle]').val(),
+                'shippingCustom': $('input[name= shippingCustom]').val()
+            };
+           
+             $.ajax({
+                type    :'post',
+                url     : $("#b_url").val()+'/fund/payupayment',
+                data    : formData,
+                dataType: 'json',
+                success : function(response, statusText){
+                	$('input[name = txnid]').val(response.txnid);
+                    $('input[name = hash]').val(response.hash);
+                    $('input[name = surl]').val(response.surl);
+                    $('input[name = furl]').val(response.furl);
+                    $("form[name = 'payuForm']").submit();
+                }
+            }).error(function(){
+                alert('An error occured');
+            });
+        }
+	});
+    
 /**********************************End of checkbox for anonymous user***************************************/
     
     $('#checkAddress').click(function(){

@@ -28,21 +28,21 @@
     <div class="">
         <div class="text-center">
              <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
-	            <a class=" col-sm-2 col-xs-6 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start" src="//s3.amazonaws.com/crowdera/assets/start-Icon-Blue.png" alt="Start"></div>Start</a>
-                <a class=" col-sm-2 col-xs-6 cr-img-story-icon" href="#story"><div class="col-sm-0 cr-subheader-icons"><img class="cr-story" src="//s3.amazonaws.com/crowdera/assets/story-Icon-Blue.png" alt="Story"></div>Story</a>
-	            <a class=" col-sm-2 col-xs-6 cr-img-admin-icon" href="#admins"><div class="col-sm-0 cr-subheader-icons"><img class="cr-admin" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---Blue.png" alt="Admin"></div>Admin</a>
-	            <a class=" col-sm-2 col-xs-6 cr-img-perk-icon" href="#perk"><div class="col-sm-0 cr-subheader-icons"><img class="cr-perk" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-Blue.png" alt="Perk"></div>Perks</a>
-	            <a class=" col-sm-2 col-xs-6 cr-img-payment-icon" href="#payment"><div class="col-sm-0 cr-subheader-icons"><img class="cr-payment" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-Blue.png" alt="Payment"></div>Payment</a>
-	            <a class=" col-sm-2 col-xs-6 cr-img-save-icon" href="#save"><div class="col-sm-0 cr-subheader-icons"><img class="cr-launch" src="//s3.amazonaws.com/crowdera/assets/Save-Icon-Blue.png" alt="Save"></div>Save</a>
+	            <a class=" col-sm-2 col-xs-2 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start" src="//s3.amazonaws.com/crowdera/assets/start-Icon-Blue.png" alt="Start"></div><div class="hidden-xs">Start</div></a>
+                <a class=" col-sm-2 col-xs-2 cr-img-story-icon" href="#story"><div class="col-sm-0 cr-subheader-icons"><img class="cr-story" src="//s3.amazonaws.com/crowdera/assets/story-Icon-Blue.png" alt="Story"></div><div class="hidden-xs">Story</div></a>
+	            <a class=" col-sm-2 col-xs-2 cr-img-admin-icon" href="#admins"><div class="col-sm-0 cr-subheader-icons"><img class="cr-admin" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---Blue.png" alt="Admin"></div><div class="hidden-xs">Admin</div></a>
+	            <a class=" col-sm-2 col-xs-2 cr-img-perk-icon" href="#perk"><div class="col-sm-0 cr-subheader-icons"><img class="cr-perk" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-Blue.png" alt="Perk"></div><div class="hidden-xs">Perks</div></a>
+	            <a class=" col-sm-2 col-xs-2 cr-img-payment-icon" href="#payment"><div class="col-sm-0 cr-subheader-icons"><img class="cr-payment" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-Blue.png" alt="Payment"></div><div class="hidden-xs">Payment</div></a>
+	            <a class=" col-sm-2 col-xs-2 cr-img-save-icon" href="#save"><div class="col-sm-0 cr-subheader-icons"><img class="cr-launch" src="//s3.amazonaws.com/crowdera/assets/Save-Icon-Blue.png" alt="Save"></div><div class="hidden-xs">Save</div></a>
             </header>
         </div>
         <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
         <div class="container footer-container" id="campaigncreate">
             <g:uploadForm class="form-horizontal"  controller="project" action="update" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
                 <g:hiddenField name="projectId" value="${project.id}"/>
-                <div class="col-sm-12 cr-start-flex" id="start">
-                    <label class="panel body cr-start-size">START</label>
-                    <div class="form-group" >
+                <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari" id="start">
+                    <label class="panel body cr-start-size cr-safari">START</label>
+                    <div class="form-group col-sm-10 cr-start-space">
                         <div class="col-sm-3 deadline-popover">
                              <div class="input-group enddate">
                                  <g:if test="${campaignEndDate}">
@@ -255,8 +255,8 @@
                 <div class="col-sm-12" id="story">
                     <div class="form-group">
                         <div class="col-sm-12 cr-story-padding">
-                            <div class="cr-story-flx">
-                            <label class="panel body cr-story-size">STORY</label>
+                            <div class="cr-story-flx cr-safari">
+                            <label class="panel body cr-story-size cr-safari">STORY</label>
                       	    <label class="panel-body cr-panel-story">A good engaging story is the backbone of your Campaign.
 	                                                                    You want your readers to be compelled to share your story
 	                                                                    and make your campaign go viral. Be passionate and make 
@@ -272,22 +272,22 @@
                 </div>
 	                    
                <div class="col-sm-12 manage-Top-tabs-mobile" id="admins">
-                   <div class="cr-tabs-admins">
-	                   <label class="panel body cr-admin-title">ADMIN</label>
+                   <div class="cr-tabs-admins cr-safari">
+	                   <label class="panel body cr-admin-title cr-safari">ADMIN</label>
                        <ul class="nav nav-tabs manage-projects nav-justified cr-ul-tabs">
                            <li class="cr-li-tabs cr-li-tabsss cr-hover-color">
                               <a href="#admin" data-toggle="tab" aria-expanded="false">
-                                   <span class="glyphicon glyphicon-user cr-icon-tabs-user visible-xs"></span><span class="tab-text hidden-xs cr-add-tabs-title cr-font-title pull-left">Add Campaign Admin</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i>
+                                   <span class="glyphicon glyphicon-user cr-icon-tabs-user visible-xs"></span><span class="tab-text hidden-xs cr-add-tabs-title cr-font-title pull-left">Add Campaign Admin</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
 	                           </a>
 	                       </li>
 	                       <li class="active cr-tabs-update  cr-li-tabsss cr-hover-color">
 	                           <a data-toggle="tab" href="#organization" aria-expanded="true">
-	                               <span class="glyphicon glyphicon-eye-open cr-icon-tabs-eye visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Display Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i>
+	                               <span class="glyphicon glyphicon-eye-open cr-icon-tabs-eye visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Display Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
 	                           </a>
 	                       </li>
 	                       <li class="cr-tabs-update  cr-li-tabsss cr-hover-color">
 	                           <a data-toggle="tab" href="#personals">
-		                            <span class="glyphicon glyphicon-info-sign cr-icon-tabs-info visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Personal Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons pull-right"></i>
+		                            <span class="glyphicon glyphicon-info-sign cr-icon-tabs-info visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Personal Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
 		                       </a>
 		                   </li>
 		               </ul>
@@ -505,8 +505,8 @@
 
                 </div>
                 <div class="form-group">
-	                <div class="col-sm-12 cr-lab-rd-flex cr-space" id="perk">
-	                    <div class="cr-perks-flex cr-perks-space edit-perk-space">
+	                <div class="col-sm-12 cr-lab-rd-flex cr-space cr-safari" id="perk">
+	                    <div class="cr-perks-flex cr-perks-space edit-perk-space cr-safari">
 	                        <label class="panel-body cr-perks-size edit-perk-size"><span class="cr-offering">Offering</span> PERKS?</label>
 	                    </div>
 	                    <div class="btn-group btnPerkBgColor col-sm-push-6 edit-btn-space cr-perk-yesno-tab ed-perks-css cr-mobile-sp" data-target="buttons">
@@ -678,8 +678,8 @@
                 
                 <div class="form-group">
                     <div class="col-sm-12 cr-payments-pad" id="payment">
-                        <div class="cr-story-flx cr-payment-marg col-sm-12">
-                            <label class="panel-body cr-payments-lab">PAYMENTS</label>
+                        <div class="cr-story-flx cr-payment-marg col-sm-12 cr-safari">
+                            <label class="panel-body cr-payments-lab cr-safari">PAYMENTS</label>
 <%--                                            <img alt="" src="/images/Payment-Button.jpg">--%>
                             <label class="panel-body cr-payments">Payments are sent and received via your choice of Payment Gateway.
                                You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>

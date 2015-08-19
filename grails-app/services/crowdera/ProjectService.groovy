@@ -17,9 +17,10 @@ class ProjectService {
     def contributionService
     def grailsLinkGenerator
     def imageFile
-	def imageUrlService
+    def imageUrlService
     def mandrillService
-	def rewardService
+    def rewardService
+    def grailsApplication
 	
     def getProjectById(def projectId){
         if (projectId) {
@@ -1296,6 +1297,10 @@ class ProjectService {
 	
     def getProjects(def projects, def projectAdmins, def fundRaisers, def environment) {
         def list = []
+        List listIndAdmins = []
+        List listUsAdmins = []
+        List listIndTeams = []
+        List listUsTeams = []
         if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
             projects.each {
                 if(it.inactive == false) {
@@ -1305,7 +1310,7 @@ class ProjectService {
             projectAdmins.each {
                 def project = Project.findById(it.projectId)
                 if(project.inactive == false) {
-                    list.add(project)
+                    (project.payuStatus) ? listIndAdmins.add(project) : listUsAdmins.add(project)
                 }
             }
             fundRaisers.each { fundRaiser ->
@@ -1318,10 +1323,11 @@ class ProjectService {
                 }
                 if (!isProjectexist) {
                     if (project.inactive == false) {
-                        list.add(project)
+                        (project.payuStatus) ? listIndTeams.add(project) : listUsTeams.add(project)
                     }
                 }
             }
+			list = list + listIndAdmins + listUsAdmins + listIndTeams + listUsTeams
         } else{
             projects.each {
                 if(it.inactive == false && it.payuStatus==false) {
@@ -2044,40 +2050,54 @@ class ProjectService {
         List draftProjects=[]
         List pendingProjects=[]
         List endedProjects=[]
-        List sortedProjects
+        List sortedProjects = []
+        List draftIndiaProjects = [] 
+        List draftUsProjects = []
+        List pendingIndiaProjects = []
+        List pendingUsProjects = []
+        List endedIndiaProjects = []
+        List endedUsProjects = []
+        List sortedIndiaProjects = []
+        List sortedUsProjects = []
+        List activeIndiaProjects = []
+        List activeUsProjects = []
         def finalList
         
         if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
             def projects= Project.findAllWhere(user:user)
             projects.each { project->
                 boolean ended = isProjectDeadlineCrossed(project)
-                if (ended) {
-                    endedProjects.add(project)
-                } else if(project.draft==true){
-                    draftProjects.add(project)
+                if(project.draft==true){
+                    (project.payuStatus) ? draftIndiaProjects.add(project) : draftUsProjects.add(project)
                 } else if(project.inactive==false && project.validated==false && project.draft==false){
-                    pendingProjects.add(project)
+                    (project.payuStatus) ? pendingIndiaProjects.add(project) : pendingUsProjects.add(project)
+                } else if (ended) {
+                    (project.payuStatus) ? endedIndiaProjects.add(project) : endedUsProjects.add(project)
                 } else if(project.validated==true && project.inactive==false){
-                     activeProjects.add(project)
+                    (project.payuStatus) ? activeIndiaProjects.add(project) : activeUsProjects.add(project)
                 }
             }
+
+            sortedIndiaProjects = activeIndiaProjects.sort{contributionService.getPercentageContributionForProject(it)}
+            sortedUsProjects = activeUsProjects.sort{contributionService.getPercentageContributionForProject(it)}
+            finalList = draftIndiaProjects.reverse() + draftUsProjects.reverse() + pendingIndiaProjects.reverse() + pendingUsProjects.reverse() + sortedIndiaProjects.reverse() + sortedUsProjects.reverse() + endedIndiaProjects.reverse() + endedUsProjects.reverse()
         } else{
             def projects= Project.findAllWhere(user:user,payuStatus: false)
             projects.each { project->
                 boolean ended = isProjectDeadlineCrossed(project)
-                if(ended) {
-                    endedProjects.add(project)
-                } else if(project.draft==true){
+                if(project.draft==true) {
                     draftProjects.add(project)
                 } else if(project.inactive==false && project.validated==false && project.draft==false){
                     pendingProjects.add(project)
+                } else if(ended){
+                    endedProjects.add(project)
                 } else if(project.payuEmail==null && project.validated==true){
                     activeProjects.add(project)
                 }
             }
+            sortedProjects =activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
+            finalList = draftProjects.reverse()+ pendingProjects.reverse() + sortedProjects.reverse() + endedProjects.reverse() 
         }
-        sortedProjects =activeProjects.sort{contributionService.getPercentageContributionForProject(it)}
-        finalList = draftProjects.reverse()+ pendingProjects.reverse() + sortedProjects.reverse() + endedProjects.reverse() 
         return finalList
     }
 
@@ -2760,6 +2780,37 @@ class ProjectService {
 		return ['email1':email1, 'email2':email2, 'email3':email3]
 		
 	}
+    
+    def getPayuInfo(def params, def base_url) {
+        def currentEnv = Environment.current.getName()
+        def project = Project.get(params.campaignId)
+        def user = User.get(params.userId)
+        def reward = Reward.get(params.rewardId)
+
+        User fundraiser = User.findByEmail(params.fr)
+        def anonymous = params.anonymous
+        def address = getAddress(params, currentEnv)
+        if (user == null){
+            user = userService.getUserByUsername('anonymous@example.com')
+        }
+        
+        def key = grailsApplication.config.crowdera.PAYU.KEY
+        def salt = grailsApplication.config.crowdera.PAYU.SALT
+        def amount = params.amount
+        def firstname =  params.firstname
+        def email = params.email
+        def phone = params.phone
+        def productinfo = params.productinfo
+        def surl = base_url + "/fund/payureturn?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&fundraiser=${fundraiser.id}&physicalAddress=${address}&shippingCustom=${params.shippingCustom}&shippingEmail=${params.shippingEmail}&shippingTwitter=${params.twitterHandle}&name=${params.firstname} ${params.lastname}&email=${params.email}&anonymous=${params.anonymous}&projectTitle=${params.projectTitle}"
+
+        def furl = base_url + "/error"
+        def service_provider = "payu_paisa"
+        def txnid = generateTransId()
+        String hashstring = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + firstname + "|" + email + "|||||||||||" + salt;
+        def hash = generateHash("SHA-512",hashstring)
+
+        return [txnid:txnid, hash:hash, furl:furl, surl:surl]
+    }
     
     @Transactional
     def bootstrap() {

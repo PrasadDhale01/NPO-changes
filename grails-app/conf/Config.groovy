@@ -148,7 +148,7 @@ environments {
 		crowdera.MAILCHIMP.LISTID="e37aea1b78"
 		
 		/*PayUMoney details*/
-		crowdera.PAYU.BASE_URL = 'http://test.crowdera.inn'
+		crowdera.PAYU.BASE_URL = 'http://localhost:8080'
 		crowdera.PAYU.TEST_URL='https://test.payu.in/_payment.php'
 		crowdera.PAYU.KEY='czBDue'
 		crowdera.PAYU.SALT='g57jz4Cw'

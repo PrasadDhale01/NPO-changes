@@ -235,7 +235,7 @@
                         </div>
                         
                         <div class="center-fund payu_continue_btn-align">
-                            <button type="submit" class="btn btn-primary btn-block btn-lg payucheckoutsubmitbutton" name="fund-button" id="paypalsubmitbutton">Continue</button>
+                            <button type="submit" class="btn btn-primary btn-block btn-lg payucheckoutsubmitbutton" name="fund-button" id="paypalsubmitbutton">Fund this campaign</button>
                         </div>
                         <div class="powerdby">
                             <p  class="powerd-by-text">Powered By PayUMoney</p>

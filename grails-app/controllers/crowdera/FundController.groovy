@@ -598,7 +598,9 @@ class FundController {
 
 	 def payupayment(){
         JSONObject json = new JSONObject();
-        json = projectService.getPayuInfo(params)
+        def request_url = request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        json = projectService.getPayuInfo(params, base_url)
         render json
     }
 	

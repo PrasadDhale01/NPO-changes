@@ -1168,7 +1168,7 @@ class ProjectService {
 		List usEndedCampaign = []
 		List sortIndiaCampaign = []
 		List sortUsCampaign = []
-        if (currentEnv == 'testIndia' || currentEnv == 'development' || currentEnv == 'prodIndia'){
+        if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
             finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
             finalList.each { project ->
                 boolean ended = isProjectDeadlineCrossed(project)
@@ -2762,7 +2762,7 @@ class ProjectService {
 		
 	}
     
-    def getPayuInfo(def params) {
+    def getPayuInfo(def params, def base_url) {
         def currentEnv = Environment.current.getName()
         def project = Project.get(params.campaignId)
         def user = User.get(params.userId)
@@ -2774,7 +2774,7 @@ class ProjectService {
         if (user == null){
             user = userService.getUserByUsername('anonymous@example.com')
         }
-
+        
         def key = grailsApplication.config.crowdera.PAYU.KEY
         def salt = grailsApplication.config.crowdera.PAYU.SALT
         def amount = params.amount
@@ -2782,14 +2782,13 @@ class ProjectService {
         def email = params.email
         def phone = params.phone
         def productinfo = params.productinfo
-        def surl = grailsApplication.config.crowdera.PAYU.BASE_URL + "/fund/payureturn?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&fundraiser=${fundraiser.id}&physicalAddress=${address}&shippingCustom=${params.shippingCustom}&shippingEmail=${params.shippingEmail}&shippingTwitter=${params.twitterHandle}&name=${params.firstname} ${params.lastname}&email=${params.email}&anonymous=${params.anonymous}&projectTitle=${params.projectTitle}"
+        def surl = base_url + "/fund/payureturn?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&fundraiser=${fundraiser.id}&physicalAddress=${address}&shippingCustom=${params.shippingCustom}&shippingEmail=${params.shippingEmail}&shippingTwitter=${params.twitterHandle}&name=${params.firstname} ${params.lastname}&email=${params.email}&anonymous=${params.anonymous}&projectTitle=${params.projectTitle}"
 
-        def furl = grailsApplication.config.crowdera.PAYU.BASE_URL + "/error"
+        def furl = base_url + "/error"
         def service_provider = "payu_paisa"
         def txnid = generateTransId()
         String hashstring = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + firstname + "|" + email + "|||||||||||" + salt;
         def hash = generateHash("SHA-512",hashstring)
-        println "txnid :"+txnid+ "\n hash: "+hash+ "\n furl : "+furl+ "\n surl :" +surl
 
         return [txnid:txnid, hash:hash, furl:furl, surl:surl]
     }

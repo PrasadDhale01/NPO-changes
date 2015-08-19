@@ -695,9 +695,17 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	.TW-testimonial-width{
-		width:578px !important;	
-	}
+	label.cr-start-size{
+	    margin-left: 42px;
+	} 
+	div.cr-start-space {
+        left: 26px;
+    }
+	label.cr-safari {
+        display: -webkit-inline-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+    }
 	label.cr-panel-story {
          width: 100.6% !important;
     }
@@ -796,7 +804,7 @@ a {
 	div.cr-start-flex {
         display: inline;
         margin-bottom: 17px;
-        left: 39px;
+/*         left: 39px; */
     }
     label.cr-start-size{
        margin-bottom: 0;
@@ -810,7 +818,7 @@ a {
         padding-left: 7px !important;
     }
 	label.cr-perks-size{
-        padding-left: 81px;
+        padding-left: 80px;
         padding-right: 67px;
         width: 283px;
 	} 
@@ -831,6 +839,8 @@ a {
 	    padding-left: 8px !important; 
 	    padding-right: 8px !important; 
 	    font-size: 17px !important;
+	    height: 96px !important;
+		position: static !important;
     }
 	div.cr-story-flx {
         display: inline;
@@ -1255,10 +1265,8 @@ a {
 	width: 119px;
     }
     .socialicon{
-    	display:block;
-    	margin-left:auto;
-    	margin-right:auto;
-    	width:236px;
+    	display: flex;
+    	justify-content: center;
     }
     div#aboutus {
         padding-left: 20%;
@@ -1344,9 +1352,18 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	.TW-testimonial-width{
-		width:578px !important;	
-	}
+	label.cr-payments {
+        width: 76%;
+    }
+    div.cr-safari{
+	    display: -webkit-inline-box;
+	    display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+    }
+	ul.cr-ul-tabs{
+	    margin-bottom: 0px;
+	    width: 77% !important;
+    }
 	div.edit-image-mobile{
 	    margin-left: 40px;
 	}
@@ -1580,6 +1597,7 @@ a {
     }
     label.cr-panel-story{
         font-size: 11px;
+        width: 79.5%;
     }
     label.cr-admin-title{
         background-color: #01bbd2;
@@ -1992,6 +2010,11 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    div.cr-safari{
+	    display: -webkit-inline-box;
+	    display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+    }
 	div.edit-btn-space {
        left: 346px;
     }
@@ -6107,9 +6130,17 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-	.TW-testimonial-width{
-		width:270px !important;	
-	}
+	label.cr-start-size{
+	    margin-left: 26px;
+	} 
+	div.cr-start-space {
+        left: 10px;
+    }
+	label.cr-safari {
+        display: -webkit-inline-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+    }
 	ul.cr-ul-tabs {
         margin-bottom: 0;
         width: 93% !important;
@@ -6117,8 +6148,8 @@ textarea.form-control {
 	header.cr-tabs-link {
 		color: #01bbd3;
 		font-size: 21px;
-		height: 265px !important;
-		position: unset !important;
+		height: 96px !important;
+		position: static !important;
 	}
 	div.edit-tool-icon img{
 	    margin-left: -29px;
@@ -6213,7 +6244,7 @@ textarea.form-control {
     div.cr-start-flex {
         display: inline;
         margin-bottom: 17px;
-        left: 29px;
+/*         left: 29px; */
     }
     label.cr-start-size{
        margin-bottom: 0;
@@ -6722,10 +6753,8 @@ textarea.form-control {
 		margin-right:auto;
 	}
 	.socialicon{
-    	display:block;
-    	margin-left:auto;
-    	margin-right:auto;
-    	width:236px;
+    	display: flex;
+    	justify-content: center;
     }
 	.socialicon img {
     	margin-left:auto !important;
@@ -8471,13 +8500,12 @@ p.anonymous-top {
 }
 .header-testimonial{
 	display:inline-flex;
-	display:-webkit-box;    /***safari***/
 	margin-top: 14px;
 }
 .testimonial-name{
 	font-family:"Open Sans";
 	font-size:16px;
-	padding-right:25px;
+	padding-right:0px;
 }
 .testimonial-name img{
 	padding-right:9px;
@@ -9206,7 +9234,7 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
     background: url(https://s3.amazonaws.com/crowdera/assets/launch-button-mobile.jpg) no-repeat !important;
     margin-left: 47px;
     padding-left: 142px;
-    padding-top: 38px;
+    height: 38px;
     margin-top: 15px;
 }
 .cr-icon-tabs-user{
@@ -9386,7 +9414,4 @@ body {
 /***********************/
 .cr-start-space{
     left: -16px;	
-}
-.TW-testimonial-width{
-	width:800px;	
 }

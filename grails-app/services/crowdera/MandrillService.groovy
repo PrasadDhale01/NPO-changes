@@ -836,12 +836,12 @@ class MandrillService {
         def exceptionString = " "+ exception
         def devList = ['krishna.sahu@crowdera.co','tushar@crowdera.co','minal.ganatra@crowdera.co']
         def date = new Date()
-		def site 
-		if (currentEnv == 'prodIndia')
-		    site = 'crowdera.in'
-		else 
-		    site = 'crowdera.co'
-        
+        def site 
+        if (currentEnv == 'prodIndia')
+            site = 'crowdera.in'
+        else 
+            site = 'crowdera.co'
+
         devList.each { email ->
             
             def globalMergeVars = [
@@ -855,10 +855,9 @@ class MandrillService {
                     'name': 'DATE',
                     'content': date.format("YYYY-MM-DD HH:mm:ss")
                 ],[
-				     'name' : 'WEBSITE',
-					 'content': site
-				]
-			    
+                     'name' : 'WEBSITE',
+                     'content': site
+                ]
             ]
 
             def tags = ['Exception-email-to-dev']

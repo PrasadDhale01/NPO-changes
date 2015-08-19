@@ -26,7 +26,7 @@
 <body>
     <div class="feducontent">
 		<div class="container editUpdateForm">
-		    <g:uploadForm class="form-horizontal" controller="project" action="updatesave" id="${project.id}" role="form">
+		    <g:uploadForm class="form-horizontal editForm" controller="project" action="updatesave" id="${project.id}" role="form">
 		    <div class="row">
 				<h1><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-create.png" alt="Post an update"/> Post an update</h1>
 		        <div class="panel panel-default">

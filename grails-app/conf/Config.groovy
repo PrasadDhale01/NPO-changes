@@ -453,8 +453,8 @@ environments {
     }
 	
     stagingIndia {
-		crowdera.facebook.appId = '354215177926850'
-		crowdera.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
+		crowdera.facebook.appId = '813336405432098'
+		crowdera.facebook.secret = '84e6f667ea73b59ed42fa0b531a1e22a'
 
 		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
 		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
@@ -525,7 +525,7 @@ environments {
 	}
 
 	prodIndia {
-		crowdera.facebook.appId = '354215177926850'
+        crowdera.facebook.appId = '354215177926850'
 		crowdera.facebook.secret = '24ee39e963145cee9d49fe1707e0a214'
 
 		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'

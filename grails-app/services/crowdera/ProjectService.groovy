@@ -1296,6 +1296,10 @@ class ProjectService {
 	
     def getProjects(def projects, def projectAdmins, def fundRaisers, def environment) {
         def list = []
+        List listIndAdmins = []
+        List listUsAdmins = []
+        List listIndTeams = []
+        List listUsTeams = []
         if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
             projects.each {
                 if(it.inactive == false) {
@@ -1305,7 +1309,7 @@ class ProjectService {
             projectAdmins.each {
                 def project = Project.findById(it.projectId)
                 if(project.inactive == false) {
-                    list.add(project)
+                    (project.payuStatus) ? listIndAdmins.add(project) : listUsAdmins.add(project)
                 }
             }
             fundRaisers.each { fundRaiser ->
@@ -1318,10 +1322,11 @@ class ProjectService {
                 }
                 if (!isProjectexist) {
                     if (project.inactive == false) {
-                        list.add(project)
+                        (project.payuStatus) ? listIndTeams.add(project) : listUsTeams.add(project)
                     }
                 }
             }
+			list = list + listIndAdmins + listUsAdmins + listIndTeams + listUsTeams
         } else{
             projects.each {
                 if(it.inactive == false && it.payuStatus==false) {

@@ -13,7 +13,7 @@
 				<div  class="left-inverted-comma">
 					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Left.png">
 				</div>
-				<div class="text-center">
+				<div class="text-center TW-testimonial-width">
 				    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 				        <h1 class="bannerheadbtmMargin"><b>I have seen Crowdera grow from idea to reality. It truly amazes me to see the energy, passion and determination to keep the platform fee free!</b></h1>
 				    </g:if>

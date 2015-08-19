@@ -831,11 +831,16 @@ class MandrillService {
         sendTemplate(user, 'inviteToCommunity', globalMergeVars, tags)
     }
     
-    public def sendEmailToDevGroup(def exception) {
+    public def sendEmailToDevGroup(def exception, def currentEnv) {
         
         def exceptionString = " "+ exception
         def devList = ['krishna.sahu@crowdera.co','tushar@crowdera.co','minal.ganatra@crowdera.co']
         def date = new Date()
+		def site 
+		if (currentEnv == 'prodIndia')
+		    site = 'crowdera.in'
+		else 
+		    site = 'crowdera.co'
         
         devList.each { email ->
             
@@ -849,7 +854,11 @@ class MandrillService {
                 ],[
                     'name': 'DATE',
                     'content': date.format("YYYY-MM-DD HH:mm:ss")
-                ]
+                ],[
+				     'name' : 'WEBSITE',
+					 'content': site
+				]
+			    
             ]
 
             def tags = ['Exception-email-to-dev']

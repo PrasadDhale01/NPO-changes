@@ -27,17 +27,16 @@
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow tile-pad">
     <g:hiddenField name="projectId" class="projectId" id="projectId" value="${project.id}"/>
-	<g:if test="${ended}">
-		<div class="over show-tile">
-			<img src="//s3.amazonaws.com/crowdera/assets/ended-tag.png" alt="Ended"/>
-		</div>
-	</g:if>
-    <g:elseif test="${percentage >= 75}">
+    <g:if test="${percentage >= 75}">
 	    <div class="over show-tile">
 			<img src="//s3.amazonaws.com/crowdera/assets/Funded-Tag.png" alt="Funded"/>
 		</div>
+	</g:if>
+	<g:elseif test="${ended}">
+		<div class="over show-tile">
+			<img src="//s3.amazonaws.com/crowdera/assets/ended-tag.png" alt="Ended"/>
+		</div>
 	</g:elseif>
-	
     <div class="blacknwhite tile">
         <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
             <div class="imageWithTag">

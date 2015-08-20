@@ -1265,8 +1265,10 @@ a {
 	width: 119px;
     }
     .socialicon{
-    	display: flex;
-    	justify-content: center;
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:236px;
     }
     div#aboutus {
         padding-left: 20%;
@@ -6753,8 +6755,10 @@ textarea.form-control {
 		margin-right:auto;
 	}
 	.socialicon{
-    	display: flex;
-    	justify-content: center;
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:236px;
     }
 	.socialicon img {
     	margin-left:auto !important;

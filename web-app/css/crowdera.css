@@ -4948,6 +4948,9 @@ textarea.form-control {
         padding-left: 0px;
         padding-right: 0px;
     }
+    .agreeTermsOfUseAndPP {
+        
+    }
 }
 /***only-use-homepage-Carousel*****/
 @media only screen and (min-width: 730px) and (max-width: 740px){

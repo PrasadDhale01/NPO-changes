@@ -1168,7 +1168,7 @@ class ProjectService {
 		List usEndedCampaign = []
 		List sortIndiaCampaign = []
 		List sortUsCampaign = []
-        if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        if (currentEnv == 'testIndia' || currentEnv == 'development' || currentEnv == 'prodIndia'){
             finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
             finalList.each { project ->
                 boolean ended = isProjectDeadlineCrossed(project)

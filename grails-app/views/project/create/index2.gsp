@@ -126,7 +126,7 @@
                             <div class="form-group" id="createthumbnail">
                                 <div class="col-sm-12">
                                     <div class="fileUpload btn btn-info btn-sm cr-btn-color">
-                                        <span>Upload Pictures</span>
+                                        Upload Pictures
                                         <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" accept="image/jpeg, image/png" multiple>
                                     </div>
                                     <div class="clear"></div>
@@ -248,10 +248,10 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <div class="form-group">
+                                <div class="form-group createOrgIconDiv">
                                     <div class="col-sm-6">
                                         <div class="fileUpload btn btn-info btn-sm cr-btn-color">
-                                            <span>Display Picture</span>
+                                            Display Picture
                                             <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">
                                         </div>
                                         <label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>

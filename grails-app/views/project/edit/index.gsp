@@ -42,7 +42,7 @@
                 <g:hiddenField name="projectId" value="${project.id}"/>
                 <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari" id="start">
                     <label class="panel body cr-start-size cr-safari">START</label>
-                    <div class="form-group col-sm-10 cr-start-space">
+                    <div class="form-group col-sm-10 cr-start-space campaignEndDateError">
                         <div class="col-sm-3 deadline-popover">
                              <div class="input-group enddate">
                                  <g:if test="${campaignEndDate}">
@@ -211,7 +211,7 @@
                             <div class="form-group" id="createthumbnail">
                                 <div class="col-sm-12">
                                     <div class="fileUpload btn btn-info btn-sm cr-btn-color">
-                                        <span>Upload Pictures</span>
+                                        Upload Pictures
                                         <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectEditImageFile" accept="image/jpeg, image/png" multiple>
                                     </div>
                                     <div class="clear"></div>
@@ -358,10 +358,10 @@
                             </div>
 
                             <div class="col-sm-4">
-                                <div class="form-group">
+                                <div class="form-group projectImageFilediv">
                                     <div class="col-sm-6">
                                         <div class="fileUpload btn btn-info btn-sm cr-btn-color">
-                                            <span>Display Picture</span>
+                                            Display Picture
                                             <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">
                                         </div>
                                         <label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>
@@ -862,6 +862,8 @@
                 }
             }).on('changeDate', function(){
                 autoSave('date', $('#datepicker').val());
+                $('.deadline-popover').find("span").remove();
+                $('.campaignEndDateError').closest(".form-group").removeClass('has-error');
             });
         });
 

@@ -9415,3 +9415,6 @@ body {
 .cr-start-space{
     left: -16px;	
 }
+.hid-input-type-file{
+	visibility: hidden !important;
+}

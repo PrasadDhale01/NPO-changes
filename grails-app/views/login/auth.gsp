@@ -22,11 +22,11 @@
             <%--
             <facebookAuth:connect/>
             --%>
-            <g:if test="${currentEnv != 'prodIndia'}">
+<%--            <g:if test="${currentEnv != 'prodIndia'}">--%>
                 <a class="btn btn-block btn-social btn-facebook" href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
                     <i class="fa fa-facebook fa-facebook-styles"></i> Sign in with Facebook
                 </a><br>
-            </g:if>
+<%--            </g:if>--%>
             
             <oauth:connect class="btn btn-block btn-social btn-google-plus" provider="google" id="google-connect-link">
                 <i class="fa fa-google-plus fa-facebook-styles"></i> Sign in with Google +

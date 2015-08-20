@@ -695,6 +695,17 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	input.cr-marg-mobile{
+        margin-left: -9px;	    
+	}
+	div.cr-marg-mobile{
+        margin-left: -9px;	    
+	}
+	ul.cr-safari-mobile{
+	    display: -webkit-box;
+	    display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+    }
 	label.cr-start-size{
 	    margin-left: 42px;
 	} 
@@ -872,7 +883,7 @@ a {
         background-color: #01bbd2;
         margin-bottom: 0;
         padding: 10px 112px;
-        width: 284px;
+        width: 283px;
     }
     label.cr-payments-lab {
         padding-left: 84px;
@@ -2268,7 +2279,7 @@ a {
     }
     .nav-tabs.nav-justified > li {
         float: none;
-        width: 100% !important;
+        width: 33.5% !important;
     }
     .nav-justified.validateshow-details-story{
         display:flex !important;
@@ -2641,7 +2652,7 @@ a {
     }
     .nav-tabs.nav-justified > li {
         float: none;
-        width: 100% !important;
+        width: 33.5% !important;
     }
     .nav-justified.validateshow-details-story{
         display:flex !important;
@@ -5355,7 +5366,7 @@ textarea.form-control {
     }
     .nav-tabs.nav-justified > li {
         float: none;
-        width: 100% !important;
+        width: 33.5% !important;
     }
     .nav-justified.validateshow-details-story{
         display:flex !important;
@@ -5477,7 +5488,7 @@ textarea.form-control {
    float:left;
    }*/
    .nav.nav-tabs.manage-projects li{
-   width:100%;
+   width:33.5%;
    float:none;
    }
    .form-control.rewardprice{
@@ -6130,6 +6141,17 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	input.cr-marg-mobile{
+        margin-left: -9px;	    
+	}
+	div.cr-marg-mobile{
+        margin-left: -9px;	    
+	}
+	ul.cr-safari-mobile{
+	    display: -webkit-box;
+	    display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+    }
 	label.cr-start-size{
 	    margin-left: 26px;
 	} 
@@ -6318,7 +6340,7 @@ textarea.form-control {
     label.cr-admin-title{
         background-color: #01bbd2;
         margin-bottom: 0;
-        padding: 10px 91px;
+        padding: 10px 90px;
     }
     label.cr-payments-lab {
         padding-left: 71px;
@@ -9414,4 +9436,7 @@ body {
 /***********************/
 .cr-start-space{
     left: -16px;	
+}
+.datepicker::-ms-input-placeholder  {
+	text-align: center !important;
 }

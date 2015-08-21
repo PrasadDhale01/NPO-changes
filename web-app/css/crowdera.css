@@ -695,6 +695,9 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.TW-testimonial-width{
+		width:578px !important;	
+	}
 	label.cr-start-size{
 	    margin-left: 42px;
 	} 
@@ -1265,8 +1268,10 @@ a {
 	width: 119px;
     }
     .socialicon{
-    	display: flex;
-    	justify-content: center;
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:236px;
     }
     div#aboutus {
         padding-left: 20%;
@@ -1352,6 +1357,9 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.TW-testimonial-width{
+		width:578px !important;	
+	}
 	label.cr-payments {
         width: 76%;
     }
@@ -3887,7 +3895,7 @@ div.tile-min-height{
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
 	.nav.manage-projects > li > a {
-	    padding: 7px 20px;
+	    padding: 7px 15px;
 	}
 	.leftcard-column {
 	    width: 69%;
@@ -6130,6 +6138,9 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.TW-testimonial-width{
+		width:270px !important;	
+	}
 	label.cr-start-size{
 	    margin-left: 26px;
 	} 
@@ -6753,8 +6764,10 @@ textarea.form-control {
 		margin-right:auto;
 	}
 	.socialicon{
-    	display: flex;
-    	justify-content: center;
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:236px;
     }
 	.socialicon img {
     	margin-left:auto !important;
@@ -8500,12 +8513,13 @@ p.anonymous-top {
 }
 .header-testimonial{
 	display:inline-flex;
+	display:-webkit-box;   /***safari***/
 	margin-top: 14px;
 }
 .testimonial-name{
 	font-family:"Open Sans";
 	font-size:16px;
-	padding-right:0px;
+	padding-right:25px;
 }
 .testimonial-name img{
 	padding-right:9px;
@@ -9414,4 +9428,10 @@ body {
 /***********************/
 .cr-start-space{
     left: -16px;	
+}
+.hid-input-type-file{
+	visibility: hidden !important;
+}
+.TW-testimonial-width{
+	width:800px;	
 }

@@ -44,7 +44,7 @@
 	        </div>
 	        
 	        <div class="item">
-                <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/Prajwala-Slide.jpg" alt="Prajwala-Slide">
+                <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/prajwala-1.jpg" alt="Prajwala-Slide">
                 <img class="visible-xs"  src="//s3.amazonaws.com/crowdera/assets/Prajwala Slide-mobile.jpg" alt="Prajwala-Slide">
              </div>
 	    </div>
@@ -79,7 +79,7 @@
            	</div>
         </div>
         <div class="item">
-            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/Prajwala-Slide.jpg" alt="Prajwala-Slide">
+            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/prajwala-1.jpg" alt="Prajwala-Slide">
             <img class="visible-xs"  src="//s3.amazonaws.com/crowdera/assets/Prajwala Slide-mobile.jpg" alt="Prajwala-Slide">
             <div class="carousel-buttons">
                <div class="fbButton">

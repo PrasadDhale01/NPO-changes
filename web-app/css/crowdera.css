@@ -1368,6 +1368,9 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    .cr-bg-preview-btn{
+        margin-left : 60px !important;
+    }
 	.TW-testimonial-width{
 		width:578px !important;	
 	}
@@ -8918,8 +8921,9 @@ img.cr-ineed-icons {
 }
 .cr-bg-preview-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/preview-Button.jpg) no-repeat !important;
-    padding-left: 282px;
-    padding-bottom: 106px;
+    width: 280px;
+    height: 62px;
+    margin-left: 180px;
 }
 .cr-bg-Launch-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/launch-Button.jpg) no-repeat !important;
@@ -9263,8 +9267,9 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 }
 .cr-bg-xs-preview-btn {
     background: url(https://s3.amazonaws.com/crowdera/assets/preview-button-mobile.jpg) no-repeat !important;
+    width: 150px;
+    height: 38px;
     margin-left: 47px;
-    padding-top: 40px;
 }
 .cr-bg-xs-Launch-btn{
     background: url(https://s3.amazonaws.com/crowdera/assets/launch-button-mobile.jpg) no-repeat !important;
@@ -9333,7 +9338,7 @@ body {
 	font-weight: 900;
 }
 .cr-btn-alignment-pre{
-	margin-left: 198px;
+	margin-left: 180px;
     padding-bottom: 40px;
 }
 .cr-btn-alignment-lac{

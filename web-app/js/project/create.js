@@ -9,7 +9,7 @@ $(function() {
     } else {
     	$('#rewardTemplate').hide();
     }
-    
+
     var count = $('#rewardCount').val()
     
     var storyContent
@@ -140,23 +140,6 @@ $(function() {
                 isValidTelephoneNumber: true,
                 maxlength: 20
             },
-            addressLine1: {
-                required: false
-            },
-            addressLine2: {
-                required: false
-            },
-            city: {
-                required: true
-            },
-            stateOrProvince: {
-                required: true
-            },
-            postalCode: {
-                required: true,
-                maxlength: 10,
-                minlength: 4
-            },
             country: {
                 required: true
             },
@@ -165,9 +148,6 @@ $(function() {
                 minlength: 10,
                 maxlength: 140
         	},
-            days: {
-                required: true
-            },
             title: {
                 required: true,
                 minlength: 5,
@@ -202,31 +182,6 @@ $(function() {
             },
             checkBox2:{
               required: true
-            },
-            paypalEmail:{
-              email:true,
-              isPaypalEmailVerified : true,
-              required: true
-            },
-            payuEmail:{
-            	required:true,
-            	email:true
-            },
-            pay: {
-            	required:true
-            },
-            charitableId: {
-            	required:true
-            },
-            organizationName: {
-            	required:true
-            },
-            webAddress: {
-            	required:true,
-            	isWebUrl:true
-            },
-            answer: {
-            	required:true
             }
         },
         messages:{
@@ -272,7 +227,42 @@ $(function() {
         return true;
     }, "Please enter verified paypal email id");
     
-    $('#campaigncreatebtn').on('click', function() {
+    $('#campaigncreatebtn, #campaigncreatebtnXS').on('click', function() {
+    	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+        	$("[name='amount']").rules("add", {
+                required: true,
+                number: true,
+                min: 500,
+                maxlength: 8,
+                max: 99999999
+            });
+        } else {
+        	$("[name='amount']").rules("add", {
+                required: true,
+                number: true,
+                min: 500,
+                maxlength: 6,
+                max: 999999
+            });
+        }
+   	
+    	if (validator.form()) {
+    		$('#campaigncreatebtn').attr('disabled','disabled');
+    		$('#campaigncreate').find('form').submit();
+    	}
+    });
+    
+    $('#saveButton, #saveButtonXS').on('click', function() {
+    	var storyValue = $('.redactorEditor').redactor('code.get');
+        var storyEmpty = false;
+        if (storyValue == '' || storyValue == undefined){
+            $('#storyRequired').show();
+            storyEmpty = true;
+        } else {
+        $('#storyRequired').hide();
+            storyEmpty = false;
+        }
+
     	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
         	$("[name='amount']").rules("add", {
                 required: true,
@@ -298,6 +288,23 @@ $(function() {
             });
         });
     	
+        $( '[name="answer"]' ).rules( "add", {
+            required: true
+        });
+
+        $( '[name="webAddress"]' ).rules( "add", {
+            required: true,
+            isWebUrl:true
+        });
+
+        $( '[name="organizationName"]' ).rules( "add", {
+            required: true
+        });
+
+        $( '[name="days"]' ).rules( "add", {
+            required: true
+        });
+    	
     	var iconUrl = $('#imgIcon').attr('src');
     	
     	if (!iconUrl) {
@@ -317,6 +324,49 @@ $(function() {
             });
     	}
     	
+    	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+            $('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 8,
+                    max: function() {
+                    	var campaignAmount = $('#projectamount').val();
+                        return Number(campaignAmount);
+                    },
+                    min: 250
+                });
+            });
+            
+            $( '[name="payuEmail"]' ).rules( "add", {
+                required: true,
+                email:true
+            });
+        } else {
+        	$('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: function() {
+                    	var campaignAmount = $('#projectamount').val();
+                        return Number(campaignAmount);
+                    },
+                    min: 1
+                });
+            });
+        	
+        	$( '[name="paypalEmail"]' ).rules( "add", {
+                required: true,
+                isPaypalEmailVerified : true,
+                email:true
+            });
+        	
+        	$( '[name="charitableId"]' ).rules( "add", {
+                required: true
+            });
+        }
+
     	if (validator.form()) {
     		$('#campaigncreatebtn').attr('disabled','disabled');
     		$('#campaigncreate').find('form').submit();
@@ -333,13 +383,33 @@ $(function() {
         $('#storyRequired').hide();
             storyEmpty = false;
         }
+        
+        if($('#campaignthumbnails').find('#imgdiv').length < 1) {
+    		$("#projectImageFile").rules( "add", {
+                required: true,
+                messages: {
+                    required: "Please upload at least one campaign image."
+                }
+            });
+    	}
 
-        $( "#projectImageFile" ).rules( "add", {
-            required: true,
-            messages: {
-                required: "Please upload at least one campaign image"
-            }
+        $( '[name="answer"]' ).rules( "add", {
+            required: true
         });
+
+        $( '[name="webAddress"]' ).rules( "add", {
+            required: true,
+            isWebUrl:true
+        });
+
+        $( '[name="organizationName"]' ).rules( "add", {
+            required: true
+        });
+
+        $( '[name="days"]' ).rules( "add", {
+            required: true
+        });
+
         $('.rewardNumberAvailable').each(function () {
             $(this).rules("add", {
                 required: true,
@@ -347,9 +417,16 @@ $(function() {
                 min: 0
             });
         });
+        
+        var iconUrl = $('#imgIcon').attr('src');
+    	
+    	if (!iconUrl) {
+        
         $('#iconfile').rules("add", {
             required: true
         });
+    	}
+        
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
@@ -362,6 +439,11 @@ $(function() {
                     },
                     min: 250
                 });
+            });
+            
+            $( '[name="payuEmail"]' ).rules( "add", {
+                required: true,
+                email:true
             });
         } else {
         	$('.rewardPrice').each(function () {
@@ -376,14 +458,35 @@ $(function() {
                     min: 1
                 });
             });
+        	
+        	$( '[name="paypalEmail"]' ).rules( "add", {
+                required: true,
+                isPaypalEmailVerified : true,
+                email:true
+            });
+        	
+        	$( '[name="charitableId"]' ).rules( "add", {
+                required: true
+            });
+        	
+        	$('.rewardDescription').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                });
+            });
+           	
+           	$('.rewardTitle').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                });
+           	});
         }
         
     	if (validator.form()) {
-    		$('#isSubmitButton').attr('value',false);
             if (!storyEmpty){
                 $('#campaigncreate').find('form').submit();
                 $('#submitProject').attr('disabled','disabled');
-                $('#saveasdraft').attr('disabled','disabled');
+                $('#previewButton').attr('disabled','disabled');
             }
     	}
     });
@@ -441,11 +544,24 @@ $(function() {
             });
         }
         
+        $('.rewardDescription').each(function () {
+            $(this).rules("add", {
+                required: true,
+            });
+        });
+       	
+       	$('.rewardTitle').each(function () {
+            $(this).rules("add", {
+                required: true,
+            });
+       	});
+        
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',false);
             if (!storyEmpty){
                 $('#campaigncreate').find('form').submit();
                 $('#submitProjectXS').attr('disabled','disabled');
+                $('#previewButtonXS').attr('disabled','disabled');
             }
     	}
     });
@@ -453,10 +569,20 @@ $(function() {
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
            var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-           return (value.match(p)) ? RegExp.$1 : false;
+           var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+           var youtubematch = value.match(p);
+           var vimeomatch = value.match(vimeo);
+           var match
+           if (youtubematch)
+               match = youtubematch;
+           else if (vimeomatch && vimeomatch[2].length == 9)
+               match = vimeomatch;
+           else 
+               match = null;
+           return (match) ? true : false;
         }
         return true;
-     }, "Please upload a url of Youtube video");
+     }, "Please upload a url of Youtube/Vimeo video");
      
      $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
      	  
@@ -469,7 +595,7 @@ $(function() {
      
      $.validator.addMethod('isWebUrl', function(value, element){
     	 if(value && value.length !=0){
-          var p= /(?:(?:www):\/\/)?(?:www.)\/?/;
+          var p = /(https | http?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/ig;;
   	    	return (value.match(p))
     	 }
     	 return true;
@@ -626,15 +752,22 @@ $(function() {
      
     if($('#addvideoUrl').val()) {
         var url= $('#videoUrl').val().trim();
+        var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+        var match = (url.match(youtube) || url.match(vimeo));
         $('#ytVideo').show();
         $('#media').hide();
         $('#media-video').show();
-        var vurl=url.replace("watch?v=", "v/");
-        $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'></iframe>');
+        if (match[2].length == 11){
+        	var vurl=url.replace("watch?v=", "v/");
+            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'></iframe>');
+        } else {
+        	$('#ytVideo').html('<iframe class="youtubeVideoIframe" src=https://player.vimeo.com/video/'+ match[2] +'></iframe>');
+        }
     }
 	$('#add').on('click',function(){
         var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        //var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/
+        var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
         var url= $('#videoUrl').val().trim();
         var match = url.match(youtube);
         if (match && match[2].length == 11) {
@@ -645,6 +778,13 @@ $(function() {
             $('#addvideoUrl').val(url);
             var vurl=url.replace("watch?v=", "v/");
             $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ vurl +'></iframe>');
+        } else if (match && match[2].length == 9){
+        	$('#ytVideo').show();
+            $('#media').hide();
+            $('#media-video').show();
+            autoSave('videoUrl', url);
+            $('#addvideoUrl').val(url);
+            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
         } else if($(this)){
         	if(!$('#addvideoUrl').val()) {
                 $('#ytVideo').hide();
@@ -682,6 +822,8 @@ $(function() {
                 $('#logomsg').hide();
                 $('#iconfilesize').hide();
                 $('.edit-logo-icon').show();
+                $('#imgIcon').show();
+                $('#logoDelete').show();
                 var file = this.files[0];
                 var fileName = file.name;
                 var fileSize = file.size;
@@ -963,7 +1105,7 @@ $(function() {
        '<div class="form-group">'+
            '<div class="col-sm-12">'+
               '<input type="text" placeholder="Name of Perk" name="rewardTitle'+count+'" id="rewardTitle'+count+
-                      '"  class="form-control cr-perk-title-number cr-tablet-left form-control-no-border cr-placeholder cr-chrome-place text-color required">'+
+                      '"  class="form-control cr-perk-title-number cr-tablet-left form-control-no-border cr-placeholder cr-chrome-place text-color rewardTitle">'+
            '</div>'+
        '</div>'+
     '</div>'+
@@ -979,7 +1121,7 @@ $(function() {
    '<div class="form-group row">'+
        '<div class="col-sm-12">'+
            '<div class="col-sm-12">'+
-             '<textarea class="form-control required rewardDescription form-control-no-border cr-placeholder cr-chrome-place text-color" name="rewardDescription'+count+
+             '<textarea class="form-control rewardDescription form-control-no-border cr-placeholder cr-chrome-place text-color" name="rewardDescription'+count+
                 '" id="rewardDesc'+count+'" rows="2" placeholder="Let your contributors feel special by rewarding them. Think out of the box and leave your contributors awestruck. Make sure you have calculated the costs associated with the perk; you do not want to lose money!" maxlength="250"></textarea>'+
                 '<p class="cr-perk-des-font">Please refer to our <a href="/termsofuse" target="_blank">Terms  Of  Use</a> for more details on perks.</p>'+
            '</div>'+
@@ -1018,6 +1160,18 @@ $(function() {
     });
   
     function rewardValidationAndSaving(rewardCount){
+    	$('.rewardDescription').each(function () {
+            $(this).rules("add", {
+                required: true,
+            });
+        });
+       	
+       	$('.rewardTitle').each(function () {
+            $(this).rules("add", {
+                required: true,
+            });
+       	});
+    	
         $('.rewardNumberAvailable').each(function () {
             $(this).rules("add", {
                 required: true,
@@ -1195,6 +1349,8 @@ $(function() {
                    if (data == 'Success') {
                        $('.paypalVerification').find("span").remove();
                        $('.paypalVerification').closest(".form-group").removeClass('has-error');
+                       $('#charitable').find('input').val('');
+                       autoSave('paypalEmailId', paypalEmailId);
                    }
                }
            }).error(function(){
@@ -1251,13 +1407,6 @@ $(function() {
         autoSave('telephone', telephone);
     });
     
-    $('#paypalEmailId').blur(function (){
-        var paypalEmailId = $(this).val();
-        if (validator.element( "#paypalEmailId")) {
-            $('#charitable').find('input').val('');
-            autoSave('paypalEmailId', paypalEmailId);
-        }
-    });
     
     $('#payuemail').blur(function (){
         var payUEmailId = $(this).val();
@@ -1494,6 +1643,43 @@ $(function() {
              console.log('error occured while deleting all perks');
           });
     }
+     
+     $('#previewButton, #previewButtonXS').on('click', function(event){  // capture the click
+      	event.preventDefault();
+       	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
+             $(this).rules('remove');
+         });
+       	
+       	$( "#projectImageFile" ).rules("remove");
+ 
+       	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
+             $(this).closest('.form-group').removeClass('has-error');
+         });
+       	
+       	$('.rewardNumberAvailable').each(function () {
+            $(this).rules("remove");
+        });
+       	
+       	$('.rewardPrice').each(function () {
+            $(this).rules("remove");
+        });
+       	
+       	$('.rewardDescription').each(function () {
+            $(this).rules("remove");
+        });
+       	
+       	$('.rewardTitle').each(function () {
+            $(this).rules("remove");
+        });
+       	
+       	$("#createthumbnail").removeClass('has-error');
+       	$('#isSubmitButton').attr('value',false);
+       	if (validator.form()) {
+       		$('#campaigncreate').find('form').submit();
+              $('#submitProject').attr('disabled','disabled');
+              $('#previewButton').attr('disabled','disabled');
+       	}
+       });
 
 /*Javascript error raised due to tooltip is resolved*/
     /* Show pop-over tooltip on hover for some fields. */

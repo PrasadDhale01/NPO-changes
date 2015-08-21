@@ -268,6 +268,7 @@ class RewardService {
 		 def rewardLength = Integer.parseInt(params.rewardCount)
 		 List rewardsList = project.rewards
 		 def newReward = false
+		 if (params.('rewardTitle'+params.rewardCount) && params.('rewardPrice'+params.rewardCount) && params.('rewardDescription'+params.rewardCount) && params.('rewardNumberAvailable'+params.rewardCount)){
 		 if(rewardLength > 0){
 		 rewardsList.each{
 			 if (it.rewardCount == Integer.parseInt(params.rewardCount)){
@@ -298,6 +299,7 @@ class RewardService {
  
 		 if (newReward){
 			 project.addToRewards(reward)
+		 }
 		 }
 		 }
 		 return

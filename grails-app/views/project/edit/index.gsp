@@ -552,11 +552,11 @@
                                 <div class="col-sm-12">
                                     <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                         <span class="cr2-currency-label fa fa-inr cr-perks-amts"></span>
-                                        <input type="text" placeholder="Amount" name="rewardPrice${iteratorCount}" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${iteratorCount}" value="${price}">
+                                        <input type="text" placeholder="Amount" name="rewardPrice${reward.rewardCount}" class="form-control form-control-no-border-amt rewardPrice cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${reward.rewardCount}" value="${price}">
                                     </g:if>
                                     <g:else>
                                         <span class="cr2-currency-label">$</span>
-                                        <input type="text" placeholder="Amount" name="rewardPrice${iteratorCount}" class="form-control rewardPrice form-control-no-border-amt cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${iteratorCount}" value="${price}">
+                                        <input type="text" placeholder="Amount" name="rewardPrice${reward.rewardCount}" class="form-control rewardPrice form-control-no-border-amt cr-input-digit cr-tablat-padd rewardPrice" id="rewardPrice${reward.rewardCount}" value="${price}">
                                     </g:else>
                                 </div>
                             </div>
@@ -565,14 +565,14 @@
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input type="text" placeholder="Name of Perk" name="rewardTitle${iteratorCount}" class="form-control cr-tablet-left cr-perk-title-number form-control-no-border text-color cr-placeholder cr-chrome-place required" id="rewardTitle${iteratorCount}" value="${reward.title}">
+                                    <input type="text" placeholder="Name of Perk" name="rewardTitle${reward.rewardCount}" class="form-control cr-tablet-left cr-perk-title-number form-control-no-border text-color cr-placeholder cr-chrome-place required" id="rewardTitle${reward.rewardCount}" value="${reward.title}">
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input type="text" placeholder="Number available" name="rewardNumberAvailable${iteratorCount}" class="form-control cr-perk-title-number form-control-no-border text-color cr-placeholder cr-chrome-place  rewardNumberAvailable" id="rewardNumberAvailable${iteratorCount}" value="${reward.numberAvailable}">
+                                    <input type="text" placeholder="Number available" name="rewardNumberAvailable${reward.rewardCount}" class="form-control cr-perk-title-number form-control-no-border text-color cr-placeholder cr-chrome-place  rewardNumberAvailable" id="rewardNumberAvailable${reward.rewardCount}" value="${reward.numberAvailable}">
                                 </div>
                             </div>
                         </div>
@@ -580,7 +580,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="col-sm-12">
-                                    <textarea class="form-control rewardDescription form-control-no-border text-color cr-placeholder cr-chrome-place required" name="rewardDescription${iteratorCount}" id="rewardDesc${iteratorCount}" rows="2" placeholder="Let your contributors feel special by rewarding them. Think out of the box and leave your contributors awestruck. Make sure you have calculated the costs associated with the perk; you do not want to lose money!" maxlength="250">${reward.description}</textarea>
+                                    <textarea class="form-control rewardDescription form-control-no-border text-color cr-placeholder cr-chrome-place required" name="rewardDescription${reward.rewardCount}" id="rewardDesc${reward.rewardCount}" rows="2" placeholder="Let your contributors feel special by rewarding them. Think out of the box and leave your contributors awestruck. Make sure you have calculated the costs associated with the perk; you do not want to lose money!" maxlength="250">${reward.description}</textarea>
                                     <p class="cr-perk-des-font">Please refer to our <a href="${resource(dir: '/termsofuse')}" target="_blank">Terms  Of  Use</a> for more details on perks.</p>
                                 </div>
                             </div>
@@ -590,31 +590,31 @@
                                 <div class="btn-group col-sm-12" data-toggle="buttons">
                                     <label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Delivery</label>
                                     <g:if test="${shippingInfo.address}">
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblmail${iteratorCount} active"><input type="checkbox" checked="checked" name="mailingAddress${iteratorCount}" value="true" id="mailaddcheckbox${iteratorCount}">Mailing <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblmail${reward.rewardCount} active"><input type="checkbox" checked="checked" name="mailingAddress${reward.rewardCount}" value="true" id="mailaddcheckbox${reward.rewardCount}">Mailing <br> address</label>
                                     </g:if>
                                     <g:else>
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblmail${iteratorCount}"><input type="checkbox" name="mailingAddress${iteratorCount}" value="true" id="mailaddcheckbox${iteratorCount}">Mailing <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblmail${reward.rewardCount}"><input type="checkbox" name="mailingAddress${reward.rewardCount}" value="true" id="mailaddcheckbox${reward.rewardCount}">Mailing <br> address</label>
                                     </g:else>
                                     <g:if test="${shippingInfo.email}">
-                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblemail${iteratorCount} active"><input type="checkbox" checked="checked" name="emailAddress${iteratorCount}" value="true" id="emailcheckbox${iteratorCount}">Email <br> address</label>
+                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblemail${reward.rewardCount} active"><input type="checkbox" checked="checked" name="emailAddress${reward.rewardCount}" value="true" id="emailcheckbox${reward.rewardCount}">Email <br> address</label>
                                     </g:if>
                                     <g:else>
-                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblemail${iteratorCount}"><input type="checkbox" name="emailAddress${iteratorCount}" value="true" id="emailcheckbox${iteratorCount}">Email <br> address</label>
+                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblemail${reward.rewardCount}"><input type="checkbox" name="emailAddress${reward.rewardCount}" value="true" id="emailcheckbox${reward.rewardCount}">Email <br> address</label>
                                     </g:else>
                                     <g:if test="${shippingInfo.twitter}">
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lbltwitter${iteratorCount} active"><input type="checkbox" checked="checked" name="twitter${iteratorCount}" value="true" id="twittercheckbox${iteratorCount}">Twitter <br> handle</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lbltwitter${reward.rewardCount} active"><input type="checkbox" checked="checked" name="twitter${reward.rewardCount}" value="true" id="twittercheckbox${reward.rewardCount}">Twitter <br> handle</label>
                                     </g:if>
                                     <g:else>
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lbltwitter${iteratorCount}"><input type="checkbox" name="twitter${iteratorCount}" value="true" id="twittercheckbox${iteratorCount}">Twitter <br> handle</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lbltwitter${reward.rewardCount}"><input type="checkbox" name="twitter${reward.rewardCount}" value="true" id="twittercheckbox${reward.rewardCount}">Twitter <br> handle</label>
                                     </g:else>
-                                    <input type="text" name="custom${iteratorCount}" id="customcheckbox${iteratorCount}" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place cr-perks-back-color col-sm-4 col-xs-12" placeholder="Custom" value="${shippingInfo.custom}">
+                                    <input type="text" name="custom${reward.rewardCount}" id="customcheckbox${reward.rewardCount}" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place cr-perks-back-color col-sm-4 col-xs-12" placeholder="Custom" value="${shippingInfo.custom}">
                                 </div>
                             </div>
                         </div>
                         <g:if test="${rewardItrCount > iteratorCount}">
                         <div class="col-sm-12 perk-css">
                             <div class="col-sm-12 perk-create-styls" align="right">
-                                <div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward" value="${iteratorCount}">
+                                <div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward" value="${reward.rewardCount}">
                                     <i class="glyphicon glyphicon-floppy-save"></i>
                                 </div>
                             </div>
@@ -836,8 +836,8 @@
 <%--                        <div class="col-sm-4 text-center padding-btn" >--%>
 <%--                            <button type="button" class="btn  btn-primary btn-colors" name="button" id="saveasdraft"  value="draft">Save</button>--%>
 <%--                        </div>--%>
-                            <button type="submit" class="cr-bg-edit-btn cr-btn-edit createsubmitbutton hidden-xs" name="button" id="campaigncreatebtn" value="submitProject"></button>
-                            <button type="submit" class="cr-bg-xs-edit-btn cr-btn-edit createsubmitbutton visible-xs" name="button" id="campaigncreatebtn" value="submitProject"></button>
+                            <button type="submit" class="cr-bg-edit-btn cr-btn-edit createsubmitbutton hidden-xs" name="button" id="saveButton" value="submitProject"></button>
+                            <button type="submit" class="cr-bg-xs-edit-btn cr-btn-edit createsubmitbutton visible-xs" name="button" id="saveButtonXS" value="submitProject"></button>
                     </div>
                 </div>
                 

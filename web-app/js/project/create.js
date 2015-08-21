@@ -1,6 +1,8 @@
 $(function() {
     console.log("create.js initialized");
     
+    $('#iconfile').val('');
+    
     var rewardIteratorCount = $('#rewardCount').val();
     if (rewardIteratorCount > 0){
     	$('#rewardTemplate').show();
@@ -694,8 +696,6 @@ $(function() {
                });
                // Read the image
                picReader.readAsDataURL(file);
-               $('.projectImageFilediv, .createOrgIconDiv').find("span").remove();
-               $('.projectImageFilediv, .createOrgIconDiv').closest(".form-group").removeClass('has-error');
 	        }
 	    } 
     });

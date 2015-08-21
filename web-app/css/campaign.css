@@ -577,8 +577,12 @@ div.break-div-js{
 	display:block;
 }
 
+.enddate .help-block{
+	display:inline-flex;
+	float:left;
+}
 img.deadlineInfo-img {
-  padding-left: 144px;
+  margin-top:5px;
 }
 
 img.videoInfo-img {
@@ -606,7 +610,6 @@ div.amount-popover .popover{
 }
 
 div.deadline-popover .popover{
-	margin-left:38%;
 	width:700px;
 }
 

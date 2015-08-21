@@ -695,6 +695,20 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	ul.nav-tabs.admin-vali-show > li{
+	    width: 20% !important;
+	}
+	ul.nav-tabs.mng-dt-tabs > li{
+	    width: 25.3% !important;
+	}
+	ul.nav-tabs.mng-safari-tabs > li{
+	    width: 16.8% !important;
+	}
+	ul.mng-safari-mobile{
+	    display: -webkit-box;
+	    display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+	}
     input.cr-marg-mobile{
         margin-left: -9px;	    
     }
@@ -6149,6 +6163,20 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	ul.nav-tabs.admin-vali-show > li{
+	    width: 20% !important;
+	}
+	ul.nav-tabs.mng-dt-tabs > li{
+	    width: 25.3% !important;
+	}
+	ul.nav-tabs.mng-safari-tabs > li{
+	    width: 16.8% !important;
+	}
+	ul.mng-safari-mobile{
+	    display: -webkit-box;
+	    display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+	}
     input.cr-marg-mobile{
         margin-left: -9px;	    
     }
@@ -9258,7 +9286,7 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 .cr-bg-xs-create-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/create-now-Button-mobile.jpg) no-repeat !important;
 	margin-left: 89px;
-    padding-top: 22px;
+    height: 38px;
     width: 152px;
 }
 .cr-bg-xs-preview-btn {

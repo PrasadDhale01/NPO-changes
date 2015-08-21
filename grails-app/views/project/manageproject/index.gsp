@@ -112,7 +112,7 @@
                         </div>
                     </g:if>
                     <div class="col-md-12 manage-Top-tabs-mobile">
-                        <ul class="nav nav-tabs manage-projects nav-justified" style="margin-bottom: 10px;">
+                        <ul class="nav nav-tabs manage-projects nav-justified mng-safari-mobile mng-safari-tabs" style="margin-bottom: 10px;">
                             <li class="active"><a href="#essentials" data-toggle="tab">
                                 <span class="glyphicon glyphicon-leaf"></span> <span class="tab-text hidden-xs"> Story</span>
                             </a></li>

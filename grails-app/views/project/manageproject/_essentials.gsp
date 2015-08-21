@@ -19,7 +19,7 @@
 </div>
 
 <div class="col-md-8">
-	<div class="blacknwhite campaignupdatedimages" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
+	<div class="blacknwhite campaignupdatedimages pull-left" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
         <g:render template="/project/manageproject/projectimagescarousel" model="['images': projectimages]"/>
     </div>
     <br>

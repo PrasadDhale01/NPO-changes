@@ -352,7 +352,7 @@ $(function() {
     }
     
     $("#addProjectImage").click(function() {
-        $("#updateImageFile").click()
+        $("#updateImageFile").click();
     });
     
     var isvalidsizefile =  false;

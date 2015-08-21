@@ -32,7 +32,7 @@
 <div class="feducontent">
     <div class="container editUpdateForm">
         <h1><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit Campaign"/> Edit Campaign Update</h1>
-        <g:uploadForm class="form-horizontal" controller="project" action="saveEditUpdate" method="post" role="form" id="${projectUpdate.id}" params="['projectId': projectId]">
+        <g:uploadForm class="form-horizontal editForm" controller="project" action="saveEditUpdate" method="post" role="form" id="${projectUpdate.id}" params="['projectId': projectId]">
             <input type="hidden" id="baseUrl" value="${baseUrl}"/>
             <div class="panel panel-default">
 	            <div class="panel-heading">

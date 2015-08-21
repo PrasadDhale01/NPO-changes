@@ -1417,10 +1417,6 @@ a {
 	div.edit-btn-space {
        left: 354px;
     }
-    img.deadlineInfo-img {
-        padding-left: 104px;
-    }
-    
     img.videoInfo-img {
        padding-top:2px;
        padding-left: 311px;
@@ -5384,7 +5380,9 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 479px){
-	
+	.TW_project_update_carousel{
+		height:200px;
+	}
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
         width: 100% !important;

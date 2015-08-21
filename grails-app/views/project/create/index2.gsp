@@ -51,9 +51,9 @@
                                  <g:else>
                                      <input class="datepicker pull-left cr-datepicker-height cr-mob-datepicker" id="datepicker" name="${FORMCONSTANTS.DAYS}" readonly="readonly" placeholder="Deadline">
                                  </g:else>
+                                 <img class="hidden-xs deadlineInfo-img pull-right" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                                  <i class="fa fa-caret-down cr-caret-size" style="position:absolute;"></i>
                              </div>
-                             <img class="hidden-xs deadlineInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                         </div>
                     
                         <div class="col-sm-3">

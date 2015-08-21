@@ -14,7 +14,7 @@
     </ol>
 
     <!-- Wrapper for slides -->
-    <div class="carousel-inner">
+    <div class="carousel-inner TW_project_update_carousel">
         <g:each in="${images}" var="img" status="count">
         	<g:if test="${count == 0}">
         		<div class="item active">

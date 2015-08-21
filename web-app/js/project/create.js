@@ -762,14 +762,14 @@ $(function() {
         	var vurl=url.replace("watch?v=", "v/");
             $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'></iframe>');
         } else {
-        	$('#ytVideo').html('<iframe class="youtubeVideoIframe" src=https://player.vimeo.com/video/'+ match[2] +'></iframe>');
+        	$('#ytVideo').html('<iframe class="youtubeVideoIframe" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen src=https://player.vimeo.com/video/'+ match[2] +'></iframe>');
         }
     }
 	$('#add').on('click',function(){
         var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
         var url= $('#videoUrl').val().trim();
-        var match = url.match(youtube);
+        var match = (url.match(youtube) || url.match(vimeo));
         if (match && match[2].length == 11) {
             $('#ytVideo').show();
             $('#media').hide();
@@ -1075,6 +1075,8 @@ $(function() {
         var rewardSaved = rewardValidationAndSaving(count);
         if (rewardSaved){
         var updateCount = count;
+        $('#savereward').val(count);
+        
         count++;
         var str ='<div class="rewardsTemplate cr-perks-spec" id="rewardTemplate">'+
    '<div class="col-sm-12 perk-css">'+
@@ -1151,12 +1153,15 @@ $(function() {
                 count--;
                 $('#rewardCount').attr('value',count);
                 $('#addNewRewards').find('.rewardsTemplate').last().remove();
+                var lastrewardcount = $('#addNewRewards').find('.rewardsTemplate').last().attr("value");
+                $('.refreshEditReward').last().remove();
             }
         }
     });
     
     $('#savereward').click(function(){
-        rewardValidationAndSaving(count);
+    	var lastrewardcount = $(this).attr("value");
+        rewardValidationAndSaving(lastrewardcount);
     });
   
     function rewardValidationAndSaving(rewardCount){

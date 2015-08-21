@@ -361,7 +361,7 @@
                                 <div class="form-group projectImageFilediv">
                                     <div class="col-sm-6">
                                         <div class="fileUpload btn btn-info btn-sm cr-btn-color cr-marg-mobile">
-                                            <span>Display Picture</span>
+                                            Display Picture
                                             <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">
                                         </div>
                                         <label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>

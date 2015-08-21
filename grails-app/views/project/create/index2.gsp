@@ -123,7 +123,7 @@
                 <div class="col-sm-6 image-popover">
                     <div class="panel panel-default panel-create-size">
                         <div class="panel-body">
-                            <div class="form-group" id="createthumbnail">
+                            <div class="form-group" id="createthumbnail" >
                                 <div class="col-sm-12">
                                     <div class="fileUpload btn btn-info btn-sm cr-btn-color">
                                         <span>Upload Pictures</span>
@@ -133,8 +133,18 @@
                                     <label class="docfile-orglogo-css" id="imgmsg">Please select image file.</label>
                                     <label class="docfile-orglogo-css" id="campaignfilesize"></label>
                                 </div>
-                                <div class="col-sm-12 pad-result">
+                                <div class="col-sm-12 pad-result" id="campaignthumbnails">
+                                <g:each var="imgurl" in="${project.imageUrl}">
+                                <div id="imgdiv" class="pr-thumb-div">
+                                    <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
+                                    <div class="deleteicon pictures-edit-deleteicon">
+                                        <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}'
+                                        src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete"/>
+                                    </div>
+                                </div> 
+                            </g:each>
                                     <output id="result"></output>
+                                    <div id="test"></div>
                                 </div>
                             </div>
                         </div>
@@ -257,12 +267,23 @@
                                         <label class="docfile-orglogo-css" id="logomsg">Please select image file.</label>
                                         <label class="docfile-orglogo-css" id="iconfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
                                     </div>
+                                    <g:if test="${project.organizationIconUrl}">
+                                    <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-2">
+                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
+                                        <div class="deleteicon orgicon-css-styles">
+                                            <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
+                                            src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete"/>
+                                        </div>
+                                    </div>
+                                    </g:if>
+                                    <g:else>
                                     <div id="icondiv" class="pr-icon-thumbnail-div cr-image-mobile col-sm-2">
                                         <img id="imgIcon" alt="cross" class="pr-icon-thumbnail">
                                         <div class="deleteicon orgicon-css-styles">
                                             <img alt="cross" onClick="removeLogo();" id="delIcon">
                                         </div>
                                     </div>
+                                    </g:else>
                                 </div>
                             </div>
                         </div>
@@ -408,7 +429,7 @@
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input type="text" placeholder="Name of Perk" name="rewardTitle${iteratorCount}" class="form-control cr-tablet-left cr-perk-title-number form-control-no-border text-color cr-placeholder cr-chrome-place required" id="rewardTitle${iteratorCount}" value="${reward.title}">
+                                    <input type="text" placeholder="Name of Perk" name="rewardTitle${iteratorCount}" class="form-control cr-tablet-left cr-perk-title-number form-control-no-border text-color cr-placeholder cr-chrome-place rewardTitle" id="rewardTitle${iteratorCount}" value="${reward.title}">
                                 </div>
                             </div>
                         </div>
@@ -423,7 +444,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="col-sm-12">
-                                    <textarea class="form-control rewardDescription form-control-no-border text-color cr-placeholder cr-chrome-place required" name="rewardDescription${iteratorCount}" id="rewardDesc${iteratorCount}" rows="2" placeholder="Let your contributors feel special by rewarding them. Think out of the box and leave your contributors awestruck. Make sure you have calculated the costs associated with the perk; you do not want to lose money!" 
+                                    <textarea class="form-control rewardDescription form-control-no-border text-color cr-placeholder cr-chrome-place" name="rewardDescription${iteratorCount}" id="rewardDesc${iteratorCount}" rows="2" placeholder="Let your contributors feel special by rewarding them. Think out of the box and leave your contributors awestruck. Make sure you have calculated the costs associated with the perk; you do not want to lose money!" 
                                         maxlength="250">${reward.description}</textarea>
                                     <p class="cr-perk-des-font">Please refer to our <a href="${resource(dir: '/termsofuse')}" target="_blank">Terms  Of  Use</a> for more details on perks.</p>
                                 </div>
@@ -488,7 +509,7 @@
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <div class="col-sm-12">
-                                    <input type="text" placeholder="Name of Perk" name="rewardTitle1" class="form-control cr-tablet-left cr-perk-title-number form-control-no-border text-color cr-placeholder cr-chrome-place required" id="rewardTitle1">
+                                    <input type="text" placeholder="Name of Perk" name="rewardTitle1" class="form-control rewardTitle cr-tablet-left cr-perk-title-number form-control-no-border text-color cr-placeholder cr-chrome-place" id="rewardTitle1">
                                 </div>
                             </div>
                         </div>
@@ -503,7 +524,7 @@
                         <div class="form-group">
                             <div class="col-sm-12">
                                 <div class="col-sm-12">
-                                    <textarea class="form-control rewardDescription form-control-no-border text-color cr-placeholder cr-chrome-place required" name="rewardDescription1" id="rewardDesc1" rows="2" placeholder="Let your contributors feel special by rewarding them. Think out of the box and leave your contributors awestruck. Make sure you have calculated the costs associated with the perk; you do not want to lose money!" maxlength="250"></textarea>
+                                    <textarea class="form-control rewardDescription form-control-no-border text-color cr-placeholder cr-chrome-place" name="rewardDescription1" id="rewardDesc1" rows="2" placeholder="Let your contributors feel special by rewarding them. Think out of the box and leave your contributors awestruck. Make sure you have calculated the costs associated with the perk; you do not want to lose money!" maxlength="250"></textarea>
                                     <p class="cr-perk-des-font">Please refer to our <a href="${resource(dir: '/termsofuse')}" target="_blank">Terms  Of  Use</a> for more details on perks.</p>
                                 </div>
                             </div>
@@ -634,8 +655,8 @@
                     </g:else>
                     <div class="col-sm-12 cr-paddingspace" id="launch">
                         <div class="col-sm-6 text-center">
-                            <g:link class="cr-bg-preview-btn cr-btn-alignment-pre cr-btn-margin createsubmitbutton hidden-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
-                            <g:link class="cr-bg-xs-preview-btn cr-xs-mobile createsubmitbutton visible-xs" id="${project.id}" params="['isPreview':true]" controller="project" action="manageCampaign"></g:link>
+                            <button class="cr-bg-preview-btn cr-btn-alignment-pre cr-btn-margin createsubmitbutton hidden-xs" id="previewButton" type="button" name="button"></button>
+                            <button class="cr-bg-xs-preview-btn cr-xs-mobile createsubmitbutton visible-xs" id="previewButtonXS" type="button" name="button"></button>
                         </div>
                         <g:hiddenField name="isSubmitButton" value="true" id="isSubmitButton"></g:hiddenField>
 <%--                        <div class="col-sm-4 text-center padding-btn" >--%>
@@ -759,6 +780,37 @@
               });
              }
          }
+
+        function deleteOrganizationLogo(current, projectId) {
+            $('#imgIcon').removeAttr('src');
+             $('#imgIcon').hide();
+             $('#logoDelete').hide();
+             $('#orgediticonfile').val(''); 
+             $.ajax({
+                 type:'post',
+                 url:$("#b_url").val()+'/project/deleteOrganizationLogo',
+                 data:'projectId='+projectId,
+                 success: function(data){
+                 $('#test').html(data);
+             }
+             }).error(function(){
+                 alert('An error occured');
+             });
+         }
+
+        function deleteProjectImage(current,imgst, projectId) {
+            $(current).parents('#imgdiv').remove();
+            $.ajax({
+                type:'post',
+                url:$("#b_url").val()+'/project/deleteProjectImage',
+                data:'imgst='+imgst+'&projectId='+projectId,
+                success: function(data){
+                $('#test').html(data);
+            }
+            }).error(function(){
+                alert('An error occured');
+            });
+        }
 
     </script>
 </body>

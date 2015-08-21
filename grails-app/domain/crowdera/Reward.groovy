@@ -25,7 +25,4 @@ class Reward {
         description nullable: true
     }
 
-    static mapping = {
-        sort 'price'
-    }
 }

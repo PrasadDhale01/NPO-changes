@@ -95,7 +95,7 @@ def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera
 	            
 	            <div class="text-center">
 	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-create-btn createsubmitbutton hidden-xs" name="button" value="" id="campaigncreatebtn"></button>
-	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-xs-create-btn createsubmitbutton visible-xs" name="button" value="" id="campaigncreatebtn"></button>
+	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-xs-create-btn createsubmitbutton visible-xs" name="button" value="" id="campaigncreatebtnXS"></button>
 	            </div>
 	        </g:uploadForm>
 	     </div>

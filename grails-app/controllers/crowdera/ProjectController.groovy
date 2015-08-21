@@ -474,8 +474,6 @@ class ProjectController {
             project.secretKey = params.(FORMCONSTANTS.SECRETKEY)
         }
 		
-		project.draft = false;
-
         def imageFiles = request.getFiles('thumbnail[]')
         if(!imageFiles.isEmpty()) {
             projectService.getMultipleImageUrls(imageFiles, project)
@@ -490,8 +488,13 @@ class ProjectController {
         }
 
 		rewardService.saveRewardDetails(params);
-		
-        redirect (action:'launch' ,  params:[title:params.title])
+
+        if (params.isSubmitButton == 'true'){
+            project.draft = false;		
+            redirect (action:'launch' ,  params:[title:params.title])
+        } else {
+            redirect (action:'manageCampaign' ,  params:[id:project.id, isPreview:true])
+        }
     }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])

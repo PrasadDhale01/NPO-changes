@@ -44,7 +44,7 @@
 				</div><br/>
 				<div class="row">
 					<div class="col-md-8">
-						<ul class="nav nav-tabs nav-justified validateshow-details-story">
+						<ul class="nav nav-tabs nav-justified validateshow-details-story mng-safari-mobile admin-vali-show">
 							<li class="active"><a href="#essentials" data-toggle="tab">
 									<span class="fa fa-leaf"></span><span class="tab-text hidden-xs"> Story</span>
 							</a></li>

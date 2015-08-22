@@ -763,8 +763,8 @@ $(function() {
         $('#media').hide();
         $('#media-video').show();
         if (match[2].length == 11){
-        	var vurl=url.replace("watch?v=", "v/");
-            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'></iframe>');
+        	var vurl=url.replace("watch?v=", "embed/");
+            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
         } else {
         	$('#ytVideo').html('<iframe class="youtubeVideoIframe" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen src=https://player.vimeo.com/video/'+ match[2] +'></iframe>');
         }
@@ -780,8 +780,8 @@ $(function() {
             $('#media-video').show();
             autoSave('videoUrl', url);
             $('#addvideoUrl').val(url);
-            var vurl=url.replace("watch?v=", "v/");
-            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ vurl +'></iframe>');
+            var vurl=url.replace("watch?v=", "embed/");
+            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ vurl +'?wmode=transparent></iframe>');
         } else if (match && match[2].length == 9){
         	$('#ytVideo').show();
             $('#media').hide();

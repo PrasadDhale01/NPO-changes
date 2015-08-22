@@ -480,6 +480,16 @@ class MandrillService {
                 sendUpdateEmails( name, email, project, projectUpdate, currentUser)
             }
         }
+        
+        def teams = project.teams
+        teams.each { team ->
+            def contributor = Contribution.findByUserAndProject(team.user, project)
+            if (!contributor && (team.user != currentUser)) {
+                def name = team.user.firstName
+                def email = team.user.email
+                sendUpdateEmails( name, email, project, projectUpdate, currentUser)
+            }
+        }
     }
     
     def sendUpdateEmails(def name, def email, Project project, ProjectUpdate projectUpdate,User currentUser) {

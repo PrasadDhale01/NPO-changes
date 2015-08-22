@@ -48,6 +48,9 @@
 			</div>
 			<div id="test"></div>
             <button class="btn btn-primary btn-block" type="submit" id="btnSignUp">Sign me up!</button>
+            <div class="form-group">
+                By signing up you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+            </div>
         </g:form>
 
     </div>

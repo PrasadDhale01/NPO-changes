@@ -229,7 +229,8 @@ $(function() {
         return true;
     }, "Please enter verified paypal email id");
     
-    $('#campaigncreatebtn, #campaigncreatebtnXS').on('click', function() {
+    $('#campaigncreatebtn, #campaigncreatebtnXS').on('click', function(event) {
+    	event.preventDefault();
     	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
         	$("[name='amount']").rules("add", {
                 required: true,
@@ -248,10 +249,11 @@ $(function() {
             });
         }
    	
-    	if (validator.form()) {
-    		$('#campaigncreatebtn').attr('disabled','disabled');
-    		$('#campaigncreate').find('form').submit();
-    	}
+        if (validator.form()) {
+            $('#campaigncreatebtn').attr('disabled','disabled');
+            var url = $("#b_url").val()+"/project/createNow/?firstName="+$("#name").val()+'&amount='+$("#amount").val()+'&title='+$("#campaignTitle").val()+'&description='+$("#descarea").val()+'&usedFor='+$("#usedFor").val();
+            window.location.href = url;
+        }
     });
     
     $('#saveButton, #saveButtonXS').on('click', function() {
@@ -835,6 +837,9 @@ $(function() {
                     var picFile = event.target;
                     $('#imgIcon').attr('src',picFile.result);
                     $('#delIcon').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
+                    
+                    $('.createOrgIconDiv, .projectImageFilediv').find("span").remove();
+                    $('.createOrgIconDiv, .projectImageFilediv').closest(".form-group").removeClass('has-error');
                });
                // Read the image
                picReader.readAsDataURL(file);

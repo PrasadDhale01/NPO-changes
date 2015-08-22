@@ -22,7 +22,7 @@
 			<a href="#" class="banner-close">Close</a>
 		</div>
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#TW-navbar-collapse" id="hamburger-toggle">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -33,7 +33,7 @@
             </a>
         </div>
         <input type="text" name="search" id="hiddensearch"/>
-        <div class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse" id="TW-navbar-collapse">
             <ul class="nav navbar-nav nav-icon-bar">
                 <li class="searchengine hidden-xs">
                     <form action="/campaign" name="SearchForm">

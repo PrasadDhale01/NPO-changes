@@ -619,3 +619,9 @@ div.image-popover .popover{
 	margin-left:45%;
 	width:700px;
 }
+.agreeTermsOfUseAndPP a {
+	text-decoration: none !important;
+}
+.agreeTermsOfUseAndPP a:hover, .agreeTermsOfUseAndPP a:active {
+    text-decoration: none !important;
+}

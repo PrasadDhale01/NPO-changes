@@ -159,14 +159,16 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <div class="input-group col-md-12">
-                                                        <div class="col-sm-6">
-                                                            <input class="form-control" type="text" placeholder="City" name="city" id="city">
+                                                    <div class="row">
+                                                        <div class="input-group col-md-12">
+                                                            <div class="col-sm-6">
+                                                                <input class="form-control" type="text" placeholder="City" name="city" id="city">
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <input class="form-control" type="text" placeholder="Zip" name="zip"> 
+                                                            </div>
                                                         </div>
-                                                        <div class="col-sm-6">
-                                                            <input class="form-control" type="text" placeholder="Zip" name="zip"> 
-                                                        </div>
-                                                   </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">

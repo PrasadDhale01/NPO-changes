@@ -812,6 +812,8 @@ $(function() {
                });
                // Read the image
                picReader.readAsDataURL(file);
+               $('.projectImageFilediv, .createOrgIconDiv').find("span").remove();
+               $('.projectImageFilediv, .createOrgIconDiv').closest(".form-group").removeClass('has-error');
 	        }
 	    } 
     });
@@ -820,154 +822,159 @@ $(function() {
      /*******************************Description text length******************** */
     var counter = 1;
     $('#descarea').on('keydown', function(event) {
-    
-    event.altKey==true;
-    var currentString = $('#descarea').val().length;
-    if(currentString <=139) {
-        var text = currentString + 1;
-    }
-    if (event.keyCode > 31) {
-      if(event.altKey==true){
-        setDescriptionText();
-      }
-      else{
-    	  if(currentString <139)
-          currentString++;
-          $('#desclength').text(text);
-      }
-
-    } else {
-          currentString--;
-          $('#desclength').text(text);
-      }
-  }).keyup(function(e) {
+        event.altKey==true;
+        var currentString = $('#descarea').val().length;
+        if (currentString >= 9) {
+        	$('.createDescDiv').find("span").remove();
+            $('.createDescDiv').closest(".form-group").removeClass('has-error');
+        }
+        
+        if(currentString <=139) {
+            var text = currentString + 1;
+        }
+        if (event.keyCode > 31) {
+            if(event.altKey==true){
+                setDescriptionText();
+            }
+            else {
+                if(currentString < 139)
+                    currentString++;
+                $('#desclength').text(text+'/140');
+            }
+        } else {
+            currentString--;
+            $('#desclength').text(text+'/140');
+        }
+    }).keyup(function(e) {
       
-    if(e.altKey==true){
-        setDescriptionText();
-        return false;
-    }
+        if(e.altKey == true){
+           setDescriptionText();
+           return false;
+        }
 
-    switch (e.keyCode) {
+        switch (e.keyCode) {
 
-      case 13:      //Enter
-      case 8:       //backspace
-      case 46:      //delete
-      case 17:      
-      case 27:      //escape
-      case 10:      //new line
-      case 20:      
-      case 9:       //horizontal TAB
-      case 11:      //vertical tab
-      case 33:      //page up  
-      case 34:      //page  down
-      case 35:      //End 
-      case 36:      //Home
-      case 37:      //Left arrow
-      case 38:      //up arrow
-      case 39:      //Right arrow
-      case 40:      //Down arrow
-      case 45:      //Insert
-      case 12:      //vertical tab
+            case 13:      //Enter
+            case 8:       //backspace
+            case 46:      //delete
+            case 17:      
+            case 27:      //escape
+            case 10:      //new line
+            case 20:      
+            case 9:       //horizontal TAB
+            case 11:      //vertical tab
+            case 33:      //page up  
+            case 34:      //page  down
+            case 35:      //End 
+            case 36:      //Home
+            case 37:      //Left arrow
+            case 38:      //up arrow
+            case 39:      //Right arrow
+            case 40:      //Down arrow
+            case 45:      //Insert
+            case 12:      //vertical tab
+                setDescriptionText();
+                break;
+            case 16:      //shift
+                setDescriptionText();
+                break;
+        }
+    }).focus(function() {
         setDescriptionText();
-        break;
-      case 16:      //shift
-       setDescriptionText();
-       break;
-    }
-  }).focus(function(){
+    }).focusout(function() {
         setDescriptionText();
-    }).focusout(function(){
-        setDescriptionText();
-  });
+    });
   
-  function setDescriptionText(){
-     
-    var currentString = $('#descarea').val().length;
-    if (currentString == 0) {
-      $('#desclength').text("0");
-    } 
-    else {
-      currentString = currentString;
-      $('#desclength').text(currentString);
+    function setDescriptionText(){
+        var currentString = $('#descarea').val().length;
+        if (currentString == 0) {
+            $('#desclength').text("0/140");
+        } 
+        else {
+            currentString = currentString;
+            $('#desclength').text(currentString+'/140');
+        }
     }
-  }
 
-  /*******************************Title text length******************** */
-  var counter = 1;
-  $('#campaignTitle').on('keydown', function(event) {
+    /*******************************Title text length******************** */
+    var counter = 1;
+    $('#campaignTitle').on('keydown', function(event) {
   
-  event.altKey==true;
-  var currentstring = $('#campaignTitle').val().length;
-  if(currentstring <=54) {
-      var text = currentstring + 1;
-  }
-  if (event.keyCode > 31) {
-    if(event.altKey==true){
-    	setTitleText();
-    }
-    else{
-  	  if(currentstring <54)
-  		currentstring++;
-        $('#titleLength').text(text);
-    }
+        event.altKey==true;
+        var currentstring = $('#campaignTitle').val().length;
+        if (currentstring >= 4) {
+        	$('.createTitleDiv').find("span").remove();
+            $('.createTitleDiv').closest(".form-group").removeClass('has-error');
+        }
+        if(currentstring <=54) {
+            var text = currentstring + 1;
+        }
+        if (event.keyCode > 31) {
+            if(event.altKey==true){
+    	         setTitleText();
+            }
+            else{
+  	             if(currentstring <54)
+  		             currentstring++;
+                 $('#titleLength').text(text+'/55');
+            }
 
-  } else {
-	  currentstring--;
-        $('#titleLength').text(text);
-    }
-}).keyup(function(e) {
+        } else {
+	        currentstring--;
+            $('#titleLength').text(text+'/55');
+        }
+    }).keyup(function(e) {
     
-  if(e.altKey==true){
-	  setTitleText();
-      return false;
-  }
+        if(e.altKey==true){
+	        setTitleText();
+            return false;
+        }
 
-  switch (e.keyCode) {
+        switch (e.keyCode) {
+ 
+            case 13:      //Enter
+            case 8:       //backspace
+            case 46:      //delete
+            case 17:      
+            case 27:      //escape
+            case 10:      //new line
+            case 20:      
+            case 9:       //horizontal TAB
+            case 11:      //vertical tab
+            case 33:      //page up  
+            case 34:      //page  down
+            case 35:      //End 
+            case 36:      //Home
+            case 37:      //Left arrow
+            case 38:      //up arrow
+            case 39:      //Right arrow
+            case 40:      //Down arrow
+            case 45:      //Insert
+            case 12:      //vertical tab
+    	        setTitleText();
+                break;
+            case 16:      //shift
+    	        setTitleText();
+                break;
+        }
+    }).focus(function(){
+	    setTitleText();
+    }).focusout(function(){
+	    setTitleText();
+    });
 
-    case 13:      //Enter
-    case 8:       //backspace
-    case 46:      //delete
-    case 17:      
-    case 27:      //escape
-    case 10:      //new line
-    case 20:      
-    case 9:       //horizontal TAB
-    case 11:      //vertical tab
-    case 33:      //page up  
-    case 34:      //page  down
-    case 35:      //End 
-    case 36:      //Home
-    case 37:      //Left arrow
-    case 38:      //up arrow
-    case 39:      //Right arrow
-    case 40:      //Down arrow
-    case 45:      //Insert
-    case 12:      //vertical tab
-    	setTitleText();
-      break;
-    case 16:      //shift
-    	setTitleText();
-     break;
-  }
-}).focus(function(){
-	setTitleText();
-  }).focusout(function(){
-	  setTitleText();
-});
-
-function setTitleText(){
+    function setTitleText() {
    
-  var currentstring = $('#campaignTitle').val().length;
-  if (currentstring == 0) {
-    $('#titleLength').text("0");
-  } 
-  else {
-	  currentstring = currentstring;
-    $('#titleLength').text(currentstring);
-  }
-}
+        var currentstring = $('#campaignTitle').val().length;
+        if (currentstring == 0) {
+            $('#titleLength').text("0/55");
+        } else {
+	        currentstring = currentstring;
+            $('#titleLength').text(currentstring+'/55');
+        }
+    }
      
-      /** *************************Multiple Image Selection*************** */
+    /** *************************Multiple Image Selection*************** */
     var isvalidsize =  false;
     $('#projectImageFile, #projectEditImageFile').change(function(event) {
         var file =this.files[0];
@@ -1003,6 +1010,9 @@ function setTitleText(){
                         div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"+ picFile.result+ "'"+ "title='"
                             + file.name + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"+ "</div>";
                             output.insertBefore(div, null);
+                            
+                        $('#createthumbnail').find("span").remove();
+                        $('#createthumbnail').closest(".form-group").removeClass('has-error');
                     });
                     // Read the image
                     picReader.readAsDataURL(file);
@@ -1254,7 +1264,7 @@ function setTitleText(){
 
     $(document).ready(function (){
         //called when key is pressed in textbox
-        $("#amount").keypress(function (e) {
+        $("#amount, #amount1").keypress(function (e) {
             //if the letter is not digit then display error and don't type anything
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                 //display error message
@@ -1479,7 +1489,7 @@ function setTitleText(){
         autoSave('campaignTitle', title);
     });
     
-    $('.descarea').blur(function (){
+    $('.descarea1').blur(function (){
         var descarea = $(this).val();
         autoSave('descarea', descarea);
     });

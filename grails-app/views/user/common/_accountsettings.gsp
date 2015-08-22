@@ -26,7 +26,7 @@
 	        </div>
 		    <g:uploadForm controller="user" action="edit_avatar" id="${user.id}" role="form">
 		        <button class="btn btn-primary btn-sm" type="button" id="editavatarbutton">Edit Avatar</button>
-	            <input class="hidden" type="file" name="profile" id="editavatar" accept="image/*"/>
+	            <input class="hid-input-type-file" type="file" name="profile" id="editavatar" accept="image/*"/>
 	            <input type="submit" class="hidden buttons" value="Upload" id="editbutton" accept="image/*"/>
 	            <div class="clear"></div>
                 <label class="docfile-orglogo-css" id="editProfileImg">Please select image file only.</label>
@@ -39,7 +39,7 @@
 	        </div>
 	        <g:uploadForm controller="user" action="upload_avatar" id="${user.id}" role="form">
 	            <button class="btn btn-primary btn-sm" type="button" id="uploadavatar">Upload Avatar</button>
-	            <input class="hidden" type="file" name="avatar" id="avatar" accept="image/*"/>
+	            <input class="hid-input-type-file" type="file" name="avatar" id="avatar" accept="image/*"/>
 	            <input type="submit" class="hidden buttons" value="Upload" id="uploadbutton" accept="image/*"/>
 	            <div class="clear"></div>
                 <label class="docfile-orglogo-css" id="uploadProfileImg">Please select image file only.</label>

@@ -42,7 +42,7 @@
                 <g:hiddenField name="projectId" value="${project.id}"/>
                 <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari" id="start">
                     <label class="panel body cr-start-size cr-safari">START</label>
-                    <div class="form-group col-sm-10 cr-start-space">
+                    <div class="form-group col-sm-10 cr-start-space campaignEndDateError">
                         <div class="col-sm-3 deadline-popover">
                              <div class="input-group enddate">
                                  <g:if test="${campaignEndDate}">
@@ -211,7 +211,7 @@
                             <div class="form-group" id="createthumbnail">
                                 <div class="col-sm-12">
                                     <div class="fileUpload btn btn-info btn-sm cr-btn-color">
-                                        <span>Upload Pictures</span>
+                                        Upload Pictures
                                         <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectEditImageFile" accept="image/jpeg, image/png" multiple>
                                     </div>
                                     <div class="clear"></div>
@@ -274,7 +274,7 @@
                <div class="col-sm-12 manage-Top-tabs-mobile" id="admins">
                    <div class="cr-tabs-admins cr-safari">
 	                   <label class="panel body cr-admin-title cr-safari">ADMIN</label>
-                       <ul class="nav nav-tabs manage-projects nav-justified cr-ul-tabs">
+                       <ul class="nav nav-tabs manage-projects nav-justified cr-safari-mobile cr-ul-tabs">
                            <li class="cr-li-tabs cr-li-tabsss cr-hover-color">
                               <a href="#admin" data-toggle="tab" aria-expanded="false">
                                    <span class="glyphicon glyphicon-user cr-icon-tabs-user visible-xs"></span><span class="tab-text hidden-xs cr-add-tabs-title cr-font-title pull-left">Add Campaign Admin</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
@@ -300,10 +300,10 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <g:if test="${email1}">
-                                            <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email1" id="firstadmin" value="${email1}" placeholder="First Admin"></input>
+                                            <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email1" id="firstadmin" value="${email1}" placeholder="First Admin"></input>
                                         </g:if>
                                         <g:else>
-                                            <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email1" id="firstadmin" placeholder="First Admin"></input>
+                                            <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email1" id="firstadmin" placeholder="First Admin"></input>
                                         </g:else>
                                     </div>
                                 </div>
@@ -313,10 +313,10 @@
                                 <div class="form-group">
                                  <div class="col-sm-12">
                                      <g:if test="${email2}">
-                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email2" id="secondadmin" value="${email2}" placeholder="Second Admin"></input>
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email2" id="secondadmin" value="${email2}" placeholder="Second Admin"></input>
                                      </g:if>
                                      <g:else>
-                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email2" id="secondadmin" placeholder="Second Admin"></input>
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email2" id="secondadmin" placeholder="Second Admin"></input>
                                      </g:else>
                                  </div>
                                 </div>
@@ -326,10 +326,10 @@
                                 <div class="form-group">
                                  <div class="col-sm-12">
                                      <g:if test="${email3}">
-                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email3" id="thirdadmin" value="${email3}" placeholder="Third Admin"></input>
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email3" id="thirdadmin" value="${email3}" placeholder="Third Admin"></input>
                                      </g:if>
                                      <g:else>
-                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="email3" id="thirdadmin" placeholder="Third Admin"></input>
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email3" id="thirdadmin" placeholder="Third Admin"></input>
                                      </g:else>
                                  </div>
                                 </div>
@@ -339,7 +339,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group" id="organizationName">
                                     <div class="col-sm-12">
-                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Individual / Organization Name">
+                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.ORGANIZATIONNAME}" value="${project.organizationName}" id="organizationname" placeholder="Individual / Organization Name">
                                     </div>
                                 </div>
                             </div>
@@ -348,19 +348,19 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <g:if test="${project.webAddress}">
-                                            <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook" value="${project.webAddress}">
+                                            <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook" value="${project.webAddress}">
                                         </g:if>
                                         <g:else>
-                                            <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook">
+                                            <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.WEBADDRESS}" id="webAddress" placeholder="URL / Web Address / Facebook">
                                         </g:else>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="col-sm-4">
-                                <div class="form-group">
+                                <div class="form-group projectImageFilediv">
                                     <div class="col-sm-6">
-                                        <div class="fileUpload btn btn-info btn-sm cr-btn-color">
+                                        <div class="fileUpload btn btn-info btn-sm cr-btn-color cr-marg-mobile">
                                             <span>Display Picture</span>
                                             <input type="file" class="upload" id="iconfile" name="iconfile" accept="image/jpeg, image/png">
                                         </div>
@@ -409,7 +409,7 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="text" id="firstName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.FIRSTNAME}" value="${user.firstName}" placeholder="First Name" readonly>
+                                        <input type="text" id="firstName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.FIRSTNAME}" value="${user.firstName}" placeholder="First Name" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -417,11 +417,70 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <input type="text" id="lastName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.LASTNAME}" value="${user.lastName}" placeholder="Last Name" readonly>
+                                        <input type="text" id="lastName" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.LASTNAME}" value="${user.lastName}" placeholder="Last Name" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+
+                                        <g:if test="${project.beneficiary.telephone}">
+                                            <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone" value="${project.beneficiary.telephone}">
+                                        </g:if>
+                                        <g:else>
+                                            <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
+                                        </g:else>
+                                        <g:if test="${project.beneficiary.email}">
+                                            <input type="email" id="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.EMAIL}" placeholder="email" value="${project.beneficiary.email}">
+                                        </g:if>
+                                        <g:else>
+                                            <input type="email" id="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.EMAIL}" placeholder="email">
+                                        </g:else>
                                     </div>
                                 </div>
                             </div>
 
+                            <div class="clear"></div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <g:if test="${project.beneficiary.facebookUrl}">
+                                            <input type="text" id="facebookUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.FACEBOOKURl}" value="${project.beneficiary.facebookUrl}" placeholder="Facebook Url">
+                                        </g:if>
+                                        <g:else>
+                                            <input type="text" id="facebookUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.FACEBOOKURl}" placeholder="Facebook Url">
+                                        </g:else>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <g:if test="${project.beneficiary.twitterUrl}">
+                                            <input type="text" id="twitterUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.TWITTERURl}" value="${project.beneficiary.twitterUrl}" placeholder="Twitter Url">
+                                        </g:if>
+                                        <g:else>
+                                            <input type="text" id="twitterUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.TWITTERURl}" placeholder="Twitter Url">
+                                        </g:else>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <g:if test="${project.beneficiary.linkedinUrl}">
+                                            <input type="text" id="linkedinUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.LINKEDINURL}" placeholder="Linkedin Url" value="${project.beneficiary.linkedinUrl}">
+                                        </g:if>
+                                        <g:else>
+                                            <input type="text" id="linkedinUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.LINKEDINURL}" placeholder="Linkedin Url">
+                                        </g:else>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clear"></div>
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
@@ -434,46 +493,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="clear"></div>
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <g:if test="${project.beneficiary.facebookUrl}">
-                                            <input type="text" id="facebookUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.FACEBOOKURl}" value="${project.beneficiary.facebookUrl}" placeholder="Facebook Url">
-                                        </g:if>
-                                        <g:else>
-                                            <input type="text" id="facebookUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.FACEBOOKURl}" placeholder="Facebook Url">
-                                        </g:else>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <g:if test="${project.beneficiary.twitterUrl}">
-                                            <input type="text" id="twitterUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.TWITTERURl}" value="${project.beneficiary.twitterUrl}" placeholder="Twitter Url">
-                                        </g:if>
-                                        <g:else>
-                                            <input type="text" id="twitterUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.TWITTERURl}" placeholder="Twitter Url">
-                                        </g:else>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-sm-4">
-                                <div class="form-group">
-                                    <div class="col-sm-12">
-                                        <g:if test="${project.beneficiary.linkedinUrl}">
-                                            <input type="text" id="linkedinUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.LINKEDINURL}" placeholder="Linkedin Url" value="${project.beneficiary.linkedinUrl}">
-                                        </g:if>
-                                        <g:else>
-                                            <input type="text" id="linkedinUrl" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.LINKEDINURL}" placeholder="Linkedin Url">
-                                        </g:else>
-                                    </div>
-                                </div>
-                            </div>
-                            
 <%--                            <div class="col-sm-4">--%>
 <%--                                <div class="form-group">--%>
 <%--                                    <div class="col-sm-12">--%>
@@ -686,30 +705,53 @@
                         </div>
                         <label class="cr-pad-who">Who will recieve the funds</label>
                         <div class="btn-group col-sm-12 cr-perk-check cr-radio-option" data-toggle="buttons">
-                            <label class="panel-body cr-check-btn-first text-center col-sm-3 col-xs-12" id="recipient"> <span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label> 
-                            <g:if test="${project.fundsRecievedBy == 'PERSON'}">
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-reci-siz active" id="person"> <input type="radio" name="" value="yes" checked="checked">Person</label> 
+                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                <label class="panel-body cr-check-btn-first text-center col-sm-3 col-xs-12" id="recipient"> <span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label> 
+                                <g:if test="${project.fundsRecievedBy == 'PERSON'}">
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-reci-siz active" id="person"> <input type="radio" name="" value="yes" checked="checked">Individual</label> 
+                                </g:if>
+                                <g:else>
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-reci-siz" id="person"> <input type="radio" name="" value="yes">Individual</label> 
+                                </g:else>
+                                <g:if test="${project.fundsRecievedBy == 'NGO'}">
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments active" id="ngo"> <input type="radio" checked="checked" value="no"><span class="cr-pay-rd">An Indian </span><span class="cr-reci-siz">NGO</span></label>
+                                </g:if>
+                                <g:else>
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments" id="ngo"> <input type="radio" name="" value="no"><span class="cr-pay-rd">An Indian </span><span class="cr-reci-siz">NGO</span></label>
+                                </g:else>
+                                <g:if test="${project.fundsRecievedBy == 'OTHERS'}">
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 active" id="others"> <input type="radio" name="" checked="checked" value="no"><span class="cr-reci-siz">Others</span></label>
+                                </g:if>
+                                <g:else>
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 " id="others"> <input type="radio" name="" value="no"><span class="cr-reci-siz">Others</span></label>
+                                </g:else>
                             </g:if>
                             <g:else>
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-reci-siz" id="person"> <input type="radio" name="" value="yes">Person</label> 
-                            </g:else>
-                            <g:if test="${project.fundsRecievedBy == 'NON-PROFITS'}">
-                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments active" id="non-profit"> <input type="radio" checked="checked" name="" value="no"><span class="cr-pay-rd">A US 501(c)(3)</span><span class="cr-reci-siz"> Non-profit</span></label>
-                            </g:if>
-                            <g:else>
-                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments" id="non-profit"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A US 501(c)(3)</span><span class="cr-reci-siz"> Non-profit</span></label>
-                            </g:else>
-                            <g:if test="${project.fundsRecievedBy == 'NGO'}">
-                             <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-mob-payments active" id="ngo"> <input type="radio" checked="checked" value="no"><span class="cr-pay-rd">A non-US </span><span class="cr-reci-siz">NGO</span></label>
-                            </g:if>
-                            <g:else>
-                             <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-mob-payments" id="ngo"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A non-US </span><span class="cr-reci-siz">NGO</span></label>
-                            </g:else>
-                            <g:if test="${project.fundsRecievedBy == 'OTHERS'}">
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 active" id="others"> <input type="radio" name="" checked="checked" value="no"><span class="cr-reci-siz">Others</span></label>
-                            </g:if>
-                            <g:else>
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 " id="others"> <input type="radio" name="" value="no"><span class="cr-reci-siz">Others</span></label>
+                                <label class="panel-body cr-check-btn-first text-center col-sm-3 col-xs-12" id="recipient"> <span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label> 
+                                <g:if test="${project.fundsRecievedBy == 'PERSON'}">
+                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-reci-siz active" id="person"> <input type="radio" name="" value="yes" checked="checked">Person</label> 
+                                </g:if>
+                                <g:else>
+                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-reci-siz" id="person"> <input type="radio" name="" value="yes">Person</label> 
+                                </g:else>
+                                <g:if test="${project.fundsRecievedBy == 'NON-PROFITS'}">
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments active" id="non-profit"> <input type="radio" checked="checked" name="" value="no"><span class="cr-pay-rd">A US 501(c)(3)</span><span class="cr-reci-siz"> Non-profit</span></label>
+                                </g:if>
+                                <g:else>
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments" id="non-profit"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A US 501(c)(3)</span><span class="cr-reci-siz"> Non-profit</span></label>
+                                </g:else>
+                                <g:if test="${project.fundsRecievedBy == 'NGO'}">
+                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-mob-payments active" id="ngo"> <input type="radio" checked="checked" value="no"><span class="cr-pay-rd">A non-US </span><span class="cr-reci-siz">NGO</span></label>
+                                </g:if>
+                                <g:else>
+                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-mob-payments" id="ngo"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A non-US </span><span class="cr-reci-siz">NGO</span></label>
+                                </g:else>
+                                <g:if test="${project.fundsRecievedBy == 'OTHERS'}">
+                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 active" id="others"> <input type="radio" name="" checked="checked" value="no"><span class="cr-reci-siz">Others</span></label>
+                                </g:if>
+                                <g:else>
+                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 " id="others"> <input type="radio" name="" value="no"><span class="cr-reci-siz">Others</span></label>
+                                </g:else>
                             </g:else>
                         </div>
                     </div>
@@ -862,6 +904,8 @@
                 }
             }).on('changeDate', function(){
                 autoSave('date', $('#datepicker').val());
+                $('.deadline-popover').find("span").remove();
+                $('.campaignEndDateError').closest(".form-group").removeClass('has-error');
             });
         });
 

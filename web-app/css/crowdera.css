@@ -695,6 +695,20 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    input.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
+    div.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
+    ul.cr-safari-mobile{
+        display: -webkit-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+    }
+	.TW-testimonial-width{
+		width:578px !important;	
+	}
 	label.cr-start-size{
 	    margin-left: 42px;
 	} 
@@ -872,7 +886,7 @@ a {
         background-color: #01bbd2;
         margin-bottom: 0;
         padding: 10px 112px;
-        width: 284px;
+        width: 283px;
     }
     label.cr-payments-lab {
         padding-left: 84px;
@@ -1265,8 +1279,10 @@ a {
 	width: 119px;
     }
     .socialicon{
-    	display: flex;
-    	justify-content: center;
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:236px;
     }
     div#aboutus {
         padding-left: 20%;
@@ -1355,6 +1371,9 @@ a {
     .cr-bg-preview-btn{
         margin-left : 60px !important;
     }
+	.TW-testimonial-width{
+		width:578px !important;	
+	}
 	label.cr-payments {
         width: 76%;
     }
@@ -2271,7 +2290,7 @@ a {
     }
     .nav-tabs.nav-justified > li {
         float: none;
-        width: 100% !important;
+        width: 33.5% !important;
     }
     .nav-justified.validateshow-details-story{
         display:flex !important;
@@ -2644,7 +2663,7 @@ a {
     }
     .nav-tabs.nav-justified > li {
         float: none;
-        width: 100% !important;
+        width: 33.5% !important;
     }
     .nav-justified.validateshow-details-story{
         display:flex !important;
@@ -3890,7 +3909,7 @@ div.tile-min-height{
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
 	.nav.manage-projects > li > a {
-	    padding: 7px 20px;
+	    padding: 7px 15px;
 	}
 	.leftcard-column {
 	    width: 69%;
@@ -5358,7 +5377,7 @@ textarea.form-control {
     }
     .nav-tabs.nav-justified > li {
         float: none;
-        width: 100% !important;
+        width: 33.5% !important;
     }
     .nav-justified.validateshow-details-story{
         display:flex !important;
@@ -5480,7 +5499,7 @@ textarea.form-control {
    float:left;
    }*/
    .nav.nav-tabs.manage-projects li{
-   width:100%;
+   width:33.5%;
    float:none;
    }
    .form-control.rewardprice{
@@ -6133,6 +6152,20 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    input.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
+    div.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
+    ul.cr-safari-mobile{
+        display: -webkit-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+    }
+	.TW-testimonial-width{
+		width:270px !important;	
+	}
 	label.cr-start-size{
 	    margin-left: 26px;
 	} 
@@ -6321,7 +6354,7 @@ textarea.form-control {
     label.cr-admin-title{
         background-color: #01bbd2;
         margin-bottom: 0;
-        padding: 10px 91px;
+        padding: 10px 90px;
     }
     label.cr-payments-lab {
         padding-left: 71px;
@@ -6756,8 +6789,10 @@ textarea.form-control {
 		margin-right:auto;
 	}
 	.socialicon{
-    	display: flex;
-    	justify-content: center;
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:236px;
     }
 	.socialicon img {
     	margin-left:auto !important;
@@ -8503,12 +8538,13 @@ p.anonymous-top {
 }
 .header-testimonial{
 	display:inline-flex;
+	display:-webkit-box;   /***safari***/
 	margin-top: 14px;
 }
 .testimonial-name{
 	font-family:"Open Sans";
 	font-size:16px;
-	padding-right:0px;
+	padding-right:25px;
 }
 .testimonial-name img{
 	padding-right:9px;
@@ -9419,4 +9455,10 @@ body {
 /***********************/
 .cr-start-space{
     left: -16px;	
+}
+.hid-input-type-file{
+	visibility: hidden !important;
+}
+.TW-testimonial-width{
+	width:800px;	
 }

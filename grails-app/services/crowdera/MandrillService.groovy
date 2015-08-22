@@ -484,7 +484,8 @@ class MandrillService {
         def teams = project.teams
         teams.each { team ->
             def contributor = Contribution.findByUserAndProject(team.user, project)
-            if (!contributor && (team.user != currentUser)) {
+            def supporter = Supporter.findByUserAndProject(team.user, project)
+            if (!contributor && (team.user != currentUser) && !supporter) {
                 def name = team.user.firstName
                 def email = team.user.email
                 sendUpdateEmails( name, email, project, projectUpdate, currentUser)

@@ -825,7 +825,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button href="#" data-dismiss="modal" class="btn btn-primary">Close</button>
-                                            <button class="btn btn-primary" href="#" data-dismiss="modal" id="saveButton">Save</button>
+                                            <button class="btn btn-primary" href="#" data-dismiss="modal" id="saveCharitableId">Save</button>
                                         </div>
                                     </div>
                                 </div>

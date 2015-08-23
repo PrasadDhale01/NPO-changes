@@ -422,6 +422,9 @@
 					def price = (reward.price).round()
 					lastrewardCount = reward.rewardCount
 				%>
+				    <g:if test="${iteratorCount > 1}">
+				        <div class="hidden-xs break-div"></div>
+				    </g:if>
                     <div class="rewardsTemplate" id="rewardTemplate" value="${reward.rewardCount}">
                         <div class="col-sm-2">
                             <div class="form-group">

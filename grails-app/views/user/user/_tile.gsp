@@ -222,7 +222,7 @@
                         	<i class="glyphicon glyphicon-edit"></i>
                     	</button>
                 	</g:link>
-                	<g:form controller="project" action="manageCampaign" method="post" id="${project.id}">
+                	<g:form controller="project" action="manageCampaign" method="post" id="${project.id}" params='[isPreview:true, tile:true]'>
                     	<button class="projectedit close pull-right" id="projectpreview">
                         	<i class="glyphicon glyphicon-picture"></i>
                     	</button>

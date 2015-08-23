@@ -858,7 +858,10 @@ class ProjectController {
         def title = projectService.getVanityTitleFromId(params.id)
         if(title) {
             if (params.isPreview){
-                redirect (action :'preview', params:['projectTitle':title]);
+				if(params.tile)
+                    redirect (action :'previewTile', params:['projectTitle':title]);
+			    else 
+				    redirect (action :'preview', params:['projectTitle':title]);
             } else {
                 redirect (action:'manageproject', params:['projectTitle':title])
             }
@@ -868,8 +871,13 @@ class ProjectController {
     }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def previewTile(){
+		forward(action:'manageproject', params:['projectTitle':params.projectTitle, 'isPreview':true, 'tile':true])
+	}
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def preview(){
-		forward(action:'manageproject', params:['projectTitle':params.projectTitle, 'isPreview':true])
+		forward(action:'manageproject', params:['projectTitle':params.projectTitle, 'isPreview':true, 'tile':false])
 	}
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -914,7 +922,7 @@ class ProjectController {
                         model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
                                 discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,
                                 ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
-                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo])
+                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo, tile:params.tile])
             } else{
                 flash.prj_mngprj_message = 'Campaign Not Found'
                 render (view: 'manageproject/error', model: [project: project])

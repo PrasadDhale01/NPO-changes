@@ -1084,13 +1084,12 @@ $(function() {
         $('#savereward').attr('value',count);
         var str ='<div class="rewardsTemplate cr-perks-spec" id="rewardTemplate" value="'+count+'">'+
    '<div class="col-sm-12 perk-css">'+
-       '<div class="col-sm-12 perk-create-styls" align="right">'+
+       '<div class="col-sm-12 perk-create-styls perk-top" align="right">'+
             '<button class="btn btn-primary btn-circle perks-created-remove editreward" id="'+updateCount+'" value="'+updateCount+'">'+
                 '<i class="glyphicon glyphicon-floppy-save"></i>'+
             '</button>'+
         '</div>'+
     '</div>'+
-    '<div class="hidden-xs break-div-js"></div>'+
     '<div class="col-sm-2">'+
         '<div class="form-group">'+
             '<div class="col-sm-12">';
@@ -1158,6 +1157,11 @@ $(function() {
                 count--;
                 $('#rewardCount').attr('value',count);
                 $('#addNewRewards').find('.rewardsTemplate').last().remove();
+                var editRewardId = $('#addNewRewards').find(".editreward:last").attr('id');
+             	var lastRewardCount = $('#addNewRewards').find(".rewardNum:last").val();
+            	if(editRewardId == lastRewardCount){
+            		$('.editreward:last').remove();
+            	}
             }
         }
     });

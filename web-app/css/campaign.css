@@ -565,14 +565,6 @@ div.lblIcon {
   width: 116px !important;
 }
 
-div.break-div{
-	  height: 115px;
-}
-
-div.break-div-js{
-	height:80px;
-}
-
 .youtubeVideoIframe {
 	width: 236%;
 	height:206px;
@@ -629,4 +621,13 @@ div.image-popover .popover{
 }
 .agreeTermsOfUseAndPP a:hover, .agreeTermsOfUseAndPP a:active {
     text-decoration: none !important;
+}
+
+.col-sm-12.perk-create-styls.perk-top{
+    top: -30px;
+}
+
+.col-sm-12.perk-create-styls.edit-top-gsp{
+    top:-5px;
+    padding-bottom: 14px;
 }

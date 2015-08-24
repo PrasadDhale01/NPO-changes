@@ -4,6 +4,7 @@
 <g:set var="rewardService" bean="rewardService"/>
 <% 
     def iteratorCount = 1
+    def lastrewardCount = 1
     def rewardItrCount = projectRewards.size()
     def amount = (project.amount).round()
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
@@ -542,11 +543,12 @@
                 <% 
 				    def shippingInfo = rewardService.getRewardShippingObjectByReward(reward);
 					def price = (reward.price).round();
+					lastrewardCount = reward.rewardCount
 				%>
 				    <g:if test="${iteratorCount > 1}">
 				        <div class="hidden-xs break-div"></div>
 				    </g:if>
-                    <div class="rewardsTemplate" id="rewardTemplate">
+                    <div class="rewardsTemplate" id="rewardTemplate" value="${reward.rewardCount}">
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12">
@@ -561,7 +563,7 @@
                                 </div>
                             </div>
                         </div>
-										
+		
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <div class="col-sm-12">
@@ -625,7 +627,7 @@
                     </g:each>
                     </g:if>
                     <g:else>
-                    <div class="rewardsTemplate" id="rewardTemplate">
+                    <div class="rewardsTemplate" id="rewardTemplate" value="${reward.rewardCount}">
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12">
@@ -681,7 +683,7 @@
                 <div class="row">
                     <div class="col-sm-12 perk-css" id="updatereward">
                         <div class="col-sm-12 perk-create-styls" align="right">
-                            <div class="btn btn-primary btn-circle perks-css-create" id="savereward">
+                            <div class="btn btn-primary btn-circle perks-css-create" id="savereward" value="${lastrewardCount}">
                                 <i class="glyphicon glyphicon-floppy-save"></i>
                             </div>
                             <div class="btn btn-primary btn-circle perks-css-create" id="createreward">
@@ -825,7 +827,7 @@
                                         </div>
                                         <div class="modal-footer">
                                             <button href="#" data-dismiss="modal" class="btn btn-primary">Close</button>
-                                            <button class="btn btn-primary" href="#" data-dismiss="modal" id="saveButton">Save</button>
+                                            <button class="btn btn-primary" href="#" data-dismiss="modal" id="saveCharitableId">Save</button>
                                         </div>
                                     </div>
                                 </div>

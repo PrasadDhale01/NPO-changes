@@ -775,6 +775,7 @@ $(function() {
         var url= $('#videoUrl').val().trim();
         var match = (url.match(youtube) || url.match(vimeo));
         if (match && match[2].length == 11) {
+        	var vurl=url.replace("watch?v=", "embed/");
             $('#ytVideo').show();
             $('#media').hide();
             $('#media-video').show();
@@ -1080,13 +1081,12 @@ $(function() {
         var rewardSaved = rewardValidationAndSaving(count);
         if (rewardSaved){
         var updateCount = count;
-        $('#savereward').val(count);
-        
         count++;
-        var str ='<div class="rewardsTemplate cr-perks-spec" id="rewardTemplate">'+
+        $('#savereward').attr('value',count);
+        var str ='<div class="rewardsTemplate cr-perks-spec" id="rewardTemplate" value="'+count+'">'+
    '<div class="col-sm-12 perk-css">'+
        '<div class="col-sm-12 perk-create-styls" align="right">'+
-            '<button class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward" value="'+updateCount+'">'+
+            '<button class="btn btn-primary btn-circle perks-created-remove editreward" id="'+updateCount+'" value="'+updateCount+'">'+
                 '<i class="glyphicon glyphicon-floppy-save"></i>'+
             '</button>'+
         '</div>'+
@@ -1145,6 +1145,7 @@ $(function() {
            '</div>'+
        '</div>'+
    '</div>'+
+   '<g:hiddenField name="rewardNum" value="'+count+'" class="rewardNum"/>'+
  '</div>';
         $('#addNewRewards').append(str);
         $('#rewardCount').attr('value',count);
@@ -1158,8 +1159,6 @@ $(function() {
                 count--;
                 $('#rewardCount').attr('value',count);
                 $('#addNewRewards').find('.rewardsTemplate').last().remove();
-                var lastrewardcount = $('#addNewRewards').find('.rewardsTemplate').last().attr("value");
-                $('.refreshEditReward').last().remove();
             }
         }
     });
@@ -1359,8 +1358,6 @@ $(function() {
                    if (data == 'Success') {
                        $('.paypalVerification').find("span").remove();
                        $('.paypalVerification').closest(".form-group").removeClass('has-error');
-                       $('#charitable').find('input').val('');
-                       autoSave('paypalEmailId', paypalEmailId);
                    }
                }
            }).error(function(){
@@ -1461,14 +1458,14 @@ $(function() {
         });
      }
     
-    $('#saveButton').click(function (){
+    $('#saveCharitableId').click(function (){
     	var uuid = $('#uuid').val();
     	var charityName = $('#charity_name').val();
     	$('#charitable').find('input').val(uuid);
 		$('#organizationName').find('input').val(charityName);
 		$('#paypalemail').find('input').val('');
 		autoSave('charitableId', uuid);
-        var delay = 20; //delayed code to prevent error, time in milliseconds
+        var delay = 50; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
             autoSave('organizationname', charityName);
         }, delay);
@@ -1516,6 +1513,12 @@ $(function() {
         if(validator.element( "#amount1") && amount) {
             autoSave('amount', amount);
         }
+    });
+    
+    $('#paypalEmailId').blur(function(){
+    	var paypalEmail = $('#paypalEmailId').val();
+    	$('#charitable').find('input').val('');
+        autoSave('paypalEmailId', paypalEmail);
     });
     
     $('.campaignTitle1').blur(function (){

@@ -240,7 +240,9 @@ p {
 
 a.customer-support-a {
     transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);  	/***safari***/
     transform-origin: left bottom 0px;
+    -webkit-transform-origin: left bottom 0px; 		/***safari***/
     
     color: #FFF;
     background-color: #5A5A5A;

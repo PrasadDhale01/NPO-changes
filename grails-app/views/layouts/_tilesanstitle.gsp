@@ -25,7 +25,7 @@
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     username = currentFundraiser.email
 %>
-<div class="modal-footer tile-footer tileanstitle-goals">
+<div class="modal-footer tile-footer tileanstitle-goals tileanstitle-goal-margin">
 	<div class="row icons-centering">
 		<div class="col-xs-4 col-sm-4 col-md-4 goalIcon">
 			<img src="//s3.amazonaws.com/crowdera/assets/goal-icon.png">

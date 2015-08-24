@@ -207,7 +207,7 @@
                     </div>
                     
                 <div class="col-sm-6 image-popover">
-                    <div class="panel panel-default panel-create-size">
+                    <div class="panel panel-default panel-create-size upload-campaign-pic">
                         <div class="panel-body">
                             <div class="form-group" id="createthumbnail">
                                 <div class="col-sm-12">

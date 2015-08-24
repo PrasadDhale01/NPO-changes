@@ -614,7 +614,7 @@
                         <g:if test="${rewardItrCount > iteratorCount}">
                         <div class="col-sm-12 perk-css refreshEditReward">
                             <div class="col-sm-12 perk-create-styls edit-top-gsp" align="right">
-                                <div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward" value="${reward.rewardCount}">
+                                <div class="btn btn-primary btn-circle perks-created-remove editreward" id="${reward.rewardCount}" value="${reward.rewardCount}">
                                     <i class="glyphicon glyphicon-floppy-save"></i>
                                 </div>
                             </div>

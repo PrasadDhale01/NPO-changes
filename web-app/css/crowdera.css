@@ -2290,6 +2290,10 @@ a {
         padding-top:2px;
     }
     
+    div.video-popover .popover{
+        margin-top: -10px;
+    }
+    
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
         width: 100% !important;
@@ -2701,6 +2705,7 @@ a {
     }
     
     div.video-popover .popover{
+        margin-top: -10px;
         margin-left:40%;
     }
 

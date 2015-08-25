@@ -545,9 +545,6 @@
 					def price = (reward.price).round();
 					lastrewardCount = reward.rewardCount
 				%>
-				    <g:if test="${iteratorCount > 1}">
-				        <div class="hidden-xs break-div"></div>
-				    </g:if>
                     <div class="rewardsTemplate" id="rewardTemplate" value="${reward.rewardCount}">
                         <div class="col-sm-2">
                             <div class="form-group">
@@ -613,9 +610,10 @@
                                 </div>
                             </div>
                         </div>
+                        <g:hiddenField name="rewardNum" value="${reward.rewardCount}" class="rewardNum"/>
                         <g:if test="${rewardItrCount > iteratorCount}">
-                        <div class="col-sm-12 perk-css">
-                            <div class="col-sm-12 perk-create-styls" align="right">
+                        <div class="col-sm-12 perk-css refreshEditReward">
+                            <div class="col-sm-12 perk-create-styls edit-top-gsp" align="right">
                                 <div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward" value="${reward.rewardCount}">
                                     <i class="glyphicon glyphicon-floppy-save"></i>
                                 </div>
@@ -627,7 +625,7 @@
                     </g:each>
                     </g:if>
                     <g:else>
-                    <div class="rewardsTemplate" id="rewardTemplate" value="${reward.rewardCount}">
+                    <div class="rewardsTemplate" id="rewardTemplate" value="1">
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12">
@@ -695,8 +693,8 @@
                         </div>
                     </div>
                 </div>
+                <div></div>
                 <div class="clear"></div>
-                
                 <div class="form-group">
                     <div class="col-sm-12 cr-payments-pad" id="payment">
                         <div class="cr-story-flx cr-payment-marg col-sm-12 cr-safari">

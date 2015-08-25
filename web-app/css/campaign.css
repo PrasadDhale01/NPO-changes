@@ -628,3 +628,12 @@ div.image-popover .popover{
 .agreeTermsOfUseAndPP a:hover, .agreeTermsOfUseAndPP a:active {
     text-decoration: none !important;
 }
+
+.col-sm-12.perk-create-styls.perk-top{
+    top: -30px;
+}
+
+.col-sm-12.perk-create-styls.edit-top-gsp{
+    top:-5px;
+    padding-bottom: 14px;
+}

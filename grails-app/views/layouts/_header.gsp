@@ -81,7 +81,7 @@
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img">
-                        <a href="#" class="dropdown-toggle login" data-hover="dropdown" data-delay="1500" data-close-others="true">
+                        <a href="#" class="dropdown-toggle login" data-toggle="dropdown">
                             <g:if test="${userService.isFacebookUser()}">
                                 <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
                             </g:if>

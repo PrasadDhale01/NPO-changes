@@ -630,11 +630,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12" id="charitableId">
+                        <div class="col-sm-12 cr-tablet-space" id="charitableId">
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">FirstGiving</label>
                                 <div class="col-sm-3">
-                                    <a data-toggle="modal" href="#myModal" class="charitableLink">Find your organization</a>
+                                    <a data-toggle="modal" href="#myModal" class="charitableLink cr-tablet-orgcharity">Find your organization</a>
                                 </div>
                                 <div class="col-sm-4" id="charitable">
                                     <g:if test="${project.charitableId}">

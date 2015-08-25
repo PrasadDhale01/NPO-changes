@@ -87,12 +87,6 @@ def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera
 	                        </div>
 	                    </div>
 	                    
-                        <div class="form-group">
-                            <div class="col-sm-12 agreeTermsOfUseAndPP">
-                                <input type="checkbox" name="checkBox">  By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
-                            </div>
-                        </div>
-	            
 	            <div class="text-center">
 	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-create-btn createsubmitbutton hidden-xs" name="button" value="" id="campaigncreatebtn"></button>
 	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-xs-create-btn createsubmitbutton visible-xs" name="button" value="" id="campaigncreatebtnXS"></button>

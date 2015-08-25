@@ -695,11 +695,11 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	div.cr-tablet-space{
-	    display: block;
+    div.cr-tablet-space{
+        display: block;
         left: -18px;
-	}
-	input#hiddencharId {
+    }
+    input#hiddencharId {
         width: 116%;
         margin-left: -8px;
     }
@@ -1395,14 +1395,14 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	div.cr-tablet-space{
+    div.cr-tablet-space{
         display: block;
         left: -106px;	   
-	}
+    }
 	a.cr-tablet-orgcharity{
 	    width: 160px;
 	}
-	input#hiddencharId {
+    input#hiddencharId {
         width: 150%;
     }
 	.upload-campaign-pic{
@@ -2070,7 +2070,7 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
-	input#hiddencharId {
+    input#hiddencharId {
         width: 150%;
     }
     div.cr-safari{
@@ -2345,7 +2345,7 @@ a {
     }
     ul.nav-justified.user-dashboard-style{
         display: -webkit-box;
-	    display: -webkit-inline-flex;
+        display: -webkit-inline-flex;
         display: -ms-inline-flexbox;
     }
     .nav-justified.show-marginbottoms{
@@ -5436,7 +5436,7 @@ textarea.form-control {
     }
     ul.nav-justified.user-dashboard-style{
         display: -webkit-box;
-	    display: -webkit-inline-flex;
+        display: -webkit-inline-flex;
         display: -ms-inline-flexbox;
     }
     .nav-justified.show-marginbottoms{
@@ -6206,11 +6206,11 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-	div.cr-tablet-space{
-	    display: block;
+    div.cr-tablet-space{
+        display: block;
         left: -18px;
-	}
-	input#hiddencharId {
+    }
+    input#hiddencharId {
         width: 116%;
         margin-left: -8px;
     }

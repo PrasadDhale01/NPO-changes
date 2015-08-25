@@ -695,6 +695,10 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+	    float: left;
+	    width: 76% !important;
+	}
 	input.TW-city-margin{
 		margin-bottom:16px !important;
 	}
@@ -4941,6 +4945,7 @@ textarea.form-control {
 	.leftcard-column-two, .leftcard-column-three {
 	    width: 20%;
 	    display: flex;
+	    display:-webkit-box; 	/***safari***/
 	}
 	.leftcard-column-one {
 	    width: 60%;

@@ -1575,7 +1575,7 @@ class ProjectService {
 				try{
 					def file= new File("${imageFile.getOriginalFilename()}")
 					def key = "${Folder}/${it.getOriginalFilename()}"
-                    key = key.toLowerCase()
+                                        key = key.toLowerCase()
 					imageFile.transferTo(file)
 					def object=new S3Object(file)
 					object.key=key

@@ -88,6 +88,7 @@ class UserService {
 
             def file = new File("${imageFile.getOriginalFilename()}")
             def key = "${folder}/${imageFile.getOriginalFilename()}"
+            key = key.toLowerCase()
 
             imageFile.transferTo(file)
             def object = new S3Object(file)
@@ -337,7 +338,7 @@ class UserService {
 
             def file = new File("${attachedFile.getOriginalFilename()}")
             def key = "${folder}/${attachedFile.getOriginalFilename()}"
-
+            key = key.toLowerCase()
             attachedFile.transferTo(file)
             def object = new S3Object(file)
             object.key = key
@@ -360,34 +361,33 @@ class UserService {
     }
 		
     def sendResponseToCrews(def params, CommonsMultipartFile attachedFile, def base_url) {
-	def crewsResponse = CrewReg.get(params.long('id'));
-	def adminResponse = params.adminReply
-	def attachmentUrl 
-	if (!attachedFile?.empty && attachedFile.size < 1024 * 1024 * 3) {
-		def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
-		def awsSecretKey = "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"
-		def bucketName = "crowdera"
-		def folder = "user-images"
+        def crewsResponse = CrewReg.get(params.long('id'));
+        def adminResponse = params.adminReply
+        def attachmentUrl 
+        if (!attachedFile?.empty && attachedFile.size < 1024 * 1024 * 3) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "user-images"
 
-		def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
-		def s3Service = new RestS3Service(awsCredentials);
-		def s3Bucket = new S3Bucket(bucketName)
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def s3Bucket = new S3Bucket(bucketName)
 
-		def file = new File("${attachedFile.getOriginalFilename()}")
-		def key = "${folder}/${attachedFile.getOriginalFilename()}"
+            def file = new File("${attachedFile.getOriginalFilename()}")
+            def key = "${folder}/${attachedFile.getOriginalFilename()}"
+            key = key.toLowerCase()
+            attachedFile.transferTo(file)
+            def object = new S3Object(file)
+            object.key = key
 
-		attachedFile.transferTo(file)
-		def object = new S3Object(file)
-		object.key = key
-
-		s3Service.putObject(s3Bucket, object)
-		file.delete()
-		attachmentUrl = "//s3.amazonaws.com/crowdera/${key}"
-		crewsResponse.docByAdmin = attachmentUrl
-	}
-	
-	crewsResponse.status = true
-	mandrillService.sendResponseToCrews(adminResponse,crewsResponse,attachmentUrl, base_url)
+            s3Service.putObject(s3Bucket, object)
+            file.delete()
+            attachmentUrl = "//s3.amazonaws.com/crowdera/${key}"
+            crewsResponse.docByAdmin = attachmentUrl
+       }
+       crewsResponse.status = true
+       mandrillService.sendResponseToCrews(adminResponse,crewsResponse,attachmentUrl, base_url)
     }
 	
     def discardMessage(def params) {

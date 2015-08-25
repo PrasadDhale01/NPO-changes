@@ -1902,31 +1902,31 @@ class ProjectService {
 		mandrillService.sendEmailToCrew(crewrequest)
 	}
 	
-	def setResume(CommonsMultipartFile resume, def params) {
-		if (!resume?.empty && resume.size < 1024 * 1024 * 3) {
-			def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
-			def awsSecretKey = "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"
-			def bucketName = "crowdera"
-			def folder = "Attachments"
+    def setResume(CommonsMultipartFile resume, def params) {
+        if (!resume?.empty && resume.size < 1024 * 1024 * 3) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "Attachments"
 
-			def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
-			def s3Service = new RestS3Service(awsCredentials);
-			def s3Bucket = new S3Bucket(bucketName)
-		
-			def tempFile = new File("${resume.getOriginalFilename()}")
-			def key = "${folder}/${resume.getOriginalFilename()}"
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def s3Bucket = new S3Bucket(bucketName)
+
+            def tempFile = new File("${resume.getOriginalFilename()}")
+            def key = "${folder}/${resume.getOriginalFilename()}"
             key = key.toLowerCase()
-			resume.transferTo(tempFile)
-			def object = new S3Object(tempFile)
-			object.key = key
+            resume.transferTo(tempFile)
+            def object = new S3Object(tempFile)
+            object.key = key
 
-			s3Service.putObject(s3Bucket, object)
-			tempFile.delete()
-		
-			def resumeUrl = "//s3.amazonaws.com/crowdera/${key}"
-			getCrewRequest(params, resumeUrl)
-		}
-	}
+            s3Service.putObject(s3Bucket, object)
+            tempFile.delete()
+
+            def resumeUrl = "//s3.amazonaws.com/crowdera/${key}"
+            getCrewRequest(params, resumeUrl)
+        }
+    }
     
     def setAttachments(CustomerService service, List<MultipartFile> files){
         def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"

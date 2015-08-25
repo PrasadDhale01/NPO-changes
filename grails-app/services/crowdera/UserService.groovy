@@ -88,6 +88,7 @@ class UserService {
 
             def file = new File("${imageFile.getOriginalFilename()}")
             def key = "${folder}/${imageFile.getOriginalFilename()}"
+            key = key.toLowerCase()
 
             imageFile.transferTo(file)
             def object = new S3Object(file)
@@ -337,7 +338,7 @@ class UserService {
 
             def file = new File("${attachedFile.getOriginalFilename()}")
             def key = "${folder}/${attachedFile.getOriginalFilename()}"
-
+            key = key.toLowerCase()
             attachedFile.transferTo(file)
             def object = new S3Object(file)
             object.key = key
@@ -375,7 +376,7 @@ class UserService {
 
 		def file = new File("${attachedFile.getOriginalFilename()}")
 		def key = "${folder}/${attachedFile.getOriginalFilename()}"
-
+        key = key.toLowerCase()
 		attachedFile.transferTo(file)
 		def object = new S3Object(file)
 		object.key = key

@@ -1538,6 +1538,7 @@ class ProjectService {
                 try{
                     def file= new File("${imageFile.getOriginalFilename()}")
                     def key = "${Folder}/${it.getOriginalFilename()}"
+                    key = key.toLowerCase()
                     imageFile.transferTo(file)
                     def object=new S3Object(file)
                     object.key=key
@@ -1574,6 +1575,7 @@ class ProjectService {
 				try{
 					def file= new File("${imageFile.getOriginalFilename()}")
 					def key = "${Folder}/${it.getOriginalFilename()}"
+                    key = key.toLowerCase()
 					imageFile.transferTo(file)
 					def object=new S3Object(file)
 					object.key=key
@@ -1613,6 +1615,7 @@ class ProjectService {
              if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
                 def file= new File("${imageFile.getOriginalFilename()}")
                 def key = "${Folder}/${it.getOriginalFilename()}"
+                key = key.toLowerCase()
                 imageFile.transferTo(file)
                 def object=new S3Object(file)
                 object.key=key
@@ -1683,6 +1686,7 @@ class ProjectService {
         
             def tempFile = new File("${iconFile.getOriginalFilename()}")
             def key = "${folder}/${iconFile.getOriginalFilename()}"
+            key = key.toLowerCase()
             iconFile.transferTo(tempFile)
             def object = new S3Object(tempFile)
             object.key = key
@@ -1720,6 +1724,7 @@ class ProjectService {
                     try{
                         def file= new File("${imageFile.getOriginalFilename()}")
                         def key = "${Folder}/${it.getOriginalFilename()}"
+                        key = key.toLowerCase()
                         imageFile.transferTo(file)
                         def object=new S3Object(file)
                         object.key=key
@@ -1910,6 +1915,7 @@ class ProjectService {
 		
 			def tempFile = new File("${resume.getOriginalFilename()}")
 			def key = "${folder}/${resume.getOriginalFilename()}"
+            key = key.toLowerCase()
 			resume.transferTo(tempFile)
 			def object = new S3Object(tempFile)
 			object.key = key
@@ -1943,6 +1949,7 @@ class ProjectService {
                 try{
                     def file= new File("${attachedFile.getOriginalFilename()}")
                     def key = "${Folder}/${it.getOriginalFilename()}"
+                    key = key.toLowerCase()
                     attachedFile.transferTo(file)
                     def object=new S3Object(file)
                     object.key=key
@@ -2444,6 +2451,7 @@ class ProjectService {
 
             def tempFile = new File("${imageFile.getOriginalFilename()}")
             def key = "${folder}/${imageFile.getOriginalFilename()}"
+            key = key.toLowerCase()
             imageFile.transferTo(tempFile)
             def object = new S3Object(tempFile)
             object.key = key

@@ -101,10 +101,16 @@ body .redactor-box-fullscreen {
     .redactor-box {
         width: 253px;
     }
+    .TW-update-redactor .redactor-box, .TW-editUpdate-redactor .redactor-box {
+        width: 303px;
+    }
+    .TW-update-redactor .redactor-editor, .TW-editUpdate-redactor .redactor-editor {
+        width: 303px;
+    }
     .redactor-editor {
          width: 254px;
     }
-} 
+}
 
 .redactor-editor:focus {
   outline: none;

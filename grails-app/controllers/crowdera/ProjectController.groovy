@@ -1063,7 +1063,7 @@ class ProjectController {
 				projectService.getUpdatedImageUrls(imageFiles, projectUpdate)
 
 				project.addToProjectUpdates(projectUpdate)
-				mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user)
+				mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user,params.title)
 
 				flash.prj_mngprj_message= "Update added successfully."
 				redirect (action: 'manageproject', controller:'project', params:['projectTitle':title], fragment: 'projectupdates')

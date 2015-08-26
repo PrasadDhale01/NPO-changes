@@ -642,5 +642,9 @@ div.image-popover .popover{
     font-weight: 700;
 }
 .campaignUpdateContainer h3 {
-    font-size: 22px !important;
+    font-size: 20px !important;
+}
+.campaignUpdateStory img {
+    max-width: 100%;
+    width: auto;
 }

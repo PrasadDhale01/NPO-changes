@@ -9543,3 +9543,19 @@ body {
 .TW-testimonial-width{
 	width:800px;	
 }
+.form-control {
+    border: 1px solid #e3e3e3;
+     -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.form-control:focus {
+    border: 1px solid #e3e3e3;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.all-place::-webkit-input-placeholder {
+	color: #c7c7c7;
+}
+.all-place::-moz-placeholder{ 
+	color: #c7c7c7;
+}

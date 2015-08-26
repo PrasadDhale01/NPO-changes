@@ -38,11 +38,11 @@
             </g:if>
 
             <div class="form-group">
-                <input type="email" class="form-control" name="j_username" id="username" placeholder="Email address" autofocus>
+                <input type="email" class="form-control all-place" name="j_username" id="username" placeholder="Email address" autofocus>
             </div>
 
             <div class="form-group">
-                <input type="password" class="form-control" placeholder="Password" name="j_password" id="password">
+                <input type="password" class="form-control all-place" placeholder="Password" name="j_password" id="password">
             </div>
 
 <%--            <label class="checkbox">--%>

@@ -83,6 +83,14 @@ $(function() {
         	}
         }//end error Placement
     });
+    
+    $('.editUpdateForm').find('form').validate({
+        rules: {
+        	title: {
+        		required: true
+        	}
+        }
+    });
 
     $('#editsubmitbutton').on('click', function() {
         var storyValue = $('.redactorEditor').redactor('code.get');
@@ -153,21 +161,7 @@ $(function() {
     });
     
     $('.updatesubmitbutton').click(function(event) {
-    	event.preventDefault();  //prevent form from submitting
-    	var storyValue = $('.redactorEditor').redactor('code.get');
-        var storyEmpty = false;
-        if (storyValue == '' || storyValue == undefined){
-            $('#storyRequired').show();
-            storyEmpty = true;
-        } else {
-        $('#storyRequired').hide();
-            storyEmpty = false;
-        }
-        
-        if(!storyEmpty){
-        	needToConfirm = false;
-        	$('.editUpdateForm').find('form').submit();
-        }
+        needToConfirm = false;
     });
     
     $.validator.addMethod('isYoutubeVideo', function (value, element) {

@@ -100,7 +100,7 @@ text-decoration:none;
 }
 
 .feducontent {
-      padding-top: 44px;
+    padding-top: 44px;
 }
 
 .top-buffer {
@@ -410,7 +410,6 @@ footer {
     border-top: 2px solid  #01bbd2 !important;
     background-color: #323232;
     padding: 30px 0 0 0;
-    margin-top: 25px;
 }
 .payment-method-footer{
 	font-size:12px;
@@ -706,10 +705,10 @@ a {
 		margin-bottom:16px !important;
 	}
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left:190px !important;
+		padding-left: 0px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left:200px !important;
+		padding-left: 0px !important;
 	}
 	.TW-editFUndraiser-video-thumb{
 		margin-top: 9px;
@@ -1400,10 +1399,10 @@ a {
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left:175px !important;
+		padding-left: 190px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left:175px !important;
+		padding-left: 210px !important;
 	}
     .list-category{
         width: 24%;
@@ -1510,6 +1509,10 @@ a {
 	    padding-left: 60px;
 	}
     .contactUs {
+        width: 750px;
+        margin: 0 auto;
+    }
+    .campaignUpdateContainer {
         width: 750px;
         margin: 0 auto;
     }
@@ -2468,10 +2471,10 @@ a {
 
 @media only screen and (min-width: 992px) and (max-width: 1024px){
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left:350px !important;
+		padding-left:195px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left:377px !important;
+		padding-left:225px !important;
 	}
 	.mng-text-size{
 		font-size:14px;
@@ -2522,10 +2525,10 @@ a {
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left:350px !important;
+		padding-left:385px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left:370px !important;
+		padding-left:405px !important;
 	}
 	header.cr-tabs-link {
 	    padding-left: 130px !important; 
@@ -5045,6 +5048,10 @@ textarea.form-control {
         text-align: center !important;
     }
     .contactUs {
+        width: 320px;
+        margin: 0 auto;
+    }
+    .campaignUpdateContainer {
         width: 320px;
         margin: 0 auto;
     }
@@ -8105,10 +8112,6 @@ ul.dropdown-menu.usr.user-dropdown{
 .goal-size, .achived-size {
 	font-size: 18px;
 }
-.fileUpload.btn-primary{
-background-color: #E9967A !important;
-border-color:#E9967A;
-}
 .submitbutton > button{
 background-color: #ff784f !important;
 border-color:#ff784f;
@@ -9040,6 +9043,7 @@ span.cr-perks-amts {
 }
 .bg-color {
     background-color: #f6f8f8;
+    padding-bottom: 25px;
 }
 .campaigndropdowns .col-sm-3{
 	width: 20% !important;
@@ -9617,8 +9621,8 @@ body {
 	padding-left:31%;
 }
 .TW-editUpdate-redactor .redactor-toolbar{
-	padding-left:525px;
+	padding-left: 410px;
 }
 .TW-update-redactor .redactor-toolbar{
-	padding-left:540px;
+	padding-left: 425px;
 }

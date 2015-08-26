@@ -2312,22 +2312,33 @@ class ProjectService {
         ProjectUpdate projectUpdate = getProjectUpdateById(params.long('id'))
         def story = params.story
         def isImageFileEmpty = isImageFileEmpty(imageFiles)
-        
+        boolean isCampaignUpdated = false
         if(projectUpdate) {
             if (!isImageFileEmpty) {
                 getUpdatedImageUrls(imageFiles, projectUpdate)
+                isCampaignUpdated = true;
             }
             if (!story.isAllWhitespace()) {
                 if (projectUpdate.story != story) {
                     projectUpdate.story = story
+                    isCampaignUpdated = true
                 }
             } else {
                 if (!projectUpdate.imageUrls.isEmpty()) {
                     projectUpdate.story = params.story
+                    isCampaignUpdated = true
                 }
             }
             
-            if (projectUpdate.imageUrls.isEmpty() && story.isAllWhitespace()) {
+            if (projectUpdate.title != params.title) {
+                projectUpdate.title = params.title
+                isCampaignUpdated = true
+            }
+            
+            if (isCampaignUpdated) {
+                projectUpdate.save();
+                
+            } else if (projectUpdate.imageUrls.isEmpty() && story.isAllWhitespace()) {
                 if (projectUpdate.story == null || projectUpdate.story.isAllWhitespace()) {
                     List projectUpdates = project.projectUpdates
                     projectUpdates.remove(projectUpdate)

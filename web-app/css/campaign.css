@@ -627,3 +627,24 @@ div.image-popover .popover{
     top:-5px;
     padding-bottom: 14px;
 }
+
+.campaignUpdateContainer {
+    width: 1000px;
+    margin: 0 auto;
+}
+.campaignUpdateContainer .btn-primary {
+    background-color: #5bc0de !important;
+    border-color: #46b8da !important;
+}
+.updatesubmitbtn .btn {
+	padding: 14px 28px;
+    font-size: 22px;
+    font-weight: 700;
+}
+.campaignUpdateContainer h3 {
+    font-size: 20px !important;
+}
+.campaignUpdateStory img {
+    max-width: 100%;
+    width: auto;
+}

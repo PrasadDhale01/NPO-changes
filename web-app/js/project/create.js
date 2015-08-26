@@ -851,8 +851,12 @@ $(function() {
             $('.createDescDiv').closest(".form-group").removeClass('has-error');
         }
         
-        if(currentString <=139) {
-            var text = currentString + 1;
+        if(currentString <=140) {
+        	if (currentString == 140) {
+        		var text = currentString;
+        	} else {
+        		var text = currentString + 1;
+        	}
         }
         if (event.keyCode > 31) {
             if(event.altKey==true){
@@ -911,8 +915,7 @@ $(function() {
         var currentString = $('#descarea').val().length;
         if (currentString == 0) {
             $('#desclength').text("0/140");
-        } 
-        else {
+        } else {
             currentString = currentString;
             $('#desclength').text(currentString+'/140');
         }
@@ -921,15 +924,19 @@ $(function() {
     /*******************************Title text length******************** */
     var counter = 1;
     $('#campaignTitle').on('keydown', function(event) {
-  
+    
         event.altKey==true;
         var currentstring = $('#campaignTitle').val().length;
         if (currentstring >= 4) {
         	$('.createTitleDiv').find("span").remove();
             $('.createTitleDiv').closest(".form-group").removeClass('has-error');
         }
-        if(currentstring <=54) {
-            var text = currentstring + 1;
+        if(currentstring <=55) {
+        	if (currentstring == 55) {
+        		var text = currentstring ;
+        	} else {
+        		var text = currentstring + 1;
+        	}
         }
         if (event.keyCode > 31) {
             if(event.altKey==true){

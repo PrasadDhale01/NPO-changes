@@ -6,16 +6,22 @@
 %>
 
 <div class="col-xs-12 col-md-4 mobileview-top">
-	<g:render template="/project/manageproject/tilesanstitle" />
-	<g:if test="${project.draft}">
-		<g:form controller="project" action="saveasdraft"
-			id="${project.id}">
-			<button class="btn btn-block btn-primary">
-				<i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-			</button>
-		</g:form>
-	</g:if>
-	<br>
+    <g:render template="/project/manageproject/tilesanstitle" />
+    <g:if test="${project.draft}">
+        <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+            <g:form controller="project" action="saveasdraft" id="${project.id}">
+                <button class="btn btn-block btn-primary">
+                    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                </button>
+            </g:form>
+        </g:if>
+        <g:else>
+            <button class="btn btn-block btn-primary">
+                <i class="glyphicon glyphicon-check" id="submitForApprovalBtnMobile"></i>&nbsp;Submit for approval
+            </button>
+        </g:else>
+    </g:if>
+    <br>
 </div>
 
 <div class="col-md-8">
@@ -99,18 +105,16 @@
 <div class="col-xs-12 col-md-4 mobileview-bottom">
     <g:render template="/project/manageproject/tilesanstitle" />
     <g:if test="${project.draft}">
-        <g:if test="${!isPreview}">
-            <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
-                <g:form controller="project" action="saveasdraft" id="${project.id}">
-                    <button class="btn btn-block btn-primary">
-                        <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-                    </button>
-                </g:form>
-            </g:if>
-            <g:else>
-                <button class="btn btn-block btn-primary" id="submitForApprovalBtn"><i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval</button>
-            </g:else>
-        </g:if>
+         <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+             <g:form controller="project" action="saveasdraft" id="${project.id}">
+                 <button class="btn btn-block btn-primary">
+                     <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                 </button>
+             </g:form>
+         </g:if>
+         <g:else>
+             <button class="btn btn-block btn-primary" id="submitForApprovalBtn"><i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval</button>
+         </g:else>
     </g:if>
     <br>
 </div>

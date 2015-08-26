@@ -104,6 +104,7 @@ class ProjectService {
             }
         }
         
+        project.story = params.story
         if (project.draft) {
             project.paypalEmail = params.paypalEmail
             project.charitableId = params.charitableId
@@ -124,6 +125,7 @@ class ProjectService {
                 vanitytitle = getProjectVanityTitle(project)
             }
         }
+        return vanitytitle
     }
 
     def getCSVDetails(def params, def response){

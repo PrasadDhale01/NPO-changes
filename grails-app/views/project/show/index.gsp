@@ -51,7 +51,7 @@
         $(function() {
             $('.redactorEditor').redactor({
                 imageUpload:'/project/getRedactorImage',
-                focus: true,
+                imageResizable: true,
                 plugins: ['video'],
                 buttonsHide: ['indent', 'outdent', 'horizontalrule']
             });

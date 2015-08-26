@@ -12,7 +12,8 @@ $(function() {
     	$('#rewardTemplate').hide();
     }
 
-    var count = $('#rewardCount').val()
+    var count = $('#rewardCount').val();
+     var projectId = $('#projectId').val();
     
     var storyContent
     var storyPlaceholder = "<p><h3>Introduce Your Campaign</h3></p>"+
@@ -55,14 +56,8 @@ $(function() {
     
     $('.redactorEditor').redactor({
         imageUpload:'/project/getRedactorImage',
-        changeCallback: function(){
-            var delay = 10000; //delayed code to prevent error, time in milliseconds
-            storyContent = this.code.get();
-            $('#projectHasStory').val(storyContent);
-                setTimeout(function() {
-                autoSave('story', storyContent);
-            }, delay);
-        },
+        autosave: '/project/saveStory/?projectId='+projectId,
+        imageResizable: true,
         initCallback: function(){
             var projectHasStory = $('#projectHasStory').val();
             if (projectHasStory && projectHasStory != ''){
@@ -154,11 +149,6 @@ $(function() {
                 required: true,
                 minlength: 5,
                 maxlength: 100
-            },
-            story: {
-                required: true,
-                minlength: 10,
-                maxlength: 5000
             },
             videoUrl: {
                 isYoutubeVideo: true
@@ -372,8 +362,10 @@ $(function() {
         }
 
     	if (validator.form()) {
-    		$('#campaigncreatebtn').attr('disabled','disabled');
-    		$('#campaigncreate').find('form').submit();
+            if (!storyEmpty){
+                $('#campaigncreatebtn').attr('disabled','disabled');
+                $('#campaigncreate').find('form').submit();
+            }
     	}
     });
     
@@ -1449,7 +1441,6 @@ $(function() {
     });
     
     function autoSave(variable, varValue) {
-        var projectId = $('#projectId').val();
         $.ajax({
             type:'post',
             url:$("#b_url").val()+'/project/autoSave',
@@ -1619,7 +1610,6 @@ $(function() {
 	});
 
     function saveRewards(rewardNum,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom){
-        var projectId = $('#projectId').val();
         $.ajax({
         	cache: true,
             type:'post',
@@ -1634,7 +1624,6 @@ $(function() {
      }
 
      function removeRewards(){
-         var projectId = $('#projectId').val();
          $.ajax({
              type:'post',
              url:$("#b_url").val()+'/project/deleteReward',
@@ -1648,7 +1637,6 @@ $(function() {
      }
 
      function removeAllPerks(){
-         var projectId = $('#projectId').val();
          $.ajax({
              type:'post',
              url:$("#b_url").val()+'/project/deleteAllRewards',

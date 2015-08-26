@@ -171,15 +171,15 @@
                                             <g:hiddenField name="vanityUsername" value="${vanityUsername}"/>
 				                            <div class="form-group">
 				                                <label>Your Name</label>
-				                                <input type="text" class="form-control" name="name" placeholder="Name"></input>
+				                                <input type="text" class="form-control all-place" name="name" placeholder="Name"></input>
 				                            </div>
 				                            <div class="form-group">
 				                                <label>Email ID's (separated by comma)</label>
-				                                <textarea class="form-control" name="emails" rows="4" placeholder="Email ID's"></textarea>
+				                                <textarea class="form-control all-place" name="emails" rows="4" placeholder="Email ID's"></textarea>
 				                            </div>
 				                            <div class="form-group">
 				                                <label>Message (Optional)</label>
-				                                <textarea class="form-control" name="message" rows="4" placeholder="Message"></textarea>
+				                                <textarea class="form-control all-place" name="message" rows="4" placeholder="Message"></textarea>
 				                            </div>
 				                        </div>
 				                        <div class="modal-footer">

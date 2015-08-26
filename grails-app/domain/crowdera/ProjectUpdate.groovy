@@ -13,10 +13,12 @@ class ProjectUpdate {
     
     List imageUrls
     String story
+    String title
     
     static constraints = {
         imageUrls (nullable: true)
         story (nullable: true)
+        title (nullable: true)
     }
     
     static mapping = {

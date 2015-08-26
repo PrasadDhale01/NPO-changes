@@ -1059,6 +1059,7 @@ class ProjectController {
 				User user = userService.getCurrentUser()
 
 				projectUpdate.story = story
+                projectUpdate.title = params.title
 				projectService.getUpdatedImageUrls(imageFiles, projectUpdate)
 
 				project.addToProjectUpdates(projectUpdate)

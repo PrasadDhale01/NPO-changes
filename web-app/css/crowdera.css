@@ -100,7 +100,7 @@ text-decoration:none;
 }
 
 .feducontent {
-      padding-top: 44px;
+    padding-top: 44px;
 }
 
 .top-buffer {
@@ -410,7 +410,6 @@ footer {
     border-top: 2px solid  #01bbd2 !important;
     background-color: #323232;
     padding: 30px 0 0 0;
-    margin-top: 25px;
 }
 .payment-method-footer{
 	font-size:12px;
@@ -1467,6 +1466,10 @@ a {
 	    padding-left: 60px;
 	}
     .contactUs {
+        width: 750px;
+        margin: 0 auto;
+    }
+    .campaignUpdateContainer {
         width: 750px;
         margin: 0 auto;
     }
@@ -4979,6 +4982,10 @@ textarea.form-control {
         text-align: center !important;
     }
     .contactUs {
+        width: 320px;
+        margin: 0 auto;
+    }
+    .campaignUpdateContainer {
         width: 320px;
         margin: 0 auto;
     }
@@ -8950,6 +8957,7 @@ span.cr-perks-amts {
 }
 .bg-color {
     background-color: #f6f8f8;
+    padding-bottom: 25px;
 }
 .campaigndropdowns .col-sm-3{
 	width: 20% !important;

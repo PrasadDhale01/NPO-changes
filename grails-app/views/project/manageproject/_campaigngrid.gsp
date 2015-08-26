@@ -4,7 +4,7 @@
     def projectId = project.id
 %>
 <div class="col-md-6 col-sm-6 col-xs-6">
-    <span class="text-success">Update #${i}&nbsp;<i class="fa fa-info-circle"></i></span>
+    <span class="text-success">Update #${i}</span>
 </div>
 <g:if test="${manageProject}">
     <div class="col-md-6 col-sm-6 col-xs-6">

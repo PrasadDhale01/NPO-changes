@@ -28,7 +28,7 @@
 						</div>
 						<div class="col-md-4">
 							<div class="col-md-6 col-sm-6 col-xs-6">
-								<g:link controller="project" action="updateValidation" id="${project.id}" class="btn-sm btn-primary validatebutton" role="button">
+								<g:link controller="project" action="updateValidation" id="${project.id}" class="btn-sm btn-primary validatebutton TW-text-decoration" role="button">
 									<i class="glyphicon glyphicon-check validateshow-validate"></i>&nbsp;Validate
 								</g:link>
 							</div>

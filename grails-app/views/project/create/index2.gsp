@@ -667,7 +667,7 @@
                                             <script src="//assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
                                         </div>
                                         <div class="modal-footer">
-                                            <button href="#" data-dismiss="modal" class="btn btn-primary">Close</button>
+                                            <button href="#" data-dismiss="modal" class="btn btn-primary TW-btn-editfundraiser">Close</button>
                                             <button class="btn btn-primary" href="#" data-dismiss="modal" id="saveCharitableId">Save</button>
                                         </div>
                                     </div>

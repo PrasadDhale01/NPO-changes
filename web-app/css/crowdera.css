@@ -2474,7 +2474,7 @@ a {
 		padding-left:195px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left:377px !important;
+		padding-left:225px !important;
 	}
 	.mng-text-size{
 		font-size:14px;
@@ -2525,10 +2525,10 @@ a {
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left:350px !important;
+		padding-left:385px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left:370px !important;
+		padding-left:405px !important;
 	}
 	header.cr-tabs-link {
 	    padding-left: 130px !important; 

@@ -76,7 +76,7 @@
                         <i class="glyphicon glyphicon-check"></i> Validate Campaigns here.
                     </div>
                     <div class="panel-footer">
-                        <g:link controller="project" action="validateList">
+                        <g:link controller="project" action="validateList" class="TW-text-decoration">
                             <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-check"></i> Validate Campaigns</button>
                         </g:link>
                     </div>
@@ -88,7 +88,7 @@
                         <i class="glyphicon glyphicon-user"></i> Manage all the invite requests here.
                     </div>
                     <div class="panel-footer">
-                        <g:link controller="login" action="list">
+                        <g:link controller="login" action="list" class="TW-text-decoration">
                             <button class="btn btn-block btn-primary"><span class="fa fa-user fa-lg"></span> Manage Invites</button>
                         </g:link>
                     </div>
@@ -100,7 +100,7 @@
                         <i class="fa fa-leaf fa-lg"></i> Bulk import Campaigns here.
                     </div>
                     <div class="panel-footer">
-                        <g:link controller="project" action="importprojects">
+                        <g:link controller="project" action="importprojects" class="TW-text-decoration">
                             <button class="btn btn-block btn-primary btn-text-alignment"><i class="fa fa-gift fa-lg"></i> Bulk Import Campaigns</button>
                         </g:link>
                     </div>
@@ -112,7 +112,7 @@
                         <i class="fa fa-users"></i> Manage User
                     </div>
                     <div class="panel-footer">
-                        <g:link controller="user" action="list">
+                        <g:link controller="user" action="list" class="TW-text-decoration">
                             <button class="btn btn-block btn-primary"><i class="fa fa-users"></i> Manage User</button>
                         </g:link>
                     </div>
@@ -137,7 +137,7 @@
                         <i class="fa fa-user"></i> Manage User Questions
                     </div>
                     <div class="panel-footer">
-                        <g:link controller="home" action="customerSupport">
+                        <g:link controller="home" action="customerSupport" class="TW-text-decoration">
                             <button class="btn btn-block btn-primary btn-text-alignment"><i class="fa fa-user"></i> Manage User Questions</button>
                         </g:link>
                     </div>
@@ -149,7 +149,7 @@
                         <i class="fa fa-user"></i> Manage Applicant
                     </div>
                     <div class="panel-footer">
-                        <g:link controller="user" action="crewsList">
+                        <g:link controller="user" action="crewsList" class="TW-text-decoration">
                             <button class="btn btn-block btn-primary"><i class="fa fa-user"></i> Manage Applicant</button>
                         </g:link>
                     </div>
@@ -162,7 +162,7 @@
                             <i class="glyphicon glyphicon-tint"></i> Payment Details for Campaign.
                         </div>
                         <div class="panel-footer">
-                            <g:link controller="project" action="paymentslist">
+                            <g:link controller="project" action="paymentslist" class="TW-text-decoration">
                                 <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-tint"></i> Payment details</button>
                             </g:link>
                         </div>

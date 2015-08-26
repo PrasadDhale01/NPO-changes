@@ -694,6 +694,33 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.TW-redactor .redactor-toolbar {
+	    padding-left: 1% !important;
+	}
+	div.rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+	    float: left;
+	    width: 76% !important;
+	}
+	input.TW-city-margin{
+		margin-bottom:16px !important;
+	}
+	.TW-editUpdate-redactor .redactor-toolbar{
+		padding-left:190px !important;
+	}
+	.TW-update-redactor .redactor-toolbar{
+		padding-left:200px !important;
+	}
+	.TW-editFUndraiser-video-thumb{
+		margin-top: 9px;
+	}
+    div.cr-tablet-space{
+        display: block;
+        left: -18px;
+    }
+    input#hiddencharId {
+        width: 116%;
+        margin-left: -8px;
+    }
 	.upload-campaign-pic{
 		height: 250px;
 		overflow:scroll !important;
@@ -1371,6 +1398,12 @@ a {
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	.TW-editUpdate-redactor .redactor-toolbar{
+		padding-left:175px !important;
+	}
+	.TW-update-redactor .redactor-toolbar{
+		padding-left:175px !important;
+	}
     .list-category{
         width: 24%;
     }
@@ -1386,6 +1419,16 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.cr-tablet-space{
+        display: block;
+        left: -106px;	   
+    }
+    a.cr-tablet-orgcharity{
+        width: 160px;
+    }
+    input#hiddencharId {
+        width: 150%;
+    }
 	.upload-campaign-pic{
 		height: 250px;
 		overflow:scroll !important;
@@ -2055,6 +2098,9 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    input#hiddencharId {
+        width: 150%;
+    }
     div.cr-safari{
 	    display: -webkit-inline-box;
 	    display: -webkit-inline-flex;
@@ -2191,7 +2237,7 @@ a {
 	.carousel-buttons{
 		position: relative;
 		text-align: center;
-		top: -62px !important;
+		top: -45px !important;
 	}
 	.fbButton {
 		margin-left: auto;
@@ -2325,6 +2371,11 @@ a {
     .nav-justified.user-dashboard-style{
         display:flex !important;
     }
+    ul.nav-justified.user-dashboard-style{
+        display: -webkit-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+    }
     .nav-justified.show-marginbottoms{
         display:flex !important;
     }
@@ -2419,6 +2470,12 @@ a {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	.TW-editUpdate-redactor .redactor-toolbar{
+		padding-left:350px !important;
+	}
+	.TW-update-redactor .redactor-toolbar{
+		padding-left:377px !important;
+	}
 	.mng-text-size{
 		font-size:14px;
 	}
@@ -2467,6 +2524,12 @@ a {
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	.TW-editUpdate-redactor .redactor-toolbar{
+		padding-left:350px !important;
+	}
+	.TW-update-redactor .redactor-toolbar{
+		padding-left:370px !important;
+	}
 	header.cr-tabs-link {
 	    padding-left: 130px !important; 
 	    padding-right: 130px !important; 
@@ -2596,6 +2659,9 @@ a {
     }
 }
 @media only screen and (min-width:506px) and (max-width: 640px){
+		input.TW-city-margin{
+			margin-bottom:16px !important;
+		}
 		.shared.contributionShare {
 			margin-top: -61px !important;
 		}
@@ -2695,9 +2761,7 @@ a {
     .nav-justified.validateshow-details-story{
         display:flex !important;
     }
-    .nav-justified.user-dashboard-style{
-        display:flex !important;
-    }
+   
     .nav-justified.show-marginbottoms{
         display:flex !important;
     }
@@ -3750,7 +3814,7 @@ div.tile-min-height{
 }
 .rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
     float: left;
-    width: 80% !important;
+    width: 76% !important;
 }
 
 .leftcard-column-one{width:64%; float:left}
@@ -4774,9 +4838,10 @@ textarea.form-control {
 #hiddencharId {
 	border-style:none;
 	height:26px;
-	width:100%;
+	width:105%;
 	margin-top: 5px;
 	display: block;
+	background-color: #f6f8f8;
 }
 
 #saveButton {
@@ -4911,6 +4976,7 @@ textarea.form-control {
 	.leftcard-column-two, .leftcard-column-three {
 	    width: 20%;
 	    display: flex;
+	    display:-webkit-box; 	/***safari***/
 	}
 	.leftcard-column-one {
 	    width: 60%;
@@ -5314,7 +5380,7 @@ textarea.form-control {
 	    width: 49%;
 	}
 	.leftcard-column-one .form-control {
-	    width: 80%;
+	    width: 83%;
 	}
 	.leftcard-column-two, .leftcard-column-three {
 	    width: 25%;
@@ -5416,8 +5482,10 @@ textarea.form-control {
     .nav-justified.validateshow-details-story{
         display:flex !important;
     }
-    .nav-justified.user-dashboard-style{
-        display:flex !important;
+    ul.nav-justified.user-dashboard-style{
+        display: -webkit-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
     }
     .nav-justified.show-marginbottoms{
         display:flex !important;
@@ -6186,6 +6254,29 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.TW-redactor .redactor-toolbar {
+	    padding-left: 1% !important;
+	}
+	input.TW-city-margin{
+		margin-bottom:16px !important;
+	}
+	.TW-editUpdate-redactor .redactor-toolbar{
+		padding-left:5px !important;
+	}
+	.TW-update-redactor .redactor-toolbar{
+		padding-left:5px !important;
+	}
+	.TW-editFUndraiser-video-thumb{
+		margin-top: 9px;
+	}
+    div.cr-tablet-space{
+        display: block;
+        left: -18px;
+    }
+    input#hiddencharId {
+        width: 116%;
+        margin-left: -8px;
+    }
 	.upload-campaign-pic{
 		height: 250px;
 		overflow:scroll !important;
@@ -6682,7 +6773,7 @@ textarea.form-control {
 	.carousel-buttons{
 		position: relative;
 		text-align: center;
-		top: -15px !important;
+		top: -10px !important;
 	}
 	.carousel-buttons.joinFOG{
 		position: relative;
@@ -6782,7 +6873,7 @@ textarea.form-control {
 	}
 	.user-tiles-style {
     	padding: 0;
-   	 	width: 300px !important;
+   	 	width: 250px !important;
 	}
 	.tile-pad {
     	padding: 0;
@@ -7067,7 +7158,7 @@ textarea.form-control {
 	    margin-bottom:10px;
 	}
 	.leftcard-column .form-control {
-	    width: 83.9%;
+	    width: 83%;
 	}
 	.rightcard-column {
 	    width: 100%;
@@ -8100,7 +8191,7 @@ color:#fff;
 }
 .hrClass{
     margin-top:4px;
-    margin-bottom:8px;
+    margin-bottom:6px;
 }
 form#sortsForm {
     margin-left: 25%;
@@ -8953,7 +9044,6 @@ span.cr-perks-amts {
 }
 .cr-paddingspace {
   padding-bottom: 120px;
-  padding-top: 60px;
 }
 .bg-color {
     background-color: #f6f8f8;
@@ -9395,7 +9485,6 @@ body {
 }
 .cr-btn-alignment-pre{
 	margin-left: 180px;
-    padding-bottom: 40px;
 }
 .cr-btn-alignment-lac{
 	margin-right: 204px;
@@ -9517,4 +9606,27 @@ body {
 }
 .TW-testimonial-width{
 	width:800px;	
+}
+.TW-text-decoration:hover{
+	text-decoration:none;	
+}
+.TW-editfundraiser-modal .help-block{
+	display:inline-flex;
+	float:left;   /***safari***/
+}
+.TW-btn-editfundraiser{
+	margin-bottom:0px !important;
+}
+.TW-redactor .redactor-box, .TW-redactor .redactor-editor{
+	width:100%;
+}
+
+.TW-redactor .redactor-toolbar{
+	padding-left:31%;
+}
+.TW-editUpdate-redactor .redactor-toolbar{
+	padding-left:525px;
+}
+.TW-update-redactor .redactor-toolbar{
+	padding-left:540px;
 }

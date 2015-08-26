@@ -36,7 +36,7 @@
 			        <div class="panel-body">
 				        <div class="form-group">
 							<label class="col-sm-2 control-label">Story</label>
-							<div class="col-sm-10">
+							<div class="col-sm-10 TW-update-redactor">
 								<textarea name="${FORMCONSTANTS.STORY}" id="${FORMCONSTANTS.STORY}" class="redactorEditor">
 									${initialValue}</textarea>
                                 <span id="storyRequired">Ths field is required</span>

@@ -45,7 +45,7 @@
 	        
 	        <div class="item">
                 <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/prajwala-1.jpg" alt="Prajwala-Slide">
-                <img class="visible-xs"  src="//s3.amazonaws.com/crowdera/assets/Prajwala Slide-mobile.jpg" alt="Prajwala-Slide">
+                <img class="visible-xs"  src="//s3.amazonaws.com/crowdera/assets/prajwala-mobile-slide.jpg" alt="Prajwala-Slide">
              </div>
 	    </div>
     </g:if>
@@ -80,7 +80,7 @@
         </div>
         <div class="item">
             <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/prajwala-1.jpg" alt="Prajwala-Slide">
-            <img class="visible-xs"  src="//s3.amazonaws.com/crowdera/assets/Prajwala Slide-mobile.jpg" alt="Prajwala-Slide">
+            <img class="visible-xs"  src="//s3.amazonaws.com/crowdera/assets/prajwala-mobile-slide.jpg" alt="Prajwala-Slide">
             <div class="carousel-buttons">
                <div class="fbButton">
                   <a href="${resource(dir: '/campaigns/Securing-Prajwala--An-Anti-Trafficking-Intervention/Friends-of-680')}">

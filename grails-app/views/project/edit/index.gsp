@@ -614,7 +614,7 @@
                         <g:if test="${rewardItrCount > iteratorCount}">
                         <div class="col-sm-12 perk-css refreshEditReward">
                             <div class="col-sm-12 perk-create-styls edit-top-gsp" align="right">
-                                <div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward" value="${reward.rewardCount}">
+                                <div class="btn btn-primary btn-circle perks-created-remove editreward" id="${reward.rewardCount}" value="${reward.rewardCount}">
                                     <i class="glyphicon glyphicon-floppy-save"></i>
                                 </div>
                             </div>
@@ -787,11 +787,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12" id="charitableId">
+                        <div class="col-sm-12  cr-tablet-space" id="charitableId">
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">FirstGiving</label>
                                 <div class="col-sm-3">
-                                    <a data-toggle="modal" href="#myModal" class="charitableLink">Find your organization</a>
+                                    <a data-toggle="modal" href="#myModal" class="charitableLink cr-tablet-orgcharity">Find your organization</a>
                                 </div>
                                 <div class="col-sm-4" id="charitable">
                                     <g:if test="${project.charitableId}">

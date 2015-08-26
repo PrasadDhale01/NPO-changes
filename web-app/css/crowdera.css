@@ -714,6 +714,14 @@ a {
 	.TW-editFUndraiser-video-thumb{
 		margin-top: 9px;
 	}
+    div.cr-tablet-space{
+        display: block;
+        left: -18px;
+    }
+    input#hiddencharId {
+        width: 116%;
+        margin-left: -8px;
+    }
 	.upload-campaign-pic{
 		height: 250px;
 		overflow:scroll !important;
@@ -1412,6 +1420,16 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.cr-tablet-space{
+        display: block;
+        left: -106px;	   
+    }
+    a.cr-tablet-orgcharity{
+        width: 160px;
+    }
+    input#hiddencharId {
+        width: 150%;
+    }
 	.upload-campaign-pic{
 		height: 250px;
 		overflow:scroll !important;
@@ -2077,6 +2095,9 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    input#hiddencharId {
+        width: 150%;
+    }
     div.cr-safari{
 	    display: -webkit-inline-box;
 	    display: -webkit-inline-flex;
@@ -2213,7 +2234,7 @@ a {
 	.carousel-buttons{
 		position: relative;
 		text-align: center;
-		top: -62px !important;
+		top: -45px !important;
 	}
 	.fbButton {
 		margin-left: auto;
@@ -2346,6 +2367,11 @@ a {
     }
     .nav-justified.user-dashboard-style{
         display:flex !important;
+    }
+    ul.nav-justified.user-dashboard-style{
+        display: -webkit-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
     }
     .nav-justified.show-marginbottoms{
         display:flex !important;
@@ -2732,9 +2758,7 @@ a {
     .nav-justified.validateshow-details-story{
         display:flex !important;
     }
-    .nav-justified.user-dashboard-style{
-        display:flex !important;
-    }
+   
     .nav-justified.show-marginbottoms{
         display:flex !important;
     }
@@ -4811,9 +4835,10 @@ textarea.form-control {
 #hiddencharId {
 	border-style:none;
 	height:26px;
-	width:100%;
+	width:105%;
 	margin-top: 5px;
 	display: block;
+	background-color: #f6f8f8;
 }
 
 #saveButton {
@@ -5450,8 +5475,10 @@ textarea.form-control {
     .nav-justified.validateshow-details-story{
         display:flex !important;
     }
-    .nav-justified.user-dashboard-style{
-        display:flex !important;
+    ul.nav-justified.user-dashboard-style{
+        display: -webkit-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
     }
     .nav-justified.show-marginbottoms{
         display:flex !important;
@@ -6235,6 +6262,14 @@ textarea.form-control {
 	.TW-editFUndraiser-video-thumb{
 		margin-top: 9px;
 	}
+    div.cr-tablet-space{
+        display: block;
+        left: -18px;
+    }
+    input#hiddencharId {
+        width: 116%;
+        margin-left: -8px;
+    }
 	.upload-campaign-pic{
 		height: 250px;
 		overflow:scroll !important;
@@ -6731,7 +6766,7 @@ textarea.form-control {
 	.carousel-buttons{
 		position: relative;
 		text-align: center;
-		top: -15px !important;
+		top: -10px !important;
 	}
 	.carousel-buttons.joinFOG{
 		position: relative;
@@ -6831,7 +6866,7 @@ textarea.form-control {
 	}
 	.user-tiles-style {
     	padding: 0;
-   	 	width: 300px !important;
+   	 	width: 250px !important;
 	}
 	.tile-pad {
     	padding: 0;
@@ -9002,7 +9037,6 @@ span.cr-perks-amts {
 }
 .cr-paddingspace {
   padding-bottom: 120px;
-  padding-top: 60px;
 }
 .bg-color {
     background-color: #f6f8f8;
@@ -9443,7 +9477,6 @@ body {
 }
 .cr-btn-alignment-pre{
 	margin-left: 180px;
-    padding-bottom: 40px;
 }
 .cr-btn-alignment-lac{
 	margin-right: 204px;

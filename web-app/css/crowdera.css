@@ -695,6 +695,9 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.TW-redactor .redactor-toolbar {
+	    padding-left: 1% !important;
+	}
 	div.rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
 	    float: left;
 	    width: 76% !important;
@@ -706,7 +709,7 @@ a {
 		padding-left:190px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left:210px !important;
+		padding-left:200px !important;
 	}
 	.TW-editFUndraiser-video-thumb{
 		margin-top: 9px;
@@ -6217,6 +6220,9 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.TW-redactor .redactor-toolbar {
+	    padding-left: 1% !important;
+	}
 	input.TW-city-margin{
 		margin-bottom:16px !important;
 	}
@@ -9575,7 +9581,7 @@ body {
 }
 
 .TW-redactor .redactor-toolbar{
-	padding-left:0px
+	padding-left:31%;
 }
 .TW-editUpdate-redactor .redactor-toolbar{
 	padding-left:525px;

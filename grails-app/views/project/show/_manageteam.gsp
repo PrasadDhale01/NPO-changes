@@ -30,13 +30,13 @@
 		    <g:if test="${!ended}">
 			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
 			        <g:form controller="project" action="addFundRaiser" id="${project.id}"  params="['fr':currentFundraiser.username]">
-					    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md manage-team"/>
+					    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md manage-team all-place"/>
 					</g:form> 
 			    </li>
 		    </g:if>
 		    <g:else>
 		        <li class="col-md-4 col-sm-4 col-xs-4 show-team-button">
-                    <input value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember disableteambutton text-center btn btn-md" readonly/>
+                    <input value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember disableteambutton text-center btn btn-md all-place" readonly/>
                 </li>
 		    </g:else>
 		</g:if>
@@ -92,15 +92,15 @@
                     <g:hiddenField name="amount" value="${project.amount}"/>
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="username" value="${userName}" placeholder="Name"/>
+                        <input type="text" class="form-control all-place" name="username" value="${userName}" placeholder="Name"/>
                     </div>
                     <div class="form-group">
                         <label>Email ID's (separated by comma)</label>
-                        <textarea class="form-control" name="emailIds" rows="4" placeholder="Email ID's"></textarea>
+                        <textarea class="form-control all-place" name="emailIds" rows="4" placeholder="Email ID's"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Message (Optional)</label>
-                        <textarea class="form-control" name="teammessage" rows="4" placeholder="Message"></textarea>
+                        <textarea class="form-control all-place" name="teammessage" rows="4" placeholder="Message"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -127,23 +127,23 @@
                     <h5><b>Team's Campaign Goal</b></h5><hr/>
                     <div class="form-group">
                         <label>$ GOAL</label>
-                        <input type="text" class="form-control" name="amount" id="teamamount" placeholder="Goal" value="${currentTeam.amount.round()}"/>
+                        <input type="text" class="form-control all-place" name="amount" id="teamamount" placeholder="Goal" value="${currentTeam.amount.round()}"/>
                         <span id="errormsg"></span>
                     </div>
                     <div class="clear"></div>
                     <hr>
                     <h5><b>About My Team</b></h5><hr/>
-                    <div class="form-group">
+                    <div class="form-group TW-editfundraiser-modal">
                         <label class="control-label">Brief Description</label>
-                        <textarea class="form-control" maxlength="140" rows="2" id="descarea" name="description" placeholder="Make it catchy, and no more than 140 characters"> ${currentTeam.description} </textarea>
+                        <textarea class="form-control all-place" maxlength="140" rows="2" id="descarea" name="description" placeholder="Make it catchy, and no more than 140 characters"> ${currentTeam.description} </textarea>
                         <label class="pull-right " id="desclength"></label>
                     </div>
                     <div class="clear"></div>
-                    <div class="form-group">
+                    <div class="form-group TW-redactor">
                         <label>Story</label>
-                        <textarea row="4" col="6" class="redactorEditor" name="story">
+                        <textarea row="4" col="6" class="redactorEditor all-place" name="story">
 						     ${currentTeam.story}</textarea>
-                        <span id="storyRequired">Ths field is required</span>
+                        <span id="storyRequired">This field is required</span>
                     </div>
                     <div class="clear"></div>
                     <hr>
@@ -195,12 +195,12 @@
         					<input id="videoUrl" class="form-control"
          						name="videoUrl" value="${currentTeam.videoUrl}">
       					</div>
-      					<iframe class="edits-video" id="ytVideo" src="${currentTeam.videoUrl}"></iframe>
+      					<div class="col-sm-4 TW-editFUndraiser-video-thumb"><iframe class="edits-video" id="ytVideo" src="${currentTeam.videoUrl}"></iframe></div>
     				</div>
                 </div>
                 <div class="clear"></div>
                 <div class="modal-footer">
-                   <button data-dismiss="modal" class="btn btn-primary">Close</button>
+                   <button data-dismiss="modal" class="btn btn-primary TW-btn-editfundraiser">Close</button>
 				   <button class="btn btn-primary" type="submit" id="teamSaveButton">Save</button>
 		        </div>
 		    </div>

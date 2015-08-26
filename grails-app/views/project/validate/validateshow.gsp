@@ -28,7 +28,7 @@
 						</div>
 						<div class="col-md-4">
 							<div class="col-md-6 col-sm-6 col-xs-6">
-								<g:link controller="project" action="updateValidation" id="${project.id}" class="btn-sm btn-primary validatebutton" role="button">
+								<g:link controller="project" action="updateValidation" id="${project.id}" class="btn-sm btn-primary validatebutton TW-text-decoration" role="button">
 									<i class="glyphicon glyphicon-check validateshow-validate"></i>&nbsp;Validate
 								</g:link>
 							</div>
@@ -44,7 +44,7 @@
 				</div><br/>
 				<div class="row">
 					<div class="col-md-8">
-						<ul class="nav nav-tabs nav-justified validateshow-details-story">
+						<ul class="nav nav-tabs nav-justified validateshow-details-story mng-safari-mobile admin-vali-show">
 							<li class="active"><a href="#essentials" data-toggle="tab">
 									<span class="fa fa-leaf"></span><span class="tab-text hidden-xs"> Story</span>
 							</a></li>

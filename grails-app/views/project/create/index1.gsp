@@ -13,16 +13,10 @@ def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera
 <meta name="layout" content="main" />
 <r:require modules="projectcreatejs" />
 <link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
-<link rel="stylesheet" href="/css/datepicker.css">
-<script src="//tinymce.cachefly.net/4.1/tinymce.min.js"></script>
-<script src="/js/main.js"></script>
-<script src="/js/bootstrap-datepicker.js"></script>
 </head>
 <body>
-<input type="hidden" name="uuid" id="uuid" />
-<input type="hidden" name="charity_name" id="charity_name" />
-<input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
-<div class="">
+    <input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
+    <g:hiddenField name="baseUrl" value="${base_url}" id="b_url"/>
     <div class="cr-headerA">
         <h1 class="text-center cr-header-name">
             Create Campaign
@@ -92,24 +86,22 @@ def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera
 	                            <label class="pull-right " id="desclength"></label>
 	                        </div>
 	                    </div>
-	            
+	                    
 	            <div class="text-center">
 	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-create-btn createsubmitbutton hidden-xs" name="button" value="" id="campaigncreatebtn"></button>
-	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-xs-create-btn createsubmitbutton visible-xs" name="button" value="" id="campaigncreatebtn"></button>
+	                <button type="submit" class="btn  btn-primary btn-colors cr-bg-xs-create-btn createsubmitbutton visible-xs" name="button" value="" id="campaigncreatebtnXS"></button>
 	            </div>
 	        </g:uploadForm>
 	     </div>
      </div>
-</div>
-<script type="text/javascript">
-	var needToConfirm = true;
-    window.onbeforeunload = confirmExit;
-    function confirmExit()
-    {
-        if(needToConfirm){
-        	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
-        }
-    }
-</script>
+     <script type="text/javascript">
+	     var needToConfirm = true;
+         window.onbeforeunload = confirmExit;
+         function confirmExit() {
+             if(needToConfirm){
+        	     return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+             }
+         }
+     </script>
 </body>
 </html>

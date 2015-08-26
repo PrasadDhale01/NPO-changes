@@ -51,7 +51,7 @@
         $(function() {
             $('.redactorEditor').redactor({
                 imageUpload:'/project/getRedactorImage',
-                focus: true,
+                imageResizable: true,
                 plugins: ['video'],
                 buttonsHide: ['indent', 'outdent', 'horizontalrule']
             });
@@ -116,7 +116,7 @@
                     </g:if>
                 </div>
                 <div class="col-xs-12 col-md-8 Top-tabs-mobile">
-                    <ul class="nav nav-tabs nav-justified show-marginbottoms">
+                    <ul class="nav nav-tabs nav-justified show-marginbottoms mng-safari-mobile mng-dt-tabs">
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span><span class="tab-text hidden-xs"> Story</span>
                         </a></li>
@@ -171,15 +171,15 @@
                                             <g:hiddenField name="vanityUsername" value="${vanityUsername}"/>
 				                            <div class="form-group">
 				                                <label>Your Name</label>
-				                                <input type="text" class="form-control" name="name" placeholder="Name"></input>
+				                                <input type="text" class="form-control all-place" name="name" placeholder="Name"></input>
 				                            </div>
 				                            <div class="form-group">
 				                                <label>Email ID's (separated by comma)</label>
-				                                <textarea class="form-control" name="emails" rows="4" placeholder="Email ID's"></textarea>
+				                                <textarea class="form-control all-place" name="emails" rows="4" placeholder="Email ID's"></textarea>
 				                            </div>
 				                            <div class="form-group">
 				                                <label>Message (Optional)</label>
-				                                <textarea class="form-control" name="message" rows="4" placeholder="Message"></textarea>
+				                                <textarea class="form-control all-place" name="message" rows="4" placeholder="Message"></textarea>
 				                            </div>
 				                        </div>
 				                        <div class="modal-footer">

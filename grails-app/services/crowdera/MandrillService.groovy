@@ -460,14 +460,14 @@ class MandrillService {
         inviteToAdmin(email, 'project-update-email', globalMergeVars, tags)
     }
     
-    def sendUpdateEmailsToContributors(Project project,ProjectUpdate projectUpdate, User currentUser){
+    def sendUpdateEmailsToContributors(Project project,ProjectUpdate projectUpdate, User currentUser, def title){
         def contributors=project.contributions
         
         contributors.each { contributor ->
             if(contributor.contributorEmail != "anonymous@example.com" && contributor.contributorEmail !=null){
                 def contributorName = contributor.contributorName
                 def contributorEmail = contributor.contributorEmail
-                sendUpdateEmails(contributorName, contributorEmail, project, projectUpdate, currentUser)
+                sendUpdateEmails(contributorName, contributorEmail, project, projectUpdate, currentUser, title)
             }
         }
         
@@ -477,12 +477,23 @@ class MandrillService {
             if (!contributor) {
                 def name = supporter.user.firstName
                 def email = supporter.user.email
-                sendUpdateEmails( name, email, project, projectUpdate, currentUser)
+                sendUpdateEmails( name, email, project, projectUpdate, currentUser, title)
+            }
+        }
+        List teams = Team.findAllWhere(project : project,enable:true, validated: true);
+        
+        teams.each { team ->
+            def contributor = Contribution.findByUserAndProject(team.user, project)
+            def supporter = Supporter.findByUserAndProject(team.user, project)
+            if (!contributor && (team.user != currentUser) && !supporter) {
+                def name = team.user.firstName
+                def email = team.user.email
+                sendUpdateEmails( name, email, project, projectUpdate, currentUser, title)
             }
         }
     }
     
-    def sendUpdateEmails(def name, def email, Project project, ProjectUpdate projectUpdate,User currentUser) {
+    def sendUpdateEmails(def name, def email, Project project, ProjectUpdate projectUpdate,User currentUser, def title) {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, absolute: true)
         List imageUrls = projectUpdate.imageUrls
         def projectImageUrl
@@ -516,6 +527,9 @@ class MandrillService {
          ], [
              'name': 'IMAGEURL',
              'content': projectImageUrl
+         ],[
+             'name': 'UPDATETITLE',
+             'content': title
          ]]
          
          def tags = ['campaign-update']

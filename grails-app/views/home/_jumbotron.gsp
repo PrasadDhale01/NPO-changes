@@ -28,7 +28,8 @@
      <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 	     <div class="carousel-inner">
 	        <div class="item active">
-	            <img class="hidden-xs or-css" src="//s3.amazonaws.com/crowdera/assets/indian-Flag-in2.jpg" alt="Slider-1"/>
+	            <img class="hidden-xs hidden-sm or-css" src="//s3.amazonaws.com/crowdera/assets/indian-Flag-in2.jpg" alt="Slider-1"/>
+	            <img class="visible-sm hidden-xs or-css" src="//s3.amazonaws.com/crowdera/assets/indian-flag-768.jpg" alt="Slider-1"/>
 	            <img class="visible-xs or-css" src="//s3.amazonaws.com/crowdera/assets/mobile-slide-1.jpg" alt="Slider-1"/>
 	            <div class="carousel-buttons">
 	               <div class="fbButton">
@@ -44,8 +45,9 @@
 	        </div>
 	        
 	        <div class="item">
-                <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/Prajwala-Slide.jpg" alt="Prajwala-Slide">
-                <img class="visible-xs"  src="//s3.amazonaws.com/crowdera/assets/Prajwala Slide-mobile.jpg" alt="Prajwala-Slide">
+                <img class="hidden-xs hidden-sm" src="//s3.amazonaws.com/crowdera/assets/prajwala-1.jpg" alt="Prajwala-Slide">
+                <img class="visible-sm hidden-xs"  src="//s3.amazonaws.com/crowdera/assets/prajwala-768.jpg" alt="Prajwala-Slide">
+                <img class="visible-xs"  src="//s3.amazonaws.com/crowdera/assets/prajwala-mobile-slide.jpg" alt="Prajwala-Slide">
              </div>
 	    </div>
     </g:if>
@@ -79,8 +81,8 @@
            	</div>
         </div>
         <div class="item">
-            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/Prajwala-Slide.jpg" alt="Prajwala-Slide">
-            <img class="visible-xs"  src="//s3.amazonaws.com/crowdera/assets/Prajwala Slide-mobile.jpg" alt="Prajwala-Slide">
+            <img class="hidden-xs" src="//s3.amazonaws.com/crowdera/assets/prajwala-1.jpg" alt="Prajwala-Slide">
+            <img class="visible-xs"  src="//s3.amazonaws.com/crowdera/assets/prajwala-mobile-slide.jpg" alt="Prajwala-Slide">
             <div class="carousel-buttons">
                <div class="fbButton">
                   <a href="${resource(dir: '/campaigns/Securing-Prajwala--An-Anti-Trafficking-Intervention/Friends-of-680')}">

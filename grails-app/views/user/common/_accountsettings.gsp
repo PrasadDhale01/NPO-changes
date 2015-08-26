@@ -26,7 +26,7 @@
 	        </div>
 		    <g:uploadForm controller="user" action="edit_avatar" id="${user.id}" role="form">
 		        <button class="btn btn-primary btn-sm" type="button" id="editavatarbutton">Edit Avatar</button>
-	            <input class="hidden" type="file" name="profile" id="editavatar" accept="image/*"/>
+	            <input class="hid-input-type-file" type="file" name="profile" id="editavatar" accept="image/*"/>
 	            <input type="submit" class="hidden buttons" value="Upload" id="editbutton" accept="image/*"/>
 	            <div class="clear"></div>
                 <label class="docfile-orglogo-css" id="editProfileImg">Please select image file only.</label>
@@ -39,7 +39,7 @@
 	        </div>
 	        <g:uploadForm controller="user" action="upload_avatar" id="${user.id}" role="form">
 	            <button class="btn btn-primary btn-sm" type="button" id="uploadavatar">Upload Avatar</button>
-	            <input class="hidden" type="file" name="avatar" id="avatar" accept="image/*"/>
+	            <input class="hid-input-type-file" type="file" name="avatar" id="avatar" accept="image/*"/>
 	            <input type="submit" class="hidden buttons" value="Upload" id="uploadbutton" accept="image/*"/>
 	            <div class="clear"></div>
                 <label class="docfile-orglogo-css" id="uploadProfileImg">Please select image file only.</label>
@@ -53,10 +53,10 @@
         <div class="form-signin">
             <h2><i class="fa fa-facebook-square"></i> Facebook user</h2>
             <div class="form-group">
-                <input type="text" name="firstName" class="form-control" value="${user.firstName}" readonly>
+                <input type="text" name="firstName" class="form-control all-place" value="${user.firstName}" readonly>
             </div>
             <div class="form-group">
-                <input type="text" name="lastName" class="form-control" value="${user.lastName}" readonly>
+                <input type="text" name="lastName" class="form-control all-place" value="${user.lastName}" readonly>
             </div>
         </div>
     </g:if>
@@ -64,10 +64,10 @@
         <div class="form-signin">
             <h2><i class="fa fa-google-plus-square"></i> Google Plus User</h2>
             <div class="form-group">
-                <input type="text" name="firstName" class="form-control" value="${user.firstName}" readonly>
+                <input type="text" name="firstName" class="form-control all-place" value="${user.firstName}" readonly>
             </div>
             <div class="form-group">
-                <input type="text" name="lastName" class="form-control" value="${user.lastName}" readonly>
+                <input type="text" name="lastName" class="form-control all-place" value="${user.lastName}" readonly>
             </div>
         </div>
     </g:elseif>
@@ -75,16 +75,16 @@
         <div id="validpass">
             <g:form class="form-signin" controller="login" action="update" role="form">
                 <div class="form-group">
-                    <input type="text" name="firstName" required class="form-control" value="${user.firstName}" placeholder="New First name" autofocus>
+                    <input type="text" name="firstName" required class="form-control all-place" value="${user.firstName}" placeholder="New First name" autofocus>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="lastName" required class="form-control" value="${user.lastName}" placeholder="New Last name">
+                    <input type="text" name="lastName" required class="form-control all-place" value="${user.lastName}" placeholder="New Last name">
                 </div>
                 <div class="form-group">
-                    <input type="password" id="password" name="password" class="form-control" placeholder="New Password (Optional)">
+                    <input type="password" id="password" name="password" class="form-control all-place" placeholder="New Password (Optional)">
                 </div>
                 <div class="form-group">
-                    <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password">
+                    <input type="password" name="confirmPassword" class="form-control all-place" placeholder="Confirm Password">
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Update</button>
             </g:form>

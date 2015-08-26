@@ -76,10 +76,6 @@
 	background-color: #F0F0F0;
 	margin-bottom: 5px;
 }
-.hrClass{
-    margin-top:4px;
-    margin-bottom:-7px !important;
-}
 .hrClasses{
     margin-top:4px;
     margin-bottom:12px !important;
@@ -240,7 +236,9 @@ p {
 
 a.customer-support-a {
     transform: rotate(-90deg);
+    -webkit-transform: rotate(-90deg);  	/***safari***/
     transform-origin: left bottom 0px;
+    -webkit-transform-origin: left bottom 0px; 		/***safari***/
     
     color: #FFF;
     background-color: #5A5A5A;
@@ -563,22 +561,18 @@ div.lblIcon {
   width: 116px !important;
 }
 
-div.break-div{
-	  height: 115px;
-}
-
-div.break-div-js{
-	height:80px;
-}
-
 .youtubeVideoIframe {
 	width: 236%;
 	height:206px;
 	display:block;
 }
 
+.enddate .help-block{
+	display:inline-flex;
+	float:left;
+}
 img.deadlineInfo-img {
-  padding-left: 144px;
+  margin-top:5px;
 }
 
 img.videoInfo-img {
@@ -606,7 +600,6 @@ div.amount-popover .popover{
 }
 
 div.deadline-popover .popover{
-	margin-left:38%;
 	width:700px;
 }
 
@@ -618,4 +611,40 @@ div.video-popover .popover{
 div.image-popover .popover{
 	margin-left:45%;
 	width:700px;
+}
+.agreeTermsOfUseAndPP a {
+	text-decoration: none !important;
+}
+.agreeTermsOfUseAndPP a:hover, .agreeTermsOfUseAndPP a:active {
+    text-decoration: none !important;
+}
+
+.col-sm-12.perk-create-styls.perk-top{
+    top: -30px;
+}
+
+.col-sm-12.perk-create-styls.edit-top-gsp{
+    top:-5px;
+    padding-bottom: 14px;
+}
+
+.campaignUpdateContainer {
+    width: 1000px;
+    margin: 0 auto;
+}
+.campaignUpdateContainer .btn-primary {
+    background-color: #5bc0de !important;
+    border-color: #46b8da !important;
+}
+.updatesubmitbtn .btn {
+	padding: 14px 28px;
+    font-size: 22px;
+    font-weight: 700;
+}
+.campaignUpdateContainer h3 {
+    font-size: 20px !important;
+}
+.campaignUpdateStory img {
+    max-width: 100%;
+    width: auto;
 }

@@ -615,9 +615,6 @@ class FundController {
         def address=request.getParameter("physicalAddress")
         def txnid = request.getParameter('txnid')
 
-        def shippingtwitter =request.getParameter("shippingTwitter")
-        println "\n request"+ request
-        
         Project project = Project.get(projectId)
         User user = User.get(userid)
         User fundraiser = User.get(fundraiserId)

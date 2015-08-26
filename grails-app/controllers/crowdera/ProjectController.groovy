@@ -388,7 +388,6 @@ class ProjectController {
 		render ""
 	}
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def create() {
 		def categoryOptions = projectService.getCategoryList()
 		def country = projectService.getCountry()
@@ -474,8 +473,6 @@ class ProjectController {
             project.secretKey = params.(FORMCONSTANTS.SECRETKEY)
         }
 		
-		project.draft = false;
-
         def imageFiles = request.getFiles('thumbnail[]')
         if(!imageFiles.isEmpty()) {
             projectService.getMultipleImageUrls(imageFiles, project)
@@ -490,8 +487,14 @@ class ProjectController {
         }
 
 		rewardService.saveRewardDetails(params);
-		
-        redirect (action:'launch' ,  params:[title:params.title])
+		project.story = params.story
+
+        if (params.isSubmitButton == 'true'){
+            project.draft = false;		
+            redirect (action:'launch' ,  params:[title:params.title])
+        } else {
+            redirect (action:'manageCampaign' ,  params:[id:project.id, isPreview:true])
+        }
     }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
@@ -523,7 +526,7 @@ class ProjectController {
 		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
 		def categoryOptions = projectService.getCategoryList()
         def currentEnv = Environment.current.getName()
-		def vanityTitle = params.title
+		def vanityTitle = params.projectTitle
 		def user = project.user
 		def country = projectService.getCountry()
 		def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
@@ -564,17 +567,16 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def update() {
-		def project = projectService.getProjectById(params.projectId)
-		User user = userService.getCurrentUser()
-		def title = projectService.getVanityTitleFromId(params.projectId)
+		def project = projectService.getProjectFromVanityTitle(params.title)
+		User user = userService.getUserFromVanityName(params.userName)
 		if(project) {
 			def vanityTitle = projectService.getProjectUpdateDetails(params, request, project,user)
 			rewardService.saveRewardDetails(params);
 			flash.prj_mngprj_message = "Successfully saved the changes"
 			if (vanityTitle){
 				redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
-			}else{
-				redirect (action: 'manageproject', params:['projectTitle':title])
+			} else {
+				redirect (action: 'manageproject', params:['projectTitle':params.title])
 			}
 		} else {
 			flash.prj_edit_message = "Campaign not found."
@@ -856,19 +858,27 @@ class ProjectController {
         def title = projectService.getVanityTitleFromId(params.id)
         if(title) {
             if (params.isPreview){
-                redirect (action :'preview', params:['projectTitle':title]);
-            } else {
-                redirect (action:'manageproject', params:['projectTitle':title])
-            }
+               if(params.tile)
+                   redirect (action :'previewTile', params:['projectTitle':title]);
+               else 
+                   redirect (action :'preview', params:['projectTitle':title]);
+               } else {
+                   redirect (action:'manageproject', params:['projectTitle':title])
+               }
         } else {
             render view:'404error'
         }
     }
 	
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def preview(){
-		forward(action:'manageproject', params:['projectTitle':params.projectTitle, 'isPreview':true])
-	}
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def previewTile(){
+        forward(action:'manageproject', params:['projectTitle':params.projectTitle, 'isPreview':true, 'tile':true])
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def preview(){
+        forward(action:'manageproject', params:['projectTitle':params.projectTitle, 'isPreview':true, 'tile':false])
+    }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def manageproject() {
@@ -912,7 +922,7 @@ class ProjectController {
                         model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
                                 discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,
                                 ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
-                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo])
+                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo, tile:params.tile])
             } else{
                 flash.prj_mngprj_message = 'Campaign Not Found'
                 render (view: 'manageproject/error', model: [project: project])
@@ -1049,10 +1059,11 @@ class ProjectController {
 				User user = userService.getCurrentUser()
 
 				projectUpdate.story = story
+                projectUpdate.title = params.title
 				projectService.getUpdatedImageUrls(imageFiles, projectUpdate)
 
 				project.addToProjectUpdates(projectUpdate)
-				mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user)
+				mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user,params.title)
 
 				flash.prj_mngprj_message= "Update added successfully."
 				redirect (action: 'manageproject', controller:'project', params:['projectTitle':title], fragment: 'projectupdates')
@@ -1519,5 +1530,12 @@ class ProjectController {
         def bankInfos = userService.getBankInfoList()
         render (view:'/user/payments/index', model:[bankInfos: bankInfos])
     }
-    
+
+	def saveStory (){
+		def projectId = params.projectId
+		def varValue = params.story
+		projectService.autoSaveProjectDetails('story', varValue, projectId)
+		render ''
+	}
+
 }

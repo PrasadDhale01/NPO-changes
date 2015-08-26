@@ -104,6 +104,7 @@ class ProjectService {
             }
         }
         
+        project.story = params.story
         if (project.draft) {
             project.paypalEmail = params.paypalEmail
             project.charitableId = params.charitableId
@@ -124,6 +125,7 @@ class ProjectService {
                 vanitytitle = getProjectVanityTitle(project)
             }
         }
+        return vanitytitle
     }
 
     def getCSVDetails(def params, def response){
@@ -1538,6 +1540,7 @@ class ProjectService {
                 try{
                     def file= new File("${imageFile.getOriginalFilename()}")
                     def key = "${Folder}/${it.getOriginalFilename()}"
+                    key = key.toLowerCase()
                     imageFile.transferTo(file)
                     def object=new S3Object(file)
                     object.key=key
@@ -1574,6 +1577,7 @@ class ProjectService {
 				try{
 					def file= new File("${imageFile.getOriginalFilename()}")
 					def key = "${Folder}/${it.getOriginalFilename()}"
+                                        key = key.toLowerCase()
 					imageFile.transferTo(file)
 					def object=new S3Object(file)
 					object.key=key
@@ -1613,6 +1617,7 @@ class ProjectService {
              if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
                 def file= new File("${imageFile.getOriginalFilename()}")
                 def key = "${Folder}/${it.getOriginalFilename()}"
+                key = key.toLowerCase()
                 imageFile.transferTo(file)
                 def object=new S3Object(file)
                 object.key=key
@@ -1683,6 +1688,7 @@ class ProjectService {
         
             def tempFile = new File("${iconFile.getOriginalFilename()}")
             def key = "${folder}/${iconFile.getOriginalFilename()}"
+            key = key.toLowerCase()
             iconFile.transferTo(tempFile)
             def object = new S3Object(tempFile)
             object.key = key
@@ -1720,6 +1726,7 @@ class ProjectService {
                     try{
                         def file= new File("${imageFile.getOriginalFilename()}")
                         def key = "${Folder}/${it.getOriginalFilename()}"
+                        key = key.toLowerCase()
                         imageFile.transferTo(file)
                         def object=new S3Object(file)
                         object.key=key
@@ -1897,30 +1904,31 @@ class ProjectService {
 		mandrillService.sendEmailToCrew(crewrequest)
 	}
 	
-	def setResume(CommonsMultipartFile resume, def params) {
-		if (!resume?.empty && resume.size < 1024 * 1024 * 3) {
-			def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
-			def awsSecretKey = "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"
-			def bucketName = "crowdera"
-			def folder = "Attachments"
+    def setResume(CommonsMultipartFile resume, def params) {
+        if (!resume?.empty && resume.size < 1024 * 1024 * 3) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "Attachments"
 
-			def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
-			def s3Service = new RestS3Service(awsCredentials);
-			def s3Bucket = new S3Bucket(bucketName)
-		
-			def tempFile = new File("${resume.getOriginalFilename()}")
-			def key = "${folder}/${resume.getOriginalFilename()}"
-			resume.transferTo(tempFile)
-			def object = new S3Object(tempFile)
-			object.key = key
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def s3Bucket = new S3Bucket(bucketName)
 
-			s3Service.putObject(s3Bucket, object)
-			tempFile.delete()
-		
-			def resumeUrl = "//s3.amazonaws.com/crowdera/${key}"
-			getCrewRequest(params, resumeUrl)
-		}
-	}
+            def tempFile = new File("${resume.getOriginalFilename()}")
+            def key = "${folder}/${resume.getOriginalFilename()}"
+            key = key.toLowerCase()
+            resume.transferTo(tempFile)
+            def object = new S3Object(tempFile)
+            object.key = key
+
+            s3Service.putObject(s3Bucket, object)
+            tempFile.delete()
+
+            def resumeUrl = "//s3.amazonaws.com/crowdera/${key}"
+            getCrewRequest(params, resumeUrl)
+        }
+    }
     
     def setAttachments(CustomerService service, List<MultipartFile> files){
         def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
@@ -1943,6 +1951,7 @@ class ProjectService {
                 try{
                     def file= new File("${attachedFile.getOriginalFilename()}")
                     def key = "${Folder}/${it.getOriginalFilename()}"
+                    key = key.toLowerCase()
                     attachedFile.transferTo(file)
                     def object=new S3Object(file)
                     object.key=key
@@ -2305,22 +2314,33 @@ class ProjectService {
         ProjectUpdate projectUpdate = getProjectUpdateById(params.long('id'))
         def story = params.story
         def isImageFileEmpty = isImageFileEmpty(imageFiles)
-        
+        boolean isCampaignUpdated = false
         if(projectUpdate) {
             if (!isImageFileEmpty) {
                 getUpdatedImageUrls(imageFiles, projectUpdate)
+                isCampaignUpdated = true;
             }
             if (!story.isAllWhitespace()) {
                 if (projectUpdate.story != story) {
                     projectUpdate.story = story
+                    isCampaignUpdated = true
                 }
             } else {
                 if (!projectUpdate.imageUrls.isEmpty()) {
                     projectUpdate.story = params.story
+                    isCampaignUpdated = true
                 }
             }
             
-            if (projectUpdate.imageUrls.isEmpty() && story.isAllWhitespace()) {
+            if (projectUpdate.title != params.title) {
+                projectUpdate.title = params.title
+                isCampaignUpdated = true
+            }
+            
+            if (isCampaignUpdated) {
+                projectUpdate.save();
+                
+            } else if (projectUpdate.imageUrls.isEmpty() && story.isAllWhitespace()) {
                 if (projectUpdate.story == null || projectUpdate.story.isAllWhitespace()) {
                     List projectUpdates = project.projectUpdates
                     projectUpdates.remove(projectUpdate)
@@ -2444,6 +2464,7 @@ class ProjectService {
 
             def tempFile = new File("${imageFile.getOriginalFilename()}")
             def key = "${folder}/${imageFile.getOriginalFilename()}"
+            key = key.toLowerCase()
             imageFile.transferTo(tempFile)
             def object = new S3Object(tempFile)
             object.key = key

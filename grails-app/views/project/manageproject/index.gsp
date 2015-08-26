@@ -88,10 +88,12 @@
 					 
                     <div class="col-md-12">
                         <g:if test="${isPreview}">
+                            <g:if test="${tile == 'false'}">
                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
-                            <a href="/campaign/start/${vanityTitle}"><< Back to create page</a>
+                            <a href="/campaign/start/${vanityTitle}"><< Back to Create Page</a>
                             </div>
-                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 campaignTitle">
+                            </g:if>
+                            <div class="<g:if test="${tile == 'false'}">col-lg-8 col-md-8 col-sm-8 col-xs-12 </g:if>campaignTitle">
                             <h1 class="green-heading text-center">${projectTitle}</h1>
                             </div>
                         </g:if>
@@ -112,7 +114,7 @@
                         </div>
                     </g:if>
                     <div class="col-md-12 manage-Top-tabs-mobile">
-                        <ul class="nav nav-tabs manage-projects nav-justified" style="margin-bottom: 10px;">
+                        <ul class="nav nav-tabs manage-projects nav-justified mng-safari-mobile mng-safari-tabs" style="margin-bottom: 10px;">
                             <li class="active"><a href="#essentials" data-toggle="tab">
                                 <span class="glyphicon glyphicon-leaf"></span> <span class="tab-text hidden-xs"> Story</span>
                             </a></li>

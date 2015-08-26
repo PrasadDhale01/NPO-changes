@@ -73,21 +73,21 @@
                     </g:if>
                     <div class="form-group">
                         <label for="title">Title</label>
-                        <input type="text" class="form-control" name="title" value="${reward.title}" placeholder="Title"/>
+                        <input type="text" class="form-control all-place" name="title" value="${reward.title}" placeholder="Title"/>
                     </div>
                     <div class="form-group">
                         <label for="title">Number available</label>
-                        <input type="text" class="form-control" name="numberAvailable" value="${reward.numberAvailable}" placeholder="Number available"/>
+                        <input type="text" class="form-control all-place" name="numberAvailable" value="${reward.numberAvailable}" placeholder="Number available"/>
                     </div>
                     <div class="form-group descriptionDiv createDescDiv">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="descarea" name="description" maxlength="250" rows="4" placeholder="Description">${reward.description}</textarea>
+                        <textarea class="form-control all-place" id="descarea" name="description" maxlength="250" rows="4" placeholder="Description">${reward.description}</textarea>
                         <label class="pull-right " id="desclength"></label>
                     </div>
                     <div class="clear"></div>
                     <div class="form-group">
                         <label for="price">Price (<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                        <input type="number" class="form-control perkPrice" name="price" value="${reward.price.round()}" id="perkPrice" placeholder="Price"/>
+                        <input type="number" class="form-control perkPrice all-place" name="price" value="${reward.price.round()}" id="perkPrice" placeholder="Price"/>
                         <span id="errormsg" class="errormsg"></span>
                     </div>
                     <div class="form-group">

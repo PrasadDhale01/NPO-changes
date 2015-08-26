@@ -1,6 +1,8 @@
 $(function() {
     console.log("create.js initialized");
     
+    $('#iconfile').val('');
+    
     var rewardIteratorCount = $('#rewardCount').val();
     if (rewardIteratorCount > 0){
     	$('#rewardTemplate').show();
@@ -9,8 +11,9 @@ $(function() {
     } else {
     	$('#rewardTemplate').hide();
     }
-    
-    var count = $('#rewardCount').val()
+
+    var count = $('#rewardCount').val();
+     var projectId = $('#projectId').val();
     
     var storyContent
     var storyPlaceholder = "<p><h3>Introduce Your Campaign</h3></p>"+
@@ -53,14 +56,8 @@ $(function() {
     
     $('.redactorEditor').redactor({
         imageUpload:'/project/getRedactorImage',
-        changeCallback: function(){
-            var delay = 10000; //delayed code to prevent error, time in milliseconds
-            storyContent = this.code.get();
-            $('#projectHasStory').val(storyContent);
-                setTimeout(function() {
-                autoSave('story', storyContent);
-            }, delay);
-        },
+        autosave: '/project/saveStory/?projectId='+projectId,
+        imageResizable: true,
         initCallback: function(){
             var projectHasStory = $('#projectHasStory').val();
             if (projectHasStory && projectHasStory != ''){
@@ -140,23 +137,6 @@ $(function() {
                 isValidTelephoneNumber: true,
                 maxlength: 20
             },
-            addressLine1: {
-                required: false
-            },
-            addressLine2: {
-                required: false
-            },
-            city: {
-                required: true
-            },
-            stateOrProvince: {
-                required: true
-            },
-            postalCode: {
-                required: true,
-                maxlength: 10,
-                minlength: 4
-            },
             country: {
                 required: true
             },
@@ -165,18 +145,10 @@ $(function() {
                 minlength: 10,
                 maxlength: 140
         	},
-            days: {
-                required: true
-            },
             title: {
                 required: true,
                 minlength: 5,
                 maxlength: 100
-            },
-            story: {
-                required: true,
-                minlength: 10,
-                maxlength: 5000
             },
             videoUrl: {
                 isYoutubeVideo: true
@@ -202,31 +174,6 @@ $(function() {
             },
             checkBox2:{
               required: true
-            },
-            paypalEmail:{
-              email:true,
-              isPaypalEmailVerified : true,
-              required: true
-            },
-            payuEmail:{
-            	required:true,
-            	email:true
-            },
-            pay: {
-            	required:true
-            },
-            charitableId: {
-            	required:true
-            },
-            organizationName: {
-            	required:true
-            },
-            webAddress: {
-            	required:true,
-            	isWebUrl:true
-            },
-            answer: {
-            	required:true
             }
         },
         messages:{
@@ -272,7 +219,44 @@ $(function() {
         return true;
     }, "Please enter verified paypal email id");
     
-    $('#campaigncreatebtn').on('click', function() {
+    $('#campaigncreatebtn, #campaigncreatebtnXS').on('click', function(event) {
+    	event.preventDefault();
+    	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+        	$("[name='amount']").rules("add", {
+                required: true,
+                number: true,
+                min: 500,
+                maxlength: 8,
+                max: 99999999
+            });
+        } else {
+        	$("[name='amount']").rules("add", {
+                required: true,
+                number: true,
+                min: 500,
+                maxlength: 6,
+                max: 999999
+            });
+        }
+   	
+        if (validator.form()) {
+            $('#campaigncreatebtn').attr('disabled','disabled');
+            var url = $("#b_url").val()+"/project/createNow/?firstName="+$("#name").val()+'&amount='+$("#amount").val()+'&title='+$("#campaignTitle").val()+'&description='+$("#descarea").val()+'&usedFor='+$("#usedFor").val();
+            window.location.href = url;
+        }
+    });
+    
+    $('#saveButton, #saveButtonXS').on('click', function() {
+    	var storyValue = $('.redactorEditor').redactor('code.get');
+        var storyEmpty = false;
+        if (storyValue == '' || storyValue == undefined){
+            $('#storyRequired').show();
+            storyEmpty = true;
+        } else {
+        $('#storyRequired').hide();
+            storyEmpty = false;
+        }
+
     	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
         	$("[name='amount']").rules("add", {
                 required: true,
@@ -298,6 +282,23 @@ $(function() {
             });
         });
     	
+        $( '[name="answer"]' ).rules( "add", {
+            required: true
+        });
+
+        $( '[name="webAddress"]' ).rules( "add", {
+            required: true,
+            isWebUrl:true
+        });
+
+        $( '[name="organizationName"]' ).rules( "add", {
+            required: true
+        });
+
+        $( '[name="days"]' ).rules( "add", {
+            required: true
+        });
+    	
     	var iconUrl = $('#imgIcon').attr('src');
     	
     	if (!iconUrl) {
@@ -317,40 +318,7 @@ $(function() {
             });
     	}
     	
-    	if (validator.form()) {
-    		$('#campaigncreatebtn').attr('disabled','disabled');
-    		$('#campaigncreate').find('form').submit();
-    	}
-    });
-    
-    $('#submitProject').on('click', function() {
-        var storyValue = $('.redactorEditor').redactor('code.get');
-        var storyEmpty = false;
-        if (storyValue == '' || storyValue == undefined){
-            $('#storyRequired').show();
-            storyEmpty = true;
-        } else {
-        $('#storyRequired').hide();
-            storyEmpty = false;
-        }
-
-        $( "#projectImageFile" ).rules( "add", {
-            required: true,
-            messages: {
-                required: "Please upload at least one campaign image"
-            }
-        });
-        $('.rewardNumberAvailable').each(function () {
-            $(this).rules("add", {
-                required: true,
-                number: true,
-                min: 0
-            });
-        });
-        $('#iconfile').rules("add", {
-            required: true
-        });
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+    	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
                     required: true,
@@ -362,6 +330,11 @@ $(function() {
                     },
                     min: 250
                 });
+            });
+            
+            $( '[name="payuEmail"]' ).rules( "add", {
+                required: true,
+                email:true
             });
         } else {
         	$('.rewardPrice').each(function () {
@@ -376,14 +349,140 @@ $(function() {
                     min: 1
                 });
             });
+        	
+        	$( '[name="paypalEmail"]' ).rules( "add", {
+                required: true,
+                isPaypalEmailVerified : true,
+                email:true
+            });
+        	
+        	$( '[name="charitableId"]' ).rules( "add", {
+                required: true
+            });
+        }
+
+    	if (validator.form()) {
+            if (!storyEmpty){
+                $('#campaigncreatebtn').attr('disabled','disabled');
+                $('#campaigncreate').find('form').submit();
+            }
+    	}
+    });
+    
+    $('#submitProject').on('click', function() {
+        var storyValue = $('.redactorEditor').redactor('code.get');
+        var storyEmpty = false;
+        if (storyValue == '' || storyValue == undefined){
+            $('#storyRequired').show();
+            storyEmpty = true;
+        } else {
+        $('#storyRequired').hide();
+            storyEmpty = false;
+        }
+        
+        if($('#campaignthumbnails').find('#imgdiv').length < 1) {
+    		$("#projectImageFile").rules( "add", {
+                required: true,
+                messages: {
+                    required: "Please upload at least one campaign image."
+                }
+            });
+    	}
+
+        $( '[name="answer"]' ).rules( "add", {
+            required: true
+        });
+
+        $( '[name="webAddress"]' ).rules( "add", {
+            required: true,
+            isWebUrl:true
+        });
+
+        $( '[name="organizationName"]' ).rules( "add", {
+            required: true
+        });
+
+        $( '[name="days"]' ).rules( "add", {
+            required: true
+        });
+
+        $('.rewardNumberAvailable').each(function () {
+            $(this).rules("add", {
+                required: true,
+                number: true,
+                min: 0
+            });
+        });
+        
+        var iconUrl = $('#imgIcon').attr('src');
+    	
+    	if (!iconUrl) {
+        
+        $('#iconfile').rules("add", {
+            required: true
+        });
+    	}
+        
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+            $('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 8,
+                    max: function() {
+                    	var campaignAmount = $('#projectamount').val();
+                        return Number(campaignAmount);
+                    },
+                    min: 250
+                });
+            });
+            
+            $( '[name="payuEmail"]' ).rules( "add", {
+                required: true,
+                email:true
+            });
+        } else {
+        	$('.rewardPrice').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number: true,
+                    maxlength: 6,
+                    max: function() {
+                    	var campaignAmount = $('#projectamount').val();
+                        return Number(campaignAmount);
+                    },
+                    min: 1
+                });
+            });
+        	
+        	$( '[name="paypalEmail"]' ).rules( "add", {
+                required: true,
+                isPaypalEmailVerified : true,
+                email:true
+            });
+        	
+        	$( '[name="charitableId"]' ).rules( "add", {
+                required: true
+            });
+        	
+        	$('.rewardDescription').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                });
+            });
+           	
+           	$('.rewardTitle').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                });
+           	});
         }
         
     	if (validator.form()) {
-    		$('#isSubmitButton').attr('value',false);
             if (!storyEmpty){
                 $('#campaigncreate').find('form').submit();
                 $('#submitProject').attr('disabled','disabled');
-                $('#saveasdraft').attr('disabled','disabled');
+                $('#previewButton').attr('disabled','disabled');
             }
     	}
     });
@@ -441,11 +540,24 @@ $(function() {
             });
         }
         
+        $('.rewardDescription').each(function () {
+            $(this).rules("add", {
+                required: true,
+            });
+        });
+       	
+       	$('.rewardTitle').each(function () {
+            $(this).rules("add", {
+                required: true,
+            });
+       	});
+        
     	if (validator.form()) {
     		$('#isSubmitButton').attr('value',false);
             if (!storyEmpty){
                 $('#campaigncreate').find('form').submit();
                 $('#submitProjectXS').attr('disabled','disabled');
+                $('#previewButtonXS').attr('disabled','disabled');
             }
     	}
     });
@@ -453,10 +565,20 @@ $(function() {
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
            var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-           return (value.match(p)) ? RegExp.$1 : false;
+           var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+           var youtubematch = value.match(p);
+           var vimeomatch = value.match(vimeo);
+           var match
+           if (youtubematch)
+               match = youtubematch;
+           else if (vimeomatch && vimeomatch[2].length == 9)
+               match = vimeomatch;
+           else 
+               match = null;
+           return (match) ? true : false;
         }
         return true;
-     }, "Please upload a url of Youtube video");
+     }, "Please upload a url of Youtube/Vimeo video");
      
      $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
      	  
@@ -469,7 +591,7 @@ $(function() {
      
      $.validator.addMethod('isWebUrl', function(value, element){
     	 if(value && value.length !=0){
-          var p= /(?:(?:www):\/\/)?(?:www.)\/?/;
+          var p = /(https | http?:\/\/(?:www\.|(?!www))[^\s\.]+\.[^\s]{2,}|www\.[^\s]+\.[^\s]{2,})/ig;;
   	    	return (value.match(p))
     	 }
     	 return true;
@@ -626,25 +748,40 @@ $(function() {
      
     if($('#addvideoUrl').val()) {
         var url= $('#videoUrl').val().trim();
+        var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+        var match = (url.match(youtube) || url.match(vimeo));
         $('#ytVideo').show();
         $('#media').hide();
         $('#media-video').show();
-        var vurl=url.replace("watch?v=", "v/");
-        $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'></iframe>');
+        if (match[2].length == 11){
+        	var vurl=url.replace("watch?v=", "embed/");
+            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
+        } else {
+        	$('#ytVideo').html('<iframe class="youtubeVideoIframe" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen src=https://player.vimeo.com/video/'+ match[2] +'></iframe>');
+        }
     }
 	$('#add').on('click',function(){
         var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-        //var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/
+        var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
         var url= $('#videoUrl').val().trim();
-        var match = url.match(youtube);
+        var match = (url.match(youtube) || url.match(vimeo));
         if (match && match[2].length == 11) {
+        	var vurl=url.replace("watch?v=", "embed/");
             $('#ytVideo').show();
             $('#media').hide();
             $('#media-video').show();
             autoSave('videoUrl', url);
             $('#addvideoUrl').val(url);
-            var vurl=url.replace("watch?v=", "v/");
-            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ vurl +'></iframe>');
+            var vurl=url.replace("watch?v=", "embed/");
+            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ vurl +'?wmode=transparent></iframe>');
+        } else if (match && match[2].length == 9){
+        	$('#ytVideo').show();
+            $('#media').hide();
+            $('#media-video').show();
+            autoSave('videoUrl', url);
+            $('#addvideoUrl').val(url);
+            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
         } else if($(this)){
         	if(!$('#addvideoUrl').val()) {
                 $('#ytVideo').hide();
@@ -682,6 +819,8 @@ $(function() {
                 $('#logomsg').hide();
                 $('#iconfilesize').hide();
                 $('.edit-logo-icon').show();
+                $('#imgIcon').show();
+                $('#logoDelete').show();
                 var file = this.files[0];
                 var fileName = file.name;
                 var fileSize = file.size;
@@ -691,6 +830,9 @@ $(function() {
                     var picFile = event.target;
                     $('#imgIcon').attr('src',picFile.result);
                     $('#delIcon').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
+                    
+                    $('.createOrgIconDiv, .projectImageFilediv').find("span").remove();
+                    $('.createOrgIconDiv, .projectImageFilediv').closest(".form-group").removeClass('has-error');
                });
                // Read the image
                picReader.readAsDataURL(file);
@@ -702,154 +844,166 @@ $(function() {
      /*******************************Description text length******************** */
     var counter = 1;
     $('#descarea').on('keydown', function(event) {
-    
-    event.altKey==true;
-    var currentString = $('#descarea').val().length;
-    if(currentString <=139) {
-        var text = currentString + 1;
-    }
-    if (event.keyCode > 31) {
-      if(event.altKey==true){
-        setDescriptionText();
-      }
-      else{
-    	  if(currentString <139)
-          currentString++;
-          $('#desclength').text(text);
-      }
-
-    } else {
-          currentString--;
-          $('#desclength').text(text);
-      }
-  }).keyup(function(e) {
+        event.altKey==true;
+        var currentString = $('#descarea').val().length;
+        if (currentString >= 9) {
+        	$('.createDescDiv').find("span").remove();
+            $('.createDescDiv').closest(".form-group").removeClass('has-error');
+        }
+        
+        if(currentString <=140) {
+        	if (currentString == 140) {
+        		var text = currentString;
+        	} else {
+        		var text = currentString + 1;
+        	}
+        }
+        if (event.keyCode > 31) {
+            if(event.altKey==true){
+                setDescriptionText();
+            }
+            else {
+                if(currentString < 139)
+                    currentString++;
+                $('#desclength').text(text+'/140');
+            }
+        } else {
+            currentString--;
+            $('#desclength').text(text+'/140');
+        }
+    }).keyup(function(e) {
       
-    if(e.altKey==true){
-        setDescriptionText();
-        return false;
-    }
+        if(e.altKey == true){
+           setDescriptionText();
+           return false;
+        }
 
-    switch (e.keyCode) {
+        switch (e.keyCode) {
 
-      case 13:      //Enter
-      case 8:       //backspace
-      case 46:      //delete
-      case 17:      
-      case 27:      //escape
-      case 10:      //new line
-      case 20:      
-      case 9:       //horizontal TAB
-      case 11:      //vertical tab
-      case 33:      //page up  
-      case 34:      //page  down
-      case 35:      //End 
-      case 36:      //Home
-      case 37:      //Left arrow
-      case 38:      //up arrow
-      case 39:      //Right arrow
-      case 40:      //Down arrow
-      case 45:      //Insert
-      case 12:      //vertical tab
+            case 13:      //Enter
+            case 8:       //backspace
+            case 46:      //delete
+            case 17:      
+            case 27:      //escape
+            case 10:      //new line
+            case 20:      
+            case 9:       //horizontal TAB
+            case 11:      //vertical tab
+            case 33:      //page up  
+            case 34:      //page  down
+            case 35:      //End 
+            case 36:      //Home
+            case 37:      //Left arrow
+            case 38:      //up arrow
+            case 39:      //Right arrow
+            case 40:      //Down arrow
+            case 45:      //Insert
+            case 12:      //vertical tab
+                setDescriptionText();
+                break;
+            case 16:      //shift
+                setDescriptionText();
+                break;
+        }
+    }).focus(function() {
         setDescriptionText();
-        break;
-      case 16:      //shift
-       setDescriptionText();
-       break;
-    }
-  }).focus(function(){
+    }).focusout(function() {
         setDescriptionText();
-    }).focusout(function(){
-        setDescriptionText();
-  });
+    });
   
-  function setDescriptionText(){
-     
-    var currentString = $('#descarea').val().length;
-    if (currentString == 0) {
-      $('#desclength').text("0");
-    } 
-    else {
-      currentString = currentString;
-      $('#desclength').text(currentString);
-    }
-  }
-
-  /*******************************Title text length******************** */
-  var counter = 1;
-  $('#campaignTitle').on('keydown', function(event) {
-  
-  event.altKey==true;
-  var currentstring = $('#campaignTitle').val().length;
-  if(currentstring <=54) {
-      var text = currentstring + 1;
-  }
-  if (event.keyCode > 31) {
-    if(event.altKey==true){
-    	setTitleText();
-    }
-    else{
-  	  if(currentstring <54)
-  		currentstring++;
-        $('#titleLength').text(text);
+    function setDescriptionText(){
+        var currentString = $('#descarea').val().length;
+        if (currentString == 0) {
+            $('#desclength').text("0/140");
+        } else {
+            currentString = currentString;
+            $('#desclength').text(currentString+'/140');
+        }
     }
 
-  } else {
-	  currentstring--;
-        $('#titleLength').text(text);
-    }
-}).keyup(function(e) {
+    /*******************************Title text length******************** */
+    var counter = 1;
+    $('#campaignTitle').on('keydown', function(event) {
     
-  if(e.altKey==true){
-	  setTitleText();
-      return false;
-  }
+        event.altKey==true;
+        var currentstring = $('#campaignTitle').val().length;
+        if (currentstring >= 4) {
+        	$('.createTitleDiv').find("span").remove();
+            $('.createTitleDiv').closest(".form-group").removeClass('has-error');
+        }
+        if(currentstring <=55) {
+        	if (currentstring == 55) {
+        		var text = currentstring ;
+        	} else {
+        		var text = currentstring + 1;
+        	}
+        }
+        if (event.keyCode > 31) {
+            if(event.altKey==true){
+    	         setTitleText();
+            }
+            else{
+  	             if(currentstring <54)
+  		             currentstring++;
+                 $('#titleLength').text(text+'/55');
+            }
 
-  switch (e.keyCode) {
+        } else {
+	        currentstring--;
+            $('#titleLength').text(text+'/55');
+        }
+    }).keyup(function(e) {
+    
+        if(e.altKey==true){
+	        setTitleText();
+            return false;
+        }
 
-    case 13:      //Enter
-    case 8:       //backspace
-    case 46:      //delete
-    case 17:      
-    case 27:      //escape
-    case 10:      //new line
-    case 20:      
-    case 9:       //horizontal TAB
-    case 11:      //vertical tab
-    case 33:      //page up  
-    case 34:      //page  down
-    case 35:      //End 
-    case 36:      //Home
-    case 37:      //Left arrow
-    case 38:      //up arrow
-    case 39:      //Right arrow
-    case 40:      //Down arrow
-    case 45:      //Insert
-    case 12:      //vertical tab
-    	setTitleText();
-      break;
-    case 16:      //shift
-    	setTitleText();
-     break;
-  }
-}).focus(function(){
-	setTitleText();
-  }).focusout(function(){
-	  setTitleText();
-});
+        switch (e.keyCode) {
+ 
+            case 13:      //Enter
+            case 8:       //backspace
+            case 46:      //delete
+            case 17:      
+            case 27:      //escape
+            case 10:      //new line
+            case 20:      
+            case 9:       //horizontal TAB
+            case 11:      //vertical tab
+            case 33:      //page up  
+            case 34:      //page  down
+            case 35:      //End 
+            case 36:      //Home
+            case 37:      //Left arrow
+            case 38:      //up arrow
+            case 39:      //Right arrow
+            case 40:      //Down arrow
+            case 45:      //Insert
+            case 12:      //vertical tab
+    	        setTitleText();
+                break;
+            case 16:      //shift
+    	        setTitleText();
+                break;
+        }
+    }).focus(function(){
+	    setTitleText();
+    }).focusout(function(){
+	    setTitleText();
+    });
 
-function setTitleText(){
+    function setTitleText() {
    
-  var currentstring = $('#campaignTitle').val().length;
-  if (currentstring == 0) {
-    $('#titleLength').text("0");
-  } 
-  else {
-	  currentstring = currentstring;
-    $('#titleLength').text(currentstring);
-  }
-}
+        var currentstring = $('#campaignTitle').val().length;
+        if (currentstring == 0) {
+            $('#titleLength').text("0/55");
+        } else {
+	        currentstring = currentstring;
+            $('#titleLength').text(currentstring+'/55');
+        }
+    }
      
-      /** *************************Multiple Image Selection*************** */
+    /** *************************Multiple Image Selection*************** */
     var isvalidsize =  false;
     $('#projectImageFile, #projectEditImageFile').change(function(event) {
         var file =this.files[0];
@@ -885,6 +1039,9 @@ function setTitleText(){
                         div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"+ picFile.result+ "'"+ "title='"
                             + file.name + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"+ "</div>";
                             output.insertBefore(div, null);
+                            
+                        $('#createthumbnail').find("span").remove();
+                        $('#createthumbnail').closest(".form-group").removeClass('has-error');
                     });
                     // Read the image
                     picReader.readAsDataURL(file);
@@ -924,15 +1081,15 @@ function setTitleText(){
         if (rewardSaved){
         var updateCount = count;
         count++;
-        var str ='<div class="rewardsTemplate cr-perks-spec" id="rewardTemplate">'+
+        $('#savereward').attr('value',count);
+        var str ='<div class="rewardsTemplate cr-perks-spec" id="rewardTemplate" value="'+count+'">'+
    '<div class="col-sm-12 perk-css">'+
-       '<div class="col-sm-12 perk-create-styls" align="right">'+
-            '<button class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward" value="'+updateCount+'">'+
+       '<div class="col-sm-12 perk-create-styls perk-top" align="right">'+
+            '<button class="btn btn-primary btn-circle perks-created-remove editreward" id="'+updateCount+'" value="'+updateCount+'">'+
                 '<i class="glyphicon glyphicon-floppy-save"></i>'+
             '</button>'+
         '</div>'+
     '</div>'+
-    '<div class="hidden-xs break-div-js"></div>'+
     '<div class="col-sm-2">'+
         '<div class="form-group">'+
             '<div class="col-sm-12">';
@@ -953,7 +1110,7 @@ function setTitleText(){
        '<div class="form-group">'+
            '<div class="col-sm-12">'+
               '<input type="text" placeholder="Name of Perk" name="rewardTitle'+count+'" id="rewardTitle'+count+
-                      '"  class="form-control cr-perk-title-number cr-tablet-left form-control-no-border cr-placeholder cr-chrome-place text-color required">'+
+                      '"  class="form-control cr-perk-title-number cr-tablet-left form-control-no-border cr-placeholder cr-chrome-place text-color rewardTitle">'+
            '</div>'+
        '</div>'+
     '</div>'+
@@ -969,7 +1126,7 @@ function setTitleText(){
    '<div class="form-group row">'+
        '<div class="col-sm-12">'+
            '<div class="col-sm-12">'+
-             '<textarea class="form-control required rewardDescription form-control-no-border cr-placeholder cr-chrome-place text-color" name="rewardDescription'+count+
+             '<textarea class="form-control rewardDescription form-control-no-border cr-placeholder cr-chrome-place text-color" name="rewardDescription'+count+
                 '" id="rewardDesc'+count+'" rows="2" placeholder="Let your contributors feel special by rewarding them. Think out of the box and leave your contributors awestruck. Make sure you have calculated the costs associated with the perk; you do not want to lose money!" maxlength="250"></textarea>'+
                 '<p class="cr-perk-des-font">Please refer to our <a href="/termsofuse" target="_blank">Terms  Of  Use</a> for more details on perks.</p>'+
            '</div>'+
@@ -986,6 +1143,7 @@ function setTitleText(){
            '</div>'+
        '</div>'+
    '</div>'+
+   '<g:hiddenField name="rewardNum" value="'+count+'" class="rewardNum"/>'+
  '</div>';
         $('#addNewRewards').append(str);
         $('#rewardCount').attr('value',count);
@@ -999,15 +1157,33 @@ function setTitleText(){
                 count--;
                 $('#rewardCount').attr('value',count);
                 $('#addNewRewards').find('.rewardsTemplate').last().remove();
+                var editRewardId = $('#addNewRewards').find(".editreward:last").attr('id');
+             	var lastRewardCount = $('#addNewRewards').find(".rewardNum:last").val();
+            	if(editRewardId == lastRewardCount){
+            		$('.editreward:last').remove();
+            	}
             }
         }
     });
     
     $('#savereward').click(function(){
-        rewardValidationAndSaving(count);
+    	var lastrewardcount = $(this).attr("value");
+        rewardValidationAndSaving(lastrewardcount);
     });
   
     function rewardValidationAndSaving(rewardCount){
+    	$('.rewardDescription').each(function () {
+            $(this).rules("add", {
+                required: true,
+            });
+        });
+       	
+       	$('.rewardTitle').each(function () {
+            $(this).rules("add", {
+                required: true,
+            });
+       	});
+    	
         $('.rewardNumberAvailable').each(function () {
             $(this).rules("add", {
                 required: true,
@@ -1124,7 +1300,7 @@ function setTitleText(){
 
     $(document).ready(function (){
         //called when key is pressed in textbox
-        $("#amount").keypress(function (e) {
+        $("#amount, #amount1").keypress(function (e) {
             //if the letter is not digit then display error and don't type anything
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                 //display error message
@@ -1166,7 +1342,7 @@ function setTitleText(){
             	$('#admins').css('padding-top','0px');
             	$('#perk').css('padding-top','0px');
             	$('#payment').css('padding-top','0px');
-            	$('#launch').css('padding-top','125px');
+            	$('#launch').css('padding-top','30px');
             	$('#save').css('padding-top','25px');
             }
         });
@@ -1241,13 +1417,6 @@ function setTitleText(){
         autoSave('telephone', telephone);
     });
     
-    $('#paypalEmailId').blur(function (){
-        var paypalEmailId = $(this).val();
-        if (validator.element( "#paypalEmailId")) {
-            $('#charitable').find('input').val('');
-            autoSave('paypalEmailId', paypalEmailId);
-        }
-    });
     
     $('#payuemail').blur(function (){
         var payUEmailId = $(this).val();
@@ -1279,7 +1448,6 @@ function setTitleText(){
     });
     
     function autoSave(variable, varValue) {
-        var projectId = $('#projectId').val();
         $.ajax({
             type:'post',
             url:$("#b_url").val()+'/project/autoSave',
@@ -1292,14 +1460,14 @@ function setTitleText(){
         });
      }
     
-    $('#saveButton').click(function (){
+    $('#saveCharitableId').click(function (){
     	var uuid = $('#uuid').val();
     	var charityName = $('#charity_name').val();
     	$('#charitable').find('input').val(uuid);
 		$('#organizationName').find('input').val(charityName);
 		$('#paypalemail').find('input').val('');
 		autoSave('charitableId', uuid);
-        var delay = 20; //delayed code to prevent error, time in milliseconds
+        var delay = 50; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
             autoSave('organizationname', charityName);
         }, delay);
@@ -1349,12 +1517,18 @@ function setTitleText(){
         }
     });
     
+    $('#paypalEmailId').blur(function(){
+    	var paypalEmail = $('#paypalEmailId').val();
+    	$('#charitable').find('input').val('');
+        autoSave('paypalEmailId', paypalEmail);
+    });
+    
     $('.campaignTitle1').blur(function (){
         var title = $(this).val();
         autoSave('campaignTitle', title);
     });
     
-    $('.descarea').blur(function (){
+    $('.descarea1').blur(function (){
         var descarea = $(this).val();
         autoSave('descarea', descarea);
     });
@@ -1443,7 +1617,6 @@ function setTitleText(){
 	});
 
     function saveRewards(rewardNum,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom){
-        var projectId = $('#projectId').val();
         $.ajax({
         	cache: true,
             type:'post',
@@ -1458,7 +1631,6 @@ function setTitleText(){
      }
 
      function removeRewards(){
-         var projectId = $('#projectId').val();
          $.ajax({
              type:'post',
              url:$("#b_url").val()+'/project/deleteReward',
@@ -1472,7 +1644,6 @@ function setTitleText(){
      }
 
      function removeAllPerks(){
-         var projectId = $('#projectId').val();
          $.ajax({
              type:'post',
              url:$("#b_url").val()+'/project/deleteAllRewards',
@@ -1484,6 +1655,43 @@ function setTitleText(){
              console.log('error occured while deleting all perks');
           });
     }
+     
+     $('#previewButton, #previewButtonXS').on('click', function(event){  // capture the click
+      	event.preventDefault();
+       	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
+             $(this).rules('remove');
+         });
+       	
+       	$( "#projectImageFile" ).rules("remove");
+ 
+       	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
+             $(this).closest('.form-group').removeClass('has-error');
+         });
+       	
+       	$('.rewardNumberAvailable').each(function () {
+            $(this).rules("remove");
+        });
+       	
+       	$('.rewardPrice').each(function () {
+            $(this).rules("remove");
+        });
+       	
+       	$('.rewardDescription').each(function () {
+            $(this).rules("remove");
+        });
+       	
+       	$('.rewardTitle').each(function () {
+            $(this).rules("remove");
+        });
+       	
+       	$("#createthumbnail").removeClass('has-error');
+       	$('#isSubmitButton').attr('value',false);
+       	if (validator.form()) {
+       		$('#campaigncreate').find('form').submit();
+              $('#submitProject').attr('disabled','disabled');
+              $('#previewButton').attr('disabled','disabled');
+       	}
+       });
 
 /*Javascript error raised due to tooltip is resolved*/
     /* Show pop-over tooltip on hover for some fields. */

@@ -200,6 +200,9 @@ $(function() {
 	    } 
     });
     
+	$('#hamburger-toggle').click(function(){
+		$('#TW-navbar-collapse').toggle();
+	});
 	function validateExtension(imgExt) {
         var allowedExtensions = new Array("txt","docx","doc","pdf");
         for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)

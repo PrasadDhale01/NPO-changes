@@ -100,7 +100,7 @@ text-decoration:none;
 }
 
 .feducontent {
-      padding-top: 44px;
+    padding-top: 44px;
 }
 
 .top-buffer {
@@ -410,7 +410,6 @@ footer {
     border-top: 2px solid  #01bbd2 !important;
     background-color: #323232;
     padding: 30px 0 0 0;
-    margin-top: 25px;
 }
 .payment-method-footer{
 	font-size:12px;
@@ -695,6 +694,66 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.TW-redactor .redactor-toolbar {
+	    padding-left: 1% !important;
+	}
+	div.rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
+	    float: left;
+	    width: 76% !important;
+	}
+	input.TW-city-margin{
+		margin-bottom:16px !important;
+	}
+	.TW-editUpdate-redactor .redactor-toolbar{
+		padding-left: 0px !important;
+	}
+	.TW-update-redactor .redactor-toolbar{
+		padding-left: 0px !important;
+	}
+	.TW-editFUndraiser-video-thumb{
+		margin-top: 9px;
+	}
+    div.cr-tablet-space{
+        display: block;
+        left: -18px;
+    }
+    input#hiddencharId {
+        width: 116%;
+        margin-left: -8px;
+    }
+	.upload-campaign-pic{
+		height: 250px;
+		overflow:scroll !important;
+		margin-bottom: 0;
+	}
+	ul.nav-tabs.admin-vali-show > li{
+	    width: 20% !important;
+	}
+	ul.nav-tabs.mng-dt-tabs > li{
+	    width: 25.3% !important;
+	}
+	ul.nav-tabs.mng-safari-tabs > li{
+	    width: 16.8% !important;
+	}
+	ul.mng-safari-mobile{
+	    display: -webkit-box;
+	    display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+	}
+    input.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
+    div.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
+    ul.cr-safari-mobile{
+        display: -webkit-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+    }
+	.TW-testimonial-width{
+		width:578px !important;	
+	}
 	label.cr-start-size{
 	    margin-left: 42px;
 	} 
@@ -872,7 +931,7 @@ a {
         background-color: #01bbd2;
         margin-bottom: 0;
         padding: 10px 112px;
-        width: 284px;
+        width: 283px;
     }
     label.cr-payments-lab {
         padding-left: 84px;
@@ -1265,8 +1324,10 @@ a {
 	width: 119px;
     }
     .socialicon{
-    	display: flex;
-    	justify-content: center;
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:236px;
     }
     div#aboutus {
         padding-left: 20%;
@@ -1337,6 +1398,12 @@ a {
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	.TW-editUpdate-redactor .redactor-toolbar{
+		padding-left: 190px !important;
+	}
+	.TW-update-redactor .redactor-toolbar{
+		padding-left: 210px !important;
+	}
     .list-category{
         width: 24%;
     }
@@ -1352,6 +1419,27 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.cr-tablet-space{
+        display: block;
+        left: -106px;	   
+    }
+    a.cr-tablet-orgcharity{
+        width: 160px;
+    }
+    input#hiddencharId {
+        width: 150%;
+    }
+	.upload-campaign-pic{
+		height: 250px;
+		overflow:scroll !important;
+		margin-bottom: 0;
+	}
+    .cr-bg-preview-btn{
+        margin-left : 60px !important;
+    }
+	.TW-testimonial-width{
+		width:578px !important;	
+	}
 	label.cr-payments {
         width: 76%;
     }
@@ -1381,10 +1469,6 @@ a {
 	div.edit-btn-space {
        left: 354px;
     }
-    img.deadlineInfo-img {
-        padding-left: 104px;
-    }
-    
     img.videoInfo-img {
        padding-top:2px;
        padding-left: 311px;
@@ -1425,6 +1509,10 @@ a {
 	    padding-left: 60px;
 	}
     .contactUs {
+        width: 750px;
+        margin: 0 auto;
+    }
+    .campaignUpdateContainer {
         width: 750px;
         margin: 0 auto;
     }
@@ -2010,6 +2098,9 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    input#hiddencharId {
+        width: 150%;
+    }
     div.cr-safari{
 	    display: -webkit-inline-box;
 	    display: -webkit-inline-flex;
@@ -2146,7 +2237,7 @@ a {
 	.carousel-buttons{
 		position: relative;
 		text-align: center;
-		top: -62px !important;
+		top: -45px !important;
 	}
 	.fbButton {
 		margin-left: auto;
@@ -2258,6 +2349,10 @@ a {
         padding-top:2px;
     }
     
+    div.video-popover .popover{
+        margin-top: -10px;
+    }
+    
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
         width: 100% !important;
@@ -2268,13 +2363,18 @@ a {
     }
     .nav-tabs.nav-justified > li {
         float: none;
-        width: 100% !important;
+        width: 33.5% !important;
     }
     .nav-justified.validateshow-details-story{
         display:flex !important;
     }
     .nav-justified.user-dashboard-style{
         display:flex !important;
+    }
+    ul.nav-justified.user-dashboard-style{
+        display: -webkit-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
     }
     .nav-justified.show-marginbottoms{
         display:flex !important;
@@ -2370,6 +2470,12 @@ a {
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	.TW-editUpdate-redactor .redactor-toolbar{
+		padding-left:195px !important;
+	}
+	.TW-update-redactor .redactor-toolbar{
+		padding-left:225px !important;
+	}
 	.mng-text-size{
 		font-size:14px;
 	}
@@ -2418,6 +2524,12 @@ a {
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	.TW-editUpdate-redactor .redactor-toolbar{
+		padding-left:385px !important;
+	}
+	.TW-update-redactor .redactor-toolbar{
+		padding-left:405px !important;
+	}
 	header.cr-tabs-link {
 	    padding-left: 130px !important; 
 	    padding-right: 130px !important; 
@@ -2547,6 +2659,13 @@ a {
     }
 }
 @media only screen and (min-width:506px) and (max-width: 640px){
+		.TW-ack-commentBox{
+			background-color:#f5f5f5;
+			margin-bottom:30px !important;
+		}
+		input.TW-city-margin{
+			margin-bottom:16px !important;
+		}
 		.shared.contributionShare {
 			margin-top: -61px !important;
 		}
@@ -2641,14 +2760,12 @@ a {
     }
     .nav-tabs.nav-justified > li {
         float: none;
-        width: 100% !important;
+        width: 33.5% !important;
     }
     .nav-justified.validateshow-details-story{
         display:flex !important;
     }
-    .nav-justified.user-dashboard-style{
-        display:flex !important;
-    }
+   
     .nav-justified.show-marginbottoms{
         display:flex !important;
     }
@@ -2669,6 +2786,7 @@ a {
     }
     
     div.video-popover .popover{
+        margin-top: -10px;
         margin-left:40%;
     }
 
@@ -3700,7 +3818,7 @@ div.tile-min-height{
 }
 .rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
     float: left;
-    width: 80% !important;
+    width: 76% !important;
 }
 
 .leftcard-column-one{width:64%; float:left}
@@ -3887,7 +4005,7 @@ div.tile-min-height{
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
 	.nav.manage-projects > li > a {
-	    padding: 7px 20px;
+	    padding: 7px 15px;
 	}
 	.leftcard-column {
 	    width: 69%;
@@ -4724,9 +4842,10 @@ textarea.form-control {
 #hiddencharId {
 	border-style:none;
 	height:26px;
-	width:100%;
+	width:105%;
 	margin-top: 5px;
 	display: block;
+	background-color: #f6f8f8;
 }
 
 #saveButton {
@@ -4861,6 +4980,7 @@ textarea.form-control {
 	.leftcard-column-two, .leftcard-column-three {
 	    width: 20%;
 	    display: flex;
+	    display:-webkit-box; 	/***safari***/
 	}
 	.leftcard-column-one {
 	    width: 60%;
@@ -4932,6 +5052,10 @@ textarea.form-control {
         text-align: center !important;
     }
     .contactUs {
+        width: 320px;
+        margin: 0 auto;
+    }
+    .campaignUpdateContainer {
         width: 320px;
         margin: 0 auto;
     }
@@ -5260,7 +5384,7 @@ textarea.form-control {
 	    width: 49%;
 	}
 	.leftcard-column-one .form-control {
-	    width: 80%;
+	    width: 83%;
 	}
 	.leftcard-column-two, .leftcard-column-three {
 	    width: 25%;
@@ -5348,20 +5472,24 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 479px){
-	
+	.TW_project_update_carousel{
+		height:200px;
+	}
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
         width: 100% !important;
     }
     .nav-tabs.nav-justified > li {
         float: none;
-        width: 100% !important;
+        width: 33.5% !important;
     }
     .nav-justified.validateshow-details-story{
         display:flex !important;
     }
-    .nav-justified.user-dashboard-style{
-        display:flex !important;
+    ul.nav-justified.user-dashboard-style{
+        display: -webkit-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
     }
     .nav-justified.show-marginbottoms{
         display:flex !important;
@@ -5477,7 +5605,7 @@ textarea.form-control {
    float:left;
    }*/
    .nav.nav-tabs.manage-projects li{
-   width:100%;
+   width:33.5%;
    float:none;
    }
    .form-control.rewardprice{
@@ -6130,6 +6258,66 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.TW-ack-commentBox{
+		background-color:#f5f5f5;
+		margin-bottom:12px !important;
+	}
+	.TW-redactor .redactor-toolbar {
+	    padding-left: 1% !important;
+	}
+	input.TW-city-margin{
+		margin-bottom:16px !important;
+	}
+	.TW-editUpdate-redactor .redactor-toolbar{
+		padding-left:5px !important;
+	}
+	.TW-update-redactor .redactor-toolbar{
+		padding-left:5px !important;
+	}
+	.TW-editFUndraiser-video-thumb{
+		margin-top: 9px;
+	}
+    div.cr-tablet-space{
+        display: block;
+        left: -18px;
+    }
+    input#hiddencharId {
+        width: 116%;
+        margin-left: -8px;
+    }
+	.upload-campaign-pic{
+		height: 250px;
+		overflow:scroll !important;
+		margin-bottom: 0;
+	}
+	ul.nav-tabs.admin-vali-show > li{
+	    width: 20% !important;
+	}
+	ul.nav-tabs.mng-dt-tabs > li{
+	    width: 25.3% !important;
+	}
+	ul.nav-tabs.mng-safari-tabs > li{
+	    width: 16.8% !important;
+	}
+	ul.mng-safari-mobile{
+	    display: -webkit-box;
+	    display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+	}
+    input.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
+    div.cr-marg-mobile{
+        margin-left: -9px;	    
+    }
+    ul.cr-safari-mobile{
+        display: -webkit-box;
+        display: -webkit-inline-flex;
+        display: -ms-inline-flexbox;
+    }
+	.TW-testimonial-width{
+		width:270px !important;	
+	}
 	label.cr-start-size{
 	    margin-left: 26px;
 	} 
@@ -6318,7 +6506,7 @@ textarea.form-control {
     label.cr-admin-title{
         background-color: #01bbd2;
         margin-bottom: 0;
-        padding: 10px 91px;
+        padding: 10px 90px;
     }
     label.cr-payments-lab {
         padding-left: 71px;
@@ -6593,7 +6781,7 @@ textarea.form-control {
 	.carousel-buttons{
 		position: relative;
 		text-align: center;
-		top: -15px !important;
+		top: -10px !important;
 	}
 	.carousel-buttons.joinFOG{
 		position: relative;
@@ -6693,7 +6881,7 @@ textarea.form-control {
 	}
 	.user-tiles-style {
     	padding: 0;
-   	 	width: 300px !important;
+   	 	width: 250px !important;
 	}
 	.tile-pad {
     	padding: 0;
@@ -6753,8 +6941,10 @@ textarea.form-control {
 		margin-right:auto;
 	}
 	.socialicon{
-    	display: flex;
-    	justify-content: center;
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:236px;
     }
 	.socialicon img {
     	margin-left:auto !important;
@@ -6976,7 +7166,7 @@ textarea.form-control {
 	    margin-bottom:10px;
 	}
 	.leftcard-column .form-control {
-	    width: 83.9%;
+	    width: 83%;
 	}
 	.rightcard-column {
 	    width: 100%;
@@ -7429,6 +7619,7 @@ a.footerlink {
 	display:none;
 }
 .social img {
+	cursor:pointer;
 	padding: 0; 
 	margin: 2px;
 }
@@ -7519,9 +7710,11 @@ a.footerlink {
     border-color: #dddddd;
     border-style: solid;
     border-width: 1px;
-    margin-bottom: 15px;
     margin-top: 0;
     text-align: left;
+}
+.tileanstitle-goal-margin{
+	margin-bottom: 15px;
 }
 .goalIcon img{
     display:block;
@@ -7928,10 +8121,6 @@ ul.dropdown-menu.usr.user-dropdown{
 .goal-size, .achived-size {
 	font-size: 18px;
 }
-.fileUpload.btn-primary{
-background-color: #E9967A !important;
-border-color:#E9967A;
-}
 .submitbutton > button{
 background-color: #ff784f !important;
 border-color:#ff784f;
@@ -8007,7 +8196,7 @@ color:#fff;
 }
 .hrClass{
     margin-top:4px;
-    margin-bottom:8px;
+    margin-bottom:6px;
 }
 form#sortsForm {
     margin-left: 25%;
@@ -8500,12 +8689,13 @@ p.anonymous-top {
 }
 .header-testimonial{
 	display:inline-flex;
+	display:-webkit-box;   /***safari***/
 	margin-top: 14px;
 }
 .testimonial-name{
 	font-family:"Open Sans";
 	font-size:16px;
-	padding-right:0px;
+	padding-right:25px;
 }
 .testimonial-name img{
 	padding-right:9px;
@@ -8859,10 +9049,10 @@ span.cr-perks-amts {
 }
 .cr-paddingspace {
   padding-bottom: 120px;
-  padding-top: 60px;
 }
 .bg-color {
     background-color: #f6f8f8;
+    padding-bottom: 25px;
 }
 .campaigndropdowns .col-sm-3{
 	width: 20% !important;
@@ -8882,8 +9072,9 @@ img.cr-ineed-icons {
 }
 .cr-bg-preview-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/preview-Button.jpg) no-repeat !important;
-    padding-left: 282px;
-    padding-bottom: 106px;
+    width: 280px;
+    height: 62px;
+    margin-left: 180px;
 }
 .cr-bg-Launch-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/launch-Button.jpg) no-repeat !important;
@@ -9222,13 +9413,14 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 .cr-bg-xs-create-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/create-now-Button-mobile.jpg) no-repeat !important;
 	margin-left: 89px;
-    padding-top: 22px;
+    height: 38px;
     width: 152px;
 }
 .cr-bg-xs-preview-btn {
     background: url(https://s3.amazonaws.com/crowdera/assets/preview-button-mobile.jpg) no-repeat !important;
+    width: 150px;
+    height: 38px;
     margin-left: 47px;
-    padding-top: 40px;
 }
 .cr-bg-xs-Launch-btn{
     background: url(https://s3.amazonaws.com/crowdera/assets/launch-button-mobile.jpg) no-repeat !important;
@@ -9297,8 +9489,7 @@ body {
 	font-weight: 900;
 }
 .cr-btn-alignment-pre{
-	margin-left: 198px;
-    padding-bottom: 40px;
+	margin-left: 180px;
 }
 .cr-btn-alignment-lac{
 	margin-right: 204px;
@@ -9414,4 +9605,52 @@ body {
 /***********************/
 .cr-start-space{
     left: -16px;	
+}
+.hid-input-type-file{
+	visibility: hidden !important;
+}
+.TW-testimonial-width{
+	width:800px;	
+}
+.form-control {
+    border: 1px solid #e3e3e3;
+     -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.form-control:focus {
+    border: 1px solid #e3e3e3;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.all-place::-webkit-input-placeholder {
+	color: #c7c7c7;
+}
+.all-place::-moz-placeholder{ 
+	color: #c7c7c7;
+}
+.TW-text-decoration:hover{
+	text-decoration:none;	
+}
+.TW-editfundraiser-modal .help-block{
+	display:inline-flex;
+	float:left;   /***safari***/
+}
+.TW-btn-editfundraiser{
+	margin-bottom:0px !important;
+}
+.TW-redactor .redactor-box, .TW-redactor .redactor-editor{
+	width:100%;
+}
+.TW-redactor .redactor-toolbar{
+	padding-left:31%;
+}
+.TW-editUpdate-redactor .redactor-toolbar{
+	padding-left: 410px;
+}
+.TW-update-redactor .redactor-toolbar{
+	padding-left: 425px;
+}
+.TW-ack-commentBox{
+	background-color:#f5f5f5;
+	margin-bottom:40px;
 }

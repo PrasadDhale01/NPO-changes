@@ -71,15 +71,15 @@
                     <g:hiddenField name="ismanagepage" value="managepage" />
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="username" value="${userName}" placeholder="Name"/>
+                        <input type="text" class="form-control all-place" name="username" value="${userName}" placeholder="Name"/>
                     </div>
                     <div class="form-group">
                         <label>Email ID's (separated by comma)</label>
-                        <textarea class="form-control" name="emailIds" rows="4" placeholder="Email ID's"></textarea>
+                        <textarea class="form-control all-place" name="emailIds" rows="4" placeholder="Email ID's"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Message (Optional)</label>
-                        <textarea class="form-control" name="teammessage" rows="4" placeholder="Message"></textarea>
+                        <textarea class="form-control all-place" name="teammessage" rows="4" placeholder="Message"></textarea>
                     </div>
                 </div>
                 <div class="modal-footer">

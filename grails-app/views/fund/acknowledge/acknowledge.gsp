@@ -113,7 +113,7 @@
                         def date = dateFormat.format(new Date())
                      %>
                     <h3>Contributor Comment</h3>
-                    <div class="modal-body tile-footer show-comments-date">
+                    <div class="modal-body show-comments-date TW-ack-commentBox">
                         <h6>By ${contribution.contributorName}, on ${date}</h6>
                         <p><b>${commentVal}</b></p>
                         <g:link controller="fund" name="deletecomment" action="deleteContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle, 'commentId': commentId, 'teamCommentId': teamCommentId]">

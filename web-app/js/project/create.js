@@ -1343,7 +1343,7 @@ $(function() {
             	$('#admins').css('padding-top','0px');
             	$('#perk').css('padding-top','0px');
             	$('#payment').css('padding-top','0px');
-            	$('#launch').css('padding-top','125px');
+            	$('#launch').css('padding-top','30px');
             	$('#save').css('padding-top','25px');
             }
         });

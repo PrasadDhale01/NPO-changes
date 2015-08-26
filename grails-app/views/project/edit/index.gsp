@@ -536,16 +536,15 @@
 	                </div>
                 </div>
 
-                <input type="hidden" name="rewardCount" id="rewardCount" value="${projectRewards.size()}"/>
                 <div id="addNewRewards">
                 <g:if test="${rewardItrCount > 0}">
                 <g:each in="${projectRewards}" var="reward">
-                <% 
+                <%
 				    def shippingInfo = rewardService.getRewardShippingObjectByReward(reward);
 					def price = (reward.price).round();
 					lastrewardCount = reward.rewardCount
 				%>
-                    <div class="rewardsTemplate" id="rewardTemplate" value="${reward.rewardCount}">
+                    <div class="rewardsTemplate" id="rewardTemplate${reward.rewardCount}" value="${reward.rewardCount}">
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12">
@@ -589,33 +588,36 @@
                                 <div class="btn-group col-sm-12" data-toggle="buttons">
                                     <label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Delivery</label>
                                     <g:if test="${shippingInfo.address}">
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblmail${reward.rewardCount} active"><input type="checkbox" checked="checked" name="mailingAddress${reward.rewardCount}" value="true" id="mailaddcheckbox${reward.rewardCount}">Mailing <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingAddress lblmail${reward.rewardCount} active"><input type="checkbox" checked="checked" name="mailingAddress${reward.rewardCount}" value="true" id="mailaddcheckbox${reward.rewardCount}">Mailing <br> address</label>
                                     </g:if>
                                     <g:else>
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblmail${reward.rewardCount}"><input type="checkbox" name="mailingAddress${reward.rewardCount}" value="true" id="mailaddcheckbox${reward.rewardCount}">Mailing <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingAddress lblmail${reward.rewardCount}"><input type="checkbox" name="mailingAddress${reward.rewardCount}" value="true" id="mailaddcheckbox${reward.rewardCount}">Mailing <br> address</label>
                                     </g:else>
                                     <g:if test="${shippingInfo.email}">
-                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblemail${reward.rewardCount} active"><input type="checkbox" checked="checked" name="emailAddress${reward.rewardCount}" value="true" id="emailcheckbox${reward.rewardCount}">Email <br> address</label>
+                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingEmail lblemail${reward.rewardCount} active"><input type="checkbox" checked="checked" name="emailAddress${reward.rewardCount}" value="true" id="emailcheckbox${reward.rewardCount}">Email <br> address</label>
                                     </g:if>
                                     <g:else>
-                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lblemail${reward.rewardCount}"><input type="checkbox" name="emailAddress${reward.rewardCount}" value="true" id="emailcheckbox${reward.rewardCount}">Email <br> address</label>
+                                     <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingEmail lblemail${reward.rewardCount}"><input type="checkbox" name="emailAddress${reward.rewardCount}" value="true" id="emailcheckbox${reward.rewardCount}">Email <br> address</label>
                                     </g:else>
                                     <g:if test="${shippingInfo.twitter}">
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lbltwitter${reward.rewardCount} active"><input type="checkbox" checked="checked" name="twitter${reward.rewardCount}" value="true" id="twittercheckbox${reward.rewardCount}">Twitter <br> handle</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingTwitter lbltwitter${reward.rewardCount} active"><input type="checkbox" checked="checked" name="twitter${reward.rewardCount}" value="true" id="twittercheckbox${reward.rewardCount}">Twitter <br> handle</label>
                                     </g:if>
                                     <g:else>
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color  lbltwitter${reward.rewardCount}"><input type="checkbox" name="twitter${reward.rewardCount}" value="true" id="twittercheckbox${reward.rewardCount}">Twitter <br> handle</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingTwitter lbltwitter${reward.rewardCount}"><input type="checkbox" name="twitter${reward.rewardCount}" value="true" id="twittercheckbox${reward.rewardCount}">Twitter <br> handle</label>
                                     </g:else>
                                     <input type="text" name="custom${reward.rewardCount}" id="customcheckbox${reward.rewardCount}" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place cr-perks-back-color col-sm-4 col-xs-12" placeholder="Custom" value="${shippingInfo.custom}">
                                 </div>
                             </div>
                         </div>
-                        <g:hiddenField name="rewardNum" value="${reward.rewardCount}" class="rewardNum"/>
+                        <g:hiddenField name="rewardNum" id="rewardNum${reward.rewardCount}" value="${reward.rewardCount}" class="rewardNum"/>
                         <g:if test="${rewardItrCount > iteratorCount}">
-                        <div class="col-sm-12 perk-css refreshEditReward">
+                        <div class="col-sm-12 perk-css editDeleteReward" id="editDeleteReward${reward.rewardCount}">
                             <div class="col-sm-12 perk-create-styls edit-top-gsp" align="right">
-                                <div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward" value="${reward.rewardCount}">
+                                <div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward${reward.rewardCount}" value="${reward.rewardCount}">
                                     <i class="glyphicon glyphicon-floppy-save"></i>
+                                </div>
+                                <div class="btn btn-primary btn-circle perks-created-remove deletereward" id="deletereward${reward.rewardCount}" value="${reward.rewardCount}">
+                                    <i class="glyphicon glyphicon-trash"></i>
                                 </div>
                             </div>
                         </div><br><br><br>
@@ -625,7 +627,7 @@
                     </g:each>
                     </g:if>
                     <g:else>
-                    <div class="rewardsTemplate" id="rewardTemplate" value="1">
+                    <div class="rewardsTemplate" id="rewardTemplate1" value="1">
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="col-sm-12">
@@ -668,9 +670,9 @@
                             <div class="form-group">
                                 <div class="btn-group col-sm-12" data-toggle="buttons">
                                     <label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Delivery</label>
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing <br> address</label>
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color"><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email <br> address</label>
-                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color "><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter <br> handle</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingAddress"><input type="checkbox" name="mailingAddress1" value="true" id="mailaddcheckbox1">Mailing <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingEmail"><input type="checkbox" name="emailAddress1" value="true" id="emailcheckbox1">Email <br> address</label>
+                                    <label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingTwitter"><input type="checkbox" name="twitter1" value="true" id="twittercheckbox1">Twitter <br> handle</label>
                                     <input type="text" name="custom1" id="customcheckbox1" class="customText form-control-no-border text-color cr-custom-place cr-customchrome-place cr-perks-back-color  col-sm-4 col-xs-12" placeholder="Custom">
                                 </div>
                             </div>
@@ -694,6 +696,12 @@
                     </div>
                 </div>
                 <div></div>
+                <g:if test="${projectRewards.size() > 0}">
+                    <input type="hidden" name="rewardCount" id="rewardCount" value="${lastrewardCount}"/>
+                </g:if>
+                <g:else>
+                    <input type="hidden" name="rewardCount" id="rewardCount" value="0"/>
+                </g:else>
                 <div class="clear"></div>
                 <div class="form-group">
                     <div class="col-sm-12 cr-payments-pad" id="payment">

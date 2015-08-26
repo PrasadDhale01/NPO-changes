@@ -5,11 +5,11 @@ $(function() {
     
     var rewardIteratorCount = $('#rewardCount').val();
     if (rewardIteratorCount > 0){
-    	$('#rewardTemplate').show();
+    	$('#rewardTemplate1').show();
     	$('#yesradio').prop('checked', true);
 	    $("#updatereward").show();
     } else {
-    	$('#rewardTemplate').hide();
+    	$('#rewardTemplate1').hide();
     }
 
     var count = $('#rewardCount').val()
@@ -613,26 +613,17 @@ $(function() {
      			count = 1;
      		}
      		$('#rewardCount').attr('value',count);
-     		$("#rewardTemplate").show();
+     		$("#rewardTemplate1").show();
      	    $("#updatereward").show();
      	} else {
             if (count > 0){
                 if (confirm('Are you sure you want to discard all the perks for this campaign?')){
-                    removeAllPerks();
-                    for (var i=count; i > 1; i--) {
+                    removeAllPerks(); 
+                    var rewardslength = $('#addNewRewards').find('.rewardsTemplate').length;
+                    for (var i=rewardslength; i > 1; i--) {
                     	$('#addNewRewards').find('.rewardsTemplate').last().remove();
                     }
-                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice1').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle1').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable1').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find(".lblmail1").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblmail1');
-                    $('#addNewRewards').find('.rewardsTemplate').find(".lblemail1").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblemail1');
-                    $('#addNewRewards').find('.rewardsTemplate').find(".lbltwitter1").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lbltwitter1');
-                    $('#addNewRewards').find('.rewardsTemplate').find("#mailaddcheckbox1").prop('checked', false);
-                    $('#addNewRewards').find('.rewardsTemplate').find("#emailcheckbox1").prop('checked', false);
-                    $('#addNewRewards').find('.rewardsTemplate').find("#twittercheckbox1").prop('checked', false);
-                    $('#addNewRewards').find('.rewardsTemplate').find('#customcheckbox1').val('');
+                    renameAndemptyRewardFields();
                     $("#updatereward").hide();
                     $('#addNewRewards').find('.rewardsTemplate').hide();
                     count = 0;
@@ -644,6 +635,40 @@ $(function() {
             }
         }
     });
+     
+    function renameAndemptyRewardFields(){
+    	$('#addNewRewards').find('.rewardsTemplate').attr('id', 'rewardTemplate1');
+    	$('#addNewRewards').find('.rewardsTemplate').attr('value', '1');
+    	$('#addNewRewards').find('.rewardsTemplate').find('.rewardPrice').attr('id', 'rewardPrice1');
+    	$('#addNewRewards').find('.rewardsTemplate').find('.rewardPrice').attr('name', 'rewardPrice1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.rewardTitle').attr('id', 'rewardTitle1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.rewardTitle').attr('name', 'rewardTitle1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.rewardNumberAvailable').attr('id', 'rewardNumberAvailable1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.rewardNumberAvailable').attr('name', 'rewardNumberAvailable1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.rewardDescription').attr('name', 'rewardDescription1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.rewardDescription').attr('id', 'rewardDesc1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('id', 'mailaddcheckbox1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('name', 'mailingAddress1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('id', 'emailcheckbox1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('name', 'emailAddress1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingTwitter").attr('id', 'twittercheckbox1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingTwitter").attr('name', 'twitter1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.customText').attr('id', 'customcheckbox1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.customText').attr('name', 'custom1');
+        $('#addNewRewards').find('.rewardNum').attr('value', '1');
+    	
+    	$('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice1').attr('value', '');
+        $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').attr('value', '');
+        $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle1').attr('value', '');
+        $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable1').attr('value', '');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblmail1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblemail1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingTwitter").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lbltwitter1');
+        $('#addNewRewards').find('.rewardsTemplate').find("#mailaddcheckbox1").prop('checked', false);
+        $('#addNewRewards').find('.rewardsTemplate').find("#emailcheckbox1").prop('checked', false);
+        $('#addNewRewards').find('.rewardsTemplate').find("#twittercheckbox1").prop('checked', false);
+        $('#addNewRewards').find('.rewardsTemplate').find('#customcheckbox1').attr('value', '');
+    }
 
      $("input[name='pay']").change(function(){
   	    if($(this).val()=="paypal") {
@@ -1083,12 +1108,15 @@ $(function() {
         var updateCount = count;
         count++;
         $('#savereward').attr('value',count);
-        var str ='<div class="rewardsTemplate cr-perks-spec" id="rewardTemplate" value="'+count+'">'+
-   '<div class="col-sm-12 perk-css">'+
+        var str ='<div class="rewardsTemplate cr-perks-spec" id="rewardTemplate'+count+'" value="'+count+'">'+
+   '<div class="col-sm-12 perk-css editDeleteReward" id="editDeleteReward'+updateCount+'">'+
        '<div class="col-sm-12 perk-create-styls perk-top" align="right">'+
-            '<button class="btn btn-primary btn-circle perks-created-remove editreward" id="'+updateCount+'" value="'+updateCount+'">'+
+            '<div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward'+updateCount+'" value="'+updateCount+'">'+
                 '<i class="glyphicon glyphicon-floppy-save"></i>'+
-            '</button>'+
+            '</div>&nbsp;'+
+            '<div class="btn btn-primary btn-circle perks-created-remove deletereward" id="deletereward'+updateCount+'" value="'+updateCount+'">'+
+                '<i class="glyphicon glyphicon-trash"></i>'+
+            '</div>'+
         '</div>'+
     '</div>'+
     '<div class="col-sm-2">'+
@@ -1137,14 +1165,14 @@ $(function() {
        '<div class="form-group">'+
            '<div class="btn-group col-sm-12" data-toggle="buttons">'+
                '<label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Delivery</label>'+
-               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing <br> address</label>'+
-               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email <br> address</label>'+
-               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter <br> handle</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingAddress"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing <br> address</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingEmail"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email <br> address</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingTwitter"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter <br> handle</label>'+
                '<input type="text" name="custom'+count+'" id="customcheckbox'+count+'" class="customText form-control-no-border cr-custom-place cr-customchrome-place text-color cr-perks-back-color col-sm-4 col-xs-12" placeholder="Custom">'+
            '</div>'+
        '</div>'+
    '</div>'+
-   '<g:hiddenField name="rewardNum" value="'+count+'" class="rewardNum"/>'+
+   '<g:hiddenField name="rewardNum" value="'+count+'" id="rewardNum'+count+'" class="rewardNum"/>'+
  '</div>';
         $('#addNewRewards').append(str);
         $('#rewardCount').attr('value',count);
@@ -1154,14 +1182,12 @@ $(function() {
     $('#removereward').click(function(){
         if($('#addNewRewards').find('.rewardsTemplate').length > 1) {
             if (confirm('Are you sure you want to discard this perk?')){
-                removeRewards();
-                count--;
-                $('#rewardCount').attr('value',count);
+                removeRewards(count);
                 $('#addNewRewards').find('.rewardsTemplate').last().remove();
-                var editRewardId = $('#addNewRewards').find(".editreward:last").attr('id');
+                var editRewardId = $('#addNewRewards').find(".editreward:last").attr('value');
              	var lastRewardCount = $('#addNewRewards').find(".rewardNum:last").val();
             	if(editRewardId == lastRewardCount){
-            		$('.editreward:last').remove();
+            		$('.editDeleteReward:last').remove();
             	}
             }
         }
@@ -1171,7 +1197,7 @@ $(function() {
     	var lastrewardcount = $(this).attr("value");
         rewardValidationAndSaving(lastrewardcount);
     });
-  
+    
     function rewardValidationAndSaving(rewardCount){
     	$('.rewardDescription').each(function () {
             $(this).rules("add", {
@@ -1219,8 +1245,10 @@ $(function() {
                });
            });
         }
-        if((validator.element( "#rewardPrice"+rewardCount)) && (validator.element( "#rewardTitle"+rewardCount)) && (validator.element( "#rewardNumberAvailable"+rewardCount)) && (validator.element( "#rewardDesc"+rewardCount))){
-            var rewardPrice = $('#rewardPrice'+rewardCount).val();
+        if($('#rewardPrice'+rewardCount).length == 0){
+            return true;
+        } else if((validator.element( "#rewardPrice"+rewardCount)) && (validator.element( "#rewardTitle"+rewardCount)) && (validator.element( "#rewardNumberAvailable"+rewardCount)) && (validator.element( "#rewardDesc"+rewardCount))) {
+        	var rewardPrice = $('#rewardPrice'+rewardCount).val();
             var rewardTitle = $('#rewardTitle'+rewardCount).val();
             var rewardNumberAvailable = $('#rewardNumberAvailable'+rewardCount).val();
             var rewardDesc = $('#rewardDesc'+rewardCount).val();
@@ -1229,13 +1257,13 @@ $(function() {
             var twitter = $('#twittercheckbox'+rewardCount).prop("checked");
             var custom = $('#customcheckbox'+rewardCount).val();
             saveRewards(rewardCount,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom);
-            return true
+            return true;
         } else {
             validator.element( "#rewardPrice"+count);
             validator.element( "#rewardTitle"+count);
             validator.element( "#rewardNumberAvailable"+count);
             validator.element( "#rewardDesc"+count);
-            return false
+            return false;
         }
     }
 
@@ -1315,6 +1343,21 @@ $(function() {
         	rewardValidationAndSaving(editCount);
         });
         
+        $("form").on("click", ".deletereward", function () {
+        	var deleteCount = $(this).attr('value');
+        	if (confirm('Are you sure you want to discard this perk?')){
+        		var deleteRewardCount = $(this).attr('value');
+        		var lastRewardCount = $("#rewardNum"+deleteRewardCount).val();
+                removeRewards(deleteCount);
+                $('#rewardTemplate'+deleteCount).remove();
+                var editRewardValue = $('#addNewRewards').find("#editreward"+deleteRewardCount).attr('value');
+                if ((editRewardValue == lastRewardCount) || editRewardValue == 1){
+        		    $("#editDeleteReward"+deleteRewardCount).remove();
+        		    $('#addNewRewards').find(".rewardsTemplate:first").removeClass('cr-perks-spec');
+                }
+            }
+        });
+
         $("form").on("click", ".rewardPrice", function () {
             $('.rewardPrice').each(function () {
                 $(this).keypress(function (e) {
@@ -1633,17 +1676,17 @@ $(function() {
         });
      }
 
-     function removeRewards(){
+     function removeRewards(deleteCount){
          var projectId = $('#projectId').val();
          $.ajax({
              type:'post',
              url:$("#b_url").val()+'/project/deleteReward',
-             data:'projectId='+projectId+'&rewardCount='+count,
+             data:'projectId='+projectId+'&rewardCount='+deleteCount,
              success: function(data) {
                  $('#test').val('test');
              }
          }).error(function() {
-             console.log('error occured deleting'+count+'no. reward');
+             console.log('error occured deleting'+deleteCount+'no. reward');
          });
      }
 

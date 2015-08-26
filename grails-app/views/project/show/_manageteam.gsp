@@ -133,17 +133,17 @@
                     <div class="clear"></div>
                     <hr>
                     <h5><b>About My Team</b></h5><hr/>
-                    <div class="form-group">
+                    <div class="form-group TW-editfundraiser-modal">
                         <label class="control-label">Brief Description</label>
                         <textarea class="form-control all-place" maxlength="140" rows="2" id="descarea" name="description" placeholder="Make it catchy, and no more than 140 characters"> ${currentTeam.description} </textarea>
                         <label class="pull-right " id="desclength"></label>
                     </div>
                     <div class="clear"></div>
-                    <div class="form-group">
+                    <div class="form-group TW-redactor">
                         <label>Story</label>
                         <textarea row="4" col="6" class="redactorEditor all-place" name="story">
 						     ${currentTeam.story}</textarea>
-                        <span id="storyRequired">Ths field is required</span>
+                        <span id="storyRequired">This field is required</span>
                     </div>
                     <div class="clear"></div>
                     <hr>
@@ -195,12 +195,12 @@
         					<input id="videoUrl" class="form-control"
          						name="videoUrl" value="${currentTeam.videoUrl}">
       					</div>
-      					<iframe class="edits-video" id="ytVideo" src="${currentTeam.videoUrl}"></iframe>
+      					<div class="col-sm-4 TW-editFUndraiser-video-thumb"><iframe class="edits-video" id="ytVideo" src="${currentTeam.videoUrl}"></iframe></div>
     				</div>
                 </div>
                 <div class="clear"></div>
                 <div class="modal-footer">
-                   <button data-dismiss="modal" class="btn btn-primary">Close</button>
+                   <button data-dismiss="modal" class="btn btn-primary TW-btn-editfundraiser">Close</button>
 				   <button class="btn btn-primary" type="submit" id="teamSaveButton">Save</button>
 		        </div>
 		    </div>

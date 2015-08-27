@@ -83,6 +83,9 @@ class ProjectService {
     def getProjectUpdateDetails(def params, def request, def project, def user){
 		def vanitytitle
 		def title = project.title
+        User currentUser = userService.getCurrentUser()
+        def fullName = currentUser.firstName + ' ' + currentUser.lastName
+        
         def iconFile = request.getFile('iconfile')
         if(!iconFile.isEmpty()) {
           def uploadedFileUrl = getorganizationIconUrl(iconFile)
@@ -109,6 +112,21 @@ class ProjectService {
             project.paypalEmail = params.paypalEmail
             project.charitableId = params.charitableId
             project.organizationName = params.organizationName
+        }
+        
+        def projectAdmins = project.projectAdmins
+        
+        projectAdmins.each { projectAdmin ->
+            def email = projectAdmin.email
+            if (currentUser.email != email) {
+                mandrillService.sendUpdateEmailToAdmin(email, fullName, project)
+            }
+        }
+        
+        def projectOwner = project.user
+        if (projectOwner != currentUser) {
+            def projectOwnerEmail = projectOwner.getEmail()
+            mandrillService.sendUpdateEmailToAdmin(projectOwnerEmail, fullName, project)
         }
         
         def result = false
@@ -1848,12 +1866,11 @@ class ProjectService {
                 message= "You have successfully joined the team."
             } else {
                 mandrillService.sendTeamInvitation(project, user)
-                message= "Your request has been submitted for review and we'll get back to you within 24 hours."
+                message= "You're simply awesome! Now lets wait for the campaign owner to validate your teamrequest."
             }
         } else {
             def isValidatedTeamExist = userService.isValidatedTeamExist(project, user)
             if (isValidatedTeamExist) {
-                
                 message = "You already have a team."
             } else {
                 message = "Your request is yet to be validated."

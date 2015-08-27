@@ -416,101 +416,119 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def createNow() {
         def projectTitle
-        def project = projectService.getProjectByParams(params)
-        def beneficiary = userService.getBeneficiaryByParams(params)
-		def user = userService.getCurrentUser()
-        project.draft = true;
-		project.beneficiary = beneficiary;
-		project.beneficiary.email = user.email;
+        if (params.title && params.amount && params.description && params.firstName) {
+            def project = projectService.getProjectByParams(params)
+            def beneficiary = userService.getBeneficiaryByParams(params)
+		    def user = userService.getCurrentUser()
+            project.draft = true;
+		    project.beneficiary = beneficiary;
+		    project.beneficiary.email = user.email;
 
-        def currentEnv = Environment.current.getName()
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-            project.payuStatus = true
-        }
+            def currentEnv = Environment.current.getName()
+            if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+                project.payuStatus = true
+            }
 		
-		project.usedFor = params.usedFor;
+		    project.usedFor = params.usedFor;
 		
-        if(project.save(failOnError: true)){
-            projectTitle = projectService.getProjectVanityTitle(project)
-            projectService.getFundRaisersForTeam(project, user)
-            projectService.getdefaultAdmin(project, user)
-            redirect(action:'redirectCreateNow', params:[title:projectTitle])
+            if(project.save(failOnError: true)){
+                projectTitle = projectService.getProjectVanityTitle(project)
+                projectService.getFundRaisersForTeam(project, user)
+                projectService.getdefaultAdmin(project, user)
+                redirect(action:'redirectCreateNow', params:[title:projectTitle])
+            } else {
+                render view:'/project/createerror'
+            }
         } else {
             render view:'/project/createerror'
         }
     }
 	
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def redirectCreateNow() {
-		def vanityTitle = params.title
-		def project = projectService. getProjectFromVanityTitle(vanityTitle)
-		def user = project.user
-		def categoryOptions = projectService.getCategoryList()
-		def country = projectService.getCountry()
-		def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
-        def currentEnv = Environment.current.getName()
-        def endDate = projectService.getProjectEndDate(project)
-        def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
-        def date = new Date();
-		List projectRewards = []
-		project.rewards.each {
-			if (it.id != 1) {
-				projectRewards.add(it)
-			}
-		}
-        if(campaignEndDate == date.format('MM/dd/yyyy')){
-            campaignEndDate = null
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def redirectCreateNow() {
+        def vanityTitle = params.title
+        def project = projectService. getProjectFromVanityTitle(vanityTitle)
+        if (project) {
+            def user = project.user
+            def currentUser = userService.getCurrentUser()
+            
+            if (user == currentUser) {
+                def categoryOptions = projectService.getCategoryList()
+                def country = projectService.getCountry()
+                def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
+                def currentEnv = Environment.current.getName()
+                def endDate = projectService.getProjectEndDate(project)
+                def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
+                def date = new Date();
+                List projectRewards = []
+                project.rewards.each {
+                    if (it.id != 1) {
+                        projectRewards.add(it)
+                    }
+                }
+                if(campaignEndDate == date.format('MM/dd/yyyy')){
+                    campaignEndDate = null
+                }
+                def adminemails = projectService.getAdminEmail(project)
+                def payOpts
+                if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+                    payOpts = projectService.getIndiaPaymentGateway()
+                } else {
+                    payOpts = projectService.getPayment()
+                }
+                render(view: 'create/index2',
+                   model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, currentEnv: currentEnv,
+                           FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, user:user,campaignEndDate:campaignEndDate,
+                           vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
+            } else {
+                render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
+            }
+        } else {
+            render(view: '/404error', model: [message: 'This project does not exist.'])
         }
-		def adminemails = projectService.getAdminEmail(project)
-		def payOpts
-		if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-			payOpts = projectService.getIndiaPaymentGateway()
-		} else {
-		    payOpts = projectService.getPayment()
-		}
-		render(view: 'create/index2',
-			   model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,
-						'country': country, currentEnv: currentEnv,
-						FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,
-						project:project, user:user,campaignEndDate:campaignEndDate,
-						vanityTitle: vanityTitle, vanityUsername:vanityUsername,
-						email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
-	}
+    }
 	
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def campaignOnDraftAndLaunch() {
         Project project = projectService.getProjectById(params.projectId)
-        User user = userService.getCurrentUser()
- 
-        def currentEnv = Environment.current.getName()
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
-            if(params.payuEmail){
-                project.payuEmail = params.payuEmail
+        if (project) {
+            User user = userService.getCurrentUser()
+            if (project.user == user) {
+                def currentEnv = Environment.current.getName()
+                if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                    if(params.payuEmail){
+                        project.payuEmail = params.payuEmail
+                    }
+                    project.secretKey = params.(FORMCONSTANTS.SECRETKEY)
+                }
+        
+                def imageFiles = request.getFiles('thumbnail[]')
+                if(!imageFiles.isEmpty()) {
+                    projectService.getMultipleImageUrls(imageFiles, project)
+                }
+
+                def country = projectService.getCountry()
+
+                def iconFile = request.getFile('iconfile')
+                if(!iconFile.isEmpty()) {
+                    def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
+                    project.organizationIconUrl = uploadedFileUrl
+                }
+
+                rewardService.saveRewardDetails(params);
+                project.story = params.story
+
+                if (params.isSubmitButton == 'true'){
+                    project.draft = false;		
+                    redirect (action:'launch' ,  params:[title:params.title])
+                } else {
+                    redirect (action:'showCampaign' ,  params:[id:project.id, isPreview:true])
+                }
+            } else {
+                render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
-            project.secretKey = params.(FORMCONSTANTS.SECRETKEY)
-        }
-		
-        def imageFiles = request.getFiles('thumbnail[]')
-        if(!imageFiles.isEmpty()) {
-            projectService.getMultipleImageUrls(imageFiles, project)
-        }
-
-        def country = projectService.getCountry()
-
-        def iconFile = request.getFile('iconfile')
-        if(!iconFile.isEmpty()) {
-            def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
-            project.organizationIconUrl = uploadedFileUrl
-        }
-
-		rewardService.saveRewardDetails(params);
-		project.story = params.story
-
-        if (params.isSubmitButton == 'true'){
-            project.draft = false;		
-            redirect (action:'launch' ,  params:[title:params.title])
         } else {
-            redirect (action:'showCampaign' ,  params:[id:project.id, isPreview:true])
+            render(view: '/404error', model: [message: 'This project does not exist.'])
         }
     }
 	
@@ -534,7 +552,7 @@ class ProjectController {
 		if(title){
 			redirect (action : 'edit', params:['projectTitle':title])
 		}else{
-			render view:'404error'
+			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
 

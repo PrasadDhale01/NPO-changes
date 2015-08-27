@@ -89,7 +89,7 @@
                     <div class="col-md-12">
                         <g:if test="${isPreview}">
                             <g:if test="${tile == 'false'}">
-                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 backToCreatePage">
                             <a href="/campaign/start/${vanityTitle}"><< Back to Create Page</a>
                             </div>
                             </g:if>

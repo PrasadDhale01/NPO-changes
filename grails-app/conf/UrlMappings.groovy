@@ -50,7 +50,7 @@ class UrlMappings {
         "/campaign/draft/$projectTitle"(controller:'project', action:'draftProject')
         "/campaign/managecampaign"(controller:'project', action:'manageCampaign')
         "/campaign/managecampaign/$projectTitle"(controller:'project', action:'manageproject')
-		"/campaign/managecampaign/$projectTitle/preview"(controller:'project', action:'preview')
+		"/campaign/$projectTitle/preview"(controller:'project', action:'preview')
 		"/campaign/managecampaign/$projectTitle/pre-view"(controller:'project', action:'previewTile')
 		"/campaign/managecampaign/$projectTitle/$offset"(controller:'project', action:'manageproject')
 		"/campaign/managecampaign/$projectTitle/$offset/$max"(controller:'project', action:'manageproject')

@@ -564,7 +564,7 @@ $(function() {
     
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
-           var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+           var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
            var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
            var youtubematch = value.match(p);
            var vimeomatch = value.match(vimeo);
@@ -790,7 +790,7 @@ $(function() {
         }
     }
 	$('#add').on('click',function(){
-        var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+		var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
         var url= $('#videoUrl').val().trim();
         var match = (url.match(youtube) || url.match(vimeo));

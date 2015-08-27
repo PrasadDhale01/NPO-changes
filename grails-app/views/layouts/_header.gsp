@@ -52,8 +52,8 @@
                         </span>
                     </form>
                 </li>
-                <li class="discover"><a href="${resource(dir: '/campaigns')}" class="nav-text2 hm-back-width"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/discover.png" alt="discover">&nbsp;&nbsp;&nbsp;&nbsp;Discover</a></li>
-                <li class="learn"><a href="${resource(dir: '/howitworks')}" class="nav-text3 hm-back-width"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/learn-icon.png" alt="learn">&nbsp;&nbsp;&nbsp;&nbsp;Learn</a></li>
+                <li class="discover"><a href="${resource(dir: '/campaigns')}" class="nav-text2 hm-back-width hed-font-sizes"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/discover.png" alt="discover">&nbsp;&nbsp;&nbsp;&nbsp;Discover</a></li>
+                <li class="learn"><a href="${resource(dir: '/howitworks')}" class="nav-text3 hm-back-width hed-font-sizes"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/learn-icon.png" alt="learn">&nbsp;&nbsp;&nbsp;&nbsp;Learn</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right nav-create-button">
                 <li class="hidden-xs">
@@ -62,7 +62,7 @@
                         <img src="//s3.amazonaws.com/crowdera/assets/create-Button-yellow-tab.jpg" alt="create" class="" id="createButton-sm">
                     </g:link> 
                 </li>
-                <li class="hidden-lg hidden-md hidden-sm">
+                <li class="hidden-lg hidden-md hidden-sm hed-font-sizes">
                     <g:link controller="project" action="create" class="nav-item-1"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/create.png" alt="create">&nbsp;&nbsp;&nbsp;&nbsp;Create</g:link>
                 </li>
             </ul>

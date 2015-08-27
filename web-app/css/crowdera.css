@@ -694,6 +694,12 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.nav.navbar-nav.navbar-right.navbar-right-logged-in {
+        margin-left: -21px !important;
+    }
+	.hed-font-sizes{
+        font-size: 13px;
+    }
 	.TW-redactor .redactor-toolbar {
 	    padding-left: 1% !important;
 	}
@@ -6264,6 +6270,9 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    .nav.navbar-nav.navbar-right.navbar-right-logged-in {
+        margin-left: -21px !important;
+    }
     .hed-font-sizes{
         font-size: 13px;
     }

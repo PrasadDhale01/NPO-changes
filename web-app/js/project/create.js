@@ -174,6 +174,25 @@ $(function() {
             },
             checkBox2:{
               required: true
+            },
+            amount: {
+                required: true,
+                number: true,
+                min: 500,
+                maxlength: function() {
+                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                        return 8;
+                    } else {
+                        return 6;
+                    }
+                },
+                max: function() {
+                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                        return 99999999;
+                    } else {
+                        return 100000;
+                    }
+                }
             }
         },
         messages:{
@@ -221,23 +240,6 @@ $(function() {
     
     $('#campaigncreatebtn, #campaigncreatebtnXS').on('click', function(event) {
     	event.preventDefault();
-    	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
-        	$("[name='amount']").rules("add", {
-                required: true,
-                number: true,
-                min: 500,
-                maxlength: 8,
-                max: 99999999
-            });
-        } else {
-        	$("[name='amount']").rules("add", {
-                required: true,
-                number: true,
-                min: 500,
-                maxlength: 6,
-                max: 999999
-            });
-        }
    	
         if (validator.form()) {
             $('#campaigncreatebtn').attr('disabled','disabled');
@@ -257,23 +259,6 @@ $(function() {
             storyEmpty = false;
         }
 
-    	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
-        	$("[name='amount']").rules("add", {
-                required: true,
-                number: true,
-                min: 500,
-                maxlength: 8,
-                max: 99999999
-            });
-        } else {
-        	$("[name='amount']").rules("add", {
-                required: true,
-                number: true,
-                min: 500,
-                maxlength: 6,
-                max: 999999
-            });
-        }
     	$('.rewardNumberAvailable').each(function () {
             $(this).rules("add", {
                 required: true,
@@ -1760,7 +1745,7 @@ $(function() {
         .hover(showPopover, hidePopover);
         
         $('.amountInfo-img').popover({
-            content: 'Maximum $50,000, If you want to raise more contact our Crowdfunding Expert.',
+            content: 'Maximum $100,000, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
             placement: 'bottom'
         })
@@ -1769,7 +1754,7 @@ $(function() {
         .hover(showPopover, hidePopover);
         
         $('.amountInfoInd-img').popover({
-            content: 'Maximum Rs.9,99,99,999, If you want to raise more contact our Crowdfunding Expert.',
+            content: 'Maximum Rs.99,999,999, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
             placement: 'bottom'
         })

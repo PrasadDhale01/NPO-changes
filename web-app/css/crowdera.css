@@ -2094,6 +2094,9 @@ a {
     .youtubeVideoIframe {
         width: 255%;
     }
+    .termsOfUseCheckboxOnCreatePage .col-md-offset-2 {
+        margin-left: 5.666667%;
+    }
 }
 
 /* Screen resolution 1025 x 1280*/
@@ -5071,6 +5074,11 @@ textarea.form-control {
     .contact-details-bottom .col-xs-7{
         padding-left: 0px;
         padding-right: 0px;
+    }
+    
+    .termsOfUseCheckboxOnCreatePage .col-md-8, .termsOfUseCheckboxOnCreatePage .col-sm-8 {
+        padding-left: 0px;
+        padding-right: 35px;
     }
 }
 /***only-use-homepage-Carousel*****/

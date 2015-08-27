@@ -658,3 +658,6 @@ div.image-popover .popover{
     height: 54px;
     width: 225px;
 }
+.termsOfUseCheckboxOnCreatePage .col-md-8, .termsOfUseCheckboxOnCreatePage .col-sm-8 {
+    padding-left: 35px;
+}

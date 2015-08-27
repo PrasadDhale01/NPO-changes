@@ -293,8 +293,7 @@
             },
             story: {
                 required: true,
-                minlength:10,
-                maxlength: 5000
+                minlength:10
             },
             videoUrl: {
                 isYoutubeVideo: true
@@ -443,23 +442,27 @@
         $('#descarea').on('keydown', function(event) {
             event.altKey==true;
             var currentString = $('#descarea').val().length;
-            if(currentString <=139) {
-                var text = currentString + 1;
+            if (currentString <= 140) {
+            	if (currentString == 140) {
+            		var text = currentString;
+            	} else {
+            		var text = currentString + 1;
+            	}
             }
             if (event.keyCode > 31) {
-               if(event.altKey==true){
+               if (event.altKey == true) {
                    setDescriptionText();
                } else {
                    currentString++;
-                   $('#desclength').text(text);
+                   $('#desclength').text(text+'/140');
                } 
             } else {
                currentString--;
-                $('#desclength').text(text);
+                $('#desclength').text(text+'/140');
             }
         }).keyup(function(e) {
         
-            if(e.altKey==true){
+            if(e.altKey==true) {
                 setDescriptionText();
                 return false;
             }
@@ -501,10 +504,10 @@
        
             var currentString = $('#descarea').val().length;
             if (currentString == 0) {
-                $('#desclength').text("0");
+                $('#desclength').text("0/140");
             } else {
                 currentString = currentString;
-                $('#desclength').text(currentString);
+                $('#desclength').text(currentString+'/140');
             }
         }
         

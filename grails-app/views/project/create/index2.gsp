@@ -684,7 +684,13 @@
                             </div>
                         </div>
                     </g:else>
-                    <div class="col-sm-12 cr-paddingspace" id="launch">
+                    <div class="col-sm-12 cr-paddingspace termsOfUseCheckboxOnCreatePage" id="launch">
+                        <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-8">
+                            <div class="form-group">
+                                <input type="checkbox" name="checkBox" id="agreetoTermsandUse">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+                            </div>
+                        </div>
+                        <div class="clear"></div>
                         <div class="col-sm-6 text-center">
                             <button class="cr-bg-preview-btn cr-btn-alignment-pre cr-btn-margin createsubmitbutton hidden-xs" id="previewButton" type="button" name="button"></button>
                             <button class="cr-bg-xs-preview-btn cr-xs-mobile createsubmitbutton visible-xs" id="previewButtonXS" type="button" name="button"></button>

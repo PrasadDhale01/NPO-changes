@@ -656,13 +656,13 @@ $(function() {
         $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').val('');
         $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle1').val('');
         $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable1').val('');
-        $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblmail1');
-        $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblemail1');
-        $('#addNewRewards').find('.rewardsTemplate').find(".shippingTwitter").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lbltwitter1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color lblmail1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color lblemail1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingTwitter").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color lbltwitter1');
         $('#addNewRewards').find('.rewardsTemplate').find("#mailaddcheckbox1").prop('checked', false);
         $('#addNewRewards').find('.rewardsTemplate').find("#emailcheckbox1").prop('checked', false);
         $('#addNewRewards').find('.rewardsTemplate').find("#twittercheckbox1").prop('checked', false);
-        $('#addNewRewards').find('.rewardsTemplate').find('#customcheckbox1').attr('value', '');
+        $('#addNewRewards').find('.rewardsTemplate').find('#customcheckbox1').val('');
     }
 
      $("input[name='pay']").change(function(){
@@ -1667,7 +1667,7 @@ $(function() {
         });
      }
 
-     function removeRewards(){
+     function removeRewards(deleteCount){
          $.ajax({
              type:'post',
              url:$("#b_url").val()+'/project/deleteReward',

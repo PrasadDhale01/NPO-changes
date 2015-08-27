@@ -611,6 +611,7 @@
    	$('.banner-close').click(function(){
    		$('.info-banner').css('display','none');
    		$('.home-header-section').removeClass('banner-nav');
+   		$('#preview-banner').attr('class','preview-banner-margin');
    	});
        
    });

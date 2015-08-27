@@ -266,7 +266,7 @@
      
     $('#youtubeVideoUrl').html(function(i, html) {
     	
-    	var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    	var regExp = /^https?\/\/.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     	var url= html.trim();
     	var match = url.match(regExp);
     	$("#youtubeVideoUrl").hide();
@@ -343,13 +343,31 @@
        } 
     });
     
+//    $.validator.addMethod('isYoutubeVideo', function (value, element) {
+//        if(value && value.length !=0){
+//           var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+//           return (value.match(p)) ? RegExp.$1 : false;
+//        }
+//        return true;
+//     }, "Please upload a url of Youtube video");
+    
     $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
-           var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-           return (value.match(p)) ? RegExp.$1 : false;
+           var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+           var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+           var youtubematch = value.match(p);
+           var vimeomatch = value.match(vimeo);
+           var match
+           if (youtubematch)
+               match = youtubematch;
+           else if (vimeomatch && vimeomatch[2].length == 9)
+               match = vimeomatch;
+           else 
+               match = null;
+           return (match) ? true : false;
         }
         return true;
-     }, "Please upload a url of Youtube video");
+     }, "Please upload a url of Youtube/Vimeo video");
     
     /***************************Multiple Image Selection*************** */
 
@@ -425,16 +443,13 @@
     /*************************Edit video for team*************************/
     
     $('#videoUrl').change(function(){
-           var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+           var regExp = /^https?\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
            var url= $('#videoUrl').val().trim();
            var match = url.match(regExp);
-         
            if (match && match[2].length == 11) {
                $('#ytVideo').show();
                var vurl=url.replace("watch?v=", "embed/");
                $('#ytVideo').attr('src',vurl);
-           }else if($(this)){
-               $('#ytVideo').hide();
            }
       });
     
@@ -561,18 +576,16 @@
     
     $(document).ready(function (){
      /*************************Edit video for team*************************/
-       var videoStatus=$('#videoUrl').val();
+       var videoStatus=$('#videoUrl').val().trim();
        if(videoStatus){
-        	var regExp = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        	var regExp = /^https?\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
     	    var url= $('#videoUrl').val().trim();
     	    var match = url.match(regExp);
     	    if (match && match[2].length == 11) {
-    	       $('#ytVideo').show();
     	       var vurl=url.replace("watch?v=", "embed/");
     	       $('#ytVideo').attr('src',vurl);
-    	    }else if($(this)){
-    	       $('#ytVideo').hide();
     	    }
+    	    $('#ytVideo').show();
        }else{
           	$('#ytVideo').hide();
        }

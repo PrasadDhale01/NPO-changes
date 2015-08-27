@@ -1112,10 +1112,10 @@ $(function() {
         $('#savereward').attr('value',count);
         var str ='<div class="col-sm-12 perk-css perk-padding editDeleteReward" id="editDeleteReward'+updateCount+'">'+
             '<div class="col-sm-12 perk-create-styls perk-top" align="right">'+
-                 '<div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward'+updateCount+'" value="'+updateCount+'">'+
+                 '<div class="btn btn-circle perks-created-remove intutive-glyphicon editreward" id="editreward'+updateCount+'" value="'+updateCount+'">'+
                      '<i class="glyphicon glyphicon-floppy-save"></i>'+
                  '</div>&nbsp;'+
-                 '<div class="btn btn-primary btn-circle perks-created-remove deletereward" id="deletereward'+updateCount+'" value="'+updateCount+'">'+
+                 '<div class="btn btn-circle perks-created-remove intutive-glyphicon deletereward" id="deletereward'+updateCount+'" value="'+updateCount+'">'+
                      '<i class="glyphicon glyphicon-trash"></i>'+
                  '</div>'+
              '</div>'+

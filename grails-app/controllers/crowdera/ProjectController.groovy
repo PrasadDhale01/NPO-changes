@@ -103,10 +103,27 @@ class ProjectController {
 		def title = projectService.getVanityTitleFromId(params.id)
 		def name = userService.getVanityNameFromUsername(params.fr, params.id)
 		if(title && name){
-			redirect (action:'show', params:['projectTitle':title,'fr':name])
+			if(params.isPreview){
+                if(params.tile)
+                    redirect (action :'previewTile', params:['projectTitle':title, 'fr':name]);
+                else
+                    redirect (action :'preview', params:['projectTitle':title, 'fr':name]);
+			} else {
+                redirect (action:'show', params:['projectTitle':title,'fr':name])
+			}
 		} else {
 			render (view: '404error')
 		}
+	}
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def previewTile(){
+		forward(action:'show', params:['projectTitle':params.projectTitle,'fr':params.name, 'isPreview':true, 'tile':true])
+	}
+
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def preview(){
+		forward(action:'show', params:['projectTitle':params.projectTitle,'fr':params.name, 'isPreview':true, 'tile':false])
 	}
 
 	def show() {
@@ -188,7 +205,7 @@ class ProjectController {
 				totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
 				teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
 				isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
-				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS])
+				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile])
 		} else {
 			render(view: 'error', model: [message: 'This project does not exist.'])
 		}
@@ -493,7 +510,7 @@ class ProjectController {
             project.draft = false;		
             redirect (action:'launch' ,  params:[title:params.title])
         } else {
-            redirect (action:'manageCampaign' ,  params:[id:project.id, isPreview:true])
+            redirect (action:'showCampaign' ,  params:[id:project.id, isPreview:true])
         }
     }
 	
@@ -857,29 +874,12 @@ class ProjectController {
     def manageCampaign() {
         def title = projectService.getVanityTitleFromId(params.id)
         if(title) {
-            if (params.isPreview){
-               if(params.tile)
-                   redirect (action :'previewTile', params:['projectTitle':title]);
-               else 
-                   redirect (action :'preview', params:['projectTitle':title]);
-               } else {
-                   redirect (action:'manageproject', params:['projectTitle':title])
-               }
+            redirect (action:'manageproject', params:['projectTitle':title])
         } else {
             render view:'404error'
         }
     }
 	
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def previewTile(){
-        forward(action:'manageproject', params:['projectTitle':params.projectTitle, 'isPreview':true, 'tile':true])
-    }
-
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def preview(){
-        forward(action:'manageproject', params:['projectTitle':params.projectTitle, 'isPreview':true, 'tile':false])
-    }
-
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def manageproject() {
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)

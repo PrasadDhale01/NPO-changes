@@ -83,7 +83,7 @@ class UserController {
         def avatarUser = userService.getUserId(params.long('id'))
         def imageFile = request.getFile('avatar')
 
-        if (!imageFile.isEmpty() && imageFile.size < 1024*1024) {
+        if (!imageFile.isEmpty() && imageFile.size < 3*1024*1024) {
             if (!VALID_IMG_TYPES.contains(imageFile.getContentType())) {
                 flash.user_err_message = "Image must be one of: ${VALID_IMG_TYPES}"
                 render (view: 'user/usererror')
@@ -93,7 +93,7 @@ class UserController {
                 avatarUser.userImageUrl = url
             }
         } else {
-            flash.user_err_message = "Size of the image must be less than [1024 * 1024]"
+            flash.user_err_message = "Size of the image must be less than [3*1024 * 1024]"
             render (view: 'user/usererror')
             return
         }
@@ -106,7 +106,7 @@ class UserController {
         def avatarUser = userService.getUserId(params.long('id'))
         def imageFile = request.getFile('profile')
         
-        if (!imageFile.isEmpty() && imageFile.size < 1024*1024) {
+        if (!imageFile.isEmpty() && imageFile.size < 3*1024*1024) {
             if (!VALID_IMG_TYPES.contains(imageFile.getContentType())) {
                 flash.user_err_message = "Image must be one of: ${VALID_IMG_TYPES}"
                 render (view: 'user/usererror')
@@ -116,7 +116,7 @@ class UserController {
                 avatarUser.userImageUrl = url
             }
         } else {
-            flash.user_err_message = "Size of the image must be less than [1024 * 1024]"
+            flash.user_err_message = "Size of the image must be less than [3*1024*1024]"
             render (view: 'user/usererror')
             return
         }

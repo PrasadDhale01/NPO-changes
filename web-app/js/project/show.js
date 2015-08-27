@@ -310,16 +310,6 @@
     });
     
     $('#teamSaveButton').on('click', function() {
-    	var storyValue = $('.redactorEditor').redactor('code.get');
-        var storyEmpty = false;
-        if (storyValue == '' || storyValue == undefined){
-            $('#storyRequired').show();
-            storyEmpty = true;
-        } else {
-            $('#storyRequired').hide();
-            storyEmpty = false;
-        }
-        
         if($('#teamImages').find('#imgdiv').length < 1) {
             $("#projectImageFile").rules( "add", {
                 required: true,
@@ -329,7 +319,7 @@
             });
         }
 
-        if (validator.form() && !storyEmpty) {
+        if (validator.form()) {
             $('#editFundraiser').find('form').submit();
         }
     });
@@ -559,7 +549,7 @@
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
     
-    $('#submitForApprovalBtn').popover({
+    $('#submitForApprovalBtn, #submitForApprovalBtnMobile').popover({
         content: 'Sorry, you will not be able to submit your campaign for approval, as you have not filled all the required details. Please fill the details and then proceed with the approval.',
         trigger: 'manual',
         placement: 'left'

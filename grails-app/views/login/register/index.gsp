@@ -28,19 +28,19 @@
 
             <hr/>
             <div class="form-group">
-                <input type="text" name="firstName" class="form-control" placeholder="First name" autofocus>
+                <input type="text" name="firstName" class="form-control all-place" placeholder="First name" autofocus>
             </div>
             <div class="form-group">
-                <input type="text" name="lastName" class="form-control" placeholder="Last name">
+                <input type="text" name="lastName" class="form-control all-place" placeholder="Last name">
             </div>
             <div class="form-group">
-                <input type="email" name="username" class="form-control subscriberEmail" placeholder="Email address">
+                <input type="email" name="username" class="form-control subscriberEmail all-place" placeholder="Email address">
             </div>
             <div class="form-group">
-                <input type="password" id="password" name="password" class="form-control" placeholder="Password">
+                <input type="password" id="password" name="password" class="form-control all-place" placeholder="Password">
             </div>
             <div class="form-group">
-                <input type="password" name="confirmPassword" class="form-control" placeholder="Confirm Password">
+                <input type="password" name="confirmPassword" class="form-control all-place" placeholder="Confirm Password">
             </div>
             <div class="form-group newsletter-reg-div" id="newsletterDiv">
 				<input type="checkbox" name="subscribe" id="subscribeReg" value="1" checked="checked"/>
@@ -48,6 +48,9 @@
 			</div>
 			<div id="test"></div>
             <button class="btn btn-primary btn-block" type="submit" id="btnSignUp">Sign me up!</button>
+            <div class="form-group">
+                By signing up you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+            </div>
         </g:form>
 
     </div>

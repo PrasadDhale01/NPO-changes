@@ -12,7 +12,8 @@ $(function() {
     	$('#rewardTemplate1').hide();
     }
 
-    var count = $('#rewardCount').val()
+    var count = $('#rewardCount').val();
+     var projectId = $('#projectId').val();
     
     var storyContent
     var storyPlaceholder = "<p><h3>Introduce Your Campaign</h3></p>"+
@@ -55,14 +56,8 @@ $(function() {
     
     $('.redactorEditor').redactor({
         imageUpload:'/project/getRedactorImage',
-        changeCallback: function(){
-            var delay = 10000; //delayed code to prevent error, time in milliseconds
-            storyContent = this.code.get();
-            $('#projectHasStory').val(storyContent);
-                setTimeout(function() {
-                autoSave('story', storyContent);
-            }, delay);
-        },
+        autosave: '/project/saveStory/?projectId='+projectId,
+        imageResizable: true,
         initCallback: function(){
             var projectHasStory = $('#projectHasStory').val();
             if (projectHasStory && projectHasStory != ''){
@@ -154,11 +149,6 @@ $(function() {
                 required: true,
                 minlength: 5,
                 maxlength: 100
-            },
-            story: {
-                required: true,
-                minlength: 10,
-                maxlength: 5000
             },
             videoUrl: {
                 isYoutubeVideo: true
@@ -372,8 +362,10 @@ $(function() {
         }
 
     	if (validator.form()) {
-    		$('#campaigncreatebtn').attr('disabled','disabled');
-    		$('#campaigncreate').find('form').submit();
+            if (!storyEmpty){
+                $('#campaigncreatebtn').attr('disabled','disabled');
+                $('#campaigncreate').find('form').submit();
+            }
     	}
     });
     
@@ -887,8 +879,12 @@ $(function() {
             $('.createDescDiv').closest(".form-group").removeClass('has-error');
         }
         
-        if(currentString <=139) {
-            var text = currentString + 1;
+        if(currentString <=140) {
+        	if (currentString == 140) {
+        		var text = currentString;
+        	} else {
+        		var text = currentString + 1;
+        	}
         }
         if (event.keyCode > 31) {
             if(event.altKey==true){
@@ -947,8 +943,7 @@ $(function() {
         var currentString = $('#descarea').val().length;
         if (currentString == 0) {
             $('#desclength').text("0/140");
-        } 
-        else {
+        } else {
             currentString = currentString;
             $('#desclength').text(currentString+'/140');
         }
@@ -957,15 +952,19 @@ $(function() {
     /*******************************Title text length******************** */
     var counter = 1;
     $('#campaignTitle').on('keydown', function(event) {
-  
+    
         event.altKey==true;
         var currentstring = $('#campaignTitle').val().length;
         if (currentstring >= 4) {
         	$('.createTitleDiv').find("span").remove();
             $('.createTitleDiv').closest(".form-group").removeClass('has-error');
         }
-        if(currentstring <=54) {
-            var text = currentstring + 1;
+        if(currentstring <=55) {
+        	if (currentstring == 55) {
+        		var text = currentstring ;
+        	} else {
+        		var text = currentstring + 1;
+        	}
         }
         if (event.keyCode > 31) {
             if(event.altKey==true){
@@ -1380,7 +1379,7 @@ $(function() {
             	$('#admins').css('padding-top','0px');
             	$('#perk').css('padding-top','0px');
             	$('#payment').css('padding-top','0px');
-            	$('#launch').css('padding-top','125px');
+            	$('#launch').css('padding-top','30px');
             	$('#save').css('padding-top','25px');
             }
         });
@@ -1486,7 +1485,6 @@ $(function() {
     });
     
     function autoSave(variable, varValue) {
-        var projectId = $('#projectId').val();
         $.ajax({
             type:'post',
             url:$("#b_url").val()+'/project/autoSave',
@@ -1656,7 +1654,6 @@ $(function() {
 	});
 
     function saveRewards(rewardNum,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom){
-        var projectId = $('#projectId').val();
         $.ajax({
         	cache: true,
             type:'post',
@@ -1670,8 +1667,7 @@ $(function() {
         });
      }
 
-     function removeRewards(deleteCount){
-         var projectId = $('#projectId').val();
+     function removeRewards(){
          $.ajax({
              type:'post',
              url:$("#b_url").val()+'/project/deleteReward',
@@ -1685,7 +1681,6 @@ $(function() {
      }
 
      function removeAllPerks(){
-         var projectId = $('#projectId').val();
          $.ajax({
              type:'post',
              url:$("#b_url").val()+'/project/deleteAllRewards',

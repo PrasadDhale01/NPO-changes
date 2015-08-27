@@ -80,7 +80,7 @@
 					    <div class="form-group">
 						    <div class="leftcard-column">
 						        <span class="input-group-addon"><span class="glyphicon glyphicon-credit-card"></span> </span>
-                        		<input type="text" class="card-number form-control" placeholder="Card Number" data-stripe="number" name="ccNumber">
+                        		<input type="text" class="card-number form-control all-place" placeholder="Card Number" data-stripe="number" name="ccNumber">
 						        <div class="clear-both"></div>
 						    </div>
 						    <div class="rightcard-column">
@@ -95,7 +95,7 @@
                      	<div class="form-group">
                             <div class="leftcard-column-one">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
-                                    <input class="form-control" type="text" placeholder="CVC" data-stripe="cvc" name="ccCardValidationNum">
+                                    <input class="form-control all-place" type="text" placeholder="CVC" data-stripe="cvc" name="ccCardValidationNum">
                                 <div class="clear"></div>   	
                             </div>
                             <div class="leftcard-column-two">
@@ -124,40 +124,40 @@
                         	<g:if test="${userService.isAnonymous(user)}">
                         	    <div class="form-group">
                                 	<div class="input-group col-md-12">
-                                    	<input class="form-control" type="text" placeholder="First Name" name="billToFirstName" id="billToFirstName">
+                                    	<input class="form-control all-place" type="text" placeholder="First Name" name="billToFirstName" id="billToFirstName">
                                 	</div>
                             	</div>
 								<div class="form-group">
 									<div class="input-group col-md-12">
-										<input class="form-control" type="text" placeholder="Last Name" name="billToLastName">
+										<input class="form-control all-place" type="text" placeholder="Last Name" name="billToLastName">
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group col-md-12">
-										<input class="form-control" type="text" placeholder="Email" name="billToEmail">
+										<input class="form-control all-place" type="text" placeholder="Email" name="billToEmail">
 									</div>
 								</div>
 							</g:if>
 							<g:else>
 								<div class="form-group">
 									<div class="input-group col-md-12">
-										<input class="form-control" type="text" placeholder="First Name" name="billToFirstName" id="billToFirstName" value="${user.firstName}">
+										<input class="form-control all-place" type="text" placeholder="First Name" name="billToFirstName" id="billToFirstName" value="${user.firstName}">
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group col-md-12">
-										<input class="form-control" type="text" placeholder="Last Name" name="billToLastName" value="${user.lastName}">
+										<input class="form-control all-place" type="text" placeholder="Last Name" name="billToLastName" value="${user.lastName}">
 									</div>
 								</div>
 								<div class="form-group">
 									<div class="input-group col-md-12">
-										<input class="form-control" type="text" placeholder="Email" name="billToEmail" value="${user.email}">
+										<input class="form-control all-place" type="text" placeholder="Email" name="billToEmail" value="${user.email}">
 									</div>
 								</div>
 							</g:else>
 								<div class="form-group">
 									<div class="input-group col-md-12">
-										<input class="form-control" type="text" placeholder="Phone Number" name="billToPhone">
+										<input class="form-control all-place" type="text" placeholder="Phone Number" name="billToPhone">
 									</div>
 								</div>
                             	<div class="clear"></div>
@@ -166,12 +166,12 @@
                         	<div class="col-md-6">
                                 <div class="form-group">
                                     <div class="input-group col-md-12">
-                                        <input class="form-control" type="text" placeholder="Address Line 1" name="billToAddressLine1" id="billToAddressLine1">
+                                        <input class="form-control all-place" type="text" placeholder="Address Line 1" name="billToAddressLine1" id="billToAddressLine1">
                                     </div>
                                 </div>
                         		<div class="form-group">
                                 	<div class="input-group col-md-12">
-                                    	<input class="form-control" type="text" placeholder="Address Line 2" name="billToAddressLine2" id="billToAddressLine2">
+                                    	<input class="form-control all-place" type="text" placeholder="Address Line 2" name="billToAddressLine2" id="billToAddressLine2">
                                 	</div>
                             	</div>
 
@@ -179,10 +179,10 @@
                                 	<div class="input-group col-md-12">
                                 		<div class="row">
                                 			<div class="col-sm-6">
-                                				<input class="form-control" type="text" placeholder="City" name="billToCity" id="billToCity" id="billToCity">
+                                				<input class="form-control TW-city-margin all-place" type="text" placeholder="City" name="billToCity" id="billToCity" id="billToCity">
                                 			</div>
                                 			<div class="col-sm-6">
-                                    			<input class="form-control" type="text" placeholder="Zip" name="billToZip" id="billToZip"> 
+                                    			<input class="form-control all-place" type="text" placeholder="Zip" name="billToZip" id="billToZip"> 
                                 			</div>
                                 		</div>
                                 	</div>
@@ -198,7 +198,7 @@
                             	
                             	<div class="form-group" id="otherState">
                             		<div class="input-group col-md-12">
-                            			<input class="form-control" type="text" placeholder="Other State" name="otherState" id="os">
+                            			<input class="form-control all-place" type="text" placeholder="Other State" name="otherState" id="os">
                             		</div>
                             	</div>
                             
@@ -228,22 +228,22 @@
 	                                <div class="col-md-6" id="physicalAddress">
 	                                    <div class="form-group">
 	                                        <div class="input-group col-md-12">
-	                                            <input class="form-control" type="text" placeholder="AddressLine1" name="addressLine1" id="addressLine1">
+	                                            <input class="form-control all-place" type="text" placeholder="AddressLine1" name="addressLine1" id="addressLine1">
 	                                        </div>
 	                                    </div>
 	                                    <div class="form-group">
 	                                        <div class="input-group col-md-12">
-	                                            <input class="form-control" type="text" placeholder="AddressLine2" name="addressLine2" id="addressLine2">
+	                                            <input class="form-control all-place" type="text" placeholder="AddressLine2" name="addressLine2" id="addressLine2">
 	                                        </div>
 	                                    </div>
                                         <div class="form-group">
                                             <div class="input-group col-md-12">
                                                 <div class="row">
                                                     <div class="col-sm-6">
-                                                        <input class="form-control" type="text" placeholder="City" name="city" id="city">
+                                                        <input class="form-control all-place" type="text" placeholder="City" name="city" id="city">
                                                     </div>
                                                     <div class="col-sm-6">
-                                                        <input class="form-control" type="text" placeholder="Zip" name="zip" id="zip"> 
+                                                        <input class="form-control all-place" type="text" placeholder="Zip" name="zip" id="zip"> 
                                                     </div>
                                                 </div>
                                             </div>
@@ -258,7 +258,7 @@
 	                                    </div>
                                         <div class="form-group" id="other">
                                             <div class="input-group col-md-12">
-                                                <input class="form-control" type="text" placeholder="Other State" name="otherstate" id="otherstate">
+                                                <input class="form-control all-place" type="text" placeholder="Other State" name="otherstate" id="otherstate">
                                             </div>
                                         </div>
 	                                    <div class="form-group">
@@ -278,7 +278,7 @@
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
 	                                        <div class="input-group col-md-12">
-	                                            <input class="form-control" type="text" placeholder="Email" name="shippingEmail">
+	                                            <input class="form-control all-place" type="text" placeholder="Email" name="shippingEmail">
 	                                        </div>
 	                                    </div>
 	                                </div>
@@ -287,7 +287,7 @@
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
 	                                        <div class="input-group col-md-12">
-	                                            <input class="form-control" type="text" placeholder="Twitter Handle" name="twitterHandle">
+	                                            <input class="form-control all-place" type="text" placeholder="Twitter Handle" name="twitterHandle">
 	                                        </div>
 	                                    </div>
 	                                </div>
@@ -297,7 +297,7 @@
 	                                <div class="col-md-6">
 	                                    <div class="form-group">
 	                                        <div class="input-group col-md-12">
-	                                            <input class="form-control" type="text" id="customShippingInfo" name="shippingCustom">
+	                                            <input class="form-control all-place" type="text" id="customShippingInfo" name="shippingCustom">
 	                                        </div>
 	                                    </div>
 	                                </div>

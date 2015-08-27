@@ -42,7 +42,7 @@
             <g:uploadForm class="form-horizontal"  controller="project" action="update" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
                 <g:hiddenField name="projectId" value="${project.id}"/>
                 <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari" id="start">
-                    <label class="panel body cr-start-size cr-safari">START</label>
+                    <label class="panel body cr-start-size cr-safari">START </label>
                     <div class="form-group col-sm-10 cr-start-space campaignEndDateError">
                         <div class="col-sm-3 deadline-popover">
                              <div class="input-group enddate">
@@ -207,7 +207,7 @@
                     </div>
                     
                 <div class="col-sm-6 image-popover">
-                    <div class="panel panel-default panel-create-size">
+                    <div class="panel panel-default panel-create-size upload-campaign-pic">
                         <div class="panel-body">
                             <div class="form-group" id="createthumbnail">
                                 <div class="col-sm-12">
@@ -530,8 +530,13 @@
 	                        <label class="panel-body cr-perks-size edit-perk-size"><span class="cr-offering">Offering</span> PERKS?</label>
 	                    </div>
 	                    <div class="btn-group btnPerkBgColor col-sm-push-6 edit-btn-space cr-perk-yesno-tab ed-perks-css cr-mobile-sp" data-target="buttons">
-	                        <label class="btn btn-default cr-lbl-mobile"> <input type="radio" name="answer" value="yes" id="yesradio"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
-	                        <label class="btn btn-default cr-lbl-mobiles"> <input type="radio" name="answer" value="no" id="noradio"> NO</label>
+                            <label class="btn btn-default cr-lbl-mobile"> <input type="radio" name="answer" value="yes" id="yesradio"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label>
+                            <g:if test="${projectRewards.size() == 0}">
+                                <label class="btn btn-default cr-lbl-mobiles"> <input type="radio" name="answer" checked="checked" value="no" id="noradio"> NO</label>
+                            </g:if>
+                            <g:else>
+                                <label class="btn btn-default cr-lbl-mobiles"> <input type="radio" name="answer" value="no" id="noradio"> NO</label>
+                            </g:else>
 	                    </div>
 	                </div>
                 </div>
@@ -796,11 +801,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12" id="charitableId">
+                        <div class="col-sm-12  cr-tablet-space" id="charitableId">
                             <div class="form-group">
                                 <label class="col-sm-4 control-label">FirstGiving</label>
                                 <div class="col-sm-3">
-                                    <a data-toggle="modal" href="#myModal" class="charitableLink">Find your organization</a>
+                                    <a data-toggle="modal" href="#myModal" class="charitableLink cr-tablet-orgcharity">Find your organization</a>
                                 </div>
                                 <div class="col-sm-4" id="charitable">
                                     <g:if test="${project.charitableId}">

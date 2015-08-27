@@ -76,10 +76,6 @@
 	background-color: #F0F0F0;
 	margin-bottom: 5px;
 }
-.hrClass{
-    margin-top:4px;
-    margin-bottom:-7px !important;
-}
 .hrClasses{
     margin-top:4px;
     margin-bottom:12px !important;
@@ -636,3 +632,23 @@ div.image-popover .popover{
 	padding-top: 2%;
 }
 
+.campaignUpdateContainer {
+    width: 1000px;
+    margin: 0 auto;
+}
+.campaignUpdateContainer .btn-primary {
+    background-color: #5bc0de !important;
+    border-color: #46b8da !important;
+}
+.updatesubmitbtn .btn {
+	padding: 14px 28px;
+    font-size: 22px;
+    font-weight: 700;
+}
+.campaignUpdateContainer h3 {
+    font-size: 20px !important;
+}
+.campaignUpdateStory img {
+    max-width: 100%;
+    width: auto;
+}

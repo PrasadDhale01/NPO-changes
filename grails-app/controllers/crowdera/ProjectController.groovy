@@ -487,6 +487,7 @@ class ProjectController {
         }
 
 		rewardService.saveRewardDetails(params);
+		project.story = params.story
 
         if (params.isSubmitButton == 'true'){
             project.draft = false;		
@@ -525,7 +526,7 @@ class ProjectController {
 		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
 		def categoryOptions = projectService.getCategoryList()
         def currentEnv = Environment.current.getName()
-		def vanityTitle = params.title
+		def vanityTitle = params.projectTitle
 		def user = project.user
 		def country = projectService.getCountry()
 		def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
@@ -566,17 +567,16 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def update() {
-		def project = projectService.getProjectById(params.projectId)
-		User user = userService.getCurrentUser()
-		def title = projectService.getVanityTitleFromId(params.projectId)
+		def project = projectService.getProjectFromVanityTitle(params.title)
+		User user = userService.getUserFromVanityName(params.userName)
 		if(project) {
 			def vanityTitle = projectService.getProjectUpdateDetails(params, request, project,user)
 			rewardService.saveRewardDetails(params);
 			flash.prj_mngprj_message = "Successfully saved the changes"
 			if (vanityTitle){
 				redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
-			}else{
-				redirect (action: 'manageproject', params:['projectTitle':title])
+			} else {
+				redirect (action: 'manageproject', params:['projectTitle':params.title])
 			}
 		} else {
 			flash.prj_edit_message = "Campaign not found."
@@ -1059,10 +1059,11 @@ class ProjectController {
 				User user = userService.getCurrentUser()
 
 				projectUpdate.story = story
+                projectUpdate.title = params.title
 				projectService.getUpdatedImageUrls(imageFiles, projectUpdate)
 
 				project.addToProjectUpdates(projectUpdate)
-				mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user)
+				mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user,params.title)
 
 				flash.prj_mngprj_message= "Update added successfully."
 				redirect (action: 'manageproject', controller:'project', params:['projectTitle':title], fragment: 'projectupdates')
@@ -1529,5 +1530,12 @@ class ProjectController {
         def bankInfos = userService.getBankInfoList()
         render (view:'/user/payments/index', model:[bankInfos: bankInfos])
     }
-    
+
+	def saveStory (){
+		def projectId = params.projectId
+		def varValue = params.story
+		projectService.autoSaveProjectDetails('story', varValue, projectId)
+		render ''
+	}
+
 }

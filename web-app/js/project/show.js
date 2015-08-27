@@ -464,6 +464,11 @@
             		var text = currentString + 1;
             	}
             }
+            if(currentString >= 4){
+                $('.createDescDiv').find("span").remove();
+                $('.createDescDiv').closest(".form-group").removeClass('has-error');
+            }
+            
             if (event.keyCode > 31) {
                if (event.altKey == true) {
                    setDescriptionText();

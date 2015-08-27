@@ -623,6 +623,9 @@ $(function() {
                     for (var i=rewardslength; i > 1; i--) {
                     	$('#addNewRewards').find('.rewardsTemplate').last().remove();
                     }
+                    for (var i=rewardslength; i > 0; i--){
+                    	$('#addNewRewards').find('.editDeleteReward').remove();
+                    }
                     renameAndemptyRewardFields();
                     $("#updatereward").hide();
                     $('#addNewRewards').find('.rewardsTemplate').hide();
@@ -657,10 +660,10 @@ $(function() {
         $('#addNewRewards').find('.rewardsTemplate').find('.customText').attr('name', 'custom1');
         $('#addNewRewards').find('.rewardNum').attr('value', '1');
     	
-    	$('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice1').attr('value', '');
-        $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').attr('value', '');
-        $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle1').attr('value', '');
-        $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable1').attr('value', '');
+    	$('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice1').val('');
+        $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').val('');
+        $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle1').val('');
+        $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable1').val('');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblmail1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblemail1');
         $('#addNewRewards').find('.rewardsTemplate').find(".shippingTwitter").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lbltwitter1');
@@ -1105,20 +1108,20 @@ $(function() {
     $('#createreward').click(function(){
         var rewardSaved = rewardValidationAndSaving(count);
         if (rewardSaved){
-        var updateCount = count;
+        var updateCount = $('#addNewRewards').find(".rewardsTemplate:last").attr('value');
         count++;
         $('#savereward').attr('value',count);
-        var str ='<div class="rewardsTemplate cr-perks-spec" id="rewardTemplate'+count+'" value="'+count+'">'+
-   '<div class="col-sm-12 perk-css editDeleteReward" id="editDeleteReward'+updateCount+'">'+
-       '<div class="col-sm-12 perk-create-styls perk-top" align="right">'+
-            '<div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward'+updateCount+'" value="'+updateCount+'">'+
-                '<i class="glyphicon glyphicon-floppy-save"></i>'+
-            '</div>&nbsp;'+
-            '<div class="btn btn-primary btn-circle perks-created-remove deletereward" id="deletereward'+updateCount+'" value="'+updateCount+'">'+
-                '<i class="glyphicon glyphicon-trash"></i>'+
-            '</div>'+
-        '</div>'+
-    '</div>'+
+        var str ='<div class="col-sm-12 perk-css perk-padding editDeleteReward" id="editDeleteReward'+updateCount+'">'+
+            '<div class="col-sm-12 perk-create-styls perk-top" align="right">'+
+                 '<div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward'+updateCount+'" value="'+updateCount+'">'+
+                     '<i class="glyphicon glyphicon-floppy-save"></i>'+
+                 '</div>&nbsp;'+
+                 '<div class="btn btn-primary btn-circle perks-created-remove deletereward" id="deletereward'+updateCount+'" value="'+updateCount+'">'+
+                     '<i class="glyphicon glyphicon-trash"></i>'+
+                 '</div>'+
+             '</div>'+
+         '</div>'+
+    '<div class="rewardsTemplate" id="rewardTemplate'+count+'" value="'+count+'">'+
     '<div class="col-sm-2">'+
         '<div class="form-group">'+
             '<div class="col-sm-12">';
@@ -1184,11 +1187,7 @@ $(function() {
             if (confirm('Are you sure you want to discard this perk?')){
                 removeRewards(count);
                 $('#addNewRewards').find('.rewardsTemplate').last().remove();
-                var editRewardId = $('#addNewRewards').find(".editreward:last").attr('value');
-             	var lastRewardCount = $('#addNewRewards').find(".rewardNum:last").val();
-            	if(editRewardId == lastRewardCount){
-            		$('.editDeleteReward:last').remove();
-            	}
+                $('#addNewRewards').find('.editDeleteReward:last').remove();
             }
         }
     });
@@ -1347,14 +1346,9 @@ $(function() {
         	var deleteCount = $(this).attr('value');
         	if (confirm('Are you sure you want to discard this perk?')){
         		var deleteRewardCount = $(this).attr('value');
-        		var lastRewardCount = $("#rewardNum"+deleteRewardCount).val();
                 removeRewards(deleteCount);
                 $('#rewardTemplate'+deleteCount).remove();
-                var editRewardValue = $('#addNewRewards').find("#editreward"+deleteRewardCount).attr('value');
-                if ((editRewardValue == lastRewardCount) || editRewardValue == 1){
-        		    $("#editDeleteReward"+deleteRewardCount).remove();
-        		    $('#addNewRewards').find(".rewardsTemplate:first").removeClass('cr-perks-spec');
-                }
+    		    $("#editDeleteReward"+deleteRewardCount).remove();
             }
         });
 

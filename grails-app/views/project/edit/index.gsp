@@ -677,6 +677,7 @@
                                 </div>
                             </div>
                         </div>
+                        <g:hiddenField name="rewardNum" id="rewardNum1" value="1" class="rewardNum"/>
                     </div>
                     </g:else>
                 </div>

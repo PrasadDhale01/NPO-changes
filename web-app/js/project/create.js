@@ -784,7 +784,7 @@ $(function() {
         $('#media-video').show();
         if (match[2].length == 11){
         	var vurl=url.replace("watch?v=", "embed/");
-            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
+            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src="'+ vurl +'?wmode=transparent"></iframe>');
         } else {
         	$('#ytVideo').html('<iframe class="youtubeVideoIframe" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen src=https://player.vimeo.com/video/'+ match[2] +'></iframe>');
         }

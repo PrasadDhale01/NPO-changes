@@ -458,6 +458,10 @@
         $('#descarea').on('keydown', function(event) {
             event.altKey==true;
             var currentString = $('#descarea').val().length;
+            if(currentString >= 4){
+                $('.createDescDiv').find("span").remove();
+                $('.createDescDiv').closest(".form-group").removeClass('has-error');
+            }
             if(currentString <=139) {
                 var text = currentString + 1;
             }

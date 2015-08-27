@@ -104,6 +104,10 @@ body .redactor-box-fullscreen {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    .redactor-editor > iframe {
+        width: 215px !important;
+        height: 215px !important;
+    }
     .redactor-box {
         width: 253px;
     }
@@ -116,6 +120,20 @@ body .redactor-box-fullscreen {
     .redactor-editor {
          width: 254px;
     }
+}
+
+@media only screen and (min-width: 641px) and (max-width: 767px){
+    .redactor-editor > iframe {
+        width: 240px !important;
+        height: 240px !important;
+    }
+}
+
+.redactor-editor:focus {
+  outline: none;
+}
+.toolbar-fixed-box + .redactor-editor {
+  padding-top: 32px !important;
 }
 
 /*

@@ -694,6 +694,12 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    .nav.navbar-nav.navbar-right.navbar-right-logged-in {
+        margin-left: -21px !important;
+    }
+    .hed-font-sizes{
+        font-size: 13px;
+    }
 	.TW-redactor .redactor-toolbar {
 	    padding-left: 1% !important;
 	}
@@ -1419,6 +1425,12 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    li.discover{
+        width: 55px;      
+    }
+    li.learn{
+        width: 40px;  
+    }
     div.cr-tablet-space{
         display: block;
         left: -106px;	   
@@ -2406,11 +2418,11 @@ a {
     }
     
     .nav-text2 {
-        margin-left: 38px;
+        margin-left: 13px;
     }
 
     .nav-text3 {
-        margin-left: 38px;
+        margin-left: 13px;
     }
 
     li.search-mob {
@@ -2418,7 +2430,7 @@ a {
     }
     
     .nav-item-1{
-        margin-left: 38px;
+        margin-left: 13px;
     }
 
     .nav-item-2{
@@ -4822,15 +4834,15 @@ textarea.form-control {
 	}
 	/*************EndManageTeamButtons************/	
 	
-	ul.nav.navbar-nav.nav-icon-bar {
-        width: 23% !important;
+    ul.nav.navbar-nav.nav-icon-bar {
+        width: 24% !important;
     }
     #hiddensearch {
         display: none;
         width: 150px !important;
     }
     .nav {
-        font-size: 11px !important;
+        font-size: 10px !important;
     }
 }
 
@@ -4866,7 +4878,7 @@ textarea.form-control {
         margin-top: -4%;
     }
     .header-section .nav > li > a{
-        padding:4px 5px !important;
+        padding:4px 3px !important;
     }
     .validatebutton {
         float: right;
@@ -4914,9 +4926,9 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 768px) {
-    ul.nav.navbar-nav.nav-icon-bar {
-        width: 21% !important;
-    }
+/*     ul.nav.navbar-nav.nav-icon-bar { */
+/*         width: 21% !important; */
+/*     } */
     ul.nav-icon-bar {
         padding-left: 6px !important;
     }
@@ -6258,6 +6270,12 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    .nav.navbar-nav.navbar-right.navbar-right-logged-in {
+        margin-left: -21px !important;
+    }
+    .hed-font-sizes{
+        font-size: 13px;
+    }
 	.TW-ack-commentBox{
 		background-color:#f5f5f5;
 		margin-bottom:12px !important;
@@ -9654,11 +9672,16 @@ body {
 	background-color:#f5f5f5;
 	margin-bottom:40px;
 }
+a.hm-back-width{
+	width: 90px;
+}
 .backToCreatePage.col-lg-2, .backToCreatePage.col-md-2 , .backToCreatePage.col-sm-2 {
 	padding-left: 0px !important;
     padding-right: 0px !important;
 }
-
+li.learn {
+    top: -2.1px;
+}
 .preview-banner{
     background-color: #000000;
     color: #ffffff;

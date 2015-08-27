@@ -694,10 +694,10 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	.nav.navbar-nav.navbar-right.navbar-right-logged-in {
+    .nav.navbar-nav.navbar-right.navbar-right-logged-in {
         margin-left: -21px !important;
     }
-	.hed-font-sizes{
+    .hed-font-sizes{
         font-size: 13px;
     }
 	.TW-redactor .redactor-toolbar {
@@ -1425,7 +1425,7 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	li.discover{
+    li.discover{
         width: 55px;      
     }
     li.learn{
@@ -4834,7 +4834,7 @@ textarea.form-control {
 	}
 	/*************EndManageTeamButtons************/	
 	
-	ul.nav.navbar-nav.nav-icon-bar {
+    ul.nav.navbar-nav.nav-icon-bar {
         width: 24% !important;
     }
     #hiddensearch {

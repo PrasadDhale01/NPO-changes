@@ -628,6 +628,10 @@ div.image-popover .popover{
     padding-bottom: 14px;
 }
 
+.perk-padding{
+	padding-top: 2%;
+}
+
 .campaignUpdateContainer {
     width: 1000px;
     margin: 0 auto;

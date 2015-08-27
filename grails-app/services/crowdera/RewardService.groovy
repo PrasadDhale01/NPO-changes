@@ -20,6 +20,14 @@ class RewardService {
         Reward reward = new Reward(rewardParams)
         return reward
     }
+	
+    def setRewardCount(Project project, Reward reward) {
+        def rewardCount = 0;
+        project.rewards.each { perk->
+            rewardCount = (perk.rewardCount > rewardCount) ? perk.rewardCount : rewardCount;
+        }
+        reward.rewardCount = rewardCount + 1;
+    }
 
     def getRewardById(def rewardId){
         if (rewardId) {

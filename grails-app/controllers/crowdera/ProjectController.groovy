@@ -961,6 +961,7 @@ class ProjectController {
 
 		if(reward.save()) {
 			def project= projectService.getProjectById(params.id)
+			rewardService.setRewardCount(project, reward)
 			shippingInfo.reward = reward
 			shippingInfo.save(failOnError: true)
 			project.addToRewards(reward)

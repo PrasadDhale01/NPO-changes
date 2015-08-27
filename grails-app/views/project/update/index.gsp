@@ -42,8 +42,9 @@
                     </div>
                 </div>
    
-                <div class="col-sm-offset-4 col-sm-4 col-xs-12 updatesubmitbtn">
-                    <button type="submit" class="btn btn-primary btn-block updatesubmitbutton" name="button" id="updatesubmitbutton">Submit Update</button>
+                <div class="col-sm-offset-4 col-sm-4 col-md-offset-4 col-md-4 col-xs-offset-2 col-xs-8 updatesubmitbtn">
+                    <button type="submit" class="btn btn-primary updatesubmitbutton hidden-xs" name="button" id="updatesubmitbutton"></button>
+                    <button type="submit" class="btn btn-primary updatesubmitbuttonXS visible-xs" name="button" id="updatesubmitbuttonXS"></button>
                 </div>
 
             </div>

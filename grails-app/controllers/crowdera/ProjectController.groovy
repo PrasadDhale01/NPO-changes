@@ -399,25 +399,29 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def createNow() {
         def projectTitle
-        def project = projectService.getProjectByParams(params)
-        def beneficiary = userService.getBeneficiaryByParams(params)
-		def user = userService.getCurrentUser()
-        project.draft = true;
-		project.beneficiary = beneficiary;
-		project.beneficiary.email = user.email;
+        if (params.title && params.amount && params.description && params.firstName) {
+            def project = projectService.getProjectByParams(params)
+            def beneficiary = userService.getBeneficiaryByParams(params)
+		    def user = userService.getCurrentUser()
+            project.draft = true;
+		    project.beneficiary = beneficiary;
+		    project.beneficiary.email = user.email;
 
-        def currentEnv = Environment.current.getName()
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-            project.payuStatus = true
-        }
+            def currentEnv = Environment.current.getName()
+            if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+                project.payuStatus = true
+            }
 		
-		project.usedFor = params.usedFor;
+		    project.usedFor = params.usedFor;
 		
-        if(project.save(failOnError: true)){
-            projectTitle = projectService.getProjectVanityTitle(project)
-            projectService.getFundRaisersForTeam(project, user)
-            projectService.getdefaultAdmin(project, user)
-            redirect(action:'redirectCreateNow', params:[title:projectTitle])
+            if(project.save(failOnError: true)){
+                projectTitle = projectService.getProjectVanityTitle(project)
+                projectService.getFundRaisersForTeam(project, user)
+                projectService.getdefaultAdmin(project, user)
+                redirect(action:'redirectCreateNow', params:[title:projectTitle])
+            } else {
+                render view:'/project/createerror'
+            }
         } else {
             render view:'/project/createerror'
         }

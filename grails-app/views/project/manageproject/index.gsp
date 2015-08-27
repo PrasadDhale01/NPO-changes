@@ -84,24 +84,12 @@
 							${flash.saveEditUpdateSuccessMsg}
 						</div>
 					</g:if>
-					 
-					 
                     <div class="col-md-12">
-                        <g:if test="${isPreview}">
-                            <g:if test="${tile == 'false'}">
-                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 backToCreatePage">
-                            <a href="/campaign/start/${vanityTitle}"><< Back to Create Page</a>
-                            </div>
-                            </g:if>
-                            <div class="<g:if test="${tile == 'false'}">col-lg-8 col-md-8 col-sm-8 col-xs-12 </g:if>campaignTitle">
-                            <h1 class="green-heading text-center">${projectTitle}</h1>
-                            </div>
-                        </g:if>
-                        <g:elseif test="${!project.validated}">
+                        <g:if test="${!project.validated}">
                             <div class="campaignTitle">
                                 <h1 class="green-heading text-center"><g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
                             </div>
-                        </g:elseif>
+                        </g:if>
                         <g:else>
                             <div class="campaignTitle">
                                 <h1 class="green-heading text-center"><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>

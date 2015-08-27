@@ -16,7 +16,7 @@
 %>
 <g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentUser,'username':username]"/>
 <div class="fedu thumbnail grow managedetails-edit">
-    <div class="modal-footer tile-footer tileanstitle-goals <g:if test="${!isPreview}">tileanstitle-goal-margin</g:if>">
+    <div class="modal-footer tile-footer tileanstitle-goals">
 	<div class="row icons-centering">
 		<div class="col-xs-4 col-sm-4 col-md-4 goalIcon">
 			<img src="//s3.amazonaws.com/crowdera/assets/goal-icon.png">
@@ -70,7 +70,6 @@
         </g:else>
     </div>
     </div>
-    <g:if test="${!isPreview}">
     <div class="modal-footer tile-footer managedetails-nine-nine">
         <div class="row">
             <div class="fullwidth pull-right">
@@ -91,5 +90,4 @@
             </div>
         </div>
     </div>
-    </g:if>
 </div>

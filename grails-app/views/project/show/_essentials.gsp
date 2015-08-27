@@ -24,6 +24,30 @@
 		<div class="shared pull-left">
 			<span><label>SHARE:</label></span>
 		</div>
+		<g:if test="${isPreview}">
+		<a class="fb-like pull-left social fbShareForSmallDevices">
+			<img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
+		</a>
+		<a class="fb-like pull-left fbShareForLargeDevices">
+			<img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
+		</a>
+		<a class="share-mail pull-left">
+			<img src="//s3.amazonaws.com/crowdera/assets/email-share-icon.png" alt="Mail Share">
+		</a>
+		<a class="twitter-share pull-left">
+			<img src="//s3.amazonaws.com/crowdera/assets/twitter-share-icon.png" alt="Twitter Share">
+		</a>
+		<a class="pull-left">
+			<img src="//s3.amazonaws.com/crowdera/assets/like-Share-icon.png" alt="campaign-supporter">
+		</a>
+		<a class="social share-linkedin pull-left" target="_blank" id="share-linkedin">
+			<img src="//s3.amazonaws.com/crowdera/assets/linked-in-share-icon.png" alt="LinkedIn Share">
+		</a>
+		<a class="social google-plus-share pull-left" id="googlePlusShare">
+			<img src="//s3.amazonaws.com/crowdera/assets/google-plus-share.png" alt="Google+ Share">
+		</a>
+		</g:if>
+		<g:else>
 		<a target="_blank" class="fb-like pull-left social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
 			<img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
 		</a>
@@ -45,6 +69,7 @@
 		<a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${fbShareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
 			<img src="//s3.amazonaws.com/crowdera/assets/google-plus-share.png" alt="Google+ Share">
 		</a>
+		</g:else>
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-12">

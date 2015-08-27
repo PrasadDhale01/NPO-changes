@@ -564,7 +564,7 @@ $(function() {
     
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
-           var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+           var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
            var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
            var youtubematch = value.match(p);
            var vimeomatch = value.match(vimeo);
@@ -784,13 +784,13 @@ $(function() {
         $('#media-video').show();
         if (match[2].length == 11){
         	var vurl=url.replace("watch?v=", "embed/");
-            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
+            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src="'+ vurl +'?wmode=transparent"></iframe>');
         } else {
         	$('#ytVideo').html('<iframe class="youtubeVideoIframe" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen src=https://player.vimeo.com/video/'+ match[2] +'></iframe>');
         }
     }
 	$('#add').on('click',function(){
-        var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+		var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
         var url= $('#videoUrl').val().trim();
         var match = (url.match(youtube) || url.match(vimeo));
@@ -1112,10 +1112,10 @@ $(function() {
         $('#savereward').attr('value',count);
         var str ='<div class="col-sm-12 perk-css perk-padding editDeleteReward" id="editDeleteReward'+updateCount+'">'+
             '<div class="col-sm-12 perk-create-styls perk-top" align="right">'+
-                 '<div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward'+updateCount+'" value="'+updateCount+'">'+
+                 '<div class="btn btn-circle perks-created-remove intutive-glyphicon editreward" id="editreward'+updateCount+'" value="'+updateCount+'">'+
                      '<i class="glyphicon glyphicon-floppy-save"></i>'+
                  '</div>&nbsp;'+
-                 '<div class="btn btn-primary btn-circle perks-created-remove deletereward" id="deletereward'+updateCount+'" value="'+updateCount+'">'+
+                 '<div class="btn btn-circle perks-created-remove intutive-glyphicon deletereward" id="deletereward'+updateCount+'" value="'+updateCount+'">'+
                      '<i class="glyphicon glyphicon-trash"></i>'+
                  '</div>'+
              '</div>'+

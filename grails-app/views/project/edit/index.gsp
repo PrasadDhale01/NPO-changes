@@ -618,10 +618,10 @@
                         <g:if test="${rewardItrCount > iteratorCount}">
                         <div class="col-sm-12 perk-css editDeleteReward" id="editDeleteReward${reward.rewardCount}">
                             <div class="col-sm-12 perk-create-styls edit-top-gsp" align="right">
-                                <div class="btn btn-primary btn-circle perks-created-remove editreward" id="editreward${reward.rewardCount}" value="${reward.rewardCount}">
+                                <div class="btn btn-circle perks-created-remove intutive-glyphicon editreward" id="editreward${reward.rewardCount}" value="${reward.rewardCount}">
                                     <i class="glyphicon glyphicon-floppy-save"></i>
                                 </div>
-                                <div class="btn btn-primary btn-circle perks-created-remove deletereward" id="deletereward${reward.rewardCount}" value="${reward.rewardCount}">
+                                <div class="btn btn-circle perks-created-remove intutive-glyphicon deletereward" id="deletereward${reward.rewardCount}" value="${reward.rewardCount}">
                                     <i class="glyphicon glyphicon-trash"></i>
                                 </div>
                             </div>
@@ -689,13 +689,13 @@
                 <div class="row">
                     <div class="col-sm-12 perk-css" id="updatereward">
                         <div class="col-sm-12 perk-create-styls" align="right">
-                            <div class="btn btn-primary btn-circle perks-css-create" id="savereward" value="${lastrewardCount}">
+                            <div class="btn intutive-glyphicon btn-circle perks-css-create" id="savereward" value="${lastrewardCount}">
                                 <i class="glyphicon glyphicon-floppy-save"></i>
                             </div>
-                            <div class="btn btn-primary btn-circle perks-css-create" id="createreward">
+                            <div class="btn intutive-glyphicon btn-circle perks-css-create" id="createreward">
                                 <i class="glyphicon glyphicon-plus"></i>
                             </div>
-                            <div class="btn btn-primary btn-circle perks-created-remove" id="removereward">
+                            <div class="btn intutive-glyphicon btn-circle perks-created-remove" id="removereward">
                                 <i class="glyphicon glyphicon-trash"></i>
                             </div>
                         </div>
@@ -875,7 +875,7 @@
                                         </g:else>
                                     </div>
                                     <div class="col-sm-2 col-xs-2">
-                                        <button class="btn btn-info btn-sm cr-btn-color" href="#" data-dismiss="modal" id="add">Add</button>
+                                        <button class="btn btn-info btn-sm cr-btn-color" href="#" data-dismiss="modal" id="add" type="button">Add</button>
                                     <div>
                                     </div>
                                 </div>

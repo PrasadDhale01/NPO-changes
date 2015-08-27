@@ -9682,3 +9682,20 @@ a.hm-back-width{
 li.learn {
     top: -2.1px;
 }
+.preview-banner{
+    background-color: #000000;
+    color: #ffffff;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    margin-top: -11px;
+}
+
+.preview-banner-margin{
+	background-color: #000000;
+    color: #ffffff;
+    padding: 5px;
+    text-align: center;
+    width: 100%;
+    margin-top: -41px;
+}

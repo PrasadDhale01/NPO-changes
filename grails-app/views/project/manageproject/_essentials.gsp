@@ -16,8 +16,8 @@
             </g:form>
         </g:if>
         <g:else>
-            <button class="btn btn-block btn-primary">
-                <i class="glyphicon glyphicon-check" id="submitForApprovalBtnMobile"></i>&nbsp;Submit for approval
+            <button class="btn btn-block btn-primary" id="submitForApprovalBtnMobile">
+                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
             </button>
         </g:else>
     </g:if>

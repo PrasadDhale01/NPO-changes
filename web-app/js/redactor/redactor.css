@@ -13,8 +13,8 @@
 .redactor-box {
   position: relative;
   overflow: visible;
+  margin-bottom: 24px;
 }
-
 .redactor-box textarea {
   display: block;
   position: relative;
@@ -95,6 +95,12 @@ body .redactor-box-fullscreen {
   font-size: 14px;
   line-height: 1.6em;
 }
+.redactor-editor:focus {
+  outline: none;
+}
+.toolbar-fixed-box + .redactor-editor {
+  padding-top: 32px !important;
+}
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
@@ -129,6 +135,7 @@ body .redactor-box-fullscreen {
 .toolbar-fixed-box + .redactor-editor {
   padding-top: 32px !important;
 }
+
 /*
 	Placeholder
 */
@@ -481,8 +488,6 @@ body .redactor-box-fullscreen {
   color: #ccc;
   margin: 0 5px;
   text-decoration: none;
-  display: inline-flex;
-  padding-left: 150px;
 }
 .redactor-link-tooltip a:hover {
   color: #fff;
@@ -507,97 +512,6 @@ body .redactor-box-fullscreen {
   font-size: 12px;
   color: rgba(0, 0, 0, 0.7);
 }
-
-div#redactor-droparea-placeholder input {
-  padding-top: 0px;
-    display: inline-flex !important;
-    display: -webkit-inline-box !important;
-}
-
-@media only screen and (min-width: 320px) and (max-width: 400px){
-	#redactor-modal-box > div{
-	    margin-top: 18.5px !important;
-	}
-	header {
-         display: block !important;
-    }
-	#redactor-droparea {
-        border: 3px dashed rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        padding: 140px 50px;
-        position: relative;
-    }
-    div#redactor-droparea-placeholder input {
-        display: inline-flex !important;
-        margin-left: -9px;
-        padding-top: 0;
-    }
-    div#redactor-droparea-placeholder {
-        text-align: center;
-        font-size: 12px;
-        color: rgba(0, 0, 0, 0.7);
-        display: inline;
-        padding-left: 0px;
-    }
-}
-
-@media only screen and (min-width: 401px) and (max-width: 500px){
-	#redactor-modal-box > div{
-	    margin-top: 18.5px !important;
-	}
-	header {
-         display: block !important;
-    }
-	#redactor-droparea {
-        border: 3px dashed rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        padding: 140px 37px;
-        position: relative;
-    }
-    div#redactor-droparea-placeholder input {
-        display: inline-flex !important;
-        margin-left: -9px;
-        padding-top: 0;
-    }
-    div#redactor-droparea-placeholder {
-        text-align: center;
-        font-size: 12px;
-        color: rgba(0, 0, 0, 0.7);
-        display: inline;
-        padding-left: 0px;
-    }
-}
-
-@media only screen and (min-width: 501px) and (max-width: 640px){
-	#redactor-modal-box > div{
-	    margin-top: 18.5px !important;
-	}
-	header {
-         display: block !important;
-    }
-    div#redactor-droparea-placeholder {
-        text-align: center;
-        font-size: 12px;
-        color: rgba(0, 0, 0, 0.7);
-        display: inline-flex;
-        display: -webkit-box;
-        margin-left: 13%;
-        width: 135%;
-    }
-}
-    
-@media only screen and (min-width: 768px) and (max-width: 1024px){
-	.redactor-toolbar{
-	    padding-left:46%;
-	}
-}
-
-@media only screen and (max-width: 767px){
-	.redactor-toolbar{
-	    padding:0;
-	}
-}
-
 /*
 	PROGRESS
 */
@@ -691,6 +605,97 @@ div#redactor-droparea-placeholder input {
 #redactor-modal section {
   padding: 30px 40px 50px 40px;
 }
+
+div#redactor-droparea-placeholder input {
+  padding-top: 0px;
+    display: inline-flex !important;
+    display: -webkit-inline-box !important;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 400px){
+	#redactor-modal-box > div{
+	    margin-top: 18.5px !important;
+	}
+	header {
+         display: block !important;
+    }
+	#redactor-droparea {
+        border: 3px dashed rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        padding: 140px 50px;
+        position: relative;
+    }
+    div#redactor-droparea-placeholder input {
+        display: inline-flex !important;
+        margin-left: -9px;
+        padding-top: 0;
+    }
+    div#redactor-droparea-placeholder {
+        text-align: center;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.7);
+        display: inline;
+        padding-left: 0px;
+    }
+}
+
+@media only screen and (min-width: 401px) and (max-width: 500px){
+	#redactor-modal-box > div{
+	    margin-top: 18.5px !important;
+	}
+	header {
+         display: block !important;
+    }
+	#redactor-droparea {
+        border: 3px dashed rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        padding: 140px 37px;
+        position: relative;
+    }
+    div#redactor-droparea-placeholder input {
+        display: inline-flex !important;
+        margin-left: -9px;
+        padding-top: 0;
+    }
+    div#redactor-droparea-placeholder {
+        text-align: center;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.7);
+        display: inline;
+        padding-left: 0px;
+    }
+}
+
+@media only screen and (min-width: 501px) and (max-width: 640px){
+	#redactor-modal-box > div{
+	    margin-top: 18.5px !important;
+	}
+	header {
+         display: block !important;
+    }
+    div#redactor-droparea-placeholder {
+        text-align: center;
+        font-size: 12px;
+        color: rgba(0, 0, 0, 0.7);
+        display: inline-flex;
+        display: -webkit-box;
+        margin-left: 13%;
+        width: 135%;
+    }
+}
+    
+@media only screen and (min-width: 768px) and (max-width: 1024px){
+	.redactor-toolbar{
+	    padding-left:46%;
+	}
+}
+
+@media only screen and (max-width: 767px){
+	.redactor-toolbar{
+	    padding:0;
+	}
+}
+
 #redactor-modal label {
   display: block;
   float: none !important;
@@ -911,6 +916,7 @@ div#redactor-droparea-placeholder input {
 .redactor-editor code,
 .redactor-editor pre {
   font-family: Menlo, Monaco, monospace, sans-serif !important;
+  cursor: text;
 }
 .redactor-editor div,
 .redactor-editor p,
@@ -960,9 +966,14 @@ div#redactor-droparea-placeholder input {
 }
 .redactor-editor blockquote {
   margin-left: 1.6em !important;
-  padding-left: 0;
+  padding: 0;
+  text-align: left;
   color: #777;
   font-style: italic;
+}
+.redactor-editor blockquote:before,
+.redactor-editor blockquote:after {
+  content: '';
 }
 .redactor-editor ul,
 .redactor-editor ol {

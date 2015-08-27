@@ -652,3 +652,8 @@ div.image-popover .popover{
     max-width: 100%;
     width: auto;
 }
+
+div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:active{
+	background-color: #01bbd3;
+	color : white;
+}

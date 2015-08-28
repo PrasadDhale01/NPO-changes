@@ -405,6 +405,7 @@ class ProjectController {
 		render ""
 	}
 
+    @Secured(['IS_AUTHENTICATED_FULLY'])
 	def create() {
 		def categoryOptions = projectService.getCategoryList()
 		def country = projectService.getCountry()

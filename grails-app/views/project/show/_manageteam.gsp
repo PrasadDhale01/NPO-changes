@@ -26,7 +26,7 @@
 		        <div class="col-md-12 col-sm-12 col-xs-12 teammembers noOfteamsLabel disableteambutton text-center">${totalteams.size()}&nbsp;&nbsp;<g:if test="${totalteams.size() > 1}">Teams</g:if><g:else>Team</g:else></div>
 		    </g:else>
 		</li>
-		<g:if test="${!isTeamExist}">
+		<g:if test="${!isTeamExist && project.validated}">
 		    <g:if test="${!ended}">
 			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
 			        <g:form controller="project" action="addFundRaiser" id="${project.id}"  params="['fr':currentFundraiser.username]">
@@ -41,7 +41,7 @@
 		    </g:else>
 		</g:if>
 		<g:else>
-		    <g:if test="${currentFundraiser == currentUser || isCrUserCampBenOrAdmin}">
+		    <g:if test="${(currentFundraiser == currentUser || isCrUserCampBenOrAdmin) && project.validated}">
                 <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
                    <a class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team" data-toggle="dropdown" aria-expanded="false">
 			           Activity <span class="caret"></span>

@@ -557,20 +557,20 @@ $(function() {
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
            var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-           var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+//           var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
            var youtubematch = value.match(p);
-           var vimeomatch = value.match(vimeo);
+//           var vimeomatch = value.match(vimeo);
            var match
            if (youtubematch)
                match = youtubematch;
-           else if (vimeomatch && vimeomatch[2].length == 9)
-               match = vimeomatch;
+//           else if (vimeomatch && vimeomatch[2].length == 9)
+//               match = vimeomatch;
            else 
                match = null;
            return (match) ? true : false;
         }
         return true;
-     }, "Please upload a url of Youtube/Vimeo video");
+     }, "Please upload a url of Youtube video");
      
      $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
      	  
@@ -777,9 +777,10 @@ $(function() {
         if (match[2].length == 11){
         	var vurl=url.replace("watch?v=", "embed/");
             $('#ytVideo').html('<iframe class="youtubeVideoIframe" src="'+ vurl +'?wmode=transparent"></iframe>');
-        } else {
-        	$('#ytVideo').html('<iframe class="youtubeVideoIframe" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen src=https://player.vimeo.com/video/'+ match[2] +'></iframe>');
-        }
+        } 
+//        else {
+//        	$('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ url +'></iframe>');
+//        }
     }
 	$('#add').on('click',function(){
 		var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -795,14 +796,16 @@ $(function() {
             $('#addvideoUrl').val(url);
             var vurl=url.replace("watch?v=", "embed/");
             $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ vurl +'?wmode=transparent></iframe>');
-        } else if (match && match[2].length == 9){
-        	$('#ytVideo').show();
-            $('#media').hide();
-            $('#media-video').show();
-            autoSave('videoUrl', url);
-            $('#addvideoUrl').val(url);
-            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
-        } else if($(this)){
+        } 
+//        else if (match && match[2].length == 9){
+//        	$('#ytVideo').show();
+//            $('#media').hide();
+//            $('#media-video').show();
+//            autoSave('videoUrl', url);
+//            $('#addvideoUrl').val(url);
+//            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
+//        } 
+        else if($(this)){
         	if(!$('#addvideoUrl').val()) {
                 $('#ytVideo').hide();
                 $('#media').show();
@@ -1485,7 +1488,7 @@ $(function() {
                 $('#test').val('test');
             }
         }).error(function() {
-            alert('An error occured');
+            console.log('Error occured while autosaving field'+ variable + 'value :'+ varValue);
         });
      }
     

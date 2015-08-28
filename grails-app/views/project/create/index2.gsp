@@ -685,7 +685,7 @@
                         </div>
                     </g:else>
                     <div class="col-sm-12 cr-paddingspace termsOfUseCheckboxOnCreatePage" id="launch">
-                        <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-8">
+                        <div class="text-center TW-termsAndPolicy_cr">
                             <div class="form-group">
                                 <input type="checkbox" name="checkBox" id="agreetoTermsandUse">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
                             </div>

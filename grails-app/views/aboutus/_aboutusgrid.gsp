@@ -371,7 +371,7 @@
 	        
             <div class="col-xs-6 col-sm-3 position-top">
                 <div class="the-crews thumbnail crew-img-centering">
-                    <img src="//s3.amazonaws.com/crowdera/assets/billy.png" alt="Billy leung">
+                    <img src="//s3.amazonaws.com/crowdera/assets/billy-leung.jpg" alt="Billy leung">
                     <div class="crew-icons icons-manage">
                         <a href="https://twitter.com/billycleung" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
                         <a href="https://www.linkedin.com/in/billycleung" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>

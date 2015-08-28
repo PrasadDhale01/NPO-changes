@@ -853,7 +853,7 @@ $(function() {
                     var picFile = event.target;
                     $('#imgIcon').attr('src',picFile.result);
                     $('#delIcon').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
-                    
+                    $('#logoDelete').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
                     $('.createOrgIconDiv, .projectImageFilediv').find("span").remove();
                     $('.createOrgIconDiv, .projectImageFilediv').closest(".form-group").removeClass('has-error');
                });

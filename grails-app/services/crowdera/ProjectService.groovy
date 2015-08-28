@@ -1866,7 +1866,7 @@ class ProjectService {
                 message= "You have successfully joined the team."
             } else {
                 mandrillService.sendTeamInvitation(project, user)
-                message= "You're simply awesome! Now lets wait for the campaign owner to validate your teamrequest."
+                message= "You're simply awesome! Now lets wait for the Campaign Owner to validate your Team Request."
             }
         } else {
             def isValidatedTeamExist = userService.isValidatedTeamExist(project, user)

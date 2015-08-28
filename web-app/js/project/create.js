@@ -169,9 +169,6 @@ $(function() {
                 isequaltofirstadmin: true,
                 isequaltosecondadmin: true
             },
-            checkBox:{
-              required: true
-            },
             checkBox2:{
               required: true
             },
@@ -373,6 +370,10 @@ $(function() {
                 }
             });
     	}
+        
+        $( '[name="checkBox"]' ).rules( "add", {
+            required: true
+        });
 
         $( '[name="answer"]' ).rules( "add", {
             required: true
@@ -497,6 +498,8 @@ $(function() {
             });
         });
         
+        
+        
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
@@ -524,7 +527,11 @@ $(function() {
                 });
             });
         }
-        
+
+        $( '[name="checkBox"]' ).rules( "add", {
+            required: true
+        });
+
         $('.rewardDescription').each(function () {
             $(this).rules("add", {
                 required: true,
@@ -1680,13 +1687,13 @@ $(function() {
      
      $('#previewButton, #previewButtonXS').on('click', function(event){  // capture the click
       	event.preventDefault();
-       	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
+       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
              $(this).rules('remove');
          });
        	
        	$( "#projectImageFile" ).rules("remove");
  
-       	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
+       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
              $(this).closest('.form-group').removeClass('has-error');
          });
        	

@@ -126,18 +126,6 @@
 
             <div class="col-xs-6 col-sm-3 position-top">
                     <div class="the-crews thumbnail crew-img-centering">
-                        <img src="//s3.amazonaws.com/crowdera/assets/Mahant-Sir.jpg" alt="Roshan Mahant">
-			<div class="crew-icons icons-manage">
-	                    <a href="https://www.facebook.com/roshan.mahant.9?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/facebook-icon.png" alt="facebook"></a>
-		            <a href="https://www.linkedin.com/pub/roshan-mahant/aa/842/5b1" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
-			</div>
-                    </div>
-                    <div class="caption crew-name-centering">Roshan Mahant</div>
-                    <div class="clear"></div>
-            </div>
-
-            <div class="col-xs-6 col-sm-3 position-top">
-                    <div class="the-crews thumbnail crew-img-centering">
                         <img src="//s3.amazonaws.com/crowdera/assets/minal.jpg" alt="Minal Ganatra">
 			<div class="crew-icons">
 			    <a href="https://www.facebook.com/starlite.ganatra?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/facebook-icon.png" alt="facebook"></a>
@@ -380,6 +368,18 @@
 	                <div class="caption crew-name-centering">Abhijit Das</div>
 	                <div class="clear"></div>
 	        </div>
+	        
+            <div class="col-xs-6 col-sm-3 position-top">
+                <div class="the-crews thumbnail crew-img-centering">
+                    <img src="//s3.amazonaws.com/crowdera/assets/billy.png" alt="Billy leung">
+                    <div class="crew-icons icons-manage">
+                        <a href="https://twitter.com/billycleung" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
+                        <a href="https://www.linkedin.com/in/billycleung" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
+                    </div>
+                </div>
+                <div class="caption crew-name-centering">Billy Leung</div>
+                <div class="clear"></div>
+            </div>
 	    </div>
     </div>
     <hr>

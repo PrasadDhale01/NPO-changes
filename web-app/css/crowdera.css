@@ -694,11 +694,11 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	img.cr-payu-money {
+    img.cr-payu-money {
         padding-left: 16px;
         top: 0;
     }
-	img.cr-first-giving {
+    img.cr-first-giving {
         padding-left: 16px;
     }
     .nav.navbar-nav.navbar-right.navbar-right-logged-in {

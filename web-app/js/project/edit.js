@@ -160,7 +160,7 @@ $(function() {
     	}
     });
     
-    $('.updatesubmitbutton').click(function(event) {
+    $('.updatesubmitbutton, .updatesubmitbuttonXS').click(function(event) {
         needToConfirm = false;
     });
     

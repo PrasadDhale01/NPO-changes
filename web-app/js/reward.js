@@ -147,10 +147,10 @@ $(function() {
 
      /*******************************Description text length******************** */
     var counter = 1;
-    $('#descarea').on('keydown', function(event) {
+    $('#rewarddescarea').on('keydown', function(event) {
     
     event.altKey==true;
-    var currentString = $('#descarea').val().length;
+    var currentString = $('#rewarddescarea').val().length;
     if(currentString >= 4){
         $('.createDescDiv').find("span").remove();
         $('.createDescDiv').closest(".form-group").removeClass('has-error');
@@ -218,7 +218,7 @@ $(function() {
   
   function setDescriptionText(){
      
-    var currentString = $('#descarea').val().length;
+    var currentString = $('#rewarddescarea').val().length;
     if (currentString == 0) {
       $('#desclength').text("0/250");
     } 

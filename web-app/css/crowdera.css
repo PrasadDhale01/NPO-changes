@@ -1429,7 +1429,9 @@ a {
         width: 55px;      
     }
     li.learn{
-        width: 40px;  
+        width: 40px;
+        top: -0.1px !important;
+        left: 8px;  
     }
     div.cr-tablet-space{
         display: block;
@@ -6278,6 +6280,11 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    p.campaignStory.justify > iframe {
+        height: 230px !important;
+        margin-left: 0;
+        width: 100% !important;
+    }
     .nav.navbar-nav.navbar-right.navbar-right-logged-in {
         margin-left: -21px !important;
     }

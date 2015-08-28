@@ -1430,8 +1430,8 @@ a {
     }
     li.learn{
         width: 40px;
-        top: -0.1px !important;
-        left: 8px;  
+        left: 17px;
+        top: -1.1px !important; 
     }
     div.cr-tablet-space{
         display: block;
@@ -2115,6 +2115,9 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	li.learn {
+        top: -1.1px;
+    }
     input#hiddencharId {
         width: 150%;
     }

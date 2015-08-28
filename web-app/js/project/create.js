@@ -310,7 +310,7 @@ $(function() {
                     	var campaignAmount = $('#projectamount').val();
                         return Number(campaignAmount);
                     },
-                    min: 250
+                    min: 100
                 });
             });
             
@@ -419,7 +419,7 @@ $(function() {
                     	var campaignAmount = $('#projectamount').val();
                         return Number(campaignAmount);
                     },
-                    min: 250
+                    min: 100
                 });
             });
             
@@ -510,7 +510,7 @@ $(function() {
                     	var campaignAmount = $('#projectamount').val();
                         return Number(campaignAmount);
                     },
-                    min: 250
+                    min: 100
                 });
             });
         } else {
@@ -1216,12 +1216,12 @@ $(function() {
                $(this).rules("add", {
                    required: true,
                    number: true,
-                   maxlength: 6,
+                   maxlength: 8,
                    max: function() {
                    	   var campaignAmount = $('#projectamount').val();
                        return Number(campaignAmount);
                    },
-                   min: 250
+                   min: 100
                });
            });
        } else {

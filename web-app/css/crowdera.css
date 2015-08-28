@@ -694,6 +694,13 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	img.cr-payu-money {
+        padding-left: 16px;
+        top: 0;
+    }
+	img.cr-first-giving {
+        padding-left: 16px;
+    }
     .nav.navbar-nav.navbar-right.navbar-right-logged-in {
         margin-left: -21px !important;
     }
@@ -1425,6 +1432,13 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    img.cr-payu-money {
+        padding-left: 85px;
+        top: 6px;
+    }
+    img.cr-first-giving {
+        padding-left: 88px;
+    }
     li.discover{
         width: 55px;      
     }
@@ -1435,7 +1449,7 @@ a {
     }
     div.cr-tablet-space{
         display: block;
-        left: -106px;	   
+        left: -54px;	   
     }
     a.cr-tablet-orgcharity{
         width: 160px;
@@ -2442,11 +2456,13 @@ a {
     }
 
     .nav-item-2{
-        margin-left: 38px;
+        font-size: 13px;
+        margin-left: 15px;
     }
 
     .nav-item-3{
-        margin-left: 38px;
+        font-size: 13px;
+        margin-left: 15px;
     }
     
     .navbar {
@@ -6283,6 +6299,13 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    img.cr-payu-money {
+        padding-left: 16px;
+        top: 0;
+    }
+    img.cr-first-giving {
+        padding-left: 16px;
+    }
     p.campaignStory.justify > iframe {
         height: 230px !important;
         margin-left: 0;
@@ -9716,4 +9739,11 @@ li.learn {
     text-align: center;
     width: 100%;
     margin-top: -41px;
+}
+.cr-first-giving{
+    padding-left: 190px;	
+}
+.cr-payu-money{
+    padding-left: 175px;
+    top: 6px;
 }

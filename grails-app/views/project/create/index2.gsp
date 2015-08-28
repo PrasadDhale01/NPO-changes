@@ -612,7 +612,8 @@
                     <g:if test ="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                         <div id="PayUMoney">
                               <div class="form-group">
-                                  <label class="col-sm-4 control-label">Email</label>
+<%--                                  <label class="col-sm-4 control-label">Email</label>--%>
+                                  <img class="col-sm-4 cr-payu-money" src="//s3.amazonaws.com/crowdera/assets/pay-u-money.png" alt="payu">
                                   <div class="col-sm-6 col-xs-10">
                                       <g:if test="${project.payuEmail}">
                                           <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
@@ -641,7 +642,8 @@
                         </div>
                         <div class="col-sm-12 cr-tablet-space" id="charitableId">
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">FirstGiving</label>
+<%--                                <label class="col-sm-4 control-label">FirstGiving</label>--%>
+                                <img class="col-sm-4 cr-first-giving" src="//s3.amazonaws.com/crowdera/assets/first-giving.png">
                                 <div class="col-sm-3">
                                     <a data-toggle="modal" href="#myModal" class="charitableLink cr-tablet-orgcharity">Find your organization</a>
                                 </div>

@@ -27,7 +27,7 @@ $(function() {
                     if (isINR == undefined) {
                         return 0;
                     } else {
-                        return 250;
+                        return 100;
                     }
                 }
             }
@@ -61,7 +61,7 @@ $(function() {
                         if (isINR == undefined) {
                             return 0;
                         } else {
-                            return 250;
+                            return 100;
                         }
                     }
                 }
@@ -155,22 +155,26 @@ $(function() {
         $('.createDescDiv').find("span").remove();
         $('.createDescDiv').closest(".form-group").removeClass('has-error');
     }
-    if(currentString <=249) {
-        var text = currentString + 1;
+    if(currentString <= 250) {
+        if (currentString == 250) {
+    		var text = currentString;
+    	} else {
+    		var text = currentString + 1;
+    	}
     }
     if (event.keyCode > 31) {
       if(event.altKey==true){
         setDescriptionText();
       }
       else{
-          if(currentString <249)
+          if(currentString < 249)
           currentString++;
-          $('#desclength').text(text);
+          $('#desclength').text(text+'/250');
       }
 
     } else {
           currentString--;
-          $('#desclength').text(text);
+          $('#desclength').text(text+'/250');
       }
   }).keyup(function(e) {
       
@@ -216,11 +220,11 @@ $(function() {
      
     var currentString = $('#descarea').val().length;
     if (currentString == 0) {
-      $('#desclength').text("0");
+      $('#desclength').text("0/250");
     } 
     else {
       currentString = currentString;
-      $('#desclength').text(currentString);
+      $('#desclength').text(currentString+'/250');
     }
   }
   

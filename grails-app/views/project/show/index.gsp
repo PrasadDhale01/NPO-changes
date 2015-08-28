@@ -60,6 +60,18 @@
 </head>
 <body>
 <div class="feducontent">
+   <g:if test="${isPreview}">
+       <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+           <div class="preview-banner-margin" id="preview-banner">
+               You are in preview mode. This is how your campaign will look like once it is live. Please note some links might not work in preview mode. If you like how your campaign has shaped up, Submit it for approval! 
+           </div><br>
+       </g:if>
+       <g:else>
+           <div class="preview-banner" id="preview-banner">
+               You are in preview mode. This is how your campaign will look like once it is live. Please note some links might not work in preview mode. If you like how your campaign has shaped up, Submit it for approval! 
+           </div><br>
+       </g:else>
+    </g:if>
 	<div class="container">
 		<g:if test="${project}">
 		    <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
@@ -82,11 +94,23 @@
                         ${flash.add_campaign_supporter}
                     </div>
                 </g:if>
+                <g:if test="${isPreview}">
+                    <g:if test="${tile == 'false'}">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 backToCreatePage">
+                            <a href="/campaign/start/${vanityTitle}"><< Back to Create Page</a>
+                        </div>
+                    </g:if>
+                    <div class="<g:if test="${tile == 'false'}">col-lg-8 col-md-8 col-sm-8 col-xs-12 </g:if>green-heading text-center campaignTitle">
+                        <h1>${projectTitle}</h1>
+                    </div>
+                </g:if>
+                <g:else>
                 <div class="col-md-12 green-heading campaignTitle text-center">
 	                <h1><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
 		            	 ${projectTitle} 
 	                </g:link></h1>
 	            </div>
+	            </g:else>
                 <g:if test="${user || beneficiary}">
 	                <div class="col-md-12 col-sm-12 col-xs-12 text-center campaignFundRaiser">
 	                	<h4 class="green-heading"> by ${fundRaiserName}</h4>
@@ -194,9 +218,27 @@
                 </div>
                 <div class="col-xs-12 col-md-4 mobileview-bottom">
                     <g:render template="/layouts/organizationdetails"/>
-                    <g:if test="${percentage == 999}">
-                        <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
+                    <g:if test="${isPreview && !project.validated}">
+                        <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                            <g:form controller="project" action="saveasdraft" id="${project.id}">
+                                <button class="btn btn-block btn-lg btn-primary">
+                                    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                </button>
+                            </g:form>
+                        </g:if>
+                        <g:else>
+                            <button class="btn btn-block btn-lg btn-primary" id="submitForApprovalBtn">
+                                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                            </button>
+                        </g:else>
+                        <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                        <g:if test="${project.rewards.size()>1}">
+                            <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
+                        </g:if>
                     </g:if>
+                    <g:elseif test="${percentage == 999}">
+                        <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
+                    </g:elseif>
                     <g:elseif test="${ended}">
                         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>CAMPAIGN ENDED!</button>
                     </g:elseif>
@@ -217,10 +259,12 @@
                             <button name="contributeButton" class="btn btn-success btn-lg btn-block">Fund this Campaign</button>
                         </g:else>
                     </g:else>
+                    <g:if test="${!isPreview || project.validated}">
                     <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
-                    <g:if test="${project.rewards.size()>1}">
+                    </g:if>
+                    <g:if test="${(project.rewards.size()>1 && !isPreview) || (project.rewards.size()>1 && project.validated) }">
                         <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
-                    	    <g:render template="show/rewards" model="['username':username]"/>
+                    	    <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
                     	</g:if>
                     </g:if>
                 </div>

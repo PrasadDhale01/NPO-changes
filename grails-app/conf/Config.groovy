@@ -501,9 +501,9 @@ environments {
 
 		/*PayUMoney details*/
 		crowdera.PAYU.BASE_URL = 'http://staging.crowdera.in'
-		crowdera.PAYU.TEST_URL='https://payu.in/_payment.php'
-		crowdera.PAYU.KEY='czBDue'
-		crowdera.PAYU.SALT='g57jz4Cw'
+		crowdera.PAYU.TEST_URL='https://secure.payu.in/_payment.php'
+		crowdera.PAYU.KEY='5geKCB'
+		crowdera.PAYU.SALT='Gtr6fF9A'
 
 		mandrill {
 			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
@@ -574,10 +574,10 @@ environments {
 
 		/*PayUMoney details*/
 		crowdera.PAYU.BASE_URL = 'http://crowdera.in'
-		crowdera.PAYU.TEST_URL='https://payu.in/_payment.php'
-		crowdera.PAYU.KEY='czBDue'
-		crowdera.PAYU.SALT='g57jz4Cw'
-
+		crowdera.PAYU.TEST_URL='https://secure.payu.in/_payment.php'
+		crowdera.PAYU.KEY='5geKCB'
+		crowdera.PAYU.SALT='Gtr6fF9A'
+		
 		mandrill {
 			apiKey = "R28ZHu6_5IkJWLFunpsJbw"
 		}

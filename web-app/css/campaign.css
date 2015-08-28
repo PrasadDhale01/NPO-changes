@@ -628,6 +628,10 @@ div.image-popover .popover{
     padding-bottom: 14px;
 }
 
+.perk-padding{
+	padding-top: 2%;
+}
+
 .campaignUpdateContainer {
     width: 1000px;
     margin: 0 auto;
@@ -636,15 +640,28 @@ div.image-popover .popover{
     background-color: #5bc0de !important;
     border-color: #46b8da !important;
 }
-.updatesubmitbtn .btn {
-	padding: 14px 28px;
-    font-size: 22px;
-    font-weight: 700;
-}
+
 .campaignUpdateContainer h3 {
     font-size: 20px !important;
 }
 .campaignUpdateStory img {
     max-width: 100%;
     width: auto;
+}
+.updatesubmitbutton{
+    background: url(https://s3.amazonaws.com/crowdera/assets/submit-update-desktop-new.jpg) no-repeat !important;
+    height: 65px;
+    width: 320px;
+}
+.updatesubmitbuttonXS{
+    background: url(https://s3.amazonaws.com/crowdera/assets/submit-update-mobile.jpg) no-repeat !important;
+    height: 54px;
+    width: 225px;
+}
+.termsOfUseCheckboxOnCreatePage .col-md-8, .termsOfUseCheckboxOnCreatePage .col-sm-8 {
+    padding-left: 35px;
+}
+div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:active {
+	background-color: #01bbd3;
+	color : white;
 }

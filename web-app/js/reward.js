@@ -14,7 +14,7 @@ $(function() {
             },
             description: {
                 required: true,
-                minlength: 2,
+                minlength: 5,
                 maxlength: 250
             },
             price: {
@@ -43,7 +43,7 @@ $(function() {
                 },
                 description: {
                     required: true,
-                    minlength: 2,
+                    minlength: 5,
                     maxlength: 250
                 },
                 numberAvailable: {
@@ -151,6 +151,10 @@ $(function() {
     
     event.altKey==true;
     var currentString = $('#descarea').val().length;
+    if(currentString >= 4){
+        $('.createDescDiv').find("span").remove();
+        $('.createDescDiv').closest(".form-group").removeClass('has-error');
+    }
     if(currentString <=249) {
         var text = currentString + 1;
     }

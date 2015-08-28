@@ -5,11 +5,11 @@ $(function() {
     
     var rewardIteratorCount = $('#rewardCount').val();
     if (rewardIteratorCount > 0){
-    	$('#rewardTemplate').show();
+    	$('#rewardTemplate1').show();
     	$('#yesradio').prop('checked', true);
 	    $("#updatereward").show();
     } else {
-    	$('#rewardTemplate').hide();
+    	$('#rewardTemplate1').hide();
     }
 
     var count = $('#rewardCount').val();
@@ -169,11 +169,27 @@ $(function() {
                 isequaltofirstadmin: true,
                 isequaltosecondadmin: true
             },
-            checkBox:{
-              required: true
-            },
             checkBox2:{
               required: true
+            },
+            amount: {
+                required: true,
+                number: true,
+                min: 500,
+                maxlength: function() {
+                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                        return 8;
+                    } else {
+                        return 6;
+                    }
+                },
+                max: function() {
+                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                        return 99999999;
+                    } else {
+                        return 100000;
+                    }
+                }
             }
         },
         messages:{
@@ -221,23 +237,6 @@ $(function() {
     
     $('#campaigncreatebtn, #campaigncreatebtnXS').on('click', function(event) {
     	event.preventDefault();
-    	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
-        	$("[name='amount']").rules("add", {
-                required: true,
-                number: true,
-                min: 500,
-                maxlength: 8,
-                max: 99999999
-            });
-        } else {
-        	$("[name='amount']").rules("add", {
-                required: true,
-                number: true,
-                min: 500,
-                maxlength: 6,
-                max: 999999
-            });
-        }
    	
         if (validator.form()) {
             $('#campaigncreatebtn').attr('disabled','disabled');
@@ -257,23 +256,6 @@ $(function() {
             storyEmpty = false;
         }
 
-    	if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
-        	$("[name='amount']").rules("add", {
-                required: true,
-                number: true,
-                min: 500,
-                maxlength: 8,
-                max: 99999999
-            });
-        } else {
-        	$("[name='amount']").rules("add", {
-                required: true,
-                number: true,
-                min: 500,
-                maxlength: 6,
-                max: 999999
-            });
-        }
     	$('.rewardNumberAvailable').each(function () {
             $(this).rules("add", {
                 required: true,
@@ -388,6 +370,10 @@ $(function() {
                 }
             });
     	}
+        
+        $( '[name="checkBox"]' ).rules( "add", {
+            required: true
+        });
 
         $( '[name="answer"]' ).rules( "add", {
             required: true
@@ -512,6 +498,8 @@ $(function() {
             });
         });
         
+        
+        
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
             $('.rewardPrice').each(function () {
                 $(this).rules("add", {
@@ -539,7 +527,11 @@ $(function() {
                 });
             });
         }
-        
+
+        $( '[name="checkBox"]' ).rules( "add", {
+            required: true
+        });
+
         $('.rewardDescription').each(function () {
             $(this).rules("add", {
                 required: true,
@@ -564,7 +556,7 @@ $(function() {
     
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
-           var p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+           var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
            var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
            var youtubematch = value.match(p);
            var vimeomatch = value.match(vimeo);
@@ -605,26 +597,20 @@ $(function() {
      			count = 1;
      		}
      		$('#rewardCount').attr('value',count);
-     		$("#rewardTemplate").show();
+     		$("#rewardTemplate1").show();
      	    $("#updatereward").show();
      	} else {
             if (count > 0){
                 if (confirm('Are you sure you want to discard all the perks for this campaign?')){
-                    removeAllPerks();
-                    for (var i=count; i > 1; i--) {
+                    removeAllPerks(); 
+                    var rewardslength = $('#addNewRewards').find('.rewardsTemplate').length;
+                    for (var i=rewardslength; i > 1; i--) {
                     	$('#addNewRewards').find('.rewardsTemplate').last().remove();
                     }
-                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice1').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle1').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable1').val('');
-                    $('#addNewRewards').find('.rewardsTemplate').find(".lblmail1").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblmail1');
-                    $('#addNewRewards').find('.rewardsTemplate').find(".lblemail1").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lblemail1');
-                    $('#addNewRewards').find('.rewardsTemplate').find(".lbltwitter1").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks lbltwitter1');
-                    $('#addNewRewards').find('.rewardsTemplate').find("#mailaddcheckbox1").prop('checked', false);
-                    $('#addNewRewards').find('.rewardsTemplate').find("#emailcheckbox1").prop('checked', false);
-                    $('#addNewRewards').find('.rewardsTemplate').find("#twittercheckbox1").prop('checked', false);
-                    $('#addNewRewards').find('.rewardsTemplate').find('#customcheckbox1').val('');
+                    for (var i=rewardslength; i > 0; i--){
+                    	$('#addNewRewards').find('.editDeleteReward').remove();
+                    }
+                    renameAndemptyRewardFields();
                     $("#updatereward").hide();
                     $('#addNewRewards').find('.rewardsTemplate').hide();
                     count = 0;
@@ -636,6 +622,40 @@ $(function() {
             }
         }
     });
+     
+    function renameAndemptyRewardFields(){
+    	$('#addNewRewards').find('.rewardsTemplate').attr('id', 'rewardTemplate1');
+    	$('#addNewRewards').find('.rewardsTemplate').attr('value', '1');
+    	$('#addNewRewards').find('.rewardsTemplate').find('.rewardPrice').attr('id', 'rewardPrice1');
+    	$('#addNewRewards').find('.rewardsTemplate').find('.rewardPrice').attr('name', 'rewardPrice1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.rewardTitle').attr('id', 'rewardTitle1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.rewardTitle').attr('name', 'rewardTitle1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.rewardNumberAvailable').attr('id', 'rewardNumberAvailable1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.rewardNumberAvailable').attr('name', 'rewardNumberAvailable1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.rewardDescription').attr('name', 'rewardDescription1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.rewardDescription').attr('id', 'rewardDesc1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('id', 'mailaddcheckbox1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('name', 'mailingAddress1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('id', 'emailcheckbox1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('name', 'emailAddress1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingTwitter").attr('id', 'twittercheckbox1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingTwitter").attr('name', 'twitter1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.customText').attr('id', 'customcheckbox1');
+        $('#addNewRewards').find('.rewardsTemplate').find('.customText').attr('name', 'custom1');
+        $('#addNewRewards').find('.rewardNum').attr('value', '1');
+    	
+    	$('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice1').val('');
+        $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').val('');
+        $('#addNewRewards').find('.rewardsTemplate').find('#rewardTitle1').val('');
+        $('#addNewRewards').find('.rewardsTemplate').find('#rewardNumberAvailable1').val('');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingAddress").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color lblmail1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingEmail").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color lblemail1');
+        $('#addNewRewards').find('.rewardsTemplate').find(".shippingTwitter").attr('class', 'btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color lbltwitter1');
+        $('#addNewRewards').find('.rewardsTemplate').find("#mailaddcheckbox1").prop('checked', false);
+        $('#addNewRewards').find('.rewardsTemplate').find("#emailcheckbox1").prop('checked', false);
+        $('#addNewRewards').find('.rewardsTemplate').find("#twittercheckbox1").prop('checked', false);
+        $('#addNewRewards').find('.rewardsTemplate').find('#customcheckbox1').val('');
+    }
 
      $("input[name='pay']").change(function(){
   	    if($(this).val()=="paypal") {
@@ -756,13 +776,13 @@ $(function() {
         $('#media-video').show();
         if (match[2].length == 11){
         	var vurl=url.replace("watch?v=", "embed/");
-            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
+            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src="'+ vurl +'?wmode=transparent"></iframe>');
         } else {
         	$('#ytVideo').html('<iframe class="youtubeVideoIframe" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen src=https://player.vimeo.com/video/'+ match[2] +'></iframe>');
         }
     }
 	$('#add').on('click',function(){
-        var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+		var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
         var url= $('#videoUrl').val().trim();
         var match = (url.match(youtube) || url.match(vimeo));
@@ -1079,17 +1099,20 @@ $(function() {
     $('#createreward').click(function(){
         var rewardSaved = rewardValidationAndSaving(count);
         if (rewardSaved){
-        var updateCount = count;
+        var updateCount = $('#addNewRewards').find(".rewardsTemplate:last").attr('value');
         count++;
         $('#savereward').attr('value',count);
-        var str ='<div class="rewardsTemplate cr-perks-spec" id="rewardTemplate" value="'+count+'">'+
-   '<div class="col-sm-12 perk-css">'+
-       '<div class="col-sm-12 perk-create-styls perk-top" align="right">'+
-            '<button class="btn btn-primary btn-circle perks-created-remove editreward" id="'+updateCount+'" value="'+updateCount+'">'+
-                '<i class="glyphicon glyphicon-floppy-save"></i>'+
-            '</button>'+
-        '</div>'+
-    '</div>'+
+        var str ='<div class="col-sm-12 perk-css perk-padding editDeleteReward" id="editDeleteReward'+updateCount+'">'+
+            '<div class="col-sm-12 perk-create-styls perk-top" align="right">'+
+                 '<div class="btn btn-circle perks-created-remove intutive-glyphicon editreward" id="editreward'+updateCount+'" value="'+updateCount+'">'+
+                     '<i class="glyphicon glyphicon-floppy-save"></i>'+
+                 '</div>&nbsp;'+
+                 '<div class="btn btn-circle perks-created-remove intutive-glyphicon deletereward" id="deletereward'+updateCount+'" value="'+updateCount+'">'+
+                     '<i class="glyphicon glyphicon-trash"></i>'+
+                 '</div>'+
+             '</div>'+
+         '</div>'+
+    '<div class="rewardsTemplate" id="rewardTemplate'+count+'" value="'+count+'">'+
     '<div class="col-sm-2">'+
         '<div class="form-group">'+
             '<div class="col-sm-12">';
@@ -1136,14 +1159,14 @@ $(function() {
        '<div class="form-group">'+
            '<div class="btn-group col-sm-12" data-toggle="buttons">'+
                '<label class="panel-body col-sm-2 col-xs-12 cr-check-btn-perks text-center">Mode of <br> Delivery</label>'+
-               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing <br> address</label>'+
-               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email <br> address</label>'+
-               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter <br> handle</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingAddress"><input type="checkbox" name="mailingAddress'+count+'" value="true" id="mailaddcheckbox'+count+'">Mailing <br> address</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingEmail"><input type="checkbox" name="emailAddress'+count+'" value="true" id="emailcheckbox'+count+'">Email <br> address</label>'+
+               '<label class="btn btn-default col-sm-2 col-xs-12 cr-hovers cr-font-perks cr-perks-back-color shippingTwitter"><input type="checkbox" name="twitter'+count+'" value="true" id="twittercheckbox'+count+'">Twitter <br> handle</label>'+
                '<input type="text" name="custom'+count+'" id="customcheckbox'+count+'" class="customText form-control-no-border cr-custom-place cr-customchrome-place text-color cr-perks-back-color col-sm-4 col-xs-12" placeholder="Custom">'+
            '</div>'+
        '</div>'+
    '</div>'+
-   '<g:hiddenField name="rewardNum" value="'+count+'" class="rewardNum"/>'+
+   '<g:hiddenField name="rewardNum" value="'+count+'" id="rewardNum'+count+'" class="rewardNum"/>'+
  '</div>';
         $('#addNewRewards').append(str);
         $('#rewardCount').attr('value',count);
@@ -1153,15 +1176,9 @@ $(function() {
     $('#removereward').click(function(){
         if($('#addNewRewards').find('.rewardsTemplate').length > 1) {
             if (confirm('Are you sure you want to discard this perk?')){
-                removeRewards();
-                count--;
-                $('#rewardCount').attr('value',count);
+                removeRewards(count);
                 $('#addNewRewards').find('.rewardsTemplate').last().remove();
-                var editRewardId = $('#addNewRewards').find(".editreward:last").attr('id');
-             	var lastRewardCount = $('#addNewRewards').find(".rewardNum:last").val();
-            	if(editRewardId == lastRewardCount){
-            		$('.editreward:last').remove();
-            	}
+                $('#addNewRewards').find('.editDeleteReward:last').remove();
             }
         }
     });
@@ -1170,7 +1187,7 @@ $(function() {
     	var lastrewardcount = $(this).attr("value");
         rewardValidationAndSaving(lastrewardcount);
     });
-  
+    
     function rewardValidationAndSaving(rewardCount){
     	$('.rewardDescription').each(function () {
             $(this).rules("add", {
@@ -1218,8 +1235,10 @@ $(function() {
                });
            });
         }
-        if((validator.element( "#rewardPrice"+rewardCount)) && (validator.element( "#rewardTitle"+rewardCount)) && (validator.element( "#rewardNumberAvailable"+rewardCount)) && (validator.element( "#rewardDesc"+rewardCount))){
-            var rewardPrice = $('#rewardPrice'+rewardCount).val();
+        if($('#rewardPrice'+rewardCount).length == 0){
+            return true;
+        } else if((validator.element( "#rewardPrice"+rewardCount)) && (validator.element( "#rewardTitle"+rewardCount)) && (validator.element( "#rewardNumberAvailable"+rewardCount)) && (validator.element( "#rewardDesc"+rewardCount))) {
+        	var rewardPrice = $('#rewardPrice'+rewardCount).val();
             var rewardTitle = $('#rewardTitle'+rewardCount).val();
             var rewardNumberAvailable = $('#rewardNumberAvailable'+rewardCount).val();
             var rewardDesc = $('#rewardDesc'+rewardCount).val();
@@ -1228,13 +1247,13 @@ $(function() {
             var twitter = $('#twittercheckbox'+rewardCount).prop("checked");
             var custom = $('#customcheckbox'+rewardCount).val();
             saveRewards(rewardCount,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom);
-            return true
+            return true;
         } else {
             validator.element( "#rewardPrice"+count);
             validator.element( "#rewardTitle"+count);
             validator.element( "#rewardNumberAvailable"+count);
             validator.element( "#rewardDesc"+count);
-            return false
+            return false;
         }
     }
 
@@ -1314,6 +1333,16 @@ $(function() {
         	rewardValidationAndSaving(editCount);
         });
         
+        $("form").on("click", ".deletereward", function () {
+        	var deleteCount = $(this).attr('value');
+        	if (confirm('Are you sure you want to discard this perk?')){
+        		var deleteRewardCount = $(this).attr('value');
+                removeRewards(deleteCount);
+                $('#rewardTemplate'+deleteCount).remove();
+    		    $("#editDeleteReward"+deleteRewardCount).remove();
+            }
+        });
+
         $("form").on("click", ".rewardPrice", function () {
             $('.rewardPrice').each(function () {
                 $(this).keypress(function (e) {
@@ -1630,16 +1659,16 @@ $(function() {
         });
      }
 
-     function removeRewards(){
+     function removeRewards(deleteCount){
          $.ajax({
              type:'post',
              url:$("#b_url").val()+'/project/deleteReward',
-             data:'projectId='+projectId+'&rewardCount='+count,
+             data:'projectId='+projectId+'&rewardCount='+deleteCount,
              success: function(data) {
                  $('#test').val('test');
              }
          }).error(function() {
-             console.log('error occured deleting'+count+'no. reward');
+             console.log('error occured deleting'+deleteCount+'no. reward');
          });
      }
 
@@ -1658,13 +1687,13 @@ $(function() {
      
      $('#previewButton, #previewButtonXS').on('click', function(event){  // capture the click
       	event.preventDefault();
-       	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
+       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
              $(this).rules('remove');
          });
        	
        	$( "#projectImageFile" ).rules("remove");
  
-       	$('[name="pay"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
+       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
              $(this).closest('.form-group').removeClass('has-error');
          });
        	
@@ -1723,7 +1752,7 @@ $(function() {
         .hover(showPopover, hidePopover);
         
         $('.amountInfo-img').popover({
-            content: 'Maximum $50,000, If you want to raise more contact our Crowdfunding Expert.',
+            content: 'Maximum $100,000, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
             placement: 'bottom'
         })
@@ -1732,7 +1761,7 @@ $(function() {
         .hover(showPopover, hidePopover);
         
         $('.amountInfoInd-img').popover({
-            content: 'Maximum Rs.9,99,99,999, If you want to raise more contact our Crowdfunding Expert.',
+            content: 'Maximum Rs.99,999,999, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
             placement: 'bottom'
         })

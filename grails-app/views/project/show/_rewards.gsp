@@ -6,7 +6,7 @@
 
 <div class="tile-footer perks-supporters">
 	<div class="modal-footer tile-footer perks-style perk-title">
-		<g:if test="${isFundingOpen}">
+		<g:if test="${isFundingOpen || isPreview}">
 			<h2 class="rewardsectionheading">Perks</h2>
 		</g:if>
 		<g:else>
@@ -20,7 +20,7 @@
         		def price = reward.price.round();
 				def rewardId = reward.id
             %>
-            <g:if test="${isFundingOpen}">
+            <g:if test="${(isFundingOpen && !isPreview) || (isFundingOpen && project.validated)}">
                 <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
                     <div class="redirectCampaignOnPerk">
                         <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'rewardId': rewardId, 'projectTitle': vanityTitle]">
@@ -73,7 +73,7 @@
                 </g:else>
             </g:if>
             <g:else>
-                <div class="rewarddiv">
+                <div class="rewardsection-row">
                     <div class="rewardBottomBorder">
                         <g:if test="${reward.id==1 }">
                             <div class="rewardtitlespan">I just want to help.</div>

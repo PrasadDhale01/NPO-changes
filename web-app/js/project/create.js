@@ -1359,25 +1359,119 @@ $(function() {
             
           });
         
-        var $win = $(window);
-        $win.scroll(function () {
-            if ($win.scrollTop() == 0){
-                $('#start').css('padding-top','25px');
-            	$('#story').css('padding-top','0px');
-            	$('#admins').css('padding-top','0px');
-            	$('#perk').css('padding-top','0px');
-            	$('#payment').css('padding-top','0px');
-            	$('#launch').css('padding-top','0px');
-            }else if ($win.height() + $win.scrollTop()== $(document).height()) {
-                $('#start').css('padding-top','0px');
-            	$('#story').css('padding-top','0px');
-            	$('#admins').css('padding-top','0px');
-            	$('#perk').css('padding-top','0px');
-            	$('#payment').css('padding-top','0px');
-            	$('#launch').css('padding-top','30px');
-            	$('#save').css('padding-top','25px');
-            }
-        });
+//        var $win = $(window);
+//        $win.scroll(function () {
+//            if ($win.scrollTop() == 0){
+//                $('#start').css('padding-top','25px');
+//            	$('#story').css('padding-top','0px');
+//            	$('#admins').css('padding-top','0px');
+//            	$('#perk').css('padding-top','0px');
+//            	$('#payment').css('padding-top','0px');
+//            	$('#launch').css('padding-top','0px');
+//            }else if ($win.height() + $win.scrollTop()== $(document).height()) {
+//                $('#start').css('padding-top','0px');
+//            	$('#story').css('padding-top','0px');
+//            	$('#admins').css('padding-top','0px');
+//            	$('#perk').css('padding-top','0px');
+//            	$('#payment').css('padding-top','0px');
+//            	$('#launch').css('padding-top','30px');
+//            	$('#save').css('padding-top','25px');
+//            }
+//        });
+        
+        $('.cr-img-start-icon').click(function(){
+        	
+        	var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-160
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-story-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-170
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-admin-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-180
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-perk-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-170
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-payment-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-150
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-launch-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-180
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-save-icon').click(function(){
+    		var target = this.hash,
+            $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-180
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+        
    });
     
    $('#paypalEmailId').change(function(){
@@ -1591,62 +1685,6 @@ $(function() {
     	}
     });
     
-	$('.cr-img-start-icon').click(function(){
-		$('#start').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#perk').css('padding-top','0px');
-		$('#payment').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-story-icon').click(function(){
-		$('#story').css('padding-top','125px');
-		$('#start').css('padding-top','25px');
-		$('#admins').css('padding-top','0px');
-		$('#perk').css('padding-top','0px');
-		$('#payment').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-admin-icon').click(function(){
-		$('#admins').css('padding-top','140px');
-		$('#story').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#perk').css('padding-top','0px');
-		$('#payment').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-perk-icon').click(function(){
-		$('#perk').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#payment').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-payment-icon').click(function(){
-		$('#payment').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#perk').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-launch-icon').click(function(){
-		$('#launch').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#payment').css('padding-top','0px');
-		$('#perk').css('padding-top','0px');
-	});
-	$('.cr-img-save-icon').click(function(){
-		$('#save').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#payment').css('padding-top','0px');
-		$('#perk').css('padding-top','0px');
-	});
 
     function saveRewards(rewardNum,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom){
         $.ajax({

@@ -14,7 +14,6 @@
 <head>
     <meta name="layout" content="main" />
     <r:require modules="projectcreatejs" />
-    <link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
     <link rel="stylesheet" href="/css/datepicker.css">
 </head>
 <body>
@@ -41,6 +40,7 @@
         <div class="container footer-container" id="campaigncreate">
             <g:uploadForm class="form-horizontal"  controller="project" action="update" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
                 <g:hiddenField name="projectId" value="${project.id}"/>
+                <div class="startsection"></div>
                 <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari" id="start">
                     <label class="panel body cr-start-size cr-safari">START </label>
                     <div class="form-group col-sm-10 cr-start-space campaignEndDateError">

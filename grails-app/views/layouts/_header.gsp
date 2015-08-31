@@ -149,9 +149,3 @@
         </div>
     </div>
 </div>
-<script src="/js/main.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="/js/autohideheader/jquery.bootstrap-autohidingnavbar.min.js"></script>
-<script>
-	$(".navbar-fixed-top").autoHidingNavbar();
-</script> 

@@ -258,12 +258,12 @@ class ProjectService {
              getMultipleImageUrlsForTeam(imageFiles, team)
          }
 
-        def video
-        if (params.videoUrl) {
-			def youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-			def vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
-			def match = params.videoUrl.matches(youtube);
-			def vimeomatch = params.videoUrl.matches(vimeo)
+         def video
+         if (params.videoUrl) {
+            def youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+            def vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+            def match = params.videoUrl.matches(youtube);
+            def vimeomatch = params.videoUrl.matches(vimeo);
             if (match && !params.videoUrl.contains('embed')) {
                 String videoUrl = params.videoUrl.replace("watch?v=","embed/")
                 videoUrl = videoUrl + "?rel=0"
@@ -1510,13 +1510,13 @@ class ProjectService {
 	
 	def getTeamImageLinks(Team team, Project project) {
 		def imageUrls = []
-		if(team.videoUrl){
-  			def regex =/^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
-  			def teamVideoUrl=team.getVideoUrl()
-  			def match = teamVideoUrl.matches(regex);
+        if(team.videoUrl){
+            def regex =/^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+            def teamVideoUrl=team.getVideoUrl()
+            def match = teamVideoUrl.matches(regex);
             def vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
             def vimeomatch = teamVideoUrl.matches(vimeo);
-			def vurl
+            def vurl
             if(match){
                vurl=teamVideoUrl.replace("watch?v=", "embed/");
                imageUrls.add(vurl)     
@@ -2450,10 +2450,10 @@ class ProjectService {
     }
 	
     def getYoutubeUrlChanged(String video, Project project){
-		def youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-		def vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
-		def match = video.matches(youtube);
-		def vimeomatch = video.matches(vimeo)
+       def youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+       def vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+       def match = video.matches(youtube);
+       def vimeomatch = video.matches(vimeo)
         if (match && !video.contains('embed')) {
             String videoUrl = video.replace("watch?v=","embed/")
             videoUrl = videoUrl + "?rel=0"

@@ -1479,7 +1479,9 @@ a {
         width: 55px;      
     }
     li.learn{
-        width: 40px;  
+        width: 40px;
+        left: 17px;
+        top: -0.1px !important; 
     }
     div.cr-tablet-space{
         display: block;
@@ -2168,6 +2170,9 @@ a {
 	   height: 36px;
 	   width:90%;
 	}
+	li.learn {
+        top: -1.1px;
+    }
     input#hiddencharId {
         width: 150%;
     }
@@ -6409,6 +6414,11 @@ textarea.form-control {
 		float:left;
 		font-size:13px;
 	}
+    p.campaignStory.justify > iframe {
+        height: 230px !important;
+        margin-left: 0;
+        width: 100% !important;
+    }
     .nav.navbar-nav.navbar-right.navbar-right-logged-in {
         margin-left: -21px !important;
     }

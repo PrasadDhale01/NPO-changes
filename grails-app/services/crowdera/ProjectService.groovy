@@ -258,15 +258,19 @@ class ProjectService {
              getMultipleImageUrlsForTeam(imageFiles, team)
          }
 
-         def video
-         if (params.videoUrl) {
-             if (params.videoUrl.contains('embed')) {
-                 video = params.videoUrl
-             } else {
-                 String videoUrl = params.videoUrl.replace("watch?v=","embed/")
-                 videoUrl = videoUrl + "?rel=0"
-                 video = videoUrl
-             }
+        def video
+        if (params.videoUrl) {
+			def youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+			def vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+			def match = params.videoUrl.matches(youtube);
+			def vimeomatch = params.videoUrl.matches(vimeo)
+            if (match && !params.videoUrl.contains('embed')) {
+                String videoUrl = params.videoUrl.replace("watch?v=","embed/")
+                videoUrl = videoUrl + "?rel=0"
+                video = videoUrl
+            } else if (vimeomatch){
+                video = params.videoUrl
+            }
          }
          team.videoUrl = video
          team.story = params.story
@@ -1474,8 +1478,14 @@ class ProjectService {
             def regex =/^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
             def vidUrl=project.getVideoUrl()
             def match = vidUrl.matches(regex);
+            def vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+            def vimeomatch = vidUrl.matches(vimeo);
+            def vurl
             if(match){
-                def vurl=vidUrl.replace("watch?v=", "embed/");
+                vurl=vidUrl.replace("watch?v=", "embed/");
+                imageUrls.add(vurl)     
+            } else if (vimeomatch){
+                vurl = vidUrl.replace("https://vimeo.com/", "https://player.vimeo.com/video/");
                 imageUrls.add(vurl)     
             }
         }
@@ -1486,7 +1496,7 @@ class ProjectService {
                 } else {
                     imageUrls.add(grailsLinkGenerator.resource(file: imgUrl.getUrl()))
                 }
-            }else if (project.image) {
+            } else if (project.image) {
                 return grailsLinkGenerator.link(controller: 'project', action: 'thumbnail', id: project.id)
             }
         }
@@ -1500,15 +1510,20 @@ class ProjectService {
 	
 	def getTeamImageLinks(Team team, Project project) {
 		def imageUrls = []
-
-    		if(team.videoUrl){
-      			def regex =/^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
-      			def teamVideoUrl=team.getVideoUrl()
-      			def match = teamVideoUrl.matches(regex);
-      			if(match){
-        			def tvurl=teamVideoUrl.replace("watch?v=", "embed/");
-        			imageUrls.add(tvurl)
-      			}
+		if(team.videoUrl){
+  			def regex =/^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+  			def teamVideoUrl=team.getVideoUrl()
+  			def match = teamVideoUrl.matches(regex);
+            def vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+            def vimeomatch = teamVideoUrl.matches(vimeo);
+			def vurl
+            if(match){
+               vurl=teamVideoUrl.replace("watch?v=", "embed/");
+               imageUrls.add(vurl)     
+            } else if (vimeomatch){
+               vurl = teamVideoUrl.replace("https://vimeo.com/", "https://player.vimeo.com/video/");
+               imageUrls.add(vurl)     
+            }
 		}
 		for (imgUrl in team.imageUrl) {
 			if (imgUrl) {
@@ -2435,11 +2450,17 @@ class ProjectService {
     }
 	
     def getYoutubeUrlChanged(String video, Project project){
-        if (video && !video.contains('embed')) {
+		def youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+		def vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+		def match = video.matches(youtube);
+		def vimeomatch = video.matches(vimeo)
+        if (match && !video.contains('embed')) {
             String videoUrl = video.replace("watch?v=","embed/")
             videoUrl = videoUrl + "?rel=0"
 			project.videoUrl = videoUrl
-        }
+        } else if (vimeomatch){
+		    project.videoUrl = video
+		}
     }
     
     def setContributorsComment(Project project,def comment,User fundRaiser,Contribution contribution) {

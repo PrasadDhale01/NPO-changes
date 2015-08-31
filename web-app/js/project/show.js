@@ -267,13 +267,16 @@
     $('#youtubeVideoUrl').html(function(i, html) {
     	
     	var regExp = /^https?\/\/.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    	var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
     	var url= html.trim();
-    	var match = url.match(regExp);
+    	var match = (url.match(regExp) || url.match(vimeo));
     	$("#youtubeVideoUrl").hide();
-    	
     	if (match && match[2].length == 11) {
             var value = match[2];
             $('#youtube').html('<iframe width="560" height="315" src="//www.youtube.com/embed/' + value + '" frameborder="0" allowfullscreen></iframe>');
+        } else if (match && match[2].length == 9){
+        	var value = match[2];
+            $('#youtube').html('<iframe width="560" height="315" src="https://player.vimeo.com/video/' + value + '" frameborder="0" allowfullscreen></iframe>');
         }
     });
     
@@ -444,10 +447,15 @@
     $('#videoUrl').change(function(){
            var regExp = /^https?\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
            var url= $('#videoUrl').val().trim();
-           var match = url.match(regExp);
+           var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+           var match = (url.match(regExp) || url.match(vimeo));
            if (match && match[2].length == 11) {
                $('#ytVideo').show();
                var vurl=url.replace("watch?v=", "embed/");
+               $('#ytVideo').attr('src',vurl);
+           } else if (match && match[2].length == 9){
+        	   $('#ytVideo').show();
+               var vurl=url.replace("https://vimeo.com/", "https://player.vimeo.com/video/");
                $('#ytVideo').attr('src',vurl);
            }
       });
@@ -587,12 +595,17 @@
        var videoStatus=$('#videoUrl').val().trim();
        if(videoStatus){
         	var regExp = /^https?\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        	var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
     	    var url= $('#videoUrl').val().trim();
-    	    var match = url.match(regExp);
-    	    if (match && match[2].length == 11) {
-    	       var vurl=url.replace("watch?v=", "embed/");
-    	       $('#ytVideo').attr('src',vurl);
-    	    }
+    	    var match = (url.match(regExp) || value.match(vimeo));
+            var vurl
+            if (match && match[2].length == 11) {
+                vurl=url.replace("watch?v=", "embed/");
+                $('#ytVideo').attr('src',vurl);
+            } else if (match && match[2].length == 9) {
+                vurl=url.replace("https://vimeo.com/", "https://player.vimeo.com/video/");
+                $('#ytVideo').attr('src',vurl);
+            }
     	    $('#ytVideo').show();
        }else{
           	$('#ytVideo').hide();

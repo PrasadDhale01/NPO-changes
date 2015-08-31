@@ -6285,6 +6285,10 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
+	li.perk-grid-paddings{
+        padding-left: 40px;
+        padding-right: 40px;
+	}
 	div.pan {
 		max-width: 225px;
 		height: 116px;

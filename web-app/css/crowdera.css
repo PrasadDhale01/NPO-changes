@@ -6373,8 +6373,12 @@ textarea.form-control {
 		color: #01bbd3;
 		font-size: 21px;
 		height: 96px !important;
-		position: static !important;
+		position:fixed;
 	}
+	.startsection {
+        height: 80px !important;
+    }
+	
 	div.edit-tool-icon img{
 	    margin-left: -29px;
 	}
@@ -8950,13 +8954,13 @@ header {
 }
 header.cr-tabs-link {
 	color: #01bbd3;
-	height:120px;
+	height:120px;;
 	padding-bottom: 30px;
     padding-top: 30px;
 	padding-left: 300px;
     padding-right: 300px;
 	position:fixed;
-	top:-10px;
+	top:50px;
 	font-size: 21px;
 	z-index:500;
 }
@@ -9716,4 +9720,8 @@ li.learn {
     text-align: center;
     width: 100%;
     margin-top: -41px;
+}
+
+.startsection {
+    height: 65px;
 }

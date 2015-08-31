@@ -866,7 +866,7 @@
                                         </g:else>
                                     </div>
                                     <div class="col-sm-2 col-xs-2">
-                                        <button class="btn btn-info btn-sm cr-btn-color" href="#" data-dismiss="modal" id="add" type="button">Add</button>
+                                        <button class="btn btn-info btn-sm cr-btn-color" href="#" id="add" type="button">Add</button>
                                     <div>
                                     </div>
                                 </div>

@@ -345,7 +345,7 @@ $(function() {
 
     	if (validator.form()) {
             if (!storyEmpty){
-                $('#campaigncreatebtn').attr('disabled','disabled');
+                $('#saveButton, #saveButtonXS').attr('disabled','disabled');
                 $('#campaigncreate').find('form').submit();
             }
     	}

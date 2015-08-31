@@ -774,7 +774,7 @@
                     <g:if test ="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                         <div id="PayUMoney">
                              <div class="form-group">
-                             <img class="col-sm-4 cr-payu-money" src="/images/pay-u-money.png" alt="payu">
+                             <label class="col-sm-4 control-label">Email</label>
                              <div class="col-sm-6 col-xs-10">
                                  <g:if test="${project.payuEmail}">
                                          <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">

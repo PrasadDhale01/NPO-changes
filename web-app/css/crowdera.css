@@ -694,9 +694,16 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-    img.cr-payu-money {
-        padding-left: 16px;
-        top: 0;
+    li.perks-grid {
+        width: 50%;
+    }
+    input.cutom-perks-border {
+        height: 41px;
+        top: 8px;
+        width: 118px;
+    }
+	input.search-box-xs {
+        width: 180px !important;
     }
     img.cr-first-giving {
         padding-left: 16px;
@@ -2448,7 +2455,7 @@ a {
     }
 
     li.search-mob {
-        margin-left: 42px;
+        margin-left: 13px;
     }
     
     .nav-item-1{
@@ -2967,7 +2974,7 @@ ul.unstyled {
     margin-bottom: 10px;
 }
 .form-signin .form-signin-heading.signin{
-	background:url('https://s3.amazonaws.com/crowdera/assets/sign-in.png') center left no-repeat;
+	background:url('https://s3.amazonaws.com/crowdera/assets/sign-in-registers.png') center left no-repeat;
 	padding:15px 0 15px 70px; 
 }
 .form-signin .form-signin-heading.register{
@@ -5299,7 +5306,7 @@ textarea.form-control {
     .shippingreward > .btn-primary
     {
        margin-left: 0px !important;
-       margin-right: 31px !important;
+/*        margin-right: 31px !important; */
        margin-top: 8px !important;
        width: 116px !important;
        padding-left: 16px !important;
@@ -5434,6 +5441,9 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 481px) and (max-width:600px){
+	li.perks-grid {
+        width: 50%;
+    }
 	.contributions-panel{
 	    padding-left: 26%;
 	}
@@ -5446,6 +5456,9 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 601px) and (max-width:767px){
+	li.perks-grid {
+        width: 50%;
+    }
 	div.cr1-mob-tb{
         padding-left: 1px;
         padding-right: 9px;
@@ -6299,9 +6312,8 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-    img.cr-payu-money {
-        padding-left: 16px;
-        top: 0;
+    input.search-box-xs {
+        width: 180px !important;
     }
     img.cr-first-giving {
         padding-left: 16px;
@@ -9743,7 +9755,7 @@ li.learn {
 .cr-first-giving{
     padding-left: 190px;	
 }
-.cr-payu-money{
-    padding-left: 175px;
-    top: 6px;
+.cutom-perks-border {
+    height: 41px;
+    width: 118px;
 }

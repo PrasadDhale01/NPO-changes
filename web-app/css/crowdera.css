@@ -2890,7 +2890,7 @@ a {
         padding: 0;
     }
     .tile-goal .fa-inr {
-        font-size: 17px !important;
+        font-size: 15px !important;
     }
     .payu-inr .fa-inr {
         font-size: 18px !important;
@@ -3746,7 +3746,7 @@ footer .footerbottomsection {
 color: #000 !important;
 }
 .lead {
-    font-size: 24px !important;
+    font-size: 19px !important;
     font-weight: bold !important;
 }
 .daysleft{
@@ -6319,6 +6319,10 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.show-tile-text-size{
+        padding-left: 14px;
+        padding-right: 14px;
+    }
     .left-addon input {
         padding-left: 30px;
     }
@@ -6945,11 +6949,11 @@ textarea.form-control {
     	  font-weight: bold !important;
 	}
 	.lead{
-	  font-size: 20px !important;
+	  font-size: 15px !important;
     	  font-weight: bold !important;
 	}
 	.tile-goal{
-	  font-size: 20px !important;
+	  font-size: 16px !important;
     	  font-weight:normal !important;
 	}
 	.show-tile-text-size {
@@ -8534,7 +8538,7 @@ ul.menu{
 	width:1000px;
 }
 .tile-goal {
-    font-size:24px;
+    font-size:18px;
 }
 .amount-alignment{
 	padding:0px !important;
@@ -9163,12 +9167,12 @@ img.cr-ineed-icons {
 }
 .cr-bg-Launch-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/launch-Button.jpg) no-repeat !important;
-	height: 66px;
+	height: 62px;
     width: 251px;
 }
 
 .cr-bg-edit-btn{
-	background: url(https://s3.amazonaws.com/crowdera/assets/save-button.jpg) no-repeat !important;
+	background: url(https://s3.amazonaws.com/crowdera/assets/icons-save-edit.jpg) no-repeat !important;
 	height: 66px;
     width: 251px;
 }

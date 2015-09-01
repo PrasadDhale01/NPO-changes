@@ -170,7 +170,7 @@ $(function() {
                 isequaltosecondadmin: true
             },
             checkBox2:{
-              required: true,
+              required: true
             },
             facebookUrl:{
             	isFacebookUrl: true

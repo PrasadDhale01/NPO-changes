@@ -704,7 +704,7 @@ a {
 	}
 	.bootstrap-select.card-number-width.btn-group .dropdown-menu {
 	   box-sizing: border-box;
-	   min-width: 110%;
+	   min-width: 108%;
 	   z-index: 2000;
 	}
 	.leftcard-column .form-control{ 
@@ -1458,7 +1458,7 @@ a {
 	}
 	.bootstrap-select.card-number-width.btn-group .dropdown-menu {
 	   box-sizing: border-box;
-	   min-width: 103%;
+	   min-width: 101%;
 	   z-index: 2000;
 	}
 	.leftcard-column .form-control{ 
@@ -2569,11 +2569,11 @@ a {
 	}
 	.bootstrap-select.card-number-width > .btn {
 		padding-right: 25px;
-		width: 104% !important;
+		width: 111% !important;
 	}
 	.bootstrap-select.card-number-width.btn-group .dropdown-menu {
 	   box-sizing: border-box;
-	   min-width: 101%;
+	   min-width: 109%;
 	   z-index: 2000;
 	}
 	.leftcard-column-two{
@@ -2652,7 +2652,7 @@ a {
 	}
 	.bootstrap-select.card-number-width.btn-group .dropdown-menu {
 	   box-sizing: border-box;
-	   min-width: 108%;
+	   min-width: 106%;
 	   z-index: 2000;
 	}
 	.TW-editUpdate-redactor .redactor-toolbar{
@@ -2982,7 +2982,7 @@ a {
 	}
 	.bootstrap-select.card-number-width.btn-group .dropdown-menu {
 	   box-sizing: border-box;
-	   min-width: 104%;
+	   min-width: 104.5%;
 	   z-index: 2000;
 	}
 	.leftcard-column .form-control {

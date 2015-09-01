@@ -58,10 +58,10 @@
     <div class="modal-footer tile-footer tile-fonts-footer">
     	<div class="row">
     		<div class="col-xs-4 col-sm-4 col-md-4 goalIcon">
-				<img src="//s3.amazonaws.com/crowdera/assets/tile-goal-icon.png">
+				<img src="//s3.amazonaws.com/crowdera/assets/tile-goal-icon.png" alt="tile-goal">
 			</div>
 			<div class="col-xs-4 col-sm-4 col-md-4 campaign-tile-border daysleftIcon">
-				<img src="//s3.amazonaws.com/crowdera/assets/timeleft.png">
+				<img src="//s3.amazonaws.com/crowdera/assets/timeleft.png" alt="timeleft">
 			</div>
         	<div class="col-sm-4 col-md-4 col-xs-4 progress-pie-chart show-tile progressBarIcon " data-percent="43">
         		<div class="c100 p${cents} small text-center">

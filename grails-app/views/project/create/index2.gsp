@@ -14,7 +14,6 @@
     <meta name="layout" content="main" />
     <r:require modules="projectcreatejs" />
     
-    <link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
     <link rel="stylesheet" href="/css/datepicker.css">
 </head>
 <body>
@@ -40,6 +39,7 @@
         <div class="container footer-container" id="campaigncreate">
             <g:uploadForm class="form-horizontal"  controller="project" action="campaignOnDraftAndLaunch" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
                 <g:hiddenField name="projectId" value="${project.id}"/>
+                <div class="startsection"></div>
                 <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari" id="start">
                     <label class="panel body cr-start-size cr-safari">START</label>
                     <div class="form-group col-sm-10 cr-start-space campaignEndDateError">
@@ -97,12 +97,10 @@
                     </div>
                     <g:hiddenField name="campaignvideoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
                     <div class="col-sm-6 video-popover" id="media">
-                        <a href="#addVideo" data-toggle="modal">
                             <div class="panel panel-default panel-create-size lblIcon text-center" id="videoBox">
                                 <span><img id="addVideoIcon" class="addVideoIcon" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png"></span>
                                 <span id="addVideolbl">Add Video</span>
                             </div>
-                        </a>
                         <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
                     <div class="col-sm-6 video-popover" id="media-video">
@@ -111,9 +109,9 @@
                                <div class="form-group">
                                    <div class="col-sm-6" id="ytVideo"></div>
                                </div>
-                               <a href="#addVideo" data-toggle="modal" class="videoUrledit close" id="videoUrledit">
+                               <span class="videoUrledit close" id="videoUrledit">
                                    <i class="glyphicon glyphicon-edit" ></i>
-                               </a>
+                               </span>
                                <span class="videoUrledit close" id="videoUrledit">
                                    <i class="glyphicon glyphicon-trash" id="deleteVideo"></i>
                                </span>  
@@ -641,7 +639,8 @@
                         </div>
                         <div class="col-sm-12 cr-tablet-space" id="charitableId">
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">FirstGiving</label>
+<%--                                <label class="col-sm-4 control-label">FirstGiving</label>--%>
+                                <img class="col-sm-4 cr-first-giving" src="//s3.amazonaws.com/crowdera/assets/first-giving.png">
                                 <div class="col-sm-3">
                                     <a data-toggle="modal" href="#myModal" class="charitableLink cr-tablet-orgcharity">Find your organization</a>
                                 </div>
@@ -726,7 +725,7 @@
                                         </g:else>
                                     </div>
                                     <div class="col-sm-2 col-xs-2">
-                                        <button type="button" class="btn btn-info btn-sm cr-btn-color" href="#" data-dismiss="modal" id="add">Add</button>
+                                        <button type="button" class="btn btn-info btn-sm cr-btn-color" href="#" id="add">Add</button>
                                     <div>
                                 </div>
                                 </div>

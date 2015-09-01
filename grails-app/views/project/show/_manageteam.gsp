@@ -192,6 +192,7 @@
     				<div class="form-group">
       					<label class="col-sm-2 control-label">Video URL</label>
       					<div class="col-sm-4">
+      					<g:hiddenField name="isVideoUrl" id="isVideoUrl" value="${currentTeam.videoUrl}"/>
         					<input id="videoUrl" class="form-control"
          						name="videoUrl" value="${currentTeam.videoUrl}">
       					</div>

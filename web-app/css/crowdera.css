@@ -721,6 +721,23 @@ a {
 		float:left;
 		font-size:13px;
 	}
+    .left-addon input {
+        padding-left: 34px !important;
+    }
+    li.perks-grid {
+        width: 50%;
+    }
+    input.cutom-perks-border {
+        height: 41px;
+        top: 8px;
+        width: 118px;
+    }
+	input.search-box-xs {
+        width: 182px !important;
+    }
+    img.cr-first-giving {
+        padding-left: 16px;
+    }
     .nav.navbar-nav.navbar-right.navbar-right-logged-in {
         margin-left: -21px !important;
     }
@@ -1475,6 +1492,13 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    img.cr-payu-money {
+        padding-left: 85px;
+        top: 6px;
+    }
+    img.cr-first-giving {
+        padding-left: 88px;
+    }
     li.discover{
         width: 55px;      
     }
@@ -1485,7 +1509,7 @@ a {
     }
     div.cr-tablet-space{
         display: block;
-        left: -106px;	   
+        left: -54px;	   
     }
     a.cr-tablet-orgcharity{
         width: 160px;
@@ -2489,7 +2513,7 @@ a {
     }
 
     li.search-mob {
-        margin-left: 42px;
+        margin-left: 14px;
     }
     
     .nav-item-1{
@@ -2497,11 +2521,13 @@ a {
     }
 
     .nav-item-2{
-        margin-left: 38px;
+        font-size: 13px;
+        margin-left: 15px;
     }
 
     .nav-item-3{
-        margin-left: 38px;
+        font-size: 13px;
+        margin-left: 15px;
     }
     
     .navbar {
@@ -3121,7 +3147,7 @@ ul.unstyled {
     margin-bottom: 10px;
 }
 .form-signin .form-signin-heading.signin{
-	background:url('https://s3.amazonaws.com/crowdera/assets/sign-in.png') center left no-repeat;
+	background:url('https://s3.amazonaws.com/crowdera/assets/sign-in-registers.png') center left no-repeat;
 	padding:15px 0 15px 70px; 
 }
 .form-signin .form-signin-heading.register{
@@ -3908,7 +3934,7 @@ color: #000 !important;
 color: #ffffff;
 background-color: #333 !important;
 border-color: #333;
-margin-bottom:5px;
+margin-bottom:10px;
 }
 
 .btn-facebook {
@@ -5408,7 +5434,7 @@ textarea.form-control {
     .shippingreward > .btn-primary
     {
        margin-left: 0px !important;
-       margin-right: 31px !important;
+/*        margin-right: 31px !important; */
        margin-top: 8px !important;
        width: 116px !important;
        padding-left: 16px !important;
@@ -5537,6 +5563,9 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 481px) and (max-width:600px){
+	li.perks-grid {
+        width: 50%;
+    }
 	.contributions-panel{
 	    padding-left: 26%;
 	}
@@ -5549,6 +5578,9 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 601px) and (max-width:767px){
+	li.perks-grid {
+        width: 50%;
+    }
 	div.cr1-mob-tb{
         padding-left: 1px;
         padding-right: 9px;
@@ -6383,6 +6415,10 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
+	li.perk-grid-paddings{
+        padding-left: 40px;
+        padding-right: 40px;
+	}
 	div.pan {
 		max-width: 225px;
 		height: 116px;
@@ -6414,6 +6450,15 @@ textarea.form-control {
 		float:left;
 		font-size:13px;
 	}
+    .left-addon input {
+        padding-left: 30px;
+    }
+    input.search-box-xs {
+        width: 182px !important;
+    }
+    img.cr-first-giving {
+        padding-left: 16px;
+    }
     p.campaignStory.justify > iframe {
         height: 230px !important;
         margin-left: 0;
@@ -6504,8 +6549,12 @@ textarea.form-control {
 		color: #01bbd3;
 		font-size: 21px;
 		height: 96px !important;
-		position: static !important;
+		position:fixed;
 	}
+	.startsection {
+        height: 80px !important;
+    }
+	
 	div.edit-tool-icon img{
 	    margin-left: -29px;
 	}
@@ -9073,13 +9122,13 @@ header {
 }
 header.cr-tabs-link {
 	color: #01bbd3;
-	height:120px;
+	height:120px;;
 	padding-bottom: 30px;
     padding-top: 30px;
 	padding-left: 300px;
     padding-right: 300px;
 	position:fixed;
-	top:-10px;
+	top:50px;
 	font-size: 21px;
 	z-index:500;
 }
@@ -9839,4 +9888,14 @@ li.learn {
     text-align: center;
     width: 100%;
     margin-top: -41px;
+}
+.cr-first-giving{
+    padding-left: 190px;	
+}
+.cutom-perks-border {
+    height: 41px;
+    width: 118px;
+}
+.startsection {
+    height: 65px;
 }

@@ -694,6 +694,9 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    .left-addon input {
+        padding-left: 34px !important;
+    }
     li.perks-grid {
         width: 50%;
     }
@@ -703,7 +706,7 @@ a {
         width: 118px;
     }
 	input.search-box-xs {
-        width: 180px !important;
+        width: 182px !important;
     }
     img.cr-first-giving {
         padding-left: 16px;
@@ -2455,7 +2458,7 @@ a {
     }
 
     li.search-mob {
-        margin-left: 13px;
+        margin-left: 14px;
     }
     
     .nav-item-1{
@@ -3761,7 +3764,7 @@ color: #000 !important;
 color: #ffffff;
 background-color: #333 !important;
 border-color: #333;
-margin-bottom:5px;
+margin-bottom:10px;
 }
 
 .btn-facebook {
@@ -6316,8 +6319,11 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    .left-addon input {
+        padding-left: 30px;
+    }
     input.search-box-xs {
-        width: 180px !important;
+        width: 182px !important;
     }
     img.cr-first-giving {
         padding-left: 16px;

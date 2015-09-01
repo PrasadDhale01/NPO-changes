@@ -444,20 +444,26 @@
     
     /*************************Edit video for team*************************/
     
-    $('#videoUrl').change(function(){
+    $('#videoUrl').blur(function(){
+    	if (validator.element("#videoUrl")){
            var regExp = /^https?\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
            var url= $('#videoUrl').val().trim();
            var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
            var match = (url.match(regExp) || url.match(vimeo));
            if (match && match[2].length == 11) {
                $('#ytVideo').show();
-               var vurl=url.replace("watch?v=", "embed/");
-               $('#ytVideo').attr('src',vurl);
+               if (url.contains("embed/")){
+            	   $('#ytVideo').attr('src',url);
+               } else {
+                   var vurl=url.replace("watch?v=", "embed/");
+                   $('#ytVideo').attr('src',vurl);
+               }
            } else if (match && match[2].length == 9){
         	   $('#ytVideo').show();
                var vurl=url.replace("https://vimeo.com/", "https://player.vimeo.com/video/");
                $('#ytVideo').attr('src',vurl);
            }
+    	}
       });
     
     /*******************************Description text length*********************/

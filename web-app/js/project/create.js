@@ -396,7 +396,7 @@ $(function() {
 
     	if (validator.form()) {
             if (!storyEmpty){
-                $('#campaigncreatebtn').attr('disabled','disabled');
+                $('#saveButton, #saveButtonXS').attr('disabled','disabled');
                 $('#campaigncreate').find('form').submit();
             }
     	}
@@ -608,20 +608,20 @@ $(function() {
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
            var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-//           var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+           var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
            var youtubematch = value.match(p);
-//           var vimeomatch = value.match(vimeo);
+           var vimeomatch = value.match(vimeo);
            var match
            if (youtubematch)
                match = youtubematch;
-//           else if (vimeomatch && vimeomatch[2].length == 9)
-//               match = vimeomatch;
+           else if (vimeomatch && vimeomatch[2].length == 9)
+               match = vimeomatch;
            else 
                match = null;
            return (match) ? true : false;
         }
         return true;
-     }, "Please upload a url of Youtube video");
+     }, "Please upload a url of Youtube/Vimeo video");
      
      $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
      	  
@@ -825,43 +825,49 @@ $(function() {
         $('#ytVideo').show();
         $('#media').hide();
         $('#media-video').show();
+        var vurl
         if (match[2].length == 11){
-        	var vurl=url.replace("watch?v=", "embed/");
+        	vurl=url.replace("watch?v=", "embed/");
             $('#ytVideo').html('<iframe class="youtubeVideoIframe" src="'+ vurl +'?wmode=transparent"></iframe>');
-        } 
-//        else {
-//        	$('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ url +'></iframe>');
-//        }
+        } else {
+        	vurl = url.replace("https://vimeo.com/", "https://player.vimeo.com/video/");
+        	$('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'></iframe>');
+        }
     }
+
+    $('#videoBox, #videoUrledit').on('click',function(){
+    	$('#addVideo').modal('show');
+    });
+
 	$('#add').on('click',function(){
 		var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
         var url= $('#videoUrl').val().trim();
         var match = (url.match(youtube) || url.match(vimeo));
+        if (validator.element("#videoUrl")){
+        	$('#addVideo').modal('hide');
         if (match && match[2].length == 11) {
-        	var vurl=url.replace("watch?v=", "embed/");
             $('#ytVideo').show();
             $('#media').hide();
             $('#media-video').show();
             autoSave('videoUrl', url);
             $('#addvideoUrl').val(url);
             var vurl=url.replace("watch?v=", "embed/");
-            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ vurl +'?wmode=transparent></iframe>');
-        } 
-//        else if (match && match[2].length == 9){
-//        	$('#ytVideo').show();
-//            $('#media').hide();
-//            $('#media-video').show();
-//            autoSave('videoUrl', url);
-//            $('#addvideoUrl').val(url);
-//            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
-//        } 
-        else if($(this)){
+            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
+        } else if (match && match[2].length == 9) {
+        	$('#ytVideo').show();
+            $('#media').hide();
+            $('#media-video').show();
+            autoSave('videoUrl', url);
+            $('#addvideoUrl').val(url);
+            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
+        } else if($(this)) {
         	if(!$('#addvideoUrl').val()) {
                 $('#ytVideo').hide();
                 $('#media').show();
                 $('#media-video').hide();
         	}
+        }
         }
     });
 
@@ -1228,9 +1234,16 @@ $(function() {
      });  
     
     $('#removereward').click(function(){
-        if($('#addNewRewards').find('.rewardsTemplate').length > 1) {
-            if (confirm('Are you sure you want to discard this perk?')){
-                removeRewards(count);
+    	var rewardLength = $('#addNewRewards').find('.rewardsTemplate').length
+        if (confirm('Are you sure you want to discard this perk?')){
+            removeRewards(count);
+            if (rewardLength == 1){
+                $("#updatereward").hide();
+                $('#addNewRewards').find('.rewardsTemplate').hide();
+                renameAndemptyRewardFields();
+                $('#noradio').prop('checked', true);
+                $('#yesradio').prop('checked', false);
+            } else {
                 $('#addNewRewards').find('.rewardsTemplate').last().remove();
                 $('#addNewRewards').find('.editDeleteReward:last').remove();
             }

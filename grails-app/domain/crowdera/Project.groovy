@@ -70,7 +70,7 @@ class Project {
         imageUrl (nullable: true)
         videoUrl (nullable:true)
         rewards (nullable: true)
-        amount (max: 999999 as double)
+        amount (max: 99999999 as double)
         description (nullable: true)
         charitableId (nullable: true)
         story (nullable: true)

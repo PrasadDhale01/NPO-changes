@@ -14,7 +14,6 @@
 <head>
     <meta name="layout" content="main" />
     <r:require modules="projectcreatejs" />
-    <link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
     <link rel="stylesheet" href="/css/datepicker.css">
 </head>
 <body>
@@ -41,6 +40,7 @@
         <div class="container footer-container" id="campaigncreate">
             <g:uploadForm class="form-horizontal"  controller="project" action="update" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
                 <g:hiddenField name="projectId" value="${project.id}"/>
+                <div class="startsection"></div>
                 <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari" id="start">
                     <label class="panel body cr-start-size cr-safari">START </label>
                     <div class="form-group col-sm-10 cr-start-space campaignEndDateError">
@@ -425,18 +425,11 @@
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-
-                                        <g:if test="${project.beneficiary.telephone}">
-                                            <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone" value="${project.beneficiary.telephone}">
-                                        </g:if>
-                                        <g:else>
-                                            <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
-                                        </g:else>
                                         <g:if test="${project.beneficiary.email}">
-                                            <input type="email" id="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.EMAIL}" placeholder="email" value="${project.beneficiary.email}">
+                                            <input type="email" id="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.EMAIL}" placeholder="email" value="${project.beneficiary.email}">
                                         </g:if>
                                         <g:else>
-                                            <input type="email" id="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.EMAIL}" placeholder="email">
+                                            <input type="email" id="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.EMAIL}" placeholder="email">
                                         </g:else>
                                     </div>
                                 </div>
@@ -486,10 +479,10 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <g:if test="${project.beneficiary.telephone}">
-                                            <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone" value="${project.beneficiary.telephone}">
+                                            <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone" value="${project.beneficiary.telephone}">
                                         </g:if>
                                         <g:else>
-                                            <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
+                                            <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
                                         </g:else>
                                     </div>
                                 </div>

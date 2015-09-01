@@ -81,7 +81,7 @@
                     </div>
                     <div class="form-group descriptionDiv createDescDiv">
                         <label for="description">Description</label>
-                        <textarea class="form-control all-place" id="descarea" name="description" maxlength="250" rows="4" placeholder="Description">${reward.description}</textarea>
+                        <textarea class="form-control all-place" id="rewarddescarea" name="description" maxlength="250" rows="4" placeholder="Description">${reward.description}</textarea>
                         <label class="pull-right " id="desclength"></label>
                     </div>
                     <div class="clear"></div>

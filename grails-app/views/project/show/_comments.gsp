@@ -36,6 +36,8 @@
     <g:if test="${flash.commentmessage}">
         <div class="alert alert-danger">${flash.commentmessage}</div>
     </g:if>
+    
+    <g:if test="${project.validated}">
     <g:if test="${projectComment || teamcomment}">
         <g:form controller="project" action="editCommentSave" role="form" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
             <g:hiddenField name='teamCommentId' value="${teamCommentId}"></g:hiddenField>
@@ -72,6 +74,10 @@
                 </g:form>
             </g:else>
         </div>
+    </g:else>
+    </g:if>
+    <g:else>
+        <div class="alert alert-info">No Comments yet.</div>
     </g:else>
 </sec:ifLoggedIn>
 <sec:ifNotLoggedIn>

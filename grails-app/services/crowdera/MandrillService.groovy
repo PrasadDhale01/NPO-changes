@@ -4,6 +4,7 @@ import grails.converters.JSON
 import groovyx.net.http.ContentType
 import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.Method
+import grails.util.Environment
 
 class MandrillService {
     def grailsApplication
@@ -798,6 +799,14 @@ class MandrillService {
         def fundRaiserUserName = fundraiser.username
         def beneficiary = project.user
         def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:fundRaiserUserName], absolute: true)
+        def currentEnv = Environment.current.getName()
+        def currency
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            currency = 'INR'
+        } else {
+            currency = 'USD'
+        }
+        
         def globalMergeVars = [[
             'name': 'LINK',
             'content': link
@@ -811,11 +820,14 @@ class MandrillService {
             'name': 'AMOUNT',
             'content': amount
         ], [
-		'name':'TITLE',
-		'content':project.title
-	], [
+		    'name':'TITLE',
+		    'content':project.title
+	    ], [
             'name': 'EMAIL',
-            'content': contribution.contributorEmail
+            'content': fundraiser.email
+        ], [
+            'name': 'CURRENCY',
+            'content': currency
         ]]
 
         def tags = ['thankYouEmailToContributor']
@@ -888,7 +900,13 @@ class MandrillService {
         } else {
             link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:username], absolute: true, fragment: 'contributions')
         }
-        
+        def currentEnv = Environment.current.getName()
+        def currency
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            currency = 'INR'
+        } else {
+            currency = 'USD'
+        }
         def globalMergeVars = [
             [
                 'name': 'LINK',
@@ -902,9 +920,12 @@ class MandrillService {
             ],[
                 'name': 'CONTRIBUTOR',
                 'content': contribution.contributorName
-            ],,[
+            ],[
                 'name': 'CONTRIBUTOREMAIL',
                 'content': contribution.contributorEmail
+            ], [
+                'name': 'CURRENCY',
+                'content': currency
             ]
         ]
 
@@ -1019,7 +1040,13 @@ class MandrillService {
             name = user.firstName + ' ' + user.lastName
         }
         def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', fragment:'payments', id: project.id, absolute: true)
-        
+        def currentEnv = Environment.current.getName()
+        def currency
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            currency = 'INR'
+        } else {
+            currency = 'USD'
+        }
         def globalMergeVars = [
             [
                 'name': 'LINK',
@@ -1036,9 +1063,12 @@ class MandrillService {
             ],[
                 'name': 'CONTRIBUTOR',
                 'content': contribution.contributorName
-            ],,[
+            ],[
                 'name': 'CONTRIBUTOREMAIL',
                 'content': contribution.contributorEmail
+            ], [
+                'name': 'CURRENCY',
+                'content': currency
             ]
         ]
         

@@ -310,7 +310,7 @@ $(function() {
                     	var campaignAmount = $('#projectamount').val();
                         return Number(campaignAmount);
                     },
-                    min: 250
+                    min: 100
                 });
             });
             
@@ -419,7 +419,7 @@ $(function() {
                     	var campaignAmount = $('#projectamount').val();
                         return Number(campaignAmount);
                     },
-                    min: 250
+                    min: 100
                 });
             });
             
@@ -510,7 +510,7 @@ $(function() {
                     	var campaignAmount = $('#projectamount').val();
                         return Number(campaignAmount);
                     },
-                    min: 250
+                    min: 100
                 });
             });
         } else {
@@ -557,20 +557,20 @@ $(function() {
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
            var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-           var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+//           var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
            var youtubematch = value.match(p);
-           var vimeomatch = value.match(vimeo);
+//           var vimeomatch = value.match(vimeo);
            var match
            if (youtubematch)
                match = youtubematch;
-           else if (vimeomatch && vimeomatch[2].length == 9)
-               match = vimeomatch;
+//           else if (vimeomatch && vimeomatch[2].length == 9)
+//               match = vimeomatch;
            else 
                match = null;
            return (match) ? true : false;
         }
         return true;
-     }, "Please upload a url of Youtube/Vimeo video");
+     }, "Please upload a url of Youtube video");
      
      $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
      	  
@@ -777,9 +777,10 @@ $(function() {
         if (match[2].length == 11){
         	var vurl=url.replace("watch?v=", "embed/");
             $('#ytVideo').html('<iframe class="youtubeVideoIframe" src="'+ vurl +'?wmode=transparent"></iframe>');
-        } else {
-        	$('#ytVideo').html('<iframe class="youtubeVideoIframe" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen src=https://player.vimeo.com/video/'+ match[2] +'></iframe>');
-        }
+        } 
+//        else {
+//        	$('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ url +'></iframe>');
+//        }
     }
 	$('#add').on('click',function(){
 		var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -795,14 +796,16 @@ $(function() {
             $('#addvideoUrl').val(url);
             var vurl=url.replace("watch?v=", "embed/");
             $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ vurl +'?wmode=transparent></iframe>');
-        } else if (match && match[2].length == 9){
-        	$('#ytVideo').show();
-            $('#media').hide();
-            $('#media-video').show();
-            autoSave('videoUrl', url);
-            $('#addvideoUrl').val(url);
-            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
-        } else if($(this)){
+        } 
+//        else if (match && match[2].length == 9){
+//        	$('#ytVideo').show();
+//            $('#media').hide();
+//            $('#media-video').show();
+//            autoSave('videoUrl', url);
+//            $('#addvideoUrl').val(url);
+//            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
+//        } 
+        else if($(this)){
         	if(!$('#addvideoUrl').val()) {
                 $('#ytVideo').hide();
                 $('#media').show();
@@ -850,7 +853,7 @@ $(function() {
                     var picFile = event.target;
                     $('#imgIcon').attr('src',picFile.result);
                     $('#delIcon').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
-                    
+                    $('#logoDelete').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
                     $('.createOrgIconDiv, .projectImageFilediv').find("span").remove();
                     $('.createOrgIconDiv, .projectImageFilediv').closest(".form-group").removeClass('has-error');
                });
@@ -1213,12 +1216,12 @@ $(function() {
                $(this).rules("add", {
                    required: true,
                    number: true,
-                   maxlength: 6,
+                   maxlength: 8,
                    max: function() {
                    	   var campaignAmount = $('#projectamount').val();
                        return Number(campaignAmount);
                    },
-                   min: 250
+                   min: 100
                });
            });
        } else {
@@ -1356,25 +1359,119 @@ $(function() {
             
           });
         
-        var $win = $(window);
-        $win.scroll(function () {
-            if ($win.scrollTop() == 0){
-                $('#start').css('padding-top','25px');
-            	$('#story').css('padding-top','0px');
-            	$('#admins').css('padding-top','0px');
-            	$('#perk').css('padding-top','0px');
-            	$('#payment').css('padding-top','0px');
-            	$('#launch').css('padding-top','0px');
-            }else if ($win.height() + $win.scrollTop()== $(document).height()) {
-                $('#start').css('padding-top','0px');
-            	$('#story').css('padding-top','0px');
-            	$('#admins').css('padding-top','0px');
-            	$('#perk').css('padding-top','0px');
-            	$('#payment').css('padding-top','0px');
-            	$('#launch').css('padding-top','30px');
-            	$('#save').css('padding-top','25px');
-            }
-        });
+//        var $win = $(window);
+//        $win.scroll(function () {
+//            if ($win.scrollTop() == 0){
+//                $('#start').css('padding-top','25px');
+//            	$('#story').css('padding-top','0px');
+//            	$('#admins').css('padding-top','0px');
+//            	$('#perk').css('padding-top','0px');
+//            	$('#payment').css('padding-top','0px');
+//            	$('#launch').css('padding-top','0px');
+//            }else if ($win.height() + $win.scrollTop()== $(document).height()) {
+//                $('#start').css('padding-top','0px');
+//            	$('#story').css('padding-top','0px');
+//            	$('#admins').css('padding-top','0px');
+//            	$('#perk').css('padding-top','0px');
+//            	$('#payment').css('padding-top','0px');
+//            	$('#launch').css('padding-top','30px');
+//            	$('#save').css('padding-top','25px');
+//            }
+//        });
+        
+        $('.cr-img-start-icon').click(function(){
+        	
+        	var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-160
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-story-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-170
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-admin-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-180
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-perk-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-170
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-payment-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-150
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-launch-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-180
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-save-icon').click(function(){
+    		var target = this.hash,
+            $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-180
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+        
    });
     
    $('#paypalEmailId').change(function(){
@@ -1485,7 +1582,7 @@ $(function() {
                 $('#test').val('test');
             }
         }).error(function() {
-            alert('An error occured');
+            console.log('Error occured while autosaving field'+ variable + 'value :'+ varValue);
         });
      }
     
@@ -1588,62 +1685,6 @@ $(function() {
     	}
     });
     
-	$('.cr-img-start-icon').click(function(){
-		$('#start').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#perk').css('padding-top','0px');
-		$('#payment').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-story-icon').click(function(){
-		$('#story').css('padding-top','125px');
-		$('#start').css('padding-top','25px');
-		$('#admins').css('padding-top','0px');
-		$('#perk').css('padding-top','0px');
-		$('#payment').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-admin-icon').click(function(){
-		$('#admins').css('padding-top','140px');
-		$('#story').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#perk').css('padding-top','0px');
-		$('#payment').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-perk-icon').click(function(){
-		$('#perk').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#payment').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-payment-icon').click(function(){
-		$('#payment').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#perk').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-launch-icon').click(function(){
-		$('#launch').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#payment').css('padding-top','0px');
-		$('#perk').css('padding-top','0px');
-	});
-	$('.cr-img-save-icon').click(function(){
-		$('#save').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#payment').css('padding-top','0px');
-		$('#perk').css('padding-top','0px');
-	});
 
     function saveRewards(rewardNum,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom){
         $.ajax({

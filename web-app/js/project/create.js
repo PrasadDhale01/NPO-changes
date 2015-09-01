@@ -170,7 +170,16 @@ $(function() {
                 isequaltosecondadmin: true
             },
             checkBox2:{
-              required: true
+              required: true,
+            },
+            facebookUrl:{
+            	isFacebookUrl: true
+            },
+            twitterUrl:{
+            	isTwitterUrl: true
+            },
+            linkedinUrl:{
+            	isLinkedInUrl: true
             },
             amount: {
                 required: true,
@@ -217,6 +226,48 @@ $(function() {
         
         //ignore: []
     });
+    
+    $.validator.addMethod('isFacebookUrl', function (value, element) {
+        if(value && value.length !=0){
+           var p = /^https?:\/\/(?:www.)?facebook.com\/?.*$/;
+           var facebookmatch = value.match(p);
+           var match
+           if (facebookmatch)
+               match = facebookmatch;
+           else 
+               match = null;
+           return (match) ? true : false;
+        }
+        return true;
+     }, "Please enter valid Facebook url");
+    
+    $.validator.addMethod('isTwitterUrl', function (value, element) {
+        if(value && value.length !=0){
+           var p = /^https?:\/\/(?:www.)?twitter.com\/?.*$/;
+           var twittermatch = value.match(p);
+           var match
+           if (twittermatch)
+               match = twittermatch;
+           else 
+               match = null;
+           return (match) ? true : false;
+        }
+        return true;
+     }, "Please enter valid Twitter url");
+    
+    $.validator.addMethod('isLinkedInUrl', function (value, element) {
+        if(value && value.length !=0){
+           var p = /^https?:\/\/(?:www.)?linkedin.com\/?.*$/;
+           var linkedinmatch = value.match(p);
+           var match
+           if (linkedinmatch)
+               match = linkedinmatch;
+           else 
+               match = null;
+           return (match) ? true : false;
+        }
+        return true;
+     }, "Please enter valid LinkedIn url");
     
     $('.createsubmitbutton').click(function(event) {
         if(validator.form()){

@@ -789,9 +789,9 @@ $(function() {
        });
      
      $('.cr-img-save-icon').hover(function(){
-        	$('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/Save-Icon-White.png");
+        	$('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-white.png");
         	}).mouseleave(function(){
-            $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/Save-Icon-Blue.png");
+            $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-blue.png");
         });
      
      $('#paymentOpt').change(function(){

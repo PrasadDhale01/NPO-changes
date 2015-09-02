@@ -614,9 +614,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-12 cr-tablet-space" id="charitableId">
-                        <div class="form-group">
-                            <img class="col-sm-4 cr-first-giving" src="//s3.amazonaws.com/crowdera/assets/first-giving.png">
+                        <div class="col-sm-12 cr-tablet-space" id="charitableId">
+                            <div class="form-group">
+<%--                                <label class="col-sm-4 control-label">FirstGiving</label>--%>
+                            <img class="col-sm-4 cr-first-giving" src="//s3.amazonaws.com/crowdera/assets/firstgiving-icons-1.jpg" alt="firstgiving">
                             <div class="col-sm-3">
                                 <a data-toggle="modal" href="#myModal" class="charitableLink cr-tablet-orgcharity">Find your organization</a>
                             </div>

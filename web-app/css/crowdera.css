@@ -694,6 +694,9 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    .tile-goal .fa-inr {
+        font-size: 15px !important;
+    }
 	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	   width: 66.1% !important;
 	   float:left;
@@ -1258,25 +1261,25 @@ a {
     	   font-size: 10px;
     	   line-height: 5px;
     	   margin-bottom: 0;
-    	   margin-top: 10px;
+    	   margin-top: 5px;
     	   padding-left: 17px;
     	   padding-right: 17px;
 	}
 	span.tile-day-num.show-contribution-amt-tile  {
     	   color: #000 !important;
-    	   font-size: 19px !important;
+    	   font-size: 14px !important;
     	   font-weight: bold;
 	}
 	.tile-goal.show-contribution-amt-tile {
-    	   font-size: 19px !important;
+    	   font-size: 15px !important;
 	}
 	span.tile-day-num {
     	   color: #000 !important;
-    	   font-size: 22px !important;
+    	   font-size: 21px !important;
     	   font-weight: bold;
 	}
 	.lead.show-contribution-amt-tile {
-    	   font-size: 19px !important;
+    	   font-size: 15px !important;
     	   font-weight: bold !important;
 	}
 	.lead{
@@ -1284,12 +1287,12 @@ a {
     	   font-weight: bold !important;
 	}
 	.show-tile-text-size {
-    	  font-size: 9px !important;
+    	  font-size: 7px !important;
     	  line-height: 5px;
     	  margin-bottom: 0;
     	  margin-top: 10px;
-    	  padding-left: 22px;
-    	  padding-right: 22px;
+    	  padding-left: 22px !important;
+    	  padding-right: 22px !important;
 	}
 	.footer-input-align .text-email {
     	  width: 130% !important;
@@ -1494,10 +1497,12 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.tile-goal .fa-inr {
+        font-size: 15px !important;
+    }
     .perk-padding {
          padding-top: 3%;
     }
-
     img.cr-payu-money {
         padding-left: 85px;
         top: 6px;
@@ -1977,25 +1982,25 @@ a {
     	  font-size: 10px;
     	  line-height: 5px;
     	  margin-bottom: 0;
-    	  margin-top: 10px;
+    	  margin-top: 5px;
     	  padding-left: 17px;
     	  padding-right: 17px;
 	}
 	span.tile-day-num.show-contribution-amt-tile  {
     	  color: #000 !important;
-    	  font-size: 19px !important;
+    	  font-size: 14px !important;
     	  font-weight: bold;
 	}
 	.tile-goal.show-contribution-amt-tile {
-    	  font-size: 19px !important;
+    	  font-size: 15px !important;
 	}
 	span.tile-day-num {
     	  color: #000 !important;
-    	  font-size: 22px !important;
+    	  font-size: 18px !important;
     	  font-weight: bold;
 	}
 	.lead.show-contribution-amt-tile {
-    	  font-size: 19px !important;
+    	  font-size: 15px !important;
     	  font-weight: bold !important;
 	}
 	.lead{
@@ -2003,12 +2008,12 @@ a {
     	  font-weight: bold !important;
 	}
 	.show-tile-text-size {
-    	  font-size: 9px !important;
+    	  font-size: 8px !important;
     	  line-height: 5px;
     	  margin-bottom: 0;
     	  margin-top: 10px;
-    	  padding-left: 22px;
-    	  padding-right: 22px;
+    	  padding-left: 21px !important;
+    	  padding-right: 21px !important;
 	}
 	.footer-newsletter .help-block {
     	color: #f04124;
@@ -2195,6 +2200,9 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    .tile-goal .fa-inr {
+        font-size: 15px !important;
+    }
 	.leftcard-column .form-control{ 
 	   float: left;
 	   height: 36px;
@@ -2352,7 +2360,7 @@ a {
 	}
 	span.tile-day-num.show-contribution-amt-tile {
 		color: #000 !important;
-		font-size: 19px !important;
+		font-size: 17px !important;
 		font-weight: bold;
 	}
 	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
@@ -2364,7 +2372,7 @@ a {
 		padding-right: 17px !important;
 	}
 	.show-tile-text-size.contribution-tile {
-		font-size: 10px !important;
+		font-size: 9px !important;
 		line-height: 5px;
 		margin-bottom: 0;
 		margin-top: 10px;
@@ -2714,6 +2722,13 @@ a {
     }
 }
 
+@media only screen and (min-width:1200px) and (max-width: 1280px){
+    .show-contribution-amt-tile.lead {
+        font-size: 17px !important;
+        font-weight: bold !important;
+    }
+}
+
 @media only screen and (min-width:1025px) and (max-width: 1199px){
 	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	   width: 69.1% !important;
@@ -2775,9 +2790,9 @@ a {
 		font-size: 10px;
 		line-height: 5px;
 		margin-bottom: 0px;
-		margin-top: 11px !important;
-		padding-left: 17px !important;
-		padding-right: 17px !important;
+		margin-top: 8px !important;
+		padding-left: 24px !important;
+		padding-right: 24px !important;
 	}
 	span.tile-day-num {
 		color: #000 !important;
@@ -2786,7 +2801,7 @@ a {
 		padding-left: 3px;
 	}
 	.show-contribution-amt-tile.lead {
-		font-size: 20px !important;
+		font-size: 17px !important;
 		font-weight: bold !important;
 	}
 	.footer-mid-section-menu ul li a {
@@ -3066,7 +3081,7 @@ a {
         padding: 0;
     }
     .tile-goal .fa-inr {
-        font-size: 17px !important;
+        font-size: 14px !important;
     }
     .payu-inr .fa-inr {
         font-size: 18px !important;
@@ -3713,8 +3728,8 @@ footer .footerbottomsection {
 
 .btn-success {
     color: #ffffff;
-    background-color: #ff784f;
-    border-color: #ff784f;
+    background-color: #01bbd3;
+    border-color: #01bbd3;
     margin-top: -1%;
 }
 
@@ -3922,7 +3937,7 @@ footer .footerbottomsection {
 color: #000 !important;
 }
 .lead {
-    font-size: 24px !important;
+    font-size: 18px !important;
     font-weight: bold !important;
 }
 .daysleft{
@@ -6456,6 +6471,11 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.show-tile-text-size{
+        margin-top: 6px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 	.TW-termsAndPolicy_cr{
 		float:left;
 		font-size:13px;
@@ -7064,37 +7084,37 @@ textarea.form-control {
     	   font-size: 10px;
     	   line-height: 5px;
     	   margin-bottom: 0;
-    	   margin-top: 10px;
+    	   margin-top: 5px;
     	   padding-left: 17px;
     	   padding-right: 17px;
 	}
 	span.tile-day-num.show-contribution-amt-tile  {
     	   color: #000 !important;
-    	   font-size: 19px !important;
+    	   font-size: 16px !important;
     	   font-weight: bold;
 	}
 	.tile-goal.show-contribution-amt-tile {
-    	   font-size: 19px !important;
+    	   font-size: 15px !important;
 	}
 	span.tile-day-num {
     	   color: #000 !important;
-    	   font-size: 20px !important;
+    	   font-size: 18px !important;
     	   font-weight: bold;
 	}
 	.lead.show-contribution-amt-tile {
-    	  font-size: 19px !important;
+    	  font-size: 15px !important;
     	  font-weight: bold !important;
 	}
 	.lead{
-	  font-size: 20px !important;
+	  font-size: 15px !important;
     	  font-weight: bold !important;
 	}
 	.tile-goal{
-	  font-size: 20px !important;
+	  font-size: 16px !important;
     	  font-weight:normal !important;
 	}
 	.show-tile-text-size {
-    	  font-size: 9px !important;
+    	  font-size: 8px !important;
     	  line-height: 5px;
     	  margin-bottom: 0;
     	  margin-top: 10px;
@@ -8503,22 +8523,22 @@ p.tile-text-size {
     font-size: 10px;
     line-height: 5px;
     margin-bottom: 0;
-    margin-top: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-top: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
 }
 .show-tile-text-size.contribution-tile {
     font-size: 10px;
     line-height: 5px;
     margin-bottom: 0;
-    margin-top: 10px;
-    padding-left: 29px;
-    padding-right: 29px;
+    margin-top: 8px;
+    padding-left: 32px;
+    padding-right: 32px;
 }
 span.tile-day-num{
     color: #000 !important;
     font-weight:bold;
-    font-size:24px;
+    font-size:17px;
     padding-left: 3px;
 }
 .manage-tiles {
@@ -8667,7 +8687,7 @@ ul.menu{
 	width:1000px;
 }
 .tile-goal {
-    font-size:24px;
+    font-size:19.4px;
 }
 .amount-alignment{
 	padding:0px !important;
@@ -9296,12 +9316,12 @@ img.cr-ineed-icons {
 }
 .cr-bg-Launch-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/launch-Button.jpg) no-repeat !important;
-	height: 66px;
+	height: 62px;
     width: 251px;
 }
 
 .cr-bg-edit-btn{
-	background: url(https://s3.amazonaws.com/crowdera/assets/save-button.jpg) no-repeat !important;
+	background: url(https://s3.amazonaws.com/crowdera/assets/icons-save-edit.jpg) no-repeat !important;
 	height: 66px;
     width: 251px;
 }

@@ -127,11 +127,11 @@
                     <g:else>
                         <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
 	                        <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
-	                            <button name="submit" class="btn btn-success btn-lg btn-block"  id="btnFundMobile">Fund this Campaign</button>
+	                            <button name="submit" class="btn btn-show-fund btn-lg btn-block"  id="btnFundMobile">Fund this Campaign</button>
 	                        </g:form>
                         </g:if>
                         <g:else>
-                            <button name="contributeButton" class="btn btn-success btn-lg btn-block">Fund this Campaign</button>
+                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block">Fund this Campaign</button>
                         </g:else>
                     </g:else>
                     <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
@@ -246,17 +246,17 @@
                         <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
                             <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
 	                            <div class="redirectCampaign">
-	                                <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-success btn-lg btn-block" id="btnFundDesktop">Fund this Campaign</button></g:link>
+	                                <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block" id="btnFundDesktop">Fund this Campaign</button></g:link>
 	                            </div>
 	                        </g:if>
 	                        <g:else>
 	                            <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
-	                                <button name="submit" class="btn btn-success btn-lg btn-block" id="btnFundDesktop">Fund this Campaign</button>
+	                                <button name="submit" class="btn btn-show-fund btn-lg btn-block" id="btnFundDesktop">Fund this Campaign</button>
 	                            </g:form>
 	                        </g:else>
                         </g:if>
                         <g:else>
-                            <button name="contributeButton" class="btn btn-success btn-lg btn-block">Fund this Campaign</button>
+                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block">Fund this Campaign</button>
                         </g:else>
                     </g:else>
                     <g:if test="${!isPreview || project.validated}">

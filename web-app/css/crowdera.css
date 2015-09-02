@@ -3726,11 +3726,16 @@ footer .footerbottomsection {
     margin-top: 66px;
 }
 
-.btn-success {
-    color: #ffffff;
-    background-color: #01bbd3;
-    border-color: #01bbd3;
+.btn-show-fund {
+    color: #ffffff !important;
+    background-color: #006083 !important;
+    border-color: #006083 !important;
     margin-top: -1%;
+}
+.btn-show-fund:hover{
+	color: #ffffff !important;
+    background-color: #01bbd3 !important;
+    border-color: #01bbd3 !important;
 }
 
 .cvc-details span.input-group-addon {
@@ -8888,7 +8893,7 @@ p.anonymous-top {
 	border-left:1px solid #e7e7e7;
 }
 .tile-goal.teamtile {
-    font-size: 19.5px;
+    font-size: 16.5px;
 }
 .team-caption p{
 	overflow:hidden;
@@ -8913,7 +8918,7 @@ p.anonymous-top {
     font-size:15px;
 }
 .lead.teamtile{
-    font-size: 19.5px !important;
+    font-size: 15px !important;
     font-weight: bold !important;
 }
 .how-it-work-container{

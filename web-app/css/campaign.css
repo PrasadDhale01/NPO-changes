@@ -662,3 +662,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	background-color: #01bbd3;
 	color : white;
 }
+
+.perkSaveMessage{
+	display:none;
+	padding-right: 5%;
+	color : #01bbd3;
+}

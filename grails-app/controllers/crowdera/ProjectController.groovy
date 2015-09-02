@@ -428,8 +428,11 @@ class ProjectController {
             def currentEnv = Environment.current.getName()
             if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
                 project.payuStatus = true
+                project.fundsRecievedBy = "NGO"
+            } else {
+                project.fundsRecievedBy = "NON-PROFITS"
             }
-		
+			
 		    project.usedFor = params.usedFor;
 		
             if(project.save(failOnError: true)){
@@ -500,9 +503,8 @@ class ProjectController {
                     if(params.payuEmail){
                         project.payuEmail = params.payuEmail
                     }
-                    project.secretKey = params.(FORMCONSTANTS.SECRETKEY)
                 }
-        
+				
                 def imageFiles = request.getFiles('thumbnail[]')
                 if(!imageFiles.isEmpty()) {
                     projectService.getMultipleImageUrls(imageFiles, project)

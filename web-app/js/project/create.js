@@ -393,6 +393,18 @@ $(function() {
                 required: true
             });
         }
+    	
+        $('.rewardDescription').each(function () {
+            $(this).rules("add", {
+               required: true,
+            });
+        });
+
+        $('.rewardTitle').each(function () {
+            $(this).rules("add", {
+                required: true,
+            });
+        });
 
     	if (validator.form()) {
             if (!storyEmpty){
@@ -694,6 +706,9 @@ $(function() {
         $('#addNewRewards').find('.rewardsTemplate').find('.customText').attr('id', 'customcheckbox1');
         $('#addNewRewards').find('.rewardsTemplate').find('.customText').attr('name', 'custom1');
         $('#addNewRewards').find('.rewardNum').attr('value', '1');
+        $('#savereward').attr('value', '1');
+        $('#addNewRewards').find('.rewardsTemplate').find("span.help-block").remove();
+        $('#addNewRewards').find('.rewardsTemplate').find(".form-group").removeClass('has-error');
     	
     	$('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice1').val('');
         $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').val('');
@@ -1164,6 +1179,7 @@ $(function() {
         $('#savereward').attr('value',count);
         var str ='<div class="col-sm-12 perk-css perk-padding editDeleteReward" id="editDeleteReward'+updateCount+'">'+
             '<div class="col-sm-12 perk-create-styls perk-top" align="right">'+
+                 '<span class="perkSaveMessage" id="perkSaveMessage'+updateCount+'">Perk Saved</span>'+
                  '<div class="btn btn-circle perks-created-remove intutive-glyphicon editreward" id="editreward'+updateCount+'" value="'+updateCount+'">'+
                      '<i class="glyphicon glyphicon-floppy-save"></i>'+
                  '</div>&nbsp;'+
@@ -1249,12 +1265,16 @@ $(function() {
             }
         }
     });
-    
+
     $('#savereward').click(function(){
     	var lastrewardcount = $(this).attr("value");
-        rewardValidationAndSaving(lastrewardcount);
+        var savedStatus = rewardValidationAndSaving(lastrewardcount);
+        if (savedStatus){
+        	$('#perkSaveMessage').show();
+        	$('#perkSaveMessage').fadeOut(3000);
+        }
     });
-    
+
     function rewardValidationAndSaving(rewardCount){
     	$('.rewardDescription').each(function () {
             $(this).rules("add", {
@@ -1304,7 +1324,7 @@ $(function() {
         }
         if($('#rewardPrice'+rewardCount).length == 0){
             return true;
-        } else if((validator.element( "#rewardPrice"+rewardCount)) && (validator.element( "#rewardTitle"+rewardCount)) && (validator.element( "#rewardNumberAvailable"+rewardCount)) && (validator.element( "#rewardDesc"+rewardCount))) {
+        } else if((validator.element("#rewardPrice"+rewardCount)) && (validator.element("#rewardTitle"+rewardCount)) && (validator.element( "#rewardNumberAvailable"+rewardCount)) && (validator.element( "#rewardDesc"+rewardCount))) {
         	var rewardPrice = $('#rewardPrice'+rewardCount).val();
             var rewardTitle = $('#rewardTitle'+rewardCount).val();
             var rewardNumberAvailable = $('#rewardNumberAvailable'+rewardCount).val();
@@ -1397,7 +1417,11 @@ $(function() {
 
         $("form").on("click", ".editreward", function () {
         	var editCount = $(this).attr('value');
-        	rewardValidationAndSaving(editCount);
+        	var savedStatus = rewardValidationAndSaving(editCount);
+        	if (savedStatus){
+            	$('#perkSaveMessage'+editCount).show();
+            	$('#perkSaveMessage'+editCount).fadeOut(3000);
+            }
         });
         
         $("form").on("click", ".deletereward", function () {
@@ -1840,7 +1864,7 @@ $(function() {
             $(this).popover({
                 content: 'Save Perk',
                 trigger: 'manual',
-                placement: 'left'
+                placement: 'bottom'
             })
             .focus(showPopover)
             .blur(hidePopover)

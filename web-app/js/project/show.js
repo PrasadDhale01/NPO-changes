@@ -598,8 +598,8 @@
     
     $(document).ready(function (){
      /*************************Edit video for team*************************/
-       var videoStatus=$('#videoUrl').val().trim();
-       if(videoStatus){
+       
+       if($('#videoUrl').val()){
         	var regExp = /^https?\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         	var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
     	    var url= $('#videoUrl').val().trim();

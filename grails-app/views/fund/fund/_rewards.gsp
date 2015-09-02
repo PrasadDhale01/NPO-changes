@@ -13,29 +13,45 @@
     <div class="panel-body rewardTileOnFundPage">
         <div class="choose-error"></div>
         <% isAnonymous = userService.isAnonymous(user) %>
-        <div class="list-group twitterHandler ">
+        <div class="list-group twitterHandler">
             <g:each in="${rewards}" var="reward">
                 <%
                     def backers = contributionService.getBackersForProjectByReward(project, reward);
-            		def price = projectService.getDataType(reward.price);
+                    def price = projectService.getDataType(reward.price);
+                    def totalNumberOfReward = reward.numberAvailable
                 %>
                 <br>
-                <a href="#" class="list-group-item <% if(perk == reward){%> active <%}%>" id="${reward.id}" data-rewardprice="${reward.price}">
-                    <g:if test="${reward.id!=1 }">
+                <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
+                    <div class="i-perk list-group-item">
+                        <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                         <div class="tile-goal-show">
                             <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="perk-amount-fund">${price}</span>
                         </div>
-                    </g:if>
-                    <g:if test="${reward.id==1 }">
-                    	<h4 class="perk-title-fund">I just want to help.</h4><br>
-                    	<p class="perk-desc-fund"></p>
-                    </g:if>
-                    <g:else>
-                    	 <h4 class="perk-title-fund">${reward.title}</h4>
-                    	 <p class="perk-desc-fund">${reward.description}</p>
-                    </g:else>
-                    <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perksupporter">SUPPORTERS</span>
-                </a>
+                        <h4 class="perk-title-fund">${reward.title}</h4>
+                        <p class="perk-desc-fund">${reward.description}</p>
+                        <p><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
+                        <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perksupporter">SUPPORTERS</span>
+                    </div>
+                </g:if>
+                <g:else>
+                    <a href="#" class="list-group-item <% if(perk == reward){%> active <%}%>" id="${reward.id}" data-rewardprice="${reward.price}">
+                        <g:if test="${reward.id!=1 }">
+                            <div class="tile-goal-show">
+                                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="perk-amount-fund">${price}</span>
+                            </div>
+                        </g:if>
+                        <g:if test="${reward.id==1 }">
+                            <h4 class="perk-title-fund">I just want to help.</h4><br>
+                            <p class="perk-desc-fund"></p>
+                        </g:if>
+                        <g:else>
+                            <h4 class="perk-title-fund">${reward.title}</h4>
+                            <p class="perk-desc-fund">${reward.description}</p>
+                            <p><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
+                        </g:else>
+                        <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perksupporter">SUPPORTERS</span>
+                    </a>
+                </g:else>
             </g:each>
         </div>
     </div>

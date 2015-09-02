@@ -3,6 +3,9 @@
 <%
 	def projectId = project.id
 	def backers = contributionService.getBackersForProjectByReward(project, reward);
+	def totalNumberOfReward = reward.numberAvailable
+	def availableReward = totalNumberOfReward - backers;
+	
 %>
 <div class="panel panel-primary reward-tile managcampaign-rewardtile">
     <div class="panel-heading">
@@ -19,6 +22,14 @@
 		        <p>${raw(reward.description)}</p>
 		    </g:if>
 		</div>
+        <g:if test="${reward.id !=1 }">
+            <span id="perkNumberAvailable"><b>Number available :</b> ${availableReward}</span>
+        </g:if>
+        <g:else>
+            <g:if test="${project.draft}">
+            <div id="rewardTileSpace"></div>
+            </g:if>
+        </g:else>
 		<g:if test="${project.draft}">
 			<g:if test="${reward.id != 1}">
 				<g:form controller="project" action="deletecustomrewards" id="${reward.id}" params="['projectId': projectId]"  method="post">
@@ -45,7 +56,6 @@
                 <i class="glyphicon glyphicon-edit"></i>
             </button>
         </g:else>
-
 	</div>
 	<div class="panel-footer reward-footer">
 		<% def price = reward.price.round(); %>
@@ -100,7 +110,7 @@
                             <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 editshipping-margin"><input type="checkbox" class="editShippingInfo" name="address" value="true" id="mailaddcheckbox" <g:if test="${rewarShipping.address}">checked="checked"</g:if> >Mailing address</label>
                             <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 editshipping-margin"><input type="checkbox" class="editShippingInfo" name="email" value="true" id="emailcheckbox" <g:if test="${rewarShipping.email}">checked="checked"</g:if>>Email address</label>
                             <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 editshipping-margin"><input type="checkbox" class="editShippingInfo" name="twitter" value="true" id="twittercheckbox" <g:if test="${rewarShipping.twitter}">checked="checked"</g:if>>Twitter handle</label>
-                            <input type="tex" class="editShippingInfo col-lg-3 col-xs-6 col-md-3 col-sm-4 cutom-perks-border form-control" name="custom" value="${rewarShipping.custom}" id="custombox" placeholder="Custom"/>
+                            <input type="text" class="editShippingInfo col-lg-3 col-xs-6 col-md-3 col-sm-4 cutom-perks-border form-control" name="custom" value="${rewarShipping.custom}" id="custombox" placeholder="Custom"/>
                         </div>
                         <div class="editShippingError"></div>
                         </g:if>

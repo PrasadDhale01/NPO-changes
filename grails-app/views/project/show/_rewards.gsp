@@ -25,7 +25,7 @@
             <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
                 <div class="redirectCampaignOnPerk i-perk">
                     <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
-                        <p class="soldOutRewards"><span id="sold-out-text">Sold Out</span></p>
+                        <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                         <div class="rewardsection-row">
                             <div class="rewardBottomBorder">
                                 <div class="tile-goal-show">
@@ -68,7 +68,7 @@
             <g:else>
                 <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
                     <div class="rewardsection-row i-perk">
-                        <p class="soldOutRewards"><span id="sold-out-text">Sold Out</span></p>
+                        <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                         <div class="rewardBottomBorder">
                             <div class="tile-goal-show">
                                 <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
@@ -110,7 +110,7 @@
         <g:else>
             <div class="rewardsection-row i-perk">
                 <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
-                    <p class="soldOutRewards"><span id="sold-out-text">Sold Out</span></p>
+                    <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                 </g:if>
                 <div class="rewardBottomBorder">
                     <g:if test="${reward.id==1 }">

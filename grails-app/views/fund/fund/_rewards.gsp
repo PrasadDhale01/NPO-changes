@@ -23,7 +23,7 @@
                 <br>
                 <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
                     <div class="i-perk list-group-item">
-                        <p class="soldOutRewards"><span id="sold-out-text">Sold Out</span></p>
+                        <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                         <div class="tile-goal-show">
                             <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="perk-amount-fund">${price}</span>
                         </div>

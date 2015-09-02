@@ -1,6 +1,3 @@
-<g:set var="userService" bean="userService" />
-<g:set var="contributionService" bean="contributionService"/>
-<g:set var="projectService" bean="projectService"/>
 <g:set var="rewardService" bean="rewardService"/>
 <% 
     def iteratorCount = 1
@@ -958,15 +955,6 @@
              }
          }
          
-         var needToConfirm = true;
-    window.onbeforeunload = confirmExit;
-    function confirmExit()
-    {
-        if(needToConfirm){
-        	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
-        }
-    }
-
     </script>
 </body>
 </html>

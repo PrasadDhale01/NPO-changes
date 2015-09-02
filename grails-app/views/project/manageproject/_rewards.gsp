@@ -1,7 +1,4 @@
 <%@ page import="java.text.SimpleDateFormat" %>
-<g:set var="contributionService" bean="contributionService"/>
-<g:set var="projectService" bean="projectService"/>
-<g:set var="rewardService" bean="rewardService"/>
     
 <div class="row">
     <div class="col-xs-12">

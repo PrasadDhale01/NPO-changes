@@ -112,7 +112,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <div class="input-group col-md-12">
-                                                    <input class="form-control" type="text" placeholder="Email" name="email" value="${project.payuEmail}">
+                                                    <input class="form-control" type="text" placeholder="Email" name="email" value="${user.email}">
                                                 </div>
                                             </div>
                                         </g:else>

@@ -2846,7 +2846,7 @@ class ProjectService {
         def user = User.get(params.userId)
         def reward = Reward.get(params.rewardId)
 
-        User fundraiser = User.findByEmail(params.fr)
+        User fundraiser = User.findByUsername(params.fr)
         def anonymous = params.anonymous
         def address = getAddress(params, currentEnv)
         if (user == null){

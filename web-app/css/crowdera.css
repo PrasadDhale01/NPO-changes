@@ -952,7 +952,9 @@ a {
 	    padding-right: 8px !important; 
 	    font-size: 17px !important;
 	    height: 96px !important;
-		position: static !important;
+    }
+    .startsection {
+        height: 80px !important;
     }
 	div.cr-story-flx {
         display: inline;
@@ -1497,6 +1499,9 @@ a {
 @media only screen and (min-width:768px) and (max-width: 1024px) {
 	.tile-goal .fa-inr {
         font-size: 15px !important;
+    }
+    .perk-padding {
+         padding-top: 3%;
     }
     img.cr-payu-money {
         padding-left: 85px;
@@ -5117,6 +5122,10 @@ textarea.form-control {
 /*     ul.nav.navbar-nav.nav-icon-bar { */
 /*         width: 21% !important; */
 /*     } */
+    .perk-padding {
+        padding-top: 7%;
+    }
+
     ul.nav-icon-bar {
         padding-left: 6px !important;
     }

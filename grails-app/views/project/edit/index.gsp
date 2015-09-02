@@ -606,6 +606,7 @@
                         <g:if test="${rewardItrCount > iteratorCount}">
                         <div class="col-sm-12 perk-css editDeleteReward" id="editDeleteReward${reward.rewardCount}">
                             <div class="col-sm-12 perk-create-styls edit-top-gsp" align="right">
+                                <span class="perkSaveMessage" id="perkSaveMessage${reward.rewardCount}">Perk Saved</span>
                                 <div class="btn btn-circle perks-created-remove intutive-glyphicon editreward" id="editreward${reward.rewardCount}" value="${reward.rewardCount}">
                                     <i class="glyphicon glyphicon-floppy-save"></i>
                                 </div>
@@ -677,6 +678,7 @@
                 <div class="row">
                     <div class="col-sm-12 perk-css" id="updatereward">
                         <div class="col-sm-12 perk-create-styls" align="right">
+                            <span class="perkSaveMessage" id="perkSaveMessage">Perk Saved</span>
                             <div class="btn intutive-glyphicon btn-circle perks-css-create" id="savereward" value="${lastrewardCount}">
                                 <i class="glyphicon glyphicon-floppy-save"></i>
                             </div>

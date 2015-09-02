@@ -348,10 +348,10 @@ a.customer-support-a {
 	padding-right: 32px !important;
 }
 .tile-goal .fa-inr {
-    font-size: 20px !important;
+    font-size: 16px !important;
 }
 .show-contribution-amt-tile .fa-inr{
-    font-size: large !important;
+    font-size: 16px !important;
 }
 .teamtile .fa-inr {
     font-size: large !important;
@@ -658,10 +658,13 @@ div.image-popover .popover{
     height: 54px;
     width: 225px;
 }
-.termsOfUseCheckboxOnCreatePage .col-md-8, .termsOfUseCheckboxOnCreatePage .col-sm-8 {
-    padding-left: 35px;
-}
 div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:active {
 	background-color: #01bbd3;
 	color : white;
+}
+
+.perkSaveMessage{
+	display:none;
+	padding-right: 5%;
+	color : #01bbd3;
 }

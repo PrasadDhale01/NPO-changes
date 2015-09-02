@@ -17,10 +17,12 @@
 %>
 <div class="navbar navbar-default navbar-fixed-top header-section home-header-section" role="navigation">
     <div class="header-container">
-		<div class="info-banner">
-			Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a>
-			<a href="#" class="banner-close">Close</a>
-		</div>
+		<g:if test="${currentEnv == 'test' || currentEnv== 'staging' || currentEnv=='production' || currentEnv== 'development'}">
+			<div class="info-banner">
+				Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a>
+				<a href="#" class="banner-close">Close</a>
+			</div>
+		</g:if>
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#TW-navbar-collapse" id="hamburger-toggle">
                 <span class="sr-only">Toggle navigation</span>
@@ -52,8 +54,8 @@
                         </span>
                     </form>
                 </li>
-                <li class="discover"><a href="${resource(dir: '/campaigns')}" class="nav-text2 hm-back-width hed-font-sizes"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/discover.png" alt="discover">&nbsp;&nbsp;&nbsp;&nbsp;Discover</a></li>
-                <li class="learn"><a href="${resource(dir: '/howitworks')}" class="nav-text3 hm-back-width hed-font-sizes"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/learn-icon.png" alt="learn">&nbsp;&nbsp;&nbsp;&nbsp;Learn</a></li>
+                <li class="discover"><a href="${resource(dir: '/campaigns')}" class="nav-text2 hm-back-width hed-font-sizes"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/icon-discover-new.png" alt="discover">&nbsp;&nbsp;&nbsp;&nbsp;Discover</a></li>
+                <li class="learn"><a href="${resource(dir: '/howitworks')}" class="nav-text3 hm-back-width hed-font-sizes"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/learn-icon-dropdowns.png" alt="learn">&nbsp;&nbsp;&nbsp;&nbsp;Learn</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right nav-create-button">
                 <li class="hidden-xs">
@@ -63,7 +65,7 @@
                     </g:link> 
                 </li>
                 <li class="hidden-lg hidden-md hidden-sm hed-font-sizes">
-                    <g:link controller="project" action="create" class="nav-item-1"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/create.png" alt="create">&nbsp;&nbsp;&nbsp;&nbsp;Create</g:link>
+                    <g:link controller="project" action="create" class="nav-item-1"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" alt="create">&nbsp;&nbsp;&nbsp;&nbsp;Create</g:link>
                 </li>
             </ul>
             
@@ -76,8 +78,8 @@
                             </a>
                         </li>
                     </g:if>
-                    <li><g:link controller="login" action="auth" class="nav-item-2">Login</g:link></li>
-                    <li><g:link controller="login" action="register" class="nav-item-3">Sign up</g:link></li>
+                    <li><g:link controller="login" action="auth" class="nav-item-2"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/login-reg-dropdowns.png" alt="login">&nbsp;&nbsp;&nbsp;&nbsp;Login</g:link></li>
+                    <li><g:link controller="login" action="register" class="nav-item-3"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/sign-in-icon-register-dropsowns.png" alt="signup">&nbsp;&nbsp;&nbsp;&nbsp;Sign up</g:link></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img">
@@ -149,9 +151,3 @@
         </div>
     </div>
 </div>
-<script src="/js/main.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="/js/autohideheader/jquery.bootstrap-autohidingnavbar.min.js"></script>
-<script>
-	$(".navbar-fixed-top").autoHidingNavbar();
-</script> 

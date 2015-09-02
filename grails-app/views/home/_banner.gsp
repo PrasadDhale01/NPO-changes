@@ -11,7 +11,7 @@
 		<div class="row testimonial-container">
 			<div class="header-testimonial">
 				<div  class="left-inverted-comma">
-					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Left.png">
+					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Left.png" alt="''">
 				</div>
 				<div class="text-center TW-testimonial-width">
 				    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
@@ -28,16 +28,16 @@
 				</g:if>
 				<g:else>
 				    <div class="right-inverted-comma">
-					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png">
+					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png" alt="''">
 				    </div>
 				</g:else>
 			</div>
 			<span class="testimonial-name pull-right">
 			    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-			        <img src="//s3.amazonaws.com/crowdera/assets/sandeep-Nath-Testimonial-Image.png"><b class="hm-testimonial-font">- Sandeep Nath, Bollywood Lyricist & Writer</b>
+			        <img src="//s3.amazonaws.com/crowdera/assets/sandeep-Nath-Testimonial-Image.png" alt="testimonial"><b class="hm-testimonial-font">- Sandeep Nath, Bollywood Lyricist & Writer</b>
 			    </g:if>
 			    <g:else>
-			        <img src="//s3.amazonaws.com/crowdera/assets/testimonial-lifevest-icon.png"><b>- Orly Wahba, Founder of Life Vest Inside</b>
+			        <img src="//s3.amazonaws.com/crowdera/assets/testimonial-lifevest-icon.png" alt="testimonial"><b>- Orly Wahba, Founder of Life Vest Inside</b>
 			    </g:else>
 		    </span>
 		</div>

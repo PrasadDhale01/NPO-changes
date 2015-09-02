@@ -694,6 +694,53 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    .tile-goal .fa-inr {
+        font-size: 15px !important;
+    }
+	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	   width: 66.1% !important;
+	   float:left;
+	}
+	.bootstrap-select.card-number-width > .btn {
+		padding-right: 25px;
+		width: 110%;
+	}
+	.bootstrap-select.card-number-width.btn-group .dropdown-menu {
+	   box-sizing: border-box;
+	   min-width: 108%;
+	   z-index: 2000;
+	}
+	.leftcard-column .form-control{ 
+	   float: left;
+	   height: 36px;
+	   width:89%;
+	}
+	.leftcard-column-one .form-control{ 
+		float: left;
+		height: 36px;
+		width: 87.3% !important;
+	}
+	.TW-termsAndPolicy_cr{
+		float:left;
+		font-size:13px;
+	}
+    .left-addon input {
+        padding-left: 34px !important;
+    }
+    li.perks-grid {
+        width: 50%;
+    }
+    input.cutom-perks-border {
+        height: 41px;
+        top: 8px;
+        width: 118px;
+    }
+	input.search-box-xs {
+        width: 182px !important;
+    }
+    img.cr-first-giving {
+        padding-left: 16px;
+    }
     .nav.navbar-nav.navbar-right.navbar-right-logged-in {
         margin-left: -21px !important;
     }
@@ -905,7 +952,9 @@ a {
 	    padding-right: 8px !important; 
 	    font-size: 17px !important;
 	    height: 96px !important;
-		position: static !important;
+    }
+    .startsection {
+        height: 80px !important;
     }
 	div.cr-story-flx {
         display: inline;
@@ -1212,25 +1261,25 @@ a {
     	   font-size: 10px;
     	   line-height: 5px;
     	   margin-bottom: 0;
-    	   margin-top: 10px;
+    	   margin-top: 5px;
     	   padding-left: 17px;
     	   padding-right: 17px;
 	}
 	span.tile-day-num.show-contribution-amt-tile  {
     	   color: #000 !important;
-    	   font-size: 19px !important;
+    	   font-size: 14px !important;
     	   font-weight: bold;
 	}
 	.tile-goal.show-contribution-amt-tile {
-    	   font-size: 19px !important;
+    	   font-size: 15px !important;
 	}
 	span.tile-day-num {
     	   color: #000 !important;
-    	   font-size: 22px !important;
+    	   font-size: 21px !important;
     	   font-weight: bold;
 	}
 	.lead.show-contribution-amt-tile {
-    	   font-size: 19px !important;
+    	   font-size: 15px !important;
     	   font-weight: bold !important;
 	}
 	.lead{
@@ -1238,12 +1287,12 @@ a {
     	   font-weight: bold !important;
 	}
 	.show-tile-text-size {
-    	  font-size: 9px !important;
+    	  font-size: 7px !important;
     	  line-height: 5px;
     	  margin-bottom: 0;
     	  margin-top: 10px;
-    	  padding-left: 22px;
-    	  padding-right: 22px;
+    	  padding-left: 22px !important;
+    	  padding-right: 22px !important;
 	}
 	.footer-input-align .text-email {
     	  width: 130% !important;
@@ -1350,8 +1399,8 @@ a {
         width: 100%;
     }
     input.paypal-create {
-        margin-left: -3% !important;
-        width: 103%;
+        margin-left: -7% !important;
+        width: 107%;
     }
     .form-group.col-sm-6.col-xs-11.rewardPriceClass {
         margin-left: 16px;
@@ -1404,6 +1453,29 @@ a {
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	   width: 71.1% !important;
+	   float:left;
+	}
+	.bootstrap-select.card-number-width > .btn {
+		padding-right: 25px;
+		width: 103%;
+	}
+	.bootstrap-select.card-number-width.btn-group .dropdown-menu {
+	   box-sizing: border-box;
+	   min-width: 101%;
+	   z-index: 2000;
+	}
+	.leftcard-column .form-control{ 
+	   float: left;
+	   height: 36px;
+	   width:91%;
+	}
+	.leftcard-column-one .form-control{ 
+		float: left;
+		height: 36px;
+		width: 88.3% !important;
+	}
 	.TW-editUpdate-redactor .redactor-toolbar{
 		padding-left: 190px !important;
 	}
@@ -1425,6 +1497,19 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.tile-goal .fa-inr {
+        font-size: 15px !important;
+    }
+    .perk-padding {
+         padding-top: 3%;
+    }
+    img.cr-payu-money {
+        padding-left: 85px;
+        top: 6px;
+    }
+    img.cr-first-giving {
+        padding-left: 88px;
+    }
     li.discover{
         width: 55px;      
     }
@@ -1435,7 +1520,7 @@ a {
     }
     div.cr-tablet-space{
         display: block;
-        left: -106px;	   
+        left: -54px;	   
     }
     a.cr-tablet-orgcharity{
         width: 160px;
@@ -1897,25 +1982,25 @@ a {
     	  font-size: 10px;
     	  line-height: 5px;
     	  margin-bottom: 0;
-    	  margin-top: 10px;
+    	  margin-top: 5px;
     	  padding-left: 17px;
     	  padding-right: 17px;
 	}
 	span.tile-day-num.show-contribution-amt-tile  {
     	  color: #000 !important;
-    	  font-size: 19px !important;
+    	  font-size: 14px !important;
     	  font-weight: bold;
 	}
 	.tile-goal.show-contribution-amt-tile {
-    	  font-size: 19px !important;
+    	  font-size: 15px !important;
 	}
 	span.tile-day-num {
     	  color: #000 !important;
-    	  font-size: 22px !important;
+    	  font-size: 18px !important;
     	  font-weight: bold;
 	}
 	.lead.show-contribution-amt-tile {
-    	  font-size: 19px !important;
+    	  font-size: 15px !important;
     	  font-weight: bold !important;
 	}
 	.lead{
@@ -1923,12 +2008,12 @@ a {
     	  font-weight: bold !important;
 	}
 	.show-tile-text-size {
-    	  font-size: 9px !important;
+    	  font-size: 8px !important;
     	  line-height: 5px;
     	  margin-bottom: 0;
     	  margin-top: 10px;
-    	  padding-left: 22px;
-    	  padding-right: 22px;
+    	  padding-left: 21px !important;
+    	  padding-right: 21px !important;
 	}
 	.footer-newsletter .help-block {
     	color: #f04124;
@@ -2115,6 +2200,14 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    .tile-goal .fa-inr {
+        font-size: 15px !important;
+    }
+	.leftcard-column .form-control{ 
+	   float: left;
+	   height: 36px;
+	   width:90%;
+	}
 	li.learn {
         top: -1.1px;
     }
@@ -2267,7 +2360,7 @@ a {
 	}
 	span.tile-day-num.show-contribution-amt-tile {
 		color: #000 !important;
-		font-size: 19px !important;
+		font-size: 17px !important;
 		font-weight: bold;
 	}
 	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
@@ -2279,7 +2372,7 @@ a {
 		padding-right: 17px !important;
 	}
 	.show-tile-text-size.contribution-tile {
-		font-size: 10px !important;
+		font-size: 9px !important;
 		line-height: 5px;
 		margin-bottom: 0;
 		margin-top: 10px;
@@ -2434,7 +2527,7 @@ a {
     }
 
     li.search-mob {
-        margin-left: 42px;
+        margin-left: 14px;
     }
     
     .nav-item-1{
@@ -2442,11 +2535,13 @@ a {
     }
 
     .nav-item-2{
-        margin-left: 38px;
+        font-size: 13px;
+        margin-left: 15px;
     }
 
     .nav-item-3{
-        margin-left: 38px;
+        font-size: 13px;
+        margin-left: 15px;
     }
     
     .navbar {
@@ -2468,6 +2563,41 @@ a {
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
+	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	   width: 78.1% !important;
+	   float:left;
+	}
+	.leftcard-column .form-control{ 
+	   float: left;
+	   height: 36px;
+	   width:92%;
+	}
+	.leftcard-column-one{
+		width:47.1% !important;
+		float:left;
+	}
+	.leftcard-column-one .form-control{ 
+		float: left;
+		height: 36px;
+		width: 87.9%;
+	}
+	.bootstrap-select.card-number-width > .btn {
+		padding-right: 25px;
+		width: 111% !important;
+	}
+	.bootstrap-select.card-number-width.btn-group .dropdown-menu {
+	   box-sizing: border-box;
+	   min-width: 109%;
+	   z-index: 2000;
+	}
+	.leftcard-column-two{
+	   display: flex;
+	   width: 27% !important;
+	}
+	.leftcard-column-three {
+		display: flex;
+		width: 25% !important;
+	}
     .sorts-dropdown{
        left: 19%;
     }
@@ -2488,8 +2618,57 @@ a {
 	text-align: center;
     }
 }
-
+@media only screen and (min-width: 1921px) and (max-width: 2560px){
+	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	   width: 78.1% !important;
+	   float:left;
+	}
+	.leftcard-column .form-control{ 
+		float: left;
+		height: 36px;
+		width:92%;
+	}
+	.leftcard-column-one .form-control{ 
+		float: left;
+		height: 36px;
+		width: 91.2%;
+	}
+	.bootstrap-select.card-number-width > .btn {
+		padding-right: 25px;
+		width: 113% !important;
+	}
+	.bootstrap-select.card-number-width.btn-group .dropdown-menu {
+	   box-sizing: border-box;
+	   min-width: 113%;
+	   z-index: 2000;
+	}
+}
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	   width: 69.1% !important;
+	   float:left;
+	}
+	.leftcard-column-one{
+		width:55.5% !important;
+		float:left;
+	}
+	.leftcard-column-one .form-control {
+	   width: 87.6% !important;
+	}
+	.leftcard-column .form-control{ 
+	   float: left;
+	   height: 36px;
+	   width:90%;
+	}
+	.bootstrap-select.card-number-width > .btn {
+		padding-right: 25px;
+		width: 108%;
+	}
+	.bootstrap-select.card-number-width.btn-group .dropdown-menu {
+	   box-sizing: border-box;
+	   min-width: 106%;
+	   z-index: 2000;
+	}
 	.TW-editUpdate-redactor .redactor-toolbar{
 		padding-left:195px !important;
 	}
@@ -2543,7 +2722,26 @@ a {
     }
 }
 
+@media only screen and (min-width:1200px) and (max-width: 1280px){
+    .show-contribution-amt-tile.lead {
+        font-size: 17px !important;
+        font-weight: bold !important;
+    }
+}
+
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+	   width: 69.1% !important;
+	   float:left;
+	}
+	.leftcard-column .form-control{ 
+	   float: left;
+	   height: 36px;
+	   width:90%;
+	}
+	.leftcard-column-one .form-control {
+	   width: 85.2% !important;
+	}
 	.TW-editUpdate-redactor .redactor-toolbar{
 		padding-left:385px !important;
 	}
@@ -2592,9 +2790,9 @@ a {
 		font-size: 10px;
 		line-height: 5px;
 		margin-bottom: 0px;
-		margin-top: 11px !important;
-		padding-left: 17px !important;
-		padding-right: 17px !important;
+		margin-top: 8px !important;
+		padding-left: 24px !important;
+		padding-right: 24px !important;
 	}
 	span.tile-day-num {
 		color: #000 !important;
@@ -2603,7 +2801,7 @@ a {
 		padding-left: 3px;
 	}
 	.show-contribution-amt-tile.lead {
-		font-size: 20px !important;
+		font-size: 17px !important;
 		font-weight: bold !important;
 	}
 	.footer-mid-section-menu ul li a {
@@ -2795,6 +2993,25 @@ a {
 
 }    
 @media only screen and (max-width: 640px) {
+	.leftcard-column-two, .leftcard-column-three {
+	   display: flex !important;
+	   width: 100% !important;
+	}
+	.bootstrap-select.card-number-width > .btn {
+		padding-right: 25px;
+		width: 104%;
+	}
+	.bootstrap-select.card-number-width.btn-group .dropdown-menu {
+	   box-sizing: border-box;
+	   min-width: 104.5%;
+	   z-index: 2000;
+	}
+	.leftcard-column .form-control {
+	    width: 86%;
+	}
+	.leftcard-column-one .form-control {
+	   width: 86%;
+	}
     img.videoInfo-img {
         padding-left: 229px !important;
         padding-top:2px  !important;
@@ -2864,7 +3081,7 @@ a {
         padding: 0;
     }
     .tile-goal .fa-inr {
-        font-size: 17px !important;
+        font-size: 14px !important;
     }
     .payu-inr .fa-inr {
         font-size: 18px !important;
@@ -2951,7 +3168,7 @@ ul.unstyled {
     margin-bottom: 10px;
 }
 .form-signin .form-signin-heading.signin{
-	background:url('https://s3.amazonaws.com/crowdera/assets/sign-in.png') center left no-repeat;
+	background:url('https://s3.amazonaws.com/crowdera/assets/sign-in-registers.png') center left no-repeat;
 	padding:15px 0 15px 70px; 
 }
 .form-signin .form-signin-heading.register{
@@ -3511,8 +3728,8 @@ footer .footerbottomsection {
 
 .btn-success {
     color: #ffffff;
-    background-color: #ff784f;
-    border-color: #ff784f;
+    background-color: #01bbd3;
+    border-color: #01bbd3;
     margin-top: -1%;
 }
 
@@ -3720,7 +3937,7 @@ footer .footerbottomsection {
 color: #000 !important;
 }
 .lead {
-    font-size: 24px !important;
+    font-size: 18px !important;
     font-weight: bold !important;
 }
 .daysleft{
@@ -3738,7 +3955,7 @@ color: #000 !important;
 color: #ffffff;
 background-color: #333 !important;
 border-color: #333;
-margin-bottom:5px;
+margin-bottom:10px;
 }
 
 .btn-facebook {
@@ -3822,11 +4039,6 @@ div.tile-min-height{
 	height:36px; 
 	float:left;
 }
-.leftcard-column .form-control{ 
-	width: 92%;
-    float: left;
-    height: 36px;
-}
 .rightcard-column{ 
 	width:30%; 
 	float:left;
@@ -3841,7 +4053,7 @@ div.tile-min-height{
     width: 76% !important;
 }
 
-.leftcard-column-one{width:64%; float:left}
+.leftcard-column-one{width:55%; float:left}
 .leftcard-column-two{width:17.5%; float:left}
 .leftcard-column-three{width:18%; float:left}
 .leftcard-column-one .input-group-addon,.leftcard-column-two .input-group-addon,.leftcard-column-three .input-group-addon{
@@ -3849,13 +4061,8 @@ div.tile-min-height{
 	height:36px; 
 	float:left;
 }
-.leftcard-column-one .form-control{ 
-	width: 91.2%;
-    float: left;
-    height: 36px;
-}
 .leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-    width: 68.1% !important;
+    width: 74.1% ;
     float:left;
 }
 
@@ -4030,22 +4237,14 @@ div.tile-min-height{
 	.leftcard-column {
 	    width: 69%;
 	}
-	.leftcard-column .form-control {
-	    width: 90%;
-	}
 	.rightcard-column {
 	    width: 30%;
 	    display: flex;
 	}
-	.leftcard-column-one {
-	    width: 55%;
-	}
-	.leftcard-column-one .form-control {
-	    width: 86%;
-	}
 	.leftcard-column-two,.leftcard-column-three {
 	    width: 22%;
 	    display: flex;
+	    float:left;
 	}
 	
 	.team-footer ,.button-team-footer {
@@ -4273,24 +4472,10 @@ div.tile-min-height{
 	.leftcard-column {
 	    width: 75%;
 	}
-	.leftcard-column .form-control {
-	    width: 91%;
-	}
 	.rightcard-column {
 	    width: 25%;
 	    display: flex !important;
 	}
-	.leftcard-column-one {
-	    width: 60%;
-	}
-	.leftcard-column-one .form-control {
-	    width: 88%;
-	}
-	.leftcard-column-two, .leftcard-column-three {
-	    width: 20%;
-	    display: flex !important;
-	}
-	
     .nav-pills-manageteam > li + li {
         margin-left: 0px !important;
     }
@@ -4937,6 +5122,10 @@ textarea.form-control {
 /*     ul.nav.navbar-nav.nav-icon-bar { */
 /*         width: 21% !important; */
 /*     } */
+    .perk-padding {
+        padding-top: 7%;
+    }
+
     ul.nav-icon-bar {
         padding-left: 6px !important;
     }
@@ -4984,9 +5173,6 @@ textarea.form-control {
 	.leftcard-column {
 	    width: 70%;
 	}
-	.leftcard-column .form-control {
-	    width: 91.68%;
-	}
 	.rightcard-column {
 	    width: 30%;
 	    display: flex;
@@ -4994,19 +5180,12 @@ textarea.form-control {
 	.rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	    width: 80% !important;
 	}
-	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn), .leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-	    width: 70.3% !important;
-	}
 	.leftcard-column-two, .leftcard-column-three {
 	    width: 20%;
 	    display: flex;
-	    display:-webkit-box; 	/***safari***/
 	}
 	.leftcard-column-one {
 	    width: 60%;
-	}
-	.leftcard-column-one .form-control {
-	    width: 88%;
 	}
 	.btn-group.btn-group-sm.btnOrgBgColor {
 		margin-left: -18px;
@@ -5253,9 +5432,6 @@ textarea.form-control {
 }   
 
 @media only screen and (max-width: 745px){
-	.leftcard-column .form-control {
-	    width: 90%;
-	}
 	.tbSecondAdmin {
 		padding-left: 0px;
 		width: 99% !important;
@@ -5283,7 +5459,7 @@ textarea.form-control {
     .shippingreward > .btn-primary
     {
        margin-left: 0px !important;
-       margin-right: 31px !important;
+/*        margin-right: 31px !important; */
        margin-top: 8px !important;
        width: 116px !important;
        padding-left: 16px !important;
@@ -5398,18 +5574,12 @@ textarea.form-control {
     .leftcard-column {
 	    width: 64%;
 	}
-	.leftcard-column .form-control {
-	    width: 86%;
-	}
 	.rightcard-column {
 	    width: 35%;
 	    display: flex !important;
 	}
 	.leftcard-column-one {
-	    width: 49%;
-	}
-	.leftcard-column-one .form-control {
-	    width: 83%;
+	    width: 100%;
 	}
 	.leftcard-column-two, .leftcard-column-three {
 	    width: 25%;
@@ -5418,6 +5588,9 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 481px) and (max-width:600px){
+	li.perks-grid {
+        width: 50%;
+    }
 	.contributions-panel{
 	    padding-left: 26%;
 	}
@@ -5430,6 +5603,9 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 601px) and (max-width:767px){
+	li.perks-grid {
+        width: 50%;
+    }
 	div.cr1-mob-tb{
         padding-left: 1px;
         padding-right: 9px;
@@ -5651,9 +5827,6 @@ textarea.form-control {
 	    float: none;
 	    margin-bottom:10px;
 	}
-	.leftcard-column .form-control {
-	    width: 83.9%;
-	}
 	.rightcard-column {
 	    width: 100%;
 	    float:none;
@@ -5678,9 +5851,6 @@ textarea.form-control {
 	.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	    width: 84% !important;
 	    float: left;
-	}
-	.leftcard-column-one .form-control {
-	    width: 83.4%;
 	}
 	.button-team-show{
 		padding: 0px !important;
@@ -5958,7 +6128,21 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 375px) {
-	
+	.leftcard-column .form-control {
+	    width: 83%;
+	}
+	.leftcard-column-one .form-control {
+	   width: 83%;
+	}
+	.bootstrap-select.card-number-width > .btn {
+		padding-right: 25px;
+		width: 100%;
+	}
+	.bootstrap-select.card-number-width.btn-group .dropdown-menu {
+	   box-sizing: border-box;
+	   min-width: 100%;
+	   z-index: 2000;
+	}
 	.footer_links a {
         color: #cccccc;
         font-size: 11px !important;
@@ -6256,6 +6440,10 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
+	li.perk-grid-paddings{
+        padding-left: 40px;
+        padding-right: 40px;
+	}
 	div.pan {
 		max-width: 225px;
 		height: 116px;
@@ -6283,6 +6471,24 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.show-tile-text-size{
+        margin-top: 6px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+	.TW-termsAndPolicy_cr{
+		float:left;
+		font-size:13px;
+	}
+    .left-addon input {
+        padding-left: 30px;
+    }
+    input.search-box-xs {
+        width: 182px !important;
+    }
+    img.cr-first-giving {
+        padding-left: 16px;
+    }
     p.campaignStory.justify > iframe {
         height: 230px !important;
         margin-left: 0;
@@ -6373,8 +6579,12 @@ textarea.form-control {
 		color: #01bbd3;
 		font-size: 21px;
 		height: 96px !important;
-		position: static !important;
+		position:fixed;
 	}
+	.startsection {
+        height: 80px !important;
+    }
+	
 	div.edit-tool-icon img{
 	    margin-left: -29px;
 	}
@@ -6874,37 +7084,37 @@ textarea.form-control {
     	   font-size: 10px;
     	   line-height: 5px;
     	   margin-bottom: 0;
-    	   margin-top: 10px;
+    	   margin-top: 5px;
     	   padding-left: 17px;
     	   padding-right: 17px;
 	}
 	span.tile-day-num.show-contribution-amt-tile  {
     	   color: #000 !important;
-    	   font-size: 19px !important;
+    	   font-size: 16px !important;
     	   font-weight: bold;
 	}
 	.tile-goal.show-contribution-amt-tile {
-    	   font-size: 19px !important;
+    	   font-size: 15px !important;
 	}
 	span.tile-day-num {
     	   color: #000 !important;
-    	   font-size: 20px !important;
+    	   font-size: 18px !important;
     	   font-weight: bold;
 	}
 	.lead.show-contribution-amt-tile {
-    	  font-size: 19px !important;
+    	  font-size: 15px !important;
     	  font-weight: bold !important;
 	}
 	.lead{
-	  font-size: 20px !important;
+	  font-size: 15px !important;
     	  font-weight: bold !important;
 	}
 	.tile-goal{
-	  font-size: 20px !important;
+	  font-size: 16px !important;
     	  font-weight:normal !important;
 	}
 	.show-tile-text-size {
-    	  font-size: 9px !important;
+    	  font-size: 8px !important;
     	  line-height: 5px;
     	  margin-bottom: 0;
     	  margin-top: 10px;
@@ -7196,26 +7406,18 @@ textarea.form-control {
 
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
-	.leftcard-column {
-	    width: 100% !important;
-	    float: none;
-	    margin-bottom:10px;
-	}
-	.leftcard-column .form-control {
-	    width: 83%;
-	}
 	.rightcard-column {
 	    width: 100%;
 	    float:none;
 	}
+	.leftcard-column {
+		float: none;
+		margin-bottom: 10px;
+		width: 100% !important;
+	}
 	.rightcard-column .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	    width: 84% !important;
 	    float: left;
-	}
-	.leftcard-column-one,.leftcard-column-two,.leftcard-column-three{
-	   float:none;
-	   width:100%;
-	   
 	}
 	.leftcard-column-one
 	{
@@ -8321,22 +8523,22 @@ p.tile-text-size {
     font-size: 10px;
     line-height: 5px;
     margin-bottom: 0;
-    margin-top: 10px;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-top: 8px;
+    padding-left: 24px;
+    padding-right: 24px;
 }
 .show-tile-text-size.contribution-tile {
     font-size: 10px;
     line-height: 5px;
     margin-bottom: 0;
-    margin-top: 10px;
-    padding-left: 29px;
-    padding-right: 29px;
+    margin-top: 8px;
+    padding-left: 32px;
+    padding-right: 32px;
 }
 span.tile-day-num{
     color: #000 !important;
     font-weight:bold;
-    font-size:24px;
+    font-size:17px;
     padding-left: 3px;
 }
 .manage-tiles {
@@ -8485,7 +8687,7 @@ ul.menu{
 	width:1000px;
 }
 .tile-goal {
-    font-size:24px;
+    font-size:19.4px;
 }
 .amount-alignment{
 	padding:0px !important;
@@ -8950,13 +9152,13 @@ header {
 }
 header.cr-tabs-link {
 	color: #01bbd3;
-	height:120px;
+	height:120px;;
 	padding-bottom: 30px;
     padding-top: 30px;
 	padding-left: 300px;
     padding-right: 300px;
 	position:fixed;
-	top:-10px;
+	top:50px;
 	font-size: 21px;
 	z-index:500;
 }
@@ -9114,12 +9316,12 @@ img.cr-ineed-icons {
 }
 .cr-bg-Launch-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/launch-Button.jpg) no-repeat !important;
-	height: 66px;
+	height: 62px;
     width: 251px;
 }
 
 .cr-bg-edit-btn{
-	background: url(https://s3.amazonaws.com/crowdera/assets/save-button.jpg) no-repeat !important;
+	background: url(https://s3.amazonaws.com/crowdera/assets/icons-save-edit.jpg) no-repeat !important;
 	height: 66px;
     width: 251px;
 }
@@ -9716,4 +9918,51 @@ li.learn {
     text-align: center;
     width: 100%;
     margin-top: -41px;
+}
+.cr-first-giving{
+    padding-left: 190px;	
+}
+.cutom-perks-border {
+    height: 41px;
+    width: 118px;
+}
+.startsection {
+    height: 65px;
+}
+
+div#rewardTileSpace {
+    height:20px;
+}
+
+span#perkNumberAvailable{
+    font-size:small;
+}
+
+p.soldOutRewards{
+    z-index: 80;
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    bottom: -1px;
+    right: -1px;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(245,245,245,0.7);
+    color: #2a2a2a;
+}
+
+span#sold-out-text{
+    text-align: center;
+    font-family: "Open Sans";
+    font-size: 24px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 50%;
+    margin-top: -12px;
+}
+
+.i-perk {
+    position: relative;
 }

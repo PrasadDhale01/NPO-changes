@@ -172,6 +172,15 @@ $(function() {
             checkBox2:{
               required: true
             },
+            facebookUrl:{
+            	isFacebookUrl: true
+            },
+            twitterUrl:{
+            	isTwitterUrl: true
+            },
+            linkedinUrl:{
+            	isLinkedInUrl: true
+            },
             amount: {
                 required: true,
                 number: true,
@@ -217,6 +226,48 @@ $(function() {
         
         //ignore: []
     });
+    
+    $.validator.addMethod('isFacebookUrl', function (value, element) {
+        if(value && value.length !=0){
+           var p = /^https?:\/\/(?:www.)?facebook.com\/?.*$/;
+           var facebookmatch = value.match(p);
+           var match
+           if (facebookmatch)
+               match = facebookmatch;
+           else 
+               match = null;
+           return (match) ? true : false;
+        }
+        return true;
+     }, "Please enter valid Facebook url");
+    
+    $.validator.addMethod('isTwitterUrl', function (value, element) {
+        if(value && value.length !=0){
+           var p = /^https?:\/\/(?:www.)?twitter.com\/?.*$/;
+           var twittermatch = value.match(p);
+           var match
+           if (twittermatch)
+               match = twittermatch;
+           else 
+               match = null;
+           return (match) ? true : false;
+        }
+        return true;
+     }, "Please enter valid Twitter url");
+    
+    $.validator.addMethod('isLinkedInUrl', function (value, element) {
+        if(value && value.length !=0){
+           var p = /^https?:\/\/(?:www.)?linkedin.com\/?.*$/;
+           var linkedinmatch = value.match(p);
+           var match
+           if (linkedinmatch)
+               match = linkedinmatch;
+           else 
+               match = null;
+           return (match) ? true : false;
+        }
+        return true;
+     }, "Please enter valid LinkedIn url");
     
     $('.createsubmitbutton').click(function(event) {
         if(validator.form()){
@@ -342,10 +393,22 @@ $(function() {
                 required: true
             });
         }
+    	
+        $('.rewardDescription').each(function () {
+            $(this).rules("add", {
+               required: true,
+            });
+        });
+
+        $('.rewardTitle').each(function () {
+            $(this).rules("add", {
+                required: true,
+            });
+        });
 
     	if (validator.form()) {
             if (!storyEmpty){
-                $('#campaigncreatebtn').attr('disabled','disabled');
+                $('#saveButton, #saveButtonXS').attr('disabled','disabled');
                 $('#campaigncreate').find('form').submit();
             }
     	}
@@ -557,20 +620,20 @@ $(function() {
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
            var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-//           var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
+           var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
            var youtubematch = value.match(p);
-//           var vimeomatch = value.match(vimeo);
+           var vimeomatch = value.match(vimeo);
            var match
            if (youtubematch)
                match = youtubematch;
-//           else if (vimeomatch && vimeomatch[2].length == 9)
-//               match = vimeomatch;
+           else if (vimeomatch && vimeomatch[2].length == 9)
+               match = vimeomatch;
            else 
                match = null;
            return (match) ? true : false;
         }
         return true;
-     }, "Please upload a url of Youtube video");
+     }, "Please upload a url of Youtube/Vimeo video");
      
      $.validator.addMethod('isValidTelephoneNumber', function (value, element) {
      	  
@@ -643,6 +706,9 @@ $(function() {
         $('#addNewRewards').find('.rewardsTemplate').find('.customText').attr('id', 'customcheckbox1');
         $('#addNewRewards').find('.rewardsTemplate').find('.customText').attr('name', 'custom1');
         $('#addNewRewards').find('.rewardNum').attr('value', '1');
+        $('#savereward').attr('value', '1');
+        $('#addNewRewards').find('.rewardsTemplate').find("span.help-block").remove();
+        $('#addNewRewards').find('.rewardsTemplate').find(".form-group").removeClass('has-error');
     	
     	$('#addNewRewards').find('.rewardsTemplate').find('#rewardPrice1').val('');
         $('#addNewRewards').find('.rewardsTemplate').find('#rewardDesc1').val('');
@@ -723,9 +789,9 @@ $(function() {
        });
      
      $('.cr-img-save-icon').hover(function(){
-        	$('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/Save-Icon-White.png");
+        	$('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-white.png");
         	}).mouseleave(function(){
-            $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/Save-Icon-Blue.png");
+            $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-blue.png");
         });
      
      $('#paymentOpt').change(function(){
@@ -774,43 +840,49 @@ $(function() {
         $('#ytVideo').show();
         $('#media').hide();
         $('#media-video').show();
+        var vurl
         if (match[2].length == 11){
-        	var vurl=url.replace("watch?v=", "embed/");
+        	vurl=url.replace("watch?v=", "embed/");
             $('#ytVideo').html('<iframe class="youtubeVideoIframe" src="'+ vurl +'?wmode=transparent"></iframe>');
-        } 
-//        else {
-//        	$('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ url +'></iframe>');
-//        }
+        } else {
+        	vurl = url.replace("https://vimeo.com/", "https://player.vimeo.com/video/");
+        	$('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'></iframe>');
+        }
     }
+
+    $('#videoBox, #videoUrledit').on('click',function(){
+    	$('#addVideo').modal('show');
+    });
+
 	$('#add').on('click',function(){
 		var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
         var url= $('#videoUrl').val().trim();
         var match = (url.match(youtube) || url.match(vimeo));
+        if (validator.element("#videoUrl")){
+        	$('#addVideo').modal('hide');
         if (match && match[2].length == 11) {
-        	var vurl=url.replace("watch?v=", "embed/");
             $('#ytVideo').show();
             $('#media').hide();
             $('#media-video').show();
             autoSave('videoUrl', url);
             $('#addvideoUrl').val(url);
             var vurl=url.replace("watch?v=", "embed/");
-            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src='+ vurl +'?wmode=transparent></iframe>');
-        } 
-//        else if (match && match[2].length == 9){
-//        	$('#ytVideo').show();
-//            $('#media').hide();
-//            $('#media-video').show();
-//            autoSave('videoUrl', url);
-//            $('#addvideoUrl').val(url);
-//            $('#ytVideo').html('<iframe style="width:236%;height:206px; display:block;" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
-//        } 
-        else if($(this)){
+            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
+        } else if (match && match[2].length == 9) {
+        	$('#ytVideo').show();
+            $('#media').hide();
+            $('#media-video').show();
+            autoSave('videoUrl', url);
+            $('#addvideoUrl').val(url);
+            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
+        } else if($(this)) {
         	if(!$('#addvideoUrl').val()) {
                 $('#ytVideo').hide();
                 $('#media').show();
                 $('#media-video').hide();
         	}
+        }
         }
     });
 
@@ -1107,6 +1179,7 @@ $(function() {
         $('#savereward').attr('value',count);
         var str ='<div class="col-sm-12 perk-css perk-padding editDeleteReward" id="editDeleteReward'+updateCount+'">'+
             '<div class="col-sm-12 perk-create-styls perk-top" align="right">'+
+                 '<span class="perkSaveMessage" id="perkSaveMessage'+updateCount+'">Perk Saved</span>'+
                  '<div class="btn btn-circle perks-created-remove intutive-glyphicon editreward" id="editreward'+updateCount+'" value="'+updateCount+'">'+
                      '<i class="glyphicon glyphicon-floppy-save"></i>'+
                  '</div>&nbsp;'+
@@ -1177,20 +1250,31 @@ $(function() {
      });  
     
     $('#removereward').click(function(){
-        if($('#addNewRewards').find('.rewardsTemplate').length > 1) {
-            if (confirm('Are you sure you want to discard this perk?')){
-                removeRewards(count);
+    	var rewardLength = $('#addNewRewards').find('.rewardsTemplate').length
+        if (confirm('Are you sure you want to discard this perk?')){
+            removeRewards(count);
+            if (rewardLength == 1){
+                $("#updatereward").hide();
+                $('#addNewRewards').find('.rewardsTemplate').hide();
+                renameAndemptyRewardFields();
+                $('#noradio').prop('checked', true);
+                $('#yesradio').prop('checked', false);
+            } else {
                 $('#addNewRewards').find('.rewardsTemplate').last().remove();
                 $('#addNewRewards').find('.editDeleteReward:last').remove();
             }
         }
     });
-    
+
     $('#savereward').click(function(){
     	var lastrewardcount = $(this).attr("value");
-        rewardValidationAndSaving(lastrewardcount);
+        var savedStatus = rewardValidationAndSaving(lastrewardcount);
+        if (savedStatus){
+        	$('#perkSaveMessage').show();
+        	$('#perkSaveMessage').fadeOut(3000);
+        }
     });
-    
+
     function rewardValidationAndSaving(rewardCount){
     	$('.rewardDescription').each(function () {
             $(this).rules("add", {
@@ -1240,7 +1324,7 @@ $(function() {
         }
         if($('#rewardPrice'+rewardCount).length == 0){
             return true;
-        } else if((validator.element( "#rewardPrice"+rewardCount)) && (validator.element( "#rewardTitle"+rewardCount)) && (validator.element( "#rewardNumberAvailable"+rewardCount)) && (validator.element( "#rewardDesc"+rewardCount))) {
+        } else if((validator.element("#rewardPrice"+rewardCount)) && (validator.element("#rewardTitle"+rewardCount)) && (validator.element( "#rewardNumberAvailable"+rewardCount)) && (validator.element( "#rewardDesc"+rewardCount))) {
         	var rewardPrice = $('#rewardPrice'+rewardCount).val();
             var rewardTitle = $('#rewardTitle'+rewardCount).val();
             var rewardNumberAvailable = $('#rewardNumberAvailable'+rewardCount).val();
@@ -1333,7 +1417,11 @@ $(function() {
 
         $("form").on("click", ".editreward", function () {
         	var editCount = $(this).attr('value');
-        	rewardValidationAndSaving(editCount);
+        	var savedStatus = rewardValidationAndSaving(editCount);
+        	if (savedStatus){
+            	$('#perkSaveMessage'+editCount).show();
+            	$('#perkSaveMessage'+editCount).fadeOut(3000);
+            }
         });
         
         $("form").on("click", ".deletereward", function () {
@@ -1359,25 +1447,119 @@ $(function() {
             
           });
         
-        var $win = $(window);
-        $win.scroll(function () {
-            if ($win.scrollTop() == 0){
-                $('#start').css('padding-top','25px');
-            	$('#story').css('padding-top','0px');
-            	$('#admins').css('padding-top','0px');
-            	$('#perk').css('padding-top','0px');
-            	$('#payment').css('padding-top','0px');
-            	$('#launch').css('padding-top','0px');
-            }else if ($win.height() + $win.scrollTop()== $(document).height()) {
-                $('#start').css('padding-top','0px');
-            	$('#story').css('padding-top','0px');
-            	$('#admins').css('padding-top','0px');
-            	$('#perk').css('padding-top','0px');
-            	$('#payment').css('padding-top','0px');
-            	$('#launch').css('padding-top','30px');
-            	$('#save').css('padding-top','25px');
-            }
-        });
+//        var $win = $(window);
+//        $win.scroll(function () {
+//            if ($win.scrollTop() == 0){
+//                $('#start').css('padding-top','25px');
+//            	$('#story').css('padding-top','0px');
+//            	$('#admins').css('padding-top','0px');
+//            	$('#perk').css('padding-top','0px');
+//            	$('#payment').css('padding-top','0px');
+//            	$('#launch').css('padding-top','0px');
+//            }else if ($win.height() + $win.scrollTop()== $(document).height()) {
+//                $('#start').css('padding-top','0px');
+//            	$('#story').css('padding-top','0px');
+//            	$('#admins').css('padding-top','0px');
+//            	$('#perk').css('padding-top','0px');
+//            	$('#payment').css('padding-top','0px');
+//            	$('#launch').css('padding-top','30px');
+//            	$('#save').css('padding-top','25px');
+//            }
+//        });
+        
+        $('.cr-img-start-icon').click(function(){
+        	
+        	var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-160
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-story-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-170
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-admin-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-180
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-perk-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-170
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-payment-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-150
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-launch-icon').click(function(){
+    		var target = this.hash,
+                $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-180
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+    	$('.cr-img-save-icon').click(function(){
+    		var target = this.hash,
+            $target = $(target);
+        
+            $('html, body').stop().animate({
+                'scrollTop': $target.offset().top-180
+            }, 90, 'swing', function () {
+            });
+
+            console.log(window.location);
+
+            return false;
+    	});
+        
    });
     
    $('#paypalEmailId').change(function(){
@@ -1591,62 +1773,6 @@ $(function() {
     	}
     });
     
-	$('.cr-img-start-icon').click(function(){
-		$('#start').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#perk').css('padding-top','0px');
-		$('#payment').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-story-icon').click(function(){
-		$('#story').css('padding-top','125px');
-		$('#start').css('padding-top','25px');
-		$('#admins').css('padding-top','0px');
-		$('#perk').css('padding-top','0px');
-		$('#payment').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-admin-icon').click(function(){
-		$('#admins').css('padding-top','140px');
-		$('#story').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#perk').css('padding-top','0px');
-		$('#payment').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-perk-icon').click(function(){
-		$('#perk').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#payment').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-payment-icon').click(function(){
-		$('#payment').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#perk').css('padding-top','0px');
-		$('#launch').css('padding-top','0px');
-	});
-	$('.cr-img-launch-icon').click(function(){
-		$('#launch').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#payment').css('padding-top','0px');
-		$('#perk').css('padding-top','0px');
-	});
-	$('.cr-img-save-icon').click(function(){
-		$('#save').css('padding-top','125px');
-		$('#story').css('padding-top','0px');
-		$('#admins').css('padding-top','0px');
-		$('#start').css('padding-top','25px');
-		$('#payment').css('padding-top','0px');
-		$('#perk').css('padding-top','0px');
-	});
 
     function saveRewards(rewardNum,rewardPrice,rewardTitle,rewardNumberAvailable,rewardDesc,email,address,twitter,custom){
         $.ajax({
@@ -1738,7 +1864,7 @@ $(function() {
             $(this).popover({
                 content: 'Save Perk',
                 trigger: 'manual',
-                placement: 'left'
+                placement: 'bottom'
             })
             .focus(showPopover)
             .blur(hidePopover)

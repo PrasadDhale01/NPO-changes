@@ -1,6 +1,3 @@
-<g:set var="userService" bean="userService" />
-<g:set var="contributionService" bean="contributionService"/>
-<g:set var="projectService" bean="projectService"/>
 <g:set var="rewardService" bean="rewardService"/>
 <% 
     def iteratorCount = 1
@@ -14,7 +11,6 @@
 <head>
     <meta name="layout" content="main" />
     <r:require modules="projectcreatejs" />
-    <link rel="stylesheet" href="/bootswatch-yeti/bootstrap.css">
     <link rel="stylesheet" href="/css/datepicker.css">
 </head>
 <body>
@@ -34,13 +30,14 @@
 	            <a class=" col-sm-2 col-xs-2 cr-img-admin-icon" href="#admins"><div class="col-sm-0 cr-subheader-icons"><img class="cr-admin" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---Blue.png" alt="Admin"></div><div class="hidden-xs">Admin</div></a>
 	            <a class=" col-sm-2 col-xs-2 cr-img-perk-icon" href="#perk"><div class="col-sm-0 cr-subheader-icons"><img class="cr-perk" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-Blue.png" alt="Perk"></div><div class="hidden-xs">Perks</div></a>
 	            <a class=" col-sm-2 col-xs-2 cr-img-payment-icon" href="#payment"><div class="col-sm-0 cr-subheader-icons"><img class="cr-payment" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-Blue.png" alt="Payment"></div><div class="hidden-xs">Payment</div></a>
-	            <a class=" col-sm-2 col-xs-2 cr-img-save-icon" href="#save"><div class="col-sm-0 cr-subheader-icons"><img class="cr-launch" src="//s3.amazonaws.com/crowdera/assets/Save-Icon-Blue.png" alt="Save"></div><div class="hidden-xs">Save</div></a>
+	            <a class=" col-sm-2 col-xs-2 cr-img-save-icon" href="#save"><div class="col-sm-0 cr-subheader-icons"><img class="cr-launch" src="//s3.amazonaws.com/crowdera/assets/hdr-save-blue.png" alt="Save"></div><div class="hidden-xs">Save</div></a>
             </header>
         </div>
         <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
         <div class="container footer-container" id="campaigncreate">
             <g:uploadForm class="form-horizontal"  controller="project" action="update" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
                 <g:hiddenField name="projectId" value="${project.id}"/>
+                <div class="startsection"></div>
                 <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari" id="start">
                     <label class="panel body cr-start-size cr-safari">START </label>
                     <div class="form-group col-sm-10 cr-start-space campaignEndDateError">
@@ -181,12 +178,10 @@
 	            
                     <g:hiddenField name="campaignvideoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
                     <div class="col-sm-6 video-popover" id="media">
-                        <a href="#addVideo" data-toggle="modal">
-                            <div class="panel panel-default panel-create-size lblIcon text-center" id="videoBox">
-                                <span><img id="addVideoIcon" class="addVideoIcon" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png"></span>
-                                <span id="addVideolbl">Add Video</span>
-                            </div>
-                        </a>
+                        <div class="panel panel-default panel-create-size lblIcon text-center" id="videoBox">
+                            <span><img id="addVideoIcon" class="addVideoIcon" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png"></span>
+                            <span id="addVideolbl">Add Video</span>
+                        </div>
                         <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
                     <div class="col-sm-6 video-popover" id="media-video">
@@ -195,9 +190,9 @@
                                <div class="form-group">
                                    <div class="col-sm-6" id="ytVideo"></div>
                                </div>
-                               <a href="#addVideo" data-toggle="modal" class="videoUrledit close" id="videoUrledit">
+                               <span class="videoUrledit close" id="videoUrledit">
                                    <i class="glyphicon glyphicon-edit" ></i>
-                               </a>
+                               </span>
                                <span class="videoUrledit close" id="videoUrledit">
                                    <i class="glyphicon glyphicon-trash" id="deleteVideo"></i>
                                </span>
@@ -611,6 +606,7 @@
                         <g:if test="${rewardItrCount > iteratorCount}">
                         <div class="col-sm-12 perk-css editDeleteReward" id="editDeleteReward${reward.rewardCount}">
                             <div class="col-sm-12 perk-create-styls edit-top-gsp" align="right">
+                                <span class="perkSaveMessage" id="perkSaveMessage${reward.rewardCount}">Perk Saved</span>
                                 <div class="btn btn-circle perks-created-remove intutive-glyphicon editreward" id="editreward${reward.rewardCount}" value="${reward.rewardCount}">
                                     <i class="glyphicon glyphicon-floppy-save"></i>
                                 </div>
@@ -682,6 +678,7 @@
                 <div class="row">
                     <div class="col-sm-12 perk-css" id="updatereward">
                         <div class="col-sm-12 perk-create-styls" align="right">
+                            <span class="perkSaveMessage" id="perkSaveMessage">Perk Saved</span>
                             <div class="btn intutive-glyphicon btn-circle perks-css-create" id="savereward" value="${lastrewardCount}">
                                 <i class="glyphicon glyphicon-floppy-save"></i>
                             </div>
@@ -767,9 +764,9 @@
                     <g:if test ="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                         <div id="PayUMoney">
                              <div class="form-group">
-                                 <label class="col-sm-4 control-label">Email</label>
-                                 <div class="col-sm-6 col-xs-10">
-                                     <g:if test="${project.payuEmail}">
+                             <label class="col-sm-4 control-label">Email</label>
+                             <div class="col-sm-6 col-xs-10">
+                                 <g:if test="${project.payuEmail}">
                                          <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
                                      </g:if>
                                      <g:else>
@@ -796,7 +793,8 @@
                         </div>
                         <div class="col-sm-12  cr-tablet-space" id="charitableId">
                             <div class="form-group">
-                                <label class="col-sm-4 control-label">FirstGiving</label>
+<%--                                <label class="col-sm-4 control-label">FirstGiving</label>--%>
+                                <img class="col-sm-4 cr-first-giving" src="//s3.amazonaws.com/crowdera/assets/firstgiving-icons-1.jpg" alt="firstgiving">
                                 <div class="col-sm-3">
                                     <a data-toggle="modal" href="#myModal" class="charitableLink cr-tablet-orgcharity">Find your organization</a>
                                 </div>
@@ -868,7 +866,7 @@
                                         </g:else>
                                     </div>
                                     <div class="col-sm-2 col-xs-2">
-                                        <button class="btn btn-info btn-sm cr-btn-color" href="#" data-dismiss="modal" id="add" type="button">Add</button>
+                                        <button class="btn btn-info btn-sm cr-btn-color" href="#" id="add" type="button">Add</button>
                                     <div>
                                     </div>
                                 </div>
@@ -959,15 +957,6 @@
              }
          }
          
-         var needToConfirm = true;
-    window.onbeforeunload = confirmExit;
-    function confirmExit()
-    {
-        if(needToConfirm){
-        	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
-        }
-    }
-
     </script>
 </body>
 </html>

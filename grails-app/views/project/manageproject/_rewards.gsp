@@ -1,7 +1,4 @@
 <%@ page import="java.text.SimpleDateFormat" %>
-<g:set var="contributionService" bean="contributionService"/>
-<g:set var="projectService" bean="projectService"/>
-<g:set var="rewardService" bean="rewardService"/>
     
 <div class="row">
     <div class="col-xs-12">
@@ -57,7 +54,7 @@
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="address" value="true" id="mailaddcheckbox">Mailing address</label>
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="email" value="true" id="emailcheckbox">Email address</label>
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="twitter" value="true" id="twittercheckbox">Twitter handle</label>
-                                    <input type="text" class="shippingInfo col-lg-3 col-xs-6 col-md-3 col-sm-4" name="custom" placeholder="Custom" id="custombox"/>
+                                    <input type="text" class="form-control shippingInfo cutom-perks-border col-lg-3 col-xs-6 col-md-3 col-sm-4" name="custom" placeholder="Custom" id="custombox"/>
                                 </div>
                                 <div class="shippingError"></div>
                             </div>

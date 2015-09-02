@@ -85,14 +85,14 @@
 						    </div>
 						    <div class="rightcard-column">
 						        <span class="input-group-addon card-details"><span class="glyphicon glyphicon-credit-card"></span> </span>
-                        		<g:select class="selectpicker card-number" name="ccType" id="ccType"
+                        		<g:select class="selectpicker card-number card-number-width" name="ccType" id="ccType"
                            			from="${cardTypes}" optionKey="key" optionValue="value"/>
                            		<div class="clear-both"></div>
 						    </div>
 						    <div class="clear-both"></div>
                      	</div>
                         <div class="clear"></div>
-                     	<div class="form-group">
+                     	<div class="form-group cvc-width">
                             <div class="leftcard-column-one">
                             <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span> </span>
                                     <input class="form-control all-place" type="text" placeholder="CVC" data-stripe="cvc" name="ccCardValidationNum">
@@ -100,12 +100,12 @@
                             </div>
                             <div class="leftcard-column-two">
                             <span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
-                                    <g:select class="selectpicker" name="ccExpDateMonth" from="${month}" optionKey="key" data-stripe="exp-month" optionValue="value"/>
+                                    <g:select class="selectpicker card-number-width" name="ccExpDateMonth" from="${month}" optionKey="key" data-stripe="exp-month" optionValue="value"/>
                                 <div class="clear"></div>	
                             </div>
                             <div class="leftcard-column-three">
                             <span class="input-group-addon card-details"><span class="glyphicon glyphicon-calendar"></span> </span>
-                                    <g:select class="selectpicker" name="ccExpDateYear" from="${year}" optionKey="key" data-stripe="exp-year" optionValue="value"/>
+                                    <g:select class="selectpicker card-number-width" name="ccExpDateYear" from="${year}" optionKey="key" data-stripe="exp-year" optionValue="value"/>
                                 <div class="clear"></div>
                             </div>
                             <div class="clear"></div>

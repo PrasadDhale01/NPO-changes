@@ -2,6 +2,7 @@ package crowdera
 
 import grails.plugin.springsecurity.SpringSecurityUtils;
 import grails.plugin.springsecurity.annotation.Secured;
+import javax.servlet.http.Cookie
 import org.springframework.security.core.context.SecurityContextHolder;
 
 class LoginController {
@@ -40,16 +41,34 @@ class LoginController {
         if (ifFbUserAlreadyExist) {
             redirect (controller:'home', action:'index', params:[fb: 'yes'])
         } else {
-            redirect (controller:'home', action:'index')
+            String requestUrl = g.cookie(name: 'requestUrl')
+            if (requestUrl) {
+                Cookie cookie = new Cookie("requestUrl", requestUrl)
+                cookie.path = '/'
+                cookie.maxAge= 0
+                response.addCookie(cookie)
+                redirect (url: requestUrl)
+            } else {
+                redirect (controller:'home', action:'index')
+            }
         }
     }
     
     def facebook_login() {
         if (params.userResponse.equalsIgnoreCase("yes")) {
             facebookService.mergeFacebookUser()
-            redirect (controller:'home', action:'index')
+            String requestUrl = g.cookie(name: 'requestUrl')  //get Cookie
+            if (requestUrl) {
+                Cookie cookie = new Cookie("requestUrl", requestUrl)
+                cookie.path = '/'  
+                cookie.maxAge= 0   // Delete Cookie
+                response.addCookie(cookie)
+                redirect (url: requestUrl)
+            } else {
+                redirect (controller:'home', action:'index')
+            }
         } else {
-            redirect controller:'logout'
+           redirect controller:'logout'
         }
     }
 
@@ -316,7 +335,16 @@ class LoginController {
         def currentUser = userService.getCurrentUser();
         def user = User.findByEmail(email)
         if (currentUser.id == user.id){
-            redirect (controller:'home', action:'index')
+            String requestUrl = g.cookie(name: 'requestUrl')
+            if (requestUrl) {
+                Cookie cookie = new Cookie("requestUrl", requestUrl)
+                cookie.path = '/'
+                cookie.maxAge= 0
+                response.addCookie(cookie)
+                redirect (url: requestUrl)
+            } else {
+                redirect (controller:'home', action:'index')
+            }
         } else {
             redirect (controller:'home', action:'index', params:[isDuplicate: 'yes', email:email])
         }

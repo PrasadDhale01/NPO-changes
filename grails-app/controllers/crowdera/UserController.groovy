@@ -3,6 +3,7 @@ package crowdera
 import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.security.core.context.SecurityContextHolder;
 import grails.util.Environment
+import javax.servlet.http.Cookie
 
 class UserController {
     def userService

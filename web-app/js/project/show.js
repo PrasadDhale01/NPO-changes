@@ -598,12 +598,12 @@
     $(document).ready(function (){
      /*************************Edit video for team*************************/
         $('.perk-tile').hover(function() {
-                $(this).find('.campaignEditDeleteIcon').show();
+            $(this).find('.campaignEditDeleteIcon').show();
         });
         $('.perk-tile').mouseleave(function() {
-                $(this).find('.campaignEditDeleteIcon').hide();
+            $(this).find('.campaignEditDeleteIcon').hide();
         });
-  
+
        if($('#videoUrl').val()){
         	var regExp = /^https?\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         	var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;

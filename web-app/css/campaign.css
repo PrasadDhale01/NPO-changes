@@ -690,7 +690,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 .campaignEditDeleteIcon .perkdelete{
-	position: absolute;
+    position: absolute;
     bottom: 42px;
     width: 30px;
     height: 30px;

@@ -38,19 +38,20 @@
         </g:else>
 		<b class="pull-right">&nbsp;SUPPORTERS</b><span class="badge pull-right">${backers}</span>
 	</div>
-	<span class="campaignEditDeleteIcon">
-	    <g:if test="${reward.id != 1}">
+
+    <span class="campaignEditDeleteIcon">
+        <g:if test="${reward.id != 1}">
             <g:if test="${project.draft}">
-			    <span class="perkedit" id="editproject"  data-toggle="modal" data-target="#editperks${reward.id}">
-                    <i class="glyphicon glyphicon-edit"></i>
+                <span class="perkedit" id="editproject"  data-toggle="modal" data-target="#editperks${reward.id}">
+                     <i class="glyphicon glyphicon-edit"></i>
                 </span>
-				<g:form controller="project" action="deletecustomrewards" id="${reward.id}" params="['projectId': projectId]"  method="post">
-					<button class="perkdelete rewarddelete" name="" value="Delete" onClick="return confirm(&#39;Are you sure you want to Delete this Perk?&#39;);">
-						<i class="glyphicon glyphicon-trash"></i>
-					</button>
-				</g:form>
-			</g:if>
-			<g:else>
+                <g:form controller="project" action="deletecustomrewards" id="${reward.id}" params="['projectId': projectId]"  method="post">
+                    <button class="perkdelete rewarddelete" name="" value="Delete" onClick="return confirm(&#39;Are you sure you want to Delete this Perk?&#39;);">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+                </g:form>
+            </g:if>
+            <g:else>
                 <g:if test="${backers >= 1}">
                     <span class="perkdelete perkedit1 supporterExist" id="editproject">
                         <i class="glyphicon glyphicon-edit"></i>
@@ -58,13 +59,13 @@
                 </g:if>
                 <g:else>
                     <span class="perkdelete perkedit1" id="editproject"  data-toggle="modal" data-target="#editperks${reward.id}">
-                         <i class="glyphicon glyphicon-edit"></i>
+                        <i class="glyphicon glyphicon-edit"></i>
                     </span>
                 </g:else>
-			</g:else>
-		</g:if>
-	</span>
-	
+            </g:else>
+        </g:if>
+    </span>
+
 </div>
 <div class="modal fade editperks" id="editperks${reward.id}" tabindex="-1" role="dialog" aria-labelledby="#editperks${reward.id}" aria-hidden="true">
     <g:form controller="project" action="customrewardedit" id="${reward.id}"role="form">

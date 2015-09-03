@@ -14,6 +14,7 @@ class LoginController {
     def facebookService
     def googlePlusService
     def oauthService
+    def projectService
 
     public static final String SPRING_SECURITY_OAUTH_TOKEN = 'springSecurityOAuthToken'
 
@@ -43,9 +44,7 @@ class LoginController {
         } else {
             String requestUrl = g.cookie(name: 'requestUrl')
             if (requestUrl) {
-                Cookie cookie = new Cookie("requestUrl", requestUrl)
-                cookie.path = '/'
-                cookie.maxAge= 0
+                def cookie = projectService.setCookie(requestUrl)
                 response.addCookie(cookie)
                 redirect (url: requestUrl)
             } else {
@@ -59,9 +58,7 @@ class LoginController {
             facebookService.mergeFacebookUser()
             String requestUrl = g.cookie(name: 'requestUrl')  //get Cookie
             if (requestUrl) {
-                Cookie cookie = new Cookie("requestUrl", requestUrl)
-                cookie.path = '/'  
-                cookie.maxAge= 0   // Delete Cookie
+                def cookie = projectService.setCookie(requestUrl)
                 response.addCookie(cookie)
                 redirect (url: requestUrl)
             } else {
@@ -337,9 +334,7 @@ class LoginController {
         if (currentUser.id == user.id){
             String requestUrl = g.cookie(name: 'requestUrl')
             if (requestUrl) {
-                Cookie cookie = new Cookie("requestUrl", requestUrl)
-                cookie.path = '/'
-                cookie.maxAge= 0
+                def cookie = projectService.setCookie(requestUrl)
                 response.addCookie(cookie)
                 redirect (url: requestUrl)
             } else {

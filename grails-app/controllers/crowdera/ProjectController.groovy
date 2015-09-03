@@ -432,9 +432,7 @@ class ProjectController {
     def createNow() {
         String requestUrl = g.cookie(name: 'requestUrl')
         if (requestUrl) {
-            Cookie cookie = new Cookie("requestUrl", requestUrl)
-            cookie.path = '/' // Save Cookie to local path to access it throughout the domain
-            cookie.maxAge= 0  // Delete Cookie
+            def cookie = projectService.setCookie(requestUrl)
             response.addCookie(cookie)
         }
         
@@ -542,7 +540,7 @@ class ProjectController {
 
                 rewardService.saveRewardDetails(params);
                 project.story = params.story
-
+                
                 if (params.isSubmitButton == 'true'){
                     project.draft = false;		
                     redirect (action:'launch' ,  params:[title:params.title])
@@ -1162,9 +1160,7 @@ class ProjectController {
 	def addFundRaiser(){
         String requestUrl = g.cookie(name: 'requestUrl')  //get Cookie
         if (requestUrl) {
-            Cookie cookie = new Cookie("requestUrl", requestUrl)
-            cookie.path = '/'
-            cookie.maxAge= 0   // Delete Cookie
+            def cookie = projectService.setCookie(requestUrl)
             response.addCookie(cookie)
         }
         

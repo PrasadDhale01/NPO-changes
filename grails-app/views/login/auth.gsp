@@ -11,12 +11,6 @@
 <div class="feducontent">
     <div class="container login-form">
 
-        <g:if test="${flash.googleFailureMessage}">
-            <div class="alert alert-error">
-                ${flash.googleFailureMessage}
-            </div>
-        </g:if>
-
         <form class="form-signin" role="form" action="${postUrl}" method="POST" id="loginForm">
             <h2 class="form-signin-heading signin login-logo">Please login</h2>
             <%--
@@ -35,6 +29,9 @@
             <hr/>
             <g:if test='${flash.message}'>
                 <div class="alert alert-danger">${flash.message}</div>
+            </g:if>
+            <g:if test="${flash.googleFailureMessage}">
+                <div class="alert alert-danger">${flash.googleFailureMessage}</div>
             </g:if>
 
             <div class="form-group">

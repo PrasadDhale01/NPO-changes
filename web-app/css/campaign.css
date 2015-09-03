@@ -710,3 +710,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .perkdelete.perkedit1{
 	background-color: #006083 !important;
 }
+
+.perk-claimed{
+	color: #006083 !important;
+}

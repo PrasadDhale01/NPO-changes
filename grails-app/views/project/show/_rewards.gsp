@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="rewardtitlespan">${reward.title}</div>
                                 <p class="rewarddescription">${raw(reward.description)}</p>
-                                <p><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
+                                <p class="perk-claimed"><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
                                 <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                                     </g:if>
                                     <g:else>
                                         <p class="rewarddescription">${raw(reward.description)}</p>
-                                        <p><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
+                                        <p class="perk-claimed"><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
                                     </g:else>
                                     <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                                 </div>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="rewardtitlespan">${reward.title}</div>
                             <p class="rewarddescription">${raw(reward.description)}</p>
-                            <p><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
+                            <p class="perk-claimed"><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
                             <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                                 </g:if>
                                 <g:else>
                                     <p class="rewarddescription">${raw(reward.description)}</p>
-                                    <p><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
+                                    <p class="perk-claimed"><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
                                 </g:else>
                                 <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                             </div>
@@ -128,7 +128,7 @@
                     </g:if>
                     <g:else>
                         <p class="rewarddescription">${reward.description}</p>
-                        <p><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
+                        <p class="perk-claimed"><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
                     </g:else>
                     <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                 </div>

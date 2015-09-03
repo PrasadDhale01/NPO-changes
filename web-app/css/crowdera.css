@@ -5673,6 +5673,14 @@ textarea.form-control {
 }
 
 @media only screen and (max-width: 479px){
+    .campaignEditDeleteIcon .perkedit{
+        padding-left: 8px;
+    }
+
+    .perkdelete.perkedit1{
+        padding-left: 8px;
+    }
+
 	.TW_project_update_carousel{
 		height:200px;
 	}
@@ -9963,6 +9971,6 @@ span#sold-out-text{
     margin-top: -12px;
 }
 
-.i-perk {
+.crowdera-perk{
     position: relative;
 }

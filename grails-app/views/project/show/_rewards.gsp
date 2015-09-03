@@ -23,7 +23,7 @@
         %>
         <g:if test="${(isFundingOpen && !isPreview) || (isFundingOpen && project.validated)}">
             <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
-                <div class="redirectCampaignOnPerk i-perk">
+                <div class="redirectCampaignOnPerk crowdera-perk">
                     <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
                         <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                         <div class="rewardsection-row">
@@ -67,7 +67,7 @@
             </g:if>
             <g:else>
                 <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
-                    <div class="rewardsection-row i-perk">
+                    <div class="rewardsection-row crowdera-perk">
                         <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                         <div class="rewardBottomBorder">
                             <div class="tile-goal-show">
@@ -108,7 +108,7 @@
             </g:else>
         </g:if>
         <g:else>
-            <div class="rewardsection-row i-perk">
+            <div class="rewardsection-row crowdera-perk">
                 <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
                     <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                 </g:if>

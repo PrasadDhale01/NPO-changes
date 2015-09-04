@@ -366,6 +366,12 @@ class ProjectController {
 		def title = projectService.getVanityTitleFromId(params.id)
 		if(project.draft) {
 			project.draft = false
+            if (params.submitForApprovalcheckbox && !project.touAccepted) {
+                project.touAccepted = true
+            }
+            if (params.submitForApprovalcheckbox1 && !project.touAccepted) {
+                project.touAccepted = true
+            }
 			flash.prj_mngprj_message="Campaign has been submitted for approval."
 			redirect(action:'manageproject', params:['projectTitle':title])
 		} else {
@@ -540,6 +546,9 @@ class ProjectController {
 
                 rewardService.saveRewardDetails(params);
                 project.story = params.story
+                if (params.checkBox && !project.touAccepted) {
+                    project.touAccepted = true
+                }
                 
                 if (params.isSubmitButton == 'true'){
                     project.draft = false;		

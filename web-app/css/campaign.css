@@ -668,3 +668,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	padding-right: 5%;
 	color : #01bbd3;
 }
+.perkEditDeleteAlign {
+	text-align: right;
+}

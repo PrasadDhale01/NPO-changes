@@ -1175,7 +1175,7 @@ $(function() {
         count++;
         $('#savereward').attr('value',count);
         var str ='<div class="col-sm-12 perk-css perk-padding editDeleteReward" id="editDeleteReward'+updateCount+'">'+
-            '<div class="col-sm-12 perk-create-styls perk-top" align="right">'+
+            '<div class="col-sm-12 perk-create-styls perk-top perkEditDeleteAlign">'+
                  '<span class="perkSaveMessage" id="perkSaveMessage'+updateCount+'">Perk Saved</span>'+
                  '<div class="btn btn-circle perks-created-remove intutive-glyphicon editreward" id="editreward'+updateCount+'" value="'+updateCount+'">'+
                      '<i class="glyphicon glyphicon-floppy-save"></i>'+

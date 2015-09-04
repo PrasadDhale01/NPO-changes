@@ -8,18 +8,26 @@
 <div class="col-xs-12 col-md-4 mobileview-top">
     <g:render template="/project/manageproject/tilesanstitle" />
     <g:if test="${project.draft}">
-        <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
-            <g:form controller="project" action="saveasdraft" id="${project.id}">
-                <button class="btn btn-block btn-primary">
+        <div class="submitForApprovalSection">
+            <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                <g:form controller="project" action="saveasdraft" id="${project.id}">
+                    <g:if test="${!project.touAccepted}">
+                        <div class="form-group">
+                            <input type="checkbox" name="submitForApprovalcheckbox" id="agreetoTermsandUse">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+                        </div>
+                    </g:if><br/>
+                    <div class="clear"></div>
+                    <button class="btn btn-block btn-primary">
+                        <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                    </button>
+                </g:form>
+            </g:if>
+            <g:else>
+                <button class="btn btn-block btn-primary" id="submitForApprovalBtnMobile">
                     <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
                 </button>
-            </g:form>
-        </g:if>
-        <g:else>
-            <button class="btn btn-block btn-primary" id="submitForApprovalBtnMobile">
-                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-            </button>
-        </g:else>
+            </g:else>
+        </div>
     </g:if>
     <br>
 </div>
@@ -105,16 +113,22 @@
 <div class="col-xs-12 col-md-4 mobileview-bottom">
     <g:render template="/project/manageproject/tilesanstitle" />
     <g:if test="${project.draft}">
-         <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
-             <g:form controller="project" action="saveasdraft" id="${project.id}">
-                 <button class="btn btn-block btn-primary">
-                     <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-                 </button>
-             </g:form>
-         </g:if>
-         <g:else>
-             <button class="btn btn-block btn-primary" id="submitForApprovalBtn"><i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval</button>
-         </g:else>
+        <div class="submitForApprovalSectionbtm" id="submitForApprovalSectionbtm">
+            <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                <g:form controller="project" action="saveasdraft" id="${project.id}">
+                    <g:if test="${!project.touAccepted}">
+                        <div class="form-group">
+                            <input type="checkbox" name="submitForApprovalcheckbox1" id="agreetoTermsandUse">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+                        </div>
+                    </g:if>
+                    <div class="clear"></div>
+                    <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval</button>
+                </g:form>
+            </g:if>
+            <g:else>
+                <button class="btn btn-block btn-primary" id="submitForApprovalBtn"><i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval</button>
+            </g:else>
+        </div>
     </g:if>
     <br>
 </div>

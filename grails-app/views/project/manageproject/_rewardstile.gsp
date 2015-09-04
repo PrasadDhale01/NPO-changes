@@ -7,7 +7,7 @@
 	def availableReward = totalNumberOfReward - backers;
 	
 %>
-<div class="panel panel-primary reward-tile managcampaign-rewardtile">
+<div class="panel panel-primary crowdera-perk perk-tile reward-tile managcampaign-rewardtile">
     <div class="panel-heading">
         <g:if test="${reward.id==1 }">
             <h3 class="panel-title"><b>I just want to help.</b></h3>
@@ -26,35 +26,7 @@
             <span id="perkNumberAvailable"><b>Number available :</b> ${availableReward}</span>
         </g:if>
         <g:else>
-            <g:if test="${project.draft}">
             <div id="rewardTileSpace"></div>
-            </g:if>
-        </g:else>
-		<g:if test="${project.draft}">
-			<g:if test="${reward.id != 1}">
-				<g:form controller="project" action="deletecustomrewards" id="${reward.id}" params="['projectId': projectId]"  method="post">
-					<button class="pull-right rewarddelete close" value="Delete" onClick="return confirm(&#39;Are you sure you want to Delete this Perk?&#39;);">
-						<i class="fa fa-trash-o"></i>
-					</button>
-				</g:form>
-			</g:if>
-		</g:if>
-		<g:if test="${reward.id != 1}">
-		    <g:if test="${backers >= 1}">
-		        <button class="pull-right supporterExist rewarddelete close">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </button>
-            </g:if>
-            <g:else>
-                <button class="pull-right rewarddelete close" data-toggle="modal" data-target="#editperks${reward.id}">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </button>
-            </g:else>
-        </g:if>
-        <g:else>
-            <button class="pull-right defaultperk rewarddelete close">
-                <i class="glyphicon glyphicon-edit"></i>
-            </button>
         </g:else>
 	</div>
 	<div class="panel-footer reward-footer">
@@ -66,6 +38,34 @@
         </g:else>
 		<b class="pull-right">&nbsp;SUPPORTERS</b><span class="badge pull-right">${backers}</span>
 	</div>
+
+    <span class="campaignEditDeleteIcon">
+        <g:if test="${reward.id != 1}">
+            <g:if test="${project.draft}">
+                <span class="perkedit" data-toggle="modal" data-target="#editperks${reward.id}">
+                     <i class="glyphicon glyphicon-edit"></i>
+                </span>
+                <g:form controller="project" action="deletecustomrewards" id="${reward.id}" params="['projectId': projectId]"  method="post">
+                    <button class="perkdelete rewarddelete" name="" value="Delete" onClick="return confirm(&#39;Are you sure you want to Delete this Perk?&#39;);">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+                </g:form>
+            </g:if>
+            <g:else>
+                <g:if test="${backers >= 1}">
+                    <span class="perkdelete perkedit1 supporterExist">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </span>
+                </g:if>
+                <g:else>
+                    <span class="perkdelete perkedit1" data-toggle="modal" data-target="#editperks${reward.id}">
+                        <i class="glyphicon glyphicon-edit"></i>
+                    </span>
+                </g:else>
+            </g:else>
+        </g:if>
+    </span>
+
 </div>
 <div class="modal fade editperks" id="editperks${reward.id}" tabindex="-1" role="dialog" aria-labelledby="#editperks${reward.id}" aria-hidden="true">
     <g:form controller="project" action="customrewardedit" id="${reward.id}">

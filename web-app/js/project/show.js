@@ -35,6 +35,32 @@
         }
     });
     
+    $('.submitForApprovalSection').find('form').validate({
+        rules: {
+        	submitForApprovalcheckbox : {
+        		required: true
+        	}
+        },
+        errorPlacement: function(error, element) {
+        	if(element.is(":checkbox")) {
+                error.appendTo(element.parent());
+            }
+        }
+    });
+    
+    $('#submitForApprovalSectionbtm').find('form').validate({
+        rules: {
+        	submitForApprovalcheckbox1 : {
+        		required: true
+        	}
+        },
+        errorPlacement: function(error, element) {
+        	if(element.is(":checkbox")) {
+                error.appendTo(element.parent());
+            }
+        }
+    });
+
     /*************************Image upload on tinymce made working ***************************/
     
     $(document).on('focusin', function(e) {
@@ -595,10 +621,15 @@
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
     
-    
     $(document).ready(function (){
      /*************************Edit video for team*************************/
-       
+        $('.perk-tile').hover(function() {
+            $(this).find('.campaignEditDeleteIcon').show();
+        });
+        $('.perk-tile').mouseleave(function() {
+            $(this).find('.campaignEditDeleteIcon').hide();
+        });
+
        if($('#videoUrl').val()){
         	var regExp = /^https?\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         	var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;

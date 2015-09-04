@@ -668,6 +668,52 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	padding-right: 5%;
 	color : #01bbd3;
 }
+
 .perkEditDeleteAlign {
 	text-align: right;
+}
+
+.campaignEditDeleteIcon .perkedit{
+    right: 30px;
+    padding-left: 2px;
+    position: absolute;
+    bottom: 42px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color : white;
+    z-index: 50;
+    cursor:pointer;
+    background-color: #006083 !important;
+}
+
+.campaignEditDeleteIcon{
+	display:none;
+}
+
+.campaignEditDeleteIcon .perkdelete{
+    position: absolute;
+    bottom: 42px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    right: 0px;
+    color : white;
+    z-index: 50;
+    cursor:pointer;
+    background-color: black;
+    border: none;
+}
+.perk-tile:hover {
+    border-color:  #01bbd3 !important;
+}
+
+.perkdelete.perkedit1{
+	background-color: #006083 !important;
+}
+
+.perk-claimed{
+	color: #006083 !important;
 }

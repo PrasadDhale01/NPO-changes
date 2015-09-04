@@ -286,13 +286,10 @@ $(function() {
         return true;
     }, "Please enter verified paypal email id");
     
-    $('#campaigncreatebtn, #campaigncreatebtnXS').on('click', function(event) {
-    	event.preventDefault();
-   	
+    $('#campaigncreatebtn, #campaigncreatebtnXS').on('click', function() {
         if (validator.form()) {
-            $('#campaigncreatebtn').attr('disabled','disabled');
-            var url = $("#b_url").val()+"/project/createNow/?firstName="+$("#name").val()+'&amount='+$("#amount").val()+'&title='+$("#campaignTitle").val()+'&description='+$("#descarea").val()+'&usedFor='+$("#usedFor").val();
-            window.location.href = url;
+        	$('#campaigncreate').find('form').submit();
+            $('#campaigncreatebtn, #campaigncreatebtnXS').attr('disabled','disabled');
         }
     });
     

@@ -46,7 +46,7 @@
                    <a class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team" data-toggle="dropdown" aria-expanded="false">
 			           Activity <span class="caret"></span>
 			       </a>
-			       <ul class="dropdown-menu" role="menu">
+			       <ul class="dropdown-menu TW-dropdown-height" role="menu">
 				       <li>
 				           <g:if test="${!ended}">
 				               <g:if test="${currentFundraiser == currentUser || isCrUserCampBenOrAdmin}">

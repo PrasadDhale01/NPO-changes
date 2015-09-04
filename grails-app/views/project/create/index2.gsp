@@ -664,7 +664,7 @@
                 <div class="col-sm-12 cr-paddingspace termsOfUseCheckboxOnCreatePage" id="launch">
                     <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-8">
                         <div class="form-group">
-                            <input type="checkbox" name="checkBox" id="agreetoTermsandUse">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+                            <input type="checkbox" name="checkBox" id="agreetoTermsandUse" <g:if test="${project.touAccepted}">checked="checked"</g:if>>  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
                         </div>
                     </div>
                     <div class="clear"></div>

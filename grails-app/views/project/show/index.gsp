@@ -72,7 +72,7 @@
            </div><br>
        </g:else>
     </g:if>
-	<div class="container">
+	<div class="container show-cmpgn-container">
 		<g:if test="${project}">
 		    <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
 		    <div class="redirectUrl">

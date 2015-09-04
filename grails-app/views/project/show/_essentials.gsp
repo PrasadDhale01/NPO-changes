@@ -22,7 +22,7 @@
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <div class="col-sm-12 social sharing-icon-alignment">
 		<div class="shared pull-left">
-			<span><label>SHARE:</label></span>
+			<span class="TW-show_share-text-margin"><label>SHARE:</label></span>
 		</div>
 		<g:if test="${isPreview}">
 		<a class="fb-like pull-left social fbShareForSmallDevices">

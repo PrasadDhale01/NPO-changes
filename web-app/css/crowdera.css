@@ -694,6 +694,32 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.TW-show_share-text-margin{
+		margin-left:-32px !important;
+	}
+	.social img {
+		cursor:pointer;
+		padding: 0; 
+		margin: 2px;
+		width:28px !important;
+	}
+	.show-team {
+		background-color: #e8e8e8;
+		border-top: 1px solid #e5e5e5;
+		margin-left: 15px;
+		margin-right: 30px;
+		margin-top: 14px;
+		padding: 0;
+		width: 38% !important;
+	}
+	.show-team-button {
+		margin: 0 15px 0 0;
+		padding: 0;
+		width: 38% !important;
+	}
+	.show-cmpgn-container{
+		width:310px !important;
+	}
     .tile-goal .fa-inr {
         font-size: 15px !important;
     }
@@ -1497,6 +1523,9 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.show-cmpgn-container{
+		width:750px !important;
+	}
 	.tile-goal .fa-inr {
         font-size: 15px !important;
     }
@@ -2644,6 +2673,60 @@ a {
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	.org-logo {
+	   height: 50px !important;
+	   margin: 10px 10px 20px;
+	   width: 50px !important;
+	}
+	.TW-org-title-font-size{
+		font-size:10px;
+	}
+	.TW-org-panel-height{
+		height:281px;
+	}
+	.TW-organization-panel-name-size{
+		font-size:13px;
+	}
+	.btn-show-fund{
+		padding-left: 15px !important;
+		padding-right: 15px !important;
+	}
+	.tileanstitle-goals {
+		padding-left: 0px ;
+		padding-right: 0px ;
+	}
+	.daysleftIcon img {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		padding-top: 5px;
+	}
+	.show-tile-text-size {
+	   font-size: 8px !important;
+	   line-height: 5px;
+	   margin-bottom: 0;
+	   margin-top: 10px;
+	   padding-left: 17px !important;
+	   padding-right: 17px !important;
+	}
+	.icons-centering {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 218px !important;
+	}
+	.amount-centering {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 218px !important;
+	}
+	.show-contri-tile.progressBarIcon {
+		border-left: 1px solid #dddddd;
+		border-right: 1px solid #dddddd;
+		padding-left: 20px !important;
+		padding-right: 20px !important;
+	}
 	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	   width: 69.1% !important;
 	   float:left;
@@ -3960,7 +4043,7 @@ color: #000 !important;
 color: #ffffff;
 background-color: #333 !important;
 border-color: #333;
-margin-bottom:10px;
+margin-bottom:4px;
 }
 
 .btn-facebook {
@@ -5602,9 +5685,6 @@ textarea.form-control {
 	div.edits {
         margin-top: -43px;
     }
-    div.Top-tabs-mobile {
-        margin-top: 55px;
-    }
 }
 
 @media only screen and (min-width: 601px) and (max-width:767px){
@@ -5614,9 +5694,6 @@ textarea.form-control {
 	div.cr1-mob-tb{
         padding-left: 1px;
         padding-right: 9px;
-    }
-	div.Top-tabs-mobile {
-        margin-top: 55px;
     }
 	.top-pan {
         margin-top: 20px;
@@ -6476,6 +6553,15 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.social img {
+		cursor:pointer;
+		padding: 0; 
+		margin: 2px;
+		width:28px !important;
+	}
+	.show-cmpgn-container{
+		width:310px !important;
+	}
     div.show-tile-text-size{
         margin-top: 6px;
         padding-left: 16px;
@@ -7978,8 +8064,8 @@ a.footerlink {
 .show-contri-tile.progressBarIcon {
     border-left:1px solid #dddddd;
     border-right:1px solid #dddddd;
-    padding-left: 40px;
-    padding-right: 40px;
+    padding-left: 30px;
+    padding-right: 30px;
 }
 .campaign-tile-border{
 	border-left:1px solid #dddddd;
@@ -8069,7 +8155,7 @@ a.footerlink {
     margin-left: auto;
     margin-right: auto;
 	padding: 0;
-	width:220px;
+	width:200px;
 }
 .teamtile-style{
 	height: 200px; 
@@ -8537,8 +8623,8 @@ p.tile-text-size {
     line-height: 5px;
     margin-bottom: 0;
     margin-top: 8px;
-    padding-left: 32px;
-    padding-right: 32px;
+    padding-left: 24px;
+    padding-right: 24px;
 }
 span.tile-day-num{
     color: #000 !important;
@@ -8711,7 +8797,7 @@ ul.menu{
 	margin-bottom:8px;
 }
 .pan{
-	max-width: 225px;
+	max-width: 280px;
 	height: 100px;
 	overflow: hidden;
 	display: table-cell;
@@ -9970,4 +10056,7 @@ span#sold-out-text{
 
 .i-perk {
     position: relative;
+}
+.show-cmpgn-container{
+	width:1000px;
 }

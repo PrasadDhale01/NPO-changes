@@ -791,14 +791,14 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-12  cr-tablet-space" id="charitableId">
+                        <div class="col-sm-12  cr-tablet-space cr-center-charity" id="charitableId">
                             <div class="form-group">
 <%--                                <label class="col-sm-4 control-label">FirstGiving</label>--%>
                                 <img class="col-sm-4 cr-first-giving" src="//s3.amazonaws.com/crowdera/assets/firstgiving-icons-1.jpg" alt="firstgiving">
-                                <div class="col-sm-3">
+                                <div class="col-sm-6">
                                     <a data-toggle="modal" href="#myModal" class="charitableLink cr-tablet-orgcharity">Find your organization</a>
                                 </div>
-                                <div class="col-sm-4" id="charitable">
+                                <div class="col-sm-4 cr-charity-lbl" id="charitable">
                                     <g:if test="${project.charitableId}">
                                         <input type="text" id="hiddencharId" name="${FORMCONSTANTS.CHARITABLE}" value="${project.charitableId}" placeholder="charitableId" readonly>
                                     </g:if>

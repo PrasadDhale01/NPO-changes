@@ -113,7 +113,7 @@ class ProjectController {
                 redirect (action:'show', params:['projectTitle':title,'fr':name])
 			}
 		} else {
-			render (view: '404error')
+			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
 	
@@ -208,7 +208,7 @@ class ProjectController {
 				isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
 				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile])
 		} else {
-			render(view: 'error', model: [message: 'This project does not exist.'])
+		    render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
 	
@@ -969,7 +969,7 @@ class ProjectController {
                 render (view: 'manageproject/error', model: [project: project])
             }
         } else {
-            render view: '404error'
+            render(view: '/404error', model: [message: 'This project does not exist.'])
         }
     }
 	
@@ -1048,7 +1048,7 @@ class ProjectController {
 		if(title){
 			redirect (action : 'editUpdate', id:params.id, params:['projectTitle':title])
 		}else{
-			render view:'404error'
+			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
 

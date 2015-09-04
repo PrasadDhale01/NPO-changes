@@ -42,7 +42,7 @@
 			<img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
 		</a>
 		<a class="share-mail pull-left social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
-			<img src="//s3.amazonaws.com/crowdera/assets/email-share-icon.png">
+			<img src="//s3.amazonaws.com/crowdera/assets/email-share-icon.png" alt="Email Share">
 		</a>
 		<a class="twitter-share pull-left social" id="twitterShare" target="_blank">
 			<img src="//s3.amazonaws.com/crowdera/assets/twitter-share-icon.png" alt="Twitter Share">
@@ -66,7 +66,7 @@
 	<div class="col-sm-12">
 	    <!-- Modal -->
 		<div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
-			<g:form action="sendemail" id="${project.id}" role="form" class="sendMailFormMng">
+			<g:form action="sendemail" id="${project.id}" class="sendMailFormMng">
 		        <div class="modal-dialog">
 				    <div class="modal-content">
 					    <div class="modal-header">

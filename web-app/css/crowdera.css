@@ -9971,3 +9971,8 @@ span#sold-out-text{
 .i-perk {
     position: relative;
 }
+
+.image-margin-top{
+	margin-top: -40px !important;
+}
+

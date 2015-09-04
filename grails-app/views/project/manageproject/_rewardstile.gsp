@@ -33,7 +33,7 @@
 		<g:if test="${project.draft}">
 			<g:if test="${reward.id != 1}">
 				<g:form controller="project" action="deletecustomrewards" id="${reward.id}" params="['projectId': projectId]"  method="post">
-					<button class="pull-right rewarddelete close" name="" value="Delete" onClick="return confirm(&#39;Are you sure you want to Delete this Perk?&#39;);">
+					<button class="pull-right rewarddelete close" value="Delete" onClick="return confirm(&#39;Are you sure you want to Delete this Perk?&#39;);">
 						<i class="fa fa-trash-o"></i>
 					</button>
 				</g:form>
@@ -41,18 +41,18 @@
 		</g:if>
 		<g:if test="${reward.id != 1}">
 		    <g:if test="${backers >= 1}">
-		        <button class="pull-right supporterExist rewarddelete close" id="editproject">
+		        <button class="pull-right supporterExist rewarddelete close">
                     <i class="glyphicon glyphicon-edit"></i>
                 </button>
             </g:if>
             <g:else>
-                <button class="pull-right rewarddelete close" id="editproject"  data-toggle="modal" data-target="#editperks${reward.id}">
+                <button class="pull-right rewarddelete close" data-toggle="modal" data-target="#editperks${reward.id}">
                     <i class="glyphicon glyphicon-edit"></i>
                 </button>
             </g:else>
         </g:if>
         <g:else>
-            <button class="pull-right defaultperk rewarddelete close" id="editproject">
+            <button class="pull-right defaultperk rewarddelete close">
                 <i class="glyphicon glyphicon-edit"></i>
             </button>
         </g:else>
@@ -68,7 +68,7 @@
 	</div>
 </div>
 <div class="modal fade editperks" id="editperks${reward.id}" tabindex="-1" role="dialog" aria-labelledby="#editperks${reward.id}" aria-hidden="true">
-    <g:form controller="project" action="customrewardedit" id="${reward.id}"role="form">
+    <g:form controller="project" action="customrewardedit" id="${reward.id}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

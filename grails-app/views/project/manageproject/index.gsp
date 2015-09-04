@@ -48,7 +48,7 @@
 	<r:require modules="rewardjs" />
 </head>
 <body>
-	<input type="hidden" id="b_url" value="<%=base_url%>"></input>
+	<g:hiddenField id="b_url" name="b_url" value="${base_url}"/>
 	<div class="feducontent">
 		<div class="container">
 			<g:if test="${project}">

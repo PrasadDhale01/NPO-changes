@@ -58,7 +58,7 @@
 		</a>
 	</g:if>
 
-    <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-12 col-sm-12 col-xs-12 TW-campaignstory-img-width">
         <p class="campaignDescription justify">${raw(project.description)}</p>
         <p class="campaignStory justify">${raw(project.story)}</p>
     </div>

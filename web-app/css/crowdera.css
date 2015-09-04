@@ -694,6 +694,16 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	p.campaignStory.justify > iframe {
+		height: 230px !important;
+		margin-left: 0;
+		width: 100% !important;
+	}
+	p.campaignStory.justify > img {
+		height: 230px !important;
+		margin-left: 0;
+		width: 100% !important;
+	}
 	.dropdown-menu.TW-dropdown-height > li > a {
 		clear: both;
 		color: #555555;
@@ -2711,6 +2721,16 @@ a {
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	p.campaignStory.justify > iframe {
+		height: 230px !important;
+		margin-left: 0;
+		width: 100% !important;
+	}
+	p.campaignStory.justify > img {
+		height: 230px !important;
+		margin-left: 0;
+		width: 100% !important;
+	}
 	.org-logo {
 	   height: 50px !important;
 	   margin: 10px 10px 20px;
@@ -6616,6 +6636,11 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	p.campaignStory.justify > img {
+		height: 230px !important;
+		margin-left: 0;
+		width: 100% !important;
+	}
 	.social img {
 		cursor:pointer;
 		padding: 0; 
@@ -10060,7 +10085,7 @@ a.hm-back-width{
 	width: 90px;
 }
 .backToCreatePage.col-lg-2, .backToCreatePage.col-md-2 , .backToCreatePage.col-sm-2 {
-	font-size:13px;
+	font-size:12px;
 }
 li.learn {
     top: -2.1px;
@@ -10138,4 +10163,7 @@ span#sold-out-text{
 }
 .cr-charity-lbl{
 	padding-left: 8px;
+}
+.TW-campaignstory-img-width  p  img{
+	width:100%;	
 }

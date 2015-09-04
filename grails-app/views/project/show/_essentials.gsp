@@ -72,7 +72,7 @@
 		</g:else>
     </div>
 
-    <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-12 col-sm-12 col-xs-12 TW-campaignstory-img-width">
         <g:if test="${isCrFrCampBenOrAdmin}">
             <p class="campaignDescription justify">${raw(project.description)}</p>
         </g:if>

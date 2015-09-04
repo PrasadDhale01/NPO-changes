@@ -1544,6 +1544,9 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.backToCreatePage.col-lg-2, .backToCreatePage.col-md-2 , .backToCreatePage.col-sm-2 {
+		font-size:11px !important;
+	}
 	.show-cmpgn-container{
 		width:750px !important;
 	}
@@ -9868,9 +9871,9 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 	font-size: 14px;
 	color: #c7c7c7;
 }
-body {
-    overflow-x: hidden !important;
-}
+/* body { */
+/*     overflow-x: hidden !important; */
+/* } */
 .cr-hovers:hover{
 	background-color: #D3D3D4;  /***.cr-hovers.active****/
 	color: #6d6e6e;
@@ -10057,8 +10060,7 @@ a.hm-back-width{
 	width: 90px;
 }
 .backToCreatePage.col-lg-2, .backToCreatePage.col-md-2 , .backToCreatePage.col-sm-2 {
-	padding-left: 0px !important;
-    padding-right: 0px !important;
+	font-size:13px;
 }
 li.learn {
     top: -2.1px;

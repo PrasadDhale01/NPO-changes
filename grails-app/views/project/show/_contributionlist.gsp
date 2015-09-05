@@ -54,14 +54,14 @@
                                     <span class="sso">
                                         <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                                     </span>
-                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
+                                    <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                                 </g:if>
                                 <g:else>
                                     <h4 class="anonymous-top">Anonymous Good Soul</h4>
                                     <span class="sso">
                                         <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                                     </span>
-                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
+                                    <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                                 </g:else>
                             </g:if>
                             <g:else>
@@ -70,14 +70,14 @@
                                     <span class="sso">
                                         <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                                     </span>
-                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
+                                    <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                                 </g:if>
                                 <g:else>
                                     <h4>${friendlyName}</h4>
                                     <span class="sso">
                                         <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                                     </span>
-                                    <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
+                                    <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                                 </g:else>
                             </g:else>
                         </div>
@@ -95,7 +95,7 @@
                             <span class="sso">
                                 <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span><b>${amount}</b><span class="font-usd">&nbsp;&nbsp;INR</span></g:if><g:else>$<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span></g:else>
                             </span>
-                            <dd class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></dd>
+                            <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
                         </div>
                         <div class="clear"></div>
                         <div class="col-sm-12"> 
@@ -107,7 +107,7 @@
                             <div class="col-sm-6 cols">
                                 <g:if test="${contribution.fundRaiser.equals(fundRaiser) && team.user == user && !isCrUserCampBenOrAdmin}">
                                     <div class="edits">
-                                        <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
+                                        <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}">
                                             <i class="glyphicon glyphicon-edit" ></i>
                                         </button>
                                         <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]">
@@ -123,7 +123,7 @@
                     <div class="clear"></div>
                     
                     <div class="modal fade offlineContributionModal contributionedit" id="contributionedit${contribution.id}" tabindex="-1" role="dialog" aria-labelledby="contributionedit${contribution.id}" aria-hidden="true">
-                        <g:form action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser, 'offset':offset]" role="form">
+                        <g:form action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser, 'offset':offset]">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-body">

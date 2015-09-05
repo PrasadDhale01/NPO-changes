@@ -1,7 +1,7 @@
 <%
     def projectId = project.id
 %>
-<div class="row" id="">
+<div class="row">
     <ul class="thumbnails list-unstyled">
         <g:each in="${teams}" var="team">
             <li class="col-lg-4 col-md-6 col-sm-4 col-xs-12">

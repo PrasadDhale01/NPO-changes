@@ -56,7 +56,7 @@
         <h4 class="lead">Leave a comment</h4>
         <div id="commentBox">
             <g:if test="${team.user!=project.user}">
-                <g:form controller="project" action="saveteamcomment" role="form" id="${project.id}" params="['fr': fundRaiser]">
+                <g:form controller="project" action="saveteamcomment"  id="${project.id}" params="['fr': fundRaiser]">
                     <div class="form-group">
                         <textarea class="form-control" name="comment" rows="4" required></textarea>
                     </div>
@@ -65,7 +65,7 @@
                 </g:form>
             </g:if>
             <g:else>
-                <g:form controller="project" action="savecomment" role="form" id="${project.id}" params="['fr':fundRaiser]">
+                <g:form controller="project" action="savecomment"  id="${project.id}" params="['fr':fundRaiser]">
                     <div class="form-group">
                         <textarea class="form-control" name="comment" rows="4" required></textarea>
                     </div>

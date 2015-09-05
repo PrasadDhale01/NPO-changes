@@ -716,7 +716,6 @@ a {
 	}
 	.dropdown-menu.TW-dropdown-height {
 		min-width: 103.5px !important;
-		height:35px;
 	}
 	.TW-show_share-text-margin{
 		margin-left:-32px !important;
@@ -1554,6 +1553,13 @@ a {
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.tile-goal.teamtile {
+	   font-size: 14px !important;
+	}
+	.lead.teamtile {
+	   font-size: 14px !important;
+	   font-weight: bold !important;
+	}	
 	.backToCreatePage.col-lg-2, .backToCreatePage.col-md-2 , .backToCreatePage.col-sm-2 {
 		font-size:11px !important;
 	}
@@ -2270,6 +2276,13 @@ a {
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	.tile-goal.teamtile {
+	   font-size: 14px !important;
+	}
+	.lead.teamtile {
+	   font-size: 14px !important;
+	   font-weight: bold !important;
+	}
     div.cr-charity-lbl {
         left: 328px;
     }
@@ -5928,6 +5941,7 @@ textarea.form-control {
 	}
 	.imagestyle{
 	    height: 200px !important;
+	    border:none;
 	}
     .glyphicon { margin-right: 10px;}
     .featured-non-profits{
@@ -7836,6 +7850,7 @@ button.projectedit.close{
 .imagestyle {
 	width: 100%;
 	height: 400px;
+	border:none;
 }
 .pill-buttons .nav-pills > li.active > a, .nav-pills > li.active > a:focus  {
     background-color: #333333 !important ;
@@ -8162,8 +8177,8 @@ a.footerlink {
 .show-contri-tile.progressBarIcon {
     border-left:1px solid #dddddd;
     border-right:1px solid #dddddd;
-    padding-left: 30px;
-    padding-right: 30px;
+    padding-left: 27px;
+    padding-right: 27px;
 }
 .campaign-tile-border{
 	border-left:1px solid #dddddd;
@@ -8305,6 +8320,7 @@ a.footerlink {
 .perks-supporters{
 	border: 1px solid #c9c9c9;
 	margin-top:2px;
+	margin-bottom:10px;
 	text-align: left;
 }
 .show-team-comments{
@@ -9070,8 +9086,8 @@ p.anonymous-top {
 	display:block;
 	margin-left:auto;
 	margin-right:auto;
-	padding-left:33px;
-	padding-right:33px;
+	padding-left:27px;
+	padding-right:27px;
 }
 .team-achieve-amt-border{
 	border-left:1px solid #e7e7e7;

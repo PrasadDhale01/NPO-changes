@@ -23,7 +23,7 @@
         %>
         <g:if test="${(isFundingOpen && !isPreview) || (isFundingOpen && project.validated)}">
             <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
-                <div class="redirectCampaignOnPerk i-perk">
+                <div class="redirectCampaignOnPerk crowdera-perk">
                     <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
                         <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                         <div class="rewardsection-row">
@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="rewardtitlespan">${reward.title}</div>
                                 <p class="rewarddescription">${raw(reward.description)}</p>
-                                <p><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
+                                <p class="perk-claimed"><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
                                 <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                                     </g:if>
                                     <g:else>
                                         <p class="rewarddescription">${raw(reward.description)}</p>
-                                        <p><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
+                                        <p class="perk-claimed"><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
                                     </g:else>
                                     <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                                 </div>
@@ -67,7 +67,7 @@
             </g:if>
             <g:else>
                 <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
-                    <div class="rewardsection-row i-perk">
+                    <div class="rewardsection-row crowdera-perk">
                         <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                         <div class="rewardBottomBorder">
                             <div class="tile-goal-show">
@@ -75,7 +75,7 @@
                             </div>
                             <div class="rewardtitlespan">${reward.title}</div>
                             <p class="rewarddescription">${raw(reward.description)}</p>
-                            <p><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
+                            <p class="perk-claimed"><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
                             <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                         </div>
                     </div>
@@ -98,7 +98,7 @@
                                 </g:if>
                                 <g:else>
                                     <p class="rewarddescription">${raw(reward.description)}</p>
-                                    <p><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
+                                    <p class="perk-claimed"><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
                                 </g:else>
                                 <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                             </div>
@@ -108,7 +108,7 @@
             </g:else>
         </g:if>
         <g:else>
-            <div class="rewardsection-row i-perk">
+            <div class="rewardsection-row crowdera-perk">
                 <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
                     <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                 </g:if>
@@ -128,7 +128,7 @@
                     </g:if>
                     <g:else>
                         <p class="rewarddescription">${reward.description}</p>
-                        <p><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
+                        <p class="perk-claimed"><b>${backers} out of ${totalNumberOfReward} claimed</b></p>
                     </g:else>
                     <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perkSupporter">SUPPORTERS</span>
                 </div>

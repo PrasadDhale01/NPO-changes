@@ -4,6 +4,7 @@ import grails.transaction.Transactional
 import java.security.MessageDigest
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+import javax.servlet.http.Cookie
 
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile
@@ -2869,6 +2870,13 @@ class ProjectService {
         def hash = generateHash("SHA-512",hashstring)
 
         return [txnid:txnid, hash:hash, furl:furl, surl:surl]
+    }
+    
+    def setCookie(def requestUrl) {
+        Cookie cookie = new Cookie("requestUrl", requestUrl)
+        cookie.path = '/'
+        cookie.maxAge= 0
+        return cookie
     }
     
     @Transactional

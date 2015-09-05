@@ -16,6 +16,7 @@ import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 import grails.util.Environment
+import javax.servlet.http.Cookie
 
 class ProjectController {
 	def userService
@@ -365,6 +366,12 @@ class ProjectController {
 		def title = projectService.getVanityTitleFromId(params.id)
 		if(project.draft) {
 			project.draft = false
+            if (params.submitForApprovalcheckbox && !project.touAccepted) {
+                project.touAccepted = true
+            }
+            if (params.submitForApprovalcheckbox1 && !project.touAccepted) {
+                project.touAccepted = true
+            }
 			flash.prj_mngprj_message="Campaign has been submitted for approval."
 			redirect(action:'manageproject', params:['projectTitle':title])
 		} else {
@@ -405,7 +412,6 @@ class ProjectController {
 		render ""
 	}
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
 	def create() {
 		def categoryOptions = projectService.getCategoryList()
 		def country = projectService.getCountry()
@@ -413,9 +419,29 @@ class ProjectController {
         
 		render(view: 'create/index1', model: [categoryOptions: categoryOptions, country:country, FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv])
 	}
+    
+    def saveCampaign() {
+        def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+       
+        def reqUrl = base_url+"/project/createNow?firstName=${params.firstName}&amount=${params.amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}"
+        
+        Cookie cookie = new Cookie("requestUrl", reqUrl)
+        cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
+        cookie.maxAge= 3600  //Cookie expire time in seconds
+        response.addCookie(cookie)
+        
+        redirect (url: reqUrl)
+    }
 	
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def createNow() {
+        String requestUrl = g.cookie(name: 'requestUrl')
+        if (requestUrl) {
+            def cookie = projectService.setCookie(requestUrl)
+            response.addCookie(cookie)
+        }
+        
         def projectTitle
         if (params.title && params.amount && params.description && params.firstName) {
             def project = projectService.getProjectByParams(params)
@@ -520,7 +546,10 @@ class ProjectController {
 
                 rewardService.saveRewardDetails(params);
                 project.story = params.story
-
+                if (params.checkBox && !project.touAccepted) {
+                    project.touAccepted = true
+                }
+                
                 if (params.isSubmitButton == 'true'){
                     project.draft = false;		
                     redirect (action:'launch' ,  params:[title:params.title])
@@ -1123,8 +1152,27 @@ class ProjectController {
 		}
 	}
 
+    def addTeam() {
+        def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+       
+        def reqUrl = base_url+"/project/addFundRaiser?id=${params.id}"
+        Cookie cookie = new Cookie("requestUrl", reqUrl)
+        cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
+        cookie.maxAge= 3600  //Cookie expire time in seconds
+        response.addCookie(cookie)
+        
+        redirect (url: reqUrl)
+    }
+    
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def addFundRaiser(){
+        String requestUrl = g.cookie(name: 'requestUrl')  //get Cookie
+        if (requestUrl) {
+            def cookie = projectService.setCookie(requestUrl)
+            response.addCookie(cookie)
+        }
+        
 		def project = projectService.getProjectById(params.id)
 		User user = userService.getCurrentUser()
 		def fundraiser = project.user.username

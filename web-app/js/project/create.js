@@ -286,13 +286,10 @@ $(function() {
         return true;
     }, "Please enter verified paypal email id");
     
-    $('#campaigncreatebtn, #campaigncreatebtnXS').on('click', function(event) {
-    	event.preventDefault();
-   	
+    $('#campaigncreatebtn, #campaigncreatebtnXS').on('click', function() {
         if (validator.form()) {
-            $('#campaigncreatebtn').attr('disabled','disabled');
-            var url = $("#b_url").val()+"/project/createNow/?firstName="+$("#name").val()+'&amount='+$("#amount").val()+'&title='+$("#campaignTitle").val()+'&description='+$("#descarea").val()+'&usedFor='+$("#usedFor").val();
-            window.location.href = url;
+        	$('#campaigncreate').find('form').submit();
+            $('#campaigncreatebtn, #campaigncreatebtnXS').attr('disabled','disabled');
         }
     });
     
@@ -1178,7 +1175,7 @@ $(function() {
         count++;
         $('#savereward').attr('value',count);
         var str ='<div class="col-sm-12 perk-css perk-padding editDeleteReward" id="editDeleteReward'+updateCount+'">'+
-            '<div class="col-sm-12 perk-create-styls perk-top" align="right">'+
+            '<div class="col-sm-12 perk-create-styls perk-top perkEditDeleteAlign">'+
                  '<span class="perkSaveMessage" id="perkSaveMessage'+updateCount+'">Perk Saved</span>'+
                  '<div class="btn btn-circle perks-created-remove intutive-glyphicon editreward" id="editreward'+updateCount+'" value="'+updateCount+'">'+
                      '<i class="glyphicon glyphicon-floppy-save"></i>'+

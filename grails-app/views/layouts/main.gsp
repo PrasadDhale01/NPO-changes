@@ -52,7 +52,7 @@
     <r:require modules="crowderajs"/>
     <r:require module="googleanalytics"/>
     
-<%--    <script src="/js/main.js"></script>--%>
+    <script src="/js/main.js"></script>
     
     <r:layoutResources />
 </body>

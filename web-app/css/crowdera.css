@@ -1542,7 +1542,7 @@ a {
         width: 24%;
     }
     .nav-tabs.nav-justified > li > a {
-       font-size: 8px !important;
+       font-size: 11px !important;
     }
     .nav{
         font-size:11px;
@@ -2076,7 +2076,7 @@ a {
     	  font-weight: bold;
 	}
 	.lead.show-contribution-amt-tile {
-    	  font-size: 15px !important;
+    	  font-size: 14px !important;
     	  font-weight: bold !important;
 	}
 	.lead{
@@ -2293,6 +2293,9 @@ a {
     .tile-goal .fa-inr {
         font-size: 15px !important;
     }
+	.tile-goal.teamtile .fa.fa-inr {
+		font-size: 14px !important;
+	}
 	.leftcard-column .form-control{ 
 	   float: left;
 	   height: 36px;
@@ -2734,6 +2737,13 @@ a {
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	.lead.show-contribution-amt-tile {
+	   font-size: 13px !important;
+	   font-weight: bold !important;
+	}
+	.tile-goal.show-contribution-amt-tile {
+		font-size: 13px !important;
+	}
 	p.campaignStory.justify > iframe {
 		height: 230px !important;
 		margin-left: 0;
@@ -2833,7 +2843,7 @@ a {
 		font-size:14px;
 	}
 	.nav-tabs.nav-justified > li > a {
-       font-size: 8px !important;
+       font-size: 11px !important;
     }
 	.sorts-dropdown{
        left: 29%;
@@ -2874,6 +2884,9 @@ a {
         font-size: 15px !important;
         color: #686868 !important;
     }
+	.show-contribution-amt-tile .fa-inr {
+		font-size: 12px !important;
+	}
 }
 
 @media only screen and (min-width:1200px) and (max-width: 1280px){
@@ -10180,9 +10193,12 @@ span#sold-out-text{
 .cr-charity-lbl{
 	padding-left: 8px;
 }
-.TW-campaignstory-img-width  p  img{
+.TW-campaignstory-img-width    img{
 	width:100%;	
 }
 .TW-campaignstory-img-width  iframe{
 	width:100% !important;	
+}
+.campaignupdate .campaignUpdateStory iframe{
+	width:100% !important;
 }

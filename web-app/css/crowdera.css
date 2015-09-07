@@ -1687,6 +1687,10 @@ a {
         width: 750px;
         margin: 0 auto;
     }
+    div.userLoginContainer {
+        width: 750px;
+        margin: 0 auto;
+    }
     .campaignUpdateContainer {
         width: 750px;
         margin: 0 auto;
@@ -2883,6 +2887,17 @@ a {
     .contribution-inr .fa-inr {
         font-size: 15px !important;
         color: #686868 !important;
+    }
+    b.subBoldHeading {
+        font-size: 20px;
+    }
+    .facebookSignInBtn {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .googleSignInBtn {
+        padding-left: 0px;
+        padding-right: 0px;
     }
 	.show-contribution-amt-tile .fa-inr {
 		font-size: 12px !important;
@@ -4667,6 +4682,9 @@ div.tile-min-height{
 	    margin-right: 0px !important;
 	    margin-top: 10px !important;
 	}
+	div.signInAndUpTopSm {
+        padding-top: 30px;
+    }
 }
 
 .rewarddesc{
@@ -5435,6 +5453,19 @@ textarea.form-control {
     .contactUs {
         width: 320px;
         margin: 0 auto;
+    }
+    div.userLoginContainer {
+        width: 320px;
+        margin: 0 auto;
+    }
+    div.facebookSignInBtn {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    div.googleSignInBtn {
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-bottom: 20px;
     }
     .campaignUpdateContainer {
         width: 320px;
@@ -10196,10 +10227,15 @@ span#sold-out-text{
 .cr-charity-lbl{
 	padding-left: 8px;
 }
-.TW-campaignstory-img-width    img{
+
+.userLoginContainer {
+    width: 1000px;
+    margin: 0 auto;
+}
+.TW-campaignstory-img-width img{
 	width:100%;	
 }
-.TW-campaignstory-img-width  iframe{
+.TW-campaignstory-img-width iframe{
 	width:100% !important;	
 }
 .campaignupdate .campaignUpdateStory iframe{

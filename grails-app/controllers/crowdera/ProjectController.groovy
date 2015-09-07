@@ -431,14 +431,24 @@ class ProjectController {
         cookie.maxAge= 3600  //Cookie expire time in seconds
         response.addCookie(cookie)
         
+        def loginSignUpCookie = projectService.setLoginSignUpCookie()
+        if (loginSignUpCookie) {
+            response.addCookie(loginSignUpCookie)
+        }
+        
         redirect (url: reqUrl)
     }
-	
+    
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def createNow() {
         String requestUrl = g.cookie(name: 'requestUrl')
         if (requestUrl) {
             def cookie = projectService.setCookie(requestUrl)
+            response.addCookie(cookie)
+        }
+        String loginSignUpCookie = g.cookie(name: 'loginSignUpCookie')
+        if (loginSignUpCookie) {
+            def cookie = projectService.deleteLoginSignUpCookie()
             response.addCookie(cookie)
         }
         
@@ -535,8 +545,6 @@ class ProjectController {
                 if(!imageFiles.isEmpty()) {
                     projectService.getMultipleImageUrls(imageFiles, project)
                 }
-
-                def country = projectService.getCountry()
 
                 def iconFile = request.getFile('iconfile')
                 if(!iconFile.isEmpty()) {
@@ -635,9 +643,8 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def update() {
 		def project = projectService.getProjectFromVanityTitle(params.title)
-		User user = userService.getUserFromVanityName(params.userName)
 		if(project) {
-			def vanityTitle = projectService.getProjectUpdateDetails(params, request, project,user)
+			def vanityTitle = projectService.getProjectUpdateDetails(params, request, project)
 			rewardService.saveRewardDetails(params);
 			flash.prj_mngprj_message = "Successfully saved the changes"
 			if (vanityTitle){
@@ -1536,10 +1543,7 @@ class ProjectController {
     }
     
     def teamsList() {
-        def username
         if (params.projectId && params.fr){
-            username = userService.getUsernameFromVanityName(params.fr)
-            User user = userService.getUserByUsername(username)
             Project project = projectService.getProjectById(params.projectId)
             
             def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)

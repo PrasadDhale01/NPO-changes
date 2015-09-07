@@ -35,6 +35,32 @@
         }
     });
     
+    $('.submitForApprovalSection').find('form').validate({
+        rules: {
+        	submitForApprovalcheckbox : {
+        		required: true
+        	}
+        },
+        errorPlacement: function(error, element) {
+        	if(element.is(":checkbox")) {
+                error.appendTo(element.parent());
+            }
+        }
+    });
+    
+    $('#submitForApprovalSectionbtm').find('form').validate({
+        rules: {
+        	submitForApprovalcheckbox1 : {
+        		required: true
+        	}
+        },
+        errorPlacement: function(error, element) {
+        	if(element.is(":checkbox")) {
+                error.appendTo(element.parent());
+            }
+        }
+    });
+
     /*************************Image upload on tinymce made working ***************************/
     
     $(document).on('focusin', function(e) {

@@ -669,6 +669,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	color : #01bbd3;
 }
 
+.perkEditDeleteAlign {
+	text-align: right;
+}
 
 .campaignEditDeleteIcon .perkedit{
     right: 30px;

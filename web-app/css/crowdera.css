@@ -2897,7 +2897,7 @@ a {
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
-    span#perkNumberAvailable{
+    span.perkNumberAvailable{
         font-size:12px;
     }
     .containrewards {
@@ -5771,7 +5771,7 @@ textarea.form-control {
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    span#perkNumberAvailable {
+    span.perkNumberAvailable {
         font-size: 12px !important;
     }
 	li.perks-grid {
@@ -10147,11 +10147,11 @@ li.learn {
     height: 65px;
 }
 
-div#rewardTileSpace {
+div.rewardTileSpace {
     height:20px;
 }
 
-span#perkNumberAvailable{
+span.perkNumberAvailable{
     font-size:12px;
 }
 
@@ -10186,6 +10186,9 @@ span#sold-out-text{
 .show-cmpgn-container{
 	width:1000px;
 }
+.image-margin-top{
+	margin-top: -40px !important;
+}
 .cr-center-charity{
     display: block;
     left: 75px;
@@ -10201,4 +10204,7 @@ span#sold-out-text{
 }
 .campaignupdate .campaignUpdateStory iframe{
 	width:100% !important;
+}
+ul.decimalList{
+    list-style-type: decimal;
 }

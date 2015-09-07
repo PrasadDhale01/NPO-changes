@@ -31,7 +31,7 @@
 								<h1>Amount</h1>
 							</div>
 						</div>
-						<g:form action="payByPayUmoney" controller="fund" method="POST" role="form">
+						<g:form action="payByPayUmoney" controller="fund" method="POST">
 							<g:hiddenField name="projectId" id="projectId" value="${project.id}" />
 							<g:hiddenField name="fr" value="${vanityUsername}" />
 							<g:hiddenField name="rewardId" />
@@ -90,7 +90,7 @@
 						        <h1>Amount</h1>
 						    </div>
 						</div>
-						<g:form action="charge" method="POST" role="form" class="chargeForms">
+						<g:form action="charge" method="POST" class="chargeForms">
 							<g:hiddenField name="campaignId" id="projectId" value="${project.id}" />
 							<g:hiddenField name="fr" value="${vanityUsername}" />
 							<g:hiddenField name="rewardId" />
@@ -141,7 +141,7 @@
 						        <h1>Amount</h1>
 						    </div>
 						</div>
-						<g:form action="checkout" method="POST" role="form" class="checkoutForm">
+						<g:form action="checkout" method="POST" class="checkoutForm">
 						
 
 							<g:hiddenField name="projectId" value="${project.id}" />

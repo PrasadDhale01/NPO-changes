@@ -14,7 +14,7 @@
 <div class="feducontent">
     <div class="container registration-form">
 
-        <g:form class="form-signin regForm" controller="login" action="create" role="form" id="regForm">
+        <g:form class="form-signin regForm" controller="login" action="create" id="regForm">
             <h2 class="form-signin-heading register register-logo">Please sign up</h2>
             <g:if test="${currentEnv != 'prodIndia'}">
                 <a class="btn btn-block btn-social btn-facebook" href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">

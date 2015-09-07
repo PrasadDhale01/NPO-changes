@@ -22,7 +22,7 @@
     if (projectTitle) {
         projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
     }
-	
+
     def imageUrl = project.imageUrl
     if (imageUrl) {
         imageUrl = project.imageUrl[0].getUrl()
@@ -118,25 +118,62 @@
                 </g:if>
 	            <div class="col-xs-12 col-md-4 mobileview-top">
                     <g:render template="/layouts/organizationdetails"/>
-                    <g:if test="${percentage == 999}">
-                        <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
+                    <g:if test="${isPreview && !project.validated}">
+                        <div class="submitForApprovalSection">
+                            <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                <g:form controller="project" action="saveasdraft" id="${project.id}">
+                                    <g:if test="${!project.touAccepted}">
+                                        <div class="form-group">
+                                            <input type="checkbox" name="submitForApprovalcheckbox" id="agreetoTermsandUse">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+                                        </div>
+                                    </g:if>
+                                    <div class="clear"></div>
+                                    <button class="btn btn-block btn-lg btn-primary">
+                                        <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                    </button>
+                                </g:form>
+                            </g:if>
+                            <g:else>
+                                <button class="btn btn-block btn-lg btn-primary" id="submitForApprovalBtnMobile">
+                                    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                </button>
+                            </g:else>
+                        </div>
+                        <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                        <g:if test="${project.rewards.size()>1}">
+                            <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
+                        </g:if>
                     </g:if>
+                    <g:elseif test="${percentage == 999}">
+                        <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
+                    </g:elseif>
                     <g:elseif test="${ended}">
                         <button type="button" class="btn btn-warning btn-lg btn-block" disabled>PROJECT ENDED!</button>
                     </g:elseif>
                     <g:else>
                         <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                            <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+	                            <div class="redirectCampaign">
+	                                <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block" id="btnFundDesktop">Fund this Campaign</button></g:link>
+	                            </div>
+	                        </g:if>
+	                        <g:else>
 	                        <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
 	                            <button name="submit" class="btn btn-show-fund btn-lg btn-block"  id="btnFundMobile">Fund this Campaign</button>
 	                        </g:form>
+	                        </g:else>
                         </g:if>
                         <g:else>
                             <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block">Fund this Campaign</button>
                         </g:else>
                     </g:else>
-                    <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
-                    <g:if test="${project.rewards.size()>1}">
-                    	<g:render template="show/rewards" model="['username':username]"/>
+                    <g:if test="${!isPreview || project.validated}">
+                        <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                    </g:if>
+                    <g:if test="${(project.rewards.size()>1 && !isPreview) || (project.rewards.size()>1 && project.validated) }">
+                        <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                    	    <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
+                    	</g:if>
                     </g:if>
                 </div>
                 <div class="col-xs-12 col-md-8 Top-tabs-mobile">
@@ -219,18 +256,26 @@
                 <div class="col-xs-12 col-md-4 mobileview-bottom">
                     <g:render template="/layouts/organizationdetails"/>
                     <g:if test="${isPreview && !project.validated}">
-                        <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
-                            <g:form controller="project" action="saveasdraft" id="${project.id}">
-                                <button class="btn btn-block btn-lg btn-primary">
+                        <div class="submitForApprovalSectionbtm" id="submitForApprovalSectionbtm">
+                            <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                <g:form controller="project" action="saveasdraft" id="${project.id}">
+                                    <g:if test="${!project.touAccepted}">
+                                        <div class="form-group">
+                                            <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+                                        </div>
+                                    </g:if>
+                                    <div class="clear"></div>
+                                    <button class="btn btn-block btn-lg btn-primary">
+                                        <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                    </button>
+                                </g:form>
+                            </g:if>
+                            <g:else>
+                                <button class="btn btn-block btn-lg btn-primary" id="submitForApprovalBtn">
                                     <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
                                 </button>
-                            </g:form>
-                        </g:if>
-                        <g:else>
-                            <button class="btn btn-block btn-lg btn-primary" id="submitForApprovalBtn">
-                                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-                            </button>
-                        </g:else>
+                            </g:else>
+                        </div>
                         <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                         <g:if test="${project.rewards.size()>1}">
                             <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>

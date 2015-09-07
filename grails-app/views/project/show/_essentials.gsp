@@ -22,7 +22,7 @@
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <div class="col-sm-12 social sharing-icon-alignment">
 		<div class="shared pull-left">
-			<span><label>SHARE:</label></span>
+			<span class="TW-show_share-text-margin"><label>SHARE:</label></span>
 		</div>
 		<g:if test="${isPreview}">
 		<a class="fb-like pull-left social fbShareForSmallDevices">
@@ -48,7 +48,7 @@
 		</a>
 		</g:if>
 		<g:else>
-		<a target="_blank" class="fb-like pull-left social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
+		<a target="_blank" class="fb-like pull-left social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">
 			<img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
 		</a>
 		<a target="_blank" class="fb-like pull-left fbShareForLargeDevices" id="fbshare">
@@ -72,7 +72,7 @@
 		</g:else>
     </div>
 
-    <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-12 col-sm-12 col-xs-12 TW-campaignstory-img-width">
         <g:if test="${isCrFrCampBenOrAdmin}">
             <p class="campaignDescription justify">${raw(project.description)}</p>
         </g:if>

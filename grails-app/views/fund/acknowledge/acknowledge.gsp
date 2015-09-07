@@ -98,8 +98,8 @@
                     <h4 class="lead">Leave a comment</h4>
                     <div id="commentBox">
                         <g:form controller="fund" action="saveContributionComent" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle]">
-                            <g:hiddenField name='commentId' value="${commentId}"></g:hiddenField>
-                            <g:hiddenField name='teamCommentId' value="${teamCommentId}"></g:hiddenField>
+                            <g:hiddenField name='commentId' value="${commentId}"/>
+                            <g:hiddenField name='teamCommentId' value="${teamCommentId}"/>
                             <div class="form-group">
                                 <textarea class="form-control" name="comment" rows="4" required><g:if test="${commentVal}">${commentVal}</g:if></textarea>
                             </div>
@@ -123,8 +123,8 @@
                             </button>
                         </g:link>
                         <g:form controller="fund" name="editcomment" action="editContributionComment" method="post" id="${contribution.id}" params="['fr': fundraiser.id, 'projectTitle':projectTitle]">
-                            <g:hiddenField name='commentId' value="${commentId}"></g:hiddenField>
-                            <g:hiddenField name='teamCommentId' value="${teamCommentId}"></g:hiddenField>
+                            <g:hiddenField name='commentId' value="${commentId}"/>
+                            <g:hiddenField name='teamCommentId' value="${teamCommentId}"/>
                             <button type="submit" class="projectedit close pull-right" id="projectedit">
                                 <i class="glyphicon glyphicon-edit glyphicon-lg projectedit"></i>
                             </button>
@@ -150,7 +150,7 @@
 						<a class="twitter-share pull-left social" id="twitterShare" target="_blank">
 							<img src="//s3.amazonaws.com/crowdera/assets/twitter-share-icon.png" alt="Twitter Share">
 						</a>
-						<a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${fbShareUrl}"  id="social share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+						<a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${fbShareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
 							<img src="//s3.amazonaws.com/crowdera/assets/linked-in-share-icon.png" alt="LinkedIn Share">
 						</a>
 						<a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${fbShareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
@@ -160,8 +160,8 @@
                     
                     <!-- Modal -->
                     <div class="modal fade sendmailmodal" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
-                        <g:form action="sendemail" controller="fund" id="${project.id}" role="form">
-                            <input type="hidden" name="cb" id="${contributionId }" value="${contributionId }"></input>
+                        <g:form action="sendemail" controller="fund" id="${project.id}">
+                            <input type="hidden" name="cb" id="${contributionId }" value="${contributionId }" ></input>
                             <input type="hidden" name="fr" id="${fundraiserId }" value="${fundraiserId }"></input>
                             <div class="modal-dialog">
                                 <div class="modal-content">

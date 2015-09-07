@@ -113,7 +113,7 @@ class ProjectController {
                 redirect (action:'show', params:['projectTitle':title,'fr':name])
 			}
 		} else {
-			render (view: '404error')
+			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
 	
@@ -208,7 +208,7 @@ class ProjectController {
 				isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
 				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile])
 		} else {
-			render(view: 'error', model: [message: 'This project does not exist.'])
+		    render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
 	
@@ -366,6 +366,12 @@ class ProjectController {
 		def title = projectService.getVanityTitleFromId(params.id)
 		if(project.draft) {
 			project.draft = false
+            if (params.submitForApprovalcheckbox && !project.touAccepted) {
+                project.touAccepted = true
+            }
+            if (params.submitForApprovalcheckbox1 && !project.touAccepted) {
+                project.touAccepted = true
+            }
 			flash.prj_mngprj_message="Campaign has been submitted for approval."
 			redirect(action:'manageproject', params:['projectTitle':title])
 		} else {
@@ -540,6 +546,9 @@ class ProjectController {
 
                 rewardService.saveRewardDetails(params);
                 project.story = params.story
+                if (params.checkBox && !project.touAccepted) {
+                    project.touAccepted = true
+                }
                 
                 if (params.isSubmitButton == 'true'){
                     project.draft = false;		
@@ -969,7 +978,7 @@ class ProjectController {
                 render (view: 'manageproject/error', model: [project: project])
             }
         } else {
-            render view: '404error'
+            render(view: '/404error', model: [message: 'This project does not exist.'])
         }
     }
 	
@@ -1048,7 +1057,7 @@ class ProjectController {
 		if(title){
 			redirect (action : 'editUpdate', id:params.id, params:['projectTitle':title])
 		}else{
-			render view:'404error'
+			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
 

@@ -20,7 +20,7 @@
 <g:if test="${user && !isCrUserCampBenOrAdmin && CurrentUserTeam}">
     <g:if test="${team.user == user}">
         <g:if test="${project.payuStatus == false}">
-            <a href="#" class="btn btn-primary btn-sm pull-right offlinecontributionbtn" data-toggle="modal" data-target="#offlineContributionModal" model="['project': project]">
+            <a href="#" class="btn btn-primary btn-sm pull-right offlinecontributionbtn" data-toggle="modal" data-target="#offlineContributionModal">
                 Manage Offline Contribution
             </a>
         </g:if>
@@ -32,7 +32,7 @@
         </g:if>
         
         <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
-            <g:form controller="project" action="generateCSV" role="form">
+            <g:form controller="project" action="generateCSV">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -148,7 +148,7 @@
     
     <!-- Modal -->
     <div class="modal fade offlineContributionModal" id="offlineContributionModal" tabindex="-1" role="dialog" aria-labelledby="offlineContributionModal" aria-hidden="true">
-        <g:form controller="fund" action="saveOfflineContribution" id="${project.id}" params="['fr':fundRaiser]" role="form">
+        <g:form controller="fund" action="saveOfflineContribution" id="${project.id}" params="['fr':fundRaiser]">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">

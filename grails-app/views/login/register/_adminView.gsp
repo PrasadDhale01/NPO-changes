@@ -1,7 +1,5 @@
 <g:set var="enabled" value="${users.enabled}"/>
 <g:set var="confirmed" value="${users.confirmed}"/>
-<html>
-<body>
 <%if (enabled == false && confirmed == false){ %>
     <tr class="active">
         <td>${users.firstName}&nbsp;${users.lastName}</td>
@@ -15,5 +13,3 @@
 		</td>
     </tr>
 <% } %>
-</body>
-</html>

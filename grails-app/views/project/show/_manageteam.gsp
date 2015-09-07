@@ -46,11 +46,11 @@
                    <a class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team" data-toggle="dropdown" aria-expanded="false">
 			           Activity <span class="caret"></span>
 			       </a>
-			       <ul class="dropdown-menu" role="menu">
+			       <ul class="dropdown-menu TW-dropdown-height" role="menu">
 				       <li>
 				           <g:if test="${!ended}">
 				               <g:if test="${currentFundraiser == currentUser || isCrUserCampBenOrAdmin}">
-				                   <a class="list" href="#inviteTeamMember" data-toggle="modal" model="['project': project]"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+				                   <a class="list" href="#inviteTeamMember" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
     		               </g:if>
 				           </g:if>
 				           <g:else>
@@ -58,7 +58,7 @@
 				           </g:else>
 				       </li>
 				       <g:if test="${!isCrFrCampBenOrAdmin}">
-				           <li><a class="list" href="#editFundraiser" data-toggle="modal" model="['currentTeam': currentTeam]"><i class="glyphicon glyphicon-edit"></i> &nbsp;&nbsp;Edit Fundraiser</a></li>
+				           <li><a class="list" href="#editFundraiser" data-toggle="modal"><i class="glyphicon glyphicon-edit"></i> &nbsp;&nbsp;Edit Fundraiser</a></li>
 				       </g:if>
 			       </ul>
                 </li>
@@ -81,7 +81,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="inviteTeamMember" tabindex="-1" role="dialog" aria-hidden="true">
-    <g:form action="inviteTeamMember" id="${project.id}" role="form" class="inviteTeamMember">
+    <g:form action="inviteTeamMember" id="${project.id}"  class="inviteTeamMember">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -113,7 +113,7 @@
 
 <!-- Edit Fundraiser Modal -->
 <div class="modal fade" id="editFundraiser" tabindex="-1" role="dialog" aria-hidden="true">
-    <g:uploadForm action="editFundraiser" id="${currentTeam.id}" role="form" params="['fr':currentFundraiser.username]"> 
+    <g:uploadForm action="editFundraiser" id="${currentTeam.id}" params="['fr':currentFundraiser.username]"> 
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -141,7 +141,7 @@
                     <div class="clear"></div>
                     <div class="form-group TW-redactor">
                         <label>Story</label>
-                        <textarea row="4" col="6" class="redactorEditor all-place" name="story">
+                        <textarea rows="4"  class="redactorEditor all-place" name="story">
 						     ${currentTeam.story}</textarea>
                         <span id="storyRequired">This field is required</span>
                     </div>

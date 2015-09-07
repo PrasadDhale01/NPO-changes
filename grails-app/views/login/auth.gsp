@@ -66,7 +66,7 @@
                 <g:if test="${flash.signUpMessage}">
                     <div class="alert alert-danger">${flash.signUpMessage}</div>
                 </g:if>
-                <g:form class="form-signin regForm" controller="login" action="create" role="form" id="regForm">
+                <g:form class="form-signin regForm" controller="login" action="create" id="regForm">
                     <div class="form-group">
                         <input type="text" name="firstName" class="form-control all-place" placeholder="First name" autofocus>
                     </div>

@@ -35,6 +35,32 @@
         }
     });
     
+    $('.submitForApprovalSection').find('form').validate({
+        rules: {
+        	submitForApprovalcheckbox : {
+        		required: true
+        	}
+        },
+        errorPlacement: function(error, element) {
+        	if(element.is(":checkbox")) {
+                error.appendTo(element.parent());
+            }
+        }
+    });
+    
+    $('#submitForApprovalSectionbtm').find('form').validate({
+        rules: {
+        	submitForApprovalcheckbox1 : {
+        		required: true
+        	}
+        },
+        errorPlacement: function(error, element) {
+        	if(element.is(":checkbox")) {
+                error.appendTo(element.parent());
+            }
+        }
+    });
+
     /*************************Image upload on tinymce made working ***************************/
     
     $(document).on('focusin', function(e) {
@@ -446,7 +472,7 @@
     
     $('#videoUrl').blur(function(){
     	if (validator.element("#videoUrl")){
-           var regExp = /^https?\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+           var regExp = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
            var url= $('#videoUrl').val().trim();
            var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
            var match = (url.match(regExp) || url.match(vimeo));
@@ -605,10 +631,10 @@
         });
 
        if($('#videoUrl').val()){
-        	var regExp = /^https?\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        	var regExp = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         	var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
     	    var url= $('#videoUrl').val().trim();
-    	    var match = (url.match(regExp) || value.match(vimeo));
+    	    var match = (url.match(regExp) || url.match(vimeo));
             var vurl
             if (match && match[2].length == 11) {
                 vurl=url.replace("watch?v=", "embed/");

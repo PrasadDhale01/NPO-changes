@@ -840,6 +840,9 @@ a {
 	ul.nav-tabs.mng-dt-tabs > li{
 	    width: 25.3% !important;
 	}
+	ul.nav-tabs.TW-show-updateTab-width > li{
+	    width: 20.3% !important;
+	}
 	ul.nav-tabs.mng-safari-tabs > li{
 	    width: 16.8% !important;
 	}
@@ -6749,6 +6752,9 @@ textarea.form-control {
 	}
 	ul.nav-tabs.admin-vali-show > li{
 	    width: 20% !important;
+	}
+	ul.nav-tabs.TW-show-updateTab-width > li{
+	    width: 20.3% !important;
 	}
 	ul.nav-tabs.mng-dt-tabs > li{
 	    width: 25.3% !important;

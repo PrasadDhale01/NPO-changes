@@ -23,10 +23,10 @@
 		    </g:if>
 		</div>
         <g:if test="${reward.id !=1 }">
-            <span id="perkNumberAvailable"><b>Number available :</b> ${availableReward}</span>
+            <span class="perkNumberAvailable"><b>Number available :</b> ${availableReward}</span>
         </g:if>
         <g:else>
-            <div id="rewardTileSpace"></div>
+            <div class="rewardTileSpace"></div>
         </g:else>
 	</div>
 	<div class="panel-footer reward-footer">
@@ -42,7 +42,7 @@
     <span class="campaignEditDeleteIcon">
         <g:if test="${reward.id != 1}">
             <g:if test="${project.draft}">
-                <span class="perkedit" id="editproject"  data-toggle="modal" data-target="#editperks${reward.id}">
+                <span class="perkedit" data-toggle="modal" data-target="#editperks${reward.id}">
                      <i class="glyphicon glyphicon-edit"></i>
                 </span>
                 <g:form controller="project" action="deletecustomrewards" id="${reward.id}" params="['projectId': projectId]"  method="post">
@@ -53,12 +53,12 @@
             </g:if>
             <g:else>
                 <g:if test="${backers >= 1}">
-                    <span class="perkdelete perkedit1 supporterExist" id="editproject">
+                    <span class="perkdelete perkedit1 supporterExist">
                         <i class="glyphicon glyphicon-edit"></i>
                     </span>
                 </g:if>
                 <g:else>
-                    <span class="perkdelete perkedit1" id="editproject"  data-toggle="modal" data-target="#editperks${reward.id}">
+                    <span class="perkdelete perkedit1" data-toggle="modal" data-target="#editperks${reward.id}">
                         <i class="glyphicon glyphicon-edit"></i>
                     </span>
                 </g:else>
@@ -68,7 +68,7 @@
 
 </div>
 <div class="modal fade editperks" id="editperks${reward.id}" tabindex="-1" role="dialog" aria-labelledby="#editperks${reward.id}" aria-hidden="true">
-    <g:form controller="project" action="customrewardedit" id="${reward.id}"role="form">
+    <g:form controller="project" action="customrewardedit" id="${reward.id}">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

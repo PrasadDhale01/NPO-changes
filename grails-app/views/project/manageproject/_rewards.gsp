@@ -17,7 +17,7 @@
         
         <!-- Modal -->
         <div class="modal fade" id="createRewardModal" tabindex="-1" role="dialog" aria-labelledby="createRewardModal" aria-hidden="true">
-            <g:form action="customrewardsave" id="${project.id}"role="form" class="perkForm">
+            <g:form action="customrewardsave" id="${project.id}" class="perkForm">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -51,10 +51,10 @@
                             <div class="form-group">
                                 <label class="control-label">Which of the following is necessary to fulfill this perk:</label>
                                 <div class="shippingreward shipping-inline col-lg-12 col-xs-12 col-md-12 col-sm-12">
-                                    <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="address" value="true" id="mailaddcheckbox">Mailing address</label>
-                                    <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="email" value="true" id="emailcheckbox">Email address</label>
-                                    <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="twitter" value="true" id="twittercheckbox">Twitter handle</label>
-                                    <input type="text" class="form-control shippingInfo cutom-perks-border col-lg-3 col-xs-6 col-md-3 col-sm-4" name="custom" placeholder="Custom" id="custombox"/>
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="address" value="true">Mailing address</label>
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="email" value="true">Email address</label>
+                                    <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="twitter" value="true">Twitter handle</label>
+                                    <input type="text" class="form-control shippingInfo cutom-perks-border col-lg-3 col-xs-6 col-md-3 col-sm-4" name="custom" placeholder="Custom"/>
                                 </div>
                                 <div class="shippingError"></div>
                             </div>

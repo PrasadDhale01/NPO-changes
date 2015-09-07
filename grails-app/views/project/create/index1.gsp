@@ -16,7 +16,7 @@
     </div>
     <div class="bg-color">
         <div class="container footer-container" id="campaigncreate">
-            <g:uploadForm class="form-horizontal cr-top-spaces" controller="project" action="saveCampaign" role="form">
+            <g:uploadForm class="form-horizontal cr-top-spaces" controller="project" action="saveCampaign">
                 <div class="form-group">
                     <label class="col-sm-12 text-color">My Name is...</label>
                     <div class="col-sm-12">

@@ -15,7 +15,7 @@
 
    	<div class="organization-details text-center">
    		<br><br>
-   	    <label class="col-sm-12"><h4><b>${project.organizationName}</b></h4></label>
+   	    <h4><label class="col-sm-12"><b>${project.organizationName}</b></label></h4>
    	    <g:if test="${!isCrFrCampBenOrAdmin}">
    	    	<g:if test="${currentTeam.user.userImageUrl}">
    	        	<div class="col-sm-12">

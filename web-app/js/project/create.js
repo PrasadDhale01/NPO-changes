@@ -308,7 +308,7 @@ $(function() {
             $(this).rules("add", {
                 required: true,
                 number: true,
-                min: 0
+                min: 1
             });
         });
     	
@@ -456,7 +456,7 @@ $(function() {
             $(this).rules("add", {
                 required: true,
                 number: true,
-                min: 0
+                min: 1
             });
         });
         
@@ -554,7 +554,7 @@ $(function() {
             $(this).rules("add", {
                 required: true,
                 number: true,
-                min: 0
+                min: 1
             });
         });
         
@@ -1289,7 +1289,7 @@ $(function() {
             $(this).rules("add", {
                 required: true,
                 number: true,
-                min: 0
+                min: 1
             });
         });
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {

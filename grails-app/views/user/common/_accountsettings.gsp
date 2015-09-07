@@ -24,26 +24,25 @@
 	               <g:link action="deleteavatar" controller="user" id="${user.id}"><img alt="Delete" onclick="return confirm(&#39;Are you sure you want to deleted this avatar?&#39;);" src="//s3.amazonaws.com/crowdera/assets/delete.ico"/></g:link>
 	            </div>
 	        </div>
-		    <g:uploadForm controller="user" action="edit_avatar" id="${user.id}" role="form">
+		    <g:uploadForm controller="user" action="edit_avatar" id="${user.id}">
 		        <button class="btn btn-primary btn-sm" type="button" id="editavatarbutton">Edit Avatar</button>
 	            <input class="hid-input-type-file" type="file" name="profile" id="editavatar" accept="image/*"/>
-	            <input type="submit" class="hidden buttons" value="Upload" id="editbutton" accept="image/*"/>
+	            <input type="submit" class="hidden buttons" value="Upload" id="editbutton"/>
 	            <div class="clear"></div>
-                <label class="docfile-orglogo-css" id="editProfileImg">Please select image file only.</label>
-                <label class="docfile-orglogo-css" id="editProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
+                <label class="docfile-orglogo-css image-margin-top" id="editProfileImg">Please select image file only.</label>
+                <label class="docfile-orglogo-css image-margin-top" id="editProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
 	        </g:uploadForm>
 	    </g:if>
 	    <g:else>
 	        <div class="uploadimage" class="blacknwhite">
 	            <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="profileimage" alt="Upload Photo"/>
 	        </div>
-	        <g:uploadForm controller="user" action="upload_avatar" id="${user.id}" role="form">
+	        <g:uploadForm controller="user" action="upload_avatar" id="${user.id}">
 	            <button class="btn btn-primary btn-sm" type="button" id="uploadavatar">Upload Avatar</button>
 	            <input class="hid-input-type-file" type="file" name="avatar" id="avatar" accept="image/*"/>
-	            <input type="submit" class="hidden buttons" value="Upload" id="uploadbutton" accept="image/*"/>
-	            <div class="clear"></div>
-                <label class="docfile-orglogo-css" id="uploadProfileImg">Please select image file only.</label>
-                <label class="docfile-orglogo-css" id="uploadProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
+	            <input type="submit" class="hidden buttons" value="Upload" id="uploadbutton"/>
+                <label class="docfile-orglogo-css image-margin-top" id="uploadProfileImg">Please select image file only.</label>
+                <label class="docfile-orglogo-css image-margin-top" id="uploadProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
 	        </g:uploadForm> 
 	    </g:else>
 	</div>
@@ -73,7 +72,7 @@
     </g:elseif>
     <g:else>
         <div id="validpass">
-            <g:form class="form-signin" controller="login" action="update" role="form">
+            <g:form class="form-signin" controller="login" action="update">
                 <div class="form-group">
                     <input type="text" name="firstName" required class="form-control all-place" value="${user.firstName}" placeholder="New First name" autofocus>
                 </div>

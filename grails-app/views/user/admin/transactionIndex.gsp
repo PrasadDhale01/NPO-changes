@@ -14,7 +14,7 @@
                 </div>
             </g:if>
             <g:if test="${!transaction.empty }">
-                <g:form controller="fund" action="generateCSV" role="form" Method="post" >
+                <g:form controller="fund" action="generateCSV" Method="post" >
                     <g:hiddenField name="currency" value="${currency}"/>
                     <div class="generateCSV">
                         <button type="submit" class="btn btn-primary btn-sm pull-right" >Generate CSV</button>

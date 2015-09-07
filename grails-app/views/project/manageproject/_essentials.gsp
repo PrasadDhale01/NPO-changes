@@ -50,7 +50,7 @@
 			<img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
 		</a>
 		<a class="share-mail pull-left social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
-			<img src="//s3.amazonaws.com/crowdera/assets/email-share-icon.png">
+			<img src="//s3.amazonaws.com/crowdera/assets/email-share-icon.png" alt="Email Share">
 		</a>
 		<a class="twitter-share pull-left social" id="twitterShare" target="_blank">
 			<img src="//s3.amazonaws.com/crowdera/assets/twitter-share-icon.png" alt="Twitter Share">
@@ -66,7 +66,7 @@
 		</a>
 	</g:if>
 
-    <div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="col-md-12 col-sm-12 col-xs-12 TW-campaignstory-img-width">
         <p class="campaignDescription justify">${raw(project.description)}</p>
         <p class="campaignStory justify">${raw(project.story)}</p>
     </div>
@@ -74,7 +74,7 @@
 	<div class="col-sm-12">
 	    <!-- Modal -->
 		<div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
-			<g:form action="sendemail" id="${project.id}" role="form" class="sendMailFormMng">
+			<g:form action="sendemail" id="${project.id}" class="sendMailFormMng">
 		        <div class="modal-dialog">
 				    <div class="modal-content">
 					    <div class="modal-header">
@@ -118,7 +118,7 @@
                 <g:form controller="project" action="saveasdraft" id="${project.id}">
                     <g:if test="${!project.touAccepted}">
                         <div class="form-group">
-                            <input type="checkbox" name="submitForApprovalcheckbox1" id="agreetoTermsandUse">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+                            <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
                         </div>
                     </g:if>
                     <div class="clear"></div>

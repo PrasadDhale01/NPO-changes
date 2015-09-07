@@ -23,7 +23,7 @@
 				</div>
 				<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 				    <div class="hm-right-inverted-India">
-					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png">
+					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png" alt="''">
 				    </div>
 				</g:if>
 				<g:else>

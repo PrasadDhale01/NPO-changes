@@ -28,7 +28,7 @@
 <div class="modal-footer tile-footer tileanstitle-goals tileanstitle-goal-margin">
 	<div class="row icons-centering">
 		<div class="col-xs-4 col-sm-4 col-md-4 goalIcon">
-			<img src="//s3.amazonaws.com/crowdera/assets/goal-icon.png">
+			<img src="//s3.amazonaws.com/crowdera/assets/goal-icon.png" alt="Goal-Icon">
 		</div>
 		<div class="col-xs-4 col-sm-4 col-md-4 progress-pie-chart show-contri-tile progressBarIcon" data-percent="43">
             <div class="c100  p${cents} pie-tile pie-css text-center mobile-pie">
@@ -40,7 +40,7 @@
             </div>
         </div>
 		<div class="col-xs-4 col-sm-4 col-md-4 daysleftIcon">
-			<img src="//s3.amazonaws.com/crowdera/assets/daysleft.png">
+			<img src="//s3.amazonaws.com/crowdera/assets/daysleft.png" alt="daysleft-icon">
 		</div>
 	</div>
     <div class="row amount-centering">

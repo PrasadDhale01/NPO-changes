@@ -3,8 +3,8 @@
 <% 
     def beneficiary = project.user
 %>
-<div class="panel panel-default">
-    <div class="panel-heading panel-css">
+<div class="panel panel-default TW-org-panel-height">
+    <div class="panel-heading panel-css TW-organization-panel-name-size">
         <g:if test="${currentFundraiser == beneficiary}">
             Campaign by ${beneficiary.firstName} ${beneficiary.lastName}
         </g:if>
@@ -15,7 +15,7 @@
 
    	<div class="organization-details text-center">
    		<br><br>
-   	    <h4><label class="col-sm-12"><b>${project.organizationName}</b></label></h4>
+   	    <h4><b class="TW-org-title-font-size">${project.organizationName}</b></h4>
    	    <g:if test="${!isCrFrCampBenOrAdmin}">
    	    	<g:if test="${currentTeam.user.userImageUrl}">
    	        	<div class="col-sm-12">

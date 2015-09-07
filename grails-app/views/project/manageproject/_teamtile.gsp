@@ -120,7 +120,7 @@
     <div class="modal-footer tile-footer">
 		<div class="row">
 			<div class="col-md-6 col-xs-6 goalIcon">
-				<img src="//s3.amazonaws.com/crowdera/assets/goal-icon.png">
+				<img src="//s3.amazonaws.com/crowdera/assets/goal-icon.png" alt="Goal Icon">
 			</div>
 			<div class="col-md-6 col-xs-6 progress-pie-chart team-tile-border progressBarIcon" data-percent="43">
 				<div class="c100  p${cents} pie-tile-manage pie-css text-center mobile-pie">

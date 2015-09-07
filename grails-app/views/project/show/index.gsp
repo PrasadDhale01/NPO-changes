@@ -72,7 +72,7 @@
            </div><br>
        </g:else>
     </g:if>
-	<div class="container">
+	<div class="container show-cmpgn-container">
 		<g:if test="${project}">
 		    <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
 		    <div class="redirectUrl">
@@ -219,7 +219,7 @@
                     <div class="row"> 
 				        <!-- Modal -->
 				        <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
-				            <g:form action="sendemail" id="${project.id}" params="['fr': username]" role="form" class="sendMailForm">
+				            <g:form action="sendemail" id="${project.id}" params="['fr': username]"  class="sendMailForm">
 				                <div class="modal-dialog">
 				                    <div class="modal-content">
 				                        <div class="modal-header">
@@ -227,12 +227,12 @@
 				                            <h4 class="modal-title">Recipient Email ID's</h4>
 				                        </div>
 				                        <div class="modal-body">
-                                            <g:hiddenField name="amount" value="${project.amount}"/>
-                                            <g:hiddenField name="vanityTitle" value="${vanityTitle}"/>
-                                            <g:hiddenField name="vanityUsername" value="${vanityUsername}"/>
+                                            <g:hiddenField name="amount" value="${project.amount}" id="campaign-amount"/>
+                                            <g:hiddenField name="vanityTitle" value="${vanityTitle}" id="campaign-vanityTitle"/>
+                                            <g:hiddenField name="vanityUsername" value="${vanityUsername}" id="campaign-vanityUsername"/>
 				                            <div class="form-group">
 				                                <label>Your Name</label>
-				                                <input type="text" class="form-control all-place" name="name" placeholder="Name"></input>
+				                                <input type="text" class="form-control all-place" name="name" placeholder="Name"/>
 				                            </div>
 				                            <div class="form-group">
 				                                <label>Email ID's (separated by comma)</label>

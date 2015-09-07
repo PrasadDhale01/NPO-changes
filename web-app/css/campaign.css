@@ -717,3 +717,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .perk-claimed{
 	color: #006083 !important;
 }
+
+.charitableDiv input{
+	margin-left: -4px !important;
+}

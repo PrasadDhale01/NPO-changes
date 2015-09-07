@@ -81,7 +81,7 @@ class ProjectService {
          return project
     }
     
-    def getProjectUpdateDetails(def params, def request, def project, def user){
+    def getProjectUpdateDetails(def params, def request, def project){
 		def vanitytitle
 		def title = project.title
         User currentUser = userService.getCurrentUser()
@@ -2879,15 +2879,18 @@ class ProjectService {
         return cookie
     }
     
-    def setLoginSignUpCookie(def requestUrl) {
-        if (requestUrl) {
-            Cookie cookie = new Cookie("loginSignUpCookie", 'createCampaignloginSignUpActive')
-            cookie.path = '/'
-            cookie.maxAge= 1800
-            return cookie
-        } else {
-            return null
-        }
+    def setLoginSignUpCookie() {
+        Cookie cookie = new Cookie("loginSignUpCookie", 'createCampaignloginSignUpActive')
+        cookie.path = '/'
+        cookie.maxAge= 3600
+        return cookie
+    }
+    
+    def deleteLoginSignUpCookie() {
+        Cookie cookie = new Cookie("loginSignUpCookie", 'createCampaignloginSignUpActive')
+        cookie.path = '/'
+        cookie.maxAge= 0
+        return cookie
     }
     
     @Transactional

@@ -116,24 +116,29 @@ class LoginController {
         def userObj = userService.findUserByEmail(params.username)
         def message
         if (userName) {
-            message: 'A user with that email already exists. Please use a different email.'
+            message= 'A user with that email already exists. Please use a different email.'
         } else if (userService.isFacebookUser(userObj)) {
-            message: 'A Facebook user with that email already exists. Please use a different email to register or login through Facebook.'
+            message= 'A Facebook user with that email already exists. Please use a different email to register or login through Facebook.'
         } else if (userService.isGooglePlusUser(userObj)) {
-            message: 'A Google Plus user with that email already exists. Please use a different email to register or login through Google Plus.'
+            message= 'A Google Plus user with that email already exists. Please use a different email to register or login through Google Plus.'
         }
         
         if (userName || userObj) {
             def config = SpringSecurityUtils.securityConfig
             if (g.cookie(name: 'loginSignUpCookie')) {
                 String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
-                flash.signUpMessage = message
-                render view: 'auth', model: [postUrl: postUrl,
+                render view: 'auth', model: [postUrl: postUrl, signUpMessage: message,
                                            rememberMeParameter: config.rememberMe.parameter]
             } else {
                 render(view: 'error', model: [message: message])
             }
         } else {
+            String loginSignUpCookie = g.cookie(name: 'loginSignUpCookie')
+            if (loginSignUpCookie) {
+                def cookie = projectService.deleteLoginSignUpCookie(loginSignUpCookie)
+                response.addCookie(cookie)
+            }
+            
             def user = userService.getUserObject(params)
             user.enabled = false
             user.confirmCode = UUID.randomUUID().toString()

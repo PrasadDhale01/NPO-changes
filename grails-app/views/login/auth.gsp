@@ -2,17 +2,7 @@
 <g:set var="projectService" bean="projectService"/>
 <%
 	def currentEnv = projectService.getCurrentEnvironment()
-    def request_url = request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-    String referrer = request.getHeader("referer");
-    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-    def campaignCreateUrl = base_url+"/campaign/create"
     def loginSignUpCookie = g.cookie(name: 'loginSignUpCookie')
-    if (referrer.equalsIgnoreCase(campaignCreateUrl)) {
-        loginSignUpCookie = projectService.setLoginSignUpCookie(g.cookie(name: 'requestUrl'))
-        if (loginSignUpCookie) {
-            response.addCookie(loginSignUpCookie)
-        }
-    }
 %>
 <head>
     <meta name='layout' content='main'/>
@@ -21,7 +11,7 @@
 <body>
 <div class="campaignCreateUserLogin">
     <div class="container userLoginContainer">
-        <g:if test="${referrer.equalsIgnoreCase(campaignCreateUrl) || loginSignUpCookie}">
+        <g:if test="${loginSignUpCookie}">
             <div class="campaignloginheading text-center">
                 <h4><b class="campaignloginboldheading">Great!</b> <b class="campaignloginlightheading">You are almost there please sign up or sign in to complete your campaign & raise money free.</b></h4>
             </div>
@@ -63,8 +53,8 @@
                 <div class="campaignUserLoginSubHeading text-center">
                     <h3><b class="subBoldHeading">Sign Up</b></h3>
                 </div>
-                <g:if test="${flash.signUpMessage}">
-                    <div class="alert alert-danger">${flash.signUpMessage}</div>
+                <g:if test="${signUpMessage}">
+                    <div class="alert alert-danger">${signUpMessage}</div>
                 </g:if>
                 <g:form class="form-signin regForm" controller="login" action="create" id="regForm">
                     <div class="form-group">

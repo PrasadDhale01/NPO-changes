@@ -2879,6 +2879,17 @@ class ProjectService {
         return cookie
     }
     
+    def setLoginSignUpCookie(def requestUrl) {
+        if (requestUrl) {
+            Cookie cookie = new Cookie("loginSignUpCookie", 'createCampaignloginSignUpActive')
+            cookie.path = '/'
+            cookie.maxAge= 1800
+            return cookie
+        } else {
+            return null
+        }
+    }
+    
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

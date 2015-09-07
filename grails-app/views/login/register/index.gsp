@@ -12,7 +12,7 @@
 <body>
 <input type="hidden" id="b_url" value="<%=base_url%>" />
 <div class="feducontent">
-    <div class="container registration-form">
+    <div class="container registration-form" id="registration-form">
 
         <g:form class="form-signin regForm" controller="login" action="create" role="form" id="regForm">
             <h2 class="form-signin-heading register register-logo">Please sign up</h2>

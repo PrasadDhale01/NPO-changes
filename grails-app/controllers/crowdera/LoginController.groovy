@@ -114,12 +114,25 @@ class LoginController {
     def create() {
         def userName=userService.getUserByName(params.username)
         def userObj = userService.findUserByEmail(params.username)
+        def message
         if (userName) {
-            render(view: 'error', model: [message: 'A user with that email already exists. Please use a different email.'])
+            message: 'A user with that email already exists. Please use a different email.'
         } else if (userService.isFacebookUser(userObj)) {
-            render(view: 'error', model: [message: 'A Facebook user with that email already exists. Please use a different email to register or login through Facebook.'])
+            message: 'A Facebook user with that email already exists. Please use a different email to register or login through Facebook.'
         } else if (userService.isGooglePlusUser(userObj)) {
-            render(view: 'error', model: [message: 'A Google Plus user with that email already exists. Please use a different email to register or login through Google Plus.'])
+            message: 'A Google Plus user with that email already exists. Please use a different email to register or login through Google Plus.'
+        }
+        
+        if (userName || userObj) {
+            def config = SpringSecurityUtils.securityConfig
+            if (g.cookie(name: 'loginSignUpCookie')) {
+                String postUrl = "${request.contextPath}${config.apf.filterProcessesUrl}"
+                flash.signUpMessage = message
+                render view: 'auth', model: [postUrl: postUrl,
+                                           rememberMeParameter: config.rememberMe.parameter]
+            } else {
+                render(view: 'error', model: [message: message])
+            }
         } else {
             def user = userService.getUserObject(params)
             user.enabled = false
@@ -138,7 +151,6 @@ class LoginController {
             if (!user.save()) {
                 render(view: 'error', model: [message: 'Problem creating user. Please try again.'])
             } else {
-                //UserRole.create(user, roleService.userRole())
                 userService.createUserRole(user, roleService)
                 mandrillService.sendMandrillEmail(user)
 
@@ -199,11 +211,11 @@ class LoginController {
 
     def request_accept(){
         def users = userService.getUserId(params.long('id'))
-            users.enabled = true
-            mandrillService.sendMail(users)
-            flash.login_message = "User Invited"
-            redirect (action:'list')
-        }
+        users.enabled = true
+        mandrillService.sendMail(users)
+        flash.login_message = "User Invited"
+        redirect (action:'list')
+    }
     
     @Secured(['ROLE_ADMIN'])
     def delete(){

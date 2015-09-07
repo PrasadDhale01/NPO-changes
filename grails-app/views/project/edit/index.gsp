@@ -35,7 +35,7 @@
         </div>
         <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
         <div class="container footer-container" id="campaigncreate">
-            <g:uploadForm class="form-horizontal"  controller="project" action="update" role="form" params="['title': vanityTitle, 'userName':vanityUsername]">
+            <g:uploadForm class="form-horizontal"  controller="project" action="update" params="['title': vanityTitle, 'userName':vanityUsername]">
                 <g:hiddenField name="projectId" value="${project.id}"/>
                 <div class="startsection"></div>
                 <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari" id="start">
@@ -179,13 +179,13 @@
                     <g:hiddenField name="campaignvideoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
                     <div class="col-sm-6 video-popover" id="media">
                         <div class="panel panel-default panel-create-size lblIcon text-center" id="videoBox">
-                            <span><img id="addVideoIcon" class="addVideoIcon" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png"></span>
+                            <span><img id="addVideoIcon" class="addVideoIcon" alt="addVideo" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png"></span>
                             <span id="addVideolbl">Add Video</span>
                         </div>
                         <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
                     <div class="col-sm-6 video-popover" id="media-video">
-                        <div class="panel panel-default panel-create-size" id="videoBox">
+                        <div class="panel panel-default panel-create-size">
                            <div class="panel-body">
                                <div class="form-group">
                                    <div class="col-sm-6" id="ytVideo"></div>
@@ -193,7 +193,7 @@
                                <span class="videoUrledit close" id="videoUrledit">
                                    <i class="glyphicon glyphicon-edit" ></i>
                                </span>
-                               <span class="videoUrledit close" id="videoUrledit">
+                               <span class="videoUrledit close">
                                    <i class="glyphicon glyphicon-trash" id="deleteVideo"></i>
                                </span>
                            </div>
@@ -222,7 +222,7 @@
                                         <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}'
                                         src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete"/>
                                     </div>
-                                </div> 
+                                </div>
                             </g:each>
                             <script>
                              function deleteProjectImage(current,imgst, projectId) {
@@ -258,7 +258,7 @@
 	                                                                    and make your campaign go viral. Be passionate and make 
 	                                                                    them believe and trust your goal.</label>
                        	    </div>
-                            <textarea name="${FORMCONSTANTS.STORY}" row="4" col="6" class="redactorEditor">
+                            <textarea name="${FORMCONSTANTS.STORY}" class="redactorEditor">
                                 <g:if test="${project.story}">${project.story}</g:if>
                             </textarea>
                             <span id="storyRequired">Ths field is required</span>
@@ -296,10 +296,10 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <g:if test="${email1}">
-                                            <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email1" id="firstadmin" value="${email1}" placeholder="First Admin"></input>
+                                            <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email1" id="firstadmin" value="${email1}" placeholder="First Admin">
                                         </g:if>
                                         <g:else>
-                                            <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email1" id="firstadmin" placeholder="First Admin"></input>
+                                            <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email1" id="firstadmin" placeholder="First Admin">
                                         </g:else>
                                     </div>
                                 </div>
@@ -309,10 +309,10 @@
                                 <div class="form-group">
                                  <div class="col-sm-12">
                                      <g:if test="${email2}">
-                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email2" id="secondadmin" value="${email2}" placeholder="Second Admin"></input>
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email2" id="secondadmin" value="${email2}" placeholder="Second Admin">
                                      </g:if>
                                      <g:else>
-                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email2" id="secondadmin" placeholder="Second Admin"></input>
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email2" id="secondadmin" placeholder="Second Admin">
                                      </g:else>
                                  </div>
                                 </div>
@@ -322,10 +322,10 @@
                                 <div class="form-group">
                                  <div class="col-sm-12">
                                      <g:if test="${email3}">
-                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email3" id="thirdadmin" value="${email3}" placeholder="Third Admin"></input>
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email3" id="thirdadmin" value="${email3}" placeholder="Third Admin">
                                      </g:if>
                                      <g:else>
-                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email3" id="thirdadmin" placeholder="Third Admin"></input>
+                                         <input type="email" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="email3" id="thirdadmin" placeholder="Third Admin">
                                      </g:else>
                                  </div>
                                 </div>
@@ -605,7 +605,7 @@
                         <g:hiddenField name="rewardNum" id="rewardNum${reward.rewardCount}" value="${reward.rewardCount}" class="rewardNum"/>
                         <g:if test="${rewardItrCount > iteratorCount}">
                         <div class="col-sm-12 perk-css editDeleteReward" id="editDeleteReward${reward.rewardCount}">
-                            <div class="col-sm-12 perk-create-styls edit-top-gsp" align="right">
+                            <div class="col-sm-12 perk-create-styls edit-top-gsp perkEditDeleteAlign">
                                 <span class="perkSaveMessage" id="perkSaveMessage${reward.rewardCount}">Perk Saved</span>
                                 <div class="btn btn-circle perks-created-remove intutive-glyphicon editreward" id="editreward${reward.rewardCount}" value="${reward.rewardCount}">
                                     <i class="glyphicon glyphicon-floppy-save"></i>
@@ -677,7 +677,7 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12 perk-css" id="updatereward">
-                        <div class="col-sm-12 perk-create-styls" align="right">
+                        <div class="col-sm-12 perk-create-styls perkEditDeleteAlign">
                             <span class="perkSaveMessage" id="perkSaveMessage">Perk Saved</span>
                             <div class="btn intutive-glyphicon btn-circle perks-css-create" id="savereward" value="${lastrewardCount}">
                                 <i class="glyphicon glyphicon-floppy-save"></i>
@@ -712,49 +712,49 @@
                             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                 <label class="panel-body cr-check-btn-first text-center col-sm-3 col-xs-12" id="recipient"> <span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label> 
                                 <g:if test="${project.fundsRecievedBy == 'PERSON'}">
-                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-reci-siz active" id="person"> <input type="radio" name="" value="yes" checked="checked">Individual</label> 
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-reci-siz active" id="person"> <input type="radio" name="person" value="yes" checked="checked">Individual</label> 
                                 </g:if>
                                 <g:else>
-                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-reci-siz" id="person"> <input type="radio" name="" value="yes">Individual</label> 
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-reci-siz" id="person"> <input type="radio" name="person" value="yes">Individual</label> 
                                 </g:else>
                                 <g:if test="${project.fundsRecievedBy == 'NGO'}">
-                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments active" id="ngo"> <input type="radio" checked="checked" value="no"><span class="cr-pay-rd">An Indian </span><span class="cr-reci-siz">NGO</span></label>
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments active" id="ngo"> <input type="radio" name="ngo" checked="checked" value="no"><span class="cr-pay-rd">An Indian </span><span class="cr-reci-siz">NGO</span></label>
                                 </g:if>
                                 <g:else>
-                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments" id="ngo"> <input type="radio" name="" value="no"><span class="cr-pay-rd">An Indian </span><span class="cr-reci-siz">NGO</span></label>
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments" id="ngo"> <input type="radio" name="ngo" value="no"><span class="cr-pay-rd">An Indian </span><span class="cr-reci-siz">NGO</span></label>
                                 </g:else>
                                 <g:if test="${project.fundsRecievedBy == 'OTHERS'}">
-                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 active" id="others"> <input type="radio" name="" checked="checked" value="no"><span class="cr-reci-siz">Others</span></label>
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 active" id="others"> <input type="radio" name="others" checked="checked" value="no"><span class="cr-reci-siz">Others</span></label>
                                 </g:if>
                                 <g:else>
-                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 " id="others"> <input type="radio" name="" value="no"><span class="cr-reci-siz">Others</span></label>
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 " id="others"> <input type="radio" name="others" value="no"><span class="cr-reci-siz">Others</span></label>
                                 </g:else>
                             </g:if>
                             <g:else>
                                 <label class="panel-body cr-check-btn-first text-center col-sm-3 col-xs-12" id="recipient"> <span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label> 
                                 <g:if test="${project.fundsRecievedBy == 'PERSON'}">
-                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-reci-siz active" id="person"> <input type="radio" name="" value="yes" checked="checked">Person</label> 
+                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-reci-siz active" id="person"> <input type="radio" name="person" value="yes" checked="checked">Person</label> 
                                 </g:if>
                                 <g:else>
-                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-reci-siz" id="person"> <input type="radio" name="" value="yes">Person</label> 
+                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-reci-siz" id="person"> <input type="radio" name="person" value="yes">Person</label> 
                                 </g:else>
                                 <g:if test="${project.fundsRecievedBy == 'NON-PROFITS'}">
-                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments active" id="non-profit"> <input type="radio" checked="checked" name="" value="no"><span class="cr-pay-rd">A US 501(c)(3)</span><span class="cr-reci-siz"> Non-profit</span></label>
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments active" id="non-profit"> <input type="radio" checked="checked" name="non-profit" value="no"><span class="cr-pay-rd">A US 501(c)(3)</span><span class="cr-reci-siz"> Non-profit</span></label>
                                 </g:if>
                                 <g:else>
-                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments" id="non-profit"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A US 501(c)(3)</span><span class="cr-reci-siz"> Non-profit</span></label>
+                                    <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments" id="non-profit"> <input type="radio" name="non-profit" value="no"><span class="cr-pay-rd">A US 501(c)(3)</span><span class="cr-reci-siz"> Non-profit</span></label>
                                 </g:else>
                                 <g:if test="${project.fundsRecievedBy == 'NGO'}">
-                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-mob-payments active" id="ngo"> <input type="radio" checked="checked" value="no"><span class="cr-pay-rd">A non-US </span><span class="cr-reci-siz">NGO</span></label>
+                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-mob-payments active" id="ngo"> <input type="radio" name="ngo" checked="checked" value="no"><span class="cr-pay-rd">A non-US </span><span class="cr-reci-siz">NGO</span></label>
                                 </g:if>
                                 <g:else>
-                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-mob-payments" id="ngo"> <input type="radio" name="" value="no"><span class="cr-pay-rd">A non-US </span><span class="cr-reci-siz">NGO</span></label>
+                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-mob-payments" id="ngo"> <input type="radio" name="ngo" value="no"><span class="cr-pay-rd">A non-US </span><span class="cr-reci-siz">NGO</span></label>
                                 </g:else>
                                 <g:if test="${project.fundsRecievedBy == 'OTHERS'}">
-                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 active" id="others"> <input type="radio" name="" checked="checked" value="no"><span class="cr-reci-siz">Others</span></label>
+                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 active" id="others"> <input type="radio" name="others" checked="checked" value="no"><span class="cr-reci-siz">Others</span></label>
                                 </g:if>
                                 <g:else>
-                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 " id="others"> <input type="radio" name="" value="no"><span class="cr-reci-siz">Others</span></label>
+                                    <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 " id="others"> <input type="radio" name="others" value="no"><span class="cr-reci-siz">Others</span></label>
                                 </g:else>
                             </g:else>
                         </div>
@@ -779,7 +779,7 @@
                     <g:else>
                         <div class="col-sm-12" id="paypalemail">
                             <div class="form-group">
-                                <img class="col-sm-4 cr-paypal-image" src="//s3.amazonaws.com/crowdera/assets/paypal-Image.png">
+                                <img class="col-sm-4 cr-paypal-image" src="//s3.amazonaws.com/crowdera/assets/paypal-Image.png" alt="paypal">
                                 <div class="col-sm-6 paypalVerification">
                                     <g:if test="${project.paypalEmail}">
                                         <input id="paypalEmailId" type="email" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}" placeholder="Paypal email address">
@@ -829,8 +829,8 @@
                                             <script src="//assets.firstgiving.com/graphwidget/static/js/fg_graph_widget.min.js"></script>
                                         </div>
                                         <div class="modal-footer">
-                                            <button href="#" data-dismiss="modal" class="btn btn-primary">Close</button>
-                                            <button class="btn btn-primary" href="#" data-dismiss="modal" id="saveCharitableId">Save</button>
+                                            <button data-dismiss="modal" class="btn btn-primary">Close</button>
+                                            <button class="btn btn-primary" data-dismiss="modal" id="saveCharitableId">Save</button>
                                         </div>
                                     </div>
                                 </div>
@@ -866,12 +866,14 @@
                                         </g:else>
                                     </div>
                                     <div class="col-sm-2 col-xs-2">
-                                        <button class="btn btn-info btn-sm cr-btn-color" href="#" id="add" type="button">Add</button>
+                                        <button class="btn btn-info btn-sm cr-btn-color" id="add" type="button">Add</button>
                                     <div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    </div>
                     </div>
                 </div>
             </g:uploadForm>

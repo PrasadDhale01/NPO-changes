@@ -72,6 +72,6 @@
 		</div>
 	</div>
     <div class="row text-center explorebtn">
-        <a href="${resource(dir: '/campaign/create')}" ><img src="//s3.amazonaws.com/crowdera/assets/Start-Your Campaign -Button-img.jpg" class="start-your-campaign-btn-img"></a>
+        <a href="${resource(dir: '/campaign/create')}" ><img src="//s3.amazonaws.com/crowdera/assets/Start-Your Campaign -Button-img.jpg" alt="Start Campaign" class="start-your-campaign-btn-img"></a>
     </div>
 </div>

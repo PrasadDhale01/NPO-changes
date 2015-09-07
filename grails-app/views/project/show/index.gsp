@@ -22,7 +22,7 @@
     if (projectTitle) {
         projectTitle = projectTitle.toUpperCase(Locale.ENGLISH)
     }
-	
+
     def imageUrl = project.imageUrl
     if (imageUrl) {
         imageUrl = project.imageUrl[0].getUrl()

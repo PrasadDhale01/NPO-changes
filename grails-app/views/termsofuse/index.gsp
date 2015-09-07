@@ -48,7 +48,7 @@
 		<div>
 		<h2>A. Services of Crowdera</h2>
 		<ol class="IN-TW-terms-use-ol-roman">
-			<li> <strong class="IN-TW-terms-use-strong">Crowdera is an intermediary service provider and the Website merely provides platform services which can be utilized by Users 
+			<li> Crowdera is an intermediary service provider and the Website merely provides platform services which can be utilized by Users 
 				(being Donors / Contributors and Project Creators ) and persons browsing / visiting the Website to reach a larger base of 
 				people, organizations and causes. Crowdera is only providing an intermediary platform for communication and it is agreed that 
 				the transactions whether gratuitous or otherwise shall always be bipartite between the Donor / Contributor and the Project Creator.</li>

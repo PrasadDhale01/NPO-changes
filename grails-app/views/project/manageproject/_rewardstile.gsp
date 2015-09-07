@@ -23,10 +23,10 @@
 		    </g:if>
 		</div>
         <g:if test="${reward.id !=1 }">
-            <span id="perkNumberAvailable"><b>Number available :</b> ${availableReward}</span>
+            <span class="perkNumberAvailable"><b>Number available :</b> ${availableReward}</span>
         </g:if>
         <g:else>
-            <div id="rewardTileSpace"></div>
+            <div class="rewardTileSpace"></div>
         </g:else>
 	</div>
 	<div class="panel-footer reward-footer">

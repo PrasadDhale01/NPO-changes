@@ -10,7 +10,6 @@
 <body>
 <div class="feducontent">
     <div class="container login-form">
-
         <form class="form-signin" action="${postUrl}" method="POST" id="loginForm">
             <h2 class="form-signin-heading signin login-logo">Please login</h2>
             <%--

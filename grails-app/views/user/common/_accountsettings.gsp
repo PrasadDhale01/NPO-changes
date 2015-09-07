@@ -72,7 +72,7 @@
     </g:elseif>
     <g:else>
         <div id="validpass">
-            <g:form class="form-signin" controller="login" action="update" role="form">
+            <g:form class="form-signin" controller="login" action="update">
                 <div class="form-group">
                     <input type="text" name="firstName" required class="form-control all-place" value="${user.firstName}" placeholder="New First name" autofocus>
                 </div>

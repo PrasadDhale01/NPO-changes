@@ -66,15 +66,16 @@ class ProjectController {
     ]
 
     def list = {
+        def categoryOptions = projectService.getCategory()
+        def sortsOptions = projectService.getSorts()
         def currentEnv = Environment.current.getName()
         def projects = projectService.getValidatedProjects(currentEnv)
         def selectedCategory = "All Categories"
         if (projects.size < 1) {
             flash.catmessage="There are no campaigns"
-            render (view: 'list/index')
-        }
-        else {
-            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv ])
+            render (view: 'list/index', model: [categoryOptions: categoryOptions, sortsOptions: sortsOptions])
+        } else {
+            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv, categoryOptions: categoryOptions, sortsOptions: sortsOptions])
         }
     }
 
@@ -1140,6 +1141,8 @@ class ProjectController {
 	}
 
 	def categoryFilter() {
+		def categoryOptions = projectService.getCategory()
+		def sortsOptions = projectService.getSorts()
         def currentEnv = Environment.current.getName()
 		def category = params.category
 		def project
@@ -1150,13 +1153,8 @@ class ProjectController {
 		} else {
 			project = projectService.filterByCategory(category, currentEnv)
 		}
-		if(!project){
-			flash.catmessage="No campaign found."
-			render (view: 'list/index', model: [projects: project,selectedCategory:category])
-		}else{
-			flash.catmessage=""
-			render (view: 'list/index', model: [projects: project,selectedCategory:category])
-		}
+        flash.catmessage = (project) ? "" : "No campaign found."
+        render (view: 'list/index', model: [projects: project, selectedCategory:category, categoryOptions:categoryOptions, sortsOptions:sortsOptions])
 	}
 
     def addTeam() {
@@ -1345,20 +1343,21 @@ class ProjectController {
 	}
 
 	def campaignsSorts(){
-		def sorts = params.sorts
+		def sorts = (params.sorts == 'Successful (100% +)') ? 'Successful' : params.sorts
 		redirect(action:'sortCampaign', controller: 'project',params:[query: sorts])
 	}
 
 	def sortCampaign(){
+		def categoryOptions = projectService.getCategory()
+		def sortsOptions = projectService.getSorts()
 		def environment = Environment.current.getName()
-		def sorts = params.query
+		def sorts = (params.query == 'Successful') ? 'Successful (100% +)' : params.query
 		def campaignsorts = projectService.isCampaignsorts(sorts, environment)
-		
 		if(!campaignsorts){
 			flash.catmessage="No campaign found."
-			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])
-		}else{
-			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts, categoryOptions:categoryOptions, sortsOptions:sortsOptions])
+		} else {
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts, categoryOptions:categoryOptions, sortsOptions:sortsOptions])
 		}
 	}
     

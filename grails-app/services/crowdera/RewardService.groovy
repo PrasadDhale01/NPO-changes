@@ -211,7 +211,7 @@ class RewardService {
         shippingInfo.email = (params.email == true || params.email == 'true') ? true : null;
         shippingInfo.address = (params.address == true || params.address == 'true') ? true : null;
         shippingInfo.twitter = (params.twitter == true || params.twitter == 'true') ? true : null;
-        shippingInfo.custom = (params.custom) ? params.custom : null;
+        shippingInfo.custom = (params.custom && params.custom != '') ? params.custom : null;
         shippingInfo.reward = reward
         shippingInfo.save(failOnError: true)
 

@@ -1,6 +1,5 @@
 <g:set var="projectService" bean="projectService"/>
 <% 
-    def categoryOptions = projectService.getCategory() 
 	def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 	def base = "/campaign?"

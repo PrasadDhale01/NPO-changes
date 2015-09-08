@@ -1,7 +1,7 @@
 $(function() {
     console.log("login.js initialized");
 
-    $('.login-form').find('form').validate({
+    $('[name="loginForm"]').validate({
         rules: {
             j_username: {
                 minlength: 2,
@@ -14,10 +14,12 @@ $(function() {
         }
     });
     
-    $('form').submit(function() {
-		if($("#loginForm").valid()) {
-			$('#submit').attr('disabled','disabled');
+    $('#submit').click(function() {
+    	if($('[name="loginForm"]').valid()) {
+    		$('[name="loginForm"]').submit();
+//			$('#submit').attr('disabled','disabled');
 		}
-	});
+    });
+
     
 });

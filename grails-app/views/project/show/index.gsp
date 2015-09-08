@@ -177,7 +177,7 @@
                     </g:if>
                 </div>
                 <div class="col-xs-12 col-md-8 Top-tabs-mobile">
-                    <ul class="nav nav-tabs nav-justified show-marginbottoms mng-safari-mobile mng-dt-tabs">
+                    <ul class="nav nav-tabs nav-justified show-marginbottoms mng-safari-mobile<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span><span class="tab-text hidden-xs"> Story</span>
                         </a></li>

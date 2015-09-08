@@ -81,7 +81,7 @@ class ProjectService {
          return project
     }
     
-    def getProjectUpdateDetails(def params, def request, def project, def user){
+    def getProjectUpdateDetails(def params, def request, def project){
 		def vanitytitle
 		def title = project.title
         User currentUser = userService.getCurrentUser()
@@ -2868,6 +2868,20 @@ class ProjectService {
 
     def setCookie(def requestUrl) {
         Cookie cookie = new Cookie("requestUrl", requestUrl)
+        cookie.path = '/'
+        cookie.maxAge= 0
+        return cookie
+    }
+    
+    def setLoginSignUpCookie() {
+        Cookie cookie = new Cookie("loginSignUpCookie", 'createCampaignloginSignUpActive')
+        cookie.path = '/'
+        cookie.maxAge= 3600
+        return cookie
+    }
+    
+    def deleteLoginSignUpCookie() {
+        Cookie cookie = new Cookie("loginSignUpCookie", 'createCampaignloginSignUpActive')
         cookie.path = '/'
         cookie.maxAge= 0
         return cookie

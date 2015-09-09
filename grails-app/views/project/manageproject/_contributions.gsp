@@ -35,7 +35,7 @@
     <div class="clear"></div>
     <!-- Modal -->
     <div class="modal fade offlineContributionModal" id="offlineContributionModal" tabindex="-1" role="dialog" aria-labelledby="offlineContributionModal" aria-hidden="true">
-        <g:form action="saveOfflineContribution" controller="fund" id="${project.id}"  params="['fr':fundRaiser]" role="form" name="saveOfflineContribution-form">
+        <g:form action="saveOfflineContribution" controller="fund" id="${project.id}"  params="['fr':fundRaiser]" name="saveOfflineContribution-form">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -88,7 +88,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModalLabel" aria-hidden="true">
-   <g:form controller="project" action="generateCSV" role="form" name="generateCSV-form" id="generateCSV-form">
+   <g:form controller="project" action="generateCSV" name="generateCSV-form" id="generateCSV-form">
    <div class="modal-dialog">
       <div class="modal-content">
          <div class="modal-header">

@@ -1,8 +1,6 @@
 package crowdera
 
-import org.junit.internal.runners.statements.FailOnTimeout;
 import grails.plugin.springsecurity.oauth.GoogleOAuthToken
-import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.converters.JSON
 
 class GooglePlusService {
@@ -50,8 +48,8 @@ class GooglePlusService {
                 if (!user.save()) {
                     log.error "Problem creating Google user, Response:\n${response.body}"
                 } else {
-                    UserRole.create(user, roleService.googlePlusRole())
                     UserRole.create(user, roleService.userRole())
+                    UserRole.create(user, roleService.googlePlusRole())
                 }
 
                 googlePlusUser = new GooglePlusUser()
@@ -60,7 +58,7 @@ class GooglePlusService {
                 googlePlusUser.user = user
                 googlePlusUser.save()
             }
-            
+
             oAuthToken = new GoogleOAuthToken(accessToken, userDetails.email)
             if (googlePlusUser) {
                 oAuthToken.principal = user

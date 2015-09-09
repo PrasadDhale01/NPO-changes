@@ -113,7 +113,7 @@ class ProjectController {
                 redirect (action:'show', params:['projectTitle':title,'fr':name])
 			}
 		} else {
-			render (view: '404error')
+			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
 	
@@ -208,7 +208,7 @@ class ProjectController {
 				isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
 				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile])
 		} else {
-			render(view: 'error', model: [message: 'This project does not exist.'])
+		    render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
 	
@@ -366,6 +366,12 @@ class ProjectController {
 		def title = projectService.getVanityTitleFromId(params.id)
 		if(project.draft) {
 			project.draft = false
+            if (params.submitForApprovalcheckbox && !project.touAccepted) {
+                project.touAccepted = true
+            }
+            if (params.submitForApprovalcheckbox1 && !project.touAccepted) {
+                project.touAccepted = true
+            }
 			flash.prj_mngprj_message="Campaign has been submitted for approval."
 			redirect(action:'manageproject', params:['projectTitle':title])
 		} else {
@@ -425,14 +431,24 @@ class ProjectController {
         cookie.maxAge= 3600  //Cookie expire time in seconds
         response.addCookie(cookie)
         
+        def loginSignUpCookie = projectService.setLoginSignUpCookie()
+        if (loginSignUpCookie) {
+            response.addCookie(loginSignUpCookie)
+        }
+        
         redirect (url: reqUrl)
     }
-	
+    
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def createNow() {
         String requestUrl = g.cookie(name: 'requestUrl')
         if (requestUrl) {
             def cookie = projectService.setCookie(requestUrl)
+            response.addCookie(cookie)
+        }
+        String loginSignUpCookie = g.cookie(name: 'loginSignUpCookie')
+        if (loginSignUpCookie) {
+            def cookie = projectService.deleteLoginSignUpCookie()
             response.addCookie(cookie)
         }
         
@@ -530,8 +546,6 @@ class ProjectController {
                     projectService.getMultipleImageUrls(imageFiles, project)
                 }
 
-                def country = projectService.getCountry()
-
                 def iconFile = request.getFile('iconfile')
                 if(!iconFile.isEmpty()) {
                     def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
@@ -540,6 +554,9 @@ class ProjectController {
 
                 rewardService.saveRewardDetails(params);
                 project.story = params.story
+                if (params.checkBox && !project.touAccepted) {
+                    project.touAccepted = true
+                }
                 
                 if (params.isSubmitButton == 'true'){
                     project.draft = false;		
@@ -626,9 +643,8 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def update() {
 		def project = projectService.getProjectFromVanityTitle(params.title)
-		User user = userService.getUserFromVanityName(params.userName)
 		if(project) {
-			def vanityTitle = projectService.getProjectUpdateDetails(params, request, project,user)
+			def vanityTitle = projectService.getProjectUpdateDetails(params, request, project)
 			rewardService.saveRewardDetails(params);
 			flash.prj_mngprj_message = "Successfully saved the changes"
 			if (vanityTitle){
@@ -969,7 +985,7 @@ class ProjectController {
                 render (view: 'manageproject/error', model: [project: project])
             }
         } else {
-            render view: '404error'
+            render(view: '/404error', model: [message: 'This project does not exist.'])
         }
     }
 	
@@ -1048,7 +1064,7 @@ class ProjectController {
 		if(title){
 			redirect (action : 'editUpdate', id:params.id, params:['projectTitle':title])
 		}else{
-			render view:'404error'
+			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
 
@@ -1527,10 +1543,7 @@ class ProjectController {
     }
     
     def teamsList() {
-        def username
         if (params.projectId && params.fr){
-            username = userService.getUsernameFromVanityName(params.fr)
-            User user = userService.getUserByUsername(username)
             Project project = projectService.getProjectById(params.projectId)
             
             def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)

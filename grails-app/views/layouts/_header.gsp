@@ -15,6 +15,7 @@
 		}
 	}
 %>
+<input type="hidden" id="currentEnvironment" value="<%=currentEnv%>" />
 <div class="navbar navbar-default navbar-fixed-top header-section home-header-section" role="navigation">
     <div class="header-container">
 		<g:if test="${currentEnv == 'test' || currentEnv== 'staging' || currentEnv=='production' || currentEnv== 'development'}">
@@ -151,3 +152,4 @@
         </div>
     </div>
 </div>
+<script src="/js/main.js"></script>

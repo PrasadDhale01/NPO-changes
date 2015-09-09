@@ -39,7 +39,7 @@
 <div class="feducontent">
     <div class="container" id="checkoutgsp">
     <% def contributedAmount = projectService.getDataType(amount) %>
-    <g:form action="charge" method="POST" name="payment-form" role="form" id="payment-form" class="payment-form">
+    <g:form action="charge" method="POST" name="payment-form" id="payment-form" class="payment-form">
         <div class="row">
             <div class="col-md-8">
                 <div class="panel panel-default">

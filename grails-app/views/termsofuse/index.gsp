@@ -48,7 +48,7 @@
 		<div>
 		<h2>A. Services of Crowdera</h2>
 		<ol class="IN-TW-terms-use-ol-roman">
-			<li> <strong class="IN-TW-terms-use-strong">Crowdera is an intermediary service provider and the Website merely provides platform services which can be utilized by Users 
+			<li> Crowdera is an intermediary service provider and the Website merely provides platform services which can be utilized by Users 
 				(being Donors / Contributors and Project Creators ) and persons browsing / visiting the Website to reach a larger base of 
 				people, organizations and causes. Crowdera is only providing an intermediary platform for communication and it is agreed that 
 				the transactions whether gratuitous or otherwise shall always be bipartite between the Donor / Contributor and the Project Creator.</li>
@@ -289,11 +289,13 @@
       <li class="static-page-li">You will not submit false or misleading information, or submit or offer any Donation, Contribution, perk, or other pledge that you do not intend to honor;</li>
       <li class="static-page-li">You may not use the Services to engage in any commercial activities (other than in connection with Campaigns), including, without limitation, advertising or promoting a product, service, or company; or engaging in any pyramid or other multi-tiered marketing scheme;</li>
       <li class="static-page-li">You will not access the Platform or use the Services to collect any market research for a competing business;</li>
-      <li class="static-page-li">You will not upload, post, e-mail, transmit, or otherwise make available any Campaign Content that:</li><ul>
-      <li class="static-page-li">is false, deceptive, misleading, deceitful, misinformative, or constitutes a "bait and switch" offer;</li>
-      <li class="static-page-li">infringes any copyright, trademark, right of publicity, or other proprietary rights of any person or entity;</li>
-      <li class="static-page-li">is threatening, tortious, defamatory, libelous, indecent, obscene, pornographic, or invasive of another's privacy; promotes violence; constitutes hate speech; or endorses or opposes a political official or candidate;</li>
-      <li class="static-page-li">discloses any sensitive information about another person, including that person's e-mail address, postal address, phone number, credit card information, or any similar information;</li></ul>
+      <li class="static-page-li">You will not upload, post, e-mail, transmit, or otherwise make available any Campaign Content that:</li>
+          <ul>
+              <li class="static-page-li">is false, deceptive, misleading, deceitful, misinformative, or constitutes a "bait and switch" offer;</li>
+              <li class="static-page-li">infringes any copyright, trademark, right of publicity, or other proprietary rights of any person or entity;</li>
+              <li class="static-page-li">is threatening, tortious, defamatory, libelous, indecent, obscene, pornographic, or invasive of another's privacy; promotes violence; constitutes hate speech; or endorses or opposes a political official or candidate;</li>
+              <li class="static-page-li">discloses any sensitive information about another person, including that person's e-mail address, postal address, phone number, credit card information, or any similar information;</li>
+          </ul>
       <li class="static-page-li">You will not "stalk" or otherwise harass another;</li>
       <li class="static-page-li">You will not impersonate any person or entity or falsely state or otherwise misrepresent your affiliation with a person or entity;</li>
       <li class="static-page-li">You will not cover, obscure, block, or in any way interfere with any safety features (e.g., report abuse button) on the Platform;</li>

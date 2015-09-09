@@ -324,7 +324,7 @@
                     <div id="collapseNineteens" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
                             <p class="text-justify">Before approving a campaign, we go through all the details provided by you. We will contact you for any missing items or if we feel your campaign needs and can be enhanced. The checklist including but not limited to -</p>
-                            <ul type="decimal">
+                            <ul class="decimalList">
 			                    <li>Cause - Is it a social good cause that aims to help the community</li>
 			                    <li>Title - Whether your title is apt and conveys the essence of your campaign</li>
 			                    <li>Description - Will the contributors understand your aim and the cause you raising funds for</li>
@@ -348,7 +348,7 @@
                     </div>
                     <div id="collapseNineteen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <ul type="decimal">
+                            <ul class="decimalList">
 			                    <li>Fundraising is FREE! Crowdera does not charge any fee, it’s free so do more good!</li>
 			                    <li>TEAMS - You can form teams to rally your campaign.</li>
 			                    <li>We help you multiply your impact by cloning your campaign
@@ -1070,7 +1070,7 @@
                     </div>
                     <div id="collapseNineteen" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                            <ul type="decimal">
+                            <ul class="decimalList">
 			                    <li>Fundraising is FREE! Crowdera does not charge any fee, it’s free so do more good!</li>
 			                    <li>TEAMS - You can form teams to rally your campaign.</li>
 			                    <li>We help you multiply your impact by cloning your campaign

@@ -36,7 +36,7 @@
                                     	<img class="imagestyle" src="${img}" alt="manage carousel"/>
                          	    </g:elseif>
                          	   <g:else>
-                                    	<iframe class="imagestyle" src="${img}" allowfullscreen="" frameborder="0"></iframe>
+                                    	<iframe class="imagestyle" src="${img}" allowfullscreen=""></iframe>
                          	   </g:else>
 				</div>
         		</div>
@@ -51,7 +51,7 @@
                                         <img class="imagestyle" src="${img}"alt="manage carousel"/>
                          	   </g:elseif>
                          	   <g:else>
-                                        <iframe class="imagestyle" src="${img}" allowfullscreen="" frameborder="0"></iframe>
+                                        <iframe class="imagestyle" src="${img}" allowfullscreen=""></iframe>
                          	  </g:else>
 			        </div>
 	        	</div>
@@ -80,6 +80,6 @@
         <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}"/>
     </g:elseif>
     <g:else>
-        <iframe class="imagestyle" src="${images.get(0)}" allowfullscreen="" frameborder="0"></iframe>
+        <iframe class="imagestyle" src="${images.get(0)}" allowfullscreen=""></iframe>
     </g:else>	
 </g:else>

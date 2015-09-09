@@ -1014,7 +1014,7 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def customrewardsave() {
 		def reward = rewardService.getRewardByParams(params)
-		RewardShipping shippingInfo = new RewardShipping(params)
+		RewardShipping shippingInfo = rewardService.getRewardShippingByParams(params)
 		def title = projectService.getVanityTitleFromId(params.id)
 
 		if(reward.save()) {

@@ -21,7 +21,7 @@
     <g:hiddenField name="payfir" value="${project.charitableId}" id="payfir"/>
     <g:hiddenField name="paypal" value="${project.paypalEmail}"/>
     <g:hiddenField name="projectamount" value="${project.amount}" id="projectamount"/>
-    
+
     <div class="text-center">
         <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
             <a class=" col-sm-2 col-xs-2 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start" src="//s3.amazonaws.com/crowdera/assets/start-Icon-Blue.png" alt="Start"></div><div class="hidden-xs">Start</div></a>

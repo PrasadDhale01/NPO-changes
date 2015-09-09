@@ -20,7 +20,16 @@ class RewardService {
         Reward reward = new Reward(rewardParams)
         return reward
     }
-	
+
+	def getRewardShippingByParams(def params){
+		RewardShipping shippingInfo = new RewardShipping(params)
+		if (shippingInfo.custom == ''){
+			shippingInfo.custom = null
+			shippingInfo.save();
+		}
+		return shippingInfo
+	}
+
     def setRewardCount(Project project, Reward reward) {
         def rewardCount = 0;
         project.rewards.each { perk->
@@ -82,7 +91,7 @@ class RewardService {
                 rewardShipping.address = params.address
                 rewardShipping.email = params.email 
                 rewardShipping.twitter = params.twitter
-                rewardShipping.custom = params.custom
+                rewardShipping.custom = (params.custom && params.custom != '') ? params.custom : null
 			}
         }
         return isPerkPriceLess
@@ -301,7 +310,7 @@ class RewardService {
 		 shippingInfo.email = (params.('mailingAddress'+params.rewardCount) == true || params.('mailingAddress'+params.rewardCount) == 'true') ? true : null;
 		 shippingInfo.address = (params.('address'+params.rewardCount) == true || params.('address'+params.rewardCount) == 'true') ? true : null;
 		 shippingInfo.twitter = (params.('twitter'+params.rewardCount) == true || params.('twitter'+params.rewardCount) == 'true') ? true : null;
-		 shippingInfo.custom = (params.('custom'+params.rewardCount)) ? params.('custom'+params.rewardCount) : null;
+		 shippingInfo.custom = (params.('custom'+params.rewardCount) && params.('custom'+params.rewardCount) != '') ? params.('custom'+params.rewardCount) : null;
 		 shippingInfo.reward = reward
 		 shippingInfo.save(failOnError: true)
  

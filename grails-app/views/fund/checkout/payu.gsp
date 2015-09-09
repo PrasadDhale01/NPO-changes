@@ -5,7 +5,7 @@
 <%
     def shippingInfo = rewardservice.getShippingInfo(reward)
     def currentUser = userService.getCurrentUser()
-    isAnonymous = userService.isAnonymous(currentUser)
+    def isAnonymous = userService.isAnonymous(currentUser)
 %>
 <html>
 <head>
@@ -82,7 +82,7 @@
 	                            <div class="row">
                                     <input class="form-control" type="hidden" value="Mr/Mrs/Ms" name="billToTitle" id="billToTitle" />
                                     <div class="col-md-6">
-                                        <g:if test="${userService.isAnonymous(user)}">
+                                        <g:if test="${isAnonymous}">
                                             <div class="form-group">
                                                 <div class="input-group col-md-12">
                                                     <input class="form-control" type="text" placeholder="First Name" name="firstname" id="payuFirstName">
@@ -140,7 +140,7 @@
                         </div>
 					
                         <g:if test="${shippingInfo}">
-                            <g:if test="${shippingInfo.address != null || shippingInfo.email  != null || shippingInfo.twitter  != null || shippingInfo.custom  != null}">
+                            <g:if test="${shippingInfo.address != null || shippingInfo.email  != null || (shippingInfo.twitter  != null && anonymous == 'false') || (shippingInfo.custom  != null && shippingInfo.custom  != '')}">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
                                         <h3 class="panel-title">Shipping Information Required to Fulfill a Perk</h3>
@@ -189,7 +189,7 @@
                                                 </div>
                                             </div>
                                             <div class="clear"></div>
-                                            <g:if test="${shippingInfo.email  != null || (shippingInfo.twitter  != null && !isAnonymous) || shippingInfo.custom  != null}">
+                                            <g:if test="${shippingInfo.email  != null || (shippingInfo.twitter  != null && anonymous == 'false') || shippingInfo.custom  != null}">
                                                 <hr>
                                             </g:if>
                                         </g:if>
@@ -202,7 +202,7 @@
                                                 </div>
                                             </div>
                                         </g:if>
-                                        <g:if test="${shippingInfo.twitter  != null && anonymous=="false"}">
+                                        <g:if test="${shippingInfo.twitter  != null && anonymous=='false'}">
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class="input-group col-md-12">
@@ -211,7 +211,7 @@
                                                 </div>
                                             </div>
                                         </g:if>
-                                        <g:if test="${shippingInfo.custom  != null}">
+                                        <g:if test="${shippingInfo.custom  != null && shippingInfo.custom != ''}">
                                             <g:hiddenField name="customField" id="customField" value="${shippingInfo.custom}"/>
                                             <div class="col-md-6">
                                                 <div class="form-group">

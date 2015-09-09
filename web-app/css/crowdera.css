@@ -10253,3 +10253,7 @@ span#sold-out-text{
 ul.decimalList{
     list-style-type: decimal;
 }
+
+#perkForAnonymousUser{
+	display: none;
+}

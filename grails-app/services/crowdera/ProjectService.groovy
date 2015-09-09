@@ -2562,7 +2562,9 @@ class ProjectService {
 				if(hex.length()==1) hexString.append("0");
 				hexString.append(hex);
 			}
-		}catch(Exception nsae){ }
+		}catch(Exception nsae){
+		    log.errorEnabled = "Unable to generate Hash String : "+nsae
+		}
 		return hexString.toString();
 	}
 	
@@ -2741,11 +2743,6 @@ class ProjectService {
 				project.description = varValue;
 				isValueChanged = true;
 				break;
-		    
-			case 'usedFor':
-				project.usedFor = varValue;
-				isValueChanged = true;
-				break;
 
             default :
                isValueChanged = false;
@@ -2848,7 +2845,6 @@ class ProjectService {
         def reward = Reward.get(params.rewardId)
 
         User fundraiser = User.findByUsername(params.fr)
-        def anonymous = params.anonymous
         def address = getAddress(params, currentEnv)
         if (user == null){
             user = userService.getUserByUsername('anonymous@example.com')
@@ -2859,19 +2855,17 @@ class ProjectService {
         def amount = params.amount
         def firstname =  params.firstname
         def email = params.email
-        def phone = params.phone
         def productinfo = params.productinfo
         def surl = base_url + "/fund/payureturn?projectId=${project.id}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&fundraiser=${fundraiser.id}&physicalAddress=${address}&shippingCustom=${params.shippingCustom}&shippingEmail=${params.shippingEmail}&shippingTwitter=${params.twitterHandle}&name=${params.firstname} ${params.lastname}&email=${params.email}&anonymous=${params.anonymous}&projectTitle=${params.projectTitle}"
 
         def furl = base_url + "/error"
-        def service_provider = "payu_paisa"
         def txnid = generateTransId()
         String hashstring = key + "|" + txnid + "|" + amount + "|" + productinfo + "|" + firstname + "|" + email + "|||||||||||" + salt;
         def hash = generateHash("SHA-512",hashstring)
 
         return [txnid:txnid, hash:hash, furl:furl, surl:surl]
     }
-    
+
     def setCookie(def requestUrl) {
         Cookie cookie = new Cookie("requestUrl", requestUrl)
         cookie.path = '/'

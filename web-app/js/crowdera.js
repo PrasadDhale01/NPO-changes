@@ -165,7 +165,7 @@ $(function() {
     
     $(document).ready(function(){
         
-        $('#hover-cap-4col .the-crews').hover(
+        $('.hover-cap-4col .the-crews').hover(
             function(){
                 $(this).find('.crew-icons').fadeIn(250); 
             },

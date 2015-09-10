@@ -230,7 +230,7 @@
      <h3><p class="text-center">Passionate enough to make a difference? We are hiring&nbsp;&nbsp;<a href="#myCrewDetails" class="btn btn-primary btn-sm" data-toggle="modal">Join Our Crew</a></p></h3>
       <!-- Modal HTML -->
            <div id="myCrewDetails" class="modal fade">
-	           <g:uploadForm action="crewRequest" controller="Home" role="form">
+	           <g:uploadForm action="crewRequest" controller="Home">
 	               <div class="modal-dialog">
 	                   <div class="modal-content">
 	                       <div class="modal-header">

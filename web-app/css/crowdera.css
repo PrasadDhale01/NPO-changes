@@ -5499,6 +5499,9 @@ textarea.form-control {
         padding-left: 0px;
         padding-right: 35px;
     }
+    #uploadingCampaignOrgIcon {
+        font-size: 12px;
+    }
 }
 /***only-use-homepage-Carousel*****/
 @media only screen and (min-width: 730px) and (max-width: 740px){
@@ -10272,4 +10275,7 @@ ul.decimalList{
 }
 #teamImages {
     margin-top: 10px;
+}
+#teamImages.col-xs-12 , #teamImages.col-md-10 , #teamImages.col-sm-12 {
+    padding-left: 10px;
 }

@@ -264,21 +264,23 @@
                                     <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-2">
                                         <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}">
                                         <div class="deleteicon orgicon-css-styles">
-                                            <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');" src="" id="logoDelete">
+                                            <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete">
                                         </div>
                                     </div>
                                 </g:if>
                                 <g:else>
                                     <div id="icondiv" class="pr-icon-thumbnail-div cr-image-mobile col-sm-2">
-                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
+                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="">
                                         <div class="deleteicon orgicon-css-styles">
                                             <img alt="cross" onClick="removeLogo();" id="delIcon" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
                                         </div>
-                                        
+
                                     </div>
                                 </g:else>
                                 <div class="clear"></div>
-                                <div class="text-center" id="uploadingCampaignOrgIcon">Uploading Organization Icon....</div>
+                                <div class="col-sm-12">
+                                    <div id="uploadingCampaignOrgIcon">Uploading Organization Icon....</div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -76,24 +76,39 @@
                             </div>
                             
                             <div class="col-sm-3">
-	                            <div class="font-list">
-	                                <g:if test="${project.payuEmail}">
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAYU" optionKey="key" optionValue="value" />
-	                                </g:if>
-	                                <g:elseif test="${project.charitableId}">
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="FIR" optionKey="key" optionValue="value" />
-	                                </g:elseif>
-	                                <g:elseif test="${project.paypalEmail}">
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" />
-	                                </g:elseif>
-	                                <g:else>
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" noSelection="['null':'Payment']"/>
-	                                </g:else>
-	                            </div>
+                                <div class="font-list">
+                                    <g:if test="${project.payuEmail}">
+                                        <g:if test="${project.validated}">
+                                            <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAYU" optionKey="key" optionValue="value" disabled="value"/>
+                                        </g:if>
+                                        <g:else>
+                                            <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAYU" optionKey="key" optionValue="value"/>
+                                        </g:else>
+                                    </g:if>
+                                    <g:elseif test="${project.charitableId}">
+                                        <g:if test="${project.validated}">
+                                            <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="FIR" optionKey="key" optionValue="value" disabled="value"/>
+                                        </g:if>
+                                        <g:else>
+                                            <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="FIR" optionKey="key" optionValue="value" />
+                                        </g:else>
+                                    </g:elseif>
+                                    <g:elseif test="${project.paypalEmail}">
+                                        <g:if test="${project.validated}">
+                                            <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" disabled="value"/>
+                                        </g:if>
+                                        <g:else>
+                                            <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" />
+                                        </g:else>
+                                    </g:elseif>
+                                    <g:else>
+                                        <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" noSelection="['null':'Payment']"/>
+                                    </g:else>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <input type="hidden" value="${user.id}" name="userid">
 	                <div class="form-group edit-margin">
 						<label class="col-sm-12 text-color">My Name is...</label>
@@ -768,13 +783,13 @@
                     <g:if test ="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                         <div id="PayUMoney">
                              <div class="form-group">
-                             <label class="col-sm-4 control-label">Email</label>
-                             <div class="col-sm-6 col-xs-10">
-                                 <g:if test="${project.payuEmail}">
-                                         <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
+                                 <label class="col-sm-4 control-label">Email</label>
+                                 <div class="col-sm-6 col-xs-10">
+                                     <g:if test="${project.payuEmail && project.validated}">
+                                         <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}" disabled>
                                      </g:if>
                                      <g:else>
-                                          <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}">
+                                         <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
                                      </g:else>
                                  </div>
                              </div>
@@ -785,11 +800,11 @@
                             <div class="form-group">
                                 <img class="col-sm-4 cr-paypal-image" src="//s3.amazonaws.com/crowdera/assets/paypal-Image.png" alt="paypal">
                                 <div class="col-sm-6 paypalVerification">
-                                    <g:if test="${project.paypalEmail}">
-                                        <input id="paypalEmailId" type="email" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}" placeholder="Paypal email address">
+                                    <g:if test="${project.paypalEmail && project.validated}">
+                                        <input id="paypalEmailId" type="email" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}" placeholder="Paypal email address" disabled>
                                     </g:if>
                                     <g:else>
-                                        <input id="paypalEmailId" type="email" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" name="${FORMCONSTANTS.PAYPALEMAIL}" placeholder="Paypal email address">
+                                        <input id="paypalEmailId" type="email" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}" placeholder="Paypal email address">
                                     </g:else>
                                     <g:hiddenField name="paypalEmailAck" value="" id="paypalEmailAck"/>
                                 </div>
@@ -799,17 +814,19 @@
                             <div class="form-group">
 <%--                                <label class="col-sm-4 control-label">FirstGiving</label>--%>
                                 <img class="col-sm-4 cr-first-giving" src="//s3.amazonaws.com/crowdera/assets/firstgiving-icons-1.jpg" alt="firstgiving">
+                                <g:if test="${project.validated}">
+                                    <div class="col-sm-6  charitableDiv">
+                                        <input type="text" id="hiddencharId" name="${FORMCONSTANTS.CHARITABLE}" value="${project.charitableId}" placeholder="charitableId" readonly>
+                                    </div>
+                                </g:if>
+                                <g:else>
                                 <div class="col-sm-6">
                                     <a data-toggle="modal" href="#myModal" class="charitableLink cr-tablet-orgcharity">Find your organization</a>
                                 </div>
                                 <div class="col-sm-4 cr-charity-lbl" id="charitable">
-                                    <g:if test="${project.charitableId}">
-                                        <input type="text" id="hiddencharId" name="${FORMCONSTANTS.CHARITABLE}" value="${project.charitableId}" placeholder="charitableId" readonly>
-                                    </g:if>
-                                    <g:else>
-                                        <input type="text" id="hiddencharId" name="${FORMCONSTANTS.CHARITABLE}" placeholder="charitableId" readonly>
-                                    </g:else>
+                                <input type="text" id="hiddencharId" name="${FORMCONSTANTS.CHARITABLE}" value="${project.charitableId}" placeholder="charitableId" readonly>
                                 </div>
+                                </g:else>
                             </div>
                             <div class="modal" id="myModal">
                                 <div class="modal-dialog">

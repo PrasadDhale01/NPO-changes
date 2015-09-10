@@ -14,6 +14,9 @@
             def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
         %>
 			<div class="row" id="fundindex">
+                <div class="alert alert-info" id="perkForAnonymousUser">
+                    <b>Sorry ! You cannot select twitter perk as you are contributing anonymously.</b>
+                </div>
 				<g:if test="${project.payuStatus}">
 					<div class="col-md-4">
 						<g:if test="${flash.amt_message}">

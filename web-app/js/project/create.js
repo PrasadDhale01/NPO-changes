@@ -93,7 +93,7 @@ $(function() {
                     	$('#test').html(data);
                     }
                 }).error(function(){
-                	alert('An error occured');
+                	console.log('Error occured while session timeout');
                 });
                 window.location.href =$("#b_url").val()+"/logout";   
              }   
@@ -1629,8 +1629,8 @@ $(function() {
                        $('.paypalVerification').closest(".form-group").removeClass('has-error');
                    }
                }
-           }).error(function(){
-               alert('An error occured');
+           }).error(function(e){
+        	   console.log('Error occured during paypal email verification'+e);
            });
         }
     });

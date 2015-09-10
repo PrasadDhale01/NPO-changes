@@ -718,6 +718,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	color: #006083 !important;
 }
 
+.charitableDiv input{
+	margin-left: -4px !important;
+}
+
 .campaignCreateUserLogin {
     background-color: #f6f8f8;
     padding-bottom: 25px;

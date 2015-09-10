@@ -382,17 +382,17 @@
                                     </div>
                                     <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-2">
                                      <g:if test="${project.organizationIconUrl}">
-                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
+                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" >
                                         <div class="deleteicon orgicon-css-styles">
                                             <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
-                                            src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete"/>
+                                            src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete">
                                         </div>
                                     </g:if>
                                     <g:else>
-                                        <img alt="cross" id="imgIcon" class="pr-icon-thumbnail edit-logo-icon"/>
+                                        <img alt="cross" id="imgIcon" class="pr-icon-thumbnail edit-logo-icon">
                                         <div class="deleteicon edit-delete">
                                              <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
-                                             id="logoDelete"/>
+                                             id="logoDelete">
                                         </div>
                                     </g:else>
                                     </div>

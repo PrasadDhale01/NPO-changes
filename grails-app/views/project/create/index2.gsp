@@ -270,7 +270,7 @@
                                 </g:if>
                                 <g:else>
                                     <div id="icondiv" class="pr-icon-thumbnail-div cr-image-mobile col-sm-2">
-                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="">
+                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail">
                                         <div class="deleteicon orgicon-css-styles">
                                             <img alt="cross" onClick="removeLogo();" id="delIcon" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
                                         </div>

@@ -1212,7 +1212,7 @@ class ProjectController {
 		def title = projectService.getVanityTitleFromId(params.project)
 		def username = userService.getVanityNameFromUsername(fundRaiser, params.project)
 		if(params) {
-			def message = projectService.getEditedFundraiserDetails(params, team, request)
+			def message = projectService.getEditedFundraiserDetails(params, team)
 			flash.teamUpdatemessage = message
 		}
 		redirect (action: 'show', params:['projectTitle':title,'fr':username], fragment: 'manageTeam')
@@ -1619,6 +1619,17 @@ class ProjectController {
         if (project && imageFile) {
             def iconUrl = projectService.getorganizationIconUrl(imageFile, project)
             json.put('filelink',iconUrl)
+        }
+        render json
+    }
+    
+    def uploadTeamImage() {
+        def imageFile= params.file
+        Team team = projectService.getTeamById(params.teamId);
+        
+        JSONObject json = new JSONObject();
+        if (team && imageFile) {
+            json = projectService.getMultipleImageUrlsForTeam(imageFile, team)
         }
         render json
     }

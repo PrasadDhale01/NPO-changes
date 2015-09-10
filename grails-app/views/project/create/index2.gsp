@@ -117,9 +117,14 @@
                     <div class="panel-body">
                         <div class="form-group" id="createthumbnail">
                             <div class="col-sm-12">
-                                <div class="fileUpload btn btn-info btn-sm cr-btn-color">
-                                    Upload Pictures
-                                    <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" accept="image/jpeg, image/png" multiple>
+                                <div class="col-md-5 col-sm-12">
+                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color">
+                                        Upload Pictures
+                                        <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" accept="image/jpeg, image/png">
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-sm-12">
+                                    <div id="uploadingCampaignImage">Uploading Picture......</div>
                                 </div>
                                 <div class="clear"></div>
                                 <label class="docfile-orglogo-css" id="imgmsg">Please select image file.</label>
@@ -130,13 +135,12 @@
                                     <div id="imgdiv" class="pr-thumb-div">
                                         <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
                                         <div class="deleteicon pictures-edit-deleteicon">
-                                            <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}' src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete"/>
+                                            <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
                                         </div>
-                                    </div> 
+                                    </div>
                                 </g:each>
-                                <output id="result"></output>
-                                <div id="test"></div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -260,7 +264,7 @@
                                     <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-2">
                                         <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}">
                                         <div class="deleteicon orgicon-css-styles">
-                                            <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete">
+                                            <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');" src="" id="logoDelete">
                                         </div>
                                     </div>
                                 </g:if>
@@ -270,8 +274,11 @@
                                         <div class="deleteicon orgicon-css-styles">
                                             <img alt="cross" onClick="removeLogo();" id="delIcon" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
                                         </div>
+                                        
                                     </div>
                                 </g:else>
+                                <div class="clear"></div>
+                                <div class="text-center" id="uploadingCampaignOrgIcon">Uploading Organization Icon....</div>
                             </div>
                         </div>
                     </div>
@@ -762,7 +769,7 @@
                     $('#test').val('test');
                 }
             }).error(function() {
-                alert('An error occured');
+                console.log('Error occured on selecting the Deadline.');
             });
         }
 
@@ -790,39 +797,37 @@
                         $('#test').html(data);
                     }
                 }).error(function(){
-                        alert('An error occured');
+                    console.log('Error occured on deleting the Campaign Admin.');
                 });
             }
         }
 
         function deleteOrganizationLogo(current, projectId) {
-            $('#imgIcon').removeAttr('src');
-            $('#imgIcon').hide();
-            $('#logoDelete').hide();
-            $('#orgediticonfile').val(''); 
             $.ajax({
                 type:'post',
                 url:$("#b_url").val()+'/project/deleteOrganizationLogo',
                 data:'projectId='+projectId,
                 success: function(data){
-                    $('#test').html(data);
+                    $('#imgIcon').removeAttr('src');
+                    $('#imgIcon').hide();
+                    $('#logoDelete').hide();
+                    $('#orgediticonfile').val('');
                 }
             }).error(function(){
-                alert('An error occured');
+                console.log('Error occured on deleting the organization icon.');
             });
         }
 
         function deleteProjectImage(current,imgst, projectId) {
-            $(current).parents('#imgdiv').remove();
             $.ajax({
                 type:'post',
                 url:$("#b_url").val()+'/project/deleteProjectImage',
                 data:'imgst='+imgst+'&projectId='+projectId,
                 success: function(data){
-                    $('#test').html(data);
+                    $(current).parents('#imgdiv').remove();
                 }
             }).error(function(){
-                 alert('An error occured');
+                 console.log('Error occured on deleting the Campaign Image.');
             });
         }
 

@@ -87,19 +87,6 @@ class ProjectService {
         User currentUser = userService.getCurrentUser()
         def fullName = currentUser.firstName + ' ' + currentUser.lastName
         
-        def iconFile = request.getFile('iconfile')
-        if(!iconFile.isEmpty()) {
-          def uploadedFileUrl = getorganizationIconUrl(iconFile)
-            if (uploadedFileUrl) {
-                project.organizationIconUrl = uploadedFileUrl
-            }
-        }
-
-        def imageFiles = request.getFiles('thumbnail[]')
-        if(!imageFiles.isEmpty()) {
-            getMultipleImageUrls(imageFiles,project)
-        }
-
         if (params.videoUrl) {
             if (params.videoUrl.contains('embed')){
                 project.videoUrl = params.videoUrl
@@ -1554,7 +1541,7 @@ class ProjectService {
         return imageUrls
     }
     
-    def getMultipleImageUrls(List<MultipartFile> files, Project project){
+    def getMultipleImageUrls(CommonsMultipartFile imageFile, Project project){
         def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
         def awsSecretKey = "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"
 
@@ -1567,28 +1554,27 @@ class ProjectService {
         def Folder = "project-images"
 
         def tempImageUrl
-        files.each {
-            def imageUrl = new ImageUrl()
-            def imageFile= it
-            if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
-                try{
-                    def file= new File("${imageFile.getOriginalFilename()}")
-                    def key = "${Folder}/${it.getOriginalFilename()}"
-                    key = key.toLowerCase()
-                    imageFile.transferTo(file)
-                    def object=new S3Object(file)
-                    object.key=key
+        def imageUrl = new ImageUrl()
+        if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
+            try{
+                def file= new File("${imageFile.getOriginalFilename()}")
+                def key = "${Folder}/${imageFile.getOriginalFilename()}"
+                key = key.toLowerCase()
+                imageFile.transferTo(file)
+                def object=new S3Object(file)
+                object.key=key
 
-                    tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
-                    s3Service.putObject(s3Bucket, object)
-                    imageUrl.url = tempImageUrl
-                    project.addToImageUrl(imageUrl)
-                    file.delete()
-                }catch(Exception e){
-                    e.printStackTrace()
-                }
+                tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
+                s3Service.putObject(s3Bucket, object)
+                imageUrl.url = tempImageUrl
+                imageUrl.save()
+                project.addToImageUrl(imageUrl)
+                file.delete()
+            }catch(Exception e) {
+                e.printStackTrace()
             }
         }
+        return ['filelink':tempImageUrl, 'imageId':imageUrl.id]
     }
 	
 	def getMultipleImageUrlsForTeam(List<MultipartFile> files, Team team){
@@ -1709,7 +1695,7 @@ class ProjectService {
         return imageUrl
     }*/
 
-    def getorganizationIconUrl(CommonsMultipartFile iconFile) {
+    def getorganizationIconUrl(CommonsMultipartFile iconFile, Project project) {
         if (!iconFile?.empty && iconFile.size < 1024 * 1024 * 3) {
             def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
             def awsSecretKey = "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"
@@ -1731,10 +1717,11 @@ class ProjectService {
             tempFile.delete()
         
             def organizationIconUrl = "//s3.amazonaws.com/crowdera/${key}"
+            project.organizationIconUrl = organizationIconUrl
             return organizationIconUrl
         }
     }
-	
+    
     def VALID_IMG_TYPES = ['image/png', 'image/jpeg']
 
     def getImageUrls(Project project){

@@ -30,10 +30,10 @@
         		<div class="item active">
 		        	<div class="blacknwhite manage-carousel-in">
 			            <g:if test="${img.toString().contains('.jpg') }">
-                                    	<img class="imagestyle" src="${img}" alt="manage carousel"/>
+                                    	<img class="imagestyle" src="${img}" alt="manage carousel">
                          	    </g:if>
                          	    <g:elseif test="${img.toString().contains('.png')}">
-                                    	<img class="imagestyle" src="${img}" alt="manage carousel"/>
+                                    	<img class="imagestyle" src="${img}" alt="manage carousel">
                          	    </g:elseif>
                          	   <g:else>
                                     	<iframe class="imagestyle" src="${img}" allowfullscreen=""></iframe>
@@ -45,10 +45,10 @@
 	        	<div class="item">
 		        	<div class="blacknwhite manage-carousel-in">
 			            <g:if test="${img.toString().contains('.jpg') }">
-                                        <img class="imagestyle" src="${img}" alt="manage carousel"/>
+                                        <img class="imagestyle" src="${img}" alt="manage carousel">
                          	    </g:if>
                               	    <g:elseif test="${img.toString().contains('.png')}">
-                                        <img class="imagestyle" src="${img}"alt="manage carousel"/>
+                                        <img class="imagestyle" src="${img}"alt="manage carousel">
                          	   </g:elseif>
                          	   <g:else>
                                         <iframe class="imagestyle" src="${img}" allowfullscreen=""></iframe>
@@ -71,13 +71,13 @@
 </g:if>
 <g:else>
     <g:if test="${images.toString().contains('.jpg') }">
-        <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}"/>
+        <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}">
     </g:if>
     <g:elseif test="${images.toString().contains('.png') }">
-        <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}"/>
+        <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}">
     </g:elseif>
     <g:elseif test="${images.toString().contains('abstract') }">
-        <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}"/>
+        <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}">
     </g:elseif>
     <g:else>
         <iframe class="imagestyle" src="${images.get(0)}" allowfullscreen=""></iframe>

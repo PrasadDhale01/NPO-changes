@@ -66,15 +66,16 @@ class ProjectController {
     ]
 
     def list = {
+        def categoryOptions = projectService.getCategory()
+        def sortsOptions = projectService.getSorts()
         def currentEnv = Environment.current.getName()
         def projects = projectService.getValidatedProjects(currentEnv)
         def selectedCategory = "All Categories"
         if (projects.size < 1) {
             flash.catmessage="There are no campaigns"
-            render (view: 'list/index')
-        }
-        else {
-            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv ])
+            render (view: 'list/index', model: [categoryOptions: categoryOptions, sortsOptions: sortsOptions])
+        } else {
+            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv, categoryOptions: categoryOptions, sortsOptions: sortsOptions])
         }
     }
 
@@ -425,17 +426,18 @@ class ProjectController {
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
        
         def reqUrl = base_url+"/project/createNow?firstName=${params.firstName}&amount=${params.amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}"
+        def user = userService.getCurrentUser()
+        if (!user) {
+            Cookie cookie = new Cookie("requestUrl", reqUrl)
+            cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
+            cookie.maxAge= 3600  //Cookie expire time in seconds
+            response.addCookie(cookie)
         
-        Cookie cookie = new Cookie("requestUrl", reqUrl)
-        cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
-        cookie.maxAge= 3600  //Cookie expire time in seconds
-        response.addCookie(cookie)
-        
-        def loginSignUpCookie = projectService.setLoginSignUpCookie()
-        if (loginSignUpCookie) {
-            response.addCookie(loginSignUpCookie)
+            def loginSignUpCookie = projectService.setLoginSignUpCookie()
+            if (loginSignUpCookie) {
+                response.addCookie(loginSignUpCookie)
+            }
         }
-        
         redirect (url: reqUrl)
     }
     
@@ -541,17 +543,6 @@ class ProjectController {
                     }
                 }
 				
-                def imageFiles = request.getFiles('thumbnail[]')
-                if(!imageFiles.isEmpty()) {
-                    projectService.getMultipleImageUrls(imageFiles, project)
-                }
-
-                def iconFile = request.getFile('iconfile')
-                if(!iconFile.isEmpty()) {
-                    def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
-                    project.organizationIconUrl = uploadedFileUrl
-                }
-
                 rewardService.saveRewardDetails(params);
                 project.story = params.story
                 if (params.checkBox && !project.touAccepted) {
@@ -1013,7 +1004,7 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def customrewardsave() {
 		def reward = rewardService.getRewardByParams(params)
-		RewardShipping shippingInfo = new RewardShipping(params)
+		RewardShipping shippingInfo = rewardService.getRewardShippingByParams(params)
 		def title = projectService.getVanityTitleFromId(params.id)
 
 		if(reward.save()) {
@@ -1140,6 +1131,8 @@ class ProjectController {
 	}
 
 	def categoryFilter() {
+		def categoryOptions = projectService.getCategory()
+		def sortsOptions = projectService.getSorts()
         def currentEnv = Environment.current.getName()
 		def category = params.category
 		def project
@@ -1150,13 +1143,8 @@ class ProjectController {
 		} else {
 			project = projectService.filterByCategory(category, currentEnv)
 		}
-		if(!project){
-			flash.catmessage="No campaign found."
-			render (view: 'list/index', model: [projects: project,selectedCategory:category])
-		}else{
-			flash.catmessage=""
-			render (view: 'list/index', model: [projects: project,selectedCategory:category])
-		}
+        flash.catmessage = (project) ? "" : "No campaign found."
+        render (view: 'list/index', model: [projects: project, selectedCategory:category, categoryOptions:categoryOptions, sortsOptions:sortsOptions])
 	}
 
     def addTeam() {
@@ -1224,7 +1212,7 @@ class ProjectController {
 		def title = projectService.getVanityTitleFromId(params.project)
 		def username = userService.getVanityNameFromUsername(fundRaiser, params.project)
 		if(params) {
-			def message = projectService.getEditedFundraiserDetails(params, team, request)
+			def message = projectService.getEditedFundraiserDetails(params, team)
 			flash.teamUpdatemessage = message
 		}
 		redirect (action: 'show', params:['projectTitle':title,'fr':username], fragment: 'manageTeam')
@@ -1345,20 +1333,21 @@ class ProjectController {
 	}
 
 	def campaignsSorts(){
-		def sorts = params.sorts
+		def sorts = (params.sorts == 'Successful (100% +)') ? 'Successful' : params.sorts
 		redirect(action:'sortCampaign', controller: 'project',params:[query: sorts])
 	}
 
 	def sortCampaign(){
+		def categoryOptions = projectService.getCategory()
+		def sortsOptions = projectService.getSorts()
 		def environment = Environment.current.getName()
-		def sorts = params.query
+		def sorts = (params.query == 'Successful') ? 'Successful (100% +)' : params.query
 		def campaignsorts = projectService.isCampaignsorts(sorts, environment)
-		
 		if(!campaignsorts){
 			flash.catmessage="No campaign found."
-			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])
-		}else{
-			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts])
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts, categoryOptions:categoryOptions, sortsOptions:sortsOptions])
+		} else {
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts, categoryOptions:categoryOptions, sortsOptions:sortsOptions])
 		}
 	}
     
@@ -1611,5 +1600,38 @@ class ProjectController {
 		projectService.autoSaveProjectDetails('story', varValue, projectId)
 		render ''
 	}
-
+    
+    def uploadImage() {
+        def imageFile= params.file
+        Project project = projectService.getProjectById(params.projectId);
+        JSONObject json = new JSONObject();
+        if (project && imageFile) {
+            json = projectService.getMultipleImageUrls(imageFile, project)
+        }
+        
+        render json
+    }
+    
+    def uploadOrganizationIcon() {
+        def imageFile= params.file
+        Project project = projectService.getProjectById(params.projectId);
+        JSONObject json = new JSONObject();
+        if (project && imageFile) {
+            def iconUrl = projectService.getorganizationIconUrl(imageFile, project)
+            json.put('filelink',iconUrl)
+        }
+        render json
+    }
+    
+    def uploadTeamImage() {
+        def imageFile= params.file
+        Team team = projectService.getTeamById(params.teamId);
+        
+        JSONObject json = new JSONObject();
+        if (team && imageFile) {
+            json = projectService.getMultipleImageUrlsForTeam(imageFile, team)
+        }
+        render json
+    }
+    
 }

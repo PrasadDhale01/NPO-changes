@@ -694,6 +694,9 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.ie-cr-perks {
+        width: 290px !important;
+    }
 	p.campaignStory.justify > iframe {
 		height: 230px !important;
 		margin-left: 0;
@@ -1442,7 +1445,7 @@ a {
 		margin-right:auto;
 		width:236px;
     }
-    div#aboutus {
+    div.about {
         padding-left: 20%;
     }
     div.container.crewpage > h1 {
@@ -1452,7 +1455,7 @@ a {
         padding-bottom: 20px;
         line-height: 18px;
     }
-    #aboutus .caption {
+    div.caption {
         font-size: 11px;
         width: 100%;
     }
@@ -1508,6 +1511,10 @@ a {
 	width: 110px;
 	height: 25px;
 	font-size: 11px;
+    }
+    
+    #createthumbnail {
+        margin-left: 10px;
     }
 }
 
@@ -2132,7 +2139,7 @@ a {
 	top: 93px;
 	width: 120px;
     }
-    #aboutus .caption {
+    div.caption {
         font-size: 9px;
         width: 100%;
     }
@@ -2915,6 +2922,9 @@ a {
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+    div.abt-icons-trans {
+        left: 80px !important;
+    }
     span.perkNumberAvailable{
         font-size:12px;
     }
@@ -3049,7 +3059,7 @@ a {
     div.left-pads {
         left: 14.8%;
     }
-    #aboutus .caption {
+    div.caption {
         font-size: 11px;
         width: 100%;
     }
@@ -3342,12 +3352,12 @@ ul.unstyled {
 
 /* About us
 ------------------------- */
-#aboutus .thumbnail {
+div.abt-imgs .thumbnail {
     /*max-width: 200px;*/
     display:inline;
 }
 
-#aboutus .thumbnail img {
+div.abt-imgs .thumbnail img {
     max-height: 120px;
     max-width: 120px;
 }
@@ -4796,11 +4806,11 @@ textarea.form-control {
 	top: 2px; 
 	right: 2px;
 }
-#aboutus .caption { 
+.caption { 
 	font-size:9px;
 	padding-left:3px !important;
 }
-#aboutus .caption span{ 
+.caption span{ 
 	display:block; 
 	font-weight:normal; 
 	color:#666;
@@ -5492,6 +5502,9 @@ textarea.form-control {
         padding-left: 0px;
         padding-right: 35px;
     }
+    #uploadingCampaignOrgIcon {
+        font-size: 12px;
+    }
 }
 /***only-use-homepage-Carousel*****/
 @media only screen and (min-width: 730px) and (max-width: 740px){
@@ -5747,20 +5760,6 @@ textarea.form-control {
     	width: 123px;
 	}
 	
-/* 	.btn-create { */
-/*         background-color: white; */
-/*   		border-color: white; */
-/*   		color: black; */
-/*   		padding: 0px; */
-/*  		display: block; */
-/*   		float: left; */
-/*   		margin-left: 243px; */
-/* 		margin-bottom: 0px; */
-/* 		width: 94px; */
-/* 		height: 24px; */
-/* 		font-size: 9px; */
-/* 	} */
-	
 	.btn-create:hover,
     .active .btn-create:hover,
 	.btn-create:focus{
@@ -5795,6 +5794,10 @@ textarea.form-control {
 	    width: 25%;
 	    display: flex !important;
 	}
+	
+	#createthumbnail {
+        margin-left: -4px;
+    }
 }
 
 @media only screen and (min-width: 481px) and (max-width:600px){
@@ -6258,7 +6261,7 @@ textarea.form-control {
 	.crew-content h1 {
 	    font-size: 32px;
 	}
-	#aboutus.row{
+	div.about{
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
@@ -6697,6 +6700,9 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.ie-cr-perks {
+        width: 270px !important;
+    }
 	p.campaignStory.justify > img {
 		height: 230px !important;
 		margin-left: 0;
@@ -7517,11 +7523,11 @@ textarea.form-control {
 	width: 119px;
     }
     
-    #aboutus .caption {
+    div.caption {
         font-size: 9px;
         width: 100%;
     }
-    div#aboutus {
+    div.about {
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
@@ -7738,7 +7744,7 @@ textarea.form-control {
 	.crew-content h1 {
 	    font-size: 31px !important;
 	}
-	#aboutus .thumbnail {
+	.thumbnail {
 	    padding-left: 20px;
 	}
 	h1, .h1 {
@@ -8841,7 +8847,7 @@ span.tile-day-num{
     margin-right: auto;
     width: 1000px;
 }
-#hover-cap-4col .the-crews img {
+.hover-cap-4col .the-crews img {
     position:relative;
     overflow:hidden;	
 }
@@ -10249,4 +10255,36 @@ span#sold-out-text{
 }
 ul.decimalList{
     list-style-type: decimal;
+}
+#uploadingCampaignImage {
+	color: #46b8da;
+	padding-top: 8px;
+	display: none;
+}
+#uploadingCampaignOrgIcon {
+    color: #46b8da;
+    padding-top: 20px;
+	display: none;
+}
+#createthumbnail .col-md-5, #createthumbnail .col-md-7{
+    padding-left: 5px;
+}
+
+#uploadingCampaignUpdateEditImage {
+    color: #46b8da;
+	padding-top: 8px;
+	display: none;
+}
+
+#perkForAnonymousUser{
+	display: none;
+}
+div.ie-cr-perks {
+    width: 350px;
+}
+#teamImages {
+    margin-top: 10px;
+}
+#teamImages.col-xs-12 , #teamImages.col-md-10 , #teamImages.col-sm-12 {
+    padding-left: 10px;
 }

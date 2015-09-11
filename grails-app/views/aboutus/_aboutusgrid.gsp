@@ -15,12 +15,12 @@
 	    </div>
 	</g:if>
     <h1 class="text-center crew-title-centering">The Crew</h1>
-	   <div id="aboutus" class="row tabs founder-centering">
-        <div class="row left-pad" id="hover-cap-4col">
-            <div class="col-xs-push-3 col-sm-3 col-md-push-2 col-sm-push-2  position-top">
+	   <div class="row tabs about founder-centering">
+        <div class="row left-pad hover-cap-4col">
+            <div class="col-xs-push-3 col-sm-3 col-md-push-2 col-sm-push-2  position-top abt-imgs">
                     <div class="the-crews thumbnail crew-img-centering">
                         <img src="//s3.amazonaws.com/crowdera/assets/chet-jain-icon.jpg" alt="chet jain">
-			<div class="crew-icons crew-icons-founder">
+			<div class="crew-icons crew-icons-founder abt-icons-trans">
 			    <a href="https://www.facebook.com/chetjain?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/facebook-icon.png" alt="facebook"></a>
 			    <a href="https://twitter.com/ChetJain" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
 			    <a href="https://www.linkedin.com/in/chjain" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>  
@@ -30,10 +30,10 @@
                     <div class="clear"></div>
             </div>
         
-            <div class="col-xs-6 col-sm-3 col-md-push-2 col-sm-push-2 position-top">
+            <div class="col-xs-6 col-sm-3 col-md-push-2 col-sm-push-2 position-top abt-imgs">
                     <div class="the-crews thumbnail crew-img-centering">
                         <img src="//s3.amazonaws.com/crowdera/assets/Chaitanya-Atreya.jpg" alt="Chai Atreya">
-                        <div class="crew-icons crew-icons-founder ">
+                        <div class="crew-icons crew-icons-founder abt-icons-trans">
 			    <a href="https://www.facebook.com/chaitanya.atreya?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/facebook-icon.png" alt="facebook"></a>
 			    <a href="https://twitter.com/chaitanyaatreya" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
 			    <a href="https://www.linkedin.com/in/atreya" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
@@ -43,10 +43,10 @@
                     <div class="clear"></div>
             </div>
             
-            <div class="col-xs-6 col-sm-3 col-md-push-2 col-sm-push-2  position-top">
+            <div class="col-xs-6 col-sm-3 col-md-push-2 col-sm-push-2  position-top abt-imgs">
                  <div class="the-crews thumbnail crew-img-centering">
                         <img src="//s3.amazonaws.com/crowdera/assets/Rich-Matsuura.jpg" alt="Rich Matsuura">
-			<div class="crew-icons crew-icons-founder ">
+			<div class="crew-icons crew-icons-founder abt-icons-trans">
 			    <a href="https://www.facebook.com/rich.matsuura?fref=ts" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/facebook-icon.png" alt="facebook"></a>
 			    <a href="//twitter.com/RichMatsuura" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Twitter.png" alt="twitter"></a>
 			    <a href="https://www.linkedin.com/in/richmatsuura" target="_blank"><img class="fa-icon" src="//s3.amazonaws.com/crowdera/assets/Linked-In.png" alt="Linkedin"></a>
@@ -59,9 +59,9 @@
            
         </div>
     </div>
-    <div id="aboutus" class="row tabs">
-        <div class="row lft" id="hover-cap-4col">
-             <div class="col-xs-6 col-sm-3 position-top">
+    <div class="row tabs about">
+        <div class="row lft hover-cap-4col">
+             <div class="col-xs-6 col-sm-3 position-top abt-imgs">
                     <div class="the-crews thumbnail crew-img-centering">
 	                <img src="//s3.amazonaws.com/crowdera/assets/Himanchan-Malhotra.jpg" alt="Himanchan Malhotra">
 	                <div class="crew-icons">
@@ -74,7 +74,7 @@
 	            <div class="clear"></div>
             </div>
         
-            <div class="col-xs-6 col-sm-3 position-top">
+            <div class="col-xs-6 col-sm-3 position-top abt-imgs">
                     <div class="the-crews thumbnail crew-img-centering">
 		        <img src="//s3.amazonaws.com/crowdera/assets/Nisarg-Sheth.jpg" alt="Nisarg Sheth">
 		        <div class="crew-icons icons-manage">
@@ -86,7 +86,7 @@
                     <div class="clear"></div>
             </div>
 
-            <div class="col-xs-6 col-sm-3 position-top">
+            <div class="col-xs-6 col-sm-3 position-top abt-imgs">
                     <div class="the-crews thumbnail crew-img-centering">
                         <img src="//s3.amazonaws.com/crowdera/assets/Sachin-Sharma.jpg" alt="Sachin Sharma">
 			<div class="crew-icons icons-manage">
@@ -98,7 +98,7 @@
                     <div class="clear"></div>
             </div>
             
-            <div class="col-xs-6 col-sm-3 position-top">
+            <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
 			    <img src="//s3.amazonaws.com/crowdera/assets/Pankil-Doshi.jpg" alt="PanKil Doshi">
 			    <div class="crew-icons">
@@ -111,7 +111,7 @@
 	                <div class="clear"></div>
 	        </div>
         
-            <div class="col-xs-6 col-sm-3 position-top">
+            <div class="col-xs-6 col-sm-3 position-top abt-imgs">
                     <div class="the-crews thumbnail crew-img-centering">
 		        <img src="//s3.amazonaws.com/crowdera/assets/Kshitij-Ingle.jpg" alt="Kshitij Ingle">
 		        <div class="crew-icons">
@@ -124,7 +124,7 @@
                     <div class="clear"></div>
             </div>
 
-            <div class="col-xs-6 col-sm-3 position-top">
+            <div class="col-xs-6 col-sm-3 position-top abt-imgs">
                     <div class="the-crews thumbnail crew-img-centering">
                         <img src="//s3.amazonaws.com/crowdera/assets/minal.jpg" alt="Minal Ganatra">
 			<div class="crew-icons">
@@ -137,7 +137,7 @@
                     <div class="clear"></div>
             </div>
         
-	        <div class="col-xs-6 col-sm-3 position-top">
+	        <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/Shruti.jpg" alt="Shruti Sharma">
 	                    <div class="crew-icons icons-manage">
@@ -149,7 +149,7 @@
 	                <div class="clear"></div>
 	        </div>
 
-	        <div class="col-xs-6 col-sm-3 position-top">
+	        <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/Prashant-Chaware.jpg" alt="Prashant Chaware">
 			    <div class="crew-icons">
@@ -162,7 +162,7 @@
 	                <div class="clear"></div>
 	        </div>
 
-	        <div class="col-xs-6 col-sm-3 position-top">
+	        <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/Kartiki-Sahu.jpg" alt="Kartiki Sahu">
 			    <div class="crew-icons">
@@ -175,7 +175,7 @@
 	                <div class="clear"></div>
 	        </div>
 
-	        <div class="col-xs-6 col-sm-3 position-top">
+	        <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/Krishna-Sahu.jpg" alt="Krishna Sahu">
 			    <div class="crew-icons">
@@ -188,7 +188,7 @@
 	                <div class="clear"></div>
 	        </div>
         
-	         <div class="col-xs-6 col-sm-3 position-top">
+	         <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/Prasad-Dhale.jpg" alt="Prasad Dhale">
 			    <div class="crew-icons">
@@ -201,7 +201,7 @@
 	                <div class="clear"></div>
 	        </div>
 
-	        <div class="col-xs-6 col-sm-3 position-top">
+	        <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/Tushar-Warhade.jpg" alt="Tushar warhade">
 			    <div class="crew-icons">
@@ -214,7 +214,7 @@
 	                <div class="clear"></div>
 	        </div>
 
-	        <div class="col-xs-6 col-sm-3 position-top">
+	        <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/you.jpg" alt="YOU">
 			    <div class="crew-iconss">
@@ -230,7 +230,7 @@
      <h3><p class="text-center">Passionate enough to make a difference? We are hiring&nbsp;&nbsp;<a href="#myCrewDetails" class="btn btn-primary btn-sm" data-toggle="modal">Join Our Crew</a></p></h3>
       <!-- Modal HTML -->
            <div id="myCrewDetails" class="modal fade">
-	           <g:uploadForm action="crewRequest" controller="Home" role="form">
+	           <g:uploadForm action="crewRequest" controller="Home">
 	               <div class="modal-dialog">
 	                   <div class="modal-content">
 	                       <div class="modal-header">
@@ -297,9 +297,9 @@
  
     <hr>
     <h1 class="text-center">Mentors, Advisors, Investors & Supporters</h1>
-	<div id="aboutus" class="row tabs lft">
-	    <div class="row" id="hover-cap-4col">
-	        <div class="col-xs-6 col-sm-3 position-top">
+	<div class="row tabs lft about">
+	    <div class="row hover-cap-4col">
+	        <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/raj-velgapudi.jpg" alt="Raj Velgapudi">
 	                    <div class="crew-icons manage-mentors">
@@ -310,7 +310,7 @@
 	                <div class="clear"></div>
 	        </div>
 	        
-	        <div class="col-xs-6 col-sm-3 position-top">
+	        <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/tom-kerns.png" alt="Tom Kerns">
 	                    <div class="crew-icons">
@@ -323,7 +323,7 @@
 	                <div class="clear"></div>
 	        </div>
 	
-	        <div class="col-xs-6 col-sm-3 position-top">
+	        <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/george-northup.jpg" alt="George Northup">
 			    <div class="crew-icons manage-mentors">
@@ -334,7 +334,7 @@
 	                <div class="clear"></div>
 	        </div>
 	         
-	        <div class="col-xs-6 col-sm-3 position-top">
+	        <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
                 	    <img src="//s3.amazonaws.com/crowdera/assets/johnguilleabeaux.jpg" alt="John Guilleabeaux">
 			    <div class="crew-icons manage-mentors">
@@ -345,7 +345,7 @@
 	                <div class="clear"></div>
 	        </div>
 	
-	        <div class="col-xs-6 col-sm-3 position-top">
+	        <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/ratinder-ahuja.jpg" alt="Ratinder Ahuja">
 			    <div class="crew-icons icons-manage">
@@ -357,7 +357,7 @@
 	                <div class="clear"></div>
 	        </div>
 	
-	        <div class="col-xs-6 col-sm-3 position-top">
+	        <div class="col-xs-6 col-sm-3 position-top abt-imgs">
 	                <div class="the-crews thumbnail crew-img-centering">
 	                    <img src="//s3.amazonaws.com/crowdera/assets/abhijitdas.png" alt="Abhijit Das">
 			    <div class="crew-icons icons-manage">
@@ -369,7 +369,7 @@
 	                <div class="clear"></div>
 	        </div>
 	        
-            <div class="col-xs-6 col-sm-3 position-top">
+            <div class="col-xs-6 col-sm-3 position-top abt-imgs">
                 <div class="the-crews thumbnail crew-img-centering">
                     <img src="//s3.amazonaws.com/crowdera/assets/billy-leung.jpg" alt="Billy leung">
                     <div class="crew-icons icons-manage">

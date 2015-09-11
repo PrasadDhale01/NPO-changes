@@ -76,24 +76,39 @@
                             </div>
                             
                             <div class="col-sm-3">
-	                            <div class="font-list">
-	                                <g:if test="${project.payuEmail}">
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAYU" optionKey="key" optionValue="value" />
-	                                </g:if>
-	                                <g:elseif test="${project.charitableId}">
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="FIR" optionKey="key" optionValue="value" />
-	                                </g:elseif>
-	                                <g:elseif test="${project.paypalEmail}">
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" />
-	                                </g:elseif>
-	                                <g:else>
-	                                    <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" noSelection="['null':'Payment']"/>
-	                                </g:else>
-	                            </div>
+                                <div class="font-list">
+                                    <g:if test="${project.payuEmail}">
+                                        <g:if test="${project.validated}">
+                                            <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAYU" optionKey="key" optionValue="value" disabled="value"/>
+                                        </g:if>
+                                        <g:else>
+                                            <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAYU" optionKey="key" optionValue="value"/>
+                                        </g:else>
+                                    </g:if>
+                                    <g:elseif test="${project.charitableId}">
+                                        <g:if test="${project.validated}">
+                                            <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="FIR" optionKey="key" optionValue="value" disabled="value"/>
+                                        </g:if>
+                                        <g:else>
+                                            <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="FIR" optionKey="key" optionValue="value" />
+                                        </g:else>
+                                    </g:elseif>
+                                    <g:elseif test="${project.paypalEmail}">
+                                        <g:if test="${project.validated}">
+                                            <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" disabled="value"/>
+                                        </g:if>
+                                        <g:else>
+                                            <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" />
+                                        </g:else>
+                                    </g:elseif>
+                                    <g:else>
+                                        <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" noSelection="['null':'Payment']"/>
+                                    </g:else>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    
+
                     <input type="hidden" value="${user.id}" name="userid">
 	                <div class="form-group edit-margin">
 						<label class="col-sm-12 text-color">My Name is...</label>
@@ -206,42 +221,44 @@
                         <div class="panel-body">
                             <div class="form-group" id="createthumbnail">
                                 <div class="col-sm-12">
-                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color">
-                                        Upload Pictures
-                                        <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectEditImageFile" accept="image/jpeg, image/png" multiple>
+                                    <div class="col-md-5">
+                                        <div class="fileUpload btn btn-info btn-sm cr-btn-color">
+                                            Upload Pictures
+                                            <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectEditImageFile" accept="image/jpeg, image/png">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div id="uploadingCampaignImage">Uploading Picture......</div>
                                     </div>
                                     <div class="clear"></div>
                                     <label class="docfile-orglogo-css" id="imgmsg">Please select image file.</label>
                                     <label class="docfile-orglogo-css" id="campaignfilesize"></label>
                                 </div>
                                 <div class="col-sm-12 pad-result" id="campaignthumbnails">
-                                <g:each var="imgurl" in="${project.imageUrl}">
-                                <div id="imgdiv" class="pr-thumb-div">
-                                    <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
-                                    <div class="deleteicon pictures-edit-deleteicon">
-                                        <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}'
-                                        src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete"/>
-                                    </div>
+                                    <g:each var="imgurl" in="${project.imageUrl}">
+                                        <div id="imgdiv" class="pr-thumb-div">
+                                            <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
+                                            <div class="deleteicon pictures-edit-deleteicon">
+                                                <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
+                                            </div>
+                                        </div>
+                                    </g:each>
+                                    <script>
+                                        function deleteProjectImage(current,imgst, projectId) {
+                                            $.ajax({
+                                                type : 'post',
+                                                url  : $("#b_url").val()+'/project/deleteProjectImage',
+                                                data : 'imgst='+imgst+'&projectId='+projectId,
+                                                success: function(data){
+                                                	$(current).parents('#imgdiv').remove();
+                                                }
+                                            }).error(function() {
+                                            	console.log('Campaign Image cannot be deleted');
+                                            });
+                                        }
+                                    </script>
                                 </div>
-                            </g:each>
-                            <script>
-                             function deleteProjectImage(current,imgst, projectId) {
-                                 $(current).parents('#imgdiv').remove();
-                                 $.ajax({
-                                     type:'post',
-                                     url:$("#b_url").val()+'/project/deleteProjectImage',
-                                     data:'imgst='+imgst+'&projectId='+projectId,
-                                     success: function(data){
-                                     $('#test').html(data);
-                                 }
-                                 }).error(function(){
-                                     alert('An error occured');
-                                 });
-                             }
-                            </script>
-                                    <output id="result"></output>
-                                    <div id="test"></div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -365,38 +382,40 @@
                                     </div>
                                     <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-2">
                                      <g:if test="${project.organizationIconUrl}">
-                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
+                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" >
                                         <div class="deleteicon orgicon-css-styles">
                                             <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
-                                            src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete"/>
+                                            src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete">
                                         </div>
                                     </g:if>
                                     <g:else>
-                                        <img alt="cross" id="imgIcon" class="pr-icon-thumbnail edit-logo-icon"/>
+                                        <img alt="cross" id="imgIcon" class="pr-icon-thumbnail edit-logo-icon">
                                         <div class="deleteicon edit-delete">
                                              <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
-                                             id="logoDelete"/>
+                                             id="logoDelete">
                                         </div>
                                     </g:else>
                                     </div>
+                                    <div class="clear"></div>
+                                    <div class="text-center" id="uploadingCampaignOrgIcon">Uploading Organization Icon....</div>
                                     <script>
-                                   function deleteOrganizationLogo(current, projectId) {
-                                       $('#imgIcon').removeAttr('src');
-                                        $('#imgIcon').hide();
-                                        $('#logoDelete').hide();
-                                        $('#orgediticonfile').val(''); 
+                                    function deleteOrganizationLogo(current, projectId) {
+                                       
                                         $.ajax({
-                                            type:'post',
-                                            url:$("#b_url").val()+'/project/deleteOrganizationLogo',
-                                            data:'projectId='+projectId,
-                                            success: function(data){
-                                            $('#test').html(data);
-                                        }
+                                            type   : 'post',
+                                            url    : $("#b_url").val()+'/project/deleteOrganizationLogo',
+                                            data   : 'projectId='+projectId,
+                                            success: function(data) {
+                                                $('#imgIcon').removeAttr('src');
+                                                $('#imgIcon').hide();
+                                                $('#logoDelete').hide();
+                                                $('#orgediticonfile').val(''); 
+                                            }
                                         }).error(function(){
-                                            alert('An error occured');
+                                            console.log('Error occured on deleting the organization icon.');
                                         });
                                     }
-                                 </script>
+                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -517,7 +536,7 @@
 	                    <div class="cr-perks-flex cr-perks-space edit-perk-space cr-safari">
 	                        <label class="panel-body cr-perks-size edit-perk-size"><span class="cr-offering">Offering</span> PERKS?</label>
 	                    </div>
-	                    <div class="btn-group btnPerkBgColor col-sm-push-6 edit-btn-space cr-perk-yesno-tab ed-perks-css cr-mobile-sp" data-target="buttons">
+	                    <div class="btn-group btnPerkBgColor col-sm-push-6 edit-btn-space cr-perk-yesno-tab ed-perks-css cr-mobile-sp ie-cr-perks" data-target="buttons">
                             <label class="btn btn-default cr-lbl-mobile"> <input type="radio" name="answer" value="yes" id="yesradio"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label>
                             <g:if test="${projectRewards.size() == 0}">
                                 <label class="btn btn-default cr-lbl-mobiles"> <input type="radio" name="answer" checked="checked" value="no" id="noradio"> NO</label>
@@ -764,13 +783,13 @@
                     <g:if test ="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                         <div id="PayUMoney">
                              <div class="form-group">
-                             <label class="col-sm-4 control-label">Email</label>
-                             <div class="col-sm-6 col-xs-10">
-                                 <g:if test="${project.payuEmail}">
-                                         <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
+                                 <label class="col-sm-4 control-label">Email</label>
+                                 <div class="col-sm-6 col-xs-10">
+                                     <g:if test="${project.payuEmail && project.validated}">
+                                         <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}" disabled>
                                      </g:if>
                                      <g:else>
-                                          <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}">
+                                         <input type="email" id="payuemail" class="form-control form-control-no-border cr-payu-space-mobile text-color" name="${FORMCONSTANTS.PAYUEMAIL}" value="${project.payuEmail}">
                                      </g:else>
                                  </div>
                              </div>
@@ -781,11 +800,11 @@
                             <div class="form-group">
                                 <img class="col-sm-4 cr-paypal-image" src="//s3.amazonaws.com/crowdera/assets/paypal-Image.png" alt="paypal">
                                 <div class="col-sm-6 paypalVerification">
-                                    <g:if test="${project.paypalEmail}">
-                                        <input id="paypalEmailId" type="email" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}" placeholder="Paypal email address">
+                                    <g:if test="${project.paypalEmail && project.validated}">
+                                        <input id="paypalEmailId" type="email" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}" placeholder="Paypal email address" disabled>
                                     </g:if>
                                     <g:else>
-                                        <input id="paypalEmailId" type="email" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" name="${FORMCONSTANTS.PAYPALEMAIL}" placeholder="Paypal email address">
+                                        <input id="paypalEmailId" type="email" class="form-control paypal-create form-control-no-border cr-placeholder cr-chrome-place" value="${project.paypalEmail}" name="${FORMCONSTANTS.PAYPALEMAIL}" placeholder="Paypal email address">
                                     </g:else>
                                     <g:hiddenField name="paypalEmailAck" value="" id="paypalEmailAck"/>
                                 </div>
@@ -795,17 +814,19 @@
                             <div class="form-group">
 <%--                                <label class="col-sm-4 control-label">FirstGiving</label>--%>
                                 <img class="col-sm-4 cr-first-giving" src="//s3.amazonaws.com/crowdera/assets/firstgiving-icons-1.jpg" alt="firstgiving">
+                                <g:if test="${project.validated}">
+                                    <div class="col-sm-6  charitableDiv">
+                                        <input type="text" id="hiddencharId" name="${FORMCONSTANTS.CHARITABLE}" value="${project.charitableId}" placeholder="charitableId" readonly>
+                                    </div>
+                                </g:if>
+                                <g:else>
                                 <div class="col-sm-6">
                                     <a data-toggle="modal" href="#myModal" class="charitableLink cr-tablet-orgcharity">Find your organization</a>
                                 </div>
                                 <div class="col-sm-4 cr-charity-lbl" id="charitable">
-                                    <g:if test="${project.charitableId}">
-                                        <input type="text" id="hiddencharId" name="${FORMCONSTANTS.CHARITABLE}" value="${project.charitableId}" placeholder="charitableId" readonly>
-                                    </g:if>
-                                    <g:else>
-                                        <input type="text" id="hiddencharId" name="${FORMCONSTANTS.CHARITABLE}" placeholder="charitableId" readonly>
-                                    </g:else>
+                                <input type="text" id="hiddencharId" name="${FORMCONSTANTS.CHARITABLE}" value="${project.charitableId}" placeholder="charitableId" readonly>
                                 </div>
+                                </g:else>
                             </div>
                             <div class="modal" id="myModal">
                                 <div class="modal-dialog">

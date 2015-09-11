@@ -1,8 +1,6 @@
 package crowdera
 
-import org.junit.internal.runners.statements.FailOnTimeout;
 import grails.plugin.springsecurity.oauth.GoogleOAuthToken
-import grails.plugin.springsecurity.SpringSecurityUtils
 import grails.converters.JSON
 
 class GooglePlusService {

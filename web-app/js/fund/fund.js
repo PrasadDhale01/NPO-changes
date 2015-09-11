@@ -95,24 +95,24 @@ $(function() {
    });
 
 
-    $('.list-group-item').click(function() {
+    $('a.list-group-item').click(function() {
         $('.choose-error').html('');
 
         $(this).siblings().removeClass('active');
         $(this).addClass('active');
     });
-    
+
     $('#anonymousUser').click(function(){
     	var projectId = $('#projectId').val();
-    	
+    	var selectedRewardId = getSelectedRewardId();
     	if($(this).prop("checked") == true){
+    		$('#anonymous').val(true);
     		$.ajax({
     			type:'post',
     			url:$('#url').val()+'/fund/getOnlyTwitterHandlerRewards',
     			data:'projectId='+projectId,
     			success: function(data){
     				$('#userId').val(3);
-    				$('#anonymous').val(true);
     				var list = data.split("[");
     				var list1 = list[1].split("]");
     				var list2 = list1[0].split(",");
@@ -123,11 +123,12 @@ $(function() {
     		    		s.push(x);
     		    		$(a).replaceWith(function() {
     		    			return $('<div/>', {
+    		    				href:'#',
+    		    				class:'list-group-item onlyTwitterReward',
     		    			    html: this.innerHTML
     		    			});
     		    		});
     		    		//$(a).attr('class','list-group-item');
-    		    		$('.twitterHandler').children('div').attr('class','list-group-item onlyTwitterReward');
     				}
     				for(var i=0;i<list2.length;i++){
     					var idval = list2[i].trim();
@@ -141,6 +142,14 @@ $(function() {
 			            });
     				}
     				
+    				$('a.list-group-item').click(function() {
+    	    	        $('.choose-error').html('');
+
+    	    	        $(this).siblings().removeClass('active');
+    	    	        $(this).addClass('active');
+    	    	        $('#perkForAnonymousUser').hide();
+    	    	    });
+
     				$('.onlyTwitterReward').each(function(){    
     		            $(this).popover({
     		                content: 'As you are keeping your contribution anonymous, this perks which has only Twitter handler will be disabled for you',
@@ -151,11 +160,15 @@ $(function() {
     		            .blur(hidePopover)
     		            .hover(showPopover, hidePopover);
     		        });
+
+    				if($('#'+selectedRewardId).hasClass('onlyTwitterReward')){
+    	    			$('#perkForAnonymousUser').show();
+    	    		}
     			}
     		}).error(function(data){
-    			alert('An error occured');
+    			console.log('Error occured while changing the class'+ data);
     		});
-    		
+
     		$.ajax({
                 type:'post',
                 url:$("#url").val()+'/fund/getRewardsHavingTwitterHandler',
@@ -166,9 +179,19 @@ $(function() {
     				var list2 = list1[0].split(",");
     				for(var i=0;i<list2.length;i++){
     		    		var a = '#'+list2[i].trim();
-    		    		$(a).attr('class','list-group-item twitterReward');
+    		    		$(a).addClass('twitterReward');
     				}
-    				
+
+    				$('a.list-group-item').click(function() {
+    	    	        $('.choose-error').html('');
+
+    	    	        $(this).siblings().removeClass('active');
+    	    	        $(this).addClass('active');
+    	    	        $('#perkForAnonymousUser').hide();
+    	    	    });
+
+    				$('#'+selectedRewardId).addClass('active');
+
     				$('.twitterReward').each(function(){
     		            $(this).popover({
     		                content: "As you are keeping your contribution anonymous, Twitter perks will be disabled for you",
@@ -180,115 +203,55 @@ $(function() {
     		            .hover(showPopover, hidePopover);
     		        });
                 }
-            }).error(function(){
-                alert('An error occured');
+            }).error(function(e){
+            	console.log('Error occured while changing class of perk'+e);
             });
-    		
-    	} else if ($(this).prop("checked") == false){
-    		var user = $('#tempValue').val();
-    		
-    		$.ajax({
-    			type:'post',
-    			url:$('#url').val()+'/fund/getOnlyTwitterHandlerRewards',
-    			data:'projectId='+projectId,
-    			success: function(data){
-    				$('#userId').val(user);
-    				$('#anonymous').val(false);
-    				var list = data.split("[");
-    				var list1 = list[1].split("]");
-    				var list2 = list1[0].split(",");
-    				var s= [];
-    				for(var i=0;i<list2.length;i++){
-    		    		var a = '#'+list2[i].trim();
-    		    		var x = $(a).attr("data-rewardprice");
-    		    		s.push(x);
-    		    		$(a).replaceWith(function() {
-    		    			return $('<a/>', {
-    		    			    html: this.innerHTML
-    		    			});
-    		    		});
-    		    		//$(a).attr('class','list-group-item');
-    		    		$('.twitterHandler').children('a').attr('href','#');
-    		    		$('.twitterHandler').children('a').attr('class','list-group-item');
-    				}
-    				
-    				for(var i=0;i<list2.length;i++){
-    					var idval = list2[i].trim();
-    					var k = 1;
-					    $('.list-group-item').each(function () {
-					    	var hasAttr = $(this).is("[id]");
-					    	if (!hasAttr){
-					    		if (k == 1) {
-		                            $(this).attr('id',idval);
-		                            $(this).attr('data-rewardprice',s[i]);
-		                            k++;
-					    		}
-					    	}
-			            });
-					    
-    				}
-    				
-    				$('.list-group-item').click(function() {
-    			        $('.choose-error').html('');
 
-    			        $(this).siblings().removeClass('active');
-    			        $(this).addClass('active');
-    			    });
-    			}
-    		}).error(function(data){
-    			alert('An error occured');
-    		});
-    		
-    		$.ajax({
-                type:'post',
-                url:$("#url").val()+'/fund/getRewardsHavingTwitterHandler',
-                data:'projectId='+projectId,
-                success: function(data){
-                	var list = data.split("[");
-    				var list1 = list[1].split("]");
-    				var list2 = list1[0].split(",");
-    				var s= [];
-    				for(var i=0;i<list2.length;i++){
-    		    		var a = '#'+list2[i].trim();
-    		    		var x = $(a).attr("data-rewardprice");
-    		    		s.push(x);
-    		    		$(a).replaceWith(function() {
-    		    			return $('<a/>', {
-    		    			    html: this.innerHTML
-    		    			});
-    		    		});
-    		    		$('.twitterHandler').children('a').attr('href','#');
-    		    		$('.twitterHandler').children('a').attr('class','list-group-item');
-    				}
-    				
-    				for(var i=0;i<list2.length;i++){
-    					var idval = list2[i].trim();
-    					var k = 1;
-					    $('.list-group-item').each(function () {
-					    	var hasAttr = $(this).is("[id]");
-					    	if (!hasAttr){
-					    		if (k == 1) {
-		                            $(this).attr('id',idval);
-		                            $(this).attr('data-rewardprice',s[i]);
-		                            k++;
-					    		}
-					    	}
-			            });
-    				}
-    				
-    				$('.list-group-item').click(function() {
-    			        $('.choose-error').html('');
+        } else if ($(this).prop("checked") == false){
+            $('#anonymous').val(false);
+            $('#perkForAnonymousUser').hide();
+            $('.twitterHandler').find('.onlyTwitterReward').each(function(){
+                var price = $(this).attr('data-rewardprice');
+                var idVal = $(this).attr('id');
+                $(this).replaceWith(function() {
+                    return $('<a/>', {
+                        href:'#',
+                        class: 'list-group-item',
+                        id: idVal,
+                        html: this.innerHTML
+                    });
+                });
 
-    			        $(this).siblings().removeClass('active');
-    			        $(this).addClass('active');
-    			    });
-                }
-            }).error(function(){
-                alert('An error occured');
+                $('#'+idVal).attr('data-rewardprice', price);
             });
-    	}
+
+            $('.twitterHandler').find('.twitterReward').each(function(){
+                var price = $(this).attr('data-rewardprice');
+                var idVal = $(this).attr('id');
+                $(this).replaceWith(function() {
+                    return $('<a/>', {
+                        href:'#',
+                        class: 'list-group-item',
+                        id: idVal,
+                        html: this.innerHTML
+                    });
+                });
+
+            $('#'+idVal).attr('data-rewardprice', price);
+        });
+
+        $('#'+selectedRewardId).addClass('active');
+
+        $('a.list-group-item').click(function() {
+            $('.choose-error').html('');
+
+            $(this).siblings().removeClass('active');
+            $(this).addClass('active');
+            $('#perkForAnonymousUser').hide();
+        });
+    }
     });
-    
+
     $("#fbshare").click(function(){
         var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl').val());
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');

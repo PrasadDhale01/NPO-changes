@@ -21,7 +21,7 @@
     <g:hiddenField name="payfir" value="${project.charitableId}" id="payfir"/>
     <g:hiddenField name="paypal" value="${project.paypalEmail}"/>
     <g:hiddenField name="projectamount" value="${project.amount}" id="projectamount"/>
-    
+
     <div class="text-center">
         <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
             <a class=" col-sm-2 col-xs-2 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start" src="//s3.amazonaws.com/crowdera/assets/start-Icon-Blue.png" alt="Start"></div><div class="hidden-xs">Start</div></a>
@@ -117,9 +117,14 @@
                     <div class="panel-body">
                         <div class="form-group" id="createthumbnail">
                             <div class="col-sm-12">
-                                <div class="fileUpload btn btn-info btn-sm cr-btn-color">
-                                    Upload Pictures
-                                    <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" accept="image/jpeg, image/png" multiple>
+                                <div class="col-md-5 col-sm-12">
+                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color">
+                                        Upload Pictures
+                                        <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" accept="image/jpeg, image/png">
+                                    </div>
+                                </div>
+                                <div class="col-md-7 col-sm-12">
+                                    <div id="uploadingCampaignImage">Uploading Picture......</div>
                                 </div>
                                 <div class="clear"></div>
                                 <label class="docfile-orglogo-css" id="imgmsg">Please select image file.</label>
@@ -130,13 +135,12 @@
                                     <div id="imgdiv" class="pr-thumb-div">
                                         <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
                                         <div class="deleteicon pictures-edit-deleteicon">
-                                            <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}' src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete"/>
+                                            <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
                                         </div>
-                                    </div> 
+                                    </div>
                                 </g:each>
-                                <output id="result"></output>
-                                <div id="test"></div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -266,12 +270,17 @@
                                 </g:if>
                                 <g:else>
                                     <div id="icondiv" class="pr-icon-thumbnail-div cr-image-mobile col-sm-2">
-                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
+                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail">
                                         <div class="deleteicon orgicon-css-styles">
                                             <img alt="cross" onClick="removeLogo();" id="delIcon" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
                                         </div>
+
                                     </div>
                                 </g:else>
+                                <div class="clear"></div>
+                                <div class="col-sm-12">
+                                    <div id="uploadingCampaignOrgIcon">Uploading Organization Icon....</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -375,7 +384,7 @@
                     <div class="cr-perks-flex cr-perks-space cr-safari">
                         <label class="panel-body cr-perks-size "><span class="cr-offering">Offering</span> PERKS?</label>
                     </div>
-                    <div class="btn-group btnPerkBgColor col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp" data-target="buttons">
+                    <div class="btn-group btnPerkBgColor col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp ie-cr-perks" data-target="buttons">
                         <label class="btn btn-default cr-lbl-mobile"> <input type="radio" name="answer" value="yes" id="yesradio"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
                         <label class="btn btn-default cr-lbl-mobiles"> <input type="radio" name="answer" value="no" id="noradio"> NO</label>
                     </div>
@@ -534,7 +543,7 @@
             
             <div class="row">
                 <div class="col-sm-12 perk-css" id="updatereward">
-                    <div class="col-sm-12 perk-create-styls" align="right">
+                    <div class="col-sm-12 perk-create-styls perkEditDeleteAlign" >
                         <span class="perkSaveMessage" id="perkSaveMessage">Perk Saved</span>
                         <div class="btn btn-circle perks-css-create intutive-glyphicon" id="savereward" value="${lastrewardCount}">
                             <i class="glyphicon glyphicon-floppy-save"></i>
@@ -762,7 +771,7 @@
                     $('#test').val('test');
                 }
             }).error(function() {
-                alert('An error occured');
+                console.log('Error occured on selecting the Deadline.');
             });
         }
 
@@ -790,39 +799,37 @@
                         $('#test').html(data);
                     }
                 }).error(function(){
-                        alert('An error occured');
+                    console.log('Error occured on deleting the Campaign Admin.');
                 });
             }
         }
 
         function deleteOrganizationLogo(current, projectId) {
-            $('#imgIcon').removeAttr('src');
-            $('#imgIcon').hide();
-            $('#logoDelete').hide();
-            $('#orgediticonfile').val(''); 
             $.ajax({
                 type:'post',
                 url:$("#b_url").val()+'/project/deleteOrganizationLogo',
                 data:'projectId='+projectId,
                 success: function(data){
-                    $('#test').html(data);
+                    $('#imgIcon').removeAttr('src');
+                    $('#imgIcon').hide();
+                    $('#logoDelete').hide();
+                    $('#orgediticonfile').val('');
                 }
             }).error(function(){
-                alert('An error occured');
+                console.log('Error occured on deleting the organization icon.');
             });
         }
 
         function deleteProjectImage(current,imgst, projectId) {
-            $(current).parents('#imgdiv').remove();
             $.ajax({
                 type:'post',
                 url:$("#b_url").val()+'/project/deleteProjectImage',
                 data:'imgst='+imgst+'&projectId='+projectId,
                 success: function(data){
-                    $('#test').html(data);
+                    $(current).parents('#imgdiv').remove();
                 }
             }).error(function(){
-                 alert('An error occured');
+                 console.log('Error occured on deleting the Campaign Image.');
             });
         }
 

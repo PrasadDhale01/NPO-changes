@@ -694,6 +694,9 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.ie-cr-perks {
+        width: 290px !important;
+    }
 	p.campaignStory.justify > iframe {
 		height: 230px !important;
 		margin-left: 0;
@@ -3345,12 +3348,12 @@ ul.unstyled {
 
 /* About us
 ------------------------- */
-.thumbnail {
+div.abt-imgs .thumbnail {
     /*max-width: 200px;*/
     display:inline;
 }
 
-.thumbnail img {
+div.abt-imgs .thumbnail img {
     max-height: 120px;
     max-width: 120px;
 }
@@ -6700,6 +6703,9 @@ textarea.form-control {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.ie-cr-perks {
+        width: 270px !important;
+    }
 	p.campaignStory.justify > img {
 		height: 230px !important;
 		margin-left: 0;
@@ -10256,4 +10262,7 @@ ul.decimalList{
 
 #perkForAnonymousUser{
 	display: none;
+}
+div.ie-cr-perks {
+    width: 350px;
 }

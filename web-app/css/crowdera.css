@@ -1009,8 +1009,8 @@ a {
 	    width: 141px !important;
 	}
 	header.cr-tabs-link {
-	    padding-left: 8px !important; 
-	    padding-right: 8px !important; 
+	    padding-left: 108px !important; 
+	    padding-right:108px !important; 
 	    font-size: 17px !important;
 	    height: 96px !important;
     }
@@ -1561,6 +1561,27 @@ a {
     	margin-top:21px;
     }
 }
+@media only screen and (min-width:768px) and (max-width: 830px) {
+    header.cr-tabs-link {
+	    padding-left: 44px !important; 
+	    padding-right: 42px !important; 
+	    font-size: 18px !important;
+    }
+}
+@media only screen and (min-width:831px) and (max-width: 900px){
+	header.cr-tabs-link {
+        font-size: 18px !important;
+        padding-left: 65px !important;
+        padding-right: 76px !important;
+    }
+}
+@media only screen and (min-width:901px) and (max-width: 1024px){
+	header.cr-tabs-link {
+        font-size: 17px !important;
+        padding-left: 117px !important;
+        padding-right: 130px !important;
+    }
+}
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
 	.tile-goal.teamtile {
@@ -1831,16 +1852,11 @@ a {
     }
     div.cr-start-dropdown-payment.btn-group.bootstrap-select{
          right: 16px !important;
-         width: 135px !important;
+         width: 143px !important;
     }
 	.cr-paypal-image {
         padding-left: 112px !important;
         padding-right: 25px !important;
-    }
-	header.cr-tabs-link {
-	    padding-left: 16px !important; 
-	    padding-right: 16px !important; 
-	    font-size: 20px !important;
     }
 	div.cr-space{
 	    display: inline-table !important;
@@ -5801,6 +5817,11 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 481px) and (max-width:600px){
+    header.cr-tabs-link {
+        font-size: 24px;
+        padding-left: 38px !important;
+        padding-right: 38px !important;
+    }
     .containrewards {
         height: 240px !important;
         position: relative;
@@ -5819,6 +5840,14 @@ textarea.form-control {
 	}
 	div.edits {
         margin-top: -43px;
+    }
+}
+
+@media only screen and (min-width: 601px) and (max-width:640px){
+    header.cr-tabs-link {
+        font-size: 24px;
+        padding-left: 85px !important;
+        padding-right: 85px !important;
     }
 }
 
@@ -6666,6 +6695,11 @@ textarea.form-control {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
+	header.cr-tabs-link {
+	    padding-left: 10px !important; 
+	    padding-right: 10px !important; 
+	    font-size: 24px;
+    }
     input#hiddencharId {
         font-size: 12px;
     }
@@ -6836,11 +6870,11 @@ textarea.form-control {
 	header.cr-tabs-link {
 		color: #01bbd3;
 		font-size: 21px;
-		height: 96px !important;
+		height: 93px !important;
 		position:fixed;
 	}
 	.startsection {
-        height: 80px !important;
+        height: 85px !important;
     }
 	
 	div.edit-tool-icon img{
@@ -6969,11 +7003,6 @@ textarea.form-control {
 	}
 	header {
         display: inline !important;
-    }
-	header.cr-tabs-link {
-	    padding-left: 25px !important; 
-	    padding-right: 20px !important; 
-	    font-size: 24px;
     }
 	div.cr-space{
 	    display: inline-table !important;
@@ -9420,7 +9449,7 @@ header.cr-tabs-link {
     padding-right: 300px;
 	position:fixed;
 	top:50px;
-	font-size: 21px;
+	font-size: 20px;
 	z-index:500;
 }
 .cr-ancher-tab a{

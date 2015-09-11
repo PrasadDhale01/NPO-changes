@@ -948,7 +948,6 @@ $(function() {
                        $('#imgIcon').attr('src',json.filelink);
                        $('#delIcon').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
                        $('#logoDelete').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
-                       $('#iconfile').val('');
                        $('#uploadingCampaignOrgIcon').hide();
                    }
                }, this);
@@ -1185,7 +1184,6 @@ $(function() {
                                         + file.name + "'/><div class=\"deleteicon\"><img onClick=\"deleteProjectImage(this,'"+json.imageId+"','"+projectId+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>";
 
                         output.insertBefore(div, null);
-                        $('#projectImageFile, #projectEditImageFile').val('');
                         $('#uploadingCampaignImage').hide();
                     }
                 }, this);

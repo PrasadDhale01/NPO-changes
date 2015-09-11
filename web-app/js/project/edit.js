@@ -25,11 +25,6 @@ $(function() {
                 minlength: 10,
                 maxlength: 140
             },
-            /*story: {
-                required: true,
-                minlength: 10,
-                maxlength: 5000
-            },*/
             videoUrl: {
                 isYoutubeVideo: true
             },
@@ -443,23 +438,49 @@ $(function() {
         	var fileName;
             var isFileSizeExceeds = false;
             var files = event.target.files; // FileList object
-            var output = document.getElementById("imageresult");
             for ( var i = 0; i < files.length; i++) {
                 var file = files[i];
                 var filename = file.name;
                 if (file.size < 1024 * 1024 * 3) {
                 	isvalidsize =  true;
-                    var picReader = new FileReader();
-                    picReader.addEventListener("load",function(event) {
-                        var picFile = event.target;
-                        var div = document.createElement("div");
-                        div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"+ picFile.result + "'" + "title='" + file.name
-                                      + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"
-                                      + "</div>";
-                        output.insertBefore(div, null);
-                    });
-                    // Read the image
-                    picReader.readAsDataURL(file);
+                	$('#uploadingUpdateEditImage').show();
+
+                    var formData = !!window.FormData ? new FormData() : null;
+                    var name = 'file';
+                    var projectUpdateId = $('[name="projectUpdateId"]').val();
+                    formData.append(name, file);
+                    formData.append('projectUpdateId', projectUpdateId);
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', $("#b_url").val()+'/project/uploadUpdateEditImage');
+                    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                     
+                    // complete
+                    xhr.onreadystatechange = $.proxy(function() {
+                        if (xhr.readyState == 4) {
+                            var data = xhr.responseText;
+                            data = data.replace(/^\[/, '');
+                            data = data.replace(/\]$/, '');
+
+                            var json;
+                            try {
+                                json = (typeof data === 'string' ? $.parseJSON(data) : data);
+                            } catch(err) {
+                                json = { error: true };
+                            }
+                            var output = document.getElementById("projectUpdateImageDiv");
+                            var div = document.createElement("div");
+                            div.id = "imgdiv";
+                            div.className = "pr-thumb-div"
+                            div.innerHTML = "<img  class='pr-thumbnail' src='"+ json.filelink + "'"+ "title='"
+                                            + file.name + "'><div class=\"deleteicon\"><img onClick=\"deleteProjectImage(this,'"+json.imageId+"','"+projectUpdateId+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"></div>";
+
+                            output.insertBefore(div, null);
+                            $('#uploadingUpdateEditImage').hide();
+                        }
+                    }, this);
+                    xhr.send(formData);
+                	
                 } else {
                 	if (fileName) {
                 	    fileName = fileName +" "+ file.name;

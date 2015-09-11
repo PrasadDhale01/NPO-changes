@@ -1647,6 +1647,39 @@ class ProjectService {
         }
     }
     
+    def getUpdatEditImageUrls(CommonsMultipartFile imageFile, ProjectUpdate projectUpdate){
+        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+        def awsSecretKey = "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"
+
+        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+        def s3Service = new RestS3Service(awsCredentials);
+
+        def bucketName = "crowdera"
+        def s3Bucket = new S3Bucket(bucketName)
+        def Folder = "project-images"
+
+        def tempImageUrl
+        def imageUrl = new ImageUrl()
+
+        if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
+            def file= new File("${imageFile.getOriginalFilename()}")
+            def key = "${Folder}/${imageFile.getOriginalFilename()}"
+            key = key.toLowerCase()
+            imageFile.transferTo(file)
+            def object=new S3Object(file)
+            object.key=key
+
+            tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
+            imageUrl.url = tempImageUrl
+            s3Service.putObject(s3Bucket, object)
+            imageUrl.save()
+            projectUpdate.addToImageUrls(imageUrl).save()
+            file.delete()
+        }
+
+        return ['filelink':tempImageUrl, 'imageId':imageUrl.id]
+    }
+    
     def isImageFileEmpty(List<MultipartFile> files) {
         def isImageFileEmpty = true
         files.each {file ->
@@ -2326,16 +2359,13 @@ class ProjectService {
 		
 	}
     
-    def editCampaignUpdates(def params, def project, def imageFiles) {
+    def editCampaignUpdates(def params, def project) {
         ProjectUpdate projectUpdate = getProjectUpdateById(params.long('id'))
         def story = params.story
-        def isImageFileEmpty = isImageFileEmpty(imageFiles)
+        
         boolean isCampaignUpdated = false
         if(projectUpdate) {
-            if (!isImageFileEmpty) {
-                getUpdatedImageUrls(imageFiles, projectUpdate)
-                isCampaignUpdated = true;
-            }
+            
             if (!story.isAllWhitespace()) {
                 if (projectUpdate.story != story) {
                     projectUpdate.story = story

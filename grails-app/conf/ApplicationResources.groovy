@@ -3,14 +3,17 @@ import grails.util.Environment
 def currentEnv = Environment.current.getName()
 def cdn
 switch (currentEnv) {
-	case 'production':
-	    cdn = 'https://d38k0frcj7wnf2.cloudfront.net/'
-	case 'prodIndia':
-		cdn = 'http://dmymluhfmi0o3.cloudfront.net/'
-	case 'test':
-		cdn = 'http://d1hsbjre03buja.cloudfront.net/'
-	default:
-		cdn = ''
+    case 'production':
+        cdn = 'https://d38k0frcj7wnf2.cloudfront.net/'
+        break;
+    case 'prodIndia':
+        cdn = 'http://dmymluhfmi0o3.cloudfront.net/'
+        break;
+    case 'test':
+        cdn = 'http://d1hsbjre03buja.cloudfront.net/'
+        break;
+    default:
+        cdn = ''
 }
 
 modules = {

@@ -136,11 +136,9 @@
     $('#paymentInfo').find('form').validate({
         rules: {
             beneficiaryName: {
-                maxlength: 40,
                 required: true
             },
             branch: {
-                maxlength: 20,
                 required: true
             },
             ifscCode: {

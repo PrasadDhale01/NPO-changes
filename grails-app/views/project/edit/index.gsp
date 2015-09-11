@@ -221,42 +221,44 @@
                         <div class="panel-body">
                             <div class="form-group" id="createthumbnail">
                                 <div class="col-sm-12">
-                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color">
-                                        Upload Pictures
-                                        <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectEditImageFile" accept="image/jpeg, image/png" multiple>
+                                    <div class="col-md-5">
+                                        <div class="fileUpload btn btn-info btn-sm cr-btn-color">
+                                            Upload Pictures
+                                            <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectEditImageFile" accept="image/jpeg, image/png">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div id="uploadingCampaignImage">Uploading Picture......</div>
                                     </div>
                                     <div class="clear"></div>
                                     <label class="docfile-orglogo-css" id="imgmsg">Please select image file.</label>
                                     <label class="docfile-orglogo-css" id="campaignfilesize"></label>
                                 </div>
                                 <div class="col-sm-12 pad-result" id="campaignthumbnails">
-                                <g:each var="imgurl" in="${project.imageUrl}">
-                                <div id="imgdiv" class="pr-thumb-div">
-                                    <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
-                                    <div class="deleteicon pictures-edit-deleteicon">
-                                        <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" value='${imgurl.id}'
-                                        src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete"/>
-                                    </div>
+                                    <g:each var="imgurl" in="${project.imageUrl}">
+                                        <div id="imgdiv" class="pr-thumb-div">
+                                            <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
+                                            <div class="deleteicon pictures-edit-deleteicon">
+                                                <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
+                                            </div>
+                                        </div>
+                                    </g:each>
+                                    <script>
+                                        function deleteProjectImage(current,imgst, projectId) {
+                                            $.ajax({
+                                                type : 'post',
+                                                url  : $("#b_url").val()+'/project/deleteProjectImage',
+                                                data : 'imgst='+imgst+'&projectId='+projectId,
+                                                success: function(data){
+                                                	$(current).parents('#imgdiv').remove();
+                                                }
+                                            }).error(function() {
+                                            	console.log('Campaign Image cannot be deleted');
+                                            });
+                                        }
+                                    </script>
                                 </div>
-                            </g:each>
-                            <script>
-                             function deleteProjectImage(current,imgst, projectId) {
-                                 $(current).parents('#imgdiv').remove();
-                                 $.ajax({
-                                     type:'post',
-                                     url:$("#b_url").val()+'/project/deleteProjectImage',
-                                     data:'imgst='+imgst+'&projectId='+projectId,
-                                     success: function(data){
-                                     $('#test').html(data);
-                                 }
-                                 }).error(function(){
-                                     alert('An error occured');
-                                 });
-                             }
-                            </script>
-                                    <output id="result"></output>
-                                    <div id="test"></div>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -380,38 +382,40 @@
                                     </div>
                                     <div class="pr-icon-thumbnail-div edit-image-mobile col-sm-2">
                                      <g:if test="${project.organizationIconUrl}">
-                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" />
+                                        <img id="imgIcon" alt="cross" class="pr-icon-thumbnail" src="${project.organizationIconUrl}" >
                                         <div class="deleteicon orgicon-css-styles">
                                             <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
-                                            src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete"/>
+                                            src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="logoDelete">
                                         </div>
                                     </g:if>
                                     <g:else>
-                                        <img alt="cross" id="imgIcon" class="pr-icon-thumbnail edit-logo-icon"/>
+                                        <img alt="cross" id="imgIcon" class="pr-icon-thumbnail edit-logo-icon">
                                         <div class="deleteicon edit-delete">
                                              <img alt="cross" onClick="deleteOrganizationLogo(this,'${project.id}');"
-                                             id="logoDelete"/>
+                                             id="logoDelete">
                                         </div>
                                     </g:else>
                                     </div>
+                                    <div class="clear"></div>
+                                    <div class="text-center" id="uploadingCampaignOrgIcon">Uploading Organization Icon....</div>
                                     <script>
-                                   function deleteOrganizationLogo(current, projectId) {
-                                       $('#imgIcon').removeAttr('src');
-                                        $('#imgIcon').hide();
-                                        $('#logoDelete').hide();
-                                        $('#orgediticonfile').val(''); 
+                                    function deleteOrganizationLogo(current, projectId) {
+                                       
                                         $.ajax({
-                                            type:'post',
-                                            url:$("#b_url").val()+'/project/deleteOrganizationLogo',
-                                            data:'projectId='+projectId,
-                                            success: function(data){
-                                            $('#test').html(data);
-                                        }
+                                            type   : 'post',
+                                            url    : $("#b_url").val()+'/project/deleteOrganizationLogo',
+                                            data   : 'projectId='+projectId,
+                                            success: function(data) {
+                                                $('#imgIcon').removeAttr('src');
+                                                $('#imgIcon').hide();
+                                                $('#logoDelete').hide();
+                                                $('#orgediticonfile').val(''); 
+                                            }
                                         }).error(function(){
-                                            alert('An error occured');
+                                            console.log('Error occured on deleting the organization icon.');
                                         });
                                     }
-                                 </script>
+                                    </script>
                                 </div>
                             </div>
                         </div>

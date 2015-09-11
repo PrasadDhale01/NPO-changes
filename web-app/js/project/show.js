@@ -419,36 +419,67 @@
             $('#editimg').hide();
             $('#editTeamImg').hide();
             var files = event.target.files; // FileList object
-            var output = document.getElementById("result");
             var fileName;
             var isFileSizeExceeds = false;
             
-            for ( var i = 0; i < files.length; i++) {
-                var file = files[i];
-                var filename = file.name;
+            var file = this.files[0];
+            var filename = file.name;
                 
-                if(file.size < 1024 * 1024 * 3) {
-                	isvalidsize =  true;
-                    var picReader = new FileReader();
-                    picReader.addEventListener("load",function(event) {
-                        var picFile = event.target;
+            if(file.size < 1024 * 1024 * 3) {
+                isvalidsize =  true;
+                
+                $('#uploadingCampaignUpdateEditImage').show();
+
+                var formData = !!window.FormData ? new FormData() : null;
+                var name = 'file';
+                var teamId = $('[name="teamId"]').val();
+                formData.append(name, file);
+                formData.append('teamId', teamId);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', $("#b_url").val()+'/project/uploadTeamImage');
+                xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                 
+                // complete
+                xhr.onreadystatechange = $.proxy(function() {
+                    if (xhr.readyState == 4) {
+                        var data = xhr.responseText;
+                        data = data.replace(/^\[/, '');
+                        data = data.replace(/\]$/, '');
+
+                        var json;
+                        try {
+                            json = (typeof data === 'string' ? $.parseJSON(data) : data);
+                        } catch(err) {
+                            json = { error: true };
+                        }
+                        var output = document.getElementById("teamImages");
                         var div = document.createElement("div");
-                        div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div\"><img  class='pr-thumbnail' src='"+ picFile.result+ "'"+ "title='"
-                            + file.name + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>"+ "</div>";
-                            output.insertBefore(div, null);
-                        });
-                    // Read the image
-                    picReader.readAsDataURL(file);
-                } else {
-                	if (fileName) {
-                	    fileName = fileName +" "+ file.name;
-                	} else {
-                		fileName = file.name;
-                	}
-                	$('#editTeamImg').show();
-                	isFileSizeExceeds = true;
-                }
+                        div.id = "imgdiv";
+                        div.className = "pr-thumb-div"
+                        div.innerHTML = "<img  class='pr-thumbnail' src='"+ json.filelink + "'"+ "title='"
+                                        + file.name + "'/><div class=\"deleteicon\"><img onClick=\"deleteTeamImage(this,'"+json.imageId+"','"+teamId+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>";
+
+                        output.insertBefore(div, null);
+                        $('#projectImageFile').val('');
+                        $('#uploadingCampaignUpdateEditImage').hide();
+                    }
+                }, this);
+                xhr.send(formData);
+                
+                $('#teamImages').find("span").remove();
+                $('#teamImages').closest(".form-group").removeClass('has-error');
+                
+            } else {
+            	if (fileName) {
+            	    fileName = fileName +" "+ file.name;
+            	} else {
+            		fileName = file.name;
+            	}
+            	$('#editTeamImg').show();
+            	isFileSizeExceeds = true;
             }
+            
             document.getElementById("editTeamImg").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
             if (isFileSizeExceeds && !isvalidsize) {
                 $('#projectImageFile').val('');

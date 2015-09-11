@@ -1512,6 +1512,10 @@ a {
 	height: 25px;
 	font-size: 11px;
     }
+    
+    #createthumbnail {
+        margin-left: 10px;
+    }
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
@@ -5498,6 +5502,9 @@ textarea.form-control {
         padding-left: 0px;
         padding-right: 35px;
     }
+    #uploadingCampaignOrgIcon {
+        font-size: 12px;
+    }
 }
 /***only-use-homepage-Carousel*****/
 @media only screen and (min-width: 730px) and (max-width: 740px){
@@ -5753,20 +5760,6 @@ textarea.form-control {
     	width: 123px;
 	}
 	
-/* 	.btn-create { */
-/*         background-color: white; */
-/*   		border-color: white; */
-/*   		color: black; */
-/*   		padding: 0px; */
-/*  		display: block; */
-/*   		float: left; */
-/*   		margin-left: 243px; */
-/* 		margin-bottom: 0px; */
-/* 		width: 94px; */
-/* 		height: 24px; */
-/* 		font-size: 9px; */
-/* 	} */
-	
 	.btn-create:hover,
     .active .btn-create:hover,
 	.btn-create:focus{
@@ -5801,6 +5794,10 @@ textarea.form-control {
 	    width: 25%;
 	    display: flex !important;
 	}
+	
+	#createthumbnail {
+        margin-left: -4px;
+    }
 }
 
 @media only screen and (min-width: 481px) and (max-width:600px){
@@ -10259,10 +10256,35 @@ span#sold-out-text{
 ul.decimalList{
     list-style-type: decimal;
 }
+#uploadingCampaignImage {
+	color: #46b8da;
+	padding-top: 8px;
+	display: none;
+}
+#uploadingCampaignOrgIcon {
+    color: #46b8da;
+    padding-top: 20px;
+	display: none;
+}
+#createthumbnail .col-md-5, #createthumbnail .col-md-7{
+    padding-left: 5px;
+}
+
+#uploadingCampaignUpdateEditImage {
+    color: #46b8da;
+	padding-top: 8px;
+	display: none;
+}
 
 #perkForAnonymousUser{
 	display: none;
 }
 div.ie-cr-perks {
     width: 350px;
+}
+#teamImages {
+    margin-top: 10px;
+}
+#teamImages.col-xs-12 , #teamImages.col-md-10 , #teamImages.col-sm-12 {
+    padding-left: 10px;
 }

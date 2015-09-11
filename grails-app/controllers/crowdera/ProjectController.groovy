@@ -426,17 +426,18 @@ class ProjectController {
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
        
         def reqUrl = base_url+"/project/createNow?firstName=${params.firstName}&amount=${params.amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}"
+        def user = userService.getCurrentUser()
+        if (!user) {
+            Cookie cookie = new Cookie("requestUrl", reqUrl)
+            cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
+            cookie.maxAge= 3600  //Cookie expire time in seconds
+            response.addCookie(cookie)
         
-        Cookie cookie = new Cookie("requestUrl", reqUrl)
-        cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
-        cookie.maxAge= 3600  //Cookie expire time in seconds
-        response.addCookie(cookie)
-        
-        def loginSignUpCookie = projectService.setLoginSignUpCookie()
-        if (loginSignUpCookie) {
-            response.addCookie(loginSignUpCookie)
+            def loginSignUpCookie = projectService.setLoginSignUpCookie()
+            if (loginSignUpCookie) {
+                response.addCookie(loginSignUpCookie)
+            }
         }
-        
         redirect (url: reqUrl)
     }
     
@@ -542,17 +543,6 @@ class ProjectController {
                     }
                 }
 				
-                def imageFiles = request.getFiles('thumbnail[]')
-                if(!imageFiles.isEmpty()) {
-                    projectService.getMultipleImageUrls(imageFiles, project)
-                }
-
-                def iconFile = request.getFile('iconfile')
-                if(!iconFile.isEmpty()) {
-                    def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
-                    project.organizationIconUrl = uploadedFileUrl
-                }
-
                 rewardService.saveRewardDetails(params);
                 project.story = params.story
                 if (params.checkBox && !project.touAccepted) {
@@ -1222,7 +1212,7 @@ class ProjectController {
 		def title = projectService.getVanityTitleFromId(params.project)
 		def username = userService.getVanityNameFromUsername(fundRaiser, params.project)
 		if(params) {
-			def message = projectService.getEditedFundraiserDetails(params, team, request)
+			def message = projectService.getEditedFundraiserDetails(params, team)
 			flash.teamUpdatemessage = message
 		}
 		redirect (action: 'show', params:['projectTitle':title,'fr':username], fragment: 'manageTeam')
@@ -1610,5 +1600,38 @@ class ProjectController {
 		projectService.autoSaveProjectDetails('story', varValue, projectId)
 		render ''
 	}
-
+    
+    def uploadImage() {
+        def imageFile= params.file
+        Project project = projectService.getProjectById(params.projectId);
+        JSONObject json = new JSONObject();
+        if (project && imageFile) {
+            json = projectService.getMultipleImageUrls(imageFile, project)
+        }
+        
+        render json
+    }
+    
+    def uploadOrganizationIcon() {
+        def imageFile= params.file
+        Project project = projectService.getProjectById(params.projectId);
+        JSONObject json = new JSONObject();
+        if (project && imageFile) {
+            def iconUrl = projectService.getorganizationIconUrl(imageFile, project)
+            json.put('filelink',iconUrl)
+        }
+        render json
+    }
+    
+    def uploadTeamImage() {
+        def imageFile= params.file
+        Team team = projectService.getTeamById(params.teamId);
+        
+        JSONObject json = new JSONObject();
+        if (team && imageFile) {
+            json = projectService.getMultipleImageUrlsForTeam(imageFile, team)
+        }
+        render json
+    }
+    
 }

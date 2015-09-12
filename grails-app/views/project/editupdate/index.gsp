@@ -20,6 +20,8 @@
             
             <g:uploadForm class="form-horizontal editForm" controller="project" action="saveEditUpdate" method="post" role="form" id="${projectUpdate.id}" params="['projectId': projectId]">
                 <input type="hidden" id="baseUrl" value="${baseUrl}"/>
+                <g:hiddenField name="projectUpdateId" value="${projectUpdate.id}"/>
+                
                 <div class="form-group">
                     <label class="col-sm-1 col-md-1 control-label"><b>Title</b></label>
                     <div class="col-sm-10 col-md-10">
@@ -37,40 +39,43 @@
                 
                 <div class="form-group">
                     <label class="col-sm-1 col-md-1 control-label"><b>Pictures</b></label>
-                    <div class="col-sm-2 col-md-2">
+                    <div class="col-sm-2 col-md-2 col-xs-12">
                         <div class="fileUpload btn btn-primary btn-sm">
                             <span>Add Images</span>
-                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectUpdateImageFile" class="upload" accept="image/jpeg, image/png" multiple>
+                            <input type="file" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectUpdateImageFile" class="upload" accept="image/jpeg, image/png">
                         </div>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                        <div id="uploadingUpdateEditImage">Uploading Picture......</div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="col-md-offset-1 col-md-11 col-sm-11 col-sm-offset-1 col-xs-12" id="projectUpdatemessageDiv">
                         <label class="docfile-orglogo-css" id="editUpdateimg">Please select image file.</label>
                         <label class="docfile-orglogo-css" id="campaignUpdatefilesize"></label>
                     </div>
-                    <div class="col-sm-8">
+                    <div class="col-md-offset-1 col-md-11 col-sm-11 col-sm-offset-1 col-xs-12" id="projectUpdateImageDiv">
                         <g:each var="imageUrl" in="${projectUpdate.imageUrls}">
                             <div id="imagediv" class="pr-thumb-div">
                                 <img alt="image" class='pr-thumbnail' src='${imageUrl.url}' id="imgThumb${imageUrl.id}">
                                 <div class="deleteicon pictures-edit-deleteicon">
-                                    <img alt="cross" onClick="deleteProjectImage(this,'${imageUrl.id}','${projectUpdate.id}');" value='${imageUrl.id}' src="//s3.amazonaws.com/crowdera/assets/delete.ico" id="imageDelete">
+                                    <img alt="cross" onClick="deleteProjectImage(this,'${imageUrl.id}','${projectUpdate.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
                                 </div>
                             </div>
                         </g:each>
                         <script>
                             function deleteProjectImage(current, imageId, projectUpdateId) {
-                                $(current).parents('#imagediv').remove();
                                 $.ajax({
                                     type:'post',
                                     url:$("#baseUrl").val()+'/project/deleteProjectUpdateImage',
                                     data:'imageId='+imageId+'&projectUpdateId='+projectUpdateId,
                                     success: function(data){
-                                        $('#test').html(data);
+                                    	$(current).parents('#imagediv').remove();
                                     }
                                 }).error(function(){
                                     console.log('cannot delete campaign update image');
                                 });
                              }
                         </script>
-                        <output id="imageresult"></output>
-                        <div id="test"></div>
                     </div>
                 </div>
                 <div class="form-group">

@@ -772,3 +772,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 #projectUpdatemessageDiv.col-md-11 , #projectUpdatemessageDiv.col-sm-11 , #projectUpdatemessageDiv.col-xs-12 {
     padding-left: 10px;
 }
+#uploadingUpdateImage {
+    color: #46b8da;
+    padding-top: 8px;
+    display: none;
+}

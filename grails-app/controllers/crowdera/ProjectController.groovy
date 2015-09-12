@@ -1089,7 +1089,9 @@ class ProjectController {
         def projectUpdate = projectService.getProjectUpdateById(request.getParameter("projectUpdateId"))
         List imageUrls = projectUpdate.imageUrls
         imageUrls.remove(imageUrl)
-        imageUrl.delete()
+        if (imageUrl) {
+            imageUrl.delete()
+        }
         render ''
     }
 
@@ -1098,18 +1100,17 @@ class ProjectController {
 		def project = projectService.getProjectById(params.id)
 		def imageFiles = request.getFiles('thumbnail[]')
 		def story = params.story
-		def isImageFileEmpty = projectService.isImageFileEmpty(imageFiles)
 		def title = projectService.getVanityTitleFromId(params.id)
 
 		if(project ) {
-			if (!isImageFileEmpty || !story.isAllWhitespace()) {
+			if (params.imageList || !story.isAllWhitespace()) {
 
 				def projectUpdate = new ProjectUpdate()
 				User user = userService.getCurrentUser()
 
 				projectUpdate.story = story
                 projectUpdate.title = params.title
-				projectService.getUpdatedImageUrls(imageFiles, projectUpdate)
+				projectService.getUpdatedImageUrls(params.imageList, projectUpdate)
 
 				project.addToProjectUpdates(projectUpdate)
 				mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user,params.title)
@@ -1643,6 +1644,23 @@ class ProjectController {
             json = projectService.getUpdatEditImageUrls(imageFile, projectUpdate)
         }
         render json
+    }
+    
+    def uploadUpdateImage() {
+        def imageFile= params.file
+        
+        JSONObject json = new JSONObject();
+        if (imageFile) {
+            def iconUrl = projectService.getSavedImageUrl(imageFile)
+            json.put('filelink',iconUrl)
+        }
+        render json
+    }
+    
+    def deleteCampaignUpdateImage() {
+        def imageUrl = projectService.getImageUrlById(request.getParameter("imageId"))
+        imageUrl.delete()
+        render ''
     }
     
 }

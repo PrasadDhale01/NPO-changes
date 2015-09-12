@@ -340,12 +340,12 @@ $(function() {
           return false;
     }
     
-    $("#addProjectImage").click(function() {
-        $("#updateImageFile").click();
-    });
-    
     var isvalidsizefile =  false;
     $('#updateImageFile').change( function(event) {
+    	var imageList = [];
+    	if ($('#imageList').val()) {
+    	    imageList.push($('#imageList').val());
+    	}
         var file= this.files[0];
         if(validateExtension(file.name) == false){
         	$('#imgupdatemsg').show();
@@ -373,21 +373,45 @@ $(function() {
                 var filename = file.name;
     
                 if(file.size < 1024 * 1024 * 3) {
-                    if (!file.type.match('image'))
-                        continue;
                     isvalidsizefile = true;
-                    var picReader = new FileReader();
-                    picReader.addEventListener("load",function(event) {
-                        var picFile = event.target;
-                        var div = document.createElement("div");
-                        div.innerHTML = "<div id=\"imgdiv\" class=\"pr-thumbnail-div pull-left\"><img  class='pr-thumbnail' src='"+ picFile.result+ "'"+ "title='"+ file.name
-                                         + "'/><div class=\"deleteicon\"><img onClick=\"$(this).parents('#imgdiv').remove();\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"width:10px;height:10px;\"/></div>"
-                                         + "</div>";
+                    $('#uploadingUpdateImage').show();
 
-                        output.insertBefore(div, null);
-                    });
-                    // Read the image
-                    picReader.readAsDataURL(file);
+                    var formData = !!window.FormData ? new FormData() : null;
+                    var name = 'file';
+                    formData.append(name, file);
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', $("#b_url").val()+'/project/uploadUpdateImage');
+                    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                    
+                    // complete
+                    xhr.onreadystatechange = $.proxy(function() {
+                        if (xhr.readyState == 4) {
+                            var data = xhr.responseText;
+                            data = data.replace(/^\[/, '');
+                            data = data.replace(/\]$/, '');
+
+                            var json;
+                            try {
+                                json = (typeof data === 'string' ? $.parseJSON(data) : data);
+                            } catch(err) {
+                                json = { error: true };
+                            }
+                            var output = document.getElementById("projectUpdateImageDiv");
+                            var div = document.createElement("div");
+                            div.id = "imgdiv";
+                            div.className = "pr-thumb-div"
+                            div.innerHTML = "<img  class='pr-thumbnail' src='"+ json.filelink + "'"+ "title='"
+                                            + file.name + "'><div class=\"deleteicon\"><img onClick=\"deleteProjectUpdateImage(this,'"+json.filelink+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"></div>";
+
+                            output.insertBefore(div, null);
+                            $('#uploadingUpdateImage').hide();
+                            imageList.push(json.filelink);
+                            $('#imageList').val(imageList);
+                        }
+                    }, this);
+                    xhr.send(formData);
+                    
                 } else {
                 	if (fileName) {
                 	    fileName = fileName +" "+ file.name;
@@ -470,7 +494,7 @@ $(function() {
                             }
                             var output = document.getElementById("projectUpdateImageDiv");
                             var div = document.createElement("div");
-                            div.id = "imgdiv";
+                            div.id = "imagediv";
                             div.className = "pr-thumb-div"
                             div.innerHTML = "<img  class='pr-thumbnail' src='"+ json.filelink + "'"+ "title='"
                                             + file.name + "'><div class=\"deleteicon\"><img onClick=\"deleteProjectImage(this,'"+json.imageId+"','"+projectUpdateId+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"></div>";

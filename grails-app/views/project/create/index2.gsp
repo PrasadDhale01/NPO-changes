@@ -24,12 +24,12 @@
 
     <div class="text-center">
         <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
-            <a class=" col-sm-2 col-xs-2 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start" src="//s3.amazonaws.com/crowdera/assets/start-Icon-Blue.png" alt="Start"></div><div class="hidden-xs">Start</div></a>
-            <a class=" col-sm-2 col-xs-2 cr-img-story-icon" href="#story"><div class="col-sm-0 cr-subheader-icons"><img class="cr-story" src="//s3.amazonaws.com/crowdera/assets/story-Icon-Blue.png" alt="Story"></div><div class="hidden-xs">Story</div></a>
-            <a class=" col-sm-2 col-xs-2 cr-img-admin-icon" href="#admins"><div class="col-sm-0 cr-subheader-icons"><img class="cr-admin" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---Blue.png" alt="Admin"></div><div class="hidden-xs">Admin</div></a>
-            <a class=" col-sm-2 col-xs-2 cr-img-perk-icon" href="#perk"><div class="col-sm-0 cr-subheader-icons"><img class="cr-perk" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-Blue.png" alt="Perk"></div><div class="hidden-xs">Perks</div></a>
-            <a class=" col-sm-2 col-xs-2 cr-img-payment-icon" href="#payment"><div class="col-sm-0 cr-subheader-icons"><img class="cr-payment" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-Blue.png" alt="Payment"></div><div class="hidden-xs">Payment</div></a>
-            <a class=" col-sm-2 col-xs-2 cr-img-launch-icon" href="#launch"><div class="col-sm-0 cr-subheader-icons"><img class="cr-launch" src="//s3.amazonaws.com/crowdera/assets/launch-Icon--Blue.png" alt="Launch"></div><div class="hidden-xs">Launch</div></a>
+            <a class=" col-sm-2 col-xs-2 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start" src="//s3.amazonaws.com/crowdera/assets/start-Icon-Blue.png" alt="Start"></div><div class="hidden-xs"><b>Start</b></div></a>
+            <a class=" col-sm-2 col-xs-2 cr-img-story-icon" href="#story"><div class="col-sm-0 cr-subheader-icons"><img class="cr-story" src="//s3.amazonaws.com/crowdera/assets/story-Icon-Blue.png" alt="Story"></div><div class="hidden-xs"><b>Story</b></div></a>
+            <a class=" col-sm-2 col-xs-2 cr-img-admin-icon" href="#admins"><div class="col-sm-0 cr-subheader-icons"><img class="cr-admin" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---Blue.png" alt="Admin"></div><div class="hidden-xs"><b>Admin</b></div></a>
+            <a class=" col-sm-2 col-xs-2 cr-img-perk-icon" href="#perk"><div class="col-sm-0 cr-subheader-icons"><img class="cr-perk" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-Blue.png" alt="Perk"></div><div class="hidden-xs"><b>Perks</b></div></a>
+            <a class=" col-sm-2 col-xs-2 cr-img-payment-icon" href="#payment"><div class="col-sm-0 cr-subheader-icons"><img class="cr-payment" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-Blue.png" alt="Payment"></div><div class="hidden-xs"><b>Payment</b></div></a>
+            <a class=" col-sm-2 col-xs-2 cr-img-launch-icon" href="#launch"><div class="col-sm-0 cr-subheader-icons"><img class="cr-launch" src="//s3.amazonaws.com/crowdera/assets/launch-Icon--Blue.png" alt="Launch"></div><div class="hidden-xs"><b>Launch</b></div></a>
         </header>
     </div>
     <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
@@ -384,7 +384,7 @@
                     <div class="cr-perks-flex cr-perks-space cr-safari">
                         <label class="panel-body cr-perks-size "><span class="cr-offering">Offering</span> PERKS?</label>
                     </div>
-                    <div class="btn-group btnPerkBgColor col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp" data-target="buttons">
+                    <div class="btn-group btnPerkBgColor col-sm-push-6 cr-perk-yesno-tab cr-mobile-sp ie-cr-perks" data-target="buttons">
                         <label class="btn btn-default cr-lbl-mobile"> <input type="radio" name="answer" value="yes" id="yesradio"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
                         <label class="btn btn-default cr-lbl-mobiles"> <input type="radio" name="answer" value="no" id="noradio"> NO</label>
                     </div>
@@ -543,7 +543,7 @@
             
             <div class="row">
                 <div class="col-sm-12 perk-css" id="updatereward">
-                    <div class="col-sm-12 perk-create-styls" align="right">
+                    <div class="col-sm-12 perk-create-styls perkEditDeleteAlign" >
                         <span class="perkSaveMessage" id="perkSaveMessage">Perk Saved</span>
                         <div class="btn btn-circle perks-css-create intutive-glyphicon" id="savereward" value="${lastrewardCount}">
                             <i class="glyphicon glyphicon-floppy-save"></i>

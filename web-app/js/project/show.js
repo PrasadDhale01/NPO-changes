@@ -136,11 +136,9 @@
     $('#paymentInfo').find('form').validate({
         rules: {
             beneficiaryName: {
-                maxlength: 40,
                 required: true
             },
             branch: {
-                maxlength: 20,
                 required: true
             },
             ifscCode: {
@@ -461,7 +459,6 @@
                                         + file.name + "'/><div class=\"deleteicon\"><img onClick=\"deleteTeamImage(this,'"+json.imageId+"','"+teamId+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>";
 
                         output.insertBefore(div, null);
-                        $('#projectImageFile').val('');
                         $('#uploadingCampaignUpdateEditImage').hide();
                     }
                 }, this);

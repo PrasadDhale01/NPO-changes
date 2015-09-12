@@ -536,7 +536,7 @@
 	                    <div class="cr-perks-flex cr-perks-space edit-perk-space cr-safari">
 	                        <label class="panel-body cr-perks-size edit-perk-size"><span class="cr-offering">Offering</span> PERKS?</label>
 	                    </div>
-	                    <div class="btn-group btnPerkBgColor col-sm-push-6 edit-btn-space cr-perk-yesno-tab ed-perks-css cr-mobile-sp" data-target="buttons">
+	                    <div class="btn-group btnPerkBgColor col-sm-push-6 edit-btn-space cr-perk-yesno-tab ed-perks-css cr-mobile-sp ie-cr-perks" data-target="buttons">
                             <label class="btn btn-default cr-lbl-mobile"> <input type="radio" name="answer" value="yes" id="yesradio"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label>
                             <g:if test="${projectRewards.size() == 0}">
                                 <label class="btn btn-default cr-lbl-mobiles"> <input type="radio" name="answer" checked="checked" value="no" id="noradio"> NO</label>

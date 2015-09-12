@@ -5,7 +5,6 @@
 <%
     def shippingInfo = rewardservice.getShippingInfo(reward)
     def currentUser = userService.getCurrentUser()
-    def isAnonymous = userService.isAnonymous(currentUser)
 %>
 <html>
 <head>
@@ -82,7 +81,24 @@
 	                            <div class="row">
                                     <input class="form-control" type="hidden" value="Mr/Mrs/Ms" name="billToTitle" id="billToTitle" />
                                     <div class="col-md-6">
-                                        <g:if test="${isAnonymous}">
+                                        <g:if test="${currentUser}">
+                                            <div class="form-group">
+                                                <div class="input-group col-md-12">
+                                                    <input class="form-control" type="text" placeholder="First Name" name="firstname" id="payuFirstName" value="${currentUser.firstName}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group col-md-12">
+                                                    <input class="form-control" type="text" placeholder="Last Name" name="lastname" value="${currentUser.lastName}">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="input-group col-md-12">
+                                                    <input class="form-control" type="text" placeholder="Email" name="email" value="${currentUser.email}">
+                                                </div>
+                                            </div>
+                                        </g:if>
+                                        <g:else>
                                             <div class="form-group">
                                                 <div class="input-group col-md-12">
                                                     <input class="form-control" type="text" placeholder="First Name" name="firstname" id="payuFirstName">
@@ -96,23 +112,6 @@
                                             <div class="form-group">
                                                 <div class="input-group col-md-12">
                                                     <input class="form-control" type="text" placeholder="Email" name="email">
-                                                </div>
-                                            </div>
-                                        </g:if>
-                                        <g:else>
-                                            <div class="form-group">
-                                                <div class="input-group col-md-12">
-                                                    <input class="form-control" type="text" placeholder="First Name" name="firstname" id="payuFirstName" value="${user.firstName}">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-group col-md-12">
-                                                    <input class="form-control" type="text" placeholder="Last Name" name="lastname" value="${user.lastName}">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="input-group col-md-12">
-                                                    <input class="form-control" type="text" placeholder="Email" name="email" value="${user.email}">
                                                 </div>
                                             </div>
                                         </g:else>

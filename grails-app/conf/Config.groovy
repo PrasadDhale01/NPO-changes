@@ -218,11 +218,6 @@ environments {
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
 		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
 		crowdera.MAILCHIMP.LISTID="e37aea1b78"
-		
-		grails.resources.mappers.baseurl.enabled = true
-		grails.resources.mappers.baseurl.default= 'http://d1hsbjre03buja.cloudfront.net'
-		grails.resources.mappers.bundle.excludes = ['**/*']
-		grails.resources.uri.prefix = ""
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
@@ -364,11 +359,6 @@ environments {
         grails.plugins.stripe.publishableKey = 'pk_live_dABB1ahq9wrYlnUl1fN5wl1j'
         */
 		
-		grails.resources.mappers.baseurl.enabled = true
-		grails.resources.mappers.baseurl.default= 'https://d38k0frcj7wnf2.cloudfront.net'
-		grails.resources.mappers.bundle.excludes = ['**/*']
-		grails.resources.uri.prefix = ""
-
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
         }
@@ -587,11 +577,6 @@ environments {
 		crowdera.PAYU.TEST_URL='https://secure.payu.in/_payment.php'
 		crowdera.PAYU.KEY='5geKCB'
 		crowdera.PAYU.SALT='Gtr6fF9A'
-		
-		grails.resources.mappers.baseurl.enabled = true
-		grails.resources.mappers.baseurl.default= 'http://dmymluhfmi0o3.cloudfront.net'
-		grails.resources.mappers.bundle.excludes = ['**/*']
-		grails.resources.uri.prefix = ""
 		
 		mandrill {
 			apiKey = "R28ZHu6_5IkJWLFunpsJbw"

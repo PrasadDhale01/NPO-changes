@@ -1615,7 +1615,19 @@ class ProjectService {
 	    return contribution.amount.round()
     }
     
-    def getUpdatedImageUrls(List<MultipartFile> files, ProjectUpdate projectUpdate){
+    def getUpdatedImageUrls(def imageUrls, ProjectUpdate projectUpdate){
+        def imageUrlList = imageUrls.split(',')
+        imageUrlList = imageUrlList.collect { it.trim() }
+ 
+        imageUrlList.each {
+            def imageUrl = new ImageUrl()
+            imageUrl.url = it
+            imageUrl.save()
+            projectUpdate.addToImageUrls(imageUrl)
+        }
+    }
+    
+    def getSavedImageUrl(CommonsMultipartFile imageFile) {
         def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
         def awsSecretKey = "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"
 
@@ -1624,27 +1636,57 @@ class ProjectService {
 
         def bucketName = "crowdera"
         def s3Bucket = new S3Bucket(bucketName)
-
         def Folder = "project-images"
- 
-        files.each {
-            def imageUrl = new ImageUrl()
-            def imageFile= it
-             if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
-                def file= new File("${imageFile.getOriginalFilename()}")
-                def key = "${Folder}/${it.getOriginalFilename()}"
-                key = key.toLowerCase()
-                imageFile.transferTo(file)
-                def object=new S3Object(file)
-                object.key=key
 
-                imageUrl.url = "//s3.amazonaws.com/crowdera/${key}"
-                s3Service.putObject(s3Bucket, object)
-                imageUrl.save()
-                projectUpdate.addToImageUrls(imageUrl)
-                file.delete()
-            }
+        def tempImageUrl
+
+        if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
+            def file= new File("${imageFile.getOriginalFilename()}")
+            def key = "${Folder}/${imageFile.getOriginalFilename()}"
+            key = key.toLowerCase()
+            imageFile.transferTo(file)
+            def object=new S3Object(file)
+            object.key=key
+
+            tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
+            s3Service.putObject(s3Bucket, object)
+            file.delete()
         }
+
+        return tempImageUrl
+    }
+    
+    def getUpdatEditImageUrls(CommonsMultipartFile imageFile, ProjectUpdate projectUpdate){
+        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+        def awsSecretKey = "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"
+
+        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+        def s3Service = new RestS3Service(awsCredentials);
+
+        def bucketName = "crowdera"
+        def s3Bucket = new S3Bucket(bucketName)
+        def Folder = "project-images"
+
+        def tempImageUrl
+        def imageUrl = new ImageUrl()
+
+        if (!imageFile?.empty && imageFile.size < 1024 * 1024 * 3) {
+            def file= new File("${imageFile.getOriginalFilename()}")
+            def key = "${Folder}/${imageFile.getOriginalFilename()}"
+            key = key.toLowerCase()
+            imageFile.transferTo(file)
+            def object=new S3Object(file)
+            object.key=key
+
+            tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
+            imageUrl.url = tempImageUrl
+            s3Service.putObject(s3Bucket, object)
+            imageUrl.save()
+            projectUpdate.addToImageUrls(imageUrl).save()
+            file.delete()
+        }
+
+        return ['filelink':tempImageUrl, 'imageId':imageUrl.id]
     }
     
     def isImageFileEmpty(List<MultipartFile> files) {
@@ -2326,16 +2368,13 @@ class ProjectService {
 		
 	}
     
-    def editCampaignUpdates(def params, def project, def imageFiles) {
+    def editCampaignUpdates(def params, def project) {
         ProjectUpdate projectUpdate = getProjectUpdateById(params.long('id'))
         def story = params.story
-        def isImageFileEmpty = isImageFileEmpty(imageFiles)
+        
         boolean isCampaignUpdated = false
         if(projectUpdate) {
-            if (!isImageFileEmpty) {
-                getUpdatedImageUrls(imageFiles, projectUpdate)
-                isCampaignUpdated = true;
-            }
+            
             if (!story.isAllWhitespace()) {
                 if (projectUpdate.story != story) {
                     projectUpdate.story = story

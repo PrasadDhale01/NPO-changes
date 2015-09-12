@@ -311,32 +311,32 @@ class ProjectController {
 		}
 	}
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def deleteProjectImage(){
-		def imageUrlId = projectService.getImageUrlById(request.getParameter("imgst"))
-		def projectId = projectService.getProjectById(request.getParameter("projectId"))
-		List imageUrl = projectId.imageUrl
-		imageUrl.remove(imageUrlId)
-		imageUrlId.delete()
-		render ''
-	}
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def deleteProjectImage(){
+        def imageUrl = projectService.getImageUrlById(request.getParameter("imgst"))
+        def project = projectService.getProjectById(request.getParameter("projectId"))
+        List imageUrls = project.imageUrl
+        imageUrls.remove(imageUrl)
+        imageUrl.delete()
+        render ''
+    }
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def deleteTeamImage(){
-		def imageUrlId = projectService.getImageUrlById(request.getParameter("imgst"))
-		def teamId = projectService.getTeamById(request.getParameter("teamId"))
-		List imageUrl = teamId.imageUrl
-		imageUrl.remove(imageUrlId)
-		imageUrlId.delete()
-		render ''
-	}
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def deleteTeamImage(){
+        def imageUrl = projectService.getImageUrlById(request.getParameter("imgst"))
+        def team = projectService.getTeamById(request.getParameter("teamId"))
+        List imageUrls = team.imageUrl
+        imageUrls.remove(imageUrl)
+        imageUrl.delete()
+        render ''
+    }
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def deleteOrganizationLogo(){
-		def projectId = projectService.getProjectById(request.getParameter("projectId"))
-		projectId.organizationIconUrl=null
-		render ''
-	}
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def deleteOrganizationLogo(){
+        def project = projectService.getProjectById(request.getParameter("projectId"))
+        project.organizationIconUrl = null
+        render ''
+    }
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def deleteCampaignAdmin(){
@@ -1059,57 +1059,58 @@ class ProjectController {
 		}
 	}
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def editUpdate() {
-		def projectUpdate = projectService.getProjectUpdateById(params.id)
-		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
-		def projectUpdates = project.projectUpdates
-		if (projectUpdates.contains(projectUpdate)) {
-			flash.editUpdateSuccessMsg = "Campaign Update Edited Successfully"
-			render (view:'editupdate/index', model:[projectUpdate: projectUpdate, project: project, FORMCONSTANTS: FORMCONSTANTS])
-		} else {
-			render (view: 'manageproject/error')
-		}
-	}
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def editUpdate() {
+        def projectUpdate = projectService.getProjectUpdateById(params.id)
+        def project = projectService.getProjectFromVanityTitle(params.projectTitle)
+        def projectUpdates = project.projectUpdates
+        if (projectUpdates.contains(projectUpdate)) {
+            flash.editUpdateSuccessMsg = "Campaign Update Edited Successfully"
+            render (view:'editupdate/index', model:[projectUpdate: projectUpdate, project: project, FORMCONSTANTS: FORMCONSTANTS])
+        } else {
+            render (view: 'manageproject/error')
+        }
+    }
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def saveEditUpdate() {
 		def project = projectService.getProjectById(params.projectId)
 		def imageFiles = request.getFiles('thumbnail[]')
-		projectService.editCampaignUpdates(params, project, imageFiles)
+		projectService.editCampaignUpdates(params, project)
 		def title = projectService.getVanityTitleFromId(params.projectId)
 
 		flash.saveEditUpdateSuccessMsg = "Campaign Update Edited Successfully!"
 		redirect(controller: 'project', action: 'manageproject', params:['projectTitle':title], fragment: 'projectupdates')
 	}
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def deleteProjectUpdateImage() {
-		def imageUrl = ImageUrl.get(request.getParameter("imageId"))
-		def projectUpdate = ProjectUpdate.get(request.getParameter("projectUpdateId"))
-		List imageUrls = projectUpdate.imageUrls
-		imageUrls.remove(imageUrl)
-		imageUrl.delete()
-		render ''
-	}
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def deleteProjectUpdateImage() {
+        def imageUrl = ImageUrl.get(request.getParameter("imageId"))
+        def projectUpdate = projectService.getProjectUpdateById(request.getParameter("projectUpdateId"))
+        List imageUrls = projectUpdate.imageUrls
+        imageUrls.remove(imageUrl)
+        if (imageUrl) {
+            imageUrl.delete()
+        }
+        render ''
+    }
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def updatesave() {
 		def project = projectService.getProjectById(params.id)
 		def imageFiles = request.getFiles('thumbnail[]')
 		def story = params.story
-		def isImageFileEmpty = projectService.isImageFileEmpty(imageFiles)
 		def title = projectService.getVanityTitleFromId(params.id)
 
 		if(project ) {
-			if (!isImageFileEmpty || !story.isAllWhitespace()) {
+			if (params.imageList || !story.isAllWhitespace()) {
 
 				def projectUpdate = new ProjectUpdate()
 				User user = userService.getCurrentUser()
 
 				projectUpdate.story = story
                 projectUpdate.title = params.title
-				projectService.getUpdatedImageUrls(imageFiles, projectUpdate)
+				projectService.getUpdatedImageUrls(params.imageList, projectUpdate)
 
 				project.addToProjectUpdates(projectUpdate)
 				mandrillService.sendUpdateEmailsToContributors(project,projectUpdate,user,params.title)
@@ -1632,6 +1633,34 @@ class ProjectController {
             json = projectService.getMultipleImageUrlsForTeam(imageFile, team)
         }
         render json
+    }
+    
+    def uploadUpdateEditImage() {
+        def imageFile= params.file
+        ProjectUpdate projectUpdate = projectService.getProjectUpdateById(params.projectUpdateId);
+        
+        JSONObject json = new JSONObject();
+        if (projectUpdate && imageFile) {
+            json = projectService.getUpdatEditImageUrls(imageFile, projectUpdate)
+        }
+        render json
+    }
+    
+    def uploadUpdateImage() {
+        def imageFile= params.file
+        
+        JSONObject json = new JSONObject();
+        if (imageFile) {
+            def iconUrl = projectService.getSavedImageUrl(imageFile)
+            json.put('filelink',iconUrl)
+        }
+        render json
+    }
+    
+    def deleteCampaignUpdateImage() {
+        def imageUrl = projectService.getImageUrlById(request.getParameter("imageId"))
+        imageUrl.delete()
+        render ''
     }
     
 }

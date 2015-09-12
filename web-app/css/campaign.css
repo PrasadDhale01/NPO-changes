@@ -756,5 +756,24 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     padding-right: 10px;
 }
 .campaignUserLoginSubHeading {
-	padding-bottom: 15px;
+    padding-bottom: 15px;
+}
+#uploadingUpdateEditImage {
+    color: #46b8da;
+    padding-top: 8px;
+    display: none;
+}
+#projectUpdateImageDiv {
+    padding-top: 10px;
+}
+#projectUpdateImageDiv.col-md-11 , #projectUpdateImageDiv.col-sm-11 , #projectUpdateImageDiv.col-xs-12 {
+    padding-left: 10px;
+}
+#projectUpdatemessageDiv.col-md-11 , #projectUpdatemessageDiv.col-sm-11 , #projectUpdatemessageDiv.col-xs-12 {
+    padding-left: 10px;
+}
+#uploadingUpdateImage {
+    color: #46b8da;
+    padding-top: 8px;
+    display: none;
 }

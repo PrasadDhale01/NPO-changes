@@ -608,19 +608,15 @@
         return false;
     });
 
-    if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging')
-        $("#twitterShare").click(function(){
+    $("#twitterShare").click(function(){
+        if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
             var url = 'https://twitter.com/share?text=Check campaign at crowdera.co!';
-            window.open(url, 'Share on Twitter', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
-            return false;
-        });
-    } else {
-        $("#twitterShare").click(function(){
+        } else {
             var url = 'https://twitter.com/share?text=Check campaign at crowdera.in!';
-            window.open(url, 'Share on Twitter', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
-            return false;
-        });
-    }
+        }
+        window.open(url, 'Share on Twitter', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+        return false;
+    });
 
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {

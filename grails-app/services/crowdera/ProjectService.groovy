@@ -81,7 +81,7 @@ class ProjectService {
          return project
     }
     
-    def getProjectUpdateDetails(def params, def request, def project){
+    def getProjectUpdateDetails(def params, def project){
 		def vanitytitle
 		def title = project.title
         User currentUser = userService.getCurrentUser()
@@ -1567,7 +1567,7 @@ class ProjectService {
                 project.addToImageUrl(imageUrl)
                 file.delete()
             }catch(Exception e) {
-                e.printStackTrace()
+                log.error("Error: " + e);
             }
         }
         return ['filelink':tempImageUrl, 'imageId':imageUrl.id]
@@ -1604,7 +1604,7 @@ class ProjectService {
                 team.addToImageUrl(imageUrl)
                 file.delete()
             } catch(IllegalStateException e){
-                e.printStackTrace()
+                 log.error("Error: " + e) 
             }
         }
         return ['filelink':tempImageUrl, 'imageId':imageUrl.id]
@@ -1796,7 +1796,7 @@ class ProjectService {
                         project.addToImageUrl(imageUrl)
                         file.delete()
                     }catch(IllegalStateException e){
-                        e.printStackTrace()
+                        log.error("Error: " + e) 
                     }
                 }
                 
@@ -2020,7 +2020,7 @@ class ProjectService {
                     service.addToAttachments(fileUrl)
                     file.delete()
                 } catch(IllegalStateException e){
-                    e.printStackTrace()
+                     log.error("Error: " + e)
                 }
             }
         }

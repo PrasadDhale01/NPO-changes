@@ -5,7 +5,7 @@
 	            <h1 class="text-center headingtext">Latest Campaigns</h1><br>
 	        </div>
         </div>
-        <div class="item active home-campaign-tile-container">
+        <div class="item active home-campaign-tile-container home-tile-mobile">
             <div class="row">
                 <ul class="thumbnails list-unstyled home-campaign-tile">
                     <g:each in="${projects}" var="project">

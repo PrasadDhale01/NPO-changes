@@ -646,7 +646,7 @@ div.image-popover .popover{
 }
 .campaignUpdateStory img {
     max-width: 100%;
-    width: auto;
+/*     width: auto; */
 }
 .updatesubmitbutton{
     background: url(https://s3.amazonaws.com/crowdera/assets/submit-update-desktop-new.jpg) no-repeat !important;

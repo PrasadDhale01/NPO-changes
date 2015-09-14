@@ -71,6 +71,7 @@ grails.project.dependency.resolution = {
         compile ":joda-time:1.4"
         compile ":excel-import:1.0.0"
         compile ":spring-security-oauth-google:0.2"
+        compile ':cdn-asset-pipeline:0.4.1'
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate:3.6.10.8" // or ":hibernate4:4.3.1.1"

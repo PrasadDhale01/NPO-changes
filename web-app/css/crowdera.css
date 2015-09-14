@@ -694,7 +694,7 @@ a {
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	#uploadingCampaignOrgIcon {
+    #uploadingCampaignOrgIcon {
         margin-left: -9px;
     }
     div.home-tile-mobile {

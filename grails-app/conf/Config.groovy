@@ -238,7 +238,7 @@ environments {
             }
         }
 		
-		grails {
+		/*grails {
 			assets {
 				cdn {
 					provider = 's3'
@@ -252,7 +252,7 @@ environments {
 			}
 		}
 
-		grails.assets.url = "http://d1hsbjre03buja.cloudfront.net/crowdera/cdn-assets"
+		grails.assets.url = "http://d1hsbjre03buja.cloudfront.net/crowdera/cdn-assets"*/
 
     }
     staging {
@@ -395,7 +395,7 @@ environments {
             }
         }
 		
-		grails {
+		/*grails {
 			assets {
 				cdn {
 					provider = 's3'
@@ -409,7 +409,7 @@ environments {
 			}
 		}
 		
-		grails.assets.url = "http://d38k0frcj7wnf2.cloudfront.net/crowdera/cdn-assets"
+		grails.assets.url = "http://d38k0frcj7wnf2.cloudfront.net/crowdera/cdn-assets"*/
 
     }
 
@@ -630,7 +630,7 @@ environments {
             }
         }
 		
-		grails {
+	/*	grails {
 			assets {
 				cdn {
 					provider = 's3'
@@ -644,7 +644,7 @@ environments {
 			}
 		}
 
-		grails.assets.url = "http://dmymluhfmi0o3.cloudfront.net/crowdera/cdn-assets"
+		grails.assets.url = "http://dmymluhfmi0o3.cloudfront.net/crowdera/cdn-assets"*/
 
 	}
 }

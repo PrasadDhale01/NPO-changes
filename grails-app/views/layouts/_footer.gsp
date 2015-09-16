@@ -3,6 +3,12 @@
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
     def currentEnv = projectService.getCurrentEnvironment()
+    def mailChimpUrl
+    if (currentEnv == 'development' || currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        mailChimpUrl = "//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&id=11344f1cfe"
+    } else {
+        mailChimpUrl = "//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&amp;id=e37aea1b78"
+    }
 %>
 <input type="hidden" id="b_url" value="<%=base_url%>" />
 <!-- Footer -->
@@ -66,7 +72,7 @@
                 <span class="thomas-margin-align">Two Cents of Hope</span><br>
             </div>
 			<div class="footer-newsletter">
-			   <form action="//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&amp;id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-sm" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+			   <form action="${mailChimpUrl}" method="post" id="mc-embedded-subscribe-form-sm" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 			        <div class="col-xs-offset-1 newsletter-align">
 				   <br>
 				   <div class="col-xs-6 footer-input-align">
@@ -147,7 +153,7 @@
 		    </div>
 		    <br><br>
 		    <div class="footer-newsletter">
-			<form action="//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&amp;id=e37aea1b78" method="post" id="mc-embedded-subscribe-form-md" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+			<form action="${mailChimpUrl}" method="post" id="mc-embedded-subscribe-form-md" name="mc-embedded-subscribe-form" class="validate" target="_blank">
 			    <div class="newsletter-alignment col-sm-12 col-md-12">
 			        <div class="newsletter-input col-sm-10 col-md-10">
 				    <input type="text" class="all-place form-control" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">
@@ -262,7 +268,7 @@
 		    </div>
 		    <br><br>
 		    <div class="footer-newsletter">
-			<form action="//crowdera.us3.list-manage.com/subscribe/post?u=41c633b30eeabc78e88bd090d&amp;id=e37aea1b78" method="post" id="mvc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
+			<form action="${mailChimpUrl}" method="post" id="mvc-embedded-subscribe-form-lg" name="mc-embedded-subscribe-form" class="validate" target="_blank">
 			    <div class="newsletter-alignment col-lg-12">
 				<div class="newsletter-input col-lg-10">
 				    <input type="text" class="all-place form-control" name="EMAIL" tabindex="-1" value="" placeholder="Your email" id="subscriberEmail">

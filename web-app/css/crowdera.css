@@ -2603,7 +2603,10 @@ a {
     .admin-selected-drop{
         padding-left: 12px !important;
     }
-
+    .nav-tabs.nav-justified > li {
+        float: none;
+        width: 33.5% !important;
+    }
     .nav-justified.validateshow-details-story{
         display:flex !important;
     }
@@ -3199,6 +3202,10 @@ a {
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
         width: 100% !important;
+    }
+    .nav-tabs.nav-justified > li {
+        float: none;
+        width: 33.5% !important;
     }
     .nav-justified.validateshow-details-story{
         display:flex !important;
@@ -5520,11 +5527,6 @@ textarea.form-control {
     #uploadingCampaignOrgIcon {
         font-size: 12px;
     }
-    .nav-tabs.nav-justified >li{
-        display: table-cell;
-        width: 1%;
-    }
-    
 }
 /***only-use-homepage-Carousel*****/
 @media only screen and (min-width: 730px) and (max-width: 740px){
@@ -5938,10 +5940,10 @@ textarea.form-control {
         border-bottom: 0 none;
         width: 100% !important;
     }
-/*     .nav-tabs.nav-justified > li { */
-/*         float: none; */
-/*         width: 33.5% !important; */
-/*     } */
+    .nav-tabs.nav-justified > li {
+        float: none;
+        width: 33.5% !important;
+    }
     .nav-justified.validateshow-details-story{
         display:flex !important;
     }

@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta >
     <link rel="shortcut icon" href="//s3.amazonaws.com/crowdera/assets/Crowdera-Favicon-blue.png" type="image/x-icon">
     <title><g:layoutTitle default="Crowdera" /></title>
 
@@ -52,8 +52,8 @@
     <r:require modules="crowderajs"/>
     <r:require module="googleanalytics"/>
     
-    <script src="/js/main.js"></script>
-    
+    <script src="/js/main.js" type="application/x-javascript"></script>
+
     <r:layoutResources />
 </body>
 </html>

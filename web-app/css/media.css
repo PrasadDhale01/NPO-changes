@@ -1231,6 +1231,10 @@
     #uploadingCampaignOrgIcon {
         font-size: 12px;
     }
+    .nav-tabs.nav-justified >li{
+        display: table-cell;
+        width: 1%;
+    }
 }
 
 

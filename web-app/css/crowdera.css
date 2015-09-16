@@ -10326,3 +10326,20 @@ div.ie-cr-perks {
 #teamImages.col-xs-12 , #teamImages.col-md-10 , #teamImages.col-sm-12 {
     padding-left: 10px;
 }
+
+.metricsTabTop {
+    margin-top: 30px;
+}
+.metricsTabTop .socialInnovationCategory {
+    font-size: 16px;
+    padding-top: 17px;
+    display: inline-block;
+}
+.metricsTabTop .otherCategory {
+    font-size: 31px;
+    padding-top: 12px;
+    display: inline-block;
+}
+.domain-metrics {
+    padding-top: 20px;
+}

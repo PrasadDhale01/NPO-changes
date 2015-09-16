@@ -1231,6 +1231,10 @@
     #uploadingCampaignOrgIcon {
         font-size: 12px;
     }
+    .nav-tabs.nav-justified >li{
+        display: table-cell;
+        width: 1%;
+    }
 }
 
 
@@ -2337,10 +2341,6 @@
     .admin-selected-drop{
         padding-left: 12px !important;
     }
-    .nav-tabs.nav-justified > li {
-        float: none;
-        width: 33.5% !important;
-    }
     .nav-justified.validateshow-details-story{
         display:flex !important;
     }
@@ -2936,10 +2936,6 @@
     .nav-tabs.nav-justified.show-marginbottoms {
         border-bottom: 0 none;
         width: 100% !important;
-    }
-    .nav-tabs.nav-justified > li {
-        float: none;
-        width: 33.5% !important;
     }
     .nav-justified.validateshow-details-story{
         display:flex !important;
@@ -4346,10 +4342,7 @@
         border-bottom: 0 none;
         width: 100% !important;
     }
-    .nav-tabs.nav-justified > li {
-        float: none;
-        width: 33.5% !important;
-    }
+    
     .nav-justified.validateshow-details-story{
         display:flex !important;
     }

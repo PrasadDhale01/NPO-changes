@@ -321,6 +321,19 @@ class RewardService {
 		 }
 		 return
 	 }
+     
+     def getAverageNumberOfPerk(List projects) {
+         def perkCount = 0
+         def projectCount = 0
+         projects.each {project->
+             if (project.rewards.size() > 1) {
+                 perkCount = perkCount + project.rewards.size()
+                 projectCount = projectCount + 1
+             }
+         }
+         int avgPerkCount = (projectCount > 0) ? (perkCount/projectCount) : 0
+         return avgPerkCount
+     }
 
     @Transactional
     def bootstrap() {

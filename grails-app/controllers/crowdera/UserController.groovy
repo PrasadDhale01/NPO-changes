@@ -9,6 +9,7 @@ class UserController {
     def projectService
 	def mandrillService
     def contributionService
+    def rewardService
 
     @Secured(['ROLE_ADMIN'])
     def admindashboard() {
@@ -238,5 +239,19 @@ class UserController {
         } else {
             render view:'404error'
         }
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def metrics() {
+        List projects = projectService.getListOfValidatedProjects()
+        def object = projectService.getNumberOfEndedAndLiveCampaigns(projects)
+        def selectedCategory = projectService.getNumberOfMostSelectedCategoryAndCount(projects)
+        def avgNumberOFPerk = rewardService.getAverageNumberOfPerk(projects)
+        def verifiedUsers = userService.getVerifiedUserList()
+        
+        render view: '/user/metrics/index',
+               model:[endedProjects: object.endedProjects , LiveProjects : object.LiveProjects, totalProjects : object.totalProjects,
+                      mostSelectedCategory: selectedCategory.mostSelectedCategory, mostSelectedCategoryCount: selectedCategory.mostSelectedCategoryCount,
+                      avgNumberOFPerk: avgNumberOFPerk, verifiedUsers: verifiedUsers]
     }
 }

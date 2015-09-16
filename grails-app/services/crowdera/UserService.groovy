@@ -849,6 +849,58 @@ class UserService {
         }
     }
     
+    def getNumberOfCampaignsForUser(User user) {
+        List projects = Project.findAllWhere(user: user)
+        return projects.size()
+    }
+    
+    def getNumberOfCampaignsContributedTo(User user) {
+        List contributions = Contribution.findAllWhere(user: user)
+        return contributions.size()
+    }
+    
+    def getAvgMinMaxContributionForUser(User user) {
+        List contributions = Contribution.findAllWhere(user: user)
+        int minAmount = 0
+        int maxAmount = 0
+        int totalAmount = 0
+        int avgAmount = 0
+        contributions.each {contribution->
+            if (maxAmount == 0) {
+                minAmount = contribution.amount
+                maxAmount = contribution.amount
+            } else {
+                if (contribution.amount > minAmount) {
+                    if (contribution.amount > maxAmount) {
+                        maxAmount = contribution.amount
+                    }
+                } else {
+                    minAmount = contribution.amount
+                }
+            }
+            totalAmount = totalAmount + contribution.amount
+        }
+        if (contributions.size() > 0) {
+            avgAmount = totalAmount/contributions.size()
+        }
+        return [minAmount: minAmount, maxAmount: maxAmount, avgAmount: avgAmount]
+    }
+    
+    def getCategorySupportedTo(User user) {
+        def category
+        List contributions = Contribution.findAllWhere(user: user)
+        contributions.each {contribution->
+            Project project = contribution.project
+            if (category) {
+                if (!category.contains(project.category.toString())) {
+                    category = category+', '+project.category.toString()
+                }
+            } else {
+                category = project.category.toString()
+            }
+        }
+        return category
+    }
     
     @Transactional
     def bootstrap() {

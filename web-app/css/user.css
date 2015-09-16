@@ -38,3 +38,19 @@
 .fa.fa-lgr{
 	font-size: 35px !important;
 }
+.metricsTabTop {
+    margin-top: 30px;
+}
+.metricsTabTop .socialInnovationCategory {
+    font-size: 16px;
+    padding-top: 17px;
+    display: inline-block;
+}
+.metricsTabTop .otherCategory {
+    font-size: 31px;
+    padding-top: 12px;
+    display: inline-block;
+}
+.domain-metrics {
+    padding-top: 20px;
+}

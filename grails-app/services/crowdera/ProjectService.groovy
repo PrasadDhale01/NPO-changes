@@ -81,6 +81,75 @@ class ProjectService {
          return project
     }
     
+    def getListOfValidatedProjects() {
+        List projects = Project.findAllWhere(validated: true)
+        return projects
+    }
+    
+    def getNumberOfEndedAndLiveCampaigns(List projects) {
+        def totalProjects = projects.size();
+        def LiveProjects = 0
+        def endedProjects = 0
+        projects.each { project->
+            if (isProjectDeadlineCrossed(project)) {
+                LiveProjects = LiveProjects + 1
+            } else {
+                endedProjects = endedProjects + 1
+            }
+        }
+        return [LiveProjects : LiveProjects , endedProjects: endedProjects, totalProjects: totalProjects]
+    }
+    
+    def getNumberOfMostSelectedCategoryAndCount(List projects) {
+        int animals = 0, arts = 0, children = 0, community = 0, education = 0, elderly = 0, environment = 0, health = 0, social_innovation = 0, religion = 0, other= 0
+        projects.each{ project->
+            def category = project.category
+            
+            switch (category) {
+                case 'ANIMALS':
+                    animals = animals + 1
+                    break;
+                case 'ARTS':
+                    arts = arts + 1
+                    break;
+                case 'CHILDREN':
+                    children = children + 1
+                    break;
+                case 'COMMUNITY':
+                    community = community + 1
+                    break;
+                case 'EDUCATION':
+                    education = education + 1
+                    break;
+                case 'ELDERLY':
+                    elderly = elderly + 1
+                    break;
+                case 'ENVIRONMENT':
+                    environment = environment + 1
+                    break;
+                case 'HEALTH':
+                    health = health + 1
+                    break;
+                case 'SOCIAL_INNOVATION':
+                    social_innovation = social_innovation + 1
+                    break;
+                case 'RELIGION':
+                    religion = religion + 1
+                    break;
+                case 'OTHER':
+                    other = other + 1
+                    break;
+                default :
+                    other = other + 1
+            }
+        }
+        
+        Map categories = ['Animals' : animals, 'Arts': arts, 'Children' : children, 'Community': community, 'Education' : education,'Elderly': elderly, 'Environment': environment,'Health': health, 'Social_innovation': social_innovation, 'Religion': religion,'Other': other]
+        def mostSelectedCategory = categories.max { it.value }.key
+        def mostSelectedCategoryCount = categories.max { it.value }.value
+        return [mostSelectedCategory: mostSelectedCategory, mostSelectedCategoryCount: mostSelectedCategoryCount]
+    }
+    
     def getProjectUpdateDetails(def params, def request, def project){
 		def vanitytitle
 		def title = project.title

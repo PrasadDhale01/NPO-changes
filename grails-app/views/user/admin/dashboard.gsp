@@ -163,7 +163,21 @@
                         </div>
                         <div class="panel-footer">
                             <g:link controller="project" action="paymentslist" class="TW-text-decoration">
-                                <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-tint"></i> Payment details</button>
+                                <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-tint"></i> Payment Details</button>
+                            </g:link>
+                        </div>
+                    </div>
+                </div>
+            </g:if>
+            <g:if test="${environment == 'development' || environment == 'test'}">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center">
+                            <i class="glyphicon glyphicon-tint"></i> Crowdera Metrics.
+                        </div>
+                        <div class="panel-footer">
+                            <g:link controller="user" action="metrics" class="TW-text-decoration">
+                                <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-tint"></i> Crowdera Metrics </button>
                             </g:link>
                         </div>
                     </div>

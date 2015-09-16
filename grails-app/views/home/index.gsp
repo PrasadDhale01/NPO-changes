@@ -4,11 +4,12 @@
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-<meta property="og:title" content="Crowdera" />
-<meta property="og:url" content="{base_url}" />
-<meta property="og:image" content="http://new.crowdera.co/images/icon-4.jpg" />
-<meta property="og:description" content="Share your campaign using social sharing tools to reach your contributors. Successful campaigns take effort and we're here to help you every step of the way." />
 <meta property="og:type" content="website" />
+<meta property="og:site_name" content="Crowdera"/>
+<meta property="og:title" content="Crowdera: future of funding for things that matter" />
+<meta property="og:description" content="Crowdera is a FREE crowdfunding platform that helps individuals, non-profits & independent filmmakers raise money online. Create your fundraiser." />
+<meta property="og:image" content="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png"/>
+<meta property="og:url" content="${base_url}" />
 
 <meta name="layout" content="main" />
 <r:require modules="homejs"/>

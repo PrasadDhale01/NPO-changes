@@ -32,18 +32,19 @@
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
+    <meta property="og:type" content="Crowdera: campaign" />
+    <meta property="og:site_name" content="Crowdera"/>
 	<meta property="og:title" content="Crowdera : ${project.title}" />
-	<meta property="og:url" content="${fbShareUrl}" />
+	<g:if test="${project.description}">
+	    <meta property="og:description" content="${project.description}"/>
+	</g:if>
 	<g:if test="${project.organizationIconUrl}">
 	    <meta property="og:image" content="${project.organizationIconUrl}"/>
 	</g:if>
 	<g:elseif test="${imageUrl}">
 	    <meta property="og:image" content="${imageUrl}" />
 	</g:elseif>
-	<g:if test="${project.description}">
-	    <meta property="og:description" content="${project.description}"/>
-	</g:if>
-	<meta property="og:type" content="website" />
+	<meta property="og:url" content="${fbShareUrl}" />
 	
 	<meta name="layout" content="main" />
 	<r:require modules="projectshowjs"/>

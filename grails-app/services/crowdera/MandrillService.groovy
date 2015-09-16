@@ -863,10 +863,11 @@ class MandrillService {
         def devList = ['krishna.sahu@crowdera.co','tushar@crowdera.co','minal.ganatra@crowdera.co']
         def date = new Date()
         def site 
-        if (currentEnv == 'prodIndia')
+        if (currentEnv == 'prodIndia'){
             site = 'crowdera.in'
-        else 
+        }else{ 
             site = 'crowdera.co'
+        }
 
         devList.each { email ->
             

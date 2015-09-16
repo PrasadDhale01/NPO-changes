@@ -106,10 +106,11 @@ class ProjectController {
 		def name = userService.getVanityNameFromUsername(params.fr, params.id)
 		if(title && name){
 			if(params.isPreview){
-                if(params.tile)
+                if(params.tile){
                     redirect (action :'previewTile', params:['projectTitle':title, 'fr':name]);
-                else
+                }else{
                     redirect (action :'preview', params:['projectTitle':title, 'fr':name]);
+                }
 			} else {
                 redirect (action:'show', params:['projectTitle':title,'fr':name])
 			}
@@ -635,7 +636,7 @@ class ProjectController {
 	def update() {
 		def project = projectService.getProjectFromVanityTitle(params.title)
 		if(project) {
-			def vanityTitle = projectService.getProjectUpdateDetails(params, request, project)
+			def vanityTitle = projectService.getProjectUpdateDetails(params, project)
 			rewardService.saveRewardDetails(params);
 			flash.prj_mngprj_message = "Successfully saved the changes"
 			if (vanityTitle){
@@ -1075,7 +1076,6 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def saveEditUpdate() {
 		def project = projectService.getProjectById(params.projectId)
-		def imageFiles = request.getFiles('thumbnail[]')
 		projectService.editCampaignUpdates(params, project)
 		def title = projectService.getVanityTitleFromId(params.projectId)
 
@@ -1098,7 +1098,6 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def updatesave() {
 		def project = projectService.getProjectById(params.id)
-		def imageFiles = request.getFiles('thumbnail[]')
 		def story = params.story
 		def title = projectService.getVanityTitleFromId(params.id)
 

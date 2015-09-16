@@ -644,7 +644,7 @@ class UserService {
             byte[] hash =  hmacMD5.doFinal(text);
             hexString = hashToHexString(hash);
         } catch (Exception nsae) {
-			nsae.printStackTrace()
+			log.error("Error : " + nsae)
 		}
         
         return hexString;

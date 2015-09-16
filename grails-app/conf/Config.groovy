@@ -237,6 +237,23 @@ environments {
                 }
             }
         }
+		
+		grails {
+			assets {
+				cdn {
+					provider = 's3'
+					directory = 'crowdera'
+					accessKey = 'AKIAIAZDDDNXF3WLSRXQ'
+					secretKey = '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'
+					storagePath = "cdn-assets"
+					expires = 365 // Expires in 1 year (value in days)
+					gzip = true
+				}
+			}
+		}
+
+		grails.assets.url = "http://d1hsbjre03buja.cloudfront.net/crowdera/cdn-assets"
+
     }
     staging {
         crowdera.facebook.appId = '354215177926850'
@@ -377,8 +394,25 @@ environments {
                 }
             }
         }
+		
+		grails {
+			assets {
+				cdn {
+					provider = 's3'
+					directory = 'crowdera'
+					accessKey = 'AKIAIAZDDDNXF3WLSRXQ'
+					secretKey = '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'
+					storagePath = "production-cdn-assets"
+					expires = 365 // Expires in 1 year (value in days)
+					gzip = true
+				}
+			}
+		}
+		
+		grails.assets.url = "http://d38k0frcj7wnf2.cloudfront.net/crowdera/cdn-assets"
+
     }
-	
+
 	testIndia {
 		/*  */
 		crowdera.facebook.appId = '554475128028127'
@@ -595,6 +629,23 @@ environments {
                 }
             }
         }
+		
+		grails {
+			assets {
+				cdn {
+					provider = 's3'
+					directory = 'crowdera'
+					accessKey = 'AKIAIAZDDDNXF3WLSRXQ'
+					secretKey = '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'
+					storagePath = "prodIndia-cdn-assets"
+					expires = 365 // Expires in 1 year (value in days)
+					gzip = true
+				}
+			}
+		}
+
+		grails.assets.url = "http://dmymluhfmi0o3.cloudfront.net/crowdera/cdn-assets"
+
 	}
 }
 

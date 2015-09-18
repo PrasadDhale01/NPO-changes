@@ -654,6 +654,15 @@
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
     
+    $('#endedOfflineContribution').popover({
+        content: 'Sine the campaign has been ended, you cannot contribute offline',
+        trigger: 'manual',
+        placement: 'bottom'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
+    
     $(document).ready(function (){
      /*************************Edit video for team*************************/
         $('.perk-tile').hover(function() {

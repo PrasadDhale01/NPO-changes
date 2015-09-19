@@ -19,11 +19,16 @@
 </g:if>
 <g:if test="${user && !isCrUserCampBenOrAdmin && CurrentUserTeam}">
     <g:if test="${team.user == user}">
-        <g:if test="${project.payuStatus == false}">
+        <g:if test="${project.payuStatus == false && !ended}">
             <a href="#" class="btn btn-primary btn-sm pull-right offlinecontributionbtn" data-toggle="modal" data-target="#offlineContributionModal">
                 Manage Offline Contribution
             </a>
         </g:if>
+        <g:elseif test="${ended}">
+           <a href="#" class="btn btn-primary btn-sm pull-right offlinecontributionbtn" id="endedOfflineContribution">
+               Manage Offline Contribution
+           </a>
+        </g:elseif>
         <!-- Button trigger modal -->
         <g:if test="${!totalContributions.empty}">
             <button class="btn btn-primary btn-sm btn-circle pull-right reportCls" data-toggle="modal" data-target="#reportModal">

@@ -2,22 +2,20 @@
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
 
-<div class="<g:if test="${!project.validated || ended || project.projectUpdates.empty}">col-md-12</g:if><g:else>col-md-offset-2 col-md-8</g:else> col-sm-12 col-xs-12">
+<div class="<g:if test="${!project.validated || project.projectUpdates.empty}">col-md-12</g:if><g:else>col-md-offset-2 col-md-8</g:else> col-sm-12 col-xs-12">
     <g:if test="${project.validated}">
-        <g:if test="${ended}">
+    <%--<g:if test="${ended}">
 	    	<div class="alert alert-info">Campaign Ended.</div>
-	    </g:if>
+	    </g:if>--%>
 	    <g:if test="${project.projectUpdates.empty}">
 		    <g:if test="${!ended}">
 		    	<div class="alert alert-info">No updates yet.</div>
 		    </g:if>
 		</g:if>
-        <g:if test="${!ended}">
-	        <g:uploadForm class="form-horizontal" controller="project" action="projectupdate" params="['projectTitle':vanityTitle]" role="form">
-	            <button type="submit" class="btn btn-sm btn-primary pull-right" name="button" value="draft"><i class="fa fa-plus-circle"></i> Create Update</button>
-	        </g:uploadForm>
-		    <div class="clear"></div>
-		</g:if>
+        <g:uploadForm class="form-horizontal" controller="project" action="projectupdate" params="['projectTitle':vanityTitle]" role="form">
+            <button type="submit" class="btn btn-sm btn-primary pull-right" name="button" value="draft"><i class="fa fa-plus-circle"></i> Create Update</button>
+        </g:uploadForm>
+	    <div class="clear"></div>
 		
 		<g:if test="${!project.projectUpdates.empty}">
 		    <%

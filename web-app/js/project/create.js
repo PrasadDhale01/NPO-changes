@@ -394,12 +394,14 @@ $(function() {
         $('.rewardDescription').each(function () {
             $(this).rules("add", {
                required: true,
+               minlength: 5
             });
         });
 
         $('.rewardTitle').each(function () {
             $(this).rules("add", {
                 required: true,
+                minlength: 5
             });
         });
 
@@ -514,12 +516,14 @@ $(function() {
         	$('.rewardDescription').each(function () {
                 $(this).rules("add", {
                     required: true,
+                    minlength : 5
                 });
             });
            	
            	$('.rewardTitle').each(function () {
                 $(this).rules("add", {
                     required: true,
+                    minlength : 5
                 });
            	});
         }
@@ -595,12 +599,14 @@ $(function() {
         $('.rewardDescription').each(function () {
             $(this).rules("add", {
                 required: true,
+                minlength : 5
             });
         });
        	
        	$('.rewardTitle').each(function () {
             $(this).rules("add", {
                 required: true,
+                minlength : 5
             });
        	});
         
@@ -1329,12 +1335,14 @@ $(function() {
     	$('.rewardDescription').each(function () {
             $(this).rules("add", {
                 required: true,
+                minlength : 5
             });
         });
        	
        	$('.rewardTitle').each(function () {
             $(this).rules("add", {
                 required: true,
+                minlength : 5
             });
        	});
     	

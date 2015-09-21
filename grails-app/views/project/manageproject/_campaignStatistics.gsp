@@ -2,8 +2,8 @@
 <g:set var="projectService" bean="projectService" />
 <g:set var="contributionService" bean="contributionService" />
 <%
-    def projectAmount = project.amount
-	def teamAmount = team.amount
+    def projectAmount = project.amount.round()
+	def teamAmount = team.amount.round()
 	def achievedAmount = contributionService.getTotalContributionForUser(team.contributions)
 	def amountLeft = teamAmount-achievedAmount
 	def joiningDate = team.joiningDate

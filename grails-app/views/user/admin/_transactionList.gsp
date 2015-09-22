@@ -16,6 +16,6 @@
         <g:if test="${transaction.contribution.isAnonymous}">Anonymous</g:if>
         <g:else>Non Anonymous</g:else>
     </td>
-    <td class="text-center col-sm-1">${transaction.project.amount}</td>
+    <td class="text-center col-sm-1">${transaction.project.amount.round()}</td>
     <td class="text-center col-sm-2">${projectService.getContributedAmount(transaction)}</td>
 </tr>

@@ -87,14 +87,17 @@ class ProjectController {
 	def search () {
         def currentEnv = Environment.current.getName()
 		def query = params.q
+		def categoryOptions = projectService.getCategory()
+		def sortsOptions = projectService.getSorts()
 		if(query) {
 			List searchResults = projectService.search(query, currentEnv)
 			if (searchResults.empty){
 				flash.catmessage = "No Campaign found matching your input."
 				redirect(action:"list")
 			} else {
+			    println "categoryOptions : "+categoryOptions
 				searchResults.sort{x,y -> x.title<=>y.title ?: x.story<=>y.story}
-				render(view: "list/index", model:[projects: searchResults])
+				render(view: "list/index", model:[projects: searchResults, categoryOptions:categoryOptions, sortsOptions:sortsOptions])
 			}
 		} else {
 			redirect(controller: "home", action: "index")

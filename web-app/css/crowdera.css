@@ -4199,7 +4199,7 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 	margin-bottom:40px;
 }
 a.hm-back-width{
-	width: 120px;
+	width: 95px;
 }
 .backToCreatePage.col-lg-2, .backToCreatePage.col-md-2 , .backToCreatePage.col-sm-2 {
 	font-size:12px;
@@ -10942,7 +10942,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
    	 	width: 250px !important;
 	}
 	.tile-pad {
-    	padding: 0;
+    	padding: 0 !important;
     	width: 290px !important;
 	}
 	.footer-newsletter .help-block {

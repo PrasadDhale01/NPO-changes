@@ -3229,7 +3229,7 @@ p.anonymous-top {
 	margin-top:53px;
 }
 .hm-right-inverted-India{
-	margin-top:83px;
+	margin-top:63px;
 }
 .header-testimonial{
 	display:inline-flex;
@@ -3709,9 +3709,6 @@ label.cr-payments{
 	padding-left: 15px;
     font-size: 12px;
     padding-bottom: 8px;
-}
-.cr-payments-pad {
-    padding-top: 63px;
 }
 label.text-color {
     color: #6d6e6e;
@@ -5338,6 +5335,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    h1.india-font-slogan b{
+        font-size: 15px !important;
+    }
     #uploadingCampaignOrgIcon {
         margin-left: -9px;
     }
@@ -5900,7 +5900,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-top:48px !important;
 	}
         div.hm-right-inverted-India {
-            margin-top: 74px
+            margin-top: 52px;
         }
 	.hm-right-inverted-India img{
 	    height:15px;
@@ -5936,9 +5936,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		position: relative;
 		text-align: center;
 		top: -20px !important;
-	}
-	div.manage-Top-tabs-mobile{
-	    margin-top: 55px;
 	}
 	.footer_links a {
 		color: #e3e3e3;
@@ -6420,6 +6417,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    h1.india-font-slogan b{
+        font-size: 15px !important;
+    }
 	.tile-goal.teamtile {
 	   font-size: 14px !important;
 	}
@@ -6847,7 +6847,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-top:48px !important;
 	}
 	div.hm-right-inverted-India {
-            margin-top: 74px;
+            margin-top: 54px;
         }
 	.hm-right-inverted-India img{
 	    height:15px;
@@ -10437,7 +10437,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-left: 20px !important;
 	}
 	div.hm-right-inverted-India {
-            margin-top: 98px;
+            margin-top: 74px;
         }
 	.hm-right-inverted-India img{
 	    height:15px;
@@ -10867,9 +10867,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    margin-bottom: 20px;
 	    margin-top: 5px;
     }
-	div.manage-Top-tabs-mobile{
-	    margin-top: 80px;
-	}
 	.top-pan {
         margin-top: 20px;
         margin-bottom: 14px;
@@ -11325,3 +11322,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 /**********************End of Media CSS*******************************/
+.india-font-slogan b{
+	font-size: 21px;
+}

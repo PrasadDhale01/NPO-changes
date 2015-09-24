@@ -17,6 +17,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 import grails.util.Environment
 import javax.servlet.http.Cookie
+import groovyx.net.http.ContentType
+import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.Method
 
 class ProjectController {
 	def userService
@@ -1660,6 +1663,64 @@ class ProjectController {
         def imageUrl = projectService.getImageUrlById(request.getParameter("imageId"))
         imageUrl.delete()
         render ''
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def campaignHistory() {
+        Project project = projectService.getProjectById(params.projectId)
+        if (project) {
+            def numberOfContributions = project.contributions.size()
+            def percentageContribution = contributionService.getPercentageContributionForProject(project)
+            def numberOFPerks = project.rewards.size()
+            def maxSelectedPerkAmount = rewardService.getMostSelectedPerkAmountForCampaign(project)
+            def numberOfComments = project.comments.size()
+            def numberOfUpdates = project.projectUpdates.size()
+            def teams = projectService.getValidatedTeamForCampaign(project)
+            def numberOfTeams = teams.size()
+            def highestContributionDay = contributionService.getHighestContributionDay(project)
+            def ytViewCount = 0
+            
+            if (project.videoUrl) {
+                def videoUrls = project.videoUrl.split('=')
+                videoUrls = videoUrls.collect { it.trim() }
+                String ytVideoId = videoUrls.last()
+                if (ytVideoId.length() == 11) {
+                    def http = new HTTPBuilder('https://www.googleapis.com/youtube/v3/videos?part=statistics&id='+ytVideoId+'&key=AIzaSyAKICKCeRbrUAwk4pXjbU6hgsSEH8nGw28')
+                    http.request(Method.GET, ContentType.JSON) {
+                        response.success = { resp, reader ->
+                            def statistics = reader.items.statistics
+                            ytViewCount = statistics.viewCount[0]
+                        }
+                    }
+                }
+            }
+            def model = [project: project, numberOfContributions: numberOfContributions, percentageContribution: percentageContribution, numberOFPerks: numberOFPerks,
+                         maxSelectedPerkAmount: maxSelectedPerkAmount, numberOfComments: numberOfComments, numberOfUpdates: numberOfUpdates, 
+                         numberOfTeams: numberOfTeams, highestContributionDay: highestContributionDay, ytViewCount: ytViewCount]
+            
+            if (request.xhr) {
+                render(template: "/user/metrics/campaignhistory", model: model)
+            }
+        }
+        
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def campaignsList() {
+        def projectObj = projectService.getProjectList(params)
+        def model = [sortedCampaigns: projectObj.projects, totalCampaigns: projectObj.totalCampaigns]
+        if (request.xhr) {
+            render(template: "/user/metrics/campaigns", model: model)
+        }
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def campaignSearch() {
+        def projectObj = projectService.getCampaignBySearchQuery(params)
+        def model = [sortedCampaigns: projectObj.projects, totalCampaigns: projectObj.totalCampaigns, searchresultmessage: projectObj.message]
+        if (request.xhr) {
+            render(template: "/user/metrics/campaigns", model: model)
+        }
     }
     
 }

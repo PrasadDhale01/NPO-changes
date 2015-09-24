@@ -326,4 +326,44 @@ class ContributionService {
     def getINRTransactions(){
         return Transaction.findAllWhere(currency: 'INR')
     }
+    
+    def getHighestContributionDay(Project project) {
+        int monday = 0, tuesday = 0, wednesday = 0, thursday = 0, friday = 0, saturday = 0, sunday = 0
+        List contributions = project.contributions
+        
+        contributions.each{ contribution->
+            def contributionDate = contribution.date
+            def day = contributionDate[Calendar.DAY_OF_WEEK]
+            switch (day) {
+                case 1:
+                    monday = monday + contribution.amount
+                    break;
+                case 2:
+                    tuesday = tuesday + contribution.amount
+                    break;
+                case 3:
+                    wednesday = wednesday + contribution.amount
+                    break;
+                case 4:
+                    thursday = thursday + contribution.amount
+                    break;
+                case 5:
+                    friday = friday + contribution.amount
+                    break;
+                case 6:
+                    saturday = saturday + contribution.amount
+                    break;
+                case 7:
+                    sunday = sunday + contribution.amount
+                    break;
+                default :
+                    println 'day'
+            }
+        }
+        
+        Map days = ['monday' : monday, 'tuesday': tuesday, 'wednesday' : wednesday, 'thursday': thursday, 'friday' : friday,'saturday': saturday, 'sunday': sunday]
+        def highestContributionDay = days.max { it.value }.key
+        return highestContributionDay
+    }
+    
 }

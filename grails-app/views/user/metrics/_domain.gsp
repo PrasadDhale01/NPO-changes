@@ -1,6 +1,4 @@
-<g:set var="communityService" bean="communityService"/>
 <g:set var="userService" bean="userService"/>
-<g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
 <%
 	def length = projectService.getDataType(amount)

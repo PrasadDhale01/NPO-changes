@@ -2134,6 +2134,12 @@ class ProjectService {
         return [teamList: teamList, maxrange: maxrange, teams: teams]
     }
     
+    def getValidatedTeamForCampaign(Project project) {
+        List teams = []
+        teams = Team.findAllWhere(project: project , validated: true)
+        return teams
+    }
+    
     def getDiscardedTeams(project) {
         def teams = Team.findAllWhere(project: project,validated: true, enable: false)
         return teams
@@ -2976,6 +2982,67 @@ class ProjectService {
         cookie.path = '/'
         cookie.maxAge= 0
         return cookie
+    }
+    
+    def getProjectList(def params) {
+        List totalCampaigns = []
+        List projects = []
+        def max = Math.min(params.int('max') ?: 12, 100)
+        def offset = params.int('offset') ?: 0
+        totalCampaigns = Project.findAllWhere(validated: true)
+        totalCampaigns = totalCampaigns?.sort{it.title}
+        
+        def count = totalCampaigns.size()
+        def maxrange
+        
+        if(offset+max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        
+        projects = totalCampaigns.subList(offset, maxrange)
+        return [totalCampaigns: totalCampaigns, projects: projects]
+    }
+    
+    def getCampaignBySearchQuery(def params) {
+        List totalCampaigns = []
+        List projects = []
+        List result = []
+        def query = params.searchValue
+        def max = Math.min(params.int('max') ?: 12, 100)
+        def offset = params.int('offset') ?: 0
+        totalCampaigns = Project.findAllWhere(validated: true)
+        totalCampaigns.each {
+            if( it.title.toLowerCase().contains(query.toLowerCase()) ){
+                result.add(it)
+            }
+        }
+        
+        result = result?.sort{it.title}
+        def count = result.size()
+        def maxrange
+        if (count > 0 && params.searchValue) {
+            if(offset+max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            projects = result.subList(offset, maxrange)
+            return [totalCampaigns: result, projects: projects]
+        } else {
+            count = totalCampaigns.size()
+            totalCampaigns = totalCampaigns?.sort{it.title}
+            if(offset+max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            projects = totalCampaigns.subList(offset, maxrange)
+            def message = 'No campaign found'
+            return [totalCampaigns: totalCampaigns, projects: projects, message: message]
+        }
+        
     }
     
     @Transactional

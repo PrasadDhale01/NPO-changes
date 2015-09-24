@@ -248,10 +248,11 @@ class UserController {
         def selectedCategory = projectService.getNumberOfMostSelectedCategoryAndCount(projects)
         def avgNumberOFPerk = rewardService.getAverageNumberOfPerk(projects)
         def verifiedUsers = userService.getVerifiedUserList()
+        def projectObj = projectService.getProjectList(params)
         
         render view: '/user/metrics/index',
                model:[endedProjects: object.endedProjects , LiveProjects : object.LiveProjects, totalProjects : object.totalProjects,
                       mostSelectedCategory: selectedCategory.mostSelectedCategory, mostSelectedCategoryCount: selectedCategory.mostSelectedCategoryCount,
-                      avgNumberOFPerk: avgNumberOFPerk, verifiedUsers: verifiedUsers]
+                      avgNumberOFPerk: avgNumberOFPerk, verifiedUsers: verifiedUsers, sortedCampaigns: projectObj.projects, totalCampaigns: projectObj.totalCampaigns]
     }
 }

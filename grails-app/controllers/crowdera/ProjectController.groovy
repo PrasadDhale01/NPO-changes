@@ -1680,6 +1680,7 @@ class ProjectController {
             def highestContributionDay = contributionService.getHighestContributionDay(project)
             def ytViewCount = 0
             
+            // Video Count
             if (project.videoUrl) {
                 def videoUrls = project.videoUrl.split('=')
                 videoUrls = videoUrls.collect { it.trim() }
@@ -1694,9 +1695,39 @@ class ProjectController {
                     }
                 }
             }
+            
+            def campaignUrl = projectService.getCampaignShareUrl(project)
+            def facebookCount
+            def twitterCount
+            def linkedinCount
+            
+            // FaceBook Share Count
+            def httpFb = new HTTPBuilder('http://graph.facebook.com/?id=' + campaignUrl)
+            httpFb.request(Method.GET, ContentType.JSON) {
+                response.success = { resp, reader ->
+                    facebookCount = reader.shares
+                }
+            }
+            
+            // Twitter Share Count
+            def httptwit = new HTTPBuilder('http://cdn.api.twitter.com/1/urls/count.json?url=' + campaignUrl + '&callback=?')
+            httptwit.request(Method.GET, ContentType.JSON) {
+                response.success = { resp, reader ->
+                    twitterCount = reader.count
+                }
+            }
+            // Linkedin Share Count
+            def httpLink = new HTTPBuilder('http://www.linkedin.com/countserv/count/share?url=' + campaignUrl + '&format=json')
+            httpLink.request(Method.GET, ContentType.JSON) {
+                response.success = { resp, reader ->
+                    linkedinCount = reader.count
+                }
+            }
+            
             def model = [project: project, numberOfContributions: numberOfContributions, percentageContribution: percentageContribution, numberOFPerks: numberOFPerks,
                          maxSelectedPerkAmount: maxSelectedPerkAmount, numberOfComments: numberOfComments, numberOfUpdates: numberOfUpdates, 
-                         numberOfTeams: numberOfTeams, highestContributionDay: highestContributionDay, ytViewCount: ytViewCount]
+                         numberOfTeams: numberOfTeams, highestContributionDay: highestContributionDay, ytViewCount: ytViewCount, campaignUrl: campaignUrl,
+                         facebookCount: facebookCount, linkedinCount: linkedinCount, twitterCount: twitterCount]
             
             if (request.xhr) {
                 render(template: "/user/metrics/campaignhistory", model: model)

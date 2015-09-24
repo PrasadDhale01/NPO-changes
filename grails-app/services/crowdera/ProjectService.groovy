@@ -2546,6 +2546,29 @@ class ProjectService {
         def project = Project.get(projectId)
         return project
     }
+    
+    def getCampaignShareUrl(Project project) {
+        def base_url = grailsApplication.config.crowdera.BASE_URL
+        List vanityTitles = VanityTitle.findAllWhere(project:project)
+        def url
+        def vanityTitle
+        if (vanityTitles.isEmpty()) {
+            vanityTitle = getVanityTitleFromId(project.id)
+        } else {
+            def vanity = vanityTitles.last() 
+            vanityTitle = vanity.vanityTitle
+        }
+        def vanityUserName
+        List vanityUserNames = VanityUsername.findAllWhere(user : project.user)
+        if (vanityUserNames.isEmpty()) {
+            vanityUserName = userService.getProjectVanityUsername(project.user)
+        } else {
+            def vanity = vanityUserNames.last()
+            vanityUserName = vanity.vanityUsername
+        }
+        url = base_url+'/campaigns/'+ vanityTitle +'/'+ vanityUserName
+        return url
+    }
 	
     def getYoutubeUrlChanged(String video, Project project){
        def youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;

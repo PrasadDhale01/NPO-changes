@@ -540,6 +540,8 @@ class UserService {
                 ).save(failOnError: true)
             }
         }
+        
+        return vanityname
     }
 
     def getVanityNameFromUsername(def username,def projectId){
@@ -569,7 +571,7 @@ class UserService {
         }
         if (!status){
             if (user) {
-                getProjectVanityUsername(user)
+                vanityUsername = getProjectVanityUsername(user)
             }
         }
         return vanityUsername

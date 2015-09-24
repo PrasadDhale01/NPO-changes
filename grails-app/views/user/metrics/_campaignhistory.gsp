@@ -186,5 +186,56 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-tint fa-2x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
+                        <p class="metrics-campaigns-heading" id="facebook-count">${facebookCount}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                Facebook Share Count
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-tint fa-2x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
+                        <p class="metrics-campaigns-heading" id="twitter-count">${twitterCount}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                Twitter Share Count
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-tint fa-2x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
+                        <p class="metrics-campaigns-heading" id="linkdin-count">${linkedinCount}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                Linkedin Share Count
+            </div>
+        </div>
+    </div>
     
 </div>

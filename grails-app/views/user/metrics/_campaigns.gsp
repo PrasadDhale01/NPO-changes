@@ -74,45 +74,5 @@
             }
         });
     }
-
-<%--    var xhr = new XMLHttpRequest();--%>
-<%--    xhr.open('GET', 'https://gdata.youtube.com/feeds/api/videos/SZrCWa38KHk?v=2&alt=json');--%>
-<%--    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");--%>
-<%--    --%>
-<%--    xhr.onreadystatechange = $.proxy(function() {--%>
-<%--        if (xhr.readyState == 4) {--%>
-<%--            var data = xhr.responseText;--%>
-<%--            data = data.replace(/^\[/, '');--%>
-<%--            data = data.replace(/\]$/, '');--%>
-<%----%>
-<%--            var json;--%>
-<%--            try {--%>
-<%--                json = (typeof data === 'string' ? $.parseJSON(data) : data);--%>
-<%--            } catch(err) {--%>
-<%--                json = { error: true };--%>
-<%--            }--%>
-<%--            --%>
-<%--            alert(data);--%>
-<%--        }--%>
-<%--    }, this);--%>
-<%--    xhr.send();--%>
     
-<%--    $.ajax({--%>
-<%--        type: 'GET',--%>
-<%--        url: 'https://gdata.youtube.com/feeds/api/videos/SZrCWa38KHk?v=2',--%>
-<%--        success: function(data) {--%>
-<%--            alert(data);--%>
-<%--        }--%>
-<%--    }).error(function(e){--%>
-<%-- 	   console.log('Error occured during paypal email verification'+ e);--%>
-<%--    });--%>
-
-<%--    $('#campaignSearchOnMetrics').find('form').validate({--%>
-<%--        rules: {--%>
-<%--        	searchValue: {--%>
-<%--        		minlength: 3,--%>
-<%--        		required: true--%>
-<%--            }--%>
-<%--        }--%>
-<%--    });--%>
 </script>

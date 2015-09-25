@@ -1,5 +1,5 @@
 <g:set var="projectService" bean="projectService"/>
-<g:if test="${!currentTeam}">
+<g:if test="${currentTeam.user == project.user}">
     <g:if test="${project.videoUrl}">
         <g:hiddenField name="videoUrl" id="youtubeVideoUrl" value="${project.videoUrl}"/>
     </g:if>

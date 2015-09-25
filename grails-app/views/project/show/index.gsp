@@ -32,22 +32,35 @@
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <meta property="og:type" content="Crowdera: campaign" />
+    <meta name="title" content="${project.title} - Crowdera" />
+    <g:if test="${project.description}">
+    <meta name="description" content="${project.description}"/>
+    </g:if>
+    <meta name="keywords" content="Crowdera, crowdfunding, contribute online, raise funds free, film crowdfunding, raise money online, fundraising site, fundraising website, fundraising project, online fundraising, raise money for a cause, global crowdfunding, (${project.organizationName}, ${project.beneficiary.country}, ${project.category} ,${project.usedFor})" />
+    
     <meta property="og:site_name" content="Crowdera"/>
-	<meta property="og:title" content="Crowdera : ${project.title}" />
-	<g:if test="${project.description}">
-	    <meta property="og:description" content="${project.description}"/>
-	</g:if>
-	<g:if test="${project.organizationIconUrl}">
-	    <meta property="og:image" content="${project.organizationIconUrl}"/>
-	</g:if>
-	<g:elseif test="${imageUrl}">
-	    <meta property="og:image" content="${imageUrl}" />
-	</g:elseif>
-	<meta property="og:url" content="${fbShareUrl}" />
+    <meta property="og:type" content="Crowdera:Campaign" />
+    <meta property="og:title" content="Click here to support ${project.title} by ${project.beneficiary.firstName}"/>
+    <g:if test="${project.description}">
+    <meta property="og:description" content="${project.description} Crowdfunding is a practical and inspiring way to support the fundraising needs of a cause or community. Do some good. Make a Contribution Today!"/>
+    </g:if>
+    <g:if test="${project.organizationIconUrl}">
+    <meta property="og:image" content="${project.organizationIconUrl}"/>
+    </g:if>
+    <g:elseif test="${imageUrl}">
+    <meta property="og:image" content="${imageUrl}" />
+    </g:elseif>
+    <meta property="og:url" content="${fbShareUrl}" />
 	
-	<meta name="layout" content="main" />
-	<r:require modules="projectshowjs"/>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@gocrowdera" />
+    <meta name="twitter:domain" content="${base_url}" />
+    <meta name="twitter:title" content="${project.title}" />
+    <g:if test="${project.description}">
+       <meta name="twitter:description" content="${project.description}" />
+    </g:if>
+    <meta name="layout" content="main" />
+    <r:require modules="projectshowjs"/>
     <g:javascript>
         $(function() {
             $('.redactorEditor').redactor({

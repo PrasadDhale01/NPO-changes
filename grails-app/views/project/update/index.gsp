@@ -94,8 +94,8 @@
         $('.redactorEditor').redactor({
             imageUpload:'/project/getRedactorImage',
             imageResizable: true,
-            plugins: ['video'],
-            buttonsHide: ['indent', 'outdent', 'horizontalrule']
+            plugins: ['video','fontsize', 'fontfamily', 'fontcolor'],
+            buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']
         });
     });
 </g:javascript>

@@ -101,9 +101,9 @@
         $(function() {
             $('.redactorEditor').redactor({
                 imageUpload:'/project/getRedactorImage',
-                plugins: ['video'],
+                plugins: ['video','fontsize', 'fontfamily', 'fontcolor'],
                 imageResizable: true,
-                buttonsHide: ['indent', 'outdent', 'horizontalrule']
+                buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']
             });
         });
 </g:javascript>

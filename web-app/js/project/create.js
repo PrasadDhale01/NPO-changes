@@ -1583,7 +1583,7 @@ $(function() {
                 $target = $(target);
         
             $('html, body').stop().animate({
-                'scrollTop': $target.offset().top-150
+                'scrollTop': $target.offset().top-205
             }, 90, 'swing', function () {
             });
 

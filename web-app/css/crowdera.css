@@ -3534,6 +3534,7 @@ div.cr-perks-spec {
 .cr-perk-check {
   padding-left: 15px;
   padding-right: 13px;
+  padding-bottom: 10px;
 }
 .cr-input-digit{
   background-color: rgb(253, 234, 180);
@@ -3583,7 +3584,7 @@ a.btn.btn-primary.btn-colors {
   left: 25px;
 }
 .manage-Top-tabs-mobile {
-  padding-top: 24px;
+  padding-top: 9px;
 }
 span.fa-inr {
   top: 72px;
@@ -3592,7 +3593,7 @@ span.cr-perks-amts {
 	top: 18px !important;
 }
 .cr-paddingspace {
-  padding-bottom: 120px;
+  padding-bottom: 30px;
 }
 .bg-color {
     background-color: #f6f8f8;
@@ -7306,7 +7307,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 985px;
     }
     .cr-btn-margin {
-        margin-left: -10px;
+        margin-left: 181px;
     }
     .cr-btn-launch {
         margin-bottom: 0;
@@ -11322,6 +11323,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 /**********************End of Media CSS*******************************/
+.cr-payments-pad {
+    top: 15px;
+}
 .india-font-slogan b{
 	font-size: 21px;
 }

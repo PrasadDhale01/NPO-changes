@@ -184,27 +184,27 @@ class ProjectService {
             def projectOwnerEmail = projectOwner.getEmail()
             mandrillService.sendUpdateEmailToAdmin(projectOwnerEmail, fullName, project)
         }
-        
+
         if (project.customVanityUrl && project.customVanityUrl != ''){
             vanitytitle = getCustomVanityUrl(project);
         } else {
-		    vanitytitle = vanityTitleOriginal(project)
+            vanitytitle = vanityTitleOriginal(project)
             vanitytitle = (vanitytitle) ? vanitytitle : getProjectVanityTitle(project)
         }
-		project.save();
+        project.save();
         return vanitytitle
     }
 
     def vanityTitleOriginal (Project project){
         String vanitytitle
-		def title = project.title.trim().replaceAll("[^a-zA-Z0-9]", "-")
+        def title = project.title.trim().replaceAll("[^a-zA-Z0-9]", "-")
         def vanityTitleList = VanityTitle.findAllWhere(title:title)
-		if (vanityTitleList){
-	        vanityTitleList.each{
-	            if (it.project == project)
-	                vanitytitle = it.vanityTitle
-	        }
-		}
+        if (vanityTitleList){
+            vanityTitleList.each{
+                if (it.project == project)
+                    vanitytitle = it.vanityTitle
+            }
+        }
         return vanitytitle
     }
 
@@ -2507,22 +2507,22 @@ class ProjectService {
         return vanitytitle
     }
 	
-	def getCustomVanityUrl(Project project){
-		def projectCustomVanity = project.customVanityUrl.trim()
-		def title = projectCustomVanity.replaceAll("[^a-zA-Z0-9]", "-")
-		def result = VanityTitle.findByVanityTitle(title)
+    def getCustomVanityUrl(Project project){
+        def projectCustomVanity = project.customVanityUrl.trim()
+        def title = projectCustomVanity.replaceAll("[^a-zA-Z0-9]", "-")
+        def result = VanityTitle.findByVanityTitle(title)
 
-		if (!result){
-			new VanityTitle(
-				project:project,
-				projectTitle:title,
-				vanityTitle:title,
-				title:title
-			).save(failOnError: true)
-		}
+        if (!result){
+            new VanityTitle(
+               project:project,
+               projectTitle:title,
+               vanityTitle:title,
+               title:title
+            ).save(failOnError: true)
+        }
 
-		return title
-	}
+        return title
+    }
 
     def getVanityTitleFromId(def projectId){
         def vanity_title
@@ -3011,19 +3011,19 @@ class ProjectService {
         return cookie
     }
 
-	def isCustomUrUnique(def vanityUrl, def projectId){
-		List title = VanityTitle.list()
-		Project project = Project.get(projectId)
-		List simillarTitle = []
-		def status = true
-		title.each {
-			if (it.vanityTitle.equalsIgnoreCase(vanityUrl)){
-				if (it.project != project)
-			        status = false
-			}
-		}
-		return status
-	}
+    def isCustomUrUnique(def vanityUrl, def projectId){
+        List title = VanityTitle.list()
+        Project project = Project.get(projectId)
+        List simillarTitle = []
+        def status = true
+        title.each {
+            if (it.vanityTitle.equalsIgnoreCase(vanityUrl)){
+                if (it.project != project)
+                    status = false
+            }
+        }
+        return status
+    }
 
     @Transactional
     def bootstrap() {

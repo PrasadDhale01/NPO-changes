@@ -7461,6 +7461,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         left: 0;
     }
     
+    div.customUrlTextBoxDev span.help-block, div.customUrlTextBoxTest span.help-block, div.customUrlTextBoxStaging span.help-block, div.customUrlTextBoxProd span.help-block{
+        margin-left: -8px;
+    }
+
     input.customVanityUrlTest{
         width:100%;
     }
@@ -7468,7 +7472,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.customUrlTextBoxTest{
         left: 0;
     }
-
+    
     input.customVanityStaging{
         width:100%;
     }

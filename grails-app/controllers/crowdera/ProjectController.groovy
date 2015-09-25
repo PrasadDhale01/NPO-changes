@@ -537,7 +537,7 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def campaignOnDraftAndLaunch() {
         Project project = projectService.getProjectById(params.projectId)
-		def vanitytitle
+        def vanitytitle
         if (project) {
             User user = userService.getCurrentUser()
             if (project.user == user) {
@@ -1666,11 +1666,11 @@ class ProjectController {
         render ''
     }
 
-	def isCustomVanityUrlUnique(){
-		def vanityUrl = request.getParameter("vanityUrl")
-		def projectId = request.getParameter("projectId")
-		def status = projectService.isCustomUrUnique(vanityUrl, projectId)
-		render status
-	}
+    def isCustomVanityUrlUnique(){
+	def vanityUrl = request.getParameter("vanityUrl")
+	def projectId = request.getParameter("projectId")
+	def status = projectService.isCustomUrUnique(vanityUrl, projectId)
+	render status
+    }
 
 }

@@ -248,12 +248,12 @@ $(function() {
     $.validator.addMethod('isVanityUrlUnique', function (value, element) {
     	var status
     	if(value && value.length !=0){
-    		vanityUrlUniqueStatus(value.trim());
-    		status = $('#vanityUrlStatus').val();
-    		return (status == 'true') ? true : false;
+    	    vanityUrlUniqueStatus(value.trim());
+    	    status = $('#vanityUrlStatus').val();
+    	    return (status == 'true') ? true : false;
         } else {
-        	$('#vanityUrlStatus').val('true');
-        	status = 'true'
+            $('#vanityUrlStatus').val('true');
+            status = 'true'
         }
 
     	return true;
@@ -1425,10 +1425,10 @@ $(function() {
         });
         
         $("#customVanityUrl").keypress(function (e) {
-        	 e = e || event;
+             e = e || event;
              return /[a-z0-9-]/i.test(
-                        String.fromCharCode(e.charCode || e.keyCode)
-                    ) || !e.charCode && e.keyCode  < 48;
+                String.fromCharCode(e.charCode || e.keyCode)
+             ) || !e.charCode && e.keyCode  < 48;
         });
 
         $("form").on("click", ".editreward", function () {

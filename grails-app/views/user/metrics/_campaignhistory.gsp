@@ -177,6 +177,23 @@
                         <i class="fa fa-tint fa-2x"></i>
                     </div>
                     <div class="col-xs-10 text-right">
+                        <p class="metrics-campaigns-heading">${highestContributionHour} hr</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                Highest Contribution Hour
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-tint fa-2x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
                         <p class="metrics-campaigns-heading" id="ytViewcount"><g:if test="${project.videoUrl}">${ytViewCount}</g:if><g:else>No Video</g:else></p>
                     </div>
                 </div>
@@ -194,7 +211,7 @@
                         <i class="fa fa-tint fa-2x"></i>
                     </div>
                     <div class="col-xs-10 text-right">
-                        <p class="metrics-campaigns-heading" id="facebook-count">${facebookCount}</p>
+                        <p class="metrics-campaigns-heading" id="facebook-count"><g:if test="${facebookCount}">${facebookCount}</g:if><g:else>0</g:else></p>
                     </div>
                 </div>
             </div>
@@ -234,6 +251,40 @@
             </div>
             <div class="panel-footer announcement-bottom">
                 Linkedin Share Count
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-tint fa-2x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
+                        <p class="metrics-campaigns-heading">${project.gmailShareCount}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                Email Share Count
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-tint fa-2x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
+                        <p class="metrics-campaigns-heading">${campaignSupporterCount}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                Total # of Supporters
             </div>
         </div>
     </div>

@@ -22,6 +22,7 @@ class Project {
     /* How much & when */
     double amount
     int days
+    int gmailShareCount
     List contributions 
     List projectAdmins
     List projectUpdates

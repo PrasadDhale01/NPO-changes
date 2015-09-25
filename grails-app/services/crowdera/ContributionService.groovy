@@ -329,10 +329,15 @@ class ContributionService {
     
     def getHighestContributionDay(Project project) {
         int monday = 0, tuesday = 0, wednesday = 0, thursday = 0, friday = 0, saturday = 0, sunday = 0
+        int zeroth = 0, first = 0, second = 0, third = 0, forth = 0, fifth = 0, sixth = 0, seventh = 0, eight = 0, nineth=0
+        int tenth = 0, eleventh = 0, twelfth = 0, thirteenth = 0, forteenth = 0, fifteenth = 0, sixteenth = 0, seventeenth = 0
+        int eighteenth = 0, nineteenth = 0 , twentieth = 0, twentyFirst = 0, twentySecond = 0, twentyThird = 0
+        
         List contributions = project.contributions
+        List hourList = []
         
         contributions.each{ contribution->
-            def contributionDate = contribution.date
+            Date contributionDate = contribution.date
             def day = contributionDate[Calendar.DAY_OF_WEEK]
             switch (day) {
                 case 1:
@@ -359,11 +364,95 @@ class ContributionService {
                 default :
                     println 'day'
             }
+            
+            
+            def hour = contributionDate[Calendar.HOUR_OF_DAY]
+            switch (hour) {
+                case 0:
+                    zeroth = zeroth + contribution.amount
+                    break;
+                case 1:
+                    first = first + contribution.amount
+                    break;
+                case 2:
+                    second = second + contribution.amount
+                    break;
+                case 3:
+                    third = third + contribution.amount
+                    break;
+                case 4:
+                    forth = forth + contribution.amount
+                    break;
+                case 5:
+                    fifth = fifth + contribution.amount
+                    break;
+                case 6:
+                    sixth = sixth + contribution.amount
+                    break;
+                case 7:
+                    seventh = seventh + contribution.amount
+                    break;
+                case 8:
+                    eight = eight + contribution.amount
+                    break;
+                case 9:
+                    nineth = nineth + contribution.amount
+                    break;
+                case 10:
+                    tenth = tenth + contribution.amount
+                    break;
+                case 11:
+                    eleventh = eleventh + contribution.amount
+                    break;
+                case 12:
+                    twelfth = twelfth + contribution.amount
+                    break;
+                case 13:
+                    thirteenth = thirteenth + contribution.amount
+                    break;
+                case 14:
+                    forteenth = forteenth + contribution.amount
+                    break;
+                case 15:
+                    fifteenth = fifteenth + contribution.amount
+                    break;
+                case 16:
+                    sixteenth = sixteenth + contribution.amount
+                    break;
+                case 17:
+                    seventeenth = seventeenth + contribution.amount
+                    break;
+                case 18:
+                    eighteenth = eighteenth + contribution.amount
+                    break;
+                case 19:
+                    nineteenth = nineteenth + contribution.amount
+                    break;
+                case 20:
+                    twentieth = twentieth + contribution.amount
+                    break;
+                case 21:
+                    twentyFirst = twentyFirst + contribution.amount
+                    break;
+                case 22:
+                    twentySecond = twentySecond + contribution.amount
+                    break;
+                case 23:
+                    twentyThird = twentyThird + contribution.amount
+                    break;
+                default :
+                    println 'day'
+            }
         }
+        
+        Map hours = ['zeroth': zeroth , 'first' : first, 'second': second, 'third': third, 'forth': forth, 'fifth': fifth, 'sixth': sixth, 'seventh': seventh, 'eight': eight,
+                     'nineth': nineth, 'tenth': tenth, 'eleventh': eleventh, 'twelfth':twelfth, 'thirteenth': thirteenth , 'forteenth': forteenth, 'fifteenth': fifteenth,
+                     'sixteenth': sixteenth, 'eighteenth': eighteenth, 'nineteenth':nineteenth, 'twentieth': twentieth, 'twentyFirst': twentyFirst, 'twentySecond': twentySecond, 'twentyThird':twentyThird]
+        def highestContributionHour = hours.max { it.value }.key
         
         Map days = ['monday' : monday, 'tuesday': tuesday, 'wednesday' : wednesday, 'thursday': thursday, 'friday' : friday,'saturday': saturday, 'sunday': sunday]
         def highestContributionDay = days.max { it.value }.key
-        return highestContributionDay
+        return ['highestContributionDay':highestContributionDay , 'highestContributionHour': highestContributionHour]
     }
     
 }

@@ -2354,6 +2354,7 @@ class ProjectService {
             emailList = emailList.collect { it.trim() }
             mandrillService.shareProject(emailList, name, message, project, fundRaiser)
         }
+        project.gmailShareCount = project.gmailShareCount + 1
     }
 
     def getShippingDetails(def contibutions){
@@ -3066,6 +3067,10 @@ class ProjectService {
             return [totalCampaigns: totalCampaigns, projects: projects, message: message]
         }
         
+    }
+    
+    def getCampaignSupporterCount(Project project) {
+        return project.supporters.size()
     }
     
     @Transactional

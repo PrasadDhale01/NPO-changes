@@ -80,7 +80,7 @@ class ProjectService {
          project.user = user
          return project
     }
-    
+
     def getListOfValidatedProjects() {
         List projects = Project.findAllWhere(validated: true)
         return projects
@@ -149,13 +149,12 @@ class ProjectService {
         def mostSelectedCategoryCount = categories.max { it.value }.value
         return [mostSelectedCategory: mostSelectedCategory, mostSelectedCategoryCount: mostSelectedCategoryCount]
     }
-    
+
     def getProjectUpdateDetails(def params, def project){
 		def vanitytitle
-		def title = project.title
         User currentUser = userService.getCurrentUser()
         def fullName = currentUser.firstName + ' ' + currentUser.lastName
-        
+
         if (params.videoUrl) {
             if (params.videoUrl.contains('embed')){
                 project.videoUrl = params.videoUrl
@@ -163,7 +162,7 @@ class ProjectService {
                 getYoutubeUrlChanged(params.videoUrl, project)
             }
         }
-        
+
         project.story = params.story
         if (project.draft) {
             project.paypalEmail = params.paypalEmail
@@ -186,20 +185,26 @@ class ProjectService {
             mandrillService.sendUpdateEmailToAdmin(projectOwnerEmail, fullName, project)
         }
         
-        def result = false
-        if (params.title != title) {
-            def vanityObject = VanityTitle.findAllWhere(project:project)
-            if (vanityObject){
-                vanityObject.each{
-                    if (params.title == it.vanityTitle){
-                        result = true
-                    }
-                }
-            }
-            if (!result){
-                vanitytitle = getProjectVanityTitle(project)
-            }
+        if (project.customVanityUrl && project.customVanityUrl != ''){
+            vanitytitle = getCustomVanityUrl(project);
+        } else {
+		    vanitytitle = vanityTitleOriginal(project)
+            vanitytitle = (vanitytitle) ? vanitytitle : getProjectVanityTitle(project)
         }
+		project.save();
+        return vanitytitle
+    }
+
+    def vanityTitleOriginal (Project project){
+        String vanitytitle
+		def title = project.title.trim().replaceAll("[^a-zA-Z0-9]", "-")
+        def vanityTitleList = VanityTitle.findAllWhere(title:title)
+		if (vanityTitleList){
+	        vanityTitleList.each{
+	            if (it.project == project)
+	                vanitytitle = it.vanityTitle
+	        }
+		}
         return vanitytitle
     }
 
@@ -2501,13 +2506,36 @@ class ProjectService {
 
         return vanitytitle
     }
+	
+	def getCustomVanityUrl(Project project){
+		def projectCustomVanity = project.customVanityUrl.trim()
+		def title = projectCustomVanity.replaceAll("[^a-zA-Z0-9]", "-")
+		def result = VanityTitle.findByVanityTitle(title)
+
+		if (!result){
+			new VanityTitle(
+				project:project,
+				projectTitle:title,
+				vanityTitle:title,
+				title:title
+			).save(failOnError: true)
+		}
+
+		return title
+	}
 
     def getVanityTitleFromId(def projectId){
         def vanity_title
         def project = Project.get(projectId)
+		def title
         if(project){
             def status = false
-            def title = project.title.trim()
+            if (project.customVanityUrl){
+                VanityTitle vanitytitle = VanityTitle.findByVanityTitle(project.customVanityUrl.trim())
+                title = (vanitytitle) ? project.customVanityUrl.trim() : project.title.trim()
+            } else {
+                title = project.title.trim()
+            }
             vanity_title= title.replaceAll("[^a-zA-Z0-9]", "-")
             def vanity = VanityTitle.findAllWhere(project:project)
             vanity.each{
@@ -2517,7 +2545,7 @@ class ProjectService {
                 }
             }
             if (!status)
-                getProjectVanityTitle(project)
+                vanity_title = getProjectVanityTitle(project)
         }
         return vanity_title
     }
@@ -2824,20 +2852,25 @@ class ProjectService {
 				project.amount = Double.parseDouble(varValue);
 				isValueChanged = true;
 				break;
-				
+	
 			case 'campaignTitle':
 				project.title = varValue;
 				isValueChanged = true;
 				break;
-				
+
 			case 'descarea':
 				project.description = varValue;
 				isValueChanged = true;
 				break;
 
+			case 'customVanityUrl':
+			    project.customVanityUrl = (varValue == '') ? null : varValue;
+				isValueChanged = true;
+				break;
+
             default :
                isValueChanged = false;
-               
+ 
         }
 
         if (isValueChanged){
@@ -2977,7 +3010,21 @@ class ProjectService {
         cookie.maxAge= 0
         return cookie
     }
-    
+
+	def isCustomUrUnique(def vanityUrl, def projectId){
+		List title = VanityTitle.list()
+		Project project = Project.get(projectId)
+		List simillarTitle = []
+		def status = true
+		title.each {
+			if (it.vanityTitle.equalsIgnoreCase(vanityUrl)){
+				if (it.project != project)
+			        status = false
+			}
+		}
+		return status
+	}
+
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

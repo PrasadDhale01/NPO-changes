@@ -6420,6 +6420,38 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    input.customVanityUrl{
+        width:106%;
+    }
+
+    div.customUrlTextBoxDev{
+        left: -3%;
+    }
+    
+    input.customVanityUrlTest{
+        width:98%;
+    }
+
+    div.customUrlTextBoxTest{
+        left: 1%;
+    }
+    
+    input.customVanityStaging{
+        width:86%;
+    }
+
+    div.customUrlTextBoxStaging{
+        left: 7%;
+    }
+    
+    input.customVanityUrlProd{
+        width:113%;
+    }
+
+    div.customUrlTextBoxProd{
+        left: -6%;
+    }
+
 	.tile-goal.teamtile {
 	   font-size: 14px !important;
 	}
@@ -7415,7 +7447,48 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
-	
+
+	input.customVanityUrl{
+        width:100%;
+    }
+
+    div.customUrlLabel {
+        left: -9px;
+        padding-top:0;
+    }
+
+    div.customUrlTextBoxDev {
+        left: 0;
+    }
+    
+    input.customVanityUrlTest{
+        width:100%;
+    }
+
+    div.customUrlTextBoxTest{
+        left: 0;
+    }
+
+    input.customVanityStaging{
+        width:100%;
+    }
+
+    div.customUrlTextBoxStaging{
+        left: 0;
+    }
+
+    input.customVanityUrlProd{
+        width:100%;
+    }
+
+    div.customUrlTextBoxProd{
+        left: 0;
+    }
+
+    .customUrlLabelStaging{
+        font-size: small;
+    }
+
     div.amount-popover .popover{
         width:700px;
         margin-left: 42%;

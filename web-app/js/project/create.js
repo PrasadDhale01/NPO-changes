@@ -246,14 +246,14 @@ $(function() {
      }, "Please enter valid Facebook url");
 
     $.validator.addMethod('isVanityUrlUnique', function (value, element) {
-    	var status
+    	var status;
     	if(value && value.length !=0){
     	    vanityUrlUniqueStatus(value.trim());
     	    status = $('#vanityUrlStatus').val();
     	    return (status == 'true') ? true : false;
         } else {
             $('#vanityUrlStatus').val('true');
-            status = 'true'
+            status = 'true';
         }
 
     	return true;
@@ -1425,7 +1425,6 @@ $(function() {
         });
         
         $("#customVanityUrl").keypress(function (e) {
-             e = e || event;
              return /[a-z0-9-]/i.test(
                 String.fromCharCode(e.charCode || e.keyCode)
              ) || !e.charCode && e.keyCode  < 48;

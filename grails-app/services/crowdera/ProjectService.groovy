@@ -3014,7 +3014,6 @@ class ProjectService {
     def isCustomUrUnique(def vanityUrl, def projectId){
         List title = VanityTitle.list()
         Project project = Project.get(projectId)
-        List simillarTitle = []
         def status = true
         title.each {
             if (it.vanityTitle.equalsIgnoreCase(vanityUrl)){

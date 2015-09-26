@@ -1692,12 +1692,13 @@ class ProjectService {
     def getUpdatedImageUrls(def imageUrls, ProjectUpdate projectUpdate){
         def imageUrlList = imageUrls.split(',')
         imageUrlList = imageUrlList.collect { it.trim() }
- 
         imageUrlList.each {
-            def imageUrl = new ImageUrl()
-            imageUrl.url = it
-            imageUrl.save()
-            projectUpdate.addToImageUrls(imageUrl)
+            if (!it.isAllWhitespace()){
+                def imageUrl = new ImageUrl()
+                imageUrl.url = it
+                imageUrl.save()
+                projectUpdate.addToImageUrls(imageUrl)
+            }
         }
     }
     

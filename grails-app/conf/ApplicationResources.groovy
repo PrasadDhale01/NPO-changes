@@ -67,12 +67,18 @@ modules = {
         resource url: 'js/project/create.js'
         resource url: 'js/redactor/redactor.js'
         resource url: 'js/redactor/plugins/video.js'
+        resource url: 'js/redactor/plugins/fontsize.js'
+        resource url: 'js/redactor/plugins/fontfamily.js'
+        resource url: 'js/redactor/plugins/fontcolor.js'
     }
     projectshowjs {
         dependsOn 'crowderajs'
         resource url: 'js/project/show.js'
         resource url: 'js/redactor/redactor.js'
         resource url: 'js/redactor/plugins/video.js'
+        resource url: 'js/redactor/plugins/fontsize.js'
+        resource url: 'js/redactor/plugins/fontfamily.js'
+        resource url: 'js/redactor/plugins/fontcolor.js'
     }
     projectlistjs {
         dependsOn 'crowderajs', 'blacknwhitejs'
@@ -83,6 +89,9 @@ modules = {
         resource url: 'js/project/edit.js'
         resource url: 'js/redactor/redactor.js'
         resource url: 'js/redactor/plugins/video.js'
+        resource url: 'js/redactor/plugins/fontsize.js'
+        resource url: 'js/redactor/plugins/fontfamily.js'
+        resource url: 'js/redactor/plugins/fontcolor.js'
     }
     /* Fund */
     fundjs {

@@ -1680,7 +1680,7 @@ div.tile-min-height{
     margin-bottom:25px
 }
 .nav-tabs.nav-justified > li > a {
-    font-size:13px;
+    font-size:11px;
 }
 .country-create-project .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
     width: 100% !important;
@@ -4184,13 +4184,13 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 	width:100%;
 }
 .TW-redactor .redactor-toolbar{
-	padding-left:31%;
+	padding-left:13%;
 }
 .TW-editUpdate-redactor .redactor-toolbar{
-	padding-left: 410px;
+	padding-left: 300px;
 }
 .TW-update-redactor .redactor-toolbar{
-	padding-left: 425px;
+	padding-left: 335px;
 }
 .TW-ack-commentBox{
 	background-color:#f5f5f5;
@@ -6377,16 +6377,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 88.3% !important;
 	}
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left: 190px !important;
+		padding-left: 100px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left: 210px !important;
+		padding-left: 120px !important;
 	}
     .list-category{
         width: 24%;
     }
     .nav-tabs.nav-justified > li > a {
-       font-size: 11px !important;
+       font-size: 10px !important;
     }
     .nav{
         font-size:11px;
@@ -7799,10 +7799,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   z-index: 2000;
 	}
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left:195px !important;
+		padding-left:102px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left:225px !important;
+		padding-left:125px !important;
 	}
 	.mng-text-size{
 		font-size:14px;
@@ -7899,10 +7899,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   width: 85.2% !important;
 	}
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left:385px !important;
+		padding-left:304px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left:405px !important;
+		padding-left:330px !important;
 	}
 	header.cr-tabs-link {
 	    padding-left: 130px !important; 
@@ -7970,7 +7970,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		padding-left: 38% !important;
 	}
 	.nav-tabs.nav-justified > li > a {
-       font-size: 12px !important;
+       font-size: 11px !important;
     }
     span.font-usd {
 	    color: black;

@@ -66,8 +66,8 @@ $(function() {
                 this.code.set(storyPlaceholder);
             }
         },
-        plugins: ['video'],
-        buttonsHide: ['indent', 'outdent', 'horizontalrule']
+        plugins: ['video','fontsize','fontfamily','fontcolor'],
+        buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']
     });
 
     var currentEnv = $('#currentEnv').val();

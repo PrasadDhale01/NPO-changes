@@ -21,6 +21,7 @@
     <g:hiddenField name="payfir" value="${project.charitableId}" id="payfir"/>
     <g:hiddenField name="paypal" value="${project.paypalEmail}"/>
     <g:hiddenField name="projectamount" value="${project.amount}" id="projectamount"/>
+    <g:hiddenField name="vanityUrlStatus" id="vanityUrlStatus" value="true"/>
     <input type="hidden" class="campaigndate" value="<%=numberOfDays%>"/>
     <div class="">
         <div class="text-center">
@@ -35,8 +36,8 @@
         </div>
         <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
         <div class="container footer-container" id="campaigncreate">
-            <g:uploadForm class="form-horizontal"  controller="project" action="update" params="['title': vanityTitle, 'userName':vanityUsername]">
-                <g:hiddenField name="projectId" value="${project.id}"/>
+            <g:uploadForm class="form-horizontal"  controller="project" action="update" params="['vanityTitle': vanityTitle, 'userName':vanityUsername]">
+                <g:hiddenField name="projectId" id="projectId" value="${project.id}"/>
                 <div class="startsection"></div>
                 <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari" id="start">
                     <label class="panel body cr-start-size cr-safari">START </label>
@@ -501,6 +502,58 @@
                                     </div>
                                 </div>
                             </div>
+                            
+                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'}">
+                            <div class="col-sm-8">
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <g:if test="${currentEnv == 'development'}">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel">localhost:8080/campaigns/</div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxDev">
+                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrl" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}" <g:if test="${project.validated && project.customVanityUrl}">readonly</g:if>>
+                                    </div>
+                                    </g:if>
+                                    <g:elseif test="${currentEnv == 'test'}">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel">test.crowdera.co/campaigns/</div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxTest ">
+                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlTest" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}" <g:if test="${project.validated && project.customVanityUrl}">readonly</g:if>>
+                                    </div>
+                                    </g:elseif>
+                                    <g:elseif test="${currentEnv == 'testIndia'}">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel">test.crowdera.in/campaigns/</div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxTest ">
+                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlTest" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}" <g:if test="${project.validated && project.customVanityUrl}">readonly</g:if>>
+                                    </div>
+                                    </g:elseif>
+                                    <g:elseif test="${currentEnv == 'staging'}">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel customUrlLabelStaging">staging.crowdera.co/campaigns/</div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxStaging ">
+                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlStaging" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}" <g:if test="${project.validated && project.customVanityUrl}">readonly</g:if>>
+                                    </div>
+                                    </g:elseif>
+                                    <g:elseif test="${currentEnv == 'stagingIndia'}">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel customUrlLabelStaging">staging.crowdera.in/campaigns/</div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxStaging ">
+                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlStaging" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}" <g:if test="${project.validated && project.customVanityUrl}">readonly</g:if>>
+                                    </div>
+                                    </g:elseif>
+                                    <g:elseif test="${currentEnv == 'production'}">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel">crowdera.co/campaigns/</div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxProd ">
+                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}" <g:if test="${project.validated && project.customVanityUrl}">readonly</g:if>>
+                                    </div>
+                                    </g:elseif>
+                                    <g:elseif test="${currentEnv == 'prodIndia'}">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel">crowdera.in/campaigns/</div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxProd">
+                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}" <g:if test="${project.validated && project.customVanityUrl}">readonly</g:if>>
+                                    </div>
+                                    </g:elseif>
+                                </div>
+                            </div>
+                            </div>
+                        </g:if>
+
 <%--                            <div class="col-sm-4">--%>
 <%--                                <div class="form-group">--%>
 <%--                                    <div class="col-sm-12">--%>

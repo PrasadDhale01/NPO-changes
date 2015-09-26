@@ -13,8 +13,8 @@ $(function() {
     }
 
     var count = $('#rewardCount').val();
-     var projectId = $('#projectId').val();
-    
+    var projectId = $('#projectId').val();
+
     var storyContent
     var storyPlaceholder = "<p><h3>Introduce Your Campaign</h3></p>"+
     	"<p>Contributors want to know all about your cause and the details related to your organization, so think of this section as an executive summary to get your audience introduced to your campaign! Here are some essential components of a campaign introduction:</p>"+ 
@@ -181,6 +181,10 @@ $(function() {
             linkedinUrl:{
             	isLinkedInUrl: true
             },
+            customVanityUrl:{
+            	maxlength:40,
+            	isVanityUrlUnique:true
+            },
             amount: {
                 required: true,
                 number: true,
@@ -240,7 +244,35 @@ $(function() {
         }
         return true;
      }, "Please enter valid Facebook url");
-    
+
+    $.validator.addMethod('isVanityUrlUnique', function (value, element) {
+    	var status;
+    	if(value && value.length !=0){
+    	    vanityUrlUniqueStatus(value.trim());
+    	    status = $('#vanityUrlStatus').val();
+    	    return (status == 'true') ? true : false;
+        } else {
+            $('#vanityUrlStatus').val('true');
+            status = 'true';
+        }
+
+    	return true;
+     }, "This Vanity Url is already in use");
+
+    function vanityUrlUniqueStatus(vanityValue){
+    	var projectId = $('#projectId').val();
+    	$.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/isCustomVanityUrlUnique',
+            data:'vanityUrl='+vanityValue+'&projectId='+projectId,
+            success: function(data){
+            	(data == 'true') ? $('#vanityUrlStatus').val('true') : $('#vanityUrlStatus').val('false');
+            }
+        }).error(function(e){
+     	   console.log('Error occured while checking Custom Vanity Url Uniqueness'+e);
+        });
+    }
+
     $.validator.addMethod('isTwitterUrl', function (value, element) {
         if(value && value.length !=0){
            var p = /^https?:\/\/(?:www.)?twitter.com\/?.*$/;
@@ -413,7 +445,7 @@ $(function() {
     	}
     });
     
-    $('#submitProject').on('click', function() {
+    $('#submitProject, #submitProjectXS').on('click', function() {
         var storyValue = $('.redactorEditor').redactor('code.get');
         var storyEmpty = false;
         if (storyValue == '' || storyValue == undefined){
@@ -533,93 +565,12 @@ $(function() {
                 $('#campaigncreate').find('form').submit();
                 $('#submitProject').attr('disabled','disabled');
                 $('#previewButton').attr('disabled','disabled');
-            }
-    	}
-    });
-    
-    $('#submitProjectXS').on('click', function() {
-        var storyValue = $('.redactorEditor').redactor('code.get');
-        var storyEmpty = false;
-        if (storyValue == '' || storyValue == undefined){
-            $('#storyRequired').show();
-            storyEmpty = true;
-        } else {
-        $('#storyRequired').hide();
-            storyEmpty = false;
-        }
-
-        $( "#projectImageFile" ).rules( "add", {
-            required: true,
-            messages: {
-                required: "Please upload at least one campaign image"
-            }
-        });
-        $('.rewardNumberAvailable').each(function () {
-            $(this).rules("add", {
-                required: true,
-                number: true,
-                min: 1
-            });
-        });
-        
-        
-        
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
-            $('.rewardPrice').each(function () {
-                $(this).rules("add", {
-                    required: true,
-                    number: true,
-                    maxlength: 8,
-                    max: function() {
-                    	var campaignAmount = $('#projectamount').val();
-                        return Number(campaignAmount);
-                    },
-                    min: 100
-                });
-            });
-        } else {
-        	$('.rewardPrice').each(function () {
-                $(this).rules("add", {
-                    required: true,
-                    number: true,
-                    maxlength: 6,
-                    max: function() {
-                    	var campaignAmount = $('#projectamount').val();
-                        return Number(campaignAmount);
-                    },
-                    min: 1
-                });
-            });
-        }
-
-        $( '[name="checkBox"]' ).rules( "add", {
-            required: true
-        });
-
-        $('.rewardDescription').each(function () {
-            $(this).rules("add", {
-                required: true,
-                minlength : 5
-            });
-        });
-       	
-       	$('.rewardTitle').each(function () {
-            $(this).rules("add", {
-                required: true,
-                minlength : 5
-            });
-       	});
-        
-    	if (validator.form()) {
-    		$('#isSubmitButton').attr('value',false);
-            if (!storyEmpty){
-                $('#campaigncreate').find('form').submit();
                 $('#submitProjectXS').attr('disabled','disabled');
                 $('#previewButtonXS').attr('disabled','disabled');
             }
     	}
     });
-    
+
      $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
            var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
@@ -1034,7 +985,7 @@ $(function() {
     }).focusout(function() {
         setDescriptionText();
     });
-  
+    
     function setDescriptionText(){
         var currentString = $('#descarea').val().length;
         if (currentString == 0) {
@@ -1126,8 +1077,8 @@ $(function() {
             $('#titleLength').text(currentstring+'/55');
         }
     }
-    
-    /** *************************Multiple Image Selection*************** */
+
+    /***************************Multiple Image Selection*************** */
     var isvalidsize =  false;
     $('#projectImageFile, #projectEditImageFile').change(function(event) {
 
@@ -1472,6 +1423,12 @@ $(function() {
                 return false;
             } 
         });
+        
+        $("#customVanityUrl").keypress(function (e) {
+             return /[a-z0-9-]/i.test(
+                String.fromCharCode(e.charCode || e.keyCode)
+             ) || !e.charCode && e.keyCode  < 48;
+        });
 
         $("form").on("click", ".editreward", function () {
         	var editCount = $(this).attr('value');
@@ -1671,7 +1628,21 @@ $(function() {
             autoSave('email3', emailValue);
         }
     });
-    
+
+    $('#customVanityUrl').blur(function (){
+        var customUrl = $(this).val();
+        var delay = 50; //delayed code to prevent error, time in milliseconds
+        setTimeout(function() {
+                var customUrlStatus = $('#vanityUrlStatus').val();
+                if(validator.element("#customVanityUrl") && customUrlStatus == 'true')
+                    autoSave('customVanityUrl', customUrl.trim());
+            }, delay);
+    });
+
+    $('#customVanityUrl').bind("paste",function(e) {
+        e.preventDefault();
+    });
+
     $('#organizationname').blur(function (){
     	var name = $(this).val();
     	autoSave('organizationname', name);
@@ -1876,13 +1847,13 @@ $(function() {
      
      $('#previewButton, #previewButtonXS').on('click', function(event){  // capture the click
       	event.preventDefault();
-       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
+       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"]').each(function () {
              $(this).rules('remove');
          });
        	
        	$( "#projectImageFile" ).rules("remove");
  
-       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"]').each(function () {
+       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"]').each(function () {
              $(this).closest('.form-group').removeClass('has-error');
          });
        	
@@ -1908,6 +1879,8 @@ $(function() {
        		$('#campaigncreate').find('form').submit();
               $('#submitProject').attr('disabled','disabled');
               $('#previewButton').attr('disabled','disabled');
+              $('#submitProjectXS').attr('disabled','disabled');
+              $('#previewButtonXS').attr('disabled','disabled');
        	}
        });
 

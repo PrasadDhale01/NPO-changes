@@ -106,7 +106,7 @@
                             <li class="active"><a href="#essentials" data-toggle="tab">
                                 <span class="glyphicon glyphicon-leaf"></span> <span class="tab-text hidden-xs"> Story</span>
                             </a></li>
-                            <li><a href="#projectupdates" data-toggle="tab"> <span class="glyphicon glyphicon-asterisk"></span> <span class="tab-text hidden-xs"> Updates &nbsp;<g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if><g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if></span>
+                            <li><a href="#projectupdates" data-toggle="tab"> <span class="glyphicon glyphicon-asterisk"></span> <span class="tab-text hidden-xs"> Updates <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if></span>
                             </a></li>
                             <li><a href="#manageTeam" data-toggle="tab"> <span class="fa fa-users"></span><span class="tab-text hidden-xs"> Teams</span>
                             </a></li>
@@ -117,7 +117,7 @@
                                     <span class="glyphicon glyphicon-credit-card"></span><span class="tab-text hidden-xs"> Payments</span>
                                 </a></li>
                             </g:if>
-                            <li><a href="#contributions" data-toggle="tab"> <span class="glyphicon glyphicon-tint"></span> <span class="tab-text hidden-xs"> Contributions &nbsp;<g:if test="${project.contributions.size() > 0}">${project.contributions.size()}</g:if></span>
+                            <li><a href="#contributions" data-toggle="tab"> <span class="glyphicon glyphicon-tint"></span> <span class="tab-text hidden-xs"> Contributions <g:if test="${project.contributions.size() > 0}">${project.contributions.size()}</g:if></span>
                             </a></li>
                             <li><a href="#comments" data-toggle="tab"> <span class="glyphicon glyphicon-comment"></span> <span class="tab-text hidden-xs"> Comments</span>
                             </a></li>

@@ -191,20 +191,21 @@
                     </g:if>
                 </div>
                 <div class="col-xs-12 col-md-8 Top-tabs-mobile">
+                    <g:set var="screen" id="screen" value="false"></g:set>
                     <ul class="nav nav-tabs nav-justified show-marginbottoms mng-safari-mobile<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span><span class="tab-text hidden-xs"> Story</span>
                         </a></li>
                         <g:if test="${!project.projectUpdates.isEmpty() }">
                             <li><a href="#projectupdates" data-toggle="tab">
-							    <span class="glyphicon glyphicon-asterisk"></span><span class="tab-text hidden-xs"> Updates &nbsp;<g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if></span>
+							    <span class="glyphicon glyphicon-asterisk"></span><span class="tab-text hidden-xs"> Updates <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if></span>
                             </a></li>
                         </g:if>
                         <li><a href="#manageTeam" data-toggle="tab">
                             <span class="fa fa-users"></span><span class="tab-text hidden-xs"> Teams</span>
 						</a></li>
                         <li><a href="#contributions" data-toggle="tab">
-                            <span class="glyphicon glyphicon-tint"></span><span class="tab-text hidden-xs"> Contributions &nbsp;<g:if test="${project.contributions.size() > 0}">${project.contributions.size()}</g:if></span>
+                            <span class="glyphicon glyphicon-tint"></span><span class="tab-text hidden-xs"> Contributions <g:if test="${totalContributions.size() > 0 && screen == 'false'}">${totalContributions.size()}</g:if></span>
                         </a></li>
                         <li><a href="#comments" data-toggle="tab">
                             <span class="glyphicon glyphicon-comment"></span><span class="tab-text hidden-xs"> Comments</span>

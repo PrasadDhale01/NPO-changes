@@ -1680,7 +1680,7 @@ div.tile-min-height{
     margin-bottom:25px
 }
 .nav-tabs.nav-justified > li > a {
-    font-size:13px;
+    font-size:11px;
 }
 .country-create-project .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
     width: 100% !important;
@@ -6386,7 +6386,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 24%;
     }
     .nav-tabs.nav-justified > li > a {
-       font-size: 11px !important;
+       font-size: 10px !important;
     }
     .nav{
         font-size:11px;
@@ -7970,7 +7970,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		padding-left: 38% !important;
 	}
 	.nav-tabs.nav-justified > li > a {
-       font-size: 12px !important;
+       font-size: 11px !important;
     }
     span.font-usd {
 	    color: black;

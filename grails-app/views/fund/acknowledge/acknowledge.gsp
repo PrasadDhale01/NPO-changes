@@ -112,7 +112,6 @@
                     <%
                         def date = dateFormat.format(new Date())
                      %>
-                    <h3>Contributor Comment</h3>
                     <div class="modal-body show-comments-date TW-ack-commentBox">
                         <h6>By ${contribution.contributorName}, on ${date}</h6>
                         <p><b>${commentVal}</b></p>

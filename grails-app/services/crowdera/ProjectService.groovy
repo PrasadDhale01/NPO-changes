@@ -12,6 +12,7 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
 import grails.util.Environment
+import javax.servlet.http.Cookie
 
 class ProjectService {
     def userService
@@ -457,7 +458,6 @@ class ProjectService {
         if (project.payuStatus && project.contributions.size() == 1) {
             mandrillService.sendEmailToCampaignOwner(project, contribution) //Send Email to Campaign Owner when first contribution is done for INR
         }
-        mandrillService.sendThankYouMailToContributors(contribution, project,amount,fundraiser)
 		 
         userService.contributionEmailToOwnerOrTeam(fundraiser, project, contribution)
         
@@ -2997,14 +2997,56 @@ class ProjectService {
         cookie.maxAge= 0
         return cookie
     }
-    
+
     def setLoginSignUpCookie() {
         Cookie cookie = new Cookie("loginSignUpCookie", 'createCampaignloginSignUpActive')
         cookie.path = '/'
         cookie.maxAge= 3600
         return cookie
     }
-    
+
+	def setCampaignNameCookie(def title){
+		Cookie cookie = new Cookie("campaignNameCookie", title)
+		cookie.path = '/'
+		cookie.maxAge= 3600
+		return cookie
+	}
+
+	def setFundingAmountCookie(def amount){
+		Cookie cookie = new Cookie("fundingAmountCookie", amount.toString())
+		cookie.path = '/'
+		cookie.maxAge= 3600
+		return cookie
+	}
+
+    def setContributorName(def contributorName){
+        Cookie cookie = new Cookie("contributorNameCookie", contributorName)
+        cookie.path = '/'
+        cookie.maxAge= 3600
+        return cookie
+    }
+
+	def deleteContributorName(def contributorName){
+        Cookie cookie = new Cookie("contributorNameCookie", contributorName)
+        cookie.path = '/'
+        cookie.maxAge= 0
+        return cookie
+    }
+
+	def deleteCampaignNameCookie(def campaignNameCookieValue){
+		Cookie cookie = new Cookie("campaignNameCookie", campaignNameCookieValue)
+		cookie.path = '/'
+		cookie.maxAge= 0
+		return cookie
+	}
+
+	def deleteFundingAmountCookie(def fundingAmountCookieValue){
+		Cookie cookie = new Cookie("fundingAmountCookie", fundingAmountCookieValue)
+		cookie.path = '/'
+		cookie.maxAge= 0
+		return cookie
+	}
+
     def deleteLoginSignUpCookie() {
         Cookie cookie = new Cookie("loginSignUpCookie", 'createCampaignloginSignUpActive')
         cookie.path = '/'

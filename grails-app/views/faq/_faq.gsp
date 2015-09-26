@@ -727,7 +727,7 @@
                     </div>
                 </div>
                 
-                 <h1 class="page-header">Product FAQs</h1>
+                <h3 class="page-header">Product FAQs</h3>
                 
                 <div class="panel panel-default">
 			          <div class="panel-heading">
@@ -869,7 +869,7 @@
                     </div>
                 </div>
                 
-                <h1 class="page-header">Campaign Creation and Management </h1>
+                <h3 class="page-header">Campaign Creation and Management </h3>
                 
                 <h3 class="faq-subheading">Creating a campaign</h3>
                 
@@ -1257,19 +1257,6 @@
                     <div id="collapseProContri1" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
 			                     <p>Yes. you can download the CSV report from the “Contribution” tab on the Manage Campaign page.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri2">Can I edit the name & amount of the offline contribution?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContri2" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes, name and amount is editable. </p>
                         </div>
                     </div>
                 </div>
@@ -2319,7 +2306,7 @@
                 </div>
                 
                 
-                <h1 class="page-header">Product FAQs</h1>
+                <h3 class="page-header">Product FAQs</h3>
                 
                 <div class="panel panel-default">
 			          <div class="panel-heading">
@@ -2461,7 +2448,7 @@
                     </div>
                 </div>
                 
-                <h1 class="page-header">Campaign Creation and Management </h1>
+                <h3 class="page-header">Campaign Creation and Management </h3>
                 
                 <h3 class="faq-subheading">Creating a campaign</h3>
                 

@@ -67,14 +67,14 @@ $(function() {
                     	if(isINR == undefined) {
                     		return 1;
                     	} else {
-                    		return 100;
+                    		return 20;
                     	}
                     } else {
                     	var isINR = $('#isINR').val();
                     	if(isINR == undefined) {
                     		return _.max([1, Number(rewardPrice)]);
                     	} else {
-                    		return _.max([100, Number(rewardPrice)]);
+                    		return _.max([20, Number(rewardPrice)]);
                     	}
                     }
                 }
@@ -296,7 +296,7 @@ $(function() {
             .blur(hidePopover)
             .hover(showPopover, hidePopover);
         });
-        
+
         $("#anonymousUser").popover({
             content: 'If checked, your name will only be visible to campiagn owner, for public you will be anonymous contributor.',
             trigger: 'manual',

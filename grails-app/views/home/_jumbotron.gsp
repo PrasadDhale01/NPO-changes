@@ -34,11 +34,11 @@
 	            <div class="carousel-buttons">
 	               <div class="fbButton">
 	                  <a href="${resource(dir: '/howitworks')}">
-	                  	<img src="//s3.amazonaws.com/crowdera/assets/Learn-How-Button-carousel-img.jpg" alt="Learn How" class="btn btn-fb">
+	                  	<img src="//s3.amazonaws.com/crowdera/assets/Learn-How-Button-carousel-img.jpg" alt="Learn how to crowdfund" class="btn btn-fb">
 	                  </a>
 	                  <img src="//s3.amazonaws.com/crowdera/assets/or-icon-carousel.png" alt="or">
 	                  <a href="${resource(dir: '/project/create')}">
-	                   	<img src="//s3.amazonaws.com/crowdera/assets/Start-Now-button-carousel-img.jpg" alt="Start Now" class="btn btn-fb">
+	                   	<img src="//s3.amazonaws.com/crowdera/assets/Start-Now-button-carousel-img.jpg" alt="Start your crowdfunding campaign" class="btn btn-fb">
 	                  </a>
 	               </div>
 	           	</div>
@@ -74,8 +74,8 @@
             <div class="carousel-buttons joinFOG">
                <div class="fbButton joinFOG">
                   <a href="${resource(dir: '/campaigns/Festival-of-Globe---FOG/The-Federation-of-Indo-Americans-of-Northern-California-594')}">
-                  	<img src="//s3.amazonaws.com/crowdera/assets/JoinFOG-button.jpg" alt="Join FOG" class=" hidden-xs btn btn-fb">
-                  	<img src="//s3.amazonaws.com/crowdera/assets/Join-FOG -Button-mobile.jpg" alt="Join FOG" class="visible-xs">
+                  	<img src="//s3.amazonaws.com/crowdera/assets/JoinFOG-button.jpg" alt="Contribute Now" class=" hidden-xs btn btn-fb">
+                  	<img src="//s3.amazonaws.com/crowdera/assets/Join-FOG -Button-mobile.jpg" alt="Contribute Now" class="visible-xs">
                   </a> 
                </div>
            	</div>
@@ -86,7 +86,7 @@
             <div class="carousel-buttons">
                <div class="fbButton">
                   <a href="${resource(dir: '/campaigns/Securing-Prajwala--An-Anti-Trafficking-Intervention/Friends-of-680')}">
-                  	<img src="//s3.amazonaws.com/crowdera/assets/Secure-Prajwala-Button.jpg" alt="Secure Prajwala" class="btn btn-fb">
+                  	<img src="//s3.amazonaws.com/crowdera/assets/Secure-Prajwala-Button.jpg" alt="Contribute Now" class="btn btn-fb">
                   </a>
                </div>
            	</div>

@@ -386,13 +386,20 @@ class ProjectService {
 		 String emails = params.emails
 		 String name = params.name
 		 String message = params.message
-		 
+
 		 def emailList = emails.split(',')
 		 emailList = emailList.collect { it.trim() }
-		 
+
 		 mandrillService.shareContribution(emailList, name, message,project,contribution,fundraiser)
 	 }
-	 
+
+	def getTwitterShareUrlForCampaign(Project project, def fundraiser, def base_url){
+		def vanityTitle = getVanityTitleFromId(project.id)
+		def vanityUserName = userService.getVanityNameFromUsername(fundraiser.username, project.id)
+		def url = base_url+'/campaigns/'+vanityTitle+'/'+vanityUserName
+		return url
+	}
+
     def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
         def emailId, twitter,custom, userId,anonymous 
         def currency 
@@ -1325,9 +1332,14 @@ class ProjectService {
         }
         return subFinalList
     }
-	
+
 	def projectOnHomePage() {
-		def projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f84884ce82e04014cecf509020000', '2c9f84884dd5a114014dead63c090003')
+		def currentEnv = Environment.current.getName()
+		def projects
+		if (currentEnv == 'staging' || currentEnv == 'production')
+		   projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f84884e76f7ff014e83e539d50001', '2c9f84884fc22f8b014fe7788be40003')
+		else
+		   projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f84884e76f7ff014e83e539d50001', '2c9f8f3b4feeeee0014fefed7fae0001')
 	    return projects
 	}
 
@@ -2997,7 +3009,14 @@ class ProjectService {
         cookie.maxAge= 0
         return cookie
     }
-
+	
+	def setRequestUrlCookie(def requestUrl){
+		Cookie cookie = new Cookie("requestUrl", requestUrl)
+		cookie.path = '/'
+		cookie.maxAge= 3600
+		return cookie
+	}
+	
     def setLoginSignUpCookie() {
         Cookie cookie = new Cookie("loginSignUpCookie", 'createCampaignloginSignUpActive')
         cookie.path = '/'
@@ -3013,7 +3032,7 @@ class ProjectService {
 	}
 
 	def setFundingAmountCookie(def amount){
-		Cookie cookie = new Cookie("fundingAmountCookie", amount.toString())
+		Cookie cookie = new Cookie("fundingAmountCookie", amount.round().toString())
 		cookie.path = '/'
 		cookie.maxAge= 3600
 		return cookie
@@ -3025,6 +3044,20 @@ class ProjectService {
         cookie.maxAge= 3600
         return cookie
     }
+	
+	def setContributorEmailCookie(def contributorEmail){
+		Cookie cookie = new Cookie("contributorEmailCookie", contributorEmail)
+		cookie.path = '/'
+		cookie.maxAge= 3600
+		return cookie
+	}
+	
+	def deleteContributorEmailCookie(def contributorEmail){
+		Cookie cookie = new Cookie("contributorEmailCookie", contributorEmail)
+		cookie.path = '/'
+		cookie.maxAge= 0
+		return cookie
+	}
 
 	def deleteContributorName(def contributorName){
         Cookie cookie = new Cookie("contributorNameCookie", contributorName)
@@ -3053,6 +3086,12 @@ class ProjectService {
         cookie.maxAge= 0
         return cookie
     }
+	
+    def ContributorNameCookie(contributorEmail){
+		Cookie cookie = new Cookie("contributorEmail", contributorEmail)
+		cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
+		cookie.maxAge= 3600  //Cookie expire time in seconds
+	}
 
     def isCustomUrUnique(def vanityUrl, def projectId){
         List title = VanityTitle.list()

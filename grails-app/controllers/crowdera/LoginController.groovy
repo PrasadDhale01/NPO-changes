@@ -43,11 +43,13 @@ class LoginController {
             redirect (controller:'home', action:'index', params:[fb: 'yes'])
         } else {
             String requestUrl = g.cookie(name: 'requestUrl')
+			println 'request url =='+ requestUrl
             if (requestUrl) {
                 def cookie = projectService.setCookie(requestUrl)
                 response.addCookie(cookie)
                 redirect (url: requestUrl)
             } else {
+			println 'request url =='+ requestUrl
                 redirect (controller:'home', action:'index')
             }
         }
@@ -135,10 +137,10 @@ class LoginController {
         } else {
             String loginSignUpCookie = g.cookie(name: 'loginSignUpCookie')
             if (loginSignUpCookie) {
-                def cookie = projectService.deleteLoginSignUpCookie(loginSignUpCookie)
+                def cookie = projectService.deleteLoginSignUpCookie()
                 response.addCookie(cookie)
             }
-            
+
             def user = userService.getUserObject(params)
             user.enabled = false
             user.confirmCode = UUID.randomUUID().toString()
@@ -360,8 +362,6 @@ class LoginController {
         } else {
             redirect (controller:'home', action:'index', params:[isDuplicate: 'yes', email:email])
         }
-        
-        
     }
 
     def googleFailure = {

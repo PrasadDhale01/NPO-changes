@@ -34,7 +34,8 @@
 	<g:hiddenField id="googlPlusUser-login" name="googlPlusUser-login" value="${isDuplicate}"/>
 	<g:hiddenField id="userEmail" name='userEmail' value="${email}"/>
 	<g:hiddenField name='currentEnv' value='${currentEnv}' id='currentEnv'/>
-	
+	<g:hiddenField name="contributorEmail" value="${contributorEmail}" id="contributorEmail"/>
+
     <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
     	<g:render template="jumbotron"></g:render>
     </div>

@@ -284,6 +284,7 @@ class MandrillService {
     def shareContribution(def emailList, String name, String message, Project project,Contribution contribution, User fundraiser) {
         def imageUrl = project.imageUrl
 		def projectImageUrl
+        def beneficiaryName = (project.beneficiary.lastName) ? project.beneficiary.firstName + ' ' + project.beneficiary.lastName : project.beneficiary.firstName;
         if (imageUrl) {
             imageUrl = project.imageUrl[0].getUrl()
 			if(imageUrl.startsWith("https") || imageUrl.startsWith("http")) {
@@ -293,7 +294,7 @@ class MandrillService {
 			}
         }
         emailList.each { email ->
-            def link = grailsLinkGenerator.link(controller: 'fund', action: 'acknowledge', id: project.id,params:[ cb:contribution.id, fr:fundraiser.id], absolute: true)
+            def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:fundraiser.username], absolute: true)
             def globalMergeVars = [
                 [
                     'name': 'LINK',

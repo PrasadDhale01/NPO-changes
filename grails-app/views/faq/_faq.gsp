@@ -727,6 +727,876 @@
                     </div>
                 </div>
                 
+                <h3 class="page-header">Product FAQs</h3>
+                
+                <div class="panel panel-default">
+			          <div class="panel-heading">
+			              <h4 class="panel-title">
+			                  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProOne">How do I register on Crowdera?</a>
+			              </h4>
+			          </div>
+			          <div id="collapseProOne" class="panel-collapse collapse faq-panel-height">
+			              <div class="panel-body">
+			                  <p class="text-justify">Click  <a href="${resource(dir: 'login/register')}">here</a> to register.</p>
+			              </div>
+			          </div>
+			    </div>
+			    
+			    <div class="panel panel-default">
+			          <div class="panel-heading">
+			              <h4 class="panel-title">
+			                  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTwo">How do I reset my password?</a>
+			              </h4>
+			          </div>
+			          <div id="collapseProTwo" class="panel-collapse collapse faq-panel-height">
+			              <div class="panel-body">
+			                  <p class="text-justify">Click <a href="${resource(dir: 'login/edit_reset')}">here</a> to reset your password.</p>
+			              </div>
+			          </div>
+			    </div>
+			    
+			    <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProThree">How can I update my profile?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProThree" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+                             <p class="text-justify">You can update your profile by following these steps:</p>
+		                     <ul>
+			                     <li>Log in to your Crowdera account.</li>
+			                     <li>Click the dropdown on your username.</li>
+			                     <li>Select Setting</li>
+		                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProFour">Can I change my username after registration?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProFour" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+                             <p class="text-justify">You can change your username by following these steps:</p>
+		                     <ul>
+			                     <li>Log in to your Crowdera account.</li>
+			                     <li>Click the dropdown on your username.</li>
+			                     <li>Select Setting</li>
+		                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProFive">How can I change my  password ?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProFive" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+                             <p class="text-justify">You can change your password by following these steps:</p>
+		                     <ul>
+			                     <li>Log in to your Crowdera account.</li>
+			                     <li>Click the dropdown on your username.</li>
+			                     <li>Select Setting</li>
+		                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProSix">Where and how can I upload/edit my Avatar?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProSix" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+                             <p class="text-justify">You can change your Avatar by following these steps:</p>
+		                     <ul>
+			                     <li>Log in to your Crowdera account.</li>
+			                     <li>Click the dropdown on your username.</li>
+			                     <li>Select Setting</li>
+		                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProSevan">How can I subscribe to a Newsletter ?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProSevan" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>(Add button/field here )</p>
+			                     <p>You can subscribe for the Crowdera Newsletter on our site. Just scroll to the 
+			                     bottom of the home page and provide us with your email! </p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProEight">How can I contact Crowdera Team?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProEight" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can contact us by using the  "<a href="${resource(dir: 'customer-service')}">Contact Us</a>" query.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProNine">Can I unsubscribe from Crowdera Emails?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProNine" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>We’re sorry you want to unsubscribe but yes you can. 
+			                     Click on unsubscribe link in the bottom of the email received from Crowdera.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="page-header">Campaign Creation and Management </h3>
+                
+                <h3 class="faq-subheading">Creating a campaign</h3>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTen">Who can create a Campaign on Crowdera?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTen" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Individuals and/or Nonprofit Organizations that want to raise funds for Passion, Innovation, 
+			                     Impact or Need can create a campaign on Crowdera.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenOne">What are the details I need to provide to receive contributions?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenOne" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>To accept contributions, you will need an active and verified PayPal. For country specific PayPal restrictions refer to the following link: <a href="https://www.paypal.com/webapps/mpp/country-worldwide" data-target="_blank">https://www.paypal.com/webapps/mpp/country-worldwide</a></p>
+			                     <p>Nonprofit Organizations in the USA can also select First Giving as their choice of Payment Gateway.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTwo">India</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTwo" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You need to provide your bank details and will receive their funds via NEFT transaction at the end of their campaign. 
+			                     To fill in your bank details follow these steps:</p>
+			                     <ul>
+				                     <li>Sign in to your Crowdera Account</li>
+				                     <li>Select “My Campaigns” from the dropdown under your username</li>
+				                     <li>Click on the campaign </li>
+				                     <li>Go to Payments and provide your information</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenThree">How do I create my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenThree" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can start creating your campaign here. Please refer to our Ebook for more crowdfunding guidelines. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenFour">Do I have to create a campaign in one go?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenFour" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>No. You can save the information as draft and complete it whenever you wish.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenFive">My campaign is saved as a draft, what should I do next?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenFive" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can edit the campaign or submit it for validation.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenSix">Who is a Owner?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenSix" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>The person who creates a campaign is the Campaign Owner.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenSevan">Who is a co-owner?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenSevan" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>People who are nominated by a Campaign Owner to work for a campaign are Co-owners.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenEight">I am an Owner how can I nominate a Co-owner for my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenEight" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can add co-owners under the Admin section when you create or edit your campaign.You can add upto 3 co-owners.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Image</h3>
+                
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenNine">How many images can I upload?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenNine" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Multiple images can be added but we recommend including not more than 3 or 4 images. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTen">What is size and format accepted?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTen" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>The image should be less than 3 MB and have an aspect ratio of 3:2 (width major). Formats acceptable are jpg and png</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Perks</h3>
+                
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenOne">Can I create a perk after my campaign is live?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenOne" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes you can create a perk even after a campaign is live by going to  “Perks” under “My Campaigns”.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTentwo">Can I edit or delete a perk after my campaign is live?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTentwo" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can edit or delete a perk only if has not been selected by a contributor.</p> 
+			                     <P> Once a perk has been selected, it cannot be edited or deleted.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Duration </h3>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenThree">I have set the campaign duration for 60 days, from when will the countdown start?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenThree" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>The campaign countdown starts once the campaign is validated by Crowdera Administrator.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenFour">What is the maximum duration of a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenFour" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>The maximum duration is 90 days. However, you can reach out to the Crowdera Team to extend your deadline.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenFive">Can I extend my deadline?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenFive" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Deadline can be extended if the cause is genuine and verified by our Team.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <h3 class="faq-subheading">Co-owners/Co-creators  </h3>
+                 
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenSix">How many co-creators can I nominate for my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenSix" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can nominate maximum of 3 co-owners for a campaign.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenSaven">I have received an invitation for being a co-creator of a campaign, what should I do next?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenSaven" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>To access the campaign:</p>
+			                     <ul>
+			                         <li><a href="${resource(dir: 'login/register')}">Register</a> / <a href="${resource(dir: 'login/auth')}"> Login </a> on Crowdera</li>
+			                         <li>Click on the dropdown under Username</li>
+			                         <li>Click on My Campaigns</li>
+			                         <li>You should be able to see the campaign there</li>
+			                     
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenEight">What are the rights of a co-owner?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenEight" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>A co-owner can</p>
+			                     <ul>
+			                         <li>Validate team requests</li>
+			                         <li>Enable/disable teams </li>
+			                         <li>Edit campaign </li>
+			                         <li>Edit team details</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Validation</h3>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenNine">I have already submitted my campaign, then why does it show “Pending” ?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenNine" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Pending banner indicates your campaign is still being verified by the administrator.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Campaign Updates </h3>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProUpdate1">Who can create an update for a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProUpdate1" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Campaign Owner/ Co-owner can create updates for a campaign.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProUpdate2">How many images can I upload with the update?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProUpdate2" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can upload multiple images but recommend not adding more that 3. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProUpdate3">Who will receive my campaign updates?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProUpdate3" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Your contributors and those who have chosen to follow your campaign will receive an email about your latest updates.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProUpdate4">How do I edit my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProUpdate4" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Access your campaign from My Campaigns. On the right side of the page you will see the display picture of your campaign, the edit option is under that section. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProUpdate5">Can I hide the comments on my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProUpdate5" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Campaign Owner/Co-owner can enable/disable the campaign comments.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProUpdate6">Can I delete a live campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProUpdate6" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can not delete a live campaign. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Contributions</h3>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri1">Can I export my contribution report?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContri1" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes. you can download the CSV report from the “Contribution” tab on the Manage Campaign page.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri3">Can I edit the name & amount of the online contribution?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContri3" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>No, as the online contributions are made via a Payment Gateway, they cannot be edited. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Teams </h3>
+                 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams1">Who is a Team?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams1" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>A Team owner is a person who helps you rally your campaign.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams2">How can I Invite my friend to be  a Team for my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams2" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <ul>
+			                         <li>Log into your Crowdera Account </li>
+			                         <li>Go to My Campaigns </li>
+			                         <li>Select the campaign</li>
+			                         <li>Click on the Activity</li>
+			                         <li>Select Invite Members</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams3">How can someone join as a Team for a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams3" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>It’s simple, they go to the campaign detail page via Discover, click on “Teams” and hit Join Us! </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams4">Who can Validate/ Discard  a Team request?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams4" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Owner/ Co-owner have the authority to validate or discard a team request. Follow these steps: </p>
+			                     <ul>
+			                         <li>Log into your Crowdera Account </li>
+			                         <li>Go to My Campaigns </li>
+			                         <li>Select the campaign</li>
+			                         <li>Click on the Activity</li>
+			                         <li>Select Validate/Discard Team</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams5">Can I disable/enable an  existing Team of my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams5" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes you can disable an existing team by following these steps. </p>
+			                     <ul>
+			                         <li>Log into your Crowdera Account </li>
+			                         <li>Go to My Campaigns </li>
+			                         <li>Select the campaign</li>
+			                         <li>Click on the Activity</li>
+			                         <li>Select Validate/Discard Team</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams6">Who can enable/disable a Team?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams6" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Only Owner/Co-owners can enable/disable a team.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams7">I am Owner/Co-owner can I edit a Team’s fundraiser?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams7" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, you can edit a Team’s fundraiser page. To edit a Team’s fundraiser go to Teams page from Manage Campaign, 
+			                     select the Team member whose page you want to edit. Now you will be on their fundraiser, go to Teams and click on Activity dropdown. 
+			                     You will see edit fundraiser.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams8">Can I comment specifically on a Team’s fundraiser?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams8" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, you can comment on a Team’s individual fundraiser.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams9">How can I share my campaign on social media?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams9" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Access your campaign through the Discover page. Under the images displayed you will find all the necessary social media tools.
+			                      Crowdera also provides a short link to your campaign that can be used to share your campaign on social media.</p>
+                        </div>
+                    </div>
+                </div> 
+                
+                <h3 class="faq-subheading">Contributor</h3>
+                 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor1">How will I receive the perk I selected while funding a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor1" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>The campaign owner is responsible for disbursing the perks. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor2">I am not from the US, can I contribute to a campaign I wish?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor2" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, you can contribute to any campaign. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor3">I am not from India, can I contribute to a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor3" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Crowdera does not accept foreign contributions in India at the moment. But you can contribute on our global site crowdera.co</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor4">Can I contribute money to more than one campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor4" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, you can. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor5">Can I contribute anonymously for a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor5" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes you can. Just check the anonymous box that appears when you make a contribution. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor6">If I contribute anonymously and select perks will it be shipped to me?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor6" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, Campaign Owner can check the shipping details that you have provided while choosing a perk. Apart from Twitter Perks you can select all the perks if you contribute anonymously.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor7">What are the visibility options for contributions on Crowdera?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor7" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Logged In User</p>
+			                     <ul>
+			                         <li>Name and Amount Visibility</li>
+			                         <li>Name anonymous and Amount visible</li>
+			                     </ul>
+			                     <p>Non Logged in User</p>
+			                     <ul>
+			                         <li>Name and Amount Visibility</li>
+			                         <li>Name anonymous and Amount visible</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor8">How can I share my contribution socially?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor8" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>After contributing to a campaign, you can use social icons to share your contribution socially.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor9">Where are individual Team Contribution  [Online + Offline] displayed ?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor9" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Under Teams Tab, Click on the Team’s Name. The contributions will be visible there. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor10">Do I need to create an account to contribute?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor10" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>No you don’t need an account to contribute.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor11">If I fund without logging in to crowdera, will my Name and Amount contributed be visible to all?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor11" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, we do ask for your name and email to send you a receipt and that name is displayed on the campaign. However, 
+			                     if you don’t want your name to appear on the contribution page, choose to contribute as anonymous.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor12">I can not contribute online, but I wish to contribute for the cause.</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor12" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can contribute offline to Campaign Owners/Co-owners/Teams and they can record it as offline contribution. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor13">Where can I see my contribution details on the campaign I just supported?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor13" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can see your contribution details under the contribution tab on the campaign detail page. </p>
+                        </div>
+                    </div>
+                </div> 
+                
                 
             </div>
         </div>
@@ -1435,8 +2305,893 @@
                     </div>
                 </div>
                 
+                
+                <h3 class="page-header">Product FAQs</h3>
+                
+                <div class="panel panel-default">
+			          <div class="panel-heading">
+			              <h4 class="panel-title">
+			                  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProOne">How do I register on Crowdera?</a>
+			              </h4>
+			          </div>
+			          <div id="collapseProOne" class="panel-collapse collapse faq-panel-height">
+			              <div class="panel-body">
+			                  <p class="text-justify">Click  <a href="${resource(dir: 'login/register')}">here</a> to register.</p>
+			              </div>
+			          </div>
+			    </div>
+			    
+			    <div class="panel panel-default">
+			          <div class="panel-heading">
+			              <h4 class="panel-title">
+			                  <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTwo">How do I reset my password?</a>
+			              </h4>
+			          </div>
+			          <div id="collapseProTwo" class="panel-collapse collapse faq-panel-height">
+			              <div class="panel-body">
+			                  <p class="text-justify">Click <a href="${resource(dir: 'login/edit_reset')}">here</a> to reset your password.</p>
+			              </div>
+			          </div>
+			    </div>
+			    
+			    <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProThree">How can I update my profile?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProThree" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+                             <p class="text-justify">You can update your profile by following these steps:</p>
+		                     <ul>
+			                     <li>Log in to your Crowdera account.</li>
+			                     <li>Click the dropdown on your username.</li>
+			                     <li>Select Setting</li>
+		                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProFour">Can I change my username after registration?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProFour" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+                             <p class="text-justify">You can change your username by following these steps:</p>
+		                     <ul>
+			                     <li>Log in to your Crowdera account.</li>
+			                     <li>Click the dropdown on your username.</li>
+			                     <li>Select Setting</li>
+		                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProFive">How can I change my  password ?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProFive" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+                             <p class="text-justify">You can change your password by following these steps:</p>
+		                     <ul>
+			                     <li>Log in to your Crowdera account.</li>
+			                     <li>Click the dropdown on your username.</li>
+			                     <li>Select Setting</li>
+		                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProSix">Where and how can I upload/edit my Avatar?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProSix" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+                             <p class="text-justify">You can change your Avatar by following these steps:</p>
+		                     <ul>
+			                     <li>Log in to your Crowdera account.</li>
+			                     <li>Click the dropdown on your username.</li>
+			                     <li>Select Setting</li>
+		                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProSevan">How can I subscribe to a Newsletter ?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProSevan" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>(Add button/field here )</p>
+			                     <p>You can subscribe for the Crowdera Newsletter on our site. Just scroll to the 
+			                     bottom of the home page and provide us with your email! </p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProEight">How can I contact Crowdera Team?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProEight" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can contact us by using the  "<a href="${resource(dir: 'customer-service')}">Contact Us</a>" query.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProNine">Can I unsubscribe from Crowdera Emails?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProNine" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>We’re sorry you want to unsubscribe but yes you can. 
+			                     Click on unsubscribe link in the bottom of the email received from Crowdera.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="page-header">Campaign Creation and Management </h3>
+                
+                <h3 class="faq-subheading">Creating a campaign</h3>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTen">Who can create a Campaign on Crowdera?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTen" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Individuals and/or Nonprofit Organizations that want to raise funds for Passion, Innovation, 
+			                     Impact or Need can create a campaign on Crowdera.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenOne">What are the details I need to provide to receive contributions?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenOne" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>To accept contributions, you will need an active and verified PayPal. For country specific PayPal restrictions refer to the following link: <a href="https://www.paypal.com/webapps/mpp/country-worldwide" data-target="_blank">https://www.paypal.com/webapps/mpp/country-worldwide</a></p>
+			                     <p>Nonprofit Organizations in the USA can also select First Giving as their choice of Payment Gateway.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTwo">India</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTwo" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You need to provide your bank details and will receive their funds via NEFT transaction at the end of their campaign. 
+			                     To fill in your bank details follow these steps:</p>
+			                     <ul>
+				                     <li>Sign in to your Crowdera Account</li>
+				                     <li>Select “My Campaigns” from the dropdown under your username</li>
+				                     <li>Click on the campaign </li>
+				                     <li>Go to Payments and provide your information</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenThree">How do I create my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenThree" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can start creating your campaign here. Please refer to our Ebook for more crowdfunding guidelines. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenFour">Do I have to create a campaign in one go?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenFour" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>No. You can save the information as draft and complete it whenever you wish.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenFive">My campaign is saved as a draft, what should I do next?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenFive" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can edit the campaign or submit it for validation.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenSix">Who is a Owner?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenSix" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>The person who creates a campaign is the Campaign Owner.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenSevan">Who is a co-owner?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenSevan" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>People who are nominated by a Campaign Owner to work for a campaign are Co-owners.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenEight">I am an Owner how can I nominate a Co-owner for my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenEight" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can add co-owners under the Admin section when you create or edit your campaign.You can add upto 3 co-owners.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Image</h3>
+                
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenNine">How many images can I upload?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenNine" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Multiple images can be added but we recommend including not more than 3 or 4 images. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTen">What is size and format accepted?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTen" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>The image should be less than 3 MB and have an aspect ratio of 3:2 (width major). Formats acceptable are jpg and png</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Perks</h3>
+                
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenOne">Can I create a perk after my campaign is live?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenOne" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes you can create a perk even after a campaign is live by going to  “Perks” under “My Campaigns”.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTentwo">Can I edit or delete a perk after my campaign is live?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTentwo" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can edit or delete a perk only if has not been selected by a contributor. 
+			                      Once a perk has been selected, it cannot be edited or deleted.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Duration </h3>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenThree">I have set the campaign duration for 60 days, from when will the countdown start?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenThree" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>The campaign countdown starts once the campaign is validated by Crowdera Administrator.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenFour">What is the maximum duration of a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenFour" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>The maximum duration is 90 days. However, you can reach out to the Crowdera Team to extend your deadline.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenFive">Can I extend my deadline?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenFive" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Deadline can be extended if the cause is genuine and verified by our Team.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <h3 class="faq-subheading">Co-owners/Co-creators  </h3>
+                 
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenSix">How many co-creators can I nominate for my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenSix" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can nominate maximum of 3 co-owners for a campaign.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                 <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenSaven">I have received an invitation for being a co-creator of a campaign, what should I do next?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenSaven" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>To access the campaign:</p>
+			                     <ul>
+			                         <li><a href="${resource(dir: 'login/register')}">Register</a> / <a href="${resource(dir: 'login/auth')}"> Login </a> on Crowdera</li>
+			                         <li>Click on the dropdown under Username</li>
+			                         <li>Click on My Campaigns</li>
+			                         <li>You should be able to see the campaign there</li>
+			                     
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenEight">What are the rights of a co-owner?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenEight" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>A co-owner can</p>
+			                     <ul>
+			                         <li>Validate team requests</li>
+			                         <li>Enable/disable teams </li>
+			                         <li>Edit campaign </li>
+			                         <li>Edit team details</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Validation</h3>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTenNine">I have already submitted my campaign, then why does it show “Pending” ?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTenTenNine" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Pending banner indicates your campaign is still being verified by the administrator.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Campaign Updates </h3>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProUpdate1">Who can create an update for a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProUpdate1" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Campaign Owner/ Co-owner can create updates for a campaign.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProUpdate2">How many images can I upload with the update?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProUpdate2" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can upload multiple images but recommend not adding more that 3. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProUpdate3">Who will receive my campaign updates?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProUpdate3" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Your contributors and those who have chosen to follow your campaign will receive an email about your latest updates.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProUpdate4">How do I edit my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProUpdate4" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Access your campaign from My Campaigns. On the right side of the page you will see the display picture of your campaign, the edit option is under that section. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProUpdate5">Can I hide the comments on my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProUpdate5" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Campaign Owner/Co-owner can enable/disable the campaign comments.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProUpdate6">Can I delete a live campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProUpdate6" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can not delete a live campaign. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Contributions</h3>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri1">Can I export my contribution report?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContri1" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes. you can download the CSV report from the “Contribution” tab on the Manage Campaign page.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri2">Can I edit the name & amount of the offline contribution?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContri2" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, name and amount is editable. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri3">Can I edit the name & amount of the online contribution?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContri3" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>No, as the online contributions are made via a Payment Gateway, they cannot be edited. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="faq-subheading">Teams </h3>
+                 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams1">Who is a Team?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams1" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>A Team owner is a person who helps you rally your campaign.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams2">How can I Invite my friend to be  a Team for my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams2" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <ul>
+			                         <li>Log into your Crowdera Account </li>
+			                         <li>Go to My Campaigns </li>
+			                         <li>Select the campaign</li>
+			                         <li>Click on the Activity</li>
+			                         <li>Select Invite Members</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams3">How can someone join as a Team for a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams3" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>It’s simple, they go to the campaign detail page via Discover, click on “Teams” and hit Join Us! </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams4">Who can Validate/ Discard  a Team request?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams4" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Owner/ Co-owner have the authority to validate or discard a team request. Follow these steps: </p>
+			                     <ul>
+			                         <li>Log into your Crowdera Account </li>
+			                         <li>Go to My Campaigns </li>
+			                         <li>Select the campaign</li>
+			                         <li>Click on the Activity</li>
+			                         <li>Select Validate/Discard Team</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams5">Can I disable/enable an  existing Team of my campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams5" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes you can disable an existing team by following these steps. </p>
+			                     <ul>
+			                         <li>Log into your Crowdera Account </li>
+			                         <li>Go to My Campaigns </li>
+			                         <li>Select the campaign</li>
+			                         <li>Click on the Activity</li>
+			                         <li>Select Validate/Discard Team</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams6">Who can enable/disable a Team?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams6" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Only Owner/Co-owners can enable/disable a team.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams7">I am Owner/Co-owner can I edit a Team’s fundraiser?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams7" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, you can edit a Team’s fundraiser page. To edit a Team’s fundraiser go to Teams page from Manage Campaign, 
+			                     select the Team member whose page you want to edit. Now you will be on their fundraiser, go to Teams and click on Activity dropdown. 
+			                     You will see edit fundraiser.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams8">Can I comment specifically on a Team’s fundraiser?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams8" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, you can comment on a Team’s individual fundraiser.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTeams9">How can I share my campaign on social media?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProTeams9" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Access your campaign through the Discover page. Under the images displayed you will find all the necessary social media tools.
+			                      Crowdera also provides a short link to your campaign that can be used to share your campaign on social media.</p>
+                        </div>
+                    </div>
+                </div> 
+                
+                <h3 class="faq-subheading">Contributor</h3>
+                 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor1">How will I receive the perk I selected while funding a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor1" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>The campaign owner is responsible for disbursing the perks. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor2">I am not from the US, can I contribute to a campaign I wish?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor2" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, you can contribute to any campaign. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor3">I am not from India, can I contribute to a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor3" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Crowdera does not accept foreign contributions in India at the moment. But you can contribute on our global site crowdera.co</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor4">Can I contribute money to more than one campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor4" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, you can. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor5">Can I contribute anonymously for a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor5" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes you can. Just check the anonymous box that appears when you make a contribution. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor6">If I contribute anonymously and select perks will it be shipped to me?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor6" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, Campaign Owner can check the shipping details that you have provided while choosing a perk. Apart from Twitter Perks you can select all the perks if you contribute anonymously.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor7">What are the visibility options for contributions on Crowdera?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor7" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Logged In User</p>
+			                     <ul>
+			                         <li>Name and Amount Visibility</li>
+			                         <li>Name anonymous and Amount visible</li>
+			                     </ul>
+			                     <p>Non Logged in User</p>
+			                     <ul>
+			                         <li>Name and Amount Visibility</li>
+			                         <li>Name anonymous and Amount visible</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor8">How can I share my contribution socially?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor8" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>After contributing to a campaign, you can use social icons to share your contribution socially.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor9">Where are individual Team Contribution  [Online + Offline] displayed ?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor9" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Under Teams Tab, Click on the Team’s Name. The contributions will be visible there. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor10">Do I need to create an account to contribute?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor10" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>No you don’t need an account to contribute.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor11">If I fund without logging in to crowdera, will my Name and Amount contributed be visible to all?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor11" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, we do ask for your name and email to send you a receipt and that name is displayed on the campaign. However, 
+			                     if you don’t want your name to appear on the contribution page, choose to contribute as anonymous.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor12">I can not contribute online, but I wish to contribute for the cause.</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor12" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can contribute offline to Campaign Owners/Co-owners/Teams and they can record it as offline contribution. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor13">Where can I see my contribution details on the campaign I just supported?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor13" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can see your contribution details under the contribution tab on the campaign detail page. </p>
+                        </div>
+                    </div>
+                </div> 
+                
+                
             </div>
         </div>
     </div>
     </g:else>
-</div>
+    </div>

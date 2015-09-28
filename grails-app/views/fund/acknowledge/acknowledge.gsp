@@ -12,6 +12,7 @@
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+fundraiser.username+"#contributions"
+	def beneficiaryName = (project.beneficiary.lastName) ? project.beneficiary.firstName + ' ' + project.beneficiary.lastName : project.beneficiary.firstName;
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -23,13 +24,16 @@
     <g:elseif test="${imageUrl}">
         <meta property="og:image" content="${imageUrl}" />
     </g:elseif>
-    <meta property="og:description" content="${project.description}" />
+    <meta property="og:description" content="I just helped ${beneficiaryName}to achieve a great cause. Please share or contribute towards this cause.   ${project.description}" />
     <meta property="og:type" content="website" />
     <meta name="layout" content="main" />
     <r:require modules="fundjs" />
 </head>
 <body>
 <g:hiddenField name="fbShareUrl" value="${fbShareUrl}" id="fbShareUrl"/>
+<g:hiddenField name="beneficiaryName" value="${beneficiaryName}" id="beneficiaryName"/>
+<g:hiddenField name="campaignTitle" value="${project.title}" id="campaignTitle"/>
+<g:hiddenField name="twitterShareUrl" value="${twitterShareUrl}" id="twitterShareUrl"/>
 <div class="feducontent">
     <div class="container">
         <div class="row">
@@ -112,7 +116,6 @@
                     <%
                         def date = dateFormat.format(new Date())
                      %>
-                    <h3>Contributor Comment</h3>
                     <div class="modal-body show-comments-date TW-ack-commentBox">
                         <h6>By ${contribution.contributorName}, on ${date}</h6>
                         <p><b>${commentVal}</b></p>

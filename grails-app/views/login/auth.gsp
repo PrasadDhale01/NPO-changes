@@ -3,6 +3,9 @@
 <%
 	def currentEnv = projectService.getCurrentEnvironment()
     def loginSignUpCookie = g.cookie(name: 'loginSignUpCookie')
+	def fundingAmountCookieValue = g.cookie(name: 'fundingAmountCookie')
+	def campaignNameCookieValue = g.cookie(name: 'campaignNameCookie')
+	def contributorNameCookieValue = g.cookie(name: 'contributorNameCookie')
 %>
 <head>
     <meta name='layout' content='main'/>
@@ -13,7 +16,12 @@
     <div class="container userLoginContainer">
         <g:if test="${loginSignUpCookie}">
             <div class="campaignloginheading text-center">
-                <h4><b class="campaignloginboldheading">Great!</b> <b class="campaignloginlightheading">You are almost there please sign up or sign in to complete your campaign & raise money free.</b></h4>
+                <g:if test="${campaignNameCookieValue}">
+                    <h4><b><p>Welcome ${contributorNameCookieValue},</p><p>Thank you for your compassionate contribution of ${fundingAmountCookieValue}<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"> INR</g:if><g:else> USD</g:else> to ${campaignNameCookieValue}. Please Sign Up or Sign In to track the progress of the campaign, share on social media and receive your receipt.</p></b></h4>
+                </g:if>
+                <g:else>
+                    <h4><b class="campaignloginboldheading">Great!</b> <b class="campaignloginlightheading">You are almost there please sign up or sign in to complete your campaign & raise money free.</b></h4>
+                </g:else>
             </div>
             <div class="clear"></div>
             <div class="campaignUserLoginSubHeading text-center hidden-lg hidden-xs hidden-md">

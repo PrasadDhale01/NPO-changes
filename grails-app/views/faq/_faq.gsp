@@ -4,7 +4,7 @@
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 	def currentEnv = projectService.getCurrentEnvironment()
 %>
-<div class="container">
+<div class="container footer-container">
 <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
     <div class="row footer-panel-group">
         <div class="col-lg-12">
@@ -906,6 +906,32 @@
                     </div>
                 </div>
                 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri1">Can I export my contribution report?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContri1" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes. You can download the CSV report from the “Contribution” tab on the Manage Campaign page.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri3">Can I edit the name & amount of the online contribution?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContri3" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>No, as the online contributions are made via a Payment Gateway, they cannot be edited. </p>
+                        </div>
+                    </div>
+                </div>
+                
                 <h3 class="page-header">Campaign Creation and Management </h3>
                 
                 <div class="panel panel-default">
@@ -1411,31 +1437,6 @@
                     </div>
                 </div>
                 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri1">Can I export my contribution report?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContri1" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes. You can download the CSV report from the “Contribution” tab on the Manage Campaign page.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri3">Can I edit the name & amount of the online contribution?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContri3" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>No, as the online contributions are made via a Payment Gateway, they cannot be edited. </p>
-                        </div>
-                    </div>
-                </div>
                 
                 <h3 class="faq-subheading">Teams </h3>
                  
@@ -1578,188 +1579,6 @@
                         </div>
                     </div>
                 </div> 
-                
-                <h3 class="faq-subheading">Contributor</h3>
-                 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor1">How will I receive the perk I selected while funding a campaign?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor1" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>The campaign owner is responsible for disbursing the perks. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor2">I am not from the US, can I contribute to a campaign I wish?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor2" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes, you can contribute to any campaign. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor3">I am not from India, can I contribute to a campaign?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor3" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Crowdera does not accept foreign contributions in India at the moment. But you can contribute on our global site crowdera.co</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor4">Can I contribute money to more than one campaign?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor4" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes, you can. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor5">Can I contribute anonymously for a campaign?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor5" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes you can. Just check the anonymous box that appears when you make a contribution. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor6">If I contribute anonymously and select perks will it be shipped to me?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor6" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes, Campaign Owner can check the shipping details that you have provided while choosing a perk. Apart from Twitter Perks you can select all the perks if you contribute anonymously.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor7">What are the visibility options for contributions on Crowdera?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor7" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Logged In User</p>
-			                     <ul>
-			                         <li>Name and Amount Visibility</li>
-			                         <li>Name anonymous and Amount visible</li>
-			                     </ul>
-			                     <p>Non Logged in User</p>
-			                     <ul>
-			                         <li>Name and Amount Visibility</li>
-			                         <li>Name anonymous and Amount visible</li>
-			                     </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor8">How can I share my contribution socially?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor8" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>After contributing to a campaign, you can use social icons to share your contribution socially.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor9">Where are individual Team Contribution  [Online + Offline] displayed ?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor9" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Under Teams Tab, Click on the Team’s Name. The contributions will be visible there. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor10">Do I need to create an account to contribute?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor10" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>No you don’t need an account to contribute.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor11">If I fund without logging in to crowdera, will my Name and Amount contributed be visible to all?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor11" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes, we do ask for your name and email to send you a receipt and that name is displayed on the campaign. However, 
-			                     if you don’t want your name to appear on the contribution page, choose to contribute as anonymous.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor12">I can not contribute online, but I wish to contribute for the cause.</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor12" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>You can contribute offline to Campaign Owners/Co-owners/Teams and they can record it as offline contribution. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor13">Where can I see my contribution details on the campaign I just supported?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor13" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>You can see your contribution details under the contribution tab on the campaign detail page. </p>
-                        </div>
-                    </div>
-                </div> 
-                
                 
             </div>
         </div>
@@ -2647,6 +2466,45 @@
                     </div>
                 </div>
                 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri1">Can I export my contribution report?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContri1" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes. You can download the CSV report from the “Contribution” tab on the Manage Campaign page.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri2">Can I edit the name & amount of the offline contribution?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContri2" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, name and amount is editable. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri3">Can I edit the name & amount of the online contribution?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContri3" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>No, as the online contributions are made via a Payment Gateway, they cannot be edited. </p>
+                        </div>
+                    </div>
+                </div>
+                
                 
                 <h3 class="page-header">Campaign Creation and Management </h3>
                 
@@ -3149,45 +3007,6 @@
                     <div id="collapseProUpdate6" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
 			                     <p>You can not delete a live campaign. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri1">Can I export my contribution report?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContri1" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes. You can download the CSV report from the “Contribution” tab on the Manage Campaign page.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri2">Can I edit the name & amount of the offline contribution?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContri2" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes, name and amount is editable. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContri3">Can I edit the name & amount of the online contribution?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContri3" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>No, as the online contributions are made via a Payment Gateway, they cannot be edited. </p>
                         </div>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
 <div class="tile-footer perks-supporters">
     <div class="modal-footer tile-footer perks-style perk-title">
         <g:if test="${isFundingOpen || isPreview}">
-            <h2 class="rewardsectionheading">Perks</h2>
+            <h2 class="rewardsectionheading text-center">SELECT PERKS</h2>
         </g:if>
         <g:else>
             <h2 class="rewardsectionheading">Funding closed</h2>

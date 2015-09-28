@@ -1328,14 +1328,16 @@ footer .footerbottomsection {
 
 .btn-show-fund {
     color: #ffffff !important;
-    background-color: #006083 !important;
-    border-color: #006083 !important;
-    margin-top: -1%;
+    background-color: #01bbd3 !important;
+    border-color: #01bbd3 !important;
+    margin-top: -7%;
+    font-size: 24px;
+    font-weight: bold;
 }
 .btn-show-fund:hover{
 	color: #ffffff !important;
-    background-color: #01bbd3 !important;
-    border-color: #01bbd3 !important;
+    background-color: #006083 !important;
+    border-color:  #006083!important;
 }
 
 .cvc-details span.input-group-addon {
@@ -1630,10 +1632,13 @@ div.tile-min-height{
 }
 .rewardsectionheading{
 	font-size: 25px;
-	font-weight:normal;
+	font-weight:bold;
 	margin-bottom: 0px;
 	margin-top: 0px;
 	padding-left:6px;
+	color: #01bbd3;
+	padding-bottom: 10px;
+    padding-top: 10px;
 }
 .leftcard-column{
 	width:70%; 
@@ -2256,9 +2261,6 @@ a.footerlink {
     margin-top: 0;
     text-align: left;
 }
-.tileanstitle-goal-margin{
-	margin-bottom: 15px;
-}
 .goalIcon img{
     display:block;
     margin-left:auto;
@@ -2405,7 +2407,7 @@ a.footerlink {
 	text-align: left;
 }
 .perk-title{
-	padding: 12px;
+	padding: 13px;
 }
 .perks-style{
 	border-bottom-style:solid;
@@ -2845,7 +2847,7 @@ span.tile-day-num{
     color: #000 !important;
     font-weight:bold;
     font-size:17px;
-    padding-left: 3px;
+    padding-left: 2px;
 }
 .manage-tiles {
     width: 75%;
@@ -4475,7 +4477,7 @@ p {
 .rewardsection-row:hover {
 	background-color: #fff;
     border-color: #01bbd2 !important;
-    border: 1px solid #01bbd2;
+    border: 5px solid #01bbd2;
 }
 .rewardsection a:hover, .rewardsection a:active {
     text-decoration: none !important;
@@ -5336,6 +5338,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    ul.show-new-tabs-alignments {
+        margin-left: 19px;
+    }
+	div.show-share-border-line {
+        height: 50px;
+        margin-left: -2px !important;
+        width: 284px;
+    }
+	div.borders {
+        width: 281px;
+    }
+    .progressBarIcon-showpage{
+        padding-left: 27px;
+        padding-right: 27px;
+    }
     h1.india-font-slogan b{
         font-size: 15px !important;
     }
@@ -6418,6 +6435,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.show-share-border-line {
+        width: 721px;
+    }
+    div.borders {
+        width: 720px;
+    }
     h1.india-font-slogan b{
         font-size: 15px !important;
     }
@@ -7650,7 +7673,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		font-size:10px;
 	}
 	.TW-org-panel-height{
-		height:281px;
+		height:124px;
 	}
 	.TW-organization-panel-name-size{
 		font-size:13px;
@@ -10256,6 +10279,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	ul.show-new-tabs-alignments {
+        margin-left: 2px;
+    }
+    div.show-share-border-line {
+        height: 50px;
+        margin-left: -2px !important;
+        width: 284px;
+    }
+	div.borders {
+        width: 280px;
+    }
     #uploadingCampaignOrgIcon {
         margin-left: -9px;
     }
@@ -11328,4 +11362,66 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .india-font-slogan b{
 	font-size: 21px;
+}
+.show-btn-sh-fb{
+	 background-color: #859cf4;
+	 margin-bottom: 96px;
+	 padding-bottom: 18px;
+     padding-top: 11px;
+}
+.show-btn-sh-fb:hover{
+	 color: white;
+}
+.show-share-border-line{
+	 border-bottom: 2px solid #e3e3e3;
+    border-top: 2px solid #e3e3e3;
+    margin-top: 20px;
+    width: 970px;
+}
+.show-icons img{
+	height: 46px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
+.progressBarIcon-showpage{
+    padding-left: 27px;
+    padding-right: 27px;
+}
+.show-fund-size {
+	height: 80px !important;
+}
+.show-tiles-padding{
+	padding-bottom: 29px;
+    padding-top: 29px;
+}
+.nav-pills > li.active > a{
+    color: #000;
+    background-color: #ffffff;
+}
+ .nav-pills > li > a:hover{
+     bacground-color: red !important;
+ }
+.borders {
+    border-bottom: 2px solid #e3e3e3;
+    border-top: 2px solid #e3e3e3;
+    margin-left: 15px;
+    padding-left: 15px;
+    width: 969px;
+}
+.show-new-tabs-alignments{
+	border-right-width: 0;
+    line-height: 0;
+    margin-left: -15px;
+    margin-right: 0;
+    margin-top: 10px;
+    width: 400px;
+}
+.show-tbs-right-borders{
+	border-right: 2px solid #e3e3e3;
+}
+.show-lft-bord{
+	border-left: 2px solid #e3e3e3;
+}
+.show-tops-corsal{
+	margin-top: 20px;
 }

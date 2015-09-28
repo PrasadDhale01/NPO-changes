@@ -131,7 +131,7 @@
 	                </div>
                 </g:if>
 	            <div class="col-xs-12 col-md-4 mobileview-top">
-                    <g:render template="/layouts/organizationdetails"/>
+                     <g:render template="/layouts/orgDetails"/>
                     <g:if test="${isPreview && !project.validated}">
                         <div class="submitForApprovalSection">
                             <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
@@ -190,27 +190,28 @@
                     	</g:if>
                     </g:if>
                 </div>
-                <div class="col-xs-12 col-md-8 Top-tabs-mobile">
-                    <ul class="nav nav-tabs nav-justified show-marginbottoms mng-safari-mobile<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
-                        <li class="active"><a href="#essentials" data-toggle="tab">
-                            <span class="glyphicon glyphicon-leaf"></span><span class="tab-text hidden-xs"> Story</span>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders">
+                    <ul class="nav nav-pills nav-justified show-marginbottoms mng-safari-mobile show-new-tabs-alignments<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
+                        <li class="active show-tbs-right-borders"><a href="#essentials" data-toggle="tab">
+                            <span class="glyphicon glyphicon-leaf hidden-lg hidden-sm hidden-md"></span><span class="tab-text hidden-xs"> STORY</span>
                         </a></li>
                         <g:if test="${!project.projectUpdates.isEmpty() }">
-                            <li><a href="#projectupdates" data-toggle="tab">
-							    <span class="glyphicon glyphicon-asterisk"></span><span class="tab-text hidden-xs"> Updates</span>
+                            <li class="show-tbs-right-borders"><a href="#projectupdates" data-toggle="tab">
+							    <span class="glyphicon glyphicon-asterisk hidden-lg hidden-sm hidden-md"></span><span class="tab-text hidden-xs"> UPDATES</span>
                             </a></li>
                         </g:if>
-                        <li><a href="#manageTeam" data-toggle="tab">
-                            <span class="fa fa-users"></span><span class="tab-text hidden-xs"> Teams</span>
+                        <li class="show-tbs-right-borders"><a href="#manageTeam" data-toggle="tab">
+                            <span class="fa fa-users hidden-lg hidden-sm hidden-md"></span><span class="tab-text hidden-xs"> TEAMS</span>
 						</a></li>
-                        <li><a href="#contributions" data-toggle="tab">
-                            <span class="glyphicon glyphicon-tint"></span><span class="tab-text hidden-xs"> Contributions</span>
+                        <li class="show-tbs-right-borders"><a href="#contributions" data-toggle="tab">
+                            <span class="glyphicon glyphicon-tint hidden-lg hidden-sm hidden-md"></span><span class="tab-text hidden-xs"> CONTRIBUTIONS</span>
                         </a></li>
                         <li><a href="#comments" data-toggle="tab">
-                            <span class="glyphicon glyphicon-comment"></span><span class="tab-text hidden-xs"> Comments</span>
+                            <span class="glyphicon glyphicon-comment hidden-lg hidden-sm hidden-md"></span><span class="tab-text hidden-xs"> COMMENTS</span>
                         </a></li>
                     </ul>
-
+                </div>
+                <div class="col-xs-12 col-md-8 Top-tabs-mobile show-tops-corsal">
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="essentials">
@@ -267,8 +268,8 @@
 				    </div>
 				    
                 </div>
-                <div class="col-xs-12 col-md-4 mobileview-bottom">
-                    <g:render template="/layouts/organizationdetails"/>
+                <div class="col-xs-12 col-md-4 mobileview-bottom show-desk-org-tile show-tops-corsal">
+                    <g:render template="/layouts/orgDetails"/>
                     <g:if test="${isPreview && !project.validated}">
                         <div class="submitForApprovalSectionbtm" id="submitForApprovalSectionbtm">
                             <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
@@ -296,31 +297,35 @@
                         </g:if>
                     </g:if>
                     <g:elseif test="${percentage == 999}">
-                        <button type="button" class="btn btn-success btn-lg btn-block" disabled>SUCCESSFULLY FUNDED</button>
+                        <button type="button" class="btn btn-success btn-lg btn-block show-fund-size" disabled>SUCCESSFULLY FUNDED</button>
                     </g:elseif>
                     <g:elseif test="${ended}">
-                        <button type="button" class="btn btn-warning btn-lg btn-block" disabled>CAMPAIGN ENDED!</button>
+                        <button type="button" class="btn btn-warning btn-lg btn-block show-fund-size" disabled>CAMPAIGN ENDED!</button>
                     </g:elseif>
                     <g:else>
                         <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
                             <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
 	                            <div class="redirectCampaign">
-	                                <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block" id="btnFundDesktop">Fund this Campaign</button></g:link>
+	                                <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size" id="btnFundDesktop">Fund Now</button></g:link>
 	                            </div>
 	                        </g:if>
 	                        <g:else>
 	                            <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
-	                                <button name="submit" class="btn btn-show-fund btn-lg btn-block" id="btnFundDesktop">Fund this Campaign</button>
+	                                <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size" id="btnFundDesktop">Fund Now</button>
 	                            </g:form>
 	                        </g:else>
                         </g:if>
                         <g:else>
-                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block">Fund this Campaign</button>
+                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size">Fund now</button>
                         </g:else>
                     </g:else>
                     <g:if test="${!isPreview || project.validated}">
                     <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                     </g:if>
+                    <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb" href="#">
+                        <i class="fa fa-facebook fa-facebook-styles"></i> Share on facebook
+                    </a>
+                        
                     <g:if test="${(project.rewards.size()>1 && !isPreview) || (project.rewards.size()>1 && project.validated) }">
                         <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
                     	    <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>

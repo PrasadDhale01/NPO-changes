@@ -100,7 +100,7 @@ text-decoration:none;
 }
 
 .feducontent {
-    padding-top: 44px;
+    padding-top: 33px;
 }
 
 .top-buffer {
@@ -2686,8 +2686,9 @@ background-color: #333;
 color: white;
 }
 div.bootstrap-select > button.selectpicker{
-background-color: #333;
-color: white;
+background-color: #f6f8f8;
+color: #006083;
+height: 60px;
 }
 .btnOrgBgColor > label{
 background-color: #333;
@@ -2741,9 +2742,6 @@ color:#fff;
 .hrClass{
     margin-top:4px;
     margin-bottom:6px;
-}
-form#sortsForm {
-    margin-left: 25%;
 }
 .dropdown-menu.open {
     margin-left: -1.1%;
@@ -3394,11 +3392,11 @@ span#search-container {
     display:none;
 }
 .btn-group.bootstrap-select.allCampaign-dropdown > .btn {
-    width: 106%;
+    width: 100%;
     padding-right: 25px;
 }
 .btn-group.bootstrap-select.allCampaign-dropdown > .dropdown-menu {
-    min-width: 105%;
+    min-width: 99%;
     z-index: 2000;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -4386,6 +4384,9 @@ div.ie-cr-perks {
 .categoryList .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
     width: 100%;
 }
+div.categoryList {
+	padding-top:0px;
+}
 .contributionerrormsg{
     color: red;
 }
@@ -5336,6 +5337,65 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.TW-discover-bannerheadbtmMargin b {
+	   color: #fff;
+	   font-family: "Open Sans";
+	   font-size: 10px !important;
+	   font-weight: 900;
+	   line-height: 0px;
+	}
+	.TW-dicover-testimonial-name {
+	   font-family: "Open Sans";
+	   font-size: 13px !important;
+	   padding-right: 6px !important;
+	}
+	.TW-discover-right-inverted-comma img {
+	    margin-top: 5px;
+	    height: 15px;
+	    width: 15px;
+	}
+	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
+		margin-left:auto;
+		margin-right:auto;
+		width:323px !important;
+	}	
+	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
+		margin-left:auto;
+		margin-right:auto;
+		width:98% !important;
+	}
+	.TW-discover-select-width {
+	   display: block;
+	   margin-left: auto !important;
+	   margin-right: auto;
+	   width: 287px !important;
+	}
+	.categoryList .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 100% !important;
+	}
+	.TW-discover-tab-width {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 290px !important;
+	}
+	.TW-discover-tab-decoration {
+		background-color: #f6f8f8 !important;
+		border: 1px solid #dadada !important;
+		color: #006083;
+		height: 60px;
+		width: 100% !important;
+	}
+	.TW-discover-campaign-centering{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width:300px !important;
+	}
+	.TW-Container-alignment{
+		display:unset !important;
+		float:left;
+	}
     h1.india-font-slogan b{
         font-size: 15px !important;
     }
@@ -6418,6 +6478,90 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.TW-discover-bannerheadbtmMargin b {
+	  color: #fff;
+	  font-family: "Open Sans";
+	  font-size: 13px !important;
+	  font-weight: 900;
+	  line-height: 0px;
+	}
+	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
+		margin-left:auto;
+		margin-right:auto;
+		width:517px !important;
+	}	
+	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
+		margin-left:auto;
+		margin-right:auto;
+		width:79%;
+	}
+	.TW-dicover-testimonial-name {
+		font-family: "Open Sans";
+		font-size: 16px;
+		padding-right: 54px !important;
+	}
+	.TW-discover-header-testimonial{
+		display:inline-flex;
+		display:-webkit-inline-flex;   /***safari***/
+		margin-top: 14px;
+	}
+	span.TW-cr-pay-rd {
+	    font-size: 9px !important;
+	}
+	span.TW-cr-reci-siz {
+	    font-size: 14px !important;
+	    font-weight: 900;
+	}
+	label.TW-padding-align{
+		padding-left:0px;
+		padding-right:0px;
+	}
+	.left-select-margin{
+		margin-left:3px !important;
+	}
+	.right-select-margin{
+		 margin-left: -3px !important;
+	}
+	.TW-discover-right-inverted-comma img {
+	    margin-top: 5px;
+	    height: 15px;
+	    width: 15px;
+	}
+	.TW-discover-testimonial-width {
+	   width: 470px !important;
+	}
+	.TW-discover-leftpane-menu{
+		padding-left:0px !important;
+		padding-right:0px !important;
+	}
+	.TW-discover-leftpane-menu ul li a {
+	   color: #424242;
+	   font-size: 13px !important;
+	   font-weight: 400;
+	}
+	.TW-discover-select-width {
+		width: 12% !important;
+	}
+	.discover-container{
+		width:100% !important;
+	}
+	.TW-discover-tab-width {
+		width: 76% !important;
+	}
+	.TW-discover-tab-decoration {
+		background-color: #f6f8f8 !important;
+		border: 1px solid #dadada !important;
+		color: #006083;
+		height: 60px;
+		width: 25% !important;
+	}
+	.TW-discover-campaign-centering{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		padding-left:0px !important;
+		width:81% !important;
+	}
     h1.india-font-slogan b{
         font-size: 15px !important;
     }
@@ -7795,6 +7939,33 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	span.TW-cr-pay-rd {
+	    font-size: 9px !important;
+	}
+	span.TW-cr-reci-siz {
+	    font-size: 14px !important;
+	    font-weight: 900;
+	}
+	label.TW-padding-align{
+		padding-left:0px;
+		padding-right:0px;
+	}
+	.TW-discover-tab-width {
+		width: 76% !important;
+	}
+	.TW-discover-tab-decoration {
+		background-color: #f6f8f8 !important;
+		border: 1px solid #dadada !important;
+		color: #006083;
+		height: 60px;
+		width: 25% !important;
+	}
+	.TW-discover-campaign-centering {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 750px !important;
+	}
     div.abt-icons-trans {
         left: 80px !important;
     }
@@ -10256,6 +10427,65 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.TW-discover-bannerheadbtmMargin b {
+	  color: #fff;
+	  font-family: "Open Sans";
+	  font-size: 10px !important;
+	  font-weight: 900;
+	  line-height: 0px;
+	}
+	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
+		margin-left:auto;
+		margin-right:auto;
+		width:323px !important;
+	}	
+	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
+		margin-left:auto;
+		margin-right:auto;
+		width:98% !important;
+	}
+	.TW-dicover-testimonial-name {
+	   font-family: "Open Sans";
+	   font-size: 13px !important;
+	   padding-right: 6px !important;
+	}
+	.TW-discover-right-inverted-comma img {
+	    margin-top: 5px !important;
+	    height: 15px;
+	    width: 15px;
+	}
+	.TW-discover-select-width {
+	   display: block;
+	   margin-left: auto !important;
+	   margin-right: auto;
+	   width: 287px !important;
+	}
+	.categoryList .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 287px !important;
+	}
+	.TW-discover-tab-width {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 290px !important;
+	}
+	.TW-discover-tab-decoration {
+		background-color: #f6f8f8 !important;
+		border: 1px solid #dadada !important;
+		color: #006083;
+		height: 60px;
+		width: 100% !important;
+	}
+	.TW-discover-campaign-centering{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width:300px !important;
+	}
+	.TW-Container-alignment{
+		display:unset !important;
+		float:left;
+	}
     #uploadingCampaignOrgIcon {
         margin-left: -9px;
     }
@@ -11328,4 +11558,115 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .india-font-slogan b{
 	font-size: 21px;
+}
+.discover-container{
+	width:100%;
+}
+.TW-dis-tab-padding{
+	padding-left:0px;
+	padding-right:0px;
+}
+.TW-discover-campaign-centering{
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1000px;
+}
+.TW-discover-title{
+	color:#006083;
+	font-size:30px;
+	font-weight:900;
+	margin-bottom:20px;
+	margin-top:20px;
+}
+.TW-Container-alignment{
+	display:inline-flex;
+	display:-webkit-box;
+	float:left;
+}
+.TW-discover-leftpane-menu ul{
+	margin-top: -9px;
+    padding-left: 20px;
+    padding-right: 10px;
+    text-decoration: none;
+}
+.TW-discover-leftpane-menu ul li{
+	list-style-type:none;
+	line-height:2;
+}
+.TW-discover-leftpane-menu ul li a{
+	color: #424242;
+    font-weight: 400;
+}
+.TW-discover-leftpane-menu ul li a:hover {
+	color: #01bbd2;
+    font-weight: 400;
+    text-decoration:none;
+}
+.TW-discover-tab-decoration{
+	background-color: #f6f8f8 !important;
+    border: 1px solid #dadada !important;
+    color: #006083;
+    height: 60px;
+    width:25%;
+}
+.TW-discover-tab-decoration:hover, discover-tab-decoration .active {
+	background-color: #f6f8f8 !important;
+    border: 4px solid #00bbd2 !important;
+    color: #006083 !important;
+    height: 60px;
+    width:25%;
+}
+.TW-discover-tab-width{
+	width: 1024px;
+}
+.TW-discover-select-width{
+	width:12%;
+}
+.TW-discover-banner-decoration{
+	background-color: #01bbd2;
+    color: #fff;
+    min-height: 110px;
+    text-align: center;
+}
+.TW-discover-testimonial-width {
+    width: 660px;
+}
+.TW-discover-right-inverted-comma {
+    margin-top: 15px;
+}
+.TW-dicover-testimonial-name {
+    font-family: "Open Sans";
+    font-size: 16px;
+    padding-right: 84px;
+}
+.TW-discover-header-testimonial{
+	display:inline-flex;
+	display:-webkit-inline-box;    /*** Safari***/
+	display:-webkit-inline-flex;   /*** chrome ***/
+	margin-top: 14px;
+}
+.left-select-margin{
+	margin-left:3px;
+}
+.right-select-margin{
+	margin-left: -3px;
+}
+.TW-discover-testimonial-container div.TW-discover-header-testimonial{
+	margin-left:auto;
+	margin-right:auto;
+	width:903px;
+
+}
+.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
+	margin-left:auto;
+	margin-right:auto;
+	width:79%;
+}
+.TW-discover-bannerheadbtmMargin b {
+	color: #fff;
+	font-family: "Open Sans";
+	font-size: 23px;
+	font-weight: 900;
+	line-height: 0px;
 }

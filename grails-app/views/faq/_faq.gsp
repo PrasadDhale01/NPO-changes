@@ -727,7 +727,186 @@
                     </div>
                 </div>
                 
-                <h3 class="page-header">Product FAQs</h3>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor1">How will I receive the perk I selected while funding a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor1" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>The campaign owner is responsible for disbursing the perks. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor2">I am not from the US, can I contribute to a campaign I wish?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor2" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, you can contribute to any campaign. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor3">I am not from India, can I contribute to a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor3" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Crowdera does not accept foreign contributions in India at the moment. But you can contribute on our global site crowdera.co</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor4">Can I contribute money to more than one campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor4" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, you can. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor5">Can I contribute anonymously for a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor5" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes you can. Just check the anonymous box that appears when you make a contribution. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor6">If I contribute anonymously and select perks will it be shipped to me?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor6" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, Campaign Owner can check the shipping details that you have provided while choosing a perk. Apart from Twitter Perks you can select all the perks if you contribute anonymously.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor7">What are the visibility options for contributions on Crowdera?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor7" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Logged In User</p>
+			                     <ul>
+			                         <li>Name and Amount Visibility</li>
+			                         <li>Name anonymous and Amount visible</li>
+			                     </ul>
+			                     <p>Non Logged in User</p>
+			                     <ul>
+			                         <li>Name and Amount Visibility</li>
+			                         <li>Name anonymous and Amount visible</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor8">How can I share my contribution socially?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor8" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>After contributing to a campaign, you can use social icons to share your contribution socially.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor9">Where are individual Team Contribution  [Online + Offline] displayed ?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor9" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Under Teams Tab, Click on the Team’s Name. The contributions will be visible there. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor10">Do I need to create an account to contribute?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor10" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>No you don’t need an account to contribute.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor11">If I fund without logging in to crowdera, will my Name and Amount contributed be visible to all?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor11" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, we do ask for your name and email to send you a receipt and that name is displayed on the campaign. However, 
+			                     if you don’t want your name to appear on the contribution page, choose to contribute as anonymous.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor12">I can not contribute online, but I wish to contribute for the cause.</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor12" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can contribute offline to Campaign Owners/Co-owners/Teams and they can record it as offline contribution. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor13">Where can I see my contribution details on the campaign I just supported?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor13" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can see your contribution details under the contribution tab on the campaign detail page. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h3 class="page-header">Campaign Creation and Management </h3>
                 
                 <div class="panel panel-default">
 			          <div class="panel-heading">
@@ -835,7 +1014,6 @@
                     </div>
                     <div id="collapseProSevan" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-			                     <p>(Add button/field here )</p>
 			                     <p>You can subscribe for the Crowdera Newsletter on our site. Just scroll to the 
 			                     bottom of the home page and provide us with your email! </p>
                         </div>
@@ -869,8 +1047,6 @@
                     </div>
                 </div>
                 
-                <h3 class="page-header">Campaign Creation and Management </h3>
-                
                 <h3 class="faq-subheading">Creating a campaign</h3>
                 
                 <div class="panel panel-default">
@@ -895,20 +1071,9 @@
                     </div>
                     <div id="collapseProTenOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-			                     <p>To accept contributions, you will need an active and verified PayPal. For country specific PayPal restrictions refer to the following link: <a href="https://www.paypal.com/webapps/mpp/country-worldwide" data-target="_blank">https://www.paypal.com/webapps/mpp/country-worldwide</a></p>
-			                     <p>Nonprofit Organizations in the USA can also select First Giving as their choice of Payment Gateway.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTwo">India</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProTenTwo" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
+			                     <p>To accept contributions, you will need an active and verified <b>PayPal</b>. For country specific PayPal restrictions refer to the following link: <a href="https://www.paypal.com/webapps/mpp/country-worldwide" data-target="_blank">https://www.paypal.com/webapps/mpp/country-worldwide</a></p>
+			                     <p>Nonprofit Organizations in the <b>USA</b> can also select <b>First Giving</b> as their choice of Payment Gateway.</p>
+			                     <h4><b>India</b></h4>
 			                     <p>You need to provide your bank details and will receive their funds via NEFT transaction at the end of their campaign. 
 			                     To fill in your bank details follow these steps:</p>
 			                     <ul>
@@ -929,7 +1094,7 @@
                     </div>
                     <div id="collapseProTenThree" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-			                     <p>You can start creating your campaign here. Please refer to our Ebook for more crowdfunding guidelines. </p>
+			                     <p>You can start creating your campaign <g:link controller="project" action="create">here</g:link>. Please refer to our Ebook for more crowdfunding guidelines. </p>
                         </div>
                     </div>
                 </div>
@@ -963,7 +1128,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenSix">Who is a Owner?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenSix">Who is an Owner?</a>
                         </h4>
                     </div>
                     <div id="collapseProTenSix" class="panel-collapse collapse faq-panel-height">
@@ -976,7 +1141,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenSevan">Who is a co-owner?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenSevan">Who is Co-Owner?</a>
                         </h4>
                     </div>
                     <div id="collapseProTenSevan" class="panel-collapse collapse faq-panel-height">
@@ -1202,7 +1367,7 @@
                     </div>
                     <div id="collapseProUpdate3" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-			                     <p>Your contributors and those who have chosen to follow your campaign will receive an email about your latest updates.</p>
+			                     <p>Your contributors, teams and those who have chosen to follow your campaign will receive an email about your latest updates.</p>
                         </div>
                     </div>
                 </div>
@@ -1246,8 +1411,6 @@
                     </div>
                 </div>
                 
-                <h3 class="faq-subheading">Contributions</h3>
-                
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -1256,7 +1419,7 @@
                     </div>
                     <div id="collapseProContri1" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-			                     <p>Yes. you can download the CSV report from the “Contribution” tab on the Manage Campaign page.</p>
+			                     <p>Yes. You can download the CSV report from the “Contribution” tab on the Manage Campaign page.</p>
                         </div>
                     </div>
                 </div>
@@ -2305,8 +2468,187 @@
                     </div>
                 </div>
                 
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor1">How will I receive the perk I selected while funding a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor1" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>The campaign owner is responsible for disbursing the perks. </p>
+                        </div>
+                    </div>
+                </div>
                 
-                <h3 class="page-header">Product FAQs</h3>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor2">I am not from the US, can I contribute to a campaign I wish?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor2" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, you can contribute to any campaign. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor3">I am not from India, can I contribute to a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor3" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Crowdera does not accept foreign contributions in India at the moment. But you can contribute on our global site crowdera.co</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor4">Can I contribute money to more than one campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor4" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, you can. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor5">Can I contribute anonymously for a campaign?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor5" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes you can. Just check the anonymous box that appears when you make a contribution. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor6">If I contribute anonymously and select perks will it be shipped to me?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor6" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, Campaign Owner can check the shipping details that you have provided while choosing a perk. Apart from Twitter Perks you can select all the perks if you contribute anonymously.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor7">What are the visibility options for contributions on Crowdera?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor7" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Logged In User</p>
+			                     <ul>
+			                         <li>Name and Amount Visibility</li>
+			                         <li>Name anonymous and Amount visible</li>
+			                     </ul>
+			                     <p>Non Logged in User</p>
+			                     <ul>
+			                         <li>Name and Amount Visibility</li>
+			                         <li>Name anonymous and Amount visible</li>
+			                     </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor8">How can I share my contribution socially?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor8" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>After contributing to a campaign, you can use social icons to share your contribution socially.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor9">Where are individual Team Contribution  [Online + Offline] displayed ?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor9" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Under Teams Tab, Click on the Team’s Name. The contributions will be visible there. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor10">Do I need to create an account to contribute?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor10" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>No you don’t need an account to contribute.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor11">If I fund without logging in to crowdera, will my Name and Amount contributed be visible to all?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor11" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>Yes, we do ask for your name and email to send you a receipt and that name is displayed on the campaign. However, 
+			                     if you don’t want your name to appear on the contribution page, choose to contribute as anonymous.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor12">I can not contribute online, but I wish to contribute for the cause.</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor12" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can contribute offline to Campaign Owners/Co-owners/Teams and they can record it as offline contribution. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor13">Where can I see my contribution details on the campaign I just supported?</a>
+                        </h4>
+                    </div>
+                    <div id="collapseProContributor13" class="panel-collapse collapse faq-panel-height">
+                        <div class="panel-body">
+			                     <p>You can see your contribution details under the contribution tab on the campaign detail page. </p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <h3 class="page-header">Campaign Creation and Management </h3>
                 
                 <div class="panel panel-default">
 			          <div class="panel-heading">
@@ -2414,7 +2756,6 @@
                     </div>
                     <div id="collapseProSevan" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-			                     <p>(Add button/field here )</p>
 			                     <p>You can subscribe for the Crowdera Newsletter on our site. Just scroll to the 
 			                     bottom of the home page and provide us with your email! </p>
                         </div>
@@ -2448,8 +2789,6 @@
                     </div>
                 </div>
                 
-                <h3 class="page-header">Campaign Creation and Management </h3>
-                
                 <h3 class="faq-subheading">Creating a campaign</h3>
                 
                 <div class="panel panel-default">
@@ -2474,20 +2813,9 @@
                     </div>
                     <div id="collapseProTenOne" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-			                     <p>To accept contributions, you will need an active and verified PayPal. For country specific PayPal restrictions refer to the following link: <a href="https://www.paypal.com/webapps/mpp/country-worldwide" data-target="_blank">https://www.paypal.com/webapps/mpp/country-worldwide</a></p>
-			                     <p>Nonprofit Organizations in the USA can also select First Giving as their choice of Payment Gateway.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenTwo">India</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProTenTwo" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
+			                     <p>To accept contributions, you will need an active and verified <b>PayPal</b>. For country specific PayPal restrictions refer to the following link: <a href="https://www.paypal.com/webapps/mpp/country-worldwide" data-target="_blank">https://www.paypal.com/webapps/mpp/country-worldwide</a></p>
+			                     <p>Nonprofit Organizations in the <b>USA</b> can also select <b>First Giving</b> as their choice of Payment Gateway.</p>
+			                     <h4><b>India</b></h4>
 			                     <p>You need to provide your bank details and will receive their funds via NEFT transaction at the end of their campaign. 
 			                     To fill in your bank details follow these steps:</p>
 			                     <ul>
@@ -2508,7 +2836,7 @@
                     </div>
                     <div id="collapseProTenThree" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-			                     <p>You can start creating your campaign here. Please refer to our Ebook for more crowdfunding guidelines. </p>
+			                     <p>You can start creating your campaign <g:link controller="project" action="create">here</g:link>. Please refer to our Ebook for more crowdfunding guidelines. </p>
                         </div>
                     </div>
                 </div>
@@ -2542,7 +2870,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenSix">Who is a Owner?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenSix">Who is an Owner?</a>
                         </h4>
                     </div>
                     <div id="collapseProTenSix" class="panel-collapse collapse faq-panel-height">
@@ -2555,7 +2883,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenSevan">Who is a co-owner?</a>
+                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProTenSevan">Who is Co-Owner?</a>
                         </h4>
                     </div>
                     <div id="collapseProTenSevan" class="panel-collapse collapse faq-panel-height">
@@ -2781,7 +3109,7 @@
                     </div>
                     <div id="collapseProUpdate3" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-			                     <p>Your contributors and those who have chosen to follow your campaign will receive an email about your latest updates.</p>
+			                     <p>Your contributors, teams and those who have chosen to follow your campaign will receive an email about your latest updates.</p>
                         </div>
                     </div>
                 </div>
@@ -2825,8 +3153,6 @@
                     </div>
                 </div>
                 
-                <h3 class="faq-subheading">Contributions</h3>
-                
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h4 class="panel-title">
@@ -2835,7 +3161,7 @@
                     </div>
                     <div id="collapseProContri1" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-			                     <p>Yes. you can download the CSV report from the “Contribution” tab on the Manage Campaign page.</p>
+			                     <p>Yes. You can download the CSV report from the “Contribution” tab on the Manage Campaign page.</p>
                         </div>
                     </div>
                 </div>
@@ -3007,188 +3333,6 @@
                         </div>
                     </div>
                 </div> 
-                
-                <h3 class="faq-subheading">Contributor</h3>
-                 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor1">How will I receive the perk I selected while funding a campaign?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor1" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>The campaign owner is responsible for disbursing the perks. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor2">I am not from the US, can I contribute to a campaign I wish?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor2" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes, you can contribute to any campaign. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor3">I am not from India, can I contribute to a campaign?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor3" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Crowdera does not accept foreign contributions in India at the moment. But you can contribute on our global site crowdera.co</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor4">Can I contribute money to more than one campaign?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor4" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes, you can. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor5">Can I contribute anonymously for a campaign?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor5" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes you can. Just check the anonymous box that appears when you make a contribution. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor6">If I contribute anonymously and select perks will it be shipped to me?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor6" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes, Campaign Owner can check the shipping details that you have provided while choosing a perk. Apart from Twitter Perks you can select all the perks if you contribute anonymously.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor7">What are the visibility options for contributions on Crowdera?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor7" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Logged In User</p>
-			                     <ul>
-			                         <li>Name and Amount Visibility</li>
-			                         <li>Name anonymous and Amount visible</li>
-			                     </ul>
-			                     <p>Non Logged in User</p>
-			                     <ul>
-			                         <li>Name and Amount Visibility</li>
-			                         <li>Name anonymous and Amount visible</li>
-			                     </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor8">How can I share my contribution socially?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor8" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>After contributing to a campaign, you can use social icons to share your contribution socially.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor9">Where are individual Team Contribution  [Online + Offline] displayed ?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor9" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Under Teams Tab, Click on the Team’s Name. The contributions will be visible there. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor10">Do I need to create an account to contribute?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor10" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>No you don’t need an account to contribute.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor11">If I fund without logging in to crowdera, will my Name and Amount contributed be visible to all?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor11" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>Yes, we do ask for your name and email to send you a receipt and that name is displayed on the campaign. However, 
-			                     if you don’t want your name to appear on the contribution page, choose to contribute as anonymous.</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor12">I can not contribute online, but I wish to contribute for the cause.</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor12" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>You can contribute offline to Campaign Owners/Co-owners/Teams and they can record it as offline contribution. </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseProContributor13">Where can I see my contribution details on the campaign I just supported?</a>
-                        </h4>
-                    </div>
-                    <div id="collapseProContributor13" class="panel-collapse collapse faq-panel-height">
-                        <div class="panel-body">
-			                     <p>You can see your contribution details under the contribution tab on the campaign detail page. </p>
-                        </div>
-                    </div>
-                </div> 
-                
                 
             </div>
         </div>

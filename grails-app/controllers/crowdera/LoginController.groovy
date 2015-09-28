@@ -43,13 +43,11 @@ class LoginController {
             redirect (controller:'home', action:'index', params:[fb: 'yes'])
         } else {
             String requestUrl = g.cookie(name: 'requestUrl')
-			println 'request url =='+ requestUrl
             if (requestUrl) {
                 def cookie = projectService.setCookie(requestUrl)
                 response.addCookie(cookie)
                 redirect (url: requestUrl)
             } else {
-			println 'request url =='+ requestUrl
                 redirect (controller:'home', action:'index')
             }
         }

@@ -20,11 +20,16 @@
     </g:if>
     <g:if test="${project.validated}">
         <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
-            <g:if test="${project.payuStatus == false}">
+            <g:if test="${project.payuStatus == false && !ended}">
                 <a href="#" class="btn btn-primary btn-sm pull-right managecontribution" data-toggle="modal" data-target="#offlineContributionModal" model="['project': project]">
                     Manage Offline Contribution
                 </a>
             </g:if>
+            <g:elseif test="${ended}">
+                <a href="#" class="btn btn-primary btn-sm pull-right managecontribution" id="endedOfflineContribution">
+                    Manage Offline Contribution
+                </a>
+            </g:elseif>
             <g:if test="${!totalContributions.empty}">
                 <a href="#"class="btn btn-primary btn-sm btn-circle pull-right mngReportCls" data-toggle="modal" data-target="#reportModal">
                     Report

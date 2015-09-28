@@ -32,29 +32,42 @@
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
-    <meta property="og:type" content="Crowdera: campaign" />
+    <meta name="title" content="${project.title} - Crowdera" />
+    <g:if test="${project.description}">
+    <meta name="description" content="${project.description}"/>
+    </g:if>
+    <meta name="keywords" content="Crowdera, crowdfunding, contribute online, raise funds free, film crowdfunding, raise money online, fundraising site, fundraising website, fundraising project, online fundraising, raise money for a cause, global crowdfunding, (${project.organizationName}, ${project.beneficiary.country}, ${project.category} ,${project.usedFor})" />
+    
     <meta property="og:site_name" content="Crowdera"/>
-	<meta property="og:title" content="Crowdera : ${project.title}" />
-	<g:if test="${project.description}">
-	    <meta property="og:description" content="${project.description}"/>
-	</g:if>
-	<g:if test="${project.organizationIconUrl}">
-	    <meta property="og:image" content="${project.organizationIconUrl}"/>
-	</g:if>
-	<g:elseif test="${imageUrl}">
-	    <meta property="og:image" content="${imageUrl}" />
-	</g:elseif>
-	<meta property="og:url" content="${fbShareUrl}" />
+    <meta property="og:type" content="Crowdera:Campaign" />
+    <meta property="og:title" content="Click here to support ${project.title} by ${project.beneficiary.firstName}"/>
+    <g:if test="${project.description}">
+    <meta property="og:description" content="${project.description} Crowdfunding is a practical and inspiring way to support the fundraising needs of a cause or community. Do some good. Make a Contribution Today!"/>
+    </g:if>
+    <g:if test="${project.organizationIconUrl}">
+    <meta property="og:image" content="${project.organizationIconUrl}"/>
+    </g:if>
+    <g:elseif test="${imageUrl}">
+    <meta property="og:image" content="${imageUrl}" />
+    </g:elseif>
+    <meta property="og:url" content="${fbShareUrl}" />
 	
-	<meta name="layout" content="main" />
-	<r:require modules="projectshowjs"/>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@gocrowdera" />
+    <meta name="twitter:domain" content="${base_url}" />
+    <meta name="twitter:title" content="${project.title}" />
+    <g:if test="${project.description}">
+       <meta name="twitter:description" content="${project.description}" />
+    </g:if>
+    <meta name="layout" content="main" />
+    <r:require modules="projectshowjs"/>
     <g:javascript>
         $(function() {
             $('.redactorEditor').redactor({
                 imageUpload:'/project/getRedactorImage',
                 imageResizable: true,
-                plugins: ['video'],
-                buttonsHide: ['indent', 'outdent', 'horizontalrule']
+                plugins: ['video','fontsize', 'fontfamily', 'fontcolor'],
+                buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']
             });
        });
     </g:javascript>
@@ -178,20 +191,21 @@
                     </g:if>
                 </div>
                 <div class="col-xs-12 col-md-8 Top-tabs-mobile">
+                    <g:set var="screen" id="screen" value="false"></g:set>
                     <ul class="nav nav-tabs nav-justified show-marginbottoms mng-safari-mobile<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span><span class="tab-text hidden-xs"> Story</span>
                         </a></li>
                         <g:if test="${!project.projectUpdates.isEmpty() }">
                             <li><a href="#projectupdates" data-toggle="tab">
-							    <span class="glyphicon glyphicon-asterisk"></span><span class="tab-text hidden-xs"> Updates</span>
+							    <span class="glyphicon glyphicon-asterisk"></span><span class="tab-text hidden-xs"> Updates <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if></span>
                             </a></li>
                         </g:if>
                         <li><a href="#manageTeam" data-toggle="tab">
                             <span class="fa fa-users"></span><span class="tab-text hidden-xs"> Teams</span>
 						</a></li>
                         <li><a href="#contributions" data-toggle="tab">
-                            <span class="glyphicon glyphicon-tint"></span><span class="tab-text hidden-xs"> Contributions</span>
+                            <span class="glyphicon glyphicon-tint"></span><span class="tab-text hidden-xs"> Contributions <g:if test="${totalContributions.size() > 0 && screen == 'false'}">${totalContributions.size()}</g:if></span>
                         </a></li>
                         <li><a href="#comments" data-toggle="tab">
                             <span class="glyphicon glyphicon-comment"></span><span class="tab-text hidden-xs"> Comments</span>

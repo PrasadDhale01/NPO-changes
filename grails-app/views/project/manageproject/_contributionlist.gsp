@@ -81,6 +81,7 @@
                                 <div class="col-sm-8 col-xs-8">
                                     <div class="offline-contribution">Offline Contribution</div>
                                 </div>
+                                <g:if test="${!ended}">
                                 <div class="col-sm-4 col-xs-4 edit-delete-fund">
                                     <div class="offline-edit-delete-btn">
                                        <button class="projectedit close" id="editproject"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
@@ -95,6 +96,7 @@
                                        </g:form>
                                    </div>
                                </div>
+                               </g:if>
                            </g:if>
                        </div>
                    </div>

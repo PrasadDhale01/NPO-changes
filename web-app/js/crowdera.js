@@ -74,7 +74,7 @@ $(function() {
      	   } 
      	}); 
     	
-    	var validator = $('form').validate({
+    	var validator = $('#myCrewDetails').find('form').validate({
             rules: {
                 firstName: {
                     minlength: 2,

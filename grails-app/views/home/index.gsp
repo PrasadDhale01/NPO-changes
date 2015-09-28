@@ -4,14 +4,24 @@
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
+<meta name="layout" content="main" />
+<meta name="title" content="Crowdera- The Free Global Crowdfunding & Fundraising Website" />
+<meta name="description" content="Crowdera is a FREE crowdfunding platform that helps individuals, non-profits & independent filmmakers to raise money online. Create your fundraiser." />
+<meta name="keywords" content="Crowdera, crowdfunding, contribute online, raise funds free, film crowdfunding, raise money online, fundraising site, fundraising website, fundraising project, online fundraising, raise money for a cause, global crowdfunding" />
+
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Crowdera"/>
-<meta property="og:title" content="Crowdera: future of funding for things that matter" />
-<meta property="og:description" content="Crowdera is a FREE crowdfunding platform that helps individuals, non-profits & independent filmmakers raise money online. Create your fundraiser." />
+<meta property="og:title" content="Crowdera: Future of funding for things that matter" />
+<meta property="og:description" content="Crowdera is a free crowdfunding platform that helps individuals, non-profits & independent filmmakers to raise money online. We offer flexible goals, deadlines and our teams tool helps multiply crowdfunding results." />
 <meta property="og:image" content="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png"/>
-<meta property="og:url" content="${base_url}" />
+<meta property="og:url" content="${base_url}"/>
 
-<meta name="layout" content="main" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@gocrowdera" />
+<meta name="twitter:domain" content="${base_url}" />
+<meta name="twitter:title" content="Crowdera- The Free Global Crowdfunding & Fundraising Website" />
+<meta name="twitter:description" content="Crowdera is a free global crowdfunding platform for you to make an impact, innovate for social good, follow your passion or fulfil personal needs." />
+
 <r:require modules="homejs"/>
 
 <style type="text/css" media="screen">
@@ -52,46 +62,7 @@
             </iframe>
         </div>
     </div>
-<!--
-<div class="news">
-<div class="container">
-   <div class="row">
-    <h1 class="text-center headingtext">News</h1>
-   </div> 
-</div>
-<div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<div class="col-md-4 text-center">
-      <h3>Mashable</h3>
-      <p>mashable calls crowdera the up and coming startup to watch in the social good space...</p>
-    </div>
-    <div class="col-md-4 text-center">
-      <h3>Mashable</h3>
-      <p>mashable calls crowdera the up and coming startup to watch in the social good space...</p>
-    </div>
-    <div class="col-md-4 text-center">
-      <h3>Mashable</h3>
-      <p>mashable calls crowdera the up and coming startup to watch in the social good space...</p>
-    </div>
-    <div class="clear"></div>
-    <div class="col-md-4 text-center">
-      <h3>Mashable</h3>
-      <p>mashable calls crowdera the up and coming startup to watch in the social good space...</p>
-    </div>
-    <div class="col-md-4 text-center">
-      <h3>Mashable</h3>
-      <p>mashable calls crowdera the up and coming startup to watch in the social good space...</p>
-    </div>
-    <div class="col-md-4 text-center">
-      <h3>Mashable</h3>
-      <p>mashable calls crowdera the up and coming startup to watch in the social good space...</p>
-    </div>
-    <div class="clear"></div>
-  </div>
-</div></div>
-</div>
--->
-<script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
+
+    <script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
 </body>
 </html>

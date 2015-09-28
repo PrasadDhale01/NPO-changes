@@ -801,12 +801,17 @@ class MandrillService {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:fundRaiserUserName], absolute: true)
         def currentEnv = Environment.current.getName()
         def currency
+        def naamFoundationCampaign
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
             currency = 'INR'
         } else {
             currency = 'USD'
         }
-        
+
+        if (project.id == '2c9f8f3b4feeeee0014fefed7fae0001'){
+            naamFoundationCampaign = 'yes'
+        }
+
         def globalMergeVars = [[
             'name': 'LINK',
             'content': link
@@ -828,7 +833,11 @@ class MandrillService {
         ], [
             'name': 'CURRENCY',
             'content': currency
-        ]]
+        ], [
+            'name' : 'NAAM_FOUNDATION_PROJECT',
+            'content' : naamFoundationCampaign
+        ]
+	]
 
         def tags = ['thankYouEmailToContributor']
 
@@ -892,7 +901,7 @@ class MandrillService {
             inviteToAdmin(email, 'Exception-email-to-dev', globalMergeVars, tags)
         }
     }
-    
+
     public def contributionEmailToCampaignOwnerOrTeam(def fundRaiser, def project, def contribution) {
         def username = fundRaiser.username
         def link

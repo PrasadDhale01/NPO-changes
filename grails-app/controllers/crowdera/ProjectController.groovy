@@ -90,14 +90,17 @@ class ProjectController {
 	def search () {
         def currentEnv = Environment.current.getName()
 		def query = params.q
+		def categoryOptions = projectService.getCategory()
+		def sortsOptions = projectService.getSorts()
 		if(query) {
 			List searchResults = projectService.search(query, currentEnv)
 			if (searchResults.empty){
 				flash.catmessage = "No Campaign found matching your input."
 				redirect(action:"list")
 			} else {
+			    println "categoryOptions : "+categoryOptions
 				searchResults.sort{x,y -> x.title<=>y.title ?: x.story<=>y.story}
-				render(view: "list/index", model:[projects: searchResults])
+				render(view: "list/index", model:[projects: searchResults, categoryOptions:categoryOptions, sortsOptions:sortsOptions])
 			}
 		} else {
 			redirect(controller: "home", action: "index")
@@ -121,7 +124,7 @@ class ProjectController {
 			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
-	
+
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def previewTile(){
 		forward(action:'show', params:['projectTitle':params.projectTitle,'fr':params.name, 'isPreview':true, 'tile':true])
@@ -537,6 +540,7 @@ class ProjectController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def campaignOnDraftAndLaunch() {
         Project project = projectService.getProjectById(params.projectId)
+        def vanitytitle
         if (project) {
             User user = userService.getCurrentUser()
             if (project.user == user) {
@@ -546,16 +550,20 @@ class ProjectController {
                         project.payuEmail = params.payuEmail
                     }
                 }
-				
+
+                if (currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'){
+                    vanitytitle = (project.customVanityUrl) ? projectService.getCustomVanityUrl(project) : params.title;
+                }
+
                 rewardService.saveRewardDetails(params);
                 project.story = params.story
                 if (params.checkBox && !project.touAccepted) {
                     project.touAccepted = true
                 }
-                
+
                 if (params.isSubmitButton == 'true'){
                     project.draft = false;		
-                    redirect (action:'launch' ,  params:[title:params.title])
+                    redirect (action:'launch' ,  params:[title:vanitytitle])
                 } else {
                     redirect (action:'showCampaign' ,  params:[id:project.id, isPreview:true])
                 }
@@ -637,16 +645,12 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def update() {
-		def project = projectService.getProjectFromVanityTitle(params.title)
+		def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
 		if(project) {
 			def vanityTitle = projectService.getProjectUpdateDetails(params, project)
 			rewardService.saveRewardDetails(params);
 			flash.prj_mngprj_message = "Successfully saved the changes"
-			if (vanityTitle){
-				redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
-			} else {
-				redirect (action: 'manageproject', params:['projectTitle':params.title])
-			}
+			redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
 		} else {
 			flash.prj_edit_message = "Campaign not found."
 			render (view: 'edit/editerror')
@@ -1658,7 +1662,7 @@ class ProjectController {
         }
         render json
     }
-    
+
     def deleteCampaignUpdateImage() {
         def imageUrl = projectService.getImageUrlById(request.getParameter("imageId"))
         imageUrl.delete()
@@ -1754,5 +1758,12 @@ class ProjectController {
             render(template: "/user/metrics/campaigns", model: model)
         }
     }
-    
+
+    def isCustomVanityUrlUnique(){
+	    def vanityUrl = request.getParameter("vanityUrl")
+	    def projectId = request.getParameter("projectId")
+	    def status = projectService.isCustomUrUnique(vanityUrl, projectId)
+	    render status
+    }
+
 }

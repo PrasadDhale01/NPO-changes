@@ -654,6 +654,15 @@
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
     
+    $('#endedOfflineContribution').popover({
+        content: 'Sine the campaign has been ended, you cannot contribute offline',
+        trigger: 'manual',
+        placement: 'bottom'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
+    
     $(document).ready(function (){
      /*************************Edit video for team*************************/
         $('.perk-tile').hover(function() {
@@ -662,6 +671,9 @@
         $('.perk-tile').mouseleave(function() {
             $(this).find('.campaignEditDeleteIcon').hide();
         });
+
+       if(screen.width > 1024 && screen.width < 992)
+           $('#screen').val('true');
 
        if($('#videoUrl').val()){
         	var regExp = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;

@@ -50,6 +50,7 @@ class Project {
 	String secretKey
     String usedFor
     String fundsRecievedBy
+    String customVanityUrl
 
 	boolean payuStatus=false
     boolean validated = false
@@ -86,6 +87,7 @@ class Project {
         secretKey(nullable: true)
         usedFor(nullable:true)
         fundsRecievedBy(nullable:true)
+        customVanityUrl(nullable:true)
     }
 
     def beforeInsert() {

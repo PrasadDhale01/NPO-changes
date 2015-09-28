@@ -1,0 +1,45 @@
+div.customUrlLabel{
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+	padding-top: 6px;
+}
+
+div.customUrlTextBoxDev{
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+	left:-17%;
+}
+
+div.customUrlTextBoxTest{
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+	left:-14%;
+}
+
+div.customUrlTextBoxStaging{
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+	left:-10%;
+}
+
+div.customUrlTextBoxProd{
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+	left:-19%;
+}
+
+input.customVanityUrl{
+	width:134%;
+}
+
+input.customVanityUrlTest{
+	width:129%;
+}
+
+input.customVanityUrlStaging{
+	width:120%;
+}
+
+input.customVanityUrlProd{
+	width:138%;
+}

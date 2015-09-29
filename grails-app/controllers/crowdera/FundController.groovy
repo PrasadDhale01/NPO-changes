@@ -15,6 +15,7 @@ import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
 import grails.util.Environment
 import org.codehaus.groovy.grails.web.json.JSONObject
+import javax.servlet.http.Cookie
 
 class FundController {
     def contributionService
@@ -192,16 +193,88 @@ class FundController {
             render view: 'error', model: [message: 'This project does not exist. Please try again.']
         }
     }
-    
+
     def acknowledge() {
-        def contribution = contributionService.getContributionById(params.long('cb'))
+		Contribution contribution = contributionService.getContributionById(params.long('cb'))
+		def project = contribution.project
+		def reward = contribution.reward
+		def user = contribution.user
+		def fundraiser = userService.getUserById(params.long('fr'))
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        if (userService.getCurrentUser()){
+			def twitterShareUrl = projectService.getTwitterShareUrlForCampaign(project, fundraiser, base_url)
+            mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser)
+            render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser, projectTitle:params.projectTitle, twitterShareUrl:twitterShareUrl]
+        } else {
+            def reqUrl = base_url+"/fund/sendEmail?cb=${params.cb}&fr=${params.fr}&projectTitle=${params.projectTitle}"
+            def loginSignUpCookie = projectService.setLoginSignUpCookie()
+            def campaignNameCookie = projectService.setCampaignNameCookie(project.title)
+            def fundingAmountCookie = projectService.setFundingAmountCookie(contribution.amount)
+			def contributorNameCookie = projectService.setContributorName(contribution.contributorName)
+			def setRequestUrlCookie = projectService.setRequestUrlCookie(reqUrl)
+
+			if(setRequestUrlCookie){
+				response.addCookie(setRequestUrlCookie)
+			}
+			if (loginSignUpCookie) {
+               response.addCookie(loginSignUpCookie)
+            }
+            if (campaignNameCookie){
+               response.addCookie(campaignNameCookie)
+            }
+            if (fundingAmountCookie){
+               response.addCookie(fundingAmountCookie)
+            }
+			if (contributorNameCookie){
+				response.addCookie(contributorNameCookie)
+			}
+            redirect (action:'sendEmail', params:params)
+        }
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def sendEmail () {
+        Contribution contribution = contributionService.getContributionById(params.long('cb'))
         def project = contribution.project
         def reward = contribution.reward
         def user = contribution.user
         def fundraiser = userService.getUserById(params.long('fr'))
-	    render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser, projectTitle:params.projectTitle]
+        mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser)
+
+		def fundingAmountCookieValue = g.cookie(name: 'fundingAmountCookie')
+		def campaignNameCookieValue = g.cookie(name: 'campaignNameCookie')
+		def loginSignUpCookieValue = g.cookie(name: 'loginSignUpCookie')
+		def contributorNameCookieValue = g.cookie(name: 'contributorNameCookie')
+		def cookieValue = g.cookie(name: 'requestUrl')
+		def contributorEmailCookie = projectService.setContributorEmailCookie(contribution.contributorEmail)
+
+        if(cookieValue){
+            def cookie = projectService.setCookie(cookieValue)
+            response.addCookie(cookie)
+        }
+		if (fundingAmountCookieValue){
+			def cookie = projectService.deleteFundingAmountCookie(fundingAmountCookieValue)
+			response.addCookie(cookie)
+		}
+		if (campaignNameCookieValue){
+			def cookie = projectService.deleteCampaignNameCookie(campaignNameCookieValue)
+			response.addCookie(cookie)
+		}
+		if(loginSignUpCookieValue){
+			def cookie = projectService.deleteLoginSignUpCookie()
+			response.addCookie(cookie)
+		}
+		if (contributorNameCookieValue){
+			def cookie = projectService.deleteContributorName(contributorNameCookieValue)
+			response.addCookie(cookie)
+		}
+		if(contributorEmailCookie){
+			response.addCookie(contributorEmailCookie)
+		}
+        redirect (controller:'home', action:'index')
     }
-    
+
     def saveContributionComent(){
         Contribution contribution = contributionService.getContributionById(params.long('id'))
         def projectComment = projectService.getProjectCommentById(params.long('commentId'))
@@ -212,7 +285,7 @@ class FundController {
 
         def user = contribution.user
         def reward = contribution.reward
-   
+
         if (projectComment || teamComment) {
             if (projectComment) {
                 projectComment.comment = params.comment
@@ -446,7 +519,7 @@ class FundController {
                 )
         paykeytemp.save(failOnError: true)
     }
-    
+
     def userContribution(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address){
 		def contributionId = projectService.getUserContributionDetails(project, reward, amount, transactionId, users, fundraiser, params,  address, request)
 		conId = contributionId

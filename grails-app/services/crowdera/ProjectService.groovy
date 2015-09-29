@@ -3105,23 +3105,23 @@ class ProjectService {
         }
         return status
     }
-	
-	def sendEmailTONonUserContributors(){
-		def contributionList = Contribution.list()
-		List nonUserContributors = []
-		List contributorsEmail = []
-		def user
-		contributionList.each {
-			if (!contributorsEmail.contains(it.contributorEmail)) {
-				user = User.findByEmail(it.contributorEmail)
-				if (!user){
-					contributorsEmail.add(it.contributorEmail)
-					nonUserContributors.add(it)
-				}
-			}
-		}
-		mandrillService.sendEmailToNonUserContributors(nonUserContributors)
-	}
+
+    def sendEmailTONonUserContributors() {
+        def contributionList = Contribution.list()
+        List nonUserContributors = []
+        List contributorsEmail = []
+        def user
+        contributionList.each {
+           if (!contributorsEmail.contains(it.contributorEmail)) {
+               user = User.findByEmail(it.contributorEmail)
+               if (!user){
+                   contributorsEmail.add(it.contributorEmail)
+                   nonUserContributors.add(it)
+               }
+           }
+       }
+       mandrillService.sendEmailToNonUserContributors(nonUserContributors)
+    }
 
     @Transactional
     def bootstrap() {

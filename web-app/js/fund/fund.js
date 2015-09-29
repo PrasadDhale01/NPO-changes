@@ -8,7 +8,7 @@ $(function() {
     function getSelectedRewardPrice() {
         return $('.list-group-item.active').data('rewardprice');
     }
-    
+
     $('#commentBox').find('form').validate({
         rules: {
         	comment: {
@@ -16,7 +16,7 @@ $(function() {
         	}
         }
     });
-    
+
     $('.sendmailmodal').find('form').validate({
         rules: {
         	name: {
@@ -67,14 +67,14 @@ $(function() {
                     	if(isINR == undefined) {
                     		return 1;
                     	} else {
-                    		return 20;
+                    		return 100;
                     	}
                     } else {
                     	var isINR = $('#isINR').val();
                     	if(isINR == undefined) {
                     		return _.max([1, Number(rewardPrice)]);
                     	} else {
-                    		return _.max([20, Number(rewardPrice)]);
+                    		return _.max([100, Number(rewardPrice)]);
                     	}
                     }
                 }

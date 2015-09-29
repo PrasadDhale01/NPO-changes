@@ -113,7 +113,7 @@ $(function() {
         }
         return false;
 	}
-
+	
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {
         $(this).popover('show');

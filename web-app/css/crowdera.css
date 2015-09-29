@@ -1682,6 +1682,9 @@ div.tile-min-height{
 .nav-tabs.nav-justified > li > a {
     font-size:11px;
 }
+div.domain-metrics .nav-tabs.nav-justified > li > a {
+  font-size: 12px;
+}
 .country-create-project .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
     width: 100% !important;
 }
@@ -5291,14 +5294,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     margin-top: 30px;
 }
 .metricsTabTop .socialInnovationCategory {
-    font-size: 16px;
-    padding-top: 17px;
+    font-size: 17px;
+    padding-top: 32px;
     display: inline-block;
 }
 
 .metricsTabTop .otherCategory {
-    font-size: 31px;
-    padding-top: 12px;
+    font-size: 22px;
+    padding-top: 25px;
     display: inline-block;
 }
 .domain-metrics {
@@ -5314,7 +5317,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 .campaignsPagination {
-	margin-top: 30px;
+	margin-top: 12px;
 	margin-bottom: 15px;
 }
 .campaignsPagination a , .campaignsPagination .currentStep {
@@ -11389,4 +11392,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .india-font-slogan b{
 	font-size: 21px;
+}
+.metricsInfoMsg {
+    margin-top: 15px;
 }

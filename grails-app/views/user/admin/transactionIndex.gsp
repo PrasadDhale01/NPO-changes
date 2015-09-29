@@ -14,12 +14,12 @@
                 </div>
             </g:if>
             <g:if test="${!transaction.empty }">
+            <div class="generateCSV">
                 <g:form controller="fund" action="generateCSV" Method="post" >
                     <g:hiddenField name="currency" value="${currency}"/>
-                    <div class="generateCSV">
-                        <button type="submit" class="btn btn-primary btn-sm pull-right" >Generate CSV</button>
-                    </div>
+                    <button type="submit" class="btn btn-primary btn-sm pull-right" >Generate CSV</button>
                 </g:form>
+             </div><br>
            </g:if>
            <div class="table table-responsive">
                <table class="table table-bordered">

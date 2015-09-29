@@ -17,6 +17,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
 import grails.util.Environment
 import javax.servlet.http.Cookie
+import groovyx.net.http.ContentType
+import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.Method
 
 class ProjectController {
 	def userService
@@ -418,11 +421,8 @@ class ProjectController {
 	}
 
 	def create() {
-		def categoryOptions = projectService.getCategoryList()
-		def country = projectService.getCountry()
         def currentEnv = Environment.current.getName()
-        
-		render(view: 'create/index1', model: [categoryOptions: categoryOptions, country:country, FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv])
+		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv])
 	}
     
     def saveCampaign() {
@@ -1665,12 +1665,131 @@ class ProjectController {
         imageUrl.delete()
         render ''
     }
+    
+    @Secured(['ROLE_ADMIN'])
+    def campaignHistory() {
+        Project project = projectService.getProjectById(params.projectId)
+        if (project) {
+            def numberOfContributions = project.contributions.size()
+            def percentageContribution = contributionService.getPercentageContributionForProject(project)
+            def numberOFPerks = project.rewards.size()
+            def maxSelectedPerkAmount = rewardService.getMostSelectedPerkAmountForCampaign(project)
+            def numberOfComments = project.comments.size()
+            def numberOfUpdates = project.projectUpdates.size()
+            def teams = projectService.getValidatedTeamForCampaign(project)
+            def numberOfTeams = projectService.getEnabledTeam(project)
+            def disabledTeams = projectService.getDiscardedTeams(project)
+            def highestContribution = contributionService.getHighestContributionDay(project)
+            def campaignSupporterCount = projectService.getCampaignSupporterCount(project)
+            
+            def campaignUrl = projectService.getCampaignShareUrl(project)
+            
+            def shareCount = getViewAndShareCount(project, campaignUrl)
+            
+            def model = [project: project, numberOfContributions: numberOfContributions, percentageContribution: percentageContribution, numberOFPerks: numberOFPerks,
+                         maxSelectedPerkAmount: maxSelectedPerkAmount, numberOfComments: numberOfComments, numberOfUpdates: numberOfUpdates, 
+                         numberOfTeams: numberOfTeams.size(), highestContributionDay: highestContribution.highestContributionDay,highestContributionHour: highestContribution.highestContributionHour ,
+                         ytViewCount: shareCount.ytViewCount, campaignUrl: campaignUrl, facebookCount: shareCount.facebookCount, linkedinCount: shareCount.linkedinCount, twitterCount: shareCount.twitterCount, campaignSupporterCount: campaignSupporterCount,
+                         disabledTeams: disabledTeams.size()]
+            
+            if (request.xhr) {
+                render(template: "/user/metrics/campaignhistory", model: model)
+            }
+        }
+        
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def campaignsList() {
+        def projectObj = projectService.getProjectList(params)
+        def model = [sortedCampaigns: projectObj.projects, totalCampaigns: projectObj.totalCampaigns]
+        if (request.xhr) {
+            render(template: "/user/metrics/campaigns", model: model)
+        }
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def campaignSearch() {
+        def projectObj = projectService.getCampaignBySearchQuery(params)
+        def model = [sortedCampaigns: projectObj.projects, totalCampaigns: projectObj.totalCampaigns, searchresultmessage: projectObj.message]
+        if (request.xhr) {
+            render(template: "/user/metrics/campaigns", model: model)
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def generateCampaignCSV() {
+        Project project = projectService.getProjectById(params.projectId)
+        def campaignUrl = projectService.getCampaignShareUrl(project)
+        
+        def shareCount = getViewAndShareCount(project, campaignUrl)
+        def ytViewCount = shareCount.ytViewCount
+        def facebookCount = shareCount.facebookCount
+        def twitterCount = shareCount.twitterCount
+        def linkedinCount = shareCount.linkedinCount
+        
+        def result = projectService.generateCSVReportForCampaign(params, response, project, ytViewCount, linkedinCount, twitterCount, facebookCount)
+        render (contentType:"text/csv", text:result)
+    }
 
     def isCustomVanityUrlUnique(){
-	def vanityUrl = request.getParameter("vanityUrl")
-	def projectId = request.getParameter("projectId")
-	def status = projectService.isCustomUrUnique(vanityUrl, projectId)
-	render status
+	    def vanityUrl = request.getParameter("vanityUrl")
+	    def projectId = request.getParameter("projectId")
+	    def status = projectService.isCustomUrUnique(vanityUrl, projectId)
+	    render status
+    }
+    
+    def getViewAndShareCount(Project project, def campaignUrl) {
+        // Video Count
+        def ytViewCount = 0, facebookCount = 0, twitterCount = 0, linkedinCount = 0
+        
+        if (project.videoUrl) {
+            def videoUrls = project.videoUrl.split('=')
+            videoUrls = videoUrls.collect { it.trim() }
+            String ytVideoId = videoUrls.last()
+            if (ytVideoId.length() == 11) {
+                def http = new HTTPBuilder('https://www.googleapis.com/youtube/v3/videos?part=statistics&id='+ytVideoId+'&key=AIzaSyAKICKCeRbrUAwk4pXjbU6hgsSEH8nGw28')
+                http.request(Method.GET, ContentType.JSON) {
+                    response.success = { resp, reader ->
+                        def statistics = reader.items.statistics
+                        ytViewCount = statistics.viewCount[0]
+                    }
+                }
+            }
+        }
+        
+        // FaceBook Share Count
+        def httpFb = new HTTPBuilder('http://graph.facebook.com/?id=' + campaignUrl)
+        httpFb.request(Method.GET, ContentType.JSON) {
+            response.success = { resp, reader ->
+                facebookCount = reader.shares
+            }
+        }
+       
+        // Twitter Share Count
+        def httptwit = new HTTPBuilder('http://cdn.api.twitter.com/1/urls/count.json?url=' + campaignUrl + '&callback=?')
+        httptwit.request(Method.GET, ContentType.JSON) {
+            response.success = { resp, reader ->
+                twitterCount = reader.count
+            }
+        }
+        // Linkedin Share Count
+        def httpLink = new HTTPBuilder('http://www.linkedin.com/countserv/count/share?url=' + campaignUrl + '&format=json')
+        httpLink.request(Method.GET, ContentType.JSON) {
+            response.success = { resp, reader ->
+                linkedinCount = reader.count
+            }
+        }
+        return [ytViewCount : ytViewCount, facebookCount: facebookCount, twitterCount: twitterCount, linkedinCount: linkedinCount]
+    }
+	
+    def sendEmailToNonUserContributors(){
+        projectService.sendEmailTONonUserContributors()
+        Cookie messageCookie = new Cookie("message", 'Email send to all non registered contributors')
+        messageCookie.path = '/'
+        messageCookie.maxAge= 3600
+        response.addCookie(messageCookie)
+        redirect (action : 'list', controller:'user')
     }
 
 }

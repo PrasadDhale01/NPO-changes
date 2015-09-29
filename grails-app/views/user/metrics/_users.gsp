@@ -1,4 +1,4 @@
-<div class="row metricsTabTop">
+<div class="metricsTabTop">
     <div class="table table-responsive">
         <table class="table table-bordered">
             <thead>
@@ -19,3 +19,21 @@
         </table>
     </div><br>
 </div>
+<div class="row domainUsersPagination" id="domainUsersPagination">
+    <g:paginate controller="user" max="12" action="usersList" total="${totalUsers.size()}"/>
+</div>
+
+<script>
+$('.domainUsersPagination a').click(function(event) {
+    event.preventDefault();
+    var url = $(this).attr('href');
+    var grid = $(this).parents('#domainusers');
+    $.ajax({
+        type: 'GET',
+        url: url,
+        success: function(data) {
+            $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+        }
+    });
+});
+</script>

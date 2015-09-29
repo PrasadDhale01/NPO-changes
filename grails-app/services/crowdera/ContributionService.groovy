@@ -341,113 +341,112 @@ class ContributionService {
             def day = contributionDate[Calendar.DAY_OF_WEEK]
             switch (day) {
                 case 1:
-                    monday = monday + contribution.amount
+                    sunday = sunday + 1
                     break;
                 case 2:
-                    tuesday = tuesday + contribution.amount
+                    monday = monday + 1
                     break;
                 case 3:
-                    wednesday = wednesday + contribution.amount
+                    tuesday = tuesday + 1
                     break;
                 case 4:
-                    thursday = thursday + contribution.amount
+                    wednesday = wednesday + 1
                     break;
                 case 5:
-                    friday = friday + contribution.amount
+                    thursday = thursday + 1
                     break;
                 case 6:
-                    saturday = saturday + contribution.amount
+                    friday = friday + 1
                     break;
                 case 7:
-                    sunday = sunday + contribution.amount
+                    saturday = saturday + 1
                     break;
                 default :
-                    println 'day'
+                    monday = monday + 1
             }
-            
             
             def hour = contributionDate[Calendar.HOUR_OF_DAY]
             switch (hour) {
                 case 0:
-                    zeroth = zeroth + contribution.amount
+                    zeroth = zeroth + 1
                     break;
                 case 1:
-                    first = first + contribution.amount
+                    first = first + 1
                     break;
                 case 2:
-                    second = second + contribution.amount
+                    second = second + 1
                     break;
                 case 3:
-                    third = third + contribution.amount
+                    third = third + 1
                     break;
                 case 4:
-                    forth = forth + contribution.amount
+                    forth = forth + 1
                     break;
                 case 5:
-                    fifth = fifth + contribution.amount
+                    fifth = fifth + 1
                     break;
                 case 6:
-                    sixth = sixth + contribution.amount
+                    sixth = sixth + 1
                     break;
                 case 7:
-                    seventh = seventh + contribution.amount
+                    seventh = seventh + 1
                     break;
                 case 8:
-                    eight = eight + contribution.amount
+                    eight = eight + 1
                     break;
                 case 9:
-                    nineth = nineth + contribution.amount
+                    nineth = nineth + 1
                     break;
                 case 10:
-                    tenth = tenth + contribution.amount
+                    tenth = tenth + 1
                     break;
                 case 11:
-                    eleventh = eleventh + contribution.amount
+                    eleventh = eleventh + 1
                     break;
                 case 12:
-                    twelfth = twelfth + contribution.amount
+                    twelfth = twelfth + 1
                     break;
                 case 13:
-                    thirteenth = thirteenth + contribution.amount
+                    thirteenth = thirteenth + 1
                     break;
                 case 14:
-                    forteenth = forteenth + contribution.amount
+                    forteenth = forteenth + 1
                     break;
                 case 15:
-                    fifteenth = fifteenth + contribution.amount
+                    fifteenth = fifteenth + 1
                     break;
                 case 16:
-                    sixteenth = sixteenth + contribution.amount
+                    sixteenth = sixteenth + 1
                     break;
                 case 17:
-                    seventeenth = seventeenth + contribution.amount
+                    seventeenth = seventeenth + 1
                     break;
                 case 18:
-                    eighteenth = eighteenth + contribution.amount
+                    eighteenth = eighteenth + 1
                     break;
                 case 19:
-                    nineteenth = nineteenth + contribution.amount
+                    nineteenth = nineteenth + 1
                     break;
                 case 20:
-                    twentieth = twentieth + contribution.amount
+                    twentieth = twentieth + 1
                     break;
                 case 21:
-                    twentyFirst = twentyFirst + contribution.amount
+                    twentyFirst = twentyFirst + 1
                     break;
                 case 22:
-                    twentySecond = twentySecond + contribution.amount
+                    twentySecond = twentySecond + 1
                     break;
                 case 23:
-                    twentyThird = twentyThird + contribution.amount
+                    twentyThird = twentyThird + 1
                     break;
                 default :
-                    println 'day'
+                    zeroth = zeroth + 1
             }
         }
         
-        Map hours = ['zeroth': zeroth , 'first' : first, 'second': second, 'third': third, 'forth': forth, 'fifth': fifth, 'sixth': sixth, 'seventh': seventh, 'eight': eight,
-                     'nineth': nineth, 'tenth': tenth, 'eleventh': eleventh, 'twelfth':twelfth, 'thirteenth': thirteenth , 'forteenth': forteenth, 'fifteenth': fifteenth,
-                     'sixteenth': sixteenth, 'eighteenth': eighteenth, 'nineteenth':nineteenth, 'twentieth': twentieth, 'twentyFirst': twentyFirst, 'twentySecond': twentySecond, 'twentyThird':twentyThird]
+        Map hours = ['00 - 01': zeroth , '01 - 02' : first, '02 - 03': second, '03 - 04': third, '04 - 05': forth, '05 - 06': fifth, '06 - 07': sixth, '07 - 08': seventh, '08 - 09': eight,
+                     '09 - 10': nineth, '10 - 11': tenth, '11 - 12': eleventh, '12 - 13':twelfth, '13 - 14': thirteenth , '14 - 15': forteenth, '15 - 16': fifteenth,
+                     '16 - 17': sixteenth, '17 - 18': seventeenth ,'18 - 19': eighteenth, '19 - 20':nineteenth, '20 - 21': twentieth, '21 - 22': twentyFirst, '22 - 23': twentySecond, '23 - 24':twentyThird]
         def highestContributionHour = hours.max { it.value }.key
         
         Map days = ['monday' : monday, 'tuesday': tuesday, 'wednesday' : wednesday, 'thursday': thursday, 'friday' : friday,'saturday': saturday, 'sunday': sunday]

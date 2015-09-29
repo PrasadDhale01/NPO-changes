@@ -29,7 +29,9 @@
                 <g:render template="/user/metrics/domain"/>
             </div>
             <div class="tab-pane" id="users">
+                <div id="domainusers">
                 <g:render template="/user/metrics/users"/>
+                </div>
             </div>
             <div class="tab-pane" id="campaigns">
                 <div id="campaignstab">

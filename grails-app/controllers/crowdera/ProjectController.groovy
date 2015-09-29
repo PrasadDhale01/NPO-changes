@@ -1681,6 +1681,7 @@ class ProjectController {
             def numberOfUpdates = project.projectUpdates.size()
             def teams = projectService.getValidatedTeamForCampaign(project)
             def numberOfTeams = teams.size()
+            def disabledTeams = projectService.getDiscardedTeams()
             def highestContribution = contributionService.getHighestContributionDay(project)
             def campaignSupporterCount = projectService.getCampaignSupporterCount(project)
             def ytViewCount = 0
@@ -1732,7 +1733,8 @@ class ProjectController {
             def model = [project: project, numberOfContributions: numberOfContributions, percentageContribution: percentageContribution, numberOFPerks: numberOFPerks,
                          maxSelectedPerkAmount: maxSelectedPerkAmount, numberOfComments: numberOfComments, numberOfUpdates: numberOfUpdates, 
                          numberOfTeams: numberOfTeams, highestContributionDay: highestContribution.highestContributionDay,highestContributionHour: highestContribution.highestContributionHour ,ytViewCount: 
-                         ytViewCount, campaignUrl: campaignUrl, facebookCount: facebookCount, linkedinCount: linkedinCount, twitterCount: twitterCount, campaignSupporterCount: campaignSupporterCount]
+                         ytViewCount, campaignUrl: campaignUrl, facebookCount: facebookCount, linkedinCount: linkedinCount, twitterCount: twitterCount, campaignSupporterCount: campaignSupporterCount,
+                         disabledTeams: disabledTeams.size()]
             
             if (request.xhr) {
                 render(template: "/user/metrics/campaignhistory", model: model)

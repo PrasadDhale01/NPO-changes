@@ -92,12 +92,29 @@
                         <i class="fa fa-tint fa-2x"></i>
                     </div>
                     <div class="col-xs-10 text-right">
-                        <p class="metrics-campaigns-heading">${maxSelectedPerkAmount}</p>
+                        <p class="metrics-campaigns-heading"><g:if test="${numberOfContributions > 0}">${maxSelectedPerkAmount}</g:if><g:else>None</g:else></p>
                     </div>
                 </div>
             </div>
             <div class="panel-footer announcement-bottom">
                 Most Selected Perk Amount
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-tint fa-2x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
+                        <p class="metrics-campaigns-heading" id="ytViewcount"><g:if test="${project.videoUrl}">${ytViewCount}</g:if><g:else>No Video</g:else></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                Number of video Viewers
             </div>
         </div>
     </div>
@@ -148,7 +165,7 @@
                 </div>
             </div>
             <div class="panel-footer announcement-bottom">
-                Total # of Teams
+                Total # of Enabled Teams
             </div>
         </div>
     </div>
@@ -160,7 +177,24 @@
                         <i class="fa fa-tint fa-2x"></i>
                     </div>
                     <div class="col-xs-10 text-right">
-                        <p class="metrics-campaigns-heading">${highestContributionDay}</p>
+                        <p class="metrics-campaigns-heading">${disabledTeams}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                Total # of Disabled Teams
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-tint fa-2x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
+                        <p class="metrics-campaigns-heading"><g:if test="${numberOfContributions > 0}">${highestContributionDay}</g:if><g:else>None</g:else></p>
                     </div>
                 </div>
             </div>
@@ -177,7 +211,7 @@
                         <i class="fa fa-tint fa-2x"></i>
                     </div>
                     <div class="col-xs-10 text-right">
-                        <p class="metrics-campaigns-heading">${highestContributionHour} hr</p>
+                        <p class="metrics-campaigns-heading"><g:if test="${numberOfContributions > 0}">${highestContributionHour} hr</g:if><g:else>None</g:else></p>
                     </div>
                 </div>
             </div>
@@ -186,23 +220,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-2">
-                        <i class="fa fa-tint fa-2x"></i>
-                    </div>
-                    <div class="col-xs-10 text-right">
-                        <p class="metrics-campaigns-heading" id="ytViewcount"><g:if test="${project.videoUrl}">${ytViewCount}</g:if><g:else>No Video</g:else></p>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer announcement-bottom">
-                Number of Views
-            </div>
-        </div>
-    </div>
+    
     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
         <div class="panel panel-info">
             <div class="panel-heading">

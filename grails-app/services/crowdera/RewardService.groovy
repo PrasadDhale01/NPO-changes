@@ -336,7 +336,7 @@ class RewardService {
          int avgPerkCount = (projectCount > 0) ? (perkCount/projectCount) : 0
          return avgPerkCount
      }
-     
+
     def getMostSelectedPerkAmountForCampaign(Project project) {
         List sortedRewards = project.rewards.sort {contributionService.getBackersForProjectByReward(project, it)}
         def maxSelectedPerk = sortedRewards.last()

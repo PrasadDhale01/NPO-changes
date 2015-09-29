@@ -904,6 +904,24 @@ class UserService {
         return category
     }
     
+    def getUsersList(def params) {
+        List totalUsers = []
+        List users = []
+        def max = Math.min(params.int('max') ?: 12, 100)
+        def offset = params.int('offset') ?: 0
+        totalUsers = getVerifiedUserList()
+        def count = totalUsers.size()
+        def maxrange
+        if(offset+max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        
+        users = totalUsers.subList(offset, maxrange)
+        return [totalUsers: totalUsers, users: users]
+    }
+    
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

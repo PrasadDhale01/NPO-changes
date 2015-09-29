@@ -1672,5 +1672,14 @@ class ProjectController {
 	def status = projectService.isCustomUrUnique(vanityUrl, projectId)
 	render status
     }
+	
+	def sendEmailToNonUserContributors(){
+	    projectService.sendEmailTONonUserContributors()
+		Cookie messageCookie = new Cookie("message", 'Email send to all contributors')
+        messageCookie.path = '/'
+        messageCookie.maxAge= 3600
+        response.addCookie(messageCookie)
+		redirect (action : 'transaction', controller:'fund')
+	}
 
 }

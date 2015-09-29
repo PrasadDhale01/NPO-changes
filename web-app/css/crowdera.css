@@ -11390,3 +11390,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .india-font-slogan b{
 	font-size: 21px;
 }
+
+button.btn.btn-primary.btn-sm.pull-right.sendEmailButton{
+	margin-right: 1%;
+}

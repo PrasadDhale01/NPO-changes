@@ -255,11 +255,21 @@ class UserController {
         def object = projectService.getNumberOfEndedAndLiveCampaigns(projects)
         def selectedCategory = projectService.getNumberOfMostSelectedCategoryAndCount(projects)
         def avgNumberOFPerk = rewardService.getAverageNumberOfPerk(projects)
-        def verifiedUsers = userService.getVerifiedUserList()
+        def projectObj = projectService.getProjectList(params)
+        def userObj = userService.getUsersList(params)
         
         render view: '/user/metrics/index',
                model:[endedProjects: object.endedProjects , LiveProjects : object.LiveProjects, totalProjects : object.totalProjects,
                       mostSelectedCategory: selectedCategory.mostSelectedCategory, mostSelectedCategoryCount: selectedCategory.mostSelectedCategoryCount,
-                      avgNumberOFPerk: avgNumberOFPerk, verifiedUsers: verifiedUsers]
+                      avgNumberOFPerk: avgNumberOFPerk, verifiedUsers: userObj.users, totalUsers: userObj.totalUsers, sortedCampaigns: projectObj.projects, totalCampaigns: projectObj.totalCampaigns]
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def usersList() {
+        def userObj = userService.getUsersList(params)
+        def model = [totalUsers: userObj.totalUsers, verifiedUsers: userObj.users]
+        if (request.xhr) {
+            render(template: "/user/metrics/users", model: model)
+        }
     }
 }

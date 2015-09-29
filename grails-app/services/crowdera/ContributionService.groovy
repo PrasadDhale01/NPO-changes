@@ -326,4 +326,132 @@ class ContributionService {
     def getINRTransactions(){
         return Transaction.findAllWhere(currency: 'INR')
     }
+    
+    def getHighestContributionDay(Project project) {
+        int monday = 0, tuesday = 0, wednesday = 0, thursday = 0, friday = 0, saturday = 0, sunday = 0
+        int zeroth = 0, first = 0, second = 0, third = 0, forth = 0, fifth = 0, sixth = 0, seventh = 0, eight = 0, nineth=0
+        int tenth = 0, eleventh = 0, twelfth = 0, thirteenth = 0, forteenth = 0, fifteenth = 0, sixteenth = 0, seventeenth = 0
+        int eighteenth = 0, nineteenth = 0 , twentieth = 0, twentyFirst = 0, twentySecond = 0, twentyThird = 0
+        
+        List contributions = project.contributions
+        List hourList = []
+        
+        contributions.each{ contribution->
+            Date contributionDate = contribution.date
+            def day = contributionDate[Calendar.DAY_OF_WEEK]
+            switch (day) {
+                case 1:
+                    sunday = sunday + 1
+                    break;
+                case 2:
+                    monday = monday + 1
+                    break;
+                case 3:
+                    tuesday = tuesday + 1
+                    break;
+                case 4:
+                    wednesday = wednesday + 1
+                    break;
+                case 5:
+                    thursday = thursday + 1
+                    break;
+                case 6:
+                    friday = friday + 1
+                    break;
+                case 7:
+                    saturday = saturday + 1
+                    break;
+                default :
+                    monday = monday + 1
+            }
+            
+            def hour = contributionDate[Calendar.HOUR_OF_DAY]
+            switch (hour) {
+                case 0:
+                    zeroth = zeroth + 1
+                    break;
+                case 1:
+                    first = first + 1
+                    break;
+                case 2:
+                    second = second + 1
+                    break;
+                case 3:
+                    third = third + 1
+                    break;
+                case 4:
+                    forth = forth + 1
+                    break;
+                case 5:
+                    fifth = fifth + 1
+                    break;
+                case 6:
+                    sixth = sixth + 1
+                    break;
+                case 7:
+                    seventh = seventh + 1
+                    break;
+                case 8:
+                    eight = eight + 1
+                    break;
+                case 9:
+                    nineth = nineth + 1
+                    break;
+                case 10:
+                    tenth = tenth + 1
+                    break;
+                case 11:
+                    eleventh = eleventh + 1
+                    break;
+                case 12:
+                    twelfth = twelfth + 1
+                    break;
+                case 13:
+                    thirteenth = thirteenth + 1
+                    break;
+                case 14:
+                    forteenth = forteenth + 1
+                    break;
+                case 15:
+                    fifteenth = fifteenth + 1
+                    break;
+                case 16:
+                    sixteenth = sixteenth + 1
+                    break;
+                case 17:
+                    seventeenth = seventeenth + 1
+                    break;
+                case 18:
+                    eighteenth = eighteenth + 1
+                    break;
+                case 19:
+                    nineteenth = nineteenth + 1
+                    break;
+                case 20:
+                    twentieth = twentieth + 1
+                    break;
+                case 21:
+                    twentyFirst = twentyFirst + 1
+                    break;
+                case 22:
+                    twentySecond = twentySecond + 1
+                    break;
+                case 23:
+                    twentyThird = twentyThird + 1
+                    break;
+                default :
+                    zeroth = zeroth + 1
+            }
+        }
+        
+        Map hours = ['00 - 01': zeroth , '01 - 02' : first, '02 - 03': second, '03 - 04': third, '04 - 05': forth, '05 - 06': fifth, '06 - 07': sixth, '07 - 08': seventh, '08 - 09': eight,
+                     '09 - 10': nineth, '10 - 11': tenth, '11 - 12': eleventh, '12 - 13':twelfth, '13 - 14': thirteenth , '14 - 15': forteenth, '15 - 16': fifteenth,
+                     '16 - 17': sixteenth, '17 - 18': seventeenth ,'18 - 19': eighteenth, '19 - 20':nineteenth, '20 - 21': twentieth, '21 - 22': twentyFirst, '22 - 23': twentySecond, '23 - 24':twentyThird]
+        def highestContributionHour = hours.max { it.value }.key
+        
+        Map days = ['monday' : monday, 'tuesday': tuesday, 'wednesday' : wednesday, 'thursday': thursday, 'friday' : friday,'saturday': saturday, 'sunday': sunday]
+        def highestContributionDay = days.max { it.value }.key
+        return ['highestContributionDay':highestContributionDay , 'highestContributionHour': highestContributionHour]
+    }
+    
 }

@@ -41,7 +41,7 @@ $(function() {
              confirmPassword: {
             	 required: true,
                  isEqualToPassword: true
-              }
+             }
 	    },
 	    messages: {
 	    	 name: {

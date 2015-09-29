@@ -2152,8 +2152,19 @@ class ProjectService {
         return [teamList: teamList, maxrange: maxrange, teams: teams]
     }
     
+    def getValidatedTeamForCampaign(Project project) {
+        List teams = []
+        teams = Team.findAllWhere(project: project , validated: true)
+        return teams
+    }
+    
     def getDiscardedTeams(project) {
         def teams = Team.findAllWhere(project: project,validated: true, enable: false)
+        return teams
+    }
+    
+    def getEnabledTeam(project) {
+        def teams = Team.findAllWhere(project: project,validated: true, enable: true)
         return teams
     }
     
@@ -2366,6 +2377,7 @@ class ProjectService {
             emailList = emailList.collect { it.trim() }
             mandrillService.shareProject(emailList, name, message, project, fundRaiser)
         }
+        project.gmailShareCount = project.gmailShareCount + 1
     }
 
     def getShippingDetails(def contibutions){
@@ -2580,6 +2592,29 @@ class ProjectService {
 
         def project = Project.get(projectId)
         return project
+    }
+    
+    def getCampaignShareUrl(Project project) {
+        def base_url = grailsApplication.config.crowdera.BASE_URL
+        List vanityTitles = VanityTitle.findAllWhere(project:project)
+        def url
+        def vanityTitle
+        if (vanityTitles.isEmpty()) {
+            vanityTitle = getVanityTitleFromId(project.id)
+        } else {
+            def vanity = vanityTitles.last() 
+            vanityTitle = vanity.vanityTitle
+        }
+        def vanityUserName
+        List vanityUserNames = VanityUsername.findAllWhere(user : project.user)
+        if (vanityUserNames.isEmpty()) {
+            vanityUserName = userService.getProjectVanityUsername(project.user)
+        } else {
+            def vanity = vanityUserNames.last()
+            vanityUserName = vanity.vanityUsername
+        }
+        url = base_url+'/campaigns/'+ vanityTitle +'/'+ vanityUserName
+        return url
     }
 	
     def getYoutubeUrlChanged(String video, Project project){
@@ -3086,7 +3121,72 @@ class ProjectService {
         cookie.maxAge= 0
         return cookie
     }
-	
+    
+    def getProjectList(def params) {
+        List totalCampaigns = []
+        List projects = []
+        def max = Math.min(params.int('max') ?: 12, 100)
+        def offset = params.int('offset') ?: 0
+        totalCampaigns = Project.findAllWhere(validated: true)
+        totalCampaigns = totalCampaigns?.sort{it.title}
+        
+        def count = totalCampaigns.size()
+        def maxrange
+        
+        if(offset+max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        
+        projects = totalCampaigns.subList(offset, maxrange)
+        return [totalCampaigns: totalCampaigns, projects: projects]
+    }
+    
+    def getCampaignBySearchQuery(def params) {
+        List totalCampaigns = []
+        List projects = []
+        List result = []
+        def query = params.searchValue
+        def max = Math.min(params.int('max') ?: 12, 100)
+        def offset = params.int('offset') ?: 0
+        totalCampaigns = Project.findAllWhere(validated: true)
+        totalCampaigns.each {
+            if( it.title.toLowerCase().contains(query.toLowerCase()) ){
+                result.add(it)
+            }
+        }
+        
+        result = result?.sort{it.title}
+        def count = result.size()
+        def maxrange
+        if (count > 0 && params.searchValue) {
+            if(offset+max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            projects = result.subList(offset, maxrange)
+            return [totalCampaigns: result, projects: projects]
+        } else {
+            count = totalCampaigns.size()
+            totalCampaigns = totalCampaigns?.sort{it.title}
+            if(offset+max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            projects = totalCampaigns.subList(offset, maxrange)
+            def message = 'No campaign found'
+            return [totalCampaigns: totalCampaigns, projects: projects, message: message]
+        }
+        
+    }
+    
+    def getCampaignSupporterCount(Project project) {
+        return project.supporters.size()
+    }
+    
     def ContributorNameCookie(contributorEmail){
 		Cookie cookie = new Cookie("contributorEmail", contributorEmail)
 		cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
@@ -3104,6 +3204,36 @@ class ProjectService {
             }
         }
         return status
+    }
+    
+    def generateCSVReportForCampaign(def params, def response, Project project, def ytViewCount, def linkedinCount, def twitterCount, def facebookCount){
+
+        def numberOfContributions = project.contributions.size()
+        def percentageContribution = contributionService.getPercentageContributionForProject(project)
+        def numberOFPerks = (project.rewards.size() > 1) ? project.rewards.size() : 0
+        def maxSelectedPerkAmount = rewardService.getMostSelectedPerkAmountForCampaign(project)
+        def teams = getEnabledTeam(project)
+        def numberOfTeams = getValidatedTeamForCampaign(project)
+        def disabledTeams = getDiscardedTeams(project)
+        def highestContribution = contributionService.getHighestContributionDay(project)
+        def campaignSupporterCount = getCampaignSupporterCount(project)
+        def usedFor = (project.usedFor) ? project.usedFor : 'IMPACT'
+        
+        List results = []
+        
+        def rows = [project.title.replaceAll("[,;]",' '), project.amount.round(), usedFor, numberOfContributions, percentageContribution, numberOFPerks, maxSelectedPerkAmount , project.comments.size() , project.projectUpdates.size(), numberOfTeams.size(), disabledTeams.size(), ytViewCount, highestContribution.highestContributionDay, highestContribution.highestContributionHour,facebookCount, twitterCount ,linkedinCount, project.gmailShareCount, campaignSupporterCount]
+        results << rows
+        def result
+        response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll("[,;\\s]",'_')+".csv")
+        result = 'CAMPAIGN, CAMPAIGN GOAL, RAISED FUND FOR, TOTAL NUMBER OF CONTRIBUTIONS , PERCENTAGE GOAL RAISED, NUMBER OF PERKS OFFERED, MOST SELECTED PERK AMOUNT, Total NUMBER OF COMMENTS, TOTAL NUMBER OF UPDATES, TOTAL NUMBER OF ENABLED TEAMS, TOTAL NUMBER OF DISABLED TEAMS, NUMBER OF VIDEO VIEWERS, HIGHEST CONTRIBUTION DAY, HIGHEST CONTRIBUTION HOUR, FACEBOOK SHARE COUNT, TWITTER SHARE COUNT, LINKEDIN SHARE COUNT, EMAIL SHARE COUNT, TOTAL NUMBER OF SUPPORTERS, \n'
+        results.each{ row->
+            row.each{
+                col -> result+=col +','
+            }
+            result = result[0..-2]
+            result+="\n"
+        }
+        return result
     }
 
     def sendEmailTONonUserContributors() {

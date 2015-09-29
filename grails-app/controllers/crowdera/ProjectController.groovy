@@ -1759,13 +1759,13 @@ class ProjectController {
         }
         
         // FaceBook Share Count
-//        def httpFb = new HTTPBuilder('http://graph.facebook.com/?id=' + campaignUrl)
-//        httpFb.request(Method.GET, ContentType.JSON) {
-//            response.success = { resp, reader ->
-//                facebookCount = reader.shares
-//            }
-//        }
-        
+        def httpFb = new HTTPBuilder('http://graph.facebook.com/?id=' + campaignUrl)
+        httpFb.request(Method.GET, ContentType.JSON) {
+            response.success = { resp, reader ->
+                facebookCount = reader.shares
+            }
+        }
+       
         // Twitter Share Count
         def httptwit = new HTTPBuilder('http://cdn.api.twitter.com/1/urls/count.json?url=' + campaignUrl + '&callback=?')
         httptwit.request(Method.GET, ContentType.JSON) {

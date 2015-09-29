@@ -2,7 +2,8 @@
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 %>
-<div class="row metricsTabTop">
+<g:if test="${!sortedCampaigns.isEmpty()}">
+<div class="row metricsTabTop metricspadding">
     <g:hiddenField name="baseUrl" value="${base_url}" id="baseUrl"/>
     <g:if test="${sortedCampaigns.size()}">
         <% def onLoadCampaign = sortedCampaigns[0] %>
@@ -27,7 +28,6 @@
                 <div class="col-md-10 metricsCampaignLink">
                     <a href="${base_url}/project/campaignHistory?projectId=${project.id}">${project.title}</a>
                 </div>
-                <br/>
             </g:each>
         </div>
         <div class="clear"></div>
@@ -76,3 +76,9 @@
     }
     
 </script>
+</g:if>
+<g:else>
+    <div class="metricsInfoMsg">
+        <div class="alert alert-info text-center">No Campaigns.</div>
+    </div>
+</g:else>

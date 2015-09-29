@@ -2163,6 +2163,11 @@ class ProjectService {
         return teams
     }
     
+    def getEnabledTeam(project) {
+        def teams = Team.findAllWhere(project: project,validated: true, enable: true)
+        return teams
+    }
+    
     def discardTeam(def params) {
         def project = Project.get(params.id);
         def team = Team.get(params.long('teamId'))
@@ -3199,6 +3204,36 @@ class ProjectService {
             }
         }
         return status
+    }
+    
+    def generateCSVReportForCampaign(def params, def response, Project project, def ytViewCount, def linkedinCount, def twitterCount, def facebookCount){
+
+        def numberOfContributions = project.contributions.size()
+        def percentageContribution = contributionService.getPercentageContributionForProject(project)
+        def numberOFPerks = (project.rewards.size() > 1) ? project.rewards.size() : 0
+        def maxSelectedPerkAmount = rewardService.getMostSelectedPerkAmountForCampaign(project)
+        def teams = getEnabledTeam(project)
+        def numberOfTeams = getValidatedTeamForCampaign(project)
+        def disabledTeams = getDiscardedTeams(project)
+        def highestContribution = contributionService.getHighestContributionDay(project)
+        def campaignSupporterCount = getCampaignSupporterCount(project)
+        def usedFor = (project.usedFor) ? project.usedFor : 'IMPACT'
+        
+        List results = []
+        
+        def rows = [project.title.replaceAll("[,;]",' '), project.amount.round(), usedFor, numberOfContributions, percentageContribution, numberOFPerks, maxSelectedPerkAmount , project.comments.size() , project.projectUpdates.size(), numberOfTeams.size(), disabledTeams.size(), ytViewCount, highestContribution.highestContributionDay, highestContribution.highestContributionHour,facebookCount, twitterCount ,linkedinCount, project.gmailShareCount, campaignSupporterCount]
+        results << rows
+        def result
+        response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll("[,;\\s]",'_')+".csv")
+        result = 'CAMPAIGN, CAMPAIGN GOAL, RAISED FUND FOR, TOTAL NUMBER OF CONTRIBUTIONS , PERCENTAGE GOAL RAISED, NUMBER OF PERKS OFFERED, MOST SELECTED PERK AMOUNT, Total NUMBER OF COMMENTS, TOTAL NUMBER OF UPDATES, TOTAL NUMBER OF ENABLED TEAMS, TOTAL NUMBER OF DISABLED TEAMS, NUMBER OF VIDEO VIEWERS, HIGHEST CONTRIBUTION DAY, HIGHEST CONTRIBUTION HOUR, FACEBOOK SHARE COUNT, TWITTER SHARE COUNT, LINKEDIN SHARE COUNT, EMAIL SHARE COUNT, TOTAL NUMBER OF SUPPORTERS, \n'
+        results.each{ row->
+            row.each{
+                col -> result+=col +','
+            }
+            result = result[0..-2]
+            result+="\n"
+        }
+        return result
     }
 
     @Transactional

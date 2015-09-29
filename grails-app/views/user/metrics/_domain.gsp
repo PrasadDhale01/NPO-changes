@@ -4,7 +4,7 @@
 	def length = projectService.getDataType(amount)
 	def digitLen = length.toString().length()
 %>
-<div class="row metricsTabTop">
+<div class="row metricsTabTop metricspadding">
     <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -64,15 +64,19 @@
                         <i class="fa fa-tint fa-2x"></i>
                     </div>
                     <div class="col-xs-10 text-right">
-                        <g:if test="${mostSelectedCategory == 'Social_innovation'}">
-                            <span class="socialInnovationCategory">${mostSelectedCategory}&nbsp;</span>
-                            <span class="otherCategory">(${mostSelectedCategoryCount})</span>
+                        <g:if test="${totalProjects > 0 }">
+                            <g:if test="${mostSelectedCategory == 'Social_innovation'}">
+                                <span class="socialInnovationCategory">Social Innovation &nbsp;</span>
+                                <span class="socialInnovationCategory">(${mostSelectedCategoryCount})</span>
+                            </g:if>
+                            <g:else>
+                                <span class="otherCategory">${mostSelectedCategory}&nbsp;</span>
+                                <span class="otherCategory">(${mostSelectedCategoryCount})</span>
+                            </g:else>
                         </g:if>
                         <g:else>
-                            <span class="otherCategory">${mostSelectedCategory}&nbsp;</span>
-                            <span class="otherCategory">(${mostSelectedCategoryCount})</span>
+                            <p class="announcement-heading">None</p>
                         </g:else>
-                        
                     </div>
                 </div>
             </div>

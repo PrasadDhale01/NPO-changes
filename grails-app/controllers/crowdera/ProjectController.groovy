@@ -421,11 +421,8 @@ class ProjectController {
 	}
 
 	def create() {
-		def categoryOptions = projectService.getCategoryList()
-		def country = projectService.getCountry()
         def currentEnv = Environment.current.getName()
-        
-		render(view: 'create/index1', model: [categoryOptions: categoryOptions, country:country, FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv])
+		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv])
 	}
     
     def saveCampaign() {
@@ -1680,60 +1677,19 @@ class ProjectController {
             def numberOfComments = project.comments.size()
             def numberOfUpdates = project.projectUpdates.size()
             def teams = projectService.getValidatedTeamForCampaign(project)
-            def numberOfTeams = teams.size()
-            def disabledTeams = projectService.getDiscardedTeams()
+            def numberOfTeams = projectService.getEnabledTeam(project)
+            def disabledTeams = projectService.getDiscardedTeams(project)
             def highestContribution = contributionService.getHighestContributionDay(project)
             def campaignSupporterCount = projectService.getCampaignSupporterCount(project)
-            def ytViewCount = 0
-            
-            // Video Count
-            if (project.videoUrl) {
-                def videoUrls = project.videoUrl.split('=')
-                videoUrls = videoUrls.collect { it.trim() }
-                String ytVideoId = videoUrls.last()
-                if (ytVideoId.length() == 11) {
-                    def http = new HTTPBuilder('https://www.googleapis.com/youtube/v3/videos?part=statistics&id='+ytVideoId+'&key=AIzaSyAKICKCeRbrUAwk4pXjbU6hgsSEH8nGw28')
-                    http.request(Method.GET, ContentType.JSON) {
-                        response.success = { resp, reader ->
-                            def statistics = reader.items.statistics
-                            ytViewCount = statistics.viewCount[0]
-                        }
-                    }
-                }
-            }
             
             def campaignUrl = projectService.getCampaignShareUrl(project)
-            def facebookCount
-            def twitterCount
-            def linkedinCount
             
-            // FaceBook Share Count
-            def httpFb = new HTTPBuilder('http://graph.facebook.com/?id=' + campaignUrl)
-            httpFb.request(Method.GET, ContentType.JSON) {
-                response.success = { resp, reader ->
-                    facebookCount = reader.shares
-                }
-            }
-            
-            // Twitter Share Count
-            def httptwit = new HTTPBuilder('http://cdn.api.twitter.com/1/urls/count.json?url=' + campaignUrl + '&callback=?')
-            httptwit.request(Method.GET, ContentType.JSON) {
-                response.success = { resp, reader ->
-                    twitterCount = reader.count
-                }
-            }
-            // Linkedin Share Count
-            def httpLink = new HTTPBuilder('http://www.linkedin.com/countserv/count/share?url=' + campaignUrl + '&format=json')
-            httpLink.request(Method.GET, ContentType.JSON) {
-                response.success = { resp, reader ->
-                    linkedinCount = reader.count
-                }
-            }
+            def shareCount = getViewAndShareCount(project, campaignUrl)
             
             def model = [project: project, numberOfContributions: numberOfContributions, percentageContribution: percentageContribution, numberOFPerks: numberOFPerks,
                          maxSelectedPerkAmount: maxSelectedPerkAmount, numberOfComments: numberOfComments, numberOfUpdates: numberOfUpdates, 
-                         numberOfTeams: numberOfTeams, highestContributionDay: highestContribution.highestContributionDay,highestContributionHour: highestContribution.highestContributionHour ,ytViewCount: 
-                         ytViewCount, campaignUrl: campaignUrl, facebookCount: facebookCount, linkedinCount: linkedinCount, twitterCount: twitterCount, campaignSupporterCount: campaignSupporterCount,
+                         numberOfTeams: numberOfTeams.size(), highestContributionDay: highestContribution.highestContributionDay,highestContributionHour: highestContribution.highestContributionHour ,
+                         ytViewCount: shareCount.ytViewCount, campaignUrl: campaignUrl, facebookCount: shareCount.facebookCount, linkedinCount: shareCount.linkedinCount, twitterCount: shareCount.twitterCount, campaignSupporterCount: campaignSupporterCount,
                          disabledTeams: disabledTeams.size()]
             
             if (request.xhr) {
@@ -1760,12 +1716,71 @@ class ProjectController {
             render(template: "/user/metrics/campaigns", model: model)
         }
     }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def generateCampaignCSV() {
+        Project project = projectService.getProjectById(params.projectId)
+        def campaignUrl = projectService.getCampaignShareUrl(project)
+        
+        def shareCount = getViewAndShareCount(project, campaignUrl)
+        def ytViewCount = shareCount.ytViewCount
+        def facebookCount = shareCount.facebookCount
+        def twitterCount = shareCount.twitterCount
+        def linkedinCount = shareCount.linkedinCount
+        
+        def result = projectService.generateCSVReportForCampaign(params, response, project, ytViewCount, linkedinCount, twitterCount, facebookCount)
+        render (contentType:"text/csv", text:result)
+    }
 
     def isCustomVanityUrlUnique(){
 	    def vanityUrl = request.getParameter("vanityUrl")
 	    def projectId = request.getParameter("projectId")
 	    def status = projectService.isCustomUrUnique(vanityUrl, projectId)
 	    render status
+    }
+    
+    def getViewAndShareCount(Project project, def campaignUrl) {
+        // Video Count
+        def ytViewCount = 0, facebookCount = 0, twitterCount = 0, linkedinCount = 0
+        
+        if (project.videoUrl) {
+            def videoUrls = project.videoUrl.split('=')
+            videoUrls = videoUrls.collect { it.trim() }
+            String ytVideoId = videoUrls.last()
+            if (ytVideoId.length() == 11) {
+                def http = new HTTPBuilder('https://www.googleapis.com/youtube/v3/videos?part=statistics&id='+ytVideoId+'&key=AIzaSyAKICKCeRbrUAwk4pXjbU6hgsSEH8nGw28')
+                http.request(Method.GET, ContentType.JSON) {
+                    response.success = { resp, reader ->
+                        def statistics = reader.items.statistics
+                        ytViewCount = statistics.viewCount[0]
+                    }
+                }
+            }
+        }
+        
+        // FaceBook Share Count
+//        def httpFb = new HTTPBuilder('http://graph.facebook.com/?id=' + campaignUrl)
+//        httpFb.request(Method.GET, ContentType.JSON) {
+//            response.success = { resp, reader ->
+//                facebookCount = reader.shares
+//            }
+//        }
+        
+        // Twitter Share Count
+        def httptwit = new HTTPBuilder('http://cdn.api.twitter.com/1/urls/count.json?url=' + campaignUrl + '&callback=?')
+        httptwit.request(Method.GET, ContentType.JSON) {
+            response.success = { resp, reader ->
+                twitterCount = reader.count
+            }
+        }
+        // Linkedin Share Count
+        def httpLink = new HTTPBuilder('http://www.linkedin.com/countserv/count/share?url=' + campaignUrl + '&format=json')
+        httpLink.request(Method.GET, ContentType.JSON) {
+            response.success = { resp, reader ->
+                linkedinCount = reader.count
+            }
+        }
+        return [ytViewCount : ytViewCount, facebookCount: facebookCount, twitterCount: twitterCount, linkedinCount: linkedinCount]
     }
 
 }

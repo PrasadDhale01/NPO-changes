@@ -1,3 +1,12 @@
+<div class="row pull-right">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <g:form controller="project" action="generateCampaignCSV">
+            <g:hiddenField name="projectId" value="${project.id}"/>
+            <button type="submit" class="btn btn-primary btn-sm">Generate CSV</button><br>
+        </g:form>
+    </div>
+</div>
+<div class="clear"></div>
 <div class="row">
     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
         <div class="panel panel-info">
@@ -17,23 +26,6 @@
         </div>
     </div>
     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-2">
-                        <i class="fa fa-tint fa-2x"></i>
-                    </div>
-                    <div class="col-xs-10 text-right">
-                        <p class="metrics-campaigns-heading">${numberOfContributions}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer announcement-bottom">
-                Total # of contribution
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
         <div class="panel panel-success">
             <div class="panel-heading">
                 <div class="row">
@@ -47,6 +39,23 @@
             </div>
             <div class="panel-footer announcement-bottom">
                 Raised Fund for
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-tint fa-2x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
+                        <p class="metrics-campaigns-heading">${numberOfContributions}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                Total # of contribution
             </div>
         </div>
     </div>
@@ -101,57 +110,7 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-2">
-                        <i class="fa fa-tint fa-2x"></i>
-                    </div>
-                    <div class="col-xs-10 text-right">
-                        <p class="metrics-campaigns-heading" id="ytViewcount"><g:if test="${project.videoUrl}">${ytViewCount}</g:if><g:else>No Video</g:else></p>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer announcement-bottom">
-                Number of video Viewers
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-2">
-                        <i class="fa fa-tint fa-2x"></i>
-                    </div>
-                    <div class="col-xs-10 text-right">
-                        <p class="metrics-campaigns-heading">${numberOfComments}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer announcement-bottom">
-                Total # of Comments
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="row">
-                    <div class="col-xs-2">
-                        <i class="fa fa-tint fa-2x"></i>
-                    </div>
-                    <div class="col-xs-10 text-right">
-                        <p class="metrics-campaigns-heading">${numberOfUpdates}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="panel-footer announcement-bottom">
-                Total # of Updates 
-            </div>
-        </div>
-    </div>
+    
     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
         <div class="panel panel-info">
             <div class="panel-heading">
@@ -186,6 +145,60 @@
             </div>
         </div>
     </div>
+    
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-tint fa-2x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
+                        <p class="metrics-campaigns-heading">${numberOfComments}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                Total # of Comments
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-tint fa-2x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
+                        <p class="metrics-campaigns-heading">${numberOfUpdates}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                Total # of Updates 
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <i class="fa fa-tint fa-2x"></i>
+                    </div>
+                    <div class="col-xs-10 text-right">
+                        <p class="metrics-campaigns-heading" id="ytViewcount"><g:if test="${project.videoUrl}">${ytViewCount}</g:if><g:else>No Video</g:else></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer announcement-bottom">
+                Number of video Viewers
+            </div>
+        </div>
+    </div>
+    
     <div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
         <div class="panel panel-info">
             <div class="panel-heading">

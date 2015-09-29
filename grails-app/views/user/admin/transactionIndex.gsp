@@ -13,20 +13,12 @@
                     ${flash.message}
                 </div>
             </g:if>
-            <g:if test="${flash.contributionEmailSendMessage}">
-                <div class="alert alert-success">
-                    ${flash.contributionEmailSendMessage}
-                </div>
-            </g:if>
             <g:if test="${!transaction.empty }">
             <div class="generateCSV">
                 <g:form controller="fund" action="generateCSV" Method="post" >
                     <g:hiddenField name="currency" value="${currency}"/>
                     <button type="submit" class="btn btn-primary btn-sm pull-right" >Generate CSV</button>
                 </g:form>
-                <g:link controller="project" action="sendEmailToNonUserContributors">
-                    <button class="btn btn-primary btn-sm pull-right sendEmailButton" id="sendEmailButton">Send Email to Non-user Contributors</button>
-                </g:link>
              </div><br>
            </g:if>
            <div class="table table-responsive">

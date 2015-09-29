@@ -1675,11 +1675,11 @@ class ProjectController {
 	
     def sendEmailToNonUserContributors(){
         projectService.sendEmailTONonUserContributors()
-        Cookie messageCookie = new Cookie("message", 'Email send to all contributors')
+        Cookie messageCookie = new Cookie("message", 'Email send to all non registered contributors')
         messageCookie.path = '/'
         messageCookie.maxAge= 3600
         response.addCookie(messageCookie)
-        redirect (action : 'transaction', controller:'fund')
+        redirect (action : 'list', controller:'user')
     }
 
 }

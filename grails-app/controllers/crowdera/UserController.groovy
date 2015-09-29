@@ -3,6 +3,7 @@ package crowdera
 import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.security.core.context.SecurityContextHolder;
 import grails.util.Environment
+import javax.servlet.http.Cookie
 
 class UserController {
     def userService
@@ -27,10 +28,17 @@ class UserController {
     
     @Secured(['ROLE_ADMIN'])
     def list() {
-        def verifiedUsers = userService.getVerifiedUserList()
-        def nonVerifiedUsers = userService.getNonVerifiedUserList()
-        render(view: 'admin/userList', model: [verifiedUsers:verifiedUsers,nonVerifiedUsers:nonVerifiedUsers])
-    }
+       def message = g.cookie(name: 'message')
+       flash.contributionEmailSendMessage = message
+       Cookie messageCookie = new Cookie("message", 'Email send to all contributors')
+       messageCookie.path = '/'
+       messageCookie.maxAge= 0
+       response.addCookie(messageCookie)
+
+       def verifiedUsers = userService.getVerifiedUserList()
+       def nonVerifiedUsers = userService.getNonVerifiedUserList()
+       render(view: 'admin/userList', model: [verifiedUsers:verifiedUsers,nonVerifiedUsers:nonVerifiedUsers])
+   }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def dashboard() {

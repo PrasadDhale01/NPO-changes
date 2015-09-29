@@ -595,13 +595,6 @@ class FundController {
 	
     @Secured(['ROLE_ADMIN'])
     def transaction(){
-        def message = g.cookie(name: 'message')
-        flash.contributionEmailSendMessage = message
-        Cookie messageCookie = new Cookie("message", 'Email send to all contributors')
-        messageCookie.path = '/'
-        messageCookie.maxAge= 0
-        response.addCookie(messageCookie)
-
         def transactionINR = contributionService.getINRTransactions()
         def transactionUSD = contributionService.getUSDTransactions()
         if (params.currency == 'INR'){

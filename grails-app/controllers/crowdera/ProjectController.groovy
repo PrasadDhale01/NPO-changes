@@ -92,6 +92,7 @@ class ProjectController {
         def currentEnv = Environment.current.getName()
 		def query = params.q
 		def categoryOptions = projectService.getCategory()
+		def discoverLeftCategoryOptions=projectService.getDiscoverLeftCategory()
 		def sortsOptions = projectService.getSorts()
 		if(query) {
 			List searchResults = projectService.search(query, currentEnv)
@@ -100,7 +101,7 @@ class ProjectController {
 				redirect(action:"list")
 			} else {
 				searchResults.sort{x,y -> x.title<=>y.title ?: x.story<=>y.story}
-				render(view: "list/index", model:[projects: searchResults, categoryOptions:categoryOptions, sortsOptions:sortsOptions])
+				render(view: "list/index", model:[projects: searchResults, categoryOptions:categoryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
 			}
 		} else {
 			redirect(controller: "home", action: "index")
@@ -1348,15 +1349,16 @@ class ProjectController {
 
 	def sortCampaign(){
 		def categoryOptions = projectService.getCategory()
+		def discoverLeftCategoryOptions=projectService.getDiscoverLeftCategory()
 		def sortsOptions = projectService.getSorts()
 		def environment = Environment.current.getName()
 		def sorts = (params.query == 'Successful') ? 'Successful (100% +)' : params.query
 		def campaignsorts = projectService.isCampaignsorts(sorts, environment)
 		if(!campaignsorts){
 			flash.catmessage="No campaign found."
-			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts, categoryOptions:categoryOptions, sortsOptions:sortsOptions])
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts, categoryOptions:categoryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
 		} else {
-			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts, categoryOptions:categoryOptions, sortsOptions:sortsOptions])
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts, categoryOptions:categoryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
 		}
 	}
     

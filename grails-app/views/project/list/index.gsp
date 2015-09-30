@@ -42,7 +42,7 @@
             	<div class="col-lg-2 col-xs-12  col-sm-2 TW-discover-leftpane-menu">
 					<g:each in="${discoverLeftCategoryOptions}" var="categories">
 						<ul>
-							<li><g:link controller="project" action="category" params='[category:"${categories.value}"]'>${categories.value}</g:link></li>
+							<li><g:link controller="project" action="category" params='[category:"${categories.value}"]' >${categories.value}</g:link></li>
 						</ul>
 					</g:each>
             	</div>

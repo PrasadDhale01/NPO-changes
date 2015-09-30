@@ -70,15 +70,16 @@ class ProjectController {
 
     def list = {
         def categoryOptions = projectService.getCategory()
+		def discoverLeftCategoryOptions= projectService.getDiscoverLeftCategory()
         def sortsOptions = projectService.getSorts()
         def currentEnv = Environment.current.getName()
         def projects = projectService.getValidatedProjects(currentEnv)
         def selectedCategory = "All Categories"
         if (projects.size < 1) {
             flash.catmessage="There are no campaigns"
-            render (view: 'list/index', model: [categoryOptions: categoryOptions, sortsOptions: sortsOptions])
+            render (view: 'list/index', model: [categoryOptions: categoryOptions, sortsOptions: sortsOptions,discoverLeftCategoryOptions: discoverLeftCategoryOptions])
         } else {
-            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv, categoryOptions: categoryOptions, sortsOptions: sortsOptions])
+            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv, categoryOptions: categoryOptions, sortsOptions: sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
         }
     }
 
@@ -98,7 +99,6 @@ class ProjectController {
 				flash.catmessage = "No Campaign found matching your input."
 				redirect(action:"list")
 			} else {
-			    println "categoryOptions : "+categoryOptions
 				searchResults.sort{x,y -> x.title<=>y.title ?: x.story<=>y.story}
 				render(view: "list/index", model:[projects: searchResults, categoryOptions:categoryOptions, sortsOptions:sortsOptions])
 			}
@@ -1136,19 +1136,24 @@ class ProjectController {
 
 	def categoryFilter() {
 		def categoryOptions = projectService.getCategory()
+		def discoverLeftCategoryOptions=projectService.getDiscoverLeftCategory()
 		def sortsOptions = projectService.getSorts()
         def currentEnv = Environment.current.getName()
 		def category = params.category
 		def project
 		if (category == "Social Innovation"){
 			project = projectService.filterByCategory("SOCIAL_INNOVATION", currentEnv)
-		} else if (category == "All Categories"){
+		}else if (category == "Civic Needs"){
+			project = projectService.filterByCategory("CIVIC_NEEDS", currentEnv)
+		}else if (category == "Non Profits"){
+			project = projectService.filterByCategory("NON_PROFITS", currentEnv)
+		}else if (category == "All Categories"){
 			project = projectService.filterByCategory("All", currentEnv)
 		} else {
 			project = projectService.filterByCategory(category, currentEnv)
 		}
         flash.catmessage = (project) ? "" : "No campaign found."
-        render (view: 'list/index', model: [projects: project, selectedCategory:category, categoryOptions:categoryOptions, sortsOptions:sortsOptions])
+        render (view: 'list/index', model: [projects: project, selectedCategory:category, categoryOptions:categoryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
 	}
 
     def addTeam() {

@@ -672,6 +672,9 @@
             $(this).find('.campaignEditDeleteIcon').hide();
         });
 
+       if(screen.width > 1024 && screen.width < 992)
+           $('#screen').val('true');
+
        if($('#videoUrl').val()){
         	var regExp = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         	var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;

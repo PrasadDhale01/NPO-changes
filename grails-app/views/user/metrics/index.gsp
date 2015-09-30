@@ -1,10 +1,10 @@
 <%@ page import="java.text.SimpleDateFormat" %>
-<g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
 <g:set var="userService" bean="userService"/>
 
 <head>
 	<meta name="layout" content="main" />
+	<r:require modules="userjs"/>
 </head>
 <body>
     <div class="container domain-metrics">
@@ -29,10 +29,14 @@
                 <g:render template="/user/metrics/domain"/>
             </div>
             <div class="tab-pane" id="users">
+                <div id="domainusers">
                 <g:render template="/user/metrics/users"/>
+                </div>
             </div>
             <div class="tab-pane" id="campaigns">
-                <g:render template="/user/metrics/campaigns"/>
+                <div id="campaignstab">
+                    <g:render template="/user/metrics/campaigns"/>
+                </div>
             </div>
         </div>
     </div>

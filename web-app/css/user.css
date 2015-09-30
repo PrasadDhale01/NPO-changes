@@ -1,0 +1,13 @@
+.domainUsersPagination {
+	margin-bottom: 15px;
+}
+.domainUsersPagination a , .domainUsersPagination .currentStep {
+	font-size: 13px;
+	text-align: center;
+	padding-left: 15px;
+	color: #31497B !important;
+	font-weight: 700 !important;
+}
+.domainUsersPagination .currentStep {
+	color: black !important;
+}

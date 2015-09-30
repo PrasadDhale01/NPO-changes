@@ -156,7 +156,7 @@ body .redactor-box-fullscreen {
   position: relative;
   top: 0;
   margin: 0 !important;
-  padding-left: 60%;
+  padding-left: 49%;
   list-style: none !important;
   font-size: 14px !important;
   line-height: 1 !important;
@@ -686,7 +686,7 @@ div#redactor-droparea-placeholder input {
     
 @media only screen and (min-width: 768px) and (max-width: 1024px){
 	.redactor-toolbar{
-	    padding-left:46%;
+	    padding-left:31%;
 	}
 }
 

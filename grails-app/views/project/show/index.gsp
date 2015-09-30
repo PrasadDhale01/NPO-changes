@@ -29,10 +29,11 @@
     }
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
     def currentTeamAmount = currentTeam.amount
+	def campaigntitle = project.title
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+<title>${campaigntitle} - Crowdera</title>
 <head>
-    <meta name="title" content="${project.title} - Crowdera" />
     <g:if test="${project.description}">
     <meta name="description" content="${project.description}"/>
     </g:if>
@@ -66,8 +67,8 @@
             $('.redactorEditor').redactor({
                 imageUpload:'/project/getRedactorImage',
                 imageResizable: true,
-                plugins: ['video'],
-                buttonsHide: ['indent', 'outdent', 'horizontalrule']
+                plugins: ['video','fontsize', 'fontfamily', 'fontcolor'],
+                buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']
             });
        });
     </g:javascript>
@@ -191,20 +192,21 @@
                     </g:if>
                 </div>
                 <div class="col-xs-12 col-md-8 Top-tabs-mobile">
+                    <g:set var="screen" id="screen" value="false"></g:set>
                     <ul class="nav nav-tabs nav-justified show-marginbottoms mng-safari-mobile<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
                         <li class="active"><a href="#essentials" data-toggle="tab">
                             <span class="glyphicon glyphicon-leaf"></span><span class="tab-text hidden-xs"> Story</span>
                         </a></li>
                         <g:if test="${!project.projectUpdates.isEmpty() }">
                             <li><a href="#projectupdates" data-toggle="tab">
-							    <span class="glyphicon glyphicon-asterisk"></span><span class="tab-text hidden-xs"> Updates</span>
+							    <span class="glyphicon glyphicon-asterisk"></span><span class="tab-text hidden-xs"> Updates <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if></span>
                             </a></li>
                         </g:if>
                         <li><a href="#manageTeam" data-toggle="tab">
                             <span class="fa fa-users"></span><span class="tab-text hidden-xs"> Teams</span>
 						</a></li>
                         <li><a href="#contributions" data-toggle="tab">
-                            <span class="glyphicon glyphicon-tint"></span><span class="tab-text hidden-xs"> Contributions</span>
+                            <span class="glyphicon glyphicon-tint"></span><span class="tab-text hidden-xs"> Contributions <g:if test="${totalContributions.size() > 0 && screen == 'false'}">${totalContributions.size()}</g:if></span>
                         </a></li>
                         <li><a href="#comments" data-toggle="tab">
                             <span class="glyphicon glyphicon-comment"></span><span class="tab-text hidden-xs"> Comments</span>

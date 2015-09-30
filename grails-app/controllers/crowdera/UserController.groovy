@@ -3,6 +3,7 @@ package crowdera
 import grails.plugin.springsecurity.annotation.Secured
 import org.springframework.security.core.context.SecurityContextHolder;
 import grails.util.Environment
+import javax.servlet.http.Cookie
 
 class UserController {
     def userService
@@ -27,10 +28,17 @@ class UserController {
     
     @Secured(['ROLE_ADMIN'])
     def list() {
-        def verifiedUsers = userService.getVerifiedUserList()
-        def nonVerifiedUsers = userService.getNonVerifiedUserList()
-        render(view: 'admin/userList', model: [verifiedUsers:verifiedUsers,nonVerifiedUsers:nonVerifiedUsers])
-    }
+       def message = g.cookie(name: 'message')
+       flash.contributionEmailSendMessage = message
+       Cookie messageCookie = new Cookie("message", 'Email send to all contributors')
+       messageCookie.path = '/'
+       messageCookie.maxAge= 0
+       response.addCookie(messageCookie)
+
+       def verifiedUsers = userService.getVerifiedUserList()
+       def nonVerifiedUsers = userService.getNonVerifiedUserList()
+       render(view: 'admin/userList', model: [verifiedUsers:verifiedUsers,nonVerifiedUsers:nonVerifiedUsers])
+   }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def dashboard() {
@@ -247,11 +255,21 @@ class UserController {
         def object = projectService.getNumberOfEndedAndLiveCampaigns(projects)
         def selectedCategory = projectService.getNumberOfMostSelectedCategoryAndCount(projects)
         def avgNumberOFPerk = rewardService.getAverageNumberOfPerk(projects)
-        def verifiedUsers = userService.getVerifiedUserList()
+        def projectObj = projectService.getProjectList(params)
+        def userObj = userService.getUsersList(params)
         
         render view: '/user/metrics/index',
                model:[endedProjects: object.endedProjects , LiveProjects : object.LiveProjects, totalProjects : object.totalProjects,
                       mostSelectedCategory: selectedCategory.mostSelectedCategory, mostSelectedCategoryCount: selectedCategory.mostSelectedCategoryCount,
-                      avgNumberOFPerk: avgNumberOFPerk, verifiedUsers: verifiedUsers]
+                      avgNumberOFPerk: avgNumberOFPerk, verifiedUsers: userObj.users, totalUsers: userObj.totalUsers, sortedCampaigns: projectObj.projects, totalCampaigns: projectObj.totalCampaigns]
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def usersList() {
+        def userObj = userService.getUsersList(params)
+        def model = [totalUsers: userObj.totalUsers, verifiedUsers: userObj.users]
+        if (request.xhr) {
+            render(template: "/user/metrics/users", model: model)
+        }
     }
 }

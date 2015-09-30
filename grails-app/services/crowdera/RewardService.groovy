@@ -3,6 +3,8 @@ package crowdera
 import grails.transaction.Transactional
 
 class RewardService {
+    
+    def contributionService
 
     def getNoReward() {
         return Reward.findById(1)
@@ -334,6 +336,12 @@ class RewardService {
          int avgPerkCount = (projectCount > 0) ? (perkCount/projectCount) : 0
          return avgPerkCount
      }
+
+    def getMostSelectedPerkAmountForCampaign(Project project) {
+        List sortedRewards = project.rewards.sort {contributionService.getBackersForProjectByReward(project, it)}
+        def maxSelectedPerk = sortedRewards.last()
+        return (maxSelectedPerk) ? maxSelectedPerk.price.round() : 0
+    }
 
     @Transactional
     def bootstrap() {

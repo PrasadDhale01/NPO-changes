@@ -1,22 +1,30 @@
 package crowdera
 import grails.util.Environment
+import javax.servlet.http.Cookie
 
 class HomeController {
 	def projectService
     def userService
 
     def index() {
+        def contributorEmail = g.cookie(name: 'contributorEmailCookie')
         def currentEnv = Environment.current.getName()
         def fb = params.fb
+
+        if(contributorEmail){
+            Cookie cookie = projectService.deleteContributorEmailCookie(contributorEmail)
+            response.addCookie(cookie)
+        }
+
         if( currentEnv == 'development'|| currentEnv == 'test' ||currentEnv == 'testIndia'){
             def projects = projectService.showProjects(currentEnv)
-            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv]
+            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv, contributorEmail:contributorEmail]
         } else {
             def projects = projectService.projectOnHomePage()
-            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv]
+            return [projects: projects, fb: fb, isDuplicate:params.isDuplicate, email:params.email, currentEnv: currentEnv, contributorEmail:contributorEmail]
         }
     }
-    
+
     def crowderacustomerhelp() {
         def service = projectService.getCustomerRequest(params)
         def files = request.getFiles('files')

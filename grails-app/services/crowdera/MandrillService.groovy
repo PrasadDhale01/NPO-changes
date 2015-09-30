@@ -283,7 +283,8 @@ class MandrillService {
 
     def shareContribution(def emailList, String name, String message, Project project,Contribution contribution, User fundraiser) {
         def imageUrl = project.imageUrl
-		def projectImageUrl
+        def projectImageUrl
+        def beneficiaryName = (project.beneficiary.lastName) ? project.beneficiary.firstName + ' ' + project.beneficiary.lastName : project.beneficiary.firstName;
         if (imageUrl) {
             imageUrl = project.imageUrl[0].getUrl()
 			if(imageUrl.startsWith("https") || imageUrl.startsWith("http")) {
@@ -293,7 +294,7 @@ class MandrillService {
 			}
         }
         emailList.each { email ->
-            def link = grailsLinkGenerator.link(controller: 'fund', action: 'acknowledge', id: project.id,params:[ cb:contribution.id, fr:fundraiser.id], absolute: true)
+            def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:fundraiser.username], absolute: true)
             def globalMergeVars = [
                 [
                     'name': 'LINK',
@@ -801,12 +802,17 @@ class MandrillService {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'showCampaign', id: project.id, params:[fr:fundRaiserUserName], absolute: true)
         def currentEnv = Environment.current.getName()
         def currency
+        def naamFoundationCampaign
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
             currency = 'INR'
         } else {
             currency = 'USD'
         }
-        
+
+        if (project.id == '2c9f8f3b4feeeee0014fefed7fae0001'){
+            naamFoundationCampaign = 'yes'
+        }
+
         def globalMergeVars = [[
             'name': 'LINK',
             'content': link
@@ -828,7 +834,11 @@ class MandrillService {
         ], [
             'name': 'CURRENCY',
             'content': currency
-        ]]
+        ], [
+            'name' : 'NAAM_FOUNDATION_PROJECT',
+            'content' : naamFoundationCampaign
+        ]
+	]
 
         def tags = ['thankYouEmailToContributor']
 
@@ -892,7 +902,7 @@ class MandrillService {
             inviteToAdmin(email, 'Exception-email-to-dev', globalMergeVars, tags)
         }
     }
-    
+
     public def contributionEmailToCampaignOwnerOrTeam(def fundRaiser, def project, def contribution) {
         def username = fundRaiser.username
         def link
@@ -1077,5 +1087,41 @@ class MandrillService {
         
         sendTemplate(user,'payments-info-email', globalMergeVars, tags)
     }
-    
+	
+    def sendEmailToNonUserContributors(List nonUserContributors){
+        def beneficiaryName
+        def link = grailsLinkGenerator.link(controller: 'login', action: 'register', absolute: true)
+        nonUserContributors.each{
+            beneficiaryName = (it.project.beneficiary.lastName) ? it.project.beneficiary.firstName + ' ' + it.project.beneficiary.lastName : it.project.beneficiary.firstName;
+            def globalMergeVars = [
+            [
+                'name': 'CURRENCY',
+                'content': it.currency
+            ], [
+                'name': 'CONTRIBUTORNAME',
+                'content': it.contributorName
+            ], [
+                'name': 'AMOUNT',
+                'content':it.amount
+            ], [
+                'name': 'CAMPAIGNTITLE',
+                'content':it.project.title
+            ], [
+                'name':'BENEFICIARYNAME',
+                'content':beneficiaryName
+            ], [
+                'name':'DATE',
+                'content' :it.date
+            ], [
+                'name':'LINK',
+                'content':link
+            ]
+            ]
+
+            def tags = ['sendEmailToNonUserContributors']
+
+            sendThankYouTemplate(it,'sendEmailToNonUserContributors', globalMergeVars, tags)
+        }
+    }
+
 }

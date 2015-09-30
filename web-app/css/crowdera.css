@@ -1680,7 +1680,10 @@ div.tile-min-height{
     margin-bottom:25px
 }
 .nav-tabs.nav-justified > li > a {
-    font-size:13px;
+    font-size:11px;
+}
+div.domain-metrics .nav-tabs.nav-justified > li > a {
+  font-size: 12px;
 }
 .country-create-project .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
     width: 100% !important;
@@ -3298,7 +3301,8 @@ div.campaign-title-margin-bottom{
     width: 50%;
 }
 .contributionShare {
-	margin-top: -40px;
+    margin-top: -15px;
+    padding-bottom: 15px;
 }
 .table > thead > tr > td.info, .table > tbody > tr > td.info, .table > tfoot > tr > td.info, .table > thead > tr > th.info, .table > tbody > tr > th.info, .table > tfoot > tr > th.info, .table > thead > tr.info > td, .table > tbody > tr.info > td, .table > tfoot > tr.info > td, .table > thead > tr.info > th, .table > tbody > tr.info > th, .table > tfoot > tr.info > th {
     background-color: #006083 !important;
@@ -4182,13 +4186,13 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 	width:100%;
 }
 .TW-redactor .redactor-toolbar{
-	padding-left:31%;
+	padding-left:13%;
 }
 .TW-editUpdate-redactor .redactor-toolbar{
-	padding-left: 410px;
+	padding-left: 300px;
 }
 .TW-update-redactor .redactor-toolbar{
-	padding-left: 425px;
+	padding-left: 335px;
 }
 .TW-ack-commentBox{
 	background-color:#f5f5f5;
@@ -5291,14 +5295,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     margin-top: 30px;
 }
 .metricsTabTop .socialInnovationCategory {
-    font-size: 16px;
-    padding-top: 17px;
+    font-size: 17px;
+    padding-top: 32px;
     display: inline-block;
 }
 
 .metricsTabTop .otherCategory {
-    font-size: 31px;
-    padding-top: 12px;
+    font-size: 22px;
+    padding-top: 25px;
     display: inline-block;
 }
 .domain-metrics {
@@ -5314,7 +5318,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 .campaignsPagination {
-	margin-top: 30px;
+	margin-top: 12px;
 	margin-bottom: 15px;
 }
 .campaignsPagination a , .campaignsPagination .currentStep {
@@ -5856,9 +5860,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		display:block;
 		margin-left:auto;
 		margin-right:auto;
-	}
-	.contributionShare {
-		margin-top: -40px !important;
 	}
 	.fbButton.joinFOG{
 		display: block;
@@ -6437,16 +6438,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 88.3% !important;
 	}
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left: 190px !important;
+		padding-left: 100px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left: 210px !important;
+		padding-left: 120px !important;
 	}
     .list-category{
         width: 24%;
     }
     .nav-tabs.nav-justified > li > a {
-       font-size: 11px !important;
+       font-size: 10px !important;
     }
     .nav{
         font-size:11px;
@@ -6562,9 +6563,42 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		padding-left:0px !important;
 		width:81% !important;
 	}
+    input.customVanityUrl{
+        width:106%;
+    }
+
+    div.customUrlTextBoxDev{
+        left: -3%;
+    }
+    
+    input.customVanityUrlTest{
+        width:98%;
+    }
+
+    div.customUrlTextBoxTest{
+        left: 1%;
+    }
+    
+    input.customVanityStaging{
+        width:86%;
+    }
+
+    div.customUrlTextBoxStaging{
+        left: 7%;
+    }
+    
+    input.customVanityUrlProd{
+        width:113%;
+    }
+
+    div.customUrlTextBoxProd{
+        left: -6%;
+    }
+
     h1.india-font-slogan b{
         font-size: 15px !important;
     }
+
 	.tile-goal.teamtile {
 	   font-size: 14px !important;
 	}
@@ -6944,9 +6978,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.btn-text-alignment{
 		padding-left:0px !important;
 		padding-right:0px !important;
-	}
-	.contributionShare {
-		margin-top: -40px !important;
 	}
 	.fbButton{
 		margin-left: auto !important;
@@ -7560,7 +7591,52 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
-	
+
+	input.customVanityUrl{
+        width:100%;
+    }
+
+    div.customUrlLabel {
+        left: -9px;
+        padding-top:0;
+    }
+
+    div.customUrlTextBoxDev {
+        left: 0;
+    }
+    
+    div.customUrlTextBoxDev span.help-block, div.customUrlTextBoxTest span.help-block, div.customUrlTextBoxStaging span.help-block, div.customUrlTextBoxProd span.help-block{
+        margin-left: -8px;
+    }
+
+    input.customVanityUrlTest{
+        width:100%;
+    }
+
+    div.customUrlTextBoxTest{
+        left: 0;
+    }
+    
+    input.customVanityStaging{
+        width:100%;
+    }
+
+    div.customUrlTextBoxStaging{
+        left: 0;
+    }
+
+    input.customVanityUrlProd{
+        width:100%;
+    }
+
+    div.customUrlTextBoxProd{
+        left: 0;
+    }
+
+    .customUrlLabelStaging{
+        font-size: small;
+    }
+
     div.amount-popover .popover{
         width:700px;
         margin-left: 42%;
@@ -7865,10 +7941,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   z-index: 2000;
 	}
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left:195px !important;
+		padding-left:102px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left:225px !important;
+		padding-left:125px !important;
 	}
 	.mng-text-size{
 		font-size:14px;
@@ -7992,10 +8068,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   width: 85.2% !important;
 	}
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left:385px !important;
+		padding-left:304px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left:405px !important;
+		padding-left:330px !important;
 	}
 	header.cr-tabs-link {
 	    padding-left: 130px !important; 
@@ -8063,7 +8139,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		padding-left: 38% !important;
 	}
 	.nav-tabs.nav-justified > li > a {
-       font-size: 12px !important;
+       font-size: 11px !important;
     }
     span.font-usd {
 	    color: black;
@@ -8132,9 +8208,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		}
 		input.TW-city-margin{
 			margin-bottom:16px !important;
-		}
-		.shared.contributionShare {
-			margin-top: -61px !important;
 		}
 		.footer-newsletter .help-block {
     		color: #f04124;
@@ -10259,18 +10332,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 11px !important;
         text-decoration: none;
     }
-	.contributionShare {
-		margin-top: 0 !important;
-	}
 }
 
 @media only screen and (max-width: 360px){
 	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 		width: 81%;
 		margin-left: -28%;
-	}
-	.contributionShare {
-		margin-top: 0px !important;
 	}
 	.tips h2 {
 		padding-left: 68px !important;
@@ -11077,9 +11144,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		text-align: center;
 		top: -40px !important;
 	}
-	.contributionShare {
-		margin-top: 0px !important;
-	}
 	.shared.ack-socialicon span {
 		float: right;
 		margin: 5px 5px 5px 3px !important;
@@ -11669,4 +11733,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	font-size: 23px;
 	font-weight: 900;
 	line-height: 0px;
+}
+.metricsInfoMsg {
+    margin-top: 15px;
 }

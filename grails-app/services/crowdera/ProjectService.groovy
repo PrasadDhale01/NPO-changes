@@ -12,6 +12,7 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
 import grails.util.Environment
+import javax.servlet.http.Cookie
 
 class ProjectService {
     def userService
@@ -80,7 +81,7 @@ class ProjectService {
          project.user = user
          return project
     }
-    
+
     def getListOfValidatedProjects() {
         List projects = Project.findAllWhere(validated: true)
         return projects
@@ -149,13 +150,12 @@ class ProjectService {
         def mostSelectedCategoryCount = categories.max { it.value }.value
         return [mostSelectedCategory: mostSelectedCategory, mostSelectedCategoryCount: mostSelectedCategoryCount]
     }
-    
+
     def getProjectUpdateDetails(def params, def project){
 		def vanitytitle
-		def title = project.title
         User currentUser = userService.getCurrentUser()
         def fullName = currentUser.firstName + ' ' + currentUser.lastName
-        
+
         if (params.videoUrl) {
             if (params.videoUrl.contains('embed')){
                 project.videoUrl = params.videoUrl
@@ -163,7 +163,7 @@ class ProjectService {
                 getYoutubeUrlChanged(params.videoUrl, project)
             }
         }
-        
+
         project.story = params.story
         if (project.draft) {
             project.paypalEmail = params.paypalEmail
@@ -185,19 +185,25 @@ class ProjectService {
             def projectOwnerEmail = projectOwner.getEmail()
             mandrillService.sendUpdateEmailToAdmin(projectOwnerEmail, fullName, project)
         }
-        
-        def result = false
-        if (params.title != title) {
-            def vanityObject = VanityTitle.findAllWhere(project:project)
-            if (vanityObject){
-                vanityObject.each{
-                    if (params.title == it.vanityTitle){
-                        result = true
-                    }
-                }
-            }
-            if (!result){
-                vanitytitle = getProjectVanityTitle(project)
+
+        if (project.customVanityUrl && project.customVanityUrl != ''){
+            vanitytitle = getCustomVanityUrl(project);
+        } else {
+            vanitytitle = vanityTitleOriginal(project)
+            vanitytitle = (vanitytitle) ? vanitytitle : getProjectVanityTitle(project)
+        }
+        project.save();
+        return vanitytitle
+    }
+
+    def vanityTitleOriginal (Project project){
+        String vanitytitle
+        def title = project.title.trim().replaceAll("[^a-zA-Z0-9]", "-")
+        def vanityTitleList = VanityTitle.findAllWhere(title:title)
+        if (vanityTitleList){
+            vanityTitleList.each{
+                if (it.project == project)
+                    vanitytitle = it.vanityTitle
             }
         }
         return vanitytitle
@@ -380,13 +386,20 @@ class ProjectService {
 		 String emails = params.emails
 		 String name = params.name
 		 String message = params.message
-		 
+
 		 def emailList = emails.split(',')
 		 emailList = emailList.collect { it.trim() }
-		 
+
 		 mandrillService.shareContribution(emailList, name, message,project,contribution,fundraiser)
 	 }
-	 
+
+	def getTwitterShareUrlForCampaign(Project project, def fundraiser, def base_url){
+		def vanityTitle = getVanityTitleFromId(project.id)
+		def vanityUserName = userService.getVanityNameFromUsername(fundraiser.username, project.id)
+		def url = base_url+'/campaigns/'+vanityTitle+'/'+vanityUserName
+		return url
+	}
+
     def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
         def emailId, twitter,custom, userId,anonymous 
         def currency 
@@ -452,7 +465,6 @@ class ProjectService {
         if (project.payuStatus && project.contributions.size() == 1) {
             mandrillService.sendEmailToCampaignOwner(project, contribution) //Send Email to Campaign Owner when first contribution is done for INR
         }
-        mandrillService.sendThankYouMailToContributors(contribution, project,amount,fundraiser)
 		 
         userService.contributionEmailToOwnerOrTeam(fundraiser, project, contribution)
         
@@ -1320,9 +1332,14 @@ class ProjectService {
         }
         return subFinalList
     }
-	
+
 	def projectOnHomePage() {
-		def projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f84884ce82e04014cecf509020000', '2c9f84884dd5a114014dead63c090003')
+		def currentEnv = Environment.current.getName()
+		def projects
+		if (currentEnv == 'staging' || currentEnv == 'production')
+		   projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f84884e76f7ff014e83e539d50001', '2c9f84884fc22f8b014fe7788be40003')
+		else
+		   projects = Project.getAll('2c9f84884d094bf3014dbc5347da000d', '2c9f84884e76f7ff014e83e539d50001', '2c9f8f3b4feeeee0014fefed7fae0001')
 	    return projects
 	}
 
@@ -1687,12 +1704,13 @@ class ProjectService {
     def getUpdatedImageUrls(def imageUrls, ProjectUpdate projectUpdate){
         def imageUrlList = imageUrls.split(',')
         imageUrlList = imageUrlList.collect { it.trim() }
- 
         imageUrlList.each {
-            def imageUrl = new ImageUrl()
-            imageUrl.url = it
-            imageUrl.save()
-            projectUpdate.addToImageUrls(imageUrl)
+            if (!it.isAllWhitespace()){
+                def imageUrl = new ImageUrl()
+                imageUrl.url = it
+                imageUrl.save()
+                projectUpdate.addToImageUrls(imageUrl)
+            }
         }
     }
     
@@ -2134,8 +2152,19 @@ class ProjectService {
         return [teamList: teamList, maxrange: maxrange, teams: teams]
     }
     
+    def getValidatedTeamForCampaign(Project project) {
+        List teams = []
+        teams = Team.findAllWhere(project: project , validated: true)
+        return teams
+    }
+    
     def getDiscardedTeams(project) {
         def teams = Team.findAllWhere(project: project,validated: true, enable: false)
+        return teams
+    }
+    
+    def getEnabledTeam(project) {
+        def teams = Team.findAllWhere(project: project,validated: true, enable: true)
         return teams
     }
     
@@ -2348,6 +2377,7 @@ class ProjectService {
             emailList = emailList.collect { it.trim() }
             mandrillService.shareProject(emailList, name, message, project, fundRaiser)
         }
+        project.gmailShareCount = project.gmailShareCount + 1
     }
 
     def getShippingDetails(def contibutions){
@@ -2501,13 +2531,36 @@ class ProjectService {
 
         return vanitytitle
     }
+	
+    def getCustomVanityUrl(Project project){
+        def projectCustomVanity = project.customVanityUrl.trim()
+        def title = projectCustomVanity.replaceAll("[^a-zA-Z0-9]", "-")
+        def result = VanityTitle.findByVanityTitle(title)
+
+        if (!result){
+            new VanityTitle(
+               project:project,
+               projectTitle:title,
+               vanityTitle:title,
+               title:title
+            ).save(failOnError: true)
+        }
+
+        return title
+    }
 
     def getVanityTitleFromId(def projectId){
         def vanity_title
         def project = Project.get(projectId)
+		def title
         if(project){
             def status = false
-            def title = project.title.trim()
+            if (project.customVanityUrl){
+                VanityTitle vanitytitle = VanityTitle.findByVanityTitle(project.customVanityUrl.trim())
+                title = (vanitytitle) ? project.customVanityUrl.trim() : project.title.trim()
+            } else {
+                title = project.title.trim()
+            }
             vanity_title= title.replaceAll("[^a-zA-Z0-9]", "-")
             def vanity = VanityTitle.findAllWhere(project:project)
             vanity.each{
@@ -2517,7 +2570,7 @@ class ProjectService {
                 }
             }
             if (!status)
-                getProjectVanityTitle(project)
+                vanity_title = getProjectVanityTitle(project)
         }
         return vanity_title
     }
@@ -2539,6 +2592,29 @@ class ProjectService {
 
         def project = Project.get(projectId)
         return project
+    }
+    
+    def getCampaignShareUrl(Project project) {
+        def base_url = grailsApplication.config.crowdera.BASE_URL
+        List vanityTitles = VanityTitle.findAllWhere(project:project)
+        def url
+        def vanityTitle
+        if (vanityTitles.isEmpty()) {
+            vanityTitle = getVanityTitleFromId(project.id)
+        } else {
+            def vanity = vanityTitles.last() 
+            vanityTitle = vanity.vanityTitle
+        }
+        def vanityUserName
+        List vanityUserNames = VanityUsername.findAllWhere(user : project.user)
+        if (vanityUserNames.isEmpty()) {
+            vanityUserName = userService.getProjectVanityUsername(project.user)
+        } else {
+            def vanity = vanityUserNames.last()
+            vanityUserName = vanity.vanityUsername
+        }
+        url = base_url+'/campaigns/'+ vanityTitle +'/'+ vanityUserName
+        return url
     }
 	
     def getYoutubeUrlChanged(String video, Project project){
@@ -2824,20 +2900,25 @@ class ProjectService {
 				project.amount = Double.parseDouble(varValue);
 				isValueChanged = true;
 				break;
-				
+	
 			case 'campaignTitle':
 				project.title = varValue;
 				isValueChanged = true;
 				break;
-				
+
 			case 'descarea':
 				project.description = varValue;
 				isValueChanged = true;
 				break;
 
+			case 'customVanityUrl':
+			    project.customVanityUrl = (varValue == '') ? null : varValue;
+				isValueChanged = true;
+				break;
+
             default :
                isValueChanged = false;
-               
+ 
         }
 
         if (isValueChanged){
@@ -2963,14 +3044,77 @@ class ProjectService {
         cookie.maxAge= 0
         return cookie
     }
-    
+	
+	def setRequestUrlCookie(def requestUrl){
+		Cookie cookie = new Cookie("requestUrl", requestUrl)
+		cookie.path = '/'
+		cookie.maxAge= 3600
+		return cookie
+	}
+
     def setLoginSignUpCookie() {
         Cookie cookie = new Cookie("loginSignUpCookie", 'createCampaignloginSignUpActive')
         cookie.path = '/'
         cookie.maxAge= 3600
         return cookie
     }
-    
+
+	def setCampaignNameCookie(def title){
+		Cookie cookie = new Cookie("campaignNameCookie", title)
+		cookie.path = '/'
+		cookie.maxAge= 3600
+		return cookie
+	}
+
+	def setFundingAmountCookie(def amount){
+		Cookie cookie = new Cookie("fundingAmountCookie", amount.round().toString())
+		cookie.path = '/'
+		cookie.maxAge= 3600
+		return cookie
+	}
+
+    def setContributorName(def contributorName){
+        Cookie cookie = new Cookie("contributorNameCookie", contributorName)
+        cookie.path = '/'
+        cookie.maxAge= 3600
+        return cookie
+    }
+	
+	def setContributorEmailCookie(def contributorEmail){
+		Cookie cookie = new Cookie("contributorEmailCookie", contributorEmail)
+		cookie.path = '/'
+		cookie.maxAge= 3600
+		return cookie
+	}
+	
+	def deleteContributorEmailCookie(def contributorEmail){
+		Cookie cookie = new Cookie("contributorEmailCookie", contributorEmail)
+		cookie.path = '/'
+		cookie.maxAge= 0
+		return cookie
+	}
+
+	def deleteContributorName(def contributorName){
+        Cookie cookie = new Cookie("contributorNameCookie", contributorName)
+        cookie.path = '/'
+        cookie.maxAge= 0
+        return cookie
+    }
+
+	def deleteCampaignNameCookie(def campaignNameCookieValue){
+		Cookie cookie = new Cookie("campaignNameCookie", campaignNameCookieValue)
+		cookie.path = '/'
+		cookie.maxAge= 0
+		return cookie
+	}
+
+	def deleteFundingAmountCookie(def fundingAmountCookieValue){
+		Cookie cookie = new Cookie("fundingAmountCookie", fundingAmountCookieValue)
+		cookie.path = '/'
+		cookie.maxAge= 0
+		return cookie
+	}
+
     def deleteLoginSignUpCookie() {
         Cookie cookie = new Cookie("loginSignUpCookie", 'createCampaignloginSignUpActive')
         cookie.path = '/'
@@ -2978,6 +3122,137 @@ class ProjectService {
         return cookie
     }
     
+    def getProjectList(def params) {
+        List totalCampaigns = []
+        List projects = []
+        def max = Math.min(params.int('max') ?: 12, 100)
+        def offset = params.int('offset') ?: 0
+        totalCampaigns = Project.findAllWhere(validated: true)
+        totalCampaigns = totalCampaigns?.sort{it.title}
+        
+        def count = totalCampaigns.size()
+        def maxrange
+        
+        if(offset+max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        
+        projects = totalCampaigns.subList(offset, maxrange)
+        return [totalCampaigns: totalCampaigns, projects: projects]
+    }
+    
+    def getCampaignBySearchQuery(def params) {
+        List totalCampaigns = []
+        List projects = []
+        List result = []
+        def query = params.searchValue
+        def max = Math.min(params.int('max') ?: 12, 100)
+        def offset = params.int('offset') ?: 0
+        totalCampaigns = Project.findAllWhere(validated: true)
+        totalCampaigns.each {
+            if( it.title.toLowerCase().contains(query.toLowerCase()) ){
+                result.add(it)
+            }
+        }
+        
+        result = result?.sort{it.title}
+        def count = result.size()
+        def maxrange
+        if (count > 0 && params.searchValue) {
+            if(offset+max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            projects = result.subList(offset, maxrange)
+            return [totalCampaigns: result, projects: projects]
+        } else {
+            count = totalCampaigns.size()
+            totalCampaigns = totalCampaigns?.sort{it.title}
+            if(offset+max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            projects = totalCampaigns.subList(offset, maxrange)
+            def message = 'No campaign found'
+            return [totalCampaigns: totalCampaigns, projects: projects, message: message]
+        }
+        
+    }
+    
+    def getCampaignSupporterCount(Project project) {
+        return project.supporters.size()
+    }
+    
+    def ContributorNameCookie(contributorEmail){
+		Cookie cookie = new Cookie("contributorEmail", contributorEmail)
+		cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
+		cookie.maxAge= 3600  //Cookie expire time in seconds
+	}
+
+    def isCustomUrUnique(def vanityUrl, def projectId){
+        List title = VanityTitle.list()
+        Project project = Project.get(projectId)
+        def status = true
+        title.each {
+            if (it.vanityTitle.equalsIgnoreCase(vanityUrl)){
+                if (it.project != project)
+                    status = false
+            }
+        }
+        return status
+    }
+    
+    def generateCSVReportForCampaign(def params, def response, Project project, def ytViewCount, def linkedinCount, def twitterCount, def facebookCount){
+
+        def numberOfContributions = project.contributions.size()
+        def percentageContribution = contributionService.getPercentageContributionForProject(project)
+        def numberOFPerks = (project.rewards.size() > 1) ? project.rewards.size() : 0
+        def maxSelectedPerkAmount = rewardService.getMostSelectedPerkAmountForCampaign(project)
+        def teams = getEnabledTeam(project)
+        def numberOfTeams = getValidatedTeamForCampaign(project)
+        def disabledTeams = getDiscardedTeams(project)
+        def highestContribution = contributionService.getHighestContributionDay(project)
+        def campaignSupporterCount = getCampaignSupporterCount(project)
+        def usedFor = (project.usedFor) ? project.usedFor : 'IMPACT'
+        
+        List results = []
+        
+        def rows = [project.title.replaceAll("[,;]",' '), project.amount.round(), usedFor, numberOfContributions, percentageContribution, numberOFPerks, maxSelectedPerkAmount , project.comments.size() , project.projectUpdates.size(), numberOfTeams.size(), disabledTeams.size(), ytViewCount, highestContribution.highestContributionDay, highestContribution.highestContributionHour,facebookCount, twitterCount ,linkedinCount, project.gmailShareCount, campaignSupporterCount]
+        results << rows
+        def result
+        response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll("[,;\\s]",'_')+".csv")
+        result = 'CAMPAIGN, CAMPAIGN GOAL, RAISED FUND FOR, TOTAL NUMBER OF CONTRIBUTIONS , PERCENTAGE GOAL RAISED, NUMBER OF PERKS OFFERED, MOST SELECTED PERK AMOUNT, Total NUMBER OF COMMENTS, TOTAL NUMBER OF UPDATES, TOTAL NUMBER OF ENABLED TEAMS, TOTAL NUMBER OF DISABLED TEAMS, NUMBER OF VIDEO VIEWERS, HIGHEST CONTRIBUTION DAY, HIGHEST CONTRIBUTION HOUR, FACEBOOK SHARE COUNT, TWITTER SHARE COUNT, LINKEDIN SHARE COUNT, EMAIL SHARE COUNT, TOTAL NUMBER OF SUPPORTERS, \n'
+        results.each{ row->
+            row.each{
+                col -> result+=col +','
+            }
+            result = result[0..-2]
+            result+="\n"
+        }
+        return result
+    }
+
+    def sendEmailTONonUserContributors() {
+        def contributionList = Contribution.list()
+        List nonUserContributors = []
+        List contributorsEmail = []
+        def user
+        contributionList.each {
+           if (!contributorsEmail.contains(it.contributorEmail)) {
+               user = User.findByEmail(it.contributorEmail)
+               if (!user){
+                   contributorsEmail.add(it.contributorEmail)
+                   nonUserContributors.add(it)
+               }
+           }
+       }
+       mandrillService.sendEmailToNonUserContributors(nonUserContributors)
+    }
+
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

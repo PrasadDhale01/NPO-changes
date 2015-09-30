@@ -104,6 +104,7 @@
                                     <dd class="so-off-con">Offline Contribution</dd>
                                 </g:if>
                             </div>
+                            <g:if test="${!ended}">
                             <div class="col-sm-6 cols">
                                 <g:if test="${contribution.fundRaiser.equals(fundRaiser) && team.user == user && !isCrUserCampBenOrAdmin}">
                                     <div class="edits">
@@ -118,10 +119,11 @@
                                     </div>
                                 </g:if>
                             </div>
+                            </g:if>
                         </div>
                     </div>
                     <div class="clear"></div>
-                    
+
                     <div class="modal fade offlineContributionModal contributionedit" id="contributionedit${contribution.id}" tabindex="-1" role="dialog" aria-labelledby="contributionedit${contribution.id}" aria-hidden="true">
                         <g:form action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser, 'offset':offset]">
                             <div class="modal-dialog">

@@ -41,7 +41,7 @@ $(function() {
              confirmPassword: {
             	 required: true,
                  isEqualToPassword: true
-              }
+             }
 	    },
 	    messages: {
 	    	 name: {
@@ -182,7 +182,7 @@ $( document ).ready(function() {
 		    window.location.href =$("#b_url").val()+"/user/logout";
 	    }
 	}
-	
+
 	var googlePlus = $('#googlPlusUser-login').val();
     var email = $('#userEmail').val();
 	if (googlePlus) {
@@ -192,7 +192,12 @@ $( document ).ready(function() {
 		    window.location.href =$("#b_url").val()+"/user/logout";
 	    }
 	}
-	
+
+	var contributorEmail = $('#contributorEmail').val();
+	if(contributorEmail){
+		alert('Receipt has been sent over email to '+contributorEmail);
+	}
+
 	var currentEnv=$('#currentEnv').val();
 	$.ajax( { 
 		url: 'https://freegeoip.net/json/', 

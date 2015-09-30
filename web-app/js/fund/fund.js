@@ -8,7 +8,7 @@ $(function() {
     function getSelectedRewardPrice() {
         return $('.list-group-item.active').data('rewardprice');
     }
-    
+
     $('#commentBox').find('form').validate({
         rules: {
         	comment: {
@@ -16,7 +16,7 @@ $(function() {
         	}
         }
     });
-    
+
     $('.sendmailmodal').find('form').validate({
         rules: {
         	name: {
@@ -252,18 +252,21 @@ $(function() {
     }
     });
 
+    var beneficiaryName = $('#beneficiaryName').val();
     $("#fbshare").click(function(){
-        var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl').val());
-        window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+        var url = "http://www.facebook.com/sharer.php?p[url]="+ encodeURIComponent($('#fbShareUrl').val());
+        window.open(url, "Share on FaceBook", 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
-    
+
     $("#twitterShare").click(function(){
-        var url = 'https://twitter.com/share?text=Check contribution at crowdera.co!';
-        window.open(url, 'Share on Twitter', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+    	var campaignTitle = $('#campaignTitle').val();
+    	var twitterShareUrl = $('#twitterShareUrl').val();
+        var url = "https://twitter.com/intent/tweet?text="+campaignTitle+" on @gocrowdera&url="+twitterShareUrl;
+        window.open(url, "Share on Twitter", 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
-    
+
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {
             $(this).popover('show');
@@ -293,7 +296,7 @@ $(function() {
             .blur(hidePopover)
             .hover(showPopover, hidePopover);
         });
-        
+
         $("#anonymousUser").popover({
             content: 'If checked, your name will only be visible to campiagn owner, for public you will be anonymous contributor.',
             trigger: 'manual',

@@ -5,7 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
 <meta name="layout" content="main" />
-<meta name="title" content="Crowdera- The Free Global Crowdfunding & Fundraising Website" />
 <meta name="description" content="Crowdera is a FREE crowdfunding platform that helps individuals, non-profits & independent filmmakers to raise money online. Create your fundraiser." />
 <meta name="keywords" content="Crowdera, crowdfunding, contribute online, raise funds free, film crowdfunding, raise money online, fundraising site, fundraising website, fundraising project, online fundraising, raise money for a cause, global crowdfunding" />
 
@@ -21,7 +20,12 @@
 <meta name="twitter:domain" content="${base_url}" />
 <meta name="twitter:title" content="Crowdera- The Free Global Crowdfunding & Fundraising Website" />
 <meta name="twitter:description" content="Crowdera is a free global crowdfunding platform for you to make an impact, innovate for social good, follow your passion or fulfil personal needs." />
-
+<g:if test="${currentEnv == 'production'}">
+    <meta name="google-site-verification" content="JHphWifUPH5pLuIpLDBo0qa_czJdqETbDP2x40wJBUM" />
+</g:if>
+<g:elseif test="${currentEnv == 'prodIndia'}">
+    <meta name="google-site-verification" content="TXxVJF5ILRgRnuB5n2ZSRTCWI1v1hQVu1Jb9kZQeLyI" />
+</g:elseif>
 <r:require modules="homejs"/>
 
 <style type="text/css" media="screen">
@@ -34,7 +38,8 @@
 	<g:hiddenField id="googlPlusUser-login" name="googlPlusUser-login" value="${isDuplicate}"/>
 	<g:hiddenField id="userEmail" name='userEmail' value="${email}"/>
 	<g:hiddenField name='currentEnv' value='${currentEnv}' id='currentEnv'/>
-	
+	<g:hiddenField name="contributorEmail" value="${contributorEmail}" id="contributorEmail"/>
+
     <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
     	<g:render template="jumbotron"></g:render>
     </div>

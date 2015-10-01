@@ -15,6 +15,8 @@
         	<div class="row" >
         		<g:render template="list/discoverbanner"></g:render>
         	</div>
+        </div>
+        <div class="container discover-inner-container">
             <g:hiddenField name='currentEnv' value='${currentEnv}' id='currentEnv'/>
             <div class="text-center TW-discover-title">
             	<h1><span class="TW-discover-title"><img src="//s3.amazonaws.com/crowdera/assets/discover-arrow.png" alt="Discover title">&nbsp;&nbsp;Explore Campaigns Raising Money for</span></h1>
@@ -25,7 +27,7 @@
                         <g:select class="selectpicker" name="category" from="${categoryOptions}" id="category" optionKey="value" optionValue="value" value="${params.category}" onchange="selectedCategory()"/>
                     </g:form>
                 </div>
-                <div class="btn-group col-sm-8 col-lg-8 TW-dis-tab-padding TW-discover-tab-width">
+                <div class="btn-group col-sm-8 col-lg-8 TW-dis-tab-padding">
 <%--                	<g:each in="${getDiscoverTopCategory}" var="categories">--%>
 <%--	           			<g:link controller="project" action="category" params='[category:"${categories.value}"]' class="btn btn-default TW-discover-tab-decoration text-center col-sm-3 col-xs-12 TW-padding-align"><span class="cr-pay-rd TW-cr-pay-rd">Following my</span><span class="cr-reci-siz TW-cr-reci-siz">${categories.value}</g:link>--%>
 <%--		    		</g:each>--%>
@@ -39,7 +41,7 @@
             </div>
             <br>
             <div class="row TW-Container-alignment">
-            	<div class="col-lg-2 col-xs-12  col-sm-2 TW-discover-leftpane-menu">
+            	<div class="col-lg-2 col-xs-12  col-sm-2 hidden-xs TW-discover-leftpane-menu">
 					<g:each in="${discoverLeftCategoryOptions}" var="categories">
 						<ul>
 							<li><g:link controller="project" action="category" params='[category:"${categories.value}"]' >${categories.value}</g:link></li>

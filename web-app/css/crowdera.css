@@ -5341,6 +5341,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.discover-inner-container {
+	    width: 310px !important;
+	}
+	.TW-discover-testimonial-width {
+		width: 293px !important;
+	}
+	.TW-discover-title {
+		color: #006083;
+		font-size: 16px !important;
+		font-weight: 600 !important;
+		margin-bottom: 20px;
+		margin-top: 20px;
+		margin-left:auto;
+		margin-right:auto;
+		width: 280px;
+	}
 	.TW-discover-bannerheadbtmMargin b {
 	   color: #fff;
 	   font-family: "Open Sans";
@@ -5372,10 +5388,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   display: block;
 	   margin-left: auto !important;
 	   margin-right: auto;
-	   width: 287px !important;
+	   width: 306px !important;
 	}
 	.categoryList .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		width: 100% !important;
+		width: 310px !important;
 	}
 	.TW-discover-tab-width {
 		display: block;
@@ -5391,10 +5407,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 100% !important;
 	}
 	.TW-discover-campaign-centering{
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width:300px !important;
+		padding-left:0px !important;
 	}
 	.TW-Container-alignment{
 		display:unset !important;
@@ -6479,6 +6492,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.discover-inner-container {
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+		width: 100% !important;
+	}
 	.TW-discover-bannerheadbtmMargin b {
 	  color: #fff;
 	  font-family: "Open Sans";
@@ -6513,7 +6531,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    font-size: 14px !important;
 	    font-weight: 900;
 	}
-	label.TW-padding-align{
+	.TW-padding-align{
 		padding-left:0px;
 		padding-right:0px;
 	}
@@ -6541,7 +6559,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   font-weight: 400;
 	}
 	.TW-discover-select-width {
-		width: 12% !important;
+		width: 16% !important;
 	}
 	.discover-container{
 		width:100% !important;
@@ -8015,6 +8033,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	.discover-inner-container {
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+		width: 100% !important;
+	}
+	.TW-discover-select-width{
+		width:16% !important;
+	}
 	span.TW-cr-pay-rd {
 	    font-size: 9px !important;
 	}
@@ -8022,7 +8048,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    font-size: 14px !important;
 	    font-weight: 900;
 	}
-	label.TW-padding-align{
+	.TW-padding-align{
 		padding-left:0px;
 		padding-right:0px;
 	}
@@ -10494,6 +10520,19 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.discover-inner-container {
+	    width: 310px !important;
+	}
+	.TW-discover-title {
+		color: #006083;
+		font-size: 16px !important;
+		font-weight: 600 !important;
+		margin-bottom: 20px;
+		margin-top: 20px;
+		margin-left:auto;
+		margin-right:auto;
+		width: 280px;
+	}
 	.TW-discover-bannerheadbtmMargin b {
 	  color: #fff;
 	  font-family: "Open Sans";
@@ -10501,10 +10540,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	  font-weight: 900;
 	  line-height: 0px;
 	}
+	.TW-discover-testimonial-width {
+		width: 293px !important;
+	}
 	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
 		margin-left:auto;
 		margin-right:auto;
-		width:323px !important;
+		width:309px !important;
 	}	
 	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
 		margin-left:auto;
@@ -10525,16 +10567,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   display: block;
 	   margin-left: auto !important;
 	   margin-right: auto;
-	   width: 287px !important;
+	   width: 306px !important;
 	}
 	.categoryList .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
-		width: 287px !important;
+		width: 310px !important;
 	}
-	.TW-discover-tab-width {
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width: 290px !important;
+	.TW-discover-campaign-centering {
+	   padding-left: 7px !important;
 	}
 	.TW-discover-tab-decoration {
 		background-color: #f6f8f8 !important;
@@ -10542,12 +10581,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		color: #006083;
 		height: 60px;
 		width: 100% !important;
-	}
-	.TW-discover-campaign-centering{
-		display: block;
-		margin-left: auto;
-		margin-right: auto;
-		width:300px !important;
 	}
 	.TW-Container-alignment{
 		display:unset !important;
@@ -11626,6 +11659,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .discover-container{
 	width:100%;
 }
+.discover-inner-container {
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+	width: 100%;
+}
 .TW-dis-tab-padding{
 	padding-left:0px;
 	padding-right:0px;
@@ -11634,7 +11672,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 1000px;
+    width:1000px;
 }
 .TW-discover-title{
 	color:#006083;
@@ -11642,11 +11680,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	font-weight:900;
 	margin-bottom:20px;
 	margin-top:20px;
-}
-.TW-Container-alignment{
-	display:inline-flex;
-	display:-webkit-box;
-	float:left;
 }
 .TW-discover-leftpane-menu ul{
 	margin-top: -9px;
@@ -11685,12 +11718,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	width: 1024px;
 }
 .TW-discover-select-width{
-	width:12%;
+	width:16.5%;
 }
 .TW-discover-banner-decoration{
 	background-color: #01bbd2;
     color: #fff;
-    min-height: 110px;
+    min-height: 121px;
     text-align: center;
 }
 .TW-discover-testimonial-width {
@@ -11719,8 +11752,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .TW-discover-testimonial-container div.TW-discover-header-testimonial{
 	margin-left:auto;
 	margin-right:auto;
-	width:903px;
-
 }
 .TW-discover-testimonial-container span.TW-dicover-testimonial-name{
 	margin-left:auto;

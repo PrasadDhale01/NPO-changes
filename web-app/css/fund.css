@@ -1,0 +1,77 @@
+button.btnChargeContinue {
+    width: 311px;
+}
+
+button.btnChargeContinue-md{
+    width: 354px;
+}
+
+.projectTileCenter .fedu.thumbnail.grow.tile-pad{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ostate{
+	display:none;
+}
+
+.powerdbyPaypal img {
+    max-width: 291px !important;
+}
+
+.fund-header{
+    top:63px;
+    background: transparent;
+    position: fixed;
+    right: 0;
+    left: 0;
+    z-index: 1030;
+}
+
+.campaignTile .thumbnail{
+	padding:0;
+}
+
+#shippingInfoLoading{
+	display:none;
+}
+
+.days-left-caption{
+    position: absolute;
+	width: 100px;
+	height:27px;
+	padding:4px;
+	text-align: center;
+	top: 0px;
+	right: 0px;
+	cursor: pointer;
+	background-color: black;
+	border: none;
+	opacity: 0.7;
+	filter: alpha(opacity = 60);
+	color:#ffffff;
+	font-family:Open Sans;
+	font-weight:bolder;
+    font-size:15px;
+}
+
+.amount-caption{
+	background: black;
+	height:27px;
+	padding:4px;
+	text-align:center;
+	color:#ffffff;
+	font-family:Open Sans;
+	position:absolute;
+	bottom:0;
+	overflow:hidden;
+	opacity: 0.7;
+    filter: alpha(opacity=60);
+    width:100%;
+    font-weight:bolder;
+    font-size:15px;
+}
+
+.ostate{
+	display: none;
+}

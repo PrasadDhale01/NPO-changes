@@ -29,6 +29,15 @@ $(function() {
         }
     });
     
+    $('.states').change(function(event) {
+    	var option = $(this).val();
+    	if(option == 'other'){
+    		$(".ostate").show();
+    	} else {
+    		$(".ostate").hide();
+    	}
+    });
+
     $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value, element) {
         var result = value.split(",");
         for(var i = 0;i < result.length;i++) 
@@ -78,9 +87,55 @@ $(function() {
                     	}
                     }
                 }
+            },
+            receiptName: {
+            	required: true,
+            	isFullName: true
+            },
+            receiptEmail: {
+            	required: true,
+            	email: true
+            },
+            agreetoTermsandUse: {
+                required: true
+            },
+            addressLine1: {
+            	required: true
+            },
+            city: {
+            	required: true
+            },
+            zip: {
+            	required: true
+            },
+            shippingEmail: {
+            	required: true,
+            	email: true
+            },
+            twitterHandle: {
+            	required: true
+            },
+            shippingCustom: {
+            	required: true
             }
         }
     });
+
+    $.validator.addMethod('isFullName', function(value, element){
+        if(value && value.length !=0){
+            var fullname =$('#receiptName').val();
+            var space= fullname.split(" ");
+            if(space.length < 2){
+                return false;
+            }else if(space[1]==''){
+                return false;
+            }else{
+                var p=/^[A-Za-z]+([\sA-Za-z]+)*$/
+                return (value.match(p));
+            }
+        }
+        return true;
+    }, "Please enter a valid fullname");
 
     $(document).ready(function (){
         //called when key is pressed in textbox
@@ -94,19 +149,35 @@ $(function() {
      });
    });
 
-
     $('a.list-group-item').click(function() {
-        $('.choose-error').html('');
-
-        $(this).siblings().removeClass('active');
+    	$('.choose-error').html('');
+        $('.list-group.twitterHandler').find('a.list-group-item').removeClass('active');
         $(this).addClass('active');
+        var rewardId = $('a.list-group-item.active').attr('id');
+        showShippingDetails(rewardId);
     });
+
+    function showShippingDetails(rewardId){
+    	var anonymous = $('#anonymous').val();
+    	var grid = $('#perkShippingInfo, #perkShippingInfo-sm');
+    	$.ajax({
+			type:'post',
+			url:$('#url').val()+'/fund/getRewardShippingDetails',
+			data:'rewardId='+rewardId+'&anonymous='+anonymous,
+			success: function(data){
+				$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+			}
+		}).error(function(data){
+    			console.log('Error occured while fetching shipping info'+ data);
+    	});
+    }
 
     $('#anonymousUser').click(function(){
     	var projectId = $('#projectId').val();
     	var selectedRewardId = getSelectedRewardId();
     	if($(this).prop("checked") == true){
     		$('#anonymous').val(true);
+            $('#twitterPerk').hide();
     		$.ajax({
     			type:'post',
     			url:$('#url').val()+'/fund/getOnlyTwitterHandlerRewards',
@@ -145,9 +216,12 @@ $(function() {
     				$('a.list-group-item').click(function() {
     	    	        $('.choose-error').html('');
 
-    	    	        $(this).siblings().removeClass('active');
+    	    	        $('.list-group.twitterHandler').find('a.list-group-item').removeClass('active');
     	    	        $(this).addClass('active');
     	    	        $('#perkForAnonymousUser').hide();
+    	    	        
+                        var rewardId = $('a.list-group-item.active').attr('id');
+                        showShippingDetails(rewardId);
     	    	    });
 
     				$('.onlyTwitterReward').each(function(){    
@@ -185,9 +259,10 @@ $(function() {
     				$('a.list-group-item').click(function() {
     	    	        $('.choose-error').html('');
 
-    	    	        $(this).siblings().removeClass('active');
+    	    	        $('.list-group.twitterHandler').find('a.list-group-item').removeClass('active');
     	    	        $(this).addClass('active');
     	    	        $('#perkForAnonymousUser').hide();
+    	    	        showShippingDetails(rewardId);
     	    	    });
 
     				$('#'+selectedRewardId).addClass('active');
@@ -209,6 +284,7 @@ $(function() {
 
         } else if ($(this).prop("checked") == false){
             $('#anonymous').val(false);
+            $('#twitterPerk').show();
             $('#perkForAnonymousUser').hide();
             $('.twitterHandler').find('.onlyTwitterReward').each(function(){
                 var price = $(this).attr('data-rewardprice');
@@ -245,9 +321,12 @@ $(function() {
         $('a.list-group-item').click(function() {
             $('.choose-error').html('');
 
-            $(this).siblings().removeClass('active');
+            $('.list-group.twitterHandler').find('a.list-group-item').removeClass('active');
             $(this).addClass('active');
             $('#perkForAnonymousUser').hide();
+            
+            var rewardId = $('a.list-group-item.active').attr('id');
+            showShippingDetails(rewardId);
         });
     }
     });
@@ -274,6 +353,16 @@ $(function() {
         hidePopover = function () {
             $(this).popover('hide');
         };
+        
+        $('.customField').each(function(){
+        	$(this).popover({
+        	    trigger: 'manual',
+        	    placement: 'bottom'
+        	})
+        	.focus(showPopover)
+        	.blur(hidePopover)
+        	.hover(showPopover, hidePopover);
+        });
 
         $('.onlyTwitterReward').each(function(){    
             $(this).popover({
@@ -313,5 +402,55 @@ $(function() {
             if($('.chargeForms').valid()) {
                 $('#btnChargeContinue').attr('disabled','disabled');
             }
+        });
+       
+        $("form").on("blur", ".addr1", function () {
+        	var address1 = $(this).val();
+        	$('#addr1').val(address1);
+        });
+        
+        $("form").on("blur", ".addr2", function () {
+        	var address2 = $(this).val();
+        	$('#addr2').val(address2);
+        });
+        
+        $("form").on("blur", ".cityField", function () {
+        	var city = $(this).val();
+        	$('#cityField').val(city);
+        });
+        
+        $("form").on("blur", ".twitterField", function () {
+        	var twitter = $(this).val();
+        	$('#twitterField').val(twitter);
+        });
+        
+        $("form").on("blur", ".customField", function () {
+        	var custom = $(this).val();
+        	$('#addr1').val(custom);
+        });
+        
+        $("form").on("blur", ".emailField", function () {
+        	var email = $(this).val();
+        	$('#emailField').val(email);
+        });
+        
+        $("form").on("change", ".stateField", function () {
+        	var state = $(this).val();
+        	$('#stateField').val(state);
+        });
+        
+        $("form").on("change", ".countryField", function () {
+        	var country = $(this).val();
+        	$('#countryField').val(country);
+        });
+
+        $("form").on("blur", ".zipField", function () {
+        	var zip = $(this).val();
+        	$('#zipField').val(zip);
+        });
+
+        $("form").on("blur", ".otherField", function () {
+        	var other = $(this).val();
+        	$('#otherField').val(other);
         });
 });

@@ -2,8 +2,7 @@ $(function() {
     console.log("checkout.js initialized");
     $("#otherState").hide();
     $("#other").hide();
-    $("#ostate").hide();
-    
+
     /* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
@@ -23,7 +22,7 @@ $(function() {
     		$("#otherState").hide();
     	}
     });
-    
+
     $('#state').change(function(event) {
     	var option = $(this).val();
     	if(option == 'other'){
@@ -32,16 +31,15 @@ $(function() {
     		$("#other").hide();
     	}
     });
-    
-    $('#states').change(function(event) {
+
+    $('.states').change(function(event) {
     	var option = $(this).val();
     	if(option == 'other'){
-    		$("#ostate").show();
+    		$(".ostate").show();
     	} else {
-    		$("#ostate").hide();
+    		$(".ostate").hide();
     	}
     });
-    
 
     /*var source   = $("#credit-error-template").html();
     var template = Handlebars.compile(source);*/
@@ -228,6 +226,7 @@ $(function() {
      	  }
      	  return true;
      }, "Please enter a valid fullname");
+
     $('form').submit(function() {
         if($(".payment-form").valid()) {
             $('#btnPaypal').attr('disabled','disabled');

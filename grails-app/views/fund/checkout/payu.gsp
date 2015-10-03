@@ -178,10 +178,10 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="input-group col-md-12">
-                                                        <g:select class="selectpicker" name="state" id="states" from="${state}" optionKey="key" optionValue="value"/>
+                                                        <g:select class="selectpicker states" name="state" id="states" from="${state}" optionKey="key" optionValue="value"/>
                                                     </div>
                                                 </div>
-                                                <div class="form-group" id="ostate">
+                                                <div class="form-group ostate" id="ostate">
                                                     <div class="input-group col-md-12">
                                                         <input class="form-control" type="text" placeholder="Other State" name="otherstate" >
                                                     </div>

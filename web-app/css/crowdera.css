@@ -5341,6 +5341,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.TW-socialicons {
+	   display: block;
+	   height: 30px;
+	   margin-left: auto;
+	   margin-right: auto;
+	   margin-top: 8px;
+	   padding-left: 5px;
+	   width: 22% !important;
+	}
 	.discover-inner-container {
 	    width: 310px !important;
 	}
@@ -6492,6 +6501,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.TW-socialicons {
+	   display: block;
+	   height: 30px;
+	   margin-left: auto;
+	   margin-right: auto;
+	   margin-top: 8px;
+	   padding-left: 5px;
+	   width: 20% !important;
+	}
 	.TW-discover-tab-decoration{
 		background-color: #f6f8f8 !important;
 		border: 1px solid #dadada !important;
@@ -7378,6 +7396,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	.TW-socialicons {
+	   display: block;
+	   height: 30px;
+	   margin-left: auto;
+	   margin-right: auto;
+	   margin-top: 8px;
+	   padding-left: 5px;
+	   width: 15% !important;
+	}
 	.tile-goal.teamtile {
 	   font-size: 14px !important;
 	}
@@ -10548,6 +10575,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.ebook-container{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:90% !important;
+	}
+	.TW-socialicons {
+	   display: block;
+	   height: 30px;
+	   margin-left: auto;
+	   margin-right: auto;
+	   margin-top: 8px;
+	   padding-left: 5px;
+	   width: 45% !important;
+	}
 	.discover-inner-container {
 	    width: 310px !important;
 	}
@@ -11795,4 +11837,76 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .metricsInfoMsg {
     margin-top: 15px;
+}
+.ebook-container{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:50%;
+}
+.TW-ebook-page-border{
+	background: #fff url("https://s3.amazonaws.com/crowdera/assets/ebook-setting-it-up.jpg") no-repeat scroll center top;
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+    margin-bottom: 68px;
+    padding: 239px 0 32px;
+    text-align: center;
+    width: 100%;
+}
+a#downloadEbook{
+	display: block;
+    font-size: 20px;
+    height: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    padding: 4px;
+    width: 200px;
+}
+.TW-ebook-ul{
+	padding: 32px 60px;
+	text-align: left;
+}
+.TW-ebook-page-border h3{
+	margin-top: 20px;
+	padding-left: 44px;
+	text-align: left;
+}
+.TW-ebook-ul li{
+	color: #4c4c4c;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 12px;
+    padding-left: 20px;
+}
+.TW-socialicons {
+    display: block;
+    height: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 8px;
+    padding-left: 5px;
+    width: 11%;
+}
+.TW-ebook-header {
+   	height: 100px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    width: 100%;
+}
+.TW-ebook-header.TW-fixed-header {
+	background-color: #ffffff;
+    position: fixed;
+    top: 62px;
+    z-index: 10000;
+}
+.TW-ebook-header-image{
+	margin-bottom: 30px;
+	margin-top: 20px;
+	width:100%;
+}
+.TW-ebook-header-image img{
+	width:100%;
+	height:100%;
 }

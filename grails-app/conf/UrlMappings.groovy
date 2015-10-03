@@ -20,6 +20,9 @@ class UrlMappings {
 
         /* About Us */
         "/aboutus"(view:'/aboutus/index')
+		
+		/* Ebook */
+		"/crowdfunding-ebook"(view:'/ebook/index')
 
         /* How it Works */
         "/howitworks"(view:'/howitworks/index')

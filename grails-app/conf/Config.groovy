@@ -421,7 +421,7 @@ environments {
 		grails.plugin.springsecurity.facebook.appId = '${crowdera.facebook.appId}'
 		grails.plugin.springsecurity.facebook.secret = '${crowdera.facebook.secret}'
 
-		crowdera.BASE_URL = 'http://localhost:8080'
+		crowdera.BASE_URL = 'http://test.crowdera.in'
 
 		grails.logging.jul.usebridge = false
 		grails.dbconsole.enabled = true
@@ -430,7 +430,7 @@ environments {
 		/* Stripe test keys */
 		grails.plugins.stripe.secretKey = 'sk_test_38mNpPorbf5rPTQstcSvurUK'
 		grails.plugins.stripe.publishableKey = 'pk_test_AygHVMpXYROmU9H9hvz7HY3p'
-        
+
        /* FirstGiving Details */
        crowdera.firstgiving.BASE_URL= 'http://usapisandbox.fgdev.net'
        crowdera.firstgiving.uriPath= '/donation/creditcard'

@@ -21,16 +21,16 @@
   			<a id="downloadEbook" class="btn btn-info" href="//s3.amazonaws.com/crowdera/assets/crowdfunding_ebook.pdf">Download ebook</a>
   			<div class="TW-socialicons">
 				<a id="fbshare" class="fb-like pull-left" target="_blank" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${ebookUrl}">
-					<img alt="Facebook Share" src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png">
+					<img alt="Facebook Share" src="//s3.amazonaws.com/crowdera/assets/contribution-fb-share.png">
 				</a>
-				<a class="twitter-share pull-left social" href="https://twitter.com/intent/tweet?text=The crowdfunding ebook for success : &url=${ebookUrl}" id="twitterShare" target="_blank">
-					<img alt="Twitter Share" src="//s3.amazonaws.com/crowdera/assets/twitter-share-icon.png">
+				<a class="twitter-share pull-left" href="https://twitter.com/intent/tweet?text=The crowdfunding ebook for success : &url=${ebookUrl}" id="twitterShare" target="_blank">
+					<img alt="Twitter Share" src="//s3.amazonaws.com/crowdera/assets/contribution-twitter-share.png">
 				</a>
 				<a onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" id="share-linkedin" target="_blank" href="https://www.linkedin.com/cws/share?url=${ebookUrl}" class="share-linkedin pull-left">
-					<img alt="LinkedIn Share" src="//s3.amazonaws.com/crowdera/assets/linked-in-share-icon.png">
+					<img alt="LinkedIn Share" src="///s3.amazonaws.com/crowdera/assets/contribution-linked-in-share.png">
 				</a>
 				<a onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;" href="https://plus.google.com/share?url=${ebookUrl}" id="googlePlusShare" class="google-plus-share pull-left">
-					<img alt="Google+ Share" src="//s3.amazonaws.com/crowdera/assets/google-plus-share.png">
+					<img alt="Google+ Share" src="//s3.amazonaws.com/crowdera/assets/contribution-google-plus-share.png">
 				</a>
   			</div>
  		</div>

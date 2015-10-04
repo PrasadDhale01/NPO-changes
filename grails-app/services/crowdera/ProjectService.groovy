@@ -1969,19 +1969,24 @@ class ProjectService {
         if (categories == "All"){
             return projects
         } else {
-            projects.each{
-				String strNonProfits="NON_PROFITS"
-                String str = it.category
-				String strSocialCategory= it.usedFor
-				if(strNonProfits.equalsIgnoreCase(categories)){
-					String strNonProfitProject= it.fundsRecievedBy
-					if(strNonProfitProject.equalsIgnoreCase("NON-PROFITS")){
+			projects.each{
+				String str = it.category
+				String strSocialCategory = it.usedFor
+				String strNonProfit = "NON_PROFITS"
+			
+				if (str.equalsIgnoreCase(categories)){
+					list.add(it)
+				}else if(strSocialCategory !=null && strSocialCategory.equalsIgnoreCase(categories)){
+					list.add(it)
+				}else if(strNonProfit.equalsIgnoreCase(categories)){
+					String strNonProfitCat = it.fundsRecievedBy
+					if(strNonProfitCat !=null && strNonProfitCat.equalsIgnoreCase(categories)){
 						list.add(it)
 					}
-				}else if (str.equalsIgnoreCase(categories) || strSocialCategory.equalsIgnoreCase(categories)){
-                   list.add(it)
-                }
-            }
+				}else{
+					return null
+				}
+			}
             return list
         }
     }

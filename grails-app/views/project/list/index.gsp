@@ -10,7 +10,7 @@
     <r:require module="projectlistjs"/>
 </head>
 <body>
-    <div class="feducontent bg-color" id="TW-discover-banner-padding">
+    <div class="bg-color" id="TW-discover-banner-padding">
         <div class="container discover-container">
         	<div class="row" >
         		<g:render template="list/discoverbanner"></g:render>

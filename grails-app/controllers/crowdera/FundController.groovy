@@ -702,7 +702,6 @@ class FundController {
     }
 
 	def getRewardShippingDetails(){
-		def rewardId = request.getParameter('rewardId');
 		def anonymous = request.getParameter('anonymous')
 		def reward = rewardService.getRewardById(params.long('rewardId'));
 		def shippingInfo = rewardService.getShippingInfo(reward);

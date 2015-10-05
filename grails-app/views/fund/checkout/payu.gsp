@@ -71,6 +71,8 @@
                         <g:hiddenField name="fr" value="${fundraiser.username}"/>
                         <g:hiddenField name="projectAmount" value="${project.amount}"/>
                         <g:hiddenField name="projectTitle" value="${projectTitle}"/>
+                        <g:hiddenField name="payuCountry" value="IN" id="payuCountry"/>
+                        <g:hiddenField name="payuStates" value="AP" id="payuStates"/>
                         
                         <!-- TDODO-->
                         <div class="panel panel-default">
@@ -173,7 +175,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <div class="input-group col-md-12">
-                                                        <g:select class="selectpicker" name="country" from="${country}" value="IN" optionKey="key" optionValue="value"/>
+                                                        <g:select class="selectpicker" name="country" from="${country}" id="countries" value="IN" optionKey="key" optionValue="value"/>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">

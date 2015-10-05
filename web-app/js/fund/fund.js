@@ -29,8 +29,9 @@ $(function() {
         }
     });
     
-    $('.states').change(function(event) {
+    $("form").on("change", ".states", function () {
     	var option = $(this).val();
+    	$('#stateField').val(option);
     	if(option == 'other'){
     		$(".ostate").show();
     	} else {
@@ -45,7 +46,7 @@ $(function() {
                 return false;    		
         return true;
     },"Please add valid emails only");
-    
+
     function validateEmail(field) {
         var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
         return (regex.test(field)) ? true : false;
@@ -426,17 +427,12 @@ $(function() {
         
         $("form").on("blur", ".customField", function () {
         	var custom = $(this).val();
-        	$('#addr1').val(custom);
+        	$('#customField').val(custom);
         });
         
         $("form").on("blur", ".emailField", function () {
         	var email = $(this).val();
         	$('#emailField').val(email);
-        });
-        
-        $("form").on("change", ".stateField", function () {
-        	var state = $(this).val();
-        	$('#stateField').val(state);
         });
         
         $("form").on("change", ".countryField", function () {

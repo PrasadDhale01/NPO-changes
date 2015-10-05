@@ -2315,6 +2315,7 @@ class ProjectService {
 				}
 				Map countries = getCountry()
 				country = countries.getAt(params.country)
+				
 				if (params.addressLine2 == null || params.addressLine2.isAllWhitespace()){
 					address = params.addressLine1 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
 				} else {
@@ -3216,7 +3217,7 @@ class ProjectService {
 		}
 
 		if(params.customField && params.customField != ''){
-			custom = params.customField[0]
+			custom = params.customField
 		} else {
 			custom = null
 		}
@@ -3230,10 +3231,11 @@ class ProjectService {
 		if(params.addr1){  
 			address = params.addr1
 
-		if (params.addr2 && params.addr2 != '')
+		if (params.addr2 && params.addr2 != '' && params.addr2 != 'null'){
 			address = address + " " + params.addr2
+		}
 
-		address = address + " " + params.cityField + " " + params.zipField
+		address = address + " " + params.cityField + "-" + params.zipField
 		Map countries = getCountry()
 		if (params.otherField && params.stateField == 'other'){
 			address = address+ " " + params.otherField + " " + countries.getAt(params.countryField)

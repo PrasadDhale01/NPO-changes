@@ -239,7 +239,16 @@ $(function() {
         	needToConfirm = false;
         } 	
     });
-    
+
+    $('#countries').change(function(event) {
+    	var option = $(this).val();
+    	$('#payuCountry').val(option);
+    });
+    $('#states').change(function(event) {
+    	var option = $(this).val();
+    	$('#payuStates').val(option);
+    });
+
     $('.payucheckoutsubmitbutton').click(function(event) {
         if(validator.form()) {
             needToConfirm = false;
@@ -265,8 +274,8 @@ $(function() {
                 'addressLine2'  : $('input[name= addressLine2]').val(),
                 'city'          : $('input[name= city]').val(),
                 'zip'           : $('input[name= zip]').val(),
-                'country'       : $('input[name= country]').val(),
-                'state'         : $('input[name= state]').val(),
+                'country'       : $('#payuCountry').val(),
+                'state'         : $('#payuStates').val(),
                 'otherstate'    : $('input[name= otherstate]').val(),
                 'shippingEmail' : $('input[name= shippingEmail]').val(),
                 'twitterHandle' : $('input[name= twitterHandle]').val(),

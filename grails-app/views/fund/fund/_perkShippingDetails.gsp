@@ -1,4 +1,3 @@
-<r:require modules="fundjs" />
 <g:if test="${shippingInfo}">
     <g:if test="${shippingInfo.address != null || shippingInfo.email  != null || (shippingInfo.twitter  != null && anonymous == 'false') || (shippingInfo.custom  != null && shippingInfo.custom  != '')}">
         <div class="panel panel-default">

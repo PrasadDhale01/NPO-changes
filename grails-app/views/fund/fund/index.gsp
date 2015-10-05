@@ -94,9 +94,8 @@
 						<g:hiddenField name="stateField" id="stateField" value="AL"/>
 						<g:hiddenField name="countryField" id="countryField" value="US"/>
 						<g:hiddenField name="zipField" id="zipField" value=""/>
-						<g:hiddenField name="stateField" id="stateField" value=""/>
 						<g:hiddenField name="otherField" id="otherField" value=""/>
-						
+
 						<div class="col-md-4">
 							<g:if test="${flash.amt_message}">
 								<div class="alert alert-danger">

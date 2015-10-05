@@ -45,11 +45,10 @@ class FundController {
             project = Project.findById(projectId)
         }
 
-        def reward = (params.rewardId) ? rewardService.getRewardById(params.long('rewardId')) : rewardService.getNoReward()
+		def reward = (params.rewardId) ? rewardService.getRewardById(params.long('rewardId')) : rewardService.getNoReward()
 		def perk = rewardService.getRewardById(params.long('rewardId'))
 
 		def shippingInfo = rewardService.getShippingInfo(reward)
-		
 
         boolean fundingAchieved = contributionService.isFundingAchievedForProject(project)
         boolean ended = projectService.isProjectDeadlineCrossed(project)

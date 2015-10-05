@@ -3217,7 +3217,7 @@ class ProjectService {
 
 		if(params.customField && params.customField != ''){
 			custom = params.customField[0]
-		}else {
+		} else {
 			custom = null
 		}
 
@@ -3227,26 +3227,26 @@ class ProjectService {
 			email = null
 		}
 
-		if(params.addr1){
+		if(params.addr1){  
 			address = params.addr1
 
-			if (params.addr2 && params.addr2 != '')
-				address = address + " " + params.addr2
+		if (params.addr2 && params.addr2 != '')
+			address = address + " " + params.addr2
 
-			address = address + " " + params.cityField + " " + params.zipField
-			Map countries = getCountry()
-			if (params.otherField && params.stateField == 'other'){
-				address = address+ " " + params.otherField + " " + countries.getAt(params.countryField)
-			} else {
-				Map states = getState()
-				address = address + " " + states.getAt(params.stateField) + " " + countries.getAt(params.countryField)
-			}
+		address = address + " " + params.cityField + " " + params.zipField
+		Map countries = getCountry()
+		if (params.otherField && params.stateField == 'other'){
+			address = address+ " " + params.otherField + " " + countries.getAt(params.countryField)
 		} else {
-			address = null
+			Map states = getState()
+			address = address + " " + states.getAt(params.stateField) + " " + countries.getAt(params.countryField)
 		}
-
-		shippingInfo = [twitter:twitter, custom:custom, address:address, email:email]
-		return shippingInfo
+	} else {
+		address = null
+	}
+		
+	shippingInfo = [twitter:twitter, custom:custom, address:address, email:email]
+	return shippingInfo
 	}
 
     def generateCSVReportForCampaign(def params, def response, Project project, def ytViewCount, def linkedinCount, def twitterCount, def facebookCount){

@@ -157,10 +157,10 @@ $(function() {
         showShippingDetails(rewardId);
     });
 
-    function showShippingDetails(rewardId){
-    	var anonymous = $('#anonymous').val();
-    	var grid = $('#perkShippingInfo, #perkShippingInfo-sm');
-    	$.ajax({
+	function showShippingDetails(rewardId){
+		var anonymous = $('#anonymous').val();
+		var grid = $('#perkShippingInfo, #perkShippingInfo-sm');
+		$.ajax({
 			type:'post',
 			url:$('#url').val()+'/fund/getRewardShippingDetails',
 			data:'rewardId='+rewardId+'&anonymous='+anonymous,
@@ -168,9 +168,9 @@ $(function() {
 				$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
 			}
 		}).error(function(data){
-    			console.log('Error occured while fetching shipping info'+ data);
-    	});
-    }
+			console.log('Error occured while fetching shipping info'+ data);
+		});
+	}
 
     $('#anonymousUser').click(function(){
     	var projectId = $('#projectId').val();

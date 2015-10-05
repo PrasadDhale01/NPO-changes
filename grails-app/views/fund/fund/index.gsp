@@ -83,7 +83,7 @@
 						</g:if>
 					</div>
 				</g:if>
-				<g:elseif test="${project.paypalEmail}">
+                <g:elseif test="${project.paypalEmail}">
 					<g:form action="charge" method="POST" class="chargeForms">
 						<g:hiddenField name="twitterField" id="twitterField" value=""/>
 						<g:hiddenField name="customField" id="customField" value=""/>
@@ -104,15 +104,15 @@
 								</div>
 							</g:if>
 							<g:if test="${paypalFailureMessage}">
-							    <div class="alert alert-danger">
-							        ${paypalFailureMessage}
-							    </div>
+								<div class="alert alert-danger">
+								    ${paypalFailureMessage}
+								</div>
 							</g:if>
-						    <div class="row">
+							<div class="row">
 								<div class="col-md-12 col-sm-6 col-xs-12">
 								    <h1>Amount</h1>
-								</div>
-							</div>
+							    </div>
+						    </div>
 						
 							<g:hiddenField name="campaignId" id="projectId" value="${project.id}" />
 							<g:hiddenField name="fr" value="${vanityUsername}" />
@@ -120,16 +120,16 @@
 							<g:hiddenField name="url" value="${base_url}" id="url"/>
 							<g:hiddenField name="anonymous" value="false" id="anonymous"/>
 							<g:hiddenField name="projectTitle" value="${vanityTitle}"/>
-						
+							
 							<!-- Value set by Javascript -->
 							<div class="row">
 								<div class="col-md-12 col-sm-6 col-xs-12">
 									<div class="form-group">
 									   <div class="input-group">
-								           <span class="amount input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
+									       <span class="amount input-group-addon"><span class="glyphicon glyphicon-usd"></span></span>
 								           <input class="amount form-control" <%-- value="${reward.price}" --%> id="amount" name="amount" type="text">
 								       </div>
-							           <span id="errormsg"></span>
+								       <span id="errormsg"></span>
 							        </div>
 						
 									<g:if test="${user != null}">
@@ -138,7 +138,7 @@
 									</g:if>
 						
 									<label class="checkbox control-label">
-									    <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
+									   <input type="checkbox" name="anonymousUser" id="anonymousUser" > Please keep my contribution anonymous.
 									</label>
 						
 									<div class="panel panel-default">
@@ -147,7 +147,7 @@
 												<div class="form-group">
 													<div class="col-sm-12"><b>Fundraiser:</b></div>
 													<div class="col-sm-12">
-													      <span>${fundraiser.firstName} ${fundraiser.lastName}</span>
+													<span>${fundraiser.firstName} ${fundraiser.lastName}</span>
 													</div>
 												</div>
 											</g:if>
@@ -157,7 +157,7 @@
 									<div class="row">
 										<div class="col-md-12 col-sm-12 col-xs-12 form-group">
 											<label class="checkbox control-label">
-											    <input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse"> By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
+											<input type="checkbox" name="agreetoTermsandUse" id="agreetoTermsandUse"> By continuing, you agree to our <a href="${resource(dir: '/termsofuse')}">Terms of Use</a>
 											</label>
 											<div class="amount-button"><button type="submit" class="btn btn-primary btnChargeContinue visible-lg visible-md">Fund This Campaign</button></div>
 											<div class="amount-button"><button type="submit" class="btn btn-primary visible-sm btnChargeContinue-md">Fund this Campaign</button></div>
@@ -173,40 +173,39 @@
 								<div class="col-sm-6 col-xs-12 campaignTile visible-sm visible-xs">
 								    <g:render template="fund/fundTile" />
 								</div>
-						
+
 								<div class="col-md-12 col-sm-12 col-xs-12">
-								    <g:if test="${!user}">
+									<g:if test="${!user}">
 										<div class="panel panel-default">
-										    <div class="panel-heading">
-								                <h3 class="panel-title">Contact details (for your receipt)</h3>
-								            </div>
-						                    <div class="panel-body">
+											<div class="panel-heading">
+											    <h3 class="panel-title">Contact details (for your receipt)</h3>
+											</div>
+											<div class="panel-body">
 												<div class="col-md-12 col-sm-6 col-xs-12">
 													<div class="form-group">
 														<div class="input-group col-md-12">
-														     <input class="form-control" type="text" placeholder="Full Name" name="receiptName" id="receiptName">
+														    <input class="form-control" type="text" placeholder="Full Name" name="receiptName" id="receiptName">
 														</div>
-												    </div>
-						                         </div>
-												 <div class="col-md-12 col-sm-6 col-xs-12">
-													 <div class="form-group">
-														 <div class="input-group col-md-12">
-														     <input class="form-control" type="text" placeholder="Email" name="receiptEmail">
-														 </div>
-													 </div>
-						                         </div>
-						                    </div>
-						                </div>
-						            </g:if>
-
-									<div class="hidden-sm hidden-xs" id="perkShippingInfo">
-									   <g:render template="fund/perkShippingDetails" model="[anonymous:'false']"></g:render>
-									</div>
-								</div>
-							</div>
+													</div>
+												</div>
+												<div class="col-md-12 col-sm-6 col-xs-12">
+													<div class="form-group">
+														<div class="input-group col-md-12">
+														    <input class="form-control" type="text" placeholder="Email" name="receiptEmail">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</g:if>
+						            <div class="hidden-sm hidden-xs" id="perkShippingInfo">
+						                <g:render template="fund/perkShippingDetails" model="[anonymous:'false']"></g:render>
+						            </div>
+						        </div>
+						    </div>
 						</div>
 						<div class="col-md-4">
-						    <g:if test="${project.rewards.size()>1}">
+							<g:if test="${project.rewards.size()>1}">
 							    <g:render template="fund/rewards" model="[user:user]" />
 							</g:if>
 						</div>
@@ -273,11 +272,11 @@
 					</div>
 				</g:else>
 
-				<g:if test="${project.paypalEmail}">
-					<div class="col-md-4 hidden-sm hidden-xs campaignTile ">
-						<g:render template="fund/fundTile"/>
-					</div>
-				</g:if>
+                <g:if test="${project.paypalEmail}">
+                    <div class="col-md-4 hidden-sm hidden-xs campaignTile ">
+                        <g:render template="fund/fundTile"/>
+                    </div>
+                </g:if>
 				<g:else>
 					<div class="col-md-4">
 						<g:render template="/layouts/tile" />

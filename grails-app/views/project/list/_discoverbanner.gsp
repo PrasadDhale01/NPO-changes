@@ -4,7 +4,7 @@
 					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Left.png" alt="''">
 				</div>
 				<div class="text-center TW-discover-testimonial-width">
-					<h1 class="TW-discover-bannerheadbtmMargin"><b>I ran my campaign through Crowdera in its initial phases.</b></h1>
+					<span class="TW-discover-bannerheadbtmMargin"><b>I ran my campaign through Crowdera in its initial phases.</b></span>
 				</div>
 				<div class="TW-discover-right-inverted-comma">
 					<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png" alt="''">

@@ -6527,7 +6527,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    width: 25%;
 	    word-wrap: break-word;
 	}
-	.TW-discover-tab-decoration:hover, discover-tab-decoration .active {
+	.TW-discover-tab-decoration:hover, .discover-tab-decoration:active {
 		background-color: #f6f8f8 !important;
 	    border: 4px solid #00bbd2 !important;
 	    color: #006083 !important;
@@ -6551,12 +6551,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
 		margin-left:auto;
 		margin-right:auto;
-		width:517px !important;
+		width:44% !important;
 	}	
 	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
 		margin-left:auto;
 		margin-right:auto;
-		width:79%;
+		width:90% !important;
 	}
 	.TW-dicover-testimonial-name {
 		font-family: "Open Sans";
@@ -6589,9 +6589,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    margin-top: 5px;
 	    height: 15px;
 	    width: 15px;
-	}
-	.TW-discover-testimonial-width {
-	   width: 470px !important;
 	}
 	.TW-discover-leftpane-menu{
 		padding-left:0px !important;
@@ -8133,7 +8130,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		display: block;
 		margin-left: auto;
 		margin-right: auto;
-		width: 750px !important;
+		width: 1000px !important;
 	}
     div.abt-icons-trans {
         left: 80px !important;
@@ -10626,9 +10623,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	  font-weight: 900;
 	  line-height: 0px;
 	}
-	.TW-discover-testimonial-width {
-		width: 293px !important;
-	}
 	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
 		margin-left:auto;
 		margin-right:auto;
@@ -11814,7 +11808,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     text-align: center;
 }
 .TW-discover-testimonial-width {
-    width: 660px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 12px;
 }
 .TW-discover-right-inverted-comma {
     margin-top: 15px;
@@ -11837,8 +11834,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	margin-left: -3px;
 }
 .TW-discover-testimonial-container div.TW-discover-header-testimonial{
-	margin-left:auto;
-	margin-right:auto;
+	width:56%;
 }
 .TW-discover-testimonial-container span.TW-dicover-testimonial-name{
 	margin-left:auto;

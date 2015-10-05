@@ -8,7 +8,6 @@
     if (isFundingAchieved) {
         achievedDate = contributionService.getFundingAchievedDate(project)
     }
-    def endDate = projectService.getProjectEndDate(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
     def isFundingOpen = projectService.isFundingOpen(project)
     def contributedSoFar = contributionService.getTotalContributionForProject(project)

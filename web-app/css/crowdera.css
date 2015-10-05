@@ -5344,6 +5344,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.alert.alert-danger.flashmsg-width {
+	    margin-left: -8px;
+	    width: 110%;
+	}
 	.TW-socialicons {
 	   display: block;
 	   height: 30px;
@@ -8084,6 +8088,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 17px !important;
         font-weight: bold !important;
     }
+    .innovatingtab-padding{
+    	padding-left:5px;
+    	padding-right:5px;
+    }
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
@@ -10579,6 +10587,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.alert.alert-danger.flashmsg-width {
+	    margin-left: -8px;
+	    width: 110%;
+	}
 	.ebook-container{
 		display:block;
 		margin-left:auto;
@@ -11782,7 +11794,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     height: 60px;
     width:25%;
 }
-.TW-discover-tab-decoration:hover, discover-tab-decoration .active {
+.TW-discover-tab-decoration:hover, .TW-discover-tab-decoration:active, .TW-discover-tab-decoration:focus {
 	background-color: #f6f8f8 !important;
     border: 4px solid #00bbd2 !important;
     color: #006083 !important;
@@ -11914,4 +11926,22 @@ a#downloadEbook{
 .TW-ebook-header-image img{
 	width:100%;
 	height:100%;
+}
+.TW-dis-tab-padding .bootstrap-select.btn-group .btn .filter-option {
+	display: inline-block;
+	overflow: hidden;
+	width: 100%;
+	text-align: center;
+}
+.TW-dis-tab-padding .bootstrap-select.btn-group .dropdown-menu li {
+	position: relative;
+	text-align: center;
+}
+.TW-dis-tab-padding .open > .dropdown-toggle.btn-default {
+    background-color: #006083 !important;
+    color: white !important;
+}
+.innovatingtab-padding{
+	padding-left:10px;
+	padding-right:10px;
 }

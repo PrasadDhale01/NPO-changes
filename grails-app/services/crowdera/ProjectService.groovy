@@ -1548,13 +1548,17 @@ class ProjectService {
 		    return '//s3.amazonaws.com/crowdera/assets/children.jpg'
 		} else if (category.equalsIgnoreCase('COMMUNITY')){
 		    return '//s3.amazonaws.com/crowdera/assets/community.jpg'
-		} else if (category.equalsIgnoreCase('EDUCATION')) {
+		}else if (category.equalsIgnoreCase('CIVIC_NEEDS')){
+		    return '//s3.amazonaws.com/crowdera/assets/civic-category-img.jpg'
+		}  else if (category.equalsIgnoreCase('EDUCATION')) {
 		    return '//s3.amazonaws.com/crowdera/assets/education.jpg'
 		} else if (category.equalsIgnoreCase('ELDERLY')) {
 		    return '//s3.amazonaws.com/crowdera/assets/elderly.jpg'
 		} else if (category.equalsIgnoreCase('ENVIRONMENT')) {
 		    return '//s3.amazonaws.com/crowdera/assets/environment.jpg'
-		} else if (category.equalsIgnoreCase('HEALTH')){
+		} else if (category.equalsIgnoreCase('FILM')) {
+		    return '//s3.amazonaws.com/crowdera/assets/film-category-img.jpg'
+		}else if (category.equalsIgnoreCase('HEALTH')){
 		    return '//s3.amazonaws.com/crowdera/assets/health.jpg'
 		} else if (category.equalsIgnoreCase('SOCIAL_INNOVATION')){
 		    return '//s3.amazonaws.com/crowdera/assets/social-Innovation.jpg'
@@ -1973,14 +1977,13 @@ class ProjectService {
 				String str = it.category
 				String strSocialCategory = it.usedFor
 				String strNonProfit = "NON_PROFITS"
-			
 				if (str.equalsIgnoreCase(categories)){
 					list.add(it)
 				}else if(strSocialCategory !=null && strSocialCategory.equalsIgnoreCase(categories)){
 					list.add(it)
 				}else if(strNonProfit.equalsIgnoreCase(categories)){
 					String strNonProfitCat = it.fundsRecievedBy
-					if(strNonProfitCat !=null && strNonProfitCat.equalsIgnoreCase(categories)){
+					if(strNonProfitCat !=null && strNonProfitCat.equalsIgnoreCase(categories.replace('_','-'))){
 						list.add(it)
 					}
 				}else{

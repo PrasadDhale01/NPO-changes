@@ -1196,9 +1196,11 @@ class ProjectService {
             (Project.Category.ARTS): "Arts",
             (Project.Category.CHILDREN): "Children",
             (Project.Category.COMMUNITY): "Community",
+			(Project.Category.CIVIC_NEEDS): "Civic Needs",
             (Project.Category.EDUCATION): "Education",
             (Project.Category.ELDERLY): "Elderly",
             (Project.Category.ENVIRONMENT): "Environment",
+			(Project.Category.FILM): "Film",
             (Project.Category.HEALTH): "Health",
             (Project.Category.SOCIAL_INNOVATION): "Social Innovation",
             (Project.Category.RELIGION): "Religion",
@@ -1214,9 +1216,11 @@ class ProjectService {
 		   ARTS: "Arts",
 		   CHILDREN: "Children",
 		   COMMUNITY: "Community",
+		   CIVIC_NEEDS: "Civic Needs",
 		   EDUCATION: "Education",
 		   ELDERLY: "Elderly",
 		   ENVIRONMENT: "Environment",
+		   FILM: "Film",
 		   HEALTH: "Health",
 		   SOCIAL_INNOVATION: "Social Innovation",
 		   RELIGION: "Religion",
@@ -1224,6 +1228,25 @@ class ProjectService {
 	   ]
 	   return categoryOptions
 	   }
+	def getDiscoverLeftCategory(){
+		def categoryOptions = [
+			ALL: "All Categories",
+			NON_PROFITS: "Non Profits",
+			FILM: "Film",
+			CIVIC_NEEDS: "Civic Needs",
+			COMMUNITY: "Community"
+		]
+		return categoryOptions
+	}
+	def getDiscoverTopCategory(){
+		def categoryOptions = [
+			PASSION: "PASSION",
+			IMPACT: "IMPACT",
+			SOCIAL_GOODS: "Social_Good",
+			PERSONAL_NEEDS: "Personal_Needs"
+		]
+		return categoryOptions
+	}
     
     def getValidatedProjects() {
 		def popularProjectsList = getPopularProjects()
@@ -1947,13 +1970,19 @@ class ProjectService {
             return projects
         } else {
             projects.each{
+				String strNonProfits="NON_PROFITS"
                 String str = it.category
-                if (str.equalsIgnoreCase(categories)){
+				String strSocialCategory= it.usedFor
+				if(strNonProfits.equalsIgnoreCase(categories)){
+					String strNonProfitProject= it.fundsRecievedBy
+					if(strNonProfitProject.equalsIgnoreCase("NON-PROFITS")){
+						list.add(it)
+					}
+				}else if (str.equalsIgnoreCase(categories) || strSocialCategory.equalsIgnoreCase(categories)){
                    list.add(it)
                 }
             }
             return list
-           
         }
     }
     

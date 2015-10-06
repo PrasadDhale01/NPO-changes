@@ -100,7 +100,10 @@ text-decoration:none;
 }
 
 .feducontent {
-    padding-top: 44px;
+    padding-top: 33px;
+}
+.banner-padding{
+	padding-top:33px;
 }
 
 .top-buffer {
@@ -2689,8 +2692,9 @@ background-color: #333;
 color: white;
 }
 div.bootstrap-select > button.selectpicker{
-background-color: #333;
-color: white;
+background-color: #f6f8f8;
+color: #006083;
+height: 60px;
 }
 .btnOrgBgColor > label{
 background-color: #333;
@@ -2744,9 +2748,6 @@ color:#fff;
 .hrClass{
     margin-top:4px;
     margin-bottom:6px;
-}
-form#sortsForm {
-    margin-left: 25%;
 }
 .dropdown-menu.open {
     margin-left: -1.1%;
@@ -3402,11 +3403,11 @@ span#search-container {
     display:none;
 }
 .btn-group.bootstrap-select.allCampaign-dropdown > .btn {
-    width: 106%;
+    width: 100%;
     padding-right: 25px;
 }
 .btn-group.bootstrap-select.allCampaign-dropdown > .dropdown-menu {
-    min-width: 105%;
+    min-width: 99%;
     z-index: 2000;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -4394,6 +4395,9 @@ div.ie-cr-perks {
 .categoryList .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
     width: 100%;
 }
+div.categoryList {
+	padding-top:0px;
+}
 .contributionerrormsg{
     color: red;
 }
@@ -5344,6 +5348,92 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.alert.alert-danger.flashmsg-width {
+		margin-left: -8px;
+		width: 110%;
+	}
+	.TW-socialicons {
+		display: block;
+		height: 30px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 8px;
+		padding-left: 5px;
+		width: 175px !important;
+	}
+	.discover-inner-container {
+		width: 310px !important;
+	}
+	.TW-discover-testimonial-width {
+		width: 293px !important;
+	}
+	.TW-discover-title {
+		color: #006083;
+		font-size: 16px !important;
+		font-weight: 600 !important;
+		margin-bottom: 20px;
+		margin-top: 20px;
+		margin-left:auto;
+		margin-right:auto;
+		width: 280px;
+	}
+	.TW-discover-bannerheadbtmMargin b {
+		color: #fff;
+		font-family: "Open Sans";
+		font-size: 10px !important;
+		font-weight: 900;
+		line-height: 0px;
+	}
+	.TW-dicover-testimonial-name {
+		font-family: "Open Sans";
+		font-size: 13px !important;
+		padding-right: 6px !important;
+	}
+	.TW-discover-right-inverted-comma img {
+		margin-top: 5px;
+		height: 15px;
+		width: 15px;
+	}
+	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
+		margin-left:auto;
+		margin-right:auto;
+		width:323px !important;
+	}	
+	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
+		margin-left:auto;
+		margin-right:auto;
+		width:98% !important;
+	}
+	.TW-discover-select-width {
+		display: block;
+		margin-left: auto !important;
+		margin-right: auto;
+		width: 314px !important;
+	}
+	.categoryList .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 319px !important;
+	}
+	.TW-discover-tab-width {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 290px !important;
+	}
+	.TW-discover-tab-decoration {
+		background-color: #f6f8f8 !important;
+		border: 1px solid #dadada !important;
+		color: #006083;
+		height: 60px;
+		width: 100% !important;
+	}
+	.TW-discover-campaign-centering{
+		padding-left:0px !important;
+		width:310px !important;
+	}
+	.TW-Container-alignment{
+		display:unset !important;
+		float:left;
+	}
     h1.india-font-slogan b{
         font-size: 15px !important;
     }
@@ -6432,6 +6522,119 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.TW-socialicons {
+		display: block;
+		height: 30px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 8px;
+		padding-left: 5px;
+		width: 175px !important;
+	}
+	.TW-discover-tab-decoration{
+		background-color: #f6f8f8 !important;
+		border: 1px solid #dadada !important;
+		color: #006083;
+		height: 60px;
+		white-space: normal;
+		width: 25%;
+		word-wrap: break-word;
+	}
+	.TW-discover-tab-decoration:hover, .discover-tab-decoration:active {
+		background-color: #f6f8f8 !important;
+		border: 4px solid #00bbd2 !important;
+		color: #006083 !important;
+		height: 60px;
+		white-space: normal;
+		width: 25%;
+		word-wrap: break-word;
+	}
+	.discover-inner-container {
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+		width: 100% !important;
+	}
+	.TW-discover-bannerheadbtmMargin b {
+		color: #fff;
+		font-family: "Open Sans";
+		font-size: 13px !important;
+		font-weight: 900;
+		line-height: 0px;
+	}
+	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
+		margin-left:auto;
+		margin-right:auto;
+		width:44% !important;
+	}	
+	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
+		margin-left:auto;
+		margin-right:auto;
+		width:90% !important;
+	}
+	.TW-dicover-testimonial-name {
+		font-family: "Open Sans";
+		font-size: 16px;
+		padding-right: 54px !important;
+	}
+	.TW-discover-header-testimonial{
+		display:inline-flex;
+		display:-webkit-inline-flex;   /***safari***/
+		margin-top: 14px;
+	}
+	span.TW-cr-pay-rd {
+	    font-size: 9px !important;
+	}
+	span.TW-cr-reci-siz {
+		font-size: 14px !important;
+		font-weight: 900;
+	}
+	.TW-padding-align{
+		padding-left:0px;
+		padding-right:0px;
+	}
+	.left-select-margin{
+		margin-left:3px !important;
+	}
+	.right-select-margin{
+		margin-left: -3px !important;
+	}
+	.TW-discover-right-inverted-comma img {
+		margin-top: 5px;
+		height: 15px;
+		width: 15px;
+	}
+	.TW-discover-leftpane-menu{
+		padding-left:0px !important;
+		padding-right:0px !important;
+	}
+	.TW-discover-leftpane-menu ul li a {
+		color: #424242;
+		font-size: 13px !important;
+		font-weight: 400;
+	}
+	.TW-discover-select-width {
+		width: 16% !important;
+	}
+	.discover-container{
+		width:100% !important;
+	}
+	.TW-discover-tab-width {
+		width: 76% !important;
+	}
+	.TW-discover-tab-decoration {
+		background-color: #f6f8f8 !important;
+		border: 1px solid #dadada !important;
+		color: #006083;
+		height: 60px;
+		width: 25% !important;
+	}
+	.TW-discover-campaign-centering{
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		padding-left:0px !important;
+		width:81% !important;
+	}
     input.customVanityUrl{
         width:106%;
     }
@@ -7211,6 +7414,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	.TW-socialicons {
+	   display: block;
+	   height: 30px;
+	   margin-left: auto;
+	   margin-right: auto;
+	   margin-top: 8px;
+	   padding-left: 5px;
+	   width: 175px !important;
+	}
 	.tile-goal.teamtile {
 	   font-size: 14px !important;
 	}
@@ -7632,6 +7844,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
+	.TW-Container-alignment{
+		display:inline-flex;
+		display:-webkit-box;
+		float:left;
+	}
 	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	   width: 78.1% !important;
 	   float:left;
@@ -7894,9 +8111,53 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 17px !important;
         font-weight: bold !important;
     }
+    .innovatingtab-padding{
+    	padding-left:5px;
+    	padding-right:5px;
+    }
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	.TW-discover-leftpane-menu ul li a {
+		color: #424242;
+		font-weight: 400;
+		font-size: 13px !important;
+	}
+	.discover-inner-container {
+		padding-left: 10px !important;
+		padding-right: 10px !important;
+		width: 100% !important;
+	}
+	.TW-discover-select-width{
+		width:16% !important;
+	}
+	span.TW-cr-pay-rd {
+		font-size: 9px !important;
+	}
+	span.TW-cr-reci-siz {
+		font-size: 14px !important;
+		font-weight: 900;
+	}
+	.TW-padding-align{
+		padding-left:0px;
+		padding-right:0px;
+	}
+	.TW-discover-tab-width {
+		width: 76% !important;
+	}
+	.TW-discover-tab-decoration {
+		background-color: #f6f8f8 !important;
+		border: 1px solid #dadada !important;
+		color: #006083;
+		height: 60px;
+		width: 25% !important;
+	}
+	.TW-discover-campaign-centering {
+		display: block;
+		margin-left: auto;
+		margin-right: auto;
+		width: 1000px !important;
+	}
     div.abt-icons-trans {
         left: 80px !important;
     }
@@ -10354,6 +10615,89 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.alert.alert-danger.flashmsg-width {
+		margin-left: -8px;
+		width: 110%;
+	}
+	.ebook-container{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:90% !important;
+	}
+	.TW-socialicons {
+		display: block;
+		height: 30px;
+		margin-left: auto;
+		margin-right: auto;
+		margin-top: 8px;
+		padding-left: 5px;
+		width: 175px  !important;
+	}
+	.discover-inner-container {
+		width: 310px !important;
+	}
+	.TW-discover-title {
+		color: #006083;
+		font-size: 16px !important;
+		font-weight: 600 !important;
+		margin-bottom: 20px;
+		margin-top: 20px;
+		margin-left:auto;
+		margin-right:auto;
+		width: 280px;
+	}
+	.TW-discover-bannerheadbtmMargin b {
+		color: #fff;
+		font-family: "Open Sans";
+		font-size: 10px !important;
+		font-weight: 900;
+		line-height: 0px;
+	}
+	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
+		margin-left:auto;
+		margin-right:auto;
+		width:309px !important;
+	}	
+	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
+		margin-left:auto;
+		margin-right:auto;
+		width:98% !important;
+	}
+	.TW-dicover-testimonial-name {
+		font-family: "Open Sans";
+		font-size: 13px !important;
+		padding-right: 6px !important;
+	}
+	.TW-discover-right-inverted-comma img {
+		margin-top: 5px !important;
+		height: 15px;
+		width: 15px;
+	}
+	.TW-discover-select-width {
+		display: block;
+		margin-left: auto !important;
+		margin-right: auto;
+		width: 314px !important;
+	}
+	.categoryList .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+		width: 319px !important;
+	}
+	.TW-discover-campaign-centering {
+		padding-left: 7px !important;
+		width:310px !important;
+	}
+	.TW-discover-tab-decoration {
+		background-color: #f6f8f8 !important;
+		border: 1px solid #dadada !important;
+		color: #006083;
+		height: 60px;
+		width: 100% !important;
+	}
+	.TW-Container-alignment{
+		display:unset !important;
+		float:left;
+	}
     #uploadingCampaignOrgIcon {
         margin-left: -9px;
     }
@@ -11427,6 +11771,207 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .india-font-slogan b{
 	font-size: 21px;
 }
+.discover-container{
+	width:100%;
+}
+.discover-inner-container {
+	padding-left: 10px !important;
+	padding-right: 10px !important;
+	width: 100%;
+}
+.TW-dis-tab-padding{
+	padding-left:0px;
+	padding-right:0px;
+}
+.TW-discover-campaign-centering{
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width:1000px;
+}
+.TW-discover-title{
+	color:#006083;
+	font-size:30px;
+	font-weight:900;
+	margin-bottom:20px;
+	margin-top:20px;
+}
+.TW-discover-leftpane-menu ul{
+	margin-top: -9px;
+	padding-left: 20px;
+	padding-right: 10px;
+	text-decoration: none;
+}
+.TW-discover-leftpane-menu ul li{
+	list-style-type:none;
+	line-height:2;
+}
+.TW-discover-leftpane-menu ul li a{
+	color: #424242;
+	font-weight: 400;
+}
+.TW-discover-leftpane-menu ul li a:hover {
+	color: #01bbd2;
+	font-weight: 400;
+	text-decoration:none;
+}
+.TW-discover-tab-decoration{
+	background-color: #f6f8f8 !important;
+	border: 1px solid #dadada !important;
+	color: #006083;
+	height: 60px;
+	width:25%;
+}
+.TW-discover-tab-decoration:hover, .TW-discover-tab-decoration:active, .TW-discover-tab-decoration:focus {
+	background-color: #f6f8f8 !important;
+	border: 4px solid #00bbd2 !important;
+	color: #006083 !important;
+	height: 60px;
+	width:25%;
+}
+.TW-discover-tab-width{
+	width: 1024px;
+}
+.TW-discover-select-width{
+	width:16.5%;
+}
+.TW-discover-banner-decoration{
+	background-color: #01bbd2;
+	color: #fff;
+	min-height: 121px;
+	text-align: center;
+}
+.TW-discover-testimonial-width {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 12px;
+}
+.TW-discover-right-inverted-comma {
+	margin-top: 15px;
+}
+.TW-dicover-testimonial-name {
+	font-family: "Open Sans";
+	font-size: 16px;
+	padding-right: 84px;
+}
+.TW-discover-header-testimonial{
+	display:inline-flex;
+	display:-webkit-inline-box;    /*** Safari***/
+	display:-webkit-inline-flex;   /*** chrome ***/
+	margin-top: 14px;
+}
+.left-select-margin{
+	margin-left:3px;
+}
+.right-select-margin{
+	margin-left: -3px;
+}
+.TW-discover-testimonial-container div.TW-discover-header-testimonial{
+	width:56%;
+}
+.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
+	margin-left:auto;
+	margin-right:auto;
+	width:79%;
+}
+.TW-discover-bannerheadbtmMargin b {
+	color: #fff;
+	font-family: "Open Sans";
+	font-size: 23px;
+	font-weight: 900;
+	line-height: 0px;
+}
 .metricsInfoMsg {
     margin-top: 15px;
+}
+.ebook-container{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+	width:50%;
+}
+.TW-ebook-page-border{
+	background: #fff url("https://s3.amazonaws.com/crowdera/assets/ebook-setting-it-up.jpg") no-repeat scroll center top;
+	border: 1px solid #e3e3e3;
+	border-radius: 3px;
+	margin-bottom: 68px;
+	padding: 239px 0 32px;
+	text-align: center;
+	width: 100%;
+}
+a#downloadEbook{
+	display: block;
+	font-size: 20px;
+	height: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5px;
+	padding: 4px;
+	width: 200px;
+}
+.TW-ebook-ul{
+	padding: 32px 60px;
+	text-align: left;
+}
+.TW-ebook-page-border h3{
+	margin-top: 20px;
+	padding-left: 44px;
+	text-align: left;
+}
+.TW-ebook-ul li{
+	color: #4c4c4c;
+	font-size: 16px;
+	line-height: 24px;
+	margin-bottom: 12px;
+	padding-left: 20px;
+}
+.TW-socialicons {
+	display: block;
+	height: 30px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 8px;
+	padding-left: 5px;
+	width: 175px;
+}
+.TW-ebook-header {
+	height: 100px;
+	margin-bottom: 15px;
+	padding-bottom: 5px;
+	padding-top: 5px;
+	width: 100%;
+}
+.TW-ebook-header.TW-fixed-header {
+	background-color: #ffffff;
+	position: fixed;
+	top: 62px;
+	z-index: 10000;
+}
+.TW-ebook-header-image{
+	margin-bottom: 30px;
+	margin-top: 20px;
+	width:100%;
+}
+.TW-ebook-header-image img{
+	width:100%;
+	height:100%;
+}
+.TW-dis-tab-padding .bootstrap-select.btn-group .btn .filter-option {
+	display: inline-block;
+	overflow: hidden;
+	width: 100%;
+	text-align: center;
+}
+.TW-dis-tab-padding .bootstrap-select.btn-group .dropdown-menu li {
+	position: relative;
+	text-align: center;
+}
+.TW-dis-tab-padding .open > .dropdown-toggle.btn-default {
+	background-color: #006083 !important;
+	color: white !important;
+}
+.innovatingtab-padding{
+	padding-left:10px;
+	padding-right:10px;
 }

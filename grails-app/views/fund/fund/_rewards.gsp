@@ -20,6 +20,7 @@
                     def price = projectService.getDataType(reward.price);
                     def totalNumberOfReward = reward.numberAvailable
                 %>
+                <div class="col-md-12 col-sm-6 col-xs-12">
                 <br>
                 <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
                     <div class="crowdera-perk list-group-item">
@@ -52,6 +53,7 @@
                         <span class="badge">${backers}</span>&nbsp;&nbsp;<span class="perksupporter">SUPPORTERS</span>
                     </a>
                 </g:else>
+                </div>
             </g:each>
         </div>
     </div>

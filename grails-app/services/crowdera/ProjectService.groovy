@@ -402,7 +402,7 @@ class ProjectService {
 
     def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
         def emailId, twitter,custom, userId,anonymous 
-        def currency 
+        def currency
         if (project.payuEmail) {
             currency = 'INR'
             emailId = request.getParameter('shippingEmail')
@@ -424,7 +424,7 @@ class ProjectService {
  
         if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
             if (project.paypalEmail){
-                name = request.getParameter('name')
+                name = request.getParameter('name')      
                 username = request.getParameter('email')
             } else if (project.payuEmail){
                 name = request.getParameter('name')
@@ -1097,8 +1097,8 @@ class ProjectService {
         def projectadmins = project.projectAdmins
         
         def campaignCoCreator = projectadmins[0]
-        def firstAdmin = projectadmins[1]
-        def secondAdmin = projectadmins[2]
+        def firstAdmin = projectadmins[0]
+        def secondAdmin = projectadmins[1]
         def thirdAdmin = projectadmins[3]
         
         isAdminCreated (email1, project, firstAdmin, user)
@@ -2315,6 +2315,7 @@ class ProjectService {
 				}
 				Map countries = getCountry()
 				country = countries.getAt(params.country)
+				
 				if (params.addressLine2 == null || params.addressLine2.isAllWhitespace()){
 					address = params.addressLine1 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
 				} else {
@@ -3205,7 +3206,51 @@ class ProjectService {
         }
         return status
     }
-    
+	
+	def getShippingInfo(def params){
+		def shippingInfo
+		def twitter, custom, address, email
+		if (params.twitterField){
+			twitter = params.twitterField
+		} else {
+			twitter = null
+		}
+
+		if(params.customField && params.customField != ''){
+			custom = params.customField
+		} else {
+			custom = null
+		}
+
+		if(params.emailField){
+			email = params.emailField
+		} else {
+			email = null
+		}
+
+		if(params.addr1){  
+			address = params.addr1
+
+		if (params.addr2 && params.addr2 != '' && params.addr2 != 'null'){
+			address = address + " " + params.addr2
+		}
+
+		address = address + " " + params.cityField + "-" + params.zipField
+		Map countries = getCountry()
+		if (params.otherField && params.stateField == 'other'){
+			address = address+ " " + params.otherField + " " + countries.getAt(params.countryField)
+		} else {
+			Map states = getState()
+			address = address + " " + states.getAt(params.stateField) + " " + countries.getAt(params.countryField)
+		}
+	} else {
+		address = null
+	}
+		
+	shippingInfo = [twitter:twitter, custom:custom, address:address, email:email]
+	return shippingInfo
+	}
+
     def generateCSVReportForCampaign(def params, def response, Project project, def ytViewCount, def linkedinCount, def twitterCount, def facebookCount){
 
         def numberOfContributions = project.contributions.size()

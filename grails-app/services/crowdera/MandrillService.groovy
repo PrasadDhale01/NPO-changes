@@ -1111,7 +1111,7 @@ class MandrillService {
                 'content':beneficiaryName
             ], [
                 'name':'DATE',
-                'content' :it.date
+                'content' :it.date.format("dd MMMM, YYYY")
             ], [
                 'name':'LINK',
                 'content':link

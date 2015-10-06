@@ -402,7 +402,7 @@ class ProjectService {
 
     def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
         def emailId, twitter,custom, userId,anonymous 
-        def currency 
+        def currency
         if (project.payuEmail) {
             currency = 'INR'
             emailId = request.getParameter('shippingEmail')
@@ -424,7 +424,7 @@ class ProjectService {
  
         if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
             if (project.paypalEmail){
-                name = request.getParameter('name')
+                name = request.getParameter('name')      
                 username = request.getParameter('email')
             } else if (project.payuEmail){
                 name = request.getParameter('name')
@@ -1097,8 +1097,8 @@ class ProjectService {
         def projectadmins = project.projectAdmins
         
         def campaignCoCreator = projectadmins[0]
-        def firstAdmin = projectadmins[1]
-        def secondAdmin = projectadmins[2]
+        def firstAdmin = projectadmins[0]
+        def secondAdmin = projectadmins[1]
         def thirdAdmin = projectadmins[3]
         
         isAdminCreated (email1, project, firstAdmin, user)
@@ -1196,9 +1196,11 @@ class ProjectService {
             (Project.Category.ARTS): "Arts",
             (Project.Category.CHILDREN): "Children",
             (Project.Category.COMMUNITY): "Community",
+			(Project.Category.CIVIC_NEEDS): "Civic Needs",
             (Project.Category.EDUCATION): "Education",
             (Project.Category.ELDERLY): "Elderly",
             (Project.Category.ENVIRONMENT): "Environment",
+			(Project.Category.FILM): "Film",
             (Project.Category.HEALTH): "Health",
             (Project.Category.SOCIAL_INNOVATION): "Social Innovation",
             (Project.Category.RELIGION): "Religion",
@@ -1214,9 +1216,11 @@ class ProjectService {
 		   ARTS: "Arts",
 		   CHILDREN: "Children",
 		   COMMUNITY: "Community",
+		   CIVIC_NEEDS: "Civic Needs",
 		   EDUCATION: "Education",
 		   ELDERLY: "Elderly",
 		   ENVIRONMENT: "Environment",
+		   FILM: "Film",
 		   HEALTH: "Health",
 		   SOCIAL_INNOVATION: "Social Innovation",
 		   RELIGION: "Religion",
@@ -1224,6 +1228,25 @@ class ProjectService {
 	   ]
 	   return categoryOptions
 	   }
+	def getDiscoverLeftCategory(){
+		def categoryOptions = [
+			ALL: "All Categories",
+			NON_PROFITS: "Non Profits",
+			FILM: "Film",
+			CIVIC_NEEDS: "Civic Needs",
+			COMMUNITY: "Community"
+		]
+		return categoryOptions
+	}
+	def getDiscoverTopCategory(){
+		def categoryOptions = [
+			PASSION: "PASSION",
+			IMPACT: "IMPACT",
+			SOCIAL_GOODS: "Social_Good",
+			PERSONAL_NEEDS: "Personal_Needs"
+		]
+		return categoryOptions
+	}
     
     def getValidatedProjects() {
 		def popularProjectsList = getPopularProjects()
@@ -1947,13 +1970,19 @@ class ProjectService {
             return projects
         } else {
             projects.each{
+				String strNonProfits="NON_PROFITS"
                 String str = it.category
-                if (str.equalsIgnoreCase(categories)){
+				String strSocialCategory= it.usedFor
+				if(strNonProfits.equalsIgnoreCase(categories)){
+					String strNonProfitProject= it.fundsRecievedBy
+					if(strNonProfitProject.equalsIgnoreCase("NON-PROFITS")){
+						list.add(it)
+					}
+				}else if (str.equalsIgnoreCase(categories) || strSocialCategory.equalsIgnoreCase(categories)){
                    list.add(it)
                 }
             }
             return list
-           
         }
     }
     
@@ -2315,6 +2344,7 @@ class ProjectService {
 				}
 				Map countries = getCountry()
 				country = countries.getAt(params.country)
+				
 				if (params.addressLine2 == null || params.addressLine2.isAllWhitespace()){
 					address = params.addressLine1 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
 				} else {
@@ -3205,7 +3235,51 @@ class ProjectService {
         }
         return status
     }
-    
+	
+	def getShippingInfo(def params){
+		def shippingInfo
+		def twitter, custom, address, email
+		if (params.twitterField){
+			twitter = params.twitterField
+		} else {
+			twitter = null
+		}
+
+		if(params.customField && params.customField != ''){
+			custom = params.customField
+		} else {
+			custom = null
+		}
+
+		if(params.emailField){
+			email = params.emailField
+		} else {
+			email = null
+		}
+
+		if(params.addr1){  
+			address = params.addr1
+
+		if (params.addr2 && params.addr2 != '' && params.addr2 != 'null'){
+			address = address + " " + params.addr2
+		}
+
+		address = address + " " + params.cityField + "-" + params.zipField
+		Map countries = getCountry()
+		if (params.otherField && params.stateField == 'other'){
+			address = address+ " " + params.otherField + " " + countries.getAt(params.countryField)
+		} else {
+			Map states = getState()
+			address = address + " " + states.getAt(params.stateField) + " " + countries.getAt(params.countryField)
+		}
+	} else {
+		address = null
+	}
+		
+	shippingInfo = [twitter:twitter, custom:custom, address:address, email:email]
+	return shippingInfo
+	}
+
     def generateCSVReportForCampaign(def params, def response, Project project, def ytViewCount, def linkedinCount, def twitterCount, def facebookCount){
 
         def numberOfContributions = project.contributions.size()

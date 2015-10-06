@@ -50,6 +50,7 @@ $(document).ready(function(){
 	$('.banner-close').click(function(){
 		$('.info-banner').css('display','none');
 		$('.home-header-section').removeClass('banner-nav');
+		$('#TW-discover-banner-padding').removeClass('feducontent');
 	});
 });
 $(window).load(function() {

@@ -1,14 +1,19 @@
 <g:set var="projectService" bean="projectService"/>
-<g:if test="${currentTeam.user == project.user}">
-    <g:if test="${project.videoUrl}">
+<g:if test="${isCampaignAdmin}">
+    <g:hiddenField name="videoUrl" id="youtubeVideoUrl" value="${project.videoUrl}"/>
+</g:if>
+<g:elseif test="${currentTeam}">
+    <g:if test="${currentTeam.user == project.user}">
         <g:hiddenField name="videoUrl" id="youtubeVideoUrl" value="${project.videoUrl}"/>
     </g:if>
-</g:if>
-<g:else>
-    <g:if test="${currentTeam.videoUrl}">
+    <g:else>
         <g:hiddenField name="videoUrl" id="youtubeVideoUrl" value="${currentTeam.videoUrl}"/>
-    </g:if>
+    </g:else>
+</g:elseif>
+<g:else>
+    <g:hiddenField name="videoUrl" id="youtubeVideoUrl" value="${project.videoUrl}"/>
 </g:else>
+
 <g:if test="${images.size()>1}">
 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->

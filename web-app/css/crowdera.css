@@ -5393,7 +5393,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
 		margin-left:auto;
 		margin-right:auto;
-		width:323px !important;
+		width:275px !important;
 	}	
 	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
 		margin-left:auto;
@@ -10626,7 +10626,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
 		margin-left:auto;
 		margin-right:auto;
-		width:309px !important;
+		width:278px !important;
 	}	
 	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
 		margin-left:auto;
@@ -11804,7 +11804,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .TW-discover-banner-decoration{
 	background-color: #01bbd2;
 	color: #fff;
-	min-height: 121px;
+	min-height: 71px;
 	text-align: center;
 }
 .TW-discover-testimonial-width {
@@ -11834,7 +11834,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	margin-left: -3px;
 }
 .TW-discover-testimonial-container div.TW-discover-header-testimonial{
-	width:56%;
+	width:45%;
 }
 .TW-discover-testimonial-container span.TW-dicover-testimonial-name{
 	margin-left:auto;

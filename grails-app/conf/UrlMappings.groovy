@@ -17,8 +17,8 @@ class UrlMappings {
         "/manager/*/*"(view:'/401error')
   
         "/logout/$action?"(controller: "logout")
-		
-		"/sitemap"(controller :'sitemap', action :'sitemap')
+
+        "/sitemap"(controller :'sitemap', action :'sitemap')
 
         /* About Us */
         "/aboutus"(view:'/aboutus/index')

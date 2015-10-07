@@ -15,27 +15,29 @@ class UrlMappings {
         "/manager"(view:'/401error')
         "/manager/*"(view:'/401error')
         "/manager/*/*"(view:'/401error')
-        
+  
         "/logout/$action?"(controller: "logout")
+		
+		"/sitemap"(controller :'sitemap', action :'sitemap')
 
         /* About Us */
         "/aboutus"(view:'/aboutus/index')
-		
+
 		/* Ebook */
 		"/crowdfunding-ebook"(view:'/ebook/index')
 
         /* How it Works */
         "/howitworks"(view:'/howitworks/index')
-        
+
         /*Terms of Use*/
         "/termsofuse"(view:'/termsofuse/index')
-        
+
         /*privacy policy*/
         "/privacypolicy"(view:'/privacypolicy/index')
 
         /* FAQ */
         "/faq"(view:'/faq/index')
-        
+
         /* Contact Us */
         "/customer-service"(view:'/contactus/index')
         "/customer-support"(controller:'project', action:'customerSupport')
@@ -48,7 +50,7 @@ class UrlMappings {
         "/campaign/create"(controller:'project', action:'create')
         "/campaign/start/$title"(controller:'project', action:'redirectCreateNow')
         "/campaign/success/$title"(controller:'project', action:'launch')
-		
+
         "/campaign/save/$projectTitle"(controller:'project', action:'saveProject')
         "/campaign/draft/$projectTitle"(controller:'project', action:'draftProject')
         "/campaign/managecampaign"(controller:'project', action:'manageCampaign')

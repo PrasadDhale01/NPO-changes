@@ -5365,7 +5365,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 310px !important;
 	}
 	.TW-discover-testimonial-width {
-		width: 293px !important;
+		display: block;
+		margin-left: auto !important;
+		margin-right: auto !important;
+		margin-top: 5px !important;
+		width: 278px !important;
 	}
 	.TW-discover-title {
 		color: #006083;
@@ -5390,10 +5394,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		padding-right: 6px !important;
 	}
 	.TW-discover-right-inverted-comma img {
-		margin-top: 5px;
+		margin-top: -5px !important;
 		height: 15px;
 		width: 15px;
 	}
+	.TW-discover-hdr-testimonial-author{
+		margin-left:auto;
+		margin-right:auto;
+		text-align:right;
+		width:278px !important;
+	}	
 	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
 		margin-left:auto;
 		margin-right:auto;
@@ -6557,14 +6567,20 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.TW-discover-bannerheadbtmMargin b {
 		color: #fff;
 		font-family: "Open Sans";
-		font-size: 13px !important;
+		font-size: 20px !important;
 		font-weight: 900;
 		line-height: 0px;
 	}
+	.TW-discover-hdr-testimonial-author{
+		margin-left:auto;
+		margin-right:auto;
+		text-align:right;
+		width:603px !important;
+	}	
 	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
 		margin-left:auto;
 		margin-right:auto;
-		width:44% !important;
+		width:516px !important;
 	}	
 	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
 		margin-left:auto;
@@ -10647,6 +10663,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-right:auto;
 		width: 280px;
 	}
+	.TW-discover-testimonial-width {
+		display: block;
+		margin-left: 15px !important;
+		margin-right: 15px !important;
+		margin-top: 5px !important;
+	}
 	.TW-discover-bannerheadbtmMargin b {
 		color: #fff;
 		font-family: "Open Sans";
@@ -10658,11 +10680,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-left:auto;
 		margin-right:auto;
 		width:278px !important;
+	}
+	.TW-discover-hdr-testimonial-author{
+		margin-left:auto;
+		margin-right:auto;
+		text-align:right;
+		width:278px !important;
 	}	
 	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
 		margin-left:auto;
 		margin-right:auto;
-		width:98% !important;
+		width:278px !important;
 	}
 	.TW-dicover-testimonial-name {
 		font-family: "Open Sans";
@@ -10670,7 +10698,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		padding-right: 6px !important;
 	}
 	.TW-discover-right-inverted-comma img {
-		margin-top: 5px !important;
+		margin-top: -5px !important;
 		height: 15px;
 		width: 15px;
 	}
@@ -11838,13 +11866,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .TW-discover-banner-decoration{
 	background-color: #01bbd2;
 	color: #fff;
-	min-height: 71px;
+	min-height: 87px;
 	text-align: center;
 }
 .TW-discover-testimonial-width {
 	display: block;
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 25px;
+	margin-right: 25px;
 	margin-top: 12px;
 }
 .TW-discover-right-inverted-comma {
@@ -11867,18 +11895,24 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .right-select-margin{
 	margin-left: -3px;
 }
+.TW-discover-hdr-testimonial-author {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: right;
+    width: 766px;
+}
 .TW-discover-testimonial-container div.TW-discover-header-testimonial{
-	width:45%;
+	width:620px;
 }
 .TW-discover-testimonial-container span.TW-dicover-testimonial-name{
 	margin-left:auto;
 	margin-right:auto;
-	width:79%;
+	width:60%;
 }
 .TW-discover-bannerheadbtmMargin b {
 	color: #fff;
 	font-family: "Open Sans";
-	font-size: 23px;
+	font-size: 22px;
 	font-weight: 900;
 	line-height: 0px;
 }
@@ -11963,9 +11997,12 @@ a#downloadEbook{
 	width: 100%;
 	text-align: center;
 }
+.TW-dis-tab-padding .bootstrap-select.btn-group .dropdown-menu{
+	width:100%;
+}
 .TW-dis-tab-padding .bootstrap-select.btn-group .dropdown-menu li {
 	position: relative;
-	text-align: center;
+	text-align:center;
 }
 .TW-dis-tab-padding .open > .dropdown-toggle.btn-default {
 	background-color: #006083 !important;

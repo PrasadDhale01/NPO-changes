@@ -10,7 +10,9 @@
 			<img src="//s3.amazonaws.com/crowdera/assets/inverted-comma-Right.png" alt="''">
 		</div>
 	</div>
-<%--	<span class="TW-dicover-testimonial-name pull-right">--%>
-<%--		<img src="//s3.amazonaws.com/crowdera/assets/testimonial-lifevest-icon.png" alt="testimonial"><b>- Orly Wahba, Founder of Life Vest Inside</b>--%>
-<%--	</span>--%>
+	<div class="TW-discover-hdr-testimonial-author">
+	<span class="TW-dicover-testimonial-name">
+		<b>- Mahatma Gandhi</b>
+	</span>
+	</div>
 </div>

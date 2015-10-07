@@ -24,7 +24,7 @@
             <div class="row">
             	<div class="col-md-2 col-lg-2 col-sm-2 categoryList list-category TW-dis-tab-padding panel-body TW-discover-select-width left-select-margin">
                     <g:form action="category" controller="project" name="categoryForm">
-                        <g:select class="selectpicker" name="category" from="${categoryOptions}" id="category" optionKey="value" optionValue="value" value="${params.category}" onchange="selectedCategory()"/>
+                        <g:select class="selectpicker" id="category" name="category" from="${countryOptions}" value="${params.category}" optionKey="key" optionValue="value" noSelection="['Country':'Country']" onchange="selectedCategory()"/>
                     </g:form>
                 </div>
 				<div class="btn-group col-sm-8 col-lg-8 TW-dis-tab-padding">

@@ -112,6 +112,7 @@ class Project {
         ENVIRONMENT,
 		FILM,
         HEALTH,
+		NON_PROFITS,
         SOCIAL_INNOVATION,
         RELIGION,
         OTHER

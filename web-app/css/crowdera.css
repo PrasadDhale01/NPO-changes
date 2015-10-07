@@ -2990,6 +2990,10 @@ ul.menu{
 	width:1000px ;
 	padding-left: 0px !important;
 }
+.fund-container{
+    width:1000px ;
+    padding-left: 0px !important;
+}
 .policy-container{
 	width:1000px;
 }
@@ -6111,6 +6115,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.footer-container {
     	width: 320px !important;
 	}
+    .fund-container{
+        width: 320px !important;
+    }
 	.policy-container{
 		width:320px !important;
 	}
@@ -6444,6 +6451,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    .fund-container{
+        width:750px !important ;
+    }
+    .list-group-item{
+        height: 290px;
+    }
 	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	   width: 71.1% !important;
 	   float:left;
@@ -7917,6 +7930,19 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+    .fund-tile .tile-pad {
+        padding: 0px;
+        width: 270px;
+    }
+    .fund-container{
+        width:991px;
+    }
+    button.btnChargeContinue {
+        width: 226px;
+    }
+    .powerdbyPaypal img {
+        max-width: 231px !important;
+    }
 	.lead.show-contribution-amt-tile {
 	   font-size: 13px !important;
 	   font-weight: bold !important;
@@ -8307,6 +8333,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		.footer-container {
     		width: 320px !important;
 		}
+        .fund-container{
+            width: 320px !important;
+        }
         div.crowdera-title img{
 			display:block;
 			margin-left:auto;
@@ -10220,7 +10249,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 400px){
-	
+    .fund-sm-container.footer-container{
+        padding-left: 13px !important;
+    }
 	.button-team-footer .dropdown-menu {
 	    width: 357px !important;
 	}
@@ -11368,6 +11399,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.footer-container {
     	width: 320px !important;
 	}
+    .fund-container{
+        width: 320px !important;
+    }
 	.policy-container{
 		width:320px !important;
 	}

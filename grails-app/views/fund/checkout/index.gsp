@@ -187,7 +187,7 @@
                                 		</div>
                                 	</div>
                             	</div>
-                            
+
                             	<div class="form-group">
                             		<div class="input-group col-md-12">
                                     	<g:select class="selectpicker" name="billToState" id="billToState"

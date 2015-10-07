@@ -38,7 +38,7 @@
             </div>
             <br>
             <div class="row TW-Container-alignment">
-            	<div class="col-lg-2 col-xs-12  col-sm-2 hidden-xs TW-discover-leftpane-menu">
+            	<div class="col-lg-2 col-xs-12  col-sm-2 hidden-xs TW-discover-leftpane-menu TW-discover-pane-width">
 					<g:each in="${discoverLeftCategoryOptions}" var="categories">
 						<ul>
 							<li><g:link controller="project" action="category" params='[category:"${categories.value}"]' >${categories.value}</g:link></li>
@@ -56,6 +56,7 @@
                         <g:render template="list/grid" model="['projects': projects]"></g:render>
                     </g:else>
                 </div>
+                <div class="TW-discover-pane-width"></div>
             </div>
         </div>
     </div>

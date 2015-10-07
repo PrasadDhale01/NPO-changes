@@ -10,7 +10,7 @@
     <r:require module="projectlistjs"/>
 </head>
 <body>
-    <div class="feducontent bg-color" id="TW-discover-banner-padding">
+    <div class="bg-color" id="TW-discover-banner-padding">
         <div class="container discover-container">
         	<div class="row" >
         		<g:render template="list/discoverbanner"></g:render>
@@ -27,15 +27,12 @@
                         <g:select class="selectpicker" name="category" from="${categoryOptions}" id="category" optionKey="value" optionValue="value" value="${params.category}" onchange="selectedCategory()"/>
                     </g:form>
                 </div>
-                <div class="btn-group col-sm-8 col-lg-8 TW-dis-tab-padding">
-<%--                	<g:each in="${getDiscoverTopCategory}" var="categories">--%>
-<%--	           			<g:link controller="project" action="category" params='[category:"${categories.value}"]' class="btn btn-default TW-discover-tab-decoration text-center col-sm-3 col-xs-12 TW-padding-align"><span class="cr-pay-rd TW-cr-pay-rd">Following my</span><span class="cr-reci-siz TW-cr-reci-siz">${categories.value}</g:link>--%>
-<%--		    		</g:each>--%>
+				<div class="btn-group col-sm-8 col-lg-8 TW-dis-tab-padding">
 					<g:link controller="project" action="category" params="[category:'PASSION']" class="btn btn-default TW-discover-tab-decoration text-center col-sm-3 col-xs-12 TW-padding-align"><span class="cr-pay-rd TW-cr-pay-rd">Following my</span><span class="cr-reci-siz TW-cr-reci-siz">&nbsp;Passion</span></g:link>  
-					<g:link controller="project" action="category" params="[category:'IMPACT']" class="btn btn-default cr-check-btn col-sm-2 col-xs-12 TW-discover-tab-decoration TW-padding-align"> <span class="cr-pay-rd TW-cr-pay-rd">Making an</span><span class="cr-reci-siz TW-cr-reci-siz">&nbsp;Impact</span></g:link> 
-					<g:link controller="project" action="category" params="[category:'SOCIAL_NEEDS']" class="btn btn-default cr-check-btn col-sm-3 col-xs-12 TW-discover-tab-decoration TW-padding-align"><span class="cr-reci-siz TW-cr-reci-siz">Innovating&nbsp;</span><span class="cr-pay-rd TW-cr-pay-rd">for social good</span></g:link>
-					<g:link controller="project" action="category" params="[category:'PERSONAL_NEEDS']" class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-mob-payments TW-discover-tab-decoration TW-padding-align"><span class="cr-reci-siz TW-cr-reci-siz">Personal&nbsp;</span><span class="cr-pay-rd TW-cr-pay-rd">need</span></g:link>
-                </div>
+					<g:link controller="project" action="category" params="[category:'IMPACT']" class="btn btn-default  col-sm-2 col-xs-12 TW-discover-tab-decoration TW-padding-align"> <span class="cr-pay-rd TW-cr-pay-rd">Making an</span><span class="cr-reci-siz TW-cr-reci-siz">&nbsp;Impact</span></g:link> 
+					<g:link controller="project" action="category" params="[category:'SOCIAL_NEEDS']" class="btn btn-default  col-sm-3 col-xs-12 TW-discover-tab-decoration TW-padding-align innovatingtab-padding"><span class="cr-reci-siz TW-cr-reci-siz">Innovating&nbsp;</span><span class="cr-pay-rd TW-cr-pay-rd">for social good</span></g:link>
+					<g:link controller="project" action="category" params="[category:'PERSONAL_NEEDS']" class="btn btn-default col-sm-2 col-xs-12 cr-mob-payments TW-discover-tab-decoration TW-padding-align"><span class="cr-reci-siz TW-cr-reci-siz">Personal&nbsp;</span><span class="cr-pay-rd TW-cr-pay-rd">need</span></g:link>
+				</div>
                 <!-- Search -->
                 <g:render template="list/search"></g:render>
             </div>
@@ -50,7 +47,7 @@
             	</div>
                 <div class="col-md-10 col-lg-12 col-sm-10 col-xs-12 TW-discover-campaign-centering">
                     <g:if test="${flash.catmessage}">
-                        <div class="alert alert-danger">
+                        <div class="alert alert-danger flashmsg-width">
                             ${flash.catmessage}
                         </div>
                     </g:if>

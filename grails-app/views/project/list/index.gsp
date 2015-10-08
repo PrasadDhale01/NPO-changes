@@ -46,7 +46,7 @@
             	<div class="col-lg-2 col-xs-12  col-sm-2 hidden-xs TW-discover-leftpane-menu TW-discover-pane-width">
 					<g:each in="${discoverLeftCategoryOptions}" var="categories">
 						<ul>
-							<li><g:link controller="project" action="category" params='[category:"${categories.value}"]' >${categories.value}</g:link></li>
+						    <li><a href="/campaigns/category/${categories.value}" >${categories.value}</a></li>
 						</ul>
 					</g:each>
             	</div>

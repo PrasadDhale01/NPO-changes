@@ -1205,7 +1205,7 @@ class ProjectService {
 			(Project.Category.NON_PROFITS):"Non Profits",
             (Project.Category.SOCIAL_INNOVATION): "Social Innovation",
             (Project.Category.RELIGION): "Religion",
-            (Project.Category.OTHER): "Other",
+            (Project.Category.OTHER): "Other"
         ]
         return categoryOptions
     }

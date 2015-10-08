@@ -24,14 +24,19 @@
             <div class="row">
             	<div class="col-md-2 col-lg-2 col-sm-2 categoryList list-category TW-dis-tab-padding panel-body TW-discover-select-width left-select-margin">
                     <g:form action="category" controller="project" name="categoryForm">
-                        <g:select class="selectpicker" id="category" name="category" from="${countryOptions}" value="${params.category}" optionKey="key" optionValue="value" noSelection="['Country':'Country']" onchange="selectedCategory()"/>
+                        <g:select class="selectpicker" id="category" name="country" from="${countryOptions}" value="${params.country}" optionKey="value" optionValue="value" noSelection="['Country':'Country']" onchange="selectedCategory()"/>
                     </g:form>
                 </div>
+                <div class="col-xs-12 visible-xs categoryList list-category TW-dis-tab-padding panel-body TW-discover-select-width">
+					<g:form action="category" controller="project" name="campaigncategoryForm">
+						<g:select class="selectpicker" id="category" name="category" from="${discoverLeftCategoryOptions}" value="${params.category}" optionKey="value" optionValue="value" noSelection="['Campaign Category':'Campaign category']" onchange="selectedCampaignCategory()"/>
+					</g:form>
+            	</div>
 				<div class="btn-group col-sm-8 col-lg-8 TW-dis-tab-padding">
-					<g:link controller="project" action="category" params="[category:'PASSION']" class="btn btn-default TW-discover-tab-decoration text-center col-sm-3 col-xs-12 TW-padding-align"><span class="cr-pay-rd TW-cr-pay-rd">Following my</span><span class="cr-reci-siz TW-cr-reci-siz">&nbsp;Passion</span></g:link>  
-					<g:link controller="project" action="category" params="[category:'IMPACT']" class="btn btn-default  col-sm-2 col-xs-12 TW-discover-tab-decoration TW-padding-align"> <span class="cr-pay-rd TW-cr-pay-rd">Making an</span><span class="cr-reci-siz TW-cr-reci-siz">&nbsp;Impact</span></g:link> 
-					<g:link controller="project" action="category" params="[category:'SOCIAL_NEEDS']" class="btn btn-default  col-sm-3 col-xs-12 TW-discover-tab-decoration TW-padding-align innovatingtab-padding"><span class="cr-reci-siz TW-cr-reci-siz">Innovating&nbsp;</span><span class="cr-pay-rd TW-cr-pay-rd">for social good</span></g:link>
-					<g:link controller="project" action="category" params="[category:'PERSONAL_NEEDS']" class="btn btn-default col-sm-2 col-xs-12 cr-mob-payments TW-discover-tab-decoration TW-padding-align"><span class="cr-reci-siz TW-cr-reci-siz">Personal&nbsp;</span><span class="cr-pay-rd TW-cr-pay-rd">need</span></g:link>
+					<g:link controller="project" action="category" params="[usedfor:'PASSION']" class="btn btn-default TW-discover-tab-decoration text-center col-sm-3 col-xs-12 TW-padding-align"><span class="cr-pay-rd TW-cr-pay-rd">Following my</span><span class="cr-reci-siz TW-cr-reci-siz">&nbsp;Passion</span></g:link>  
+					<g:link controller="project" action="category" params="[usedfor:'IMPACT']" class="btn btn-default  col-sm-2 col-xs-12 TW-discover-tab-decoration TW-padding-align"> <span class="cr-pay-rd TW-cr-pay-rd">Making an</span><span class="cr-reci-siz TW-cr-reci-siz">&nbsp;Impact</span></g:link> 
+					<g:link controller="project" action="category" params="[usedfor:'SOCIAL_NEEDS']" class="btn btn-default  col-sm-3 col-xs-12 TW-discover-tab-decoration TW-padding-align innovatingtab-padding"><span class="cr-reci-siz TW-cr-reci-siz">Innovating&nbsp;</span><span class="cr-pay-rd TW-cr-pay-rd">for social good</span></g:link>
+					<g:link controller="project" action="category" params="[usedfor:'PERSONAL_NEEDS']" class="btn btn-default col-sm-2 col-xs-12 cr-mob-payments TW-discover-tab-decoration TW-padding-align"><span class="cr-reci-siz TW-cr-reci-siz">Personal&nbsp;</span><span class="cr-pay-rd TW-cr-pay-rd">need</span></g:link>
 				</div>
                 <!-- Search -->
                 <g:render template="list/search"></g:render>

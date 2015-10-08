@@ -1154,8 +1154,23 @@ class ProjectController {
 	}
 
 	def category (){
-		def category = params.category
-		redirect(action: 'categoryFilter', controller:'project',params:[category: category])
+		def category
+		if(params.category){
+			category=params.category
+			redirect(action: 'categoryFilter', controller:'project',params:[category: category])
+		}else if(params.usedfor){
+			category=params.usedfor
+			redirect(action: 'categoryFilter', controller:'project',params:[usedfor: category])
+		}else if(params.country){
+			if(params.country == "Country"){
+				redirect(action:'list', controller:'project')	
+			}else{
+				category = params.country
+				redirect(action: 'categoryFilter', controller:'project',params:[country: category])
+			}
+		}
+		
+		
 	}
 
 	def categoryFilter() {
@@ -1168,7 +1183,15 @@ class ProjectController {
 			discoverLeftCategoryOptions=projectService.getCategory()
 		}
 		def sortsOptions = projectService.getSorts()
-		def category = params.category
+		def category
+		if(params.category){
+			category=params.category
+		}else if(params.usedfor){
+			category=params.usedfor
+		}else if(params.country){
+			category=params.country	
+		}
+		
 		def project
 		if (category == "Social Innovation"){
 			project = projectService.filterByCategory("SOCIAL_INNOVATION", currentEnv)
@@ -1387,6 +1410,10 @@ class ProjectController {
 		def sortsOptions = projectService.getSorts()
 		
 		def sorts = (params.query == 'Successful') ? 'Successful (100% +)' : params.query
+		if(sorts.equals("Sort by")){
+			redirect(action:'list', controller:'project')
+		}
+		
 		def campaignsorts = projectService.isCampaignsorts(sorts, environment)
 		if(!campaignsorts){
 			flash.catmessage="No campaign found."

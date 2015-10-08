@@ -2007,8 +2007,9 @@ class ProjectService {
 				String str = it.category
 				String strSocialCategory = it.usedFor
 				String strNonProfit = "NON_PROFITS"
-				String strCountryCategory = it.beneficiary.country
-				
+				Map countries = getCountry()
+				String strCountryCategory = countries.getAt(it.beneficiary.country)
+				 
 				if (str.equalsIgnoreCase(categories)){
 					list.add(it)
 				}else if(strSocialCategory !=null && strSocialCategory.equalsIgnoreCase(categories)){

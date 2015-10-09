@@ -36,7 +36,7 @@
 				       <li>
 				           <g:if test="${!ended}">
 				               <g:if test="${currentFundraiser == currentUser || isCrUserCampBenOrAdmin}">
-				                   <a class="list" href="#inviteTeamMember" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+				                   <a class="list" href="#inviteTeamMember-mobile" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
     		               </g:if>
 				           </g:if>
 				           <g:else>
@@ -44,7 +44,7 @@
 				           </g:else>
 				       </li>
 				       <g:if test="${!isCrFrCampBenOrAdmin}">
-				           <li><a class="list" href="#editFundraiser" data-toggle="modal"><i class="glyphicon glyphicon-edit"></i> &nbsp;&nbsp;Edit Fundraiser</a></li>
+				           <li><a class="list" href="#editFundraiser-mobile" data-toggle="modal"><i class="glyphicon glyphicon-edit"></i> &nbsp;&nbsp;Edit Fundraiser</a></li>
 				       </g:if>
 			       </ul>
                 </li>
@@ -65,7 +65,7 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="inviteTeamMember" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="inviteTeamMember-mobile" tabindex="-1" role="dialog" aria-hidden="true">
     <g:form action="inviteTeamMember" id="${project.id}"  class="inviteTeamMember">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -98,7 +98,7 @@
 
 <!-- Edit Fundraiser Modal -->
 <div class="modal fade" id="editFundraiser" tabindex="-1" role="dialog" aria-hidden="true">
-    <g:uploadForm action="editFundraiser" id="${currentTeam.id}" params="['fr':currentFundraiser.username]"> 
+    <g:uploadForm action="editFundraiser-mobile" id="${currentTeam.id}" params="['fr':currentFundraiser.username]"> 
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

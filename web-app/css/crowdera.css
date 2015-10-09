@@ -12020,3 +12020,6 @@ a#downloadEbook{
 .TW-discover-pane-width{
 	width:14%;
 }
+.TW-Discover-selected-usedfor{
+	border:3px solid #01bbd2 !important;
+}

@@ -521,6 +521,37 @@
     	}
       });
     
+    /*******************************Show-page-share icons hover***************************/
+    $('.show-email').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-email-color.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png");
+    });
+    
+    $('.show-twitter').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-twitter-color.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png");
+    });
+    
+    $('.show-like').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-like-color.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-like-gray.png");
+    });
+    
+    $('.show-linkedin').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-linkedin-color.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png");
+    });
+    
+    $('.show-google').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-google-color.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-google-gray.png");
+    });
+    
     /*******************************Description text length*********************/
         var counter = 1;
         $('#descarea').on('keydown', function(event) {
@@ -671,6 +702,9 @@
         $('.perk-tile').mouseleave(function() {
             $(this).find('.campaignEditDeleteIcon').hide();
         });
+
+       if(screen.width > 1024 && screen.width < 992)
+           $('#screen').val('true');
 
        if($('#videoUrl').val()){
         	var regExp = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;

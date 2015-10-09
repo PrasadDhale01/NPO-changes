@@ -9,9 +9,9 @@
     def beneficiaryUserName = beneficiary.username
     def fundRaiserName
     if(currentFundraiser.email == project.beneficiary.email){
-		if (project.beneficiary.lastName)
+        if (project.beneficiary.lastName)
             fundRaiserName = (project.beneficiary.firstName + " " + project.beneficiary.lastName).toUpperCase()
-		else 
+        else 
             fundRaiserName = (project.beneficiary.firstName).toUpperCase()
     } else {
         fundRaiserName = (currentFundraiser.firstName + " " + currentFundraiser.lastName).toUpperCase()
@@ -29,6 +29,7 @@
     }
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
     def currentTeamAmount = currentTeam.amount
+    
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -51,7 +52,7 @@
     <meta property="og:image" content="${imageUrl}" />
     </g:elseif>
     <meta property="og:url" content="${fbShareUrl}" />
-	
+    
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@gocrowdera" />
     <meta name="twitter:domain" content="${base_url}" />
@@ -66,8 +67,8 @@
             $('.redactorEditor').redactor({
                 imageUpload:'/project/getRedactorImage',
                 imageResizable: true,
-                plugins: ['video'],
-                buttonsHide: ['indent', 'outdent', 'horizontalrule']
+                plugins: ['video','fontsize', 'fontfamily', 'fontcolor'],
+                buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']
             });
        });
     </g:javascript>
@@ -86,14 +87,172 @@
            </div><br>
        </g:else>
     </g:if>
-	<div class="container show-cmpgn-container">
-		<g:if test="${project}">
-		    <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
-		    <div class="redirectUrl">
-		        <g:link controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"></g:link>
-		    </div>
+<%------------------------------------- Mobile Resolutions code 320px to 767px ----------------------------------%>
+    <div class="hidden-lg hidden-sm hidden-md">
+        <div class="container show-cmpgn-container">
+            <g:if test="${flash.prj_mngprj_message}">
+                    <div class="alert alert-success show-msz" align="center">
+                        ${flash.prj_mngprj_message}
+                    </div>
+                </g:if>
+                
+            <g:render model="['project': project]" template="/layouts/tile"></g:render>
+            <g:if test="${isPreview && !project.validated}">
+                 <div class="show-tilemobile">
+                     <g:if test="${tile == 'false'}">
+                             <a href="/campaign/start/${vanityTitle}"><< Back to Create Page</a>
+                     </g:if>
+                     <g:render template="/user/user/tilemobile" model="['project': project]"></g:render>
+                 </div>
+                 <div class="submitForApprovalSection">
+                     <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                         <g:form controller="project" action="saveasdraft" id="${project.id}">
+                             <g:if test="${!project.touAccepted}">
+                                 <div class="form-group">
+                                     <input type="checkbox" name="submitForApprovalcheckbox" id="agreetoTermsandUse">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+                                 </div>
+                             </g:if>
+                             <div class="clear"></div>
+                             <button class="btn btn-block btn-lg btn-primary show-submitapprovalmobile">
+                                 <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                             </button>
+                         </g:form>
+                     </g:if>
+                     <g:else>
+                         <button class="btn btn-block btn-lg btn-primary show-submitapprovalmobile" id="submitForApprovalBtnMobile">
+                             <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                         </button>
+                     </g:else>
+                               
+                     
+                 </div>
+                
+            </g:if>
+            <g:elseif test="${percentage == 999}">
+                <button type="button" class="btn btn-success btn-lg btn-block mob-show-sucessend" disabled>SUCCESSFULLY FUNDED!</button>
+            </g:elseif>
+            <g:elseif test="${ended}">
+                <button type="button" class="btn btn-warning btn-lg btn-block mob-show-sucessend" disabled>CAMPAIGN ENDED!</button>
+            </g:elseif>
+            <g:else>
+            <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+                    <div class="redirectCampaign">
+                        <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund" id="btnFundDesktop">FUND NOW!</button></g:link>
+                    </div>
+                </g:if>
+                <g:else>
+                <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
+                    <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund"  id="btnFundMobile">FUND NOW!</button>
+                </g:form>
+            </g:else>
+            </g:if>
+                 <g:else>
+                     <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block mob-show-fund">FUND NOW!</button>
+                 </g:else>
+            </g:else>
+            
+            <div class="panel-body show-mobile-slogn">
+                <p>Crowdera is free, we do not charge any fee Payments are securely made via Paypal</p>
+            </div>
+            
+           
+            <g:if test="${!isTeamExist && project.validated}">
+                <g:if test="${!ended}">
+                        <g:form controller="project" action="addTeam" id="${project.id}">
+                             <input type="submit" value="Join our Team" class=" col-xs-12 show-mob-btnJoinOur text-center btn btn-block "/>
+                        </g:form> 
+                </g:if>
+            <g:else>
+                    <input type="submit" value="Join our Team" class=" col-xs-12 show-mob-btnJoinOur text-center btn btn-block "/>
+            </g:else>
+        </g:if>
+         <g:if test="${isPreview}">
+            <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb">
+                <i class="fa fa-facebook fa-facebook-styles"></i> Share on facebook
+            </a>
+         </g:if>
+         <g:else>
+            <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">
+                <i class="fa fa-facebook fa-facebook-styles"></i> Share on facebook
+            </a>
+         </g:else>
+            
+            
+             <div class="col-xs-12 show-mobiletabs-top ">
+                    <g:set var="screen" id="screen" value="false"></g:set>
+                    <ul class="nav nav-pills nav-justified show-marginbottoms mng-safari-mobile show-new-tabs-alignments<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
+                       
+                        <span class="show-tbs-right-bord"><a href="#manageTeam" data-toggle="tab"  class="show-tabs-text">
+                            <span class="tab-text"> TEAMS</span>
+                        </a></span>
+                        <span class="show-mobile-contri"><a href="#contributions-mobile" data-toggle="tab"  class="show-tabs-text">
+                            <span class="tab-text "> CONTRIBUTIONS</span>
+                        </a><span class="show-tabs-count hidden-xs"><g:if test="${totalContributions.size() > 0 && screen == 'false'}">${totalContributions.size()}</g:if></span></span>
+                    </ul>
+                </div>
+            
+               <div class="col-xs-12 col-md-8 Top-tabs-mobile show-tops-corsal">
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane  active" id="manageTeam">
+                            <g:render template="show/mobileShowMangeTeam"/>
+                        </div>
+                        <div class="tab-pane" id="contributions-mobile">
+                            <g:render template="show/contributions" model="['team':currentTeam]"/>
+                        </div>
+                    </div>
+               </div>
+               <div class="col-xs-12 show-mobile-update">
+                   <g:if test="${!project.projectUpdates.empty}">
+                       <%
+                            def projectUpdates = project.projectUpdates.reverse()
+                            def i = projectUpdates.size()
+                            def count = projectUpdates.size()
+                            def rows = projectUpdates.size()
+                            def index = 0
+                        %>
+                        <g:each in="${(1..rows).toList()}" var="row">
+                            <div class="row campaignupdate">
+                                      <% if (index < count) { %>
+                                          <g:render template="/project/manageproject/campaigngrid" model="['projectUpdate': projectUpdates.get(index++), 'i': i--]"></g:render>
+                                      <% } %>
+                            </div>
+                        </g:each>
+                    </g:if>
+                </div>
+                <div class="col-xs-12 sh-mobperks">
+                    <g:if test="${(project.rewards.size()>1 && !isPreview) || (project.rewards.size()>1 && project.validated) }">
+                            <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                                <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
+                            </g:if>
+                    </g:if>
+                </div>
+                
+                <div class="col-xs-12 sh-mobperks">
+                    <g:if test="${project.rewards.size()>1 && !project.validated}">
+                         <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
+                    </g:if>
+                </div>
+                
+                <div class="col-xs-12 sh-comments-align">
+                    <g:render template="show/comments"/>
+                </div>
+                
+        </div>
+    </div>
+    
+
+<%-------------------------------------End--- Mobile Resolutions code 320px to 767px ----------------------------------%>    
+    
+    <div class="container show-cmpgn-container hidden-xs">
+        <g:if test="${project}">
+            <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
+            <div class="redirectUrl">
+                <g:link controller="project" action="show" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"></g:link>
+            </div>
             <div class="row">
-             	<g:if test="${flash.prj_mngprj_message}">
+                <g:if test="${flash.prj_mngprj_message}">
                     <div class="alert alert-success show-msz" align="center">
                         ${flash.prj_mngprj_message}
                     </div>
@@ -120,17 +279,27 @@
                 </g:if>
                 <g:else>
                 <div class="col-md-12 green-heading campaignTitle text-center">
-	                <h1><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
-		            	 ${projectTitle} 
-	                </g:link></h1>
-	            </div>
-	            </g:else>
+                    <h1><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': beneficiaryUserName]">
+                         ${projectTitle} 
+                    </g:link></h1>
+                </div>
+                </g:else>
                 <g:if test="${user || beneficiary}">
-	                <div class="col-md-12 col-sm-12 col-xs-12 text-center campaignFundRaiser">
-	                	<h4 class="green-heading"> by ${fundRaiserName}</h4>
-	                </div>
+                    <div class="col-md-12 col-sm-12 col-xs-12 text-center campaignFundRaiser">
+                        <h4 class="green-heading">
+                            <img class="show-location" alt="location" src="//s3.amazonaws.com/crowdera/assets/show-location-original-icon.png">
+                            <span>${project.beneficiary.country}</span>
+                            <g:if test = "${project.fundsRecievedBy != null }">
+                                <img class="show-location sh-none-pft" alt="location" src="//s3.amazonaws.com/crowdera/assets/show-original-non-profil-icon.png">
+                                <span>${project.fundsRecievedBy}</span>
+                            </g:if>
+                            <g:else>
+                            
+                            </g:else>
+                        </h4>
+                    </div>
                 </g:if>
-	            <div class="col-xs-12 col-md-4 mobileview-top">
+                <div class="col-xs-12 col-md-4 mobileview-top">
                      <g:render template="/layouts/orgDetails"/>
                     <g:if test="${isPreview && !project.validated}">
                         <div class="submitForApprovalSection">
@@ -142,7 +311,7 @@
                                         </div>
                                     </g:if>
                                     <div class="clear"></div>
-                                    <button class="btn btn-block btn-lg btn-primary">
+                                    <button class="btn btn-block btn-lg btn-primary sh-submitapproval">
                                         <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
                                     </button>
                                 </g:form>
@@ -153,7 +322,7 @@
                                 </button>
                             </g:else>
                         </div>
-                        <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                        <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                         <g:if test="${project.rewards.size()>1}">
                             <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
                         </g:if>
@@ -167,62 +336,70 @@
                     <g:else>
                         <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
                             <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
-	                            <div class="redirectCampaign">
-	                                <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block" id="btnFundDesktop">Fund this Campaign</button></g:link>
-	                            </div>
-	                        </g:if>
-	                        <g:else>
-	                        <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
-	                            <button name="submit" class="btn btn-show-fund btn-lg btn-block"  id="btnFundMobile">Fund this Campaign</button>
-	                        </g:form>
-	                        </g:else>
+                                <div class="redirectCampaign">
+                                    <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block" id="btnFundDesktop">FUND NOW!</button></g:link>
+                                </div>
+                            </g:if>
+                            <g:else>
+                            <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
+                                <button name="submit" class="btn btn-show-fund btn-lg btn-block"  id="btnFundMobile">FUND NOW!</button>
+                            </g:form>
+                            </g:else>
                         </g:if>
                         <g:else>
-                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block">Fund this Campaign</button>
+                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block">FUND NOW!</button>
                         </g:else>
                     </g:else>
                     <g:if test="${!isPreview || project.validated}">
-                        <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                        <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                     </g:if>
                     <g:if test="${(project.rewards.size()>1 && !isPreview) || (project.rewards.size()>1 && project.validated) }">
                         <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
-                    	    <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
-                    	</g:if>
+                            <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
+                        </g:if>
                     </g:if>
                 </div>
+
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders">
-                    <ul class="nav nav-pills nav-justified show-marginbottoms mng-safari-mobile show-new-tabs-alignments<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
-                        <li class="active show-tbs-right-borders"><a href="#essentials" data-toggle="tab">
-                            <span class="glyphicon glyphicon-leaf hidden-lg hidden-sm hidden-md"></span><span class="tab-text hidden-xs"> STORY</span>
-                        </a></li>
+                    <g:set var="screen" id="screen" value="false"></g:set>
+                    <div class="nav nav-pills nav-justified show-marginbottoms mng-safari-mobile show-new-tabs-alignments<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
+                        <span class="active show-tbs-right-borders"><a href="#essentials" data-toggle="tab" class="show-tabs-text">
+                            <span class="glyphicon glyphicon-leaf hidden-lg hidden-sm hidden-md"></span>
+                            <span class="tab-text hidden-xs"> STORY</span>
+                        </a></span>
                         <g:if test="${!project.projectUpdates.isEmpty() }">
-                            <li class="show-tbs-right-borders"><a href="#projectupdates" data-toggle="tab">
-							    <span class="glyphicon glyphicon-asterisk hidden-lg hidden-sm hidden-md"></span><span class="tab-text hidden-xs"> UPDATES</span>
-                            </a></li>
+                            <span class="show-tbs-right-borders"><a href="#projectupdates" data-toggle="tab"  class="show-tabs-text">
+                                <span class="glyphicon glyphicon-asterisk hidden-lg hidden-sm hidden-md"></span>
+                                <span class="tab-text hidden-xs"> UPDATES</span> </a>
+                                <span class="show-tabs-count hidden-xs"><g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if></span>
+                           </span>
                         </g:if>
-                        <li class="show-tbs-right-borders"><a href="#manageTeam" data-toggle="tab">
-                            <span class="fa fa-users hidden-lg hidden-sm hidden-md"></span><span class="tab-text hidden-xs"> TEAMS</span>
-						</a></li>
-                        <li class="show-tbs-right-borders"><a href="#contributions" data-toggle="tab">
-                            <span class="glyphicon glyphicon-tint hidden-lg hidden-sm hidden-md"></span><span class="tab-text hidden-xs"> CONTRIBUTIONS</span>
-                        </a></li>
-                        <li><a href="#comments" data-toggle="tab">
+                        <span class="show-tbs-right-borders"><a href="#manageTeams" data-toggle="tab"  class="show-tabs-text">
+                            <span class="fa fa-users hidden-lg hidden-sm hidden-md"></span>
+                            <span class="tab-text hidden-xs"> TEAMS</span>
+                        </a></span>
+                        <span class="show-tbs-right-borders"><a href="#contributions" data-toggle="tab"  class="show-tabs-text">
+                            <span class="glyphicon glyphicon-tint hidden-lg hidden-sm hidden-md"></span>
+                            <span class="tab-text hidden-xs"> CONTRIBUTIONS</span></a>
+                            <span class="show-tabs-count hidden-xs"><g:if test="${totalContributions.size() > 0 && screen == 'false'}">${totalContributions.size()}</g:if></span>
+                        </span>
+                        <span class="show-comit-lft"><a href="#comments" data-toggle="tab"  class="show-tabs-text">
                             <span class="glyphicon glyphicon-comment hidden-lg hidden-sm hidden-md"></span><span class="tab-text hidden-xs"> COMMENTS</span>
-                        </a></li>
-                    </ul>
+                        </a></span>
+                    </div>
                 </div>
-                <div class="col-xs-12 col-md-8 Top-tabs-mobile show-tops-corsal">
+                <div class="col-xs-12 col-md-8 col-sm-8 Top-tabs-mobile show-tops-corsal">
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div class="tab-pane active" id="essentials">
-                            <g:render template="show/essentials"/>
+                            <g:render template="show/story"/>
                         </div>
                         <div class="tab-pane" id="projectupdates">
                             <g:render template="show/projectupdates"/>
                         </div>
-                        <div class="tab-pane" id="manageTeam">
-							<g:render template="show/manageteam"/>
-						</div>
+                        <div class="tab-pane" id="manageTeams">
+                            <g:render template="show/manageteam"/>
+                        </div>
                         <div class="tab-pane" id="contributions">
                             <g:render template="show/contributions" model="['team':currentTeam]"/>
                         </div>
@@ -232,43 +409,43 @@
                     </div>
                     
                     <div class="row"> 
-				        <!-- Modal -->
-				        <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
-				            <g:form action="sendemail" id="${project.id}" params="['fr': username]"  class="sendMailForm">
-				                <div class="modal-dialog">
-				                    <div class="modal-content">
-				                        <div class="modal-header">
-				                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-				                            <h4 class="modal-title">Recipient Email ID's</h4>
-				                        </div>
-				                        <div class="modal-body">
+                        <!-- Modal -->
+                        <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
+                            <g:form action="sendemail" id="${project.id}" params="['fr': username]"  class="sendMailForm">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title">Recipient Email ID's</h4>
+                                        </div>
+                                        <div class="modal-body">
                                             <g:hiddenField name="amount" value="${project.amount}" id="campaign-amount"/>
                                             <g:hiddenField name="vanityTitle" value="${vanityTitle}" id="campaign-vanityTitle"/>
                                             <g:hiddenField name="vanityUsername" value="${vanityUsername}" id="campaign-vanityUsername"/>
-				                            <div class="form-group">
-				                                <label>Your Name</label>
-				                                <input type="text" class="form-control all-place" name="name" placeholder="Name"/>
-				                            </div>
-				                            <div class="form-group">
-				                                <label>Email ID's (separated by comma)</label>
-				                                <textarea class="form-control all-place" name="emails" rows="4" placeholder="Email ID's"></textarea>
-				                            </div>
-				                            <div class="form-group">
-				                                <label>Message (Optional)</label>
-				                                <textarea class="form-control all-place" name="message" rows="4" placeholder="Message"></textarea>
-				                            </div>
-				                        </div>
-				                        <div class="modal-footer">
-				                            <button type="submit" class="btn btn-primary btn-block" id="btnSendMail">Send Email</button>
-				                        </div>
-				                    </div>
-				                </div>
-				            </g:form>
-				        </div>
-				    </div>
-				    
+                                            <div class="form-group">
+                                                <label>Your Name</label>
+                                                <input type="text" class="form-control all-place" name="name" placeholder="Name"/>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Email ID's (separated by comma)</label>
+                                                <textarea class="form-control all-place" name="emails" rows="4" placeholder="Email ID's"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label>Message (Optional)</label>
+                                                <textarea class="form-control all-place" name="message" rows="4" placeholder="Message"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit" class="btn btn-primary btn-block" id="btnSendMail">Send Email</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </g:form>
+                        </div>
+                    </div>
+                    
                 </div>
-                <div class="col-xs-12 col-md-4 mobileview-bottom show-desk-org-tile show-tops-corsal">
+                <div class="col-xs-12 col-md-4 col-sm-4 mobileview-bottom show-desk-org-tile show-tops-corsal">
                     <g:render template="/layouts/orgDetails"/>
                     <g:if test="${isPreview && !project.validated}">
                         <div class="submitForApprovalSectionbtm" id="submitForApprovalSectionbtm">
@@ -280,65 +457,85 @@
                                         </div>
                                     </g:if>
                                     <div class="clear"></div>
-                                    <button class="btn btn-block btn-lg btn-primary">
+                                    <button class="btn btn-block btn-lg btn-primary sh-submitapproval">
                                         <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
                                     </button>
                                 </g:form>
                             </g:if>
                             <g:else>
-                                <button class="btn btn-block btn-lg btn-primary" id="submitForApprovalBtn">
+                                <button class="btn btn-block btn-lg btn-primary sh-submitapproval" id="submitForApprovalBtn">
                                     <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
                                 </button>
                             </g:else>
                         </div>
-                        <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                        <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                        <g:if test="${isPreview}">
+                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb">
+                                <i class="fa fa-facebook fa-facebook-styles"></i> Share on facebook
+                            </a>
+                        </g:if>
+                        <g:else>
+                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">
+                                <i class="fa fa-facebook fa-facebook-styles"></i> Share on facebook
+                            </a>
+                        </g:else>
                         <g:if test="${project.rewards.size()>1}">
-                            <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
+                            <div class="sh-perks-preview">
+                                <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
+                           </div>
                         </g:if>
                     </g:if>
                     <g:elseif test="${percentage == 999}">
-                        <button type="button" class="btn btn-success btn-lg btn-block show-fund-size" disabled>SUCCESSFULLY FUNDED</button>
+                        <button type="button" class="btn btn-success btn-lg btn-block show-campaign-sucessbtn" disabled>SUCCESSFULLY FUNDED!</button>
                     </g:elseif>
                     <g:elseif test="${ended}">
-                        <button type="button" class="btn btn-warning btn-lg btn-block show-fund-size" disabled>CAMPAIGN ENDED!</button>
+                        <button type="button" class="btn btn-warning btn-lg btn-block show-campaign-sucess-endedbtn" disabled>CAMPAIGN ENDED!</button>
                     </g:elseif>
                     <g:else>
                         <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
                             <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
-	                            <div class="redirectCampaign">
-	                                <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size" id="btnFundDesktop">Fund Now</button></g:link>
-	                            </div>
-	                        </g:if>
-	                        <g:else>
-	                            <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
-	                                <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size" id="btnFundDesktop">Fund Now</button>
-	                            </g:form>
-	                        </g:else>
+                                <div class="redirectCampaign">
+                                    <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size" id="btnFundDesktop">FUND NOW!</button></g:link>
+                                </div>
+                            </g:if>
+                            <g:else>
+                                <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
+                                    <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size" id="btnFundDesktop">FUND NOW!</button>
+                                </g:form>
+                            </g:else>
                         </g:if>
                         <g:else>
-                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size">Fund now</button>
+                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size">FUND NOW!</button>
                         </g:else>
                     </g:else>
                     <g:if test="${!isPreview || project.validated}">
-                    <g:render template="/layouts/tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                        <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                        <g:if test="${isPreview}">
+                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb">
+                                <i class="fa fa-facebook fa-facebook-styles"></i> Share on facebook
+                            </a>
+                        </g:if>
+                        <g:else>
+                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">
+                                <i class="fa fa-facebook fa-facebook-styles"></i> Share on facebook
+                            </a>
+                        </g:else>
                     </g:if>
-                    <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb" href="#">
-                        <i class="fa fa-facebook fa-facebook-styles"></i> Share on facebook
-                    </a>
+                    
                         
                     <g:if test="${(project.rewards.size()>1 && !isPreview) || (project.rewards.size()>1 && project.validated) }">
                         <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
-                    	    <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
-                    	</g:if>
+                            <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
+                        </g:if>
                     </g:if>
                 </div>
             </div>
-		</g:if>
-		<g:else>
+        </g:if>
+        <g:else>
             <h1>Campaign not found</h1>
-			<div class="alert alert-danger">Oh snap! Looks like that campaign doesn't exist.</div>
-		</g:else>
-	</div>
+            <div class="alert alert-danger">Oh snap! Looks like that campaign doesn't exist.</div>
+        </g:else>
+    </div>
 </div>
 </body>
 </html>

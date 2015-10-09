@@ -77,11 +77,11 @@
     </g:else>
     </g:if>
     <g:else>
-        <div class="alert alert-info">No Comments yet.</div>
+        <div class="alert alert-info sh-comnt-align">No Comments yet.</div>
     </g:else>
 </sec:ifLoggedIn>
 <sec:ifNotLoggedIn>
-    <div class="alert alert-warning">Please login to comment.</div>
+    <div class="alert alert-warning sh-comnt-align sh-logincommnt">Please login to comment.</div>
 </sec:ifNotLoggedIn>
 <g:if test="${!listcomment.isEmpty()}">
     <div class="panel panel-default show-comments-details">

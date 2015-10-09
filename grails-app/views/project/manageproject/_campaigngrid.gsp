@@ -21,7 +21,7 @@
     <p>${raw(projectUpdate.story)}</p>
     
     <g:if test="${!links.isEmpty()}">
-	    <div class="blacknwhite campaignupdatedimages" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
+	    <div class="blacknwhite campaignupdatedimages sh-imgUpdt-mob" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
 	        <g:render template="/project/manageproject/projectupdateimagecarousel" model="['images': links]"/>
 	    </div>
     </g:if>

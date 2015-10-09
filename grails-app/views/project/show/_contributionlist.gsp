@@ -15,7 +15,7 @@
     def projectId = project.id
 %>
 <g:if test="${!contributions.empty}">
-    <div class="row contributions-panel contribution-center-alignment">
+    <div class="row contributions-panel contribution-center-alignment sh-contrialignment">
         <div class="col-sm-12 contribution-inner-tile">
             <g:each in="${contributions}" var="contribution">
             <%
@@ -37,7 +37,7 @@
                 }
             %>
             <g:if test="${!contribution.isContributionOffline}">
-                <div class="col-sm-4 col-lg-6 col-md-6 top-pan">
+                <div class="col-sm-6 col-lg-6 col-md-6 top-pan">
                     <div <g:if test='${contribution.isAnonymous}'>class ="pan alphabet-A"</g:if><g:else>class ="pan ${alphabet}"</g:else>>
                         <div class ="col-sm-4 col-xs-4 img-panel">
                             <g:if test="${contribution.isAnonymous}">
@@ -85,7 +85,7 @@
                 </div>
             </g:if>
             <g:else>
-                <div class="col-sm-4 col-lg-6 col-md-6 top-pan">
+                <div class="col-sm-6 col-lg-6 col-md-6 top-pan">
                     <div class ="pan ${alphabet}">
                         <div class ="col-sm-4 col-xs-4 img-panel">
                             <img class="user-img-header" src="${imageUrl}" alt="alphabet">
@@ -104,6 +104,7 @@
                                     <dd class="so-off-con">Offline Contribution</dd>
                                 </g:if>
                             </div>
+                            <g:if test="${!ended}">
                             <div class="col-sm-6 cols">
                                 <g:if test="${contribution.fundRaiser.equals(fundRaiser) && team.user == user && !isCrUserCampBenOrAdmin}">
                                     <div class="edits">
@@ -118,10 +119,11 @@
                                     </div>
                                 </g:if>
                             </div>
+                            </g:if>
                         </div>
                     </div>
                     <div class="clear"></div>
-                    
+
                     <div class="modal fade offlineContributionModal contributionedit" id="contributionedit${contribution.id}" tabindex="-1" role="dialog" aria-labelledby="contributionedit${contribution.id}" aria-hidden="true">
                         <g:form action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser, 'offset':offset]">
                             <div class="modal-dialog">
@@ -162,10 +164,10 @@
 </g:if>
 <div class="clear"></div>
 <div class="contributionPaginate" id="contributionPaginate">
-    <g:paginate controller="project" max="12" action="contributionList" total="${totalContributions.size()}" params="['projectId':projectId,'fr': vanityUsername]"/>
+    <g:paginate controller="project" max="12" action="contributionList" maxsteps="5" total="${totalContributions.size()}" params="['projectId':projectId,'fr': vanityUsername]"/>
 </div>
 <script>
-    $("#contributionList").find('.contributionPaginate a').click(function(event) {
+    $('#contributions-mobile, #contributions').find("#contributionList").find('.contributionPaginate a').click(function(event) {
         event.preventDefault();
         var url = $(this).attr('href');
         var grid = $(this).parents('#contributionList');

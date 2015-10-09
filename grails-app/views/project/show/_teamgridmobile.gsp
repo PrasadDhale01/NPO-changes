@@ -4,8 +4,8 @@
 <div class="row">
     <ul class="thumbnails list-unstyled">
         <g:each in="${teams}" var="team">
-            <li class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
-                <g:render template="/project/manageproject/teamtile" model="['team': team]"></g:render>
+            <li class="col-lg-4 col-md-6 col-sm-4 col-xs-12">
+                <g:render template="show/mobileteamtile" model="['team': team]"></g:render>
             </li>
         </g:each>
     </ul>
@@ -13,7 +13,7 @@
 
 <div class="showmoreteams col-md-4 col-sm-6 col-xs-12 text-center">
     <g:if test="${totalteams.size() > teamOffset}">
-        <g:link class="btn btn-primary btn-sm showteambtn" action="teamsList" controller="project" params="['teamOffset': teamOffset, 'projectId':projectId,'fr': vanityUsername]">Show more</g:link>
+        <g:link class="btn btn-primary btn-sm showteambtn" action="teamsMobileList" controller="project" params="['teamOffset': teamOffset, 'projectId':projectId,'fr': vanityUsername]">Show more</g:link>
     </g:if>
 </div>
 
@@ -28,8 +28,8 @@
             url: url,
             success: function(data) {
                // $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-                $('#teamList').append(data);
-                $('#teamList').find('.showmoreteams').first().remove();
+                $('#teamListmobile').append(data);
+                $('#teamListmobile').find('.showmoreteams').first().remove();
             }
         });
     });

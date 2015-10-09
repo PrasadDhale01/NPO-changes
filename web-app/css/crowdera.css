@@ -1304,7 +1304,13 @@ footer .footerbottomsection {
 }
 
 .organization-details h4 {
-    margin-top: 10px;
+    margin-top: 0px;
+    padding-top: 25px;
+}
+
+.sh-pan-height{
+	height: 144px;
+    margin-bottom: 0;
 }
 
 .tilesanstitletag {
@@ -1604,11 +1610,14 @@ div.tile-min-height{
 }
 
 .rewardsection .badge{
-	background-color:#000;
+	background-color:#31497b;
 	color:#fff;
-    padding: 5px 9px;
+    height: 50px;
+    padding: 16px 6px;
+    width: 50px;
     font-size: 16px;
-    border-radius: 0px;
+    border-radius: 50%;
+    color: yellow;
 }
 
 .rewardsection a {
@@ -1685,7 +1694,7 @@ div.tile-min-height{
     margin-bottom:25px
 }
 .nav-tabs.nav-justified > li > a {
-    font-size:13px;
+    font-size:11px;
 }
 .country-create-project .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn){
     width: 100% !important;
@@ -1878,7 +1887,7 @@ button.projectedit.close{
 	padding: 0;
 	border-top: 1px solid #e5e5e5;
 	width:29%;
-	margin-left: 15px;
+	margin-left: 20px;
 	margin-right: 30px;
 }
 
@@ -2842,6 +2851,8 @@ p.tile-text-size {
     margin-top: 8px;
     padding-left: 24px;
     padding-right: 24px;
+    border-left: 1px solid #e3e3e3;
+    border-right: 1px solid #e3e3e3;
 }
 span.tile-day-num{
     color: #000 !important;
@@ -3302,7 +3313,8 @@ div.campaign-title-margin-bottom{
     width: 50%;
 }
 .contributionShare {
-	margin-top: -40px;
+    margin-top: -15px;
+    padding-bottom: 15px;
 }
 .table > thead > tr > td.info, .table > tbody > tr > td.info, .table > tfoot > tr > td.info, .table > thead > tr > th.info, .table > tbody > tr > th.info, .table > tfoot > tr > th.info, .table > thead > tr.info > td, .table > tbody > tr.info > td, .table > tfoot > tr.info > td, .table > thead > tr.info > th, .table > tbody > tr.info > th, .table > tfoot > tr.info > th {
     background-color: #006083 !important;
@@ -4186,13 +4198,13 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 	width:100%;
 }
 .TW-redactor .redactor-toolbar{
-	padding-left:31%;
+	padding-left:13%;
 }
 .TW-editUpdate-redactor .redactor-toolbar{
-	padding-left: 410px;
+	padding-left: 300px;
 }
 .TW-update-redactor .redactor-toolbar{
-	padding-left: 425px;
+	padding-left: 335px;
 }
 .TW-ack-commentBox{
 	background-color:#f5f5f5;
@@ -4477,7 +4489,7 @@ p {
 .rewardsection-row:hover {
 	background-color: #fff;
     border-color: #01bbd2 !important;
-    border: 5px solid #01bbd2;
+    border: 3px solid #01bbd2;
 }
 .rewardsection a:hover, .rewardsection a:active {
     text-decoration: none !important;
@@ -5192,6 +5204,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .campaignTitle a {
 	color: #000 !important;
+	font-size: 60px;
+    font-family: Futura-Condensed Normal;
 }
 .campaignTitle h1 {
 	color: #000 !important;
@@ -5205,6 +5219,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .campaignFundRaiser h4 {
 	color: #01bbd2 !important;
 	font-weight: 500;
+	font-size: 22px;
+    font-family: Futura Bk BT book;
 }
 .campaignFundRaiser {
 	margin-bottom: 10px;
@@ -5338,8 +5354,143 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.sh-mobilecontibutionpadding{
+        margin-left: -30px;
+        width: 313px;
+    }
+	li.sh-teamsactive {
+        left: -10px;
+        margin-left: -20px;
+        width: 278px !important;
+    }
+	div.sh-logincommnt{
+       margin-left: 1px !important;
+    }
+	div.sh-comments-align{
+	    padding-left: 0;
+        padding-right: 0;
+        width: 312px;
+	}
+	div.sh-comnt-align{
+        margin-left: 1px;
+        width: 313px;
+    }
+	li.sh-mobile-teamcount{
+        margin: 4px 19px 4px -9px !important;
+        padding: 0 !important;
+        width: 276px !important;
+        font-size: 16px;
+    }
+	div.contributionPaginate a, .contributionPaginate .currentStep {
+        font-size: 13px;
+        padding-left: 14px;
+    }
+    div.contributionPaginate {
+        margin-bottom: 15px;
+        margin-left: -50px;
+        margin-top: 30px;
+        width: 304px;
+    }
+	button.show-submitapprovalmobile {
+        height: 71px;
+        margin-bottom: 0;
+        margin-top: -21px;
+        width: 111%;
+    }
+	div.sh-mobperks{
+        left: -14px;
+        width: 122%;    
+    }
+	div.show-tops-corsal {
+        margin-top: 6px;
+        padding-left: 30px;
+    }
+    div.sh-imgUpdt-mob img {
+        height: 200px;
+    }
+    span.show-mobfont-goal {
+        font-size: 14px;
+        font-weight: normal;
+    }
+	span.show-mob-goal-amt{
+	    color: black;
+        font-size: 19px;
+        font-weight: bold;
+	}
+	div.show-mobimg-panels{
+        padding-top: 29px;
+        width: 55px;
+	}
+	div.show-panel-mobilesize{
+	    height: 100px; 
+	    width: 280px; 
+	    margin-bottom: 15px;
+	    margin-left: -27px;
+	}
+	div.show-mobile-update{
+        width: 111%;
+	}
+    div.show-mobiletabs-top {
+        padding-top: 15px;
+    }
+    span.show-tbs-right-bord {
+        border-right: 2px solid #6d6e6e;
+        padding-left: 44px;
+        padding-right: 20px;
+        display: -webkit-box;
+    }
+    span.show-mobile-contri {
+        padding-left: 15px;
+    }
+	a.show-mobilebt-fb:hover,
+    a.show-mobilebt-fb:focus{
+        color: white;
+    }
+	a.mob-show-fb {
+        width: 111%;
+    }
+    input.show-mob-btnJoinOur {
+		background-color: #f6bf0b;
+		color: black;
+		text-decoration: none;
+		width: 111% !important;
+		color: #fff;
+        font-size: 21px;
+    }
+    input.show-mob-btnJoinOur:hover{
+        color: #fff;
+    }
+	div.show-mobile-slogn p{
+        font-family: Futura-Condensed Normal;
+        font-size: 16px;
+        width: 310px;	
+	}
+	div.show-mobile-slogn{
+	    padding-left: 7px;
+        padding-right: 7px;
+        border: 1px solid #e3e3e3;
+        width: 111%;
+	}
+    button.mob-show-sucessend {
+        margin-top: -21px;
+        width: 111%;
+    }
+    button.mob-show-fund {
+        width: 111%;
+    }
+    button.show-fund-size {
+        font-size: 40px;
+        padding-left: 20px;
+        padding-top: 12px;
+        margin-top: -21px;
+    }
     ul.show-new-tabs-alignments {
-        margin-left: 19px;
+        line-height: 1;
+    }
+    span.show-tbs-right-borders {
+        border-right: 2px solid #6d6e6e;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 	div.show-share-border-line {
         height: 50px;
@@ -5421,7 +5572,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 20px;
     }
     .tile-goal .fa-inr {
-        font-size: 14px !important;
+        font-size: 20px !important;
     }
 	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	   width: 66.1% !important;
@@ -5813,9 +5964,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		display:block;
 		margin-left:auto;
 		margin-right:auto;
-	}
-	.contributionShare {
-		margin-top: -40px !important;
 	}
 	.fbButton.joinFOG{
 		display: block;
@@ -6370,6 +6518,20 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	div.perks-supporters {
+        margin-top: 120px;
+    }
+	div.show-description {
+        margin-top: 28px
+    }
+    a.show-btn-sh-fb {
+        margin-bottom: 26px;
+    }
+    div.organization-details h4 {
+        margin-top: -25px;
+        padding-bottom: 0;
+        padding-top: 0;
+    }
 	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	   width: 71.1% !important;
 	   float:left;
@@ -6394,16 +6556,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 88.3% !important;
 	}
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left: 190px !important;
+		padding-left: 100px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left: 210px !important;
+		padding-left: 120px !important;
 	}
     .list-category{
         width: 24%;
     }
     .nav-tabs.nav-justified > li > a {
-       font-size: 11px !important;
+       font-size: 10px !important;
     }
     .nav{
         font-size:11px;
@@ -6435,15 +6597,83 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	button.sh-submitapproval {
+        padding-left: 7px;
+    }
+    button.btn-show-fund {
+        margin-top: -10%;
+    }
+	button.show-campaign-sucessbtn {
+        font-size: 14px;
+        height: 96px;
+    }
+	button.show-campaign-sucess-endedbtn {
+        font-size: 19px;
+        height: 96px;
+    }
+	button.show-fund-size {
+        font-size: 33px;
+        height: 94px;
+        margin-top: 0px;
+    }
+	div.sh-mobprogressbar{
+	     padding-left: 9px;
+	}
+	div.sh-moballamt{
+	    margin-left: -12px;
+	}
+	div.sh-amtMob-position{
+	    left: -14px;
+	}
+    div.show-tiles-padding {
+        padding-left: 0px;
+    }
+    div.show-icons {
+        left: 33%;
+    }
     div.show-share-border-line {
         width: 721px;
+        margin-top: 10px;
     }
     div.borders {
         width: 720px;
     }
+    input.customVanityUrl{
+        width:106%;
+    }
+
+    div.customUrlTextBoxDev{
+        left: -3%;
+    }
+    
+    input.customVanityUrlTest{
+        width:98%;
+    }
+
+    div.customUrlTextBoxTest{
+        left: 1%;
+    }
+    
+    input.customVanityStaging{
+        width:86%;
+    }
+
+    div.customUrlTextBoxStaging{
+        left: 7%;
+    }
+    
+    input.customVanityUrlProd{
+        width:113%;
+    }
+
+    div.customUrlTextBoxProd{
+        left: -6%;
+    }
+
     h1.india-font-slogan b{
         font-size: 15px !important;
     }
+
 	.tile-goal.teamtile {
 	   font-size: 14px !important;
 	}
@@ -6823,9 +7053,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.btn-text-alignment{
 		padding-left:0px !important;
 		padding-right:0px !important;
-	}
-	.contributionShare {
-		margin-top: -40px !important;
 	}
 	.fbButton{
 		margin-left: auto !important;
@@ -7439,7 +7666,52 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
-	
+
+	input.customVanityUrl{
+        width:100%;
+    }
+
+    div.customUrlLabel {
+        left: -9px;
+        padding-top:0;
+    }
+
+    div.customUrlTextBoxDev {
+        left: 0;
+    }
+    
+    div.customUrlTextBoxDev span.help-block, div.customUrlTextBoxTest span.help-block, div.customUrlTextBoxStaging span.help-block, div.customUrlTextBoxProd span.help-block{
+        margin-left: -8px;
+    }
+
+    input.customVanityUrlTest{
+        width:100%;
+    }
+
+    div.customUrlTextBoxTest{
+        left: 0;
+    }
+    
+    input.customVanityStaging{
+        width:100%;
+    }
+
+    div.customUrlTextBoxStaging{
+        left: 0;
+    }
+
+    input.customVanityUrlProd{
+        width:100%;
+    }
+
+    div.customUrlTextBoxProd{
+        left: 0;
+    }
+
+    .customUrlLabelStaging{
+        font-size: small;
+    }
+
     div.amount-popover .popover{
         width:700px;
         margin-left: 42%;
@@ -7647,6 +7919,33 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	div.perks-supporters {
+        margin-top: -11px;
+    }
+    div.show-tiles-padding {
+        padding-left: 17px;
+    }
+    div.organization-details h4 {
+        padding-top: 23px;
+    }
+	button.show-campaign-sucess-endedbtn{
+	    font-size: 21px;
+	    padding-left: 14px;
+	    height: 96px;
+	}
+	button.show-campaign-sucessbtn{
+        font-size: 17px;
+        padding-left: 10px;
+        height: 96px;
+	}
+    div.show-icons {
+        left: 35%;
+    }
+    button.show-fund-size {
+        font-size: 30px;
+        margin-top: 0px;
+        height: 96px;
+    }
 	.lead.show-contribution-amt-tile {
 	   font-size: 13px !important;
 	   font-weight: bold !important;
@@ -7669,12 +7968,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   margin: 10px 10px 20px;
 	   width: 50px !important;
 	}
-	.TW-org-title-font-size{
-		font-size:10px;
+	b.TW-org-title-font-size{
+		font-size:16px;
 	}
-	.TW-org-panel-height{
-		height:124px;
-	}
+/* 	.TW-org-panel-height{ */
+/* 		height:124px; */
+/* 	} */
 	.TW-organization-panel-name-size{
 		font-size:13px;
 	}
@@ -7697,7 +7996,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   line-height: 5px;
 	   margin-bottom: 0;
 	   margin-top: 10px;
-	   padding-left: 17px !important;
+	   padding-left: 16px !important;
 	   padding-right: 17px !important;
 	}
 	.icons-centering {
@@ -7744,10 +8043,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   z-index: 2000;
 	}
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left:195px !important;
+		padding-left:102px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left:225px !important;
+		padding-left:125px !important;
 	}
 	.mng-text-size{
 		font-size:14px;
@@ -7818,6 +8117,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	li.show-team {
+        margin-left: 64px;
+    }
     div.abt-icons-trans {
         left: 80px !important;
     }
@@ -7844,10 +8146,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   width: 85.2% !important;
 	}
 	.TW-editUpdate-redactor .redactor-toolbar{
-		padding-left:385px !important;
+		padding-left:304px !important;
 	}
 	.TW-update-redactor .redactor-toolbar{
-		padding-left:405px !important;
+		padding-left:330px !important;
 	}
 	header.cr-tabs-link {
 	    padding-left: 130px !important; 
@@ -7915,7 +8217,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		padding-left: 38% !important;
 	}
 	.nav-tabs.nav-justified > li > a {
-       font-size: 12px !important;
+       font-size: 11px !important;
     }
     span.font-usd {
 	    color: black;
@@ -7984,9 +8286,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		}
 		input.TW-city-margin{
 			margin-bottom:16px !important;
-		}
-		.shared.contributionShare {
-			margin-top: -61px !important;
 		}
 		.footer-newsletter .help-block {
     		color: #f04124;
@@ -8897,7 +9196,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	/*************ManageTeamButtons************/
     
 	.inviteteammember {
-        margin-top: 1px !important;
+        margin-top: 15px !important;
 		padding: 8px 28px;
         height: 42px;
 	}
@@ -10111,18 +10410,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 11px !important;
         text-decoration: none;
     }
-	.contributionShare {
-		margin-top: 0 !important;
-	}
 }
 
 @media only screen and (max-width: 360px){
 	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 		width: 81%;
 		margin-left: -28%;
-	}
-	.contributionShare {
-		margin-top: 0px !important;
 	}
 	.tips h2 {
 		padding-left: 68px !important;
@@ -10239,7 +10532,26 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 
+@media only screen and (min-width: 481px) and (max-width: 640px){
+    ul.show-new-tabs-alignments {
+        line-height: 1;
+    }
+    span.show-tbs-right-borders {
+        border-right: 2px solid #6d6e6e;
+        padding-left: 19px;
+        padding-right: 19px;
+    }
+}
+
 @media only screen and (min-width: 320px) and (max-width: 480px){
+	ul.show-new-tabs-alignments {
+        line-height: 1;
+    }
+    span.show-tbs-right-borders {
+        border-right: 2px solid #6d6e6e;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 	header.cr-tabs-link {
 	    padding-left: 10px !important; 
 	    padding-right: 10px !important; 
@@ -10279,8 +10591,141 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-	ul.show-new-tabs-alignments {
-        margin-left: 2px;
+	div.sh-mobilecontibutionpadding{
+/*         margin-left: -30px; */
+/*         width: 313px; */
+        margin-left: -14px;
+        width: 292px;
+	}
+	div.mobile-show-team {
+        font-size: 20px;
+    }
+	li.sh-teamsactive {
+        left: -16px;
+        margin-left: -20px;
+        width: 280px !important;
+    }
+	div.sh-logincommnt{
+       margin-left: 1px !important;
+    }
+	div.sh-comments-align{
+        padding-left: 0;
+        padding-right: 0;
+        width: 291px;
+    }
+	div.sh-comnt-align{
+        margin-left: 1px;
+        width: 291px;
+	}
+	li.sh-mobile-teamcount{
+        margin: 4px 19px 4px -9px !important;
+        padding: 0 !important;
+        width: 276px !important;
+        font-size: 16px;
+	}
+    div.contributionPaginate a, .contributionPaginate .currentStep {
+        font-size: 12px;
+        padding-left: 14px;
+    }
+    div.contributionPaginate {
+        margin-bottom: 15px;
+        margin-left: -28px;
+        margin-top: 30px;
+        width: 264px;
+    }
+    button.show-submitapprovalmobile {
+        height: 71px;
+        margin-bottom: 0;
+        margin-top: -21px;
+        width: 104%;
+    }
+	div.sh-mobile-tile{
+	   width: 290px !important;
+	}
+	div.sh-mobperks{
+        left: -14px;
+        width: 114%;	
+	}
+    div.show-tops-corsal {
+        margin-top: 6px;
+    }
+    div.sh-imgUpdt-mob img {
+        height: 200px;
+    }
+    span.show-mobfont-goal {
+        font-size: 14px;
+        font-weight: normal;
+    }
+	span.show-mob-goal-amt{
+	    color: black;
+        font-size: 19px;
+        font-weight: bold;
+	}
+	div.show-mobimg-panels{
+        padding-top: 29px;
+        width: 55px;
+	}
+	div.show-panel-mobilesize{
+	    height: 100px; 
+	    width: 280px; 
+	    margin-bottom: 15px;
+	    margin-left: -27px;
+	}
+	div.show-mobile-update{
+	    width: 104%;
+	}
+    div.show-mobiletabs-top {
+        padding-top: 15px;
+    }
+    span.show-tbs-right-bord {
+        border-right: 2px solid #6d6e6e;
+        padding-left: 40px;
+        padding-right: 15px;
+        display: -webkit-box;
+    }
+    span.show-mobile-contri {
+        padding-left: 15px;
+    }
+    a.show-mobilebt-fb:hover,
+    a.show-mobilebt-fb:focus{
+        color: white;
+    }
+	a.mob-show-fb {
+        width: 104%;
+    }
+    input.show-mob-btnJoinOur {
+		background-color: #f6bf0b;
+		text-decoration: none;
+		width: 104% !important;
+        color: #fff;
+        font-size: 21px;
+    }
+    input.show-mob-btnJoinOur:hover{
+        color: #fff;
+    }
+	div.show-mobile-slogn p{
+        font-family: Futura-Condensed Normal;
+        font-size: 16px;
+        width: 310px;	
+	}
+	div.show-mobile-slogn{
+	    padding-left: 7px;
+        padding-right: 7px;
+        border: 1px solid #e3e3e3;
+        width: 104%;
+	}
+    button.mob-show-sucessend {
+        margin-top: -21px;
+        width: 104%;
+    }
+    button.mob-show-fund {
+        width: 104%;
+    }
+    button.show-fund-size {
+        font-size: 40px;
+        margin-top: -21px;
+        padding-left: 22px;
+        padding-top: 15px;
     }
     div.show-share-border-line {
         height: 50px;
@@ -10881,9 +11326,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		text-align: center;
 		top: -40px !important;
 	}
-	.contributionShare {
-		margin-top: 0px !important;
-	}
 	.shared.ack-socialicon span {
 		float: right;
 		margin: 5px 5px 5px 3px !important;
@@ -11364,22 +11806,24 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	font-size: 21px;
 }
 .show-btn-sh-fb{
-	 background-color: #859cf4;
-	 margin-bottom: 96px;
-	 padding-bottom: 18px;
-     padding-top: 11px;
+	 background-color: #31497b;
+	 margin-bottom: 102px;
+	 height: 50px;
+     padding-top: 8px;
 }
-.show-btn-sh-fb:hover{
+.show-btn-sh-fb:hover,
+.show-btn-sh-fb:focus{
 	 color: white;
 }
 .show-share-border-line{
-	 border-bottom: 2px solid #e3e3e3;
+    border-bottom: 2px solid #e3e3e3;
     border-top: 2px solid #e3e3e3;
     margin-top: 20px;
     width: 970px;
+    padding-left: 30%;
 }
 .show-icons img{
-	height: 46px;
+	height: 50px;
     padding-bottom: 10px;
     padding-top: 10px;
 }
@@ -11388,40 +11832,118 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     padding-right: 27px;
 }
 .show-fund-size {
-	height: 80px !important;
+	height: 90px;
+    font-size: 48px;
+    font-family: Futura BdCn BT;
+    padding-left: 12px;
+    padding-top: 12px;
+    margin-top: 0;
 }
-.show-tiles-padding{
-	padding-bottom: 29px;
-    padding-top: 29px;
-}
-.nav-pills > li.active > a{
-    color: #000;
-    background-color: #ffffff;
-}
- .nav-pills > li > a:hover{
-     bacground-color: red !important;
- }
+
 .borders {
-    border-bottom: 2px solid #e3e3e3;
-    border-top: 2px solid #e3e3e3;
+    border-bottom: 3px solid #e3e3e3;
+    border-top: 3px solid #e3e3e3;
     margin-left: 15px;
     padding-left: 15px;
     width: 969px;
 }
 .show-new-tabs-alignments{
 	border-right-width: 0;
-    line-height: 0;
+    line-height: 2;
     margin-left: -15px;
     margin-right: 0;
     margin-top: 10px;
-    width: 400px;
+/*     width: 400px; */
 }
 .show-tbs-right-borders{
-	border-right: 2px solid #e3e3e3;
+	border-right: 2px solid #6d6e6e;
+	padding-left: 8px;
+    padding-right: 10px;
+}
+.show-comit-lft{
+	padding-left: 7px;
 }
 .show-lft-bord{
-	border-left: 2px solid #e3e3e3;
+	border-left: 2px solid #6d6e6e;
 }
 .show-tops-corsal{
 	margin-top: 20px;
+}
+.show-tabs-text{
+	text-decoration:none !important;
+    font-family: Futura-Condensed Normal;
+    font-size: 16px;
+    font-weight: 900;
+    color: #6d6e6e;
+}
+.nav-pills .show-tabs-text:hover{
+    color:#01bbd3; 
+}
+.nav-pills .show-tabs-text a:active{
+    color:#01bbd3; 
+}
+.show-tabs-count{
+	text-decoration:none !important;
+    font-family: Futura-Condensed Normal;
+    font-size: 16px;
+    font-weight: 900;
+    color: #6d6e6e;
+}
+.show-tiles-padding {
+    padding-top: 20px;
+}
+.show-icons {
+    left: 103px;
+}
+.show-location{
+	margin-bottom: 4px;
+    padding-right: 9px;
+}
+/* .nav-pills > span > a:active, */
+/* .nav-pills > span > a:hover, */
+/* .nav-pills > span > a:focus */
+/*  { */
+/*     color: red; */
+/* } */
+/* .nav-pills > span.active > a, .nav-pills > span.active > a:focus{ */
+/* 	 color: red; */
+/* } */
+.show-campaign-sucess-endedbtn {
+    font-family: Futura BdCn BT;
+    font-size: 24px;
+    height: 90px;
+}
+.show-campaign-sucessbtn{
+	font-family: Futura BdCn BT;
+    font-size: 21px;
+    height: 90px;
+}
+.sh-submitapproval{
+	height: 88px !important;
+    margin-bottom: 0;
+}
+.sh-perks-preview {
+    margin-top: 130px;
+}
+.sh-none-pft {
+    padding-left: 45px;
+}
+.daysleftIcon {
+    border-left: 1px solid #e3e3e3;
+    border-right: 1px solid #e3e3e3;
+}
+.show-teams-top{
+	  margin-top: -15px;
+}
+.show-description {
+    background-color: #e7e7e7;
+    height: 100%;
+    margin-top: 21px;
+    padding-bottom: 1px;
+    padding-left: 19px;
+    padding-top: 1px;
+    margin-left: -16px;
+}
+.sh-contrialignment{
+	margin-top: -19px;
 }

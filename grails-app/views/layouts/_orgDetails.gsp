@@ -3,16 +3,20 @@
 <% 
     def beneficiary = project.user
 %>
-<div class="panel panel-default TW-org-panel-height">
+<div class="panel panel-default TW-org-panel-height sh-pan-height">
    	<div class="organization-details text-center">
+        <div class="col-md-12 show-icons">
+            <img src="//s3.amazonaws.com/crowdera/assets/facebook-icon.png" alt="fb-icons">
+            <img src="//s3.amazonaws.com/crowdera/assets/show-online-original-icon.png" alt="fb-icons">
+        </div>
    		<br><br>
    	    <h4><b class="TW-org-title-font-size">${project.organizationName}</b></h4>
 
         
-        <div class="col-sm-12">
-            <label><a href="#"></a></label>
-        </div> 
-        <div class="clear"></div>
+<%--        <div class="col-sm-12">--%>
+<%--            <label><a href="#"></a></label>--%>
+<%--        </div> --%>
+<%--        <div class="clear"></div>--%>
         
         <div class="tilesanstitletag">
             <g:if test="${project.draft}">
@@ -35,7 +39,7 @@
             </g:elseif>
 	        <g:elseif test="${isEnabledTeamExist}">
 	            <g:if test="${currentFundraiser == beneficiary}">
-					<img src="//s3.amazonaws.com/crowdera/assets/owner-tag.png" alt="Owner"/>
+					<img src="//s3.amazonaws.com/crowdera/assets/show-campaign-by-orig.png" alt="Owner"/>
 	            </g:if>
 	            <g:else>
 					<img src="//s3.amazonaws.com/crowdera/assets/Team-tag.png" alt="team"/>

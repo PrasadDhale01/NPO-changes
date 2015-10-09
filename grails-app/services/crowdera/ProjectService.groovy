@@ -1029,7 +1029,7 @@ class ProjectService {
 	def isCampaignsorts(def sorts ,def currentEnv){
 		List projects = getValidatedProjects(currentEnv)
 		List p = []
-		if(sorts == 'All Campaigns' || sorts=='Sort by'){
+		if(sorts == 'All-Campaigns'){
 			return projects
 		}
 		if(sorts == 'Successful (100% +)'){
@@ -1048,7 +1048,7 @@ class ProjectService {
 				}
 			}
 		}
-		if(sorts == 'Ending Soon'){
+		if(sorts == 'Ending-Soon'){
 			projects.each {
 				def day = getRemainingDay(it)
 				if(day > 0 && day <10){
@@ -1064,7 +1064,7 @@ class ProjectService {
 				}
 			}
 		}
-		if(sorts=='Offering Perks'){
+		if(sorts=='Offering-Perks'){
 			projects.each{
 				def  perkSize = it.rewards.size()
 				if(perkSize > 1){
@@ -2006,19 +2006,13 @@ class ProjectService {
 			projects.each{
 				String str = it.category
 				String strSocialCategory = it.usedFor
-				
 				String strNonProfit = "NON_PROFITS"
 				String strSocialGood = "Social-Good"
 				Map countries = getCountry()
 				String strCountryCategory = countries.getAt(it.beneficiary.country)
 				
-				if (str.equalsIgnoreCase(categories)){
+				if (str.equalsIgnoreCase(categories) && !str.equalsIgnoreCase(strNonProfit)){
 					list.add(it)
-				}else if(strSocialGood.equalsIgnoreCase(categories)){
-					String strSocialNeeds = strSocialGood.replace("Good","Needs")
-				 	if(strSocialCategory !=null && strSocialCategory.equalsIgnoreCase(strSocialNeeds.replace('-','_'))){
-						 list.add(it)
-				 	}
 				}else if(strNonProfit.equalsIgnoreCase(categories)){
 					String strNonProfitCat = it.fundsRecievedBy
 					if(strNonProfitCat !=null && strNonProfitCat.equalsIgnoreCase(categories.replace('_','-'))){
@@ -2026,6 +2020,15 @@ class ProjectService {
 					}
 				}else if(strCountryCategory !=null && strCountryCategory.equalsIgnoreCase(categories.replace('-',' '))){
 					list.add(it)
+				}else if(strSocialCategory !=null){
+				 	if(strSocialGood.equalsIgnoreCase(categories) && strSocialCategory !=null){
+						 String strSocialNeeds = strSocialGood.replace("Good","Needs")
+						 if(strSocialCategory.equalsIgnoreCase(strSocialNeeds.replace('-','_'))){
+							 list.add(it)
+						 }
+				 	}else if(strSocialCategory !=null && strSocialCategory.equalsIgnoreCase(categories.replace('-', '_'))){
+					 	list.add(it)
+				 	}
 				}else{
 					return null
 				}

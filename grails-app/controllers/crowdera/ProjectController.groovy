@@ -1175,7 +1175,6 @@ class ProjectController {
 			}
 		}
 		
-		
 	}
 
 	def categoryFilter() {
@@ -1194,7 +1193,7 @@ class ProjectController {
 		}else if(params.usedfor){
 			category=params.usedfor
 		}else if(params.country){
-			category=params.country	
+			category=params.country
 		}
 		
 		def project
@@ -1210,7 +1209,7 @@ class ProjectController {
 			project = projectService.filterByCategory(category, currentEnv)
 		}
         flash.catmessage = (project) ? "" : "No campaign found."
-        render (view: 'list/index', model: [projects: project, selectedCategory:category, countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+        render (view: 'list/index', model: [projects: project, selectedCategory:category.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
 	}
 
     def addTeam() {
@@ -1399,8 +1398,14 @@ class ProjectController {
 	}
 
 	def campaignsSorts(){
-		def sorts = (params.sorts == 'Successful (100% +)') ? 'Successful' : params.sorts
-		redirect(action:'sortCampaign', controller: 'project',params:[query: sorts])
+		def category=params.sorts.replace(' ','-')
+		def sorts = (category == 'Successful (100% +)') ? 'Successful' : category
+		
+		if(sorts.equalsIgnoreCase('Sort-by')){
+			redirect(action:'list', controller:'project')
+		}else{
+		 redirect(action:'sortCampaign', controller: 'project',params:[query: sorts])
+		}
 	}
 
 	def sortCampaign(){
@@ -1413,18 +1418,16 @@ class ProjectController {
 			discoverLeftCategoryOptions=projectService.getCategory()
 		}
 		def sortsOptions = projectService.getSorts()
-		
-		def sorts = (params.query == 'Successful') ? 'Successful (100% +)' : params.query
-		if(sorts.equals("Sort by")){
-			redirect(action:'list', controller:'project')
-		}
+		def category = params.query.replace(' ','-')
+		def sorts = (category == 'Successful') ? 'Successful (100% +)' : category
 		
 		def campaignsorts = projectService.isCampaignsorts(sorts, environment)
+		
 		if(!campaignsorts){
 			flash.catmessage="No campaign found."
-			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts, countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
 		} else {
-			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts, countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
 		}
 	}
     

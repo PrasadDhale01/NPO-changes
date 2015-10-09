@@ -1160,13 +1160,14 @@ class ProjectController {
 				redirect(action:'list', controller:'project')
 			}else{
 				category=params.category
-				redirect(action: 'categoryFilter', controller:'project',params:[category: category])
+				redirect(url:'/campaigns/category/'+ params.category)
 			}
 			
 		}else if(params.usedfor){
 			category=params.usedfor
 			redirect(action: 'categoryFilter', controller:'project',params:[usedfor: category])
 		}else if(params.country){
+			println "In here countries"
 			if(params.country.equalsIgnoreCase("Country")){
 				redirect(action:'list', controller:'project')	
 			}else{

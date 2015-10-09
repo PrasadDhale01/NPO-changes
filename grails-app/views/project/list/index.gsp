@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-xs-12 visible-xs categoryList list-category TW-dis-tab-padding panel-body TW-discover-select-width">
 					<g:form action="category" controller="project" name="campaigncategoryForm">
-						<g:select class="selectpicker" id="category" name="category" from="${discoverLeftCategoryOptions}" value="${params.category}" optionKey="value" optionValue="value" noSelection="['Campaign Category':'Campaign category']" onchange="selectedCampaignCategory()"/>
+						<g:select class="selectpicker campaignCategory" id="campaignCategory" name="category" from="${discoverLeftCategoryOptions}" value="${params.category}" optionKey="value" optionValue="value" noSelection="['Campaign Category':'Campaign category']" onchange="selectedCampaignCategory()"/>
 					</g:form>
             	</div>
 				<div class="btn-group col-sm-8 col-lg-8 TW-dis-tab-padding">

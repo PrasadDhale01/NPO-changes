@@ -6498,6 +6498,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .ack-panel-width{
     	margin-top:21px;
     }
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15.75px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        border: 1px solid #DDD;
+    }
 }
 @media only screen and (min-width:768px) and (max-width: 830px) {
     header.cr-tabs-link {
@@ -8101,9 +8108,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 0px;
         padding-right: 0px;
     }
-	.show-contribution-amt-tile .fa-inr {
-		font-size: 12px !important;
-	}
+	   .show-contribution-amt-tile .fa-inr {
+		      font-size: 12px !important;
+	   }
+	   .table-responsive {
+        width: 100%;
+        margin-bottom: 15.75px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        border: 1px solid #DDD;
+    }
 }
 
 @media only screen and (min-width:1200px) and (max-width: 1280px){
@@ -8118,6 +8132,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	   .table-responsive {
+        width: 100%;
+        margin-bottom: 15.75px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        border: 1px solid #DDD;
+    }
 	.TW-discover-leftpane-menu ul li a {
 		color: #424242;
 		font-weight: 400;

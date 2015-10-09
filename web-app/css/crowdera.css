@@ -1697,8 +1697,8 @@ div.domain-metrics .nav-tabs.nav-justified > li > a {
     background-color: #eeeeee;
 }
 
-.categorylink {
-	color:#2b6e44;
+.TW-discover-leftpane-menu ul li a.categorylink {
+	color:#01bbd2 !important;
 }
 
 .alert-title{

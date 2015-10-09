@@ -29,7 +29,7 @@
                 </div>
                 <div class="col-xs-12 visible-xs categoryList list-category TW-dis-tab-padding panel-body TW-discover-select-width">
 					<g:form action="category" controller="project" name="campaigncategoryForm">
-						<g:select class="selectpicker campaignCategory" id="campaignCategory" name="category" from="${discoverLeftCategoryOptions}" value="${params.category}" optionKey="value" optionValue="value" noSelection="['Campaign Category':'Campaign category']" onchange="selectedCampaignCategory()"/>
+						<g:select class='selectpicker campaignCategory' id="campaignCategory" name="category" from="${discoverLeftCategoryOptions}" value="${params.category}" optionKey="value" optionValue="value" noSelection="['Campaign Category':'Campaign category']" onchange="selectedCampaignCategory()"/>
 					</g:form>
             	</div>
 				<div class="btn-group col-sm-8 col-lg-8 TW-dis-tab-padding">
@@ -46,7 +46,7 @@
             	<div class="col-lg-2 col-xs-12  col-sm-2 hidden-xs TW-discover-leftpane-menu TW-discover-pane-width">
 					<g:each in="${discoverLeftCategoryOptions}" var="categories">
 						<ul>
-						    <li><a href="/campaigns/category/${categories.value}" >${categories.value}</a></li>
+						    <li><a <g:if test="${selectedCategory == categories.value}">class="categorylink"</g:if> href="/campaigns/category/${categories.value}" >${categories.value}</a></li>
 						</ul>
 					</g:each>
             	</div>

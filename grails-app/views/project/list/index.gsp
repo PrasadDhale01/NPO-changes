@@ -33,10 +33,10 @@
 					</g:form>
             	</div>
 				<div class="btn-group col-sm-8 col-lg-8 TW-dis-tab-padding">
-					<g:link controller="project" action="category" params="[usedfor:'PASSION']" class="btn btn-default ${params.usedfor == 'PASSION' ? 'TW-Discover-selected-usedfor':''} TW-discover-tab-decoration text-center col-sm-3 col-xs-12 TW-padding-align"><span class="cr-pay-rd TW-cr-pay-rd">Following my</span><span class="cr-reci-siz TW-cr-reci-siz">&nbsp;Passion</span></g:link>  
-					<g:link controller="project" action="category" params="[usedfor:'IMPACT']" class="btn btn-default  ${params.usedfor == 'IMPACT' ? 'TW-Discover-selected-usedfor':''} col-sm-2 col-xs-12 TW-discover-tab-decoration TW-padding-align"> <span class="cr-pay-rd TW-cr-pay-rd">Making an</span><span class="cr-reci-siz TW-cr-reci-siz">&nbsp;Impact</span></g:link> 
-					<g:link controller="project" action="category" params="[usedfor:'SOCIAL_NEEDS']" class="btn btn-default ${params.usedfor == 'SOCIAL_NEEDS' ? 'TW-Discover-selected-usedfor':''}  col-sm-3 col-xs-12 TW-discover-tab-decoration TW-padding-align innovatingtab-padding"><span class="cr-reci-siz TW-cr-reci-siz">Innovating&nbsp;</span><span class="cr-pay-rd TW-cr-pay-rd">for social good</span></g:link>
-					<g:link controller="project" action="category" params="[usedfor:'PERSONAL_NEEDS']" class="btn btn-default ${params.usedfor == 'PERSONAL_NEEDS' ? 'TW-Discover-selected-usedfor':''} col-sm-2 col-xs-12 cr-mob-payments TW-discover-tab-decoration TW-padding-align"><span class="cr-reci-siz TW-cr-reci-siz">Personal&nbsp;</span><span class="cr-pay-rd TW-cr-pay-rd">need</span></g:link>
+					<g:link controller="project" action="category" params="[usedfor:'Passion']" class="btn btn-default ${params.usedfor == 'Passion' ? 'TW-Discover-selected-usedfor':''} TW-discover-tab-decoration text-center col-sm-3 col-xs-12 TW-padding-align"><span class="cr-pay-rd TW-cr-pay-rd">Following my</span><span class="cr-reci-siz TW-cr-reci-siz">&nbsp;Passion</span></g:link>  
+					<g:link controller="project" action="category" params="[usedfor:'Impact']" class="btn btn-default  ${params.usedfor == 'Impact' ? 'TW-Discover-selected-usedfor':''} col-sm-2 col-xs-12 TW-discover-tab-decoration TW-padding-align"> <span class="cr-pay-rd TW-cr-pay-rd">Making an</span><span class="cr-reci-siz TW-cr-reci-siz">&nbsp;Impact</span></g:link> 
+					<g:link controller="project" action="category" params="[usedfor:'Social-Good']" class="btn btn-default ${params.usedfor == 'Social-Good' ? 'TW-Discover-selected-usedfor':''}  col-sm-3 col-xs-12 TW-discover-tab-decoration TW-padding-align innovatingtab-padding"><span class="cr-reci-siz TW-cr-reci-siz">Innovating&nbsp;</span><span class="cr-pay-rd TW-cr-pay-rd">for Social Good</span></g:link>
+					<g:link controller="project" action="category" params="[usedfor:'Personal-Needs']" class="btn btn-default ${params.usedfor == 'Personal-Needs' ? 'TW-Discover-selected-usedfor':''} col-sm-2 col-xs-12 cr-mob-payments TW-discover-tab-decoration TW-padding-align"><span class="cr-reci-siz TW-cr-reci-siz">Personal&nbsp;</span><span class="cr-pay-rd TW-cr-pay-rd">needs</span></g:link>
 				</div>
                 <!-- Search -->
                 <g:render template="list/search"></g:render>
@@ -46,7 +46,7 @@
             	<div class="col-lg-2 col-xs-12  col-sm-2 hidden-xs TW-discover-leftpane-menu TW-discover-pane-width">
 					<g:each in="${discoverLeftCategoryOptions}" var="categories">
 						<ul>
-						    <li><a <g:if test="${selectedCategory == categories.value}">class="categorylink"</g:if> href="/campaigns/category/${categories.value}" >${categories.value}</a></li>
+						    <li><a <g:if test="${selectedCategory == categories.value}">class="categorylink"</g:if> href="/campaigns/category/${categories.value.replace(' ','-')}" >${categories.value}</a></li>
 						</ul>
 					</g:each>
             	</div>

@@ -160,10 +160,10 @@
 	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="passion1"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
 	                                    </g:else>
 	                                    <g:if test="${project.usedFor == 'SOCIAL_NEEDS'}">
-	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active"  id="innovating1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-lg">Innovating</span><br><span class="cr1-tb-text-sm">for Social Goal</span></label>
+	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active"  id="innovating1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-lg">Innovating</span><br><span class="cr1-tb-text-sm">for Social Good</span></label>
 	                                    </g:if>
 	                                    <g:else>
-	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12"  id="innovating1"> <input type="radio" value="no"><span class="cr1-tb-text-lg">Innovating</span><br><span class="cr1-tb-text-sm">for Social Goal</span></label>
+	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12"  id="innovating1"> <input type="radio" value="no"><span class="cr1-tb-text-lg">Innovating</span><br><span class="cr1-tb-text-sm">for Social Good</span></label>
 	                                    </g:else>
 	                                    <g:if test="${project.usedFor == 'PERSONAL_NEEDS'}">
 	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active" id="personal1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-lg">Personal</span><br><span class="cr1-tb-text-sm">needs</span></label>

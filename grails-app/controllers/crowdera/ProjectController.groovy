@@ -1159,8 +1159,8 @@ class ProjectController {
 			if(params.category.equalsIgnoreCase("Campaign category")){
 				redirect(action:'list', controller:'project')
 			}else{
-				category=params.category
-				redirect(url:'/campaigns/category/'+ params.category)
+				category=params.category.replace(' ', '-')
+				redirect(url:'/campaigns/category/'+ category)
 			}
 			
 		}else if(params.usedfor){
@@ -1170,7 +1170,7 @@ class ProjectController {
 			if(params.country.equalsIgnoreCase("Country")){
 				redirect(action:'list', controller:'project')	
 			}else{
-				category = params.country
+				category = params.country.replace(' ', '-')
 				redirect(action: 'categoryFilter', controller:'project',params:[country: category])
 			}
 		}
@@ -1198,13 +1198,13 @@ class ProjectController {
 		}
 		
 		def project
-		if (category == "Social Innovation"){
+		if (category == "Social-Innovation"){
 			project = projectService.filterByCategory("SOCIAL_INNOVATION", currentEnv)
-		}else if (category == "Civic Needs"){
+		}else if (category == "Civic-Needs"){
 			project = projectService.filterByCategory("CIVIC_NEEDS", currentEnv)
-		}else if (category == "Non Profits"){
+		}else if (category == "Non-Profits"){
 			project = projectService.filterByCategory("NON_PROFITS", currentEnv)
-		}else if (category == "All Categories"){
+		}else if (category == "All-Categories"){
 			project = projectService.filterByCategory("All", currentEnv)
 		} else {
 			project = projectService.filterByCategory(category, currentEnv)

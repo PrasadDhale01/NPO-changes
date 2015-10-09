@@ -2006,20 +2006,25 @@ class ProjectService {
 			projects.each{
 				String str = it.category
 				String strSocialCategory = it.usedFor
+				
 				String strNonProfit = "NON_PROFITS"
+				String strSocialGood = "Social-Good"
 				Map countries = getCountry()
 				String strCountryCategory = countries.getAt(it.beneficiary.country)
-				 
+				
 				if (str.equalsIgnoreCase(categories)){
 					list.add(it)
-				}else if(strSocialCategory !=null && strSocialCategory.equalsIgnoreCase(categories)){
-					list.add(it)
+				}else if(strSocialGood.equalsIgnoreCase(categories)){
+					String strSocialNeeds = strSocialGood.replace("Good","Needs")
+				 	if(strSocialCategory !=null && strSocialCategory.equalsIgnoreCase(strSocialNeeds.replace('-','_'))){
+						 list.add(it)
+				 	}
 				}else if(strNonProfit.equalsIgnoreCase(categories)){
 					String strNonProfitCat = it.fundsRecievedBy
 					if(strNonProfitCat !=null && strNonProfitCat.equalsIgnoreCase(categories.replace('_','-'))){
 						list.add(it)
 					}
-				}else if(strCountryCategory !=null && strCountryCategory.equalsIgnoreCase(categories)){
+				}else if(strCountryCategory !=null && strCountryCategory.equalsIgnoreCase(categories.replace('-',' '))){
 					list.add(it)
 				}else{
 					return null

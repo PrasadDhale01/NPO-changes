@@ -1087,5 +1087,41 @@ class MandrillService {
         
         sendTemplate(user,'payments-info-email', globalMergeVars, tags)
     }
-    
+	
+    def sendEmailToNonUserContributors(List nonUserContributors){
+        def beneficiaryName
+        def link = grailsLinkGenerator.link(controller: 'login', action: 'register', absolute: true)
+        nonUserContributors.each{
+            beneficiaryName = (it.project.beneficiary.lastName) ? it.project.beneficiary.firstName + ' ' + it.project.beneficiary.lastName : it.project.beneficiary.firstName;
+            def globalMergeVars = [
+            [
+                'name': 'CURRENCY',
+                'content': it.currency
+            ], [
+                'name': 'CONTRIBUTORNAME',
+                'content': it.contributorName
+            ], [
+                'name': 'AMOUNT',
+                'content':it.amount
+            ], [
+                'name': 'CAMPAIGNTITLE',
+                'content':it.project.title
+            ], [
+                'name':'BENEFICIARYNAME',
+                'content':beneficiaryName
+            ], [
+                'name':'DATE',
+                'content' :it.date.format("dd MMMM, YYYY")
+            ], [
+                'name':'LINK',
+                'content':link
+            ]
+            ]
+
+            def tags = ['sendEmailToNonUserContributors']
+
+            sendThankYouTemplate(it,'sendEmailToNonUserContributors', globalMergeVars, tags)
+        }
+    }
+
 }

@@ -2,7 +2,11 @@ $(function() {
     console.log("create.js initialized");
     
     $('#iconfile').val('');
-    
+
+    $("#sendEmailButton").click(function(){
+   	    $("#sendEmailButton").attr('disabled','disabled');
+    });
+
     var rewardIteratorCount = $('#rewardCount').val();
     if (rewardIteratorCount > 0){
     	$('#rewardTemplate1').show();
@@ -1892,7 +1896,7 @@ $(function() {
         hidePopover = function () {
             $(this).popover('hide');
         };
-        
+
         $('.editreward').each(function(){
             $(this).popover({
                 content: 'Save Perk',

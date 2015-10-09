@@ -22,6 +22,7 @@ class Project {
     /* How much & when */
     double amount
     int days
+    int gmailShareCount
     List contributions 
     List projectAdmins
     List projectUpdates
@@ -105,9 +106,11 @@ class Project {
         ARTS,
         CHILDREN,
         COMMUNITY,
+		CIVIC_NEEDS,
         EDUCATION,
         ELDERLY,
         ENVIRONMENT,
+		FILM,
         HEALTH,
         SOCIAL_INNOVATION,
         RELIGION,

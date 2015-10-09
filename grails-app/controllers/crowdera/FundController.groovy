@@ -35,15 +35,20 @@ class FundController {
     def fund() {
         Project project
         User user = userService.getCurrentUser()
-        def fundraiser = userService.getUsernameFromVanityName(params.fr)
+        def fundraiser = userService.getUserFromVanityName(params.fr)
         def currentEnv = Environment.current.getName()
+		def state = projectService.getState()
+		def country = projectService.getCountry()
 
         def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
         if (projectId) {
             project = Project.findById(projectId)
         }
-		
-        perk = rewardService.getRewardById(params.long('rewardId'))
+
+		def reward = (params.rewardId) ? rewardService.getRewardById(params.long('rewardId')) : rewardService.getNoReward()
+		def perk = rewardService.getRewardById(params.long('rewardId'))
+
+		def shippingInfo = rewardService.getShippingInfo(reward)
 
         boolean fundingAchieved = contributionService.isFundingAchievedForProject(project)
         boolean ended = projectService.isProjectDeadlineCrossed(project)
@@ -53,7 +58,7 @@ class FundController {
         } else if (fundingAchieved || ended) {
             redirect(controller: 'project', action: 'showCampaign', id: project.id)
         } else {
-            render view: 'fund/index', model: [project: project, user:user, currentEnv: currentEnv, fundraiser:fundraiser, perk:perk, vanityTitle:params.projectTitle, vanityUsername:params.fr]
+            render view: 'fund/index', model: [project: project, state:state, country:country, perk:perk, user:user, currentEnv: currentEnv, fundraiser:fundraiser, vanityTitle:params.projectTitle, vanityUsername:params.fr, reward:reward, shippingInfo:shippingInfo]
         }
     }
 
@@ -137,7 +142,7 @@ class FundController {
             project = projectService.getProjectById(params.campaignId)
             vanityTitle = projectService.getVanityTitleFromId(params.campaignId)
         }
-        
+
         if (project) {
             def user1 = userService.getUserById(params.long('tempValue'))
             def user = userService.getUserById(params.long('userId'))
@@ -145,7 +150,6 @@ class FundController {
                 user = userService.getUserByUsername('anonymous@example.com')
             }
         
-            def address = projectService.getAddress(params)
             def state = projectService.getState()
             def country = projectService.getCountry()
 		
@@ -159,7 +163,7 @@ class FundController {
             } else {
                 reward = rewardService.getNoReward()
             }
-            
+
             def amount = params.double(('amount'))
             if (amount < reward.price) {
                 render view: 'error', model: [message: 'Funding amount cannot be smaller than reward price. Please choose a smaller reward, or increase the funding amount.']
@@ -174,15 +178,16 @@ class FundController {
             def percentage=((totalContribution + contPrice)/ amt)*100
             perk = Reward.get(params.long('rewardId'))
             def vanityUserName = params.fr
-
+			
             if(percentage>999) {
                 flash.amt_message= "Amount should not exceed more than \$"+remainAmt.round()
                 redirect action: 'fund', params:['fr': vanityUserName, 'rewardId': perk.id, 'projectTitle': vanityTitle]
             } else {
                 if (project && reward) {
                     if (project.paypalEmail){
-                        render view: 'checkout/paypal', model: [project: project, reward: reward, amount:amount, user:user, fundraiser:fundraiser, user1:user1, state:state, country:country, anonymous:anonymous, projectTitle:params.projectTitle]
+                        paypalurl(params,fundraiser,user)
                     } else {
+                        def address = projectService.getAddress(params)
                         payByFirstGiving(params,project,reward,user,fundraiser,address)
                     }
                 } else {
@@ -467,11 +472,11 @@ class FundController {
         }
     }
 
-    def payByPaypal(def params,Project project,Reward reward,User user,User fundraiser,def address){
+    def payByPaypal(def params,Project project,Reward reward,User user,User fundraiser,def shippingInfo){
         String timestamp = UUID.randomUUID().toString()
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-        def successUrl = base_url + "/fund/paypalReturn/paypalcallback?projectTitle=${params.projectTitle}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&physicalAddress=${params.physicalAddress}&shippingEmail=${params.shippingEmail}&twitterHandle=${params.twitterHandle}&shippingCustom=${params.shippingCustom}&tempValue=${params.tempValue}&name=${params.receiptName}&email=${params.receiptEmail}&address=${address}&anonymous=${params.anonymous}"
+        def successUrl = base_url + "/fund/paypalReturn/paypalcallback?projectTitle=${params.projectTitle}&rewardId=${reward.id}&amount=${params.amount}&result=true&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}&shippingEmail=${shippingInfo.email}&twitterHandle=${shippingInfo.twitter}&shippingCustom=${shippingInfo.custom}&tempValue=${params.tempValue}&name=${params.receiptName}&email=${params.receiptEmail}&address=${shippingInfo.address}&anonymous=${params.anonymous}"
         def failureUrl = base_url + "/fund/paypalReturn/paypalcallback?projectTitle=${params.projectTitle}&rewardId=${reward.id}&amount=${params.amount}&userId=${user.id}&timestamp=${timestamp}&fundraiser=${fundraiser.id}"
 
         def BASE_URL = grailsApplication.config.crowdera.paypal.BASE_URL
@@ -533,20 +538,17 @@ class FundController {
 		redirect(controller: 'fund', action: 'acknowledge' , params: [cb: contributionId, fr:fundraiser.id, projectTitle: projectTitle])
     }
 
-    def paypalurl(){
-        Project project = projectService.getProjectById(params.id)
-        Reward reward = rewardService.getRewardById(params.long('rewardId'))
-        User user = userService.getUserById(params.long('userId'))
-        User fundraiser = userService.getUserById(params.long('fr'))
-        def address = projectService.getAddress(params)
-        
+    def paypalurl(def params, User fundraiser, User user){
+        Project project = projectService.getProjectById(params.projectId)
+        Reward reward = (params.rewardId) ? rewardService.getRewardById(params.long('rewardId')) : rewardService.getNoReward()
+        def shippingInfo = projectService.getShippingInfo(params)
         if (project && reward && fundraiser) {
-            payByPaypal(params,project,reward,user,fundraiser,address)
+            payByPaypal(params,project,reward,user,fundraiser,shippingInfo)
             if(ack.equals("Success")) {
                 redirect (url:grailsApplication.config.crowdera.paypal.PAYPAL_URL+paykey)
             } else {
                 flash.paypalFailureMessage = "Unable to connect to the paypal account."
-                redirect action: 'fund', id: project.id, params:[fr: params.fr]
+                redirect action: 'fund', id: params.projectId, params:[fr: fundraiser.id]
             }
         } else {
             render view: 'error', model: [message: 'This project,reward or fundraiser does not exist. Please try again.']
@@ -698,4 +700,15 @@ class FundController {
             render view: 'fund/index', model: [project: project]
         }
     }
+
+	def getRewardShippingDetails(){
+		def anonymous = request.getParameter('anonymous')
+		def reward = rewardService.getRewardById(params.long('rewardId'));
+		def shippingInfo = rewardService.getShippingInfo(reward);
+		def state = projectService.getState()
+		def country = projectService.getCountry()
+		if(request.xhr){
+			render(template: "fund/perkShippingDetails", model:[shippingInfo:shippingInfo, anonymous:anonymous, state:state, country:country])
+		}
+	}
 }

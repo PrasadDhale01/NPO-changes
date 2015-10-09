@@ -29,11 +29,12 @@
     }
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
     def currentTeamAmount = currentTeam.amount
-    
+	
+	def campaigntitle = project.title
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
+<title>${campaigntitle} - Crowdera</title>
 <head>
-    <meta name="title" content="${project.title} - Crowdera" />
     <g:if test="${project.description}">
     <meta name="description" content="${project.description}"/>
     </g:if>

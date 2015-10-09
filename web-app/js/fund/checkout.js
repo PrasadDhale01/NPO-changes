@@ -2,8 +2,7 @@ $(function() {
     console.log("checkout.js initialized");
     $("#otherState").hide();
     $("#other").hide();
-    $("#ostate").hide();
-    
+
     /* Apply selectpicker to selects. */
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
@@ -23,7 +22,7 @@ $(function() {
     		$("#otherState").hide();
     	}
     });
-    
+
     $('#state').change(function(event) {
     	var option = $(this).val();
     	if(option == 'other'){
@@ -32,16 +31,15 @@ $(function() {
     		$("#other").hide();
     	}
     });
-    
-    $('#states').change(function(event) {
+
+    $('.states').change(function(event) {
     	var option = $(this).val();
     	if(option == 'other'){
-    		$("#ostate").show();
+    		$(".ostate").show();
     	} else {
-    		$("#ostate").hide();
+    		$(".ostate").hide();
     	}
     });
-    
 
     /*var source   = $("#credit-error-template").html();
     var template = Handlebars.compile(source);*/
@@ -228,6 +226,7 @@ $(function() {
      	  }
      	  return true;
      }, "Please enter a valid fullname");
+
     $('form').submit(function() {
         if($(".payment-form").valid()) {
             $('#btnPaypal').attr('disabled','disabled');
@@ -240,7 +239,16 @@ $(function() {
         	needToConfirm = false;
         } 	
     });
-    
+
+    $('#countries').change(function(event) {
+    	var option = $(this).val();
+    	$('#payuCountry').val(option);
+    });
+    $('#states').change(function(event) {
+    	var option = $(this).val();
+    	$('#payuStates').val(option);
+    });
+
     $('.payucheckoutsubmitbutton').click(function(event) {
         if(validator.form()) {
             needToConfirm = false;
@@ -266,8 +274,8 @@ $(function() {
                 'addressLine2'  : $('input[name= addressLine2]').val(),
                 'city'          : $('input[name= city]').val(),
                 'zip'           : $('input[name= zip]').val(),
-                'country'       : $('input[name= country]').val(),
-                'state'         : $('input[name= state]').val(),
+                'country'       : $('#payuCountry').val(),
+                'state'         : $('#payuStates').val(),
                 'otherstate'    : $('input[name= otherstate]').val(),
                 'shippingEmail' : $('input[name= shippingEmail]').val(),
                 'twitterHandle' : $('input[name= twitterHandle]').val(),

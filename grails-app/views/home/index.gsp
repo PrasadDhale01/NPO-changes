@@ -5,7 +5,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
 <meta name="layout" content="main" />
-<meta name="title" content="Crowdera- The Free Global Crowdfunding & Fundraising Website" />
 <meta name="description" content="Crowdera is a FREE crowdfunding platform that helps individuals, non-profits & independent filmmakers to raise money online. Create your fundraiser." />
 <meta name="keywords" content="Crowdera, crowdfunding, contribute online, raise funds free, film crowdfunding, raise money online, fundraising site, fundraising website, fundraising project, online fundraising, raise money for a cause, global crowdfunding" />
 

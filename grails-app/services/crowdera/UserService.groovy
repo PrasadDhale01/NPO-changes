@@ -540,6 +540,8 @@ class UserService {
                 ).save(failOnError: true)
             }
         }
+        
+        return vanityname
     }
 
     def getVanityNameFromUsername(def username,def projectId){
@@ -569,7 +571,7 @@ class UserService {
         }
         if (!status){
             if (user) {
-                getProjectVanityUsername(user)
+                vanityUsername = getProjectVanityUsername(user)
             }
         }
         return vanityUsername
@@ -900,6 +902,24 @@ class UserService {
             }
         }
         return category
+    }
+    
+    def getUsersList(def params) {
+        List totalUsers = []
+        List users = []
+        def max = Math.min(params.int('max') ?: 12, 100)
+        def offset = params.int('offset') ?: 0
+        totalUsers = getVerifiedUserList()
+        def count = totalUsers.size()
+        def maxrange
+        if(offset+max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        
+        users = totalUsers.subList(offset, maxrange)
+        return [totalUsers: totalUsers, users: users]
     }
     
     @Transactional

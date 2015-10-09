@@ -402,7 +402,7 @@ class ProjectService {
 
     def getUserContributionDetails(Project project,Reward reward, def amount,String transactionId,User users,User fundraiser,def params, def address, def request){
         def emailId, twitter,custom, userId,anonymous 
-        def currency 
+        def currency
         if (project.payuEmail) {
             currency = 'INR'
             emailId = request.getParameter('shippingEmail')
@@ -424,7 +424,7 @@ class ProjectService {
  
         if (userId == null || userId == 'null' || userId.isAllWhitespace()) {
             if (project.paypalEmail){
-                name = request.getParameter('name')
+                name = request.getParameter('name')      
                 username = request.getParameter('email')
             } else if (project.payuEmail){
                 name = request.getParameter('name')
@@ -1097,8 +1097,8 @@ class ProjectService {
         def projectadmins = project.projectAdmins
         
         def campaignCoCreator = projectadmins[0]
-        def firstAdmin = projectadmins[1]
-        def secondAdmin = projectadmins[2]
+        def firstAdmin = projectadmins[0]
+        def secondAdmin = projectadmins[1]
         def thirdAdmin = projectadmins[3]
         
         isAdminCreated (email1, project, firstAdmin, user)
@@ -1196,9 +1196,11 @@ class ProjectService {
             (Project.Category.ARTS): "Arts",
             (Project.Category.CHILDREN): "Children",
             (Project.Category.COMMUNITY): "Community",
+			(Project.Category.CIVIC_NEEDS): "Civic Needs",
             (Project.Category.EDUCATION): "Education",
             (Project.Category.ELDERLY): "Elderly",
             (Project.Category.ENVIRONMENT): "Environment",
+			(Project.Category.FILM): "Film",
             (Project.Category.HEALTH): "Health",
             (Project.Category.SOCIAL_INNOVATION): "Social Innovation",
             (Project.Category.RELIGION): "Religion",
@@ -1214,9 +1216,11 @@ class ProjectService {
 		   ARTS: "Arts",
 		   CHILDREN: "Children",
 		   COMMUNITY: "Community",
+		   CIVIC_NEEDS: "Civic Needs",
 		   EDUCATION: "Education",
 		   ELDERLY: "Elderly",
 		   ENVIRONMENT: "Environment",
+		   FILM: "Film",
 		   HEALTH: "Health",
 		   SOCIAL_INNOVATION: "Social Innovation",
 		   RELIGION: "Religion",
@@ -1224,6 +1228,25 @@ class ProjectService {
 	   ]
 	   return categoryOptions
 	   }
+	def getDiscoverLeftCategory(){
+		def categoryOptions = [
+			ALL: "All Categories",
+			NON_PROFITS: "Non Profits",
+			FILM: "Film",
+			CIVIC_NEEDS: "Civic Needs",
+			COMMUNITY: "Community"
+		]
+		return categoryOptions
+	}
+	def getDiscoverTopCategory(){
+		def categoryOptions = [
+			PASSION: "PASSION",
+			IMPACT: "IMPACT",
+			SOCIAL_GOODS: "Social_Good",
+			PERSONAL_NEEDS: "Personal_Needs"
+		]
+		return categoryOptions
+	}
     
     def getValidatedProjects() {
 		def popularProjectsList = getPopularProjects()
@@ -1525,13 +1548,17 @@ class ProjectService {
 		    return '//s3.amazonaws.com/crowdera/assets/children.jpg'
 		} else if (category.equalsIgnoreCase('COMMUNITY')){
 		    return '//s3.amazonaws.com/crowdera/assets/community.jpg'
-		} else if (category.equalsIgnoreCase('EDUCATION')) {
+		}else if (category.equalsIgnoreCase('CIVIC_NEEDS')){
+		    return '//s3.amazonaws.com/crowdera/assets/civic-category-img.jpg'
+		}  else if (category.equalsIgnoreCase('EDUCATION')) {
 		    return '//s3.amazonaws.com/crowdera/assets/education.jpg'
 		} else if (category.equalsIgnoreCase('ELDERLY')) {
 		    return '//s3.amazonaws.com/crowdera/assets/elderly.jpg'
 		} else if (category.equalsIgnoreCase('ENVIRONMENT')) {
 		    return '//s3.amazonaws.com/crowdera/assets/environment.jpg'
-		} else if (category.equalsIgnoreCase('HEALTH')){
+		} else if (category.equalsIgnoreCase('FILM')) {
+		    return '//s3.amazonaws.com/crowdera/assets/film-category-img.jpg'
+		}else if (category.equalsIgnoreCase('HEALTH')){
 		    return '//s3.amazonaws.com/crowdera/assets/health.jpg'
 		} else if (category.equalsIgnoreCase('SOCIAL_INNOVATION')){
 		    return '//s3.amazonaws.com/crowdera/assets/social-Innovation.jpg'
@@ -1946,14 +1973,24 @@ class ProjectService {
         if (categories == "All"){
             return projects
         } else {
-            projects.each{
-                String str = it.category
-                if (str.equalsIgnoreCase(categories)){
-                   list.add(it)
-                }
-            }
-            return list
-           
+			projects.each{
+				String str = it.category
+				String strSocialCategory = it.usedFor
+				String strNonProfit = "NON_PROFITS"
+				if (str.equalsIgnoreCase(categories)){
+					list.add(it)
+				}else if(strSocialCategory !=null && strSocialCategory.equalsIgnoreCase(categories)){
+					list.add(it)
+				}else if(strNonProfit.equalsIgnoreCase(categories)){
+					String strNonProfitCat = it.fundsRecievedBy
+					if(strNonProfitCat !=null && strNonProfitCat.equalsIgnoreCase(categories.replace('_','-'))){
+						list.add(it)
+					}
+				}else{
+					return null
+				}
+			}
+			return list
         }
     }
     
@@ -2152,8 +2189,19 @@ class ProjectService {
         return [teamList: teamList, maxrange: maxrange, teams: teams]
     }
     
+    def getValidatedTeamForCampaign(Project project) {
+        List teams = []
+        teams = Team.findAllWhere(project: project , validated: true)
+        return teams
+    }
+    
     def getDiscardedTeams(project) {
         def teams = Team.findAllWhere(project: project,validated: true, enable: false)
+        return teams
+    }
+    
+    def getEnabledTeam(project) {
+        def teams = Team.findAllWhere(project: project,validated: true, enable: true)
         return teams
     }
     
@@ -2304,6 +2352,7 @@ class ProjectService {
 				}
 				Map countries = getCountry()
 				country = countries.getAt(params.country)
+				
 				if (params.addressLine2 == null || params.addressLine2.isAllWhitespace()){
 					address = params.addressLine1 +" "+ params.city +"-"+ params.zip +" "+ state +" "+ country
 				} else {
@@ -2366,6 +2415,7 @@ class ProjectService {
             emailList = emailList.collect { it.trim() }
             mandrillService.shareProject(emailList, name, message, project, fundRaiser)
         }
+        project.gmailShareCount = project.gmailShareCount + 1
     }
 
     def getShippingDetails(def contibutions){
@@ -2580,6 +2630,29 @@ class ProjectService {
 
         def project = Project.get(projectId)
         return project
+    }
+    
+    def getCampaignShareUrl(Project project) {
+        def base_url = grailsApplication.config.crowdera.BASE_URL
+        List vanityTitles = VanityTitle.findAllWhere(project:project)
+        def url
+        def vanityTitle
+        if (vanityTitles.isEmpty()) {
+            vanityTitle = getVanityTitleFromId(project.id)
+        } else {
+            def vanity = vanityTitles.last() 
+            vanityTitle = vanity.vanityTitle
+        }
+        def vanityUserName
+        List vanityUserNames = VanityUsername.findAllWhere(user : project.user)
+        if (vanityUserNames.isEmpty()) {
+            vanityUserName = userService.getProjectVanityUsername(project.user)
+        } else {
+            def vanity = vanityUserNames.last()
+            vanityUserName = vanity.vanityUsername
+        }
+        url = base_url+'/campaigns/'+ vanityTitle +'/'+ vanityUserName
+        return url
     }
 	
     def getYoutubeUrlChanged(String video, Project project){
@@ -3016,7 +3089,7 @@ class ProjectService {
 		cookie.maxAge= 3600
 		return cookie
 	}
-	
+
     def setLoginSignUpCookie() {
         Cookie cookie = new Cookie("loginSignUpCookie", 'createCampaignloginSignUpActive')
         cookie.path = '/'
@@ -3086,7 +3159,72 @@ class ProjectService {
         cookie.maxAge= 0
         return cookie
     }
-	
+    
+    def getProjectList(def params) {
+        List totalCampaigns = []
+        List projects = []
+        def max = Math.min(params.int('max') ?: 12, 100)
+        def offset = params.int('offset') ?: 0
+        totalCampaigns = Project.findAllWhere(validated: true)
+        totalCampaigns = totalCampaigns?.sort{it.title}
+        
+        def count = totalCampaigns.size()
+        def maxrange
+        
+        if(offset+max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        
+        projects = totalCampaigns.subList(offset, maxrange)
+        return [totalCampaigns: totalCampaigns, projects: projects]
+    }
+    
+    def getCampaignBySearchQuery(def params) {
+        List totalCampaigns = []
+        List projects = []
+        List result = []
+        def query = params.searchValue
+        def max = Math.min(params.int('max') ?: 12, 100)
+        def offset = params.int('offset') ?: 0
+        totalCampaigns = Project.findAllWhere(validated: true)
+        totalCampaigns.each {
+            if( it.title.toLowerCase().contains(query.toLowerCase()) ){
+                result.add(it)
+            }
+        }
+        
+        result = result?.sort{it.title}
+        def count = result.size()
+        def maxrange
+        if (count > 0 && params.searchValue) {
+            if(offset+max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            projects = result.subList(offset, maxrange)
+            return [totalCampaigns: result, projects: projects]
+        } else {
+            count = totalCampaigns.size()
+            totalCampaigns = totalCampaigns?.sort{it.title}
+            if(offset+max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            projects = totalCampaigns.subList(offset, maxrange)
+            def message = 'No campaign found'
+            return [totalCampaigns: totalCampaigns, projects: projects, message: message]
+        }
+        
+    }
+    
+    def getCampaignSupporterCount(Project project) {
+        return project.supporters.size()
+    }
+    
     def ContributorNameCookie(contributorEmail){
 		Cookie cookie = new Cookie("contributorEmail", contributorEmail)
 		cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
@@ -3104,6 +3242,97 @@ class ProjectService {
             }
         }
         return status
+    }
+	
+	def getShippingInfo(def params){
+		def shippingInfo
+		def twitter, custom, address, email
+		if (params.twitterField){
+			twitter = params.twitterField
+		} else {
+			twitter = null
+		}
+
+		if(params.customField && params.customField != ''){
+			custom = params.customField
+		} else {
+			custom = null
+		}
+
+		if(params.emailField){
+			email = params.emailField
+		} else {
+			email = null
+		}
+
+		if(params.addr1){  
+			address = params.addr1
+
+		if (params.addr2 && params.addr2 != '' && params.addr2 != 'null'){
+			address = address + " " + params.addr2
+		}
+
+		address = address + " " + params.cityField + "-" + params.zipField
+		Map countries = getCountry()
+		if (params.otherField && params.stateField == 'other'){
+			address = address+ " " + params.otherField + " " + countries.getAt(params.countryField)
+		} else {
+			Map states = getState()
+			address = address + " " + states.getAt(params.stateField) + " " + countries.getAt(params.countryField)
+		}
+	} else {
+		address = null
+	}
+		
+	shippingInfo = [twitter:twitter, custom:custom, address:address, email:email]
+	return shippingInfo
+	}
+
+    def generateCSVReportForCampaign(def params, def response, Project project, def ytViewCount, def linkedinCount, def twitterCount, def facebookCount){
+
+        def numberOfContributions = project.contributions.size()
+        def percentageContribution = contributionService.getPercentageContributionForProject(project)
+        def numberOFPerks = (project.rewards.size() > 1) ? project.rewards.size() : 0
+        def maxSelectedPerkAmount = rewardService.getMostSelectedPerkAmountForCampaign(project)
+        def teams = getEnabledTeam(project)
+        def numberOfTeams = getValidatedTeamForCampaign(project)
+        def disabledTeams = getDiscardedTeams(project)
+        def highestContribution = contributionService.getHighestContributionDay(project)
+        def campaignSupporterCount = getCampaignSupporterCount(project)
+        def usedFor = (project.usedFor) ? project.usedFor : 'IMPACT'
+        
+        List results = []
+        
+        def rows = [project.title.replaceAll("[,;]",' '), project.amount.round(), usedFor, numberOfContributions, percentageContribution, numberOFPerks, maxSelectedPerkAmount , project.comments.size() , project.projectUpdates.size(), numberOfTeams.size(), disabledTeams.size(), ytViewCount, highestContribution.highestContributionDay, highestContribution.highestContributionHour,facebookCount, twitterCount ,linkedinCount, project.gmailShareCount, campaignSupporterCount]
+        results << rows
+        def result
+        response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll("[,;\\s]",'_')+".csv")
+        result = 'CAMPAIGN, CAMPAIGN GOAL, RAISED FUND FOR, TOTAL NUMBER OF CONTRIBUTIONS , PERCENTAGE GOAL RAISED, NUMBER OF PERKS OFFERED, MOST SELECTED PERK AMOUNT, Total NUMBER OF COMMENTS, TOTAL NUMBER OF UPDATES, TOTAL NUMBER OF ENABLED TEAMS, TOTAL NUMBER OF DISABLED TEAMS, NUMBER OF VIDEO VIEWERS, HIGHEST CONTRIBUTION DAY, HIGHEST CONTRIBUTION HOUR, FACEBOOK SHARE COUNT, TWITTER SHARE COUNT, LINKEDIN SHARE COUNT, EMAIL SHARE COUNT, TOTAL NUMBER OF SUPPORTERS, \n'
+        results.each{ row->
+            row.each{
+                col -> result+=col +','
+            }
+            result = result[0..-2]
+            result+="\n"
+        }
+        return result
+    }
+
+    def sendEmailTONonUserContributors() {
+        def contributionList = Contribution.list()
+        List nonUserContributors = []
+        List contributorsEmail = []
+        def user
+        contributionList.each {
+           if (!contributorsEmail.contains(it.contributorEmail)) {
+               user = User.findByEmail(it.contributorEmail)
+               if (!user){
+                   contributorsEmail.add(it.contributorEmail)
+                   nonUserContributors.add(it)
+               }
+           }
+       }
+       mandrillService.sendEmailToNonUserContributors(nonUserContributors)
     }
 
     @Transactional

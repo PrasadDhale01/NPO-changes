@@ -197,7 +197,7 @@
                 </g:else>
 
             </div>
-            <div class="col-md-4 <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag</g:if>" >
+            <div class="col-md-4 <g:if test="${project.rewards.size()>1 }">acknowledge-tile-tag</g:if>">
                 <g:if test="${project.rewards.size()>1 }">
                     <g:render template="rewardtile"/>
                 </g:if>

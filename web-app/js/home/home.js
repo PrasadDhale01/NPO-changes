@@ -41,7 +41,7 @@ $(function() {
              confirmPassword: {
             	 required: true,
                  isEqualToPassword: true
-              }
+             }
 	    },
 	    messages: {
 	    	 name: {
@@ -233,4 +233,17 @@ $( document ).ready(function() {
 		$('.info-banner').css('display','none');
 		$('.home-header-section').removeClass('banner-nav');
 	});
+	
+	function sticky_relocate() {
+	    var window_top = $(window).scrollTop();
+	    var div_top = $('#sticky-header').offset().top;
+	    if (window_top > div_top) {
+	        $('.TW-ebook-header').addClass('TW-fixed-header');
+	    } else if(window_top > 0){
+	        $('.TW-ebook-header').removeClass('TW-fixed-header');
+	    }
+	}
+
+	$(window).scroll(sticky_relocate);
+	sticky_relocate();
 });

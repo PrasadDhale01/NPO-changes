@@ -1224,7 +1224,7 @@ class ProjectService {
 			(Project.Category.HEALTH): "Health",
 			(Project.Category.SOCIAL_INNOVATION): "Social Innovation",
 			(Project.Category.RELIGION): "Religion",
-			(Project.Category.OTHER): "Other",
+			(Project.Category.OTHER): "Other"
 		]
 		return categoryOptions
 	}
@@ -1244,7 +1244,7 @@ class ProjectService {
 		   NON_PROFITS:"Non Profits",
 		   SOCIAL_INNOVATION: "Social Innovation",
 		   RELIGION: "Religion",
-		   OTHER: "Other",
+		   OTHER: "Other"
 	   ]
 	   return categoryOptions
    }
@@ -1263,7 +1263,7 @@ class ProjectService {
 		   HEALTH: "Health",
 		   SOCIAL_INNOVATION: "Social Innovation",
 		   RELIGION: "Religion",
-		   OTHER: "Other",
+		   OTHER: "Other"
 	   ]
 	   return categoryOptions
 	}

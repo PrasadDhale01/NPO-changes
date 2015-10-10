@@ -1398,8 +1398,7 @@ class ProjectController {
 	}
 
 	def campaignsSorts(){
-		def category=params.sorts.replace(' ','-')
-		def sorts = (category == 'Successful (100% +)') ? 'Successful' : category
+		def sorts = params.sorts.replace(' ','-')
 		
 		if(sorts.equalsIgnoreCase('Sort-by')){
 			redirect(action:'list', controller:'project')
@@ -1418,8 +1417,7 @@ class ProjectController {
 			discoverLeftCategoryOptions=projectService.getCategory()
 		}
 		def sortsOptions = projectService.getSorts()
-		def category = params.query.replace(' ','-')
-		def sorts = (category == 'Successful') ? 'Successful (100% +)' : category
+		def sorts = params.query.replace(' ','-')
 		
 		def campaignsorts = projectService.isCampaignsorts(sorts, environment)
 		
@@ -1752,7 +1750,6 @@ class ProjectController {
             def maxSelectedPerkAmount = rewardService.getMostSelectedPerkAmountForCampaign(project)
             def numberOfComments = project.comments.size()
             def numberOfUpdates = project.projectUpdates.size()
-            def teams = projectService.getValidatedTeamForCampaign(project)
             def numberOfTeams = projectService.getEnabledTeam(project)
             def disabledTeams = projectService.getDiscardedTeams(project)
             def highestContribution = contributionService.getHighestContributionDay(project)

@@ -1019,7 +1019,7 @@ class ProjectService {
 			All_Campaigns: "All Campaigns",
 			Live_Campaigns: "Newest",
 			Ending_Soon: "Ending Soon",
-			Successful_Campaigns:"Successful (100% +)",
+			Successful_Campaigns:"Successful",
 			Ended_Campaign:"Ended",
 			OFFERING_PERKS:"Offering Perks"
 		]
@@ -1032,7 +1032,7 @@ class ProjectService {
 		if(sorts == 'All-Campaigns'){
 			return projects
 		}
-		if(sorts == 'Successful (100% +)'){
+		if(sorts == 'Successful'){
 			projects.each {
 				def percentage = contributionService.getPercentageContributionForProject(it)
 				if(percentage >= 100){

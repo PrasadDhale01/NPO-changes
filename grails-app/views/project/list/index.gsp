@@ -22,7 +22,7 @@
             	<h1><span class="TW-discover-title"><img src="//s3.amazonaws.com/crowdera/assets/discover-arrow.png" alt="Discover title">&nbsp;&nbsp;Explore Campaigns Raising Money for</span></h1>
             </div>
             <div class="TW-discover-topTab">
-            	<div class="col-md-2 col-lg-2 col-sm-2 categoryList list-category TW-dis-tab-padding panel-body TW-discover-select-width left-select-margin">
+            	<div class="col-md-2 col-lg-2 col-sm-2 categoryList list-category TW-dis-tab-padding panel-body TW-discover-select-width left-select-margin TW-discover-drpdwn-right-border">
                     <g:form action="category" controller="project" name="categoryForm">
                         <g:select class="selectpicker" id="category" name="country" from="${countryOptions}" value="${selectedCategory}" optionKey="value" optionValue="value" noSelection="['Country':'Country']" onchange="selectedCategory()"/>
                     </g:form>

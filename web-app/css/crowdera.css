@@ -5387,13 +5387,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.TW-discover-bannerheadbtmMargin b {
 		color: #fff;
 		font-family: "Open Sans";
-		font-size: 10px !important;
+		font-size: 13px !important;
 		font-weight: 900;
 		line-height: 0px;
 	}
+	.TW-discover-right-inverted-comma {
+	   margin-top: 3px !important;
+	}
 	.TW-dicover-testimonial-name {
 		font-family: "Open Sans";
-		font-size: 13px !important;
+		font-size: 11px !important;
 		padding-right: 6px !important;
 	}
 	.TW-discover-right-inverted-comma img {
@@ -6591,7 +6594,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-left:auto;
 		margin-right:auto;
 		text-align:right;
-		width:603px !important;
+		width:584px !important;
 	}	
 	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
 		margin-left:auto;
@@ -6605,7 +6608,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 	.TW-dicover-testimonial-name {
 		font-family: "Open Sans";
-		font-size: 16px;
+		font-size: 13px !important;
 		padding-right: 54px !important;
 	}
 	.TW-discover-header-testimonial{
@@ -10723,7 +10726,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.TW-discover-bannerheadbtmMargin b {
 		color: #fff;
 		font-family: "Open Sans";
-		font-size: 10px !important;
+		font-size: 13px !important;
 		font-weight: 900;
 		line-height: 0px;
 	}
@@ -10745,7 +10748,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 	.TW-dicover-testimonial-name {
 		font-family: "Open Sans";
-		font-size: 13px !important;
+		font-size: 11px !important;
 		padding-right: 6px !important;
 	}
 	.TW-discover-right-inverted-comma img {
@@ -10762,7 +10765,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 283px !important;
 	}
 	.TW-discover-campaign-centering {
-		padding-left: 7px !important;
+		padding-left: 15px !important;
 		width:310px !important;
 	}
 	.TW-discover-tab-decoration {
@@ -11853,8 +11856,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	width:100%;
 }
 .discover-inner-container {
-	padding-left: 10px !important;
-	padding-right: 10px !important;
+	padding-left: 15px !important;
+	padding-right: 15px !important;
 	width: 100%;
 }
 .TW-dis-tab-padding{
@@ -11930,7 +11933,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .TW-dicover-testimonial-name {
 	font-family: "Open Sans";
-	font-size: 16px;
+	font-size: 13px;
 	padding-right: 84px;
 }
 .TW-discover-header-testimonial{

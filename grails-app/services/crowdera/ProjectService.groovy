@@ -525,11 +525,11 @@ class ProjectService {
 			} else {
 				userIdentity = "Non Anonymous"
 			}
-			def rows = [it.transactionId, dateFormat.format(it.contribution.date), it.project.title.replaceAll('[,;] ',' '), it.contribution.contributorName, userIdentity, it.project.amount, getContributedAmount(it)]
+			def rows = [it.transactionId, dateFormat.format(it.contribution.date), it.project.title.replaceAll('[,;] ',' '), it.contribution.contributorName, userIdentity, getContributedAmount(it), it.contribution.contributorEmail]
 			results << rows
 		 }
 		 
-		 def result='Transaction Id, Contribution Date & Time, Project, Contributor Name, Identity, Goal, Contributed Amount, \n'
+		 def result='Transaction Id, Contribution Date & Time, Project, Contributor Name, Identity, Contributed Amount, Contributor Email \n'
 		 results.each{ row->
 			row.each{
 			col -> result+=col +','

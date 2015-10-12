@@ -1016,10 +1016,9 @@ class ProjectService {
 	
 	def getSorts(){
 		def sortsOptions = [
-			All_Campaigns: "All Campaigns",
-			Live_Campaigns: "Newest",
+			Live_Campaigns: "Latest",
 			Ending_Soon: "Ending Soon",
-			Successful_Campaigns:"Successful",
+			Successful_Campaigns:"Most Funded",
 			Ended_Campaign:"Ended",
 			OFFERING_PERKS:"Offering Perks"
 		]
@@ -1029,10 +1028,7 @@ class ProjectService {
 	def isCampaignsorts(def sorts ,def currentEnv){
 		List projects = getValidatedProjects(currentEnv)
 		List p = []
-		if(sorts == 'All-Campaigns'){
-			return projects
-		}
-		if(sorts == 'Successful'){
+		if(sorts == 'Most-Funded'){
 			projects.each {
 				def percentage = contributionService.getPercentageContributionForProject(it)
 				if(percentage >= 100){
@@ -1040,7 +1036,7 @@ class ProjectService {
 				}
 			}
 		}
-		if(sorts == 'Newest'){
+		if(sorts == 'Latest'){
 			projects.each {project ->
 				boolean ended = isProjectDeadlineCrossed(project)
 				if(project.validated && ended ==false){

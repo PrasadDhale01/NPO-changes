@@ -5348,6 +5348,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	a.passionTab {
+	   margin-left: -1px !important;
+	}
+	.TW-dis-tab-padding {
+		padding-left: 0;
+		padding-right: 0;
+		width: 281px !important;
+	}
 	.TW-discover-topTab{
 		width:280px !important;
 	}
@@ -5400,7 +5408,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		padding-right: 6px !important;
 	}
 	.TW-discover-right-inverted-comma img {
-		margin-top: -5px !important;
+		margin-top: -2px !important;
 		width: 15px !important;
 	}
 	.TW-discover-hdr-testimonial-author{
@@ -6465,9 +6473,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
-	.TW-discover-pane-width{
-		width:14.5% !important;
-	}
     .fund-container{
         width:750px !important ;
     }
@@ -6546,6 +6551,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.TW-discover-pane-width{
+		width:17.5% !important;
+	}
+	.TW-discover-pg-tile-width .tile-pad {
+	   padding: 0;
+	   width: 290px !important;
+	}
+	.TW-dis-tab-padding {
+	  padding-left: 0px;
+	  padding-right: 0px;
+	  width: 489px !important;
+	}
 	.TW-discover-drpdwn-left-border div.bootstrap-select > button.selectpicker {
 	   background-color: #f6f8f8;
 	   border-left: medium none;
@@ -6588,7 +6605,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.discover-inner-container {
 		padding-left: 10px !important;
 		padding-right: 10px !important;
-		width: 100% !important;
+		width: 750px !important;
 	}
 	.TW-discover-bannerheadbtmMargin b {
 		color: #fff;
@@ -6645,7 +6662,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 25px !important;
 	}
 	.TW-discover-leftpane-menu{
-		padding-left:0px !important;
+		padding-left:6px !important;
 		padding-right:0px !important;
 	}
 	.TW-discover-leftpane-menu ul li a {
@@ -7126,7 +7143,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 	.right-inverted-comma img{
 		height:15px;
-		width:15px;
+		width:25px;
 	}
 	.left-inverted-comma img{
 		width:25px !important;
@@ -7875,7 +7892,32 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }
 
-@media only screen and (min-width: 1281px) and (max-width: 1330px){
+@media only screen and (min-width: 1281px) and (max-width: 1344px){
+	.TW-discover-leftpane-menu ul li a {
+	   color: #424242;
+	   font-size: 13px !important;
+	   font-weight: 400;
+	}
+	.TW-discover-pane-width {
+		width: 10.5% !important;
+	}
+	.discover-inner-container {
+	   padding-left: 15px !important;
+	   padding-right: 15px !important;
+	   width: 1170px !important;
+	}
+	.TW-dis-tab-padding {
+	   padding-left: 0;
+	   padding-right: 0;
+	   width: 785px !important;
+	}
+	.TW-discover-select-width {
+	   width: 175px !important;
+	}
+	.TW-discover-pg-tile-width .tile-pad {
+	   padding: 0;
+	   width: 290px;
+	}
     header.cr-tabs-link {
         color: #01bbd3;
         font-size: 22px;
@@ -7884,6 +7926,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
+	.TW-discover-pg-tile-width .show-tile-text-size {
+		font-size: 10px;
+		line-height: 5px;
+		margin-bottom: 0;
+		margin-top: 8px;
+		padding-left: 18px !important;
+		padding-right: 18px !important;
+	}
 	.TW-discover-drpdwn-left-border div.bootstrap-select > button.selectpicker {
 	   background-color: #f6f8f8;
 	   border-left: medium none;
@@ -8167,6 +8217,23 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1200px) and (max-width: 1280px){
+	.discover-inner-container {
+	   padding-left: 15px !important;
+	   padding-right: 15px !important;
+	   width: 1170px !important;
+	}
+	.TW-dis-tab-padding {
+	   padding-left: 0;
+	   padding-right: 0;
+	   width: 785px !important;
+	}
+	.TW-discover-select-width {
+	   width: 175px !important;
+	}
+	.TW-discover-pg-tile-width .tile-pad {
+	   padding: 0;
+	   width: 290px;
+	}
     .show-contribution-amt-tile.lead {
         font-size: 17px !important;
         font-weight: bold !important;
@@ -8176,10 +8243,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     	padding-right:5px;
     }
 	.TW-discover-pane-width {
-		width: 9.5% !important;
+		width: 10.5% !important;
 	}
 	.col-lg-2.col-xs-12.col-sm-2.hidden-xs.TW-discover-leftpane-menu.TW-discover-pane-width {
-		padding-left: 0 !important;
+		padding-left: 10px !important;
 		padding-right: 0 !important;
 	}
 	.TW-discover-leftpane-menu ul li a {
@@ -8190,8 +8257,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	.TW-dis-tab-padding {
+	   padding-left: 0px;
+	   padding-right: 0px;
+	   width: 648px !important;
+	}
 	.TW-discover-pane-width {
-	   width: 17.5% !important;
+	   width: 14.5% !important;
 	}
     .table-responsive {
         width: 100%;
@@ -8208,10 +8280,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.discover-inner-container {
 		padding-left: 10px !important;
 		padding-right: 10px !important;
-		width: 100% !important;
+		width: 995px !important;
 	}
 	.TW-discover-select-width{
-		width:16% !important;
+		width:157px !important;
 	}
 	span.TW-cr-pay-rd {
 		font-size: 9px !important;
@@ -10697,6 +10769,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.TW-dis-tab-padding {
+		padding-left: 0;
+		padding-right: 0;
+		width: 281px !important;
+	}
 	.TW-discover-topTab{
 		width:280px !important;
 	}
@@ -10773,7 +10850,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		padding-right: 6px !important;
 	}
 	.TW-discover-right-inverted-comma img {
-		margin-top: -5px !important;
+		margin-top: 5px !important;
 		width: 15px !important;
 	}
 	.TW-discover-select-width {
@@ -11884,6 +11961,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .TW-dis-tab-padding{
 	padding-left:0px;
 	padding-right:0px;
+	width:73%;
 }
 .TW-discover-campaign-centering{
 	display: block;
@@ -11900,8 +11978,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .TW-discover-leftpane-menu ul{
 	margin-top: -9px;
-	padding-left: 20px;
-	padding-right: 10px;
+	padding-left: 10px;
+	padding-right: 0px;
 	text-decoration: none;
 }
 .TW-discover-leftpane-menu ul li{
@@ -11935,7 +12013,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	width: 1024px;
 }
 .TW-discover-select-width{
-	width:16.5%;
+	width:13%;
 }
 .TW-discover-banner-decoration{
 	background-color: #01bbd2;
@@ -11950,7 +12028,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	margin-top: 12px;
 }
 .TW-discover-right-inverted-comma {
-	margin-top: 15px;
+	margin-top: 1px;
 }
 .TW-dicover-testimonial-name {
 	font-family: "Open Sans";
@@ -11985,7 +12063,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .TW-discover-bannerheadbtmMargin b {
 	color: #fff;
-	font-family: "Open Sans";
+	font-family: cursive;
 	font-size: 22px;
 	font-weight: 900;
 	line-height: 0px;
@@ -12076,7 +12154,6 @@ a#downloadEbook{
 }
 .TW-dis-tab-padding .bootstrap-select.btn-group .dropdown-menu li {
 	position: relative;
-	text-align:center;
 }
 .TW-dis-tab-padding .open > .dropdown-toggle.btn-default {
 	background-color: #006083 !important;
@@ -12087,7 +12164,17 @@ a#downloadEbook{
 	padding-right:4px;
 }
 .TW-discover-pane-width{
-	width:13%;
+		width:13%;
+		padding-right:0px;
+}	
+@-moz-document url-prefix(){
+	.TW-discover-pane-width{
+		width:11%;
+		padding-right:0px;
+	}	
+}
+.TW-discover-pane-width-right{
+	width:10%;
 }
 .TW-Discover-selected-usedfor{
 	border:3px solid #01bbd2 !important;

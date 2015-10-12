@@ -5,9 +5,8 @@
 </head>
 <body>
 <div class="feducontent">
-    <div class="container">
-        <div class="row">
-        <h1>Transaction List</h1><br>
+    <div class="container footer-container">
+        <h1>Transaction List</h1>
             <g:if test="${flash.message}">
                 <div class="alert alert-success">
                     ${flash.message}
@@ -31,8 +30,8 @@
                            <th class="text-center col-sm-2">Project</th>
                            <th class="text-center col-sm-2">Contributor Name</th>
                            <th class="text-center">Identity</th>
-                           <th class="text-center col-sm-1">Goal</th>
                            <th class="text-center col-sm-2">Contributed Amount</th>
+                           <th class="text-center col-sm-1">Email</th>
                        </tr>
                    </thead>
                    <tbody>
@@ -40,8 +39,7 @@
                    </tbody>
                </table>
            </div>
-        </div>
-    </div>    
-</div>
+        </div>    
+    </div>
 </body>
 </html>

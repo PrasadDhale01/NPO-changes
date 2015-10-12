@@ -525,11 +525,11 @@ class ProjectService {
 			} else {
 				userIdentity = "Non Anonymous"
 			}
-			def rows = [it.transactionId, dateFormat.format(it.contribution.date), it.project.title.replaceAll('[,;] ',' '), it.contribution.contributorName, userIdentity, it.project.amount, getContributedAmount(it)]
+			def rows = [it.transactionId, dateFormat.format(it.contribution.date), it.project.title.replaceAll('[,;] ',' '), it.contribution.contributorName, userIdentity, getContributedAmount(it), it.contribution.contributorEmail]
 			results << rows
 		 }
 		 
-		 def result='Transaction Id, Contribution Date & Time, Project, Contributor Name, Identity, Goal, Contributed Amount, \n'
+		 def result='Transaction Id, Contribution Date & Time, Project, Contributor Name, Identity, Contributed Amount, Contributor Email \n'
 		 results.each{ row->
 			row.each{
 			col -> result+=col +','
@@ -1548,13 +1548,17 @@ class ProjectService {
 		    return '//s3.amazonaws.com/crowdera/assets/children.jpg'
 		} else if (category.equalsIgnoreCase('COMMUNITY')){
 		    return '//s3.amazonaws.com/crowdera/assets/community.jpg'
-		} else if (category.equalsIgnoreCase('EDUCATION')) {
+		}else if (category.equalsIgnoreCase('CIVIC_NEEDS')){
+		    return '//s3.amazonaws.com/crowdera/assets/civic-category-img.jpg'
+		}  else if (category.equalsIgnoreCase('EDUCATION')) {
 		    return '//s3.amazonaws.com/crowdera/assets/education.jpg'
 		} else if (category.equalsIgnoreCase('ELDERLY')) {
 		    return '//s3.amazonaws.com/crowdera/assets/elderly.jpg'
 		} else if (category.equalsIgnoreCase('ENVIRONMENT')) {
 		    return '//s3.amazonaws.com/crowdera/assets/environment.jpg'
-		} else if (category.equalsIgnoreCase('HEALTH')){
+		} else if (category.equalsIgnoreCase('FILM')) {
+		    return '//s3.amazonaws.com/crowdera/assets/film-category-img.jpg'
+		}else if (category.equalsIgnoreCase('HEALTH')){
 		    return '//s3.amazonaws.com/crowdera/assets/health.jpg'
 		} else if (category.equalsIgnoreCase('SOCIAL_INNOVATION')){
 		    return '//s3.amazonaws.com/crowdera/assets/social-Innovation.jpg'
@@ -1969,20 +1973,24 @@ class ProjectService {
         if (categories == "All"){
             return projects
         } else {
-            projects.each{
-				String strNonProfits="NON_PROFITS"
-                String str = it.category
-				String strSocialCategory= it.usedFor
-				if(strNonProfits.equalsIgnoreCase(categories)){
-					String strNonProfitProject= it.fundsRecievedBy
-					if(strNonProfitProject.equalsIgnoreCase("NON-PROFITS")){
+			projects.each{
+				String str = it.category
+				String strSocialCategory = it.usedFor
+				String strNonProfit = "NON_PROFITS"
+				if (str.equalsIgnoreCase(categories)){
+					list.add(it)
+				}else if(strSocialCategory !=null && strSocialCategory.equalsIgnoreCase(categories)){
+					list.add(it)
+				}else if(strNonProfit.equalsIgnoreCase(categories)){
+					String strNonProfitCat = it.fundsRecievedBy
+					if(strNonProfitCat !=null && strNonProfitCat.equalsIgnoreCase(categories.replace('_','-'))){
 						list.add(it)
 					}
-				}else if (str.equalsIgnoreCase(categories) || strSocialCategory.equalsIgnoreCase(categories)){
-                   list.add(it)
-                }
-            }
-            return list
+				}else{
+					return null
+				}
+			}
+			return list
         }
     }
     

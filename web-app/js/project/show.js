@@ -94,7 +94,16 @@
     	}
     });
     
-    $('#commentBox').find('form').validate({
+    $('#comments').find('#commentBox').find('form').validate({
+    	rules: {
+    		comment: {
+    			required: true,
+    			maxlength: 5000
+    		}
+    	}
+    });
+    
+    $('#comment-mobile').find('#commentBox').find('form').validate({
     	rules: {
     		comment: {
     			required: true,

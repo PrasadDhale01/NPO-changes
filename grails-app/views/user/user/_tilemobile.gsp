@@ -156,6 +156,21 @@
         <div class="campaign-title-margin-bottom"></div>
         <span>${project.description}</span>
     </div>
+    
+     <h4 class="panel-title text-center">
+         <a class="accordion-toggle collapsed show-mobile-readstory" data-toggle="collapse" data-parent="#accordion" href="#read-story-mobile">Read Story</a>
+     </h4>
+     <div id="read-story-mobile" class="panel-collapse collapse faq-panel-height">
+         <div class="panel-body">
+             <g:if test="${isCrFrCampBenOrAdmin}">
+                 <p class="campaignStory justify">${raw(project.story)}</p>
+             </g:if>
+             <g:else>
+                 <p class="campaignStory justify">${raw(currentTeam.story)}</p>
+                 <p class="campaignStory justify">${raw(project.story)}</p>
+             </g:else>
+         </div>
+     </div>
 
     <div class="modal-footer tile-footer tile-fonts-footer">
         <div class="row">

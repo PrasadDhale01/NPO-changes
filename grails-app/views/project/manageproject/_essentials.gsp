@@ -110,7 +110,7 @@
 	</div>
 </div>
 
-<div class="col-xs-12 col-md-4 mobileview-bottom">
+<div class="col-xs-12 col-md-4 mobileview-bottom-mange">
     <g:render template="/project/manageproject/tilesanstitle" />
     <g:if test="${project.draft}">
         <div class="submitForApprovalSectionbtm" id="submitForApprovalSectionbtm">

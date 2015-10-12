@@ -4,13 +4,13 @@
 <g:set var="rewardService" bean="rewardService"/>
 <g:set var="userService" bean="userService"/>
 
-<div class="tile-footer perks-supporters">
+<div class="tile-footer show-perksRewardtabs">
     <div class="modal-footer tile-footer perks-style perk-title">
         <g:if test="${isFundingOpen || isPreview}">
             <h2 class="rewardsectionheading text-center">SELECT PERKS</h2>
         </g:if>
         <g:else>
-            <h2 class="rewardsectionheading">Funding closed</h2>
+            <h2 class="rewardsectionheading">FUNDING CLOSED</h2>
         </g:else>
     </div>
     <div class="rewardsection">
@@ -26,7 +26,7 @@
                 <div class="redirectCampaignOnPerk crowdera-perk">
                     <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
                         <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
-                        <div class="rewardsection-row">
+                        <div class="rewardsection-row perks-supporters">
                             <div class="rewardBottomBorder">
                                 <div class="tile-goal-show">
                                      <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
@@ -40,7 +40,7 @@
                     </g:if>
                     <g:else>
                         <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'rewardId': rewardId, 'projectTitle': vanityTitle]">
-                            <div class="rewardsection-row">
+                            <div class="rewardsection-row perks-supporters">
                                 <div class="rewardBottomBorder">
                                     <g:if test="${reward.id==1 }">
                                          <div class="rewardtitlespan">I just want to help.</div>
@@ -67,7 +67,7 @@
             </g:if>
             <g:else>
                 <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
-                    <div class="rewardsection-row crowdera-perk">
+                    <div class="rewardsection-row crowdera-perk perks-supporters">
                         <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                         <div class="rewardBottomBorder">
                             <div class="tile-goal-show">
@@ -82,7 +82,7 @@
                 </g:if>
                 <g:else>
                     <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'rewardId': rewardId, 'projectTitle': vanityTitle]">
-                        <div class="rewardsection-row">
+                        <div class="rewardsection-row perks-supporters">
                             <div class="rewardBottomBorder">
                                 <g:if test="${reward.id==1 }">
                                     <div class="rewardtitlespan">I just want to help.</div>
@@ -108,7 +108,7 @@
             </g:else>
         </g:if>
         <g:else>
-            <div class="rewardsection-row crowdera-perk">
+            <div class="rewardsection-row crowdera-perk perks-supporters">
                 <g:if test="${backers == totalNumberOfReward && reward.id != 1}">
                     <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                 </g:if>

@@ -28,21 +28,21 @@
 		</li>
 		<g:if test="${!isTeamExist && project.validated}">
 		    <g:if test="${!ended}">
-			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
+			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show hidden-xs">
 			        <g:form controller="project" action="addTeam" id="${project.id}">
 					    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md manage-team all-place"/>
 					</g:form> 
 			    </li>
 		    </g:if>
 		    <g:else>
-		        <li class="col-md-4 col-sm-4 col-xs-4 show-team-button">
+		        <li class="col-md-4 col-sm-4 col-xs-4 show-team-button hidden-xs">
                     <input value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember disableteambutton text-center btn btn-md all-place" readonly/>
                 </li>
 		    </g:else>
 		</g:if>
 		<g:else>
 		    <g:if test="${(currentFundraiser == currentUser || isCrUserCampBenOrAdmin) && project.validated}">
-                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
+                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show sh-teamtabmobiles">
                    <a class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team" data-toggle="dropdown" aria-expanded="false">
 			           Activity <span class="caret"></span>
 			       </a>

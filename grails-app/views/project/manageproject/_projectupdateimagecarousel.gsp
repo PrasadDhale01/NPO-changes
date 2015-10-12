@@ -55,12 +55,12 @@
 </g:if>
 <g:else>
     <g:if test="${images.toString().contains('.jpg') }">
-        <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}"/>
+        <img alt="${project.title}" class="imagestyle sh-img-update"  src="${images.get(0)}"/>
     </g:if>
     <g:elseif test="${images.toString().contains('.png') }">
-        <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}"/>
+        <img alt="${project.title}" class="imagestyle sh-img-update"  src="${images.get(0)}"/>
     </g:elseif>
     <g:elseif test="${images.toString().contains('abstract') }">
-        <img alt="${project.title}" class="imagestyle"  src="${images.get(0)}"/>
+        <img alt="${project.title}" class="imagestyle sh-img-update"  src="${images.get(0)}"/>
     </g:elseif>	
 </g:else>

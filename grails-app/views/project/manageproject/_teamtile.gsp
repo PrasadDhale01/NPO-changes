@@ -28,9 +28,15 @@
 	} else {
 		cents = percentage
 	}
+	
+	if (user){
+		def obj = userService.getCurrentUserImage(userName)
+		alphabet = obj.alphabet
+		imageUrl = obj.userImage
+	}
 %>
 
-<div class="fedu thumbnail grow teamtile teamtile-padding">
+<div class="fedu thumbnail grow teamtile teamtile-padding hidden-xs">
 	<g:if test="${userService.isFacebookUser() || project.user}">
 		<g:if test="${!isAdminOrBeneficiary}">
 			<g:if test="${team.enable==false}">
@@ -146,3 +152,33 @@
         </div>
     </div>
 </div>
+<div class="visible-xs show-panel-mobilesize ${alphabet}">
+     <div class ="col-xs-4 show-mobimg-panels">
+         <g:if test="${!ismanagepage || !isAdminOrBeneficiary}">
+                <g:link controller="project" action="showCampaign" id="${project.id}" params="['fr': username]">
+                    <g:if test="${userImageUrl != null}">
+                        <img alt="${userName}" class=" user-img-header" src="${userImageUrl}">
+                    </g:if>
+                    <g:else>
+                            <div class="under show-mobimg-panels">
+                                <img src="//s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="user-img-header" alt="Upload Photo">
+                            </div>
+                    </g:else>
+                </g:link>
+            </g:if>
+          
+     </div>
+     
+     <div class =" col-xs-8 ">
+         <div class="pn-word">
+              <h4>${userName.toUpperCase()}</h4>
+         </div>
+         
+         <div class="mobile-show-team">
+              <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="show-mob-goal-amt"><b>${goal}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Goal</span></span>
+         </div>
+         <div class="mobile-show-team">
+             <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="show-mob-goal-amt"><b>${amount}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Raised</span></span>
+         </div>
+     </div>
+ </div>

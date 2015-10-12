@@ -28,10 +28,10 @@
 <div class="modal-footer tile-footer tileanstitle-goals tileanstitle-goal-margin show-tiles-padding">
     <div class="row icons-centering sh-moballamt">
         <div class="col-xs-4 col-sm-4 col-md-4 goalIcon">
-            <img src="//s3.amazonaws.com/crowdera/assets/goal-icon.png" alt="Goal-Icon">
+            <img src="//s3.amazonaws.com/crowdera/assets/tile-goal-icon.png" alt="Goal-Icon">
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 daysleftIcon">
-            <img src="//s3.amazonaws.com/crowdera/assets/daysleft.png" alt="daysleft-icon">
+            <img src="//s3.amazonaws.com/crowdera/assets/timeleft.png" alt="daysleft-icon">
         </div>
         <div class="col-xs-4 col-sm-4 col-md-4 progress-pie-chart show-contri-tile progressBarIcon-showpage sh-mobprogressbar" data-percent="43">
             <div class="c100  p${cents} pie-tile pie-css text-center mobile-pie">

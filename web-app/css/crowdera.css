@@ -1345,8 +1345,8 @@ footer .footerbottomsection {
 }
 .btn-show-fund:hover{
 	color: #ffffff !important;
-    background-color: #006083 !important;
-    border-color:  #006083!important;
+    background-color: #01bbd3 !important;
+    border-color:  #01bbd3!important;
 }
 
 .cvc-details span.input-group-addon {
@@ -1649,8 +1649,8 @@ div.tile-min-height{
 	margin-top: 0px;
 	padding-left:6px;
 	color: #01bbd3;
-	padding-bottom: 10px;
-    padding-top: 10px;
+	padding-bottom: 20px;
+    padding-top: 20px;
 }
 .leftcard-column{
 	width:70%; 
@@ -2437,8 +2437,8 @@ a.footerlink {
 }
 .perks-supporters{
 	border: 1px solid #c9c9c9;
-	margin-top:2px;
-	margin-bottom:10px;
+	margin-top:4px;
+	margin-bottom:4px;
 	text-align: left;
 }
 .show-team-comments{
@@ -3020,7 +3020,7 @@ ul.menu{
 	padding:0px !important;
 }
 .pie, .c100 .bar.progressBar, .c100.p51 .fill.progressBar, .c100.p52 .fill.progressBar, .c100.p53 .fill.progressBar, .c100.p54 .fill.progressBar, .c100.p55 .fill.progressBar, .c100.p56 .fill.progressBar, .c100.p57 .fill.progressBar, .c100.p58 .fill.progressBar, .c100.p59 .fill.progressBar, .c100.p60 .fill.progressBar, .c100.p61 .fill.progressBar, .c100.p62 .fill.progressBar, .c100.p63 .fill.progressBar, .c100.p64 .fill.progressBar, .c100.p65 .fill.progressBar, .c100.p66 .fill.progressBar, .c100.p67 .fill.progressBar, .c100.p68 .fill.progressBar, .c100.p69 .fill.progressBar, .c100.p70 .fill.progressBar, .c100.p71 .fill.progressBar, .c100.p72 .fill.progressBar, .c100.p73 .fill.progressBar, .c100.p74 .fill.progressBar, .c100.p75 .fill.progressBar, .c100.p76 .fill.progressBar, .c100.p77 .fill.progressBar, .c100.p78 .fill.progressBar, .c100.p79 .fill.progressBar, .c100.p80 .fill.progressBar, .c100.p81 .fill.progressBar, .c100.p82 .fill.progressBar, .c100.p83 .fill.progressBar, .c100.p84 .fill.progressBar, .c100.p85 .fill.progressBar, .c100.p86 .fill.progressBar, .c100.p87 .fill.progressBar, .c100.p88 .fill.progressBar, .c100.p89 .fill.progressBar, .c100.p90 .fill.progressBar, .c100.p91 .fill.progressBar, .c100.p92 .fill.progressBar, .c100.p93 .fill.progressBar, .c100.p94 .fill.progressBar, .c100.p95 .fill.progressBar, .c100.p96 .fill.progressBar, .c100.p97 .fill.progressBar, .c100.p98 .fill.progressBar, .c100.p99 .fill.progressBar, .c100.p100 .fill.progressBar {
-    border: 0.08em solid #ff784f !important;
+    border: 0.08em solid #f6bf0b !important;
 } 
 .pie, .c100 .bar.showprogressBar, .c100.p51 .fill.showprogressBar, .c100.p52 .fill.showprogressBar, .c100.p53 .fill.showprogressBar, .c100.p54 .fill.showprogressBar, .c100.p55 .fill.showprogressBar, .c100.p56 .fill.showprogressBar, .c100.p57 .fill.showprogressBar, .c100.p58 .fill.showprogressBar, .c100.p59 .fill.showprogressBar, .c100.p60 .fill.showprogressBar, .c100.p61 .fill.showprogressBar, .c100.p62 .fill.showprogressBar, .c100.p63 .fill.showprogressBar, .c100.p64 .fill.showprogressBar, .c100.p65 .fill.showprogressBar, .c100.p66 .fill.showprogressBar, .c100.p67 .fill.showprogressBar, .c100.p68 .fill.showprogressBar, .c100.p69 .fill.showprogressBar, .c100.p70 .fill.showprogressBar, .c100.p71 .fill.showprogressBar, .c100.p72 .fill.showprogressBar, .c100.p73 .fill.showprogressBar, .c100.p74 .fill.showprogressBar, .c100.p75 .fill.showprogressBar, .c100.p76 .fill.showprogressBar, .c100.p77 .fill.showprogressBar, .c100.p78 .fill.showprogressBar, .c100.p79 .fill.showprogressBar, .c100.p80 .fill.showprogressBar, .c100.p81 .fill.showprogressBar, .c100.p82 .fill.showprogressBar, .c100.p83 .fill.showprogressBar, .c100.p84 .fill.showprogressBar, .c100.p85 .fill.showprogressBar, .c100.p86 .fill.showprogressBar, .c100.p87 .fill.showprogressBar, .c100.p88 .fill.showprogressBar, .c100.p89 .fill.showprogressBar, .c100.p90 .fill.showprogressBar, .c100.p91 .fill.showprogressBar, .c100.p92 .fill.showprogressBar, .c100.p93 .fill.showprogressBar, .c100.p94 .fill.showprogressBar, .c100.p95 .fill.showprogressBar, .c100.p96 .fill.showprogressBar, .c100.p97 .fill.showprogressBar, .c100.p98 .fill.showprogressBar, .c100.p99 .fill.showprogressBar, .c100.p100 .fill.showprogressBar {
     border: 0.08em solid #f6bf0b !important;
@@ -5215,8 +5215,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .campaignTitle a {
 	color: #000 !important;
-	font-size: 60px;
-    font-family: Futura-Condensed Normal;
+	font-size: 30px;
+/*     font-family: Futura-Condensed Normal; */
 }
 .campaignTitle h1 {
 	color: #000 !important;
@@ -5230,7 +5230,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .campaignFundRaiser h4 {
 	color: #01bbd2 !important;
 	font-weight: 500;
-	font-size: 22px;
+	font-size: 14px;
     font-family: Futura Bk BT book;
 }
 .campaignFundRaiser {
@@ -5365,8 +5365,60 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    .showMob-storyimg img {
+        width: 100%;
+    }
+	i.sh-fb-icons{
+        padding-right: 26px;
+    }
+    a.sho-fb-color{
+        background-color: #4c69ba;
+        font-size: 17px;
+        padding-top: 9px;
+    }
+	ul.sh-mobs-teams li {
+        padding-left: 2px;
+    }
+	.mobileview-bottom-mange{
+        display: none;
+    }
+    div.manage-carousel-in {
+        height: 200px;
+        overflow: hidden;
+    }
+	span.sh-mob-tabs {
+        border-right: 2px solid #6d6e6e;
+        padding-right: 9px;
+    }
+	li.sh-teamtabmobiles {
+        left: -15px;
+        width: 118% !important;
+    }
+	li.show-team {
+        font-size: 16px;
+        margin-left: -15px;
+        width: 118% !important;
+    }
+	div.sh-mobiletabs{
+        padding-left: 62px;
+        padding-bottom: 15px;
+    }
+	div.sh-perks-preview {
+        margin-top: 6px;
+    }
+    span.sh-mobile-tabs {
+        padding-left: 15px;
+    }
+	.mobileview-top{
+        display:block !important;
+        margin-bottom: 15px;
+    }
+	a.show-mobile-readstory{
+        color: #01bbd3;
+        text-decoration: none;
+    }
 	div.sh-mobilecontibutionpadding{
-        margin-left: -30px;
+        margin-left: -14px;
         width: 313px;
     }
 	li.sh-teamsactive {
@@ -5375,7 +5427,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 278px !important;
     }
 	div.sh-logincommnt{
-       margin-left: 1px !important;
+       margin-left: -15px !important;
     }
 	div.sh-comments-align{
 	    padding-left: 0;
@@ -5383,7 +5435,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 312px;
 	}
 	div.sh-comnt-align{
-        margin-left: 1px;
+        margin-left: -16px;
         width: 313px;
     }
 	li.sh-mobile-teamcount{
@@ -5409,8 +5461,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 111%;
     }
 	div.sh-mobperks{
-        left: -14px;
-        width: 122%;    
+        margin-left: -14px;
+        width: 117%;    
     }
 	div.show-tops-corsal {
         margin-top: 6px;
@@ -5436,10 +5488,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    height: 100px; 
 	    width: 280px; 
 	    margin-bottom: 15px;
-	    margin-left: -27px;
+	    margin-left: auto;
+	    margin-right: auto;
 	}
 	div.show-mobile-update{
-        width: 111%;
+        margin-left: -16px;
+        width: 117%;
 	}
     div.show-mobiletabs-top {
         padding-top: 15px;
@@ -6618,9 +6672,23 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
-	div.perks-supporters {
-        margin-top: 120px;
+	i.sh-fb-icons{
+        font-size: 20px;
+        margin-left: -15px;
+        padding-right: 9px;
+        padding-top: 4px;
     }
+    a.sho-fb-color{
+        background-color: #4c69ba;
+        font-size: 17px;
+        padding-top: 9px;
+    }
+	div.show-perksRewardtabs{
+        margin-top: 117px;
+	}
+/* 	div.perks-supporters { */
+/*         margin-top: 120px; */
+/*     } */
 	div.show-description {
         margin-top: 28px
     }
@@ -6703,6 +6771,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    img.sh-img-update {
+        height: 300px;
+    }
 	button.sh-submitapproval {
         padding-left: 7px;
     }
@@ -6718,7 +6789,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 96px;
     }
 	button.show-fund-size {
-        font-size: 33px;
+        font-size: 29px;
         height: 94px;
         margin-top: 0px;
     }
@@ -8152,9 +8223,20 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
-	div.perks-supporters {
-        margin-top: -11px;
+	i.sh-fb-icons{
+        font-size: 20px;
+        margin-left: -15px;
+        padding-right: 9px;
+        padding-top: 5px;
     }
+    a.sho-fb-color{
+        background-color: #4c69ba;
+        font-size: 17px;
+        padding-top: 9px;
+    }
+/* 	div.perks-supporters { */
+/*         margin-top: -11px; */
+/*     } */
     div.show-tiles-padding {
         padding-left: 17px;
     }
@@ -10168,10 +10250,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         text-transform: uppercase;
         line-height:35px;
    }
-   .mobileview-top{
-        display:block !important;
-        margin-bottom: 15px;
-   }
+   
    .mobileview-bottom{
         display:none !important;
    }
@@ -10886,10 +10965,59 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.sh-tiles-baner {
+        padding-top: 10px;
+    }
+	div.manage-carousel-in{
+        height:200px !important;
+    }
+	div.sh-mobiles-top{
+        padding-top: 10px;
+	}
+	i.sh-fb-icons{
+        padding-right: 26px;
+	}
+	a.sho-fb-color{
+        background-color: #4c69ba;
+        font-size: 17px;
+        padding-top: 9px;
+    }
+    ul.sh-mobs-teams li {
+        padding-left: 2px;
+    }
+	.mobileview-bottom-mange{
+	    display: none;
+	}
+	span.sh-mob-tabs {
+		border-right: 2px solid #6d6e6e;
+		padding-right: 9px;
+    }
+    li.button-team-show {
+        width: 103% !important;
+    }
+	div.sh-mobiletabs{
+	    padding-left: 48px;
+	    padding-bottom: 15px;
+	}
+    div.sh-perks-preview {
+        margin-top: 6px;
+    }
+    span.sh-mobile-tabs {
+        padding-left: 20px;
+    }
+    .mobileview-top{
+        display:block !important;
+        margin-bottom: 15px;
+    }
+    .showMob-storyimg img {
+        width: 100%;
+    }
+	a.show-mobile-readstory{
+        color: #01bbd3;
+        text-decoration: none;
+	}
 	div.sh-mobilecontibutionpadding{
-/*         margin-left: -30px; */
-/*         width: 313px; */
-        margin-left: -14px;
+        margin-left: -1px;
         width: 292px;
 	}
 	div.mobile-show-team {
@@ -10937,10 +11065,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	div.sh-mobile-tile{
 	   width: 290px !important;
 	}
-	div.sh-mobperks{
+    div.sh-mobperks {
         left: -14px;
-        width: 114%;	
-	}
+        width: 105%;
+    }
     div.show-tops-corsal {
         margin-top: 6px;
     }
@@ -10964,7 +11092,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    height: 100px; 
 	    width: 280px; 
 	    margin-bottom: 15px;
-	    margin-left: -27px;
+	    margin-left: auto;
+	    margin-right: auto;
 	}
 	div.show-mobile-update{
 	    width: 104%;
@@ -12187,7 +12316,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	font-size: 21px;
 }
 .show-btn-sh-fb{
-	 background-color: #31497b;
+	 background-color: #4c69ba;
 	 margin-bottom: 102px;
 	 height: 50px;
      padding-top: 8px;
@@ -12214,9 +12343,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .show-fund-size {
 	height: 90px;
-    font-size: 48px;
-    font-family: Futura BdCn BT;
-    padding-left: 12px;
+    font-size: 34px;
+/*     font-family: Futura BdCn BT; */
+    padding-left: 25px;
     padding-top: 12px;
     margin-top: 0;
 }
@@ -12252,7 +12381,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .show-tabs-text{
 	text-decoration:none !important;
-    font-family: Futura-Condensed Normal;
+/*     font-family: Futura-Condensed Normal; */
     font-size: 16px;
     font-weight: 900;
     color: #6d6e6e;
@@ -12279,6 +12408,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .show-location{
 	margin-bottom: 4px;
     padding-right: 9px;
+    height: 22px;
 }
 /* .nav-pills > span > a:active, */
 /* .nav-pills > span > a:hover, */
@@ -12304,7 +12434,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     margin-bottom: 0;
 }
 .sh-perks-preview {
-    margin-top: 130px;
+    margin-top: 98px;
 }
 .sh-none-pft {
     padding-left: 45px;
@@ -12320,9 +12450,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     background-color: #e7e7e7;
     height: 100%;
     margin-top: 21px;
-    padding-bottom: 1px;
+    padding-bottom: 9px;
     padding-left: 19px;
-    padding-top: 1px;
+    padding-top: 10px;
     margin-left: -16px;
 }
 .sh-contrialignment{
@@ -12531,4 +12661,18 @@ a#downloadEbook{
 .innovatingtab-padding{
 	padding-left:10px;
 	padding-right:10px;
+}
+.TW-org-title-font-size{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.sh-fb-icons{
+    font-size: 23px;
+    padding-right: 24px;
+    padding-top: 2px;
+}
+.sho-fb-color{
+    background-color: #4c69ba;
+    font-size: 17px;
+    padding-top: 9px;
 }

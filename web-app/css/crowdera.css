@@ -5348,6 +5348,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.TW-discover-header-img > img {
+	   height: 50px;
+	   width: 100%;
+	}
 	a.passionTab {
 	   margin-left: -1px !important;
 	}
@@ -5375,13 +5379,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.discover-inner-container {
 		width: 310px !important;
 	}
-	.TW-discover-testimonial-width {
-		display: block;
-		margin-left: auto !important;
-		margin-right: auto !important;
-		margin-top: 5px !important;
-		width: 278px !important;
-	}
 	.TW-discover-title {
 		color: #006083;
 		font-size: 16px !important;
@@ -5392,41 +5389,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-right:auto;
 		width: 280px;
 	}
-	.TW-discover-bannerheadbtmMargin b {
-		color: #fff;
-		font-family: "Open Sans";
-		font-size: 13px !important;
-		font-weight: 900;
-		line-height: 0px;
-	}
-	.TW-discover-right-inverted-comma {
-	   margin-top: 3px !important;
-	}
-	.TW-dicover-testimonial-name {
-		font-family: "Open Sans";
-		font-size: 11px !important;
-		padding-right: 6px !important;
-	}
-	.TW-discover-right-inverted-comma img {
-		margin-top: -2px !important;
-		width: 15px !important;
-	}
-	.TW-discover-hdr-testimonial-author{
-		margin-left:auto;
-		margin-right:auto;
-		text-align:right;
-		width:278px !important;
-	}	
 	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
 		margin-left:auto;
 		margin-right:auto;
 		width:275px !important;
 	}	
-	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
-		margin-left:auto;
-		margin-right:auto;
-		width:98% !important;
-	}
 	.TW-discover-select-width {
 		display: block;
 		margin-left: auto !important;
@@ -6614,27 +6581,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		font-weight: 900;
 		line-height: 0px;
 	}
-	.TW-discover-hdr-testimonial-author{
-		margin-left:auto;
-		margin-right:auto;
-		text-align:right;
-		width:584px !important;
-	}	
 	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
 		margin-left:auto;
 		margin-right:auto;
-		width:487px !important;
 	}	
-	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
-		margin-left:auto;
-		margin-right:auto;
-		width:90% !important;
-	}
-	.TW-dicover-testimonial-name {
-		font-family: "Open Sans";
-		font-size: 13px !important;
-		padding-right: 54px !important;
-	}
 	.TW-discover-header-testimonial{
 		display:inline-flex;
 		display:-webkit-inline-flex;   /***safari***/
@@ -6656,10 +6606,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 	.right-select-margin{
 		margin-left: -3px !important;
-	}
-	.TW-discover-right-inverted-comma img {
-		margin-top: 5px;
-		width: 25px !important;
 	}
 	.TW-discover-leftpane-menu{
 		padding-left:6px !important;
@@ -10769,6 +10715,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.TW-discover-header-img > img {
+	   height: 50px;
+	   width: 100%;
+	}
 	.TW-dis-tab-padding {
 		padding-left: 0;
 		padding-right: 0;
@@ -10815,43 +10765,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-right:auto;
 		width: 280px;
 	}
-	.TW-discover-testimonial-width {
-		display: block;
-		margin-left: 15px !important;
-		margin-right: 15px !important;
-		margin-top: 5px !important;
-	}
-	.TW-discover-bannerheadbtmMargin b {
-		color: #fff;
-		font-family: "Open Sans";
-		font-size: 13px !important;
-		font-weight: 900;
-		line-height: 0px;
-	}
 	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
 		margin-left:auto;
 		margin-right:auto;
 		width:278px !important;
-	}
-	.TW-discover-hdr-testimonial-author{
-		margin-left:auto;
-		margin-right:auto;
-		text-align:right;
-		width:278px !important;
-	}	
-	.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
-		margin-left:auto;
-		margin-right:auto;
-		width:278px !important;
-	}
-	.TW-dicover-testimonial-name {
-		font-family: "Open Sans";
-		font-size: 11px !important;
-		padding-right: 6px !important;
-	}
-	.TW-discover-right-inverted-comma img {
-		margin-top: 5px !important;
-		width: 15px !important;
 	}
 	.TW-discover-select-width {
 		display: block;
@@ -12021,52 +11938,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	min-height: 87px;
 	text-align: center;
 }
-.TW-discover-testimonial-width {
-	display: block;
-	margin-left: 33px;
-	margin-right: 33px;
-	margin-top: 12px;
-}
-.TW-discover-right-inverted-comma {
-	margin-top: 1px;
-}
-.TW-dicover-testimonial-name {
-	font-family: "Open Sans";
-	font-size: 13px;
-	padding-right: 84px;
-}
 .TW-discover-header-testimonial{
 	display:inline-flex;
 	display:-webkit-inline-box;    /*** Safari***/
 	display:-webkit-inline-flex;   /*** chrome ***/
-	margin-top: 14px;
+	margin-top: 12px;
 }
 .left-select-margin{
 	margin-left:6px;
 }
 .right-select-margin{
 	margin-left: -3px;
-}
-.TW-discover-hdr-testimonial-author {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: right;
-    width: 766px;
-}
-.TW-discover-testimonial-container div.TW-discover-header-testimonial{
-	width:620px;
-}
-.TW-discover-testimonial-container span.TW-dicover-testimonial-name{
-	margin-left:auto;
-	margin-right:auto;
-	width:60%;
-}
-.TW-discover-bannerheadbtmMargin b {
-	color: #fff;
-	font-family: cursive;
-	font-size: 22px;
-	font-weight: 900;
-	line-height: 0px;
 }
 .metricsInfoMsg {
     margin-top: 15px;
@@ -12179,12 +12061,6 @@ a#downloadEbook{
 .TW-Discover-selected-usedfor{
 	border:3px solid #01bbd2 !important;
 }
-.TW-discover-right-inverted-comma > img {
-    width: 31px;
-}
-.left-inverted-comma > img {
-    width: 31px;
-}
 .TW-cr-sec-header-icon-width{
 	width:30px;	
 }
@@ -12193,4 +12069,7 @@ a#downloadEbook{
 }
 .TW-cr-sec-header-launch-icon-width{
 	width:25px;
+}
+.TW-discover-header-img > img {
+    width: 100%;
 }

@@ -2003,11 +2003,17 @@ class ProjectService {
 				String str = it.category
 				String strSocialCategory = it.usedFor
 				String strNonProfit = "NON_PROFITS"
-				String strSocialGood = "Social-Good"
+				String strSocialGood = "Social_Innovation"
 				Map countries = getCountry()
 				String strCountryCategory = countries.getAt(it.beneficiary.country)
 				
-				if (str.equalsIgnoreCase(categories) && !str.equalsIgnoreCase(strNonProfit)){
+				if (str.equalsIgnoreCase(categories)){
+					if(strSocialGood.equalsIgnoreCase(categories.replace("Innovation","Needs")) && strSocialCategory !=null){
+						String strSocialNeeds = strSocialGood.replace("Innovation","Needs")
+						if(strSocialCategory.equalsIgnoreCase(strSocialNeeds.replace('-','_'))){
+							list.add(it)
+						}
+				 	}
 					list.add(it)
 				}else if(strNonProfit.equalsIgnoreCase(categories)){
 					String strNonProfitCat = it.fundsRecievedBy
@@ -2018,7 +2024,7 @@ class ProjectService {
 					list.add(it)
 				}else if(strSocialCategory !=null){
 				 	if(strSocialGood.equalsIgnoreCase(categories) && strSocialCategory !=null){
-						 String strSocialNeeds = strSocialGood.replace("Good","Needs")
+						 String strSocialNeeds = strSocialGood.replace("Innovation","Needs")
 						 if(strSocialCategory.equalsIgnoreCase(strSocialNeeds.replace('-','_'))){
 							 list.add(it)
 						 }

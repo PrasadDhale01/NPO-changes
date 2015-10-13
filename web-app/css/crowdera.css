@@ -3467,9 +3467,9 @@ header {
 }
 header.cr-tabs-link {
 	color: #01bbd3;
-	height:120px;;
-	padding-bottom: 30px;
-    padding-top: 30px;
+	height:85px;;
+	padding-bottom: 20px;
+    padding-top: 20px;
 	padding-left: 300px;
     padding-right: 300px;
 	position:fixed;
@@ -3478,7 +3478,7 @@ header.cr-tabs-link {
 	z-index:500;
 }
 .cr-ancher-tab a{
-  color: rgb(164, 220, 249);
+  color: #ffffff;
   text-decoration: none !important;
 }
 .cr-ancher-tab a:hover{
@@ -4141,7 +4141,7 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
     margin-right: 0 !important;
 }
 .cr-subheader-icons{
-	height:40px !important;
+	height:22px !important;
 	margin-bottom:10px;
 }
 #start{
@@ -5784,7 +5784,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    padding-left: 108px !important; 
 	    padding-right:108px !important; 
 	    font-size: 17px !important;
-	    height: 96px !important;
+	    height: 64px !important;
     }
     .startsection {
         height: 80px !important;
@@ -7921,7 +7921,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     header.cr-tabs-link {
         color: #01bbd3;
         font-size: 22px;
-        padding: 30px 255px !important;
+        padding: 20px 255px !important;
     }
 }
 
@@ -11017,7 +11017,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	header.cr-tabs-link {
 		color: #01bbd3;
 		font-size: 21px;
-		height: 93px !important;
+		height: 64px !important;
 		position:fixed;
 	}
 	.startsection {
@@ -12184,4 +12184,13 @@ a#downloadEbook{
 }
 .left-inverted-comma > img {
     width: 31px;
+}
+.TW-cr-sec-header-icon-width{
+	width:30px;	
+}
+.TW-cr-sec-header-start-icon-width{
+	width:35px;
+}
+.TW-cr-sec-header-launch-icon-width{
+	width:25px;
 }

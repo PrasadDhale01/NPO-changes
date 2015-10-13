@@ -3469,9 +3469,9 @@ header.cr-tabs-link {
 	color: #01bbd3;
 	height:85px;;
 	padding-bottom: 20px;
-    padding-top: 20px;
+	padding-top: 20px;
 	padding-left: 300px;
-    padding-right: 300px;
+	padding-right: 300px;
 	position:fixed;
 	top:50px;
 	font-size: 20px;
@@ -5349,11 +5349,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
 	.TW-discover-header-img > img {
-	   height: 50px;
-	   width: 100%;
+		height: 50px;
+		width: 100%;
 	}
 	a.passionTab {
-	   margin-left: -1px !important;
+		margin-left: -1px !important;
 	}
 	.TW-dis-tab-padding {
 		padding-left: 0;
@@ -5392,7 +5392,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.TW-discover-testimonial-container div.TW-discover-header-testimonial{
 		margin-left:auto;
 		margin-right:auto;
-		width:275px !important;
 	}	
 	.TW-discover-select-width {
 		display: block;
@@ -10715,9 +10714,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.TW-discover-banner-decoration {
+		background-color: #01bbd2;
+		color: #fff;
+		display: none;
+		min-height: 87px;
+		text-align: center;
+	}
 	.TW-discover-header-img > img {
-	   height: 50px;
-	   width: 100%;
+		height: 50px;
+		width: 100%;
 	}
 	.TW-dis-tab-padding {
 		padding-left: 0;
@@ -12046,8 +12052,8 @@ a#downloadEbook{
 	padding-right:4px;
 }
 .TW-discover-pane-width{
-		width:13%;
-		padding-right:0px;
+	width:13%;
+	padding-right:0px;
 }	
 @-moz-document url-prefix(){
 	.TW-discover-pane-width{

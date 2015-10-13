@@ -1061,12 +1061,12 @@ class ProjectService {
 			}
 		}
 		if(sorts=='Offering-Perks'){
-			projects.each{
-				def  perkSize = it.rewards.size()
-				if(perkSize > 1){
-					p.add(it)
-				}
-			}
+		    projects.each{
+		        def  perkSize = it.rewards.size()
+		        if(perkSize > 1){
+		           p.add(it)
+		       }
+		    }
 		}
 		return p
 	}

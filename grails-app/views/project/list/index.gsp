@@ -45,10 +45,10 @@
             <div class="row TW-Container-alignment">
             	<div class="col-lg-2 col-xs-12  col-sm-2 hidden-xs TW-discover-leftpane-menu TW-discover-pane-width">
             		<ul>
-						<g:each in="${discoverLeftCategoryOptions}" var="categories">
-							<li><a <g:if test="${selectedCategory == categories.value}">class="categorylink"</g:if> href="/campaigns/category/${categories.value.replace(' ','-')}" >${categories.value}</a></li>
-						</g:each>
-					</ul>
+			    <g:each in="${discoverLeftCategoryOptions}" var="categories">
+			        <li><a <g:if test="${selectedCategory == categories.value}">class="categorylink"</g:if> href="/campaigns/category/${categories.value.replace(' ','-')}" >${categories.value}</a></li>
+			    </g:each>
+			</ul>
             	</div>
                 <div class="col-md-10 col-lg-12 col-sm-10 col-xs-12 TW-discover-campaign-centering">
                     <g:if test="${flash.catmessage}">

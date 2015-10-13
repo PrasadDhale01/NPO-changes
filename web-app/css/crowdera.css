@@ -6517,9 +6517,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-    .TW-discover-pane-width{
-        width:17.5% !important;
-    }
+        .TW-discover-pane-width{
+           width:17.5% !important;
+        }
 	.TW-discover-pg-tile-width .tile-pad {
 	   padding: 0;
 	   width: 290px !important;
@@ -7844,7 +7844,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   font-weight: 400;
 	}
 	.TW-discover-pane-width {
-       width: 10.5% !important;
+            width: 10.5% !important;
 	}
 	.discover-inner-container {
 	   padding-left: 15px !important;
@@ -7872,12 +7872,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
 	.TW-discover-pg-tile-width .show-tile-text-size {
-        font-size: 10px;
-        line-height: 5px;
-        margin-bottom: 0;
-        margin-top: 8px;
-        padding-left: 18px !important;
-        padding-right: 18px !important;
+           font-size: 10px;
+           line-height: 5px;
+           margin-bottom: 0;
+           margin-top: 8px;
+           padding-left: 18px !important;
+           padding-right: 18px !important;
 	}
 	.TW-discover-drpdwn-left-border div.bootstrap-select > button.selectpicker {
 	   background-color: #f6f8f8;
@@ -7892,10 +7892,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    height: 60px;
 	}
 	.TW-Container-alignment{
-		display:inline-flex;
-		display:-webkit-box;
-		float:left;
-		width:100%;
+	    display:inline-flex;
+	    display:-webkit-box;
+	    float:left;
+	    width:100%;
 	}
 	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	   width: 78.1% !important;
@@ -8187,18 +8187,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     	padding-left:5px;
     	padding-right:5px;
     }
-	.TW-discover-pane-width {
-		width: 10.5% !important;
-	}
-	.col-lg-2.col-xs-12.col-sm-2.hidden-xs.TW-discover-leftpane-menu.TW-discover-pane-width {
-		padding-left: 10px !important;
-		padding-right: 0 !important;
-	}
-	.TW-discover-leftpane-menu ul li a {
-		color: #424242;
-		font-size: 12px !important;
-		font-weight: 400;
-	}
+    .TW-discover-pane-width {
+	width: 10.5% !important;
+    }
+    .col-lg-2.col-xs-12.col-sm-2.hidden-xs.TW-discover-leftpane-menu.TW-discover-pane-width {
+	padding-left: 10px !important;
+	padding-right: 0 !important;
+    }
+    .TW-discover-leftpane-menu ul li a {
+	color: #424242;
+	font-size: 12px !important;
+	font-weight: 400;
+    }
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){

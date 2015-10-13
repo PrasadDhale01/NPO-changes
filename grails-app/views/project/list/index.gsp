@@ -28,9 +28,9 @@
                     </g:form>
                 </div>
                 <div class="col-xs-12 visible-xs categoryList list-category TW-dis-tab-padding panel-body TW-discover-select-width">
-					<g:form action="category" controller="project" name="campaigncategoryForm">
-						<g:select class='selectpicker campaignCategory' id="campaignCategory" name="category" from="${discoverLeftCategoryOptions}" value="${params.category}" optionKey="value" optionValue="value" noSelection="['Campaign Category':'Campaign category']" onchange="selectedCampaignCategory()"/>
-					</g:form>
+		    <g:form action="category" controller="project" name="campaigncategoryForm">
+		        <g:select class='selectpicker campaignCategory' id="campaignCategory" name="category" from="${discoverLeftCategoryOptions}" value="${params.category}" optionKey="value" optionValue="value" noSelection="['Campaign Category':'Campaign category']" onchange="selectedCampaignCategory()"/>
+		    </g:form>
             	</div>
 				<div class="btn-group col-sm-8 col-lg-8 TW-dis-tab-padding">
 					<g:link controller="project" action="category" params="[usedfor:'Passion']" class="btn btn-default passionTab ${params.usedfor == 'Passion' ? 'TW-Discover-selected-usedfor':''} TW-discover-tab-decoration text-center col-sm-3 col-xs-12 TW-padding-align"><span class="cr-pay-rd TW-cr-pay-rd">Following</span><span class="cr-reci-siz TW-cr-reci-siz">&nbsp;Passion</span></g:link>  

@@ -1342,6 +1342,7 @@ footer .footerbottomsection {
     margin-top: -7%;
     font-size: 24px;
     font-weight: bold;
+    font-family: Ubuntu Condensed;
 }
 .btn-show-fund:hover{
 	color: #ffffff !important;
@@ -1652,6 +1653,7 @@ div.tile-min-height{
 	color: #01bbd3;
 	padding-bottom: 20px;
     padding-top: 32px;
+    font-family: Ubuntu Condensed;
 }
 .leftcard-column{
 	width:70%; 
@@ -5217,6 +5219,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	color: #000 !important;
 	font-size: 30px;
 /*     font-family: Futura-Condensed Normal; */
+    font-family: Ubuntu Condensed;
+    font-weight: 900;
+    font-variant: normal;
 }
 .campaignTitle h1 {
 	color: #000 !important;
@@ -5366,6 +5371,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.perks-style {
+        height: 94px;
+    }
+    h2.rewardsectionheading {
+        padding-top: 15px;
+    }
     .showMob-storyimg img {
         width: 100%;
     }
@@ -5401,7 +5412,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 118% !important;
     }
 	div.sh-mobiletabs{
-        padding-left: 62px;
+        padding-left: 90px;
         padding-bottom: 15px;
     }
 	div.sh-perks-preview {
@@ -5522,6 +5533,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 111% !important;
 		color: #fff;
         font-size: 21px;
+        font-family: Ubuntu Condensed;
     }
     input.show-mob-btnJoinOur:hover{
         color: #fff;
@@ -5540,6 +5552,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     button.mob-show-sucessend {
         margin-top: -21px;
         width: 111%;
+        font-family: Ubuntu Condensed;
     }
     button.mob-show-fund {
         width: 111%;
@@ -6748,6 +6761,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .ack-panel-width{
     	margin-top:21px;
     }
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15.75px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        border: 1px solid #DDD;
+    }
 }
 @media only screen and (min-width:768px) and (max-width: 830px) {
     header.cr-tabs-link {
@@ -6772,6 +6792,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    p.campaignDescription {
+        font-size: 18px;
+    }
     h2.sh-fundclosed-mobile{
         font-size: 20px !important;
         padding-top: 28px !important;
@@ -8441,9 +8464,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 0px;
         padding-right: 0px;
     }
-	.show-contribution-amt-tile .fa-inr {
-		font-size: 12px !important;
-	}
+    .show-contribution-amt-tile .fa-inr {
+	font-size: 12px !important;
+    }
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15.75px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        border: 1px solid #DDD;
+    }
 }
 
 @media only screen and (min-width:1200px) and (max-width: 1280px){
@@ -8460,6 +8490,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 @media only screen and (min-width:1025px) and (max-width: 1199px){
 	li.show-team {
         margin-left: 64px;
+    }
+    .table-responsive {
+        width: 100%;
+        margin-bottom: 15.75px;
+        overflow-y: hidden;
+        overflow-x: scroll;
+        border: 1px solid #DDD;
     }
 	.TW-discover-leftpane-menu ul li a {
 		color: #424242;
@@ -10974,6 +11011,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	div.perks-style {
+        height: 94px;
+    }
+    h2.rewardsectionheading {
+        padding-top: 15px;
+    }
 	div.sh-tiles-baner {
         padding-top: 10px;
     }
@@ -11005,7 +11048,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 103% !important;
     }
 	div.sh-mobiletabs{
-	    padding-left: 48px;
+	    padding-left: 76px;
 	    padding-bottom: 15px;
 	}
     div.sh-perks-preview {
@@ -11132,13 +11175,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 104% !important;
         color: #fff;
         font-size: 21px;
+        font-family: Ubuntu Condensed;
     }
     input.show-mob-btnJoinOur:hover{
         color: #fff;
     }
 	div.show-mobile-slogn p{
-        font-family: Futura-Condensed Normal;
-        font-size: 16px;
+        font-family: Ubuntu Condensed;
+        font-size: 18px;
         width: 310px;	
 	}
 	div.show-mobile-slogn{
@@ -11150,6 +11194,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     button.mob-show-sucessend {
         margin-top: -21px;
         width: 104%;
+        font-family: Ubuntu Condensed;
     }
     button.mob-show-fund {
         width: 104%;
@@ -12353,15 +12398,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .show-fund-size {
 	height: 90px;
     font-size: 34px;
-/*     font-family: Futura BdCn BT; */
+    font-family: Ubuntu Condensed;
     padding-left: 25px;
     padding-top: 12px;
     margin-top: 0;
 }
 
 .borders {
-    border-bottom: 3px solid #e3e3e3;
-    border-top: 3px solid #e3e3e3;
+    border-bottom: 2px solid #e3e3e3;
+    border-top: 2px solid #e3e3e3;
     margin-left: 15px;
     padding-left: 15px;
     width: 969px;
@@ -12390,10 +12435,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .show-tabs-text{
 	text-decoration:none !important;
-/*     font-family: Futura-Condensed Normal; */
+/*     font-family: Futura,Trebuchet MS,Arial,sans-serif; */
+    font-family: Ubuntu Condensed;
     font-size: 16px;
-    font-weight: 900;
-    color: #6d6e6e;
+    font-weight: 500;
+    color: #000; /**#6d6e6e**/
 }
 .nav-pills .show-tabs-text:hover{
     color:#01bbd3; 
@@ -12429,12 +12475,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /* 	 color: red; */
 /* } */
 .show-campaign-sucess-endedbtn {
-    font-family: Futura BdCn BT;
+    font-family: Ubuntu Condensed;
     font-size: 24px;
     height: 90px;
 }
 .show-campaign-sucessbtn{
-	font-family: Futura BdCn BT;
+	font-family: Ubuntu Condensed;
     font-size: 21px;
     height: 90px;
 }
@@ -12464,6 +12510,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     padding-top: 10px;
     margin-left: -16px;
     color: #000;
+    margin-bottom: 50px;
 }
 .sh-contrialignment{
 	margin-top: -19px;
@@ -12682,7 +12729,7 @@ a#downloadEbook{
     padding-top: 2px;
 }
 .sho-fb-color{
-    background-color: #4c69ba;
+    background-color: #354c8c;
     font-size: 17px;
     padding-top: 9px;
 }

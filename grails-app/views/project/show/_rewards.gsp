@@ -10,7 +10,7 @@
             <h2 class="rewardsectionheading text-center">SELECT PERKS</h2>
         </g:if>
         <g:else>
-            <h2 class="rewardsectionheading">FUNDING CLOSED</h2>
+            <h2 class="rewardsectionheading text-center sh-fundclosed-mobile">FUNDING CLOSED</h2>
         </g:else>
     </div>
     <div class="rewardsection">

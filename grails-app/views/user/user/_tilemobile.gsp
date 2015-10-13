@@ -32,7 +32,7 @@
 <div class="fedu thumbnail grow user-tiles-style sh-mobile-tile">
     <g:if test="${iscampaignAdmin}">
         <g:if test="${project.draft}">
-            <div class="over user-tile">
+            <div class="over user-tile sh-tiles-baner">
                 <img src="//s3.amazonaws.com/crowdera/assets/Draft-tag.png" alt="draft"/>
             </div>
         </g:if>
@@ -42,7 +42,7 @@
             </div>
         </g:elseif>
         <g:elseif test="${!project.validated}">
-            <div class="over user-tile">
+            <div class="over user-tile sh-tiles-baner">
                 <img src="//s3.amazonaws.com/crowdera/assets/Pending-tag.png" alt="PENDING"/>
             </div>
         </g:elseif>

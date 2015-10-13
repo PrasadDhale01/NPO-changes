@@ -59,7 +59,7 @@
 	            <a class="accordion-toggle collapsed show-mobile-readstory" data-toggle="collapse" data-parent="#accordion" href="#read-story-mobile">Read Story</a>
 	        </h4>
 	        <div id="read-story-mobile" class="panel-collapse collapse faq-panel-height">
-		        <div class="panel-body">
+		        <div class="panel-body sh-tilmobileIframe">
 		            <g:if test="${isCrFrCampBenOrAdmin}">
 		                <p class="campaignStory justify">${raw(project.story)}</p>
 		            </g:if>

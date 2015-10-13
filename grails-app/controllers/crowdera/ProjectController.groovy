@@ -1156,13 +1156,12 @@ class ProjectController {
 	def category (){
 		def category
 		if(params.category){
-			if(params.category.equalsIgnoreCase("Campaign category")){
-				redirect(action:'list', controller:'project')
-			}else{
-				category=params.category.replace(' ', '-')
-				redirect(url:'/campaigns/category/'+ category)
-			}
-			
+		    if(params.category.equalsIgnoreCase("Campaign category")){
+			    redirect(action:'list', controller:'project')
+		    }else{
+			    category=params.category.replace(' ', '-')
+			    redirect(url:'/campaigns/category/'+ category)
+		    }
 		}else if(params.usedfor){
 			category=params.usedfor
 			redirect(action: 'categoryFilter', controller:'project',params:[usedfor: category])

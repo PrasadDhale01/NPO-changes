@@ -10,7 +10,7 @@ body {
 }
 
 .feduoutercontent {
-    margin-top: 60px;
+    margin-top: 59px;
 }
 h1.headingtext.how-it-works-title {
 	color: #005f84;
@@ -103,7 +103,7 @@ text-decoration:none;
     padding-top: 33px;
 }
 .banner-padding{
-	padding-top:33px;
+	padding-top:32px;
 }
 
 .top-buffer {
@@ -10792,7 +10792,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 283px !important;
 	}
 	.TW-discover-campaign-centering {
-		padding-left: 15px !important;
+		padding-left: 7px !important;
 		width:310px !important;
 	}
 	.TW-discover-tab-decoration {

@@ -3,7 +3,7 @@
     def links = projectService.getProjectUpdatedImageLink(projectUpdate)
     def projectId = project.id
 %>
-<div class="col-md-6 col-sm-6 col-xs-6">
+<div class="col-md-6 col-sm-6 col-xs-12">
     <span><b>Update #${i}</b></span>&nbsp;&nbsp;&nbsp;&nbsp;<b>${projectUpdate.title}</b>
 </div>
 <g:if test="${manageProject}">

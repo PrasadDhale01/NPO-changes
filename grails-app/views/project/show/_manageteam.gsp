@@ -42,8 +42,8 @@
 		</g:if>
 		<g:else>
 		    <g:if test="${(currentFundraiser == currentUser || isCrUserCampBenOrAdmin) && project.validated}">
-                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show sh-teamtabmobiles">
-                   <a class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team" data-toggle="dropdown" aria-expanded="false">
+                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show sh-teamtabmobiles sh-manageteamtile">
+                   <a class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team sh-mangetile" data-toggle="dropdown" aria-expanded="false">
 			           Activity <span class="caret"></span>
 			       </a>
 			       <ul class="dropdown-menu TW-dropdown-height" role="menu">
@@ -69,7 +69,7 @@
 	<div class="teamtileseperator"></div>
 
     <div class="tab-content">
-        <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
+        <div class="tab-pane active sh-alignedteamtiles col-md-12 col-sm-12 col-xs-12" id="team">
             <div class="teamList" id="teamList">
                 <g:render template="show/teamgrid"/>
             </div>

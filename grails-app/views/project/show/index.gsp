@@ -89,6 +89,8 @@
     </g:if> 
     
     <div class="container show-cmpgn-container">
+    <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
+    <g:hiddenField name="fbShareUrl_mobile" id="fbShareUrl-mobile" value="${fbShareUrl_mobile}"/>
         <g:if test="${project}">
             <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
             <div class="redirectUrl">
@@ -220,13 +222,14 @@
                            </g:else>
                       </g:if>
                    </div>
+                   <%-- Mobile share FB--%>
                    <g:if test="${isPreview}">
-                       <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color">
+                       <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color" id="fb_shareUrl_mobile">
                            <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
                        </a>
                    </g:if>
                    <g:else>
-                        <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">
+                        <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color" id="fb_shareUrl_mobile" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl_mobile}">
                             <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
                         </a>
                    </g:else>
@@ -433,12 +436,12 @@
                         <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                      </div>
                         <g:if test="${isPreview}">
-                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color">
+                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color" id="fbshare">
                                 <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
                             </a>
                         </g:if>
                         <g:else>
-                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">
+                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color" id="fbshare" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">
                                 <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
                             </a>
                         </g:else>

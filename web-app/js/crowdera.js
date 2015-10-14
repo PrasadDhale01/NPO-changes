@@ -132,13 +132,17 @@ $(function() {
     	
 		var $win = $(window);
         $win.scroll(function () {
-            if ($win.scrollTop() == 0){
-            	$('.noScrollHeader').css("display","block");
-    	        $('.scrollHeader').css("display","none");
-            }else{
-            	$('.noScrollHeader').css("display","none");
-    	        $('.scrollHeader').css("display","block");
-            }
+        	if($(window).width() > 767){
+			    if ($win.scrollTop() == 0){
+				    $('.noScrollHeader').css("display","block");
+				    $('.scrollHeader').css("display","none");
+			    }else{
+				    $('.noScrollHeader').css("display","none");
+				    $('.scrollHeader').css("display","block");
+			    }
+        	}else{
+        		$('.noScrollHeader').css("display","block");
+        	}
         });
     	
     }); 

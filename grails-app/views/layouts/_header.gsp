@@ -163,7 +163,7 @@
 
 <!--  **********************************************Scrolled Header************************************************* -->
 <div class="navbar navbar-default navbar-fixed-top header-section home-header-section scrollHeader" role="navigation">
-    <div class="header-container">
+    <div class="header-container TW-scrollHeaderBackColor">
 		<g:if test="${currentEnv == 'test' || currentEnv== 'staging' || currentEnv=='production' || currentEnv== 'development'}">
 			<div class="info-banner">
 				Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a>
@@ -237,7 +237,7 @@
                     <li class="scrollHeaderMenu"><g:link controller="login" action="register" class="nav-item-3 scrollHeaderMenu"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/sign-in-icon-register-dropsowns.png" alt="signup">&nbsp;&nbsp;&nbsp;&nbsp;Sign up</g:link></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
-                    <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img">
+                    <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img scrollHeaderMenu">
                         <a href="#" class="dropdown-toggle login" data-toggle="dropdown">
                             <g:if test="${userService.isFacebookUser()}">
                                 <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>

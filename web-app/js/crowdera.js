@@ -129,6 +129,18 @@ $(function() {
 //    	          $('#createButton').attr('src', newImage);
 //    	          $('#createButton-sm').attr('src', newSmImage);
 //    	   },7000);
+    	
+		var $win = $(window);
+        $win.scroll(function () {
+            if ($win.scrollTop() == 0){
+            	$('.noScrollHeader').css("display","block");
+    	        $('.scrollHeader').css("display","none");
+            }else{
+            	$('.noScrollHeader').css("display","none");
+    	        $('.scrollHeader').css("display","block");
+            }
+        });
+    	
     }); 
     
     $.validator.addMethod('isValidTelephoneNumber', function (value, element) {

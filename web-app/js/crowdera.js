@@ -28,36 +28,42 @@ $(function() {
         }
     });
     
-	$('#scrolltrigger').click(function(){
-	    $(this).css("display","block");
-	    var slider_width = $('#search-barr').width();
-	    if(slider_width > 0 ){
-	        $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/header-search-icon.png");
-	    }else{
-	        $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/search-icon.png");
-	    }
-	});
-	
-	$(document).mousemove(function(){
-	    searchBoxStatus();
-	});
-	
-	function searchBoxStatus(){
-	    var slider_status = $('#search-barr').width();
-	    if(slider_status > 0 ){
-	        $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/search-icon.png");
-	    }else{
-	        $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/header-search-icon.png");
-	    }
-	}
+    /********************************Scroll header******************************/
     
-	$('.toggleImages').hover(function(){
-	    $('.user-cl-scrollHeader').css("background","url(https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-Black.png)");
-	    $('.user-cl-scrollHeader').css("background-repeat","no-repeat");
-	}).mouseleave(function(){
-	    $('.user-cl-scrollHeader').css("background","url(https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-White.png)");
-	    $('.user-cl-scrollHeader').css("background-repeat","no-repeat");
-	});
+//	$('#scrolltrigger').click(function(){
+//	    $(this).css("display","block");
+//	    var slider_width = $('#search-barr').width();
+//	    if(slider_width > 0 ){
+//	        $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/search-icon.png");
+//	    }else{
+//	        $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/header-search-icon.png");
+//	    }
+//	});
+	
+//	$(document).mousemove(function(){
+//		searchBoxStatus();
+//	});
+//	
+//	function searchBoxStatus(){
+//	    var scrollHdr_status = $('#search-barr').width();
+//	    var noScrollHdr_status = $('#search-bar').width();
+//	    if(noScrollHdr_status > 0){
+//            $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/search-icon.png");
+//	    }
+//	    if(scrollHdr_status > 0){
+//	        $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/search-icon.png");
+//	    }else{
+//	        $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/header-search-icon.png");
+//	    }
+//	}
+//    
+//	$('.toggleImages').hover(function(){
+//	    $('.user-cl-scrollHeader').css("background","url(https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-Black.png)");
+//	    $('.user-cl-scrollHeader').css("background-repeat","no-repeat");
+//	}).mouseleave(function(){
+//	    $('.user-cl-scrollHeader').css("background","url(https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-White.png)");
+//	    $('.user-cl-scrollHeader').css("background-repeat","no-repeat");
+//	});
     
     $('.search-box').blur(function() {
          $(this).animate({width: "0px"});
@@ -161,23 +167,26 @@ $(function() {
 //    	          $('#createButton-sm').attr('src', newSmImage);
 //    	   },7000);
     	
-		var $win = $(window);
-        $win.scroll(function () {
-        	if($(window).width() > 767){
-			    if ($win.scrollTop() == 0){
-				    $('.noScrollHeader').css("display","block");
-				    $('.scrollHeader').css("display","none");
-			    }else{
-				    $('.noScrollHeader').css("display","none");
-				    $('.scrollHeader').css("display","block");
-			    }
-        	}else{
-        		$('.noScrollHeader').css("display","block");
-        	}
-        });
+   /************************Scroll header******************************************/
+//		var $win = $(window);
+//        $win.scroll(function () {
+//        	if($(window).width() > 767){
+//			    if ($win.scrollTop() == 0){
+//				    $('.noScrollHeader').css("display","block");
+//				    $('.scrollHeader').css("display","none");
+//				    $('#search-bar').css("width","0")
+//			    }else{
+//				    $('.noScrollHeader').css("display","none");
+//				    $('.scrollHeader').css("display","block");
+//				    $('#search-barr').css("width","0")
+//			    }
+//        	}else{
+//        		$('.noScrollHeader').css("display","block");
+//        	}
+//        });
         
-        $('.user-cl-scrollHeader').css("background","url(https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-White.png)");
-        $('.user-cl-scrollHeader').css("background-repeat","no-repeat");
+//        $('.user-cl-scrollHeader').css("background","url(https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-White.png)");
+//        $('.user-cl-scrollHeader').css("background-repeat","no-repeat");
     	
     }); 
     

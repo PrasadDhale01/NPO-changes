@@ -67,11 +67,11 @@
 	                </li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
-                	<li class="hidden-xs noscrollHeaderHelpLink">
-	                    <g:link controller="project" action="create"  class=" btn btn-info nav-text1 TW-header-helpLinkLogged">
-	                    	<span class="TW-header-helpTxtLogged">Help</span>
-	                    </g:link> 
-                	</li>
+					<li class="hidden-xs">
+					    <g:link controller="project" action="create" class="nav-text1">
+					        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-yellow-tab.jpg" alt="create" class="" id="createButton-sm">
+					    </g:link> 
+					</li>	
                 </sec:ifLoggedIn>
                 <li class="hidden-lg hidden-md hidden-sm hed-font-sizes">
                     <g:link controller="project" action="create" class="nav-item-1"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" alt="create">&nbsp;&nbsp;&nbsp;&nbsp;Create</g:link>
@@ -205,7 +205,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right nav-create-button">
             	<sec:ifNotLoggedIn>
-	                <li class="hidden-xs">
+	                <li class="hidden-xs scrollHeaderMenu">
 	                    <g:link controller="project" action="create" class="nav-text1">
 	                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-yellow-tab.jpg" alt="create" class="" id="createButton-sm">
 	                    </g:link> 
@@ -226,7 +226,7 @@
             <ul class="nav navbar-nav navbar-right <g:if test="${user}">navbar-right-logged-in</g:if>">
                 <sec:ifNotLoggedIn>
                     <g:if test="${currentEnv != 'prodIndia'}">
-                        <li class="hidden-xs hidden-sm headerFbButton">
+                        <li class="hidden-xs hidden-sm headerFbButton scrollHeaderMenu">
                             <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
                                 <img src="//s3.amazonaws.com/crowdera/assets/facebook-button-header.jpg" alt="Register with Facebook">
                             </a>

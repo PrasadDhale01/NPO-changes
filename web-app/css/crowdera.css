@@ -173,7 +173,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 .navbar-default {
     background-color: #fff;
 /*     height: 70px; */
-    border-bottom: solid #01bbd2 3px;
+    border-bottom: solid #01bbd2 2px;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {

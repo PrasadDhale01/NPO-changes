@@ -713,43 +713,43 @@ $(function() {
      $('.cr-img-start-icon').hover(function(){
      	$('.cr-start').attr('src',"//s3.amazonaws.com/crowdera/assets/start-Icon-White.png");
      	}).mouseleave(function(){
-         $('.cr-start').attr('src',"//s3.amazonaws.com/crowdera/assets/start-Icon-Blue.png");
+         $('.cr-start').attr('src',"//s3.amazonaws.com/crowdera/assets/start-Icon-White.png");
      });
      
      $('.cr-img-story-icon').hover(function(){
       	$('.cr-story').attr('src',"//s3.amazonaws.com/crowdera/assets/story-Icon-White.png");
       	}).mouseleave(function(){
-          $('.cr-story').attr('src',"//s3.amazonaws.com/crowdera/assets/story-Icon-Blue.png");
+          $('.cr-story').attr('src',"//s3.amazonaws.com/crowdera/assets/story-Icon-White.png");
       });
      
      $('.cr-img-admin-icon').hover(function(){
       	$('.cr-admin').attr('src',"//s3.amazonaws.com/crowdera/assets/admin-Icon---White.png");
       	}).mouseleave(function(){
-          $('.cr-admin').attr('src',"//s3.amazonaws.com/crowdera/assets/admin-Icon---Blue.png");
+          $('.cr-admin').attr('src',"//s3.amazonaws.com/crowdera/assets/admin-Icon---White.png");
       });
      
      $('.cr-img-perk-icon').hover(function(){
        	$('.cr-perk').attr('src',"//s3.amazonaws.com/crowdera/assets/perk-Icon-White.png");
        	}).mouseleave(function(){
-           $('.cr-perk').attr('src',"//s3.amazonaws.com/crowdera/assets/perk-Icon-Blue.png");
+           $('.cr-perk').attr('src',"//s3.amazonaws.com/crowdera/assets/perk-Icon-White.png");
        });
      
      $('.cr-img-payment-icon').hover(function(){
        	$('.cr-payment').attr('src',"//s3.amazonaws.com/crowdera/assets/payment-Icon-White.png");
        	}).mouseleave(function(){
-           $('.cr-payment').attr('src',"//s3.amazonaws.com/crowdera/assets/payment-Icon-Blue.png");
+           $('.cr-payment').attr('src',"//s3.amazonaws.com/crowdera/assets/payment-Icon-White.png");
        });
      
      $('.cr-img-launch-icon').hover(function(){
        	$('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/launch-Icon--White.png");
        	}).mouseleave(function(){
-           $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/launch-Icon--Blue.png");
+           $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/launch-Icon--White.png");
        });
      
      $('.cr-img-save-icon').hover(function(){
         	$('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-white.png");
         	}).mouseleave(function(){
-            $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-blue.png");
+            $('.cr-launch').attr('src',"//s3.amazonaws.com/crowdera/assets/hdr-save-white.png");
         });
      
      $('#paymentOpt').change(function(){

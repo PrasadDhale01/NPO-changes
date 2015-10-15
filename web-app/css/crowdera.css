@@ -2594,10 +2594,10 @@ ul.dropdown-menu.admin.admin-dropdown.dropdown-menu-head.admin-selected-drop a:h
 /* } */
 
 .user-img span.user-cl{
-	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-Black.png') no-repeat !important;
+	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-Black.png') no-repeat;
 }
 .user-img:hover span.user-cl {
-	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-White.png') no-repeat !important;
+	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-White.png') no-repeat;
 }
 .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open span{
 /* 	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-User-White.png') no-repeat !important; */

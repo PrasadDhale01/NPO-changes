@@ -16,6 +16,7 @@
 	}
 %>
 <input type="hidden" id="currentEnvironment" value="<%=currentEnv%>" />
+<input type="text" name="search" id="hiddensearch"/>
 <div class="navbar navbar-default navbar-fixed-top header-section home-header-section noScrollHeader" role="navigation">
     <div class="header-container">
 		<g:if test="${currentEnv == 'test' || currentEnv== 'staging' || currentEnv=='production' || currentEnv== 'development'}">
@@ -35,7 +36,6 @@
                 <img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" alt="Crowdera">
             </a>
         </div>
-        <input type="text" name="search" id="hiddensearch"/>
         <div class="navbar-collapse collapse" id="TW-navbar-collapse">
             <ul class="nav navbar-nav nav-icon-bar">
                 <li class="searchengine hidden-xs">
@@ -171,7 +171,7 @@
 			</div>
 		</g:if>
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#TW-navbar-collapse" id="hamburger-toggle">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#TW-navbar-collapsed">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -181,14 +181,13 @@
                 <img src="//s3.amazonaws.com/crowdera/assets/header-logo-crowdera.png" alt="Crowdera">
             </a>
         </div>
-        <input type="text" name="search" id="hiddensearch"/>
-        <div class="navbar-collapse collapse TW-scrollHeaderBackColor" id="TW-navbar-collapse">
+        <div class="navbar-collapse collapse TW-scrollHeaderBackColor" id="TW-navbar-collapsed">
             <ul class="nav navbar-nav nav-icon-bar">
                 <li class="searchengine hidden-xs">
                     <form action="/campaign" name="SearchForm">
                         <div class="inner-addon left-addon search-icon-header search-image-header">
-                           <img src="//s3.amazonaws.com/crowdera/assets/header-search-icon.png" alt="search" class="trigger" id="trigger">
-                           <input type="text" class="form-control form-control-no-border search-box" name="q" value="${params.q}" id="search-bar" placeholder="Search....."/>
+                           <img src="//s3.amazonaws.com/crowdera/assets/header-search-icon.png" alt="search" class="trigger" id="scrolltrigger">
+                           <input type="text" class="form-control form-control-no-border search-box" name="q" value="${params.q}" id="search-barr" placeholder="Search....."/>
                         </div>
                     </form>
                 </li>
@@ -237,7 +236,7 @@
                     <li class="scrollHeaderMenu"><g:link controller="login" action="register" class="nav-item-3 scrollHeaderMenu"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/sign-in-icon-register-dropsowns.png" alt="signup">&nbsp;&nbsp;&nbsp;&nbsp;Sign up</g:link></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
-                    <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img scrollHeaderMenu">
+                    <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img scrollHeaderMenu toggleImages">
                         <a href="#" class="dropdown-toggle login" data-toggle="dropdown">
                             <g:if test="${userService.isFacebookUser()}">
                                 <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
@@ -255,7 +254,7 @@
                                 <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
                             </g:else>
                             ${userService.getFriendlyName()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span class="user-cl"></span>
+                            <span class="user-cl-scrollHeader"></span>
                         </a>
                         <g:if test="${userService.isAdmin()}">
                             <ul class="dropdown-menu admin  admin-dropdown dropdown-menu-head admin-selected-drop">

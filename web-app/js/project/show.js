@@ -643,17 +643,23 @@
         /**************************************End of Edit team*******************************************/
 
     $("#fbshare").click(function(){
-        var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl').val());
+        var url = 'http://www.facebook.com/sharer.php?s=100&amp;p[url]='+ encodeURIComponent($('#fbShareUrl').val());
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
     
-    $("#fb_shareUrl_mobile").click(function(){
-        var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl_mobile').val());
+    $("#fbshare-mobile").click(function(){
+        var url = 'http://www.facebook.com/sharer.php?s=100&amp;p[url]='+ encodeURIComponent($('#fbShareUrl').val());
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
-
+    
+    $("a.show-tabs-text").click(function(){
+    	$('.choose-error').html('');
+    	$(".sh-tabs").find("a.show-tabs-text").removeClass('sh-selected');
+    	$(this).addClass('sh-selected');
+    });
+    
     $("#twitterShare").click(function(){
         if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
             var url = 'https://twitter.com/share?text=Check campaign at crowdera.co!';
@@ -710,6 +716,12 @@
     .hover(showPopover, hidePopover);
     
     $(document).ready(function (){
+    	$('.tab-pane-active').each(function(){
+    	    if($(this).hasClass('active')){
+    	    	var classActive = $(this).attr('id');
+    	    	$('.'+classActive).addClass('sh-selected');
+    	    }
+    	});
      /*************************Edit video for team*************************/
         $('.perk-tile').hover(function() {
             $(this).find('.campaignEditDeleteIcon').show();

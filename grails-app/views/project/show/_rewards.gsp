@@ -124,7 +124,6 @@
                     </g:else>
                     <g:if test="${reward.id==1 }">
                         <p class="rewarddescription"></p>
-                        <p></p>
                     </g:if>
                     <g:else>
                         <p class="rewarddescription">${reward.description}</p>

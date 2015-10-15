@@ -12462,9 +12462,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     font-weight: 500;
     color: #000; /**#6d6e6e**/
 }
-.nav-pills .show-tabs-text:hover{
-    color:#01bbd3; 
-}
+/* .nav-pills .show-tabs-text:hover{ */
+/*     color:#01bbd3;  */
+/* } */
 .show-tabs-count{
 	text-decoration:none !important;
     font-family: Futura-Condensed Normal;
@@ -12751,4 +12751,7 @@ a#downloadEbook{
     font-size: 17px;
     padding-top: 9px;
     font-weight: bold;
+}
+.show-tabs-text:hover, .sh-selected{
+    color:#01bbd3; 
 }

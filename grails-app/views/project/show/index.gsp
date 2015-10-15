@@ -90,7 +90,7 @@
     
     <div class="container show-cmpgn-container">
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
-    <g:hiddenField name="fbShareUrl_mobile" id="fbShareUrl-mobile" value="${fbShareUrl_mobile}"/>
+  
         <g:if test="${project}">
             <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
             <div class="redirectUrl">
@@ -224,12 +224,12 @@
                    </div>
                    <%-- Mobile share FB--%>
                    <g:if test="${isPreview}">
-                       <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color" id="fb_shareUrl_mobile">
+                       <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color">
                            <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
                        </a>
                    </g:if>
                    <g:else>
-                        <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color" id="fb_shareUrl_mobile" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl_mobile}">
+                        <a class="btn btn-social btn-facebook show-mobilebt-fb mob-show-fb sho-fb-color"  id="fbshare-mobile" href="#">
                             <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
                         </a>
                    </g:else>
@@ -249,56 +249,55 @@
                 </div>
 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders  hidden-xs">
-                    <g:set var="screen" id="screen" value="false"></g:set>
-                    <div class="nav nav-pills nav-justified show-marginbottoms mng-safari-mobile show-new-tabs-alignments<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
-                        <span class="active show-tbs-right-borders hidden-xs"><a href="#essentials" data-toggle="tab" class="show-tabs-text">
-                            <span class="glyphicon glyphicon-leaf hidden-lg hidden-sm hidden-md"></span>
+                   <g:set var="screen" id="screen" value="false"></g:set>
+                  <ul class="nav nav-pills nav-justified show-marginbottoms sh-tabs mng-safari-mobile show-new-tabs-alignments<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
+                        <span class="active show-tbs-right-borders  hidden-xs"><a href="#essentials" data-toggle="tab" class="show-tabs-text essentials">
                             <span class="tab-text hidden-xs"> STORY</span>
-                        </a></span>
+                        </a>
+                        </span>
                         <g:if test="${!project.projectUpdates.isEmpty() }">
-                            <span class="show-tbs-right-borders hidden-xs"><a href="#projectupdates" data-toggle="tab"  class="show-tabs-text">
-                                <span class="glyphicon glyphicon-asterisk hidden-lg hidden-sm hidden-md"></span>
+                            <span class="show-tbs-right-borders hidden-xs"><a href="#projectupdates" data-toggle="tab"  class="show-tabs-text projectupdates">
                                 <span class="tab-text hidden-xs"> UPDATES</span> </a>
                                 <span class="show-tabs-count hidden-xs"><g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if></span>
                            </span>
                         </g:if>
-                        <span class="show-tbs-right-borders hidden-xs"><a href="#manageTeams" data-toggle="tab"  class="show-tabs-text">
+                        <span class="show-tbs-right-borders hidden-xs"><a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam">
                             <span class="tab-text"> TEAMS</span>
                         </a></span>
-                        <span class="show-tbs-right-borders hidden-xs"><a href="#contributions" data-toggle="tab"  class="show-tabs-text">
+                        <span class="show-tbs-right-borders hidden-xs"><a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions">
                             <span class="tab-text"> CONTRIBUTIONS</span></a>
                             <span class="show-tabs-count hidden-xs"><g:if test="${totalContributions.size() > 0 && screen == 'false'}">${totalContributions.size()}</g:if></span>
                         </span>
-                        <span class="show-comit-lft hidden-xs"><a href="#comments" data-toggle="tab"  class="show-tabs-text">
+                        <span class="show-comit-lft hidden-xs"><a href="#comments" data-toggle="tab"  class="show-tabs-text comments">
                             <span class="glyphicon glyphicon-comment hidden-lg hidden-sm hidden-md"></span><span class="tab-text hidden-xs"> COMMENTS</span>
                         </a></span>
-                    </div>
+                    </ul>
                 </div>
                 
-                <div class="visible-xs sh-mobiletabs">
-                    <span class="sh-mob-tabs"><a href="#manageTeams" data-toggle="tab"  class="show-tabs-text">
+                <div class="visible-xs sh-mobiletabs sh-tabs">
+                    <span class="sh-mob-tabs"><a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam">
                         <span class="tab-text"> TEAMS</span>
                     </a></span>
-                    <span class="sh-mobile-tabs"><a href="#contributions" data-toggle="tab"  class="show-tabs-text">
+                    <span class="sh-mobile-tabs"><a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions">
                         <span class="tab-text"> CONTRIBUTIONS</span></a>
                     </span>
                 </div>        
                 <div class="col-xs-12 col-md-8 col-sm-8 Top-tabs-mobile show-tops-corsal">
                     <!-- Tab panes -->
                     <div class="tab-content">
-                        <div class="tab-pane active hidden-xs" id="essentials">
+                        <div class="tab-pane tab-pane-active active hidden-xs" id="essentials">
                             <g:render template="show/story"/>
                         </div>
-                        <div class="tab-pane hidden-xs" id="projectupdates">
+                        <div class="tab-pane tab-pane-active hidden-xs" id="projectupdates">
                             <g:render template="show/projectupdates"/>
                         </div>
-                        <div class="tab-pane" id="manageTeams">
+                        <div class="tab-pane tab-pane-active " id="manageTeam">
                             <g:render template="show/manageteam"/>
                         </div>
-                        <div class="tab-pane" id="contributions">
+                        <div class="tab-pane tab-pane-active" id="contributions">
                             <g:render template="show/contributions" model="['team':currentTeam]"/>
                         </div>
-                        <div class="tab-pane hidden-xs" id="comments">
+                        <div class="tab-pane tab-pane-active hidden-xs" id="comments">
                             <g:render template="show/comments"/>
                         </div>
                     </div>
@@ -380,7 +379,7 @@
                             </a>
                         </g:if>
                         <g:else>
-                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">
+                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs" id="fbshare" href="#">
                                 <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
                             </a>
                         </g:else>
@@ -436,12 +435,12 @@
                         <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
                      </div>
                         <g:if test="${isPreview}">
-                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color" id="fbshare">
+                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color">
                                 <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
                             </a>
                         </g:if>
                         <g:else>
-                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color" id="fbshare" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">
+                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color" id="fbshare" href="#">
                                 <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
                             </a>
                         </g:else>

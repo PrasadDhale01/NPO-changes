@@ -29,19 +29,19 @@
     <g:hiddenField name="projectId" class="projectId" id="projectId" value="${project.id}"/>
     <g:if test="${percentage >= 75}">
         <div class="over show-tile sh-tiles-baner">
-            <img src="//s3.amazonaws.com/crowdera/assets/Funded-Tag.png" alt="Funded"/>
+            <img src="//s3.amazonaws.com/crowdera/assets/Funded-Tag.png" alt="Funded">
         </div>
     </g:if>
     <g:elseif test="${ended}">
         <div class="over show-tile sh-tiles-baner">
-            <img src="//s3.amazonaws.com/crowdera/assets/ended-tag.png" alt="Ended"/>
+            <img src="//s3.amazonaws.com/crowdera/assets/ended-tag.png" alt="Ended">
         </div>
     </g:elseif>
     <div class="blacknwhite tile">
         <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
             <div class="imageWithTag">
                 <div class="under">
-                    <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}"/>
+                    <img alt="${project.title}" class="project-img" src="${projectService.getProjectImageLink(project)}">
                 </div>
             </div>
         </g:link>

@@ -38,10 +38,10 @@
                 </div>
             </div>
         </div>
-        <div class="col-xs-4 col-sm-4 col-md-4 daysleftIcon">
-            <img src="//s3.amazonaws.com/crowdera/assets/daysleft.png" alt="daysleft-icon">
-        </div>
-    </div>
+		<div class="col-xs-4 col-sm-4 col-md-4 daysleftIcon">
+			<img src="//s3.amazonaws.com/crowdera/assets/timeleft.png" alt="daysleft-icon">
+		</div>
+	</div>
     <div class="row amount-centering">
         <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
             <span class="text-center tile-goal show-contribution-amt-tile">

@@ -39,18 +39,19 @@
     
     <g:if test="${project.validated}">
     <g:if test="${projectComment || teamcomment}">
+    <div id="commentBox">
         <g:form controller="project" action="editCommentSave" role="form" params="['projectTitle': vanityTitle, 'fr': fundRaiser]">
             <g:hiddenField name='teamCommentId' value="${teamCommentId}"></g:hiddenField>
             <g:hiddenField name='commentId' value="${commentId}"></g:hiddenField>
             <h4 class="lead">Edit a comment</h4>
-            <div id="commentBox">
                 <div class="form-group">
                     <textarea class="form-control" name="comment" rows="4" required>${commentval}</textarea>
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm pull-right">Save comment</button>
                 <div class="clear"></div>
-            </div>
+            
         </g:form>
+        </div>
     </g:if>
     <g:else>
         <h4 class="lead">Leave a comment</h4>

@@ -15,6 +15,10 @@ function selectedCampaigns(){
 	document.sortsForm.submit();
 }
 
+function selectedCampaignCategory(){
+	document.campaigncategoryForm.submit();
+}
+
 $(document).ready(function(){
 	var currentEnv=$('#currentEnv').val();
 	$.ajax( { 

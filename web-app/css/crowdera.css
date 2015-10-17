@@ -5434,52 +5434,52 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-left: 3px;
         width: 111% !important;
     }
-	div.sh-mobiletabs{
+    div.sh-mobiletabs{
         padding-left: 90px;
         padding-bottom: 15px;
     }
-	div.sh-perks-preview {
+    div.sh-perks-preview {
         margin-top: 6px;
     }
     span.sh-mobile-tabs {
         padding-left: 15px;
     }
-	.mobileview-top{
+    .mobileview-top{
         display:block !important;
         margin-bottom: 15px;
     }
-	a.show-mobile-readstory{
+    a.show-mobile-readstory{
         color: #01bbd3;
         text-decoration: none;
     }
-	div.sh-mobilecontibutionpadding{
+    div.sh-mobilecontibutionpadding{
         margin-left: -14px;
         width: 313px;
     }
-	li.sh-teamsactive {
+    li.sh-teamsactive {
         left: -10px;
         margin-left: -20px;
         width: 278px !important;
     }
-	div.sh-logincommnt{
+    div.sh-logincommnt{
        margin-left: -15px !important;
     }
-	div.sh-comments-align{
+    div.sh-comments-align{
 	    padding-left: 0;
         padding-right: 0;
         width: 312px;
-	}
-	div.sh-comnt-align{
+    }
+    div.sh-comnt-align{
         margin-left: -16px;
         width: 313px;
     }
-	li.sh-mobile-teamcount{
+    li.sh-mobile-teamcount{
         margin: 4px 19px 4px -9px !important;
         padding: 0 !important;
         width: 276px !important;
         font-size: 16px;
     }
-	div.contributionPaginate a, .contributionPaginate .currentStep {
+    div.contributionPaginate a, .contributionPaginate .currentStep {
         font-size: 13px;
         padding-left: 14px;
     }
@@ -5489,17 +5489,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 30px;
         width: 304px;
     }
-	button.show-submitapprovalmobile {
+    button.show-submitapprovalmobile {
         height: 71px;
         margin-bottom: 0;
         margin-top: -21px;
         width: 111%;
     }
-	div.sh-mobperks{
+    div.sh-mobperks{
         margin-left: 2px;
         width: 110%;    
     }
-	div.show-tops-corsal {
+    div.show-tops-corsal {
         margin-top: 6px;
         padding-left: 14px;
     }
@@ -5519,14 +5519,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-top: 29px;
         width: 55px;
 	}
-	div.show-panel-mobilesize{
+    div.show-panel-mobilesize{
 	    height: 100px; 
 	    width: 280px; 
 	    margin-bottom: 15px;
 	    margin-left: auto;
 	    margin-right: auto;
 	}
-	div.show-mobile-update{
+    div.show-mobile-update{
         margin-left: 2px;
         width: 110%;
 	}
@@ -5566,7 +5566,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 16px;
         width: 310px;	
 	}
-	div.show-mobile-slogn{
+    div.show-mobile-slogn{
 	    padding-left: 7px;
         padding-right: 7px;
         border: 1px solid #e3e3e3;
@@ -5594,12 +5594,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 20px;
         padding-right: 20px;
     }
-	div.show-share-border-line {
+    div.show-share-border-line {
         height: 50px;
         margin-left: -2px !important;
         width: 284px;
     }
-	div.borders {
+    div.borders {
         width: 281px;
     }
     .progressBarIcon-showpage{
@@ -6697,7 +6697,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
-	i.sh-fb-icons{
+    i.sh-fb-icons{
         font-size: 20px;
         margin-left: -19px;
         padding-right: 7px;
@@ -6708,13 +6708,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 17px;
         padding-top: 9px;
     }
-	div.show-perksRewardtabs{
+    div.show-perksRewardtabs{
         margin-top: 117px;
 	}
 /* 	div.perks-supporters { */
 /*         margin-top: 120px; */
 /*     } */
-	div.show-description {
+    div.show-description {
         margin-top: 28px
     }
     a.show-btn-sh-fb {

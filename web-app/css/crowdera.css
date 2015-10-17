@@ -5391,7 +5391,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.sh-tilemobileIframP p > iframe{
         width: 277px !important;
     }
-	div.sh-tilmobileIframe > iframe {
+    div.sh-tilmobileIframe > iframe {
         width: 277px !important;
     }
     div.perks-style {
@@ -5510,26 +5510,26 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 14px;
         font-weight: normal;
     }
-	span.show-mob-goal-amt{
-	    color: black;
+    span.show-mob-goal-amt{
+        color: black;
         font-size: 19px;
         font-weight: bold;
-	}
-	div.show-mobimg-panels{
+    }
+    div.show-mobimg-panels{
         padding-top: 29px;
         width: 55px;
-	}
+    }
     div.show-panel-mobilesize{
 	    height: 100px; 
 	    width: 280px; 
 	    margin-bottom: 15px;
 	    margin-left: auto;
 	    margin-right: auto;
-	}
+    }
     div.show-mobile-update{
         margin-left: 2px;
         width: 110%;
-	}
+    }
     div.show-mobiletabs-top {
         padding-top: 15px;
     }
@@ -5542,26 +5542,26 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     span.show-mobile-contri {
         padding-left: 15px;
     }
-	a.show-mobilebt-fb:hover,
+    a.show-mobilebt-fb:hover,
     a.show-mobilebt-fb:focus{
         color: white;
     }
-	a.mob-show-fb {
+    a.mob-show-fb {
         width: 111%;
     }
     input.show-mob-btnJoinOur {
-		background-color: #f6bf0b;
-		color: black;
-		text-decoration: none;
-		width: 111% !important;
-		color: #fff;
+        background-color: #f6bf0b;
+        color: black;
+        text-decoration: none;
+        width: 111% !important;
+        color: #fff;
         font-size: 21px;
         font-family: Ubuntu Condensed;
     }
     input.show-mob-btnJoinOur:hover{
         color: #fff;
     }
-	div.show-mobile-slogn p{
+    div.show-mobile-slogn p{
         font-family: Futura-Condensed Normal;
         font-size: 16px;
         width: 310px;	
@@ -5576,7 +5576,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: -21px;
         width: 111%;
         font-family: Ubuntu Condensed;
-    }
+    }  
     button.mob-show-fund {
         width: 111%;
     }
@@ -6803,7 +6803,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	.manage-team{
+    .manage-team{
         margin-top: 16px !important;
         width: 110%;
     }
@@ -6814,39 +6814,39 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 20px !important;
         padding-top: 28px !important;
     }
-	h2.rewardsectionheading {
+    h2.rewardsectionheading {
 	    font-size: 24px;
 	    padding-top: 28px;
     }
     img.sh-img-update {
         height: 300px;
     }
-	button.sh-submitapproval {
+    button.sh-submitapproval {
         padding-left: 7px;
     }
     button.btn-show-fund {
         margin-top: -10%;
     }
-	button.show-campaign-sucessbtn {
+    button.show-campaign-sucessbtn {
         font-size: 14px;
         height: 96px;
     }
-	button.show-campaign-sucess-endedbtn {
+    button.show-campaign-sucess-endedbtn {
         font-size: 19px;
         height: 96px;
     }
-	button.show-fund-size {
+    button.show-fund-size {
         font-size: 29px;
         height: 94px;
         margin-top: 0px;
     }
-	div.sh-mobprogressbar{
+    div.sh-mobprogressbar{
 	     padding-left: 9px;
 	}
-	div.sh-moballamt{
+    div.sh-moballamt{
 	    margin-left: -12px;
 	}
-	div.sh-amtMob-position{
+    div.sh-amtMob-position{
 	    left: -14px;
 	}
     div.show-tiles-padding {

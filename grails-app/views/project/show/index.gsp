@@ -295,13 +295,13 @@
                 </div>
                 
                 <div class="visible-xs sh-mobiletabs sh-tabs">
-                    <span class="sh-mob-tabs">
-                        <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam">
+                    <span class="sh-mobile-tabs">
+                        <a href="#manageTeam" data-toggle="tab" class="show-tabs-text show-tbs-right-borders manageTeamMob">
                             <span class="tab-text"> TEAMS</span>
                         </a>
                     </span>
                     <span class="sh-mobile-tabs">
-                        <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions">
+                        <a href="#contributions" data-toggle="tab"  class="show-tabs-text  contributionsMob">
                             <span class="tab-text"> CONTRIBUTIONS</span>
                         </a>
                     </span>
@@ -316,7 +316,7 @@
                         <div class="tab-pane tab-pane-active hidden-xs" id="projectupdates">
                             <g:render template="show/projectupdates"/>
                         </div>
-                        <div class="tab-pane tab-pane-active " id="manageTeam">
+                        <div class="tab-pane tab-pane-active" id="manageTeam">
                             <g:render template="show/manageteam"/>
                         </div>
                         <div class="tab-pane tab-pane-active" id="contributions">

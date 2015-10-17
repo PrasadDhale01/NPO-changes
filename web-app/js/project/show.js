@@ -716,12 +716,28 @@
     .hover(showPopover, hidePopover);
     
     $(document).ready(function (){
+    	var classActive
     	$('.tab-pane-active').each(function(){
-    	    if($(this).hasClass('active')){
-    	    	var classActive = $(this).attr('id');
-    	    	$('.'+classActive).addClass('sh-selected');
-    	    }
+    		if (screen.width >767){
+    	        if($(this).hasClass('active')){
+    	    	    classActive = $(this).attr('id');
+    	    	    $('.'+classActive).addClass('sh-selected');
+    	        }
+    		} else {
+    			if($(this).hasClass('active')){
+    	    	    classActive = $(this).attr('id');
+    	    	    $('.tab-pane-active').siblings().removeClass('active');
+    	    	    if (classActive == 'contributions'){
+    	    	    	$('.contributionsMob').addClass('sh-selected');
+    	    	    	$('#contributions').addClass('active');
+    	    	    } else {
+    	    	    	$('.manageTeamMob').addClass('sh-selected');
+    	    	    	$('#manageTeam').addClass('active');
+    	    	    }
+    	        }
+    		}
     	});
+    	
      /*************************Edit video for team*************************/
         $('.perk-tile').hover(function() {
             $(this).find('.campaignEditDeleteIcon').show();
@@ -729,7 +745,7 @@
         $('.perk-tile').mouseleave(function() {
             $(this).find('.campaignEditDeleteIcon').hide();
         });
-
+        
        if(screen.width > 1024 && screen.width < 992)
            $('#screen').val('true');
 

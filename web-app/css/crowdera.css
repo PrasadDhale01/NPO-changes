@@ -5377,6 +5377,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	a.show-tbs-right-borders {
+        border-right: 2px solid #6d6e6e;
+        margin-left: -22px;
+    }
 	div.sh-alignedteamtiles{
         left: 16px;
 	}
@@ -11111,6 +11115,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	a.show-tbs-right-borders {
+        border-right: 2px solid #6d6e6e;
+        margin-left: -22px;
+    }
 	div.show-msz {
         margin-left: 17px;
         margin-top: 5px;

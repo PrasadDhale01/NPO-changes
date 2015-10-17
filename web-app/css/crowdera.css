@@ -1351,7 +1351,7 @@ footer .footerbottomsection {
     font-family: Ubuntu Condensed;
 }
 .btn-show-fund:hover{
-	color: #ffffff !important;
+    color: #ffffff !important;
     background-color: #01bbd3 !important;
     border-color:  #01bbd3!important;
 }
@@ -1620,8 +1620,8 @@ div.tile-min-height{
 }
 
 .rewardsection .badge{
-	background-color:#31497b;
-	color:#fff;
+    background-color:#31497b;
+    color:#fff;
     height: 40px;
     padding: 11px 6px;
     width: 40px;
@@ -1651,13 +1651,13 @@ div.tile-min-height{
     word-wrap: break-word;
 }
 .rewardsectionheading{
-	font-size: 25px;
-	font-weight:bold;
-	margin-bottom: 0px;
-	margin-top: 0px;
-	padding-left:6px;
-	color: #01bbd3;
-	padding-bottom: 20px;
+    font-size: 25px;
+    font-weight:bold;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    padding-left:6px;
+    color: #01bbd3;
+    padding-bottom: 20px;
     padding-top: 32px;
     font-family: Ubuntu Condensed;
 }
@@ -4247,7 +4247,7 @@ li.learn {
 }
 
 .preview-banner-margin{
-	background-color: #000000;
+    background-color: #000000;
     color: #ffffff;
     padding: 14px;
     text-align: center;
@@ -5222,9 +5222,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	margin-bottom: 8px;
 }
 .campaignTitle a {
-	color: #000 !important;
-	font-size: 30px;
-/*     font-family: Futura-Condensed Normal; */
+    color: #000 !important;
+    font-size: 30px;
     font-family: Ubuntu Condensed;
     font-weight: 900;
     font-variant: normal;
@@ -5239,9 +5238,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	text-decoration: none !important;
 }
 .campaignFundRaiser h4 {
-	color: #01bbd2 !important;
-	font-weight: 500;
-	font-size: 14px;
+    color: #01bbd2 !important;
+    font-weight: 500;
+    font-size: 14px;
     font-family: Futura Bk BT book;
 }
 .campaignFundRaiser {
@@ -5377,13 +5376,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	a.show-tbs-right-borders {
+    a.show-tbs-right-borders {
         border-right: 2px solid #6d6e6e;
         margin-left: -22px;
     }
-	div.sh-alignedteamtiles{
+    div.sh-alignedteamtiles{
         left: 16px;
-	}
+    }
     div.show-msz {
         margin-left: 17px;
         margin-top: 5px;
@@ -5395,7 +5394,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	div.sh-tilmobileIframe > iframe {
         width: 277px !important;
     }
-	div.perks-style {
+    div.perks-style {
         height: 94px;
     }
     h2.rewardsectionheading {
@@ -5404,7 +5403,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .showMob-storyimg img {
         width: 100%;
     }
-	i.sh-fb-icons{
+    i.sh-fb-icons{
         padding-right: 26px;
     }
     a.sho-fb-color{
@@ -5412,25 +5411,25 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 17px;
         padding-top: 9px;
     }
-	ul.sh-mobs-teams li {
+    ul.sh-mobs-teams li {
         padding-left: 2px;
     }
-	.mobileview-bottom-mange{
+    .mobileview-bottom-mange{
         display: none;
     }
     div.manage-carousel-in {
         height: 200px;
         overflow: hidden;
     }
-	span.sh-mob-tabs {
+    span.sh-mob-tabs {
         border-right: 2px solid #6d6e6e;
         padding-right: 9px;
     }
-	li.sh-teamtabmobiles {
+    li.sh-teamtabmobiles {
         left: 2px;
         width: 112% !important;
     }
-	li.show-team {
+    li.show-team {
         font-size: 16px;
         margin-left: 3px;
         width: 111% !important;

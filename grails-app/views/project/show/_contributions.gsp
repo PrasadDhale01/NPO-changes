@@ -15,7 +15,7 @@
     def projectId = project.id
 %>
 <g:if test="${totalContributions.empty}">
-    <div class="alert alert-info">No contributions yet. Yours can be the first one.</div>
+    <div class="alert alert-info sh-mobilecontibutionpadding">No contributions yet. Yours can be the first one.</div>
 </g:if>
 <g:if test="${user && !isCrUserCampBenOrAdmin && CurrentUserTeam}">
     <g:if test="${team.user == user}">

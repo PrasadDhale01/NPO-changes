@@ -17,7 +17,7 @@
 	</g:if>
 	<g:else>
 		<div class="row">
-			<div class="alert alert-info">No updates yet.</div>
+			<div class="alert alert-info hidden-xs">No updates yet.</div>
 		</div>
 	</g:else>
 </div>

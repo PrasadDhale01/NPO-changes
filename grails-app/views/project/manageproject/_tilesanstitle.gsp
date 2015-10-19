@@ -31,7 +31,7 @@
             </div>
         </div>
 		<div class="col-xs-4 col-sm-4 col-md-4 daysleftIcon">
-			<img src="//s3.amazonaws.com/crowdera/assets/daysleft.png" alt="daysleft">
+			<img src="//s3.amazonaws.com/crowdera/assets/timeleft.png" alt="daysleft">
 		</div>
 	</div>
     <div class="row amount-centering">

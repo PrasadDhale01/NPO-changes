@@ -94,7 +94,16 @@
     	}
     });
     
-    $('#commentBox').find('form').validate({
+    $('#comments').find('#commentBox').find('form').validate({
+    	rules: {
+    		comment: {
+    			required: true,
+    			maxlength: 5000
+    		}
+    	}
+    });
+    
+    $('#comment-mobile').find('#commentBox').find('form').validate({
     	rules: {
     		comment: {
     			required: true,
@@ -521,6 +530,37 @@
     	}
       });
     
+    /*******************************Show-page-share icons hover***************************/
+    $('.show-email').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-email-color.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png");
+    });
+    
+    $('.show-twitter').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-twitter-color.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png");
+    });
+    
+    $('.show-like').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-like-color.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-like-gray.png");
+    });
+    
+    $('.show-linkedin').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-linkedin-color.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png");
+    });
+    
+    $('.show-google').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-original-google-color.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-google-gray.png");
+    });
+    
     /*******************************Description text length*********************/
         var counter = 1;
         $('#descarea').on('keydown', function(event) {
@@ -603,11 +643,23 @@
         /**************************************End of Edit team*******************************************/
 
     $("#fbshare").click(function(){
-        var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl').val());
+        var url = 'http://www.facebook.com/sharer.php?s=100&amp;p[url]='+ encodeURIComponent($('#fbShareUrl').val());
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
-
+    
+    $("#fbshare-mobile").click(function(){
+        var url = 'http://www.facebook.com/sharer.php?s=100&amp;p[url]='+ encodeURIComponent($('#fbShareUrl').val());
+        window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+        return false;
+    });
+    
+    $("a.show-tabs-text").click(function(){
+    	$('.choose-error').html('');
+    	$(".sh-tabs").find("a.show-tabs-text").removeClass('sh-selected');
+    	$(this).addClass('sh-selected');
+    });
+    
     $("#twitterShare").click(function(){
         if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
             var url = 'https://twitter.com/share?text=Check campaign at crowdera.co!';
@@ -664,6 +716,28 @@
     .hover(showPopover, hidePopover);
     
     $(document).ready(function (){
+    	var classActive
+    	$('.tab-pane-active').each(function(){
+    		if (screen.width >767){
+    	        if($(this).hasClass('active')){
+    	    	    classActive = $(this).attr('id');
+    	    	    $('.'+classActive).addClass('sh-selected');
+    	        }
+    		} else {
+    			if($(this).hasClass('active')){
+    	    	    classActive = $(this).attr('id');
+    	    	    $('.tab-pane-active').siblings().removeClass('active');
+    	    	    if (classActive == 'contributions'){
+    	    	    	$('.contributionsMob').addClass('sh-selected');
+    	    	    	$('#contributions').addClass('active');
+    	    	    } else {
+    	    	    	$('.manageTeamMob').addClass('sh-selected');
+    	    	    	$('#manageTeam').addClass('active');
+    	    	    }
+    	        }
+    		}
+    	});
+    	
      /*************************Edit video for team*************************/
         $('.perk-tile').hover(function() {
             $(this).find('.campaignEditDeleteIcon').show();
@@ -671,7 +745,7 @@
         $('.perk-tile').mouseleave(function() {
             $(this).find('.campaignEditDeleteIcon').hide();
         });
-
+        
        if(screen.width > 1024 && screen.width < 992)
            $('#screen').val('true');
 

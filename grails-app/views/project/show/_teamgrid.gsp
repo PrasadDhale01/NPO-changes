@@ -2,9 +2,9 @@
     def projectId = project.id
 %>
 <div class="row">
-    <ul class="thumbnails list-unstyled">
+    <ul class="thumbnails list-unstyled sh-mobs-teams">
         <g:each in="${teams}" var="team">
-            <li class="col-lg-4 col-md-6 col-sm-4 col-xs-12">
+            <li class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
                 <g:render template="/project/manageproject/teamtile" model="['team': team]"></g:render>
             </li>
         </g:each>

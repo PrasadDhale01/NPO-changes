@@ -1016,12 +1016,11 @@ class ProjectService {
 	
 	def getSorts(){
 		def sortsOptions = [
-			All_Campaigns: "All Campaigns",
-			Live_Campaigns: "Live",
+			Live_Campaigns: "Latest",
 			Ending_Soon: "Ending Soon",
-			Most_Funded: "Most Funded",
-			Successful_Campaigns:"Successful (100% +)",
-			Ended_Campaign:"Ended"
+			Successful_Campaigns:"Most Funded",
+			Ended_Campaign:"Ended",
+			OFFERING_PERKS:"Offering Perks"
 		]
 		return sortsOptions
 	}
@@ -1029,18 +1028,7 @@ class ProjectService {
 	def isCampaignsorts(def sorts ,def currentEnv){
 		List projects = getValidatedProjects(currentEnv)
 		List p = []
-		if(sorts == 'All Campaigns'){
-			return projects
-		}
-		if(sorts == 'Most Funded'){
-			projects.each {
-				def percentage = contributionService.getPercentageContributionForProject(it)
-				if(percentage >= 90 && percentage <100){
-					p.add(it)
-				}
-			}
-		}
-		if(sorts == 'Successful (100% +)'){
+		if(sorts == 'Most-Funded'){
 			projects.each {
 				def percentage = contributionService.getPercentageContributionForProject(it)
 				if(percentage >= 100){
@@ -1048,7 +1036,7 @@ class ProjectService {
 				}
 			}
 		}
-		if(sorts == 'Live'){
+		if(sorts == 'Latest'){
 			projects.each {project ->
 				boolean ended = isProjectDeadlineCrossed(project)
 				if(project.validated && ended ==false){
@@ -1056,7 +1044,7 @@ class ProjectService {
 				}
 			}
 		}
-		if(sorts == 'Ending Soon'){
+		if(sorts == 'Ending-Soon'){
 			projects.each {
 				def day = getRemainingDay(it)
 				if(day > 0 && day <10){
@@ -1071,6 +1059,14 @@ class ProjectService {
 					p.add(it)
 				}
 			}
+		}
+		if(sorts=='Offering-Perks'){
+		    projects.each{
+		        def  perkSize = it.rewards.size()
+		        if(perkSize > 1){
+		           p.add(it)
+		       }
+		    }
 		}
 		return p
 	}
@@ -1202,14 +1198,53 @@ class ProjectService {
             (Project.Category.ENVIRONMENT): "Environment",
 			(Project.Category.FILM): "Film",
             (Project.Category.HEALTH): "Health",
+			(Project.Category.NON_PROFITS):"Non Profits",
             (Project.Category.SOCIAL_INNOVATION): "Social Innovation",
             (Project.Category.RELIGION): "Religion",
-            (Project.Category.OTHER): "Other",
+            (Project.Category.OTHER): "Other"
         ]
         return categoryOptions
     }
 	
+	def getIndiaCategoryList() {
+		def categoryOptions = [
+			(Project.Category.ANIMALS): "Animals",
+			(Project.Category.ARTS): "Arts",
+			(Project.Category.CHILDREN): "Children",
+			(Project.Category.COMMUNITY): "Community",
+			(Project.Category.CIVIC_NEEDS): "Civic Needs",
+			(Project.Category.EDUCATION): "Education",
+			(Project.Category.ELDERLY): "Elderly",
+			(Project.Category.ENVIRONMENT): "Environment",
+			(Project.Category.FILM): "Film",
+			(Project.Category.HEALTH): "Health",
+			(Project.Category.SOCIAL_INNOVATION): "Social Innovation",
+			(Project.Category.RELIGION): "Religion",
+			(Project.Category.OTHER): "Other"
+		]
+		return categoryOptions
+	}
    def getCategory(){
+	   def categoryOptions = [
+		   ALL: "All Categories",
+		   ANIMALS: "Animals",
+		   ARTS: "Arts",
+		   CHILDREN: "Children",
+		   COMMUNITY: "Community",
+		   CIVIC_NEEDS: "Civic Needs",
+		   EDUCATION: "Education",
+		   ELDERLY: "Elderly",
+		   ENVIRONMENT: "Environment",
+		   FILM: "Film",
+		   HEALTH: "Health",
+		   NON_PROFITS:"Non Profits",
+		   SOCIAL_INNOVATION: "Social Innovation",
+		   RELIGION: "Religion",
+		   OTHER: "Other"
+	   ]
+	   return categoryOptions
+   }
+   def getIndiaCategory(){
 	   def categoryOptions = [
 		   ALL: "All Categories",
 		   ANIMALS: "Animals",
@@ -1224,20 +1259,11 @@ class ProjectService {
 		   HEALTH: "Health",
 		   SOCIAL_INNOVATION: "Social Innovation",
 		   RELIGION: "Religion",
-		   OTHER: "Other",
+		   OTHER: "Other"
 	   ]
 	   return categoryOptions
-	   }
-	def getDiscoverLeftCategory(){
-		def categoryOptions = [
-			ALL: "All Categories",
-			NON_PROFITS: "Non Profits",
-			FILM: "Film",
-			CIVIC_NEEDS: "Civic Needs",
-			COMMUNITY: "Community"
-		]
-		return categoryOptions
 	}
+   
 	def getDiscoverTopCategory(){
 		def categoryOptions = [
 			PASSION: "PASSION",
@@ -1970,22 +1996,41 @@ class ProjectService {
     def filterByCategory(def categories, def currentEnv){
         def projects = getValidatedProjects(currentEnv)
         List list =[]
-        if (categories == "All"){
+        if (categories == "All" || categories=="Country"){
             return projects
         } else {
 			projects.each{
 				String str = it.category
 				String strSocialCategory = it.usedFor
 				String strNonProfit = "NON_PROFITS"
+				String strSocialGood = "Social_Innovation"
+				Map countries = getCountry()
+				String strCountryCategory = countries.getAt(it.beneficiary.country)
+				
 				if (str.equalsIgnoreCase(categories)){
-					list.add(it)
-				}else if(strSocialCategory !=null && strSocialCategory.equalsIgnoreCase(categories)){
+					if(strSocialGood.equalsIgnoreCase(categories.replace("Innovation","Needs")) && strSocialCategory !=null){
+						String strSocialNeeds = strSocialGood.replace("Innovation","Needs")
+						if(strSocialCategory.equalsIgnoreCase(strSocialNeeds.replace('-','_'))){
+							list.add(it)
+						}
+				 	}
 					list.add(it)
 				}else if(strNonProfit.equalsIgnoreCase(categories)){
 					String strNonProfitCat = it.fundsRecievedBy
 					if(strNonProfitCat !=null && strNonProfitCat.equalsIgnoreCase(categories.replace('_','-'))){
 						list.add(it)
 					}
+				}else if(strCountryCategory !=null && strCountryCategory.equalsIgnoreCase(categories.replace('-',' '))){
+					list.add(it)
+				}else if(strSocialCategory !=null){
+				 	if(strSocialGood.equalsIgnoreCase(categories) && strSocialCategory !=null){
+						 String strSocialNeeds = strSocialGood.replace("Innovation","Needs")
+						 if(strSocialCategory.equalsIgnoreCase(strSocialNeeds.replace('-','_'))){
+							 list.add(it)
+						 }
+				 	}else if(strSocialCategory !=null && strSocialCategory.equalsIgnoreCase(categories.replace('-', '_'))){
+					 	list.add(it)
+				 	}
 				}else{
 					return null
 				}

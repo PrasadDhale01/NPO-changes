@@ -69,17 +69,23 @@ class ProjectController {
     ]
 
     def list = {
-        def categoryOptions = projectService.getCategory()
-		def discoverLeftCategoryOptions= projectService.getDiscoverLeftCategory()
+        def countryOptions = projectService.getCountry()
+		def currentEnv = Environment.current.getName()
+		def discoverLeftCategoryOptions
+		if(currentEnv =="testIndia" || currentEnv=="stagingIndia" || currentEnv=="prodIndia"){
+			discoverLeftCategoryOptions = projectService.getIndiaCategory()
+		}else{
+			discoverLeftCategoryOptions=projectService.getCategory()
+		}
         def sortsOptions = projectService.getSorts()
-        def currentEnv = Environment.current.getName()
+        
         def projects = projectService.getValidatedProjects(currentEnv)
         def selectedCategory = "All Categories"
         if (projects.size < 1) {
             flash.catmessage="There are no campaigns"
-            render (view: 'list/index', model: [categoryOptions: categoryOptions, sortsOptions: sortsOptions,discoverLeftCategoryOptions: discoverLeftCategoryOptions])
+            render (view: 'list/index', model: [countryOptions: countryOptions, sortsOptions: sortsOptions,discoverLeftCategoryOptions: discoverLeftCategoryOptions])
         } else {
-            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv, categoryOptions: categoryOptions, sortsOptions: sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv, countryOptions: countryOptions, sortsOptions: sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
         }
     }
 
@@ -91,8 +97,13 @@ class ProjectController {
 	def search () {
         def currentEnv = Environment.current.getName()
 		def query = params.q
-		def categoryOptions = projectService.getCategory()
-		def discoverLeftCategoryOptions=projectService.getDiscoverLeftCategory()
+		def countryOptions = projectService.getCountry()
+		def discoverLeftCategoryOptions
+		if(currentEnv =="testIndia" || currentEnv=="stagingIndia" || currentEnv=="prodIndia"){
+			discoverLeftCategoryOptions = projectService.getIndiaCategory()
+		}else{
+			discoverLeftCategoryOptions=projectService.getCategory()
+		}
 		def sortsOptions = projectService.getSorts()
 		if(query) {
 			List searchResults = projectService.search(query, currentEnv)
@@ -101,7 +112,7 @@ class ProjectController {
 				redirect(action:"list")
 			} else {
 				searchResults.sort{x,y -> x.title<=>y.title ?: x.story<=>y.story}
-				render(view: "list/index", model:[projects: searchResults, categoryOptions:categoryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+				render(view: "list/index", model:[projects: searchResults, countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
 			}
 		} else {
 			redirect(controller: "home", action: "index")
@@ -500,10 +511,17 @@ class ProjectController {
             def currentUser = userService.getCurrentUser()
             
             if (user == currentUser) {
-                def categoryOptions = projectService.getCategoryList()
+				def currentEnv = Environment.current.getName()
+				def categoryOptions 
+				if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
+					categoryOptions = projectService.getIndiaCategoryList()
+				}else{
+					categoryOptions = projectService.getCategoryList()
+				}
+                
                 def country = projectService.getCountry()
                 def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
-                def currentEnv = Environment.current.getName()
+                
                 def endDate = projectService.getProjectEndDate(project)
                 def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
                 def date = new Date();
@@ -600,8 +618,13 @@ class ProjectController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def edit() {
 		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
-		def categoryOptions = projectService.getCategoryList()
-        def currentEnv = Environment.current.getName()
+		def currentEnv = Environment.current.getName()
+		def categoryOptions 
+		if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
+			categoryOptions = projectService.getIndiaCategoryList()
+		}else{
+			categoryOptions = projectService.getCategoryList()
+		}
 		def vanityTitle = params.projectTitle
 		def user = project.user
 		def country = projectService.getCountry()
@@ -1131,30 +1154,61 @@ class ProjectController {
 	}
 
 	def category (){
-		def category = params.category
-		redirect(action: 'categoryFilter', controller:'project',params:[category: category])
+		def category
+		if(params.category){
+		    if(params.category.equalsIgnoreCase("Campaign category")){
+			    redirect(action:'list', controller:'project')
+		    }else{
+			    category=params.category.replace(' ', '-')
+			    redirect(url:'/campaigns/category/'+ category)
+		    }
+		}else if(params.usedfor){
+			category=params.usedfor
+			redirect(action: 'categoryFilter', controller:'project',params:[usedfor: category])
+		}else if(params.country){
+			if(params.country.equalsIgnoreCase("Country")){
+				redirect(action:'list', controller:'project')	
+			}else{
+				category = params.country.replace(' ', '-')
+				redirect(action: 'categoryFilter', controller:'project',params:[country: category])
+			}
+		}
+		
 	}
 
 	def categoryFilter() {
-		def categoryOptions = projectService.getCategory()
-		def discoverLeftCategoryOptions=projectService.getDiscoverLeftCategory()
+		def countryOptions = projectService.getCountry()
+		def currentEnv = Environment.current.getName()
+		def discoverLeftCategoryOptions
+		if(currentEnv =="testIndia" || currentEnv=="stagingIndia" || currentEnv=="prodIndia"){
+			discoverLeftCategoryOptions = projectService.getIndiaCategory()
+		}else{
+			discoverLeftCategoryOptions=projectService.getCategory()
+		}
 		def sortsOptions = projectService.getSorts()
-        def currentEnv = Environment.current.getName()
-		def category = params.category
+		def category
+		if(params.category){
+			category=params.category
+		}else if(params.usedfor){
+			category=params.usedfor
+		}else if(params.country){
+			category=params.country
+		}
+		
 		def project
-		if (category == "Social Innovation"){
+		if (category == "Social-Innovation"){
 			project = projectService.filterByCategory("SOCIAL_INNOVATION", currentEnv)
-		}else if (category == "Civic Needs"){
+		}else if (category == "Civic-Needs"){
 			project = projectService.filterByCategory("CIVIC_NEEDS", currentEnv)
-		}else if (category == "Non Profits"){
+		}else if (category == "Non-Profits"){
 			project = projectService.filterByCategory("NON_PROFITS", currentEnv)
-		}else if (category == "All Categories"){
+		}else if (category == "All-Categories"){
 			project = projectService.filterByCategory("All", currentEnv)
 		} else {
 			project = projectService.filterByCategory(category, currentEnv)
 		}
         flash.catmessage = (project) ? "" : "No campaign found."
-        render (view: 'list/index', model: [projects: project, selectedCategory:category, categoryOptions:categoryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+        render (view: 'list/index', model: [projects: project, selectedCategory:category.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
 	}
 
     def addTeam() {
@@ -1343,22 +1397,34 @@ class ProjectController {
 	}
 
 	def campaignsSorts(){
-		def sorts = (params.sorts == 'Successful (100% +)') ? 'Successful' : params.sorts
-		redirect(action:'sortCampaign', controller: 'project',params:[query: sorts])
+		def sorts = params.sorts.replace(' ','-')
+		
+		if(sorts.equalsIgnoreCase('Sort-by')){
+			redirect(action:'list', controller:'project')
+		}else{
+		 redirect(action:'sortCampaign', controller: 'project',params:[query: sorts])
+		}
 	}
 
 	def sortCampaign(){
-		def categoryOptions = projectService.getCategory()
-		def discoverLeftCategoryOptions=projectService.getDiscoverLeftCategory()
-		def sortsOptions = projectService.getSorts()
+		def countryOptions = projectService.getCountry()
 		def environment = Environment.current.getName()
-		def sorts = (params.query == 'Successful') ? 'Successful (100% +)' : params.query
+		def discoverLeftCategoryOptions
+		if(environment =="testIndia" || environment=="stagingIndia" || environment=="prodIndia"){
+			discoverLeftCategoryOptions = projectService.getIndiaCategory()	
+		}else{
+			discoverLeftCategoryOptions=projectService.getCategory()
+		}
+		def sortsOptions = projectService.getSorts()
+		def sorts = params.query.replace(' ','-')
+		
 		def campaignsorts = projectService.isCampaignsorts(sorts, environment)
+		
 		if(!campaignsorts){
 			flash.catmessage="No campaign found."
-			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts, categoryOptions:categoryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
 		} else {
-			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts, categoryOptions:categoryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
 		}
 	}
     
@@ -1559,6 +1625,24 @@ class ProjectController {
             render ''
         }
     }
+	
+	def teamsMobileList() {
+		if (params.projectId && params.fr){
+			Project project = projectService.getProjectById(params.projectId)
+			
+			def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)
+			def teamOffset = teamObj.maxrange
+			def teams = teamObj.teamList
+			def totalteams = teamObj.teams
+			
+			def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr]
+			if (request.xhr) {
+				render(template: "show/teamgridmobile", model: model)
+			}
+		} else {
+			render ''
+		}
+	}
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def contributionsList() {
@@ -1683,7 +1767,6 @@ class ProjectController {
             def maxSelectedPerkAmount = rewardService.getMostSelectedPerkAmountForCampaign(project)
             def numberOfComments = project.comments.size()
             def numberOfUpdates = project.projectUpdates.size()
-            def teams = projectService.getValidatedTeamForCampaign(project)
             def numberOfTeams = projectService.getEnabledTeam(project)
             def disabledTeams = projectService.getDiscardedTeams(project)
             def highestContribution = contributionService.getHighestContributionDay(project)

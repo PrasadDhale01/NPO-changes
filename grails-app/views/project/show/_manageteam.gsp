@@ -13,7 +13,7 @@
    </div>
 </g:if>
 <div class="col-md-12 col-sm-12 col-xs-12"></div>
-<div class="pill-buttons">
+<div class="pill-buttons show-teams-top">
 <g:if test="${!totalteams.isEmpty()}">
 	<ul class="nav nav-pills">
 		<li data-toggle="tab" class="active show-team col-md-4 col-sm-4 col-xs-4 button-team-show">
@@ -28,22 +28,22 @@
 		</li>
 		<g:if test="${!isTeamExist && project.validated}">
 		    <g:if test="${!ended}">
-			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
+			    <li class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show hidden-xs">
 			        <g:form controller="project" action="addTeam" id="${project.id}">
 					    <input type="submit" value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember text-center btn btn-default btn-md manage-team all-place"/>
 					</g:form> 
 			    </li>
 		    </g:if>
 		    <g:else>
-		        <li class="col-md-4 col-sm-4 col-xs-4 show-team-button">
+		        <li class="col-md-4 col-sm-4 col-xs-4 show-team-button hidden-xs">
                     <input value="Join Us" class="col-md-12 col-sm-12 col-xs-12 inviteteammember disableteambutton text-center btn btn-md all-place" readonly/>
                 </li>
 		    </g:else>
 		</g:if>
 		<g:else>
 		    <g:if test="${(currentFundraiser == currentUser || isCrUserCampBenOrAdmin) && project.validated}">
-                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show">
-                   <a class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team" data-toggle="dropdown" aria-expanded="false">
+                <li data-toggle="tab" class="col-md-4 col-sm-4 col-xs-4 show-team-button button-team-show sh-teamtabmobiles sh-manageteamtile">
+                   <a class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember dropdown-toggle manage-team sh-mangetile" data-toggle="dropdown" aria-expanded="false">
 			           Activity <span class="caret"></span>
 			       </a>
 			       <ul class="dropdown-menu TW-dropdown-height" role="menu">
@@ -69,7 +69,7 @@
 	<div class="teamtileseperator"></div>
 
     <div class="tab-content">
-        <div class="tab-pane active col-md-12 col-sm-12 col-xs-12" id="team">
+        <div class="tab-pane active sh-alignedteamtiles col-md-12 col-sm-12 col-xs-12" id="team">
             <div class="teamList" id="teamList">
                 <g:render template="show/teamgrid"/>
             </div>

@@ -43,3 +43,229 @@ input.customVanityUrlStaging{
 input.customVanityUrlProd{
 	width:138%;
 }
+
+input.shortUrlText {
+    width: 215px;
+    border: none;
+}
+
+.glyphicon-link-color{
+    background-color: #9D5A5A;
+}
+
+.glyphicon-show-link-color:hover{
+    background-color: #880000;
+}
+
+.glyphicon-show-link-color-hover{
+    background-color: #880000 !important;
+}
+
+.glyphicon-show-link-color{
+    background-color:gray;
+}
+
+.glyphicon-support-color{
+    background-color: #FA8258;
+    margin-right: 5px !important;
+}
+
+.glyphicon-envelope-color{
+ background-color: #fa58ac;
+ margin-right: 5px !important;
+}
+
+.glyphicon-design, .glyphicon-design:hover, .glyphicon-design:active, .glyphicon-design:visited, .glyphicon-design:after, .glyphicon-design:focus{
+    color: white;
+    padding: 7px;
+    border-radius: 50%;
+    font-size: 19px;
+    left: 3px;
+    top: 2px;
+    text-decoration: none;
+}
+
+.glyphicon-design-acknowledge, .glyphicon-design-acknowledge:hover, .glyphicon-design-acknowledge:active, .glyphicon-design-acknowledge:visited, .glyphicon-design-acknowledge:after, .glyphicon-design-acknowledge:focus{
+    color: white;
+    padding: 9px;
+    border-radius: 50%;
+    font-size: 22px;
+    left: 3px;
+    top: 2px;
+    text-decoration: none;
+}
+
+.popoverClass .popover-content button.close, .popoverClassMob .popover-content button.close, .popoverClassManagePage .popover-content button.close, .popoverClassMobManagePage .popover-content button.close{
+    position: absolute;
+    top: 0;
+    right: 8px;
+}
+
+.popoverClass .popover, .popoverClass .popover-title, .popoverClassMob .popover, .popoverClassMob .popover-title, .popoverClassManagePage .popover, .popoverClassManagePage .popover-title, .popoverClassMobManagePage .popover, .popoverClassMobManagePage .popover-title{
+    background-color: whitesmoke;
+    border-color: whitesmoke;
+    color:black;
+}
+
+.popoverClass .popover-content, .popoverClassMob .popover-content, .popoverClassManagePage .popover-content, .popoverClassMobManagePage .popover-content{
+    background-color: white;
+    color:black;
+}
+
+.popoverClass .popover.bottom > .arrow:after, .popoverClassManagePage .popover.bottom > .arrow:after{
+    border-bottom-color: whitesmoke !important;
+}
+
+.popoverClassMob .popover.left > .arrow::after, .popoverClassMobManagePage .popover.left > .arrow::after{
+    border-left-color: whitesmoke !important;
+}
+
+.shortUrlglyphicon, .shortUrlglyphiconMob{
+   cursor:pointer;
+}
+
+#embedTilemodal .modal-dialog.modal-embed-with-video{
+    width:830px;
+}
+
+.glyphicon-play-bg-color{
+    background-color: rgb(216, 216, 216);
+    border-radius: 4px;
+    margin-top: 12px;
+}
+
+.glyphicon-play-padding-sm{
+    font-size: 10px;
+    padding: 5px 6px;
+}
+
+.glyphicon-play-padding-md{
+    font-size: 15px;
+    padding: 9px 13px;
+}
+
+.glyphicon-play-padding-lg{
+    font-size: 20px;
+    padding: 13px 18px;
+}
+
+.customSizeText{
+    width:51px;
+}
+
+.custom-width{
+    width:20px;
+}
+
+.margin-lg-left, .margin-md-left, .margin-custom-left{
+    margin-left: 15px;
+}
+
+.margin-sm-left{
+    margin-left: 12px;
+}
+
+.lbl-width{
+    width:54px;
+    margin-left:-3px;
+}
+
+.selected{
+    background-color: #e8f6ff;
+    border: 1px solid #00a0ff;
+    -webkit-box-shadow: #e8f6ff 0 0 0 3px;
+    -moz-box-shadow: #e8f6ff 0 0 0 3px;
+    -ms-box-shadow: #e8f6ff 0 0 0 3px;
+    -o-box-shadow: #e8f6ff 0 0 0 3px;
+    box-shadow: #e8f6ff 0 0 0 3px;
+    border-radius: 4px;
+}
+
+.video-play-md, .video-play-lg{
+    width:95px;
+}
+
+.video-play-sm.selected, .video-play-sm.video-play-hover{
+    height:65px;
+    width: 70px;
+}
+
+.video-play-md.selected, .video-play-md.video-play-hover{
+    height:80px;
+    width:95px;
+}
+.video-play-lg.selected, .video-play-lg.video-play-hover{
+    height:88px;
+    width:95px;
+}
+
+.video-play-custom.selected, .video-play-custom.video-play-hover{
+    height: 80px;
+    width: 150px;
+}
+
+.video-play-hover:hover{
+    background-color: #e8f6ff;
+    -webkit-box-shadow: #e8f6ff 0 0 0 3px;
+    -moz-box-shadow: #e8f6ff 0 0 0 3px;
+    -ms-box-shadow: #e8f6ff 0 0 0 3px;
+    -o-box-shadow: #e8f6ff 0 0 0 3px;
+    box-shadow: #e8f6ff 0 0 0 3px;
+    border-radius: 4px;
+}
+
+textarea.textarea-embed-video{
+    overflow:hidden;
+    width:93%;
+}
+textarea.textarea-embed-tile{
+    overflow:hidden;
+    width:100%;
+}
+
+.embed-video-in-modal{
+    width:93%;
+    height:270px;
+}
+
+.modal-body.embed-modal-body{
+    padding:5px;
+}
+
+.tab-clear{
+    height:17px;
+}
+
+.embedIcon-left{
+    margin-left: 5px;
+    
+}
+
+.glyphicon-show-design {
+    border-radius: 50%;
+    color: white;
+    font-size: 16px;
+    padding: 7px;
+    text-decoration: none;
+    top: 12px;
+    left: 2px;
+}
+
+.embedIcon-manage-left{
+    margin-left:2px;
+}
+
+.only-tile-embed-modal .fedu.thumbnail.c-thumbnail{
+    width:72%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.textarea-of-embed-tile{
+    overflow:hidden;
+    width:74%
+}
+
+.modal-tile{
+    width:415px;
+}

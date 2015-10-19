@@ -381,7 +381,6 @@ class ProjectService {
 	 
 	 def getEmailDetails(def params){
 		 def project = Project.get(params.id)
-		 def contribution = Contribution.get(params.long('cb'))
 		 def fundraiser = User.get(params.long('fr'))
 		 String emails = params.emails
 		 String name = params.name
@@ -390,7 +389,7 @@ class ProjectService {
 		 def emailList = emails.split(',')
 		 emailList = emailList.collect { it.trim() }
 
-		 mandrillService.shareContribution(emailList, name, message,project,contribution,fundraiser)
+		 mandrillService.shareContribution(emailList, name, message,project,fundraiser)
 	 }
 
 	def getTwitterShareUrlForCampaign(Project project, def fundraiser, def base_url){
@@ -3339,7 +3338,6 @@ class ProjectService {
         def percentageContribution = contributionService.getPercentageContributionForProject(project)
         def numberOFPerks = (project.rewards.size() > 1) ? project.rewards.size() : 0
         def maxSelectedPerkAmount = rewardService.getMostSelectedPerkAmountForCampaign(project)
-        def teams = getEnabledTeam(project)
         def numberOfTeams = getValidatedTeamForCampaign(project)
         def disabledTeams = getDiscardedTeams(project)
         def highestContribution = contributionService.getHighestContributionDay(project)
@@ -3379,6 +3377,70 @@ class ProjectService {
        }
        mandrillService.sendEmailToNonUserContributors(nonUserContributors)
     }
+	
+    def getShortenUrl(def projectId, def user_name){
+        def username
+        def code
+        if (projectId){
+            if (user_name){
+                username = userService.getUsernameFromVanityName(user_name)
+                if (!username){
+                    Project project = Project.get(projectId)
+                    username = project.user.username
+                }
+            } else {
+                Project project = Project.get(projectId)
+                username = project.user.username
+            }
+
+            def urlShortener = UrlShortener.findByProjectIdAndUsername(projectId, username)
+            if (urlShortener){
+                code = urlShortener.shortenUrl
+            } else {
+                code = getAlphaNumbericRandomUrl()
+                new UrlShortener(
+                    shortenUrl: code,
+                    projectId: projectId,
+                    username : username
+                ).save(failOnError:true)
+            }
+        }
+        return code
+    }
+
+    def getAlphaNumbericRandomUrl() {
+        String chars = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        int numberOfCodes = 0;//controls the length of alpha numberic string
+        String code = "";
+        while (numberOfCodes < 8) {
+            char c = chars.charAt((int) (Math.random() * chars.length()));
+            code += c;
+            numberOfCodes++;
+        }
+        return code;
+    }
+
+	def getCampaignFromUrl(url){
+		def projectId
+		def vanityTitle
+		def username
+		def vanityName
+		def details
+		def urlShortener = UrlShortener.findByShortenUrl(url)
+		if (urlShortener){
+			projectId = urlShortener.projectId
+			username = urlShortener.username
+			if (projectId){
+				vanityTitle = getVanityTitleFromId(projectId)
+			}
+			if (username){
+				vanityName = userService.getVanityNameFromUsername(username, projectId)
+			}
+		}
+
+		details = [projectTitle:vanityTitle, fr:vanityName]
+		return details
+	}
 
     @Transactional
     def bootstrap() {

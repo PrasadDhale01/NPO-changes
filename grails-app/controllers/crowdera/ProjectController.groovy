@@ -147,25 +147,28 @@ class ProjectController {
 		forward(action:'show', params:['projectTitle':params.projectTitle,'fr':params.name, 'isPreview':true, 'tile':false])
 	}
 
-	def show() {
-		def projectId
-		def username
-		if (params.projectTitle){
-			projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
-			username = userService.getUsernameFromVanityName(params.fr)
-		} else {
-			projectId = params.id
-			username = params.fr
-		}
-		Project project = projectService.getProjectById(projectId)
-		if (project) {
-			User user = userService.getUserByUsername(username)
-			def currentUser = userService.getCurrentUser()
+    def show() {
+        def projectId
+        def username
+        if (params.projectTitle){
+            projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+            username = userService.getUsernameFromVanityName(params.fr)
+        } else {
+            projectId = params.id
+            username = params.fr
+        }
+        Project project = projectService.getProjectById(projectId)
+        if (project) {
+            def shortUrl = projectService.getShortenUrl(project.id, params.fr)
+            def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            User user = userService.getUserByUsername(username)
+            def currentUser = userService.getCurrentUser()
             def currentEnv = projectService.getCurrentEnvironment()
-			def currentFundraiser = userService.getCurrentFundRaiser(user, project)
-			Team currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
-			def totalContribution = contributionService.getTotalContributionForProject(project)
-			def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+            def currentFundraiser = userService.getCurrentFundRaiser(user, project)
+            Team currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
+            def totalContribution = contributionService.getTotalContributionForProject(project)
+            def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
 
 			def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
 			def teamPercentage = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
@@ -226,7 +229,7 @@ class ProjectController {
 				totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
 				teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
 				isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
-				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile])
+				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url])
 		} else {
 		    render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
@@ -963,11 +966,14 @@ class ProjectController {
         Project project = projectService.getProjectById(projectId)
         User user = userService.getCurrentUser()
         if (project) {
+            def shortUrl = projectService.getShortenUrl(project.id, params.fr)
+            def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
             def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
             def totalContribution = contributionService.getTotalContributionForProject(project)
             def currentEnv = projectService.getCurrentEnvironment()
             def projectimages = projectService.getProjectImageLinks(project)
-            
+ 
             def teamObj = projectService.getValidatedTeam(project, params)
             def teamOffset = teamObj.maxrange
             def validatedTeam = teamObj.teamList
@@ -999,7 +1005,7 @@ class ProjectController {
                         model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
                                 discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,
                                 ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
-                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo, tile:params.tile])
+                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo, tile:params.tile, shortUrl:shortUrl, base_url:base_url])
             } else{
                 flash.prj_mngprj_message = 'Campaign Not Found'
                 render (view: 'manageproject/error', model: [project: project])
@@ -1880,6 +1886,18 @@ class ProjectController {
         messageCookie.maxAge= 3600
         response.addCookie(messageCookie)
         redirect (action : 'list', controller:'user')
+    }
+	
+    def getCampaignFromShortUrl(){
+        def url = params.url
+        def projectDetails = projectService.getCampaignFromUrl(url)
+        redirect (action:'show', params:[projectTitle:projectDetails.projectTitle, fr: projectDetails.fr])
+    }
+	
+    def embedTile(){
+        def project = projectService.getProjectFromVanityTitle(params.projectTitle)
+        def currentFundraiser = userService.getUserFromVanityName(params.fr)
+        render(view:'/project/manageproject/embedTile', model:[project:project, currentFundraiser:currentFundraiser])
     }
 
 }

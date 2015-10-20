@@ -561,6 +561,12 @@
         $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-google-gray.png");
     });
     
+    $('.show-embedIcon').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/user-images/embedicon.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/embedicon-grey.png");
+    });
+    
     /*******************************Description text length*********************/
         var counter = 1;
         $('#descarea').on('keydown', function(event) {
@@ -740,22 +746,10 @@
         var popover = $('.shortUrlglyphicon').data('bs.popover');
         if (typeof popover !== "undefined") {
             var $tip = popover.tip();
-            zindex = $tip.css('z-index');
             
             $tip.find('.close').bind('click', function () {
             	$('.glyphicon-show-link-color').removeClass('glyphicon-show-link-color-hover');
                 popover.hide();
-            });
-
-            $tip.mouseover(function () {
-                $tip.css('z-index', function () {
-                    return zindex + 1;
-                });
-            })
-                .mouseout(function () {
-                $tip.css('z-index', function () {
-                    return zindex;
-                });
             });
         }
     });
@@ -783,7 +777,6 @@
         }
     });
 
-    
     $(document).ready(function (){
     	var classActive
     	$('.tab-pane-active').each(function(){

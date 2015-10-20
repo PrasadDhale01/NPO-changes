@@ -1,16 +1,6 @@
 <%@ page import="java.text.SimpleDateFormat" %>
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="projectService" bean="projectService"/>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <r:require module="crowderacss"/>
-    <r:layoutResources />
-</head>
-<body>
 <%
     def isFundingAchieved = contributionService.isFundingAchievedForProject(project)
     def percentage = contributionService.getPercentageContributionForProject(project)
@@ -35,7 +25,7 @@
 <div class="fedu thumbnail c-thumbnail">
  <g:hiddenField name="projectId" class="projectId" id="projectId" value="${project.id}" />
  <div class="blacknwhite tile">
-  <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]" target="tab">
+  <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">
    <div class="imageWithTag">
     <div class="under">
      <div class="days-left-caption">
@@ -76,13 +66,10 @@
   </div>
  </div>
  <div class="caption tile-title-descrp project-title project-story-span tile-min-height">
-  <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" target="tab">
+  <g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}">
       ${project.title.toUpperCase()}
   </g:link>
   <div class="campaign-title-margin-bottom"></div>
      <span>${project.description}</span>
     </div>
 </div>
-    <r:layoutResources />
-</body>
-</html>

@@ -5,7 +5,7 @@
     def fundRaiser = user.username
     def shareUrl = base_url+'/c/'+shortUrl
     def embedTileUrl = base_url+'/campaign/'+vanityTitle+'/'+vanityUsername+'/embed/tile'
-    def embedCode = '<iframe src="'+embedTileUrl+'" width="310px" height="451px" frameborder="0" scrolling="no"></iframe>'
+    def embedCode = '<iframe src="'+embedTileUrl+'" width="310px" height="451px" frameborder="0" scrolling="no" class="embedTitleUrl"></iframe>'
     def embedVideoCode = '<iframe src="'+project.videoUrl+'" width="480" height="360" frameborder="0" scrolling="no"></iframe>'
 %>
 
@@ -71,7 +71,7 @@
         <a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
             <img src="//s3.amazonaws.com/crowdera/assets/google-plus-share.png" alt="Google+ Share">
         </a>
-        <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left embedIcon-manage-left social"><img src="//s3.amazonaws.com/crowdera/user-images/embedicon.png" alt="embedicon"></a>
+        <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left embedIcon-manage-left social hidden-xs"><img src="//s3.amazonaws.com/crowdera/user-images/embedicon.png" alt="embedicon"></a>
         <div class="popoverClassManagePage">
             <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphicon pull-left glyphicon glyphicon-link glyphicon-design glyphicon-link-color"></span>
             <div id="popoverConent" class="hidden">
@@ -156,52 +156,11 @@
                                 <div class="col-sm-5">
                                     <p>Widget preview</p>
                                     <textarea class="textarea-embed-tile">${embedCode}</textarea><br><br>
-                                    <g:render template="/fund/fund/fundTile"/>
+                                    <g:render template="manageproject/embedTile"/>
                                 </div>
                             </div>
                         </div>
                     </div>
-               </div>
-               <div class="visible-xs modal-dialog modal-embed-with-video">
-                   <div class="modal-content">
-                       <div class="modal-header">
-                           <button type="button" class="close" data-dismiss="modal">
-                                <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                           </button>
-                           <h4 class="modal-title"><b>Embed this widget into your website</b></h4>
-                       </div>
-                       <div class="modal-body embed-modal-body">
-                           <div class="col-sm-12">
-                               <p>Widget preview</p>
-                               <textarea class="textarea-embed-tile">${embedCode}</textarea><br><br>
-                               <g:render template="/fund/fund/fundTile"/>
-                           </div>
-                           <div class="col-sm-12">
-                               <p>Video preview</p>
-                               <textarea class="textarea-embed-video">${embedVideoCode}</textarea><br><br>
-                               <iframe src="${project.videoUrl}" class="embed-video-in-modal"></iframe><br>
-                               <p>After choosing a video size, copy and paste the embed code above.</p>
-                               <div class="mob-video-play">
-                                   <div class="col-xs-6 video-play video-play-sm video-play-hover selected text-center">
-                                       <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-sm"></span><br>
-                                       <label class="lbl-width">480 x 360</label>
-                                   </div>
-                                   <div class="col-xs-6 video-play video-play-md margin-md-left video-play-hover text-center">
-                                       <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-md"></span><br>
-                                       <label>640 x 480</label>
-                                   </div><br><br><br><br><br>
-                                   <div class="col-xs-6 video-play video-play-lg video-play-hover text-center">
-                                       <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-lg"></span><br>
-                                       <label>800 x 600</label>
-                                   </div>
-                                   <div class="col-xs-6 video-play video-play-custom video-play-hover margin-custom-left">
-                                       <label>Custom size</label><br>
-                                       <input type="text" class="customSizeText video-play-width" value="480"> x <input type="text" class="customSizeText video-play-height" value="360">
-                                   </div>
-                               </div>
-                           </div><br>
-                       </div>
-                   </div>
                </div>
           </g:if>
           <g:else>
@@ -216,7 +175,7 @@
                       <div class="modal-body only-tile-embed-modal text-center">
                           <p>Widget preview</p>
                           <textarea class="textarea-of-embed-tile">${embedCode}</textarea><br><br>
-                          <g:render template="/fund/fund/fundTile"/>
+                          <g:render template="manageproject/embedTile"/>
                       </div>
                   </div>
               </div>

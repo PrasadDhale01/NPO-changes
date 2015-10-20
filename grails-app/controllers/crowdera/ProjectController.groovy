@@ -973,6 +973,7 @@ class ProjectController {
             def totalContribution = contributionService.getTotalContributionForProject(project)
             def currentEnv = projectService.getCurrentEnvironment()
             def projectimages = projectService.getProjectImageLinks(project)
+            def vanityUsername = userService.getVanityNameFromUsername(project.user.username, project.id)
  
             def teamObj = projectService.getValidatedTeam(project, params)
             def teamOffset = teamObj.maxrange
@@ -1005,7 +1006,8 @@ class ProjectController {
                         model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
                                 discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,
                                 ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
-                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo, tile:params.tile, shortUrl:shortUrl, base_url:base_url])
+                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, vanityUsername:vanityUsername, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo, 
+								tile:params.tile, shortUrl:shortUrl, base_url:base_url])
             } else{
                 flash.prj_mngprj_message = 'Campaign Not Found'
                 render (view: 'manageproject/error', model: [project: project])

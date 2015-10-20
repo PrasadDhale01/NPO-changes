@@ -12972,3 +12972,6 @@ a#downloadEbook{
     display: unset !important;
     width: 0%;
 }
+iframe.embedTitleUrl{
+	   width: 310px !important;
+}

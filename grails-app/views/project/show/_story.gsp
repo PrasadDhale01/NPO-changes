@@ -6,7 +6,7 @@
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
     def shareUrl = base_url+'/c/'+shortUrl
     def embedTileUrl = base_url+'/campaign/'+vanityTitle+'/'+vanityUsername+'/embed/tile'
-    def embedCode = '<iframe src="'+embedTileUrl+'" width="310px" height="451px" frameborder="0" scrolling="no"></iframe>'
+    def embedCode = '<iframe src="'+embedTileUrl+'" width="310px" height="451px" frameborder="0" scrolling="no" class="embedTitleUrl"></iframe>'
     def embedVideoCode = '<iframe src="'+project.videoUrl+'" width="480" height="360" frameborder="0" scrolling="no"></iframe>'
 %>
 <div class="col-md-12">
@@ -50,8 +50,10 @@
             <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
         </a>
         <a class="social google-plus-share pull-left show-icons" id="googlePlusShare">
-            <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" alt="Google+ Share">
+            <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
         </a>
+        <a href="#" class="pull-left show-icons"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></a>
+        <span class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color"></span>
         </g:if>
         <g:else>
 <%--        <a target="_blank" class="fb-like pull-left social fbShareForSmallDevices show-icons" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">--%>
@@ -75,7 +77,7 @@
         <a class="social google-plus-share pull-left show-icons" id="googlePlusShare" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
             <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
         </a>
-        <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left show-icons"><img src="//s3.amazonaws.com/crowdera/user-images/embedicon.png" alt="embedicon"></a>
+        <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left show-icons"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" class="show-embedIcon" alt="embedicon"></a>
         <g:hiddenField name="urlShortenValue" value="${shareUrl}" id="urlShortenValue"/>
         <div class="popoverClass">
             <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color"></span>
@@ -171,7 +173,7 @@
                                 <div class="col-sm-5">
                                     <p>Widget preview</p>
                                     <textarea class="textarea-embed-tile">${embedCode}</textarea><br><br>
-                                    <g:render template="/fund/fund/fundTile"/>
+                                    <g:render template="manageproject/embedTile"/>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +192,7 @@
                       <div class="modal-body only-tile-embed-modal text-center">
                           <p>Widget preview</p>
                           <textarea class="textarea-of-embed-tile">${embedCode}</textarea><br><br>
-                          <g:render template="/fund/fund/fundTile"/>
+                          <g:render template="manageproject/embedTile"/>
                       </div>
                   </div>
               </div>

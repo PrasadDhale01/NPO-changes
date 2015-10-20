@@ -3379,6 +3379,44 @@ class ProjectService {
        }
        mandrillService.sendEmailToNonUserContributors(nonUserContributors)
     }
+    
+    def getUsersPaginatedCampaigns(List projects, def params, def max) {
+        List totalCampaigns = []
+        if (!projects.isEmpty()) {
+            def offset = params.int('offset') ?: 0
+
+            def count = projects.size()
+            def maxrange
+
+            if(offset+max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+
+            totalCampaigns = projects.subList(offset, maxrange)
+        }
+        return totalCampaigns
+    }
+
+    def getPaginatedContibutionByUser(User user,def environment, def params, def max) {
+        List contributions = getContibutionByUser(user, environment)
+        List totalContributions = []
+        if (!contributions.isEmpty()) {
+            def offset = params.int('offset') ?: 0
+
+            def count = contributions.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            totalContributions = contributions.reverse().subList(offset, maxrange)
+        }
+        return [totalContributions: totalContributions, contributions: contributions]
+    }
 
     @Transactional
     def bootstrap() {

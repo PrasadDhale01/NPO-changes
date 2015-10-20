@@ -1518,7 +1518,8 @@ footer .footerbottomsection {
 }
 
 #editavatarbutton {
-	margin-top: 10px;
+    margin-top: 10px;
+    diplay: none;
 }
 
 .profileimage {

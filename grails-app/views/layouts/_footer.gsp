@@ -36,9 +36,7 @@
 					<ul class="campaigning-menu">
 					    <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
 					    <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
-						<g:if test="${currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'}">
-							<li><a href="${resource(dir: '/crowdfunding-ebook')}">Download ebook</a></li>
-						</g:if>
+						<li><a href="${resource(dir: '/crowdfunding-ebook')}">Download ebook</a></li>
 					    <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
 					</ul>
 				    </div>
@@ -133,9 +131,7 @@
 			<ul>
 			    <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
 			    <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
-			    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'}">
-			   		<li><a href="${resource(dir: '/crowdfunding-ebook')}">Download ebook</a></li>
-			    </g:if>
+			   	<li><a href="${resource(dir: '/crowdfunding-ebook')}">Download ebook</a></li>
 			    <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
 			</ul>
 		    </div>
@@ -250,9 +246,7 @@
 			<ul>
 			    <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
 			    <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
-			    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'}">
-			   		<li><a href="${resource(dir: '/crowdfunding-ebook')}">Download ebook</a></li>
-			    </g:if>
+			   	<li><a href="${resource(dir: '/crowdfunding-ebook')}">Download ebook</a></li>
 			    <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
 			</ul>
 		

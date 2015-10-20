@@ -23,7 +23,7 @@
     <g:hiddenField name="projectamount" value="${project.amount}" id="projectamount"/>
     <g:hiddenField name="vanityUrlStatus" id="vanityUrlStatus" value="true"/>
     <input type="hidden" class="campaigndate" value="<%=numberOfDays%>"/>
-    <div class="">
+    <div class="edit-container">
         <div class="text-center">
              <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
 	            <a class=" col-sm-2 col-xs-2 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start TW-cr-sec-header-start-icon-width" src="//s3.amazonaws.com/crowdera/assets/start-Icon-White.png" alt="Start"></div><div class="hidden-xs">Start</div></a>

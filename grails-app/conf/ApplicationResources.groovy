@@ -121,6 +121,12 @@ modules = {
         dependsOn 'crowderajs'
         resource url: 'js/user.js'
     }
+	
+	/*Ebook*/
+	ebookjs{
+		dependsOn 'crowderajs'
+		resource url: 'js/ebook/ebook.js'
+	}
 
     /* CSS */
     fontawesomecss {

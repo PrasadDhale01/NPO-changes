@@ -3017,7 +3017,34 @@ ul.menu{
 } 
 .pie, .c100 .bar.showprogressBar, .c100.p51 .fill.showprogressBar, .c100.p52 .fill.showprogressBar, .c100.p53 .fill.showprogressBar, .c100.p54 .fill.showprogressBar, .c100.p55 .fill.showprogressBar, .c100.p56 .fill.showprogressBar, .c100.p57 .fill.showprogressBar, .c100.p58 .fill.showprogressBar, .c100.p59 .fill.showprogressBar, .c100.p60 .fill.showprogressBar, .c100.p61 .fill.showprogressBar, .c100.p62 .fill.showprogressBar, .c100.p63 .fill.showprogressBar, .c100.p64 .fill.showprogressBar, .c100.p65 .fill.showprogressBar, .c100.p66 .fill.showprogressBar, .c100.p67 .fill.showprogressBar, .c100.p68 .fill.showprogressBar, .c100.p69 .fill.showprogressBar, .c100.p70 .fill.showprogressBar, .c100.p71 .fill.showprogressBar, .c100.p72 .fill.showprogressBar, .c100.p73 .fill.showprogressBar, .c100.p74 .fill.showprogressBar, .c100.p75 .fill.showprogressBar, .c100.p76 .fill.showprogressBar, .c100.p77 .fill.showprogressBar, .c100.p78 .fill.showprogressBar, .c100.p79 .fill.showprogressBar, .c100.p80 .fill.showprogressBar, .c100.p81 .fill.showprogressBar, .c100.p82 .fill.showprogressBar, .c100.p83 .fill.showprogressBar, .c100.p84 .fill.showprogressBar, .c100.p85 .fill.showprogressBar, .c100.p86 .fill.showprogressBar, .c100.p87 .fill.showprogressBar, .c100.p88 .fill.showprogressBar, .c100.p89 .fill.showprogressBar, .c100.p90 .fill.showprogressBar, .c100.p91 .fill.showprogressBar, .c100.p92 .fill.showprogressBar, .c100.p93 .fill.showprogressBar, .c100.p94 .fill.showprogressBar, .c100.p95 .fill.showprogressBar, .c100.p96 .fill.showprogressBar, .c100.p97 .fill.showprogressBar, .c100.p98 .fill.showprogressBar, .c100.p99 .fill.showprogressBar, .c100.p100 .fill.showprogressBar {
     border: 0.16em solid #f6bf0b !important;
-} 
+}
+.home-campaign-tile .c100:after {
+    position: absolute;
+    top: 0.15em;
+    left: 0.15em;
+    display: block;
+    content: " ";
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    background-color: whitesmoke;
+    width: 0.68em;
+    height: 0.68em;
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+    -webkit-transition-timing-function: ease-in;
+    -moz-transition-timing-function: ease-in;
+    -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+}
 .thomas-owens-testimonial-div{
 	padding-left:45px;
 }
@@ -5354,6 +5381,84 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.TW-ebook-footer {
+		bottom: 0 !important;
+		display: inline-flex;
+		left: 0;
+		margin-bottom: 10px;
+		position: absolute !important;
+		right: 0;
+	}
+	.TW-postcampaign-img {
+	   height: 130px !important;
+	   margin-right: 30px;
+	   width: 341px;
+	}
+	.ebook-container{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:275px !important;
+	}
+	.TW-ebook-content {
+	   margin-top: 40px;
+	}
+	.TW-ebook-page-borders {
+	   background-color: #fff;
+	   border: 5px solid #f6bf08;
+	   border-radius: 3px;
+	   height: 768px;
+	   margin-bottom: 68px;
+	   width: 100%;
+	}
+	.TW-postcmpgn-section1 > h3 {
+	   font-family: "open sans";
+	   font-size: 13px !important;
+	   font-weight: 600;
+	   margin-bottom: 0;
+	}
+	.TW-postcampaign-inner-ul li {
+		font-size: 10px !important;
+		line-height: 16px !important;
+		margin-bottom: 15px !important;
+		text-align: justify;
+	}
+	.TW-postcampaign-ul {
+		padding: 15px !important;
+		text-align: justify;
+	}
+	.TW-postcampaign-inner-ul {
+	   padding-left: 10px !important;
+	}
+	.TW-postcampaign-ul > li {
+	   color: #4c4c4c;
+	   font-size: 10px !important;
+	   line-height: 18px !important;
+	   margin-bottom: 15px !important;
+	}
+	.TW-ebook-h3Decoration {
+		font-family: "open sans";
+		font-size: 13px !important;
+		font-weight: 600;
+		margin-bottom: 20px;
+	}
+	.TW-ebooklaunch-img {
+		height: 150px !important;
+		margin-right: 19px !important;
+		width: 83px !important;
+	}
+	.TW-ebook-ul {
+	   float: left;
+	   padding: 5px 15px 10px !important;
+	   text-align: justify;
+	}
+	.TW-ebook-ul li {
+		color: #4c4c4c;
+		font-size: 10px !important;
+		line-height: 16px !important;
+		margin-bottom: 15px !important;
+		padding-left: 20px;
+	}
 	.TW-discover-header-img > img {
 		height: 50px;
 		width: 100%;
@@ -6445,6 +6550,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	.ebook-container {
+	   display: block;
+	   margin-left: auto;
+	   margin-right: auto;
+	   width: 80% !important;
+	}
     .fund-container{
         width:750px !important ;
     }
@@ -6523,9 +6634,71 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-        .TW-discover-pane-width{
-           width:17.5% !important;
-        }
+	.TW-ebook-footer {
+		bottom: 0 !important;
+		display: inline-flex;
+		left: 0;
+		margin-bottom: 10px;
+		position: absolute !important;
+		right: 0;
+	}
+	.TW-projectDesc-img img{
+		height:170px !important;
+	}
+	.TW-postcampaign-img {
+	   height: 145px !important;
+	   margin-right: 30px;
+	   width: 290px !important;
+	}
+	.TW-ebooklaunch-img {
+		height: 190px !important;
+		margin-right: 30px;
+		width: 195px !important;
+	}
+	.TW-postcampaign-inner-ul li {
+		font-size: 13px !important;
+		line-height: 20px !important;
+		margin-bottom: 12px !important;
+		text-align: justify;
+	}
+	.TW-ebook-ul li {
+		color: #4c4c4c;
+		font-size: 13px !important;
+		line-height: 20px !important;
+		margin-bottom: 10px !important;
+		padding-left: 20px;
+	}
+	.TW-postcampaign-ul > li {
+		color: #4c4c4c;
+		font-size: 13px !important;
+		line-height: 20px !important;
+		margin-bottom: 15px !important;
+	}
+	.TW-ebook-content{
+		margin-top:30px;
+	}
+	.TW-Prelaunch-img {
+	   height: 239px;
+	   margin-bottom: 15px;
+	   padding: 0 !important;
+	   width: 100%;
+	}
+	.TW-ebook-ul {
+	   float: left;
+	   padding: 12px 23px 10px !important;
+	   text-align: left;
+	}
+	.TW-ebook-page-borders {
+	   background-color: #fff;
+	   border: 5px solid #f6bf08;
+	   border-radius: 3px;
+	   height: 745px;
+	   margin-bottom: 68px;
+	   width: 100%;
+	}
+    .TW-discover-pane-width{
+       width:17.5% !important;
+    }
 	.TW-discover-pg-tile-width .tile-pad {
 	   padding: 0;
 	   width: 290px !important;
@@ -7984,6 +8157,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	.ebook-container {
+	   display: block;
+	   margin-left: auto;
+	   margin-right: auto;
+	   width: 62% !important;
+	}
     .fund-tile .tile-pad {
         padding: 0px;
         width: 270px;
@@ -8208,6 +8387,69 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	.TW-ebook-footer {
+	   bottom: 0 !important;
+	   display: inline-flex;
+	   left: 0;
+	   margin-bottom: 10px;
+	   position: absolute !important;
+	   right: 0;
+	}
+	.TW-projectDesc-img img {
+		height: 170px !important;
+	}
+	.ebook-container {
+	   display: block;
+	   margin-left: auto;
+	   margin-right: auto;
+	   width: 62% !important;
+	}
+	.TW-ebooklaunch-img {
+		height: 190px !important;
+		margin-right: 30px;
+		width: 195px !important;
+	}
+	.TW-postcampaign-inner-ul li {
+		font-size: 13px !important;
+		line-height: 20px !important;
+		margin-bottom: 12px !important;
+		text-align: justify;
+	}
+	.TW-ebook-ul li {
+		color: #4c4c4c;
+		font-size: 13px !important;
+		line-height: 20px !important;
+		margin-bottom: 10px !important;
+		padding-left: 20px;
+	}
+	.TW-postcampaign-ul > li {
+		color: #4c4c4c;
+		font-size: 13px !important;
+		line-height: 20px !important;
+		margin-bottom: 8px !important;
+	}
+	.TW-ebook-content{
+		margin-top:30px;
+	}
+	.TW-Prelaunch-img {
+	   height: 239px;
+	   margin-bottom: 15px;
+	   padding: 0 !important;
+	   width: 100%;
+	}
+	.TW-ebook-ul {
+	   float: left;
+	   padding: 12px 23px 10px !important;
+	   text-align: left;
+	}
+	.TW-ebook-page-borders {
+	   background-color: #fff;
+	   border: 5px solid #f6bf08;
+	   border-radius: 3px;
+	   height: 745px;
+	   margin-bottom: 68px;
+	   width: 100%;
+	}
 	.TW-dis-tab-padding {
 	   padding-left: 0px;
 	   padding-right: 0px;
@@ -10720,6 +10962,84 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.TW-ebook-footer {
+		bottom: 0 !important;
+		display: inline-flex;
+		left: 0;
+		margin-bottom: 10px;
+		position: absolute !important;
+		right: 0;
+	}
+	.TW-postcampaign-img {
+	   height: 130px !important;
+	   margin-right: 30px;
+	   width: 341px;
+	}
+	.ebook-container{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:275px !important;
+	}
+	.TW-ebook-content {
+	   margin-top: 40px;
+	}
+	.TW-ebook-page-borders {
+	   background-color: #fff;
+	   border: 5px solid #f6bf08;
+	   border-radius: 3px;
+	   height: 768px;
+	   margin-bottom: 68px;
+	   width: 100%;
+	}
+	.TW-postcmpgn-section1 > h3 {
+	   font-family: "open sans";
+	   font-size: 13px !important;
+	   font-weight: 600;
+	   margin-bottom: 0;
+	}
+	.TW-postcampaign-inner-ul li {
+		font-size: 11px !important;
+		line-height: 17px !important;
+		margin-bottom: 5px !important;
+		text-align: justify;
+	}
+	.TW-postcampaign-ul {
+		padding: 5px 17px !important;
+		text-align: justify;
+	}
+	.TW-postcampaign-inner-ul {
+	   padding-left: 10px !important;
+	}
+	.TW-postcampaign-ul > li {
+	   color: #4c4c4c;
+	   font-size: 11px !important;
+	   line-height: 18px !important;
+	   margin-bottom: 2px !important;
+	}
+	.TW-ebook-h3Decoration {
+		font-family: "open sans";
+		font-size: 13px !important;
+		font-weight: 600;
+		margin-bottom: 20px;
+	}
+	.TW-ebooklaunch-img {
+		height: 150px !important;
+		margin-right: 19px !important;
+		width: 83px !important;
+	}
+	.TW-ebook-ul {
+	   float: left;
+	   padding: 5px 14px 10px !important;
+	   text-align: justify;
+	}
+	.TW-ebook-ul li {
+		color: #4c4c4c;
+		font-size: 11px !important;
+		line-height: 17px !important;
+		margin-bottom: 6px !important;
+		padding-left: 20px;
+	}
 	.TW-scrollHeaderBackColor{
 		background-color:#01bbd2 !important;
 	}
@@ -10751,12 +11071,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.alert.alert-danger.flashmsg-width {
 		margin-left: -8px;
 		width: 110%;
-	}
-	.ebook-container{
-		display:block;
-		margin-left:auto;
-		margin-right:auto;
-		width:90% !important;
 	}
 	.TW-socialicons {
 		display: block;
@@ -11974,6 +12288,138 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	margin-right:auto;
 	width:50%;
 }
+.ebook-page-title{
+	border-left: 20px solid transparent;
+	border-right: 0 solid transparent;
+	border-top: 34px solid #f6bf08;
+	color: #006083;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	width: 200px;
+}
+.pull-right.ebook-page-title > h3 {
+    font-family: "Open Sans";
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+    top: -29px;
+}
+.pull-right.ebook-page-title > h4 {
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    top: -28px;
+}
+.pull-right.ebook-page-title > h5 {
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    top: -26px;
+}
+.TW-ebook-page-borders{
+	background-color:#fff;
+	border: 5px solid #F6BF08;
+	border-radius: 3px;
+	margin-bottom: 68px;
+	width: 100%;
+}
+.ebook-launch-container{
+	margin-top:50px;
+}
+.TW-ebooklaunch-img {
+    height: 250px;
+    margin-right: 30px;
+    width: 230px;
+}
+.TW-Prelaunch-img {
+    height: 239px;
+    margin-bottom:15px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-settingItUp-img{
+    margin-top:50px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-settingItUp-img2{
+    margin-top:50px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-settingItUp-img2 img{
+	margin-bottom:25px;
+}
+.TW-postcmpgn-section1 > h3{
+	font-family: "open sans";
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.TW-ebook-h3Decoration {
+    font-family: "open sans";
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom:7px;
+}
+.TW-projectDesc-img{
+    width: 102%;
+}
+.TW-perks-img{
+    margin-top:50px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-social-media-img{
+    margin-top:50px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-postcampaign-img{
+	height: 200px;
+	margin-right: 30px; 
+	width: 341px;
+}
+.TW-postcampaign-ul{
+	padding: 15px 18px;
+	text-align: left;
+}
+.TW-postcampaign-ul > li {
+    color: #4c4c4c;
+    font-size: 16px;
+    line-height: 25px;
+    margin-bottom: 20px;
+}
+.TW-postcampaign-inner-ul li{
+	line-height:22px;
+	margin-bottom:20px;
+	text-align:justify;
+}
+
+.TW-videos-img{
+	background: #fff url("https://s3.amazonaws.com/crowdera/assets/ebook-video.jpg") no-repeat scroll center right;
+    height: 239px;
+    margin-top:50px;
+    padding: 0 !important;
+}
+.TW-prAndPromo-img{
+    margin-top:50px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-creativity-img{
+    margin-top:50px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-postcmpgn-section1 {
+    margin-top: 50px;
+}
 .TW-ebook-page-border{
 	background: #fff url("https://s3.amazonaws.com/crowdera/assets/ebook-setting-it-up.jpg") no-repeat scroll center top;
 	border: 1px solid #e3e3e3;
@@ -11994,8 +12440,9 @@ a#downloadEbook{
 	width: 200px;
 }
 .TW-ebook-ul{
-	padding: 32px 60px;
-	text-align: left;
+	float:left;
+	padding: 50px 23px 10px;
+	text-align: justify;
 }
 .TW-ebook-page-border h3{
 	margin-top: 20px;
@@ -12006,7 +12453,7 @@ a#downloadEbook{
 	color: #4c4c4c;
 	font-size: 16px;
 	line-height: 24px;
-	margin-bottom: 12px;
+	margin-bottom: 20px;
 	padding-left: 20px;
 }
 .TW-socialicons {
@@ -12029,7 +12476,8 @@ a#downloadEbook{
 	background-color: #ffffff;
 	position: fixed;
 	top: 62px;
-	z-index: 10000;
+	z-index: 1;
+	display:block;
 }
 .TW-ebook-header-image{
 	margin-bottom: 30px;
@@ -12129,4 +12577,22 @@ a#downloadEbook{
 }
 .noscrollHeaderHelpLink > a:hover, .noscrollHeaderHelpLink > a:focus {
     background-color: #006083 !important;
+}
+.TW-ebook-footer{
+	bottom: 0 !important;
+    display: inline-flex;
+    display: -webkit-inline-flex; /**chrome***/
+	display: -webkit-inline-box;  /***safari****/
+    left: 0;
+    margin-bottom: 10px;
+    position:unset;
+    right: 0;
+}
+.TW-ebook-footer-links{
+	width:126px;
+	margin-top:5px;
+}
+.TW-ebook-body{
+	background-color: #f6f8f8;
+	padding-bottom:0px;
 }

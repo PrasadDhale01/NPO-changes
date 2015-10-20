@@ -728,14 +728,20 @@
         content: $('#popoverConentMob').html()
     });
 
+    $('.glyphicon-show-link-color').click(function(){
+    	if ($(this).hasClass('glyphicon-show-link-color-hover')){
+        	$(this).removeClass('glyphicon-show-link-color-hover');
+        } else {
+        	$(this).addClass('glyphicon-show-link-color-hover');
+        }
+    });
+
     $('.shortUrlglyphicon').on('shown.bs.popover', function () {
         var popover = $('.shortUrlglyphicon').data('bs.popover');
         if (typeof popover !== "undefined") {
             var $tip = popover.tip();
             zindex = $tip.css('z-index');
             
-            $('.glyphicon-show-link-color').addClass('glyphicon-show-link-color-hover');
-
             $tip.find('.close').bind('click', function () {
             	$('.glyphicon-show-link-color').removeClass('glyphicon-show-link-color-hover');
                 popover.hide();

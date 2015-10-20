@@ -11175,9 +11175,6 @@ textarea.textarea-embed-video {
 	   ul.nav-justified > li{
         display: block !important;
     }
-    .fedu.thumbnail.c-thumbnail{
-        padding-left: 4px;
-    }
 
 	a.show-tbs-right-borders {
         border-right: 2px solid #6d6e6e;

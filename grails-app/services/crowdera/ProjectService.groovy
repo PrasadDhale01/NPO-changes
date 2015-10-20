@@ -3420,27 +3420,27 @@ class ProjectService {
         return code;
     }
 
-	def getCampaignFromUrl(url){
-		def projectId
-		def vanityTitle
-		def username
-		def vanityName
-		def details
-		def urlShortener = UrlShortener.findByShortenUrl(url)
-		if (urlShortener){
-			projectId = urlShortener.projectId
-			username = urlShortener.username
-			if (projectId){
-				vanityTitle = getVanityTitleFromId(projectId)
-			}
-			if (username){
-				vanityName = userService.getVanityNameFromUsername(username, projectId)
-			}
-		}
+    def getCampaignFromUrl(url){
+        def projectId
+        def vanityTitle
+        def username
+        def vanityName
+        def details
+        def urlShortener = UrlShortener.findByShortenUrl(url)
+        if (urlShortener){
+            projectId = urlShortener.projectId
+            username = urlShortener.username
+            if (projectId){
+                vanityTitle = getVanityTitleFromId(projectId)
+            }
+            if (username){
+                vanityName = userService.getVanityNameFromUsername(username, projectId)
+            }
+        }
 
-		details = [projectTitle:vanityTitle, fr:vanityName]
-		return details
-	}
+        details = [projectTitle:vanityTitle, fr:vanityName]
+        return details
+    }
 
     @Transactional
     def bootstrap() {

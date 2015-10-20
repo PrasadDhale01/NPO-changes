@@ -4,7 +4,6 @@
     def projectimages = projectService.getProjectImageLinks(project)
     def teamimages = projectService.getTeamImageLinks(currentTeam,project)
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
-    
 %>
 <div class="col-md-12">
     <div class="row">
@@ -20,6 +19,7 @@
     <br>
     <%-- Social features --%>
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
+    <g:hiddenField name="shareUrl" id="shareUrl" value="${shareUrl}"/>
     <div class="col-sm-12 social sharing-icon-alignment">
         <div class="shared pull-left">
             <span class="TW-show_share-text-margin"><label>SHARE:</label></span>
@@ -63,10 +63,10 @@
         <g:link absolute="true" uri="/campaign/supporter/${project.id}/${username}" class="pull-left">
             <img src="//s3.amazonaws.com/crowdera/assets/like-Share-icon.png" alt="campaign-supporter" id="add-campaign-supporter">
         </g:link>
-        <a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${fbShareUrl}" target="_blank" id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+        <a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${shareUrl}" target="_blank" id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
             <img src="//s3.amazonaws.com/crowdera/assets/linked-in-share-icon.png" alt="LinkedIn Share">
         </a>
-        <a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${fbShareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+        <a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
             <img src="//s3.amazonaws.com/crowdera/assets/google-plus-share.png" alt="Google+ Share">
         </a>
         </g:else>

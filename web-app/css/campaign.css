@@ -269,3 +269,7 @@ textarea.textarea-embed-tile{
 .modal-tile{
     width:415px;
 }
+
+.fedu.thumbnail.c-thumbnail{
+    padding: 0;
+}

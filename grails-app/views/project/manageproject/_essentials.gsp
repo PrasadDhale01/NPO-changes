@@ -37,55 +37,56 @@
 </div>
 
 <div class="col-md-8">
-	<div class="blacknwhite campaignupdatedimages pull-left" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
+    <div class="blacknwhite campaignupdatedimages pull-left" onmouseover="showNavigation()" onmouseleave="hideNavigation()">
         <g:render template="/project/manageproject/projectimagescarousel" model="['images': projectimages]"/>
     </div>
     <br>
+
     <%-- Social features --%>
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <g:hiddenField name="shareUrl" id="shareUrl" value="${shareUrl}"/>
     <g:hiddenField name="embedTileUrl" id="embedTileUrl" value="${embedTileUrl}"/>
     <g:if test="${project.validated}">
-		<div class="shared pull-left mng-sharing-icon-alignment">
-			<span><label>SHARE:</label></span>
-		</div>
-		<a target="_blank" class="fb-like pull-left social fbShareForLargeDevices" id="fbshare">
-			<img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
-		</a>
-		<a target="_blank" class="fb-like pull-left social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
-			<img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
-		</a>
-		<a class="share-mail pull-left social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
-			<img src="//s3.amazonaws.com/crowdera/assets/email-share-icon.png" alt="Email Share">
-		</a>
-		<a class="twitter-share pull-left social" id="twitterShare" target="_blank">
-			<img src="//s3.amazonaws.com/crowdera/assets/twitter-share-icon.png" alt="Twitter Share">
-		</a>
-		<%--       	<a class="social like-share pull-left" id="likeShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">--%>
-		<%--            		<img src="//s3.amazonaws.com/crowdera/assets/like-share-icon.png" alt="Like Share"/>--%>
-		<%--        </a>--%>
-		<a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${shareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-			<img src="//s3.amazonaws.com/crowdera/assets/linked-in-share-icon.png" alt="LinkedIn Share">
-		</a>
-		<a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-			<img src="//s3.amazonaws.com/crowdera/assets/google-plus-share.png" alt="Google+ Share">
-		</a>
-  <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left embedIcon-manage-left social"><img src="//s3.amazonaws.com/crowdera/user-images/embedicon.png" alt="embedicon"></a>
-		<div class="popoverClassManagePage">
-      <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphicon pull-left glyphicon glyphicon-link glyphicon-design glyphicon-link-color"></span>
-      <div id="popoverConent" class="hidden">
-          <button type="button" class="close">&times;</button>
-          <p>${shareUrl}</p>
-      </div>
-  </div>
-  <div class="popoverClassMobManagePage">
-      <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphiconMob pull-left glyphicon glyphicon-link glyphicon-design glyphicon-link-color"></span>
-      <div id="popoverConentMob" class="hidden">
-          <button type="button" class="close">&times;</button>
-          <p>${shareUrl}</p>
-      </div>
-  </div>
-	</g:if>
+        <div class="shared pull-left mng-sharing-icon-alignment">
+            <span><label>SHARE:</label></span>
+        </div>
+        <a target="_blank" class="fb-like pull-left social fbShareForLargeDevices" id="fbshare">
+            <img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
+        </a>
+        <a target="_blank" class="fb-like pull-left social fbShareForSmallDevices" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">
+            <img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">
+        </a>
+        <a class="share-mail pull-left social" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
+            <img src="//s3.amazonaws.com/crowdera/assets/email-share-icon.png" alt="Email Share">
+        </a>
+        <a class="twitter-share pull-left social" id="twitterShare" target="_blank">
+            <img src="//s3.amazonaws.com/crowdera/assets/twitter-share-icon.png" alt="Twitter Share">
+        </a>
+<%--       	<a class="social like-share pull-left" id="likeShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">--%>
+<%--            		<img src="//s3.amazonaws.com/crowdera/assets/like-share-icon.png" alt="Like Share"/>--%>
+<%--        </a>--%>
+        <a class="social share-linkedin pull-left" href="https://www.linkedin.com/cws/share?url=${shareUrl}"  id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+            <img src="//s3.amazonaws.com/crowdera/assets/linked-in-share-icon.png" alt="LinkedIn Share">
+        </a>
+        <a class="social google-plus-share pull-left" id="googlePlusShare" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+            <img src="//s3.amazonaws.com/crowdera/assets/google-plus-share.png" alt="Google+ Share">
+        </a>
+        <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left embedIcon-manage-left social"><img src="//s3.amazonaws.com/crowdera/user-images/embedicon.png" alt="embedicon"></a>
+        <div class="popoverClassManagePage">
+            <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphicon pull-left glyphicon glyphicon-link glyphicon-design glyphicon-link-color"></span>
+            <div id="popoverConent" class="hidden">
+                <button type="button" class="close">&times;</button>
+                <p>${shareUrl}</p>
+            </div>
+        </div>
+        <div class="popoverClassMobManagePage">
+            <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphiconMob pull-left glyphicon glyphicon-link glyphicon-design glyphicon-link-color"></span>
+            <div id="popoverConentMob" class="hidden">
+                <button type="button" class="close">&times;</button>
+                <p>${shareUrl}</p>
+            </div>
+        </div>
+    </g:if>
 
     <div class="col-md-12 col-sm-12 col-xs-12 TW-campaignstory-img-width">
         <p class="campaignDescription justify">${raw(project.description)}</p>

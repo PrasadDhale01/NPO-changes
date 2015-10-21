@@ -63,6 +63,40 @@
     }
 }
 
+@media only screen and (min-width:851px){
+    .desktop-video-play{
+        display:block;
+    }
+
+    .tabs-video-play{
+        display:none;
+    }
+}
+
+@media only screen and (max-width:850px) and (min-width:768px){
+    .embed-video-in-modal {
+        height: 200px;
+    }
+    #embedTilemodal .modal-dialog.modal-embed-with-video{
+        width:684px;
+    }
+    .margin-custom-left{
+        margin-left:110px;
+    }
+    .lbl-width{
+        margin-left:-9px;
+    }
+    .desktop-video-play{
+        display:none;
+    }
+    .tabs-video-play{
+        display:block;
+    }
+    .margin-md-left, .margin-md-left{
+        margin-left:15px;
+    }
+}
+
 @media only screen and (min-width: 768px) and (max-width: 991px){
 	.whycrowderacol-sm .col-sm-6 ,.whycrowderacol-sm .col-sm-12{
 	    padding-left: 0px !important;
@@ -212,7 +246,62 @@
     }
 }
 
+@media only screen and (min-width: 420px){
+    .popoverClassMobManagePage{
+        display : none;
+    }
+    .popoverClassManagePage{
+        display:block;
+    }
+}
+
+@media only screen and (max-width: 419px){
+    .popoverClassMobManagePage{
+        display : block;
+    }
+    .popoverClassManagePage{
+        display:none;
+    }
+
+    .popoverClassMobManagePage .popover {
+        left: 65px;
+        top: 740px;
+        width: 174px;
+    }
+    
+    .modal-tile{
+       width:315px;
+       overflow:hidden;
+    }
+    
+    .modal-body.only-tile-embed-modal{
+        padding-top: 20px;
+        padding-left: 0;
+        padding-bottom: 0;
+        padding-right: 0;
+    }
+}
+
+@media only screen and (max-width:442px){
+    .menu-top {
+        margin-left: -102px;
+    }
+
+    label.urlShortenLabel {
+        width: 195px;
+        font-size: 12px;
+    }
+
+    label.shareUrlLabel {
+        width: 195px;
+    }
+}
+
 @media only screen and (min-width: 320px) and (max-width: 384px){
+    .menu-top {
+        margin-left: -131px;
+    }
+
 	.whycrowderacol-sm .col-xs-12 {
 	    padding-left: 0px !important;
         padding-right: 0px !important;

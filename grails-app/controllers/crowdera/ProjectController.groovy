@@ -1625,6 +1625,24 @@ class ProjectController {
             render ''
         }
     }
+	
+	def teamsMobileList() {
+		if (params.projectId && params.fr){
+			Project project = projectService.getProjectById(params.projectId)
+			
+			def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)
+			def teamOffset = teamObj.maxrange
+			def teams = teamObj.teamList
+			def totalteams = teamObj.teams
+			
+			def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr]
+			if (request.xhr) {
+				render(template: "show/teamgridmobile", model: model)
+			}
+		} else {
+			render ''
+		}
+	}
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def contributionsList() {

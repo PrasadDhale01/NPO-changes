@@ -6,6 +6,21 @@ $(function() {
     $('#editProfilesize').hide();
     $('#editProfileImg').hide();
     
+    $('.selectpicker').selectpicker({
+        style: 'btn btn-sm btn-default'
+    });
+    
+    $('#state').change(function(event) {
+        var option = $(this).val();
+        if(option == 'other') {
+            $("#ostate").show();
+            $("#dashboard_otherstate").show();
+        } else {
+            $("#ostate").hide();
+            $("#dashboard_otherstate").hide();
+        }
+    });
+    
     var validator = $('#validpass').find('form').validate({
         rules: {
         	firstName: {
@@ -19,6 +34,36 @@ $(function() {
             },
     		confirmPassword: {
 		        isEqualToPassword: true
+            }
+        }
+    });
+    
+    $('.dashboarduserprofile').find('form').validate({
+        rules: {
+            firstName: {
+                maxlength: 20
+            },
+            lastName: {
+                maxlength: 20
+            },
+            password: {
+                minlength: 6
+            },
+            confirmPassword: {
+                isEqualToPassword: true
+            },
+            biography: {
+                minlength: 10,
+                maxlength: 80
+            },
+            city: {
+                maxlength: 20
+            },
+            state: {
+                maxlength: 20
+            },
+            country: {
+                minlength: 6
             }
         }
     });
@@ -101,6 +146,35 @@ $(function() {
 	        }
 	    } 
     });
+    
+    $('#useravatar').hover(function() {
+        $('.defaultprofileimage').show();
+    });
+    $('#useravatar').mouseleave(function() {
+        $('.defaultprofileimage').hide();
+    });
+    $('#useravatar').click(function(event) {
+        event.preventDefault();
+        $("#avatar").click();
+    });
+    $('#userImageEditDeleteIcon').hover(function() {
+        $('.userprofileeditimage').show();
+    });
+    $('#userImageEditDeleteIcon').mouseleave(function() {
+        $('.userprofileeditimage').hide();
+    });
+    $('.userprofileeditimage').click(function(event) {
+        event.preventDefault();
+        $("#editavatar").click();
+    });
+
+    
+    var elem1 = '<div class="well"><a href="google.com">Message one, From someone.</a></div>'+
+    '<button id="close-popover" data-toggle="clickover" class="btn btn-small btn-primary pull-right" onclick="$(&quot;#contributionshare1&quot;).popover(&quot;hide&quot;);">Close please!</button>';
+    
+    var elem2 = '<div class="well"><a href="google.com">Message one, From someone.</a></div>'+
+    '<button id="close-popover" data-toggle="clickover" class="btn btn-small btn-primary pull-right" onclick="$(&quot;#contributionshare2&quot;).popover(&quot;hide&quot;);">Close please!</button>';
+
     
 	function validateExtension(imgExt) {
         var allowedExtensions = new Array("txt","docx","doc","pdf");

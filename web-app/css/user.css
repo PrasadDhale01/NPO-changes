@@ -1,13 +1,655 @@
 .domainUsersPagination {
-	margin-bottom: 15px;
+	   margin-bottom: 15px;
 }
 .domainUsersPagination a , .domainUsersPagination .currentStep {
-	font-size: 13px;
-	text-align: center;
-	padding-left: 15px;
-	color: #31497B !important;
-	font-weight: 700 !important;
+	   font-size: 13px;
+	   text-align: center;
+	   padding-left: 15px;
+	   color: #31497B !important;
+	   font-weight: 700 !important;
 }
 .domainUsersPagination .currentStep {
-	color: black !important;
+   	color: black !important;
+}
+.newUserdashboard {
+    margin-bottom: 20px;
+}
+.updateprofilediv {
+    overflow: hidden;
+    height: auto;
+    width: 100%;
+    background-color: #e7e7e7;
+    padding-bottom: 5px;
+}
+
+.defaultprofileimage {
+    width: 41px;
+    height: 41px;
+    border-radius: 40px;
+}
+.givinginfluence {
+    height: 65px;
+    width: 100%;
+    overflow: hidden;
+    border-color: #e7e7e7;
+    background-color: #e7e7e7;
+    border-width: 1px;
+    font-weight: 700;
+    font-size: 22px;
+    color: #505050;
+}
+.influencediv.col-lg-2, .influencediv.col-md-2 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.amountsection {
+    margin-top: 3px;
+    height: 55px;
+    width: 100%;
+    overflow: hidden;
+    border-style: solid;
+    background-color: #e7e7e7;
+    border-width: 0;
+    color: #505050;
+    text-align: center;
+}
+.connectsection {
+    margin-top: 15px;
+}
+.connectsection a {
+    margin-bottom: 8px;
+}
+.userdashboardcontainer .col-lg-6 , .userdashboardcontainer .col-md-6 {
+    width: 49%;
+    padding-left: 25px;
+    padding-right: 15px;
+}
+.userdashboardcontainer >ul {
+    margin-bottom: 15px;
+}
+.usersCampaignsPagination a , .usersCampaignsPagination .currentStep {
+			 font-size: 13px;
+			 text-align: center;
+			 padding-left: 10px;
+    padding-right: 5px;
+    color: #31497B !important;
+    font-weight: 700 !important;
+}
+.usersCampaignsPagination .currentStep {
+    color: black !important;
+}
+div.progress-bar-success {
+    background-color: #01bbd3;
+}
+div.progress {
+    padding: 0px;
+}
+.dashboardtab.btn {
+    padding: 10px 8px;
+    width: 230px;
+}
+.dashboardtab.btn-primary {
+    margin-bottom: 10px;
+}
+#userDashboardcampaigns {
+    margin-top: 0px;
+}
+.dashboarduserprofile {
+    margin-top: 10px;
+}
+.userprofilecaption {
+   height: 27px;
+   padding: 4px;
+   text-align: center;
+   color: #404040;
+   font-family: Open Sans;
+   bottom: 0px;
+   width: 100%;
+   font-size: 15px;
+}
+.userprofile-days {
+    position: absolute;
+    top: 0px;
+    width: 75px;
+    height: 20px;
+    line-height: 20px;
+    text-align: right;
+    right: 0px;
+    color: #404040;
+    z-index: 50;
+    cursor: pointer;
+    background-color: #f6f8f8;
+    border: none;
+    opacity: 0.7;
+    filter: alpha(opacity=60);
+    font-size: 12px;
+    padding-right: 3px;
+}
+.dashboard-container{
+    width:1000px !important ;
+}
+.defaultprofileimage {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    line-height: 30px;
+    text-align: center;
+    right: 0px;
+    color: white;
+    z-index: 50;
+    cursor: pointer;
+    border: none;
+}
+.defaultprofileimage {
+    display: none;
+}
+.userProfileEditDeleteIcon .profileedit{
+    right: 30px;
+    padding-left: 2px;
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    color : white;
+    z-index: 50;
+    cursor:pointer;
+    background-color: #006083 !important;
+}
+
+.userProfileEditDeleteIcon{
+    display:none;
+}
+.uploadProfileImg {
+    display:none;
+}
+.userProfileEditDeleteIcon .profiledelete{
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    right: 0px;
+    color : white;
+    z-index: 50;
+    cursor:pointer;
+    background-color: black;
+    border: none;
+}
+#userprofileavatar img {
+    width: 146px;
+    height: 120px;
+    margin-top: 6px;
+    margin-left: 8px;
+}
+#useravatar img.dummyprofileimage  {
+    width: 146px;
+    height: 120px;
+    margin-top: 6px;
+    margin-left: 8px;
+}
+.connectsection img {
+    margin-bottom: 5px;
+    width: 100%;
+}
+.userdashboardcontainerpadding ul {
+    overflow: hidden;
+    padding: 12px 0 0 0;
+    list-style: none;
+    font-weight: 500;
+}
+.userdashboardcontainerpadding ul li {
+    padding: 5px 7px;
+    border-right: 1px solid #008cba;
+    float: left;
+    line-height: 1em;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.userdashboardcontainer-sm {
+    margin-top: 30px;
+    border-top: 1px solid #008cba;
+    border-bottom: 1px solid #008cba;
+}
+.userdashboardcontainerpadding {
+    padding-left: 75px;
+    padding-right: 75px;
+}
+.userdashboardcontainer-sm ul li.last {
+    border-right: 0px;
+}
+.userdashboardsubcontainerpadding {
+    padding-left: 30%;
+    padding-right: 30%;
+}
+.userdashboardsubcontainerpadding ul {
+    overflow: hidden;
+    padding: 12px 0 0 12px;
+    list-style: none;
+    font-weight: 500;
+}
+.userdashboardsubcontainerpadding ul li {
+   padding: 5px 5px;
+    border-right: 1px solid #008cba;
+    float: left;
+    line-height: 1em;
+    font-weight: 600;
+    font-size: 15px;
+}
+.userdashboardsubcontainer-sm {
+    margin-top: -1px;
+    border-top: 1px solid #008cba;
+    border-bottom: 1px solid #008cba;
+}
+.userdashboardsubcontainer-sm ul li.last {
+    border-right: 0px;
+}
+
+.userdashboardsubcontainer-xs ul {
+    overflow: hidden;
+    padding: 12px 0 0 0;
+    list-style: none;
+    font-weight: 500;
+}
+.userdashboardcontainer-xs ul {
+    overflow: hidden;
+    padding: 12px 0 0 22px;
+    list-style: none;
+    font-weight: 500;
+}
+.userdashboardsubcontainer-xs ul li , .userdashboardcontainer-xs ul li {
+    padding: 5px 5px;
+    border-right: 1px solid #008cba;
+    float: left;
+    line-height: 1em;
+    font-weight: 600;
+    font-size: 13px;
+}
+.userdashboardsubcontainer-xs, .userdashboardcontainer-xs  {
+    margin-top: -1px;
+    border-top: 1px solid #008cba;
+    border-bottom: 1px solid #008cba;
+}
+.userdashboardsubcontainer-xs ul li.last, .userdashboardcontainer-xs ul li.last {
+    border-right: 0px;
+}
+.userdashboardsubcontainer-xs-top {
+    margin-top: 30px;
+}
+.amountsection-xs .col-xs-6 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.amountsectionseperator {
+    border-right: 1px solid #008cba;
+}
+.amountsectionfont {
+    font-size: 20px; 
+}
+.amountsectionfbicon {
+    font-size: 20px;
+}
+.amountsectionfbicon img {
+    margin-top: 15px;
+}
+.amountsectionfbicon .col-md-2 , .amountsectionfbicon .col-md-9 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+div.dashboardtile-min-height {
+    min-height: 132px !important;
+}
+.timeline > li > .timeline-panel {
+    padding: 20px 0px 20px 0px !important;
+}
+#userDashboardcontributions {
+    margin-top: 0px;
+}
+#userDashboardcontributions .over.user-tile {
+		  display: block;
+		  left: auto;
+		  margin-left: -8px;
+    margin-right: auto;
+    position: absolute;
+    top: 87px;
+    z-index: 1;
+}
+.contributiontimeline {
+    width: 230px;
+    border: none;
+    border-radius: 2px;
+    padding: 0;
+    position: relative;
+    margin-bottom: 20px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.contributiontimeline .thumbnail.userdashboard-tiles {
+    margin-top: 0px;
+}
+#userDashboardcontributions .col-md-6 {
+    padding-left: 15px;
+}
+.edituserprofilecontainer {
+    width: 320px;
+    margin-bottom: 20px;
+}
+.edituserprofilecontainer .userdashboardcontainer-sm ul {
+    overflow: hidden;
+    padding: 12px 0 0 0;
+    list-style: none;
+    font-weight: 500;
+}
+.edituserprofilecontainer .userdashboardcontainer-sm ul li {
+    padding: 5px 4px;
+    border-right: 1px solid #008cba;
+    float: left;
+    line-height: 1em;
+    font-weight: 600;
+    font-size: 14px;
+}
+.container.edituserprofilecontainer, .edituserprofilecontainer .col-sm-12 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.edituserprofilecontainer .userdashboardcontainer-sm ul li.last {
+    border-right: 0px;
+}
+#editUserInfo .dashboarduserprofile{
+    margin-top: 50px;
+}
+.userseditlocation .btn-group > .btn:first-child {
+    margin-left: 0px;
+}
+.userseditlocation .input-group-btn .btn {
+    padding: 8px 14px;
+    font-size: 14px;
+}
+.userseditlocation .dropdown-menu.open { 
+    margin-left: 0;
+}
+#dashboard_otherstate {
+    display: none;
+}
+#uploadProfilesize {
+    display: none;
+}
+#editProfilesize {
+    display: none;
+}
+#editProfileImg {
+    display: none;
+}
+.usersContributionsPagination a , .usersContributionsPagination .currentStep {
+    font-size: 13px;
+    text-align: center;
+    padding-left: 10px;
+    padding-right: 5px;
+    color: #31497B !important;
+    font-weight: 700 !important;
+}
+.usersContributionsPagination .currentStep {
+    color: black !important;
+}
+.usersContributionsPagination {
+    padding-right: 68px;
+}
+.usersCampaignsPagination {
+    padding-right: 68px;
+}
+.userdashboardcontainer .setting-user-contributions .over.show-tile {
+    display: block;
+    left: auto;
+    margin-left: -8px;
+    margin-right: auto;
+    position: absolute;
+    top: 6px;
+    z-index: 1;
+}
+.shareiconsoncontributions {
+    height: 40px;
+    padding-left: 50px;
+}
+.dashboardtab.btn-primary{
+    background-color: #e7e7e7 !important;
+    border-color: #f6f8f8 !important;
+    color: #404040;
+    font-weight: 600;
+    font-size: 16px;
+}
+.userdashboard-tiles .project-title {
+    height: 3.2em;
+    margin-top: 2px;
+    text-align: left;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.userdashboard-tiles .progress {
+    border: 0px;
+    height: 15px;
+    width: 220px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.userdashboard-tiles .progress-bar {
+    height: 15px;
+}
+.dashboardtabheading.btn-primary {
+    background-color: #e7e7e7 !important;
+    border-color: #f6f8f8 !important;
+    color: #404040;
+    font-weight: 600;
+    font-size: 14px;
+}
+.contributiontimeline .thumbnail {
+    margin-bottom: 0px;
+}
+.dashboardtabheading.btn {
+    padding: 8px 28px;
+}
+.amountSection-Font {
+    font-size: 24px;
+    font-weight: 700;
+}
+.dashboardtileheight {
+    height: 125px;
+    overflow: hidden;
+}
+.dashboard-project-img {
+    max-height: 125px;
+    min-height: 125px;
+    width: 100%;
+}
+.dashboard-imageWithTag {
+    height: 125px;
+    width: 230px;
+}
+.userdashboard-tiles .project-title a {
+    color: #404040 !important;
+    font-size: 13px;
+    font-weight: bold;
+    word-wrap: break-word;
+    text-decoration: none;
+}
+.userdashboard-caption-font {
+    font-size: 12px;
+}
+.connectsection .social-button.btn {
+    padding: 6px 4px 6px 50px;
+    font-weight: 600;
+    font-size: 14px;;
+}
+.connectsection .social-button.btn i{
+    font-size: 18px;
+}
+.connectsection .fa-facebook-styles {
+    padding-top: 5px;
+    font-size: 22px;
+    padding-right: 14px;
+}
+.connect-fb-font {
+    font-size: 12px;
+}
+.connectsection .btn-facebook.btn:hover, .connectsection .btn-facebook.btn:focus {
+    color: white;
+}
+
+.contributiontimeline .btn-facebook {
+    padding: 8px 43px;
+    width: 229px;
+    background-color: #31497B;
+    border: 1px solid transparent;
+}
+.contributiontimeline .fa-facebook-styles {
+    padding-top: 5px;
+    font-size: 22px;
+    padding-right: 8px;
+}
+
+.contributiontimeline .btn-facebook.btn:hover, .contributiontimeline .btn-facebook.btn:focus {
+    color: white;
+}
+.userdashboard-tiles .lead {
+    font-size: 17px !important;
+}
+.userprofileeditimage img{
+    width: 25px !important;
+    height: 25px !important;
+}
+.userprofileeditimage {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    line-height: 30px;
+    text-align: right;
+    right: 2px;
+    color: white;
+    z-index: 50;
+    cursor: pointer;
+    border: none;
+    display: none;
+}
+.amountSection-Font-xs {
+    font-size: 24px;
+    font-weight: 700;
+}
+.manage-campaign-btn.btn-sm {
+    padding: 8px 16px;
+    font-size: 15px;
+    background-color: #31497B;
+    border: none;
+    color: #fff;
+}
+.userdashboard-tiles a:hover, .userdashboard-tiles a:focus {
+    text-decoration: none;
+}
+.contributiondashboardtab.btn-primary {
+    background-color: #e7e7e7 !important;
+    border-color: #f6f8f8 !important;
+    color: #404040;
+    padding: 8px 3px;
+    font-weight: 600;
+    font-size: 14px;
+}
+.col-desktop-padding.col-md-8, .col-desktop-padding.col-lg-8{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.col-desktop-padding.col-lg-6, .col-desktop-padding.col-md-6 {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.col-desktop-padding-left.col-md-5, .col-desktop-padding-left.col-lg-5 {
+    padding-left: 10px;
+}
+.col-desktop-padding-right.col-md-5, .col-desktop-padding-right.col-lg-5 {
+    padding-right: 10px;
+}
+.contribution-col-padding-left.col-md-12, .contribution-col-padding-left.col-lg-12 {
+    padding-left: 9px;
+}
+.my-campaign-heading h1 {
+    margin-bottom: 20px;
+}
+.my-campaign-heading h3 {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+.campaigndashboardtab.btn-primary {
+    background-color: #e7e7e7 !important;
+    border-color: #f6f8f8 !important;
+    color: #404040;
+    padding: 8px 29px;
+    font-weight: 600;
+    font-size: 14px;
+}
+.userseditlocation div.bootstrap-select > button.selectpicker {
+    background-color: #e7e7e7;
+    color: black;
+}
+.userseditlocation .open > .dropdown-toggle.btn-default {
+    background-color: #006083 !important;
+    color: white !important;
+}
+.userseditlocation .bootstrap-select.btn-group .dropdown-menu {
+    max-width: 100%
+}
+.dashboarduserprofile .form-control {
+    height: 40px;
+}
+.dashboarduserprofile #ostate {
+    display: none;
+}
+#userInfoUpdateBtn.btn-primary {
+    padding: 12px 20px;
+    background-color: #d7d7d7 !important;
+    border: none !important;
+    color: #404040;
+    width: 25%;
+    font-weight: 600;
+    margin-right: 12px;
+}
+.amountsectionfbicon.btn {
+    margin-top: 20px;
+    width: 100%;
+    border-style: solid;
+    background-color: #e7e7e7 !important;
+    border-width: 0;
+    color: #008cba !important;
+    font-weight: 600;
+    padding: 2px 10px;
+    text-align: center;
+}
+.user-information-bio .user-biography {
+    padding-top: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+}
+.dashboard-mobile-section a.btn-primary{
+    width: 135px;
+    height: 110px;
+    background-color: #e7e7e7 !important;
+    color: #404040;
+    border-color: #e7e7e7 !important;
+}
+.dashboard-mobile-section a.mob-campaigns-btn.btn-primary{
+    padding: 35px 0px 0px 0px;
+    font-weight: 600;
+}
+.dashboard-mobile-section .col-xs-6 {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.dashboard-mobile-section {
+    padding-top: 30px;
+}
+.dashboard-mobile-section .amountsectionfbicon.btn {
+    margin-top: 0px;
+    color: #404040 !important;
+}
+.mob-campaigns-btn span.clear {
+    clear: both;
 }

@@ -334,7 +334,6 @@ class ContributionService {
         int eighteenth = 0, nineteenth = 0 , twentieth = 0, twentyFirst = 0, twentySecond = 0, twentyThird = 0
         
         List contributions = project.contributions
-        List hourList = []
         
         contributions.each{ contribution->
             Date contributionDate = contribution.date

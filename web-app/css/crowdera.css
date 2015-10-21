@@ -1611,7 +1611,7 @@ border-color: rgba(0,0,0,0.2);
     text-decoration:none;
 }
 div.tile-min-height{
-	min-height:160px !important;
+	min-height:106px !important;
 }
 .project-img {
     max-height:155px;
@@ -1658,7 +1658,7 @@ div.tile-min-height{
     padding-left:6px;
     color: #01bbd3;
     padding-bottom: 20px;
-    padding-top: 32px;
+    padding-top: 18px;
     font-family: Ubuntu Condensed;
 }
 .leftcard-column{
@@ -2443,7 +2443,7 @@ a.footerlink {
     	border-color: #dadada #dadada #b2b2b2 #c9c9c9;
 	margin-top: 0px;
 	text-align: left;
-	height: 110px;
+	height: 88px;
 }
 .perks-supporters{
 	border: 6px solid #c9c9c9;
@@ -4482,8 +4482,9 @@ ul.personalDetailClasses, menu, dir {
 }
 .campaignDescription {
 	font-weight: 600;
-	font-size: 20px;
+	font-size: 18px;
 	word-wrap: break-word;
+	padding-top: 10px;
 }
 p {
         word-wrap: break-word;
@@ -5224,7 +5225,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .campaignTitle a {
     color: #000 !important;
     font-size: 30px;
-    font-family: Ubuntu Condensed;
+    font-family:  Verdana;
     font-weight: 900;
     font-variant: normal;
 }
@@ -5376,6 +5377,45 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.tile-pad {
+        width: 300px;
+    }
+	div.fedu.thumbnail > .modal-footer {
+        padding-bottom: 12px;
+    }
+	p.hm-slogn-mobile{
+        font-size: 24px;
+        color: #015F85;
+    }
+	a.hm-raisemony-btn{
+        background-color: #f6bf0b;
+        color: #fff;
+        font-size: 30px;
+        margin-bottom: 12px;
+    }
+    a.hm-raisemony-btn:hover{
+        color: #fff;
+    }
+    div.hm-fontfamily{
+        font-family: Ubuntu Condensed;
+    }
+	div.hm-section-top{
+        height: 35px;;
+    }
+	div.hm-mobile-title{
+         background-color: #e7e7e7;
+         height: 60px;
+         left: -12px;
+         margin-bottom: 10px;
+         width: 106%;
+    }
+	div.hmmobile-back-color{
+	    background-color: #fff;
+	}
+	li.sh-carousel-li {
+        background-color: #015F85;
+        border-color: #015F85;
+    }
     a.show-tbs-right-borders {
         border-right: 2px solid #6d6e6e;
         margin-left: -22px;
@@ -6196,10 +6236,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-top: 20px;
 	}
 	h1.headingtext {
-		color: #303030;
+		color: #015f85;
 		font-size: 29px !important;
 		font-weight: 900;
-		padding: 30px 0 20px;
+		padding: 13px 0 20px;
+		font-family: Ubuntu Condensed;
 	}
 	.Explore-Campaigns-Button-img{
 		height:60px;
@@ -6715,7 +6756,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /*         margin-top: 120px; */
 /*     } */
     div.show-description {
-        margin-top: 28px
+        margin-top: 28px;
+        height: 82px;
     }
     a.show-btn-sh-fb {
         margin-bottom: 26px;
@@ -6803,20 +6845,23 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.perks-style {
+        height: 82px;
+    }
     .manage-team{
         margin-top: 16px !important;
         width: 110%;
     }
     p.campaignDescription {
-        font-size: 18px;
+        font-size: 13px;
     }
     h2.sh-fundclosed-mobile{
         font-size: 20px !important;
-        padding-top: 28px !important;
+        padding-top: 13px !important;
     }
     h2.rewardsectionheading {
 	    font-size: 24px;
-	    padding-top: 28px;
+	    padding-top: 10px;
     }
     img.sh-img-update {
         height: 300px;
@@ -11114,6 +11159,46 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.fedu.thumbnail > .modal-footer {
+        padding-bottom: 12px;
+    }
+	p.hm-slogn-mobile{
+        font-size: 24px;
+        color: #015F85;
+	}
+	a.hm-raisemony-btn{
+	    background-color: #f6bf0b;
+	    color: #fff;
+	    font-size: 30px;
+	    margin-bottom: 12px;
+	}
+	a.hm-raisemony-btn:hover{
+        color: #fff;
+    }
+	div.hm-fontfamily{
+	    font-family: Ubuntu Condensed;
+	}
+	div.hm-section-top{
+	    height: 35px;;
+	}
+    div.hm-mobile-title{
+         background-color: #e7e7e7;
+         height: 60px;
+         left: -12px;
+         margin-bottom: 10px;
+         width: 111%;
+         margin-top: 14px;
+	}
+	div.hm-mobile-positions{
+        margin-left: -4%;
+	}
+	div.hmmobile-back-color{
+        background-color: #fff;
+    }
+    li.sh-carousel-li {
+        background-color: #015F85;
+        border-color: #015F85;
+    }
 	a.show-tbs-right-borders {
         border-right: 2px solid #6d6e6e;
         margin-left: -22px;
@@ -11915,10 +12000,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-top: 20px;
 	}
 	h1.headingtext {
-		color: #303030;
+		color: #015f85;
 		font-size: 29px !important;
 		font-weight: 900;
-		padding: 30px 0 20px;
+		padding: 6px 0 20px;
+		font-family: Ubuntu Condensed;
 	}
 	.Explore-Campaigns-Button-img{
 		height:60px;
@@ -12624,14 +12710,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .show-description {
     background-color: #e7e7e7;
-    height: 110px;
+    height: 90px;
     margin-top: 21px;
     padding-bottom: 9px;
-    padding-left: 19px;
+    padding-left: 9px;
     padding-top: 10px;
     margin-left: -16px;
     color: #000;
-    margin-bottom: 50px;
 }
 .sh-contrialignment{
 	margin-top: -19px;

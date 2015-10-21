@@ -39,16 +39,28 @@
 	<g:hiddenField id="userEmail" name='userEmail' value="${email}"/>
 	<g:hiddenField name='currentEnv' value='${currentEnv}' id='currentEnv'/>
 	<g:hiddenField name="contributorEmail" value="${contributorEmail}" id="contributorEmail"/>
-
+    
+    <div class="hidden-xs">
     <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
     	<g:render template="jumbotron"></g:render>
     </div>
     <g:render template="banner"></g:render>
     
     <g:render template="ace"></g:render>
-    <div class="greycolorbg">
-    	<g:render template="projects"></g:render>
     </div>
+    <div class="hm-section-top"></div>
+    <div class="row text-center hm-fontfamily visible-xs">
+        <p class="hm-slogn-mobile">Always Free! Instant Disbursal</p>
+        <a href="${resource(dir: '/campaign/create')}" class="btn hm-raisemony-btn">Raise Money Free</a>
+        <p class="hm-slogn-mobile">Flexible Goals Unlimited Teams</p>
+    </div>
+    <div class="greycolorbg hmmobile-back-color">
+        <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
+    	    <g:render template="projects"></g:render>
+    	</div>
+    </div>
+    
+    <div class="hidden-xs">
     <div class="whycrowderacontainer">
         <g:render template="whycrowdera"></g:render>
     </div>
@@ -57,6 +69,7 @@
     </div>
     <div class="proudassociates-container">
         <g:render template="association"></g:render>
+    </div>
     </div>
     <div class="customer-support hidden-xs">
         <div class="willSlide customer-support-btn" id="customer-support-btn">

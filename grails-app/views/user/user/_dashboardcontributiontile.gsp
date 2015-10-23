@@ -15,9 +15,9 @@
 <g:else>
 				<g:each in="${totalContributions}" var="contribution">
 								<% 
-											def project = contribution.project
-											def username = project.user.username
-											def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
+												def project = contribution.project
+												def username = project.user.username
+												def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
 								%>
         <g:if test="${activeTab == 'contributions'}">
             <g:if test="${ index % 2 == 0}">

@@ -2505,11 +2505,11 @@ a.footerlink {
 	margin: 0 auto;
 }
 .user-tiles-style{
-	   display: block;
-    margin-left: auto;
-    margin-right: auto;
-	   padding: 0;
-	   width:310px;
+				display: block;
+				margin-left: auto;
+				margin-right: auto;
+				padding: 0;
+				width:310px;
 }
 .userdashboard-tiles{
     display: block;
@@ -6784,11 +6784,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 100px;
         margin-top: 8px;
     }
-    #useravatar img.dummyprofileimage {
-						  width: 112px;
-						  height: 100px;
-						  margin-top: 6px;
-						  margin-left: 8px;
+				#useravatar img.dummyprofileimage {
+								width: 112px;
+								height: 100px;
+								margin-top: 6px;
+								margin-left: 8px;
 				}
     .userprofileeditimage {
         right: 10px;
@@ -6966,7 +6966,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 4px;
         margin-left: 4px;
     }
-    .defaultprofileimage {
+				.defaultprofileimage {
 				    top : 22px;
 				}
     .userprofileeditimage img {
@@ -8589,9 +8589,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
-	   #useravatar img.dummyprofileimage {
-        width: 136px;
-	   }
+				#useravatar img.dummyprofileimage {
+			    	width: 136px;
+				}
     #userprofileavatar img {
         width: 137px;
     }
@@ -10199,13 +10199,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 @media only screen and (min-width: 767px) and (max-width: 768px){
-	   .givinginfluence { 
-	       margin-bottom: 5px;
-	   }
-	   #userDashboardcontributions {
-				    margin-top: 0px;
-				    margin-left: 0px;
-				}
+    .givinginfluence { 
+        margin-bottom: 5px;
+    }
+    #userDashboardcontributions {
+        margin-top: 0px;
+        margin-left: 0px;
+    }
     div#userDashboardcampaigns {
         margin-left: 0px;
     }

@@ -28,8 +28,8 @@
     border-radius: 40px;
 }
 .givinginfluence {
-    height: 70px;
     padding-top: 5px;
+    padding-bottom: 5px;
     width: 100%;
     overflow: hidden;
     border-color: #e7e7e7;

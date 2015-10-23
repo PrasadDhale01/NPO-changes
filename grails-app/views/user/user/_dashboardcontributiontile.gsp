@@ -13,7 +13,6 @@
     </div>
 </g:if>
 <g:else>
-				<g:hiddenField name='currentEnv' value='${environment}' id='currentEnvironment'/>
 				<g:each in="${totalContributions}" var="contribution">
 								<% 
 											def project = contribution.project
@@ -57,7 +56,6 @@
         </g:else>
         
         <script>
-            var currentEnv = $('#currentEnvironment').val();
             $("a.fbshareUrl").click(function(){
                 var url = $(this).attr('href');
                 window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');

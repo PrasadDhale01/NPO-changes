@@ -108,13 +108,13 @@
             
             <div class="dashboard-mobile-section visible-xs">
                 <div class="col-xs-6">
-                    <a href="/user/campaigns" class="mob-campaigns-btn btn btn-primary text-center"><div class="clear">My </div>Campaigns</a>
+                    <a href="/user/campaigns" class="mob-campaigns-btn btn btn-primary text-center">My <br>Campaigns</a>
                 </div>
                 <div class="col-xs-6">
-                    <a href="/user/contributions" class="mob-campaigns-btn btn btn-primary text-center">Campaigns <div class="clear"></div>Supported</a>
+                    <a href="/user/contributions" class="mob-campaigns-btn btn btn-primary text-center">Campaigns <br>Supported</a>
                 </div>
                 <div class="col-xs-6">
-                    <a href="/user/edit-userInfo" class="mob-campaigns-btn btn btn-primary"><div class="clear">Edit</div> User Info</a>
+                    <a href="/user/edit-userInfo" class="mob-campaigns-btn btn btn-primary">Edit <br> User Info</a>
                 </div>
                 <div class="col-xs-6">
                     <a class="btn btn-primary amountsectionfbicon">

@@ -41,9 +41,11 @@ $(function() {
     $('.dashboarduserprofile').find('form').validate({
         rules: {
             firstName: {
+            	minlength: 2,
                 maxlength: 20
             },
             lastName: {
+            	minlength: 2,
                 maxlength: 20
             },
             password: {
@@ -54,9 +56,10 @@ $(function() {
             },
             biography: {
                 minlength: 10,
-                maxlength: 80
+                maxlength: 140
             },
             city: {
+            	minlength: 2,
                 maxlength: 20
             },
             state: {
@@ -64,8 +67,24 @@ $(function() {
             },
             country: {
                 minlength: 6
+            },
+            otherstate: {
+            	required: true,
+            	minlength: 3
             }
         }
+    });
+    
+    var currentEnvironment = $('#currentEnv').val();
+    
+    $(".amountsectionfbicon").click(function(){
+    	var url;
+    	if (currentEnvironment == 'testIndia' || currentEnvironment == 'stagingIndia' || currentEnvironment == 'prodIndia')
+            url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=https://crowdera.in/campaign/create'
+    	else 
+    		url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://crowdera.co/campaign/create'
+        window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+        return false;
     });
     
     $.validator.addMethod('isEqualToPassword', function (value, element) {

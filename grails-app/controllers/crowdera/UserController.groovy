@@ -367,7 +367,7 @@ class UserController {
 
         if (user.save()) {
             flash.user_message = "Profile updated successfully!"
-            redirect (controller: 'user', action: 'accountSetting')
+            redirect (controller: 'user', action: 'dashboard')
         } else {
            render(view: 'error', model: [message: "Error while updating user. Please try again later."])
         }

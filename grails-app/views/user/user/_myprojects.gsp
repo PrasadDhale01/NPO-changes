@@ -1,7 +1,7 @@
 <g:if test="${projects.size() == 0}">
     <g:if test="${dashboard}">
         <div class="col-sm-12">
-            <div class="alert alert-warning">
+            <div class="alert alert-info">
                 You haven't created any campaigns yet. You can create one <g:link controller="project" action="create">here</g:link>.
             </div>
         </div>

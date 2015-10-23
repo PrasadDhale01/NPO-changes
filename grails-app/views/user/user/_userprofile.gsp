@@ -61,7 +61,7 @@
         </div>
         <div class="col-sm-6 col-md-6 col-xs-6 userseditlocation">
             <div class="form-group">
-                <textarea name="biography" required class="form-control all-place" rows="2" placeholder="Bio" autofocus>${user.biography}</textarea>
+                <textarea name="biography" class="form-control all-place" rows="2" placeholder="Bio" autofocus>${user.biography}</textarea>
             </div>
             <div class="form-group">
                 <div class="input-group col-md-12">
@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="clear"></div>
-        <div class="col-md-12">
+        <div class="col-md-12 userInfoUpdateBtn">
             <button class="btn btn-primary btn-md pull-right" type="submit" id="userInfoUpdateBtn">Update</button>
         </div>
     </g:form>

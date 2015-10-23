@@ -7,7 +7,7 @@
 %>
 <g:if test="${contributions.size() == 0}">
     <div class="col-sm-12">
-        <div class="alert alert-warning">
+        <div class="alert alert-info">
             You haven't contributed to any campaign yet. You can start contributing <g:link controller="project" action="list">here</g:link>.
         </div>
     </div>

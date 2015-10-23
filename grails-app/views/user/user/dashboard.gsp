@@ -56,36 +56,37 @@
                     <div class="user-information-bio text-center">
                         <b>${user.firstName}</b>
                         <g:if test="${user.biography}"> 
-                            <div class="user-biography">${user.biography}</div>
+                            <div class="user-biography hidden-xs">${user.biography}</div>
                         </g:if>
                     </div>
                 </div>
                 
                 <div class="connectsection hidden-xs">
                     <g:if test="${activeTab != 'myprojects' && activeTab != 'campaigns'}">
-                        <a href="/user/campaigns" class="campaigndashboardtab btn btn-primary btn-md hidden-xs hidden-sm">My Campaigns</a>
+                        <a href="/user/campaigns" class="campaigndashboardtab btn btn-primary btn-md hidden-xs">My Campaigns</a>
                     </g:if>
                     <g:if test="${activeTab != 'myprojects' && activeTab != 'contributions'}">
-                        <a href="/user/contributions" class="contributiondashboardtab btn btn-primary btn-md hidden-xs hidden-sm">Campaigns Supported</a>
+                        <a href="/user/contributions" class="contributiondashboardtab btn btn-primary btn-md hidden-sm hidden-xs">Campaigns Supported</a>
+                        <a href="/user/contributions" class="contributiondashboardtab btn btn-primary btn-md visible-sm">Campaigns<br>Supported</a>
                     </g:if>
                     <g:if test="${activeTab != 'editUserInfo'}">
                         <a href="/user/edit-userInfo" class="dashboardtabheading btn btn-primary btn-md btn-block">Edit User Info</a>
                    </g:if>
                     
-                    <a href="#" class="btn btn-block btn-social social-button btn-facebook"><i class="fa fa-facebook"></i> Connect</a>
-                    <a href="#" class="btn btn-block btn-social social-button btn-linkedin"><i class="fa fa-linkedin"></i> Connect</a>
-                    <a href="#" class="btn btn-block btn-social social-button btn-google-plus"><i class="fa fa-google-plus"></i> Connect</a>
-                    <a href="#"><img src="//s3.amazonaws.com/crowdera/assets/dashboardpaypal.png" alt="paypal"></a>
+                    <a href="#" class="btn btn-block btn-social social-button btn-facebook hidden"><i class="fa fa-facebook"></i> Connect</a>
+                    <a href="#" class="btn btn-block btn-social social-button btn-linkedin hidden"><i class="fa fa-linkedin"></i> Connect</a>
+                    <a href="#" class="btn btn-block btn-social social-button btn-google-plus hidden"><i class="fa fa-google-plus"></i> Connect</a>
+                    <a href="#" class="hidden"><img src="//s3.amazonaws.com/crowdera/assets/dashboardpaypal.png" alt="paypal"></a>
                 </div>
                 
                 <div class="connectsection hidden-md hidden-lg hidden-xs hidden-sm">
                     <a href="#" class="btn btn-block btn-social social-button btn-facebook"><i class="fa fa-facebook"></i> Connect</a>
                     <a href="#" class="btn btn-block btn-social social-button btn-linkedin"><i class="fa fa-linkedin"></i> Connect</a>
                     <a href="#" class="btn btn-block btn-social social-button btn-google-plus"><i class="fa fa-google-plus"></i> Connect</a>
-                    <a href="#"><img src="//s3.amazonaws.com/crowdera/assets/dashboardpaypal.png" alt="paypal"></a>
+                    <a href="#" class=" hidden"><img src="//s3.amazonaws.com/crowdera/assets/dashboardpaypal.png" alt="paypal"></a>
                 </div>
             </div>
-            <div class="influencediv col-md-2 col-lg-2 col-sm-6 col-xs-6 hidden-sm hidden-lg hidden-md">
+            <div class="influencediv influencediv-xs col-md-2 col-lg-2 col-sm-6 col-xs-6 hidden-sm hidden-lg hidden-md">
                 <div class="amountsection">
                     <span class="amountSection-Font">$${fundRaised.round()} </span>
                     <br/> 
@@ -97,7 +98,14 @@
                     <span>Contributed</span>
                </div>
             </div>
+            
             <div class="clear visible-xs"></div>
+            <g:if test="${user.biography}">
+				            <div class="biography-mobile visible-xs">
+				                ${user.biography}
+				            </div>
+            </g:if>
+            
             <div class="dashboard-mobile-section visible-xs">
                 <div class="col-xs-6">
                     <a href="/user/campaigns" class="mob-campaigns-btn btn btn-primary text-center"><div class="clear">My </div>Campaigns</a>
@@ -145,6 +153,9 @@
                         <div id="userDashboardcampaigns">
                             <g:render template="user/myprojects" model="['dashboard': 'dashboard']"/>
                         </div>
+                        <g:if test="${projects.size() >= 1}">
+                            <a href="/user/campaigns" class="show-more-campaign-btn btn btn-primary btn-md visible-xs">Show More</a>
+                        </g:if>
                     </div>
                     <div class="col-desktop-padding-left col-lg-5 col-md-5 col-sm-6 col-xs-12 hidden-xs">
                         <a href="/user/contributions" class="dashboardtab btn btn-primary btn-md">Campaigns Supported</a>

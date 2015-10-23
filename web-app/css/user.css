@@ -28,7 +28,8 @@
     border-radius: 40px;
 }
 .givinginfluence {
-    height: 65px;
+    height: 70px;
+    padding-top: 5px;
     width: 100%;
     overflow: hidden;
     border-color: #e7e7e7;
@@ -44,7 +45,7 @@
 }
 .amountsection {
     margin-top: 3px;
-    height: 55px;
+    height: 58px;
     width: 100%;
     overflow: hidden;
     border-style: solid;
@@ -130,7 +131,7 @@ div.progress {
 }
 .defaultprofileimage {
     position: absolute;
-    top: 50px;
+    top: 40px;
     width: 100%;
     line-height: 30px;
     text-align: center;
@@ -644,7 +645,7 @@ div.dashboardtile-min-height {
     padding-right: 5px;
 }
 .dashboard-mobile-section {
-    padding-top: 30px;
+    padding-top: 10px;
 }
 .dashboard-mobile-section .amountsectionfbicon.btn {
     margin-top: 0px;
@@ -652,4 +653,29 @@ div.dashboardtile-min-height {
 }
 .mob-campaigns-btn span.clear {
     clear: both;
+}
+.biography-mobile {
+	   margin-left: auto;
+	   margin-right: auto;
+    width: 270px;
+    background-color: #e7e7e7;
+    border-width: 0;
+    color: #505050;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.show-more-campaign-btn.btn-primary {
+    background-color: #175E83 !important;
+    border-color: #175E83 !important;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 8px 24px;
+    width: 230px;
+    margin-left: 10px;
+    margin-right: auto;
+}
+.userseditlocation ul.dropdown-menu li {
+	   text-align: left;
 }

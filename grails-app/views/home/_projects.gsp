@@ -9,8 +9,9 @@
         <div class="item active home-campaign-tile-container home-tile-mobile hidden-xs">
             <div class="row">
                 <ul class="thumbnails list-unstyled home-campaign-tile">
+                    <% def index1 = 1 %>
                     <g:each in="${projects}" var="project">
-                        <li class="col-md-6 col-lg-4 col-sm-6 col-xs-12">
+                        <li class="<g:if test="${index1++ > 2}">hidden-md col-lg-4 hidden-sm col-sm-6 col-xs-12</g:if><g:else>col-md-6 col-sm-6 col-lg-4 col-xs-12</g:else>">
                             <g:render template="/layouts/tile" model="['project': project]"></g:render>
                         </li>
                     </g:each>
@@ -18,8 +19,9 @@
             </div>
         </div>
         
-        <div id="myCarousel" class="carousel slide visible-xs hm-mobile-positions"  data-ride="carousel">
-            <ol class="carousel-indicators">
+        
+        <div id="myCarousel" class="carousel slide visible-xs hidden-sm hidden-md visible-md hm-mobile-positions"  data-ride="carousel">
+            <ol class="carousel-indicators carousel-indicators-sm">
                 <li data-target="#myCarousel" data-slide-to="0" class="active sh-carousel-li"></li>
                 <li data-target="#myCarousel" data-slide-to="1" class="sh-carousel-li"></li>
                 <li data-target="#myCarousel" data-slide-to="2" class="sh-carousel-li"></li>
@@ -32,9 +34,9 @@
 			    def index = 0
 			%>
 
-            <div id="carousel-example" class="carousel slide visible-xs home-campaign-tile-container" >
+            <div id="carousel-example" class="carousel slide visible-xs hidden-sm hidden-md home-campaign-tile-container" >
                 <!-- Wrapper for slides -->
-                <div class="carousel-inner">
+                <div class="carousel-inner hmmobile-carousel-banner">
                     <g:each in="${(1..pages).toList()}" var="row">
                         <g:if test="${row == 1}">
 		                    <div class="item active">

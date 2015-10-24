@@ -2505,11 +2505,11 @@ a.footerlink {
 	margin: 0 auto;
 }
 .user-tiles-style{
-				display: block;
-				margin-left: auto;
-				margin-right: auto;
-				padding: 0;
-				width:310px;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 0;
+	width:310px;
 }
 .userdashboard-tiles{
     display: block;
@@ -6784,12 +6784,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 100px;
         margin-top: 8px;
     }
-				#useravatar img.dummyprofileimage {
-								width: 112px;
-								height: 100px;
-								margin-top: 6px;
-								margin-left: 8px;
-				}
+    #useravatar img.dummyprofileimage {
+        width: 112px;
+        height: 100px;
+        margin-top: 6px;
+        margin-left: 8px;
+    }
     .userprofileeditimage {
         right: 10px;
     }

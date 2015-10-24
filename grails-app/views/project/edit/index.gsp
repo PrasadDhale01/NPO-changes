@@ -26,12 +26,12 @@
     <div class="">
         <div class="text-center">
              <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
-	            <a class=" col-sm-2 col-xs-2 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start TW-cr-sec-header-start-icon-width" src="//s3.amazonaws.com/crowdera/assets/start-Icon-White.png" alt="Start"></div><div class="hidden-xs">Start</div></a>
+             <a class=" col-sm-2 col-xs-2 cr-img-start-icon" href="#start"><div class="col-sm-0 cr-subheader-icons"><img class="cr-start TW-cr-sec-header-start-icon-width" src="//s3.amazonaws.com/crowdera/assets/start-Icon-White.png" alt="Start"></div><div class="hidden-xs">Start</div></a>
                     <a class=" col-sm-2 col-xs-2 cr-img-story-icon" href="#story"><div class="col-sm-0 cr-subheader-icons"><img class="cr-story TW-cr-sec-header-icon-width" src="//s3.amazonaws.com/crowdera/assets/story-Icon-White.png" alt="Story"></div><div class="hidden-xs">Story</div></a>
-	            <a class=" col-sm-2 col-xs-2 cr-img-admin-icon" href="#admins"><div class="col-sm-0 cr-subheader-icons"><img class="cr-admin TW-cr-sec-header-icon-width" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---White.png" alt="Admin"></div><div class="hidden-xs">Admin</div></a>
-	            <a class=" col-sm-2 col-xs-2 cr-img-perk-icon" href="#perk"><div class="col-sm-0 cr-subheader-icons"><img class="cr-perk TW-cr-sec-header-icon-width" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-White.png" alt="Perk"></div><div class="hidden-xs">Perks</div></a>
-	            <a class=" col-sm-2 col-xs-2 cr-img-payment-icon" href="#payment"><div class="col-sm-0 cr-subheader-icons"><img class="cr-payment TW-cr-sec-header-icon-width" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-White.png" alt="Payment"></div><div class="hidden-xs">Payment</div></a>
-	            <a class=" col-sm-2 col-xs-2 cr-img-save-icon" href="#save"><div class="col-sm-0 cr-subheader-icons"><img class="cr-launch TW-cr-sec-header-launch-icon-width" src="//s3.amazonaws.com/crowdera/assets/hdr-save-white.png" alt="Save"></div><div class="hidden-xs">Save</div></a>
+             <a class=" col-sm-2 col-xs-2 cr-img-admin-icon" href="#admins"><div class="col-sm-0 cr-subheader-icons"><img class="cr-admin TW-cr-sec-header-icon-width" src="//s3.amazonaws.com/crowdera/assets/admin-Icon---White.png" alt="Admin"></div><div class="hidden-xs">Admin</div></a>
+             <a class=" col-sm-2 col-xs-2 cr-img-perk-icon" href="#perk"><div class="col-sm-0 cr-subheader-icons"><img class="cr-perk TW-cr-sec-header-icon-width" src="//s3.amazonaws.com/crowdera/assets/perk-Icon-White.png" alt="Perk"></div><div class="hidden-xs">Perks</div></a>
+             <a class=" col-sm-2 col-xs-2 cr-img-payment-icon" href="#payment"><div class="col-sm-0 cr-subheader-icons"><img class="cr-payment TW-cr-sec-header-icon-width" src="//s3.amazonaws.com/crowdera/assets/payment-Icon-White.png" alt="Payment"></div><div class="hidden-xs">Payment</div></a>
+             <a class=" col-sm-2 col-xs-2 cr-img-save-icon" href="#save"><div class="col-sm-0 cr-subheader-icons"><img class="cr-launch TW-cr-sec-header-launch-icon-width" src="//s3.amazonaws.com/crowdera/assets/hdr-save-white.png" alt="Save"></div><div class="hidden-xs">Save</div></a>
             </header>
         </div>
         <div class="bg-color col-sm-12 col-xs-12 cr-top-space">
@@ -111,92 +111,98 @@
                     </div>
 
                     <input type="hidden" value="${user.id}" name="userid">
-	                <div class="form-group edit-margin">
-						<label class="col-sm-12 text-color">My Name is...</label>
-						<div class="col-sm-12 edt-mobile-reso">
-							<input class="form-control form-control-no-border text-color box-size" id="name1"
-								name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name" value="${project.beneficiary.firstName}">
-						</div>
-	                </div>
-	                
-	                    <div class="form-group edit-margin">
-	                       <div class="col-sm-3 edt-mobile-reso">
-					           <span class="cr-need">I need</span><img class="cr-ineed-icons" src="//s3.amazonaws.com/crowdera/assets/i-need-Icon.png" alt="Ineed">
-						       <div class="tops">
-						            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-							            <span class="i-currency-label fa fa-inr"></span>
-							         </g:if>
-							         <g:else>
-							             <span class="i-currency-label">$</span>
-				                     </g:else>   
-				                     <input class="form-control form-control-no-border-amt cr-amt" name="amount" value="${amount}" id="amount1"> 
-						             <span id="errormsg"></span>
-			                       
-	                           </div>
-	                       </div>
-	                       <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'}">
-	                           <div class="col-sm-1 amount-popover">
-	                               <img class="amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
-	                           </div>
-	                       </g:if>
-	                       <g:else>
-	                           <div class="col-sm-1 amount-popover edit-tool-icon">
-	                               <img class="amountInfoInd-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
-	                           </div>
-	                       </g:else>
-	                       <div class="col-sm-8 edt-mobile-reso">
-	                           <div class="btn-group col-sm-12 cr1-radio-tab cr1-mob-tb" data-toggle="buttons">
-	                                    <div class="cr1-tab-title">and I will be using it for</div>
-	                                    <g:if test="${project.usedFor == 'IMPACT'}">
-	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 active" id="impact1"> <input type="radio" value="yes" checked="checked"><span class="cr1-tb-text-sm">Making an</span><br><span class="cr1-tb-text-lg">Impact</span></label> 
-	                                    </g:if>
-	                                    <g:else>
-	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 " id="impact1"> <input type="radio" value="yes"><span class="cr1-tb-text-sm">Making an</span><br><span class="cr1-tb-text-lg">Impact</span></label> 
-	                                    </g:else>
-	                                    <g:if test="${project.usedFor == 'PASSION'}">
-	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active" id="passion1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-sm">Following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
-	                                    </g:if>
-	                                    <g:else>
-	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="passion1"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
-	                                    </g:else>
-	                                    <g:if test="${project.usedFor == 'SOCIAL_NEEDS'}">
-	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active"  id="innovating1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-sm">Social</span><br><span class="cr1-tb-text-lg">Innovation</span><br></label>
-	                                    </g:if>
-	                                    <g:else>
-	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12"  id="innovating1"> <input type="radio" value="no"><span class="cr1-tb-text-lg">Innovating</span><br><span class="cr1-tb-text-sm">for Social Good</span></label>
-	                                    </g:else>
-	                                    <g:if test="${project.usedFor == 'PERSONAL_NEEDS'}">
-	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active" id="personal1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-lg">Personal</span><br><span class="cr1-tb-text-sm">needs</span></label>
-	                                    </g:if>
-	                                    <g:else>
-	                                    <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="personal1"> <input type="radio" value="no"><span class="cr1-tb-text-lg">Personal</span><br><span class="cr1-tb-text-sm">needs</span></label>
-	                                    </g:else>
+                 <div class="form-group edit-margin">
+      <label class="col-sm-12 text-color">My Name is...</label>
+      <div class="col-sm-12 edt-mobile-reso">
+       <input class="form-control form-control-no-border text-color box-size" id="name1"
+        name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name" value="${project.beneficiary.firstName}">
+      </div>
+                 </div>
+                 
+                     <div class="form-group edit-margin">
+                        <div class="col-sm-3 edt-mobile-reso">
+                <span class="cr-need">I need</span><img class="cr-ineed-icons" src="//s3.amazonaws.com/crowdera/assets/i-need-Icon.png" alt="Ineed">
+             <div class="tops">
+                  <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                   <span class="i-currency-label fa fa-inr"></span>
+                </g:if>
+                <g:else>
+                    <span class="i-currency-label">$</span>
+                         </g:else>   
+                         <input class="form-control form-control-no-border-amt cr-amt" name="amount" value="${amount}" id="amount1"> 
+                   <span id="errormsg"></span>
+                          
+                            </div>
+                        </div>
+                        <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'}">
+                            <div class="col-sm-1 amount-popover">
+                                <img class="amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
+                            </div>
+                        </g:if>
+                        <g:else>
+                            <div class="col-sm-1 amount-popover edit-tool-icon">
+                                <img class="amountInfoInd-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
+                            </div>
+                        </g:else>
+                        <div class="col-sm-8 edt-mobile-reso">
+                            <div class="btn-group col-sm-12 cr1-radio-tab cr1-mob-tb" data-toggle="buttons">
+                                     <div class="cr1-tab-title">and I will be using it for</div>
+                                     <g:if test="${project.usedFor == 'IMPACT'}">
+                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 active" id="impact1"> <input type="radio" value="yes" checked="checked"><span class="cr1-tb-text-sm">Making an</span><br><span class="cr1-tb-text-lg">Impact</span></label> 
+                                     </g:if>
+                                     <g:else>
+                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 " id="impact1"> <input type="radio" value="yes"><span class="cr1-tb-text-sm">Making an</span><br><span class="cr1-tb-text-lg">Impact</span></label> 
+                                     </g:else>
+                                     <g:if test="${project.usedFor == 'PASSION'}">
+                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active" id="passion1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-sm">Following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
+                                     </g:if>
+                                     <g:else>
+                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="passion1"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
+                                     </g:else>
+                                     <g:if test="${project.usedFor == 'SOCIAL_NEEDS'}">
+                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active"  id="innovating1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-sm">Social</span><br><span class="cr1-tb-text-lg">Innovation</span><br></label>
+                                     </g:if>
+                                     <g:else>
+                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12"  id="innovating1"> <input type="radio" value="no"><span class="cr1-tb-text-lg">Innovating</span><br><span class="cr1-tb-text-sm">for Social Good</span></label>
+                                     </g:else>
+                                     <g:if test="${project.usedFor == 'PERSONAL_NEEDS'}">
+                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active" id="personal1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-lg">Personal</span><br><span class="cr1-tb-text-sm">needs</span></label>
+                                     </g:if>
+                                     <g:else>
+                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="personal1"> <input type="radio" value="no"><span class="cr1-tb-text-lg">Personal</span><br><span class="cr1-tb-text-sm">needs</span></label>
+                                     </g:else>
                                         <g:hiddenField name="usedFor" id="usedFor"/>
-						       </div>
-	                       </div>
-	                    </div>
-	                    
-	                    <div class="form-group createTitleDiv edit-margin">
-	                        <label class="col-sm-12 text-color">My plan is...</label>
-	                        <div class="col-sm-12 edt-mobile-reso">
-	                            <textarea class="form-control form-control-no-border text-color campaignTitle1" name="title" rows="2" placeholder="Campaign title is the gateway to view your campaign, create an impactful and actionable title." id="campaignTitle" maxlength="55">${project.title}</textarea>
-	                            <label class="pull-right " id="titleLength"></label>
-	                        </div>
-	                    </div>
-	                
-	                
-	                    <div class="form-group createDescDiv edit-margin">
-	                        <div class="col-sm-12 edt-mobile-reso">
-	                            <textarea class="form-control form-control-no-border text-color descarea1" id="descarea" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Campaign Description" maxlength="140">${project.description}</textarea>
-	                            <label class="pull-right " id="desclength"></label>
-	                        </div>
-	                    </div>
-	            
+             </div>
+                        </div>
+                     </div>
+                     
+                     <div class="form-group createTitleDiv edit-margin">
+                         <label class="col-sm-12 text-color">My plan is...</label>
+                         <div class="col-sm-12 edt-mobile-reso">
+                             <textarea class="form-control form-control-no-border text-color campaignTitle1" name="title" rows="2" placeholder="Campaign title is the gateway to view your campaign, create an impactful and actionable title." id="campaignTitle" maxlength="55">${project.title}</textarea>
+                             <label class="pull-right " id="titleLength"></label>
+                         </div>
+                     </div>
+                 
+                 
+                     <div class="form-group createDescDiv edit-margin">
+                         <div class="col-sm-12 edt-mobile-reso">
+                             <textarea class="form-control form-control-no-border text-color descarea1" id="descarea" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Campaign Description" maxlength="140">${project.description}</textarea>
+                             <label class="pull-right " id="desclength"></label>
+                         </div>
+                     </div>
+             
                     <g:hiddenField name="campaignvideoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
                     <div class="col-sm-6 video-popover" id="media">
-                        <div class="panel panel-default panel-create-size lblIcon text-center" id="videoBox">
-                            <span><img id="addVideoIcon" class="addVideoIcon" alt="addVideo" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png"></span>
-                            <span id="addVideolbl">Add Video</span>
+                        <div class="panel panel-default panel-create-size" id="videoBox">
+                            <div class="form-group">
+                                <div class="col-md-10 col-xs-8 col-videoUrl-textbox">
+                                    <input class="form-control form-control-no-border text-color videoUrl" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
+                                </div>
+                                <div class="col-sm-2 col-xs-2 col-videoUrl-button">
+                                    <button type="button" class="btn btn-info btn-sm cr-btn-color add">Add</button>
+                                </div>
+                            </div>
                         </div>
                         <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                     </div>
@@ -218,49 +224,63 @@
                     </div>
                     
                 <div class="col-sm-6 image-popover">
-                    <div class="panel panel-default panel-create-size upload-campaign-pic">
-                        <div class="panel-body">
-                            <div class="form-group" id="createthumbnail">
-                                <div class="col-sm-12">
-                                    <div class="col-md-5">
-                                        <div class="fileUpload btn btn-info btn-sm cr-btn-color">
-                                            Upload Pictures
-                                            <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectEditImageFile" accept="image/jpeg, image/png">
+                    <div class="panel panel-default panel-create-size upload-campaign-pic panel-pic-uploaded <g:if test="${!project.imageUrl}">panel-hidden</g:if>">
+                        <div class="form-group" id="createthumbnail">
+                            <div class="createpage-img-panel">
+                            <div class="col-sm-12 pad-result" id="campaignthumbnails">
+                                <g:each var="imgurl" in="${project.imageUrl}">
+                                    <div id="imgdiv" class="pr-thumb-div">
+                                        <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
+                                        <div class="deleteicon pictures-edit-deleteicon">
+                                            <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
                                         </div>
                                     </div>
-                                    <div class="col-md-7">
-                                        <div id="uploadingCampaignImage">Uploading Picture......</div>
-                                    </div>
-                                    <div class="clear"></div>
-                                    <label class="docfile-orglogo-css" id="imgmsg">Please select image file.</label>
-                                    <label class="docfile-orglogo-css" id="campaignfilesize"></label>
-                                </div>
-                                <div class="col-sm-12 pad-result" id="campaignthumbnails">
-                                    <g:each var="imgurl" in="${project.imageUrl}">
-                                        <div id="imgdiv" class="pr-thumb-div">
-                                            <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
-                                            <div class="deleteicon pictures-edit-deleteicon">
-                                                <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
-                                            </div>
-                                        </div>
-                                    </g:each>
-                                    <script>
-                                        function deleteProjectImage(current,imgst, projectId) {
-                                            $.ajax({
-                                                type : 'post',
-                                                url  : $("#b_url").val()+'/project/deleteProjectImage',
-                                                data : 'imgst='+imgst+'&projectId='+projectId,
-                                                success: function(data){
-                                                	$(current).parents('#imgdiv').remove();
+                                </g:each>
+                                <script>
+                                    function deleteProjectImage(current,imgst, projectId) {
+                                        $.ajax({
+                                            type : 'post',
+                                            url  : $("#b_url").val()+'/project/deleteProjectImage',
+                                            data : 'imgst='+imgst+'&projectId='+projectId,
+                                            success: function(data){
+                                                $(current).parents('#imgdiv').remove();
+                                                if($('#campaignthumbnails').find('.pr-thumb-div').length == 0){
+                                                    $('.panel-pic-uploaded').hide();
+                                                    $('.panel-no-image').show();
                                                 }
-                                            }).error(function() {
-                                            	console.log('Campaign Image cannot be deleted');
-                                            });
-                                        }
-                                    </script>
-                                </div>
-                                
+                                            }
+                                        }).error(function() {
+                                         console.log('Campaign Image cannot be deleted');
+                                        });
+                                    }
+                                </script>
                             </div>
+                            <div class="col-md-12">
+                                <div id="uploadingCampaignImage">Uploading Picture......</div>
+                                <div class="imageNumValidation">You cannot upload more than 5 images</div>
+                                <label class="docfile-orglogo-css imgmsg">Please select image file.</label>
+                                <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID"></label>
+                            </div>
+                            </div>
+                            <div class="col-pictures pull-right">
+                                <div class="fileUpload btn btn-info btn-sm cr-btn-color">
+                                    Add Image
+                                    <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="campaignImage" accept="image/jpeg, image/png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default panel-create-size upload-campaign-pic panel-no-image <g:if test="${project.imageUrl}">panel-hidden</g:if>">
+                        <div class="col-sm-12 col-add-picture">
+                            <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
+                                Add Image
+                                <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectEditImageFile" accept="image/jpeg, image/png">
+                            </div>
+                        </div>
+                        <div class="clear"></div>
+                        <div class="col-sm-12 col-error-placement" id="col-error-placement">
+                            <label class="docfile-orglogo-css imgmsg">Please select image file.</label>
+                            <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID1"></label>
                         </div>
                     </div>
                     <img class="pictureInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
@@ -271,11 +291,11 @@
                         <div class="col-sm-12 cr-story-padding">
                             <div class="cr-story-flx cr-safari">
                             <label class="panel body cr-story-size cr-safari">STORY</label>
-                      	    <label class="panel-body cr-panel-story">A good engaging story is the backbone of your Campaign.
-	                                                                    You want your readers to be compelled to share your story
-	                                                                    and make your campaign go viral. Be passionate and make 
-	                                                                    them believe and trust your goal.</label>
-                       	    </div>
+                           <label class="panel-body cr-panel-story">A good engaging story is the backbone of your Campaign.
+                                                                     You want your readers to be compelled to share your story
+                                                                     and make your campaign go viral. Be passionate and make 
+                                                                     them believe and trust your goal.</label>
+                            </div>
                             <textarea name="${FORMCONSTANTS.STORY}" class="redactorEditor">
                                 <g:if test="${project.story}">${project.story}</g:if>
                             </textarea>
@@ -284,31 +304,31 @@
                         </div>
                     </div>
                 </div>
-	                    
+                     
                <div class="col-sm-12 manage-Top-tabs-mobile" id="admins">
                    <div class="cr-tabs-admins cr-safari">
-	                   <label class="panel body cr-admin-title cr-safari">ADMIN</label>
+                    <label class="panel body cr-admin-title cr-safari">ADMIN</label>
                        <ul class="nav nav-tabs manage-projects nav-justified cr-safari-mobile cr-ul-tabs">
                            <li class="cr-li-tabs cr-li-tabsss cr-hover-color">
                               <a href="#admin" data-toggle="tab" aria-expanded="false">
                                    <span class="glyphicon glyphicon-user cr-icon-tabs-user visible-xs"></span><span class="tab-text hidden-xs cr-add-tabs-title cr-font-title pull-left">Add Campaign Admin</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
-	                           </a>
-	                       </li>
-	                       <li class="active cr-tabs-update  cr-li-tabsss cr-hover-color">
-	                           <a data-toggle="tab" href="#organization" aria-expanded="true">
-	                               <span class="glyphicon glyphicon-eye-open cr-icon-tabs-eye visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Display Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
-	                           </a>
-	                       </li>
-	                       <li class="cr-tabs-update  cr-li-tabsss cr-hover-color">
-	                           <a data-toggle="tab" href="#personals">
-		                            <span class="glyphicon glyphicon-info-sign cr-icon-tabs-info visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Personal Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
-		                       </a>
-		                   </li>
-		               </ul>
+                            </a>
+                        </li>
+                        <li class="active cr-tabs-update  cr-li-tabsss cr-hover-color">
+                            <a data-toggle="tab" href="#organization" aria-expanded="true">
+                                <span class="glyphicon glyphicon-eye-open cr-icon-tabs-eye visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Display Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
+                            </a>
+                        </li>
+                        <li class="cr-tabs-update  cr-li-tabsss cr-hover-color">
+                            <a data-toggle="tab" href="#personals">
+                              <span class="glyphicon glyphicon-info-sign cr-icon-tabs-info visible-xs"></span><span class="tab-text hidden-xs cr-font-title pull-left">Update Personal Information</span><i class="glyphicon glyphicon-chevron-down cr-tab-in cr-tab-icons hidden-xs pull-right"></i>
+                         </a>
+                     </li>
+                 </ul>
                    </div>
 
-				    <!-- Tab panes -->
-					<div class="tab-content panel panel-default col-sm-12 cr-tab-panel-top">
+        <!-- Tab panes -->
+     <div class="tab-content panel panel-default col-sm-12 cr-tab-panel-top">
                         <div class="tab-pane panel-body row" id="admin">
                             <div class="col-sm-4">
                                 <div class="form-group">
@@ -322,7 +342,7 @@
                                     </div>
                                 </div>
                             </div>
-		                                    
+                                      
                             <div class="col-sm-4">
                                 <div class="form-group">
                                  <div class="col-sm-12">
@@ -348,7 +368,7 @@
                                  </div>
                                 </div>
                             </div>       
-					    </div>
+         </div>
                         <div class="tab-pane panel-body active row" id="organization">
                             <div class="col-sm-4">
                                 <div class="form-group" id="organizationName">
@@ -554,25 +574,6 @@
                             </div>
                         </g:if>
 
-<%--                            <div class="col-sm-4">--%>
-<%--                                <div class="form-group">--%>
-<%--                                    <div class="col-sm-12">--%>
-<%--                                        <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>--%>
-<%--                                         <a target="_blank" class="fb-like pull-left  cr-tab-icon-padding fbShareForSmallDevices" href="https://www.facebook.com/sharer/sharer.php?s=100&amp;&p[url]=${fbShareUrl}">--%>
-<%--                                             <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">--%>
-<%--                                         </a>--%>
-<%--                                         <a target="_blank" class="fb-like pull-left fbShareForLargeDevices cr-tab-icon-padding" id="fbshare">--%>
-<%--                                             <img src="//s3.amazonaws.com/crowdera/assets/facebook-Icon.png" alt="Facebook Share">--%>
-<%--                                         </a>--%>
-<%--                                         <a class="share-linkedin pull-left cr-tab-icon-padding">--%>
-<%--                                             <img src="//s3.amazonaws.com/crowdera/assets/twitter-Icon.png" alt="LinkedIn Share">--%>
-<%--                                         </a>--%>
-<%--                                         <a class="twitter-share pull-left" id="twitterShare" data-url="${base_url}/campaigns/${vanityTitle}/${vanityUsername}" target="_blank">--%>
-<%--                                             <img src="//s3.amazonaws.com/crowdera/assets/linked-In--Icon.png" alt="Twitter Share">--%>
-<%--                                         </a>--%>
-<%--                                     </div>--%>
-<%--                                 </div>--%>
-<%--                             </div>--%>
                              <div class="col-sm-12">
                                  <div class="form-group">
                                      <div class="col-sm-12">
@@ -585,11 +586,11 @@
 
                 </div>
                 <div class="form-group">
-	                <div class="col-sm-12 cr-lab-rd-flex cr-space cr-safari" id="perk">
-	                    <div class="cr-perks-flex cr-perks-space edit-perk-space cr-safari">
-	                        <label class="panel-body cr-perks-size edit-perk-size"><span class="cr-offering">Offering</span> PERKS?</label>
-	                    </div>
-	                    <div class="btn-group btnPerkBgColor col-sm-push-6 edit-btn-space cr-perk-yesno-tab ed-perks-css cr-mobile-sp ie-cr-perks" data-target="buttons">
+                 <div class="col-sm-12 cr-lab-rd-flex cr-space cr-safari" id="perk">
+                     <div class="cr-perks-flex cr-perks-space edit-perk-space cr-safari">
+                         <label class="panel-body cr-perks-size edit-perk-size"><span class="cr-offering">Offering</span> PERKS?</label>
+                     </div>
+                     <div class="btn-group btnPerkBgColor col-sm-push-6 edit-btn-space cr-perk-yesno-tab ed-perks-css cr-mobile-sp ie-cr-perks" data-target="buttons">
                             <label class="btn btn-default cr-lbl-mobile"> <input type="radio" name="answer" value="yes" id="yesradio"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label>
                             <g:if test="${projectRewards.size() == 0}">
                                 <label class="btn btn-default cr-lbl-mobiles"> <input type="radio" name="answer" checked="checked" value="no" id="noradio"> NO</label>
@@ -597,18 +598,18 @@
                             <g:else>
                                 <label class="btn btn-default cr-lbl-mobiles"> <input type="radio" name="answer" value="no" id="noradio"> NO</label>
                             </g:else>
-	                    </div>
-	                </div>
+                     </div>
+                 </div>
                 </div>
 
                 <div id="addNewRewards">
                 <g:if test="${rewardItrCount > 0}">
                 <g:each in="${projectRewards}" var="reward">
                 <%
-				    def shippingInfo = rewardService.getRewardShippingObjectByReward(reward);
-					def price = (reward.price).round();
-					lastrewardCount = reward.rewardCount
-				%>
+        def shippingInfo = rewardService.getRewardShippingObjectByReward(reward);
+     def price = (reward.price).round();
+     lastrewardCount = reward.rewardCount
+    %>
                     <div class="rewardsTemplate" id="rewardTemplate${reward.rewardCount}" value="${reward.rewardCount}">
                         <div class="col-sm-2">
                             <div class="form-group">
@@ -624,7 +625,7 @@
                                 </div>
                             </div>
                         </div>
-		
+  
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <div class="col-sm-12">
@@ -708,7 +709,7 @@
                                 </div>
                             </div>
                         </div>
-										
+          
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <div class="col-sm-12">
@@ -893,7 +894,7 @@
                                             <script>
                                                 var FG_GRAPHWIDGET_PARAMS = {
                                                     results : {
-                                                        selectaction : function(uuid,charity_name) {	
+                                                        selectaction : function(uuid,charity_name) { 
                                                             document.getElementById("uuid").value = uuid;
                                                             document.getElementById("charity_name").value = charity_name;
                                                         }
@@ -932,15 +933,10 @@
                                 <div class="row">
                                     <div class="form-group">
                                     <div class="col-sm-10 col-xs-8">
-                                        <g:if test="${project.videoUrl}">
-                                            <input id="videoUrl" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
-                                        </g:if>
-                                        <g:else>
-                                            <input id="videoUrl" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
-                                        </g:else>
+                                        <input class="form-control form-control-no-border text-color videoUrl" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
                                     </div>
                                     <div class="col-sm-2 col-xs-2">
-                                        <button class="btn btn-info btn-sm cr-btn-color" id="add" type="button">Add</button>
+                                        <button class="btn btn-info btn-sm cr-btn-color add" type="button">Add</button>
                                     <div>
                                     </div>
                                 </div>
@@ -953,18 +949,18 @@
             </g:uploadForm>
             </div>
         </div>
-	</div>
-	<script src="/js/main.js"></script>
+ </div>
+ <script src="/js/main.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>
-	<script type="text/javascript">
-		var needToConfirm = true;
-	    window.onbeforeunload = confirmExit;
-	    function confirmExit()
-	    {
-	        if(needToConfirm){
-	        	return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
-	        }
-	    }
+ <script type="text/javascript">
+  var needToConfirm = true;
+     window.onbeforeunload = confirmExit;
+     function confirmExit()
+     {
+         if(needToConfirm){
+          return "You have attempted to leave this page.  If you have made any changes to the fields without clicking the Save button, your changes will be lost.  Are you sure you want to exit this page?";
+         }
+     }
         function removeLogo(){
             $('#delIcon').removeAttr('src');
             $('#imgIcon').removeAttr('src');
@@ -1019,7 +1015,7 @@
                  $('#thirdadmin').val('');
                  $('#logoDelete3').hide();  
              }
-         	                      
+                                
              $.ajax({
                   type:'post',
                   url:$("#b_url").val()+'/project/deleteCampaignAdmin',

@@ -2883,10 +2883,10 @@ class ProjectService {
                 break;
 
             case 'videoUrl':
-                project.videoUrl = (varValue == ' ') ? null : varValue ;
+                project.videoUrl = (varValue.isAllWhitespace()) ? null : varValue;
                 isValueChanged = true;
                 break;
-				
+
             case 'email1':
                 getFirstAdminForProjects(varValue, project, user)
                 isValueChanged = true;

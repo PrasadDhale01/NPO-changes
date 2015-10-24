@@ -43,3 +43,55 @@ input.customVanityUrlStaging{
 input.customVanityUrlProd{
 	width:138%;
 }
+
+.col-videoUrl-textbox{
+    padding-right: 0;
+    padding-left: 5px;
+    top: 107px;
+}
+
+.col-videoUrl-button{
+	   padding-right:2px;
+    padding-left: 0;
+    top: 107px;
+}
+
+input.videoUrl{
+    width:98%;
+}
+
+.col-add-picture{
+    padding-right: 0;
+    padding-left: 39%;
+    top: 43%;
+}
+
+.col-pictures{
+    top:5px;
+    padding-right: 25px;
+}
+.createpage-img-panel {
+	   height: 200px;
+}
+
+.panel-hidden{
+    display:none;
+}
+
+.imageNumValidation{
+    color: #f04124;
+    font-size: 12px;
+    display:none;
+}
+
+.col-error-placement{
+    top:110px;
+}
+.col-error-placement span{
+	   color: #f04124;
+	   text-align: center;
+}
+
+.col-error-placement .imgmsg{
+    text-align: center;
+}

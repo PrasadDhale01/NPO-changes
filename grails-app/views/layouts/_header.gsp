@@ -17,7 +17,7 @@
 %>
 <input type="hidden" id="currentEnvironment" value="<%=currentEnv%>" />
 <input type="text" name="search" id="hiddensearch"/>
-<div class="navbar navbar-default navbar-fixed-top header-section home-header-section noScrollHeader" role="navigation">
+<div class="hidden-xs navbar navbar-default navbar-fixed-top header-section home-header-section noScrollHeader" role="navigation">
     <div class="header-container">
 		<g:if test="${currentEnv == 'test' || currentEnv== 'staging' || currentEnv=='production' || currentEnv== 'development'}">
 			<div class="info-banner">
@@ -59,20 +59,11 @@
                 <li class="learn"><a href="${resource(dir: '/howitworks')}" class="nav-text3 hm-back-width hed-font-sizes"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/learn-icon-dropdowns.png" alt="learn">&nbsp;&nbsp;&nbsp;&nbsp;Learn</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right nav-create-button">
-            	<sec:ifNotLoggedIn>
-	                <li class="hidden-xs">
-	                    <g:link controller="project" action="create" class="nav-text1">
-	                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-yellow-tab.jpg" alt="create" class="" id="createButton-sm">
-	                    </g:link> 
-	                </li>
-                </sec:ifNotLoggedIn>
-                <sec:ifLoggedIn>
-					<li class="hidden-xs">
-					    <g:link controller="project" action="create" class="nav-text1">
-					        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-yellow-tab.jpg" alt="create" class="" id="createButton-sm">
-					    </g:link> 
-					</li>	
-                </sec:ifLoggedIn>
+				<li class="hidden-xs noscrollHeaderHelpLink">
+				    <g:link controller="project" action="create" class=" btn btn-info nav-text1 TW-header-helpLinkLogged">
+                    	<span class="TW-header-helpTxtLogged">Create</span>
+                    </g:link>
+				</li>	
                 <li class="hidden-lg hidden-md hidden-sm hed-font-sizes">
                     <g:link controller="project" action="create" class="nav-item-1"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" alt="create">&nbsp;&nbsp;&nbsp;&nbsp;Create</g:link>
                 </li>
@@ -161,69 +152,103 @@
     </div>
 </div>
 
-<!--  **********************************************Scrolled Header************************************************* -->
-<div class="navbar navbar-default navbar-fixed-top header-section home-header-section scrollHeader" role="navigation">
-    <div class="header-container TW-scrollHeaderBackColor">
-		<g:if test="${currentEnv == 'test' || currentEnv== 'staging' || currentEnv=='production' || currentEnv== 'development'}">
-			<div class="info-banner">
+<!-- *******************************************Mobile header fixed*************************************************** -->
+
+<div class="hidden-lg hidden-md hidden-sm navbar navbar-default navbar-fixed-top header-section home-header-section mobile-fixedHeader" role="navigation" style="height: 120px;">
+    <div class="header-container TW-scrollHeaderBackColor" style="height: 118px;">
+		<div class="info-banner">
 				Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a>
 				<a href="#" class="banner-close">Close</a>
-			</div>
-		</g:if>
+		</div>
+		
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#TW-navbar-collapsed">
+            <button data-target="#TW-navbar-collapsed" data-toggle="collapse" class="navbar-toggle collapsed toggle-MobileHeader" type="button">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${resource(dir: '/')}">
-                <img src="//s3.amazonaws.com/crowdera/assets/header-logo-crowdera.png" alt="Crowdera">
-            </a>
+            <div class="searchengine pull-right hidden-lg hidden-md hidden-sm visible-xs" style="margin-top:6px;">
+               <form name="SearchForm" action="/campaign">
+                   <div class="inner-addon left-addon search-icon-header search-image-header" style="padding-right: 40px;">
+                      <img id="scrolltrigger" class="trigger-mob" alt="search" src="https://s3.amazonaws.com/crowdera/assets/header-search-icon.png" style="display: block;">
+                      <input type="text" placeholder="Search....." id="search-barr" value="" name="q" class="form-control form-control-no-border search-box" style="display: none; width: 0px;">
+                   </div>
+               </form>
+            </div>
+  <div style="color:white; font-size:15px; font-weight:500;bottom:35px; vertical-align:center; position:absolute; width:100%;" class="mobile-fixed-header-text text-center"> 
+   <img class="center-block" src="//s3.amazonaws.com/crowdera/assets/header-logo-crowdera.png" alt="Crowdera">
+  future of funding for <b>things</b> that matter
+  </div>
         </div>
-        <div class="navbar-collapse collapse TW-scrollHeaderBackColor" id="TW-navbar-collapsed">
+    </div>
+</div>
+
+<!--  **********************************************Scrolled Header************************************************* -->
+<div role="navigation" class="navbar navbar-default navbar-fixed-top header-section home-header-section scrollHeader">
+    <div class="header-container TW-scrollHeaderBackColor">
+		
+			<div class="info-banner">
+				Doing good from India? Visit <a class="banner-link" href="http://crowdera.in">www.crowdera.in</a>
+				<a class="banner-close" href="#">Close</a>
+			</div>
+		
+        <div class="navbar-header">
+            <button data-target="#TW-navbar-collapsed" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="/" class="navbar-brand scrollHeaderLogo">
+                <img alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/header-logo-crowdera.png" class="hidden-xs">
+                <img class="mobile-scrollCrwdLogo hidden-lg hidden-md hidden-sm" alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" class="visible-xs center-block">
+            </a>
+            
+            <div class="searchengine pull-right hidden-lg hidden-md hidden-sm visible-xs" style="margin-top:6px;">
+               <form name="SearchForm" action="/campaign">
+                   <div class="inner-addon left-addon search-icon-header search-image-header" style="padding-right: 40px;">
+                      <img id="scrolltrigger" class="trigger-mob" alt="search" src="https://s3.amazonaws.com/crowdera/assets/header-search-icon.png" style="display: block;">
+                      <input type="text" placeholder="Search....." id="search-barr" value="" name="q" class="form-control form-control-no-border search-box" style="display: none; width: 150px;">
+                   </div>
+               </form>
+            </div>
+        </div>
+        <!-- Hidden in mobile -->
+        <div id="TW-navbar-collapsed-hidden-xs" class="navbar-collapse collapse TW-scrollHeaderBackColor">
             <ul class="nav navbar-nav nav-icon-bar">
                 <li class="searchengine hidden-xs">
-                    <form action="/campaign" name="SearchForm">
-                        <div class="inner-addon left-addon search-icon-header search-image-header">
-                           <img src="//s3.amazonaws.com/crowdera/assets/header-search-icon.png" alt="search" class="trigger" id="scrolltrigger">
-                           <input type="text" class="form-control form-control-no-border search-box" name="q" value="${params.q}" id="search-barr" placeholder="Search....."/>
+                    <form name="SearchForm" action="/campaign">
+                        <div class="inner-addon left-addon search-icon-header search-image-header" style="padding-right: 40px;">
+                           <img id="scrolltrigger" class="trigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/header-search-icon.png" style="display: block;">
+                           <input type="text" placeholder="Search....." id="search-barr" value="" name="q" class="form-control form-control-no-border search-box" style="display: none; width: 0px;">
                         </div>
                     </form>
                 </li>
                 
                 <li class="hidden-lg hidden-md hidden-sm search-mob">
-                    <form action="/campaign"  name="searchableForm">
+                    <form name="searchableForm" action="/campaign">
                         <span class="form-group inner-addon left-addon">
                             <i class="glyphicon glyphicon-search search-glyph-icon"></i>
-                            <input type="search" name="q" class="form-control form-control-no-border search-box-xs" value="${params.q}" placeholder="Search.....">
+                            <input type="search" placeholder="Search....." value="" class="form-control form-control-no-border search-box-xs" name="q">
                         </span>
                     </form>
                 </li>
-                <li class="discover scrollHeaderMenu"><a href="${resource(dir: '/campaigns')}" class="nav-text2 hm-back-width hed-font-sizes"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/icon-discover-new.png" alt="discover">&nbsp;&nbsp;&nbsp;&nbsp;Discover</a></li>
-                <li class="learn scrollHeaderMenu"><a href="${resource(dir: '/howitworks')}" class="nav-text3 hm-back-width hed-font-sizes"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/learn-icon-dropdowns.png" alt="learn">&nbsp;&nbsp;&nbsp;&nbsp;Learn</a></li>
+                <li class="discover scrollHeaderMenu" style="display: block;"><a class="nav-text2 hm-back-width hed-font-sizes" href="/campaigns"><img alt="discover" src="//s3.amazonaws.com/crowdera/assets/icon-discover-new.png" class="hidden-sm hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;Discover</a></li>
+                <li class="learn scrollHeaderMenu" style="display: block;"><a class="nav-text3 hm-back-width hed-font-sizes" href="/howitworks"><img alt="learn" src="//s3.amazonaws.com/crowdera/assets/learn-icon-dropdowns.png" class="hidden-sm hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;Learn</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right nav-create-button">
-            	<sec:ifNotLoggedIn>
-	                <li class="hidden-xs scrollHeaderMenu">
-	                    <g:link controller="project" action="create" class="nav-text1">
-	                        <img src="//s3.amazonaws.com/crowdera/assets/create-Button-yellow-tab.jpg" alt="create" class="" id="createButton-sm">
-	                    </g:link> 
-	                </li>
-                </sec:ifNotLoggedIn>
-                <sec:ifLoggedIn>
-                	<li class="hidden-xs">
-	                    <g:link controller="project" action="create" class=" btn btn-info nav-text1 TW-header-helpLink">
-	                    	<span class="TW-header-helpTxt">Help</span>
-	                    </g:link> 
-                	</li>
-                </sec:ifLoggedIn>
+            <ul class="nav navbar-nav navbar-right nav-create-button" style="height: 36px;">
+               	<li class="hidden-xs">
+                    <a class=" btn btn-info nav-text1 TW-header-helpLink" href="/campaign/create" style="margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; height: 35px ! important; margin-top: 4px ! important;">
+                    	<span class="TW-header-helpTxt" style="margin-top: 2px; margin-bottom: 2px;">Create</span>
+                    </a> 
+               	</li>
                 <li class="hidden-lg hidden-md hidden-sm hed-font-sizes">
-                    <g:link controller="project" action="create" class="nav-item-1"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" alt="create">&nbsp;&nbsp;&nbsp;&nbsp;Create</g:link>
+                    <a class="nav-item-1" href="/campaign/create"><img alt="create" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" class="hidden-sm hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;Create</a>
                 </li>
             </ul>
             
-            <ul class="nav navbar-nav navbar-right <g:if test="${user}">navbar-right-logged-in</g:if>">
+            <ul class="nav navbar-nav navbar-right navbar-right-logged-in">
                 <sec:ifNotLoggedIn>
                     <g:if test="${currentEnv != 'prodIndia'}">
                         <li class="hidden-xs hidden-sm headerFbButton scrollHeaderMenu">
@@ -233,25 +258,25 @@
                         </li>
                     </g:if>
                     <li class="scrollHeaderMenu"><g:link controller="login" action="auth" class="nav-item-2"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/login-reg-dropdowns.png" alt="login">&nbsp;&nbsp;&nbsp;&nbsp;Login</g:link></li>
-                    <li class="scrollHeaderMenu"><g:link controller="login" action="register" class="nav-item-3 scrollHeaderMenu"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/sign-in-icon-register-dropsowns.png" alt="signup">&nbsp;&nbsp;&nbsp;&nbsp;Sign up</g:link></li>
+                    <li class="scrollHeaderMenu"><g:link controller="login" action="register" class="nav-item-3"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/sign-in-icon-register-dropsowns.png" alt="signup">&nbsp;&nbsp;&nbsp;&nbsp;Sign up</g:link></li>
                 </sec:ifNotLoggedIn>
                 <sec:ifLoggedIn>
                     <li class="dropdown dropdown-head hover-dropdown home-dropdown drop imgs-all user-img scrollHeaderMenu toggleImages">
                         <a href="#" class="dropdown-toggle login" data-toggle="dropdown">
                             <g:if test="${userService.isFacebookUser()}">
-                                <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
+                                <span><img class="user-img-scrollheader" src="${userImage}" alt="userImage"></span>
                             </g:if>
                             <g:elseif test="${userService.isAdmin()}">
-                                <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
+                                <span><img class="user-img-scrollheader" src="${userImage}" alt="userImage"></span>
                             </g:elseif>
                             <g:elseif test="${userService.isAuthor()}">
-                                <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
+                                <span><img class="user-img-scrollheader" src="${userImage}" alt="userImage"></span>
                             </g:elseif>
                             <g:elseif test="${userService.isCommunityManager()}">
-                                <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
+                                <span><img class="user-img-scrollheader" src="${userImage}" alt="userImage"></span>
                             </g:elseif>
                             <g:else>
-                                <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
+                                <span><img class="user-img-scrollheader" src="${userImage}" alt="userImage"></span>
                             </g:else>
                             ${userService.getFriendlyName()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <span class="user-cl-scrollHeader"></span>
@@ -259,7 +284,7 @@
                         <g:if test="${userService.isAdmin()}">
                             <ul class="dropdown-menu admin  admin-dropdown dropdown-menu-head admin-selected-drop">
                                 <li><g:link controller="user" action="dashboard">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/header-search-icon.png" alt="setting">&nbsp; Dashboard
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting">&nbsp; Dashboard
                                 </g:link></li>
                                 <sec:ifAllGranted roles="ROLE_AUTHOR">
                                     <li><g:link controller="blog" action="manage">
@@ -300,8 +325,72 @@
                             </ul>
                         </g:else>
                     </li>
-                </sec:ifLoggedIn>
+                </sec:ifLoggedIn>	
             </ul>
+        </div>
+        
+        <!-- Visible in mobile -->
+        <div id="TW-navbar-collapsed" class="hidden-lg hidden-md hidden-sm navbar-collapse collapse TW-scrollHeaderBackColor">
+        	<div class="scrollHeaderMenu hidden-lg hidden-md hidden-sm">
+        		<ul>
+	       			<li><a href="/campaigns">Discover</a></li>
+	       			<li><a href="/cmpaign/create">Start a campaign</a></li>
+	       			<li><a href="/howitworks">How it works</a></li>
+	       			<sec:ifNotLoggedIn>
+	       				<li><g:link controller="login" action="auth">Login</g:link>&nbsp; or&nbsp; <g:link controller="login" action="register">Signup</g:link></li>
+	       			</sec:ifNotLoggedIn>
+	       			<li><a href="/customer-service">Support</a></li>
+	       			 <sec:ifNotLoggedIn>
+                    <g:if test="${currentEnv != 'prodIndia'}">
+                        <li class="hidden-xs hidden-sm headerFbButton scrollHeaderMenu">
+                            <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
+                                <img src="//s3.amazonaws.com/crowdera/assets/facebook-button-header.jpg" alt="Register with Facebook">
+                            </a>
+                        </li>
+                    </g:if>
+                </sec:ifNotLoggedIn>
+                <sec:ifLoggedIn>
+                        <g:if test="${userService.isAdmin()}">
+                                <li><g:link controller="user" action="dashboard">
+                                     Dashboard
+                                </g:link></li>
+                                <sec:ifAllGranted roles="ROLE_AUTHOR">
+                                    <li><g:link controller="blog" action="manage">
+                                    <span class="glyphicon glyphicon-book"></span> Manage blogs</g:link></li>
+                                </sec:ifAllGranted>
+                                <sec:ifAllGranted roles="ROLE_COMMUNITY_MGR">
+                                    <li><g:link controller="community" action="manage">
+                                    <i class="fa fa-users"></i> Manage communities</g:link></li>
+                                </sec:ifAllGranted>
+                                <li><g:link controller="logout">
+                                    Log out
+                                </g:link></li>
+                        </g:if>
+                        <g:else>
+                                <li><g:link class="myprojects" controller="user" action="myproject">
+                                     My Campaigns
+                                </g:link></li>
+
+                                <li><g:link class="mycontributions" controller="user" action="mycontribution">
+                                     My Contributions
+                                </g:link></li>
+                                <li><g:link controller="user" action="dashboard">
+                                     Settings
+                                </g:link></li>
+                                <sec:ifAllGranted roles="ROLE_AUTHOR">
+                                    <li><g:link controller="blog" action="manage"><span class="glyphicon glyphicon-book"></span> Manage blogs</g:link></li>
+                                </sec:ifAllGranted>
+                                <sec:ifAllGranted roles="ROLE_COMMUNITY_MGR">
+                                    <li><g:link controller="community" action="manage"><i class="fa fa-users"></i> Manage communities</g:link></li>
+                                </sec:ifAllGranted>
+                                <li><g:link controller="logout">
+                                    Log out
+                                </g:link></li>
+                        </g:else>
+                    </li>
+                </sec:ifLoggedIn>	
+        		</ul>
+        	</div>
         </div>
     </div>
 </div>

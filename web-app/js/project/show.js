@@ -561,6 +561,12 @@
         $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/show-google-gray.png");
     });
     
+    $('.show-embedIcon').hover(function(){
+    	$(this).attr('src',"//s3.amazonaws.com/crowdera/user-images/embedicon.png");
+    	}).mouseleave(function(){
+        $(this).attr('src',"//s3.amazonaws.com/crowdera/assets/embedicon-grey.png");
+    });
+    
     /*******************************Description text length*********************/
         var counter = 1;
         $('#descarea').on('keydown', function(event) {
@@ -661,10 +667,11 @@
     });
     
     $("#twitterShare").click(function(){
+        var shareUrl = $('#shareUrl').val();
         if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
-            var url = 'https://twitter.com/share?text=Check campaign at crowdera.co!';
+            var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+shareUrl;
         } else {
-            var url = 'https://twitter.com/share?text=Check campaign at crowdera.in!';
+            var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+shareUrl;
         }
         window.open(url, 'Share on Twitter', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
@@ -714,7 +721,62 @@
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
+
+    $('.shortUrlglyphicon').popover({
+        html: true,
+        placement: 'bottom',
+        content: $('#popoverConent').html()
+    });
     
+    $('.shortUrlglyphiconMob').popover({
+        html: true,
+        placement: 'left',
+        content: $('#popoverConentMob').html()
+    });
+
+    $('.glyphicon-show-link-color').click(function(){
+    	if ($(this).hasClass('glyphicon-show-link-color-hover')){
+        	$(this).removeClass('glyphicon-show-link-color-hover');
+        } else {
+        	$(this).addClass('glyphicon-show-link-color-hover');
+        }
+    });
+
+    $('.shortUrlglyphicon').on('shown.bs.popover', function () {
+        var popover = $('.shortUrlglyphicon').data('bs.popover');
+        if (typeof popover !== "undefined") {
+            var $tip = popover.tip();
+            
+            $tip.find('.close').bind('click', function () {
+            	$('.glyphicon-show-link-color').removeClass('glyphicon-show-link-color-hover');
+                popover.hide();
+            });
+        }
+    });
+    
+    $('.shortUrlglyphiconMob').on('shown.bs.popover', function () {
+        var popover = $('.shortUrlglyphiconMob').data('bs.popover');
+        if (typeof popover !== "undefined") {
+            var $tip = popover.tip();
+            zindex = $tip.css('z-index');
+
+            $tip.find('.close').bind('click', function () {
+                popover.hide();
+            });
+
+            $tip.mouseover(function () {
+                $tip.css('z-index', function () {
+                    return zindex + 1;
+                });
+            })
+                .mouseout(function () {
+                $tip.css('z-index', function () {
+                    return zindex;
+                });
+            });
+        }
+    });
+
     $(document).ready(function (){
     	var classActive
     	$('.tab-pane-active').each(function(){
@@ -802,6 +864,50 @@
    		$('.home-header-section').removeClass('banner-nav');
    		$('#preview-banner').attr('class','preview-banner-margin');
    	});
+
+    $('.video-play').click(function() {
+    	$('.choose-error').html('');
+        $('.video-play').siblings().removeClass('selected');
+        $(this).addClass('selected');
+    });
+
+    var embedTileUrl = $('#embedTileUrl').val();
+
+    $('.video-play-sm').click(function (){
+    	var embedCode = '<iframe src="'+embedTileUrl+'" width="480px" height="360px" frameborder="0" scrolling="no"></iframe>'
+    	$('.textarea-embed-video').val(embedCode);
+    	$('.video-play-width').val('480');
+    	$('.video-play-height').val('360');
+    });
+
+    $('.video-play-md').click(function (){
+    	var embedCode = '<iframe src="'+embedTileUrl+'" width="640px" height="480px" frameborder="0" scrolling="no"></iframe>'
+    	$('.textarea-embed-video').val(embedCode);
+    	$('.video-play-width').val('640');
+    	$('.video-play-height').val('480');
+    });
+
+    $('.video-play-lg').click(function (){
+    	var embedCode = '<iframe src="'+embedTileUrl+'" width="800px" height="600px" frameborder="0" scrolling="no"></iframe>'
+    	$('.textarea-embed-video').val(embedCode);
+    	$('.video-play-width').val('800');
+    	$('.video-play-height').val('600');
+    });
+
+    $('.video-play-width').change(function (){
+    	var width = $(this).val();
+    	var height = $('.video-play-height').val();
+    	var embedCode = '<iframe src="'+embedTileUrl+'" width="'+width+'" height="'+height+'" frameborder="0" scrolling="no"></iframe>'
+    	$('.textarea-embed-video').val(embedCode);
+    });
+
+	$('.video-play-height').change(function (){
+		var width = $('.video-play-width').val();
+		var height = $(this).val();
+    	var embedCode = '<iframe src="'+embedTileUrl+'" width="'+width+'" height="'+height+'" frameborder="0" scrolling="no"></iframe>'
+    	$('.textarea-embed-video').val(embedCode);
+	});
+
        
    });
 });

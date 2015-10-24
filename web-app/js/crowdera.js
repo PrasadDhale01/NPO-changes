@@ -214,22 +214,24 @@ $(function() {
 				    $('.mobile-fixedHeader').css("display","block");
 				    $('.scrollHeader').css("display","none");
 				    $('#search-bar').css("width","0");
+				    $('.feduoutercontent').css('margin-top','120px');
 				 }else{
 				    //$('.noScrollHeader').css("display","none");
 					$('.mobile-fixedHeader').css("display","none");
 				    $('.scrollHeader').css("display","block");
 				    $('#search-barr').css("width","0");
+				    $('.feduoutercontent').css('margin-top','40px');
 				 }
 		    }
         });
         
         /**************On hamburger click**********************************/
-        $('.toggle-MobileHeader').click(function(){
-        	$('.mobile-fixedHeader').css("display","none");
+		$('.toggle-MobileHeader').click(function(){
+		    $('.mobile-fixedHeader').css("display","none");
 		    $('.scrollHeader').css("display","block");
-    		$('#TW-navbar-collapse').toggle();
-    	});
-        
+		    $('#TW-navbar-collapse').toggle();
+		});
+
         $('.user-cl-scrollHeader').css("background","url(https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-White.png)");
         $('.user-cl-scrollHeader').css("background-repeat","no-repeat");
         
@@ -278,7 +280,11 @@ $(function() {
             function(){
                 $(this).find('.crew-icons').fadeOut(205);
             }
-        );    
+        );
+        
+        if($(window).width() < 767){
+		  $('.feduoutercontent').css('margin-top','120px');
+	    }
      
     });    
 	

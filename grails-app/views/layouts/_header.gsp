@@ -334,7 +334,7 @@
         	<div class="scrollHeaderMenu hidden-lg hidden-md hidden-sm">
         		<ul>
 	       			<li><a href="/campaigns">Discover</a></li>
-	       			<li><a href="/cmpaign/create">Start a campaign</a></li>
+	       			<li><g:link controller="project" action="create">Start a campaign</g:link></li>
 	       			<li><a href="/howitworks">How it works</a></li>
 	       			<sec:ifNotLoggedIn>
 	       				<li><g:link controller="login" action="auth">Login</g:link>&nbsp; or&nbsp; <g:link controller="login" action="register">Signup</g:link></li>

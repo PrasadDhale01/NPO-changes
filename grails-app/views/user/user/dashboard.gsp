@@ -101,9 +101,9 @@
             
             <div class="clear visible-xs"></div>
             <g:if test="${user.biography}">
-				            <div class="biography-mobile visible-xs">
-				                ${user.biography}
-				            </div>
+                <div class="biography-mobile visible-xs">
+                    ${user.biography}
+                </div>
             </g:if>
             
             <div class="dashboard-mobile-section visible-xs">

@@ -1,9 +1,9 @@
 <g:set var="projectService" bean="projectService" />
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
-				SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, YYYY");
-				def index = 1;
-				def base_url = grailsApplication.config.crowdera.BASE_URL
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, YYYY");
+    def index = 1;
+    def base_url = grailsApplication.config.crowdera.BASE_URL
 %>
 <g:if test="${contributions.size() == 0}">
     <div class="col-sm-12">
@@ -13,12 +13,12 @@
     </div>
 </g:if>
 <g:else>
-				<g:each in="${totalContributions}" var="contribution">
-								<% 
-												def project = contribution.project
-												def username = project.user.username
-												def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
-								%>
+    <g:each in="${totalContributions}" var="contribution">
+    <% 
+        def project = contribution.project
+        def username = project.user.username
+        def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
+    %>
         <g:if test="${activeTab == 'contributions'}">
             <g:if test="${ index % 2 == 0}">
                 <div class="contribution-col-padding-left col-md-5 col-lg-5 col-sm-6 col-xs-12">

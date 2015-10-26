@@ -5432,6 +5432,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	li.sh-carousel-li {
         background-color: #015F85;
         border-color: #015F85;
+	}
+	   ul.nav-justified > li{
+        display: block !important;
+	   }
+    .popoverClass .popover{
+        left:120px;
+        width:250px;
     }
     a.show-tbs-right-borders {
         border-right: 2px solid #6d6e6e;
@@ -6570,13 +6577,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 768px) {
-/*     ul.nav.navbar-nav.nav-icon-bar { */
-/*         width: 21% !important; */
-/*     } */
     .perk-padding {
         padding-top: 7%;
     }
-
+    
     ul.nav-icon-bar {
         padding-left: 6px !important;
     }
@@ -8104,7 +8108,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (max-width: 767px){
 
-	input.customVanityUrl{
+    .glyphicon-design, .glyphicon-design:hover, .glyphicon-design:active, .glyphicon-design:visited, .glyphicon-design:after, .glyphicon-design:focus {
+        padding:6px;
+        font-size:15px;
+        top:3px;
+    }
+
+    .glyphicon-design-acknowledge, .glyphicon-design-acknowledge:hover, .glyphicon-design-acknowledge:active, .glyphicon-design-acknowledge:visited, .glyphicon-design-acknowledge:after, .glyphicon-design-acknowledge:focus {
+        padding:6px;
+        font-size:15px;
+    }
+
+    input.customVanityUrl{
         width:100%;
     }
 
@@ -8410,7 +8425,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	div.home-campaign-tile-container{
         left: 14px;
     }
-	i.sh-fb-icons{
+    .TW-org-panel-height{
+        margin-bottom: 57px;
+    }
+	   i.sh-fb-icons{
         font-size: 20px;
         margin-left: -18px;
         padding-right: 5px;
@@ -8421,9 +8439,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 17px;
         padding-top: 9px;
     }
-/* 	div.perks-supporters { */
-/*         margin-top: -11px; */
-/*     } */
     div.show-tiles-padding {
         padding-left: 17px;
     }
@@ -9020,6 +9035,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+    .popoverClass .popover{
+        left:163px;
+        width:207px;
+    }
+
 	.leftcard-column-two, .leftcard-column-three {
 	   display: flex !important;
 	   width: 100% !important;
@@ -10046,6 +10066,35 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }
 @media only screen and (max-width: 767px){
+#embedTilemodal .modal-dialog.modal-tile{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#embedTilemodal .modal-dialog.modal-embed-with-video{
+    width:319px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+textarea.textarea-embed-video {
+    width: 100%;
+}
+
+.margin-md-left{
+    margin-left: 40px;
+}
+
+.mob-video-play{
+    display: block;
+    overflow: hidden;
+}
+
+.embed-video-in-modal {
+    height: 170px;
+    width:100%;
+}
+
     .navbar-collapse {
         float: right;
     }
@@ -10395,6 +10444,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 479px){
+    .embedIcon-left {
+        margin-left: -4px;
+    }
     .campaignEditDeleteIcon .perkedit{
         padding-left: 8px;
     }
@@ -11041,6 +11093,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 360px){
+    .popoverClassMob .popover{
+        left: 50px;
+        top: -35px;
+        width: 200px;
+    }
+
 	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 		width: 81%;
 		margin-left: -28%;
@@ -11277,6 +11335,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         background-color: #015F85;
         border-color: #015F85;
     }
+	   ul.nav-justified > li{
+        display: block !important;
+    }
+
 	a.show-tbs-right-borders {
         border-right: 2px solid #6d6e6e;
         margin-left: -22px;
@@ -13073,4 +13135,7 @@ a#downloadEbook{
 .nav-justi > li {
     display: unset !important;
     width: 0%;
+}
+iframe.embedTitleUrl{
+	   width: 310px !important;
 }

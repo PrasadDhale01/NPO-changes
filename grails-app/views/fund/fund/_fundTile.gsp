@@ -22,7 +22,7 @@
         cents = percentage
     }
 %>
-<div class="fedu thumbnail">
+<div class="fedu thumbnail c-thumbnail">
 	<g:hiddenField name="projectId" class="projectId" id="projectId" value="${project.id}" />
 	<g:if test="${percentage >= 75}">
 		<div class="over show-tile">

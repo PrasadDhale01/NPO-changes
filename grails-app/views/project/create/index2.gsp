@@ -92,12 +92,18 @@
                     </div>
                 </div>
             </div>
-            
+
             <g:hiddenField name="campaignvideoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
             <div class="col-sm-6 video-popover" id="media">
-                <div class="panel panel-default panel-create-size lblIcon text-center" id="videoBox">
-                    <span><img id="addVideoIcon" class="addVideoIcon" src="//s3.amazonaws.com/crowdera/assets/addvideoicon.png" alt="video"></span>
-                    <span id="addVideolbl">Add Video</span>
+                <div class="panel panel-default panel-create-size" id="videoBox">
+                    <div class="form-group">
+                        <div class="col-md-10 col-xs-8 col-videoUrl-textbox">
+                            <input class="form-control form-control-no-border text-color videoUrl" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
+                        </div>
+                        <div class="col-sm-2 col-xs-2 col-videoUrl-button">
+                            <button type="button" class="btn btn-info btn-sm cr-btn-color add">Add</button>
+                        </div>
+                    </div>
                 </div>
                 <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
             </div>
@@ -113,24 +119,11 @@
                 </div>
                 <img class="videoInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
             </div>
+
             <div class="col-sm-6 image-popover">
-                <div class="panel panel-default panel-create-size upload-campaign-pic">
-                    <div class="panel-body">
-                        <div class="form-group" id="createthumbnail">
-                            <div class="col-sm-12">
-                                <div class="col-md-5 col-sm-12">
-                                    <div class="fileUpload btn btn-info btn-sm cr-btn-color">
-                                        Upload Pictures
-                                        <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" accept="image/jpeg, image/png">
-                                    </div>
-                                </div>
-                                <div class="col-md-7 col-sm-12">
-                                    <div id="uploadingCampaignImage">Uploading Picture......</div>
-                                </div>
-                                <div class="clear"></div>
-                                <label class="docfile-orglogo-css" id="imgmsg">Please select image file.</label>
-                                <label class="docfile-orglogo-css" id="campaignfilesize"></label>
-                            </div>
+                <div class="panel panel-default panel-create-size upload-campaign-pic panel-pic-uploaded <g:if test="${!project.imageUrl}">panel-hidden</g:if>">
+                    <div class="form-group" id="createthumbnail">
+                        <div class="createpage-img-panel">
                             <div class="col-sm-12 pad-result" id="campaignthumbnails">
                                 <g:each var="imgurl" in="${project.imageUrl}">
                                     <div id="imgdiv" class="pr-thumb-div">
@@ -141,13 +134,39 @@
                                     </div>
                                 </g:each>
                             </div>
-                            
+                            <div class="clear"></div>
+                            <div class="col-md-12">
+                                <div id="uploadingCampaignImage">Uploading Picture......</div>
+                                <div class="imageNumValidation">You cannot upload more than 5 images</div>
+                                <label class="docfile-orglogo-css imgmsg">Please select image file.</label>
+                                <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID"></label>
+                            </div>
                         </div>
+
+                        <div class="col-pictures pull-right">
+                            <div class="fileUpload btn btn-info btn-sm cr-btn-color">
+                                Add Image 
+                                <input type="file" class="upload" name="addCampaignImage" id="campaignImage" accept="image/jpeg, image/png">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default panel-create-size upload-campaign-pic panel-no-image <g:if test="${project.imageUrl}">panel-hidden</g:if>">
+                    <div class="col-sm-12 col-add-picture">
+                        <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
+                            Add Image
+                            <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="projectImageFile" accept="image/jpeg, image/png">
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+                    <div class="col-sm-12 col-error-placement" id="col-error-placement">
+                        <label class="docfile-orglogo-css imgmsg">Please select image file.</label>
+                        <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID1"></label>
                     </div>
                 </div>
                 <img class="pictureInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
             </div>
-               
+
             <div class="col-sm-12" id="story">
                 <div class="form-group">
                     <div class="col-sm-12 cr-story-padding">
@@ -157,7 +176,7 @@
                                                      You want your readers to be compelled to share your story
                                                      and make your campaign go viral. Be passionate and make 
                                                      them believe and trust your goal.</label>
-       	                </div>
+                        </div>
                         <textarea name="${FORMCONSTANTS.STORY}" class="redactorEditor">
                             <g:if test="${project.story}">${project.story}</g:if>
                         </textarea>
@@ -166,7 +185,7 @@
                     </div>
                 </div>
             </div>
-	                    
+                     
             <div class="col-sm-12 manage-Top-tabs-mobile" id="admins">
                 <div class="cr-tabs-admins cr-safari">
                     <label class="panel body cr-admin-title cr-safari">ADMIN</label>
@@ -204,7 +223,7 @@
                                 </div>
                             </div>
                         </div>
-		                                    
+                                      
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <div class="col-sm-12">
@@ -436,7 +455,7 @@
                         <label class="btn btn-default cr-lbl-mobile"> <input type="radio" name="answer" value="yes" id="yesradio"> YES<i class="glyphicon glyphicon-chevron-down cr-perk-chevron-icon"></i></label> 
                         <label class="btn btn-default cr-lbl-mobiles"> <input type="radio" name="answer" value="no" id="noradio"> NO</label>
                     </div>
-	            </div>
+             </div>
             </div>
 
             <div id="addNewRewards">
@@ -462,7 +481,7 @@
                                     </div>
                                 </div>
                             </div>
-										
+          
                             <div class="col-sm-5">
                                 <div class="form-group">
                                     <div class="col-sm-12">
@@ -547,7 +566,7 @@
                                 </div>
                             </div>
                         </div>
-										
+          
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <div class="col-sm-12">
@@ -699,7 +718,7 @@
                                         <script>
                                             var FG_GRAPHWIDGET_PARAMS = {
                                                 results : {
-                                                    selectaction : function(uuid,charity_name) {	
+                                                    selectaction : function(uuid,charity_name) { 
                                                         document.getElementById("uuid").value = uuid;
                                                         document.getElementById("charity_name").value = charity_name;
                                                     }
@@ -737,10 +756,10 @@
                     </div>
                 </div>
             </div>
-                
-            <!-- Modal -->
+            
+             <!-- Modal -->
             <div class="modal fade" id="addVideo" tabindex="-1" role="dialog" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-xs">
                     <div class="modal-content">
                         <div class="modal-header video-modal">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -748,17 +767,12 @@
                         </div>
                         <div class="modal-body">
                             <div class="row">
-                                <div class="form-group">
-                                    <div class="col-sm-10 col-xs-8">
-                                        <g:if test="${project.videoUrl}">
-                                            <input id="videoUrl" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
-                                        </g:if>
-                                        <g:else>
-                                            <input id="videoUrl" class="form-control form-control-no-border text-color" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
-                                        </g:else>
+                                <div class="form-group col-xs-text-box-with-button">
+                                    <div class="col-sm-10 col-xs-9 col-xs-textbox">
+                                        <input class="form-control form-control-no-border text-color videoUrl" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
                                     </div>
-                                    <div class="col-sm-2 col-xs-2">
-                                        <button type="button" class="btn btn-info btn-sm cr-btn-color" id="add">Add</button>
+                                    <div class="col-sm-2 col-xs-2 col-xs-button">
+                                        <button type="button" class="btn btn-info btn-sm cr-btn-color add btn-center">Add</button>
                                     <div>
                                 </div>
                             </div>
@@ -767,9 +781,10 @@
                     </div>
                 </div>
             </div>
+                
             </div>
             </div>
-        </g:uploadForm>
+        </g:uploadForm> 
         </div>
     </div>
     
@@ -875,6 +890,10 @@
                 data:'imgst='+imgst+'&projectId='+projectId,
                 success: function(data){
                     $(current).parents('#imgdiv').remove();
+                    if($('#campaignthumbnails').find('.pr-thumb-div').length == 0){
+                        $('.panel-pic-uploaded').hide();
+                        $('.panel-no-image').show();
+                    }
                 }
             }).error(function(){
                  console.log('Error occured on deleting the Campaign Image.');

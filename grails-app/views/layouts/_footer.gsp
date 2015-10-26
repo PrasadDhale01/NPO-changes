@@ -14,6 +14,7 @@
 <!-- Footer -->
 <footer>
     <div class="footer_links">
+        <div class="footer-mobile-border visible-xs"></div>
         <div class="container footer-container">
 	    <div class="visible-xs">
 		<section class="row">  

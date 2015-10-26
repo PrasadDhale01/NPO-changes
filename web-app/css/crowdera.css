@@ -6761,7 +6761,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
 	div.home-campaign-tile-container{
-        left: -3px;
+        margin-left: 18px;
     }
     i.sh-fb-icons{
         font-size: 20px;
@@ -8423,7 +8423,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
 	div.home-campaign-tile-container{
-        left: 14px;
+        margin-left: 46px;
     }
     .TW-org-panel-height{
         margin-bottom: 57px;
@@ -8687,6 +8687,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+    div.home-campaign-tile-container {
+        margin-left: 35px;
+    }
 	div.hmmobile-carousel-banner{
         padding-left: 7px;
     }

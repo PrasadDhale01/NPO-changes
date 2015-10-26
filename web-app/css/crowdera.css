@@ -4351,9 +4351,6 @@ ul.decimalList{
     padding-top: 20px;
 	display: none;
 }
-#createthumbnail .col-md-5, #createthumbnail .col-md-7{
-    padding-left: 5px;
-}
 
 #uploadingCampaignUpdateEditImage {
     color: #46b8da;
@@ -4790,7 +4787,7 @@ a.customer-support-a {
     display:none;
 }
 
-#campaignfilesize{
+.campaignfilesize{
     display:none;
 }
 
@@ -4798,7 +4795,7 @@ a.customer-support-a {
     display:none;
 }
 
-#imgmsg{
+.imgmsg{
     display:none;
 }
 
@@ -4827,10 +4824,6 @@ a.customer-support-a {
 }
 
 #updatefilesize{
-    display:none;
-}
-
-#campaignfilesize{
     display:none;
 }
 
@@ -5386,6 +5379,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+
+    .col-md-10.col-xs-8.col-videoUrl-textbox{
+        width:73%
+    }
 	   ul.nav-justified > li{
         display: block !important;
 	   }
@@ -5847,7 +5844,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 	.upload-campaign-pic{
 		height: 250px;
-		overflow:scroll !important;
 		margin-bottom: 0;
 	}
 	ul.nav-tabs.admin-vali-show > li{
@@ -7058,6 +7054,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    #campaignthumbnails.col-sm-12 {
+        padding-left: 11px;
+    }
+    .col-md-10.col-xs-8.col-videoUrl-textbox{
+        width:78%
+    }
     .manage-team{
         margin-top: 16px !important;
         width: 110%;
@@ -7327,7 +7329,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 	.upload-campaign-pic{
 		height: 250px;
-		overflow:scroll !important;
 		margin-bottom: 0;
 	}
     .cr-bg-preview-btn{
@@ -7991,6 +7992,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 1024px) {
+
 	.text-primary{
 		text-align:center;
 		width:300px;
@@ -8274,6 +8276,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+    .col-xs-text-box-with-button{
+         margin-top:20px;
+         margin-bottom: 20px;
+    }
+    .col-add-picture {
+        padding-left: 34%;
+    }
+    input.videoUrl {
+        width: 97%;
+    }
 
     .glyphicon-design, .glyphicon-design:hover, .glyphicon-design:active, .glyphicon-design:visited, .glyphicon-design:after, .glyphicon-design:focus {
         padding:6px;
@@ -9201,11 +9213,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+    .col-md-10.col-xs-8.col-videoUrl-textbox{
+        width:71%
+    }
     .popoverClass .popover{
         left:163px;
         width:207px;
     }
-
 	.leftcard-column-two, .leftcard-column-three {
 	   display: flex !important;
 	   width: 100% !important;
@@ -10621,6 +10635,10 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (max-width: 479px){
+    .col-sm-10.col-xs-9.col-xs-textbox{
+        width:92%;
+        margin-bottom: 10px;
+    }
     .embedIcon-left {
         margin-left: -4px;
     }
@@ -11407,9 +11425,23 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
-	  .dashboard-container {
-        padding-left: 5px;
-    }
+
+.col-xs-button{
+    width:100%;
+}
+.col-xs-textbox{
+    width:99% !important;
+}
+.btn-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dashboard-container {
+     padding-left: 5px;
+}
+
 	ul.show-new-tabs-alignments {
         line-height: 1;
     }
@@ -11855,7 +11887,6 @@ textarea.textarea-embed-video {
     }
 	.upload-campaign-pic{
 		height: 250px;
-		overflow:scroll !important;
 		margin-bottom: 0;
 	}
 	ul.nav-tabs.admin-vali-show > li{

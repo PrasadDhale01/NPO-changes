@@ -164,9 +164,9 @@ $(window).load(function() {
 //});
 
 function showNavigation(){
-	var indi = document.getElementById('indicators');
-	var navi = document.getElementById('navigators');
-	var home_indi = document.getElementById('home_indicators');
+    var indi = document.getElementById('indicators');
+    var navi = document.getElementById('navigators');
+    var home_indi = document.getElementById('home_indicators');
     var home_navi = document.getElementById('home_navigators');
     
     if(indi !=null && navi !=null){
@@ -175,15 +175,15 @@ function showNavigation(){
     }
     
     if(home_indi !=null && home_navi !=null){
-		document.getElementById('home_indicators').style.display = 'block';
-		document.getElementById('home_navigators').style.display = 'block';
-	}
+        document.getElementById('home_indicators').style.display = 'block';
+        document.getElementById('home_navigators').style.display = 'block';
+    }
 }
 
 function hideNavigation(){
-	var indi = document.getElementById('indicators');
-	var navi = document.getElementById('navigators');
-	var home_indi = document.getElementById('home_indicators');
+    var indi = document.getElementById('indicators');
+    var navi = document.getElementById('navigators');
+    var home_indi = document.getElementById('home_indicators');
     var home_navi = document.getElementById('home_navigators');
     
     if(indi !=null && navi !=null){
@@ -192,9 +192,9 @@ function hideNavigation(){
     }
     
     if(home_indi !=null && home_navi !=null){
-		document.getElementById('home_indicators').style.display = 'none';
-		document.getElementById('home_navigators').style.display = 'none';
-	}
+        document.getElementById('home_indicators').style.display = 'none';
+        document.getElementById('home_navigators').style.display = 'none';
+    }
 }
 
 $( document ).ready(function() {

@@ -6796,6 +6796,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 10px;
     }
     
+    
+    .influencediv.influencediv-xs.col-xs-6 {
+        padding-left: 3px;
+        padding-right: 10px;
+    }
+    
     div#userDashboardcampaigns {
         margin-left: -18px;
     }
@@ -8688,6 +8694,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	div.home-campaign-tile-container{
         margin-left: 46px;
 	}
+    #useravatar img.dummyprofileimage {
+        width: 136px;
+    }
     #useravatar img.dummyprofileimage {
         width: 136px;
     }

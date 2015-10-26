@@ -922,6 +922,61 @@ class UserService {
         return [totalUsers: totalUsers, users: users]
     }
     
+    def updateUserProfile(def params, User user) {
+        boolean isChangesDone = false
+        if (params.city && params.city != user.city) {
+            user.city = params.city
+            isChangesDone = true
+        }
+        if (params.state && params.state != user.state) {
+            user.state = params.state
+            isChangesDone = true
+        }
+        if (params.country && params.country != user.country) {
+            user.country = params.country
+            isChangesDone = true
+        }
+
+        if (isChangesDone) {
+            user.save()
+        }
+    }
+
+    def setUserInfo(def params, User user){
+        def name = user.firstName
+        if(params.firstName && user.firstName != params.firstName){
+            user.firstName = params.firstName
+        }
+        if(params.lastName && user.lastName != params.lastName){
+            user.lastName = params.lastName
+        }
+        /* Password change is optional */
+        if (params.password) {
+            user.password = params.password
+        }
+
+        if (params.firstName && name != params.firstName){
+            getProjectVanityUsername(user)
+        }
+
+        if (params.biography && user.biography != params.biography){
+            user.biography = params.biography
+        }
+        if(params.state == 'other'){
+            if (user.state != params.otherstate) {
+                user.state = params.otherstate
+            }
+        } else {
+            if (user.state != params.state) {
+                user.state = params.state
+            }
+        }
+        if(params.city && user.city != params.city){
+            user.city = params.city
+        }
+        user.save()
+    }
+    
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

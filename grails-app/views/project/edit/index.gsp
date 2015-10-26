@@ -922,7 +922,7 @@
                 
                 <!-- Modal -->
                 <div class="modal fade" id="addVideo" tabindex="-1" role="dialog" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-xs">
                         <div class="modal-content">
                             <div class="modal-header video-modal">
                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
@@ -930,9 +930,9 @@
                             </div>
                             <div class="modal-body">
                                 <div class="row">
-                                    <div class="form-group">
-                                    <div class="col-sm-10 col-xs-8">
-                                        <input class="form-control form-control-no-border text-color videoUrl" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
+                                    <div class="form-group col-xs-text-box-with-button">
+                                    <div class="col-sm-10 col-xs-9 col-xs-textbox">
+                                        <input class="form-control form-control-no-border text-color videoUrl " name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
                                     </div>
                                     <div class="col-sm-2 col-xs-2">
                                         <button class="btn btn-info btn-sm cr-btn-color add" type="button">Add</button>

@@ -8025,10 +8025,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+    .col-xs-text-box-with-button{
+         margin-top:20px;
+         margin-bottom: 20px;
+    }
     .col-add-picture {
         padding-left: 34%;
     }
-
     input.videoUrl {
         width: 97%;
     }
@@ -10350,6 +10353,10 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (max-width: 479px){
+    .col-sm-10.col-xs-9.col-xs-textbox{
+        width:92%;
+        margin-bottom: 10px;
+    }
     .embedIcon-left {
         margin-left: -4px;
     }

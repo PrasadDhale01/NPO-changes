@@ -254,6 +254,7 @@
                                     }
                                 </script>
                             </div>
+                            <div class="clear"></div>
                             <div class="col-md-12">
                                 <div id="uploadingCampaignImage">Uploading Picture......</div>
                                 <div class="imageNumValidation">You cannot upload more than 5 images</div>
@@ -934,8 +935,8 @@
                                     <div class="col-sm-10 col-xs-9 col-xs-textbox">
                                         <input class="form-control form-control-no-border text-color videoUrl " name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
                                     </div>
-                                    <div class="col-sm-2 col-xs-2">
-                                        <button class="btn btn-info btn-sm cr-btn-color add" type="button">Add</button>
+                                    <div class="col-sm-2 col-xs-2 col-xs-button">
+                                        <button class="btn btn-info btn-sm cr-btn-color add btn-center" type="button">Add</button>
                                     <div>
                                     </div>
                                 </div>

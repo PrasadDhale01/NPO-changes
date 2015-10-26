@@ -224,7 +224,7 @@ $(function() {
             }else if($(element).prop("id") == "iconfile") {
                 error.appendTo(element.parent().parent());
             }else if($(element).prop("id") == "projectEditImageFile") {
-                error.appendTo(element.parent().parent());
+                error.appendTo(document.getElementById("col-error-placement"));
             }else if($(element).prop("id") == "editiconfile") {
                 error.appendTo(element.parent().parent());
             }else{

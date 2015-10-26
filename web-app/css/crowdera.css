@@ -11143,6 +11143,17 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
+.col-xs-button{
+    width:100%;
+}
+.col-xs-textbox{
+    width:99% !important;
+}
+.btn-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
 	ul.show-new-tabs-alignments {
         line-height: 1;
     }

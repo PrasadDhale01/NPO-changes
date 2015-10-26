@@ -771,8 +771,8 @@
                                     <div class="col-sm-10 col-xs-9 col-xs-textbox">
                                         <input class="form-control form-control-no-border text-color videoUrl" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
                                     </div>
-                                    <div class="col-sm-2 col-xs-2">
-                                        <button type="button" class="btn btn-info btn-sm cr-btn-color add">Add</button>
+                                    <div class="col-sm-2 col-xs-2 col-xs-button">
+                                        <button type="button" class="btn btn-info btn-sm cr-btn-color add btn-center">Add</button>
                                     <div>
                                 </div>
                             </div>

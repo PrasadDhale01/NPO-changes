@@ -133,7 +133,7 @@
                     <div class="col-md-12 col-sm-12 col-xs-12 text-center campaignFundRaiser hidden-xs">
                         <h4 class="green-heading">
                             <img class="show-location" alt="location" src="//s3.amazonaws.com/crowdera/assets/show-page-locations.png">
-                            <span>${project.beneficiary.country}</span>
+                            <span><g:if test="${project.user.city}">${project.user.city},</g:if> ${project.beneficiary.country}</span>
                             <g:if test = "${project.fundsRecievedBy != null }">
                                 <img class="show-location sh-none-pft" alt="location" src="//s3.amazonaws.com/crowdera/assets/show-page-non-profit-icons.png">
                                 <span>${project.fundsRecievedBy}</span>

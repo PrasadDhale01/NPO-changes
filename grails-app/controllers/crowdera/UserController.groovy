@@ -70,8 +70,31 @@ class UserController {
             def projectAdmins = projectService.getProjectAdminEmail(user)
             def teams = projectService.getTeamByUserAndEnable(user, true)
             def project = projectService.getProjects(projects, projectAdmins, teams, environment)
-            def contributions = projectService.getContibutionByUser(user, environment)
-            render view: userViews, model: [user: user, projects: project, contributions: contributions, activeTab:activeTab, environment: environment]
+            List totalCampaings = []
+            if (activeTab == 'campaigns') {
+                def max = Math.min(params.int('max') ?: 4, 100)
+                totalCampaings = projectService.getUsersPaginatedCampaigns(project, params, max)
+            } else {
+                def max = Math.min(params.int('max') ?: 2, 100)
+                totalCampaings = projectService.getUsersPaginatedCampaigns(project, params, max)
+            }
+            
+            def contribution
+            if (activeTab == 'contributions') {
+                def max = Math.min(params.int('max') ?: 4, 100)
+                contribution = projectService.getPaginatedContibutionByUser(user, environment,params, max)
+            } else {
+                def max = Math.min(params.int('max') ?: 2, 100)
+                contribution = projectService.getPaginatedContibutionByUser(user, environment,params, max)
+            }
+            
+            def contributedAmount = contributionService.getContributedAmount(contribution.contributions)
+            def fundRaised = contributionService.getTotalFundRaisedByUser(projects)
+            def country = projectService.getCountry()
+            def state = projectService.getState()
+            render view: userViews, model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, state: state,
+                                            activeTab:activeTab, environment: environment, contributedAmount: contributedAmount,
+                                            fundRaised : fundRaised, contributions: contribution.contributions, totalContributions : contribution.totalContributions]
         }
     }
     
@@ -270,6 +293,83 @@ class UserController {
         def model = [totalUsers: userObj.totalUsers, verifiedUsers: userObj.users]
         if (request.xhr) {
             render(template: "/user/metrics/users", model: model)
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def campaignpagination() {
+        User user = userService.getCurrentUser()
+        def environment = Environment.current.getName()
+        def projects = projectService.getAllProjectByUser(user, environment)
+        def projectAdmins = projectService.getProjectAdminEmail(user)
+        def teams = projectService.getTeamByUserAndEnable(user, true)
+        List project = projectService.getProjects(projects, projectAdmins, teams, environment)
+        def max = Math.min(params.int('max') ?: 4, 100)
+        List totalCampaings = projectService.getUsersPaginatedCampaigns(project, params, max)
+        def model = [totalCampaings: totalCampaings, projects: project, dashboard: 'dashboard', activeTab: 'campaigns']
+        if (request.xhr) {
+            render(template: "user/myprojects", model: model)
+        }
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def contributionspagination() {
+        User user = userService.getCurrentUser()
+        def environment = Environment.current.getName()
+        def max = Math.min(params.int('max') ?: 4, 100)
+        def contribution = projectService.getPaginatedContibutionByUser(user, environment, params, max)
+
+        def model = [contributions: contribution.contributions, totalContributions : contribution.totalContributions, activeTab: 'contributions']
+        if (request.xhr) {
+            render(template: "/user/user/dashboardcontributiontile", model: model)
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def edituserprofile() {
+        User user = userService.getCurrentUser()
+        def country = projectService.getCountry()
+        def state = projectService.getState()
+        render (view: "/user/user/userprofile", model: [user : user, country: country, state: state])
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def updateuserprofile() {
+        User user = userService.getCurrentUser()
+        userService.updateUserProfile(params, user)
+        redirect action:'dashboard'
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def mycampaigns() {
+        userprofile('user/dashboard','campaigns')
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def mycontributions() {
+        userprofile('user/dashboard','contributions')
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def edituserinfo() {
+        userprofile('user/dashboard','editUserInfo')
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def editlocation() {
+        userprofile('user/dashboard','editLocation')
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def update() {
+        User user = (User)userService.getCurrentUser()
+        userService.setUserInfo(params,user)
+
+        if (user.save()) {
+            flash.user_message = "Profile updated successfully!"
+            redirect (controller: 'user', action: 'dashboard')
+        } else {
+           render(view: 'error', model: [message: "Error while updating user. Please try again later."])
         }
     }
 }

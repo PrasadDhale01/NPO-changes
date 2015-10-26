@@ -5377,6 +5377,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    ol.carousel-indicators-sm {
+        left: 150px;
+    }
+    a.left.carousel-control.left-css {
+        left: 25px;
+    }
+    a.carousel-control.left {
+        background-image: none;
+    }
+    a.carousel-control.right {
+        background-image: none;
+    }
 	footer {
         border-top: none !important;
     }
@@ -6403,7 +6415,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     	   font-weight: bold !important;
 	}
 	.show-tile-text-size {
-    	  font-size: 7px !important;
+    	  font-size: 10px !important;
     	  line-height: 5px;
     	  margin-bottom: 0;
     	  margin-top: 10px;
@@ -11281,7 +11293,10 @@ textarea.textarea-embed-video {
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
     a.carousel-control.left {
-    background-image: none;
+        background-image: none;
+    }
+    a.carousel-control.right {
+        background-image: none;
     }
     footer {
         border-top: none !important;
@@ -11296,7 +11311,7 @@ textarea.textarea-embed-video {
         padding-left: 7px;
 	}
     ol.carousel-indicators-sm {
-        left: 133px;
+        left: 138px;
     }
 	div.hm-mobile-positions {
         margin: 0 auto;
@@ -11683,8 +11698,8 @@ textarea.textarea-embed-video {
     }
     div.show-tile-text-size{
         margin-top: 6px;
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 	.TW-termsAndPolicy_cr{
 		float:left;

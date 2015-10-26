@@ -21,12 +21,13 @@
         
         
         <div id="myCarousel" class="carousel slide visible-xs hidden-sm hidden-md visible-md hm-mobile-positions"  data-ride="carousel">
-            <ol class="carousel-indicators carousel-indicators-sm">
-                <li data-target="#myCarousel" data-slide-to="0" class="active sh-carousel-li"></li>
-                <li data-target="#myCarousel" data-slide-to="1" class="sh-carousel-li"></li>
-                <li data-target="#myCarousel" data-slide-to="2" class="sh-carousel-li"></li>
-            </ol>
-            
+           <div  id="home_indicators" style="display:none;">
+               <ol class="carousel-indicators carousel-indicators-sm">
+                   <li data-target="#myCarousel" data-slide-to="0" class="active sh-carousel-li"></li>
+                   <li data-target="#myCarousel" data-slide-to="1" class="sh-carousel-li"></li>
+                   <li data-target="#myCarousel" data-slide-to="2" class="sh-carousel-li"></li>
+               </ol>
+           </div>   
 			<%
 			    def count = projects.size()
 			    def cols = 1
@@ -69,6 +70,15 @@
 			                </g:else>
                     </g:each>
                 </div>
+           </div>
+           
+           <div id="home_navigators" style="display:none;">
+               <a class="left carousel-control left-css" href="#myCarousel" role="button" data-slide="prev">
+                   <span class="glyphicon glyphicon-chevron-left arrow-mobile arrow-top"></span>
+               </a>
+               <a class="right carousel-control right-css" href="#myCarousel" role="button" data-slide="next">
+                   <span class="glyphicon glyphicon-chevron-right arrow-mobile-css arrow-top"></span>
+               </a>
            </div>
         </div>
         <div class="row text-center explorebtn">

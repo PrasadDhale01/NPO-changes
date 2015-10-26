@@ -164,13 +164,37 @@ $(window).load(function() {
 //});
 
 function showNavigation(){
-	document.getElementById('indicators').style.display = 'block';
-	document.getElementById('navigators').style.display = 'block';
+	var indi = document.getElementById('indicators');
+	var navi = document.getElementById('navigators');
+	var home_indi = document.getElementById('home_indicators');
+    var home_navi = document.getElementById('home_navigators');
+    
+    if(indi !=null && navi !=null){
+        document.getElementById('indicators').style.display = 'block';
+        document.getElementById('navigators').style.display = 'block';
+    }
+    
+    if(home_indi !=null && home_navi !=null){
+		document.getElementById('home_indicators').style.display = 'block';
+		document.getElementById('home_navigators').style.display = 'block';
+	}
 }
 
 function hideNavigation(){
-	document.getElementById('indicators').style.display = 'none';
-	document.getElementById('navigators').style.display = 'none';
+	var indi = document.getElementById('indicators');
+	var navi = document.getElementById('navigators');
+	var home_indi = document.getElementById('home_indicators');
+    var home_navi = document.getElementById('home_navigators');
+    
+    if(indi !=null && navi !=null){
+        document.getElementById('indicators').style.display = 'none';
+        document.getElementById('navigators').style.display = 'none';
+    }
+    
+    if(home_indi !=null && home_navi !=null){
+		document.getElementById('home_indicators').style.display = 'none';
+		document.getElementById('home_navigators').style.display = 'none';
+	}
 }
 
 $( document ).ready(function() {

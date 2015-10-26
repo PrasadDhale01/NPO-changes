@@ -51,7 +51,7 @@ input.customVanityUrlProd{
 }
 
 .col-videoUrl-button{
-	   padding-right:2px;
+    padding-right:2px;
     padding-left: 0;
     top: 107px;
 }
@@ -71,7 +71,7 @@ input.videoUrl{
     padding-right: 25px;
 }
 .createpage-img-panel {
-	   height: 200px;
+    height: 200px;
 }
 
 .panel-hidden{
@@ -88,8 +88,8 @@ input.videoUrl{
     top:110px;
 }
 .col-error-placement span{
-	   color: #f04124;
-	   text-align: center;
+    color: #f04124;
+    text-align: center;
 }
 
 .col-error-placement .imgmsg{
@@ -326,5 +326,5 @@ textarea.textarea-embed-tile{
     padding: 0;
 }
 #campaignthumbnails.col-sm-12 {
-	   padding-left: 5px;
+    padding-left: 5px;
 }

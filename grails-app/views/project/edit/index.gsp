@@ -111,27 +111,26 @@
                     </div>
 
                     <input type="hidden" value="${user.id}" name="userid">
-                 <div class="form-group edit-margin">
-      <label class="col-sm-12 text-color">My Name is...</label>
-      <div class="col-sm-12 edt-mobile-reso">
-       <input class="form-control form-control-no-border text-color box-size" id="name1"
-        name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name" value="${project.beneficiary.firstName}">
-      </div>
-                 </div>
+                    <div class="form-group edit-margin">
+                        <label class="col-sm-12 text-color">My Name is...</label>
+                        <div class="col-sm-12 edt-mobile-reso">
+                            <input class="form-control form-control-no-border text-color box-size" id="name1"
+                                name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name" value="${project.beneficiary.firstName}">
+                        </div>
+                    </div>
                  
-                     <div class="form-group edit-margin">
+                    <div class="form-group edit-margin">
                         <div class="col-sm-3 edt-mobile-reso">
-                <span class="cr-need">I need</span><img class="cr-ineed-icons" src="//s3.amazonaws.com/crowdera/assets/i-need-Icon.png" alt="Ineed">
-             <div class="tops">
-                  <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                   <span class="i-currency-label fa fa-inr"></span>
-                </g:if>
-                <g:else>
-                    <span class="i-currency-label">$</span>
-                         </g:else>   
-                         <input class="form-control form-control-no-border-amt cr-amt" name="amount" value="${amount}" id="amount1"> 
-                   <span id="errormsg"></span>
-                          
+                            <span class="cr-need">I need</span><img class="cr-ineed-icons" src="//s3.amazonaws.com/crowdera/assets/i-need-Icon.png" alt="Ineed">
+                            <div class="tops">
+                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                    <span class="i-currency-label fa fa-inr"></span>
+                                </g:if>
+                                <g:else>
+                                    <span class="i-currency-label">$</span>
+                                </g:else>   
+                                <input class="form-control form-control-no-border-amt cr-amt" name="amount" value="${amount}" id="amount1"> 
+                                <span id="errormsg"></span>
                             </div>
                         </div>
                         <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'}">
@@ -148,32 +147,32 @@
                             <div class="btn-group col-sm-12 cr1-radio-tab cr1-mob-tb" data-toggle="buttons">
                                      <div class="cr1-tab-title">and I will be using it for</div>
                                      <g:if test="${project.usedFor == 'IMPACT'}">
-                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 active" id="impact1"> <input type="radio" value="yes" checked="checked"><span class="cr1-tb-text-sm">Making an</span><br><span class="cr1-tb-text-lg">Impact</span></label> 
+                                         <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 active" id="impact1"> <input type="radio" value="yes" checked="checked"><span class="cr1-tb-text-sm">Making an</span><br><span class="cr1-tb-text-lg">Impact</span></label> 
                                      </g:if>
                                      <g:else>
-                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 " id="impact1"> <input type="radio" value="yes"><span class="cr1-tb-text-sm">Making an</span><br><span class="cr1-tb-text-lg">Impact</span></label> 
+                                         <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 " id="impact1"> <input type="radio" value="yes"><span class="cr1-tb-text-sm">Making an</span><br><span class="cr1-tb-text-lg">Impact</span></label> 
                                      </g:else>
                                      <g:if test="${project.usedFor == 'PASSION'}">
-                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active" id="passion1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-sm">Following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
+                                         <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active" id="passion1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-sm">Following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
                                      </g:if>
                                      <g:else>
-                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="passion1"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
+                                         <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="passion1"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
                                      </g:else>
                                      <g:if test="${project.usedFor == 'SOCIAL_NEEDS'}">
-                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active"  id="innovating1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-sm">Social</span><br><span class="cr1-tb-text-lg">Innovation</span><br></label>
+                                         <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active"  id="innovating1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-sm">Social</span><br><span class="cr1-tb-text-lg">Innovation</span><br></label>
                                      </g:if>
                                      <g:else>
-                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12"  id="innovating1"> <input type="radio" value="no"><span class="cr1-tb-text-lg">Innovating</span><br><span class="cr1-tb-text-sm">for Social Good</span></label>
+                                         <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12"  id="innovating1"> <input type="radio" value="no"><span class="cr1-tb-text-lg">Innovating</span><br><span class="cr1-tb-text-sm">for Social Good</span></label>
                                      </g:else>
                                      <g:if test="${project.usedFor == 'PERSONAL_NEEDS'}">
-                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active" id="personal1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-lg">Personal</span><br><span class="cr1-tb-text-sm">needs</span></label>
+                                         <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12 active" id="personal1"> <input type="radio" value="no" checked="checked"><span class="cr1-tb-text-lg">Personal</span><br><span class="cr1-tb-text-sm">needs</span></label>
                                      </g:if>
                                      <g:else>
-                                     <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="personal1"> <input type="radio" value="no"><span class="cr1-tb-text-lg">Personal</span><br><span class="cr1-tb-text-sm">needs</span></label>
+                                         <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="personal1"> <input type="radio" value="no"><span class="cr1-tb-text-lg">Personal</span><br><span class="cr1-tb-text-sm">needs</span></label>
                                      </g:else>
-                                        <g:hiddenField name="usedFor" id="usedFor"/>
-             </div>
-                        </div>
+                                     <g:hiddenField name="usedFor" id="usedFor"/>
+                                 </div>
+                             </div>
                      </div>
                      
                      <div class="form-group createTitleDiv edit-margin">

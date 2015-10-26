@@ -94,6 +94,7 @@ input.videoUrl{
 
 .col-error-placement .imgmsg{
     text-align: center;
+}
 
 input.shortUrlText {
     width: 215px;
@@ -323,4 +324,7 @@ textarea.textarea-embed-tile{
 
 .fedu.thumbnail.c-thumbnail{
     padding: 0;
+}
+#campaignthumbnails.col-sm-12 {
+	   padding-left: 5px;
 }

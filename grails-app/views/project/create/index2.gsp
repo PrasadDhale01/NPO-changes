@@ -146,7 +146,7 @@
                         <div class="col-pictures pull-right">
                             <div class="fileUpload btn btn-info btn-sm cr-btn-color">
                                 Add Image 
-                                <input type="file" class="upload" name="${FORMCONSTANTS.THUMBNAIL}[]" id="campaignImage" accept="image/jpeg, image/png">
+                                <input type="file" class="upload" name="addCampaignImage" id="campaignImage" accept="image/jpeg, image/png">
                             </div>
                         </div>
                     </div>

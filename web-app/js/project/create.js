@@ -1177,8 +1177,9 @@ $(function() {
             document.getElementById("campaignFilesizeID").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
             document.getElementById("campaignFilesizeID1").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
             if (isFileSizeExceeds && !isvalidsize) {
-                $('#projectImageFile, #projectEditImageFile, #campaignImage').val('');
+                $('#campaignImage').val('');
             }
+            $('#projectImageFile, #projectEditImageFile').val('');
             var delay = 9999; //delayed code, time in milliseconds
             setTimeout(function() {
             	$('.campaignfilesize').hide();

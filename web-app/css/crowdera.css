@@ -5372,7 +5372,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
     .col-md-10.col-xs-8.col-videoUrl-textbox{
         width:73%
-
+    }
 	   ul.nav-justified > li{
         display: block !important;
 	   }
@@ -6803,6 +6803,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    #campaignthumbnails.col-sm-12 {
+        padding-left: 11px;
+    }
     .col-md-10.col-xs-8.col-videoUrl-textbox{
         width:78%
     }

@@ -281,10 +281,9 @@ class MandrillService {
         }
     }
 
-    def shareContribution(def emailList, String name, String message, Project project,Contribution contribution, User fundraiser) {
+    def shareContribution(def emailList, String name, String message, Project project, User fundraiser) {
         def imageUrl = project.imageUrl
         def projectImageUrl
-        def beneficiaryName = (project.beneficiary.lastName) ? project.beneficiary.firstName + ' ' + project.beneficiary.lastName : project.beneficiary.firstName;
         if (imageUrl) {
             imageUrl = project.imageUrl[0].getUrl()
 			if(imageUrl.startsWith("https") || imageUrl.startsWith("http")) {

@@ -386,8 +386,7 @@
                                 </div>
                             </div>
                         </div>
-                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'}">
-                            <div class="col-sm-8">
+                        <div class="col-sm-8">
                             <div class="form-group">
                                 <div class="col-sm-12">
                                     <g:if test="${currentEnv == 'development'}">
@@ -434,8 +433,7 @@
                                     </g:elseif>
                                 </div>
                             </div>
-                            </div>
-                        </g:if>
+                        </div>
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <div class="col-sm-12">

@@ -11280,6 +11280,9 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    a.carousel-control.left {
+    background-image: none;
+    }
     footer {
         border-top: none !important;
     }

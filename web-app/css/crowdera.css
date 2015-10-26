@@ -10,7 +10,7 @@ body {
 }
 
 .feduoutercontent {
-    margin-top: 59px;
+    margin-top: 48px;
 }
 h1.headingtext.how-it-works-title {
 	color: #005f84;
@@ -128,14 +128,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-brand {
-    height: 60px;
+    height: 50px;
 }
 .navbar-brand >img {
 	height: 45px;
 	margin-top: 0px;
 }
 .scrollHeaderLogo > img{
-	height:30px;	
+	height:40px;	
 }
 
 .navbar-nav > li {
@@ -159,16 +159,16 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-nav {
-    margin-top: 10px;
+    margin-top: 3px;
 }
 .navbar-brand {
-    padding: 7px 15px !important;
+    padding: 5px 15px !important;
 }
 .nav.navbar-nav.navbar-right {
     margin-right: -5px;
 }
 .navbar-right {
-    margin-top: 15px;
+    margin-top: 8px;
 }
 
 .navbar-right-logged-in {
@@ -178,8 +178,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 
 .navbar-default {
     background-color: #fff;
-/*     height: 70px; */
-    border-bottom: solid #01bbd2 2px;
+    box-shadow: 0 5px 10px #d3d3d3;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
@@ -2630,8 +2629,8 @@ ul.dropdown-menu.admin.admin-dropdown.dropdown-menu-head.admin-selected-drop a:h
 }
 
 .user-img-header {
-	width: 41px;
-	height: 41px;
+	width: 28px;
+	height: 28px;
 	border-radius: 40px;
 }
 
@@ -3050,8 +3049,8 @@ ul.menu{
 }
 .home-campaign-tile .c100:after {
     position: absolute;
-    top: 0.15em;
-    left: 0.15em;
+    top: 0.16em;
+    left: 0.16em;
     display: block;
     content: " ";
     -webkit-border-radius: 50%;
@@ -3540,7 +3539,7 @@ header.cr-tabs-link {
 	font-size: 20px;
 	z-index:500;
 }
-#search-barr{
+.search-barr{
 	margin-left:30px;
 	padding-right:5px;
 }
@@ -5416,11 +5415,30 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (min-width: 768px){
     ul.nav.navbar-nav.navbar-right.nav-create-button{
-        margin-top: 0;
+        margin-top: 3px;
     }
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.mobile-fixedHeader .TW-scrollHeaderBackColor {
+	   background-color: #006083;
+	   height: 118px !important;
+	}
+	.mobile-fixedHeader {
+	  height: 120px;
+	}
+	.searchengine{
+		margin-top: 6px;
+	}
+	.mobile-fixed-header-text{
+		color: white;
+		font-size: 15px;
+		font-weight: 500; 
+		bottom: -44px; 
+		width: 100%;
+		z-index: 1;
+		position: absolute;
+	}
 	.navbar-default .navbar-toggle .icon-bar {
 	  background-color: #fff;
 	}
@@ -5429,7 +5447,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   position: absolute;
 	   right: 10px;
 	}
-	#search-barr {
+	.search-barr {
 	   margin-left: 0px !important; 
 	   padding-right: 5px;
 	}
@@ -5440,7 +5458,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 	.header-container.TW-scrollHeaderBackColor {
 	   background-color: #006083;
-	   height:43px;
+	   height:45px;
 	}
 	.navbar-brand.scrollHeaderLogo {
 		margin-top: -6px;
@@ -7024,6 +7042,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.TW-scrollHeaderBackColor .navbar-header {
+		background-color:#fff;
+		height: 50px;
+	}
+	.TW-header-helpLink {
+		height: 35px !important;
+		margin-bottom: 0;
+		margin-top: 4px !important;
+		padding-bottom: 0;
+		padding-top: 0;
+	}
+	.TW-header-helpTxt {
+	   margin-bottom: 2px !important;
+	   margin-top: 2px !important;
+	}	
 	.header-section .nav > li > a {
 	   font-size:13px;
 	}
@@ -7037,7 +7070,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   height: 40px;
 	}
 	.navbar-header {
-		height: 43px;
+		background-color:#006083;
+		height: 50px;
 	}
 	.TW-ebook-header.TW-fixed-header {
 	   background-color: #ffffff;
@@ -7366,7 +7400,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     li.learn{
         width: 40px;
-        left: 17px;
+        left: 30px;
         top: -0.1px !important; 
     }
     div.cr-tablet-space{
@@ -8537,13 +8571,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
 	.user-cl-scrollHeader{
-		padding-top:3px;
+		padding-top:2px;
 	}
 	.user-cl{
-		padding-top:3px;
+		padding-top:2px;
 	}
 	.navbar-header {
-		height: 43px;
+		background-color:#006083;
+		height: 50px;
+	}
+	.TW-scrollHeaderBackColor .navbar-header {
+		background-color:#fff;
+		height: 50px;
 	}
 	.header-container.TW-scrollHeaderBackColor {
 	   height: 43px;
@@ -8630,6 +8669,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 @media only screen and (min-width: 1921px) and (max-width: 2560px){
+	.TW-scrollHeaderBackColor .navbar-header {
+		background-color:#fff;
+		height: 50px;
+	}
 	.discover.scrollHeaderMenu {
 	   margin-left: 5px;
 	}
@@ -9738,7 +9781,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 
     .navbar-default {
-        height: 63px;
+        height: 45px;
     }
     .banner-nav{
     	height:93px !important;
@@ -10249,7 +10292,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
 	.header-section .nav > li > a {
-	    padding: 4px 8px !important;
+	    padding: 6px 8px !important;
 	}
     .testimonial {
 	    max-width: 100%;
@@ -11574,15 +11617,34 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.mobile-fixedHeader .TW-scrollHeaderBackColor {
+	   background-color: #006083;
+	   height: 120px !important;
+	}
+	.mobile-fixedHeader {
+	   height: 120px;
+	}
+	.searchengine{
+		margin-top: 6px;
+	}
+	.mobile-fixed-header-text{
+		color: white;
+		font-size: 15px;
+		font-weight: 500; 
+		bottom: 35px; 
+		width: 100%;
+		z-index: 1;
+		position: absolute;
+	}
 	.navbar-default .navbar-toggle .icon-bar {
 	   background-color: #fff;
 	}
-	#search-barr {
+	.search-barr {
 	   margin-left: 0px !important; 
 	   padding-right: 5px;
 	}
-	#scrolltrigger{
-		right:18px;
+	.scrolltrigger{
+		right:10px;
 	}
 	.navbar-brand.scrollHeaderLogo {
 		margin-top: -6px;
@@ -11596,7 +11658,7 @@ textarea.textarea-embed-video {
 	   font-weight: 600;
 	}
 	.navbar-collapse.collapse.in {
-		opacity: 0.75;
+		opacity: 0.85;
 		width: 100% !important;
 	}
 	.navbar-collapse.collapse{
@@ -11954,7 +12016,7 @@ textarea.textarea-embed-video {
     }
 	.TW-scrollHeaderBackColor{
 		background-color: #006083 !important;
-		height: 43px;
+		height: 45px;
 	}
 	.TW-discover-banner-decoration {
 		background-color: #01bbd2;
@@ -13623,39 +13685,40 @@ a#downloadEbook{
 	display:block;
 }
 .TW-scrollHeaderBackColor .nav.navbar-nav.nav-icon-bar {
-    margin-top: 0px;
+    margin-top: 3px;
 }
 .navbar-collapse.collapse.TW-scrollHeaderBackColor {
 	background-color:#006083 !important;
     height: 43px;
 }
-.TW-header-helpLink{
+.TW-scrollHeaderBackColor .TW-header-helpLink{
 	background-color:#fff;
-	height:40px;
-	margin:10px !important;
-	width:109px;
+	border:none;
+	height:35px;
+	margin-left:10px;
+	margin-right:10px;
+	margin-top: 3.5px;
 	
 }
 .TW-header-helpLinkLogged {
     background-color: #006083;
     border:none;
-    height: 40px;
-    margin: 10px !important;
-    width: 109px;
+    height: 35px;
+    margin: 5px 10px !important;
 }
 .TW-header-helpTxt {
     color: #006083 !important;
     font-size: 20px !important; 
     font-weight: 600;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-bottom: 3px;
+    margin-top: 3px;
 }
 .TW-header-helpTxtLogged{
 	color: #fff !important;
     font-size: 20px !important; 
     font-weight: 600;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-bottom: 2px;
+    margin-top: 2px;
 }
 .scrollHeaderHelpLink > a:hover, .scrollHeaderHelpLink > a:focus {
     background-color: #01bbd2 !important;

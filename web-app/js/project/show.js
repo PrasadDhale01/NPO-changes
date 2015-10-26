@@ -856,6 +856,7 @@
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://localhost:8080');
    				$('.home-header-section').addClass('banner-nav');
+   				$('#preview-banner').css('margin-top',"-2px");
    			}
    		}
    	});
@@ -863,6 +864,7 @@
    		$('.info-banner').css('display','none');
    		$('.home-header-section').removeClass('banner-nav');
    		$('#preview-banner').attr('class','preview-banner-margin');
+   		$('#preview-banner').css('margin-top',"-41px");
    	});
 
     $('.video-play').click(function() {

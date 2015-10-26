@@ -36,16 +36,17 @@ $(function() {
             var delay = 300;
             setTimeout(function() {
                 $('.search-box').hide();
-                if($(window).width() < 464){
-                	$('.scrollHeaderLogo').show();
+                if($(window).width() < 430){
+                	$('.scrollHeaderLogo').fadeIn();
                 }
             }, delay);
         } else {
             $('.search-box').show();
-            if($(window).width() < 464){
+            if($(window).width() < 430){
             	$('.scrollHeaderLogo').hide();
             }
-            $(".search-box").animate({width: slider_width,"z-index":"10000","right":"40px"}, function(){
+            
+            $(".search-box").animate({"width": "174px","z-index":"10000","right":"40px"}, function(){
                 $(this).focus(); // For bonus, the input will now get autofocus
             });
         }
@@ -58,8 +59,8 @@ $(function() {
         	 $('.search-box').hide();
         	 $('.discover').show();
              $('.learn').show();
-             if($(window).width() < 464){
-             	$('.scrollHeaderLogo').show();
+             if($(window).width() < 430){
+             	$('.scrollHeaderLogo').fadeIn();
              }
          }, delay);
 //         $('.search-image-header').css('paddingRight', '40px');
@@ -158,13 +159,11 @@ $(function() {
 //    	   },7000);
     	
    /************************On search click ScrollHeader******************************************/
-    	$('#scrolltrigger').click(function(){
+    	$('.scrolltrigger').click(function(){
     	    $(this).css("display","block");
-    	    var slider_width = $('#search-barr').width();
+    	    var slider_width = $('.search-barr').width();
     	    if(slider_width > 0 ){
-    	        $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/header-search-icon.png");
-    	    }else{
-    	        $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/header-search-icon.png");
+    	        $('.scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/header-search-icon.png");
     	    }
     	});
 
@@ -173,15 +172,13 @@ $(function() {
     	});
 	    
     	function searchBoxStatus(){
-    	    var scrollHdr_status = $('#search-barr').width();
-    	    var noScrollHdr_status = $('#search-bar').width();
+    	    var scrollHdr_status = $('.search-barr').width();
+    	    var noScrollHdr_status = $('.search-bar').width();
     	    if(noScrollHdr_status > 0){
-                $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/search-icon.png");
+                $('.scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/search-icon.png");
     	    }
     	    if(scrollHdr_status > 0){
-    	        $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/search-icon.png");
-    	    }else{
-    	        $('#scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/header-search-icon.png");
+    	        $('.scrolltrigger').attr("src","https://s3.amazonaws.com/crowdera/assets/header-search-icon.png");
     	    }
     	}
         
@@ -198,13 +195,13 @@ $(function() {
         $win.scroll(function () {
         	if($(window).width() > 767){
 			    if ($win.scrollTop() == 0){
-				    $('.noScrollHeader').css("display","block");
-				    $('.scrollHeader').css("display","none");
-				    $('#search-bar').css("width","0");
+				    $('.noScrollHeader').fadeIn("slow");
+				    $('.scrollHeader').fadeOut("slow");
+				    $('.search-bar').css("width","0");
 			    }else{
-				    $('.noScrollHeader').css("display","none");
-				    $('.scrollHeader').css("display","block");
-				    $('#search-barr').css("width","0");
+				    $('.noScrollHeader').fadeOut("slow");
+				    $('.scrollHeader').fadeIn("slow");
+				    $('.search-barr').css("width","0");
 			    }
         	}
         	
@@ -213,13 +210,13 @@ $(function() {
 				    //$('.noScrollHeader').css("display","none");
 				    $('.mobile-fixedHeader').css("display","block");
 				    $('.scrollHeader').css("display","none");
-				    $('#search-bar').css("width","0");
+				    $('.search-bar').css("width","0");
 				    $('.feduoutercontent').css('margin-top','120px');
 				 }else{
 				    //$('.noScrollHeader').css("display","none");
 					$('.mobile-fixedHeader').css("display","none");
 				    $('.scrollHeader').css("display","block");
-				    $('#search-barr').css("width","0");
+				    $('.search-barr').css("width","0");
 				    $('.feduoutercontent').css('margin-top','40px');
 				 }
 		    }
@@ -229,7 +226,8 @@ $(function() {
 		$('.toggle-MobileHeader').click(function(){
 		    $('.mobile-fixedHeader').css("display","none");
 		    $('.scrollHeader').css("display","block");
-		    $('#TW-navbar-collapse').toggle();
+		    $('#TW-navbar-collapse').fadeIn();
+		    $('.feduoutercontent').css('margin-top','50px');
 		});
 
         $('.user-cl-scrollHeader').css("background","url(https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-White.png)");

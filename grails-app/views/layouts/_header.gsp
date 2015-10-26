@@ -33,7 +33,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="${resource(dir: '/')}">
-                <img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" alt="Crowdera">
+                <img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera">
             </a>
         </div>
         <div class="navbar-collapse collapse" id="TW-navbar-collapse">
@@ -154,8 +154,8 @@
 
 <!-- *******************************************Mobile header fixed*************************************************** -->
 
-<div class="hidden-lg hidden-md hidden-sm navbar navbar-default navbar-fixed-top header-section home-header-section mobile-fixedHeader" role="navigation" style="height: 120px;">
-    <div class="header-container TW-scrollHeaderBackColor" style="height: 118px;">
+<div class="hidden-lg hidden-md hidden-sm navbar navbar-default navbar-fixed-top header-section home-header-section mobile-fixedHeader" role="navigation">
+    <div class="header-container TW-scrollHeaderBackColor">
 		<div class="info-banner">
 				Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a>
 				<a href="#" class="banner-close">Close</a>
@@ -168,15 +168,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <div class="searchengine pull-right hidden-lg hidden-md hidden-sm visible-xs" style="margin-top:6px;">
+            <div class="searchengine pull-right hidden-lg hidden-md hidden-sm visible-xs">
                <form name="SearchForm" action="/campaign">
-                   <div class="inner-addon left-addon search-icon-header search-image-header" style="padding-right: 40px;">
-                      <img id="scrolltrigger" class="trigger-mob" alt="search" src="https://s3.amazonaws.com/crowdera/assets/header-search-icon.png" style="display: block;">
-                      <input type="text" placeholder="Search....." id="search-barr" value="" name="q" class="form-control form-control-no-border search-box" style="display: none; width: 0px;">
+                   <div class="inner-addon left-addon search-icon-header search-image-header">
+                      <img id="scrolltrigger2" class="trigger-mob scrolltrigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/header-search-icon.png">
+                      <input type="text" placeholder="Search....." id="search-barr" value="" name="q" class="search-barr form-control form-control-no-border search-box">
                    </div>
                </form>
             </div>
-  <div style="color:white; font-size:15px; font-weight:500;bottom:35px; vertical-align:center; position:absolute; width:100%;" class="mobile-fixed-header-text text-center"> 
+  <div class="mobile-fixed-header-text text-center"> 
    <img class="center-block" src="//s3.amazonaws.com/crowdera/assets/header-logo-crowdera.png" alt="Crowdera">
   future of funding for <b>things</b> that matter
   </div>
@@ -201,15 +201,15 @@
                 <span class="icon-bar"></span>
             </button>
             <a href="/" class="navbar-brand scrollHeaderLogo">
-                <img alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/header-logo-crowdera.png" class="hidden-xs">
-                <img class="mobile-scrollCrwdLogo hidden-lg hidden-md hidden-sm" alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" class="visible-xs center-block">
+                <img alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" class="hidden-xs">
+                <img class="mobile-scrollCrwdLogo hidden-lg hidden-md hidden-sm visible-xs center-block" alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" >
             </a>
             
-            <div class="searchengine pull-right hidden-lg hidden-md hidden-sm visible-xs" style="margin-top:6px;">
+            <div class="searchengine pull-right hidden-lg hidden-md hidden-sm visible-xs">
                <form name="SearchForm" action="/campaign">
-                   <div class="inner-addon left-addon search-icon-header search-image-header" style="padding-right: 40px;">
-                      <img id="scrolltrigger" class="trigger-mob" alt="search" src="https://s3.amazonaws.com/crowdera/assets/header-search-icon.png" style="display: block;">
-                      <input type="text" placeholder="Search....." id="search-barr" value="" name="q" class="form-control form-control-no-border search-box" style="display: none; width: 150px;">
+                   <div class="inner-addon left-addon search-icon-header search-image-header">
+                      <img id="scrolltrigger" class="trigger-mob scrolltrigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/header-search-icon.png">
+                      <input type="text" placeholder="Search....." id="search-barr1" value="" name="q" class="search-barr form-control form-control-no-border search-box">
                    </div>
                </form>
             </div>
@@ -219,9 +219,9 @@
             <ul class="nav navbar-nav nav-icon-bar">
                 <li class="searchengine hidden-xs">
                     <form name="SearchForm" action="/campaign">
-                        <div class="inner-addon left-addon search-icon-header search-image-header" style="padding-right: 40px;">
-                           <img id="scrolltrigger" class="trigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/header-search-icon.png" style="display: block;">
-                           <input type="text" placeholder="Search....." id="search-barr" value="" name="q" class="form-control form-control-no-border search-box" style="display: none; width: 0px;">
+                        <div class="inner-addon left-addon search-icon-header search-image-header">
+                           <img id="scrolltrigger1" class="trigger scrolltrigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/header-search-icon.png">
+                           <input type="text" placeholder="Search....." id="search-barr2" value="" name="q" class="search-barr form-control form-control-no-border search-box">
                         </div>
                     </form>
                 </li>
@@ -239,8 +239,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right nav-create-button" style="height: 36px;">
                	<li class="hidden-xs">
-                    <a class=" btn btn-info nav-text1 TW-header-helpLink" href="/campaign/create" style="margin-bottom: 0px; padding-top: 0px; padding-bottom: 0px; height: 35px ! important; margin-top: 4px ! important;">
-                    	<span class="TW-header-helpTxt" style="margin-top: 2px; margin-bottom: 2px;">Create</span>
+                    <a class=" btn btn-info nav-text1 TW-header-helpLink" href="/campaign/create">
+                    	<span class="TW-header-helpTxt">Create</span>
                     </a> 
                	</li>
                 <li class="hidden-lg hidden-md hidden-sm hed-font-sizes">

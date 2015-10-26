@@ -453,4 +453,20 @@ class ContributionService {
         return ['highestContributionDay':highestContributionDay , 'highestContributionHour': highestContributionHour]
     }
     
+    def getContributedAmount(List contributions) {
+        double amount = 0;
+        contributions.each{ contribution ->
+            amount = amount + contribution.amount
+        }
+        return amount
+    }
+
+    def getTotalFundRaisedByUser(List projects) {
+        double amount = 0;
+        projects.each { project ->
+            amount = amount + getTotalContributionForProject(project)
+        }
+        return amount;
+    }
+    
 }

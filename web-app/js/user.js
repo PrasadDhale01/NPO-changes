@@ -6,6 +6,21 @@ $(function() {
     $('#editProfilesize').hide();
     $('#editProfileImg').hide();
     
+    $('.selectpicker').selectpicker({
+        style: 'btn btn-sm btn-default'
+    });
+    
+    $('#state').change(function(event) {
+        var option = $(this).val();
+        if(option == 'other') {
+            $("#ostate").show();
+            $("#dashboard_otherstate").show();
+        } else {
+            $("#ostate").hide();
+            $("#dashboard_otherstate").hide();
+        }
+    });
+    
     var validator = $('#validpass').find('form').validate({
         rules: {
         	firstName: {
@@ -21,6 +36,55 @@ $(function() {
 		        isEqualToPassword: true
             }
         }
+    });
+    
+    $('.dashboarduserprofile').find('form').validate({
+        rules: {
+            firstName: {
+            	minlength: 2,
+                maxlength: 20
+            },
+            lastName: {
+            	minlength: 2,
+                maxlength: 20
+            },
+            password: {
+                minlength: 6
+            },
+            confirmPassword: {
+                isEqualToPassword: true
+            },
+            biography: {
+                minlength: 10,
+                maxlength: 140
+            },
+            city: {
+            	minlength: 2,
+                maxlength: 20
+            },
+            state: {
+                maxlength: 20
+            },
+            country: {
+                minlength: 6
+            },
+            otherstate: {
+            	required: true,
+            	minlength: 3
+            }
+        }
+    });
+    
+    var currentEnvironment = $('#currentEnv').val();
+    
+    $(".amountsectionfbicon").click(function(){
+    	var url;
+    	if (currentEnvironment == 'testIndia' || currentEnvironment == 'stagingIndia' || currentEnvironment == 'prodIndia')
+            url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=https://crowdera.in/campaign/create'
+    	else 
+    		url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://crowdera.co/campaign/create'
+        window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+        return false;
     });
     
     $.validator.addMethod('isEqualToPassword', function (value, element) {
@@ -101,6 +165,35 @@ $(function() {
 	        }
 	    } 
     });
+    
+    $('#useravatar').hover(function() {
+        $('.defaultprofileimage').show();
+    });
+    $('#useravatar').mouseleave(function() {
+        $('.defaultprofileimage').hide();
+    });
+    $('#useravatar').click(function(event) {
+        event.preventDefault();
+        $("#avatar").click();
+    });
+    $('#userImageEditDeleteIcon').hover(function() {
+        $('.userprofileeditimage').show();
+    });
+    $('#userImageEditDeleteIcon').mouseleave(function() {
+        $('.userprofileeditimage').hide();
+    });
+    $('.userprofileeditimage').click(function(event) {
+        event.preventDefault();
+        $("#editavatar").click();
+    });
+
+    
+    var elem1 = '<div class="well"><a href="google.com">Message one, From someone.</a></div>'+
+    '<button id="close-popover" data-toggle="clickover" class="btn btn-small btn-primary pull-right" onclick="$(&quot;#contributionshare1&quot;).popover(&quot;hide&quot;);">Close please!</button>';
+    
+    var elem2 = '<div class="well"><a href="google.com">Message one, From someone.</a></div>'+
+    '<button id="close-popover" data-toggle="clickover" class="btn btn-small btn-primary pull-right" onclick="$(&quot;#contributionshare2&quot;).popover(&quot;hide&quot;);">Close please!</button>';
+
     
 	function validateExtension(imgExt) {
         var allowedExtensions = new Array("txt","docx","doc","pdf");

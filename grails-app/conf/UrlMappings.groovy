@@ -114,5 +114,10 @@ class UrlMappings {
         "/user/mycampaigns"(controller:'user', action:'myproject')
         "/users/dashboard"(controller:'user', action:'accountSetting')
 		
+        "/user/edituserprofile"(controller:'user', action:'edituserprofile')
+        "/user/campaigns"(controller:'user', action:'mycampaigns')
+        "/user/contributions"(controller:'user', action:'mycontributions')
+        "/user/edit-userInfo"(controller:'user', action:'edituserinfo')
+        "/user/edit-location"(controller:'user', action:'editlocation')
     }
 }

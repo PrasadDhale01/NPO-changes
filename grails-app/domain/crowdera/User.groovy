@@ -23,6 +23,10 @@ class User {
     String inviteCode
     String confirmCode
     String resetCode
+    String biography
+    String city
+    String state
+    String country
 
     Date dateCreated
     Date lastUpdated
@@ -35,9 +39,9 @@ class User {
 
 	static transients = ['springSecurityService']
 
-	static constraints = {
-		username blank: false, unique: true
-		password blank: false
+    static constraints = {
+        username blank: false, unique: true
+        password blank: false
         confirmCode nullable: true
         inviteCode nullable: true
         resetCode nullable: true
@@ -45,7 +49,11 @@ class User {
         lastName nullable: true
         email blank: false, email: true, nullable: true, unique: true
         userImageUrl nullable: true
-	}
+        biography nullable: true
+        city nullable: true
+        state nullable: true
+        country nullable: true
+    }
 
 	static mapping = {
 		password column: '`password`'

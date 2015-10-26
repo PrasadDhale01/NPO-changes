@@ -4351,9 +4351,6 @@ ul.decimalList{
     padding-top: 20px;
 	display: none;
 }
-#createthumbnail .col-md-5, #createthumbnail .col-md-7{
-    padding-left: 5px;
-}
 
 #uploadingCampaignUpdateEditImage {
     color: #46b8da;
@@ -4791,7 +4788,7 @@ a.customer-support-a {
     display:none;
 }
 
-#campaignfilesize{
+.campaignfilesize{
     display:none;
 }
 
@@ -4799,7 +4796,7 @@ a.customer-support-a {
     display:none;
 }
 
-#imgmsg{
+.imgmsg{
     display:none;
 }
 
@@ -4828,10 +4825,6 @@ a.customer-support-a {
 }
 
 #updatefilesize{
-    display:none;
-}
-
-#campaignfilesize{
     display:none;
 }
 
@@ -5399,19 +5392,19 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     a.carousel-control.right {
         background-image: none;
     }
-	footer {
+    footer {
         border-top: none !important;
     }
-	div.footer-mobile-border{
+    div.footer-mobile-border{
         border: 1px solid #01bbd2;
         margin-bottom: 22px;
         margin-left: 11%;
         width: 77%;
     }
-	div.hmmobile-carousel-banner{
+    div.hmmobile-carousel-banner{
         padding-left: 7px;
     }
-	div.hm-mobile-positions {
+    div.hm-mobile-positions {
         margin: 0 auto;
         width: 291px;
         left: -6px;
@@ -5419,14 +5412,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.tile-pad {
         width: 310px;
     }
-	div.fedu.thumbnail > .modal-footer {
+    div.fedu.thumbnail > .modal-footer {
         padding-bottom: 12px;
     }
-	p.hm-slogn-mobile{
+    p.hm-slogn-mobile{
         font-size: 24px;
         color: #015F85;
     }
-	a.hm-raisemony-btn{
+    a.hm-raisemony-btn{
         background-color: #f6bf0b;
         color: #fff;
         font-size: 30px;
@@ -5438,7 +5431,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.hm-fontfamily{
         font-family: Ubuntu Condensed;
     }
-	div.hm-section-top{
+    div.hm-section-top{
         height: 35px;;
     }
 	div.hm-mobile-title{
@@ -5448,16 +5441,19 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
          margin-bottom: 10px;
          width: 106%;
     }
-	div.hmmobile-back-color{
-	    background-color: #fff;
-	}
-	li.sh-carousel-li {
+    div.hmmobile-back-color{
+        background-color: #fff;
+    }
+    li.sh-carousel-li {
         background-color: #015F85;
         border-color: #015F85;
-	}
-	   ul.nav-justified > li{
+    }
+    .col-md-10.col-xs-8.col-videoUrl-textbox{
+        width:73%
+    }
+    ul.nav-justified > li{
         display: block !important;
-	   }
+    }
     .popoverClass .popover{
         left:120px;
         width:250px;
@@ -5916,7 +5912,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 	.upload-campaign-pic{
 		height: 250px;
-		overflow:scroll !important;
 		margin-bottom: 0;
 	}
 	ul.nav-tabs.admin-vali-show > li{
@@ -6912,9 +6907,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
-	div.home-campaign-tile-container{
+    div.home-campaign-tile-container{
         margin-left: 18px;
-	}
+    }
     .campaigndashboardtab.btn-primary {
         padding: 9px 4px;
         font-size: 14px;
@@ -7139,7 +7134,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	div.hmmobile-carousel-banner{
+    div.hmmobile-carousel-banner{
         padding-left: 7px;
     }
     ol.carousel-indicators-sm{
@@ -7149,16 +7144,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.fedu.thumbnail > .modal-footer {
         padding-bottom: 12px;
     }
-	li.sh-carousel-li {
+    li.sh-carousel-li {
         background-color: #015f85;
         border-color: #015f85;
     }
-	div.hm-mobile-positions{
+    div.hm-mobile-positions{
         left: 27%;
         width: 50%;
 	}
     div.perks-style {
         height: 82px;
+    }
+    #campaignthumbnails.col-sm-12 {
+        padding-left: 11px;
+    }
+    .col-md-10.col-xs-8.col-videoUrl-textbox{
+        width:78%
     }
     .manage-team{
         margin-top: 16px !important;
@@ -7429,7 +7430,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 	.upload-campaign-pic{
 		height: 250px;
-		overflow:scroll !important;
 		margin-bottom: 0;
 	}
     .cr-bg-preview-btn{
@@ -8093,6 +8093,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 1024px) {
+
 	.text-primary{
 		text-align:center;
 		width:300px;
@@ -8376,6 +8377,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+    .col-xs-text-box-with-button{
+         margin-top:20px;
+         margin-bottom: 20px;
+    }
+    .col-add-picture {
+        padding-left: 34%;
+    }
+    input.videoUrl {
+        width: 97%;
+    }
 
     .glyphicon-design, .glyphicon-design:hover, .glyphicon-design:active, .glyphicon-design:visited, .glyphicon-design:after, .glyphicon-design:focus {
         padding:6px;
@@ -8691,9 +8702,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
-	div.home-campaign-tile-container{
+    div.home-campaign-tile-container{
         margin-left: 46px;
-	}
+    }
     #useravatar img.dummyprofileimage {
         width: 136px;
     }
@@ -8985,7 +8996,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	div.hmmobile-carousel-banner{
         padding-left: 7px;
     }
-	ol.carousel-indicators-sm{
+    ol.carousel-indicators-sm{
         margin-bottom: 1px;
         margin-left: -94px;
     }
@@ -8996,7 +9007,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         background-color: #015f85;
         border-color: #015f85;
     }
-	div.hm-mobile-positions{
+    div.hm-mobile-positions{
         left: 28.2%;
         width: 42%;
     }
@@ -9330,11 +9341,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+    .col-md-10.col-xs-8.col-videoUrl-textbox{
+        width:71%
+    }
     .popoverClass .popover{
         left:163px;
         width:207px;
     }
-
 	.leftcard-column-two, .leftcard-column-three {
 	   display: flex !important;
 	   width: 100% !important;
@@ -10750,6 +10763,10 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (max-width: 479px){
+    .col-sm-10.col-xs-9.col-xs-textbox{
+        width:92%;
+        margin-bottom: 10px;
+    }
     .embedIcon-left {
         margin-left: -4px;
     }
@@ -11536,9 +11553,23 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
-	  .dashboard-container {
-        padding-left: 5px;
-    }
+
+.col-xs-button{
+    width:100%;
+}
+.col-xs-textbox{
+    width:99% !important;
+}
+.btn-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dashboard-container {
+     padding-left: 5px;
+}
+
 	ul.show-new-tabs-alignments {
         line-height: 1;
     }
@@ -11600,14 +11631,14 @@ textarea.textarea-embed-video {
         margin-bottom: 22px;
         margin-left: 11%;
         width: 77%;
-	}
-	div.hmmobile-carousel-banner{
+    }
+    div.hmmobile-carousel-banner{
         padding-left: 7px;
-	}
+    }
     ol.carousel-indicators-sm {
         left: 138px;
     }
-	div.hm-mobile-positions {
+    div.hm-mobile-positions {
         margin: 0 auto;
         width: 278px;
         left: -12px;
@@ -11615,25 +11646,25 @@ textarea.textarea-embed-video {
     div.fedu.thumbnail > .modal-footer {
         padding-bottom: 12px;
     }
-	p.hm-slogn-mobile{
+    p.hm-slogn-mobile{
         font-size: 24px;
         color: #015F85;
-	}
-	a.hm-raisemony-btn{
-	    background-color: #f6bf0b;
-	    color: #fff;
-	    font-size: 30px;
-	    margin-bottom: 12px;
-	}
-	a.hm-raisemony-btn:hover{
+    }
+    a.hm-raisemony-btn{
+        background-color: #f6bf0b;
+        color: #fff;
+        font-size: 30px;
+        margin-bottom: 12px;
+    }
+    a.hm-raisemony-btn:hover{
         color: #fff;
     }
-	div.hm-fontfamily{
-	    font-family: Ubuntu Condensed;
-	}
-	div.hm-section-top{
-	    height: 35px;;
-	}
+    div.hm-fontfamily{
+        font-family: Ubuntu Condensed;
+    }
+    div.hm-section-top{
+        height: 35px;;
+    }
     div.hm-mobile-title{
          background-color: #e7e7e7;
          height: 60px;
@@ -11641,9 +11672,9 @@ textarea.textarea-embed-video {
          margin-bottom: 10px;
          width: 111%;
          margin-top: 14px;
-	}
+    }
 	
-	div.hmmobile-back-color{
+    div.hmmobile-back-color{
         background-color: #fff;
     }
     li.sh-carousel-li {
@@ -12048,7 +12079,6 @@ textarea.textarea-embed-video {
     }
 	.upload-campaign-pic{
 		height: 250px;
-		overflow:scroll !important;
 		margin-bottom: 0;
 	}
 	ul.nav-tabs.admin-vali-show > li{

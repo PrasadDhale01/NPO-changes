@@ -28,48 +28,48 @@
                    <li data-target="#myCarousel" data-slide-to="2" class="sh-carousel-li"></li>
                </ol>
            </div>   
-			<%
-			    def count = projects.size()
-			    def cols = 1
-			    def pages = (count / cols) + (count % cols > 0 ? 1 : 0)
-			    def index = 0
-			%>
+           <%
+                def count = projects.size()
+                def cols = 1
+                def pages = (count / cols) + (count % cols > 0 ? 1 : 0)
+                def index = 0
+           %>
 
-            <div id="carousel-example" class="carousel slide visible-xs hidden-sm hidden-md home-campaign-tile-container" >
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner hmmobile-carousel-banner">
-                    <g:each in="${(1..pages).toList()}" var="row">
-                        <g:if test="${row == 1}">
-                            <div class="item active">
-		                        <div class="row">
-		                            <ul class="thumbnails list-unstyled">
-		                                <g:each in="${1..cols}">
-		                                    <% if (index < count) { %>
-		                                    <li class="col-xs-2">
-		                                        <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
-		                                    </li>
+           <div id="carousel-example" class="carousel slide visible-xs hidden-sm hidden-md home-campaign-tile-container" >
+               <!-- Wrapper for slides -->
+               <div class="carousel-inner hmmobile-carousel-banner">
+                   <g:each in="${(1..pages).toList()}" var="row">
+                       <g:if test="${row == 1}">
+                           <div class="item active">
+                               <div class="row">
+                                   <ul class="thumbnails list-unstyled">
+                                       <g:each in="${1..cols}">
+                                           <% if (index < count) { %>
+                                               <li class="col-xs-2">
+                                                   <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
+                                               </li>
 		                                    <% } %>
-		                                </g:each>
-		                            </ul>
-		                        </div>
-		                    </div>
-                        </g:if><g:else>
-			                <div class="item">
-		                        <div class="row">
-		                            <ul class="thumbnails list-unstyled">
-		                                <g:each in="${1..cols}">
-		                                    <% if (index < count) { %>
-		                                    <li class="col-xs-2">
-		                                        <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
-		                                    </li>
-		                                    <% } %>
-		                                </g:each>
-		                            </ul>
-		                        </div>
-			                </div>
-                        </g:else>
-                    </g:each>
-                </div>
+                                       </g:each>
+                                   </ul>
+                               </div>
+                           </div>
+                       </g:if><g:else>
+                           <div class="item">
+                               <div class="row">
+                                   <ul class="thumbnails list-unstyled">
+                                       <g:each in="${1..cols}">
+                                           <% if (index < count) { %>
+                                               <li class="col-xs-2">
+                                                   <g:render template="/layouts/tile" model="['project': projects.get(index++)]"></g:render>
+                                               </li>
+                                           <% } %>
+                                       </g:each>
+                                   </ul>
+                               </div>
+                           </div>
+                       </g:else>
+                   </g:each>
+               </div>
            </div>
            
            <div id="home_navigators" style="display:none;">

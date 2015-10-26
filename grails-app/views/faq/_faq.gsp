@@ -503,7 +503,7 @@
                     </div>
                     <div id="collapseProTenNine" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                                 <p>Multiple images can be added but we recommend including not more than 3 or 4 images. </p>
+                                 <p>You can upload 5 images.</p>
                         </div>
                     </div>
                 </div>
@@ -1993,7 +1993,7 @@
                     </div>
                     <div id="collapseProTenNine" class="panel-collapse collapse faq-panel-height">
                         <div class="panel-body">
-                                 <p>Multiple images can be added but we recommend including not more than 3 or 4 images. </p>
+                                 <p>You can upload 5 images.</p>
                         </div>
                     </div>
                 </div>

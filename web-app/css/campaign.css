@@ -96,6 +96,10 @@ input.videoUrl{
     text-align: center;
 }
 
+.cols-error-placement-team #editimg, .cols-error-placement-team #imageNumValidation, .cols-error-placement-team #editTeamImg, .cols-error-placement-team span{
+    color: #f04124;
+}
+
 input.shortUrlText {
     width: 215px;
     border: none;

@@ -338,8 +338,8 @@
         },
         errorPlacement: function(error, element) {
         	if($(element).prop("id") == "projectImageFile") {
-                error.appendTo(element.parent().parent());
-            } else{
+        		error.appendTo(document.getElementById("cols-error-placement-team"));
+            } else {
         		error.insertAfter(element);
         	}
         }
@@ -474,8 +474,8 @@
                 }, this);
                 xhr.send(formData);
                 
-                $('#teamImages').find("span").remove();
-                $('#teamImages').closest(".form-group").removeClass('has-error');
+                $('#cols-error-placement-team').find("span").remove();
+                $('#cols-error-placement-team').closest(".form-group").removeClass('has-error');
                 } else {
                 	$('.imageNumValidation').show();
             	    var delay = 5000; //delayed code, time in milliseconds
@@ -522,7 +522,7 @@
            var match = (url.match(regExp) || url.match(vimeo));
            if (match && match[2].length == 11) {
                $('#ytVideo').show();
-               if (url.contains("embed/")){
+               if (url.indexOf("embed/") > -1){
             	   $('#ytVideo').attr('src',url);
                } else {
                    var vurl=url.replace("watch?v=", "embed/");

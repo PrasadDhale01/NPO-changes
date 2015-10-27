@@ -38,6 +38,9 @@ class UrlMappings {
         /* FAQ */
         "/faq"(view:'/faq/index')
 
+        /*Url shortener*/
+        "/c/$url"(controller: 'project', action:'getCampaignFromShortUrl')
+
         /* Contact Us */
         "/customer-service"(view:'/contactus/index')
         "/customer-support"(controller:'project', action:'customerSupport')
@@ -83,6 +86,7 @@ class UrlMappings {
         "/campaign/sortby/$query"(controller:'project', action:'sortCampaign')
         "/campaign/$projectTitle/update/edit/$id"(controller:'project', action:'editUpdate')
         "/campaign/supporter/$projectId/$fundRaiser"(controller:'project', action:'addcampaignsupporter')
+        "/campaign/$projectTitle/$fr/embed/tile"(controller:'project', action:'embedTile')
 
         /* Admin */
         "/admin/dashboard"(controller:'user', action:'admindashboard')
@@ -110,5 +114,10 @@ class UrlMappings {
         "/user/mycampaigns"(controller:'user', action:'myproject')
         "/users/dashboard"(controller:'user', action:'accountSetting')
 		
+        "/user/edituserprofile"(controller:'user', action:'edituserprofile')
+        "/user/campaigns"(controller:'user', action:'mycampaigns')
+        "/user/contributions"(controller:'user', action:'mycontributions')
+        "/user/edit-userInfo"(controller:'user', action:'edituserinfo')
+        "/user/edit-location"(controller:'user', action:'editlocation')
     }
 }

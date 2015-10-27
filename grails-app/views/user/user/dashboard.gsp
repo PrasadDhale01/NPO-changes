@@ -5,11 +5,190 @@
 <html>
 <head>
     <meta name="layout" content="main" />
-    <r:require module="timelinecss"/>
+    <r:require modules="timelinecss, bootstrapsocialcss"/>
     <r:require modules="userjs"/>
 </head>
 <body>
 <div class="feducontent">
+    <g:if test="${environment == 'development' || environment == 'test' || environment == 'testIndia'}">
+        <g:hiddenField name='currentEnv' value='${environment}' id='currentEnv'/>
+        <g:if test="${activeTab == 'campaigns'}">
+            <div class="my-campaign-heading text-center hidden-xs"><h1><b>My Campaigns</b></h1></div>
+        </g:if>
+        <g:elseif test="${activeTab == 'contributions'}">
+            <div class="my-campaign-heading text-center hidden-xs"><h1><b>Campaigns Supported</b></h1></div>
+        </g:elseif>
+        <div class="container newUserdashboard dashboard-container">
+            <div class="influencediv col-md-2 col-lg-2 col-sm-2 col-xs-6">
+                <div class="updateprofilediv" class="blacknwhite">
+                    <g:if test="${user.userImageUrl}">
+                        <div id="userImageEditDeleteIcon">
+                            <a id="userprofileavatar">
+                                <img src="${user.userImageUrl}" alt="avatar">
+                            </a>
+                            <div class="userprofileeditimage">
+                                <img src="//s3.amazonaws.com/crowdera/assets/userprofileedit.png" alt="edit icon">
+                            </div>
+                        </div>
+                        <g:uploadForm controller="user" action="edit_avatar" id="${user.id}">
+                            <button class="btn btn-primary btn-sm hidden" type="button" id="editavatarbutton">Edit Avatar</button>
+                            <input class="hid-input-type-file hidden" type="file" name="profile" id="editavatar" accept="image/*"/>
+                            <input type="submit" class="hidden buttons" value="Upload" id="editbutton"/>
+                            <div class="clear"></div>
+                            <label class="docfile-orglogo-css image-margin-top" id="editProfileImg">Please select image file only.</label>
+                            <label class="docfile-orglogo-css image-margin-top" id="editProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
+                        </g:uploadForm>
+                    </g:if>
+                    <g:else>
+                        <a id="useravatar">
+                            <img class="dummyprofileimage" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg">
+                            <div class="defaultprofileimage">
+                                <img src="https://s3.amazonaws.com/crowdera/assets/plus-icon-over.png" alt="avatar">
+                            </div>
+                        </a>
+                        <g:uploadForm controller="user" action="upload_avatar" id="${user.id}">
+                            <input class="hid-input-type-file hidden" type="file" name="avatar" id="avatar" accept="image/*"/>
+                            <input type="submit" class="hidden buttons" value="Upload" id="uploadbutton"/>
+                            <label class="docfile-orglogo-css image-margin-top" id="uploadProfileImg">Please select image file only.</label>
+                            <label class="docfile-orglogo-css image-margin-top" id="uploadProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
+                        </g:uploadForm>
+                    </g:else>
+                    <div class="user-information-bio text-center">
+                        <b>${user.firstName}</b>
+                        <g:if test="${user.biography}"> 
+                            <div class="user-biography hidden-xs">${user.biography}</div>
+                        </g:if>
+                    </div>
+                </div>
+                
+                <div class="connectsection hidden-xs">
+                    <g:if test="${activeTab != 'myprojects' && activeTab != 'campaigns'}">
+                        <a href="/user/campaigns" class="campaigndashboardtab btn btn-primary btn-md hidden-xs">My Campaigns</a>
+                    </g:if>
+                    <g:if test="${activeTab != 'myprojects' && activeTab != 'contributions'}">
+                        <a href="/user/contributions" class="contributiondashboardtab btn btn-primary btn-md hidden-sm hidden-xs">Campaigns Supported</a>
+                        <a href="/user/contributions" class="contributiondashboardtab btn btn-primary btn-md visible-sm">Campaigns<br>Supported</a>
+                    </g:if>
+                    <g:if test="${activeTab != 'editUserInfo'}">
+                        <a href="/user/edit-userInfo" class="dashboardtabheading btn btn-primary btn-md btn-block">Edit User Info</a>
+                   </g:if>
+                    
+                    <a href="#" class="btn btn-block btn-social social-button btn-facebook hidden"><i class="fa fa-facebook"></i> Connect</a>
+                    <a href="#" class="btn btn-block btn-social social-button btn-linkedin hidden"><i class="fa fa-linkedin"></i> Connect</a>
+                    <a href="#" class="btn btn-block btn-social social-button btn-google-plus hidden"><i class="fa fa-google-plus"></i> Connect</a>
+                    <a href="#" class="hidden"><img src="//s3.amazonaws.com/crowdera/assets/dashboardpaypal.png" alt="paypal"></a>
+                </div>
+                
+                <div class="connectsection hidden-md hidden-lg hidden-xs hidden-sm">
+                    <a href="#" class="btn btn-block btn-social social-button btn-facebook"><i class="fa fa-facebook"></i> Connect</a>
+                    <a href="#" class="btn btn-block btn-social social-button btn-linkedin"><i class="fa fa-linkedin"></i> Connect</a>
+                    <a href="#" class="btn btn-block btn-social social-button btn-google-plus"><i class="fa fa-google-plus"></i> Connect</a>
+                    <a href="#" class=" hidden"><img src="//s3.amazonaws.com/crowdera/assets/dashboardpaypal.png" alt="paypal"></a>
+                </div>
+            </div>
+            <div class="influencediv influencediv-xs col-md-2 col-lg-2 col-sm-6 col-xs-6 hidden-sm hidden-lg hidden-md">
+                <div class="amountsection">
+                    <span class="amountSection-Font">$${fundRaised.round()} </span>
+                    <br/> 
+                    <span>Raised</span>
+                </div>
+               <div class="amountsection">
+                    <span class="amountSection-Font">$${contributedAmount.round()} </span>
+                    <br/>
+                    <span>Contributed</span>
+               </div>
+            </div>
+            
+            <div class="clear visible-xs"></div>
+            <g:if test="${user.biography}">
+                <div class="biography-mobile visible-xs">
+                    ${user.biography}
+                </div>
+            </g:if>
+            
+            <div class="dashboard-mobile-section visible-xs">
+                <div class="col-xs-6">
+                    <a href="/user/campaigns" class="mob-campaigns-btn btn btn-primary text-center">My <br>Campaigns</a>
+                </div>
+                <div class="col-xs-6">
+                    <a href="/user/contributions" class="mob-campaigns-btn btn btn-primary text-center">Campaigns <br>Supported</a>
+                </div>
+                <div class="col-xs-6">
+                    <a href="/user/edit-userInfo" class="mob-campaigns-btn btn btn-primary">Edit <br> User Info</a>
+                </div>
+                <div class="col-xs-6">
+                    <a class="btn btn-primary amountsectionfbicon">
+                        <span class="col-xs-12">
+                            <img alt="fbicon" src="//s3.amazonaws.com/crowdera/assets/dashboard-fb-icon.png">
+                        </span>
+                        <span class="col-xs-12">
+                            Do More Good
+                        </span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="col-desktop-padding col-md-8 col-lg-8 col-sm-8 col-xs-12 text-center userdashboardcontainer">
+                <g:if test="${activeTab == 'campaigns'}">
+                    <div class="my-campaign-heading text-center visible-xs"><h3><b>My Campaigns</b></h3></div>
+                    <div id="userDashboardcampaigns">
+                        <g:render template="user/myprojects" model="['dashboard': 'dashboard', 'activeTab': activeTab]"/>
+                    </div>
+                </g:if>
+                <g:elseif test="${activeTab == 'contributions'}">
+                    <div class="my-campaign-heading text-center visible-xs"><h3><b>Campaigns Supported</b></h3></div>
+                    <div id="userDashboardcontributions">
+                        <g:render template="/user/user/dashboardcontributiontile" model="['activeTab': activeTab]"></g:render>
+                    </div>
+                </g:elseif>
+                <g:elseif test="${activeTab == 'editUserInfo'}">
+                    <div class="col-lg-12">
+                       <g:render template="user/userprofile"/>
+                    </div>
+                </g:elseif>
+                <g:else>
+                    <div class="col-desktop-padding-right col-lg-offset-1 col-md-offset-1 col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                        <a href="/user/campaigns" class="dashboardtab btn btn-primary btn-md hidden-xs">My Campaigns</a>
+                        <div class="my-campaign-heading text-center visible-xs"><h3><b>My Campaigns</b></h3></div>
+                        <div id="userDashboardcampaigns">
+                            <g:render template="user/myprojects" model="['dashboard': 'dashboard']"/>
+                        </div>
+                        <g:if test="${projects.size() >= 1}">
+                            <a href="/user/campaigns" class="show-more-campaign-btn btn btn-primary btn-md visible-xs">Show More</a>
+                        </g:if>
+                    </div>
+                    <div class="col-desktop-padding-left col-lg-5 col-md-5 col-sm-6 col-xs-12 hidden-xs">
+                        <a href="/user/contributions" class="dashboardtab btn btn-primary btn-md">Campaigns Supported</a>
+                        <div id="userDashboardcontributions">
+                           <g:render template="/user/user/dashboardcontributiontile"></g:render>
+                        </div>
+                    </div>
+                </g:else>
+            </div>
+            <div class="influencediv col-md-2 col-lg-2 col-sm-2 hidden-xs">
+                <div class="givinginfluence text-center">Giving Influence</div>
+                <div class="amountsection">
+                    <span class="amountSection-Font">$${fundRaised.round()} </span>
+                    <br/> 
+                    <span>Raised</span>
+               </div>
+               <div class="amountsection">
+                    <span class="amountSection-Font">$${contributedAmount.round()} </span>
+                    <br/>
+                    <span>Contributed</span>
+                </div>
+                <a class="btn btn-primary amountsectionfbicon">
+                    <span class="col-md-2 col-sm-2">
+                        <img alt="fbicon" src="//s3.amazonaws.com/crowdera/assets/dashboard-fb-icon.png">
+                    </span>
+                    <span class="col-md-9 col-sm-9">
+                       <span>Do More</span><div class="clear"></div><span>Good</span>
+                    </span>
+                </a>
+            </div>
+        </div>
+    </g:if>
+<g:else>
     <div class="container">
         <g:hiddenField name='currentEnv' value='${environment}' id='currentEnv'/>
         <h2>User Profile</h2>
@@ -32,12 +211,12 @@
                     </span></a></li>
                     <g:if test="${userService.isCommunityManager()}">
                         <li><a href="#manage-community" data-toggle="tab">
-                            <i class="fa fa-users"></i></span> Manage Community
+                            <i class="fa fa-users"></i> Manage Community
                         </a></li>
                     </g:if>
                     <g:if test="${userCommunities}">
                         <li><a href="#my-community" data-toggle="tab">
-                            <i class="fa fa-users"></i></span> My Community
+                            <i class="fa fa-users"></i> My Community
                         </a></li>
                     </g:if>
                 </ul>
@@ -87,6 +266,7 @@
             </div>
         </div>
     </div>
+</g:else>
 </div>
 </body>
 </html>

@@ -1518,22 +1518,25 @@ footer .footerbottomsection {
 }
 
 #editavatarbutton {
-	margin-top: 10px;
+    margin-top: 10px;
+    diplay: none;
 }
-
+#editavatar {
+    diplay: none;
+}
 .profileimage {
-	height: 200px;
-	width: 200px;
+	   height: 200px;
+   	width: 200px;
 }
 
 .profileavatar {
-	overflow: hidden;
-	position: relative;
-	height: 200px;
-	width: 200px;
-	border-style: solid;
-	border-color: #01bbd3;
-	border-width: 1px;
+				overflow: hidden;
+				position: relative;
+				height: 200px;
+				width: 200px;
+				border-style: solid;
+				border-color: #01bbd3;
+				border-width: 1px;
 }
 
 .profileavatar img {
@@ -1605,13 +1608,13 @@ border-color: rgba(0,0,0,0.2);
 }
 .project-title a{
 	color: black !important;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: bold;
     word-wrap: break-word;
     text-decoration:none;
 }
 div.tile-min-height{
-	min-height:160px !important;
+	min-height:106px !important;
 }
 .project-img {
     max-height:155px;
@@ -1658,7 +1661,7 @@ div.tile-min-height{
     padding-left:6px;
     color: #01bbd3;
     padding-bottom: 20px;
-    padding-top: 32px;
+    padding-top: 18px;
     font-family: Ubuntu Condensed;
 }
 .leftcard-column{
@@ -2443,7 +2446,7 @@ a.footerlink {
     	border-color: #dadada #dadada #b2b2b2 #c9c9c9;
 	margin-top: 0px;
 	text-align: left;
-	height: 110px;
+	height: 88px;
 }
 .perks-supporters{
 	border: 6px solid #c9c9c9;
@@ -2503,10 +2506,17 @@ a.footerlink {
 }
 .user-tiles-style{
 	display: block;
-    margin-left: auto;
-    margin-right: auto;
+	margin-left: auto;
+	margin-right: auto;
 	padding: 0;
 	width:310px;
+}
+.userdashboard-tiles{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0;
+    width:230px;
 }
 .user-tiles-widths img{
 	width: 100px;
@@ -4341,9 +4351,6 @@ ul.decimalList{
     padding-top: 20px;
 	display: none;
 }
-#createthumbnail .col-md-5, #createthumbnail .col-md-7{
-    padding-left: 5px;
-}
 
 #uploadingCampaignUpdateEditImage {
     color: #46b8da;
@@ -4482,8 +4489,9 @@ ul.personalDetailClasses, menu, dir {
 }
 .campaignDescription {
 	font-weight: 600;
-	font-size: 20px;
+	font-size: 18px;
 	word-wrap: break-word;
+	padding-top: 10px;
 }
 p {
         word-wrap: break-word;
@@ -4780,7 +4788,7 @@ a.customer-support-a {
     display:none;
 }
 
-#campaignfilesize{
+.campaignfilesize{
     display:none;
 }
 
@@ -4788,7 +4796,7 @@ a.customer-support-a {
     display:none;
 }
 
-#imgmsg{
+.imgmsg{
     display:none;
 }
 
@@ -4817,10 +4825,6 @@ a.customer-support-a {
 }
 
 #updatefilesize{
-    display:none;
-}
-
-#campaignfilesize{
     display:none;
 }
 
@@ -5224,7 +5228,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .campaignTitle a {
     color: #000 !important;
     font-size: 30px;
-    font-family: Ubuntu Condensed;
+    font-family:  Verdana;
     font-weight: 900;
     font-variant: normal;
 }
@@ -5376,6 +5380,84 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    ol.carousel-indicators-sm {
+        left: 150px;
+    }
+    a.left.carousel-control.left-css {
+        left: 25px;
+    }
+    a.carousel-control.left {
+        background-image: none;
+    }
+    a.carousel-control.right {
+        background-image: none;
+    }
+    footer {
+        border-top: none !important;
+    }
+    div.footer-mobile-border{
+        border: 1px solid #01bbd2;
+        margin-bottom: 22px;
+        margin-left: 11%;
+        width: 77%;
+    }
+    div.hmmobile-carousel-banner{
+        padding-left: 7px;
+    }
+    div.hm-mobile-positions {
+        margin: 0 auto;
+        width: 291px;
+        left: -6px;
+    }
+    div.tile-pad {
+        width: 310px;
+    }
+    div.fedu.thumbnail > .modal-footer {
+        padding-bottom: 12px;
+    }
+    p.hm-slogn-mobile{
+        font-size: 24px;
+        color: #015F85;
+    }
+    a.hm-raisemony-btn{
+        background-color: #f6bf0b;
+        color: #fff;
+        font-size: 30px;
+        margin-bottom: 12px;
+    }
+    a.hm-raisemony-btn:hover{
+        color: #fff;
+    }
+    div.hm-fontfamily{
+        font-family: Ubuntu Condensed;
+    }
+    div.hm-section-top{
+        height: 35px;;
+    }
+	div.hm-mobile-title{
+         background-color: #e7e7e7;
+         height: 60px;
+         left: -12px;
+         margin-bottom: 10px;
+         width: 106%;
+    }
+    div.hmmobile-back-color{
+        background-color: #fff;
+    }
+    li.sh-carousel-li {
+        background-color: #015F85;
+        border-color: #015F85;
+    }
+    .col-md-10.col-xs-8.col-videoUrl-textbox{
+        width:73%
+    }
+    ul.nav-justified > li{
+        display: block !important;
+    }
+    .popoverClass .popover{
+        left:120px;
+        width:250px;
+    }
     a.show-tbs-right-borders {
         border-right: 2px solid #6d6e6e;
         margin-left: -22px;
@@ -5830,7 +5912,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 	.upload-campaign-pic{
 		height: 250px;
-		overflow:scroll !important;
 		margin-bottom: 0;
 	}
 	ul.nav-tabs.admin-vali-show > li{
@@ -6159,7 +6240,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		display:block;
 		margin-left:auto;
 		margin-right:auto;
-		width:300px;
+		width:318px;
+		left: -7px;
 	}
 	.home-campaign-tile .tile-pad {
 		margin-left:-16px;
@@ -6196,10 +6278,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-top: 20px;
 	}
 	h1.headingtext {
-		color: #303030;
+		color: #015f85;
 		font-size: 29px !important;
 		font-weight: 900;
-		padding: 30px 0 20px;
+		padding: 13px 0 20px;
+		font-family: Ubuntu Condensed;
 	}
 	.Explore-Campaigns-Button-img{
 		height:60px;
@@ -6337,7 +6420,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     	   font-weight: bold !important;
 	}
 	.show-tile-text-size {
-    	  font-size: 7px !important;
+    	  font-size: 10px !important;
     	  line-height: 5px;
     	  margin-bottom: 0;
     	  margin-top: 10px;
@@ -6511,13 +6594,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 768px) {
-/*     ul.nav.navbar-nav.nav-icon-bar { */
-/*         width: 21% !important; */
-/*     } */
     .perk-padding {
         padding-top: 7%;
     }
-
+    
     ul.nav-icon-bar {
         padding-left: 6px !important;
     }
@@ -6692,11 +6772,148 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         float: none;
         width: 33.5% !important;
     }
+    .userdashboard-tiles{
+        width:230px !important;
+    }
+    .userdashboardcontainer .col-lg-6, .userdashboardcontainer .col-md-6 {
+        width: 100%;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
     
+    .influencediv.col-xs-6 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .influencediv.influencediv-xs.col-xs-6 {
+        padding-left: 3px;
+        padding-right: 10px;
+    }
+    
+    
+    .influencediv.influencediv-xs.col-xs-6 {
+        padding-left: 3px;
+        padding-right: 10px;
+    }
+    
+    div#userDashboardcampaigns {
+        margin-left: -18px;
+    }
+    div.usersCampaignsPagination {
+        margin-right: -40px;
+    }
+    .influencediv-sm {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .dashboard-container{
+        width: 320px !important ;
+    }
+    .givinginfluence {
+        padding-top: 3px;
+    }
+    .influencediv-xs {
+        margin-bottom: 20px;
+   }
+    .amountsection {
+        height: 64px;
+        margin-top: 0px;
+        margin-bottom: 5px;
+        padding-top: 5px;
+    }
+    .amountsectionfbicon .col-xs-8{
+        padding-left: 0px;
+        padding-right: 65px;
+    }
+    .amountsectionfbicon img {
+        margin-top: 10px;
+    }
+    #userDashboardcontributions .userdashboard-tiles {
+        width: 230px !important;
+    }
+    .userdashboardcontainer #mycontributions.col-xs-12 {
+        padding-left: 0px;
+    }
+    #userDashboardcontributions .col-md-6 {
+        padding-left: 0px;
+    }
+    .userProfileEditDeleteIcon .profileedit {
+        right: 45px;
+    }
+    .userProfileEditDeleteIcon .profiledelete {
+        right: 15px;
+    }
+    #userDashboardcontributions {
+        margin-top: 50px;
+        margin-left: -5px;
+    }
+    .userseditlocation {
+        margin-top: 60px;
+    }
+    #userprofileavatar img {
+        width: 112px;
+        height: 100px;
+        margin-top: 8px;
+    }
+    #useravatar img.dummyprofileimage {
+        width: 112px;
+        height: 100px;
+        margin-top: 6px;
+        margin-left: 8px;
+    }
+    .userprofileeditimage {
+        right: 10px;
+    }
+    .updateprofilediv {
+        width: 128px;
+        margin-left : auto;
+        margin-right: auto;
+    }
+    .user-information-bio b {
+        font-size: 11px;
+    }
+    .dashboard-mobile-section a.amountsectionfbicon.btn-primary{
+        padding: 12px 0px 0px 0px;
+        line-height: 5px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .amountsectionfbicon span.col-xs-12 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .amountsectionfbicon span{
+        padding-bottom: 8px;
+    }
+    #userInfoUpdateBtn.btn-primary {
+        padding: 12px 28px;
+        width: 100%;
+        margin-right: 0px;
+        background-color: #175E83 !important;
+        color: white !important;
+    }
+    .userInfoUpdateBtn.col-md-12 {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .userseditlocation {
+        margin-top: 0px;
+    }
+    .defaultprofileimage {
+        top : 24px;
+    }
 }
 
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    div.home-campaign-tile-container{
+        margin-left: 18px;
+    }
+    .campaigndashboardtab.btn-primary {
+        padding: 9px 4px;
+        font-size: 14px;
+    }
     i.sh-fb-icons{
         font-size: 20px;
         margin-left: -19px;
@@ -6715,7 +6932,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /*         margin-top: 120px; */
 /*     } */
     div.show-description {
-        margin-top: 28px
+        margin-top: 28px;
+        height: 82px;
     }
     a.show-btn-sh-fb {
         margin-bottom: 26px;
@@ -6779,6 +6997,119 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         overflow-x: scroll;
         border: 1px solid #DDD;
     }
+    
+   .influencediv.col-lg-2, .influencediv.col-md-2 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .userdashboardcontainer .col-lg-6, .userdashboardcontainer .col-md-6 {
+        padding-left: 15px;
+    }
+    .usersCampaignsPagination {
+        padding-right: 20px;
+    }
+    .usersContributionsPagination {
+        padding-right: 20px;
+    }
+    .dashboard-container{
+        width: 760px !important ;
+    }
+    .userProfileEditDeleteIcon .profileedit {
+        right: 100px;
+    }
+    .userProfileEditDeleteIcon .profiledelete {
+        right: 70px;
+    }
+    .amountsectionfbicon .col-sm-9{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .editlocationtab .userseditlocation{
+        margin-top: 50px;
+    }
+    .editlocationtab {
+        margin-top: 50px;
+    }
+    #userprofileavatar img {
+        width: 101px;
+        height: 90px;
+        margin-top: 4px;
+        margin-left: 4px;
+    }
+    #useravatar img.dummyprofileimage {
+        width: 100px;
+        height: 90px;
+        margin-top: 4px;
+        margin-left: 4px;
+    }
+				.defaultprofileimage {
+				    top : 22px;
+				}
+    .userprofileeditimage img {
+        width: 20px !important;
+        height: 20px !important;
+    }
+    .user-information-bio b {
+        font-size: 12px;
+    }
+    .user-information-bio .user-biography {
+        font-size : 14px;
+        padding-left: 2px;
+        padding-right: 2px;
+    }
+    .userprofileeditimage {
+        right: 12px;
+    }
+    .updateprofilediv {
+        width: 109px;
+    }
+    .dashboardtabheading.btn {
+        padding: 8px 4px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .contribution-col-padding-left.col-md-12, .contribution-col-padding-left.col-lg-12 {
+        padding-left: 0px;
+    }
+    .col-desktop-padding-right.col-md-5, .col-desktop-padding-right.col-lg-5 {
+        padding-right: 10px;
+        padding-left: 5px;
+    }
+    .contribution-col-padding-left.col-sm-6 {
+        padding-left: 5px;
+    }
+    .campaigns-padding-left.col-sm-6 {
+        padding-left: 20px;
+        padding-right: 5px;
+    }
+    .campaigns-padding-right.col-sm-6 {
+        padding-left: 7px;
+        padding-right: 20px;
+    }
+    .givinginfluence {
+        height: 62px;
+        font-size: 20px;
+        padding-top: 2px;
+    }
+    .amountSection-Font {
+        font-size: 22px;
+        font-weight: 700;
+    }
+    .amountsectionfbicon.btn {
+        padding: 2px 0px;
+        font-size: 16px;
+    }
+    .amountsectionfbicon img {
+        margin-top: 6px;
+    }
+    .connectsection .social-button.btn {
+        padding: 6px 4px 6px 38px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .amountsection {
+        padding-top: 2px;
+    }
 }
 @media only screen and (min-width:768px) and (max-width: 830px) {
     header.cr-tabs-link {
@@ -6803,20 +7134,47 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.hmmobile-carousel-banner{
+        padding-left: 7px;
+    }
+    ol.carousel-indicators-sm{
+        margin-bottom: 1px;
+        margin-left: -123px;
+    }
+    div.fedu.thumbnail > .modal-footer {
+        padding-bottom: 12px;
+    }
+    li.sh-carousel-li {
+        background-color: #015f85;
+        border-color: #015f85;
+    }
+    div.hm-mobile-positions{
+        left: 27%;
+        width: 50%;
+	}
+    div.perks-style {
+        height: 82px;
+    }
+    #campaignthumbnails.col-sm-12 {
+        padding-left: 11px;
+    }
+    .col-md-10.col-xs-8.col-videoUrl-textbox{
+        width:78%
+    }
     .manage-team{
         margin-top: 16px !important;
         width: 110%;
     }
     p.campaignDescription {
-        font-size: 18px;
+        font-size: 13px;
     }
     h2.sh-fundclosed-mobile{
         font-size: 20px !important;
-        padding-top: 28px !important;
+        padding-top: 13px !important;
     }
     h2.rewardsectionheading {
 	    font-size: 24px;
-	    padding-top: 28px;
+	    padding-top: 10px;
     }
     img.sh-img-update {
         height: 300px;
@@ -7072,7 +7430,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 	.upload-campaign-pic{
 		height: 250px;
-		overflow:scroll !important;
 		margin-bottom: 0;
 	}
     .cr-bg-preview-btn{
@@ -7736,6 +8093,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 1024px) {
+
 	.text-primary{
 		text-align:center;
 		width:300px;
@@ -8019,8 +8377,29 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+    .col-xs-text-box-with-button{
+         margin-top:20px;
+         margin-bottom: 20px;
+    }
+    .col-add-picture {
+        padding-left: 34%;
+    }
+    input.videoUrl {
+        width: 97%;
+    }
 
-	input.customVanityUrl{
+    .glyphicon-design, .glyphicon-design:hover, .glyphicon-design:active, .glyphicon-design:visited, .glyphicon-design:after, .glyphicon-design:focus {
+        padding:6px;
+        font-size:15px;
+        top:3px;
+    }
+
+    .glyphicon-design-acknowledge, .glyphicon-design-acknowledge:hover, .glyphicon-design-acknowledge:active, .glyphicon-design-acknowledge:visited, .glyphicon-design-acknowledge:after, .glyphicon-design-acknowledge:focus {
+        padding:6px;
+        font-size:15px;
+    }
+
+    input.customVanityUrl{
         width:100%;
     }
 
@@ -8323,7 +8702,29 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
-	i.sh-fb-icons{
+    div.home-campaign-tile-container{
+        margin-left: 46px;
+    }
+    #useravatar img.dummyprofileimage {
+        width: 136px;
+    }
+    #useravatar img.dummyprofileimage {
+        width: 136px;
+    }
+    #userprofileavatar img {
+        width: 137px;
+    }
+    .contributiondashboardtab.btn-primary {
+        padding: 8px 5px;
+        font-size: 13px;
+    }
+    .campaigndashboardtab.btn-primary {
+        padding: 8px 25px;
+    }
+    .TW-org-panel-height{
+        margin-bottom: 57px;
+    }
+	   i.sh-fb-icons{
         font-size: 20px;
         margin-left: -18px;
         padding-right: 5px;
@@ -8334,9 +8735,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 17px;
         padding-top: 9px;
     }
-/* 	div.perks-supporters { */
-/*         margin-top: -11px; */
-/*     } */
     div.show-tiles-padding {
         padding-left: 17px;
     }
@@ -8542,6 +8940,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         overflow-x: scroll;
         border: 1px solid #DDD;
     }
+    
+    .dashboard-container{
+        width:950px !important ;
+    }
+    .contribution-col-padding-left.col-md-12 {
+        padding-left: 4px;
+    }
 }
 
 @media only screen and (min-width:1200px) and (max-width: 1280px){
@@ -8585,6 +8990,27 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+    div.home-campaign-tile-container {
+        margin-left: 35px;
+    }
+	div.hmmobile-carousel-banner{
+        padding-left: 7px;
+    }
+    ol.carousel-indicators-sm{
+        margin-bottom: 1px;
+        margin-left: -94px;
+    }
+    div.fedu.thumbnail > .modal-footer {
+        padding-bottom: 12px;
+    }
+    li.sh-carousel-li {
+        background-color: #015f85;
+        border-color: #015f85;
+    }
+    div.hm-mobile-positions{
+        left: 28.2%;
+        width: 42%;
+    }
 	li.show-team {
         margin-left: 64px;
     }
@@ -8915,6 +9341,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+    .col-md-10.col-xs-8.col-videoUrl-textbox{
+        width:71%
+    }
+    .popoverClass .popover{
+        left:163px;
+        width:207px;
+    }
 	.leftcard-column-two, .leftcard-column-three {
 	   display: flex !important;
 	   width: 100% !important;
@@ -9431,6 +9864,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	div.signInAndUpTopSm {
         padding-top: 30px;
     }
+    
+    .userprofilecaption {
+        padding: 0px;
+    }
 }
 
 /*Screen resolution 800 x 1280*/
@@ -9904,6 +10341,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 @media only screen and (min-width: 767px) and (max-width: 768px){
+    .givinginfluence { 
+        margin-bottom: 5px;
+    }
+    #userDashboardcontributions {
+        margin-top: 0px;
+        margin-left: 0px;
+    }
+    div#userDashboardcampaigns {
+        margin-left: 0px;
+    }
  
   .dropdown-menu.usr > li > a {
     padding: 7px 21px !important;
@@ -9917,10 +10364,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .navbar {
 		font-size: 13px !important;
     }
-/* 	.dropdown-menu-head { */
-/* 		top: 160%; */
-/*  		margin: 0px 55px 0 !important; */
-/* 	} */
+
 	li.dropdown.dropdown-head{
 		width: 102% !important;
 	}
@@ -9941,6 +10385,35 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }
 @media only screen and (max-width: 767px){
+#embedTilemodal .modal-dialog.modal-tile{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#embedTilemodal .modal-dialog.modal-embed-with-video{
+    width:319px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+textarea.textarea-embed-video {
+    width: 100%;
+}
+
+.margin-md-left{
+    margin-left: 40px;
+}
+
+.mob-video-play{
+    display: block;
+    overflow: hidden;
+}
+
+.embed-video-in-modal {
+    height: 170px;
+    width:100%;
+}
+
     .navbar-collapse {
         float: right;
     }
@@ -10290,6 +10763,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 479px){
+    .col-sm-10.col-xs-9.col-xs-textbox{
+        width:92%;
+        margin-bottom: 10px;
+    }
+    .embedIcon-left {
+        margin-left: -4px;
+    }
     .campaignEditDeleteIcon .perkedit{
         padding-left: 8px;
     }
@@ -10936,6 +11416,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 360px){
+    .popoverClassMob .popover{
+        left: 50px;
+        top: -35px;
+        width: 200px;
+    }
+
 	.sortscamp .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 		width: 81%;
 		margin-left: -28%;
@@ -11067,6 +11553,23 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
+
+.col-xs-button{
+    width:100%;
+}
+.col-xs-textbox{
+    width:99% !important;
+}
+.btn-center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.dashboard-container {
+     padding-left: 5px;
+}
+
 	ul.show-new-tabs-alignments {
         line-height: 1;
     }
@@ -11114,6 +11617,74 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    a.carousel-control.left {
+        background-image: none;
+    }
+    a.carousel-control.right {
+        background-image: none;
+    }
+    footer {
+        border-top: none !important;
+    }
+    div.footer-mobile-border{
+        border: 1px solid #01bbd2;
+        margin-bottom: 22px;
+        margin-left: 11%;
+        width: 77%;
+    }
+    div.hmmobile-carousel-banner{
+        padding-left: 7px;
+    }
+    ol.carousel-indicators-sm {
+        left: 138px;
+    }
+    div.hm-mobile-positions {
+        margin: 0 auto;
+        width: 278px;
+        left: -12px;
+    }
+    div.fedu.thumbnail > .modal-footer {
+        padding-bottom: 12px;
+    }
+    p.hm-slogn-mobile{
+        font-size: 24px;
+        color: #015F85;
+    }
+    a.hm-raisemony-btn{
+        background-color: #f6bf0b;
+        color: #fff;
+        font-size: 30px;
+        margin-bottom: 12px;
+    }
+    a.hm-raisemony-btn:hover{
+        color: #fff;
+    }
+    div.hm-fontfamily{
+        font-family: Ubuntu Condensed;
+    }
+    div.hm-section-top{
+        height: 35px;;
+    }
+    div.hm-mobile-title{
+         background-color: #e7e7e7;
+         height: 60px;
+         left: -12px;
+         margin-bottom: 10px;
+         width: 111%;
+         margin-top: 14px;
+    }
+	
+    div.hmmobile-back-color{
+        background-color: #fff;
+    }
+    li.sh-carousel-li {
+        background-color: #015F85;
+        border-color: #015F85;
+    }
+	   ul.nav-justified > li{
+        display: block !important;
+    }
+
 	a.show-tbs-right-borders {
         border-right: 2px solid #6d6e6e;
         margin-left: -22px;
@@ -11452,8 +12023,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.show-tile-text-size{
         margin-top: 6px;
-        padding-left: 16px;
-        padding-right: 16px;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 	.TW-termsAndPolicy_cr{
 		float:left;
@@ -11508,7 +12079,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 	.upload-campaign-pic{
 		height: 250px;
-		overflow:scroll !important;
 		margin-bottom: 0;
 	}
 	ul.nav-tabs.admin-vali-show > li{
@@ -11884,6 +12454,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-left:auto;
 		margin-right:auto;
 		width:300px;
+		left: -10px;
 	}
 	.home-campaign-tile li div.tilepad{
 		display:block;
@@ -11915,10 +12486,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		margin-top: 20px;
 	}
 	h1.headingtext {
-		color: #303030;
+		color: #015f85;
 		font-size: 29px !important;
 		font-weight: 900;
-		padding: 30px 0 20px;
+		padding: 6px 0 20px;
+		font-family: Ubuntu Condensed;
 	}
 	.Explore-Campaigns-Button-img{
 		height:60px;
@@ -12462,6 +13034,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.thumbnail {
 	    padding-left: 20px;
 	}
+	.userdashboard-tiles.thumbnail {
+     padding-left: 0px;
+ }
 	h1, .h1 {
 	    font-size: 21px;
 	}
@@ -12612,9 +13187,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 .sh-perks-preview {
     margin-top: 98px;
 }
-.sh-none-pft {
-    padding-left: 45px;
-}
+/* .sh-none-pft { */
+/*     padding-left: 45px; */
+/* } */
 .daysleftIcon {
     border-left: 1px solid #e3e3e3;
     border-right: 1px solid #e3e3e3;
@@ -12624,14 +13199,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 .show-description {
     background-color: #e7e7e7;
-    height: 110px;
+    height: 90px;
     margin-top: 21px;
     padding-bottom: 9px;
-    padding-left: 19px;
+    padding-left: 9px;
     padding-top: 10px;
     margin-left: -16px;
     color: #000;
-    margin-bottom: 50px;
 }
 .sh-contrialignment{
 	margin-top: -19px;
@@ -12909,4 +13483,7 @@ a#downloadEbook{
 .nav-justi > li {
     display: unset !important;
     width: 0%;
+}
+iframe.embedTitleUrl{
+	   width: 310px !important;
 }

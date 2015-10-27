@@ -1,6 +1,6 @@
 $(function() {
     console.log("create.js initialized");
-    
+
     $('#iconfile').val('');
 
     $("#sendEmailButton").click(function(){
@@ -220,11 +220,11 @@ $(function() {
             } else if(element.is(":checkbox")) {
                 error.appendTo(element.parent());
             } else if($(element).prop("id") == "projectImageFile") {
-                error.appendTo(element.parent().parent());
+                error.appendTo(document.getElementById("col-error-placement"));
             }else if($(element).prop("id") == "iconfile") {
                 error.appendTo(element.parent().parent());
             }else if($(element).prop("id") == "projectEditImageFile") {
-                error.appendTo(element.parent().parent());
+                error.appendTo(document.getElementById("col-error-placement"));
             }else if($(element).prop("id") == "editiconfile") {
                 error.appendTo(element.parent().parent());
             }else{
@@ -791,14 +791,14 @@ $(function() {
       /******************************Video Thumbnail***************************************/
      
     if($('#addvideoUrl').val()) {
-        var url= $('#videoUrl').val().trim();
-        var youtube = /^.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var url= $('#addvideoUrl').val().trim();
+        var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
         var match = (url.match(youtube) || url.match(vimeo));
         $('#ytVideo').show();
         $('#media').hide();
         $('#media-video').show();
-        var vurl
+        var vurl;
         if (match[2].length == 11){
         	vurl=url.replace("watch?v=", "embed/");
             $('#ytVideo').html('<iframe class="youtubeVideoIframe" src="'+ vurl +'?wmode=transparent"></iframe>');
@@ -808,16 +808,16 @@ $(function() {
         }
     }
 
-    $('#videoBox, #videoUrledit').on('click',function(){
+    $('#videoUrledit').on('click',function(){
     	$('#addVideo').modal('show');
     });
 
-	$('#add').on('click',function(){
+	$('.add').on('click',function(){
 		var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
-        var url= $('#videoUrl').val().trim();
+        var url= $('.videoUrl').val().trim();
         var match = (url.match(youtube) || url.match(vimeo));
-        if (validator.element("#videoUrl")){
+        if (validator.element(".videoUrl")){
         	$('#addVideo').modal('hide');
         if (match && match[2].length == 11) {
             $('#ytVideo').show();
@@ -1084,25 +1084,25 @@ $(function() {
 
     /***************************Multiple Image Selection*************** */
     var isvalidsize =  false;
-    $('#projectImageFile, #projectEditImageFile').change(function(event) {
-
+    $('#projectImageFile, #projectEditImageFile, #campaignImage').change(function(event) {
+    	
         var file = this.files[0];
         if(validateExtension(file.name) == false) {
             $('.pr-thumbnail-div').hide();
-            $('#imgmsg').show();
-            $('#imgmsg').html("Add only PNG or JPG extension images");
-            $('#campaignfilesize').hide();
+            $('.imgmsg').show();
+            $('.imgmsg').html("Add only PNG or JPG extension images");
+            $('.campaignfilesize').hide();
             this.value=null;
             return;
         }
         if(!file.type.match('image')){
             $('.pr-thumbnail-div').hide();
-            $('#imgmsg').show();
-            $('#campaignfilesize').hide();
+            $('.imgmsg').show();
+            $('.campaignfilesize').hide();
             this.value=null;
         } else{
-            $('#imgmsg').hide();
-            $('#campaignfilesize').hide();
+            $('.imgmsg').hide();
+            $('.campaignfilesize').hide();
             var files = event.target.files; // FileList object
             var output = document.getElementById("result");
             var fileName;
@@ -1111,66 +1111,83 @@ $(function() {
             var filename = file.name;
             
             if(file.size < 1024 * 1024 * 3) {
-                isvalidsize =  true;
-                $('#uploadingCampaignImage').show();
+            	if($('#campaignthumbnails').find('.pr-thumb-div').length == 0){
+                    $('.panel-no-image').hide();
+                    $('.panel-pic-uploaded').show();
+                }
+            	if ($('#campaignthumbnails').find('.pr-thumb-div').length <= 4){
+                    isvalidsize =  true;
+                    $('#uploadingCampaignImage').show();
 
-                var formData = !!window.FormData ? new FormData() : null;
-                var name = 'file';
-                var projectId = $('[name="projectId"]').val();
-                formData.append(name, file);
-                formData.append('projectId', projectId);
+                    var formData = !!window.FormData ? new FormData() : null;
+                    var name = 'file';
+                    var projectId = $('[name="projectId"]').val();
+                    formData.append(name, file);
+                    formData.append('projectId', projectId);
 
-                var xhr = new XMLHttpRequest();
-                xhr.open('POST', $("#b_url").val()+'/project/uploadImage');
-                xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', $("#b_url").val()+'/project/uploadImage');
+                    xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
                  
-                // complete
-                xhr.onreadystatechange = $.proxy(function() {
-                    if (xhr.readyState == 4) {
-                        var data = xhr.responseText;
-                        data = data.replace(/^\[/, '');
-                        data = data.replace(/\]$/, '');
+                    // complete
+                    xhr.onreadystatechange = $.proxy(function() {
+                        if (xhr.readyState == 4) {
+                            var data = xhr.responseText;
+                            data = data.replace(/^\[/, '');
+                            data = data.replace(/\]$/, '');
 
-                        var json;
-                        try {
-                            json = (typeof data === 'string' ? $.parseJSON(data) : data);
-                        } catch(err) {
-                            json = { error: true };
-                        }
-                        var output = document.getElementById("campaignthumbnails");
-                        var div = document.createElement("div");
-                        div.id = "imgdiv";
-                        div.className = "pr-thumb-div"
-                        div.innerHTML = "<img  class='pr-thumbnail' src='"+ json.filelink + "'"+ "title='"
+                            var json;
+                            try {
+                               json = (typeof data === 'string' ? $.parseJSON(data) : data);
+                            } catch(err) {
+                               json = { error: true };
+                            }
+                            var output = document.getElementById("campaignthumbnails");
+                            var div = document.createElement("div");
+                            div.id = "imgdiv";
+                            div.className = "pr-thumb-div"
+                            div.innerHTML = "<img  class='pr-thumbnail' src='"+ json.filelink + "'"+ "title='"
                                         + file.name + "'/><div class=\"deleteicon\"><img onClick=\"deleteProjectImage(this,'"+json.imageId+"','"+projectId+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>";
 
-                        output.insertBefore(div, null);
-                        $('#uploadingCampaignImage').hide();
-                    }
-                }, this);
-                xhr.send(formData);
+                            output.insertBefore(div, null);
+                            $('#uploadingCampaignImage').hide();
+                        }
+                    }, this);
+                    xhr.send(formData);
             
-                $('#createthumbnail').find("span").remove();
-                $('#createthumbnail').closest(".form-group").removeClass('has-error');
+                    $('#createthumbnail').find("span").remove();
+                    $('#createthumbnail').closest(".form-group").removeClass('has-error');
+                } else {
+            	    $('.imageNumValidation').show();
+            	    var delay = 5000; //delayed code, time in milliseconds
+                    setTimeout(function() {
+                    	$('.imageNumValidation').hide();
+                    }, delay);
+                }
             } else {
                 if (fileName) {
                     fileName = fileName +" "+ file.name;
                 } else {
                     fileName = file.name;
                 }
-                $('#campaignfilesize').show();
+                $('.campaignfilesize').show();
                 isFileSizeExceeds = true;
             }
     
-            document.getElementById("campaignfilesize").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
+            document.getElementById("campaignFilesizeID").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
+            document.getElementById("campaignFilesizeID1").innerHTML= "The file " +fileName+ " you are attempting to upload is larger than the permitted size of 3MB.";
             if (isFileSizeExceeds && !isvalidsize) {
-                $('#projectImageFile').val('');
+                $('#campaignImage').val('');
             }
+            $('#projectImageFile, #projectEditImageFile').val('');
+            var delay = 9999; //delayed code, time in milliseconds
+            setTimeout(function() {
+            	$('.campaignfilesize').hide();
+            }, delay);
         }
     });
-    
-    function validateExtension(imgExt)
-    {
+
+    function validateExtension(imgExt){
           var allowedExtensions = new Array("jpg","JPG","png","PNG");
           for(var imgExtImg=0;imgExtImg<allowedExtensions.length;imgExtImg++)
           {
@@ -1802,7 +1819,7 @@ $(function() {
     	    $('#ytVideo').hide();
             $('#media').show();
             $('#media-video').hide();
-            $('#videoUrl').val('');
+            $('.videoUrl').val('');
     	}
     });
     
@@ -1847,10 +1864,9 @@ $(function() {
           });
     }
      
-     
-     
      $('#previewButton, #previewButtonXS').on('click', function(event){  // capture the click
       	event.preventDefault();
+      	$('#isSubmitButton').val(false);
        	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"]').each(function () {
              $(this).rules('remove');
          });
@@ -1878,7 +1894,6 @@ $(function() {
         });
        	
        	$("#createthumbnail").removeClass('has-error');
-       	$('#isSubmitButton').attr('value',false);
        	if (validator.form()) {
        		$('#campaigncreate').find('form').submit();
               $('#submitProject').attr('disabled','disabled');

@@ -144,17 +144,12 @@ class FundController {
         }
 
         if (project) {
-            def user1 = userService.getUserById(params.long('tempValue'))
             def user = userService.getUserById(params.long('userId'))
             if (user == null){
                 user = userService.getUserByUsername('anonymous@example.com')
             }
         
-            def state = projectService.getState()
-            def country = projectService.getCountry()
-		
             User fundraiser = userService.getUserFromVanityName(params.fr)
-            def anonymous = params.anonymous
 
             if (params.int('rewardId')) {
                 reward = project.rewards.find {
@@ -208,7 +203,9 @@ class FundController {
 		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
         if (userService.getCurrentUser()){
-			def twitterShareUrl = projectService.getTwitterShareUrlForCampaign(project, fundraiser, base_url)
+            def vanityusername = userService.getVanityNameFromUsername(fundraiser.username, project.id)
+            def shortUrl = projectService.getShortenUrl(project.id, vanityusername)
+            def twitterShareUrl = base_url+"/c"+shortUrl
             mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser)
             render view: 'acknowledge/acknowledge', model: [project: project, reward: reward,contribution: contribution, user: user, fundraiser:fundraiser, projectTitle:params.projectTitle, twitterShareUrl:twitterShareUrl]
         } else {

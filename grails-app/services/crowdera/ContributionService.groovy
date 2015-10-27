@@ -334,7 +334,6 @@ class ContributionService {
         int eighteenth = 0, nineteenth = 0 , twentieth = 0, twentyFirst = 0, twentySecond = 0, twentyThird = 0
         
         List contributions = project.contributions
-        List hourList = []
         
         contributions.each{ contribution->
             Date contributionDate = contribution.date
@@ -452,6 +451,22 @@ class ContributionService {
         Map days = ['monday' : monday, 'tuesday': tuesday, 'wednesday' : wednesday, 'thursday': thursday, 'friday' : friday,'saturday': saturday, 'sunday': sunday]
         def highestContributionDay = days.max { it.value }.key
         return ['highestContributionDay':highestContributionDay , 'highestContributionHour': highestContributionHour]
+    }
+    
+    def getContributedAmount(List contributions) {
+        double amount = 0;
+        contributions.each{ contribution ->
+            amount = amount + contribution.amount
+        }
+        return amount
+    }
+
+    def getTotalFundRaisedByUser(List projects) {
+        double amount = 0;
+        projects.each { project ->
+            amount = amount + getTotalContributionForProject(project)
+        }
+        return amount;
     }
     
 }

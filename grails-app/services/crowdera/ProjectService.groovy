@@ -171,6 +171,14 @@ class ProjectService {
             project.organizationName = params.organizationName
         }
         
+        if (!project.beneficiary.country) {
+            if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                project.beneficiary.country = 'IN'
+            } else {
+                project.beneficiary.country = 'US'
+            }
+        }
+        
         def projectAdmins = project.projectAdmins
         
         projectAdmins.each { projectAdmin ->
@@ -381,7 +389,6 @@ class ProjectService {
 	 
 	 def getEmailDetails(def params){
 		 def project = Project.get(params.id)
-		 def contribution = Contribution.get(params.long('cb'))
 		 def fundraiser = User.get(params.long('fr'))
 		 String emails = params.emails
 		 String name = params.name
@@ -390,7 +397,7 @@ class ProjectService {
 		 def emailList = emails.split(',')
 		 emailList = emailList.collect { it.trim() }
 
-		 mandrillService.shareContribution(emailList, name, message,project,contribution,fundraiser)
+		 mandrillService.shareContribution(emailList, name, message,project,fundraiser)
 	 }
 
 	def getTwitterShareUrlForCampaign(Project project, def fundraiser, def base_url){
@@ -2883,10 +2890,10 @@ class ProjectService {
                 break;
 
             case 'videoUrl':
-                project.videoUrl = (varValue == ' ') ? null : varValue ;
+                project.videoUrl = (varValue.isAllWhitespace()) ? null : varValue;
                 isValueChanged = true;
                 break;
-				
+
             case 'email1':
                 getFirstAdminForProjects(varValue, project, user)
                 isValueChanged = true;
@@ -3339,7 +3346,6 @@ class ProjectService {
         def percentageContribution = contributionService.getPercentageContributionForProject(project)
         def numberOFPerks = (project.rewards.size() > 1) ? project.rewards.size() : 0
         def maxSelectedPerkAmount = rewardService.getMostSelectedPerkAmountForCampaign(project)
-        def teams = getEnabledTeam(project)
         def numberOfTeams = getValidatedTeamForCampaign(project)
         def disabledTeams = getDiscardedTeams(project)
         def highestContribution = contributionService.getHighestContributionDay(project)
@@ -3378,6 +3384,108 @@ class ProjectService {
            }
        }
        mandrillService.sendEmailToNonUserContributors(nonUserContributors)
+    }
+    
+    def getUsersPaginatedCampaigns(List projects, def params, def max) {
+        List totalCampaigns = []
+        if (!projects.isEmpty()) {
+            def offset = params.int('offset') ?: 0
+
+            def count = projects.size()
+            def maxrange
+
+            if(offset+max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+
+            totalCampaigns = projects.subList(offset, maxrange)
+        }
+        return totalCampaigns
+    }
+
+    def getPaginatedContibutionByUser(User user,def environment, def params, def max) {
+        List contributions = getContibutionByUser(user, environment)
+        List totalContributions = []
+        if (!contributions.isEmpty()) {
+            def offset = params.int('offset') ?: 0
+
+            def count = contributions.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            totalContributions = contributions.reverse().subList(offset, maxrange)
+        }
+        return [totalContributions: totalContributions, contributions: contributions]
+    }
+	
+    def getShortenUrl(def projectId, def user_name){
+        def username
+        def code
+        if (projectId){
+            if (user_name){
+                username = userService.getUsernameFromVanityName(user_name)
+                if (!username){
+                    Project project = Project.get(projectId)
+                    username = project.user.username
+                }
+            } else {
+                Project project = Project.get(projectId)
+                username = project.user.username
+            }
+
+            def urlShortener = UrlShortener.findByProjectIdAndUsername(projectId, username)
+            if (urlShortener){
+                code = urlShortener.shortenUrl
+            } else {
+                code = getAlphaNumbericRandomUrl()
+                new UrlShortener(
+                    shortenUrl: code,
+                    projectId: projectId,
+                    username : username
+                ).save(failOnError:true)
+            }
+        }
+        return code
+    }
+
+    def getAlphaNumbericRandomUrl() {
+        String chars = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        int numberOfCodes = 0;//controls the length of alpha numberic string
+        String code = "";
+        while (numberOfCodes < 8) {
+            char c = chars.charAt((int) (Math.random() * chars.length()));
+            code += c;
+            numberOfCodes++;
+        }
+        return code;
+    }
+
+    def getCampaignFromUrl(url){
+        def projectId
+        def vanityTitle
+        def username
+        def vanityName
+        def details
+        def urlShortener = UrlShortener.findByShortenUrl(url)
+        if (urlShortener){
+            projectId = urlShortener.projectId
+            username = urlShortener.username
+            if (projectId){
+                vanityTitle = getVanityTitleFromId(projectId)
+            }
+            if (username){
+                vanityName = userService.getVanityNameFromUsername(username, projectId)
+            }
+        }
+
+        details = [projectTitle:vanityTitle, fr:vanityName]
+        return details
     }
 
     @Transactional

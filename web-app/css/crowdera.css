@@ -131,7 +131,7 @@ h1, h2, h3, h4, h5, h6 {
     height: 50px;
 }
 .navbar-brand >img {
-	height: 45px;
+	height: 39px;
 	margin-top: 0px;
 }
 .scrollHeaderLogo > img{
@@ -1296,9 +1296,7 @@ footer .footerbottomsection {
 
 .navbar-default .dropdown-menu {
     background-color: #FDFCFB !important;
-    border-style: solid;
-    border-color: #01bbd2 !important;
-    border-width: 1px;
+    border:none;
 }
 
 .navbar-default .dropdown-menu > li > a, .navbar-default .dropdown-menu > li > a:focus {
@@ -2601,8 +2599,8 @@ a.footerlink {
 /*     color: #0F0101; */
 }
 li.home-dropdown a:hover{
-    background-color: #006083 !important;
-    color: #ffffff !important;
+    background-color: #fff !important;
+    color: #0000 !important;
 }
 ul.dropdown-menu.usr.user-dropdown.dropdown-menu-head.user-selected-drop a:hover {
 	background: #f8f8f8 !important;
@@ -2623,12 +2621,8 @@ ul.dropdown-menu.admin.admin-dropdown.dropdown-menu-head.admin-selected-drop a:h
 /* .user-img:hover span{ */
 /* 	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-User-White.png') no-repeat !important; */
 /* } */
-
-.user-img span.user-cl{
-	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-Black.png') no-repeat;
-}
-.user-img:hover span.user-cl {
-	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-White.png') no-repeat;
+i.user-cl-caret{
+	top:3px;
 }
 .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open span{
 /* 	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-User-White.png') no-repeat !important; */
@@ -7397,7 +7391,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   height: 40px;
 	}
 	.navbar-header {
-		background-color:#006083;
+		background-color:#fff;
 		height: 50px;
 	}
 	.TW-ebook-header.TW-fixed-header {
@@ -8938,7 +8932,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		padding-top:2px;
 	}
 	.navbar-header {
-		background-color:#006083;
+		background-color:#fff;
 		height: 50px;
 	}
 	.TW-scrollHeaderBackColor .navbar-header {
@@ -14210,10 +14204,10 @@ a#downloadEbook{
 	
 }
 .TW-header-helpLinkLogged {
-    background-color: #006083;
+    background-color: #ffbf08;
     border:none;
-    height: 35px;
-    margin: 5px 10px !important;
+    height: 42px;
+    margin: 1px 10px !important;
 }
 .TW-header-helpTxt {
     color: #006083 !important;
@@ -14227,13 +14221,13 @@ a#downloadEbook{
     font-size: 20px !important; 
     font-weight: 600;
     margin-bottom: 2px;
-    margin-top: 2px;
+    margin-top: 6px;
 }
 .scrollHeaderHelpLink > a:hover, .scrollHeaderHelpLink > a:focus {
     background-color: #01bbd2 !important;
 }
 .noscrollHeaderHelpLink > a:hover, .noscrollHeaderHelpLink > a:focus {
-    background-color: #006083 !important;
+    background-color: #ffbf08 !important;
 }
 .TW-navbar-collapse .navbar-nav.navbar-right:last-child {
     margin-right: 0px !important;

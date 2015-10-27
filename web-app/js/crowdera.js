@@ -193,17 +193,17 @@ $(function() {
     	
 		var $win = $(window);
         $win.scroll(function () {
-        	if($(window).width() > 767){
-			    if ($win.scrollTop() == 0){
-				    $('.noScrollHeader').fadeIn("slow");
-				    $('.scrollHeader').fadeOut("slow");
-				    $('.search-bar').css("width","0");
-			    }else{
-				    $('.noScrollHeader').fadeOut("slow");
-				    $('.scrollHeader').fadeIn("slow");
-				    $('.search-barr').css("width","0");
-			    }
-        	}
+//        	if($(window).width() > 767){
+//			    if ($win.scrollTop() == 0){
+//				    $('.noScrollHeader').fadeIn("slow");
+//				    $('.scrollHeader').fadeOut("slow");
+//				    $('.search-bar').css("width","0");
+//			    }else{
+//				    $('.noScrollHeader').fadeOut("slow");
+//				    $('.scrollHeader').fadeIn("slow");
+//				    $('.search-barr').css("width","0");
+//			    }
+//        	}
         	
         	if($(window).width() < 768){
 		    	 if ($win.scrollTop() == 0){
@@ -291,6 +291,9 @@ $(function() {
                 $(this).find('.crew-icons').fadeOut(205);
             }
         );
+        if($('.info-banner').css('display')=="block"){
+        	$('.noscrollHeader').css('height','80px');
+		}
         
         if($(window).width() < 768){
 		  $('.feduoutercontent').css('margin-top','120px');

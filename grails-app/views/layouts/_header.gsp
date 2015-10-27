@@ -33,7 +33,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="${resource(dir: '/')}">
-                <img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera">
+                <img src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" alt="Crowdera">
             </a>
         </div>
         <div class="navbar-collapse collapse" id="TW-navbar-collapse">
@@ -100,7 +100,7 @@
                                 <span><img class="user-img-header" src="${userImage}" alt="userImage"></span>
                             </g:else>
                             ${userService.getFriendlyName()}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <span class="user-cl"></span>
+                            <i class="user-cl-caret glyphicon glyphicon-chevron-down"></i>
                         </a>
                         <g:if test="${userService.isAdmin()}">
                             <ul class="dropdown-menu admin  admin-dropdown dropdown-menu-head admin-selected-drop">

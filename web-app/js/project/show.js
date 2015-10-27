@@ -840,17 +840,14 @@
    					$('.info-banner').css('display','block');
    					$('.banner-link').text('test.crowdera.in');
    					$('.banner-link').attr('href','http://test.crowdera.in');
-   					$('.home-header-section').addClass('banner-nav');
    			} else if(location.country_code == 'IN' && currentEnv == 'staging'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('staging.crowdera.in');
    				$('.banner-link').attr('href','http://staging.crowdera.in');
-   				$('.home-header-section').addClass('banner-nav');
    			} else if(location.country_code == 'IN' && currentEnv == 'production'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://crowdera.in');
-   				$('.home-header-section').addClass('banner-nav');
    			} else if(location.country_code == 'IN' && currentEnv == 'development'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
@@ -876,6 +873,7 @@
 		}
 		if($('.info-banner').css('display')=="none"){
 		    $('.scrollHeader > .TW-scrollHeaderBackColor').css('height','45px');
+		    $('.noScrollHeader').css('height','45px');
 		}				
    	});
 

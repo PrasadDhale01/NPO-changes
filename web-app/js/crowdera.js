@@ -205,19 +205,31 @@ $(function() {
 			    }
         	}
         	
-        	if($(window).width() < 767){
+        	if($(window).width() < 768){
 		    	 if ($win.scrollTop() == 0){
 				    //$('.noScrollHeader').css("display","none");
 				    $('.mobile-fixedHeader').css("display","block");
 				    $('.scrollHeader').css("display","none");
 				    $('.search-bar').css("width","0");
 				    $('.feduoutercontent').css('margin-top','120px');
+				    if($('.info-banner').css("display")=="block"){
+				    	$('#preview-banner').css('margin-top','-75px');
+				    }else{
+				    	$('#preview-banner').css('margin-top','-105px');
+				    }
+				    if($('.mobile-fixedHeader').css("display")=="block"){
+			   			$('#preview-banner').css('margin-top','-45px');
+			   		}
+				    if($('.info-banner').css('display')=="block"){
+				   		  $('.scrollHeader > .TW-scrollHeaderBackColor').css('height','78px');
+				   	}
 				 }else{
 				    //$('.noScrollHeader').css("display","none");
 					$('.mobile-fixedHeader').css("display","none");
 				    $('.scrollHeader').css("display","block");
 				    $('.search-barr').css("width","0");
 				    $('.feduoutercontent').css('margin-top','40px');
+				    $('#preview-banner').css('margin-top','-75px');
 				 }
 		    }
         });
@@ -280,10 +292,21 @@ $(function() {
             }
         );
         
-        if($(window).width() < 767){
+        if($(window).width() < 768){
 		  $('.feduoutercontent').css('margin-top','120px');
+		  if($('.mobile-fixedHeader').css("display")=="block"){
+   			   $('#preview-banner').css('margin-top','-45px');
+	   	  }
+		  if($('.info-banner').css("display")=="block"){
+			  $('#preview-banner').css('margin-top','-105px');
+		  }else{
+			if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
+				$('#preview-banner').css('margin-top','-75px');
+			}else{
+				$('#preview-banner').css('margin-top','-35px');
+			}
+		 }
 	    }
-     
     });    
 	
 	$("#resumefile").change(function(event) {

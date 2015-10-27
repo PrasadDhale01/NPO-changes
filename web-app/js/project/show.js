@@ -855,8 +855,6 @@
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://localhost:8080');
-   				$('.home-header-section').addClass('banner-nav');
-   				$('#preview-banner').css('margin-top',"-2px");
    			}
    		}
    	});
@@ -864,7 +862,21 @@
    		$('.info-banner').css('display','none');
    		$('.home-header-section').removeClass('banner-nav');
    		$('#preview-banner').attr('class','preview-banner-margin');
-   		$('#preview-banner').css('margin-top',"-41px");
+		if($('.info-banner').css("display")=="block"){
+		    $('#preview-banner').css('margin-top','-75px');
+		}else{
+		    if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
+		        $('#preview-banner').css('margin-top','-105px');
+		    }else{
+		        $('#preview-banner').css('margin-top','-33px');
+		    }
+		}
+		if($('.mobile-fixedHeader').css("display")=="block"){
+		    $('#preview-banner').css('margin-top','-45px');
+		}
+		if($('.info-banner').css('display')=="none"){
+		    $('.scrollHeader > .TW-scrollHeaderBackColor').css('height','45px');
+		}				
    	});
 
     $('.video-play').click(function() {

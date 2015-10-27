@@ -177,8 +177,8 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-default {
-    background-color: #fff;
-    box-shadow: 0 5px 10px #d3d3d3;
+    background-color: #d3d3d3;
+    box-shadow: 0 0 24px 0 rgba(0,0,0,0.25);
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
@@ -4306,7 +4306,7 @@ li.learn {
     padding: 14px;
     text-align: center;
     width: 100%;
-    margin-top: -41px;
+    margin-top: -103px;
 }
 .cr-first-giving{
     padding-left: 190px;	
@@ -14271,9 +14271,8 @@ iframe.embedTitleUrl{
     padding-left: 0px;
 }
 .TW-scrollHeaderBackColor .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-   border: 1px solid #01bbd2;
-   box-shadow: 0 2px 7px #fff;
+   box-shadow: 0 0 24px 0 rgb(0 0 0 0.25);
 }
-.TW-scrollHeaderBackColor li.home-dropdown a:hover{
-	box-shadow: 0 2px 7px #fff;
+.TW-scrollHeaderBackColor .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.scrollHeaderMenu.toggleImages.open{
+	box-shadow: 0 0 2px 0 rgba(0,0,0,0.25);
 }

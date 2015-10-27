@@ -338,8 +338,8 @@
         },
         errorPlacement: function(error, element) {
         	if($(element).prop("id") == "projectImageFile") {
-                error.appendTo(element.parent().parent());
-            } else{
+        		error.appendTo(document.getElementById("cols-error-placement-team"));
+            } else {
         		error.insertAfter(element);
         	}
         }
@@ -434,8 +434,8 @@
             var filename = file.name;
                 
             if(file.size < 1024 * 1024 * 3) {
+                if ($('#teamImages').find('.pr-thumb-div').length <= 4){
                 isvalidsize =  true;
-                
                 $('#uploadingCampaignUpdateEditImage').show();
 
                 var formData = !!window.FormData ? new FormData() : null;
@@ -474,9 +474,15 @@
                 }, this);
                 xhr.send(formData);
                 
-                $('#teamImages').find("span").remove();
-                $('#teamImages').closest(".form-group").removeClass('has-error');
-                
+                $('#cols-error-placement-team').find("span").remove();
+                $('#cols-error-placement-team').closest(".form-group").removeClass('has-error');
+                } else {
+                	$('.imageNumValidation').show();
+            	    var delay = 5000; //delayed code, time in milliseconds
+                    setTimeout(function() {
+                    	$('.imageNumValidation').hide();
+                    }, delay);
+                }
             } else {
             	if (fileName) {
             	    fileName = fileName +" "+ file.name;
@@ -516,7 +522,7 @@
            var match = (url.match(regExp) || url.match(vimeo));
            if (match && match[2].length == 11) {
                $('#ytVideo').show();
-               if (url.contains("embed/")){
+               if (url.indexOf("embed/") > -1){
             	   $('#ytVideo').attr('src',url);
                } else {
                    var vurl=url.replace("watch?v=", "embed/");

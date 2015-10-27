@@ -434,8 +434,8 @@
             var filename = file.name;
                 
             if(file.size < 1024 * 1024 * 3) {
+                if ($('#teamImages').find('.pr-thumb-div').length <= 4){
                 isvalidsize =  true;
-                
                 $('#uploadingCampaignUpdateEditImage').show();
 
                 var formData = !!window.FormData ? new FormData() : null;
@@ -476,7 +476,13 @@
                 
                 $('#teamImages').find("span").remove();
                 $('#teamImages').closest(".form-group").removeClass('has-error');
-                
+                } else {
+                	$('.imageNumValidation').show();
+            	    var delay = 5000; //delayed code, time in milliseconds
+                    setTimeout(function() {
+                    	$('.imageNumValidation').hide();
+                    }, delay);
+                }
             } else {
             	if (fileName) {
             	    fileName = fileName +" "+ file.name;

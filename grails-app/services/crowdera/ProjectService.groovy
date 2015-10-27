@@ -171,6 +171,14 @@ class ProjectService {
             project.organizationName = params.organizationName
         }
         
+        if (!project.beneficiary.country) {
+            if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                project.beneficiary.country = 'IN'
+            } else {
+                project.beneficiary.country = 'US'
+            }
+        }
+        
         def projectAdmins = project.projectAdmins
         
         projectAdmins.each { projectAdmin ->

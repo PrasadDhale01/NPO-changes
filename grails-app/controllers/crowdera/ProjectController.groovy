@@ -570,9 +570,7 @@ class ProjectController {
                     }
                 }
 
-                if (currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'){
-                    vanitytitle = (project.customVanityUrl) ? projectService.getCustomVanityUrl(project) : params.title;
-                }
+                vanitytitle = (project.customVanityUrl) ? projectService.getCustomVanityUrl(project) : params.title;
 
                 rewardService.saveRewardDetails(params);
                 project.story = params.story

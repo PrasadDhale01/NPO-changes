@@ -80,7 +80,7 @@ $(function() {
     $(".amountsectionfbicon").click(function(){
     	var url;
     	if (currentEnvironment == 'testIndia' || currentEnvironment == 'stagingIndia' || currentEnvironment == 'prodIndia')
-            url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=https://crowdera.in/campaign/create'
+            url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://crowdera.in/campaign/create'
     	else 
     		url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://crowdera.co/campaign/create'
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');

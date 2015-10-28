@@ -97,7 +97,7 @@
                     <div class="clear"></div>
                     <div class="form-group">
                         <label for="price">Price (<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                        <input type="number" class="form-control perkPrice all-place" name="price" value="${reward.price.round()}" id="perkPrice" placeholder="Price"/>
+                        <input type="text" class="form-control perkPrice all-place" name="price" value="${reward.price.round()}" id="perkPrice" placeholder="Price"/>
                         <span id="errormsg" class="errormsg"></span>
                     </div>
                     <div class="form-group">

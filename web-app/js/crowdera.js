@@ -150,20 +150,20 @@ $(function() {
 		var $win = $(window);
         $win.scroll(function () {
         	if($(window).width() < 768){
-			    if ($win.scrollTop() == 0){
-			        $('.mobile-fixedHeader').css("display","block");
-			        $('.scrollHeader').css("display","none");
-			        $('.search-bar').css("width","0");
-			        $("#preview-banner").css("margin-top","-33px");
-			        if($(".feduoutercontent").css("margin-top")!=120){
-			            $(".feduoutercontent").css("margin-top","120px");
-			        }
-			    }else{
-			        $('.mobile-fixedHeader').css("display","none");
-			        $('.scrollHeader').css("display","block");
-			        $('.search-barr').css("width","0");
-			        $("#preview-banner").css("margin-top","-104px");
-			    }
+		    	 if ($win.scrollTop() == 0){
+				    $('.mobile-fixedHeader').css("display","block");
+				    $('.scrollHeader').css("display","none");
+				    $('.search-bar').css("width","0");
+				    $("#preview-banner").css("margin-top","-33px");
+				    if($(".feduoutercontent").css("margin-top")!=120){
+				    	$(".feduoutercontent").css("margin-top","120px");
+				    }
+				 }else{
+					$('.mobile-fixedHeader').css("display","none");
+				    $('.scrollHeader').css("display","block");
+				    $('.search-barr').css("width","0");
+				    $("#preview-banner").css("margin-top","-104px");
+				 }
 		    }
         });
         

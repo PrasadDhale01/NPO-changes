@@ -319,13 +319,56 @@ class ContributionService {
 	return numberOfDays
     }
     
-    def getUSDTransactions(){
-        return Transaction.findAllWhere(currency: 'USD')
+    def getUSDContributions(){
+        return Contribution.findAllWhere(currency: 'USD').reverse()
     }
-    
-    def getINRTransactions(){
-        return Transaction.findAllWhere(currency: 'INR')
+
+    def getINRContributions(){
+        return Contribution.findAllWhere(currency: 'INR').reverse()
     }
+	
+	def transactionSort(){
+		def sort = [
+			Date : 'Date',
+			Name : 'Name',
+			Offline : 'Offline',
+			Online : 'Online'
+		]
+		return sort
+	}
+	
+	def getContributionSortedResult(def query, def currency){
+		def result
+		def contributions
+		switch (query) {
+			case 'Name':
+			contributions = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR') : Contribution.findAllWhere(currency: 'USD');
+			result = contributions?.sort{it.contributorName.toUpperCase()};
+			break;
+
+			case 'Offline':
+			result = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR', isContributionOffline:true) : Contribution.findAllWhere(currency: 'USD', isContributionOffline:true);
+			break;
+
+			case 'Online':
+			result = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR', isContributionOffline:false) : Contribution.findAllWhere(currency: 'USD', isContributionOffline:false);
+			break;
+
+			case 'Date':
+			contributions = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR') : Contribution.findAllWhere(currency: 'USD');
+			def sortedByDate = contributions?.sort{it.date};
+			result = sortedByDate.reverse();
+			break;
+
+			default :
+			contributions = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR') : Contribution.findAllWhere(currency: 'USD');
+			def sortedByDate = contributions?.sort{it.date};
+			result = sortedByDate.reverse();
+
+		}
+
+		return result
+	}
     
     def getHighestContributionDay(Project project) {
         int monday = 0, tuesday = 0, wednesday = 0, thursday = 0, friday = 0, saturday = 0, sunday = 0

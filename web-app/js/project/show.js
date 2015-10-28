@@ -836,10 +836,9 @@
    		success: function(location) {
    			// If the visitor is browsing from India.
    			if (location.country_code == 'IN' && currentEnv == 'test') {
-   			// Tell him about the India store.
-   					$('.info-banner').css('display','block');
-   					$('.banner-link').text('test.crowdera.in');
-   					$('.banner-link').attr('href','http://test.crowdera.in');
+				$('.info-banner').css('display','block');
+				$('.banner-link').text('test.crowdera.in');
+				$('.banner-link').attr('href','http://test.crowdera.in');
    			} else if(location.country_code == 'IN' && currentEnv == 'staging'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('staging.crowdera.in');
@@ -852,6 +851,9 @@
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://localhost:8080');
+   				if($(window).width() < 768){
+   					$('#preview-banner').css('margin-top','-33px');
+   				}
    			}
    		}
    	});
@@ -859,22 +861,6 @@
    		$('.info-banner').css('display','none');
    		$('.home-header-section').removeClass('banner-nav');
    		$('#preview-banner').attr('class','preview-banner-margin');
-		if($('.info-banner').css("display")=="block"){
-		    $('#preview-banner').css('margin-top','-75px');
-		}else{
-		    if(/chrom(e|ium)/.test(navigator.userAgent.toLowerCase())){
-		        $('#preview-banner').css('margin-top','-105px');
-		    }else{
-		        $('#preview-banner').css('margin-top','-33px');
-		    }
-		}
-		if($('.mobile-fixedHeader').css("display")=="block"){
-		    $('#preview-banner').css('margin-top','-45px');
-		}
-		if($('.info-banner').css('display')=="none"){
-		    $('.scrollHeader > .TW-scrollHeaderBackColor').css('height','45px');
-		    $('.noScrollHeader').css('height','45px');
-		}				
    	});
 
     $('.video-play').click(function() {

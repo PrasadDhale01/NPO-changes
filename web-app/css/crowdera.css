@@ -165,7 +165,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     padding: 5px 15px !important;
 }
 .nav.navbar-nav.navbar-right {
-    margin-right: -5px;
+    margin-right: -1px;
 }
 .navbar-right {
     margin-top: 8px;
@@ -178,7 +178,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 
 .navbar-default {
     background-color: #d3d3d3;
-    box-shadow: 0 0 24px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 0 18px 0 rgba(0,0,0,0.25);
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
@@ -2685,7 +2685,7 @@ i.user-cl-caret{
     width: 100%;
 }
 li.dropdown.dropdown-head{
-	width: 103%;
+	width: 110%;
 }
 ul.dropdown-menu.admin.admin-dropdown{
 	width: 100%;
@@ -3533,14 +3533,14 @@ header {
 }
 header.cr-tabs-link {
 	color: #01bbd3;
-	height:75px;;
-	padding-bottom: 15px;
-	padding-top: 15px;
+	height:60px;;
+	padding-bottom: 10px;
+	padding-top: 10px;
 	padding-left: 250px;
 	padding-right: 300px;
 	position:fixed;
 	top:45px;
-	font-size: 20px;
+	font-size: 15px;
 	z-index:500;
 }
 .search-barr{
@@ -3965,7 +3965,6 @@ label.text-color {
 .cr-start-flex{
 	display:flex;
 	margin-bottom: 15px;
-    margin-top: 25px;
 }
 .cr-start-size {
     background-color: #01bbd2;
@@ -4291,7 +4290,7 @@ li.learn {
     padding: 5px;
     text-align: center;
     width: 100%;
-    margin-top: -11px;
+    margin-top: -2px;
 }
 
 .preview-banner-margin{
@@ -4300,7 +4299,7 @@ li.learn {
     padding: 14px;
     text-align: center;
     width: 100%;
-    margin-top: -103px;
+    margin-top:-33px;
 }
 .cr-first-giving{
     padding-left: 190px;	
@@ -5418,9 +5417,20 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.navbar-toggle.collapsed.TW-scrollHeader-hamBurger .icon-bar {
+	   background-color: #000000;
+	}
 	.mobile-fixedHeader .TW-scrollHeaderBackColor {
 	   background-color: #006083;
 	   height: 118px !important;
+	}
+	.mobile-fixedHeader .TW-mobile-fixedHeaderBackColor {
+	   background-color: #006083;
+	   height: 120px !important;
+	}
+	.scrollHeader .TW-scrollHeaderBackColor {
+	   background-color: #fff !important;
+	   height: 45px !important;
 	}
 	.mobile-fixedHeader {
 	  height: 120px;
@@ -7344,12 +7354,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     header.cr-tabs-link {
 	    padding-left: 44px !important; 
 	    padding-right: 42px !important; 
-	    font-size: 18px !important;
+	    font-size: 15px !important;
     }
 }
 @media only screen and (min-width:831px) and (max-width: 900px){
 	header.cr-tabs-link {
-        font-size: 18px !important;
+        font-size: 15px !important;
         padding-left: 65px !important;
         padding-right: 76px !important;
     }
@@ -7363,6 +7373,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.feduoutercontent {
+	   margin-top: 48px !important;
+	}
 	.TW-scrollHeaderBackColor .navbar-header {
 		background-color:#fff;
 		height: 50px;
@@ -8707,6 +8720,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	.feduoutercontent {
+	   margin-top: 120px;
+	}
     .col-xs-text-box-with-button{
          margin-top:20px;
          margin-bottom: 20px;
@@ -8919,12 +8935,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
     header.cr-tabs-link {
         color: #01bbd3;
-        font-size: 20px;
+        font-size: 15px;
         padding: 14px 255px !important;
     }
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
+	.feduoutercontent {
+	   margin-top: 48px !important;
+	}
 	.user-cl-scrollHeader{
 		padding-top:2px;
 	}
@@ -10188,7 +10207,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 45px;
     }
     .banner-nav{
-    	height:93px !important;
+    	height:93px;
     }
     span#search-container {
         margin-top: -5% !important;
@@ -10345,7 +10364,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /*  		margin: 0px 55px 0 !important;  */
 /* 	} */
 	li.dropdown.dropdown-head{
-		width: 103% !important;
+		width: 111% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
 		width: 100% !important;
@@ -10584,7 +10603,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /*  		margin: 0px 55px 0 !important; */
 /* 	} */
 	li.dropdown.dropdown-head{
-		width: 103% !important;
+		width: 111% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
 		width: 100% !important;
@@ -10802,7 +10821,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 
 	li.dropdown.dropdown-head{
-		width: 102% !important;
+		width: 111% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
 		width: 100% !important;
@@ -12053,9 +12072,13 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-	.mobile-fixedHeader .TW-scrollHeaderBackColor {
+	.mobile-fixedHeader .TW-mobile-fixedHeaderBackColor {
 	   background-color: #006083;
 	   height: 120px !important;
+	}
+	.scrollHeader .TW-scrollHeaderBackColor {
+	   background-color: #fff !important;
+	   height: 45px !important;
 	}
 	.mobile-fixedHeader {
 	   height: 120px;
@@ -12072,8 +12095,11 @@ textarea.textarea-embed-video {
 		z-index: 1;
 		position: absolute;
 	}
-	.navbar-default .navbar-toggle .icon-bar {
+	 .navbar-default .navbar-toggle .icon-bar {
 	   background-color: #fff;
+	}
+	.navbar-toggle.collapsed.TW-scrollHeader-hamBurger .icon-bar {
+	   background-color: #000000;
 	}
 	.search-barr {
 	   margin-left: 0px !important; 
@@ -14269,4 +14295,7 @@ iframe.embedTitleUrl{
 }
 .TW-scrollHeaderBackColor .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.scrollHeaderMenu.toggleImages.open{
 	box-shadow: 0 0 2px 0 rgba(0,0,0,0.25);
+}
+.dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open .user-cl-caret::before {
+    content: "";
 }

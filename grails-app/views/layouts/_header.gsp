@@ -155,7 +155,7 @@
 <!-- *******************************************Mobile header fixed*************************************************** -->
 
 <div class="hidden-lg hidden-md hidden-sm navbar navbar-default navbar-fixed-top header-section home-header-section mobile-fixedHeader" role="navigation">
-    <div class="header-container TW-scrollHeaderBackColor">
+    <div class="header-container TW-mobile-fixedHeaderBackColor">
 		<div class="info-banner">
 				Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a>
 				<a href="#" class="banner-close">Close</a>
@@ -194,7 +194,7 @@
 			</div>
 		
         <div class="navbar-header">
-            <button data-target="#TW-navbar-collapsed" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+            <button data-target="#TW-navbar-collapsed" data-toggle="collapse" class="navbar-toggle collapsed TW-scrollHeader-hamBurger" type="button">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -202,13 +202,13 @@
             </button>
             <a href="/" class="navbar-brand scrollHeaderLogo">
                 <img alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" class="hidden-xs">
-                <img class="mobile-scrollCrwdLogo hidden-lg hidden-md hidden-sm visible-xs center-block" alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" >
+                <img class="mobile-scrollCrwdLogo hidden-lg hidden-xs hidden-md hidden-sm visible-xs center-block" alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" >
             </a>
             
             <div class="searchengine pull-right hidden-lg hidden-md hidden-sm visible-xs">
                <form name="SearchForm" action="/campaign">
                    <div class="inner-addon left-addon search-icon-header search-image-header">
-                      <img id="scrolltrigger" class="trigger-mob scrolltrigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/header-search-icon.png">
+                      <img id="scrolltrigger" class="trigger-mob scrolltrigger" alt="search" src="https://s3.amazonaws.com/crowdera/assets/search-icon.png">
                       <input type="text" placeholder="Search....." id="search-barr1" value="" name="q" class="search-barr form-control form-control-no-border search-box">
                    </div>
                </form>

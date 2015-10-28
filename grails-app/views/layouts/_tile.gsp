@@ -23,6 +23,12 @@
     } else {
         cents = percentage
     }
+    
+    def currentEnv = projectService.getCurrentEnvironment()
+    def conversionMultiplier = multiplier
+    if (!conversionMultiplier) {
+        conversionMultiplier = projectService.getCurrencyConverter();
+    }
 %>
 <g:if test="${project.validated}">
 <div class="fedu thumbnail grow tile-pad">
@@ -76,10 +82,15 @@
         <div class="row tilepadding">
             <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
                 <span class="text-center tile-goal">
-                    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead">${amount}</span>
+                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
+                    </g:if>
+                    <g:else>
+                        $<span class="lead">${amount}</span>
+                    </g:else>
                 </span>
             </div>
-			<g:if test="${ended}">
+			         <g:if test="${ended}">
                 <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size campaign-tile-border">
                     <span class="days-alignment">DAYS<br>LEFT</span>
                 	<span class="tile-day-num">00</span>
@@ -99,7 +110,12 @@
             </g:else>
             <div class="col-md-4 col-xs-4 amount-alignment amount-text-align text-center">
                 <span class="text-center tile-goal">
-                    <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead">${contribution}</span>
+                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${contribution}</span></g:if><g:else><span class="lead">${contribution * conversionMultiplier}</span></g:else>
+                    </g:if>
+                    <g:else>
+                        $<span class="lead">${contribution}</span>
+                    </g:else>
                 </span>
             </div>
         </div>

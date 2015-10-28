@@ -81,11 +81,14 @@ class ProjectController {
         
         def projects = projectService.getValidatedProjects(currentEnv)
         def selectedCategory = "All Categories"
+        def multiplier = projectService.getCurrencyConverter();
+        
         if (projects.size < 1) {
             flash.catmessage="There are no campaigns"
-            render (view: 'list/index', model: [countryOptions: countryOptions, sortsOptions: sortsOptions,discoverLeftCategoryOptions: discoverLeftCategoryOptions])
+            render (view: 'list/index', model: [countryOptions: countryOptions, sortsOptions: sortsOptions,discoverLeftCategoryOptions: discoverLeftCategoryOptions, multiplier: multiplier])
         } else {
-            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv, countryOptions: countryOptions, sortsOptions: sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv, countryOptions: countryOptions, sortsOptions: sortsOptions, 
+                                                discoverLeftCategoryOptions:discoverLeftCategoryOptions, multiplier: multiplier])
         }
     }
 
@@ -223,13 +226,16 @@ class ProjectController {
 			def projectComments = projectService.getProjectComments(project)
 			def teamComments = projectService.getTeamComments(currentTeam)
 			def offset = params.int('offset') ?: 0
+            
+            def multiplier = projectService.getCurrencyConverter();
 
 			render (view: 'show/index',
 			model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
 				totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
 				teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
 				isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
-				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url])
+				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url,
+                multiplier: multiplier])
 		} else {
 		    render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
@@ -995,18 +1001,22 @@ class ProjectController {
             def endDate = projectService.getProjectEndDate(project)
             def isCampaignAdmin = userService.isCampaignAdmin(project, user.username)
             def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+            
             Team currentTeam = projectService.getCurrentTeam(project,user)
             def isCrFrCampBenOrAdmin = isCampaignOwnerOrAdmin
             def webUrl = projectService.getWebUrl(project)
             def isEnabledTeamExist = userService.isTeamEnabled(project, user)
-			List totalContributions = []
+			
+            List totalContributions = []
 			List contributions = []
 			def contribution = projectService.getProjectContributions(params, project)
 			totalContributions = contribution.totalContributions
 			contributions = contribution.contributions
 			def offset = params.int('offset') ?: 0
 			def bankInfo = projectService.getBankInfoByProject(project)
+            
             def day = projectService.getRemainingDay(project)
+            def multiplier = projectService.getCurrencyConverter();
 
             if(project.user==user || isCampaignOwnerOrAdmin){
                 render (view: 'manageproject/index',
@@ -1014,8 +1024,8 @@ class ProjectController {
                                 discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,
                                 ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
                                 unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, vanityUsername:vanityUsername, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo, 
-								tile:params.tile, shortUrl:shortUrl, base_url:base_url])
-            } else{
+								tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier])
+            } else {
                 flash.prj_mngprj_message = 'Campaign Not Found'
                 render (view: 'manageproject/error', model: [project: project])
             }

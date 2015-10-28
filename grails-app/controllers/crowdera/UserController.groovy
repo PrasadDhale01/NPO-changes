@@ -92,8 +92,10 @@ class UserController {
             def fundRaised = contributionService.getTotalFundRaisedByUser(projects)
             def country = projectService.getCountry()
             def state = projectService.getState()
+            def multiplier = projectService.getCurrencyConverter();
+            
             render view: userViews, model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, state: state,
-                                            activeTab:activeTab, environment: environment, contributedAmount: contributedAmount,
+                                            activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, multiplier: multiplier,
                                             fundRaised : fundRaised, contributions: contribution.contributions, totalContributions : contribution.totalContributions]
         }
     }

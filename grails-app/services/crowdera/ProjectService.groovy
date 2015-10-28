@@ -23,7 +23,7 @@ class ProjectService {
     def mandrillService
     def rewardService
     def grailsApplication
-	
+    
     def getProjectById(def projectId){
         if (projectId) {
             return Project.get(projectId)
@@ -3486,6 +3486,15 @@ class ProjectService {
 
         details = [projectTitle:vanityTitle, fr:vanityName]
         return details
+    }
+    
+    def getCurrencyConverter() {
+        Currency currency = Currency.get(1);
+        if (currency) {
+            return currency.currencyUSA.round();
+        } else {
+            return 65;
+        }
     }
 
     @Transactional

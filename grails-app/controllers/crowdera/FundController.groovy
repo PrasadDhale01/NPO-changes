@@ -588,14 +588,14 @@ class FundController {
         def rewardId = reward.id
         render rewardId
     }
-	
+
     @Secured(['ROLE_ADMIN'])
     def transaction(){
-		def transactionSort = contributionService.transactionSort()
-		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def transactionSort = contributionService.transactionSort()
+        def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
         if (params.currency == 'INR'){
-			def contributionINR = contributionService.getINRContributions()
+            def contributionINR = contributionService.getINRContributions()
             render view: '/user/admin/transactionIndex', model: [contribution: contributionINR, currency:'INR', transactionSort:transactionSort, url:base_url]
         } else {
             def contributionUSD = contributionService.getUSDContributions()
@@ -709,10 +709,11 @@ class FundController {
 		}
 	}
 	
-	def getSortedContributions(){
-		def sortedList = contributionService.getContributionSortedResult(params.selectedSortValue, params.currency)
-		if(request.xhr){
-			render(template:"/user/admin/transactionGrid", model: [contribution: sortedList]);
-		}
-	}
+    @Secured(['ROLE_ADMIN'])
+    def getSortedContributions(){
+        def sortedList = contributionService.getContributionSortedResult(params.selectedSortValue, params.currency)
+        if(request.xhr){
+            render(template:"/user/admin/transactionGrid", model: [contribution: sortedList]);
+        }
+    }
 }

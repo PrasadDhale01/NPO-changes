@@ -10787,9 +10787,9 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (max-width: 479px){
-	   .table-xs-left, .btn-xs-width{
+    .table-xs-left, .btn-xs-width{
         margin-left: 6px;
-	   }
+    }
     .col-sm-10.col-xs-9.col-xs-textbox{
         width:92%;
         margin-bottom: 10px;

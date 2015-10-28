@@ -524,13 +524,13 @@ class ProjectService {
 			} else {
 				userIdentity = "Non Anonymous"
 			}
-			
-			if(it.isContributionOffline){
-				mode = 'Offline'
-			} else {
-			    mode = 'Online'
-			}
-			
+
+            if(it.isContributionOffline){
+                mode = 'Offline'
+            } else {
+                mode = 'Online'
+            }
+
 			def rows = [dateFormat.format(it.date), it.project.title.replaceAll('[,;] ',' '), it.contributorName, userIdentity, it.amount, it.contributorEmail, mode]
 			results << rows
 		 }

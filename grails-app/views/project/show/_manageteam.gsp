@@ -152,14 +152,14 @@
                                 <input type="file" class="upload" name="imagethumbnail" id="projectImageFile" accept="image/jpeg, image/png" multiple>
                             </div>
                         </div>
-      					             <div class="col-md-6 col-md-6 col-xs-12" id="cols-error-placement-team">
+                        <div class="col-md-6 col-md-6 col-xs-12" id="cols-error-placement-team">
                             <div id="uploadingCampaignUpdateEditImage">Uploading Picture.....</div>
                             <label class="docfile-orglogo-css" id="editimg">Please select image file.</label>
                             <div class="imageNumValidation">You cannot upload more than 5 images</div>
                             <label class="docfile-orglogo-css" id="editTeamImg"></label>
                         </div>
-      					             <div class="col-md-10 col-md-offset-2 col-sm-12 col-xs-12" id="teamImages">
-      					                 <g:each var="imgurl" in="${currentTeam.imageUrl}">
+                        <div class="col-md-10 col-md-offset-2 col-sm-12 col-xs-12" id="teamImages">
+                            <g:each var="imgurl" in="${currentTeam.imageUrl}">
                                 <div id="imgdiv" class="pr-thumb-div">
                                     <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}" alt="images">
                                     <div class="deleteicon pictures-edit-deleteicon">

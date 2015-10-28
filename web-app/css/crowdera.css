@@ -3073,9 +3073,9 @@ ul.menu{
     -moz-transition-duration: 0.2s;
     -o-transition-duration: 0.2s;
     transition-duration: 0.2s;
-    -webkit-transition-timing-function: ease-in;
-    -moz-transition-timing-function: ease-in;
-    -o-transition-timing-function: ease-in;
+   -webkit-transition-timing-function: ease-in;
+   -moz-transition-timing-function: ease-in;
+   -o-transition-timing-function: ease-in;
     transition-timing-function: ease-in;
 }
 .thomas-owens-testimonial-div{
@@ -5433,19 +5433,19 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   height: 45px !important;
 	}
 	.mobile-fixedHeader {
-	  height: 120px;
+	   height: 120px;
 	}
 	.searchengine{
-		margin-top: 6px;
+	   margin-top: 6px;
 	}
 	.mobile-fixed-header-text{
-		color: white;
-		font-size: 15px;
-		font-weight: 500; 
-		bottom: -44px; 
-		width: 100%;
-		z-index: 1;
-		position: absolute;
+	   color: white;
+	   font-size: 15px;
+	   font-weight: 500; 
+	   bottom: -44px; 
+	   width: 100%;
+	   z-index: 1;
+	   position: absolute;
 	}
 	.navbar-default .navbar-toggle .icon-bar {
 	  background-color: #fff;
@@ -5480,13 +5480,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   font-weight: 600;
 	}
 	.navbar-collapse.collapse.in {
-		opacity: 0.75;
-		width: 100% !important;
+	   opacity: 0.75;
+	   width: 100% !important;
 	}
 	.navbar-collapse.collapse{
-		opacity: 0.65;
-		filter:alpha(opacity=60%);
-		width: 100% !important;
+	   opacity: 0.65;
+	   filter:alpha(opacity=60%);
+	   width: 100% !important;
 	}
 	.scrollHeaderMenu li {
 	   border-bottom: 2px solid white;
@@ -5536,12 +5536,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   z-index: 1;
 	}
 	.TW-ebook-footer {
-		bottom: 0 !important;
-		display: inline-flex;
-		left: 0;
-		margin-bottom: 10px;
-		position: absolute !important;
-		right: 0;
+        bottom: 0 !important;
+        display: inline-flex;
+        left: 0;
+        margin-bottom: 10px;
+        position: absolute !important;
+        right: 0;
 	}
 	.TW-postcampaign-img {
 	   height: 130px !important;
@@ -5549,10 +5549,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   width: 341px;
 	}
 	.ebook-container{
-		display:block;
-		margin-left:auto;
-		margin-right:auto;
-		width:275px !important;
+	    display:block;
+	    margin-left:auto;
+	    margin-right:auto;
+	    width:275px !important;
 	}
 	.TW-ebook-content {
 	   margin-top: 40px;
@@ -5572,10 +5572,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   margin-bottom: 0;
 	}
 	.TW-postcampaign-inner-ul li {
-		font-size: 10px !important;
-		line-height: 16px !important;
-		margin-bottom: 15px !important;
-		text-align: justify;
+	   font-size: 10px !important;
+	   line-height: 16px !important;
+	   margin-bottom: 15px !important;
+	   text-align: justify;
 	}
 	.TW-postcampaign-ul {
 		padding: 15px !important;
@@ -5591,15 +5591,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   margin-bottom: 15px !important;
 	}
 	.TW-ebook-h3Decoration {
-		font-family: "open sans";
-		font-size: 13px !important;
-		font-weight: 600;
-		margin-bottom: 20px;
+	   font-family: "open sans";
+	   font-size: 13px !important;
+	   font-weight: 600;
+	   margin-bottom: 20px;
 	}
 	.TW-ebooklaunch-img {
-		height: 150px !important;
-		margin-right: 19px !important;
-		width: 83px !important;
+	   height: 150px !important;
+	   margin-right: 19px !important;
+	   width: 83px !important;
 	}
 	.TW-ebook-ul {
 	   float: left;
@@ -5607,11 +5607,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   text-align: justify;
 	}
 	.TW-ebook-ul li {
-		color: #4c4c4c;
-		font-size: 10px !important;
-		line-height: 16px !important;
-		margin-bottom: 15px !important;
-		padding-left: 20px;
+	   color: #4c4c4c;
+	   font-size: 10px !important;
+	   line-height: 16px !important;
+	   margin-bottom: 15px !important;
+	   padding-left: 20px;
 	}
     ol.carousel-indicators-sm {
         left: 150px;
@@ -7381,11 +7381,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		height: 50px;
 	}
 	.TW-header-helpLink {
-		height: 35px !important;
-		margin-bottom: 0;
-		margin-top: 4px !important;
-		padding-bottom: 0;
-		padding-top: 0;
+	   height: 35px !important;
+	   margin-bottom: 0;
+	   margin-top: 4px !important;
+	   padding-bottom: 0;
+	   padding-top: 0;
 	}
 	.TW-header-helpTxt {
 	   margin-bottom: 2px !important;
@@ -7395,10 +7395,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   font-size:13px;
 	}
 	.user-cl-scrollHeader{
-		padding-top:3px;
+	   padding-top:3px;
 	}
 	.user-cl{
-		padding-top:3px;
+	   padding-top:3px;
 	}
 	.navbar-brand {
 	   height: 40px;
@@ -7415,12 +7415,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   z-index: 1;
 	}
 	.TW-ebook-footer {
-		bottom: 0 !important;
-		display: inline-flex;
-		left: 0;
-		margin-bottom: 10px;
-		position: absolute !important;
-		right: 0;
+	   bottom: 0 !important;
+	   display: inline-flex;
+	   left: 0;
+	   margin-bottom: 10px;
+	   position: absolute !important;
+	   right: 0;
 	}
 	.TW-projectDesc-img img{
 		height:170px !important;
@@ -7431,28 +7431,28 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   width: 290px !important;
 	}
 	.TW-ebooklaunch-img {
-		height: 190px !important;
-		margin-right: 30px;
-		width: 195px !important;
+	   height: 190px !important;
+	   margin-right: 30px;
+	   width: 195px !important;
 	}
 	.TW-postcampaign-inner-ul li {
-		font-size: 13px !important;
-		line-height: 20px !important;
-		margin-bottom: 12px !important;
-		text-align: justify;
+	   font-size: 13px !important;
+	   line-height: 20px !important;
+	   margin-bottom: 12px !important;
+	   text-align: justify;
 	}
 	.TW-ebook-ul li {
-		color: #4c4c4c;
-		font-size: 13px !important;
-		line-height: 20px !important;
-		margin-bottom: 10px !important;
-		padding-left: 20px;
+	   color: #4c4c4c;
+	   font-size: 13px !important;
+	   line-height: 20px !important;
+	   margin-bottom: 10px !important;
+	   padding-left: 20px;
 	}
 	.TW-postcampaign-ul > li {
-		color: #4c4c4c;
-		font-size: 13px !important;
-		line-height: 20px !important;
-		margin-bottom: 15px !important;
+	   color: #4c4c4c;
+	   font-size: 13px !important;
+	   line-height: 20px !important;
+	   margin-bottom: 15px !important;
 	}
 	.TW-ebook-content{
 		margin-top:30px;
@@ -8965,18 +8965,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   margin-top: 48px !important;
 	}
 	.user-cl-scrollHeader{
-		padding-top:2px;
+	   padding-top:2px;
 	}
 	.user-cl{
-		padding-top:2px;
+	   padding-top:2px;
 	}
 	.navbar-header {
-		background-color:#fff;
-		height: 50px;
+	   background-color:#fff;
+	   height: 50px;
 	}
 	.TW-scrollHeaderBackColor .navbar-header {
-		background-color:#fff;
-		height: 50px;
+	   background-color:#fff;
+	   height: 50px;
 	}
 	.header-container.TW-scrollHeaderBackColor {
 	   height: 43px;
@@ -9064,17 +9064,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 @media only screen and (min-width: 1921px) and (max-width: 2560px){
 	.TW-scrollHeaderBackColor .navbar-header {
-		background-color:#fff;
-		height: 50px;
+	   background-color:#fff;
+	   height: 50px;
 	}
 	.discover.scrollHeaderMenu {
 	   margin-left: 5px;
 	}
 	.user-cl-scrollHeader{
-		padding-top:3px;
+	   padding-top:3px;
 	}
 	.user-cl{
-		padding-top:3px;
+	   padding-top:3px;
 	}
 	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	   width: 78.1% !important;
@@ -9420,31 +9420,31 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   width: 62% !important;
 	}
 	.TW-ebooklaunch-img {
-		height: 190px !important;
-		margin-right: 30px;
-		width: 195px !important;
+	   height: 190px !important;
+	   margin-right: 30px;
+	   width: 195px !important;
 	}
 	.TW-postcampaign-inner-ul li {
-		font-size: 13px !important;
-		line-height: 20px !important;
-		margin-bottom: 12px !important;
-		text-align: justify;
+	   font-size: 13px !important;
+	   line-height: 20px !important;
+	   margin-bottom: 12px !important;
+	   text-align: justify;
 	}
 	.TW-ebook-ul li {
-		color: #4c4c4c;
-		font-size: 13px !important;
-		line-height: 20px !important;
-		margin-bottom: 10px !important;
-		padding-left: 20px;
+	   color: #4c4c4c;
+	   font-size: 13px !important;
+	   line-height: 20px !important;
+	   margin-bottom: 10px !important;
+	   padding-left: 20px;
 	}
 	.TW-postcampaign-ul > li {
-		color: #4c4c4c;
-		font-size: 13px !important;
-		line-height: 20px !important;
-		margin-bottom: 8px !important;
+	   color: #4c4c4c;
+	   font-size: 13px !important;
+	   line-height: 20px !important;
+	   margin-bottom: 8px !important;
 	}
 	.TW-ebook-content{
-		margin-top:30px;
+	   margin-top:30px;
 	}
 	.TW-Prelaunch-img {
 	   height: 239px;
@@ -12114,13 +12114,13 @@ textarea.textarea-embed-video {
 		margin-top: 6px;
 	}
 	.mobile-fixed-header-text{
-		color: white;
-		font-size: 15px;
-		font-weight: 500; 
-		bottom: 35px; 
-		width: 100%;
-		z-index: 1;
-		position: absolute;
+	   color: white;
+	   font-size: 15px;
+	   font-weight: 500; 
+	   bottom: 35px; 
+	   width: 100%;
+	   z-index: 1;
+	   position: absolute;
 	}
 	 .navbar-default .navbar-toggle .icon-bar {
 	   background-color: #fff;
@@ -12147,14 +12147,14 @@ textarea.textarea-embed-video {
 	   font-weight: 600;
 	}
 	.navbar-collapse.collapse.in {
-		opacity: 0.85;
-		width: 100% !important;
+	   opacity: 0.85;
+	   width: 100% !important;
 	}
 	.navbar-collapse.collapse{
-		margin-top:-15px !important;
-		opacity: 0.65;
-		filter:alpha(opacity=60%);
-		width: 100% !important;
+	   margin-top:-15px !important;
+	   opacity: 0.65;
+	   filter:alpha(opacity=60%);
+	   width: 100% !important;
 	}
 	.scrollHeaderMenu li {
 	   border-bottom: 2px solid white;
@@ -12205,12 +12205,12 @@ textarea.textarea-embed-video {
 	   z-index: 1;
 	}
 	.TW-ebook-footer {
-		bottom: 0 !important;
-		display: inline-flex;
-		left: 0;
-		margin-bottom: 10px;
-		position: absolute !important;
-		right: 0;
+	   bottom: 0 !important;
+	   display: inline-flex;
+	   left: 0;
+	   margin-bottom: 10px;
+	   position: absolute !important;
+	   right: 0;
 	}
 	.TW-postcampaign-img {
 	   height: 130px !important;
@@ -12241,10 +12241,10 @@ textarea.textarea-embed-video {
 	   margin-bottom: 0;
 	}
 	.TW-postcampaign-inner-ul li {
-		font-size: 11px !important;
-		line-height: 17px !important;
-		margin-bottom: 5px !important;
-		text-align: justify;
+	  font-size: 11px !important;
+	  line-height: 17px !important;
+	  margin-bottom: 5px !important;
+	  text-align: justify;
 	}
 	.TW-postcampaign-ul {
 		padding: 5px 17px !important;
@@ -12260,15 +12260,15 @@ textarea.textarea-embed-video {
 	   margin-bottom: 2px !important;
 	}
 	.TW-ebook-h3Decoration {
-		font-family: "open sans";
-		font-size: 13px !important;
-		font-weight: 600;
-		margin-bottom: 20px;
+	   font-family: "open sans";
+	   font-size: 13px !important;
+	   font-weight: 600;
+	   margin-bottom: 20px;
 	}
 	.TW-ebooklaunch-img {
-		height: 150px !important;
-		margin-right: 19px !important;
-		width: 83px !important;
+	   height: 150px !important;
+	   margin-right: 19px !important;
+	   width: 83px !important;
 	}
 	.TW-ebook-ul {
 	   float: left;
@@ -12276,11 +12276,11 @@ textarea.textarea-embed-video {
 	   text-align: justify;
 	}
 	.TW-ebook-ul li {
-		color: #4c4c4c;
-		font-size: 11px !important;
-		line-height: 17px !important;
-		margin-bottom: 6px !important;
-		padding-left: 20px;
+       color: #4c4c4c;
+       font-size: 11px !important;
+       line-height: 17px !important;
+       margin-bottom: 6px !important;
+       padding-left: 20px;
 	}
     a.carousel-control.left {
         background-image: none;
@@ -14000,11 +14000,11 @@ textarea.textarea-embed-video {
     top: -26px;
 }
 .TW-ebook-page-borders{
-	background-color:#fff;
-	border: 5px solid #F6BF08;
-	border-radius: 3px;
-	margin-bottom: 68px;
-	width: 100%;
+   background-color:#fff;
+   border: 5px solid #F6BF08;
+   border-radius: 3px;
+   margin-bottom: 68px;
+   width: 100%;
 }
 .ebook-launch-container{
 	margin-top:50px;
@@ -14286,10 +14286,10 @@ a#downloadEbook{
     margin-right: 0px !important;
 }
 .TW-ebook-footer{
-	bottom: 0 !important;
+    bottom: 0 !important;
     display: inline-flex;
     display: -webkit-inline-flex; /**chrome***/
-	display: -webkit-inline-box;  /***safari****/
+    display: -webkit-inline-box;  /***safari****/
     left: 0;
     margin-bottom: 10px;
     position:unset;

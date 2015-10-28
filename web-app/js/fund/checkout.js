@@ -7,7 +7,7 @@ $(function() {
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
     });
-    
+
     var optionChosen;
     
     $('#ccType').change(function(event) {
@@ -366,8 +366,23 @@ $(function() {
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
-
-
+    
 });
+
+function showSortedTransaction(){
+	var currency = $('#currency').val();
+	var selectedSortValue = $('#transactionSort').val();
+	var grid = $('#transactionInfo');
+	$.ajax({
+		type:'post',
+		url:$('#url').val()+'/fund/getSortedContributions',
+		data:'currency='+currency+'&selectedSortValue='+selectedSortValue,
+		success: function(data){
+			$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+		}
+	}).error(function(data){
+		console.log('Error occured while fetching transaction info'+ data);
+	});
+}
 
 /**********************End of checkbox on checkout page for physical address shipping details****************************/

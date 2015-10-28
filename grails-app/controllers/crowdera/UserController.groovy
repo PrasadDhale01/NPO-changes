@@ -94,7 +94,7 @@ class UserController {
             def state = projectService.getState()
             render view: userViews, model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, state: state,
                                             activeTab:activeTab, environment: environment, contributedAmount: contributedAmount,
-                                            fundRaised : fundRaised, contributions: contribution.contributions, totalContributions : contribution.totalContributions]
+                                            contributions: contribution.contributions, totalContributions : contribution.totalContributions]
         }
     }
     

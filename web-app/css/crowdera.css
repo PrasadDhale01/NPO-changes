@@ -7134,6 +7134,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    .col-transaction .bootstrap-select > .btn {
+        width: 90px !important;
+    }
+
+    .col-transaction .bootstrap-select.btn-group .dropdown-menu {
+        min-width: 86px !important;
+    }
+
     div.hmmobile-carousel-banner{
         padding-left: 7px;
     }
@@ -8377,6 +8385,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+    .col-transaction .bootstrap-select > .btn {
+        width: 138px !important;
+    }
+
+    .col-transaction .bootstrap-select.btn-group .dropdown-menu {
+        min-width: 134px !important;
+    }
+
+    .btn-xs-width{
+        min-width: 134px; 
+    }
+
     .col-xs-text-box-with-button{
          margin-top:20px;
          margin-bottom: 20px;
@@ -9341,6 +9361,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+    .row-transaction h1{
+        font-size: 39px;
+        text-align: center;
+    }
     .col-md-10.col-xs-8.col-videoUrl-textbox{
         width:71%
     }
@@ -10763,6 +10787,9 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (max-width: 479px){
+    .table-xs-left, .btn-xs-width{
+        margin-left: 6px;
+    }
     .col-sm-10.col-xs-9.col-xs-textbox{
         width:92%;
         margin-bottom: 10px;

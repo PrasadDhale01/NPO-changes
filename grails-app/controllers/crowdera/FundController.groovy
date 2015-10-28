@@ -15,7 +15,6 @@ import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
 import grails.util.Environment
 import org.codehaus.groovy.grails.web.json.JSONObject
-import javax.servlet.http.Cookie
 
 class FundController {
     def contributionService
@@ -239,8 +238,6 @@ class FundController {
     def sendEmail () {
         Contribution contribution = contributionService.getContributionById(params.long('cb'))
         def project = contribution.project
-        def reward = contribution.reward
-        def user = contribution.user
         def fundraiser = userService.getUserById(params.long('fr'))
         mandrillService.sendThankYouMailToContributors(contribution, project, contribution.amount, fundraiser)
 
@@ -591,15 +588,18 @@ class FundController {
         def rewardId = reward.id
         render rewardId
     }
-	
+
     @Secured(['ROLE_ADMIN'])
     def transaction(){
-        def transactionINR = contributionService.getINRTransactions()
-        def transactionUSD = contributionService.getUSDTransactions()
+        def transactionSort = contributionService.transactionSort()
+        def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
         if (params.currency == 'INR'){
-            render view: '/user/admin/transactionIndex', model: [transaction: transactionINR, currency:'INR']
+            def contributionINR = contributionService.getINRContributions()
+            render view: '/user/admin/transactionIndex', model: [contribution: contributionINR, currency:'INR', transactionSort:transactionSort, url:base_url]
         } else {
-            render view: '/user/admin/transactionIndex', model: [transaction: transactionUSD, currency:'USD']
+            def contributionUSD = contributionService.getUSDContributions()
+            render view: '/user/admin/transactionIndex', model: [contribution: contributionUSD, currency:'USD', transactionSort:transactionSort, url:base_url]
         }
     }
 
@@ -708,4 +708,12 @@ class FundController {
 			render(template: "fund/perkShippingDetails", model:[shippingInfo:shippingInfo, anonymous:anonymous, state:state, country:country])
 		}
 	}
+	
+    @Secured(['ROLE_ADMIN'])
+    def getSortedContributions(){
+        def sortedList = contributionService.getContributionSortedResult(params.selectedSortValue, params.currency)
+        if(request.xhr){
+            render(template:"/user/admin/transactionGrid", model: [contribution: sortedList]);
+        }
+    }
 }

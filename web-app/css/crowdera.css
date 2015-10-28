@@ -178,7 +178,7 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 
 .navbar-default {
     background-color: #d3d3d3;
-    box-shadow: 0 0 18px 0 rgba(0,0,0,0.25);
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
@@ -7476,6 +7476,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   margin-bottom: 68px;
 	   width: 100%;
 	}
+    .col-transaction .bootstrap-select > .btn {
+        width: 90px !important;
+    }
+
+    .col-transaction .bootstrap-select.btn-group .dropdown-menu {
+        min-width: 86px !important;
+    }
+
     div.hmmobile-carousel-banner{
         padding-left: 7px;
     }
@@ -8723,6 +8731,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.feduoutercontent {
 	   margin-top: 120px;
 	}
+    .col-transaction .bootstrap-select > .btn {
+        width: 138px !important;
+    }
+
+    .col-transaction .bootstrap-select.btn-group .dropdown-menu {
+        min-width: 134px !important;
+    }
+
+    .btn-xs-width{
+        min-width: 134px; 
+    }
+
     .col-xs-text-box-with-button{
          margin-top:20px;
          margin-bottom: 20px;
@@ -9796,6 +9816,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+    .row-transaction h1{
+        font-size: 39px;
+        text-align: center;
+    }
     .col-md-10.col-xs-8.col-videoUrl-textbox{
         width:71%
     }
@@ -10204,10 +10228,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 
     .navbar-default {
-        height: 45px;
+        height: 50px;
     }
     .banner-nav{
-    	height:93px;
+    	height:78px;
     }
     span#search-container {
         margin-top: -5% !important;
@@ -11218,6 +11242,9 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (max-width: 479px){
+    .table-xs-left, .btn-xs-width{
+        margin-left: 6px;
+    }
     .col-sm-10.col-xs-9.col-xs-textbox{
         width:92%;
         margin-bottom: 10px;
@@ -13824,9 +13851,9 @@ textarea.textarea-embed-video {
 .sh-perks-preview {
     margin-top: 98px;
 }
-.sh-none-pft {
-    padding-left: 45px;
-}
+/* .sh-none-pft { */
+/*     padding-left: 45px; */
+/* } */
 .daysleftIcon {
     border-left: 1px solid #e3e3e3;
     border-right: 1px solid #e3e3e3;

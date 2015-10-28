@@ -171,6 +171,14 @@ class ProjectService {
             project.organizationName = params.organizationName
         }
         
+        if (!project.beneficiary.country) {
+            if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                project.beneficiary.country = 'IN'
+            } else {
+                project.beneficiary.country = 'US'
+            }
+        }
+        
         def projectAdmins = project.projectAdmins
         
         projectAdmins.each { projectAdmin ->
@@ -507,28 +515,35 @@ class ProjectService {
 	 
 	 def generateCSV(def response, def params){
              SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd hh:mm:ss");
-		 
-             def transactions
+			 def userIdentity
+			 def mode
+             def contributions
              if (params.currency == 'INR'){
-                 transactions = contributionService.getINRTransactions()
+                 contributions = contributionService.getINRContributions()
              } else {
-                 transactions = contributionService.getUSDTransactions()
+                 contributions = contributionService.getUSDContributions()
              }
              List results=[]
 	     
 		 response.setHeader("Content-disposition", "attachment; filename=Crowdera_Transaction_Report.csv")
-		 transactions.each{
-			def userIdentity
-			if (it.contribution.isAnonymous) {
+		 contributions.each{
+			if (it.isAnonymous) {
 				userIdentity = "Anonymous"
 			} else {
 				userIdentity = "Non Anonymous"
 			}
-			def rows = [it.transactionId, dateFormat.format(it.contribution.date), it.project.title.replaceAll('[,;] ',' '), it.contribution.contributorName, userIdentity, getContributedAmount(it), it.contribution.contributorEmail]
+
+            if(it.isContributionOffline){
+                mode = 'Offline'
+            } else {
+                mode = 'Online'
+            }
+
+			def rows = [dateFormat.format(it.date), it.project.title.replaceAll('[,;] ',' '), it.contributorName, userIdentity, it.amount, it.contributorEmail, mode]
 			results << rows
 		 }
 		 
-		 def result='Transaction Id, Contribution Date & Time, Project, Contributor Name, Identity, Contributed Amount, Contributor Email \n'
+		 def result='Contribution Date & Time, Campaign, Contributor Name, Identity, Contributed Amount, Contributor Email, Mode \n'
 		 results.each{ row->
 			row.each{
 			col -> result+=col +','

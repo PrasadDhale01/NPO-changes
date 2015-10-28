@@ -159,8 +159,8 @@ $(function() {
 				    	$(".feduoutercontent").css("margin-top","120px");
 				    }
 				 }else{
-					$('.mobile-fixedHeader').css("display","block");
-				    $('.scrollHeader').css("display","none");
+					$('.mobile-fixedHeader').css("display","none");
+				    $('.scrollHeader').css("display","block");
 				    $('.search-barr').css("width","0");
 				    $("#preview-banner").css("margin-top","-104px");
 				 }

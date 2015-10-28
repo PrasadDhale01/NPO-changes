@@ -118,23 +118,20 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h2 class="modal-title text-center"><b>Edit Fundraiser Info</b></h2>
+                    <h3 class="modal-title text-center"><b>Edit Fundraiser Info</b></h3>
                 </div>
                 <div class="modal-body">
                     <g:hiddenField name="project" value="${project.id}"/>
                     <g:hiddenField name="projectAmount" value="${project.amount}"/>
                     <input type="hidden" id="b_url" value="<%=base_url%>" />
                     <g:hiddenField name="teamId" value="${currentTeam.id}"/>
-                    
-                    <h5><b>Team's Campaign Goal</b></h5><hr/>
+
                     <div class="form-group">
-                        <label>GOAL</label>
+                        <label>Goal</label>
                         <input type="text" class="form-control all-place" name="amount" id="teamamount" placeholder="Goal" value="${currentTeam.amount.round()}"/>
                         <span id="errormsg"></span>
                     </div>
                     <div class="clear"></div>
-                    <hr>
-                    <h5><b>About My Team</b></h5><hr/>
                     <div class="form-group TW-editfundraiser-modal">
                         <label class="control-label">Brief Description</label>
                         <textarea class="form-control all-place" maxlength="140" rows="2" id="descarea" name="description" placeholder="Make it catchy, and no more than 140 characters"> ${currentTeam.description} </textarea>
@@ -143,28 +140,26 @@
                     <div class="clear"></div>
                     <div class="form-group TW-redactor">
                         <label>Story</label>
-                        <textarea rows="4"  class="redactorEditor all-place" name="story">
-						     ${currentTeam.story}</textarea>
+                        <textarea rows="4"  class="redactorEditor all-place" name="story">${currentTeam.story}</textarea>
                         <span id="storyRequired">This field is required</span>
                     </div>
                     <div class="clear"></div>
-                    <hr>
-                    <h5><b>Upload Images/Video</b></h5><hr/>
                     <div class="form-group">
-      					<label class="col-md-2 col-sm-2 control-label">Pictures</label>
-      					<div class="col-md-4 col-md-4 col-xs-12">
-        					<div class="fileUpload btn btn-primary btn-sm">
-	        					<span>Add Images</span>
-	        					<input type="file" class="upload" name="imagethumbnail" id="projectImageFile" accept="image/jpeg, image/png" multiple>
-         					</div>
-         					<label class="docfile-orglogo-css" id="editimg">Please select image file.</label>
-         					<label class="docfile-orglogo-css" id="editTeamImg"></label>
-      					</div>
-      					<div class="col-md-6 col-md-6 col-xs-12">
-                            <div id="uploadingCampaignUpdateEditImage">Uploading Picture.....</div>
+                        <label class="col-md-2 col-sm-2 control-label">Pictures</label>
+                        <div class="col-md-4 col-md-4 col-xs-12">
+                            <div class="fileUpload btn btn-primary btn-sm">
+                                <span>Add Images</span>
+                                <input type="file" class="upload" name="imagethumbnail" id="projectImageFile" accept="image/jpeg, image/png" multiple>
+                            </div>
                         </div>
-      					<div class="col-md-10 col-md-offset-2 col-sm-12 col-xs-12" id="teamImages">
-      					    <g:each var="imgurl" in="${currentTeam.imageUrl}">
+                        <div class="col-md-6 col-md-6 col-xs-12" id="cols-error-placement-team">
+                            <div id="uploadingCampaignUpdateEditImage">Uploading Picture.....</div>
+                            <label class="docfile-orglogo-css" id="editimg">Please select image file.</label>
+                            <div class="imageNumValidation">You cannot upload more than 5 images</div>
+                            <label class="docfile-orglogo-css" id="editTeamImg"></label>
+                        </div>
+                        <div class="col-md-10 col-md-offset-2 col-sm-12 col-xs-12" id="teamImages">
+                            <g:each var="imgurl" in="${currentTeam.imageUrl}">
                                 <div id="imgdiv" class="pr-thumb-div">
                                     <img  class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}" alt="images">
                                     <div class="deleteicon pictures-edit-deleteicon">

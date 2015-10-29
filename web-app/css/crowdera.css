@@ -4348,10 +4348,11 @@ ul.decimalList{
 }
 #uploadingCampaignOrgIcon {
     color: #46b8da;
-    padding-top: 20px;
-	display: none;
+    display: none;
 }
-
+.uploadingPicture{
+    padding-left: 16px;
+}
 #uploadingCampaignUpdateEditImage {
     color: #46b8da;
 	padding-top: 8px;
@@ -5317,7 +5318,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 .paypalVerification span {
-    margin-left: -5% !important;
+    margin-left: -5%;
 }
 
 .fa.fa-sm{
@@ -5377,6 +5378,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     ul.nav.navbar-nav.navbar-right.nav-create-button{
         margin-top: 0;
     }
+   
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
@@ -5765,9 +5767,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
     h1.india-font-slogan b{
         font-size: 15px !important;
-    }
-    #uploadingCampaignOrgIcon {
-        margin-left: -9px;
     }
     div.home-tile-mobile {
         padding-left: 14px;
@@ -6757,10 +6756,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 0px;
     }
     
-    .termsOfUseCheckboxOnCreatePage .col-md-8, .termsOfUseCheckboxOnCreatePage .col-sm-8 {
-        padding-left: 0px;
-        padding-right: 35px;
-    }
     #uploadingCampaignOrgIcon {
         font-size: 12px;
     }
@@ -7134,6 +7129,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+
     .col-transaction .bootstrap-select > .btn {
         width: 90px !important;
     }
@@ -8095,9 +8091,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .youtubeVideoIframe {
         width: 255%;
     }
-    .termsOfUseCheckboxOnCreatePage .col-md-offset-2 {
-        margin-left: 5.666667%;
-    }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -8385,6 +8378,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+    #uploadingCampaignOrgIcon{
+        padding-top: 20px;
+    }
+
     .col-transaction .bootstrap-select > .btn {
         width: 138px !important;
     }
@@ -12019,9 +12016,6 @@ textarea.textarea-embed-video {
 		float:left;
 		width:100%;
 	}
-    #uploadingCampaignOrgIcon {
-        margin-left: -9px;
-    }
 	div.ie-cr-perks {
         width: 270px !important;
     }

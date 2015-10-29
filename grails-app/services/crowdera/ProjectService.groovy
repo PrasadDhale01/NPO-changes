@@ -1061,7 +1061,9 @@ class ProjectService {
 		if(sorts == 'Ending-Soon'){
 			projects.each {
 				def day = getRemainingDay(it)
+                
 				if(day > 0 && day <10){
+                    println "\n"+day
 					p.add(it)
 				}
 			}
@@ -1975,7 +1977,7 @@ class ProjectService {
             return null
        }
         def day
-        if ((getProjectEndDate(project))>(Calendar.instance)) {
+        if ((getProjectEndDate(project)) > (Calendar.instance)) {
             day =(getProjectEndDate(project)-Calendar.instance)
         }
         else {

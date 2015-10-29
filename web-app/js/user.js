@@ -166,13 +166,13 @@ $(function() {
 	    } 
     });
     
-    $('#useravatar').hover(function() {
+    $('#userAvatarUploadIcon').hover(function() {
         $('.defaultprofileimage').show();
     });
-    $('#useravatar').mouseleave(function() {
+    $('#userAvatarUploadIcon').mouseleave(function() {
         $('.defaultprofileimage').hide();
     });
-    $('#useravatar').click(function(event) {
+    $('#userAvatarUploadIcon').click(function(event) {
         event.preventDefault();
         $("#avatar").click();
     });

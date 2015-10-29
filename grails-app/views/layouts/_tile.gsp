@@ -3,15 +3,8 @@
 <g:set var="projectService" bean="projectService"/>
 <%
     
-    def isFundingAchieved = contributionService.isFundingAchievedForProject(project)
     def percentage = contributionService.getPercentageContributionForProject(project)
-    def achievedDate
-    if (isFundingAchieved) {
-        achievedDate = contributionService.getFundingAchievedDate(project)
-    }
-    def endDate = projectService.getProjectEndDate(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
-    def isFundingOpen = projectService.isFundingOpen(project)
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
     def amount = projectService.getDataType(project.amount)
@@ -79,7 +72,7 @@
                     <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead">${amount}</span>
                 </span>
             </div>
-			<g:if test="${ended}">
+			         <g:if test="${ended}">
                 <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size campaign-tile-border">
                     <span class="days-alignment">DAYS<br>LEFT</span>
                 	<span class="tile-day-num">00</span>

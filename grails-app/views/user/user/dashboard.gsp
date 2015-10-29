@@ -35,22 +35,24 @@
                             <input class="hid-input-type-file hidden" type="file" name="profile" id="editavatar" accept="image/*"/>
                             <input type="submit" class="hidden buttons" value="Upload" id="editbutton"/>
                             <div class="clear"></div>
-                            <label class="docfile-orglogo-css image-margin-top" id="editProfileImg">Please select image file only.</label>
-                            <label class="docfile-orglogo-css image-margin-top" id="editProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
+                            <label class="docfile-orglogo-css" id="editProfileImg">Please select image file only.</label>
+                            <label class="docfile-orglogo-css" id="editProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
                         </g:uploadForm>
                     </g:if>
                     <g:else>
-                        <a id="useravatar">
-                            <img class="dummyprofileimage" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg">
-                            <div class="defaultprofileimage">
-                                <img src="https://s3.amazonaws.com/crowdera/assets/plus-icon-over.png" alt="avatar">
-                            </div>
-                        </a>
+                        <div id="userAvatarUploadIcon">
+				                        <a id="useravatar">
+				                            <img class="dummyprofileimage" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg">
+				                        </a>
+				                        <div class="defaultprofileimage">
+				                            <img class="plus-icon-over" src="https://s3.amazonaws.com/crowdera/assets/plus-icon-over.png" alt="avatar">
+				                        </div>
+                        </div>
                         <g:uploadForm controller="user" action="upload_avatar" id="${user.id}">
                             <input class="hid-input-type-file hidden" type="file" name="avatar" id="avatar" accept="image/*"/>
                             <input type="submit" class="hidden buttons" value="Upload" id="uploadbutton"/>
-                            <label class="docfile-orglogo-css image-margin-top" id="uploadProfileImg">Please select image file only.</label>
-                            <label class="docfile-orglogo-css image-margin-top" id="uploadProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
+                            <label class="docfile-orglogo-css" id="uploadProfileImg">Please select image file only.</label>
+                            <label class="docfile-orglogo-css" id="uploadProfilesize">The file you are attempting to upload is larger than the permitted size of 3MB.</label>
                         </g:uploadForm>
                     </g:else>
                     <div class="user-information-bio text-center">
@@ -62,10 +64,10 @@
                 </div>
                 
                 <div class="connectsection hidden-xs">
-                    <g:if test="${activeTab != 'myprojects' && activeTab != 'campaigns'}">
+                    <g:if test="${activeTab != 'myprojects' && activeTab != 'campaigns' && activeTab != 'account-settings'}">
                         <a href="/user/campaigns" class="campaigndashboardtab btn btn-primary btn-md hidden-xs">My Campaigns</a>
                     </g:if>
-                    <g:if test="${activeTab != 'myprojects' && activeTab != 'contributions'}">
+                    <g:if test="${activeTab != 'myprojects' && activeTab != 'contributions' && activeTab != 'account-settings'}">
                         <a href="/user/contributions" class="contributiondashboardtab btn btn-primary btn-md hidden-sm hidden-xs">Campaigns Supported</a>
                         <a href="/user/contributions" class="contributiondashboardtab btn btn-primary btn-md visible-sm">Campaigns<br>Supported</a>
                     </g:if>
@@ -153,8 +155,8 @@
                         <div id="userDashboardcampaigns">
                             <g:render template="user/myprojects" model="['dashboard': 'dashboard']"/>
                         </div>
-                        <g:if test="${projects.size() >= 1}">
-                            <a href="/user/campaigns" class="show-more-campaign-btn btn btn-primary btn-md visible-xs">Show More</a>
+                        <g:if test="${projects.size() > 2}">
+                            <a href="/user/campaigns" class="show-more-campaign-btn btn btn-primary btn-md">Show More</a>
                         </g:if>
                     </div>
                     <div class="col-desktop-padding-left col-lg-5 col-md-5 col-sm-6 col-xs-12 hidden-xs">
@@ -162,6 +164,9 @@
                         <div id="userDashboardcontributions">
                            <g:render template="/user/user/dashboardcontributiontile"></g:render>
                         </div>
+                        <g:if test="${contributions.size() > 2}">
+                            <a href="/user/contributions" class="show-more-campaign-btn btn btn-primary btn-md">Show More</a>
+                        </g:if>
                     </div>
                 </g:else>
             </div>

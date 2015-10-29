@@ -5382,6 +5382,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    .form-group-termsOfUse {
+        margin-left: -14px !important;
+    }
     ol.carousel-indicators-sm {
         left: 150px;
     }
@@ -10406,6 +10409,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }
 @media only screen and (max-width: 767px){
+
 #embedTilemodal .modal-dialog.modal-tile{
     margin-left: auto;
     margin-right: auto;
@@ -11019,7 +11023,10 @@ textarea.textarea-embed-video {
 
 }
 @media only screen and (max-width: 414px) {
-	.manage-tiles {
+    .form-group-termsOfUse {
+        margin-left: -12px !important;
+    }
+    .manage-tiles {
         width: 55% !important;
     }
     .manage-tiles-details {

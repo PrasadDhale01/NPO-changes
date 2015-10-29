@@ -1039,10 +1039,10 @@ class ProjectService {
 		return sortsOptions
 	}
 	
-	def isCampaignsorts(def sorts ,def currentEnv){
+	def isCampaignsorts(def sorts ,def currentEnv) {
 		List projects = getValidatedProjects(currentEnv)
 		List p = []
-		if(sorts == 'Most-Funded'){
+		if(sorts == 'Most-Funded') {
 			projects.each {
 				def percentage = contributionService.getPercentageContributionForProject(it)
 				if(percentage >= 100){
@@ -1050,7 +1050,7 @@ class ProjectService {
 				}
 			}
 		}
-		if(sorts == 'Latest'){
+		if(sorts == 'Latest') {
 			projects.each {project ->
 				boolean ended = isProjectDeadlineCrossed(project)
 				if(project.validated && ended ==false){
@@ -1058,12 +1058,11 @@ class ProjectService {
 				}
 			}
 		}
-		if(sorts == 'Ending-Soon'){
+		if(sorts == 'Ending-Soon') {
 			projects.each {
 				def day = getRemainingDay(it)
                 
 				if(day > 0 && day <10){
-                    println "\n"+day
 					p.add(it)
 				}
 			}
@@ -1978,10 +1977,10 @@ class ProjectService {
        }
         def day
         if ((getProjectEndDate(project)) > (Calendar.instance)) {
-            day =(getProjectEndDate(project)-Calendar.instance)
+            day =(getProjectEndDate(project) - Calendar.instance)
         }
         else {
-            day =(Calendar.instance-getProjectEndDate(project))
+            day = 0
         }
         return day
     }

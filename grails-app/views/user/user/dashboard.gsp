@@ -41,12 +41,12 @@
                     </g:if>
                     <g:else>
                         <div id="userAvatarUploadIcon">
-				                        <a id="useravatar">
-				                            <img class="dummyprofileimage" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg">
-				                        </a>
-				                        <div class="defaultprofileimage">
-				                            <img class="plus-icon-over" src="https://s3.amazonaws.com/crowdera/assets/plus-icon-over.png" alt="avatar">
-				                        </div>
+                            <a id="useravatar">
+                                <img class="dummyprofileimage" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg">
+                            </a>
+                            <div class="defaultprofileimage">
+                                <img class="plus-icon-over" src="https://s3.amazonaws.com/crowdera/assets/plus-icon-over.png" alt="avatar">
+                            </div>
                         </div>
                         <g:uploadForm controller="user" action="upload_avatar" id="${user.id}">
                             <input class="hid-input-type-file hidden" type="file" name="avatar" id="avatar" accept="image/*"/>

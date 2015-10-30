@@ -196,10 +196,10 @@
                         <div class="panel panel-default panel-create-size" id="videoBox">
                             <div class="form-group">
                                 <div class="col-md-10 col-xs-8 col-videoUrl-textbox">
-                                    <input class="form-control form-control-no-border text-color videoUrl" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
+                                    <input class="form-control form-control-no-border text-color videoUrl" id="videoUrlText" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
                                 </div>
                                 <div class="col-sm-2 col-xs-2 col-videoUrl-button">
-                                    <button type="button" class="btn btn-info btn-sm cr-btn-color add">Add</button>
+                                    <button type="button" class="btn btn-info btn-sm cr-btn-color add" id="addVideoButton">Add</button>
                                 </div>
                             </div>
                         </div>
@@ -256,7 +256,7 @@
                             </div>
                             <div class="clear"></div>
                             <div class="col-md-12">
-                                <div id="uploadingCampaignImage">Uploading Picture......</div>
+                                <div id="uploadingCampaignImage">Uploading Image......</div>
                                 <div class="imageNumValidation">You cannot upload more than 5 images</div>
                                 <label class="docfile-orglogo-css imgmsg">Please select image file.</label>
                                 <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID"></label>
@@ -418,7 +418,7 @@
                                     </g:else>
                                     </div>
                                     <div class="clear"></div>
-                                    <div class="text-center" id="uploadingCampaignOrgIcon">Uploading Organization Icon....</div>
+                                    <div id="uploadingCampaignOrgIcon" class="uploadingPicture">Uploading Picture....</div>
                                     <script>
                                     function deleteOrganizationLogo(current, projectId) {
                                        
@@ -925,16 +925,16 @@
                         <div class="modal-content">
                             <div class="modal-header video-modal">
                                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                <h3 class="modal-title text-center"><b>Upload Video</b></h3>
+                                <h3 class="modal-title text-center"><b>Edit Video</b></h3>
                             </div>
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="form-group col-xs-text-box-with-button">
                                     <div class="col-sm-10 col-xs-9 col-xs-textbox">
-                                        <input class="form-control form-control-no-border text-color videoUrl " name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
+                                        <input class="form-control form-control-no-border text-color videoUrl" id="videoUrlTextModal" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
                                     </div>
                                     <div class="col-sm-2 col-xs-2 col-xs-button">
-                                        <button class="btn btn-info btn-sm cr-btn-color add btn-center" type="button">Add</button>
+                                        <button class="btn btn-info btn-sm cr-btn-color btn-center add" id="addVideoFromModal" type="button">Add</button>
                                     <div>
                                     </div>
                                 </div>

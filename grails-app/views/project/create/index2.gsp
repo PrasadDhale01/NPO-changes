@@ -98,10 +98,10 @@
                 <div class="panel panel-default panel-create-size" id="videoBox">
                     <div class="form-group">
                         <div class="col-md-10 col-xs-8 col-videoUrl-textbox">
-                            <input class="form-control form-control-no-border text-color videoUrl" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
+                            <input class="form-control form-control-no-border text-color videoUrl" id="videoUrlText" name="${FORMCONSTANTS.VIDEO}" placeholder="Video URL">
                         </div>
                         <div class="col-sm-2 col-xs-2 col-videoUrl-button">
-                            <button type="button" class="btn btn-info btn-sm cr-btn-color add">Add</button>
+                            <button type="button" class="btn btn-info btn-sm cr-btn-color add" id="addVideoButton">Add</button>
                         </div>
                     </div>
                 </div>
@@ -136,7 +136,7 @@
                             </div>
                             <div class="clear"></div>
                             <div class="col-md-12">
-                                <div id="uploadingCampaignImage">Uploading Picture......</div>
+                                <div id="uploadingCampaignImage">Uploading Image......</div>
                                 <div class="imageNumValidation">You cannot upload more than 5 images</div>
                                 <label class="docfile-orglogo-css imgmsg">Please select image file.</label>
                                 <label class="docfile-orglogo-css campaignfilesize" id="campaignFilesizeID"></label>
@@ -299,7 +299,7 @@
                                 </g:else>
                                 <div class="clear"></div>
                                 <div class="col-sm-12">
-                                    <div id="uploadingCampaignOrgIcon">Uploading Organization Icon....</div>
+                                    <div id="uploadingCampaignOrgIcon">Uploading Picture....</div>
                                 </div>
                             </div>
                         </div>
@@ -738,15 +738,15 @@
                 </g:else>
                 
                 <div class="col-sm-12 cr-paddingspace termsOfUseCheckboxOnCreatePage" id="launch">
-                    <div class="col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-8">
-                        <div class="form-group">
+                    <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
+                        <div class="form-group form-group-termsOfUse">
                             <input type="checkbox" name="checkBox" id="agreetoTermsandUse" <g:if test="${project.touAccepted}">checked="checked"</g:if>>  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
                         </div>
                     </div>
                     <div class="clear"></div>
                     <div class="col-sm-6 text-center">
-                        <button type="submit" class="cr-bg-preview-btn cr-btn-alignment-pre cr-btn-margin createsubmitbutton hidden-xs" id="previewButton"  name="button"></button>
-                        <button class="cr-bg-xs-preview-btn cr-xs-mobile createsubmitbutton visible-xs" id="previewButtonXS" type="submit" name="button"></button>
+                        <button type="button" class="cr-bg-preview-btn cr-btn-alignment-pre cr-btn-margin createsubmitbutton hidden-xs" id="previewButton"  name="button"></button>
+                        <button class="cr-bg-xs-preview-btn cr-xs-mobile createsubmitbutton visible-xs" id="previewButtonXS" type="button" name="button"></button>
                     </div>
                     <g:hiddenField name="isSubmitButton" value="true" id="isSubmitButton"></g:hiddenField>
 
@@ -763,16 +763,16 @@
                     <div class="modal-content">
                         <div class="modal-header video-modal">
                             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                            <h3 class="modal-title text-center"><b>Upload Video</b></h3>
+                            <h3 class="modal-title text-center"><b>Edit Video</b></h3>
                         </div>
                         <div class="modal-body">
                             <div class="row">
                                 <div class="form-group col-xs-text-box-with-button">
                                     <div class="col-sm-10 col-xs-9 col-xs-textbox">
-                                        <input class="form-control form-control-no-border text-color videoUrl" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
+                                        <input class="form-control form-control-no-border text-color videoUrl" id="videoUrlTextModal" name="${FORMCONSTANTS.VIDEO}" value="${project.videoUrl}" placeholder="Video URL">
                                     </div>
                                     <div class="col-sm-2 col-xs-2 col-xs-button">
-                                        <button type="button" class="btn btn-info btn-sm cr-btn-color add btn-center">Add</button>
+                                        <button type="button" class="btn btn-info btn-sm cr-btn-color add btn-center" id="addVideoFromModal">Add</button>
                                     <div>
                                 </div>
                             </div>

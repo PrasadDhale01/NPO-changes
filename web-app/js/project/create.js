@@ -819,61 +819,61 @@ $(function() {
         var match = (url.match(youtube) || url.match(vimeo));
         if (validator.element("#videoUrlTextModal")){
         	$('#addVideo').modal('hide');
-        if (match && match[2].length == 11) {
-            $('#ytVideo').show();
-            $('#media').hide();
-            $('#media-video').show();
-            $('#addvideoUrl').val(url);
-            var vurl=url.replace("watch?v=", "embed/");
-            autoSave('videoUrl', vurl);
-            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
-        } else if (match && match[2].length == 9) {
-        	$('#ytVideo').show();
-            $('#media').hide();
-            $('#media-video').show();
-            autoSave('videoUrl', url);
-            $('#addvideoUrl').val(url);
-            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
-        } else if($(this)) {
-        	if(!$('#addvideoUrl').val()) {
-                $('#ytVideo').hide();
-                $('#media').show();
-                $('#media-video').hide();
-        	}
-        }
+            if (match && match[2].length == 11) {
+                $('#ytVideo').show();
+                $('#media').hide();
+                $('#media-video').show();
+                $('#addvideoUrl').val(url);
+                var vurl=url.replace("watch?v=", "embed/");
+                autoSave('videoUrl', vurl);
+                $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
+            } else if (match && match[2].length == 9) {
+                $('#ytVideo').show();
+                $('#media').hide();
+                $('#media-video').show();
+                autoSave('videoUrl', url);
+                $('#addvideoUrl').val(url);
+                $('#ytVideo').html('<iframe class="youtubeVideoIframe" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
+            } else if($(this)) {
+                if(!$('#addvideoUrl').val()) {
+                    $('#ytVideo').hide();
+                    $('#media').show();
+                    $('#media-video').hide();
+	            }
+            }
         }
     });
 
-	$('#addVideoButton').on('click',function(){
-		var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    $('#addVideoButton').on('click',function(){
+        var youtube = /^https?:\/\/.*(youtube\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
         var vimeo = /https?:\/\/(www\.)?vimeo.com\/(\d+)($|\/)/;
         var url= $('#videoUrlText').val().trim();
         var match = (url.match(youtube) || url.match(vimeo));
         if (validator.element("#videoUrlText")){
-        if (match && match[2].length == 11) {
-            $('#ytVideo').show();
-            $('#media').hide();
-            $('#media-video').show();
-            var vurl=url.replace("watch?v=", "embed/");
-            $('#addvideoUrl').val(vurl);
-            $('#videoUrlTextModal').val(vurl);
-            autoSave('videoUrl', vurl);
-            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
-        } else if (match && match[2].length == 9) {
-        	$('#ytVideo').show();
-            $('#media').hide();
-            $('#media-video').show();
-            autoSave('videoUrl', url);
-            $('#addvideoUrl').val(url);
-            $('#videoUrlTextModal').val(url);
-            $('#ytVideo').html('<iframe class="youtubeVideoIframe" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
-        } else if($(this)) {
-        	if(!$('#addvideoUrl').val()) {
-                $('#ytVideo').hide();
-                $('#media').show();
-                $('#media-video').hide();
-        	}
-        }
+            if (match && match[2].length == 11) {
+                $('#ytVideo').show();
+                $('#media').hide();
+                $('#media-video').show();
+                var vurl=url.replace("watch?v=", "embed/");
+                $('#addvideoUrl').val(vurl);
+                $('#videoUrlTextModal').val(vurl);
+                autoSave('videoUrl', vurl);
+                $('#ytVideo').html('<iframe class="youtubeVideoIframe" src='+ vurl +'?wmode=transparent></iframe>');
+            } else if (match && match[2].length == 9) {
+                $('#ytVideo').show();
+                $('#media').hide();
+                $('#media-video').show();
+                autoSave('videoUrl', url);
+                $('#addvideoUrl').val(url);
+                $('#videoUrlTextModal').val(url);
+                $('#ytVideo').html('<iframe class="youtubeVideoIframe" src= https://player.vimeo.com/video/'+ match[2] +'></iframe>');
+            } else if($(this)) {
+                if(!$('#addvideoUrl').val()) {
+                    $('#ytVideo').hide();
+                    $('#media').show();
+                    $('#media-video').hide();
+                }
+            }
         }
     });
 

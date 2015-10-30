@@ -1898,7 +1898,6 @@ $(function() {
     }
      
      $('#previewButton, #previewButtonXS').on('click', function(event){  // capture the click
-      	event.preventDefault();
       	$('#isSubmitButton').val(false);
        	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"]').each(function () {
              $(this).rules('remove');

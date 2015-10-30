@@ -745,8 +745,8 @@
                     </div>
                     <div class="clear"></div>
                     <div class="col-sm-6 text-center">
-                        <button type="submit" class="cr-bg-preview-btn cr-btn-alignment-pre cr-btn-margin createsubmitbutton hidden-xs" id="previewButton"  name="button"></button>
-                        <button class="cr-bg-xs-preview-btn cr-xs-mobile createsubmitbutton visible-xs" id="previewButtonXS" type="submit" name="button"></button>
+                        <button type="button" class="cr-bg-preview-btn cr-btn-alignment-pre cr-btn-margin createsubmitbutton hidden-xs" id="previewButton"  name="button"></button>
+                        <button class="cr-bg-xs-preview-btn cr-xs-mobile createsubmitbutton visible-xs" id="previewButtonXS" type="button" name="button"></button>
                     </div>
                     <g:hiddenField name="isSubmitButton" value="true" id="isSubmitButton"></g:hiddenField>
 

@@ -6905,6 +6905,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    .form-group-termsOfUse {
+        padding-left: 48px;
+    }
     div.home-campaign-tile-container{
         margin-left: 18px;
     }

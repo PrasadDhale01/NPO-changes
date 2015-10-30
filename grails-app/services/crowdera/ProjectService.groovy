@@ -155,15 +155,7 @@ class ProjectService {
 		def vanitytitle
         User currentUser = userService.getCurrentUser()
         def fullName = currentUser.firstName + ' ' + currentUser.lastName
-
-        if (params.videoUrl) {
-            if (params.videoUrl.contains('embed')){
-                project.videoUrl = params.videoUrl
-            } else {
-                getYoutubeUrlChanged(params.videoUrl, project)
-            }
-        }
-
+        def currentEnv = Environment.current.getName()
         project.story = params.story
         if (project.draft) {
             project.paypalEmail = params.paypalEmail
@@ -2898,8 +2890,16 @@ class ProjectService {
 
             case 'videoUrl':
                 project.videoUrl = (varValue.isAllWhitespace()) ? null : varValue;
-                isValueChanged = true;
-                break;
+                if (project.videoUrl){
+                    if (project.videoUrl.contains('embed')) {
+                        isValueChanged = true;
+                        break;
+                    } else {
+                        getYoutubeUrlChanged(project.videoUrl, project)
+                        isValueChanged = true;
+                        break;
+                    }
+                }
 
             case 'email1':
                 getFirstAdminForProjects(varValue, project, user)

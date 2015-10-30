@@ -5246,7 +5246,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     color: #01bbd2 !important;
     font-weight: 500;
     font-size: 14px;
-    font-family: Futura Bk BT book;
+    font-family: Verdana;
 }
 .campaignFundRaiser {
 	margin-bottom: 10px;
@@ -6598,6 +6598,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 @media only screen and (max-width: 768px) {
     .perk-padding {
         padding-top: 7%;
+    }
+    .show-more-campaign-btn.btn-primary {
+        margin-left: -18px;
     }
     
     ul.nav-icon-bar {
@@ -8745,7 +8748,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding: 8px 25px;
     }
     .TW-org-panel-height{
-        margin-bottom: 57px;
+        margin-bottom: 0px;
     }
 	   i.sh-fb-icons{
         font-size: 20px;

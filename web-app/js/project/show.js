@@ -842,26 +842,24 @@
    		success: function(location) {
    			// If the visitor is browsing from India.
    			if (location.country_code == 'IN' && currentEnv == 'test') {
-   			// Tell him about the India store.
-   					$('.info-banner').css('display','block');
-   					$('.banner-link').text('test.crowdera.in');
-   					$('.banner-link').attr('href','http://test.crowdera.in');
-   					$('.home-header-section').addClass('banner-nav');
+				$('.info-banner').css('display','block');
+				$('.banner-link').text('test.crowdera.in');
+				$('.banner-link').attr('href','http://test.crowdera.in');
    			} else if(location.country_code == 'IN' && currentEnv == 'staging'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('staging.crowdera.in');
    				$('.banner-link').attr('href','http://staging.crowdera.in');
-   				$('.home-header-section').addClass('banner-nav');
    			} else if(location.country_code == 'IN' && currentEnv == 'production'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://crowdera.in');
-   				$('.home-header-section').addClass('banner-nav');
    			} else if(location.country_code == 'IN' && currentEnv == 'development'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://localhost:8080');
-   				$('.home-header-section').addClass('banner-nav');
+   				if($(window).width() < 768){
+   					$('#preview-banner').css('margin-top','-33px');
+   				}
    			}
    		}
    	});

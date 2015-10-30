@@ -10,7 +10,7 @@ body {
 }
 
 .feduoutercontent {
-    margin-top: 59px;
+    margin-top: 48px;
 }
 h1.headingtext.how-it-works-title {
 	color: #005f84;
@@ -128,11 +128,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-brand {
-    height: 60px;
+    height: 50px;
 }
 .navbar-brand >img {
-	height: 48px;
+	height: 39px;
 	margin-top: 0px;
+}
+.scrollHeaderLogo > img{
+	height:40px;	
 }
 
 .navbar-nav > li {
@@ -156,13 +159,16 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-nav {
-    margin-top: 10px;
+    margin-top: 3px;
 }
 .navbar-brand {
-    padding: 7px 15px !important;
+    padding: 5px 15px !important;
+}
+.nav.navbar-nav.navbar-right {
+    margin-right: -1px;
 }
 .navbar-right {
-    margin-top: 15px;
+    margin-top: 8px;
 }
 
 .navbar-right-logged-in {
@@ -171,9 +177,8 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
 }
 
 .navbar-default {
-    background-color: #fff;
-/*     height: 70px; */
-    border-bottom: solid #01bbd2 2px;
+    background-color: #d3d3d3;
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
@@ -379,7 +384,8 @@ a:hover, .navbar-default .navbar-nav > .active > a:focus {
     background-color: #fff
 }
 .scrollHeaderMenu > a:hover, .scrollHeaderMenu > a:focus {
-    background-color: #01bbd2 !important;
+    background-color: #006083 !important;
+    color:#fff;
 }
 .scrollHeaderMenu > a{
 	color:#fff !important;
@@ -916,7 +922,7 @@ div.abt-imgs .thumbnail img {
 }
 
 /* add padding  */
-.left-addon input {
+.left-addon input#search-bar {
     padding-left: 30px;
 }
 
@@ -1290,9 +1296,7 @@ footer .footerbottomsection {
 
 .navbar-default .dropdown-menu {
     background-color: #FDFCFB !important;
-    border-style: solid;
-    border-color: #01bbd2 !important;
-    border-width: 1px;
+    border:none;
 }
 
 .navbar-default .dropdown-menu > li > a, .navbar-default .dropdown-menu > li > a:focus {
@@ -2595,8 +2599,8 @@ a.footerlink {
 /*     color: #0F0101; */
 }
 li.home-dropdown a:hover{
-    background-color: #006083 !important;
-    color: #ffffff !important;
+    background-color: #fff !important;
+    color: #0000 !important;
 }
 ul.dropdown-menu.usr.user-dropdown.dropdown-menu-head.user-selected-drop a:hover {
 	background: #f8f8f8 !important;
@@ -2617,12 +2621,8 @@ ul.dropdown-menu.admin.admin-dropdown.dropdown-menu-head.admin-selected-drop a:h
 /* .user-img:hover span{ */
 /* 	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-User-White.png') no-repeat !important; */
 /* } */
-
-.user-img span.user-cl{
-	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-Black.png') no-repeat;
-}
-.user-img:hover span.user-cl {
-	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-arrow-White.png') no-repeat;
+i.user-cl-caret{
+	top:3px;
 }
 .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open span{
 /* 	background: url('https://s3.amazonaws.com/crowdera/assets/dropdown-User-White.png') no-repeat !important; */
@@ -2633,8 +2633,14 @@ ul.dropdown-menu.admin.admin-dropdown.dropdown-menu-head.admin-selected-drop a:h
 }
 
 .user-img-header {
-	width: 41px;
-	height: 41px;
+	width: 28px;
+	height: 28px;
+	border-radius: 40px;
+}
+
+.user-img-scrollheader {
+	width: 25px;
+	height: 25px;
 	border-radius: 40px;
 }
 
@@ -2679,7 +2685,7 @@ ul.dropdown-menu.admin.admin-dropdown.dropdown-menu-head.admin-selected-drop a:h
     width: 100%;
 }
 li.dropdown.dropdown-head{
-	width: 102%;
+	width: 110%;
 }
 ul.dropdown-menu.admin.admin-dropdown{
 	width: 100%;
@@ -3044,7 +3050,34 @@ ul.menu{
 } 
 .pie, .c100 .bar.showprogressBar, .c100.p51 .fill.showprogressBar, .c100.p52 .fill.showprogressBar, .c100.p53 .fill.showprogressBar, .c100.p54 .fill.showprogressBar, .c100.p55 .fill.showprogressBar, .c100.p56 .fill.showprogressBar, .c100.p57 .fill.showprogressBar, .c100.p58 .fill.showprogressBar, .c100.p59 .fill.showprogressBar, .c100.p60 .fill.showprogressBar, .c100.p61 .fill.showprogressBar, .c100.p62 .fill.showprogressBar, .c100.p63 .fill.showprogressBar, .c100.p64 .fill.showprogressBar, .c100.p65 .fill.showprogressBar, .c100.p66 .fill.showprogressBar, .c100.p67 .fill.showprogressBar, .c100.p68 .fill.showprogressBar, .c100.p69 .fill.showprogressBar, .c100.p70 .fill.showprogressBar, .c100.p71 .fill.showprogressBar, .c100.p72 .fill.showprogressBar, .c100.p73 .fill.showprogressBar, .c100.p74 .fill.showprogressBar, .c100.p75 .fill.showprogressBar, .c100.p76 .fill.showprogressBar, .c100.p77 .fill.showprogressBar, .c100.p78 .fill.showprogressBar, .c100.p79 .fill.showprogressBar, .c100.p80 .fill.showprogressBar, .c100.p81 .fill.showprogressBar, .c100.p82 .fill.showprogressBar, .c100.p83 .fill.showprogressBar, .c100.p84 .fill.showprogressBar, .c100.p85 .fill.showprogressBar, .c100.p86 .fill.showprogressBar, .c100.p87 .fill.showprogressBar, .c100.p88 .fill.showprogressBar, .c100.p89 .fill.showprogressBar, .c100.p90 .fill.showprogressBar, .c100.p91 .fill.showprogressBar, .c100.p92 .fill.showprogressBar, .c100.p93 .fill.showprogressBar, .c100.p94 .fill.showprogressBar, .c100.p95 .fill.showprogressBar, .c100.p96 .fill.showprogressBar, .c100.p97 .fill.showprogressBar, .c100.p98 .fill.showprogressBar, .c100.p99 .fill.showprogressBar, .c100.p100 .fill.showprogressBar {
     border: 0.16em solid #f6bf0b !important;
-} 
+}
+.home-campaign-tile .c100:after {
+    position: absolute;
+    top: 0.16em;
+    left: 0.16em;
+    display: block;
+    content: " ";
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    background-color: whitesmoke;
+    width: 0.68em;
+    height: 0.68em;
+    -webkit-transition-property: all;
+    -moz-transition-property: all;
+    -o-transition-property: all;
+    transition-property: all;
+    -webkit-transition-duration: 0.2s;
+    -moz-transition-duration: 0.2s;
+    -o-transition-duration: 0.2s;
+    transition-duration: 0.2s;
+   -webkit-transition-timing-function: ease-in;
+   -moz-transition-timing-function: ease-in;
+   -o-transition-timing-function: ease-in;
+    transition-timing-function: ease-in;
+}
 .thomas-owens-testimonial-div{
 	padding-left:45px;
 }
@@ -3500,15 +3533,19 @@ header {
 }
 header.cr-tabs-link {
 	color: #01bbd3;
-	height:85px;;
-	padding-bottom: 20px;
-	padding-top: 20px;
-	padding-left: 300px;
+	height:60px;;
+	padding-bottom: 10px;
+	padding-top: 10px;
+	padding-left: 250px;
 	padding-right: 300px;
 	position:fixed;
-	top:50px;
-	font-size: 20px;
+	top:45px;
+	font-size: 15px;
 	z-index:500;
+}
+.search-barr{
+	margin-left:30px;
+	padding-right:5px;
 }
 .cr-ancher-tab a{
   color: #ffffff;
@@ -3928,7 +3965,6 @@ label.text-color {
 .cr-start-flex{
 	display:flex;
 	margin-bottom: 15px;
-    margin-top: 25px;
 }
 .cr-start-size {
     background-color: #01bbd2;
@@ -4174,8 +4210,8 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
     margin-right: 0 !important;
 }
 .cr-subheader-icons{
-	height:22px !important;
-	margin-bottom:10px;
+	height:20px !important;
+	margin-bottom:4px;
 }
 #start{
 	padding-top:25px;
@@ -4239,6 +4275,7 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 	margin-bottom:40px;
 }
 a.hm-back-width{
+	font-family:verdana;
 	width: 95px;
 }
 .backToCreatePage.col-lg-2, .backToCreatePage.col-md-2 , .backToCreatePage.col-sm-2 {
@@ -4253,7 +4290,7 @@ li.learn {
     padding: 5px;
     text-align: center;
     width: 100%;
-    margin-top: -11px;
+    margin-top: -2px;
 }
 
 .preview-banner-margin{
@@ -4262,7 +4299,7 @@ li.learn {
     padding: 14px;
     text-align: center;
     width: 100%;
-    margin-top: -41px;
+    margin-top:-33px;
 }
 .cr-first-giving{
     padding-left: 190px;	
@@ -4767,7 +4804,7 @@ a.customer-support-a {
 .search-icon-header img {
 	cursor: pointer;
     position: absolute;
-    padding-left: 5px;
+    padding-left: 1px;
     padding-top: 7px;
     display: inline-block;
 }
@@ -5376,12 +5413,211 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 @media only screen and (min-width: 768px){
     ul.nav.navbar-nav.navbar-right.nav-create-button{
-        margin-top: 0;
+        margin-top: 3px;
     }
    
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.navbar-toggle.TW-scrollHeader-hamBurger .icon-bar {
+	   background-color: #000 !important;
+	}
+	.navbar-toggle.collapsed.TW-scrollHeader-hamBurger .icon-bar {
+	   background-color: #000000;
+	}
+	.mobile-fixedHeader .TW-scrollHeaderBackColor {
+	   background-color: #006083;
+	   height: 118px !important;
+	}
+	.mobile-fixedHeader .TW-mobile-fixedHeaderBackColor {
+	   background-color: #006083;
+	   height: 120px !important;
+	}
+	.scrollHeader .TW-scrollHeaderBackColor {
+	   background-color: #fff !important;
+	   height: 45px !important;
+	}
+	.mobile-fixedHeader {
+	   height: 120px;
+	}
+	.searchengine{
+	   margin-top: 6px;
+	}
+	.mobile-fixed-header-text{
+	   color: white;
+	   font-size: 15px;
+	   font-weight: 500; 
+	   bottom: -44px; 
+	   width: 100%;
+	   z-index: 1;
+	   position: absolute;
+	}
+	.navbar-default .navbar-toggle .icon-bar {
+	  background-color: #fff;
+	}
+	.trigger-mob {
+	   float: right;
+	   position: absolute;
+	   right: 10px;
+	}
+	.search-barr {
+	   margin-left: 0px !important; 
+	   padding-right: 5px;
+	}
+	.scrollHeader {
+	   display: none;
+	   height: 40px;
+	   margin-bottom: 21px;
+	}
+	.header-container.TW-scrollHeaderBackColor {
+	   background-color: #006083;
+	   height:45px;
+	}
+	.navbar-brand.scrollHeaderLogo {
+		margin-top: -6px;
+	}
+	.mobile-scrollCrwdLogo {
+	   height: 49px !important;
+	   width: 120px;
+	}
+	.logo-text {
+	   font-size: 20px;
+	   font-weight: 600;
+	}
+	.navbar-collapse.collapse.in {
+	   opacity: 0.75;
+	   width: 100% !important;
+	}
+	.navbar-collapse.collapse{
+	   opacity: 0.65;
+	   filter:alpha(opacity=60%);
+	   width: 100% !important;
+	}
+	.scrollHeaderMenu li {
+	   border-bottom: 2px solid white;
+	   color: white;
+	   font-size: 18px;
+	   font-weight: bold;
+	   line-height: 42px;
+	}
+	.scrollHeaderMenu li a {
+	   color: white;
+	   font-size: 22px;
+	   font-weight: bold;
+	   text-decoration:none;
+	}
+	.scrollHeaderMenu > ul {
+	   list-style: outside none none;
+	   padding-left: 0;
+	}
+	.navbar-collapse.collapse.in {
+	   border-color: rgb(0, 140, 186);
+	   border-style: solid;
+	   border-width: 2px;
+	   float: left;
+	   margin-top:-15px;
+	   width:100%;
+	}
+	.navbar-collapse {
+        float: left !important;
+    }
+	.navbar-toggle {
+	   background-color: transparent;
+	   background-image: none;
+	   border: 1px solid transparent;
+	   border-radius: 0;
+	   float: left;
+	   margin-bottom: 5.5px;
+	   margin-right: 15px;
+	   margin-top: 5.5px;
+	   padding: 9px 10px;
+	   position: relative;
+	}
+	.TW-ebook-header.TW-fixed-header {
+	   background-color: #ffffff;
+	   display: block;
+	   position: fixed;
+	   top: 45px !important;
+	   z-index: 1;
+	}
+	.TW-ebook-footer {
+        bottom: 0 !important;
+        display: inline-flex;
+        left: 0;
+        margin-bottom: 10px;
+        position: absolute !important;
+        right: 0;
+	}
+	.TW-postcampaign-img {
+	   height: 130px !important;
+	   margin-right: 30px;
+	   width: 341px;
+	}
+	.ebook-container{
+	    display:block;
+	    margin-left:auto;
+	    margin-right:auto;
+	    width:275px !important;
+	}
+	.TW-ebook-content {
+	   margin-top: 40px;
+	}
+	.TW-ebook-page-borders {
+	   background-color: #fff;
+	   border: 5px solid #f6bf08;
+	   border-radius: 3px;
+	   height: 768px;
+	   margin-bottom: 68px;
+	   width: 100%;
+	}
+	.TW-postcmpgn-section1 > h3 {
+	   font-family: "open sans";
+	   font-size: 13px !important;
+	   font-weight: 600;
+	   margin-bottom: 0;
+	}
+	.TW-postcampaign-inner-ul li {
+	   font-size: 10px !important;
+	   line-height: 16px !important;
+	   margin-bottom: 15px !important;
+	   text-align: justify;
+	}
+	.TW-postcampaign-ul {
+		padding: 15px !important;
+		text-align: justify;
+	}
+	.TW-postcampaign-inner-ul {
+	   padding-left: 10px !important;
+	}
+	.TW-postcampaign-ul > li {
+	   color: #4c4c4c;
+	   font-size: 10px !important;
+	   line-height: 18px !important;
+	   margin-bottom: 15px !important;
+	}
+	.TW-ebook-h3Decoration {
+	   font-family: "open sans";
+	   font-size: 13px !important;
+	   font-weight: 600;
+	   margin-bottom: 20px;
+	}
+	.TW-ebooklaunch-img {
+	   height: 150px !important;
+	   margin-right: 19px !important;
+	   width: 83px !important;
+	}
+	.TW-ebook-ul {
+	   float: left;
+	   padding: 5px 15px 10px !important;
+	   text-align: justify;
+	}
+	.TW-ebook-ul li {
+	   color: #4c4c4c;
+	   font-size: 10px !important;
+	   line-height: 16px !important;
+	   margin-bottom: 15px !important;
+	   padding-left: 20px;
+	}
     .form-group-termsOfUse {
         margin-left: -14px !important;
     }
@@ -5863,7 +6099,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		font-size:13px;
 	}
     .left-addon input {
-        padding-left: 34px !important;
+        padding-left: 5px;
     }
     li.perks-grid {
         width: 50%;
@@ -6708,11 +6944,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .dropdown-menu.usr > li > a {
         padding: 7px 28px !important;
-        width:192px;
+        width:100%px;
     }
     .dropdown-menu.admin > li > a {
         padding: 7px 16px !important;
-        width:192px;
+        width:100%;
     }
     .navbar-collapse.in {
         height: 275px !important;
@@ -6908,6 +7144,19 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	.TW-header-helpTxtLogged {
+	   color: #fff !important;
+	   font-size: 20px !important;
+	   font-weight: 600;
+	   margin-bottom: 2px;
+	   margin-top: 5px !important;
+	}
+	.ebook-container {
+	   display: block;
+	   margin-left: auto;
+	   margin-right: auto;
+	   width: 80% !important;
+	}
     .form-group-termsOfUse {
         padding-left: 48px;
     }
@@ -7119,12 +7368,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     header.cr-tabs-link {
 	    padding-left: 44px !important; 
 	    padding-right: 42px !important; 
-	    font-size: 18px !important;
+	    font-size: 15px !important;
     }
 }
 @media only screen and (min-width:831px) and (max-width: 900px){
 	header.cr-tabs-link {
-        font-size: 18px !important;
+        font-size: 15px !important;
         padding-left: 65px !important;
         padding-right: 76px !important;
     }
@@ -7138,6 +7387,109 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.feduoutercontent {
+	   margin-top: 48px !important;
+	}
+	.TW-scrollHeaderBackColor .navbar-header {
+		background-color:#fff;
+		height: 50px;
+	}
+	.TW-header-helpLink {
+	   height: 35px !important;
+	   margin-bottom: 0;
+	   margin-top: 4px !important;
+	   padding-bottom: 0;
+	   padding-top: 0;
+	}
+	.TW-header-helpTxt {
+	   margin-bottom: 2px !important;
+	   margin-top: 2px !important;
+	}	
+	.header-section .nav > li > a {
+	   font-size:13px;
+	}
+	.user-cl-scrollHeader{
+	   padding-top:3px;
+	}
+	.user-cl{
+	   padding-top:3px;
+	}
+	.navbar-brand {
+	   height: 40px;
+	}
+	.navbar-header {
+		background-color:#fff;
+		height: 50px;
+	}
+	.TW-ebook-header.TW-fixed-header {
+	   background-color: #ffffff;
+	   display: block;
+	   position: fixed;
+	   top: 45px !important;
+	   z-index: 1;
+	}
+	.TW-ebook-footer {
+	   bottom: 0 !important;
+	   display: inline-flex;
+	   left: 0;
+	   margin-bottom: 10px;
+	   position: absolute !important;
+	   right: 0;
+	}
+	.TW-projectDesc-img img{
+		height:170px !important;
+	}
+	.TW-postcampaign-img {
+	   height: 145px !important;
+	   margin-right: 30px;
+	   width: 290px !important;
+	}
+	.TW-ebooklaunch-img {
+	   height: 190px !important;
+	   margin-right: 30px;
+	   width: 195px !important;
+	}
+	.TW-postcampaign-inner-ul li {
+	   font-size: 13px !important;
+	   line-height: 20px !important;
+	   margin-bottom: 12px !important;
+	   text-align: justify;
+	}
+	.TW-ebook-ul li {
+	   color: #4c4c4c;
+	   font-size: 13px !important;
+	   line-height: 20px !important;
+	   margin-bottom: 10px !important;
+	   padding-left: 20px;
+	}
+	.TW-postcampaign-ul > li {
+	   color: #4c4c4c;
+	   font-size: 13px !important;
+	   line-height: 20px !important;
+	   margin-bottom: 15px !important;
+	}
+	.TW-ebook-content{
+		margin-top:30px;
+	}
+	.TW-Prelaunch-img {
+	   height: 239px;
+	   margin-bottom: 15px;
+	   padding: 0 !important;
+	   width: 100%;
+	}
+	.TW-ebook-ul {
+	   float: left;
+	   padding: 12px 23px 10px !important;
+	   text-align: left;
+	}
+	.TW-ebook-page-borders {
+	   background-color: #fff;
+	   border: 5px solid #f6bf08;
+	   border-radius: 3px;
+	   height: 745px;
+	   margin-bottom: 68px;
+	   width: 100%;
+	}
 
     .col-transaction .bootstrap-select > .btn {
         width: 90px !important;
@@ -7424,11 +7776,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 88px;
     }
     li.discover{
+    	margin-left:5px;
         width: 55px;      
     }
     li.learn{
         width: 40px;
-        left: 17px;
+        left: 30px;
         top: -0.1px !important; 
     }
     div.cr-tablet-space{
@@ -8387,10 +8740,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	.feduoutercontent {
+	   margin-top: 120px;
+	}
     #uploadingCampaignOrgIcon{
         padding-top: 20px;
     }
-
     .col-transaction .bootstrap-select > .btn {
         width: 138px !important;
     }
@@ -8615,12 +8970,32 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
     header.cr-tabs-link {
         color: #01bbd3;
-        font-size: 22px;
-        padding: 20px 255px !important;
+        font-size: 15px;
+        padding: 14px 255px !important;
     }
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
+	.feduoutercontent {
+	   margin-top: 48px !important;
+	}
+	.user-cl-scrollHeader{
+	   padding-top:2px;
+	}
+	.user-cl{
+	   padding-top:2px;
+	}
+	.navbar-header {
+	   background-color:#fff;
+	   height: 50px;
+	}
+	.TW-scrollHeaderBackColor .navbar-header {
+	   background-color:#fff;
+	   height: 50px;
+	}
+	.header-container.TW-scrollHeaderBackColor {
+	   height: 43px;
+	}
 	.TW-discover-pg-tile-width .show-tile-text-size {
            font-size: 10px;
            line-height: 5px;
@@ -8703,6 +9078,19 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 @media only screen and (min-width: 1921px) and (max-width: 2560px){
+	.TW-scrollHeaderBackColor .navbar-header {
+	   background-color:#fff;
+	   height: 50px;
+	}
+	.discover.scrollHeaderMenu {
+	   margin-left: 5px;
+	}
+	.user-cl-scrollHeader{
+	   padding-top:3px;
+	}
+	.user-cl{
+	   padding-top:3px;
+	}
 	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	   width: 78.1% !important;
 	   float:left;
@@ -8728,6 +9116,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	.ebook-container {
+	   display: block;
+	   margin-left: auto;
+	   margin-right: auto;
+	   width: 62% !important;
+	}
     div.home-campaign-tile-container{
         margin-left: 46px;
     }
@@ -9016,6 +9410,76 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	.TW-ebook-header.TW-fixed-header {
+	   background-color: #ffffff;
+	   display: block;
+	   position: fixed;
+	   top: 45px !important;
+	   z-index: 1;
+	}
+	.TW-ebook-footer {
+	   bottom: 0 !important;
+	   display: inline-flex;
+	   left: 0;
+	   margin-bottom: 10px;
+	   position: absolute !important;
+	   right: 0;
+	}
+	.TW-projectDesc-img img {
+		height: 170px !important;
+	}
+	.ebook-container {
+	   display: block;
+	   margin-left: auto;
+	   margin-right: auto;
+	   width: 62% !important;
+	}
+	.TW-ebooklaunch-img {
+	   height: 190px !important;
+	   margin-right: 30px;
+	   width: 195px !important;
+	}
+	.TW-postcampaign-inner-ul li {
+	   font-size: 13px !important;
+	   line-height: 20px !important;
+	   margin-bottom: 12px !important;
+	   text-align: justify;
+	}
+	.TW-ebook-ul li {
+	   color: #4c4c4c;
+	   font-size: 13px !important;
+	   line-height: 20px !important;
+	   margin-bottom: 10px !important;
+	   padding-left: 20px;
+	}
+	.TW-postcampaign-ul > li {
+	   color: #4c4c4c;
+	   font-size: 13px !important;
+	   line-height: 20px !important;
+	   margin-bottom: 8px !important;
+	}
+	.TW-ebook-content{
+	   margin-top:30px;
+	}
+	.TW-Prelaunch-img {
+	   height: 239px;
+	   margin-bottom: 15px;
+	   padding: 0 !important;
+	   width: 100%;
+	}
+	.TW-ebook-ul {
+	   float: left;
+	   padding: 12px 23px 10px !important;
+	   text-align: left;
+	}
+	.TW-ebook-page-borders {
+	   background-color: #fff;
+	   border: 5px solid #f6bf08;
+	   border-radius: 3px;
+	   height: 745px;
+	   margin-bottom: 68px;
+	   width: 100%;
+	}
     div.home-campaign-tile-container {
         margin-left: 35px;
     }
@@ -9779,10 +10243,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 
     .navbar-default {
-        height: 63px;
+        height: 50px;
     }
     .banner-nav{
-    	height:93px !important;
+    	height:78px;
     }
     span#search-container {
         margin-top: -5% !important;
@@ -9939,7 +10403,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /*  		margin: 0px 55px 0 !important;  */
 /* 	} */
 	li.dropdown.dropdown-head{
-		width: 102% !important;
+		width: 111% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
 		width: 100% !important;
@@ -10178,7 +10642,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /*  		margin: 0px 55px 0 !important; */
 /* 	} */
 	li.dropdown.dropdown-head{
-		width: 102% !important;
+		width: 111% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
 		width: 100% !important;
@@ -10294,7 +10758,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	/*----------------------- End Image courasel new slider and button -------------------------------------- */
 	
 	.header-section .nav > li > a {
-	    padding: 4px 8px !important;
+	    padding: 6px 8px !important;
 	}
     .testimonial {
 	    max-width: 100%;
@@ -10384,11 +10848,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
  
   .dropdown-menu.usr > li > a {
     padding: 7px 21px !important;
-    width:180px;
+    width:100%;
   }
   .dropdown-menu.admin > li > a {
     padding: 7px 16px !important;
-    width:180px;
+    width:100%;
   }
   /**********************dropdown********************/
     .navbar {
@@ -10396,7 +10860,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 
 	li.dropdown.dropdown-head{
-		width: 102% !important;
+		width: 111% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
 		width: 100% !important;
@@ -11654,6 +12118,192 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.navbar-toggle.TW-scrollHeader-hamBurger .icon-bar {
+	   background-color: #000 !important;
+	}
+	.mobile-fixedHeader .TW-mobile-fixedHeaderBackColor {
+	   background-color: #006083;
+	   height: 120px !important;
+	}
+	.scrollHeader .TW-scrollHeaderBackColor {
+	   background-color: #fff !important;
+	   height: 45px !important;
+	}
+	.mobile-fixedHeader {
+	   height: 120px;
+	}
+	.searchengine{
+		margin-top: 6px;
+	}
+	.mobile-fixed-header-text{
+	   color: white;
+	   font-size: 15px;
+	   font-weight: 500; 
+	   bottom: 35px; 
+	   width: 100%;
+	   z-index: 1;
+	   position: absolute;
+	}
+	 .navbar-default .navbar-toggle .icon-bar {
+	   background-color: #fff;
+	}
+	.navbar-toggle.collapsed.TW-scrollHeader-hamBurger .icon-bar {
+	   background-color: #000000;
+	}
+	.search-barr {
+	   margin-left: 0px !important; 
+	   padding-right: 5px;
+	}
+	.scrolltrigger{
+		right:10px;
+	}
+	.navbar-brand.scrollHeaderLogo {
+		margin-top: -6px;
+	}
+	.mobile-scrollCrwdLogo {
+	   height: 49px !important;
+	   width: 120px;
+	}
+	.logo-text {
+	   font-size: 20px;
+	   font-weight: 600;
+	}
+	.navbar-collapse.collapse.in {
+	   opacity: 0.85;
+	   width: 100% !important;
+	}
+	.navbar-collapse.collapse{
+	   margin-top:-15px !important;
+	   opacity: 0.65;
+	   filter:alpha(opacity=60%);
+	   width: 100% !important;
+	}
+	.scrollHeaderMenu li {
+	   border-bottom: 2px solid white;
+	   color: white;
+	   font-size: 18px;
+	   font-weight: bold;
+	   line-height: 42px;
+	}
+	.scrollHeaderMenu li a {
+	   color: white;
+	   font-size: 20px;
+	   font-weight: bold;
+	   text-decoration:none;
+	}
+	.scrollHeaderMenu > ul {
+	   list-style: outside none none;
+	   padding-left: 0;
+	}
+	.navbar-collapse.collapse.in {
+	   border-color: rgb(0, 140, 186);
+	   border-style: solid;
+	   border-width: 2px;
+	   float: left;
+	   height:auto !important; 
+	   margin-top:-15px;
+	   width:100%;
+	}
+	.navbar-collapse {
+        float: left;
+    }
+	.navbar-toggle {
+	   background-color: transparent;
+	   background-image: none;
+	   border: 1px solid transparent;
+	   border-radius: 0;
+	   float: left;
+	   margin-bottom: 5.5px;
+	   margin-right: 15px;
+	   margin-top: 5.5px;
+	   padding: 9px 10px;
+	   position: relative;
+	}
+	.TW-ebook-header.TW-fixed-header {
+	   background-color: #ffffff;
+	   display: block;
+	   position: fixed;
+	   top: 45px !important;
+	   z-index: 1;
+	}
+	.TW-ebook-footer {
+	   bottom: 0 !important;
+	   display: inline-flex;
+	   left: 0;
+	   margin-bottom: 10px;
+	   position: absolute !important;
+	   right: 0;
+	}
+	.TW-postcampaign-img {
+	   height: 130px !important;
+	   margin-right: 30px;
+	   width: 341px;
+	}
+	.ebook-container{
+		display:block;
+		margin-left:auto;
+		margin-right:auto;
+		width:275px !important;
+	}
+	.TW-ebook-content {
+	   margin-top: 40px;
+	}
+	.TW-ebook-page-borders {
+	   background-color: #fff;
+	   border: 5px solid #f6bf08;
+	   border-radius: 3px;
+	   height: 768px;
+	   margin-bottom: 68px;
+	   width: 100%;
+	}
+	.TW-postcmpgn-section1 > h3 {
+	   font-family: "open sans";
+	   font-size: 13px !important;
+	   font-weight: 600;
+	   margin-bottom: 0;
+	}
+	.TW-postcampaign-inner-ul li {
+	  font-size: 11px !important;
+	  line-height: 17px !important;
+	  margin-bottom: 5px !important;
+	  text-align: justify;
+	}
+	.TW-postcampaign-ul {
+		padding: 5px 17px !important;
+		text-align: justify;
+	}
+	.TW-postcampaign-inner-ul {
+	   padding-left: 10px !important;
+	}
+	.TW-postcampaign-ul > li {
+	   color: #4c4c4c;
+	   font-size: 11px !important;
+	   line-height: 18px !important;
+	   margin-bottom: 2px !important;
+	}
+	.TW-ebook-h3Decoration {
+	   font-family: "open sans";
+	   font-size: 13px !important;
+	   font-weight: 600;
+	   margin-bottom: 20px;
+	}
+	.TW-ebooklaunch-img {
+	   height: 135px !important;
+	   margin-right: 19px !important;
+	   width: 83px !important;
+	}
+	.TW-ebook-ul {
+	   float: left;
+	   padding: 5px 14px 10px !important;
+	   text-align: justify;
+	}
+	.TW-ebook-ul li {
+       color: #4c4c4c;
+       font-size: 11px !important;
+       line-height: 17px !important;
+       margin-bottom: 6px !important;
+       padding-left: 20px;
+	}
     a.carousel-control.left {
         background-image: none;
     }
@@ -11940,7 +12590,8 @@ textarea.textarea-embed-video {
         width: 280px;
     }
 	.TW-scrollHeaderBackColor{
-		background-color:#01bbd2 !important;
+		background-color: #006083 !important;
+		height: 45px;
 	}
 	.TW-discover-banner-decoration {
 		background-color: #01bbd2;
@@ -11970,12 +12621,6 @@ textarea.textarea-embed-video {
 	.alert.alert-danger.flashmsg-width {
 		margin-left: -8px;
 		width: 110%;
-	}
-	.ebook-container{
-		display:block;
-		margin-left:auto;
-		margin-right:auto;
-		width:90% !important;
 	}
 	.TW-socialicons {
 		display: block;
@@ -12065,7 +12710,7 @@ textarea.textarea-embed-video {
 		font-size:13px;
 	}
     .left-addon input {
-        padding-left: 30px;
+        padding-left: 5px;
     }
     input.search-box-xs {
         width: 182px !important;
@@ -12192,14 +12837,18 @@ textarea.textarea-embed-video {
         margin-left: 0;
     }
 	.info-banner{
+		bottom:0px;
 		background-color: #000000;
 		color: #ffffff;
 		display:none;
 		font-size:11px !important;
 		height: 30px;
 		padding:5px;
+		position:absolute;
+		top:0px;
 		text-align: center;
 		width: 100%;
+		z-index:1000;
 		
 	}
 	.banner-close {
@@ -13336,6 +13985,138 @@ textarea.textarea-embed-video {
 	margin-right:auto;
 	width:50%;
 }
+.ebook-page-title{
+	border-left: 20px solid transparent;
+	border-right: 0 solid transparent;
+	border-top: 34px solid #f6bf08;
+	color: #006083;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	position: absolute;
+	right: 0;
+	text-align: center;
+	width: 200px;
+}
+.pull-right.ebook-page-title > h3 {
+    font-family: "Open Sans";
+    font-size: 20px;
+    font-weight: bold;
+    position: relative;
+    top: -29px;
+}
+.pull-right.ebook-page-title > h4 {
+    font-family: "Open Sans";
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    top: -28px;
+}
+.pull-right.ebook-page-title > h5 {
+    font-family: "Open Sans";
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+    top: -26px;
+}
+.TW-ebook-page-borders{
+   background-color:#fff;
+   border: 5px solid #F6BF08;
+   border-radius: 3px;
+   margin-bottom: 68px;
+   width: 100%;
+}
+.ebook-launch-container{
+	margin-top:50px;
+}
+.TW-ebooklaunch-img {
+    height: 250px;
+    margin-right: 30px;
+    width: 230px;
+}
+.TW-Prelaunch-img {
+    height: 239px;
+    margin-bottom:15px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-settingItUp-img{
+    margin-top:50px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-settingItUp-img2{
+    margin-top:50px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-settingItUp-img2 img{
+	margin-bottom:25px;
+}
+.TW-postcmpgn-section1 > h3{
+	font-family: "open sans";
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.TW-ebook-h3Decoration {
+    font-family: "open sans";
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom:7px;
+}
+.TW-projectDesc-img{
+    width: 102%;
+}
+.TW-perks-img{
+    margin-top:50px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-social-media-img{
+    margin-top:50px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-postcampaign-img{
+	height: 200px;
+	margin-right: 30px; 
+	width: 341px;
+}
+.TW-postcampaign-ul{
+	padding: 15px 18px;
+	text-align: left;
+}
+.TW-postcampaign-ul > li {
+    color: #4c4c4c;
+    font-size: 16px;
+    line-height: 25px;
+    margin-bottom: 20px;
+}
+.TW-postcampaign-inner-ul li{
+	line-height:22px;
+	margin-bottom:20px;
+	text-align:justify;
+}
+
+.TW-videos-img{
+	background: #fff url("https://s3.amazonaws.com/crowdera/assets/ebook-video.jpg") no-repeat scroll center right;
+    height: 239px;
+    margin-top:50px;
+    padding: 0 !important;
+}
+.TW-prAndPromo-img{
+    margin-top:50px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-creativity-img{
+    margin-top:50px;
+    padding: 0 !important;
+    width: 100%;
+}
+.TW-postcmpgn-section1 {
+    margin-top: 50px;
+}
 .TW-ebook-page-border{
 	background: #fff url("https://s3.amazonaws.com/crowdera/assets/ebook-setting-it-up.jpg") no-repeat scroll center top;
 	border: 1px solid #e3e3e3;
@@ -13356,8 +14137,9 @@ a#downloadEbook{
 	width: 200px;
 }
 .TW-ebook-ul{
-	padding: 32px 60px;
-	text-align: left;
+	float:left;
+	padding: 50px 23px 10px;
+	text-align: justify;
 }
 .TW-ebook-page-border h3{
 	margin-top: 20px;
@@ -13368,7 +14150,7 @@ a#downloadEbook{
 	color: #4c4c4c;
 	font-size: 16px;
 	line-height: 24px;
-	margin-bottom: 12px;
+	margin-bottom: 20px;
 	padding-left: 20px;
 }
 .TW-socialicons {
@@ -13390,8 +14172,9 @@ a#downloadEbook{
 .TW-ebook-header.TW-fixed-header {
 	background-color: #ffffff;
 	position: fixed;
-	top: 62px;
-	z-index: 10000;
+	top: 45px;
+	z-index: 1;
+	display:block;
 }
 .TW-ebook-header-image{
 	margin-bottom: 30px;
@@ -13439,7 +14222,7 @@ a#downloadEbook{
 	border:3px solid #01bbd2 !important;
 }
 .TW-cr-sec-header-icon-width{
-	width:30px;	
+	width:24px;	
 }
 .TW-org-title-font-size{
     padding-left: 5px;
@@ -13460,55 +14243,84 @@ a#downloadEbook{
     color:#01bbd3 !important; 
 }
 .TW-cr-sec-header-start-icon-width{
-	width:35px;
+	width:28px;
 }
 .TW-cr-sec-header-launch-icon-width{
-	width:25px;
+	width:18px;
 }
 .TW-discover-header-img > img {
     width: 100%;
 }
 .scrollHeader{
 	display:none;
+	height: 40px;
+	margin-bottom: 21px; 
 }
 .noScrollHeader{
 	display:block;
 }
-.TW-scrollHeaderBackColor{
-	background-color:#01bbd2 !important;
+.TW-scrollHeaderBackColor .nav.navbar-nav.nav-icon-bar {
+    margin-top: 3px;
 }
-.TW-header-helpLink{
+.navbar-collapse.collapse.TW-scrollHeaderBackColor {
+	background-color:#006083 !important;
+    height: 43px;
+}
+.TW-scrollHeaderBackColor .TW-header-helpLink{
 	background-color:#fff;
-	height:40px;
-	margin:10px !important;
-	width:109px;
+	border:none;
+	height:35px;
+	margin-left:10px;
+	margin-right:10px;
+	margin-top: 3.5px;
 	
 }
 .TW-header-helpLinkLogged {
-    background-color: #006083;
-    height: 40px;
-    margin: 10px !important;
-    width: 109px;
+    background-color: #ffbf08;
+    border:none;
+    height: 42px;
+    margin: 1px 10px !important;
 }
 .TW-header-helpTxt {
     color: #006083 !important;
     font-size: 20px !important; 
     font-weight: 600;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-bottom: 3px;
+    margin-top: 3px;
 }
 .TW-header-helpTxtLogged{
 	color: #fff !important;
     font-size: 20px !important; 
     font-weight: 600;
-    margin-bottom: 5px;
-    margin-top: 5px;
+    margin-bottom: 2px;
+    margin-top: 6px;
 }
 .scrollHeaderHelpLink > a:hover, .scrollHeaderHelpLink > a:focus {
     background-color: #01bbd2 !important;
 }
 .noscrollHeaderHelpLink > a:hover, .noscrollHeaderHelpLink > a:focus {
-    background-color: #006083 !important;
+    background-color: #ffbf08 !important;
+}
+.TW-navbar-collapse .navbar-nav.navbar-right:last-child {
+    margin-right: 0px !important;
+}
+.TW-ebook-footer{
+    bottom: 0 !important;
+    display: inline-flex;
+    display: -webkit-inline-flex; /**chrome***/
+    display: -webkit-inline-box;  /***safari****/
+    left: 0;
+    margin-bottom: 10px;
+    position:unset;
+    right: 0;
+}
+.TW-ebook-footer-links{
+	width:126px;
+	margin-top:5px;
+}
+.TW-ebook-body{
+	background-color: #f6f8f8;
+	padding-bottom:0px;
 }
 .nav-justified > li {
     display: table-cell !important;
@@ -13520,4 +14332,16 @@ a#downloadEbook{
 }
 iframe.embedTitleUrl{
 	   width: 310px !important;
+}
+.col-md-6.footer-mid-section-menu {
+    padding-left: 0px;
+}
+.TW-scrollHeaderBackColor .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+   box-shadow: 0 0 24px 0 rgb(0 0 0 0.25);
+}
+.TW-scrollHeaderBackColor .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.scrollHeaderMenu.toggleImages.open{
+	box-shadow: 0 0 2px 0 rgba(0,0,0,0.25);
+}
+.dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open .user-cl-caret::before {
+    content: "";
 }

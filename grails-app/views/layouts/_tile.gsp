@@ -72,7 +72,7 @@
                     <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead">${amount}</span>
                 </span>
             </div>
-			         <g:if test="${ended}">
+            <g:if test="${ended}">
                 <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size campaign-tile-border">
                     <span class="days-alignment">DAYS<br>LEFT</span>
                 	<span class="tile-day-num">00</span>

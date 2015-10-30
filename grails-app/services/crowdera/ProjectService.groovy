@@ -1031,52 +1031,51 @@ class ProjectService {
 		return sortsOptions
 	}
 	
-	def isCampaignsorts(def sorts ,def currentEnv) {
-		List projects = getValidatedProjects(currentEnv)
-		List p = []
-		if(sorts == 'Most-Funded') {
-			projects.each {
-				def percentage = contributionService.getPercentageContributionForProject(it)
-				if(percentage >= 100){
-					p.add(it)
-				}
-			}
-		}
-		if(sorts == 'Latest') {
-			projects.each {project ->
-				boolean ended = isProjectDeadlineCrossed(project)
-				if(project.validated && ended ==false){
-					p.add(project)
-				}
-			}
-		}
-		if(sorts == 'Ending-Soon') {
-			projects.each {
-				def day = getRemainingDay(it)
-                
-				if(day > 0 && day <10){
-					p.add(it)
-				}
-			}
-		}
-		if(sorts=='Ended'){
-			projects.each{
-				boolean ended_campaigns = isProjectDeadlineCrossed(it)
-				if(ended_campaigns){
-					p.add(it)
-				}
-			}
-		}
-		if(sorts=='Offering-Perks'){
-		    projects.each{
-		        def  perkSize = it.rewards.size()
-		        if(perkSize > 1){
-		           p.add(it)
-		       }
-		    }
-		}
-		return p
-	}
+    def isCampaignsorts(def sorts ,def currentEnv) {
+        List projects = getValidatedProjects(currentEnv)
+        List p = []
+        if(sorts == 'Most-Funded') {
+            projects.each {
+                def percentage = contributionService.getPercentageContributionForProject(it)
+                if(percentage >= 100){
+                    p.add(it)
+                }
+            }
+        }
+        if(sorts == 'Latest') {
+	        projects.each {project ->
+		        boolean ended = isProjectDeadlineCrossed(project)
+		        if(project.validated && ended ==false){
+			        p.add(project)
+		        }
+	        }
+        }
+        if(sorts == 'Ending-Soon') {
+            projects.each {
+                def day = getRemainingDay(it)
+                if(day > 0 && day <10){
+                    p.add(it)
+                }
+            }
+        }
+        if(sorts=='Ended'){
+            projects.each{
+                boolean ended_campaigns = isProjectDeadlineCrossed(it)
+                if(ended_campaigns){
+                    p.add(it)
+                }
+            }
+        }
+        if(sorts=='Offering-Perks'){
+            projects.each{
+                def  perkSize = it.rewards.size()
+                if(perkSize > 1){
+                    p.add(it)
+                }
+            }
+        }
+        return p
+    }
     
     def getdefaultAdmin(Project project, User user) {
         def defaultAdminEmail = "campaignadmin@crowdera.co"

@@ -570,9 +570,7 @@ class ProjectController {
                     }
                 }
 
-                if (currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'){
-                    vanitytitle = (project.customVanityUrl) ? projectService.getCustomVanityUrl(project) : params.title;
-                }
+                vanitytitle = (project.customVanityUrl) ? projectService.getCustomVanityUrl(project) : params.title;
 
                 rewardService.saveRewardDetails(params);
                 project.story = params.story
@@ -1833,7 +1831,7 @@ class ProjectController {
         def twitterCount = shareCount.twitterCount
         def linkedinCount = shareCount.linkedinCount
         
-        def result = projectService.generateCSVReportForCampaign(params, response, project, ytViewCount, linkedinCount, twitterCount, facebookCount)
+        def result = projectService.generateCSVReportForCampaign(response, project, ytViewCount, linkedinCount, twitterCount, facebookCount)
         render (contentType:"text/csv", text:result)
     }
 

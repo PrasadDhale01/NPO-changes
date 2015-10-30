@@ -84,7 +84,6 @@
             </iframe>
         </div>
     </div>
-	<div id="sticky-header"></div>
     <script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
 </body>
 </html>

@@ -5,9 +5,20 @@
     def teamimages = projectService.getTeamImageLinks(currentTeam,project)
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
     def shareUrl = base_url+'/c/'+shortUrl
+    def vimeoInt
+    def campaignVideoUrl
+    if (project.videoUrl){
+        if (project.videoUrl.contains('vimeo.com')) {
+            def video = project.videoUrl.split('/')
+            vimeoInt = video[video.length - 1]
+            campaignVideoUrl = 'https://player.vimeo.com/video/'+vimeoInt
+        } else {
+            campaignVideoUrl = project.videoUrl;
+        }
+    }
     def embedTileUrl = base_url+'/campaign/'+vanityTitle+'/'+vanityUsername+'/embed/tile'
     def embedCode = '<iframe src="'+embedTileUrl+'" width="310px" height="451px" frameborder="0" scrolling="no" class="embedTitleUrl"></iframe>'
-    def embedVideoCode = '<iframe src="'+project.videoUrl+'" width="480" height="360" frameborder="0" scrolling="no"></iframe>'
+    def embedVideoCode = '<iframe src="'+campaignVideoUrl+'" width="480" height="360" frameborder="0" scrolling="no"></iframe>'
 %>
 <div class="col-md-12">
     <div class="row">
@@ -126,7 +137,7 @@
                             <div class="col-sm-7">
                                 <p>Video preview</p>
                                     <textarea class="textarea-embed-video">${embedVideoCode}</textarea><br><br>
-                                    <iframe src="${project.videoUrl}" class="embed-video-in-modal"></iframe><br>
+                                    <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
                                     <p>After choosing a video size, copy and paste the embed code above.</p>
                                     <div class="row desktop-video-play">
                                         <div class="col-sm-2 margin-sm-left video-play video-play-sm video-play-hover selected text-center">

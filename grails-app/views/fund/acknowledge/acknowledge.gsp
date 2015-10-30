@@ -79,7 +79,7 @@
                 <g:if test="${flash.sentmessage}">
                     <div class="alert alert-success">
                         ${flash.sentmessage}
-                    </div>
+                    </div><br>
                 </g:if>
                 <g:else>
                 	<div class="alert alert-success">Receipt has been sent over email to ${contribution.contributorEmail}</div><br>

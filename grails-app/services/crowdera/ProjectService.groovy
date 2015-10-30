@@ -12,7 +12,6 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
 import grails.util.Environment
-import javax.servlet.http.Cookie
 
 class ProjectService {
     def userService
@@ -1043,12 +1042,12 @@ class ProjectService {
             }
         }
         if(sorts == 'Latest') {
-	        projects.each {project ->
-		        boolean ended = isProjectDeadlineCrossed(project)
-		        if(project.validated && ended ==false){
-			        p.add(project)
-		        }
-	        }
+            projects.each {project ->
+                boolean ended = isProjectDeadlineCrossed(project)
+                if(project.validated && ended ==false){
+                    p.add(project)
+                }
+            }
         }
         if(sorts == 'Ending-Soon') {
             projects.each {
@@ -3347,7 +3346,7 @@ class ProjectService {
 	return shippingInfo
 	}
 
-    def generateCSVReportForCampaign(def params, def response, Project project, def ytViewCount, def linkedinCount, def twitterCount, def facebookCount){
+    def generateCSVReportForCampaign(def response, Project project, def ytViewCount, def linkedinCount, def twitterCount, def facebookCount){
 
         def numberOfContributions = project.contributions.size()
         def percentageContribution = contributionService.getPercentageContributionForProject(project)

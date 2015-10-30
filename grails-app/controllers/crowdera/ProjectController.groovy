@@ -1831,7 +1831,7 @@ class ProjectController {
         def twitterCount = shareCount.twitterCount
         def linkedinCount = shareCount.linkedinCount
         
-        def result = projectService.generateCSVReportForCampaign(params, response, project, ytViewCount, linkedinCount, twitterCount, facebookCount)
+        def result = projectService.generateCSVReportForCampaign(response, project, ytViewCount, linkedinCount, twitterCount, facebookCount)
         render (contentType:"text/csv", text:result)
     }
 

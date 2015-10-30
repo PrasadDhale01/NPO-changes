@@ -4385,10 +4385,11 @@ ul.decimalList{
 }
 #uploadingCampaignOrgIcon {
     color: #46b8da;
-    padding-top: 20px;
-	display: none;
+    display: none;
 }
-
+.uploadingPicture{
+    padding-left: 16px;
+}
 #uploadingCampaignUpdateEditImage {
     color: #46b8da;
 	padding-top: 8px;
@@ -5354,7 +5355,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 .paypalVerification span {
-    margin-left: -5% !important;
+    margin-left: -5%;
 }
 
 .fa.fa-sm{
@@ -5414,9 +5415,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     ul.nav.navbar-nav.navbar-right.nav-create-button{
         margin-top: 3px;
     }
+   
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.navbar-toggle.TW-scrollHeader-hamBurger .icon-bar {
+	   background-color: #000 !important;
+	}
 	.navbar-toggle.collapsed.TW-scrollHeader-hamBurger .icon-bar {
 	   background-color: #000000;
 	}
@@ -5613,6 +5618,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   margin-bottom: 15px !important;
 	   padding-left: 20px;
 	}
+    .form-group-termsOfUse {
+        margin-left: -14px !important;
+    }
     ol.carousel-indicators-sm {
         left: 150px;
     }
@@ -5998,9 +6006,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
     h1.india-font-slogan b{
         font-size: 15px !important;
-    }
-    #uploadingCampaignOrgIcon {
-        margin-left: -9px;
     }
     div.home-tile-mobile {
         padding-left: 14px;
@@ -6990,10 +6995,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-right: 0px;
     }
     
-    .termsOfUseCheckboxOnCreatePage .col-md-8, .termsOfUseCheckboxOnCreatePage .col-sm-8 {
-        padding-left: 0px;
-        padding-right: 35px;
-    }
     #uploadingCampaignOrgIcon {
         font-size: 12px;
     }
@@ -7140,12 +7141,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	.TW-header-helpTxtLogged {
+	   color: #fff !important;
+	   font-size: 20px !important;
+	   font-weight: 600;
+	   margin-bottom: 2px;
+	   margin-top: 5px !important;
+	}
 	.ebook-container {
 	   display: block;
 	   margin-left: auto;
 	   margin-right: auto;
 	   width: 80% !important;
 	}
+    .form-group-termsOfUse {
+        padding-left: 48px;
+    }
     div.home-campaign-tile-container{
         margin-left: 18px;
     }
@@ -7476,6 +7487,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   margin-bottom: 68px;
 	   width: 100%;
 	}
+
     .col-transaction .bootstrap-select > .btn {
         width: 90px !important;
     }
@@ -8438,9 +8450,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .youtubeVideoIframe {
         width: 255%;
     }
-    .termsOfUseCheckboxOnCreatePage .col-md-offset-2 {
-        margin-left: 5.666667%;
-    }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -8731,6 +8740,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.feduoutercontent {
 	   margin-top: 120px;
 	}
+    #uploadingCampaignOrgIcon{
+        padding-top: 20px;
+    }
     .col-transaction .bootstrap-select > .btn {
         width: 138px !important;
     }
@@ -10864,6 +10876,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }
 @media only screen and (max-width: 767px){
+
 #embedTilemodal .modal-dialog.modal-tile{
     margin-left: auto;
     margin-right: auto;
@@ -11477,7 +11490,10 @@ textarea.textarea-embed-video {
 
 }
 @media only screen and (max-width: 414px) {
-	.manage-tiles {
+    .form-group-termsOfUse {
+        margin-left: -12px !important;
+    }
+    .manage-tiles {
         width: 55% !important;
     }
     .manage-tiles-details {
@@ -12099,6 +12115,9 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.navbar-toggle.TW-scrollHeader-hamBurger .icon-bar {
+	   background-color: #000 !important;
+	}
 	.mobile-fixedHeader .TW-mobile-fixedHeaderBackColor {
 	   background-color: #006083;
 	   height: 120px !important;
@@ -12652,9 +12671,6 @@ textarea.textarea-embed-video {
 		float:left;
 		width:100%;
 	}
-    #uploadingCampaignOrgIcon {
-        margin-left: -9px;
-    }
 	div.ie-cr-perks {
         width: 270px !important;
     }

@@ -234,10 +234,10 @@
                         </span>
                     </form>
                 </li>
-                <li class="discover scrollHeaderMenu" style="display: block;"><a class="nav-text2 hm-back-width hed-font-sizes" href="/campaigns"><img alt="discover" src="//s3.amazonaws.com/crowdera/assets/icon-discover-new.png" class="hidden-sm hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;Discover</a></li>
-                <li class="learn scrollHeaderMenu" style="display: block;"><a class="nav-text3 hm-back-width hed-font-sizes" href="/howitworks"><img alt="learn" src="//s3.amazonaws.com/crowdera/assets/learn-icon-dropdowns.png" class="hidden-sm hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;Learn</a></li>
+                <li class="discover scrollHeaderMenu"><a class="nav-text2 hm-back-width hed-font-sizes" href="/campaigns"><img alt="discover" src="//s3.amazonaws.com/crowdera/assets/icon-discover-new.png" class="hidden-sm hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;Discover</a></li>
+                <li class="learn scrollHeaderMenu"><a class="nav-text3 hm-back-width hed-font-sizes" href="/howitworks"><img alt="learn" src="//s3.amazonaws.com/crowdera/assets/learn-icon-dropdowns.png" class="hidden-sm hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;Learn</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right nav-create-button" style="height: 36px;">
+            <ul class="nav navbar-nav navbar-right nav-create-button">
                	<li class="hidden-xs">
                     <a class=" btn btn-info nav-text1 TW-header-helpLink" href="/campaign/create">
                     	<span class="TW-header-helpTxt">Create</span>

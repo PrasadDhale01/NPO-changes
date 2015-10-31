@@ -1127,24 +1127,24 @@ class MandrillService {
         def link = grailsLinkGenerator.link(controller: 'project', action: 'manageCampaign', id: project.id, absolute: true)
         def registerLink = grailsLinkGenerator.link(controller: 'login', action: 'register', id: project.id, absolute: true)
         List emailMemberList = []
-		emailMemberList.add(project.user)
-		project.projectAdmins.each {
-			if (it.email != 'campaignadmin@crowdera.co'){
-				emailMemberList.add(it)
-			}
-		}
+        emailMemberList.add(project.user)
+        project.projectAdmins.each {
+            if (it.email != 'campaignadmin@crowdera.co'){
+                emailMemberList.add(it)
+            }
+        }
         def name
-		def tags
-		def beneficiaryName = (project.beneficiary.lastName) ? project.beneficiary.firstName + ' ' + project.beneficiary.lastName : project.beneficiary.firstName
-		def imageUrl = project.organizationIconUrl
-		def projectImageUrl
-		if (imageUrl) {
-			if(imageUrl.startsWith("https") || imageUrl.startsWith("http")) {
-				projectImageUrl = imageUrl
-			} else {
-				projectImageUrl = "https:"+imageUrl
-			}
-		}
+        def tags
+        def beneficiaryName = (project.beneficiary.lastName) ? project.beneficiary.firstName + ' ' + project.beneficiary.lastName : project.beneficiary.firstName
+        def imageUrl = project.organizationIconUrl
+        def projectImageUrl
+        if (imageUrl) {
+            if(imageUrl.startsWith("https") || imageUrl.startsWith("http")) {
+                projectImageUrl = imageUrl
+            } else {
+                projectImageUrl = "https:"+imageUrl
+            }
+        }
 
         emailMemberList.each{
 
@@ -1153,27 +1153,26 @@ class MandrillService {
                 'name': 'TITLE',
                 'content': project.title
             ],[
-                'name': 'LINK',
-                'content': link
+                 'name': 'LINK',
+                 'content': link
             ],[
-                'name': 'IMAGEURL',
-                'content': projectImageUrl
-			],[
-                'name': 'BENEFICIARY',
-                'content': beneficiaryName
-			],[
-                'name':'REGISTER_LINK',
-                'content':registerLink
-            ]
-            ]
+                 'name': 'IMAGEURL',
+                 'content': projectImageUrl
+            ],[
+                 'name': 'BENEFICIARY',
+                 'content': beneficiaryName
+            ],[
+                 'name':'REGISTER_LINK',
+                 'content':registerLink
+            ] ]
 
-			if (it.email == project.user.email){
+            if (it.email == project.user.email){
                 tags = ['sendCampaignValidationEmailToOwner']
                 inviteToShare(it.email, 'sendCampaignValidationEmailToOwner', globalMergeVars, tags)
-			} else {
+            } else {
                 tags = ['sendCampaignValidationEmailToAdmins']
-			    inviteToShare(it.email, 'sendCampaignValidationEmailToAdmins', globalMergeVars, tags)
-			}
+                inviteToShare(it.email, 'sendCampaignValidationEmailToAdmins', globalMergeVars, tags)
+            }
         }
 
     }

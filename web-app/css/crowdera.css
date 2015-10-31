@@ -5439,16 +5439,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 16px;
         line-height: 2;
     }
-	div.abt-mob-chet {
+    div.abt-mob-chet {
         width: 54%;
     }
-	div.abt-mobile{
-         margin-left: 20px;
+    div.abt-mobile{
+        margin-left: 20px;
     }
-	div.abt-create-discover {
+    div.abt-create-discover {
         left: 21px;
     }
-	a.abt-btn-backcolor {
+    a.abt-btn-backcolor {
         margin-right: 0;
     }
     a.abt-discover {
@@ -5459,13 +5459,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     a.abt-discover:focus{
         width: 86%;
     }
-	h1.abt-mobile-pad {
+    h1.abt-mobile-pad {
         margin-left: 75px;
     }
-	div.abt-padding-thots{
+    div.abt-padding-thots{
         padding-left: 59px;
-	}
-	div.abt-billy-postion{
+    }
+    div.abt-billy-postion{
         left: -12px;
     }
     div.about-dasbilly-center {
@@ -5476,7 +5476,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 0;
         padding-right: 0;
     }
-	div.position-top{
+    div.position-top{
         margin-left:0px;
     }
 	.navbar-toggle.TW-scrollHeader-hamBurger .icon-bar {
@@ -7450,7 +7450,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.abt-img-icons-mobile {
         left: 33px !important;
     }
-	div.abt-you-pad {
+    div.abt-you-pad {
         margin-left: 0px !important;
     }
     a.abt-discover {
@@ -7463,10 +7463,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.crewpage .caption {
         margin-left: 0px;
     }
-	div.crewpage .thumbnail {
+    div.crewpage .thumbnail {
         padding: 4px;
     }
-	div.abt-billy-postion{
+    div.abt-billy-postion{
         left: 11px;
     }
     div.about-dasbilly-center {
@@ -7475,7 +7475,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.abt-positions {
         left: 0px;
     }
-	div.position-top{
+    div.position-top{
         margin-left:0px;
     }
 	.feduoutercontent {
@@ -9040,7 +9040,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width: 1281px) and (max-width: 1344px){
-	div.position-top{
+    div.position-top{
         margin-left:32px;
     }
 	.TW-discover-leftpane-menu ul li a {
@@ -12249,9 +12249,9 @@ textarea.textarea-embed-video {
     div.abt-mob-chet {
         width: 51%;
     }
-	div.abt-mobile{
-         margin-left: 15px;
-	}
+    div.abt-mobile{
+        margin-left: 15px;
+    }
     div.abt-create-discover {
         left: 9px;
     }
@@ -12266,16 +12266,16 @@ textarea.textarea-embed-video {
     a.abt-discover:focus{
         width: 86%;
     }
-	div.abt-padding-thots{
+    div.abt-padding-thots{
         padding-left: 5px;
     }
-	div.abt-billy-postion{
+    div.abt-billy-postion{
         left: -12px;
-	}
+    }
     div.about-dasbilly-center {
         left: 0;
     }
-	div.abt-positions {
+    div.abt-positions {
         left: 0px;
         padding-left: 0;
         padding-right: 0;
@@ -14503,7 +14503,7 @@ img.abt-us-banner-wid {
     width: 119%;
 }
 .img-gray {
-	-webkit-filter: grayscale();
+    -webkit-filter: grayscale();
     filter: grayscale(1);
 }
 img.img-gray:hover {

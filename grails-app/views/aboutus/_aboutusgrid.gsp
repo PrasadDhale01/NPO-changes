@@ -403,16 +403,16 @@
     </div>
     <div class="abt-mobile">
         <div class="col-lg-4 col-md-4 col-sm-4">
-	         <a href="${resource(dir: '/howitworks')}" class="abt-text-deco">Learn More&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
-	         <hr>
+	        <a href="${resource(dir: '/howitworks')}" class="abt-text-deco">Learn More&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
+	        <hr>
 	    </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
-	         <a href="http://gocrowdera.com" target="_blank" class="abt-text-deco">Blog&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
-	         <hr>
+	        <a href="http://gocrowdera.com" target="_blank" class="abt-text-deco">Blog&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
+	        <hr>
 	    </div>
         <div class="col-lg-4 col-md-4 col-sm-4">
-	         <a href="${resource(dir: '/careers')}" class="abt-text-deco">View Carrers&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
-	         <hr>
+	        <a href="${resource(dir: '/careers')}" class="abt-text-deco">View Carrers&nbsp;&nbsp;<i class="fa fa-arrow-right"></i></a>
+	        <hr>
 	    </div>
 	</div>
 </div>

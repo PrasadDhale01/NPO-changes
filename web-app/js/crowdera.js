@@ -223,7 +223,6 @@ $(function() {
     });
     
     $(document).ready(function(){
-        
         $('.hover-cap-4col .the-crews').hover(
             function(){
                 $(this).find('.crew-icons').fadeIn(250); 
@@ -231,8 +230,39 @@ $(function() {
             function(){
                 $(this).find('.crew-icons').fadeOut(205);
             }
-        );    
-     
+        );
+        
+        $('.crew-icons').hover(
+                function(){
+                	$(this).find('.img-gray').css({"filter":"none","-webkit-filter":"none"}); 
+                },
+                function(){
+                	$(this).find('.img-gray').css({"filter":"none","-webkit-filter":"none"});
+                }
+        ).mouseleave(
+            function(){
+                $(this).find('.img-gray').css({"filter":"grayscale(1)","-webkit-filter":"grayscale()"}); 
+            },
+            function(){
+                $(this).find('.img-gray').css({"filter":"grayscale(1)","-webkit-filter":"grayscale()"});
+            }
+        );
+        
+        $('.the-crews').hover(
+            function(){
+                $(this).find('.img-gray').css({"filter":"none","-webkit-filter":"none"}); 
+            },
+            function(){
+                $(this).find('.img-gray').css({"filter":"none","-webkit-filter":"none"});
+            }
+        ).mouseleave(
+            function(){
+                $(this).find('.img-gray').css({"filter":"grayscale(1)","-webkit-filter":"grayscale()"}); 
+            },
+            function(){
+                $(this).find('.img-gray').css({"filter":"grayscale(1)","-webkit-filter":"grayscale()"});
+            }
+        );
     });    
 	
 	$("#resumefile").change(function(event) {

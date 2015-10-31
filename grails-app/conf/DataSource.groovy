@@ -14,21 +14,21 @@ environments {
     development {
         dataSource {
             // H2
-            /*dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
             url = "jdbc:h2:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
             // url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
             driverClassName = "org.h2.Driver"
             username = "sa"
-            password = ""*/
+            password = ""
 
             // MySQL
 
-             dbCreate = "update"
+             /*dbCreate = "update"
              url = "jdbc:mysql://localhost:3306/crowderadbdev"
              driverClassName = "com.mysql.jdbc.Driver"
              dialect = "org.hibernate.dialect.MySQL5InnoDBDialect"
              username = 'root'
-             password = ''
+             password = ''*/
              
         }
     }

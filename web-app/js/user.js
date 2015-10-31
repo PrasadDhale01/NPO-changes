@@ -80,25 +80,25 @@ $(function() {
     $(".amountsectionfbicon").click(function(){
     	var url;
     	if (currentEnvironment == 'prodIndia') {
-            url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://crowdera.in/campaign/create'
+            url = 'http://www.facebook.com/sharer.php?p[url]=http://crowdera.in/campaign/create'
     	}
         else if (currentEnvironment == 'testIndia') {
-        	url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://test.crowdera.in/campaign/create'
+        	url = 'http://www.facebook.com/sharer.php?p[url]=http://test.crowdera.in/campaign/create'
         }
         else if (currentEnvironment == 'stagingIndia') {
-        	url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://staging.crowdera.in/campaign/create'
+        	url = 'http://www.facebook.com/sharer.php?p[url]=http://staging.crowdera.in/campaign/create'
         }
         else if (currentEnvironment == 'test') {
-        	url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://test.crowdera.co/campaign/create'
+        	url = 'http://www.facebook.com/sharer.php?p[url]=http://test.crowdera.co/campaign/create'
         }
         else if (currentEnvironment == 'staging') {
-        	url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://staging.crowdera.co/campaign/create'
+        	url = 'http://www.facebook.com/sharer.php?p[url]=http://staging.crowdera.co/campaign/create'
         }
         else if (currentEnvironment == 'production') {
-        	url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://crowdera.co/campaign/create'
+        	url = 'http://www.facebook.com/sharer.php?p[url]=http://crowdera.co/campaign/create'
         }
     	else {
-    		url = 'https://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://localhost/campaign/create'
+    		url = 'http://www.facebook.com/sharer.php?p[url]=http://localhost:8080/campaign/create'
     	}
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;

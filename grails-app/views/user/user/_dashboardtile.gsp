@@ -282,7 +282,7 @@
                 </span>
             </div>
             
-            <a target="_blank" class="btn btn-block btn-social btn-facebook fbshareUrl" id="fbshare${index}" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">
+            <a target="_blank" class="btn btn-block btn-social btn-facebook fbshareUrl" id="fbshare${index}" href="http://www.facebook.com/sharer.php?p[url]=${fbShareUrl}">
                 <i class="fa fa-facebook fa-facebook-styles"></i> Share on Facebook
             </a>
         </div>

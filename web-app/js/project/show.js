@@ -338,8 +338,8 @@
         },
         errorPlacement: function(error, element) {
         	if($(element).prop("id") == "projectImageFile") {
-                error.appendTo(element.parent().parent());
-            } else{
+        		error.appendTo(document.getElementById("cols-error-placement-team"));
+            } else {
         		error.insertAfter(element);
         	}
         }
@@ -434,8 +434,8 @@
             var filename = file.name;
                 
             if(file.size < 1024 * 1024 * 3) {
+                if ($('#teamImages').find('.pr-thumb-div').length <= 4){
                 isvalidsize =  true;
-                
                 $('#uploadingCampaignUpdateEditImage').show();
 
                 var formData = !!window.FormData ? new FormData() : null;
@@ -474,9 +474,15 @@
                 }, this);
                 xhr.send(formData);
                 
-                $('#teamImages').find("span").remove();
-                $('#teamImages').closest(".form-group").removeClass('has-error');
-                
+                $('#cols-error-placement-team').find("span").remove();
+                $('#cols-error-placement-team').closest(".form-group").removeClass('has-error');
+                } else {
+                	$('.imageNumValidation').show();
+            	    var delay = 5000; //delayed code, time in milliseconds
+                    setTimeout(function() {
+                    	$('.imageNumValidation').hide();
+                    }, delay);
+                }
             } else {
             	if (fileName) {
             	    fileName = fileName +" "+ file.name;
@@ -516,7 +522,7 @@
            var match = (url.match(regExp) || url.match(vimeo));
            if (match && match[2].length == 11) {
                $('#ytVideo').show();
-               if (url.contains("embed/")){
+               if (url.indexOf("embed/") > -1){
             	   $('#ytVideo').attr('src',url);
                } else {
                    var vurl=url.replace("watch?v=", "embed/");
@@ -649,13 +655,13 @@
         /**************************************End of Edit team*******************************************/
 
     $("#fbshare").click(function(){
-        var url = 'http://www.facebook.com/sharer.php?s=100&amp;p[url]='+ encodeURIComponent($('#fbShareUrl').val());
+        var url = 'http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]='+ encodeURIComponent($('#fbShareUrl').val());
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
     
     $("#fbshare-mobile").click(function(){
-        var url = 'http://www.facebook.com/sharer.php?s=100&amp;p[url]='+ encodeURIComponent($('#fbShareUrl').val());
+        var url = 'http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]='+ encodeURIComponent($('#fbShareUrl').val());
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
     });
@@ -836,26 +842,24 @@
    		success: function(location) {
    			// If the visitor is browsing from India.
    			if (location.country_code == 'IN' && currentEnv == 'test') {
-   			// Tell him about the India store.
-   					$('.info-banner').css('display','block');
-   					$('.banner-link').text('test.crowdera.in');
-   					$('.banner-link').attr('href','http://test.crowdera.in');
-   					$('.home-header-section').addClass('banner-nav');
+				$('.info-banner').css('display','block');
+				$('.banner-link').text('test.crowdera.in');
+				$('.banner-link').attr('href','http://test.crowdera.in');
    			} else if(location.country_code == 'IN' && currentEnv == 'staging'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('staging.crowdera.in');
    				$('.banner-link').attr('href','http://staging.crowdera.in');
-   				$('.home-header-section').addClass('banner-nav');
    			} else if(location.country_code == 'IN' && currentEnv == 'production'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://crowdera.in');
-   				$('.home-header-section').addClass('banner-nav');
    			} else if(location.country_code == 'IN' && currentEnv == 'development'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://localhost:8080');
-   				$('.home-header-section').addClass('banner-nav');
+   				if($(window).width() < 768){
+   					$('#preview-banner').css('margin-top','-33px');
+   				}
    			}
    		}
    	});

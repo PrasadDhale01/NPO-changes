@@ -1,10 +1,18 @@
 <%
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def fbShareUrl = base_url+"/campaign/create"
 %>
 <html>
 <head>
-    <meta name="layout" content="main" />
+    <meta name="layout" content="main"/>
+    <meta property="og:site_name" content="Crowdera"/>
+    <meta property="og:type" content="Crowdera:Campaign"/>
+    <meta property="og:title" content="Create Campaign"/>
+    <meta property="og:description" content="Crowdfunding is a practical and inspiring way to support the fundraising needs of a cause or community. Do some good. Create a Campaign Today!"/>
+    <meta property="og:image" content="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png"/>
+    <meta property="og:url" content="${fbShareUrl}"/>
+    
     <r:require modules="projectcreatejs" />
 </head>
 <body>

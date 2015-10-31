@@ -12,7 +12,6 @@ import org.jets3t.service.impl.rest.httpclient.RestS3Service
 import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
 import grails.util.Environment
-import javax.servlet.http.Cookie
 
 class ProjectService {
     def userService
@@ -155,20 +154,20 @@ class ProjectService {
 		def vanitytitle
         User currentUser = userService.getCurrentUser()
         def fullName = currentUser.firstName + ' ' + currentUser.lastName
-
-        if (params.videoUrl) {
-            if (params.videoUrl.contains('embed')){
-                project.videoUrl = params.videoUrl
-            } else {
-                getYoutubeUrlChanged(params.videoUrl, project)
-            }
-        }
-
+        def currentEnv = Environment.current.getName()
         project.story = params.story
         if (project.draft) {
             project.paypalEmail = params.paypalEmail
             project.charitableId = params.charitableId
             project.organizationName = params.organizationName
+        }
+        
+        if (!project.beneficiary.country) {
+            if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                project.beneficiary.country = 'IN'
+            } else {
+                project.beneficiary.country = 'US'
+            }
         }
         
         def projectAdmins = project.projectAdmins
@@ -280,13 +279,15 @@ class ProjectService {
         return result
      }
 
-     def getUpdateValidationDetails(def params){
-         def project = Project.get(params.id)
-         project.created = new Date()
-         project.validated = true
-     }
+    def getUpdateValidationDetails(def params){
+        def project = Project.get(params.id)
+        project.created = new Date()
+        if(!project.validated){
+            project.validated = true
+            mandrillService.sendValidationEmailToOWnerAndAdmins(project)
+        }
+    }
 
-	
      def getCommentsDetails(params){
          def project = Project.get(params.id)
          if (project && params.comment) {
@@ -507,28 +508,35 @@ class ProjectService {
 	 
 	 def generateCSV(def response, def params){
              SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY:MM:dd hh:mm:ss");
-		 
-             def transactions
+			 def userIdentity
+			 def mode
+             def contributions
              if (params.currency == 'INR'){
-                 transactions = contributionService.getINRTransactions()
+                 contributions = contributionService.getINRContributions()
              } else {
-                 transactions = contributionService.getUSDTransactions()
+                 contributions = contributionService.getUSDContributions()
              }
              List results=[]
 	     
 		 response.setHeader("Content-disposition", "attachment; filename=Crowdera_Transaction_Report.csv")
-		 transactions.each{
-			def userIdentity
-			if (it.contribution.isAnonymous) {
+		 contributions.each{
+			if (it.isAnonymous) {
 				userIdentity = "Anonymous"
 			} else {
 				userIdentity = "Non Anonymous"
 			}
-			def rows = [it.transactionId, dateFormat.format(it.contribution.date), it.project.title.replaceAll('[,;] ',' '), it.contribution.contributorName, userIdentity, getContributedAmount(it), it.contribution.contributorEmail]
+
+            if(it.isContributionOffline){
+                mode = 'Offline'
+            } else {
+                mode = 'Online'
+            }
+
+			def rows = [dateFormat.format(it.date), it.project.title.replaceAll('[,;] ',' '), it.contributorName, userIdentity, it.amount, it.contributorEmail, mode]
 			results << rows
 		 }
 		 
-		 def result='Transaction Id, Contribution Date & Time, Project, Contributor Name, Identity, Contributed Amount, Contributor Email \n'
+		 def result='Contribution Date & Time, Campaign, Contributor Name, Identity, Contributed Amount, Contributor Email, Mode \n'
 		 results.each{ row->
 			row.each{
 			col -> result+=col +','
@@ -1024,51 +1032,51 @@ class ProjectService {
 		return sortsOptions
 	}
 	
-	def isCampaignsorts(def sorts ,def currentEnv){
-		List projects = getValidatedProjects(currentEnv)
-		List p = []
-		if(sorts == 'Most-Funded'){
-			projects.each {
-				def percentage = contributionService.getPercentageContributionForProject(it)
-				if(percentage >= 100){
-					p.add(it)
-				}
-			}
-		}
-		if(sorts == 'Latest'){
-			projects.each {project ->
-				boolean ended = isProjectDeadlineCrossed(project)
-				if(project.validated && ended ==false){
-					p.add(project)
-				}
-			}
-		}
-		if(sorts == 'Ending-Soon'){
-			projects.each {
-				def day = getRemainingDay(it)
-				if(day > 0 && day <10){
-					p.add(it)
-				}
-			}
-		}
-		if(sorts=='Ended'){
-			projects.each{
-				boolean ended_campaigns = isProjectDeadlineCrossed(it)
-				if(ended_campaigns){
-					p.add(it)
-				}
-			}
-		}
-		if(sorts=='Offering-Perks'){
-		    projects.each{
-		        def  perkSize = it.rewards.size()
-		        if(perkSize > 1){
-		           p.add(it)
-		       }
-		    }
-		}
-		return p
-	}
+    def isCampaignsorts(def sorts ,def currentEnv) {
+        List projects = getValidatedProjects(currentEnv)
+        List p = []
+        if(sorts == 'Most-Funded') {
+            projects.each {
+                def percentage = contributionService.getPercentageContributionForProject(it)
+                if(percentage >= 100){
+                    p.add(it)
+                }
+            }
+        }
+        if(sorts == 'Latest') {
+            projects.each {project ->
+                boolean ended = isProjectDeadlineCrossed(project)
+                if(project.validated && ended ==false){
+                    p.add(project)
+                }
+            }
+        }
+        if(sorts == 'Ending-Soon') {
+            projects.each {
+                def day = getRemainingDay(it)
+                if(day > 0 && day <10){
+                    p.add(it)
+                }
+            }
+        }
+        if(sorts=='Ended'){
+            projects.each{
+                boolean ended_campaigns = isProjectDeadlineCrossed(it)
+                if(ended_campaigns){
+                    p.add(it)
+                }
+            }
+        }
+        if(sorts=='Offering-Perks'){
+            projects.each{
+                def  perkSize = it.rewards.size()
+                if(perkSize > 1){
+                    p.add(it)
+                }
+            }
+        }
+        return p
+    }
     
     def getdefaultAdmin(Project project, User user) {
         def defaultAdminEmail = "campaignadmin@crowdera.co"
@@ -1960,11 +1968,11 @@ class ProjectService {
             return null
        }
         def day
-        if ((getProjectEndDate(project))>(Calendar.instance)) {
-            day =(getProjectEndDate(project)-Calendar.instance)
+        if ((getProjectEndDate(project)) > (Calendar.instance)) {
+            day =(getProjectEndDate(project) - Calendar.instance)
         }
         else {
-            day =(Calendar.instance-getProjectEndDate(project))
+            day = 0
         }
         return day
     }
@@ -2883,8 +2891,16 @@ class ProjectService {
 
             case 'videoUrl':
                 project.videoUrl = (varValue.isAllWhitespace()) ? null : varValue;
-                isValueChanged = true;
-                break;
+                if (project.videoUrl){
+                    if (project.videoUrl.contains('embed')) {
+                        isValueChanged = true;
+                        break;
+                    } else {
+                        getYoutubeUrlChanged(project.videoUrl, project)
+                        isValueChanged = true;
+                        break;
+                    }
+                }
 
             case 'email1':
                 getFirstAdminForProjects(varValue, project, user)
@@ -3332,7 +3348,7 @@ class ProjectService {
 	return shippingInfo
 	}
 
-    def generateCSVReportForCampaign(def params, def response, Project project, def ytViewCount, def linkedinCount, def twitterCount, def facebookCount){
+    def generateCSVReportForCampaign(def response, Project project, def ytViewCount, def linkedinCount, def twitterCount, def facebookCount){
 
         def numberOfContributions = project.contributions.size()
         def percentageContribution = contributionService.getPercentageContributionForProject(project)

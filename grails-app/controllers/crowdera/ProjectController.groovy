@@ -570,18 +570,24 @@ class ProjectController {
                     }
                 }
 
-                if (currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'){
-                    vanitytitle = (project.customVanityUrl) ? projectService.getCustomVanityUrl(project) : params.title;
-                }
+                vanitytitle = (project.customVanityUrl) ? projectService.getCustomVanityUrl(project) : params.title;
 
                 rewardService.saveRewardDetails(params);
                 project.story = params.story
+                
                 if (params.checkBox && !project.touAccepted) {
                     project.touAccepted = true
                 }
 
                 if (params.isSubmitButton == 'true'){
-                    project.draft = false;		
+                    project.draft = false;
+                    if (!project.beneficiary.country) {
+                        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                            project.beneficiary.country = 'IN'
+                        } else {
+                            project.beneficiary.country = 'US'
+                        }
+                    }
                     redirect (action:'launch' ,  params:[title:vanitytitle])
                 } else {
                     redirect (action:'showCampaign' ,  params:[id:project.id, isPreview:true])
@@ -678,7 +684,6 @@ class ProjectController {
 		} else {
 			flash.prj_edit_message = "Campaign not found."
 			render (view: 'edit/editerror')
-			return
 		}
 	}
 
@@ -1826,7 +1831,7 @@ class ProjectController {
         def twitterCount = shareCount.twitterCount
         def linkedinCount = shareCount.linkedinCount
         
-        def result = projectService.generateCSVReportForCampaign(params, response, project, ytViewCount, linkedinCount, twitterCount, facebookCount)
+        def result = projectService.generateCSVReportForCampaign(response, project, ytViewCount, linkedinCount, twitterCount, facebookCount)
         render (contentType:"text/csv", text:result)
     }
 

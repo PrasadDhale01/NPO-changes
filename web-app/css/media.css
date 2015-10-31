@@ -6,6 +6,15 @@
         padding-left: 15%;
         padding-right: 15%;
     }
+    .col-videoUrl-textbox{
+        padding-left:6%;
+    }
+    .createpage-img-panel{
+        padding-left: 20px;
+    }
+    .paypalVerification span{
+        margin-left: 0;
+    }
 }
 @media only screen and (min-width: 1201px) and (max-width: 1280px){
     .helpdeskpadding {
@@ -126,6 +135,22 @@
     }
 }
 
+@media only screen and (min-width: 641px) and (max-width: 799px){
+    div.paypalVerification span {
+        margin-left: -7%;
+    }
+}
+
+@media only screen and (min-width: 415px) and (max-width: 640px){
+    div.paypalVerification span {
+        margin-left: -3%;
+    }
+    
+    .form-group-termsOfUse {
+        margin-left: -3px !important;
+    }
+}
+
 @media only screen and (min-width: 668px) and (max-width: 767px){
     .whycrowderacol-sm .col-xs-3 {
         width: 25% !important;
@@ -148,12 +173,6 @@
         width: 463px;
         margin-right: auto;
         margin-left: auto;
-    }
-}
-
-@media only screen and (min-width: 415px) and (max-width:767px){
-    .paypalVerification span {
-        margin-left: -3% !important;
     }
 }
 
@@ -309,9 +328,9 @@
     .menu-top {
         margin-left: -131px;
     }
-
-	.whycrowderacol-sm .col-xs-12 {
-	    padding-left: 0px !important;
+    
+    .whycrowderacol-sm .col-xs-12 {
+        padding-left: 0px !important;
         padding-right: 0px !important;
     }
     .whycrowderacol-sm .col-xs-3 {

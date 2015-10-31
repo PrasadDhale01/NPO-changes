@@ -132,8 +132,8 @@
                 <g:if test="${user || beneficiary}">
                     <div class="col-md-12 col-sm-12 col-xs-12 text-center campaignFundRaiser hidden-xs">
                         <h4 class="green-heading">
-                            <img class="show-location" alt="location" src="//s3.amazonaws.com/crowdera/assets/show-page-locations.png">
-                            <span><g:if test="${project.user.city}">${project.user.city},</g:if> ${project.beneficiary.country}</span>
+                            <img class="show-location hidden" alt="location" src="//s3.amazonaws.com/crowdera/assets/show-page-locations.png">
+                            <span class="hidden"><g:if test="${project.user.city}">${project.user.city},</g:if> ${project.beneficiary.country}</span>
                             <g:if test = "${project.fundsRecievedBy != null }">
                                 <img class="show-location sh-none-pft" alt="location" src="//s3.amazonaws.com/crowdera/assets/show-page-non-profit-icons.png">
                                 <span>${project.fundsRecievedBy}</span>
@@ -159,7 +159,7 @@
                         </div>
                     
                         <div class="submitForApprovalSection">
-                            <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                            <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                                 <g:form controller="project" action="saveasdraft" id="${project.id}">
                                     <g:if test="${!project.touAccepted}">
                                         <div class="form-group">
@@ -373,7 +373,7 @@
                     
                     <g:if test="${isPreview && !project.validated}">
                         <div class="submitForApprovalSectionbtm" id="submitForApprovalSectionbtm">
-                            <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                            <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                                 <g:form controller="project" action="saveasdraft" id="${project.id}">
                                     <g:if test="${!project.touAccepted}">
                                         <div class="form-group">

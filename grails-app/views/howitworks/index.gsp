@@ -3,7 +3,7 @@
     <meta name="layout" content="main" />
 </head>
 <body>
-<div class="feducontent">
+<div class="feducontents">
     <g:render template="/howitworks/howtocreate"></g:render>
     <g:render template="/howitworks/howitworks"></g:render>
 </div>

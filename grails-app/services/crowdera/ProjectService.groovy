@@ -283,8 +283,10 @@ class ProjectService {
     def getUpdateValidationDetails(def params){
         def project = Project.get(params.id)
         project.created = new Date()
-        project.validated = true
-        mandrillService.sendValidationEmailToOWnerAndAdmins(project)
+        if(!project.validated){
+            project.validated = true
+            mandrillService.sendValidationEmailToOWnerAndAdmins(project)
+        }
     }
 
      def getCommentsDetails(params){

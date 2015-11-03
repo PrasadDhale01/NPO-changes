@@ -30,6 +30,9 @@
         } else {
             cents = percentage
         }
+        
+        def currentEnv = projectService.getCurrentEnvironment()
+        def conversionMultiplier = projectService.getCurrencyConverter();
     %>
     
     <div class="fedu thumbnail grow userdashboard-tiles">
@@ -192,11 +195,23 @@
         </g:else>
         <div class="userprofilecaption">
             <span class="pull-left">
-                <span class="userdashboard-caption-font">Raised</span> <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else><span class="lead">$</span></g:else><span class="lead">${contribution}</span>
+                <span class="userdashboard-caption-font">Raised</span>
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${contribution}</span></g:if><g:else><span class="lead">${contribution * conversionMultiplier}</span></g:else>
+                </g:if>
+                <g:else>
+                    <span class="lead">$${contribution}</span>
+                </g:else>
             </span>
             
             <span class="pull-right">
-                <span class="userdashboard-caption-font">Goal</span> <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else><span class="lead">$</span></g:else><span class="lead">${amount}</span>
+                <span class="userdashboard-caption-font">Goal</span>
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
+                </g:if>
+                <g:else>
+                    <span class="lead">$${amount}</span>
+                </g:else>
             </span>
         </div>
         <g:if test="${iscampaignAdmin}">
@@ -233,6 +248,9 @@
         } else {
             cents = percentage
         }
+        
+        def currentEnv = projectService.getCurrentEnvironment()
+        def conversionMultiplier = projectService.getCurrencyConverter();
     %>
     <g:if test="${project.validated}">
         <div class="fedu thumbnail grow userdashboard-tiles">
@@ -272,15 +290,28 @@
                     <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${percentage}" aria-valuemin="0" aria-valuemax="100" style="width: ${percentage}%;"></div>
                 </div>
             </g:else>
+            
             <div class="userprofilecaption">
                 <span class="pull-left">
-                    <span class="userdashboard-caption-font">Raised</span> <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else><span class="lead">$</span></g:else><span class="lead">${contribution}</span>
+                    <span class="userdashboard-caption-font">Raised</span>
+                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${contribution}</span></g:if><g:else><span class="lead">${contribution * conversionMultiplier}</span></g:else>
+                    </g:if>
+                    <g:else>
+                        <span class="lead">$${contribution}</span>
+                    </g:else>
                 </span>
-                
+
                 <span class="pull-right">
-                    <span class="userdashboard-caption-font">Goal</span> <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else><span class="lead">$</span></g:else><span class="lead">${amount}</span>
+                    <span class="userdashboard-caption-font">Goal</span>
+                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
+                    </g:if>
+                    <g:else>
+                        <span class="lead">$${amount}</span>
+                    </g:else>
                 </span>
-            </div>
+				        </div>
             
             <a target="_blank" class="btn btn-block btn-social btn-facebook fbshareUrl" id="fbshare${index}" href="http://www.facebook.com/sharer.php?p[url]=${fbShareUrl}">
                 <i class="fa fa-facebook fa-facebook-styles"></i> Share on Facebook

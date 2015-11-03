@@ -22,26 +22,27 @@
               <g:select class="selectpicker text-center" name="transactionSort" id="transactionSort" from="${transactionSort}" optionKey="value" optionValue="value" onchange="showSortedTransaction()"/>
           </div>
        </div>
-       <div class="table table-responsive table-xs-left">
-           <table class="table table-bordered">
-               <thead>
-                   <tr class="alert alert-title ">
-                       <th class="text-center col-sm-1">Sr. No.</th>
-                       <th class="text-center col-sm-2">Contribution Date & Time</th>
-                       <th class="text-center col-sm-3">Campaign</th>
-                       <th class="text-center col-sm-2">Contributor Name</th>
-                       <th class="text-center">Identity</th>
-                       <th class="text-center col-sm-2">Contributed Amount</th>
-                       <th class="text-center col-sm-2">Email</th>
-                       <th class="text-center">Mode</th>
-                   </tr>
-               </thead>
-               <tbody id="transactionInfo">
-                   <g:render template="/user/admin/transactionGrid" model="['contribution': contribution]"></g:render>
-               </tbody>
-           </table>
+       <div class="currencyconvertor" id="currencyconvertor">
+           <g:form action="currency" controller="user">
+               <div class="currencydiv col-md-4 col-xs-8">
+                   <div class="form-group">
+                       <div class="input-group">
+                           <span class="input-group-addon"><b>1$ = </b></span>
+                           <input class="form-control" type="text" name="currency" value="${multiplier}" id="currency"/>
+                           <span class="input-group-addon"><span class="fa fa-inr"></span></span>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-md-2 col-xs-4">
+                   <button type="submit" class="btn btn-primary btn-sm" id="currencysubmitbtn" onClick="return confirm(&#39;Changes in currency value will be reflected through the site. Are you sure you want to change the currency value.?&#39;);">Save</button>
+               </div>
+           </g:form>
        </div>
-    </div>    
+       <div class="clear"></div>
+       <div id="transactionInfo">
+           <g:render template="/user/admin/transactionGrid" model="['contribution': contribution]"></g:render>
+       </div>
+    </div>
 </div>
 </body>
 </html>

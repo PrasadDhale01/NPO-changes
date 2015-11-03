@@ -213,11 +213,11 @@ $(function() {
     
     $('#currencyconvertor').find('form').validate({
         rules: {
-    		currency: {
-    			required: true,
-    			number: true
-    		}
-    	}
+            currency: {
+                required: true,
+                number: true
+            }
+        }
     });
     
     $.validator.addMethod('isFullName', function(value, element){

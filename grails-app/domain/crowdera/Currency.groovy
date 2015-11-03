@@ -7,8 +7,6 @@ import groovy.transform.ToString
 
 class Currency {
 
-    double currencyUSA
+    double dollar
     
-    static constraints = {
-    }
 }

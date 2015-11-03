@@ -292,25 +292,25 @@
             </g:else>
             
             <div class="userprofilecaption">
-				            <span class="pull-left">
-				                <span class="userdashboard-caption-font">Raised</span>
-				                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-				                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${contribution}</span></g:if><g:else><span class="lead">${contribution * conversionMultiplier}</span></g:else>
-				                </g:if>
-				                <g:else>
-				                    <span class="lead">$${contribution}</span>
-				                </g:else>
-				            </span>
-				            
-				            <span class="pull-right">
-				                <span class="userdashboard-caption-font">Goal</span>
-				                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-				                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
-				                </g:if>
-				                <g:else>
-				                    <span class="lead">$${amount}</span>
-				                </g:else>
-				            </span>
+                <span class="pull-left">
+                    <span class="userdashboard-caption-font">Raised</span>
+                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${contribution}</span></g:if><g:else><span class="lead">${contribution * conversionMultiplier}</span></g:else>
+                    </g:if>
+                    <g:else>
+                        <span class="lead">$${contribution}</span>
+                    </g:else>
+                </span>
+
+                <span class="pull-right">
+                    <span class="userdashboard-caption-font">Goal</span>
+                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
+                    </g:if>
+                    <g:else>
+                        <span class="lead">$${amount}</span>
+                    </g:else>
+                </span>
 				        </div>
             
             <a target="_blank" class="btn btn-block btn-social btn-facebook fbshareUrl" id="fbshare${index}" href="http://www.facebook.com/sharer.php?p[url]=${fbShareUrl}">

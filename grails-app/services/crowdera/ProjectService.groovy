@@ -4,7 +4,6 @@ import grails.transaction.Transactional
 import java.security.MessageDigest
 import java.text.DateFormat
 import java.text.SimpleDateFormat
-import java.util.List;
 
 import javax.servlet.http.Cookie
 
@@ -3499,9 +3498,9 @@ class ProjectService {
     }
     
     def getCurrencyConverter() {
-        Currency currency = Currency.get(1);
+        Currency currency = userService.getCurrencyById();
         if (currency) {
-            return currency.currencyUSA.round();
+            return currency.dollar.round();
         } else {
             return 65;
         }

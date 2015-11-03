@@ -19,8 +19,8 @@
         </thead>
         <tbody>
             <% while(index < count) { %>
-												   <g:render template="/user/admin/transactionList" model="['contribution': contribution.get(index++), index: ++indexcount]"></g:render>
-												<% } %>
+                <g:render template="/user/admin/transactionList" model="['contribution': contribution.get(index++), index: ++indexcount]"></g:render>
+            <% } %>
         </tbody>
     </table>
 </div>

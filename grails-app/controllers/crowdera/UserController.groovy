@@ -96,7 +96,7 @@ class UserController {
             
             render view: userViews, model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, state: state,
                                             activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, multiplier: multiplier,
-                                            fundRaised : fundRaised, contributions: contribution.contributions, totalContributions : contribution.totalContributions]
+                                            contributions: contribution.contributions, totalContributions : contribution.totalContributions]
         }
     }
     
@@ -380,12 +380,12 @@ class UserController {
     
     @Secured(['ROLE_ADMIN'])
     def currency() {
-        Currency currency = Currency.get(1)
+        Currency currency = userService.getCurrencyById()
         if (currency) {
-            currency.currencyUSA = Double.parseDouble(params.currency)
+            currency.dollar = Double.parseDouble(params.currency)
         } else {
             currency = new Currency()
-            currency.currencyUSA = Double.parseDouble(params.currency)
+            currency.dollar = Double.parseDouble(params.currency)
         }
         if (currency.save()) {
             redirect (action:"transaction", controller:"fund")

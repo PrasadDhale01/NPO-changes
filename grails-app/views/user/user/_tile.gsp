@@ -163,36 +163,36 @@
         <span>${project.description}</span>
     </div>
 
-	   <div class="modal-footer tile-footer tile-fonts-footer">
-		      <div class="row">
-			         <div class="col-xs-4 col-sm-4 col-md-4 goalIcon">
-				            <img src="//s3.amazonaws.com/crowdera/assets/tile-goal-icon.png" alt="tile-goal">
-			         </div>
-			         <div class="col-xs-4 col-sm-4 col-md-4 daysleftIcon campaign-tile-border">
-				            <img src="//s3.amazonaws.com/crowdera/assets/timeleft.png" alt="time-left">
-			         </div>
-        	   <div class="col-sm-4 col-md-4 col-xs-4 progress-pie-chart show-tile progressBarIcon" data-percent="43">
-        		      <div class="c100 p${cents} small text-center">
+    <div class="modal-footer tile-footer tile-fonts-footer">
+        <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-4 goalIcon">
+                <img src="//s3.amazonaws.com/crowdera/assets/tile-goal-icon.png" alt="tile-goal">
+            </div>
+            <div class="col-xs-4 col-sm-4 col-md-4 daysleftIcon campaign-tile-border">
+                <img src="//s3.amazonaws.com/crowdera/assets/timeleft.png" alt="time-left">
+            </div>
+            <div class="col-sm-4 col-md-4 col-xs-4 progress-pie-chart show-tile progressBarIcon" data-percent="43">
+                <div class="c100 p${cents} small text-center">
                     <span>${percentage}%</span>
                     <div class="slice">
                         <div class="bar showprogressBar"></div>
                         <div class="fill showprogressBar"></div>
                     </div>
                 </div>
-        	   </div>
-		      </div>
-		      <div class="row tilepadding">
-			         <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
-        		      <span class="text-center tile-goal">
-				        		      <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-				        		          <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
-					   		          </g:if>
-					   		          <g:else>
-					   		              $<span class="lead">${amount}</span>
-					   		          </g:else>
-        		      </span>
-        	   </div>
-			         <g:if test="${ended}">
+	           </div>
+        </div>
+        <div class="row tilepadding">
+            <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
+                <span class="text-center tile-goal">
+                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
+                    </g:if>
+                    <g:else>
+                        $<span class="lead">${amount}</span>
+                    </g:else>
+                </span>
+            </div>
+            <g:if test="${ended}">
                 <div class="col-md-4 col-sm-4 col-xs-4  show-tile-text-size campaign-tile-border">
                     <span class="days-alignment">DAYS<br>LEFT</span>
                     <span class="tile-day-num">00</span>
@@ -219,11 +219,11 @@
                         $<span class="lead">${contribution}</span>
                     </g:else>
                 </span>
-			         </div>
-		      </div>
-	   </div>
-	   <div class="modal-footer tile-footer user-goal user-footer-icon">
-			     <div class="row">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer tile-footer user-goal user-footer-icon">
+        <div class="row">
             <g:if test="${!project.validated || username.equals('campaignadmin@crowdera.co') }">
                 <g:form controller="project" action="projectdelete" method="post" id="${project.id}">
                     <button class="projectedit close pull-right" id="projectdelete"
@@ -233,26 +233,16 @@
                 </g:form>
             </g:if>
             <g:if test="${isTeamAdmin || (user==project.user)}">
-            	<g:link controller="project" action="editCampaign" method="post" id="${project.id}">
-                	<button class="projectedit close pull-right" id="editproject">
-                    	<i class="glyphicon glyphicon-edit"></i>
-                	</button>
-            	</g:link>
-            	<g:form controller="project" action="showCampaign" method="post" id="${project.id}" params='[isPreview:true, tile:true, fr:username]'>
-                	<button class="projectedit close pull-right" id="projectpreview">
-                    	<i class="glyphicon glyphicon-picture"></i>
-                	</button>
-            	</g:form>
+                <g:link controller="project" action="editCampaign" method="post" id="${project.id}">
+                    <button class="projectedit close pull-right" id="editproject"><i class="glyphicon glyphicon-edit"></i></button>
+                </g:link>
+                <g:form controller="project" action="showCampaign" method="post" id="${project.id}" params='[isPreview:true, tile:true, fr:username]'>
+                    <button class="projectedit close pull-right" id="projectpreview"><i class="glyphicon glyphicon-picture"></i></button>
+                </g:form>
             </g:if>
             <g:else>
-            	<button class="projectedit close pull-right" id="editproject" name="editproject"
-           	   	 data-toggle="popover">
-                   	<i class="glyphicon glyphicon-edit"></i>
-               	</button>
-               	<button class="projectedit close pull-right" id="projectpreview" name="projectpreview"
-               	 data-toggle="popover">
-                   	<i class="glyphicon glyphicon-picture"></i>
-               	</button>
+                <button class="projectedit close pull-right" id="editproject" name="editproject" data-toggle="popover"><i class="glyphicon glyphicon-edit"></i></button>
+                <button class="projectedit close pull-right" id="projectpreview" name="projectpreview" data-toggle="popover"><i class="glyphicon glyphicon-picture"></i></button>
             </g:else>
         </div>
     </div>

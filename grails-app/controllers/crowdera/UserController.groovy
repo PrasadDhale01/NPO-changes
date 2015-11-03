@@ -88,12 +88,14 @@ class UserController {
                 contribution = projectService.getPaginatedContibutionByUser(user, environment,params, max)
             }
             
-            def contributedAmount = contributionService.getContributedAmount(contribution.contributions)
-            def fundRaised = contributionService.getTotalFundRaisedByUser(projects)
+            def contributedAmount = projectService.getContributedAmount(contribution.contributions)
+            def fundRaised = projectService.getTotalFundRaisedByUser(projects)
             def country = projectService.getCountry()
             def state = projectService.getState()
+            def multiplier = projectService.getCurrencyConverter();
+            
             render view: userViews, model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, state: state,
-                                            activeTab:activeTab, environment: environment, contributedAmount: contributedAmount,
+                                            activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, multiplier: multiplier,
                                             contributions: contribution.contributions, totalContributions : contribution.totalContributions]
         }
     }
@@ -306,7 +308,9 @@ class UserController {
         List project = projectService.getProjects(projects, projectAdmins, teams, environment)
         def max = Math.min(params.int('max') ?: 4, 100)
         List totalCampaings = projectService.getUsersPaginatedCampaigns(project, params, max)
-        def model = [totalCampaings: totalCampaings, projects: project, dashboard: 'dashboard', activeTab: 'campaigns']
+        def multiplier = projectService.getCurrencyConverter();
+        
+        def model = [totalCampaings: totalCampaings, projects: project, dashboard: 'dashboard', activeTab: 'campaigns', multiplier: multiplier]
         if (request.xhr) {
             render(template: "user/myprojects", model: model)
         }
@@ -318,8 +322,9 @@ class UserController {
         def environment = Environment.current.getName()
         def max = Math.min(params.int('max') ?: 4, 100)
         def contribution = projectService.getPaginatedContibutionByUser(user, environment, params, max)
+        def multiplier = projectService.getCurrencyConverter();
 
-        def model = [contributions: contribution.contributions, totalContributions : contribution.totalContributions, activeTab: 'contributions']
+        def model = [contributions: contribution.contributions, totalContributions : contribution.totalContributions, activeTab: 'contributions', multiplier: multiplier]
         if (request.xhr) {
             render(template: "/user/user/dashboardcontributiontile", model: model)
         }
@@ -370,6 +375,22 @@ class UserController {
             redirect (controller: 'user', action: 'dashboard')
         } else {
            render(view: 'error', model: [message: "Error while updating user. Please try again later."])
+        }
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def currency() {
+        Currency currency = userService.getCurrencyById()
+        if (currency) {
+            currency.dollar = Double.parseDouble(params.currency)
+        } else {
+            currency = new Currency()
+            currency.dollar = Double.parseDouble(params.currency)
+        }
+        if (currency.save()) {
+            redirect (action:"transaction", controller:"fund")
+        } else {
+            render(view: 'error', model: [message: "Error while updating Currency. Please try again later."])
         }
     }
 }

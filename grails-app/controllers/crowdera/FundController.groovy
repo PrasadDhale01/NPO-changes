@@ -594,12 +594,16 @@ class FundController {
         def transactionSort = contributionService.transactionSort()
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        
+        def multiplier = projectService.getCurrencyConverter();
         if (params.currency == 'INR'){
-            def contributionINR = contributionService.getINRContributions()
-            render view: '/user/admin/transactionIndex', model: [contribution: contributionINR, currency:'INR', transactionSort:transactionSort, url:base_url]
+            def contributionINR = contributionService.getINRContributions(params)
+            render view: '/user/admin/transactionIndex', model: [multiplier: multiplier, contribution: contributionINR.contributions, 
+                                                         totalContributions: contributionINR.totalContributions, currency:'INR', transactionSort:transactionSort, url:base_url]
         } else {
-            def contributionUSD = contributionService.getUSDContributions()
-            render view: '/user/admin/transactionIndex', model: [contribution: contributionUSD, currency:'USD', transactionSort:transactionSort, url:base_url]
+            def contributionUSD = contributionService.getUSDContributions(params)
+            render view: '/user/admin/transactionIndex', model: [multiplier: multiplier, contribution: contributionUSD.contributions,
+                                                         totalContributions: contributionUSD.totalContributions, currency:'USD', transactionSort:transactionSort, url:base_url]
         }
     }
 
@@ -711,9 +715,31 @@ class FundController {
 	
     @Secured(['ROLE_ADMIN'])
     def getSortedContributions(){
-        def sortedList = contributionService.getContributionSortedResult(params.selectedSortValue, params.currency)
+        def sortedList = contributionService.getContributionSortedResult(params, params.selectedSortValue, params.currency)
         if(request.xhr){
-            render(template:"/user/admin/transactionGrid", model: [contribution: sortedList]);
+            render(template:"/user/admin/transactionGrid", model: [contribution: sortedList.contributions, totalContributions: sortedList.totalContributions]);
         }
     }
+    
+    @Secured(['ROLE_ADMIN'])
+    def transactionList() {
+        def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        
+        def multiplier = projectService.getCurrencyConverter();
+        def model
+        if (params.currency == 'INR'){
+            def contributionINR = contributionService.getINRContributions(params)
+            model= [multiplier: multiplier, contribution: contributionINR.contributions, totalContributions: contributionINR.totalContributions, currency:'INR', url:base_url, offset: params.offset]
+        } else {
+            def contributionUSD = contributionService.getUSDContributions(params)
+            model = [multiplier: multiplier, contribution: contributionUSD.contributions, totalContributions: contributionUSD.totalContributions, currency:'USD', url:base_url, offset: params.offset]
+        }
+        if (request.xhr) {
+            render(template: "/user/admin/transactionGrid", model: model)
+        } else {
+            render ''
+        }
+    }
+    
 }

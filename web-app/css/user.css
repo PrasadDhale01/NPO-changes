@@ -162,7 +162,7 @@ div.progress {
 .userProfileEditDeleteIcon{
     display:none;
 }
-.uploadProfileImg {
+#uploadProfileImg {
     display:none;
 }
 .userProfileEditDeleteIcon .profiledelete{
@@ -499,10 +499,11 @@ div.dashboardtile-min-height {
 }
 
 .contributiontimeline .btn-facebook {
-    padding: 8px 43px;
+    padding: 8px 40px;
     width: 229px;
     background-color: #31497B;
     border: 1px solid transparent;
+    font-weight: 600;
 }
 .contributiontimeline .fa-facebook-styles {
     padding-top: 5px;
@@ -519,6 +520,8 @@ div.dashboardtile-min-height {
 .userprofileeditimage img{
     width: 25px !important;
     height: 25px !important;
+    background-color: #e7e7e7;
+    opacity: 0.7;
 }
 .userprofileeditimage {
     position: absolute;
@@ -543,6 +546,7 @@ div.dashboardtile-min-height {
     background-color: #31497B;
     border: none;
     color: #fff;
+    font-weight: 600;
 }
 .userdashboard-tiles a:hover, .userdashboard-tiles a:focus {
     text-decoration: none;
@@ -666,16 +670,36 @@ div.dashboardtile-min-height {
     padding-bottom: 5px;
 }
 .show-more-campaign-btn.btn-primary {
-    background-color: #175E83 !important;
-    border-color: #175E83 !important;
-    color: white;
+    background-color: #e7e7e7 !important;
+    border-color: #e7e7e7 !important;
+    color: #404040;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 15px;
     padding: 8px 24px;
     width: 230px;
-    margin-left: 10px;
-    margin-right: auto;
 }
 .userseditlocation ul.dropdown-menu li {
 	   text-align: left;
+}
+.amountsection span.fa-inr {
+	   font-size: 20px;
+    padding-right: 2px;
+}
+.currencydiv {
+	   width: 200px;
+}
+.currencydiv span {
+	   font-size: 16px;
+}
+.transactionPaginate a, .transactionPaginate .currentStep {
+    font-size: 13px;
+    text-align: center;
+    padding-left: 15px;
+    color: #31497B !important;
+    font-weight: 700 !important;
+}
+.transactionPaginate {
+  margin-top: 10px;
+  padding-left: 10px;
+  margin-bottom: 15px;
 }

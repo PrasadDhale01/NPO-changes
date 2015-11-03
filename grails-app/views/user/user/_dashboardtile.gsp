@@ -305,13 +305,7 @@
 				            <span class="pull-right">
 				                <span class="userdashboard-caption-font">Goal</span>
 				                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-				                    <span class="fa fa-inr"></span>
-				                    <g:if test="${project.payuStatus}">
-				                        <span class="lead">${amount}</span>
-				                    </g:if>
-				                    <g:else>
-				                        <span class="lead">${amount * conversionMultiplier}</span>
-				                    </g:else>
+				                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
 				                </g:if>
 				                <g:else>
 				                    <span class="lead">$${amount}</span>

@@ -302,6 +302,7 @@ class ProjectController {
 			def teamComments = projectService.getTeamComments(currentTeam)
 			List totalContributions = []
 			List contributions = []
+            def multiplier = projectService.getCurrencyConverter();
 
 			if(project.validated == false) {
 
@@ -310,7 +311,7 @@ class ProjectController {
 					totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, webUrl: webUrl, teamComments: teamComments, teamOffset: teamOffset,
 					teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,totalContributions: totalContributions,contributions: contributions,
 					isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
-					validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS])
+					validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS, multiplier: multiplier])
 			}
 		} else {
 			render (view: '404error')
@@ -576,9 +577,7 @@ class ProjectController {
                     }
                 }
 
-                if (currentEnv == 'testIndia' || currentEnv == 'test' || currentEnv == 'development'){
-                    vanitytitle = (project.customVanityUrl) ? projectService.getCustomVanityUrl(project) : params.title;
-                }
+                vanitytitle = (project.customVanityUrl) ? projectService.getCustomVanityUrl(project) : params.title;
 
                 rewardService.saveRewardDetails(params);
                 project.story = params.story
@@ -1624,7 +1623,10 @@ class ProjectController {
                 totalContributions = contribution.totalContributions
                 contributions = contribution.contributions
             }
-            def model = [totalContributions : totalContributions, CurrentUserTeam: CurrentUserTeam,isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, contributions: contributions, project: project, team: currentTeam, vanityUsername:params.fr, currentUser: currentUser]
+            
+            def multiplier = projectService.getCurrencyConverter();
+            def model = [totalContributions : totalContributions, CurrentUserTeam: CurrentUserTeam,isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, contributions: contributions, project: project,
+                         team: currentTeam, multiplier: multiplier, vanityUsername:params.fr, currentUser: currentUser]
             if (request.xhr) {
                 render(template: "show/contributionlist", model: model)
             }
@@ -1641,8 +1643,9 @@ class ProjectController {
             def teamOffset = teamObj.maxrange
             def teams = teamObj.teamList
             def totalteams = teamObj.teams
+            def multiplier = projectService.getCurrencyConverter();
             
-            def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr]
+            def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr, multiplier: multiplier]
             if (request.xhr) {
                 render(template: "show/teamgrid", model: model)
             }
@@ -1659,8 +1662,9 @@ class ProjectController {
 			def teamOffset = teamObj.maxrange
 			def teams = teamObj.teamList
 			def totalteams = teamObj.teams
+            def multiplier = projectService.getCurrencyConverter();
 			
-			def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr]
+			def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr, multiplier: multiplier]
 			if (request.xhr) {
 				render(template: "show/teamgridmobile", model: model)
 			}
@@ -1680,8 +1684,9 @@ class ProjectController {
             def contribution = projectService.getProjectContributions(params, project)
             totalContributions = contribution.totalContributions
             contributions = contribution.contributions
+            def multiplier = projectService.getCurrencyConverter();
             
-            def model = [totalContributions : totalContributions, contributions: contributions, project: project, user:user]
+            def model = [totalContributions : totalContributions, contributions: contributions, project: project, user:user, multiplier: multiplier]
             if (request.xhr) {
                 render(template: "manageproject/contributionlist", model: model)
             }
@@ -1698,8 +1703,9 @@ class ProjectController {
             def teamOffset = teamObj.maxrange
             def validatedTeam = teamObj.teamList
             def totalteams = teamObj.teams
+            def multiplier = projectService.getCurrencyConverter();
             
-            def model = [teamOffset : teamOffset, validatedTeam: validatedTeam, totalteams: totalteams, project: project]
+            def model = [teamOffset : teamOffset, validatedTeam: validatedTeam, totalteams: totalteams, project: project, multiplier: multiplier]
             if (request.xhr) {
                 render(template: "manageproject/teamgrid", model: model)
             }
@@ -1843,7 +1849,7 @@ class ProjectController {
         def twitterCount = shareCount.twitterCount
         def linkedinCount = shareCount.linkedinCount
         
-        def result = projectService.generateCSVReportForCampaign(params, response, project, ytViewCount, linkedinCount, twitterCount, facebookCount)
+        def result = projectService.generateCSVReportForCampaign(response, project, ytViewCount, linkedinCount, twitterCount, facebookCount)
         render (contentType:"text/csv", text:result)
     }
 

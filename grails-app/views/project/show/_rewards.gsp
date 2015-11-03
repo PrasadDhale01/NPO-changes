@@ -3,6 +3,12 @@
 <g:set var="projectService" bean="projectService"/>
 <g:set var="rewardService" bean="rewardService"/>
 <g:set var="userService" bean="userService"/>
+<% 
+def conversionMultiplier = multiplier
+if (!conversionMultiplier) {
+    conversionMultiplier = projectService.getCurrencyConverter();
+}
+%>
 
 <div class="tile-footer show-perksRewardtabs">
     <div class="modal-footer tile-footer perks-style perk-title">
@@ -29,7 +35,12 @@
                         <div class="rewardsection-row perks-supporters">
                             <div class="rewardBottomBorder">
                                 <div class="tile-goal-show">
-                                     <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
+                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                        <span class="fa fa-inr"></span><span class="rewardpricespan"><g:if test="${project.payuStatus}">${price}</g:if><g:else>${price * conversionMultiplier}</g:else></span>
+                                    </g:if>
+                                    <g:else>
+                                        $<span class="rewardpricespan">${price}</span>
+                                    </g:else>
                                 </div>
                                 <div class="rewardtitlespan">${reward.title}</div>
                                 <p class="rewarddescription">${raw(reward.description)}</p>
@@ -47,7 +58,12 @@
                                     </g:if>
                                     <g:else>
                                          <div class="tile-goal-show">
-                                             <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
+                                             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                                 <span class="fa fa-inr"></span><span class="rewardpricespan"><g:if test="${project.payuStatus}">${price}</g:if><g:else>${price * conversionMultiplier}</g:else></span>
+                                             </g:if>
+                                             <g:else>
+                                                 $<span class="rewardpricespan">${price}</span>
+                                             </g:else>
                                          </div>
                                          <div class="rewardtitlespan">${reward.title}</div>
                                     </g:else>
@@ -71,7 +87,12 @@
                         <p class="soldOutRewards"><span id="sold-out-text">All Perks Claimed</span></p>
                         <div class="rewardBottomBorder">
                             <div class="tile-goal-show">
-                                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
+                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                    <span class="fa fa-inr"></span><span class="rewardpricespan"><g:if test="${project.payuStatus}">${price}</g:if><g:else>${price * conversionMultiplier}</g:else></span>
+                                </g:if>
+                                <g:else>
+                                    $<span class="rewardpricespan">${price}</span>
+                                </g:else>
                             </div>
                             <div class="rewardtitlespan">${reward.title}</div>
                             <p class="rewarddescription">${raw(reward.description)}</p>
@@ -89,7 +110,12 @@
                                 </g:if>
                                 <g:else>
                                     <div class="tile-goal-show">
-                                        <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
+                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                            <span class="fa fa-inr"></span><span class="rewardpricespan"><g:if test="${project.payuStatus}">${price}</g:if><g:else>${price * conversionMultiplier}</g:else></span>
+                                        </g:if>
+                                        <g:else>
+                                            $<span class="rewardpricespan">${price}</span>
+                                        </g:else>
                                     </div>
                                     <div class="rewardtitlespan">${reward.title}</div>
                                 </g:else>
@@ -118,7 +144,12 @@
                     </g:if>
                     <g:else>
                         <div class="tile-goal-show">
-                            <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span>&nbsp;</g:if><g:else>$</g:else><span class="rewardpricespan">${price}</span>
+                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                <span class="fa fa-inr"></span><span class="rewardpricespan"><g:if test="${project.payuStatus}">${price}</g:if><g:else>${price * conversionMultiplier}</g:else></span>
+                            </g:if>
+                            <g:else>
+                                $<span class="rewardpricespan">${price}</span>
+                            </g:else>
                         </div>
                         <div class="rewardtitlespan">${reward.title}</div>
                     </g:else>

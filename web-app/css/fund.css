@@ -75,3 +75,20 @@ button.btnChargeContinue-md{
 .ostate{
     display: none;
 }
+
+.col-transaction .bootstrap-select > .btn {
+    width: 120px;
+}
+
+.col-transaction .bootstrap-select.btn-group .dropdown-menu {
+    min-width: 116px;
+}
+
+.col-transaction div.bootstrap-select > button{
+    background-color: #333 !important;
+    color: white !important;
+}
+
+.col-transaction .bootstrap-select.btn-group .btn .filter-option{
+    text-align:center !important;
+}

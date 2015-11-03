@@ -3,17 +3,28 @@
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+project.user.username
     def fundRaiser = user.username
-    def shareUrl = base_url+'/c/'+shortUrl
+    def shareUrl = base_url+'/c/'+shortUrl;
+    def vimeoInt
+    def campaignVideoUrl
+    if (project.videoUrl){
+        if (project.videoUrl.contains('vimeo.com')) {
+            def video = project.videoUrl.split('/')
+            vimeoInt = video[video.length - 1]
+            campaignVideoUrl = 'https://player.vimeo.com/video/'+vimeoInt
+        } else {
+            campaignVideoUrl = project.videoUrl;
+        }
+    }
     def embedTileUrl = base_url+'/campaign/'+vanityTitle+'/'+vanityUsername+'/embed/tile'
     def embedCode = '<iframe src="'+embedTileUrl+'" width="310px" height="451px" frameborder="0" scrolling="no" class="embedTitleUrl"></iframe>'
-    def embedVideoCode = '<iframe src="'+project.videoUrl+'" width="480" height="360" frameborder="0" scrolling="no"></iframe>'
+    def embedVideoCode = '<iframe src="'+campaignVideoUrl+'" width="480" height="360" frameborder="0" scrolling="no"></iframe>'
 %>
 
 <div class="col-xs-12 col-md-4 mobileview-top">
     <g:render template="/project/manageproject/tilesanstitle" />
     <g:if test="${project.draft}">
         <div class="submitForApprovalSection">
-            <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+            <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                 <g:form controller="project" action="saveasdraft" id="${project.id}">
                     <g:if test="${!project.touAccepted}">
                         <div class="form-group">
@@ -109,7 +120,7 @@
                             <div class="col-sm-7">
                                 <p>Video preview</p>
                                     <textarea class="textarea-embed-video">${embedVideoCode}</textarea><br><br>
-                                    <iframe src="${project.videoUrl}" class="embed-video-in-modal"></iframe><br>
+                                    <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
                                     <p>After choosing a video size, copy and paste the embed code above.</p>
                                     <div class="row desktop-video-play">
                                         <div class="col-sm-2 margin-sm-left video-play video-play-sm video-play-hover selected text-center">
@@ -225,7 +236,7 @@
     <g:render template="/project/manageproject/tilesanstitle" />
     <g:if test="${project.draft}">
         <div class="submitForApprovalSectionbtm" id="submitForApprovalSectionbtm">
-            <g:if test="${project.organizationIconUrl && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+            <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                 <g:form controller="project" action="saveasdraft" id="${project.id}">
                     <g:if test="${!project.touAccepted}">
                         <div class="form-group">

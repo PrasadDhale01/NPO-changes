@@ -319,14 +319,100 @@ class ContributionService {
 	return numberOfDays
     }
     
-    def getUSDTransactions(){
-        return Transaction.findAllWhere(currency: 'USD')
+    def getUSDContributions(def params){
+        List totalContributions = Contribution.findAllWhere(currency: 'USD').reverse()
+        List contributions = []
+        if (!totalContributions.isEmpty()) {
+            def offset = params.int('offset') ?: 0
+            def max = Math.min(params.int('max') ?: 10, 100)
+            def count = totalContributions.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            contributions = totalContributions.reverse().subList(offset, maxrange)
+        }
+        return [totalContributions: totalContributions, contributions: contributions]
     }
-    
-    def getINRTransactions(){
-        return Transaction.findAllWhere(currency: 'INR')
+
+    def getINRContributions(def params){
+        List totalContributions = Contribution.findAllWhere(currency: 'INR').reverse()
+        List contributions = []
+        if (!totalContributions.isEmpty()) {
+            def offset = params.int('offset') ?: 0
+            def max = Math.min(params.int('max') ?: 10, 100)
+            def count = totalContributions.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            contributions = totalContributions.reverse().subList(offset, maxrange)
+        }
+        return [totalContributions: totalContributions, contributions: contributions]
     }
-    
+	
+    def transactionSort(){
+        def sort = [
+            Date : 'Date',
+            Name : 'Name',
+            Offline : 'Offline',
+            Online : 'Online'
+        ]
+        return sort
+    }
+
+    def getContributionSortedResult(def params, def query, def currency){
+        def result
+        def contributions
+        switch (query) {
+            case 'Name':
+                contributions = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR') : Contribution.findAllWhere(currency: 'USD');
+                result = contributions?.sort{it.contributorName.toUpperCase()};
+                break;
+
+            case 'Offline':
+                result = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR', isContributionOffline:true) : Contribution.findAllWhere(currency: 'USD', isContributionOffline:true);
+                break;
+
+            case 'Online':
+                result = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR', isContributionOffline:false) : Contribution.findAllWhere(currency: 'USD', isContributionOffline:false);
+                break;
+
+            case 'Date':
+                contributions = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR') : Contribution.findAllWhere(currency: 'USD');
+                def sortedByDate = contributions?.sort{it.date};
+                result = sortedByDate.reverse();
+                break;
+
+            default :
+                contributions = (currency == 'INR') ? Contribution.findAllWhere(currency: 'INR') : Contribution.findAllWhere(currency: 'USD');
+                def sortedByDate = contributions?.sort{it.date};
+                result = sortedByDate.reverse();
+        }
+        List totalContributions = []
+        if (!result.isEmpty()) {
+            def offset = params.int('offset') ?: 0
+            def max = Math.min(params.int('max') ?: 10, 100)
+            def count = result.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            totalContributions = result.reverse().subList(offset, maxrange)
+        }
+        return [totalContributions: result, contributions: totalContributions]
+        
+    }
+
     def getHighestContributionDay(Project project) {
         int monday = 0, tuesday = 0, wednesday = 0, thursday = 0, friday = 0, saturday = 0, sunday = 0
         int zeroth = 0, first = 0, second = 0, third = 0, forth = 0, fifth = 0, sixth = 0, seventh = 0, eight = 0, nineth=0
@@ -451,22 +537,6 @@ class ContributionService {
         Map days = ['monday' : monday, 'tuesday': tuesday, 'wednesday' : wednesday, 'thursday': thursday, 'friday' : friday,'saturday': saturday, 'sunday': sunday]
         def highestContributionDay = days.max { it.value }.key
         return ['highestContributionDay':highestContributionDay , 'highestContributionHour': highestContributionHour]
-    }
-    
-    def getContributedAmount(List contributions) {
-        double amount = 0;
-        contributions.each{ contribution ->
-            amount = amount + contribution.amount
-        }
-        return amount
-    }
-
-    def getTotalFundRaisedByUser(List projects) {
-        double amount = 0;
-        projects.each { project ->
-            amount = amount + getTotalContributionForProject(project)
-        }
-        return amount;
     }
     
 }

@@ -28,7 +28,7 @@
                    <div class="form-group">
                        <div class="input-group">
                            <span class="input-group-addon"><b>1$ = </b></span>
-                           <input class="form-control" type="text" name="currency" value="${multiplier}" id="currency"/>
+                           <input class="form-control" type="text" name="currency" value="${multiplier}"/>
                            <span class="input-group-addon"><span class="fa fa-inr"></span></span>
                        </div>
                    </div>

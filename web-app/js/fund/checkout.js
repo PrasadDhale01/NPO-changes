@@ -211,6 +211,15 @@ $(function() {
         }
     });
     
+    $('#currencyconvertor').find('form').validate({
+        rules: {
+    		currency: {
+    			required: true,
+    			number: true
+    		}
+    	}
+    });
+    
     $.validator.addMethod('isFullName', function(value, element){
      	  if(value && value.length !=0){
      		var fullname =$('#receiptName').val();

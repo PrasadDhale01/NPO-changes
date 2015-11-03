@@ -38,7 +38,7 @@
             <b>&nbsp;</b>
         </g:if><g:else>
             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                <b><span class="fa fa-inr"></span><g:if test="${project.payuStatus}">${price}</g:if><g:else>${price}</g:else></b>
+                <b><span class="fa fa-inr"></span><g:if test="${project.payuStatus}">${price}</g:if><g:else>${price * conversionMultiplier}</g:else></b>
             </g:if>
             <g:else>
                 $${price}

@@ -1,6 +1,7 @@
 <%
    def count = contribution.size()
    def index = 0
+   def indexcount = offset ? Integer.parseInt(offset) : 0
 %>
 <div class="table table-responsive table-xs-left">
     <table class="table table-bordered">
@@ -18,7 +19,7 @@
         </thead>
         <tbody>
             <% while(index < count) { %>
-												   <g:render template="/user/admin/transactionList" model="['contribution': contribution.get(index++), index:index]"></g:render>
+												   <g:render template="/user/admin/transactionList" model="['contribution': contribution.get(index++), index: ++indexcount]"></g:render>
 												<% } %>
         </tbody>
     </table>

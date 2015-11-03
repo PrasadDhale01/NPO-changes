@@ -730,10 +730,10 @@ class FundController {
         def model
         if (params.currency == 'INR'){
             def contributionINR = contributionService.getINRContributions(params)
-            model= [multiplier: multiplier, contribution: contributionINR.contributions, totalContributions: contributionINR.totalContributions, currency:'INR', url:base_url]
+            model= [multiplier: multiplier, contribution: contributionINR.contributions, totalContributions: contributionINR.totalContributions, currency:'INR', url:base_url, offset: params.offset]
         } else {
             def contributionUSD = contributionService.getUSDContributions(params)
-            model = [multiplier: multiplier, contribution: contributionUSD.contributions, totalContributions: contributionUSD.totalContributions, currency:'USD', url:base_url]
+            model = [multiplier: multiplier, contribution: contributionUSD.contributions, totalContributions: contributionUSD.totalContributions, currency:'USD', url:base_url, offset: params.offset]
         }
         if (request.xhr) {
             render(template: "/user/admin/transactionGrid", model: model)

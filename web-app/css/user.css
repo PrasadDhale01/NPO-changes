@@ -691,15 +691,28 @@ div.dashboardtile-min-height {
 .currencydiv span {
 	   font-size: 16px;
 }
-.transactionPaginate a, .transactionPaginate .currentStep {
+.transactionPaginate a {
     font-size: 13px;
     text-align: center;
     padding-left: 15px;
     color: #31497B !important;
     font-weight: 700 !important;
 }
+.transactionPaginate .currentStep {
+    font-size: 13px;
+    text-align: center;
+    padding-left: 15px;
+    color: black !important;
+    font-weight: 700 !important;
+}
 .transactionPaginate {
-  margin-top: 10px;
-  padding-left: 10px;
-  margin-bottom: 15px;
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+.currencyconvertor {
+	   display: inline;
+}
+.currencyconvertor .col-md-4, .currencyconvertor .col-xs-8 {
+	   padding-left: 0px;
 }

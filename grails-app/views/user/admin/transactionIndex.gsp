@@ -22,9 +22,9 @@
               <g:select class="selectpicker text-center" name="transactionSort" id="transactionSort" from="${transactionSort}" optionKey="value" optionValue="value" onchange="showSortedTransaction()"/>
           </div>
        </div>
-       <div class="currencyconvertor">
+       <div class="currencyconvertor" id="currencyconvertor">
            <g:form action="currency" controller="user">
-               <div class="currencydiv">
+               <div class="currencydiv col-md-4 col-xs-8">
                    <div class="form-group">
                        <div class="input-group">
                            <span class="input-group-addon"><b>1$ = </b></span>
@@ -33,8 +33,12 @@
                        </div>
                    </div>
                </div>
+               <div class="col-md-2 col-xs-4">
+                   <button type="submit" class="btn btn-primary btn-sm" id="currencysubmitbtn" onClick="return confirm(&#39;Changes in currency value will be reflected through the site. Are you sure you want to change the currency value.?&#39;);">Save</button>
+               </div>
            </g:form>
        </div>
+       <div class="clear"></div>
        <div id="transactionInfo">
            <g:render template="/user/admin/transactionGrid" model="['contribution': contribution]"></g:render>
        </div>

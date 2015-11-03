@@ -34,7 +34,7 @@
                    </div>
                </div>
                <div class="col-md-2 col-xs-4">
-                   <button type="submit" class="btn btn-primary btn-sm" id="currencysubmitbtn" onClick="return confirm(&#39;Changes in currency value will be reflected through the site. Are you sure you want to change the currency value.?&#39;);">Save</button>
+                   <button type="submit" class="btn btn-primary btn-sm" id="currencysubmitbtn" onClick="return confirm(&#39;Changes in currency value will be reflected throughout the site. Are you sure you want to change the currency value.?&#39;);">Save</button>
                </div>
            </g:form>
        </div>

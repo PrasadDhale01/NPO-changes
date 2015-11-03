@@ -147,10 +147,6 @@ h1, h2, h3, h4, h5, h6 {
     color: #000; /* Sets the text hover color on navbar */
 }
 
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >
-a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: #84ac2e;
-}
 
 .navbar-nav li span {
     display: block;
@@ -1269,13 +1265,17 @@ footer .footerbottomsection {
 }
 
 .crewpage h1 {
+    color: #000;
+    font-family: verdana;
+    font-size: 30px;
+    font-weight: bold;
     padding: 20px 0;
-    color: #ff784f
 }
 
 .crewpage .thumbnail {
     border: none;
     margin: 0 0 50px 0;
+    padding: 0;
 }
 
 .crewpage img {
@@ -1286,8 +1286,9 @@ footer .footerbottomsection {
 
 .crewpage .caption {
     float: left;
-    font-weight: bold;
-    padding-top: 25px;
+/*     font-weight: bold; */
+/*     margin-left: 26px; */
+    padding-top: 14px;
 }
 
 .clear {
@@ -1816,8 +1817,11 @@ textarea.form-control {
 	right: 2px;
 }
 .caption { 
-	font-size:9px;
-	padding-left:3px !important;
+	font-size:12px;
+	color: #000000;
+}
+.abt-name-center {
+    width: 120px;
 }
 .caption span{ 
 	display:block; 
@@ -2453,7 +2457,7 @@ a.footerlink {
 	height: 88px;
 }
 .perks-supporters{
-	border: 6px solid #c9c9c9;
+	border: 5px solid rgba(231, 231, 231, 0.73);
 	margin-top:4px;
 	margin-bottom:4px;
 	text-align: left;
@@ -2587,8 +2591,8 @@ a.footerlink {
 }
 
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    background-color: #006083;
-    color: #ffffff;
+    background-color: #fff;
+    color: #000000;
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
@@ -2633,6 +2637,12 @@ i.user-cl-caret{
 }
 
 .user-img-header {
+	width: 41px;
+	height: 41px;
+	border-radius: 40px;
+}
+
+.noScrollHeader .user-img-header {
 	width: 28px;
 	height: 28px;
 	border-radius: 40px;
@@ -2948,9 +2958,11 @@ span.tile-day-num{
     width: 120px;
     height: 30px;
     color:#fff !important;
+    -webkit-filter: none;
+    filter: none;
 }
 img.fa-icon {
-    width: 31%;
+    width: 31% !important;
     padding-left: 8%;
 }
 .crew-icons.icons-manage img {
@@ -3022,7 +3034,7 @@ ul.menu{
 }
 .mentor-container.mentor-centering{
     display:block;
-    margin-left:auto;
+/*     margin-left:17%; */
     margin-right:auto;
 }
 .footer-container{
@@ -4128,6 +4140,7 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 .position-top{
 	margin-top:10px;
 	margin-bottom:10px;
+	margin-left:32px;
 }
 .footer-disclaimer{
 	font-size:10px;
@@ -4140,11 +4153,11 @@ ul.cr-ul-tabs.nav > li > a:focus , .nav-tabs > li.cr-hover-color > a > span:hove
 } 
 .founder-centering{
 	display:block;
-	margin-left: -35px;
+	margin-left: -44px;
 	margin-right:auto;
 }
 .crew-title-centering{
-	margin-left:-7%;
+	margin-left:6%;
 }
 .info-banner{
 	background-color: #000000;
@@ -4554,7 +4567,7 @@ p {
 .rewardsection-row:hover {
 	background-color: #fff;
     border-color: #01bbd2 !important;
-    border: 6px solid #01bbd2;
+    border: 5px solid #01bbd2;
 }
 .rewardsection a:hover, .rewardsection a:active {
     text-decoration: none !important;
@@ -5419,6 +5432,53 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.crewpage h1 {
+        font-size: 21px;
+    }
+    p.abt-thots-font {
+        font-size: 16px;
+        line-height: 2;
+    }
+    div.abt-mob-chet {
+        width: 54%;
+    }
+    div.abt-mobile{
+        margin-left: 20px;
+    }
+    div.abt-create-discover {
+        left: 21px;
+    }
+    a.abt-btn-backcolor {
+        margin-right: 0;
+    }
+    a.abt-discover {
+        width: 86%;
+        margin-top: 10px;
+    }
+    a.abt-discover:hover,
+    a.abt-discover:focus{
+        width: 86%;
+    }
+    h1.abt-mobile-pad {
+        margin-left: 75px;
+    }
+    div.abt-padding-thots{
+        padding-left: 59px;
+    }
+    div.abt-billy-postion{
+        left: -12px;
+    }
+    div.about-dasbilly-center {
+        left: 0;
+    }
+    div.abt-positions {
+        left: 0px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    div.position-top{
+        margin-left:0px;
+    }
 	.navbar-toggle.TW-scrollHeader-hamBurger .icon-bar {
 	   background-color: #000 !important;
 	}
@@ -6235,7 +6295,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    margin-right: auto;
 	}
 	.crew-title-centering {
-	    margin-left: 6% !important;
+	    margin-left: 18% !important;
 	}
 	div.cr-perks-space {
         margin-left: 0;
@@ -6769,8 +6829,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         line-height: 18px;
     }
     div.caption {
-        font-size: 11px;
-        width: 100%;
+        font-size: 12px;
+/*         width: 100%; */
     }
     input.paypal-create {
         margin-left: -7% !important;
@@ -7387,6 +7447,37 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.abt-img-icons-mobile {
+        left: 33px !important;
+    }
+    div.abt-you-pad {
+        margin-left: 0px !important;
+    }
+    a.abt-discover {
+        width: 34%;
+    }
+    a.abt-discover:hover,
+    a.abt-discover:focus {
+        width: 34%;
+    }
+    div.crewpage .caption {
+        margin-left: 0px;
+    }
+    div.crewpage .thumbnail {
+        padding: 4px;
+    }
+    div.abt-billy-postion{
+        left: 11px;
+    }
+    div.about-dasbilly-center {
+        left: 0;
+    }
+    div.abt-positions {
+        left: 0px;
+    }
+    div.position-top{
+        margin-left:0px;
+    }
 	.feduoutercontent {
 	   margin-top: 48px !important;
 	}
@@ -8310,7 +8401,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	width: 120px;
     }
     div.caption {
-        font-size: 9px;
+        font-size: 12px;
         width: 100%;
     }
     div.container.crewpage > h1 {
@@ -8482,6 +8573,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    div.abt-billy-postion{
+        left: 11px;
+    }
+    div.about-dasbilly-center {
+        left: 0;
+    }
 	.TW-socialicons {
 	   display: block;
 	   height: 30px;
@@ -8944,6 +9041,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width: 1281px) and (max-width: 1344px){
+    div.position-top{
+        margin-left:32px;
+    }
 	.TW-discover-leftpane-menu ul li a {
 	   color: #424242;
 	   font-size: 13px !important;
@@ -9371,6 +9471,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1200px) and (max-width: 1280px){
+    div.about-dasbilly-center {
+        left: 293px;
+    }
 	.discover-inner-container {
 	   padding-left: 15px !important;
 	   padding-right: 15px !important;
@@ -9411,6 +9514,24 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+    div.abt-img-icons-mobile {
+        left: 68px !important;
+    }
+    div.abt-you-pad {
+        margin-left: 0px !important;
+    }
+    div.crewpage .caption {
+        margin-left: 0px;
+    }
+    div.crewpage .thumbnail {
+        padding: 4px;
+    }
+    div.position-top {
+        margin-left: 0px;
+    }
+    div.abt-positions {
+        left: 0;
+    }
 	.TW-ebook-header.TW-fixed-header {
 	   background-color: #ffffff;
 	   display: block;
@@ -9698,7 +9819,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         left: 14.8%;
     }
     div.caption {
-        font-size: 11px;
+        font-size: 12px;
         width: 100%;
     }
     div.crew-icons{
@@ -12119,6 +12240,50 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.crewpage h1 {
+        font-size: 21px;
+    }
+    p.abt-thots-font {
+        font-size: 16px;
+        line-height: 2;
+    }
+    div.abt-mob-chet {
+        width: 51%;
+    }
+    div.abt-mobile{
+        margin-left: 15px;
+    }
+    div.abt-create-discover {
+        left: 9px;
+    }
+    a.abt-btn-backcolor {
+        margin-right: 0;
+    }
+    a.abt-discover {
+        width: 86%;
+        margin-top: 10px;
+    }
+    a.abt-discover:hover,
+    a.abt-discover:focus{
+        width: 86%;
+    }
+    div.abt-padding-thots{
+        padding-left: 5px;
+    }
+    div.abt-billy-postion{
+        left: -12px;
+    }
+    div.about-dasbilly-center {
+        left: 0;
+    }
+    div.abt-positions {
+        left: 0px;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    div.position-top{
+        margin-left:0px;
+    }
 	.navbar-toggle.TW-scrollHeader-hamBurger .icon-bar {
 	   background-color: #000 !important;
 	}
@@ -13495,8 +13660,8 @@ textarea.textarea-embed-video {
     }
     
     div.caption {
-        font-size: 9px;
-        width: 100%;
+        font-size: 12px;
+/*         width: 100%; */
     }
     div.about {
 		display: block;
@@ -14334,14 +14499,113 @@ a#downloadEbook{
 iframe.embedTitleUrl{
 	   width: 310px !important;
 }
+img.abt-us-banner-wid {
+    margin-left: -9.2%;
+    width: 119%;
+}
+.img-gray {
+    -webkit-filter: grayscale();
+    filter: grayscale(1);
+}
+img.img-gray:hover {
+    -webkit-filter: none;
+    filter: none;
+}
+.abt-positions{
+	left: 189px;
+}
+.abt-us-banner-widd {
+    width: 100%;
+}
+.abt-position-rich {
+    margin-left: 17px;
+}
+.about-dasbilly-center {
+    left: 294px;
+}
+.feduoutercontent {
+    overflow-x: hidden;
+}
+.abt-thots-font{
+    font-size: 21px;
+    text-align: center;
+    color: #000;
+    letter-spacing: 1px;
+    line-height: 2;
+}
+.abt-padding-thots{
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+.abt-btn-backcolor{
+	background-color: white;
+    border: 5px solid #01bbd2;
+    color: #01bbd2;
+    font-weight: 900;
+    font-size: 21px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    margin-right: 30px;
+}
+.abt-btn-backcolor:hover,
+.abt-btn-backcolor:focus{
+    background-color: white;
+    border: 5px solid #01bbd2;
+    color: #01bbd2;
+    font-weight: 900;
+    font-size: 21px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.abt-discover {
+    background-color: #01bbd2;
+    color: #ffffff;
+    font-size: 21px;
+    font-weight: bold;
+    border: 5px solid #01bbd2;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    width: 28%;
+}
+.abt-discover:hover,
+.abt-discover:focus {
+    background-color: #01bbd2;
+    color: #ffffff;
+    font-size: 21px;
+    font-weight: bold;
+    border: 5px solid #01bbd2;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    width: 28%;
+}
+.abt-bottom-createdis{
+    padding-bottom: 46px;
+    padding-top: 46px;
+}
+.abt-create-discover{
+    margin-bottom: 50px;
+}
+.abt-careers{
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+span.abt-founderCo{
+    color: #c0c0c0;
+}
+.abt-you-pad {
+    margin-left: 48px !important;
+}
+.abt-nm-center {
+    margin-left: 30px;
+}
+.abt-size-bigword {
+    margin-left: 16px;
+}
+.abt-text-deco {
+    text-decoration: none !important;
+}
 .col-md-6.footer-mid-section-menu {
     padding-left: 0px;
-}
-.TW-scrollHeaderBackColor .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-   box-shadow: 0 0 24px 0 rgb(0 0 0 0.25);
-}
-.TW-scrollHeaderBackColor .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.scrollHeaderMenu.toggleImages.open{
-	box-shadow: 0 0 2px 0 rgba(0,0,0,0.25);
 }
 .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open .user-cl-caret::before {
     content: "";

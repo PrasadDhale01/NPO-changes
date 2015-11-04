@@ -23,6 +23,13 @@
     }
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
     username = currentFundraiser.email
+    
+    def currentEnv = projectService.getCurrentEnvironment()
+    def conversionMultiplier = multiplier
+    if (!conversionMultiplier) {
+        conversionMultiplier = projectService.getCurrencyConverter();
+    }
+    
 %>
 <div class="modal-footer tile-footer tileanstitle-goals tileanstitle-goal-margin">
     <div class="row icons-centering">
@@ -45,12 +52,22 @@
     <div class="row amount-centering">
         <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
             <span class="text-center tile-goal show-contribution-amt-tile">
-                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead show-contribution-amt-tile">${amount}</span>
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead show-contribution-amt-tile">${amount}</span></g:if><g:else><span class="lead show-contribution-amt-tile">${amount * conversionMultiplier}</span></g:else>
+                </g:if>
+                <g:else>
+                    $<span class="lead show-contribution-amt-tile">${amount}</span>
+                </g:else>
             </span>
         </div>
         <div class="col-md-4 col-xs-4 amount-alignment contribution-border amount-text-align text-center">
             <span class="text-center tile-goal show-contribution-amt-tile">
-                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead show-contribution-amt-tile">${contributedSoFar}</span>
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead show-contribution-amt-tile">${contributedSoFar}</span></g:if><g:else><span class="lead show-contribution-amt-tile">${contributedSoFar * conversionMultiplier}</span></g:else>
+                </g:if>
+                <g:else>
+                    $<span class="lead show-contribution-amt-tile">${contributedSoFar}</span>
+                </g:else>
             </span>
         </div>
         
@@ -61,11 +78,6 @@
             </div>
         </g:if>
         <g:else>
-            <!-- Time left till end date. -->
-<%--            <div class="col-xs-4 col-sm-4 col-md-4 daysleft">--%>
-<%--                <div class="col-xs-6 col-sm-6 col-md-6 daysleft days-text"><p class="tile-text-size">DAYS<br>LEFT</p></div>--%>
-<%--                <div class="col-xs-6 col-sm-6 col-md-6 daysleft days-num"><h6 class="text-center"><span class="lead tab-amount">${day}</span></h6></div>--%>
-<%--            </div>--%>
             <div class="col-md-4 col-sm-4 col-xs-4 show-tile-text-size contribution-tile show-contribution-amt-tile">
                <span class="days-alignment">DAYS<br>LEFT</span>
                <g:if test="${day > 0 && day < 10 }">

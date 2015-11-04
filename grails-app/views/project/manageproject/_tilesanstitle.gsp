@@ -13,6 +13,11 @@
     } else {
         cents = percentage
     }
+    def currentEnv = projectService.getCurrentEnvironment()
+    def conversionMultiplier = multiplier
+    if (!conversionMultiplier) {
+        conversionMultiplier = projectService.getCurrencyConverter();
+    }
 %>
 <g:render template="/layouts/organizationdetails" model="['currentFundraiser':currentUser,'username':username]"/>
 <div class="fedu thumbnail grow managedetails-edit">
@@ -37,12 +42,22 @@
     <div class="row amount-centering">
         <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
             <span class="text-center tile-goal show-contribution-amt-tile">
-                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead show-contribution-amt-tile">${amount}</span>
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead show-contribution-amt-tile">${amount}</span></g:if><g:else><span class="lead show-contribution-amt-tile">${amount * conversionMultiplier}</span></g:else>
+                </g:if>
+                <g:else>
+                    $<span class="lead show-contribution-amt-tile">${amount}</span>
+                </g:else>
             </span>
         </div>
         <div class="col-md-4 col-xs-4 amount-alignment contribution-border amount-text-align text-center">
             <span class="text-center tile-goal show-contribution-amt-tile">
-                <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead show-contribution-amt-tile">${totalContribution}</span>
+                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                    <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead show-contribution-amt-tile">${totalContribution}</span></g:if><g:else><span class="lead show-contribution-amt-tile">${totalContribution * conversionMultiplier}</span></g:else>
+                </g:if>
+                <g:else>
+                    $<span class="lead show-contribution-amt-tile">${totalContribution}</span>
+                </g:else>
             </span>
         </div>
         

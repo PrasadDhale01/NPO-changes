@@ -7837,7 +7837,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   font-size: 14px !important;
 	}
 	.lead.teamtile {
-	   font-size: 14px !important;
+	   font-size: 15px !important;
 	   font-weight: bold !important;
 	}	
 	.backToCreatePage.col-lg-2, .backToCreatePage.col-md-2 , .backToCreatePage.col-sm-2 {
@@ -8592,7 +8592,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   font-size: 14px !important;
 	}
 	.lead.teamtile {
-	   font-size: 14px !important;
+	   font-size: 15px !important;
 	   font-weight: bold !important;
 	}
     div.cr-charity-lbl {
@@ -8607,6 +8607,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 	.tile-goal.teamtile .fa.fa-inr {
 		font-size: 14px !important;
+		padding-left: 1px;
 	}
 	.leftcard-column .form-control{ 
 	   float: left;

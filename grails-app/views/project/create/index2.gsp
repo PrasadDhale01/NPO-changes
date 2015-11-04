@@ -185,6 +185,31 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="col-sm-12">
+            <div class="cr-spend-matrix cr-safari">
+            <label class="panel panel-body text-center cr-panel-spend-matrix"><span class="cr-reci-siz">SPEND MATRIX</span></label>
+            <label class="panel panel-body cr-panel-spend-matrix-guide"></label>
+            </div>
+            <div class="panel panel-body cr-panel-body-spend-matrix">
+            <div class="col-sm-8">
+            <div class="col-sm-amt">
+            <span class="cr-label-spend-matrix">I require</span>
+            <div class="amt-add-on">
+            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                <span class="cr-currency fa fa-inr"></span>
+            </g:if>
+            <g:else>
+                <span class="cr-currency">$</span>
+            </g:else>
+            <input type="text" class="form-control form-control-no-border-amt">
+            </div>
+            </div>
+            </div>
+            <div class="col-sm-4">
+            </div>
+            </div>
+            </div>
                      
             <div class="col-sm-12 manage-Top-tabs-mobile" id="admins">
                 <div class="cr-tabs-admins cr-safari">

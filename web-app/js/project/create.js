@@ -69,6 +69,10 @@ $(function() {
             } else {
                 this.code.set(storyPlaceholder);
             }
+        },focusCallback: function(e){
+            $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", true, 100000);
+        },blurCallback: function(e) {
+            $(".cr-story-padding .redactor-box .redactor-editor").toggleClass("redactor-animate", false, 100000);
         },
         plugins: ['video','fontsize','fontfamily','fontcolor'],
         buttonsHide: ['indent', 'outdent', 'horizontalrule', 'deleted']

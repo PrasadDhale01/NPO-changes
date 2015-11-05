@@ -12456,7 +12456,7 @@ textarea.textarea-embed-video {
     div.cr1-font-list .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
         width: 85% !important;
     }
-	button.cr1-indx1-bg-create-btn {
+    button.cr1-indx1-bg-create-btn {
         height: 61px;
         width: 239px;
         font-size: 24px;
@@ -12469,17 +12469,17 @@ textarea.textarea-embed-video {
         font-size: 24px;
         margin-left: 5px;
     }
-	div.cr1-descriptions-indx1{
+    div.cr1-descriptions-indx1{
          width: 96%;
     }
-	div.cr1-indx1-mobileTpadding{
+    div.cr1-indx1-mobileTpadding{
         padding-bottom: 15px;
 	}
     input.cr1-vanitypadding-in-co {
         height: 45px;
         padding-left: 104px;
     }
-	div.cr1-mobile-indx1{
+    div.cr1-mobile-indx1{
         left: -5px;
         width: 304px;
 	}
@@ -12492,7 +12492,7 @@ textarea.textarea-embed-video {
     div.cr1-font-list .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
         margin-left: -14px;
     }
-	div.cr-tops {
+    div.cr-tops {
         margin-top: 0;
         width: 95%;
     }
@@ -12500,7 +12500,7 @@ textarea.textarea-embed-video {
         padding-right: 15px;
         padding-left: 0px;
     }
-	.navbar-collapse.TW-scrollHeaderBackColor.collapsing {
+    .navbar-collapse.TW-scrollHeaderBackColor.collapsing {
 	    position: relative;
 	    height: auto !important;
 	    overflow: hidden;

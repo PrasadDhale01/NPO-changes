@@ -600,7 +600,8 @@ div.dashboardtile-min-height {
     color: white !important;
 }
 .userseditlocation .bootstrap-select.btn-group .dropdown-menu {
-    max-width: 100%
+    max-width: 100%;
+    max-height: 120px !important;
 }
 .dashboarduserprofile .form-control {
     height: 40px;
@@ -715,4 +716,10 @@ div.dashboardtile-min-height {
 }
 .currencyconvertor .col-md-4, .currencyconvertor .col-xs-8 {
 	   padding-left: 0px;
+}
+.table {
+    margin-bottom: 0px;
+}
+.dashboarduserprofile .has-error .help-block {
+    text-align: left;
 }

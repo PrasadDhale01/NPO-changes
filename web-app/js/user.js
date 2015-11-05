@@ -72,6 +72,9 @@ $(function() {
             	required: true,
             	minlength: 3
             }
+        },
+        errorPlacement: function(error, element) {
+            error.insertAfter(element);
         }
     });
     

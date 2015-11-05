@@ -3610,7 +3610,7 @@ form.form-horizontal.cr-top-spaces {
   font-weight: 900;
 }
 .cr-amt-indx1{
-	background-color: rgb(253, 234, 180);
+    background-color: rgb(253, 234, 180);
     border-color: orange;
     color: orange;
     font-size: 24px;
@@ -3689,7 +3689,7 @@ a.btn.btn-primary.btn-colors {
   left: 28px;
 }
 .i-currency-label-indx1{
-	color: orange;
+    color: orange;
     font-size: 30px;
     left: 28px;
     position: absolute;
@@ -3732,7 +3732,7 @@ img.cr-ineed-icons {
     margin-top: -39px;
 }
 .cr-tops{
-	margin-top: 22px;
+    margin-top: 22px;
 }
 .cr-bg-create-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/create-now-Button.jpg) no-repeat !important;
@@ -3900,7 +3900,7 @@ label.text-color {
     padding-top: 5px;
 }
 .cr1-check-btn-indx{
-	background-color: #f6f8f8;
+    background-color: #f6f8f8;
     border-color: #dddddd;
     color: #6d6e6e;
     height: 45px;
@@ -5480,14 +5480,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	div.cr1-and-Iwant-tabs-mobile{
+    div.cr1-and-Iwant-tabs-mobile{
         float: left;
     }
     div.cr2-form-need{
         margin-top: 10px;
         float: left;
     }
-	div.cr1-mobile-padding-amt{
+    div.cr1-mobile-padding-amt{
         padding-left: 0;
         padding-right: 0;
         width: 4px;
@@ -5499,20 +5499,20 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 0px;
         left: 22px;
     }
-	div.cr1-mobile-indx-info img{
+    div.cr1-mobile-indx-info img{
         padding-left: 138px;
-	}
-	div.createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
+    }
+    div.createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
         padding-left: 15px !important;
         padding-right: 0px !important;
     }
     input.cr-amt-indx1 {
         width: 100%;
     }
-	div.cr1-font-list .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
+    div.cr1-font-list .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
         width: 85% !important;
     }
-	button.cr1-indx1-bg-create-btn {
+    button.cr1-indx1-bg-create-btn {
         height: 61px;
         width: 239px;
         font-size: 24px;
@@ -5525,10 +5525,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 24px;
         margin-left: 5px;
     }
-	div.cr1-descriptions-indx1{
+    div.cr1-descriptions-indx1{
          width: 96%;
-	}
-	div.cr1-indx1-mobileTpadding{
+    }
+    div.cr1-indx1-mobileTpadding{
         padding-bottom: 15px;
     }
     input.cr1-vanitypadding-in-co {
@@ -5543,7 +5543,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     label.cr1-vanity-label-indx1 {
         padding-left: 0;
     }
-	span.cr1-mobile {
+    span.cr1-mobile {
         left: -16px;
     }
 	div.cr1-font-list .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
@@ -7606,7 +7606,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     img.cr1-amountInfo-img{
         margin-left: -1px;
     }
- 	span.cr1-tb-text-lg-indx {
+    span.cr1-tb-text-lg-indx {
         font-size: 13px;
         font-weight: 900;
     }
@@ -12421,22 +12421,22 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-	div.cr1-and-Iwant-tabs-mobile{
+    div.cr1-and-Iwant-tabs-mobile{
         float: left;
-	}
-	div.cr2-form-need{
+    }
+    div.cr2-form-need{
         margin-top: 10px;
         float: left;
-	}
-	div.cr1-mobile-padding-amt{
+    }
+    div.cr1-mobile-padding-amt{
         padding-left: 0;
         padding-right: 0;
         width: 0;
-	}
+    }
     div.cr1-vanityUrl-indx1 {
         left: 9px;
     }
-	div.cr1-in-days {
+    div.cr1-in-days {
         padding-left: 0px;
         left: 25px;
     }
@@ -12446,11 +12446,11 @@ textarea.textarea-embed-video {
     input.cr1-vanitypadding-in-co {
         width: 100% !important;
     }
-	div.createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
+    div.createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
         padding-left: 15px !important;
         padding-right: 0px !important;
     }
-	input.cr-amt-indx1 {
+    input.cr-amt-indx1 {
         width: 100%;
     }
     div.cr1-font-list .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {

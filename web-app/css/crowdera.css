@@ -2119,7 +2119,9 @@ button.projectedit.close{
 	color: #e3e3e3;
 	font-size:16px;
 	text-decoration: none;
-	
+}
+.footer-mid-section-menu ul li a:focus{
+	color:#e3e3e3;
 }
 .greycolorbg{
 	background-color:#f1f1f2
@@ -14340,7 +14342,6 @@ a#downloadEbook{
 }
 .TW-ebook-header-image{
 	margin-bottom: 30px;
-	margin-top: 20px;
 	width:100%;
 }
 .TW-ebook-header-image img{

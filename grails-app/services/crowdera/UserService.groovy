@@ -977,6 +977,10 @@ class UserService {
         user.save()
     }
     
+    def getCurrencyById() {
+        return Currency.get(1)
+    }
+    
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

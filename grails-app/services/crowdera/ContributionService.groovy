@@ -319,12 +319,50 @@ class ContributionService {
 	return numberOfDays
     }
     
-    def getUSDContributions(){
-        return Contribution.findAllWhere(currency: 'USD').reverse()
+    def getUSDContributions(def params){
+        List totalContributions = Contribution.findAllWhere(currency: 'USD').reverse()
+        List contributions = []
+        if (!totalContributions.isEmpty()) {
+            def offset = params.offset ? params.int('offset') : 0
+            def max = 10
+            def count = totalContributions.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            contributions = totalContributions.reverse().subList(offset, maxrange)
+        }
+        return [totalContributions: totalContributions, contributions: contributions]
     }
 
-    def getINRContributions(){
+    def getINRContributions(def params){
+        List totalContributions = Contribution.findAllWhere(currency: 'INR').reverse()
+        List contributions = []
+        if (!totalContributions.isEmpty()) {
+            def offset = params.offset ? params.int('offset') : 0
+            def max = 10
+            def count = totalContributions.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            contributions = totalContributions.reverse().subList(offset, maxrange)
+        }
+        return [totalContributions: totalContributions, contributions: contributions]
+    }
+    
+    def getINRContributions() {
         return Contribution.findAllWhere(currency: 'INR').reverse()
+    }
+    
+    def getUSDContributions() {
+        return Contribution.findAllWhere(currency: 'USD').reverse()
     }
 	
     def transactionSort(){
@@ -337,7 +375,7 @@ class ContributionService {
         return sort
     }
 
-    def getContributionSortedResult(def query, def currency){
+    def getContributionSortedResult(def params, def query, def currency){
         def result
         def contributions
         switch (query) {
@@ -365,7 +403,22 @@ class ContributionService {
                 def sortedByDate = contributions?.sort{it.date};
                 result = sortedByDate.reverse();
         }
-        return result
+        List totalContributions = []
+        if (!result.isEmpty()) {
+            def offset = params.int('offset') ?: 0
+            def max = Math.min(params.int('max') ?: 10, 100)
+            def count = result.size()
+            def maxrange
+
+            if(offset + max <= count) {
+                maxrange = offset + max
+            } else {
+                maxrange = offset + (count - offset)
+            }
+            totalContributions = result.reverse().subList(offset, maxrange)
+        }
+        return [totalContributions: result, contributions: totalContributions]
+        
     }
 
     def getHighestContributionDay(Project project) {
@@ -492,22 +545,6 @@ class ContributionService {
         Map days = ['monday' : monday, 'tuesday': tuesday, 'wednesday' : wednesday, 'thursday': thursday, 'friday' : friday,'saturday': saturday, 'sunday': sunday]
         def highestContributionDay = days.max { it.value }.key
         return ['highestContributionDay':highestContributionDay , 'highestContributionHour': highestContributionHour]
-    }
-    
-    def getContributedAmount(List contributions) {
-        double amount = 0;
-        contributions.each{ contribution ->
-            amount = amount + contribution.amount
-        }
-        return amount
-    }
-
-    def getTotalFundRaisedByUser(List projects) {
-        double amount = 0;
-        projects.each { project ->
-            amount = amount + getTotalContributionForProject(project)
-        }
-        return amount;
     }
     
 }

@@ -600,7 +600,8 @@ div.dashboardtile-min-height {
     color: white !important;
 }
 .userseditlocation .bootstrap-select.btn-group .dropdown-menu {
-    max-width: 100%
+    max-width: 100%;
+    max-height: 120px !important;
 }
 .dashboarduserprofile .form-control {
     height: 40px;
@@ -680,4 +681,45 @@ div.dashboardtile-min-height {
 }
 .userseditlocation ul.dropdown-menu li {
 	   text-align: left;
+}
+.amountsection span.fa-inr {
+	   font-size: 20px;
+    padding-right: 2px;
+}
+.currencydiv {
+	   width: 200px;
+}
+.currencydiv span {
+	   font-size: 16px;
+}
+.transactionPaginate a {
+    font-size: 13px;
+    text-align: center;
+    padding-left: 15px;
+    color: #31497B !important;
+    font-weight: 700 !important;
+}
+.transactionPaginate .currentStep {
+    font-size: 13px;
+    text-align: center;
+    padding-left: 15px;
+    color: black !important;
+    font-weight: 700 !important;
+}
+.transactionPaginate {
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+.currencyconvertor {
+	   display: inline;
+}
+.currencyconvertor .col-md-4, .currencyconvertor .col-xs-8 {
+	   padding-left: 0px;
+}
+.table {
+    margin-bottom: 0px;
+}
+.dashboarduserprofile .has-error .help-block {
+    text-align: left;
 }

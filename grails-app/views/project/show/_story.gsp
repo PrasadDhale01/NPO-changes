@@ -17,8 +17,8 @@
         }
     }
     def embedTileUrl = base_url+'/campaign/'+vanityTitle+'/'+vanityUsername+'/embed/tile'
-    def embedCode = '<iframe src="'+embedTileUrl+'" width="310px" height="451px" frameborder="0" scrolling="no" class="embedTitleUrl"></iframe>'
-    def embedVideoCode = '<iframe src="'+campaignVideoUrl+'" width="480" height="360" frameborder="0" scrolling="no"></iframe>'
+    def embedCode = '<iframe width="310px" height="451px" src="'+embedTileUrl+'" scrolling="no" frameborder="0"  class="embedTitleUrl"></iframe>'
+    def embedVideoCode = '<iframe width="480" height="360" frameborder="0" src="'+campaignVideoUrl+'" scrolling="no"></iframe>'
 %>
 <div class="col-md-12">
     <div class="row">
@@ -63,7 +63,7 @@
         <a class="social google-plus-share pull-left show-icons" id="googlePlusShare">
             <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
         </a>
-        <a href="#" class="pull-left show-icons"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></a>
+        <span class="pull-left show-icons"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></span>
         <span class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color"></span>
         </g:if>
         <g:else>
@@ -130,13 +130,13 @@
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                         </button>
-                        <h4 class="modal-title"><b>Embed this widget into your website</b></h4>
+                        <h4 class="modal-title text-center"><b>Embed this widget into your website</b></h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-sm-7">
                                 <p>Video preview</p>
-                                    <textarea class="textarea-embed-video">${embedVideoCode}</textarea><br><br>
+                                    <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
                                     <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
                                     <p>After choosing a video size, copy and paste the embed code above.</p>
                                     <div class="row desktop-video-play">
@@ -183,7 +183,7 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <p>Widget preview</p>
-                                    <textarea class="textarea-embed-tile">${embedCode}</textarea><br><br>
+                                    <textarea class="textarea-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
                                     <g:render template="manageproject/embedTile"/>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
                       </div>
                       <div class="modal-body only-tile-embed-modal text-center">
                           <p>Widget preview</p>
-                          <textarea class="textarea-of-embed-tile">${embedCode}</textarea><br><br>
+                          <textarea class="textarea-of-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
                           <g:render template="manageproject/embedTile"/>
                       </div>
                   </div>

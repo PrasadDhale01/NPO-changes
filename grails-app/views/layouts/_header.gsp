@@ -3,28 +3,26 @@
 <g:set var="userService" bean="userService"/>
 <g:set var="projectService" bean="projectService"/>
 <%
-	def currentEnv = projectService.getCurrentEnvironment()
+    def currentEnv = projectService.getCurrentEnvironment()
     def user = userService.getCurrentUser()
-	def userImage
-	if (user) {
-		if (user.userImageUrl) {
-			userImage = user.userImageUrl
-		} else {
-			def imageobj = userService.getCurrentUserImage(user.firstName)
-			userImage = imageobj.userImage
-		}
-	}
+    def userImage
+    if (user) {
+        if (user.userImageUrl) {
+            userImage = user.userImageUrl
+        } else {
+            def imageobj = userService.getCurrentUserImage(user.firstName)
+            userImage = imageobj.userImage
+        }
+    }
 %>
 <input type="hidden" id="currentEnvironment" value="<%=currentEnv%>" />
 <input type="text" name="search" id="hiddensearch"/>
 <div class="hidden-xs navbar navbar-default navbar-fixed-top header-section home-header-section noScrollHeader" role="navigation">
     <div class="header-container">
-		<g:if test="${currentEnv == 'test' || currentEnv== 'staging' || currentEnv=='production' || currentEnv== 'development'}">
-			<div class="info-banner">
-				Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a>
-				<a href="#" class="banner-close">Close</a>
-			</div>
-		</g:if>
+        <g:if test="${currentEnv == 'test' || currentEnv== 'staging' || currentEnv=='production' || currentEnv== 'development'}">
+            <div class="info-banner">Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a><a href="#" class="banner-close">Close</a>
+            </div>
+        </g:if>
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#TW-navbar-collapse" id="hamburger-toggle">
                 <span class="sr-only">Toggle navigation</span>
@@ -59,11 +57,11 @@
                 <li class="learn"><a href="${resource(dir: '/howitworks')}" class="nav-text3 hm-back-width hed-font-sizes"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/learn-icon-dropdowns.png" alt="learn">&nbsp;&nbsp;&nbsp;&nbsp;Learn</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right nav-create-button">
-				<li class="hidden-xs noscrollHeaderHelpLink">
-				    <g:link controller="project" action="create" class=" btn btn-info nav-text1 TW-header-helpLinkLogged">
-                    	<span class="TW-header-helpTxtLogged">Create</span>
+                <li class="hidden-xs noscrollHeaderHelpLink">
+                    <g:link controller="project" action="create" class=" btn btn-info nav-text1 TW-header-helpLinkLogged">
+                        <span class="TW-header-helpTxtLogged">Create</span>
                     </g:link>
-				</li>	
+                </li> 
                 <li class="hidden-lg hidden-md hidden-sm hed-font-sizes">
                     <g:link controller="project" action="create" class="nav-item-1"><img class="hidden-sm hidden-lg hidden-md" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" alt="create">&nbsp;&nbsp;&nbsp;&nbsp;Create</g:link>
                 </li>
@@ -123,15 +121,15 @@
                         </g:if>
                         <g:else>
                             <ul class="dropdown-menu usr user-dropdown dropdown-menu-head user-selected-drop">
-                                <li><g:link class="myprojects" controller="user" action="myproject">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-My-Campaigns-icon.png" alt="My-Campaigns">&nbsp;&nbsp;&nbsp;&nbsp; My Campaigns
-                                </g:link></li>
-
-                                <li><g:link class="mycontributions" controller="user" action="mycontribution">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-My-Contributions-icon.png" alt="My-Contributions">&nbsp;&nbsp;&nbsp;&nbsp; My Contributions
-                                </g:link></li>
+<%--                                <li><g:link class="myprojects" controller="user" action="myproject">--%>
+<%--                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-My-Campaigns-icon.png" alt="My-Campaigns">&nbsp;&nbsp;&nbsp;&nbsp; My Campaigns--%>
+<%--                                </g:link></li>--%>
+<%----%>
+<%--                                <li><g:link class="mycontributions" controller="user" action="mycontribution">--%>
+<%--                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-My-Contributions-icon.png" alt="My-Contributions">&nbsp;&nbsp;&nbsp;&nbsp; My Contributions--%>
+<%--                                </g:link></li>--%>
                                 <li><g:link controller="user" action="dashboard">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting">&nbsp;&nbsp;&nbsp;&nbsp; Settings
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting">&nbsp;&nbsp;&nbsp;&nbsp; Dashboard
                                 </g:link></li>
                                 <sec:ifAllGranted roles="ROLE_AUTHOR">
                                     <li><g:link controller="blog" action="manage"><span class="glyphicon glyphicon-book"></span> Manage blogs</g:link></li>
@@ -156,11 +154,9 @@
 
 <div class="hidden-lg hidden-md hidden-sm navbar navbar-default navbar-fixed-top header-section home-header-section mobile-fixedHeader" role="navigation">
     <div class="header-container TW-mobile-fixedHeaderBackColor">
-		<div class="info-banner">
-				Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a>
-				<a href="#" class="banner-close">Close</a>
-		</div>
-		
+        <div class="info-banner">Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a><a href="#" class="banner-close">Close</a>
+        </div>
+  
         <div class="navbar-header">
             <button data-target="#TW-navbar-collapsed" data-toggle="collapse" class="navbar-toggle collapsed toggle-MobileHeader" type="button">
                 <span class="sr-only">Toggle navigation</span>
@@ -187,12 +183,12 @@
 <!--  **********************************************Scrolled Header************************************************* -->
 <div role="navigation" class="navbar navbar-default navbar-fixed-top header-section home-header-section scrollHeader">
     <div class="header-container TW-scrollHeaderBackColor">
-		
-			<div class="info-banner">
-				Doing good from India? Visit <a class="banner-link" href="http://crowdera.in">www.crowdera.in</a>
-				<a class="banner-close" href="#">Close</a>
-			</div>
-		
+  
+   <div class="info-banner">
+    Doing good from India? Visit <a class="banner-link" href="http://crowdera.in">www.crowdera.in</a>
+    <a class="banner-close" href="#">Close</a>
+   </div>
+  
         <div class="navbar-header">
             <button data-target="#TW-navbar-collapsed" data-toggle="collapse" class="navbar-toggle collapsed TW-scrollHeader-hamBurger" type="button">
                 <span class="sr-only">Toggle navigation</span>
@@ -200,7 +196,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/" class="navbar-brand scrollHeaderLogo">
+            <a href="/" class="navbar-brand scrollHeaderLogo hidden-xs">
                 <img alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" class="hidden-xs">
                 <img class="mobile-scrollCrwdLogo hidden-lg hidden-xs hidden-md hidden-sm visible-xs center-block" alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" >
             </a>
@@ -238,11 +234,11 @@
                 <li class="learn scrollHeaderMenu"><a class="nav-text3 hm-back-width hed-font-sizes" href="/howitworks"><img alt="learn" src="//s3.amazonaws.com/crowdera/assets/learn-icon-dropdowns.png" class="hidden-sm hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;Learn</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right nav-create-button">
-               	<li class="hidden-xs">
+                <li class="hidden-xs">
                     <a class=" btn btn-info nav-text1 TW-header-helpLink" href="/campaign/create">
-                    	<span class="TW-header-helpTxt">Create</span>
+                     <span class="TW-header-helpTxt">Create</span>
                     </a> 
-               	</li>
+                </li>
                 <li class="hidden-lg hidden-md hidden-sm hed-font-sizes">
                     <a class="nav-item-1" href="/campaign/create"><img alt="create" src="//s3.amazonaws.com/crowdera/assets/create-icon-dropdown.png" class="hidden-sm hidden-lg hidden-md">&nbsp;&nbsp;&nbsp;&nbsp;Create</a>
                 </li>
@@ -302,15 +298,15 @@
                         </g:if>
                         <g:else>
                             <ul class="dropdown-menu usr user-dropdown dropdown-menu-head user-selected-drop">
-                                <li><g:link class="myprojects" controller="user" action="myproject">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-My-Campaigns-icon.png" alt="My-Campaigns">&nbsp;&nbsp;&nbsp;&nbsp; My Campaigns
-                                </g:link></li>
-
-                                <li><g:link class="mycontributions" controller="user" action="mycontribution">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-My-Contributions-icon.png" alt="My-Contributions">&nbsp;&nbsp;&nbsp;&nbsp; My Contributions
-                                </g:link></li>
+<%--                                <li><g:link class="myprojects" controller="user" action="myproject">--%>
+<%--                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-My-Campaigns-icon.png" alt="My-Campaigns">&nbsp;&nbsp;&nbsp;&nbsp; My Campaigns--%>
+<%--                                </g:link></li>--%>
+<%----%>
+<%--                                <li><g:link class="mycontributions" controller="user" action="mycontribution">--%>
+<%--                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-My-Contributions-icon.png" alt="My-Contributions">&nbsp;&nbsp;&nbsp;&nbsp; My Contributions--%>
+<%--                                </g:link></li>--%>
                                 <li><g:link controller="user" action="dashboard">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting">&nbsp;&nbsp;&nbsp;&nbsp; Settings
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting">&nbsp;&nbsp;&nbsp;&nbsp; Dashboard
                                 </g:link></li>
                                 <sec:ifAllGranted roles="ROLE_AUTHOR">
                                     <li><g:link controller="blog" action="manage"><span class="glyphicon glyphicon-book"></span> Manage blogs</g:link></li>
@@ -325,22 +321,22 @@
                             </ul>
                         </g:else>
                     </li>
-                </sec:ifLoggedIn>	
+                </sec:ifLoggedIn> 
             </ul>
         </div>
         
         <!-- Visible in mobile -->
         <div id="TW-navbar-collapsed" class="hidden-lg hidden-md hidden-sm navbar-collapse collapse TW-scrollHeaderBackColor">
-        	<div class="scrollHeaderMenu hidden-lg hidden-md hidden-sm">
-        		<ul>
-	       			<li><a href="/campaigns">Discover</a></li>
-	       			<li><g:link controller="project" action="create">Start a campaign</g:link></li>
-	       			<li><a href="/howitworks">How it works</a></li>
-	       			<sec:ifNotLoggedIn>
-	       				<li><g:link controller="login" action="auth">Login</g:link>&nbsp; or&nbsp; <g:link controller="login" action="register">Signup</g:link></li>
-	       			</sec:ifNotLoggedIn>
-	       			<li><a href="/customer-service">Support</a></li>
-	       			 <sec:ifNotLoggedIn>
+            <div class="scrollHeaderMenu hidden-lg hidden-md hidden-sm">
+            <ul>
+                <li><a href="/campaigns">Discover</a></li>
+                <li><g:link controller="project" action="create">Start a campaign</g:link></li>
+                <li><a href="/howitworks">How it works</a></li>
+                <sec:ifNotLoggedIn>
+                    <li><g:link controller="login" action="auth">Login</g:link>&nbsp; or&nbsp; <g:link controller="login" action="register">Signup</g:link></li>
+                </sec:ifNotLoggedIn>
+                <li><a href="/customer-service">Support</a></li>
+                <sec:ifNotLoggedIn>
                     <g:if test="${currentEnv != 'prodIndia'}">
                         <li class="hidden-xs hidden-sm headerFbButton scrollHeaderMenu">
                             <a href="${grailsApplication.config.grails.plugin.springsecurity.facebook.filter.redirect.redirectFromUrl}">
@@ -367,15 +363,15 @@
                                 </g:link></li>
                         </g:if>
                         <g:else>
-                                <li><g:link class="myprojects" controller="user" action="myproject">
-                                     My Campaigns
-                                </g:link></li>
-
-                                <li><g:link class="mycontributions" controller="user" action="mycontribution">
-                                     My Contributions
-                                </g:link></li>
+<%--                                <li><g:link class="myprojects" controller="user" action="myproject">--%>
+<%--                                     My Campaigns--%>
+<%--                                </g:link></li>--%>
+<%----%>
+<%--                                <li><g:link class="mycontributions" controller="user" action="mycontribution">--%>
+<%--                                     My Contributions--%>
+<%--                                </g:link></li>--%>
                                 <li><g:link controller="user" action="dashboard">
-                                     Settings
+                                     Dashboard
                                 </g:link></li>
                                 <sec:ifAllGranted roles="ROLE_AUTHOR">
                                     <li><g:link controller="blog" action="manage"><span class="glyphicon glyphicon-book"></span> Manage blogs</g:link></li>
@@ -388,9 +384,9 @@
                                 </g:link></li>
                         </g:else>
                     </li>
-                </sec:ifLoggedIn>	
-        		</ul>
-        	</div>
+                </sec:ifLoggedIn> 
+          </ul>
+         </div>
         </div>
     </div>
 </div>

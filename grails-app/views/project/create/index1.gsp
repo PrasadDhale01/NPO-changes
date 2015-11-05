@@ -42,47 +42,47 @@
                 <div class="form-group">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                        <label class="col-sm-12 text-color cr-padding-index1">My Name is...</label>
-                    <div class="col-sm-12 cr-padding-index1">
-                        <input type="text" class="form-control form-control-no-border text-color cr1-box-size" id="name" name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name">
-                    </div>
+                       <div class="col-sm-12 cr-padding-index1">
+                           <input type="text" class="form-control form-control-no-border text-color cr1-box-size" id="name" name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name">
+                       </div>
                     </div>
                     
                     <%--Mobile-code --%>
-                     <div class="form-group cr2-form-need visible-xs">
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
-                        <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
-                        <div class="cr-tops">
-                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
-                            </g:if>
-                            <g:else>
-                                <span class="i-currency-label-indx1">$</span>
-                            </g:else>   
-                            <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount1" id="amount2"> 
-                            <span id="errormsg"></span>
+                    <div class="form-group cr2-form-need visible-xs">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-7">
+                            <span class="col-lg-6 col-sm-6 col-md-6 cr-padding-index1">I need</span>
+                            <div class="cr-tops">
+	                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+	                                <span class="i-currency-label-indx1 fa fa-inr cr1-inr-indx1"></span>
+	                            </g:if>
+	                            <g:else>
+	                                <span class="i-currency-label-indx1">$</span>
+	                            </g:else>   
+                                <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount1" id="amount2"> 
+                                <span id="errormsg"></span>
+                            </div>
+                        </div>
+                        <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'}">
+                            <div class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
+                                <img class="cr1-amountInfo-img amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
+                            </div>
+                        </g:if>
+                        <g:else>
+                            <div class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
+                                <img class="cr1-amountInfo-img amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
+                            </div>
+                        </g:else>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 cr1-in-days">
+                            <span class="col-lg-12 col-sm-12 col-md-12 cr-padding-index1 cr1-mobile">In Days</span>
+                            <div class="cr1-font-list">
+                                <g:select class="selectpicker cr-drop-color" name="#" from="${inDays}" id="#" optionKey="key" optionValue="value" />
+                            </div> 
                         </div>
                     </div>
-                    <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'}">
-                        <div class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
-                            <img class="cr1-amountInfo-img amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
-                        </div>
-                    </g:if>
-                    <g:else>
-                        <div class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
-                            <img class="cr1-amountInfo-img amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
-                        </div>
-                    </g:else>
-                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 cr1-in-days">
-                        <span class="col-lg-12 col-sm-12 col-md-12 cr-padding-index1 cr1-mobile">In Days</span>
-                        <div class="cr1-font-list">
-                            <g:select class="selectpicker cr-drop-color" name="#" from="${inDays}" id="#" optionKey="key" optionValue="value" />
-                        </div> 
-                    </div>
-                </div>
                 
                     <%--desktop-code --%>
                     <div class="col-lg-6 col-md-6 col-sm-6 cr1-and-Iwant-tabs-mobile">
-                         <div class="btn-group col-sm-12 cr-index1-padding" data-toggle="buttons">
+                        <div class="btn-group col-sm-12 cr-index1-padding" data-toggle="buttons">
                             <div class="cr1-tab-title">and I want to</div>
                             <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 active" id="impact"> <input type="radio" value="yes"><span class="cr1-tb-text-sm">Make an</span><br><span class="cr1-tb-text-lg-indx">Impact</span></label> 
                             <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-indx1-tabs-sm cr1-mob-tb-pd  col-sm-3 col-xs-12" id="passion"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Follow my</span><br><span class="cr1-tb-text-lg-indx">Passion</span></label>
@@ -135,17 +135,17 @@
 	                <div class="col-lg-6 col-md-6 col-sm-6">
 	                    <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1">My Campaign web Address</label>
 	                    <g:if test="${currentEnv == 'development' || currentEnv == 'testIndia' }">
-		                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 cr1-mobile-indx1">
-		                            <div class="cr1-vanityUrl-indx1">
+		                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 cr1-mobile-indx1">
+		                        <div class="cr1-vanityUrl-indx1">
 		                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-		                            crowdera.in/
+		                                crowdera.in/
 		                            </g:if>
 		                            <g:else>
-		                            crowdera.co/
+		                                crowdera.co/
 		                            </g:else>
-		                            </div>
-	                                <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co" name="customVanityUrl" id="customVanityUrl" placeholder="YourWebsiteUrl">
-	                            </div>
+		                        </div>
+	                            <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co" name="customVanityUrl" id="customVanityUrl" placeholder="YourWebsiteUrl">
+	                        </div>
                         </g:if>
 	                </div>
                 </div>
@@ -163,7 +163,7 @@
         </div>
     </g:if>
     <g:else>
-                <div class="container footer-container" id="campaigncreate">
+        <div class="container footer-container" id="campaigncreate">
             <g:uploadForm class="form-horizontal cr-top-spaces" controller="project" action="saveCampaign">
                 <div class="form-group">
                     <label class="col-sm-12 text-color">My Name is...</label>
@@ -201,7 +201,7 @@
                             <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 active" id="impact"> <input type="radio" value="yes"><span class="cr1-tb-text-sm">Making an</span><br><span class="cr1-tb-text-lg">Impact</span></label> 
                             <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="passion"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Following my</span><br><span class="cr1-tb-text-lg">Passion</span></label>
                             <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12"  id="innovating"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Social</span><br><span class="cr1-tb-text-lg">Innovation</span><br></label>
-                            <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="personal"> <input type="radio" value="no"><span class="cr1-tb-text-lg">Personal</span><br><span class="cr1-tb-text-sm">needs</span></label>
+                            <label class="btn btn-default cr1-check-btn cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="personal"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Personal</span><br><span class="cr1-tb-text-lg">Needs</span></label>
                             <g:hiddenField name="usedFor" id="usedFor" value="IMPACT" />
                         </div>
                     </div>

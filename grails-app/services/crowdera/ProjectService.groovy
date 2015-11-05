@@ -4,6 +4,7 @@ import grails.transaction.Transactional
 import java.security.MessageDigest
 import java.text.DateFormat
 import java.text.SimpleDateFormat
+
 import javax.servlet.http.Cookie
 
 import org.springframework.web.multipart.MultipartFile;
@@ -22,7 +23,7 @@ class ProjectService {
     def mandrillService
     def rewardService
     def grailsApplication
-	
+    
     def getProjectById(def projectId){
         if (projectId) {
             return Project.get(projectId)
@@ -3503,6 +3504,42 @@ class ProjectService {
 
         details = [projectTitle:vanityTitle, fr:vanityName]
         return details
+    }
+    
+    def getCurrencyConverter() {
+        Currency currency = userService.getCurrencyById();
+        if (currency) {
+            return currency.dollar.round();
+        } else {
+            return 65;
+        }
+    }
+    
+    def getContributedAmount(List contributions) {
+        double amount = 0;
+        contributions.each{ contribution ->
+            amount = amount + contribution.amount
+        }
+        return amount
+    }
+
+    def getTotalFundRaisedByUser(List projects) {
+        double amount = 0;
+        def conversionMultiplier = getCurrencyConverter();
+        def currentEnv = getCurrentEnvironment()
+        projects.each { project ->
+            def contributedAmount = contributionService.getTotalContributionForProject(project)
+            if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                if(project.payuStatus) {
+                    amount = amount + contributedAmount 
+                } else {
+                    amount = amount + (contributedAmount * conversionMultiplier)
+                }
+            } else {
+                amount = amount + contributedAmount
+            }
+        }
+        return amount;
     }
 
     @Transactional

@@ -5,7 +5,10 @@
 	def backers = contributionService.getBackersForProjectByReward(project, reward);
 	def totalNumberOfReward = reward.numberAvailable
 	def availableReward = totalNumberOfReward - backers;
-	
+    def conversionMultiplier = multiplier
+    if (!conversionMultiplier) {
+        conversionMultiplier = projectService.getCurrencyConverter();
+    }
 %>
 <div class="panel panel-primary crowdera-perk perk-tile reward-tile managcampaign-rewardtile">
     <div class="panel-heading">
@@ -34,7 +37,12 @@
 		<g:if test="${reward.id==1 }">
             <b>&nbsp;</b>
         </g:if><g:else>
-            <b><g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${price}</b>
+            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                <b><span class="fa fa-inr"></span><g:if test="${project.payuStatus}">${price}</g:if><g:else>${price * conversionMultiplier}</g:else></b>
+            </g:if>
+            <g:else>
+                $${price}
+            </g:else>
         </g:else>
 		<b class="pull-right">&nbsp;SUPPORTERS</b><span class="badge pull-right">${backers}</span>
 	</div>

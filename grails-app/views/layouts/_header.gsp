@@ -196,7 +196,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/" class="navbar-brand scrollHeaderLogo">
+            <a href="/" class="navbar-brand scrollHeaderLogo hidden-xs">
                 <img alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" class="hidden-xs">
                 <img class="mobile-scrollCrwdLogo hidden-lg hidden-xs hidden-md hidden-sm visible-xs center-block" alt="Crowdera" src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" >
             </a>

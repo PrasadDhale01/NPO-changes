@@ -1313,10 +1313,6 @@ footer .footerbottomsection {
      color: #0F0101;
 }
 
-.green-heading a {
-    color: #ff784f
-}
-
 .organization-details h4 {
     margin-top: 0px;
     padding-top: 25px;
@@ -14609,4 +14605,7 @@ span.abt-founderCo{
 }
 .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open .user-cl-caret::before {
     content: "";
+}
+.campaignEndDateError .bootstrap-select.btn-group .dropdown-menu {
+    max-width: 100%;
 }

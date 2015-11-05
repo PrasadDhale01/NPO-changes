@@ -129,7 +129,7 @@
 <%--                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-My-Contributions-icon.png" alt="My-Contributions">&nbsp;&nbsp;&nbsp;&nbsp; My Contributions--%>
 <%--                                </g:link></li>--%>
                                 <li><g:link controller="user" action="dashboard">
-                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting">&nbsp;&nbsp;&nbsp;&nbsp; Settings
+                                    <img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/dropdown-setting-icon.png" alt="setting">&nbsp;&nbsp;&nbsp;&nbsp; Dashboard
                                 </g:link></li>
                                 <sec:ifAllGranted roles="ROLE_AUTHOR">
                                     <li><g:link controller="blog" action="manage"><span class="glyphicon glyphicon-book"></span> Manage blogs</g:link></li>

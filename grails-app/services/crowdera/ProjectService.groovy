@@ -906,6 +906,15 @@ class ProjectService {
         return country
     }
 	
+	def getInDays() {
+		def inDays = [
+			    THI:'30',
+				SIX:'60',
+				NIN:'90'  
+			]
+		return inDays
+	}
+	
     def getPayment(){
         def payment = [
             PAY:'Paypal',

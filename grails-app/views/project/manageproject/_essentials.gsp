@@ -113,13 +113,13 @@
                         <button type="button" class="close" data-dismiss="modal">
                             <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                         </button>
-                        <h4 class="modal-title"><b>Embed this widget into your website</b></h4>
+                        <h4 class="modal-title text-center"><b>Embed this widget into your website</b></h4>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-sm-7">
                                 <p>Video preview</p>
-                                    <textarea class="textarea-embed-video">${embedVideoCode}</textarea><br><br>
+                                    <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
                                     <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
                                     <p>After choosing a video size, copy and paste the embed code above.</p>
                                     <div class="row desktop-video-play">
@@ -166,7 +166,7 @@
                                 </div>
                                 <div class="col-sm-5">
                                     <p>Widget preview</p>
-                                    <textarea class="textarea-embed-tile">${embedCode}</textarea><br><br>
+                                    <textarea class="textarea-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
                                     <g:render template="manageproject/embedTile"/>
                                 </div>
                             </div>
@@ -185,7 +185,7 @@
                       </div>
                       <div class="modal-body only-tile-embed-modal text-center">
                           <p>Widget preview</p>
-                          <textarea class="textarea-of-embed-tile">${embedCode}</textarea><br><br>
+                          <textarea class="textarea-of-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
                           <g:render template="manageproject/embedTile"/>
                       </div>
                   </div>

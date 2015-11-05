@@ -119,6 +119,14 @@ $(function() {
             shippingCustom: {
             	required: true
             }
+        },
+        messages:{
+            agreetoTermsandUse: "Kindly confirm and then proceed to contribute"
+        },
+        errorPlacement: function(error, element) {
+            if ( element.is(":checkbox")) {
+                error.appendTo(element.parent());
+            }
         }
     });
 

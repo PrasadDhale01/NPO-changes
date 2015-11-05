@@ -26,7 +26,7 @@
 </div>
 
 <div class="pull-right transactionPaginate">
-    <g:paginate controller="fund" max="10" action="transactionList" total="${totalContributions.size()}"/>
+    <g:paginate controller="fund" max="10" maxsteps="5" action="transactionList" total="${totalContributions.size()}"/>
 </div>
 <script>
     $("#transactionInfo").find('.transactionPaginate a').click(function(event) {

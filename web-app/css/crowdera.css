@@ -1313,10 +1313,6 @@ footer .footerbottomsection {
      color: #0F0101;
 }
 
-.green-heading a {
-    color: #ff784f
-}
-
 .organization-details h4 {
     margin-top: 0px;
     padding-top: 25px;
@@ -2123,7 +2119,9 @@ button.projectedit.close{
 	color: #e3e3e3;
 	font-size:16px;
 	text-decoration: none;
-	
+}
+.footer-mid-section-menu ul li a:focus{
+	color:#e3e3e3;
 }
 .greycolorbg{
 	background-color:#f1f1f2
@@ -14344,7 +14342,6 @@ a#downloadEbook{
 }
 .TW-ebook-header-image{
 	margin-bottom: 30px;
-	margin-top: 20px;
 	width:100%;
 }
 .TW-ebook-header-image img{
@@ -14609,4 +14606,7 @@ span.abt-founderCo{
 }
 .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open .user-cl-caret::before {
     content: "";
+}
+.campaignEndDateError .bootstrap-select.btn-group .dropdown-menu {
+    max-width: 100%;
 }

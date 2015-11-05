@@ -371,18 +371,25 @@ textarea.textarea-embed-tile{
     border-color: #dddddd;
 }
 
-.col-sm-amt{
-   display:flex;
+div.col-sm-amt{
+   padding-left:0;
 }
 
-.cr-currency{
-    font-size: 25px;
-    position: absolute;
-    padding-left: 4px;
-    padding-bottom: 2px;
-}
-
-.cr-label-spend-matrix {
+span.cr-label-spend-matrix {
     padding-top: 6px;
-    padding-right: 5px;
+    padding-left: 0;
+    padding-right:0
+}
+
+.cr-label-spend-matrix-for{
+    padding-top: 6px;
+}
+
+.spend-matrix-icons{
+    background-color: #889299;
+    color:white !important;
+}
+
+.spend-matrix-field-saved{
+    display:none;
 }

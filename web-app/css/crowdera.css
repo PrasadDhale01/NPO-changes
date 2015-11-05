@@ -5428,6 +5428,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     ul.nav.navbar-nav.navbar-right.nav-create-button{
         margin-top: 3px;
     }
+    
+    .col-sm-input-group{
+        float:left !important;
+    }
    
 }
 /* Screen resolution 641 x 767*/
@@ -8547,7 +8551,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 1024px) {
-
+    input.form-control-input-width {
+        width: 50px !important;
+    }
 	.text-primary{
 		text-align:center;
 		width:300px;
@@ -8573,6 +8579,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    .col-input-for{
+        padding-left: 0;
+    }
+
+    span.cr-label-spend-matrix{
+        width:13%;
+    }
     div.abt-billy-postion{
         left: 11px;
     }
@@ -8838,9 +8851,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
-	.feduoutercontent {
-	   margin-top: 120px;
-	}
+    .col-sm-input-group {
+        padding-bottom: 12px;
+        padding-left: 5px !important;
+    }
+    .col-input-for {
+        padding-left: 40px;
+    }
+    .cr-spend-matrix, .cr-panel-spend-matrix, .cr-panel-spend-matrix-guide{
+        height:72px;
+    }
+    .form-control-input-for{
+        width:127px;
+    }
+    .feduoutercontent {
+        margin-top: 120px;
+    }
     #uploadingCampaignOrgIcon{
         padding-top: 20px;
     }

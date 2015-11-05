@@ -1520,6 +1520,17 @@ $(function() {
             
           });
         
+          $("form").on("click", ".spendMatrixTemplateAdd", function () {
+        	  var shippingMatrixCount = $('.cr-panel-body-spend-matrix').find('.spenMatrixNumberAvailable').last().val();
+        	  var nextCount = shippingMatrixCount++;
+              var shippingMatrixTemplate = '<div class="spend-matrix-template" id="'+nextCount+'">'+
+                  '<div class="col-sm-amt col-sm-12">'+
+                      '<div>'+
+                      '</div>'+
+                  '</div>'+
+              '</div>';
+          });
+        
 //        var $win = $(window);
 //        $win.scroll(function () {
 //            if ($win.scrollTop() == 0){

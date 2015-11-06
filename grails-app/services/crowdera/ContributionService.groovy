@@ -323,8 +323,8 @@ class ContributionService {
         List totalContributions = Contribution.findAllWhere(currency: 'USD').reverse()
         List contributions = []
         if (!totalContributions.isEmpty()) {
-            def offset = params.int('offset') ?: 0
-            def max = Math.min(params.int('max') ?: 10, 100)
+            def offset = params.offset ? params.int('offset') : 0
+            def max = 10
             def count = totalContributions.size()
             def maxrange
 
@@ -342,8 +342,8 @@ class ContributionService {
         List totalContributions = Contribution.findAllWhere(currency: 'INR').reverse()
         List contributions = []
         if (!totalContributions.isEmpty()) {
-            def offset = params.int('offset') ?: 0
-            def max = Math.min(params.int('max') ?: 10, 100)
+            def offset = params.offset ? params.int('offset') : 0
+            def max = 10
             def count = totalContributions.size()
             def maxrange
 
@@ -355,6 +355,14 @@ class ContributionService {
             contributions = totalContributions.reverse().subList(offset, maxrange)
         }
         return [totalContributions: totalContributions, contributions: contributions]
+    }
+    
+    def getINRContributions() {
+        return Contribution.findAllWhere(currency: 'INR').reverse()
+    }
+    
+    def getUSDContributions() {
+        return Contribution.findAllWhere(currency: 'USD').reverse()
     }
 	
     def transactionSort(){

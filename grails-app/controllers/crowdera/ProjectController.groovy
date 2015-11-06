@@ -451,10 +451,10 @@ class ProjectController {
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 		
-		def amount = params.amount ? params.amount : params.amount1;
+        def amount = params.amount ? params.amount : params.amount1;
 		 
         def reqUrl = base_url+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}"
-		def user = userService.getCurrentUser()
+        def user = userService.getCurrentUser()
         if (!user) {
             Cookie cookie = new Cookie("requestUrl", reqUrl)
             cookie.path = '/'    // Save Cookie to local path to access it throughout the domain

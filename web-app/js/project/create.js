@@ -464,6 +464,19 @@ $(function() {
             storyEmpty = false;
         }
         
+        $('.spendAmount').each(function () {
+            $(this).rules("add", {
+                required: true,
+                number:true
+            });
+        });
+  
+        $('.spendCause').each(function () {
+            $(this).rules("add", {
+                required: true,
+            });
+        });
+       
         if($('#campaignthumbnails').find('#imgdiv').length < 1) {
     		$("#projectImageFile").rules( "add", {
                 required: true,
@@ -1521,16 +1534,81 @@ $(function() {
           });
         
           $("form").on("click", ".spendMatrixTemplateAdd", function () {
-        	  var shippingMatrixCount = $('.cr-panel-body-spend-matrix').find('.spenMatrixNumberAvailable').last().val();
-        	  var nextCount = shippingMatrixCount++;
-              var shippingMatrixTemplate = '<div class="spend-matrix-template" id="'+nextCount+'">'+
+        	  var shippingMatrixCount = $('.spend-matrix').find('.spenMatrixNumberAvailable:last').val();
+        	  var spendMatrixSaved = saveSpendMatrix(shippingMatrixCount);
+        	  if (spendMatrixSaved){
+              $('.spend-matrix').find('.spendMatrixTemplateAdd:last').hide();
+              var nextCount = ++shippingMatrixCount;
+              var template = '<br><br><br><div class="spend-matrix-template" id="spend-matrix-template'+nextCount+'">'+
                   '<div class="col-sm-amt col-sm-12">'+
-                      '<div>'+
+                      '<span class="cr-label-spend-matrix col-sm-2 col-xs-4">I require</span>'+
+                      '<div class="input-group col-sm-2 col-xs-2 col-sm-input-group">';
+                          if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+                        	  template = template +'<span class="input-group-addon"><span class="fa fa-inr"></span></span>';
+                          } else {
+                        	  template = template +'<span class="input-group-addon"><span class="fa fa-usd"></span></span>';
+                          }
+                          template = template +'<input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount'+nextCount+'" name="spendAmount'+nextCount+'">'+
+                      '</div>'+
+                      '<span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>'+
+                      '<div class="col-sm-4 col-xs-9 col-input-for">'+
+                          '<input type="text" class="form-control form-control-input-for spendCause" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
+                      '</div>'+
+                      '<div class="btn btn-circle spend-matrix-icons perks-css-create spendMatrixTemplateSave">'+
+                          '<input type="hidden" name="spendFieldSave" value="'+nextCount+'" class="spendFieldSave">'+
+                          '<i class="glyphicon glyphicon-floppy-save"></i>'+
+                      '</div>&nbsp;'+
+                      '<div class="btn btn-circle spend-matrix-icons perks-css-create spendMatrixTemplateDelete">'+
+                          '<input type="hidden" name="spendFieldDelete" value="'+nextCount+'" class="spendFieldDelete">'+
+                          '<i class="glyphicon glyphicon-trash"></i>'+
+                      '</div>&nbsp;'+
+                      '<div class="btn btn-circle spend-matrix-icons perks-css-create spendMatrixTemplateAdd" id="spendMatrixTemplateAdd'+nextCount+'">'+
+                          '<i class="glyphicon glyphicon-plus"></i>'+
                       '</div>'+
                   '</div>'+
+                  '<span class="saved-message">Field Saved</span>'+
+                  '<input type="hidden" name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="'+nextCount+'">'+
               '</div>';
+              $('.spend-matrix').append(template);
+        	  }
           });
-        
+          
+          function saveSpendMatrix(shippingMatrixCount){
+        	  $('.spendAmount').each(function () {
+                  $(this).rules("add", {
+                      required: true,
+                      number:true
+                  });
+              });
+
+        	  $('.spendCause').each(function () {
+                  $(this).rules("add", {
+                      required: true,
+                  });
+              });
+        	  if((validator.element("#spendAmount"+shippingMatrixCount)) && (validator.element("#spendCause"+shippingMatrixCount))) {
+        		  return true;
+              } else {
+                  validator.element( "#spendAmount"+shippingMatrixCount);
+                  validator.element( "#spendCause"+shippingMatrixCount);
+                  return false;
+              }
+          }
+
+          $("form").on("click", ".spendMatrixTemplateDelete", function () {
+              var deleteCount = $(this).find('.spendFieldDelete').val();
+              var shippingMatrixCount = $('.spend-matrix').find('.spenMatrixNumberAvailable:last').val();
+              alert('deleteCount : '+deleteCount + '  shippingMatrixCount : ' +shippingMatrixCount);
+              if (deleteCount == shippingMatrixCount){
+            	  alert('kartiki');
+            	  $('.spend-matrix').find('.spendMatrixTemplateAdd:nth-last-child(2)').show();
+              }
+//              if (){
+//            	  $('.spend-matrix').find('.spendMatrixTemplateAdd:nth-last-child(2)').show();
+//              }
+//              $('#spend-matrix-template'+deleteCount).remove();
+          });
+
 //        var $win = $(window);
 //        $win.scroll(function () {
 //            if ($win.scrollTop() == 0){
@@ -1918,6 +1996,14 @@ $(function() {
              $(this).rules('remove');
          });
        	
+        $('.spendAmount').each(function () {
+            $(this).rules("remove");
+        });
+  
+        $('.spendCause').each(function () {
+            $(this).rules("remove");
+        });
+
        	$( "#projectImageFile" ).rules("remove");
  
        	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"]').each(function () {

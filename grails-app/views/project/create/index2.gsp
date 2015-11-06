@@ -192,7 +192,7 @@
                     <label class="panel panel-body cr-panel-spend-matrix-guide"></label>
                 </div>
                 <div class="panel panel-body cr-panel-body-spend-matrix">
-                    <div class="col-sm-8">
+                    <div class="col-sm-8 spend-matrix">
                         <div class="spend-matrix-template" id="spend-matrix-template1">
                         <div class="col-sm-amt col-sm-12">
                             <span class="cr-label-spend-matrix col-sm-2 col-xs-4">I require</span>
@@ -203,22 +203,21 @@
                                 <g:else>
                                     <span class="input-group-addon"><span class="fa fa-usd"></span></span>
                                 </g:else>
-                                <input type="text" class="form-control form-control-no-border-amt form-control-input-width" id="spendCurrency1" name="spenAmount">
+                                <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount1" name="spendAmount1">
                             </div>
                             <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
                             <div class="col-sm-4 col-xs-9 col-input-for">
-                            <input type="text" class="form-control form-control-input-for" id="spendReason1" name="spendCause">
+                            <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
                             </div>
                             <div class="btn btn-circle spend-matrix-icons perks-css-create spendMatrixTemplateSave">
                                 <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave"/>
                                 <i class="glyphicon glyphicon-floppy-save"></i>
                             </div>
-                            <div class="btn btn-circle spend-matrix-icons perks-css-create spendMatrixTemplateAdd">
-                                <g:hiddenField name="spendFieldAdd" value="1" class="spendFieldAdd"/>
+                            <div class="btn btn-circle spend-matrix-icons perks-css-create spendMatrixTemplateAdd" id="spendMatrixTemplateAdd1">
                                 <i class="glyphicon glyphicon-plus"></i>
                             </div>
                         </div>
-                        <span class="spend-matrix-field-saved">Field Saved</span>
+                        <span class="saved-message">Field Saved</span>
                         <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="1"/>
                         </div>
                     </div>

@@ -390,6 +390,10 @@ span.cr-label-spend-matrix {
     color:white !important;
 }
 
-.spend-matrix-field-saved{
+.saved-message{
     display:none;
+}
+
+.spend-matrix-top{
+    margin-top:45px;
 }

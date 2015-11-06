@@ -59,17 +59,17 @@
 	                                <span class="i-currency-label-indx1">$</span>
 	                            </g:else>   
                                 <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount1" id="amount2"> 
-                                <span id="errormsg"></span>
+                                <span id="errormsg1"></span>
                             </div>
                         </div>
                         <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'}">
                             <div class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
-                                <img class="cr1-amountInfo-img amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
+                                <img class="cr1-amountInfo-img cr1-guidence-us" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                             </div>
                         </g:if>
                         <g:else>
                             <div class="col-lg-1 col-md-1 col-sm-1 amount-popover cr1-mobile-padding-amt col-xs-1">
-                                <img class="cr1-amountInfo-img amountInfo-img" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
+                                <img class="cr1-amountInfo-img cr1-guidence-indo" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon">
                             </div>
                         </g:else>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 cr1-in-days">
@@ -103,8 +103,8 @@
                             <g:else>
                                 <span class="i-currency-label-indx1">$</span>
                             </g:else>   
-                            <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount" id="${FORMCONSTANTS.AMOUNT}"> 
-                            <span id="errormsg1"></span>
+                            <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount" id="amount3"> 
+                            <span id="errormsg2"></span>
                         </div>
                     </div>
                     <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'}">

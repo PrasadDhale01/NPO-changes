@@ -9105,8 +9105,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     
     img.cr1-amountInfo-img {
-        margin-left: -22px;
-        margin-top: 46px;
+        margin-left: -21px;
+        margin-top: 0px;
         padding-left: 0;
     }
     
@@ -13276,9 +13276,7 @@ textarea.textarea-embed-video {
 	   width: 286px;
 	}
 	img.amountInfo-img {
-        padding-top: 0px;
-        padding-left: 0;
-        margin-left: -21px;
+        margin-left: -30px;
     }
 	.info-banner{
 		bottom:0px;
@@ -14961,4 +14959,7 @@ span.abt-founderCo{
 }
 .campaignEndDateError .bootstrap-select.btn-group .dropdown-menu {
     max-width: 100%;
+}
+#errormsg2 {
+    color: red;
 }

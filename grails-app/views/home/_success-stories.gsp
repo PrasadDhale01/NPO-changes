@@ -1,10 +1,10 @@
 <div class="container how-it-work-container">
     <div class="row text-center success-story-title">
         <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-            <span class="text-center">Global Success Stories</span>
+            <span class="text-center">They Raised Successfully on Crowdera for What Matters to them</span>
         </g:if>
         <g:else>
-            <span class="text-center">Success Stories</span>
+            <span class="text-center">They Raised Successfully on Crowdera for What Matters to them</span>
         </g:else>
     </div> 
 </div>

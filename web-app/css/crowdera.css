@@ -3869,7 +3869,19 @@ label.text-color {
 	font-size: 14px;
 	color: #c7c7c7;
 }
+.cr2-input-placeholder::-webkit-input-placeholder{
+	font-size: 18px;
+    color: #6d6e6e;
+    font-weight: bold;
+    text-align: center;
+}
 /*******Mozilder******/
+.cr2-input-placeholder::-moz-placeholder{
+    font-size: 18px;
+    color: #6d6e6e;
+    font-weight: bold;
+    text-align: center;
+}
 #datepicker::-moz-placeholder{ 
 	font-size: 18px;
 	color: #6d6e6e;
@@ -5480,6 +5492,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.cr2-width-dropdown3 {
+        width: 231px;
+    }
+    div.cr2-width-dropdown4 {
+        margin-left: 0px;
+    }
+    div.cr2-width-dropdown5 {
+        left: 0px;
+    }
     div.cr1-and-Iwant-tabs-mobile{
         float: left;
     }
@@ -7590,6 +7611,26 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.cr2-padding {
+        padding-left: 0;
+    }
+    div.cr2-width-dropdown1 {
+        width: 138px;
+    }
+    div.cr2-width-dropdown2 {
+        width: 148px;
+    }
+    div.cr2-width-dropdown3 {
+        width: 148px;
+    }
+    div.cr2-width-dropdown4 {
+        width: 138px;
+        margin-left: 0;
+    }
+    div.cr2-width-dropdown5 {
+        width: 88px;
+        left: 0;
+    }
     span.cr1-tb-text-sm {
         font-size: 10px;
     }
@@ -8739,6 +8780,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    div.cr2-width-dropdown4 {
+        margin-left: -44px;
+    }
     div.createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
         padding-left: 15px !important;
         padding-right: 10px !important;
@@ -12421,6 +12465,15 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.cr2-width-dropdown3 {
+        width: 231px;
+    }
+    div.cr2-width-dropdown4 {
+        margin-left: 0px;
+    }
+    div.cr2-width-dropdown5 {
+        left: 0px;
+    }
     div.cr1-and-Iwant-tabs-mobile{
         float: left;
     }
@@ -14962,4 +15015,29 @@ span.abt-founderCo{
 }
 #errormsg2 {
     color: red;
+}
+.cr2-width-dropdown1{
+	width: 192px;
+}
+.cr2-width-dropdown2{
+    width: 199px;
+}
+.cr2-width-dropdown3{
+	width: 210px;
+}
+.cr2-width-dropdown4{
+    width: 184px;
+    margin-left: -39px;
+}
+.cr2-width-dropdown5{
+    width: 147px;
+    left: 11px;
+}
+.cr2-width-height-city {
+    height: 53px;
+    width: 181px;
+    background-color: #f6f8f8;
+}
+.cr2-padding{
+    padding-left: 11px;
 }

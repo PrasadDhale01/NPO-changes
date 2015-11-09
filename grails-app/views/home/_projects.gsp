@@ -3,7 +3,7 @@
     
 	    <div class="row">
 	        <div class="col-md-12 hm-mobile-title">
-	            <h1 class="text-center headingtext">Latest Campaigns</h1><br>
+	            <h1 class="text-center headingtext">Latest Campaigns Raising Free on Crowdera</h1><br>
 	        </div>
         </div>
         <div class="item active home-campaign-tile-container home-tile-mobile hidden-xs">
@@ -82,7 +82,7 @@
            </div>
         </div>
         <div class="row text-center explorebtn">
-            <a href="${resource(dir: '/campaigns')}"><img src="//s3.amazonaws.com/crowdera/assets/Explore-Campaigns -Button-img.jpg" class="Explore-Campaigns-Button-img" alt="Explore"></a>
+            <a href="${resource(dir: '/campaigns')}" class="btn btn-default hm-explorecampaign">Explore Campaign</a>
         </div>
     </div>
 </div>

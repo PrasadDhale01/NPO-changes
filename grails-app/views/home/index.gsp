@@ -40,11 +40,17 @@
 	<g:hiddenField name='currentEnv' value='${currentEnv}' id='currentEnv'/>
 	<g:hiddenField name="contributorEmail" value="${contributorEmail}" id="contributorEmail"/>
     
+    
+<%--       <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">--%>
+<%--           <g:render template="jumbotron"></g:render>--%>
+<%--       </div>--%>
+       <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+           <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/slider-home-page-india-slider.jpg" alt="india-slide">
+       </g:if>
+       <g:else>
+           <img class="img-responsive" src="//s3.amazonaws.com/crowdera/assets/slider-home-page-united-state-slider.jpg" alt="india-slide">
+       </g:else>
     <div class="hidden-xs">
-       <div onmouseover="showNavigation()" onmouseleave="hideNavigation()">
-           <g:render template="jumbotron"></g:render>
-       </div>
-
        <g:render template="banner"></g:render>
     
        <g:render template="ace"></g:render>

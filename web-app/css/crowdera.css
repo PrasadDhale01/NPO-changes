@@ -3576,13 +3576,26 @@ input#datepicker {
   background-color: #f6bf0b;
   padding: 2%;
 }
+.cr1-header-indx1{
+    background-color: #f6bf0b;
+    padding: 7px;
+}
 h1.text-center.cr-header-name {
   color: white;
   font-weight: 900;
   font-size: 50px;
 }
+h1.cr1-headertitle-indx1{
+    color: white;
+    font-weight: 900;
+    font-size: 40px;
+}
 h3.text-center.cr-sub-name {
   color: white;
+}
+h3.cr1-subheading-indx1{
+    color: white;
+    font-size: 20px;
 }
 form.form-horizontal.cr-top-spaces {
   padding-top: 44px;
@@ -3595,6 +3608,16 @@ form.form-horizontal.cr-top-spaces {
   color: orange;
   padding-left: 40px;
   font-weight: 900;
+}
+.cr-amt-indx1{
+    background-color: rgb(253, 234, 180);
+    border-color: orange;
+    color: orange;
+    font-size: 24px;
+    font-weight: 900;
+    height: 45px;
+    padding-left: 40px;
+    width: 118%;
 }
 .font-list span{
   font-size: 16px;
@@ -3665,6 +3688,12 @@ a.btn.btn-primary.btn-colors {
 /*   top: 10px; */
   left: 28px;
 }
+.i-currency-label-indx1{
+    color: orange;
+    font-size: 30px;
+    left: 28px;
+    position: absolute;
+}
 .cr2-currency-label {
  position: absolute;
   color: orange;
@@ -3677,6 +3706,9 @@ a.btn.btn-primary.btn-colors {
 }
 span.fa-inr {
   top: 72px;
+}
+span.cr1-inr-indx1{
+    top: 30px;
 }
 span.cr-perks-amts {
 	top: 18px !important;
@@ -3698,6 +3730,9 @@ img.cr-ineed-icons {
 .tops {
 /*     padding-top: 10px; */
     margin-top: -39px;
+}
+.cr-tops{
+    margin-top: 22px;
 }
 .cr-bg-create-btn{
 	background: url(https://s3.amazonaws.com/crowdera/assets/create-now-Button.jpg) no-repeat !important;
@@ -3811,6 +3846,9 @@ label.text-color {
 .box-size {
     height: 60px;
 }
+.cr1-box-size {
+    height: 45px;
+}
 
 /****Chrome-Placeholder*******/
 #datepicker::-webkit-input-placeholder {
@@ -3831,7 +3869,19 @@ label.text-color {
 	font-size: 14px;
 	color: #c7c7c7;
 }
+.cr2-input-placeholder::-webkit-input-placeholder{
+	font-size: 18px;
+    color: #6d6e6e;
+    font-weight: bold;
+    text-align: center;
+}
 /*******Mozilder******/
+.cr2-input-placeholder::-moz-placeholder{
+    font-size: 18px;
+    color: #6d6e6e;
+    font-weight: bold;
+    text-align: center;
+}
 #datepicker::-moz-placeholder{ 
 	font-size: 18px;
 	color: #6d6e6e;
@@ -3860,6 +3910,14 @@ label.text-color {
     color: #6d6e6e;
     height: 66px;
     padding-top: 5px;
+}
+.cr1-check-btn-indx{
+    background-color: #f6f8f8;
+    border-color: #dddddd;
+    color: #6d6e6e;
+    height: 45px;
+    line-height: 16px;
+    padding-top: 3px;
 }
 .cr1-tab-title {
     font-size: 14px;
@@ -5009,7 +5067,11 @@ img.amountInfo-img {
   padding-left: 0;
   margin-left: -25px;
 }
-
+img.cr1-amountInfo-img{
+    padding-top: 45px;
+    padding-left: 0;
+    margin-left: 13px;
+}
 img.amountInfoInd-img {
   padding-top: 102px;
   padding-left: 0;
@@ -5430,6 +5492,92 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.cr2-width-dropdown3 {
+        width: 231px;
+    }
+    div.cr2-width-dropdown4 {
+        margin-left: 0px;
+    }
+    div.cr2-width-dropdown5 {
+        left: 0px;
+    }
+    div.cr1-and-Iwant-tabs-mobile{
+        float: left;
+    }
+    div.cr2-form-need{
+        margin-top: 10px;
+        float: left;
+    }
+    div.cr1-mobile-padding-amt{
+        padding-left: 0;
+        padding-right: 0;
+        width: 4px;
+    }
+    div.cr1-vanityUrl-indx1 {
+        padding-left: 2px;
+    }
+    div.cr1-in-days {
+        padding-left: 0px;
+        left: 22px;
+    }
+    div.cr1-mobile-indx-info img{
+        padding-left: 138px;
+    }
+    div.createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
+        padding-left: 15px !important;
+        padding-right: 0px !important;
+    }
+    input.cr-amt-indx1 {
+        width: 100%;
+    }
+    div.cr1-font-list .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
+        width: 85% !important;
+    }
+    button.cr1-indx1-bg-create-btn {
+        height: 61px;
+        width: 239px;
+        font-size: 24px;
+        margin-left: 5px;
+    }
+    button.cr1-indx1-bg-create-btn:hover,
+    button.cr1-indx1-bg-create-btn:focus{
+        height: 61px;
+        width: 239px;
+        font-size: 24px;
+        margin-left: 5px;
+    }
+    div.cr1-descriptions-indx1{
+         width: 96%;
+    }
+    div.cr1-indx1-mobileTpadding{
+        padding-bottom: 15px;
+    }
+    input.cr1-vanitypadding-in-co {
+        height: 45px;
+        padding-left: 104px;
+        width: 100% !important;
+    }
+    div.cr1-mobile-indx1{
+        left: -5px;
+        width: 304px;
+    }
+    label.cr1-vanity-label-indx1 {
+        padding-left: 0;
+    }
+    span.cr1-mobile {
+        left: -16px;
+    }
+	div.cr1-font-list .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
+        margin-left: -14px;
+    }
+    div.cr-tops {
+        margin-top: 0;
+        width: 95%;
+    }
+    div.cr-index1-padding {
+        padding-right: 15px;
+        padding-left: 0px;
+    }
 	.navbar-collapse.TW-scrollHeaderBackColor.collapsing {
 	    position: relative;
 	    height: auto !important;
@@ -7474,6 +7622,49 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.success-story-title span {
         font-size: 38px;
     }
+    div.cr2-padding {
+        padding-left: 0;
+    }
+    div.cr2-width-dropdown1 {
+        width: 138px;
+    }
+    div.cr2-width-dropdown2 {
+        width: 148px;
+    }
+    div.cr2-width-dropdown3 {
+        width: 148px;
+    }
+    div.cr2-width-dropdown4 {
+        width: 138px;
+        margin-left: 0;
+    }
+    div.cr2-width-dropdown5 {
+        width: 88px;
+        left: 0;
+    }
+    span.cr1-tb-text-sm {
+        font-size: 10px;
+    }
+    label.cr1-indx1-tabs-sm{
+        padding-left: 3px !important;
+    }
+    div.cr1-in-days {
+        padding-left: 3px;
+    }
+    div.createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
+        padding-left: 15px !important;
+        padding-right: 10px !important;
+    }
+    img.cr1-amountInfo-img{
+        margin-left: -1px;
+    }
+    span.cr1-tb-text-lg-indx {
+        font-size: 13px;
+        font-weight: 900;
+    }
+    input.cr1-vanitypadding-in-co {
+        width: 141% !important;
+    }
     div.abt-img-icons-mobile {
         left: 33px !important;
     }
@@ -8600,6 +8791,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    div.cr2-width-dropdown4 {
+        margin-left: -44px;
+    }
+    div.createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
+        padding-left: 15px !important;
+        padding-right: 10px !important;
+    }
     div.abt-billy-postion{
         left: 11px;
     }
@@ -8961,6 +9159,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-left: 0;
     }
     
+    img.cr1-amountInfo-img {
+        margin-left: -21px;
+        margin-top: 0px;
+        padding-left: 0;
+    }
+    
     img.amountInfoInd-img {
         padding-top: 0;
         padding-left: 264px;
@@ -9104,6 +9308,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1920px){
+	
 	.feduoutercontent {
 	   margin-top: 48px !important;
 	}
@@ -9541,6 +9746,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+    .createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
+        padding-left: 15px !important;
+        padding-right: 12p !importantx;
+    }
     div.abt-img-icons-mobile {
         left: 68px !important;
     }
@@ -12297,7 +12506,95 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-	.navbar-collapse.TW-scrollHeaderBackColor.collapsing {
+    div.cr2-width-dropdown3 {
+        width: 231px;
+    }
+    div.cr2-width-dropdown4 {
+        margin-left: 0px;
+    }
+    div.cr2-width-dropdown5 {
+        left: 0px;
+    }
+    div.cr1-and-Iwant-tabs-mobile{
+        float: left;
+    }
+    div.cr2-form-need{
+        margin-top: 10px;
+        float: left;
+    }
+    div.cr1-mobile-padding-amt{
+        padding-left: 0;
+        padding-right: 0;
+        width: 0;
+    }
+    div.cr1-vanityUrl-indx1 {
+        left: 9px;
+    }
+    div.cr1-in-days {
+        padding-left: 0px;
+        left: 25px;
+    }
+    div.cr1-mobile-indx-info img{
+        padding-left: 138px;
+    }
+    input.cr1-vanitypadding-in-co {
+        width: 100% !important;
+    }
+    div.createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
+        padding-left: 15px !important;
+        padding-right: 0px !important;
+    }
+    input.cr-amt-indx1 {
+        width: 100%;
+    }
+    div.cr1-font-list .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
+        width: 85% !important;
+    }
+    button.cr1-indx1-bg-create-btn {
+        height: 61px;
+        width: 239px;
+        font-size: 24px;
+        margin-left: 5px;
+    }
+    button.cr1-indx1-bg-create-btn:hover,
+    button.cr1-indx1-bg-create-btn:focus{
+        height: 61px;
+        width: 239px;
+        font-size: 24px;
+        margin-left: 5px;
+    }
+    div.cr1-descriptions-indx1{
+         width: 96%;
+    }
+    div.cr1-indx1-mobileTpadding{
+        padding-bottom: 15px;
+	}
+    input.cr1-vanitypadding-in-co {
+        height: 45px;
+        padding-left: 104px;
+    }
+    div.cr1-mobile-indx1{
+        left: -5px;
+        width: 304px;
+	}
+    label.cr1-vanity-label-indx1 {
+        padding-left: 0;
+    }
+    span.cr1-mobile {
+        left: -16px;
+    }
+    div.cr1-font-list .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
+        margin-left: -14px;
+    }
+    div.cr-tops {
+        margin-top: 0;
+        width: 95%;
+    }
+    div.cr-index1-padding {
+        padding-right: 15px;
+        padding-left: 0px;
+    }
+    .navbar-collapse.TW-scrollHeaderBackColor.collapsing {
 	    position: relative;
 	    height: auto !important;
 	    overflow: hidden;
@@ -13065,9 +13362,7 @@ textarea.textarea-embed-video {
 	   width: 286px;
 	}
 	img.amountInfo-img {
-        padding-top: 0;
-        padding-left: 234px;
-        margin-left: 0;
+        margin-left: -30px;
     }
 	.info-banner{
 		bottom:0px;
@@ -14670,6 +14965,78 @@ span.abt-founderCo{
 .dropdown.dropdown-head.hover-dropdown.home-dropdown.drop.imgs-all.user-img.open .user-cl-caret::before {
     content: "";
 }
+.cr-padding-index1 {
+    padding-left: 0px;
+    margin-bottom: 0px;
+}
+.cr-index1-padding{
+    padding-right: 0px;
+}
+.cr1-in-days{
+    padding-left: 14px;
+}
+.cr1-font-list button.dropdown-toggle.selectpicker.btn.btn-sm.btn-default {
+    background-color: #f8f8f8;
+    color: black !important;
+    font-size: 20px;
+    height: 46px;
+    padding-top: 3px;
+    margin-left: -1px;
+    font-weight: bold;
+}
+.cr1-tb-text-lg-indx{
+    font-size: 17px;
+    font-weight: 900;
+}
+.cr-myplan-indx1{
+    height: 45px;
+}
+.cr1-vanityUrl-indx1 {
+    position: absolute;
+    padding-top: 11px;
+    padding-left: 9px;
+}
+.cr1-vanitypadding-in-co{
+    padding-left: 100px;
+    height: 45px;
+    width: 141% !important;
+}
+.cr1-vanity-label-indx1{
+    margin-bottom: 0px;
+}
+.cr1-indx1-bg-create-btn{
+	background-color: #f6bf0b !important;
+	height: 63px;
+    width: 315px;
+    font-size: 25px;
+    color: #fff;
+    padding-top: 12px;
+    font-weight: bold;
+}
+.cr1-indx1-bg-create-btn:hover,
+.cr1-indx1-bg-create-btn:focus{
+    background-color: #f6bf0b;
+    height: 63px;
+    width: 315px;
+    font-size: 25px;
+    color: #fff;
+    padding-top: 12px;
+    font-weight: bold;
+}
+.cr1-indx1-inovat{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.cr1-font-list .bootstrap-select.btn-group:not(.input-group-btn), .bootstrap-select.btn-group[class*="span"] {
+    width: 26% !important;
+}
+.createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
+    padding-left: 0;
+    padding-right: 0;
+}
+.cr-padding-index1 span.help-block {
+    float: left !important;
+}
 .campaignEndDateError .bootstrap-select.btn-group .dropdown-menu {
     max-width: 100%;
 }
@@ -14703,4 +15070,32 @@ img.home-pg-icons{
     font-weight: 900;
     color: #fff;
     font-size: 24px;
+}
+#errormsg2 {
+    color: red;
+}
+.cr2-width-dropdown1{
+	width: 192px;
+}
+.cr2-width-dropdown2{
+    width: 199px;
+}
+.cr2-width-dropdown3{
+	width: 210px;
+}
+.cr2-width-dropdown4{
+    width: 184px;
+    margin-left: -39px;
+}
+.cr2-width-dropdown5{
+    width: 147px;
+    left: 11px;
+}
+.cr2-width-height-city {
+    height: 53px;
+    width: 181px;
+    background-color: #f6f8f8;
+}
+.cr2-padding{
+    padding-left: 11px;
 }

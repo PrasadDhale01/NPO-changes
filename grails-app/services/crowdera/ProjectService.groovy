@@ -907,6 +907,34 @@ class ProjectService {
         return country
     }
 	
+	def getRecipientOfFunds() {
+	    def recipientOfFunds = [
+            PER:'Person',
+			NPT:'Non-Profit',
+			NGO:'NGO',
+			OTH:'Other'   	    
+		]
+		return recipientOfFunds
+	}
+	
+	def getRecipientOfFundsIndo(){
+		def RecipientOfIndia = [
+			IND: 'Individual',
+			INN: 'Indian NGO',
+			OTR: 'Other'
+		]
+		return RecipientOfIndia
+	}
+	
+	def getInDays() {
+		def inDays = [
+			    THI:'30',
+				SIX:'60',
+				NIN:'90'  
+			]
+		return inDays
+	}
+	
     def getPayment(){
         def payment = [
             PAY:'Paypal',

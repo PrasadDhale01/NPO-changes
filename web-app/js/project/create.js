@@ -211,6 +211,25 @@ $(function() {
                         return 100000;
                     }
                 }
+            },
+            amount1: {
+                required: true,
+                number: true,
+                min: 500,
+                maxlength: function() {
+                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                        return 8;
+                    } else {
+                        return 6;
+                    }
+                },
+                max: function() {
+                    if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                        return 99999999;
+                    } else {
+                        return 100000;
+                    }
+                }
             }
         },
         messages:{
@@ -1555,11 +1574,20 @@ $(function() {
 
     $(document).ready(function (){
         //called when key is pressed in textbox
-        $("#amount, #amount1").keypress(function (e) {
+        $("#amount,#amount1").keypress(function (e) {
             //if the letter is not digit then display error and don't type anything
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                 //display error message
                 $("#errormsg").html("Digits Only").show().fadeOut("slow");
+                return false;
+            } 
+        });
+        
+        $("#amount2,#amount3").keypress(function (e) {
+            //if the letter is not digit then display error and don't type anything
+            if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                //display error message
+                $("#errormsg1,#errormsg2").html("Digits Only").show().fadeOut("slow");
                 return false;
             } 
         });
@@ -2214,6 +2242,24 @@ $(function() {
         .hover(showPopover, hidePopover);
         
         $('.amountInfoInd-img').popover({
+            content: 'Maximum Rs.99,999,999, If you want to raise more contact our Crowdfunding Expert.',
+            trigger: 'manual',
+            placement: 'bottom'
+        })
+        .focus(showPopover)
+        .blur(hidePopover)
+        .hover(showPopover, hidePopover);
+        
+        $('.cr1-guidence-us').popover({
+            content: 'Maximum $100,000, If you want to raise more contact our Crowdfunding Expert.',
+            trigger: 'manual',
+            placement: 'bottom'
+        })
+        .focus(showPopover)
+        .blur(hidePopover)
+        .hover(showPopover, hidePopover);
+        
+        $('.cr1-guidence-indo').popover({
             content: 'Maximum Rs.99,999,999, If you want to raise more contact our Crowdfunding Expert.',
             trigger: 'manual',
             placement: 'bottom'

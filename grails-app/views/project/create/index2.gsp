@@ -5,10 +5,11 @@
     def iteratorCount = 1
     def lastrewardCount = 1
     def rewardItrCount = projectRewards.size()
-    def spendCount = spends.size()
+    def spendCount
     def spendLastMatrix
     def spendLastNumAvail
     if (spends){
+        spendCount = spends.size()
         spendLastMatrix = spends.last()
         spendLastNumAvail = spendLastMatrix.numberAvailable
     }
@@ -46,6 +47,74 @@
             <g:hiddenField name="projectId" id="projectId" value="${project.id}"/>
             <div class="startsection"></div>
 
+            <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
+            <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari cr2-padding" id="start">
+                <div class="form-group col-lg-12 cr-start-space campaignEndDateError">
+                    <div class="col-sm-3 cr2-width-dropdown1">
+                        <div class="font-list">
+                            <g:if test="${project.category && project.category.toString() != 'OTHER'}">
+                                <g:select class="selectpicker cr-start-dropdown-category cr-drops cr-opn-dropdown cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" id="category" optionKey="key" optionValue="value" value="${project.category}"/>
+                            </g:if>
+                            <g:else>
+                                <g:select class="selectpicker cr-start-dropdown-category cr-drops cr-opn-dropdown cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" id="category" optionKey="key" optionValue="value" noSelection="['null':'Category']"/>
+                            </g:else>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-3 cr2-width-dropdown2">
+                        <div class="cr-dropdown-alignment font-list">
+                            <g:if test="${project.beneficiary.country}">
+                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="${project.beneficiary.country}" optionKey="key" optionValue="value" />
+                            </g:if>
+                            <g:else>
+                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="#" optionKey="key" optionValue="value" noSelection="['null':'Country']"/>
+                            </g:else>
+                        </div>
+                    </div>
+                    
+                   <div class="col-sm-3 cr2-width-dropdown3">
+                        <div class="input-group enddate">
+                            <input class="cr2-width-height-city cr-mob-datepicker form-control cr2-input-placeholder" name="${FORMCONSTANTS.DAYS}" value="${campaignEndDate}" placeholder="city"> 
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-3 cr2-width-dropdown4">
+                        <div class="font-list">
+                            <g:if test="${project.payuEmail}">
+                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAYU" optionKey="key" optionValue="v" />
+                            </g:if>
+                            <g:elseif test="${project.charitableId}">
+                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="FIR" optionKey="key" optionValue="value" />
+                            </g:elseif>
+                            <g:elseif test="${project.paypalEmail}">
+                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" />
+                            </g:elseif>
+                            <g:else>
+                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" noSelection="['null':'Payment']"/>
+                            </g:else>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-3 cr2-width-dropdown5">
+                        <div class="cr-dropdown-alignment font-list">
+                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonIndprofit}" value="#" optionKey="key" optionValue="value" />
+                            </g:if>
+                            <g:else>
+	                            <g:if test="${project.beneficiary.country}">
+	                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonProfit}" value="#" optionKey="key" optionValue="value" />
+	                            </g:if>
+	                            <g:else>
+	                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonProfit}" value="#" optionKey="key" optionValue="value" noSelection="['null':'Funds']"/>
+	                            </g:else>
+	                        </g:else>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </g:if>
+        <g:else>
+            
             <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari" id="start">
                 <label class="panel body cr-start-size cr-safari">START</label>
                 <div class="form-group col-sm-10 cr-start-space campaignEndDateError">
@@ -99,7 +168,8 @@
                     </div>
                 </div>
             </div>
-
+        </g:else>
+   
             <g:hiddenField name="campaignvideoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
             <div class="col-sm-6 video-popover" id="media">
                 <div class="panel panel-default panel-create-size" id="videoBox">

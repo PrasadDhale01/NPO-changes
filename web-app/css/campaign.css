@@ -396,7 +396,6 @@ span.cr-label-spend-matrix {
     padding-right: 4px;
     padding-bottom: 0px;
     padding-left: 3px;
-    margin-top: 4px;
 }
 
 .saved-message{
@@ -432,4 +431,9 @@ span.cr-label-spend-matrix {
 
 .glyphicon-save{
     padding-left:2px;
+}
+
+.spend-matrix-template .help-block{
+    margin-bottom: 0;
+    margin-top: 1px;
 }

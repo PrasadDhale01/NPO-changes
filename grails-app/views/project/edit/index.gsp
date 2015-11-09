@@ -1,11 +1,18 @@
 <g:set var="rewardService" bean="rewardService"/>
-<% 
+<%
     def iteratorCount = 1
     def lastrewardCount = 1
     def rewardItrCount = projectRewards.size()
     def amount = (project.amount).round()
+    def spendCount = spends.size()
     def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
     def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+    def spendLastMatrix
+    def spendLastNumAvail
+    if (spends){
+        spendLastMatrix = spends.last()
+        spendLastNumAvail = spendLastMatrix.numberAvailable
+    }
 %>
 <html>
 <head>
@@ -304,7 +311,90 @@
                         </div>
                     </div>
                 </div>
-                     
+                
+                <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
+                <div class="col-sm-12">
+                    <div class="cr-spend-matrix">
+                       <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">SPEND MATRIX</span></label>
+                       <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
+                    </div>
+                    <div class="panel panel-body cr-panel-body-spend-matrix">
+                       <div class="col-sm-8 spend-matrix">
+                           <g:if test="${spendCount > 0}">
+                               <g:each in="${spends}" var="spend">
+                                   <div class="spend-matrix-template" id="spend-matrix-template${spend.numberAvailable}">
+                                       <g:if test="${spend.numberAvailable > 1}"><br class="hidden-lg hidden-md hidden-sm"></g:if>
+                                       <div class="col-sm-amt col-sm-12">
+                                           <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
+                                           <div class="form-group col-sm-2 col-xs-4 col-sm-input-group">
+                                               <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                                   <span class="fa fa-inr cr-currency"></span>
+                                               </g:if>
+                                               <g:else>
+                                                   <span class="fa fa-usd cr-currency"></span>
+                                               </g:else>
+                                               <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount${spend.numberAvailable}" value="${spend.amount.round()}" name="spendAmount${spend.numberAvailable}">
+                                           </div>
+                                           <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
+                                           <div class="col-sm-4 col-xs-7 col-input-for form-group">
+                                               <input type="text" class="form-control form-control-input-for spendCause" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
+                                           </div>&nbsp;&nbsp;
+                                           <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
+                                               <g:hiddenField name="spendFieldSave" value="${spend.numberAvailable}" class="spendFieldSave"/>
+                                               <i class="glyphicon glyphicon-floppy-save"></i>
+                                           </div>
+                                           <g:if test="${spend.numberAvailable != 1}">
+                                               <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateDelete">
+                                                   <input type="hidden" name="spendFieldDelete" value="${spend.numberAvailable}" class="spendFieldDelete">
+                                                   <i class="glyphicon glyphicon-trash"></i>
+                                               </div>
+                                           </g:if>
+                                           <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd <g:if test="${spend.numberAvailable != spendLastNumAvail}">display-none</g:if>" id="spendMatrixTemplateAdd${spend.numberAvailable}">
+                                               <i class="glyphicon glyphicon-plus"></i>
+                                           </div>
+                                       </div>
+                                       <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="${spend.numberAvailable}"/>
+                                   </div>
+                               </g:each>
+                           </g:if>
+                           <g:else>
+                               <div class="spend-matrix-template" id="spend-matrix-template1">
+                                   <div class="col-sm-amt col-sm-12">
+                                       <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
+                                       <div class="form-group col-sm-2 col-xs-4 col-sm-input-group">
+                                           <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                               <span class="fa fa-inr cr-currency"></span>
+                                           </g:if>
+                                           <g:else>
+                                                <span class="fa fa-usd cr-currency"></span>
+                                           </g:else>
+                                           <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount1" name="spendAmount1">
+                                       </div>
+                                       <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
+                                       <div class="col-sm-4 col-xs-7 col-input-for form-group">
+                                           <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
+                                       </div>&nbsp;&nbsp;
+                                       <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
+                                           <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave"/>
+                                           <i class="glyphicon glyphicon-floppy-save"></i>
+                                       </div>
+                                       <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd" id="spendMatrixTemplateAdd1">
+                                           <i class="glyphicon glyphicon-plus"></i>
+                                       </div>
+                                   </div>
+                                   <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="1"/>
+                               </div>
+                           </g:else>
+                       </div>
+                       <div class="col-sm-4">
+                       </div>
+                       <div class="row">
+                           <span class="col-sm-offset-1 col-sm-4 saved-message">Spend field Saved</span>
+                       </div>
+                   </div>
+               </div>
+               </g:if>
+ 
                <div class="col-sm-12 manage-Top-tabs-mobile" id="admins">
                    <div class="cr-tabs-admins cr-safari">
                     <label class="panel body cr-admin-title cr-safari">ADMIN</label>

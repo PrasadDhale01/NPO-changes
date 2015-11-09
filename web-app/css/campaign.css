@@ -348,12 +348,12 @@ textarea.textarea-embed-tile{
 
 .cr-panel-spend-matrix-guide{
     background-color: white;
-    width:82%;
     height:48px;;
+    padding-left: 0;
+    padding-right: 0;
 }
 
 .cr-panel-spend-matrix{
-    width:185px;
     background-color: #889299;
     border-color: #DDD;
     color: #FFF;
@@ -362,8 +362,12 @@ textarea.textarea-embed-tile{
 }
 
 .cr-spend-matrix{
-    display:flex;
     height:48px;
+}
+
+.cr-spend-matrix-font{
+    font-size: 18px;
+    font-weight: 900;
 }
 
 .cr-panel-body-spend-matrix{
@@ -388,6 +392,11 @@ span.cr-label-spend-matrix {
 .spend-matrix-icons{
     background-color: #889299;
     color:white !important;
+    padding-top: 0px;
+    padding-right: 4px;
+    padding-bottom: 0px;
+    padding-left: 3px;
+    margin-top: 4px;
 }
 
 .saved-message{
@@ -396,4 +405,31 @@ span.cr-label-spend-matrix {
 
 .spend-matrix-top{
     margin-top:45px;
+}
+
+.saved-message{
+    color:#01BBD3;
+}
+
+.cr-currency{
+    position: absolute;
+    left: 20px;
+    top: 11px;
+}
+
+.spendAmount {
+    padding-left: 18px !important;
+}
+
+.display-none{
+    display: none;
+}
+
+.glyphicon-size{
+    font-size: 13px;
+    margin-right: 0px !important;
+}
+
+.glyphicon-save{
+    padding-left:2px;
 }

@@ -5423,6 +5423,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
+
     ul.nav.navbar-nav.navbar-right.nav-create-button{
         margin-top: 3px;
     }
@@ -5430,7 +5431,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .col-sm-input-group{
         float:left !important;
     }
-   
+
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
@@ -7224,6 +7225,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+.cr-panel-spend-matrix{
+    padding:14px;
+}
+
 	.TW-header-helpTxtLogged {
 	   color: #fff !important;
 	   font-size: 20px !important;
@@ -7467,6 +7472,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    .col-sm-input-group{
+        padding-left:0;
+    }
+    .cr-currency{
+        left:7px;
+    }
+    .cr-label-spend-matrix{
+        width:100%
+    }
+    
     div.abt-img-icons-mobile {
         left: 33px !important;
     }
@@ -8567,9 +8582,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 1024px) {
-    input.form-control-input-width {
-        width: 50px !important;
-    }
 	.text-primary{
 		text-align:center;
 		width:300px;
@@ -8600,7 +8612,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 
     span.cr-label-spend-matrix{
-        width:13%;
+        width:11%;
     }
     div.abt-billy-postion{
         left: 11px;
@@ -8867,18 +8879,34 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
-    .col-sm-input-group {
-        padding-bottom: 12px;
-        padding-left: 5px !important;
+    .cr-label-spend-matrix-for{
+        padding-left: 19px;
     }
-    .col-input-for {
-        padding-left: 40px;
+
+    .spend-matrix {
+        padding-left: 6px !important;
+        padding-right: 0px !important;
+    }
+
+    div.col-sm-amt{
+        padding-right:0;
+    }
+    
+    .col-input-for{
+        margin-bottom: 4px;
+        padding-left: 10px !important;
+    }
+
+    .cr-currency {
+        left:6px;
+    }
+    .col-sm-input-group {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-bottom:4px;
     }
     .cr-spend-matrix, .cr-panel-spend-matrix, .cr-panel-spend-matrix-guide{
-        height:72px;
-    }
-    .form-control-input-for{
-        width:127px;
+        height:46px;
     }
     .feduoutercontent {
         margin-top: 120px;
@@ -9259,12 +9287,23 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
-	.ebook-container {
-	   display: block;
-	   margin-left: auto;
-	   margin-right: auto;
-	   width: 62% !important;
-	}
+
+    .cr-panel-spend-matrix{
+        width:25%;
+        padding: 14px;
+    }
+
+    .cr-panel-spend-matrix-guide{
+        width:75%;
+    }
+
+    .ebook-container {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 62% !important;
+    }
+
     div.home-campaign-tile-container{
         margin-left: 46px;
     }

@@ -3532,6 +3532,47 @@ class ProjectService {
         }
         return amount;
     }
+	
+    def getSpendMatrixSaved(def params){
+		Project project = Project.get(params.projectId)
+		def saveCount = Integer.parseInt(params.savingCount)
+		def amount = Double.parseDouble(params.amount)
+		SpendMatrix spendMatrix = SpendMatrix.findByNumberAvailableAndProject(saveCount, project)
+		if (spendMatrix) {
+            def isValueChanged = false
+
+            if (amount && amount != ' '){
+				spendMatrix.amount = amount
+				isValueChanged = true
+			}
+
+			if (params.cause && params.cause != ' '){
+				spendMatrix.cause = params.cause
+				isValueChanged = true
+			}
+
+			if (isValueChanged){
+				spendMatrix.save(failOnError: true);
+			}
+
+		} else {
+            SpendMatrix spend = new SpendMatrix(
+               project:project,
+               amount : amount,
+               cause : params.cause,
+               numberAvailable : saveCount
+            ).save(failOnError:true);
+		}
+	}
+	
+    def getSpendMatrixDeleted(def params){
+        Project project = Project.get(params.projectId)
+		def deleteCount = Integer.parseInt(params.deleteCount)
+        SpendMatrix spendMatrix = SpendMatrix.findByNumberAvailableAndProject(deleteCount, project)
+        if (spendMatrix){
+			spendMatrix.delete();
+        }
+    }
 
     @Transactional
     def bootstrap() {

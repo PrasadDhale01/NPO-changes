@@ -234,7 +234,7 @@ $(function() {
             }else{
                 error.insertAfter(element);
             }
-        },//end error Placement
+        }//end error Placement
         
         //ignore: []
     });
@@ -352,6 +352,47 @@ $(function() {
             });
         });
     	
+    	if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+    	      $('.spendAmount').each(function () {
+                  $(this).rules("add", {
+                      required: true,
+                      number:true,
+                      maxlength: 9,
+               	      minlength:100,
+                      messages: {
+                  	     required: 'Required',
+                  	     number: 'Digits only',
+                  	     maxlength: 'max 9 digits',
+                  	     minlength:'min 100rs'
+                      }
+                  });
+              });
+          } else {
+              $('.spendAmount').each(function () {
+                  $(this).rules("add", {
+                      required: true,
+                      number:true,
+                      maxlength: 6,
+                      messages: {
+                          required: 'Required',
+                          number: 'Digits only',
+                          maxlength: 'max 6 digits'
+                      }
+                  });
+              }); 
+          }
+    
+          $('.spendCause').each(function () {
+              $(this).rules("add", {
+                  required: true,
+                  minlength: 3,
+                  messages: {
+                  	required: 'Required',
+                  	minlength: 'min 3 characters'
+                  }
+              });
+          });
+    	
         $( '[name="answer"]' ).rules( "add", {
             required: true
         });
@@ -464,16 +505,44 @@ $(function() {
             storyEmpty = false;
         }
         
-        $('.spendAmount').each(function () {
-            $(this).rules("add", {
-                required: true,
-                number:true
+       if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+  	      $('.spendAmount').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number:true,
+                    maxlength: 9,
+             	    minlength:100,
+                    messages: {
+                	     required: 'Required',
+                	     number: 'Digits only',
+                	     maxlength: 'max 9 digits',
+                	     minlength:'min 100rs'
+                    }
+                });
             });
-        });
-  
+        } else {
+            $('.spendAmount').each(function () {
+                $(this).rules("add", {
+                    required: true,
+                    number:true,
+                    maxlength: 6,
+                    messages: {
+                        required: 'Required',
+                        number: 'Digits only',
+                        maxlength: 'max 6 digits',
+                    }
+                });
+            }); 
+        }
+
         $('.spendCause').each(function () {
             $(this).rules("add", {
                 required: true,
+                minlength: 3,
+                messages: {
+                	required: 'Required',
+                    minlength: 'min 3 characters'
+                }
             });
         });
        
@@ -1535,58 +1604,88 @@ $(function() {
         
           $("form").on("click", ".spendMatrixTemplateAdd", function () {
         	  var shippingMatrixCount = $('.spend-matrix').find('.spenMatrixNumberAvailable:last').val();
-        	  var spendMatrixSaved = saveSpendMatrix(shippingMatrixCount);
+        	  var spendMatrixSaved = validateSpendMatrix(shippingMatrixCount);
         	  if (spendMatrixSaved){
-              $('.spend-matrix').find('.spendMatrixTemplateAdd:last').hide();
+              $('.spend-matrix').find('.spendMatrixTemplateAdd:last').addClass('display-none');
               var nextCount = ++shippingMatrixCount;
-              var template = '<br><br><br><div class="spend-matrix-template" id="spend-matrix-template'+nextCount+'">'+
-                  '<div class="col-sm-amt col-sm-12">'+
-                      '<span class="cr-label-spend-matrix col-sm-2 col-xs-4">I require</span>'+
-                      '<div class="input-group col-sm-2 col-xs-2 col-sm-input-group">';
+              var template = '<div class="spend-matrix-template" id="spend-matrix-template'+nextCount+'">'+
+                  '<br><br class="hidden-xs"><br class="hidden-xs"><div class="col-sm-amt col-sm-12">'+
+                      '<span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>'+
+                      '<div class="form-group col-sm-3 col-xs-4 col-sm-input-group">';
                           if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-                        	  template = template +'<span class="input-group-addon"><span class="fa fa-inr"></span></span>';
+                        	  template = template +'<span class="fa fa-inr cr-currency"></span>';
                           } else {
-                        	  template = template +'<span class="input-group-addon"><span class="fa fa-usd"></span></span>';
+                        	  template = template +'<span class="fa fa-usd cr-currency"></span>';
                           }
                           template = template +'<input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount'+nextCount+'" name="spendAmount'+nextCount+'">'+
-                      '</div>'+
+                      '</div>&nbsp;&nbsp;&nbsp;'+
                       '<span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>'+
-                      '<div class="col-sm-4 col-xs-9 col-input-for">'+
+                      '<div class="form-group col-sm-5 col-xs-7 col-input-for">'+
                           '<input type="text" class="form-control form-control-input-for spendCause" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
                       '</div>'+
-                      '<div class="btn btn-circle spend-matrix-icons perks-css-create spendMatrixTemplateSave">'+
+                      '<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">'+
                           '<input type="hidden" name="spendFieldSave" value="'+nextCount+'" class="spendFieldSave">'+
-                          '<i class="glyphicon glyphicon-floppy-save"></i>'+
+                          '<i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>'+
                       '</div>&nbsp;'+
-                      '<div class="btn btn-circle spend-matrix-icons perks-css-create spendMatrixTemplateDelete">'+
+                      '<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateDelete">'+
                           '<input type="hidden" name="spendFieldDelete" value="'+nextCount+'" class="spendFieldDelete">'+
-                          '<i class="glyphicon glyphicon-trash"></i>'+
+                          '<i class="glyphicon glyphicon-trash glyphicon-size"></i>'+
                       '</div>&nbsp;'+
-                      '<div class="btn btn-circle spend-matrix-icons perks-css-create spendMatrixTemplateAdd" id="spendMatrixTemplateAdd'+nextCount+'">'+
-                          '<i class="glyphicon glyphicon-plus"></i>'+
+                      '<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd" id="spendMatrixTemplateAdd'+nextCount+'">'+
+                          '<i class="glyphicon glyphicon-plus glyphicon-size"></i>'+
                       '</div>'+
                   '</div>'+
-                  '<span class="saved-message">Field Saved</span>'+
                   '<input type="hidden" name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="'+nextCount+'">'+
               '</div>';
               $('.spend-matrix').append(template);
         	  }
           });
-          
-          function saveSpendMatrix(shippingMatrixCount){
-        	  $('.spendAmount').each(function () {
-                  $(this).rules("add", {
-                      required: true,
-                      number:true
+
+          function validateSpendMatrix(shippingMatrixCount){
+
+        	  if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        	      $('.spendAmount').each(function () {
+                      $(this).rules("add", {
+                          required: true,
+                          number:true,
+                          maxlength: 9,
+                   	      minlength:100,
+                          messages: {
+                      	     required: 'Required',
+                      	     number: 'Digits only',
+                      	     maxlength: 'max 9 digit',
+                      	     minlength:'min 100rs'
+                          }
+                      });
                   });
-              });
+              } else {
+                  $('.spendAmount').each(function () {
+                      $(this).rules("add", {
+                          required: true,
+                          number:true,
+                          maxlength: 6,
+                          messages: {
+                              required: 'Required',
+                              number: 'Digits only',
+                              maxlength: 'max 6 digit',
+                          }
+                      });
+                  }); 
+              }
 
         	  $('.spendCause').each(function () {
                   $(this).rules("add", {
                       required: true,
+                      minlength:3,
+                      messages: {
+                      	required: 'Required',
+                      	minlength: 'min 3 characters'
+                      }
                   });
               });
+
         	  if((validator.element("#spendAmount"+shippingMatrixCount)) && (validator.element("#spendCause"+shippingMatrixCount))) {
+        		  saveSpendMatrixField(shippingMatrixCount);
         		  return true;
               } else {
                   validator.element( "#spendAmount"+shippingMatrixCount);
@@ -1594,19 +1693,59 @@ $(function() {
                   return false;
               }
           }
+          
+          function saveSpendMatrixField(savingCount){
+        	  var amount = $('#spendAmount'+savingCount).val();
+        	  var cause = $('#spendCause'+savingCount).val();
+        	  $.ajax({
+              	  cache: true,
+                  type:'post',
+                  url:$("#b_url").val()+'/project/saveSpendMatrix',
+                  data:'amount='+amount+'&cause='+cause+'&savingCount='+savingCount+'&projectId='+projectId,
+                  success: function(data) {
+                     $('#test').val('test');
+                  }
+              }).error(function() {
+                  console.log('error occured while saving spenMarix no.'+savingCount);
+              });
+          }
 
           $("form").on("click", ".spendMatrixTemplateDelete", function () {
-              var deleteCount = $(this).find('.spendFieldDelete').val();
-              var shippingMatrixCount = $('.spend-matrix').find('.spenMatrixNumberAvailable:last').val();
-              alert('deleteCount : '+deleteCount + '  shippingMatrixCount : ' +shippingMatrixCount);
-              if (deleteCount == shippingMatrixCount){
-            	  alert('kartiki');
-            	  $('.spend-matrix').find('.spendMatrixTemplateAdd:nth-last-child(2)').show();
+        	  if (confirm('Are you sure you want to delete this spend field?')){
+                  var deleteCount = $(this).find('.spendFieldDelete').val();
+                  var shippingMatrixCount = $('.spend-matrix').find('.spenMatrixNumberAvailable:last').val();
+                  if (deleteCount == shippingMatrixCount){
+            	      $('.spendMatrixTemplateAdd:last').remove();
+            	      var id = $('.spendMatrixTemplateAdd:last').attr('id');
+            	      $('#'+id).removeClass('display-none');
+                  }
+                  deleteSpendMatrix(deleteCount);
+        	  }
+          });
+
+          function deleteSpendMatrix(deleteCount){
+        	  var amount = $('#spendAmount'+deleteCount).val();
+        	  var cause = $('#spendCause'+deleteCount).val();
+        	  $.ajax({
+              	  cache: true,
+                  type:'post',
+                  url:$("#b_url").val()+'/project/deleteSpendMatrix',
+                  data:'amount='+amount+'&cause='+cause+'&deleteCount='+deleteCount+'&projectId='+projectId,
+                  success: function(data) {
+                	  $('.spend-matrix').find('#spend-matrix-template'+deleteCount).remove();
+                  }
+              }).error(function() {
+                  console.log('error occured while deleting spenMarix no.'+savingCount);
+              });
+          }
+          
+          $("form").on("click", ".spendMatrixTemplateSave", function () {
+              var saveCount = $(this).find('.spendFieldSave').val();
+              var isSpendMatrixSaved = validateSpendMatrix(saveCount);
+              if (isSpendMatrixSaved){
+            	  $('.saved-message').show();
+            	  $('.saved-message').fadeOut(3000);
               }
-//              if (){
-//            	  $('.spend-matrix').find('.spendMatrixTemplateAdd:nth-last-child(2)').show();
-//              }
-//              $('#spend-matrix-template'+deleteCount).remove();
           });
 
 //        var $win = $(window);
@@ -2055,7 +2194,7 @@ $(function() {
             .blur(hidePopover)
             .hover(showPopover, hidePopover);
         });
-        
+
         $('#savereward').popover({
             content: 'Save Perk',
             trigger: 'manual',

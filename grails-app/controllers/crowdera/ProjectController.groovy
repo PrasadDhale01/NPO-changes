@@ -519,7 +519,8 @@ class ProjectController {
         if (project) {
             def user = project.user
             def currentUser = userService.getCurrentUser()
-            
+            def spends = project.spend
+			spends = spends.sort{it.numberAvailable}
             if (user == currentUser) {
 				def currentEnv = Environment.current.getName()
 				def categoryOptions 
@@ -552,7 +553,7 @@ class ProjectController {
                     payOpts = projectService.getPayment()
                 }
                 render(view: 'create/index2',
-                   model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, currentEnv: currentEnv,
+                   model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, currentEnv: currentEnv,spends:spends,
                            FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, user:user,campaignEndDate:campaignEndDate,
                            vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
             } else {
@@ -635,7 +636,9 @@ class ProjectController {
 	def edit() {
 		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
 		def currentEnv = Environment.current.getName()
-		def categoryOptions 
+		def categoryOptions
+		def spends = project.spend
+		spends = spends.sort{it.numberAvailable}
 		if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
 			categoryOptions = projectService.getIndiaCategoryList()
 		}else{
@@ -667,7 +670,7 @@ class ProjectController {
 		if (project) {
 			def beneficiary = project.beneficiary
 			render (view: 'edit/index',
-			model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,
+			model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
 						'country': country, currentEnv: currentEnv,beneficiary:beneficiary,
 						FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,
 						project:project, user:user,campaignEndDate:campaignEndDate,
@@ -1923,6 +1926,16 @@ class ProjectController {
         def project = projectService.getProjectFromVanityTitle(params.projectTitle)
         def currentFundraiser = userService.getUserFromVanityName(params.fr)
         render(view:'/project/manageproject/embedTile', model:[project:project, currentFundraiser:currentFundraiser])
+    }
+	
+	def saveSpendMatrix(){
+		projectService.getSpendMatrixSaved(params)
+		render''
+	}
+	
+    def deleteSpendMatrix(){
+        projectService.getSpendMatrixDeleted(params)
+        render''
     }
 
 }

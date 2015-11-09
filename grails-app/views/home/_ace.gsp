@@ -72,6 +72,6 @@
 		</div>
 	</div>
     <div class="row text-center explorebtn">
-        <a href="${resource(dir: '/campaign/create')}" class="btn btn-default hm-start-campaign">Start your Campaign</a>
+        <a href="${resource(dir: '/campaign/create')}" class="btn btn-default hm-start-campaign">Start Your Campaign</a>
     </div>
 </div>

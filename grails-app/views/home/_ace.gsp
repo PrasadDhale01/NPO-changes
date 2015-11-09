@@ -41,7 +41,7 @@
 
 <div class="container how-it-work-container">
    <div class="row">
-    <h1 class="text-center headingtext how-it-works-title">It's Simple, Secure and Free to Fundraise on Crowdera</h1>
+    <h1 class="text-center headingtext how-it-works-title">It's Simple, Secure and Free to <br> Fundraise on Crowdera</h1>
    </div> 
 </div>
 <div class="container how-it-work-container">

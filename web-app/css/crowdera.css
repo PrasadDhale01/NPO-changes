@@ -19,8 +19,8 @@ h1.headingtext.how-it-works-title {
     padding: 30px 0 20px;
 }
 h1.headingtext {
-	color:#303030;
-	font-size:44px;
+	color:#005f84;
+	font-size:42px;
 	font-weight: 900;
     padding: 30px 0 20px;
 }
@@ -45,7 +45,7 @@ h3.headingtext {
 }
 
 .greenbg {
-    background-color: #01bbd2;
+    background-color: #5A6771;
     color: #fff;
     min-height: 140px;
     text-align:center;
@@ -2916,7 +2916,7 @@ span.tile-day-num{
 }
 .headingtext1 {
 	color:#005f84;
-	font-size:44px;
+	font-size:42px;
 	font-weight: 900;
 	margin-bottom: 20px;
 	margin-top: 20px;
@@ -3363,7 +3363,7 @@ p.anonymous-top {
 	margin-bottom:30px;
 }
 .success-story-title span{
-	color:#303030;
+	color:#005f84;
 	font-size:44px;
 	font-weight:900;	
 }
@@ -6741,10 +6741,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 	h1.headingtext {
 		color: #015f85;
-		font-size: 29px !important;
+		font-size: 21px !important;
 		font-weight: 900;
 		padding: 13px 0 20px;
-		font-family: Ubuntu Condensed;
 	}
 	.Explore-Campaigns-Button-img{
 		height:60px;
@@ -7611,6 +7610,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    h1.headingtext.how-it-works-title {
+        font-size: 40px;
+    }
+    h1.headingtext {
+        font-size: 35px;
+    }
+    h1.headingtext1 {
+        font-size: 35px;
+    }
+    div.success-story-title span {
+        font-size: 38px;
+    }
     div.cr2-padding {
         padding-left: 0;
     }
@@ -12390,6 +12401,22 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 481px) and (max-width: 640px){
+	h1.headingtext {
+        color: #015f85;
+        font-size: 24px !important;
+        font-weight: 900;
+        padding: 6px 0 20px;
+        padding-left: 75px;
+        padding-right: 75px;
+    }
+     div.hm-mobile-title{
+         background-color: #e7e7e7;
+         height: 75px;
+         left: -12px;
+         margin-bottom: 10px;
+         width: 111%;
+         margin-top: 14px;
+    }
     ul.show-new-tabs-alignments {
         line-height: 1;
     }
@@ -12401,6 +12428,20 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
+	h1.headingtext {
+        color: #015f85;
+        font-size: 22px !important;
+        font-weight: 900;
+        padding: 6px 0px 20px;
+    }
+	 div.hm-mobile-title{
+         background-color: #e7e7e7;
+         height: 75px;
+         left: -12px;
+         margin-bottom: 10px;
+         width: 111%;
+         margin-top: 14px;
+    }
 
 .col-xs-button{
     width:100%;
@@ -12848,14 +12889,6 @@ textarea.textarea-embed-video {
     }
     div.hm-section-top{
         height: 35px;;
-    }
-    div.hm-mobile-title{
-         background-color: #e7e7e7;
-         height: 60px;
-         left: -12px;
-         margin-bottom: 10px;
-         width: 111%;
-         margin-top: 14px;
     }
 	
     div.hmmobile-back-color{
@@ -13663,13 +13696,7 @@ textarea.textarea-embed-video {
 		margin-bottom: 20px;
 		margin-top: 20px;
 	}
-	h1.headingtext {
-		color: #015f85;
-		font-size: 29px !important;
-		font-weight: 900;
-		padding: 6px 0 20px;
-		font-family: Ubuntu Condensed;
-	}
+	
 	.Explore-Campaigns-Button-img{
 		height:60px;
 		width:230px;
@@ -15012,6 +15039,37 @@ span.abt-founderCo{
 }
 .campaignEndDateError .bootstrap-select.btn-group .dropdown-menu {
     max-width: 100%;
+}
+img.home-pg-icons{
+	height:100px;
+}
+.hm-start-campaign{
+	background-color: #01bbd3;
+	font-weight: 900;
+	color: #fff;
+	font-size: 24px;
+}
+.hm-start-campaign,
+.hm-start-campaign:hover,
+.hm-start-campaign:focus{
+    background-color: #01bbd3;
+    font-weight: 900;
+    color: #fff;
+    font-size: 24px;
+}
+.hm-explorecampaign{
+	background-color: #005f84;
+    font-weight: 900;
+    color: #fff;
+    font-size: 24px;
+}
+.hm-explorecampaign,
+.hm-explorecampaign:hover,
+.hm-explorecampaign:focus{
+    background-color: #005f84;
+    font-weight: 900;
+    color: #fff;
+    font-size: 24px;
 }
 #errormsg2 {
     color: red;

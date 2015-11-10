@@ -332,3 +332,142 @@ textarea.textarea-embed-tile{
 #campaignthumbnails.col-sm-12 {
     padding-left: 5px;
 }
+.validatecampaignTitle a {
+    color: #000 !important;
+    font-size: 30px;
+    font-family: Verdana;
+    font-weight: 900;
+    font-variant: normal;
+}
+.validate-show-div a:hover {
+    text-decoration: none;
+}
+.validateshowtab {
+	   margin-bottom: 20px;
+	   margin-top: 20px;
+}
+.validateshowtab .tabborders {
+    border-bottom: 2px solid #e3e3e3;
+    border-top: 2px solid #e3e3e3;
+    padding-left: 15px;
+    width: 100%;
+    text-align: center;
+}
+.validate-share-border {
+    border-bottom: 2px solid #e3e3e3;
+    border-top: 2px solid #e3e3e3;
+    margin-top: 20px;
+    width: 100%;
+    padding-left: 30%;
+}
+.validate-panel-height {
+	   height: 300px;
+    margin-bottom: 0;
+}
+.validateshowtab .show-new-tabs-alignments {
+	   margin-left: 0px;
+    padding-left: 70px;
+}
+.validateshowcontent {
+    background-color: #F3F3F3;
+}
+.validate-show-div .organization-panel.panel {
+    border-color: #F3F3F3;
+    background-color: #F3F3F3;
+}
+.validate-show-div .organization-panel.org-panel-1.panel {
+	   height: 380px;
+}
+.validate-show-div .organization-panel.org-panel-2.panel {
+    height: 380px;
+}
+.validate-show-div .organization-panel.org-panel-3.panel {
+    height: 380px;
+}
+.organization-panel h5 {
+    margin-top: 20px;
+}
+.organization-panel h6 {
+	   margin-top: 10px;
+	   font-size: 15px;
+}
+.validate-show-div .organization-panel.tileanstitle-goals {
+    border-top-color: white;
+    border-left-color: #F3F3F3;
+    border-right-color: #F3F3F3;
+    border-bottom-color: #F3F3F3;
+    background-color: #F3F3F3;
+    border-width: 2px;
+}
+.validate-show-div .tileanstitle-goals .daysleftIcon, .validate-show-div .show-tile-text-size.contribution-tile {
+    border-left: 1px solid #F3F3F3;
+    border-right: 1px solid #F3F3F3;
+}
+.validate-show-div .modal-footer {
+    margin-top: 15px;
+    padding: 19px 0px 20px;
+}
+.personal-details-panel {
+	   padding-left: 5px;
+	   padding-right: 5px;
+}
+.validate-show-div .icons-centering {
+    width: 240px !important;
+}
+.validate-show-div .amount-centering {
+    width: 240px !important;
+}
+.validate-show-div .green-heading {
+	   text-align: center;
+	   margin-bottom: 30px;
+}
+.personal-details-panel label {
+	   font-size: 14px;
+}
+.validate-show-div .show-tile-text-size.contribution-tile {
+    line-height: 6px;
+}
+.personal-details-panel h6 {
+	   margin-bottom: 16px;
+}
+.validate-side-bar {
+	   border-color: #F3F3F3;
+    background-color: #F3F3F3;
+    padding: 5px;
+}
+.validate-show-div {
+	   padding-top: 25px;
+}
+.side-bar-top.col-md-2, .side-bar-top.col-lg-2, .side-bar-top.col-sm-3 {
+    padding-left: 0px;
+}
+.validate-side-bar label {
+	   margin-right: 5px;
+	   font-size: 14px;
+}
+.org-padding {
+	   padding-left: 5px;
+	   padding-right: 5px;
+}
+.org-panel-4 label, .org-panel-3 label {
+   	font-size: 14px;
+}
+.validate-show-div .show-tile-text-size.contribution-tile.show-contribution-amt-tile {
+    margin-top: 5px;
+}
+div.validate-show-div .show-tile-text-size.contribution-tile.show-contribution-amt-tile {
+	   line-height: 6px;
+}
+div.validate-show-div .show-description {
+    height: 100%;
+    margin-left: 0px;
+}
+.TW-campaignstory-img-width.col-md-12,
+.TW-campaignstory-img-width.col-sm-12, 
+.TW-campaignstory-img-width.col-xs-12  {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+#validateChecklistmsg {
+	   display: none;
+}

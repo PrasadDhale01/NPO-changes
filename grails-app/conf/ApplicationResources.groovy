@@ -185,4 +185,8 @@ modules = {
     bootswatchyeticss {
         resource url: 'bootswatch-yeti/bootstrap.css', attrs: [media: 'screen']
     }
+    
+    sidebarcss {
+        resource url: 'css/sidebar.css', attrs: [media: 'screen']
+    }
 }

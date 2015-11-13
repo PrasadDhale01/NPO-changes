@@ -7451,6 +7451,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .validate-show-div .organization-panel.org-panel-3.panel, .validate-show-div .organization-panel.org-panel-4.panel {
         height: 230px;
     }
+    #page-content-wrapper {
+        padding: 15px 0 15px 0;
+    }
+    #page-content-wrapper .container-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 @media only screen and (min-width:768px) and (max-width: 830px) {
     header.cr-tabs-link {
@@ -8907,9 +8914,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .validateshowtab.validate_story_tab .show-new-tabs-alignments {
         margin-left: 0px;
-        padding-left: 100px;
-        margin-top: 0px;
-        margin-bottom: 15px;
+        padding-left: 75px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 	.feduoutercontent {
 	   margin-top: 120px;
@@ -9549,6 +9556,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .validate-side-bar label {
         font-size: 13px;
     }
+    #page-content-wrapper {
+        padding: 15px 0 15px 0;
+    }
+    #page-content-wrapper .container-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 
 @media only screen and (min-width:1200px) and (max-width: 1280px){
@@ -9924,6 +9938,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .contribution-inr .fa-inr {
         font-size: 15px !important;
         color: #686868 !important;
+    }
+    #page-content-wrapper {
+        padding: 15px 0 15px 0;
+    }
+    #page-content-wrapper .container-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
     }
 }
 @media only screen and (min-width:506px) and (max-width: 640px){
@@ -11204,7 +11225,39 @@ textarea.textarea-embed-video {
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
 		color: #596772 !important;
 	}	
-}   
+    #wrapper {
+        padding-left: 0px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 0px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px 0 20px 0;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+    #page-content-wrapper {
+        padding: 15px 0 15px 0;
+    }
+    #page-content-wrapper .container-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
 
 @media only screen and (max-width: 745px){
 	.tbSecondAdmin {

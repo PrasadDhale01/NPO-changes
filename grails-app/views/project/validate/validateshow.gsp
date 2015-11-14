@@ -61,42 +61,6 @@
                     <input name="approveChk[]" type="checkbox"/><label class="control-label"><b>Verified</b></label>
                 </li>
             </ul>
-<%--            <div class="form-group">--%>
-<%--                <label class="control-label"><b>Eyeball 1</b></label><input name="approveChk[]" type="checkbox"/>--%>
-<%--            </div>--%>
-<%--            <div class="form-group">--%>
-<%--                <label class="control-label"><b>Eyeball 2</b></label><input name="approveChk[]" type="checkbox"/>--%>
-<%--            </div>--%>
-<%--            <div class="form-group">--%>
-<%--                <label class="control-label"><b>Social References</b></label><input name="approveChk[]" type="checkbox"/>--%>
-<%--            </div>--%>
-<%--            <div class="form-group">--%>
-<%--                <label class="control-label"><b>Website</b></label><input name="approveChk[]" type="checkbox"/>--%>
-<%--            </div>--%>
-<%--            <div class="form-group">--%>
-<%--                <label class="control-label"><b>Founder</b></label><input name="approveChk[]" type="checkbox"/>--%>
-<%--            </div>--%>
-<%--            <div class="form-group">--%>
-<%--                <label class="control-label"><b>Cause</b></label><input name="approveChk[]" type="checkbox"/>--%>
-<%--            </div>--%>
-<%--            <div class="form-group">--%>
-<%--                <label class="control-label"><b>Documents</b></label><input name="approveChk[]" type="checkbox"/>--%>
-<%--            </div>--%>
-<%--            <div class="form-group">--%>
-<%--                <label class="control-label"><b>Feasibility</b></label><input name="approveChk[]" type="checkbox"/>--%>
-<%--            </div>--%>
-<%--            <div class="form-group">--%>
-<%--                <label class="control-label"><b>Grammer</b></label><input name="approveChk[]" type="checkbox"/>--%>
-<%--            </div>--%>
-<%--            <div class="form-group">--%>
-<%--                <label class="control-label"><b>Images</b></label><input name="approveChk[]" type="checkbox"/>--%>
-<%--            </div>--%>
-<%--            <div class="form-group">--%>
-<%--                <label class="control-label"><b>Video</b></label><input name="approveChk[]" type="checkbox"/>--%>
-<%--            </div>--%>
-<%--            <div class="form-group">--%>
-<%--                <label class="control-label"><b>Verified</b></label><input name="approveChk[]" type="checkbox"/>--%>
-<%--            </div>--%>
         </div>
         <!-- /#sidebar-wrapper -->
         

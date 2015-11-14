@@ -28,7 +28,7 @@
                 </g:else>
             </div>
             <div class="clear"></div>
-            <h2 class="text-center">User Profile</h2>
+            <h2 class="text-center">Crowdera Admin</h2>
             <g:if test="${flash.user_message}">
                 <div class="alert alert-success" align="center">
                     ${flash.user_message}

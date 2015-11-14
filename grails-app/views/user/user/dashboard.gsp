@@ -21,10 +21,10 @@
             </div>
             <div class="pull-right dashboard-sortByOptions">
                 <g:if test="${environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'}">
-                    <g:select class="selectpicker text-center" name="countryOpts" id="countryOpts" from="${countryOpts}" optionKey="value" optionValue="value" value="India"/>
+                    <g:select class="selectpicker text-center" name="countryOpts" id="countryOpts" from="${countryOpts}" optionKey="value" optionValue="value" value="India" onchange="campaignsortByCountry()"/>
                 </g:if>
                 <g:else>
-                    <g:select class="selectpicker text-center" name="countryOpts" id="countryOpts" from="${countryOpts}" optionKey="value" optionValue="value" value="USA"/>
+                    <g:select class="selectpicker text-center" name="countryOpts" id="countryOpts" from="${countryOpts}" optionKey="value" optionValue="value" value="USA" onchange="campaignsortByCountry()"/>
                 </g:else>
             </div>
             <div class="clear"></div>

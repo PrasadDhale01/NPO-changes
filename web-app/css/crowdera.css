@@ -8896,9 +8896,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .validateshowtab.rewards_tab .show-new-tabs-alignments {
         margin-left: 0px;
-        padding-left: 45px;
-        margin-top: 0px;
-        margin-bottom: 15px;
+        padding-left: 25px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     .validateshowtab.rewards_tab span.show-tbs-right-borders {
         border-right: 2px solid #6D6E6E;

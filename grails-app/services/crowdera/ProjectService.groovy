@@ -3377,7 +3377,40 @@ class ProjectService {
         }
         return result
     }
+	
+	def importCSVReportForUserFeedback(def response,Project project){
+		User user =User.get(project.user.id)
+		def feedback = Feedback.findAllWhere(user:user)
+		List results = []
+		
+		feedback.each{
+			def rows = [it.user.firstName +" "+ it.user.lastName,it.answer_1,it.answer_2_y1,it.answer_2_y2,it.answer_2_n,it.answer_3,it.answer_4_y,it.answer_4_n,it.answer_5,it.answer_6,it.answer_7, it.answer_8, it.answer_9, it.answer_10]
+			results << rows
+		}
+		
+		def result
+		response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll("[,;\\s]",'_')+".csv")
+		result = 'UserName, Answer_1, Answer_2_y1, Answer_2_y2, Answer_2_n, Answer_3, Answer_4_y, Answer_4_n, Answer_5, Answer_6, Answer_7, Answer_8, Answer_9, Answer_10, \n'
+		results.each{ row->
+			row.each{
+				col -> result+=col +','
+			}
+			result = result[0..-2]
+			result+="\n"
+		}
+		return result
+	}
 
+	def sendFeedbackEmailToOwners(def project, def  base_url){
+		def ownerList
+		project.each{
+			def remainingDay=getRemainingDay(it)
+			if(remainingDay<8){
+				ownerList.add(it.user)
+			}
+		}
+		mandrillService.sendFeedBackLinkToOwner(ownerList, base_url)
+	}
     def sendEmailTONonUserContributors() {
         def contributionList = Contribution.list()
         List nonUserContributors = []

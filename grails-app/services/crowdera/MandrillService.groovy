@@ -1087,6 +1087,25 @@ class MandrillService {
         sendTemplate(user,'payments-info-email', globalMergeVars, tags)
     }
 	
+	def sendFeedBackLinkToOwner(List ownerList, def base_url){
+		def link = base_url+'/survey'
+		ownerList.each{
+			def globalMergeVars = [
+	            [
+	                'name': 'LINK',
+	                'content': link
+	            ],
+	            [
+	                'name': 'NAME',
+	                'content': it.firstName + ' ' + it.lastName
+	            ]
+			]
+
+	        def tags = ['feedback-email']
+	
+	        sendTemplate(it, 'feedback_email', globalMergeVars, tags)
+		}
+	}
     def sendEmailToNonUserContributors(List nonUserContributors){
         def beneficiaryName
         def link = grailsLinkGenerator.link(controller: 'login', action: 'register', absolute: true)

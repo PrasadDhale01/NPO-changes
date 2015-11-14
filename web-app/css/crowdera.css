@@ -5430,6 +5430,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.feedback-container {
+	  margin: 0 auto;
+	  width: 310px !important;
+	}
 	.navbar-collapse.TW-scrollHeaderBackColor.collapsing {
 	    position: relative;
 	    height: auto !important;
@@ -7463,6 +7467,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.feedback-container {
+	  margin: 0 auto;
+	  width: 750px !important;
+	}
     div.abt-img-icons-mobile {
         left: 33px !important;
     }
@@ -12256,6 +12264,10 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.feedback-container {
+	  margin: 0 auto;
+	  width: 310px !important;
+	}
 	.navbar-collapse.TW-scrollHeaderBackColor.collapsing {
 	    position: relative;
 	    height: auto !important;
@@ -14645,4 +14657,34 @@ span.abt-founderCo{
 }
 .campaignEndDateError .bootstrap-select.btn-group .dropdown-menu {
     max-width: 100%;
+}
+.feedback-container{
+	width:1000px;
+	margin:0 auto;
+}
+.question {
+    height: 100%;
+    padding: 10px;
+    width: 100%;
+}
+.submitbtn {
+    margin: 15px;
+}
+.feedback-container .row h3{
+	margin: 15px 12px 20px 7px;
+}
+.row.bg-color-white{
+	background-color:#fff;
+}
+.secondQOptOne{
+	display:none;
+}
+.secondQOptTwo{
+	display:none;
+}
+.question_4_opt_yes{
+	display:none;
+}
+.question_4_opt_no{
+	display:none;
 }

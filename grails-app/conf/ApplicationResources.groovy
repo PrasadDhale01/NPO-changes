@@ -121,6 +121,11 @@ modules = {
         dependsOn 'crowderajs'
         resource url: 'js/user.js'
     }
+	/* Survey/Feedback*/
+	feedbackjs{
+		dependsOn 'crowderajs'
+		resource url: 'js/survey/feedback.js'
+	}
 	
 	/*Ebook*/
 	ebookjs{

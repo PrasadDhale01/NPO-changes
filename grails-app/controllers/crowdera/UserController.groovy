@@ -393,4 +393,15 @@ class UserController {
             render(view: 'error', model: [message: "Error while updating Currency. Please try again later."])
         }
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def saveFeedback(){
+		new Feedback(params).save()
+		redirect url:'/survey'
+	}
+	
+	@Secured(['ROLE_ADMIN'])
+	def feedback(){
+		render(view:'/user/survey/index')
+	}
 }

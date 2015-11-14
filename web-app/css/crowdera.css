@@ -7607,7 +7607,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 250px !important;
     }
     .validate-show-div .organization-panel.org-panel-2.panel {
-        height: 245px;
+        height: 225px;
         margin-bottom: 20px;
     }
     .validate-show-div .organization-panel.org-panel-3.panel, .validate-show-div .organization-panel.org-panel-4.panel {
@@ -7619,6 +7619,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     #page-content-wrapper .container-fluid {
         padding-left: 0px;
         padding-right: 0px;
+    }
+    .validate-show-div .organization-panel.org-panel-1.panel {
+        height: 360px;
     }
 }
 @media only screen and (min-width:768px) and (max-width: 830px) {

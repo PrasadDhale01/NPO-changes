@@ -159,7 +159,7 @@
                                 </div>
                             </g:if>
                             <g:else>
-                                <p></p>
+                                <h6 class="text-center"><b>No Campaign Admins</b></h6>
                             </g:else>
                         </div>
                     </div>

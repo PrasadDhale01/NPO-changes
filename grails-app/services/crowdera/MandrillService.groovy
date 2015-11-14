@@ -1133,7 +1133,6 @@ class MandrillService {
                 emailMemberList.add(it)
             }
         }
-        def name
         def tags
         def beneficiaryName = (project.beneficiary.lastName) ? project.beneficiary.firstName + ' ' + project.beneficiary.lastName : project.beneficiary.firstName
         def imageUrl = project.organizationIconUrl

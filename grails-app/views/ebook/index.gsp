@@ -20,7 +20,7 @@
 		<div id="sticky-header"></div>
 		<div class="TW-ebook-header">
 		    <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${ebookUrl}"/>
-  		    <a id="downloadEbook" class="btn btn-info" href="//s3.amazonaws.com/crowdera/assets/crowdera%20ebook-your%20go%20to%20guide%20for%20crowdfunding%20success.pdf">Download ebook</a>
+  		    <a id="downloadEbook" class="btn btn-info" href="//s3.amazonaws.com/crowdera/assets/crowdera%20ebook-your%20go%20to%20guide%20for%20crowdfunding%20success.pdf">Download eBook</a>
   		    <div class="TW-socialicons">
 		       <a id="fbshare" class="fb-like pull-left" target="_blank" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${ebookUrl}">
 		           <img alt="Facebook Share" src="//s3.amazonaws.com/crowdera/assets/contribution-fb-share.png">

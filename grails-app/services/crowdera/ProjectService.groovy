@@ -3560,6 +3560,72 @@ class ProjectService {
         }
         return amount;
     }
+    
+    def getValidatedProjectsForCampaignAdmin(def condition, def country) {
+        List projects = []
+        List totalProjects = []
+        List endedCampaigns = []
+        List activeCampaigns = []
+        if (condition == 'Current' || condition == 'Ended') {
+            if (country == 'INDIA') {
+                totalProjects = Project.findAllWhere(payuStatus: true, validated: true, inactive: false)
+            } else if(country == 'USA') {
+                totalProjects = Project.findAllWhere(payuStatus: false, validated: true, inactive: false)
+            }
+            totalProjects.each { project->
+                if (isProjectDeadlineCrossed(project)) {
+                    endedCampaigns.add(project)
+                } else {
+                    activeCampaigns.add(project)
+                }
+            }
+        }
+        
+        switch (condition) {
+            case 'Ended':
+                projects = endedCampaigns
+                break;
+            case 'Pending':
+                if (country == 'INDIA') {
+                    projects = Project.findAllWhere(payuStatus: true, draft: false, inactive: false, rejected: false, validated: false)
+                } else if(country == 'USA') {
+                    projects = Project.findAllWhere(payuStatus: false, draft: false, inactive: false, rejected: false, validated: false)
+                }
+                break;
+            case 'Current':
+                projects = activeCampaigns
+                break;
+            case 'Draft':
+                if (country == 'INDIA') {
+                    projects = Project.findAllWhere(payuStatus: true, draft: true, inactive: false, rejected: false)
+                } else if(country == 'USA') {
+                    projects = Project.findAllWhere(payuStatus: false, draft: true, inactive: false, rejected: false)
+                }
+                break;
+            case 'Rejected':
+                if (country == 'INDIA') {
+                    projects = Project.findAllWhere(payuStatus: true, rejected: true)
+                } else if(country == 'USA') {
+                    projects = Project.findAllWhere(payuStatus: false, rejected: true)
+                }
+                break;
+            default :
+               projects = []
+        }
+        
+        return projects
+    }
+    
+    def getSortingList() {
+        def sortingOptions = [
+            Draft: 'Draft',
+            Pending: 'Pending',
+            Current: 'Current',
+            Ended: 'Ended',
+            Rejected: 'Rejected'
+        ]
+        return sortingOptions
+    }
 
     @Transactional
     def bootstrap() {

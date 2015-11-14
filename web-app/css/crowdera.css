@@ -2025,7 +2025,6 @@ button.projectedit.close{
 }
 .validatebtn.btn-danger {
     border: none !important;
-    margin-top: -10px;
 }
 .descript .text-left{
     word-wrap: break-word;
@@ -7363,6 +7362,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .defaultprofileimage {
         top : 24px;
     }
+    
+    .validate-show-div .show-tile-text-size {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+    .validate-show-div .organization-panel.org-panel-1.panel {
+        height: auto;
+    }
+    .validate-show-div .organization-panel.org-panel-2.panel {
+        height: auto;
+        margin-top: 10px;
+    }
+    .validate-show-div .organization-panel.org-panel-3.panel {
+        height: auto;
+    }
 }
 
 
@@ -7585,6 +7599,29 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .amountsection {
         padding-top: 2px;
+    }
+    .validate-show-div .icons-centering {
+        width: 250px !important;
+    }
+    .validate-show-div .amount-centering {
+        width: 250px !important;
+    }
+    .validate-show-div .organization-panel.org-panel-2.panel {
+        height: 225px;
+        margin-bottom: 20px;
+    }
+    .validate-show-div .organization-panel.org-panel-3.panel, .validate-show-div .organization-panel.org-panel-4.panel {
+        height: 230px;
+    }
+    #page-content-wrapper {
+        padding: 15px 0 15px 0;
+    }
+    #page-content-wrapper .container-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .validate-show-div .organization-panel.org-panel-1.panel {
+        height: 360px;
     }
 }
 @media only screen and (min-width:768px) and (max-width: 830px) {
@@ -9063,6 +9100,51 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	   .validate-show-div {
+        width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .side-bar-top.col-xs-12 {
+        padding-left: 30px !important;
+        padding-right: 30px !important;
+    }
+    .validate-side-bar.panel {
+        padding: 20px;
+    }
+    div.validate-show-div li.perks-grid {
+        width: 100%;
+    }
+    .validatecampaignTitle a {
+        font-size: 24px;
+    }
+    .validate-show-div .imagestyle {
+        height: 100%;
+    }
+    .validateshowtab.rewards_tab .show-new-tabs-alignments {
+        margin-left: 0px;
+        padding-left: 25px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    .validateshowtab.rewards_tab span.show-tbs-right-borders {
+        border-right: 2px solid #6D6E6E;
+    }
+    .validateshowtab.rewards_tab span.validaterewards.show-tbs-right-borders {
+        border-right: 2px solid white;
+    }
+    .validateshowtab.rewards_tab .nav-justi >li {
+        width: 38px;
+    }
+    .validateshowtab.validate_story_tab span.show-tbs-right-borders {
+        border-right: 2px solid white;
+    }
+    .validateshowtab.validate_story_tab .show-new-tabs-alignments {
+        margin-left: 0px;
+        padding-left: 75px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
 	.feduoutercontent {
 	   margin-top: 120px;
 	}
@@ -9700,6 +9782,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .contribution-col-padding-left.col-md-12 {
         padding-left: 4px;
     }
+    .validate-show-div .org-logo {
+        height: 100px !important;
+        width: 100px !important;
+        margin: 10px 10px 20px;
+    }
+    .validate-side-bar label {
+        font-size: 13px;
+    }
+    #page-content-wrapper {
+        padding: 15px 0 15px 0;
+    }
+    #page-content-wrapper .container-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 
 @media only screen and (min-width:1200px) and (max-width: 1280px){
@@ -9746,6 +9843,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	   .validate-show-div .show-tile-text-size.contribution-tile.show-contribution-amt-tile {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        line-height: 6px;
+	   }
     .createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
         padding-left: 15px !important;
         padding-right: 12p !importantx;
@@ -10075,6 +10177,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 15px !important;
         color: #686868 !important;
     }
+    #page-content-wrapper {
+        padding: 15px 0 15px 0;
+    }
+    #page-content-wrapper .container-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 }
 @media only screen and (min-width:506px) and (max-width: 640px){
 		.TW-ack-commentBox{
@@ -10257,14 +10366,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
     .clientpart .col-md-4 {
         clear: both;
-    }
-    .validatebutton {
-        float: right;
-        width:102px;
-    }
-    .validatebtn.btn-danger {
-        border: medium none !important;
-        margin-top: 1px !important;
     }
     .testimonial {
         max-width: 100%;
@@ -10972,9 +11073,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .header-section .nav > li > a {
         padding: 4px 5px;
     }
-    .btn-sm.btn-primary.validatebutton {
-        margin-left: 207px;
-    }
     .nav-tabs.nav-justified > li > a {
         font-size: 8px;
     }
@@ -11365,7 +11463,39 @@ textarea.textarea-embed-video {
 	.navbar-default .navbar-nav .open .dropdown-menu > li > a {
 		color: #596772 !important;
 	}	
-}   
+    #wrapper {
+        padding-left: 0px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 0px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        padding: 20px 0 20px 0;
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+    #page-content-wrapper {
+        padding: 15px 0 15px 0;
+    }
+    #page-content-wrapper .container-fluid {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+}
 
 @media only screen and (max-width: 745px){
 	.tbSecondAdmin {

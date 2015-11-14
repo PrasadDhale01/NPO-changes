@@ -66,10 +66,25 @@ class UserController {
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
         } else {
-            def projects = projectService.getAllProjectByUser(user, environment)
-            def projectAdmins = projectService.getProjectAdminEmail(user)
-            def teams = projectService.getTeamByUserAndEnable(user, true)
-            def project = projectService.getProjects(projects, projectAdmins, teams, environment)
+            def projects
+            def projectAdmins
+            def teams
+            def project
+            def sortByOptions = []
+            if (user.email == 'campaignadmin@crowdera.co') {
+                if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+                    project = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'INDIA')
+                } else {
+                    project = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'USA')
+                }
+                sortByOptions = projectService.getSortingList()
+            } else {
+                projects = projectService.getAllProjectByUser(user, environment)
+                projectAdmins = projectService.getProjectAdminEmail(user)
+                teams = projectService.getTeamByUserAndEnable(user, true)
+                project = projectService.getProjects(projects, projectAdmins, teams, environment)
+            }
+            
             List totalCampaings = []
             if (activeTab == 'campaigns') {
                 def max = Math.min(params.int('max') ?: 4, 100)
@@ -93,10 +108,11 @@ class UserController {
             def country = projectService.getCountry()
             def state = projectService.getState()
             def multiplier = projectService.getCurrencyConverter();
+            def countryOpts = [India: 'INDIA', USA: 'USA']
             
             render view: userViews, model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, state: state,
-                                            activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, multiplier: multiplier,
-                                            contributions: contribution.contributions, totalContributions : contribution.totalContributions]
+                                            activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, multiplier: multiplier, countryOpts: countryOpts,
+                                            contributions: contribution.contributions, totalContributions : contribution.totalContributions, sortByOptions: sortByOptions]
         }
     }
     
@@ -391,6 +407,17 @@ class UserController {
             redirect (action:"transaction", controller:"fund")
         } else {
             render(view: 'error', model: [message: "Error while updating Currency. Please try again later."])
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def getSortedCampaigns() {
+        def projects = projectService.getValidatedProjectsForCampaignAdmin(params.selectedSortValue, params.country)
+        def multiplier = projectService.getCurrencyConverter();
+        def currentEnv = Environment.current.getName()
+        def model = [projects: projects, multiplier: multiplier]
+        if (request.xhr) {
+            render(template: "/user/user/grid", model: model, currentEnv: currentEnv)
         }
     }
 }

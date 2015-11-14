@@ -17,7 +17,9 @@
         <g:render template="/user/user/grid" model="['projects': totalCampaings]"></g:render>
     </g:if>
     <g:else>
-        <g:render template="/user/user/grid" model="['projects': projects]"></g:render>
+        <div id="adminCampaignGrid">
+            <g:render template="/user/user/grid" model="['projects': projects]"></g:render>
+        </div>
     </g:else>
 </g:else>
 <g:if test="${dashboard && activeTab == 'campaigns'}">

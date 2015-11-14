@@ -723,3 +723,20 @@ div.dashboardtile-min-height {
 .dashboarduserprofile .has-error .help-block {
     text-align: left;
 }
+.dashboard-sortByOptions .bootstrap-select > .btn {
+    width: 120px;
+}
+.dashboard-sortByOptions .bootstrap-select.btn-group .dropdown-menu {
+    min-width: 118px;
+    text-align: left;
+}
+#dashboard-sortByOptions .bootstrap-select.btn-group .dropdown-menu{
+    height: 156px;
+}
+
+.dashboard-sortByOptions .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    width: 140px;
+}
+.dashboard-sortByOptions .dropdown-menu.open {
+    margin-left: -2.1%;
+}

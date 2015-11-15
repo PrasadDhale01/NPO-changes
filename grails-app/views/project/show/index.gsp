@@ -90,6 +90,7 @@
     
     <div class="container show-cmpgn-container">
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
+    <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
   
         <g:if test="${project}">
             <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>

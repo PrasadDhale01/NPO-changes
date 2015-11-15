@@ -5500,7 +5500,20 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	div.cr2-width-dropdown3 {
+    .edit-description{
+        width: 98% !important;
+    }
+    .col-web-url {
+        padding-right: 7px !important;
+    }
+    .col-edit-title {
+        padding-right: 9px !important;
+    }
+     div.edit-tabsMobile-margin {
+        margin-left: -14px !important;
+        margin-right: -34px !important;
+    }
+	   div.cr2-width-dropdown3 {
         width: 231px;
     }
     div.cr2-width-dropdown4 {
@@ -7622,7 +7635,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-
+    div.edit-tabsMobile-margin {
+        margin-left: -14px !important;
+        margin-right: -19px !important;
+    }
     .col-sm-input-group{
         padding-left:0;
     }
@@ -8814,6 +8830,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    div.edit-tabsMobile-margin {
+        margin-left: -14px !important;
+        margin-right: -19px !important;
+    }
     .col-input-for{
         padding-left: 0;
     }
@@ -10260,6 +10280,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+    .edit-description{
+        width: 95% !important;
+    }
+    .col-web-url {
+        padding-right: 20px !important;
+    }
+    .col-edit-title {
+        padding-right: 16px !important;
+    }
     .row-transaction h1{
         font-size: 39px;
         text-align: center;
@@ -11308,6 +11337,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }
 @media only screen and (max-width: 767px){
+	
+.ansText {
+    width: 87%;
+    height: 100px;
+}
 
 #embedTilemodal .modal-dialog.modal-tile{
     margin-left: auto;
@@ -12577,6 +12611,14 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    input.editsweb-margin-mobile {
+        height: 45px;
+        padding-left: 104px;
+        width: 95% !important;
+    }
+    div.edit-tabsMobile-margin {
+        margin-left: -14px !important;
+    }
     div.cr2-width-dropdown3 {
         width: 231px;
     }

@@ -396,6 +396,7 @@ span.cr-label-spend-matrix {
     padding-right: 4px;
     padding-bottom: 0px;
     padding-left: 3px;
+    margin-top: 5px;
 }
 
 .saved-message{
@@ -433,7 +434,34 @@ span.cr-label-spend-matrix {
     padding-left:2px;
 }
 
-.spend-matrix-template .help-block{
-    margin-bottom: 0;
-    margin-top: 1px;
+input.editsweb-margin-mobile {
+    height: 45px;
+    padding-left: 104px;
+    width: 100% !important;
+}
+
+.edit-description{
+    padding-right: 18px !important;
+}
+
+.col-web-url{
+    padding-right: 2px !important;
+}
+
+.ansText{
+    width:50%;
+    margin-top: 5px;
+}
+
+.question-ans{
+    padding-top: 5px;
+    padding-left:20px;
+}
+
+.ansText1{
+    display:none;
+}
+
+.ansText3{
+    display:none;
 }

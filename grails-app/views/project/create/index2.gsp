@@ -47,7 +47,6 @@
             <g:hiddenField name="projectId" id="projectId" value="${project.id}"/>
             <div class="startsection"></div>
 
-            <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
             <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari cr2-padding" id="start">
                 <div class="form-group col-lg-12 cr-start-space campaignEndDateError">
                     <div class="col-sm-3 cr2-width-dropdown1">
@@ -74,7 +73,7 @@
                     
                    <div class="col-sm-3 cr2-width-dropdown3">
                         <div class="input-group enddate">
-                            <input class="cr2-width-height-city cr-mob-datepicker form-control cr2-input-placeholder" name="${FORMCONSTANTS.DAYS}" value="${campaignEndDate}" placeholder="city"> 
+                            <input class="cr2-width-height-city cr-mob-datepicker form-control cr2-input-placeholder city" name="city" value="${project.beneficiary.city}" placeholder="City"> 
                         </div>
                     </div>
                     
@@ -98,78 +97,26 @@
                     <div class="col-sm-3 cr2-width-dropdown5">
                         <div class="cr-dropdown-alignment font-list">
                             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonIndprofit}" value="#" optionKey="key" optionValue="value" />
+                                <g:if test="${recipientOfFund}">
+                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonIndprofit}" value="#" optionKey="key" optionValue="value"/>
+                                </g:if>
+                                <g:else>
+                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonIndprofit}" optionKey="key" optionValue="value" noSelection="['null':'Recipient of fund']"/>
+                                </g:else>
                             </g:if>
                             <g:else>
-	                            <g:if test="${project.beneficiary.country}">
-	                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonProfit}" value="#" optionKey="key" optionValue="value" />
-	                            </g:if>
-	                            <g:else>
-	                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonProfit}" value="#" optionKey="key" optionValue="value" noSelection="['null':'Funds']"/>
-	                            </g:else>
-	                        </g:else>
+                                <g:if test="${recipientOfFund}">
+                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonProfit}" value="#" optionKey="key" optionValue="value"/>
+                                </g:if>
+                                <g:else>
+                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonProfit}" optionKey="key" optionValue="value" noSelection="['null':'Recipient of fund']"/>
+                                </g:else>
+                            </g:else>
                         </div>
                     </div>
                 </div>
             </div>
-            </g:if>
-        <g:else>
-            
-            <div class="col-sm-12 cr-start-flex cr-lft-mobile cr-safari" id="start">
-                <label class="panel body cr-start-size cr-safari">START</label>
-                <div class="form-group col-sm-10 cr-start-space campaignEndDateError">
 
-                    <div class="col-sm-3 deadline-popover">
-                        <div class="input-group enddate">
-                            <g:if test="${campaignEndDate}">
-                                <input class="datepicker pull-left cr-datepicker-height cr-mob-datepicker" id="datepicker" name="${FORMCONSTANTS.DAYS}" readonly="readonly" value="${campaignEndDate}" placeholder="Deadline"> 
-                            </g:if>
-                            <g:else>
-                                <input class="datepicker pull-left cr-datepicker-height cr-mob-datepicker" id="datepicker" name="${FORMCONSTANTS.DAYS}" readonly="readonly" placeholder="Deadline">
-                            </g:else>
-                            <img class="hidden-xs deadlineInfo-img pull-right" src="//s3.amazonaws.com/crowdera/assets/Information-Icon.png" alt="Information icon"><i class="fa fa-caret-down cr-caret-size" style="position:absolute;"></i>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="font-list">
-                            <g:if test="${project.category && project.category.toString() != 'OTHER'}">
-                                <g:select class="selectpicker cr-start-dropdown-category cr-drops cr-opn-dropdown cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" id="category" optionKey="key" optionValue="value" value="${project.category}"/>
-                            </g:if>
-                            <g:else>
-                                <g:select class="selectpicker cr-start-dropdown-category cr-drops cr-opn-dropdown cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.CATEGORY}" from="${categoryOptions}" id="category" optionKey="key" optionValue="value" noSelection="['null':'Category']"/>
-                            </g:else>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="cr-dropdown-alignment font-list">
-                            <g:if test="${project.beneficiary.country}">
-                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="${project.beneficiary.country}" optionKey="key" optionValue="value" />
-                            </g:if>
-                            <g:else>
-                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="#" optionKey="key" optionValue="value" noSelection="['null':'Country']"/>
-                            </g:else>
-                        </div>
-                    </div>
-                    <div class="col-sm-3">
-                        <div class="font-list">
-                            <g:if test="${project.payuEmail}">
-                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAYU" optionKey="key" optionValue="value" />
-                            </g:if>
-                            <g:elseif test="${project.charitableId}">
-                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="FIR" optionKey="key" optionValue="value" />
-                            </g:elseif>
-                            <g:elseif test="${project.paypalEmail}">
-                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAY" optionKey="key" optionValue="value" />
-                            </g:elseif>
-                            <g:else>
-                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="${FORMCONSTANTS.PAYMENT}" optionKey="key" optionValue="value" noSelection="['null':'Payment']"/>
-                            </g:else>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </g:else>
-   
             <g:hiddenField name="campaignvideoUrl" value="${project.videoUrl}" id="addvideoUrl"/>
             <div class="col-sm-6 video-popover" id="media">
                 <div class="panel panel-default panel-create-size" id="videoBox">
@@ -342,6 +289,78 @@
                     <div class="row">
                     <span class="col-sm-offset-1 col-sm-4 saved-message">Spend field Saved</span>
                     </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-12">
+                <div class="cr-spend-matrix">
+                    <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Q & A</span></label>
+                    <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
+                </div>
+                <div class="panel panel-body cr-panel-body-spend-matrix">
+                    <div class="col-sm-12">
+                        1. Did you try other fundraising methods ?
+                        <div class="question-ans">
+                            <p><input type="radio" name="ans1" class="ans1" value="yes">&nbsp;YES&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="ans1" class="ans1" value="no">&nbsp;NO</p>
+                            <textarea class="ansText ansText1" placeholder=""></textarea>
+                        </div><br>
+                        2. Why do you want to crowdfund ?
+                        <div class="question-ans">
+                            <textarea class="ansText ansText2" placeholder=""></textarea>
+                        </div><br>
+                        3. Have you crowdfunded before ?
+                        <div class="question-ans">
+                            <input type="radio" name="ans3" class="ans3" value="yes">&nbsp;YES&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="ans3" class="ans3" value="no">&nbsp;NO<br>
+                            <textarea class="ansText ansText3" placeholder=""></textarea>
+                        </div><br>
+                        4. If you don't recieve 100% goal what will you do.
+                        <div class="question-ans">
+                            <p><input type="radio" name="ans4" class="ans4" value="extend-deadline">&nbsp;I would extend my deadline.</p>
+                            <p><input type="radio" name="ans4" class="ans4" value="personel-raising">&nbsp;I will personally start walking towards cause using raised funds.</p>
+                            <p><input type="radio" name="ans4" class="ans4" value="contact-admin">&nbsp;I will contact crowdera admin.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-sm-12">
+                <div class="cr-spend-matrix">
+                    <label class="col-sm-1 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Impact</span></label>
+                    <label class="col-sm-11 hidden-xs cr-panel-spend-matrix-guide"></label>
+                </div>
+                <div class="panel panel-body cr-panel-body-spend-matrix">
+                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <span class="fa fa-inr cr-currency"></span>
+                    </g:if>
+                    <g:else>
+                        <span class="fa fa-usd cr-currency"></span>
+                    </g:else>
+                    <input type="text" name="impact-amt" class="form-control form-control-no-border-amt form-control-input-width"> &nbsp;
+                    would <span class="impact-text">change a life</span>
+                </div>
+            </div>
+            
+            <div class="col-sm-12">
+                <div class="cr-spend-matrix">
+                    <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">3 reasons to fund</span></label>
+                    <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
+                </div>
+                <div class="panel panel-body cr-panel-body-spend-matrix">
+                    <input type="text" name="reason1" class="reason1">
+                    <input type="text" name="reason2" class="reason2">
+                    <input type="text" name="reason3" class="reason3">
+                </div>
+            </div>
+            
+            <div class="col-sm-12">
+                <div class="cr-spend-matrix">
+                     <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font"># tags</span></label>
+                     <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
+                </div>
+                <div class="panel panel-body cr-panel-body-spend-matrix">
+                    <textarea name="hashtags" class="hashtags ansText">#${project.category}, #${project.usedFor}, #${project.fundRaisedFor}, #{project.beneficiary.city}, #${project.country}</textarea>
                 </div>
             </div>
             </g:if>
@@ -801,21 +820,6 @@
                         You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>
                     </div>
                     <label class="cr-pad-who">Who will recieve the funds</label>
-                    <div class="btn-group col-sm-12 cr-perk-check cr-radio-option" data-toggle="buttons">
-                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                            <label class="panel-body cr-check-btn-first text-center col-sm-3 col-xs-12"> <span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label>  
-                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-reci-siz <g:if test="${project.fundsRecievedBy == 'PERSON'}">active</g:if>" id="person"> <input type="radio" name="" value="yes">Individual</label> 
-                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments <g:if test="${project.fundsRecievedBy == 'NGO'}">active</g:if>" id="ngo"> <input type="radio" name="" value="no"><span class="cr-pay-rd"> An Indian </span><span class="cr-reci-siz">NGO</span></label>
-                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 <g:if test="${project.fundsRecievedBy == 'OTHERS'}">active</g:if>" id="others"> <input type="radio" name="" value="no"><span class="cr-reci-siz">Others</span></label>
-                        </g:if>
-                        <g:else>
-                            <label class="panel-body cr-check-btn-first text-center col-sm-3 col-xs-12"> <span class="cr-reci-siz">Recipient</span><span class="cr-pay-rd"> of funds</span></label>  
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-reci-siz <g:if test="${project.fundsRecievedBy == 'PERSON'}">active</g:if>" id="person"> <input type="radio" name="recipientPerson" value="yes">Person</label> 
-                            <label class="btn btn-default cr-check-btn col-sm-3 col-xs-12 cr-mob-payments <g:if test="${project.fundsRecievedBy == 'NON-PROFITS'}">active</g:if>" id="non-profit"> <input type="radio" name="nonProfit" value="no"><span class="cr-pay-rd">A US 501(c)(3)</span><span class="cr-reci-siz"> Non-profit</span></label>
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 cr-mob-payments <g:if test="${project.fundsRecievedBy == 'NGO'}">active</g:if>" id="ngo"> <input type="radio" name="recipientNgo" value="no"><span class="cr-pay-rd">A non-US </span><span class="cr-reci-siz">NGO</span></label>
-                            <label class="btn btn-default cr-check-btn col-sm-2 col-xs-12 <g:if test="${project.fundsRecievedBy == 'OTHERS'}">active</g:if>" id="others"> <input type="radio" name="recipientOther" value="no"><span class="cr-reci-siz">Others</span></label>
-                        </g:else>
-                    </div>
                 </div>
             </div>
             

@@ -228,6 +228,7 @@ class ProjectController {
 			def offset = params.int('offset') ?: 0
             
             def multiplier = projectService.getCurrencyConverter();
+			def pieList = projectService.getPieList(project);
 
 			render (view: 'show/index',
 			model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
@@ -235,7 +236,7 @@ class ProjectController {
 				teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
 				isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
 				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url,
-                multiplier: multiplier])
+                multiplier: multiplier, pieList:pieList])
 		} else {
 		    render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
@@ -444,7 +445,8 @@ class ProjectController {
 
 	def create() {
         def currentEnv = Environment.current.getName()
-		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv])
+        def inDays = projectService.getInDays()
+		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv, inDays:inDays])
 	}
     
     def saveCampaign() {
@@ -556,10 +558,13 @@ class ProjectController {
                 } else {
                     payOpts = projectService.getPayment()
                 }
+				def recipientOfFund = (project.fundsRecievedBy) ? projectService.getFundsRecieveVal(project.fundsRecievedBy, currentEnv) : null
+				def pieList = projectService.getPieList(project);
                 render(view: 'create/index2',
                 model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
-                           FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, user:user,campaignEndDate:campaignEndDate,
-                           vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
+                           FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, user:user,campaignEndDate:campaignEndDate, pieList:pieList,
+                           vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
+						   recipientOfFund:recipientOfFund])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
@@ -640,6 +645,7 @@ class ProjectController {
 	def edit() {
 		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
 		def currentEnv = Environment.current.getName()
+		def inDays = projectService.getInDays()
 		def categoryOptions
 		def spends = project.spend
 		spends = spends.sort{it.numberAvailable}
@@ -656,6 +662,7 @@ class ProjectController {
 		def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
 		def endDate = projectService.getProjectEndDate(project)
 		def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
+		def recipientOfFund = (project.fundsRecievedBy) ? projectService.getFundsRecieveVal(project.fundsRecievedBy, currentEnv) : null
 		def date = new Date();
 		List projectRewards = []
 		project.rewards.each {
@@ -678,10 +685,10 @@ class ProjectController {
 			render (view: 'edit/index',
 			model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,
                     'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit, 
-                    currentEnv: currentEnv,beneficiary:beneficiary,
+                    currentEnv: currentEnv,beneficiary:beneficiary,inDays:inDays,
                     FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,
                     project:project, user:user,campaignEndDate:campaignEndDate,
-                    vanityTitle: vanityTitle, vanityUsername:vanityUsername,
+                    vanityTitle: vanityTitle, vanityUsername:vanityUsername,recipientOfFund:recipientOfFund,
                     email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
 		} else {
 			flash.prj_edit_message = "Campaign not found."

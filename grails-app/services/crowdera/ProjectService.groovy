@@ -909,19 +909,19 @@ class ProjectService {
 	
 	def getRecipientOfFunds() {
 	    def recipientOfFunds = [
-            PER:'Person',
-			NPT:'Non-Profit',
-			NGO:'NGO',
-			OTH:'Other'   	    
+            'PERSON':'Person',
+			'NON-PROFIT':'Non-Profit',
+			'NGO':'NGO',
+			'OTHER':'Other'   	    
 		]
 		return recipientOfFunds
 	}
 	
 	def getRecipientOfFundsIndo(){
 		def RecipientOfIndia = [
-			IND: 'Individual',
-			INN: 'Indian NGO',
-			OTR: 'Other'
+			'INDIVIDUAL': 'Individual',
+			'NGO': 'Indian NGO',
+			'OTHER': 'Other'
 		]
 		return RecipientOfIndia
 	}
@@ -2946,8 +2946,8 @@ class ProjectService {
                 isValueChanged = true;
                 break;
 
-            case 'date':
-                getNumberofDays(varValue, project);
+            case 'days':
+                project.days = varValue;
                 isValueChanged = true;
                 break;
 				
@@ -3042,6 +3042,13 @@ class ProjectService {
 			    project.customVanityUrl = (varValue == '') ? null : varValue;
 				isValueChanged = true;
 				break;
+
+            case 'city':
+                if (!varValue.isAllWhitespace()){
+                    beneficiary.city = varValue;
+                    isValueChanged = true;
+                }
+                break;
 
             default :
                isValueChanged = false;
@@ -3601,6 +3608,35 @@ class ProjectService {
 			spendMatrix.delete();
         }
     }
+
+    def getPieList(Project project) {
+        List pieValueWithPer = [];
+        def spendMatrixs = project.spend;
+		def pieListCount = 0;
+		List sublist1 = [];
+		sublist1.add("'"+'Goal'+"'");
+		sublist1.add(project.amount.round());
+		pieValueWithPer.add(sublist1);
+		def cause
+        spendMatrixs.each{ spendMatrix ->
+			pieListCount++;
+			List sublist = [];
+			cause = "'"+spendMatrix.cause+"'"
+            sublist.add(cause);
+            def percentage = (spendMatrix.amount / project.amount) * 100;
+            sublist.add(percentage.round());
+			if (pieListCount == 1){
+				sublist.add("'"+'blue'+"'")
+			}
+            pieValueWithPer.add(sublist);
+        }
+		return pieValueWithPer;
+    }
+	
+	def getFundsRecieveVal(def fundsRecievedBy, def currentEnv){
+		Map reciever = (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') ? getRecipientOfFundsIndo() : getRecipientOfFunds()
+		return reciever.getAt(fundsRecievedBy)
+	}
 
     @Transactional
     def bootstrap() {

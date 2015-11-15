@@ -1,12 +1,12 @@
 $(function() {
     console.log("create.js initialized");
-
+    
     $('#iconfile').val('');
 
     $("#sendEmailButton").click(function(){
    	    $("#sendEmailButton").attr('disabled','disabled');
     });
-
+    
     var rewardIteratorCount = $('#rewardCount').val();
     if (rewardIteratorCount > 0){
     	$('#rewardTemplate1').show();
@@ -415,10 +415,60 @@ $(function() {
         $( '[name="answer"]' ).rules( "add", {
             required: true
         });
+        
+        $('[name="ans1"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="ansText1"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="ansText2"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="ansText3"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="ans3"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="ans4"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="reason1"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="reason2"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="reason3"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="impact-amt"]').rules( "add", {
+            required: true,
+            number:true,
+            messages:{
+            	required:'Required',
+            	number:'Digits only'
+            }
+        });
 
         $( '[name="webAddress"]' ).rules( "add", {
             required: true,
             isWebUrl:true
+        });
+        
+        $( '[name="city"]' ).rules( "add", {
+            required: true,
+            min:3
         });
 
         $( '[name="organizationName"]' ).rules( "add", {
@@ -574,6 +624,11 @@ $(function() {
             });
     	}
         
+        $( '[name="city"]' ).rules( "add", {
+            required: true,
+            min:3
+        });
+        
         $( '[name="checkBox"]' ).rules( "add", {
             required: true
         });
@@ -593,6 +648,51 @@ $(function() {
 
         $( '[name="days"]' ).rules( "add", {
             required: true
+        });
+        
+        $('[name="ans1"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="ansText1"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="ansText2"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="ansText3"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="ans3"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="ans4"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="reason1"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="reason2"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="reason3"]').rules( "add", {
+            required: true
+        });
+        
+        $('[name="impact-amt"]').rules( "add", {
+            required: true,
+            number:true,
+            messages:{
+            	required:'Required',
+            	number:'Digits only'
+            }
         });
 
         $('.rewardNumberAvailable').each(function () {
@@ -747,6 +847,22 @@ $(function() {
                 }
             }
         }
+    });
+     
+    $('.ans1').change(function(){
+    	if ($(this).val()=="yes"){
+    		$('.ansText1').show();
+    	} else {
+    		$('.ansText1').hide();
+    	}
+    });
+    
+    $('.ans3').change(function(){
+    	if ($(this).val()=="yes"){
+    		$('.ansText3').show();
+    	} else {
+    		$('.ansText3').hide();
+    	}
     });
      
     function renameAndemptyRewardFields(){
@@ -1914,12 +2030,66 @@ $(function() {
    
     $('#category').change(function(){
         var selectedCategory = $(this).val();
+//        switch(selectedCategory){
+//        case 'ANIMALS':
+//        	$('.impact-text').innerhtml('change a animal life');
+//        	break;
+//        case 'ARTS':
+//        	$('.impact-text').innerhtml('innovate art');
+//        	break;
+//        case 'CHILDREN':
+//        	$('.impact-text').innerhtml('save a child');
+//        	break;
+//        case 'COMMUNITY':
+//        	$('.impact-text').innerhtml('save community');
+//        	break;
+//        case 'CIVIC_NEEDS':
+//        	$('.impact-text').innerhtml('help a civic_need');
+//        	break;
+//        case 'EDUCATION':
+//        	$('.impact-text').innerhtml('educate a child');
+//        	break;
+//        case 'ELDERLY':
+//        	$('.impact-text').innerhtml('help elderly');
+//        	break;
+//        case 'ENVIRONMENT':
+//        	$('.impact-text').innerhtml('save environment');
+//        	break;
+//        case 'FILM':
+//        	$('.impact-text').innerhtml('help film');
+//        	break;
+//        case 'HEALTH':
+//        	$('.impact-text').innerhtml('help to gain person health');
+//        	break;
+//        case 'SOCIAL_INNOVATION':
+//        	$('.impact-text').innerhtml('help to have social innovation');
+//        	break;
+//        case 'RELIGION':
+//        	$('.impact-text').innerhtml('empower religion');
+//        	break;
+//        case 'OTHER':
+//        	$('.impact-text').innerhtml('change a life');
+//        	break;
+//        default :
+//        	$('.impact-text').innerhtml('change a life');
+//    	    break;
+//        }
         autoSave('category', selectedCategory);
     });
    
     $('#country').change(function(){
         var selectedCountry = $(this).val();
         autoSave('country', selectedCountry);
+    });
+    
+    $('.recipient').change(function(){
+    	var recipient = $(this).val();
+    	autoSave('fundsRecievedBy', recipient);
+    });
+    
+    $('.days').change(function(){
+    	var days = $(this).val();
+    	autoSave('days', days);
     });
     
     $('#firstadmin').blur(function(){
@@ -2046,22 +2216,6 @@ $(function() {
         $('#usedFor').val('PERSONAL_NEEDS');
     });
     
-    $('#person').click(function(){
-        autoSave('fundsRecievedBy', 'PERSON');
-    });
-    
-    $('#non-profit').click(function(){
-        autoSave('fundsRecievedBy', 'NON-PROFITS');
-    });
-    
-    $('#ngo').click(function(){
-        autoSave('fundsRecievedBy', 'NGO');
-    });
-    
-    $('#others').click(function(){
-        autoSave('fundsRecievedBy', 'OTHERS');
-    });
-    
     $('#name1').blur(function (){
         var name = $(this).val();
         autoSave('name', name);
@@ -2088,6 +2242,11 @@ $(function() {
     $('.descarea1').blur(function (){
         var descarea = $(this).val();
         autoSave('descarea', descarea);
+    });
+    
+    $('.city').blur(function (){
+    	var city = $(this).val();
+    	autoSave('city', city);
     });
     
     $('#impact1').click(function(){
@@ -2159,7 +2318,7 @@ $(function() {
      
      $('#previewButton, #previewButtonXS').on('click', function(event){  // capture the click
       	$('#isSubmitButton').val(false);
-       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"]').each(function () {
+       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impact-amt"]').each(function () {
              $(this).rules('remove');
          });
        	
@@ -2173,7 +2332,7 @@ $(function() {
 
        	$( "#projectImageFile" ).rules("remove");
  
-       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"]').each(function () {
+       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impact-amt"]"]').each(function () {
              $(this).closest('.form-group').removeClass('has-error');
          });
        	
@@ -2202,7 +2361,7 @@ $(function() {
               $('#previewButtonXS').attr('disabled','disabled');
        	}
        });
-
+     
 /*Javascript error raised due to tooltip is resolved*/
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {

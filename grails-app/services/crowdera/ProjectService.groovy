@@ -907,6 +907,34 @@ class ProjectService {
         return country
     }
 	
+	def getRecipientOfFunds() {
+	    def recipientOfFunds = [
+            PER:'Person',
+			NPT:'Non-Profit',
+			NGO:'NGO',
+			OTH:'Other'   	    
+		]
+		return recipientOfFunds
+	}
+	
+	def getRecipientOfFundsIndo(){
+		def RecipientOfIndia = [
+			IND: 'Individual',
+			INN: 'Indian NGO',
+			OTR: 'Other'
+		]
+		return RecipientOfIndia
+	}
+	
+	def getInDays() {
+		def inDays = [
+			    THI:'30',
+				SIX:'60',
+				NIN:'90'  
+			]
+		return inDays
+	}
+	
     def getPayment(){
         def payment = [
             PAY:'Paypal',
@@ -3384,13 +3412,13 @@ class ProjectService {
 		List results = []
 		
 		feedback.each{
-			def rows = [it.user.firstName +" "+ it.user.lastName,it.answer_1,it.answer_2_y1,it.answer_2_y2,it.answer_2_n,it.answer_3,it.answer_4_y,it.answer_4_n,it.answer_5,it.answer_6,it.answer_7, it.answer_8, it.answer_9, it.answer_10]
+			def rows = [it.user.firstName +" "+ it.user.lastName,project.title.replaceAll("[,;\\s]",'_'), it.rating, it.answer_1,it.answer_2_y1,it.answer_2_y2,it.answer_2_n,it.answer_3,it.answer_4_y,it.answer_4_n,it.answer_5,it.answer_6,it.answer_7, it.answer_8, it.answer_9_y1, it.answer_9_y2, it.answer_9_y3, it.answer_9_y4, it.answer_9_y5, it.answer_9_y6, it.answer_9_n]
 			results << rows
 		}
 		
 		def result
 		response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll("[,;\\s]",'_')+".csv")
-		result = 'UserName, Answer_1, Answer_2_y1, Answer_2_y2, Answer_2_n, Answer_3, Answer_4_y, Answer_4_n, Answer_5, Answer_6, Answer_7, Answer_8, Answer_9, Answer_10, \n'
+		result = 'UserName, Project Title, Rating, Answer_1, Answer_2_y1, Answer_2_y2, Answer_2_n, Answer_3, Answer_4_y, Answer_4_n, Answer_5, Answer_6, Answer_7, Answer_8, Answer_9_y1, Answer_9_y2, Answer_9_y3, Answer_9_y4, Answer_9_y5, Answer_9_y6, Answer_9_n, \n'
 		results.each{ row->
 			row.each{
 				col -> result+=col +','
@@ -3402,14 +3430,12 @@ class ProjectService {
 	}
 
 	def sendFeedbackEmailToOwners(def project, def  base_url){
-		def ownerList
-		project.each{
-			def remainingDay=getRemainingDay(it)
-			if(remainingDay<8){
-				ownerList.add(it.user)
-			}
+		def owner
+		def remainingDay=getRemainingDay(project)
+		if(remainingDay>0 && remainingDay<8){
+			owner = project.user
 		}
-		mandrillService.sendFeedBackLinkToOwner(ownerList, base_url)
+		mandrillService.sendFeedBackLinkToOwner(owner, base_url)
 	}
     def sendEmailTONonUserContributors() {
         def contributionList = Contribution.list()
@@ -3564,6 +3590,72 @@ class ProjectService {
             }
         }
         return amount;
+    }
+    
+    def getValidatedProjectsForCampaignAdmin(def condition, def country) {
+        List projects = []
+        List totalProjects = []
+        List endedCampaigns = []
+        List activeCampaigns = []
+        if (condition == 'Current' || condition == 'Ended') {
+            if (country == 'INDIA') {
+                totalProjects = Project.findAllWhere(payuStatus: true, validated: true, inactive: false)
+            } else if(country == 'USA') {
+                totalProjects = Project.findAllWhere(payuStatus: false, validated: true, inactive: false)
+            }
+            totalProjects.each { project->
+                if (isProjectDeadlineCrossed(project)) {
+                    endedCampaigns.add(project)
+                } else {
+                    activeCampaigns.add(project)
+                }
+            }
+        }
+        
+        switch (condition) {
+            case 'Ended':
+                projects = endedCampaigns
+                break;
+            case 'Pending':
+                if (country == 'INDIA') {
+                    projects = Project.findAllWhere(payuStatus: true, draft: false, inactive: false, rejected: false, validated: false)
+                } else if(country == 'USA') {
+                    projects = Project.findAllWhere(payuStatus: false, draft: false, inactive: false, rejected: false, validated: false)
+                }
+                break;
+            case 'Current':
+                projects = activeCampaigns
+                break;
+            case 'Draft':
+                if (country == 'INDIA') {
+                    projects = Project.findAllWhere(payuStatus: true, draft: true, inactive: false, rejected: false)
+                } else if(country == 'USA') {
+                    projects = Project.findAllWhere(payuStatus: false, draft: true, inactive: false, rejected: false)
+                }
+                break;
+            case 'Rejected':
+                if (country == 'INDIA') {
+                    projects = Project.findAllWhere(payuStatus: true, rejected: true)
+                } else if(country == 'USA') {
+                    projects = Project.findAllWhere(payuStatus: false, rejected: true)
+                }
+                break;
+            default :
+               projects = []
+        }
+        
+        return projects
+    }
+    
+    def getSortingList() {
+        def sortingOptions = [
+            Draft: 'Draft',
+            Pending: 'Pending',
+            Current: 'Current',
+            Ended: 'Ended',
+            Rejected: 'Rejected'
+        ]
+        return sortingOptions
     }
 
     @Transactional

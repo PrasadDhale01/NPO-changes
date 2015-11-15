@@ -453,8 +453,10 @@ class ProjectController {
     def saveCampaign() {
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-       
-        def reqUrl = base_url+"/project/createNow?firstName=${params.firstName}&amount=${params.amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}"
+		
+        def amount = params.amount ? params.amount : params.amount1;
+		 
+        def reqUrl = base_url+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}"
         def user = userService.getCurrentUser()
         if (!user) {
             Cookie cookie = new Cookie("requestUrl", reqUrl)
@@ -533,6 +535,8 @@ class ProjectController {
 				}
                 
                 def country = projectService.getCountry()
+				def nonProfit = projectService.getRecipientOfFunds()
+				def nonIndprofit = projectService.getRecipientOfFundsIndo()
                 def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
                 
                 def endDate = projectService.getProjectEndDate(project)
@@ -555,7 +559,7 @@ class ProjectController {
                     payOpts = projectService.getPayment()
                 }
                 render(view: 'create/index2',
-                   model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, currentEnv: currentEnv,
+                   model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
                            FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, user:user,campaignEndDate:campaignEndDate,
                            vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
             } else {
@@ -647,6 +651,8 @@ class ProjectController {
 		def vanityTitle = params.projectTitle
 		def user = project.user
 		def country = projectService.getCountry()
+		def nonProfit = projectService.getRecipientOfFunds()
+		def nonIndprofit = projectService.getRecipientOfFundsIndo()
 		def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
 		def endDate = projectService.getProjectEndDate(project)
 		def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
@@ -671,7 +677,7 @@ class ProjectController {
 			def beneficiary = project.beneficiary
 			render (view: 'edit/index',
 			model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,
-						'country': country, currentEnv: currentEnv,beneficiary:beneficiary,
+						'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit, currentEnv: currentEnv,beneficiary:beneficiary,
 						FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,
 						project:project, user:user,campaignEndDate:campaignEndDate,
 						vanityTitle: vanityTitle, vanityUsername:vanityUsername,

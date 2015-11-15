@@ -44,7 +44,25 @@ $(function(){
 			answer_9:{
 				required:true
 			},
-			answer_10:{
+			answer_9_y1:{
+				required:true
+			},
+			answer_9_y2:{
+				required:true
+			},
+			answer_9_y3:{
+				required:true
+			},
+			answer_9_y4:{
+				required:true
+			},
+			answer_9_y5:{
+				required:true
+			},
+			answer_9_y6:{
+				required:true
+			},
+			answer_9_n:{
 				required:true
 			}
 			
@@ -54,6 +72,8 @@ $(function(){
                 error.appendTo(".ansTwoError");
             }else if(element.attr("name")=="answer_4"){
             	error.appendTo(".ansFourError");
+            }else if(element.attr("name")=="answer_9"){
+            	error.appendTo(".ansNineError");
             }else if(element){
             	error.appendTo(element.parent());
             }
@@ -77,6 +97,15 @@ $(function(){
      	}else{
      		$('.question_4_opt_yes').hide();
      		$('.question_4_opt_no').show();
+     	}
+	});
+	$("input[name='answer_9']").change(function(){
+     	if($(this).val()=="yes") {
+     		$('.question_9_opt_yes').show();
+     		$('.question_9_opt_no').hide();
+     	}else{
+     		$('.question_9_opt_yes').hide();
+     		$('.question_9_opt_no').show();
      	}
 	});
 });

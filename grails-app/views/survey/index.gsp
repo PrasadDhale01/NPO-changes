@@ -2,6 +2,7 @@
 <g:set var="userService" bean="userService" />
 <% 
 	def user= userService.getCurrentUser()
+	def rating =request.getParameter("rating")
 %>
 <html>
 <head>
@@ -17,6 +18,7 @@
   			<div class="questions col-lg-12 col-md-12 col-sm-12 col-xs-12">
   				<div class="question-list">
   					<g:form action="saveFeedback" controller="user" method="POST" class="feedback-form">
+  						<input type="hidden" name="rating" value="${rating}">
   						<sec:ifLoggedIn>
   							<input type="hidden" name="user" value="${user.id}">
   						</sec:ifLoggedIn>
@@ -88,35 +90,75 @@
 	  						</div>
 	  					</div>
 	  					<div class="form-group question">
-	  						<span>6)&nbsp;Did you face any challenge or aberration on our site?</span>
+	  						<span>6)&nbsp;Do you need volunteer or additional help in fundraising?</span>
 	  						<div class="answer">
-	  							<input type="text" placeholder="" class="form-control input-lg" name="answer_6">
+	  							<input type="text" placeholder="" class="form-control input-lg" name="answer_6">  
 	  						</div>
 	  					</div>
 	  					<div class="form-group question">
-	  						<span>7)&nbsp;What is your overall rating for Crowdera</span>
+	  						<span>7)&nbsp;Did you face any challenge or aberration on our site?</span>
 	  						<div class="answer">
-	  							<input type="text" placeholder="" class="form-control input-lg" name="answer_7"> 
+	  							<input type="text" placeholder="" class="form-control input-lg" name="answer_7">
 	  						</div>
 	  					</div>
 	  					<div class="form-group question">
-	  						<span>8)&nbsp;Please state the reason for your rating, so that we can improve our service in future?</span>
+	  						<span>8)&nbsp;How likely are you to use or recommend Crowdera in the future?</span>
 	  						<div class="answer">
 	  							<input type="text" placeholder="" class="form-control input-lg" name="answer_8">
 	  						</div>
 	  					</div>
 	  					<div class="form-group question">
-	  						<span>9)&nbsp;How visually appealing is our website?</span>
-	  						<div class="answer">
-	  							<input type="text" placeholder="" class="form-control input-lg" name="answer_9"> 
+	  						<span>9)&nbsp;Would you like to do a detailed survey for Crowdera?</span>
+	  						<div class="answer-radio">
+	  							<label for="answer_9"><input type="radio" name="answer_9" value="yes">&nbsp;Yes</label>&nbsp;&nbsp;
+								<label for="answer_9"><input type="radio" name="answer_9" value="no">&nbsp;No</label> 
+								<span class="ansNineError"></span>
 	  						</div>
-	  					</div>
-	  					<div class="form-group question">
-	  						<span>10)&nbsp;If you could change one thing about the entire website of Crowdera, what would it be?</span>
-	  						<div class="answer">
-	  							<input type="text" placeholder="" class="form-control input-lg input-xs" name="answer_10"> 
+	  						<div class="form-group question_9_opt_yes">
+	  							<span>a)&nbsp;What is the best way to provide you with more product information?</span>
+		  						<div class="answer">
+		  							<input type="text"  class="form-control input-lg" name="answer_9_y1"> 
+		  						</div>
 	  						</div>
+	  						<div class="form-group question_9_opt_yes">
+	  							<span>b)&nbsp;Did our platform provided with all the services that you hoped for?</span>
+		  						<div class="answer">
+		  							<input type="text"  class="form-control input-lg" name="answer_9_y2"> 
+		  						</div>
+	  						</div>
+	  						<div class="form-group question_9_opt_yes">
+	  							<span>c)&nbsp;How visually appealing is our website ?</span>
+		  						<div class="answer">
+		  							<input type="text"  class="form-control input-lg" name="answer_9_y3"> 
+		  						</div>
+	  						</div>
+	  						<div class="form-group question_9_opt_yes">
+	  							<span>d)&nbsp;Did you take more or less time than you had expected to create your campaign on crowdera?</span>
+		  						<div class="answer">
+		  							<input type="text" placeholder="" class="form-control input-lg" name="answer_9_y4"> 
+		  						</div>
+	  						</div>
+	  						<div class="form-group question_9_opt_yes">
+	  							<span>e)&nbsp;Do you have any other suggestions or comments for crowdera?</span>
+		  						<div class="answer">
+		  							<input type="text" placeholder="" class="form-control input-lg" name="answer_9_y5"> 
+		  						</div>
+	  						</div>
+	  						<div class="form-group question_9_opt_yes">
+	  							<span>f)&nbsp;If you could change one thing about the entire website of crowdera, what would it be?</span>
+		  						<div class="answer">
+		  							<input type="text" placeholder="" class="form-control input-lg" name="answer_9_y6"> 
+		  						</div>
+	  						</div>
+	  						<div class="form-group question_9_opt_no">
+	  							<span>a)&nbsp;Please state the reason for your rating, so that we can improve our service in future.</span>
+		  						<div class="answer">
+		  							<input type="text" placeholder="" class="form-control input-lg" name="answer_9_n"> 
+		  						</div>
+	  						</div>
+	  						
 	  					</div>
+	  					
 	  					<div class="submitbtn">
 	  						<button class="btn btn-default btn-info center-block">Submit</button>
 	  					</div>

@@ -1,10 +1,11 @@
 <g:set var="rewardService" bean="rewardService"/>
 <g:set var="projectService" bean="projectService"/>
+<g:set var="contributionService" bean="contributionService"/>
 <%
-	def projectId = project.id
-	def backers = contributionService.getBackersForProjectByReward(project, reward);
-	def totalNumberOfReward = reward.numberAvailable
-	def availableReward = totalNumberOfReward - backers;
+	   def projectId = project.id
+	   def backers = contributionService.getBackersForProjectByReward(project, reward);
+	   def totalNumberOfReward = reward.numberAvailable
+	   def availableReward = totalNumberOfReward - backers;
     def conversionMultiplier = multiplier
     if (!conversionMultiplier) {
         conversionMultiplier = projectService.getCurrencyConverter();
@@ -19,19 +20,19 @@
             <h3 class="panel-title"><b>${reward.title}</b></h3>
         </g:else>
     </div>
-	<div class="panel-body perktile">
-	    <div class="containrewards">
-	        <g:if test="${reward.id !=1 }">
-		        <p>${raw(reward.description)}</p>
-		    </g:if>
-		</div>
+	   <div class="panel-body perktile">
+	       <div class="containrewards">
+	           <g:if test="${reward.id !=1 }">
+		              <p>${raw(reward.description)}</p>
+		          </g:if>
+		      </div>
         <g:if test="${reward.id !=1 }">
             <span class="perkNumberAvailable"><b>Number available :</b> ${availableReward}</span>
         </g:if>
         <g:else>
             <div class="rewardTileSpace"></div>
         </g:else>
-	</div>
+	   </div>
 	<div class="panel-footer reward-footer">
 		<% def price = reward.price.round(); %>
 		<g:if test="${reward.id==1 }">
@@ -75,6 +76,7 @@
     </span>
 
 </div>
+<g:if test="${!validatedPage}">
 <div class="modal fade editperks" id="editperks${reward.id}" tabindex="-1" role="dialog" aria-labelledby="#editperks${reward.id}" aria-hidden="true">
     <g:form controller="project" action="customrewardedit" id="${reward.id}">
         <div class="modal-dialog">
@@ -131,3 +133,4 @@
         </div>
     </g:form>
 </div>
+</g:if>

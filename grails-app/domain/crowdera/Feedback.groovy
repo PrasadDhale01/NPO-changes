@@ -13,8 +13,14 @@ class Feedback {
 	String answer_6
 	String answer_7
 	String answer_8
-	String answer_9
-	String answer_10
+	String answer_9_y1
+	String answer_9_y2
+	String answer_9_y3
+	String answer_9_y4
+	String answer_9_y5
+	String answer_9_y6
+	String answer_9_n
+	String rating
 	
 	static belongTo=User
 	
@@ -30,7 +36,13 @@ class Feedback {
 		answer_6 nullable:true
 		answer_7 nullable:true
 		answer_8 nullable:true
-		answer_9 nullable:true
-		answer_10 nullable:true
+		answer_9_y1 nullable: true
+		answer_9_y2 nullable: true
+		answer_9_y3 nullable: true
+		answer_9_y4 nullable: true
+		answer_9_y5 nullable:true
+		answer_9_y6 nullable: true
+		answer_9_n	nullable: true
+		rating nullable:true
     }
 }

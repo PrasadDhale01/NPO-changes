@@ -413,6 +413,7 @@ class UserController {
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def saveFeedback(){
 		new Feedback(params).save()
+		flash.feedback_message = "Feedback submitted successfully!"
 		redirect url:'/survey'
 	}
 	

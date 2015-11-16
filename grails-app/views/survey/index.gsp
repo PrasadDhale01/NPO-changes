@@ -13,6 +13,11 @@
 <body>
   <div class="feducontent body bg-color">
   	<div class="container feedback-container">
+  		<g:if test="${flash.feedback_message}">
+			<div class="alert alert-success" align="center">
+				${flash.feedback_message}
+			</div>
+		</g:if>
   		<div class="row bg-color-white">
   			<h3 class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Please review the below website feedback questions.</h3>
   			<div class="questions col-lg-12 col-md-12 col-sm-12 col-xs-12">

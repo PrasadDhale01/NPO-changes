@@ -76,10 +76,10 @@
                     <div class="col-sm-3 cr2-width-dropdown2">
                         <div class="cr-dropdown-alignment font-list">
                             <g:if test="${project.beneficiary.country}">
-                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="${project.beneficiary.country}" optionKey="key" optionValue="value" />
+                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="${project.beneficiary.country}" optionKey="value" optionValue="value" />
                             </g:if>
                             <g:else>
-                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="#" optionKey="key" optionValue="value" noSelection="['null':'Country']"/>
+                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" optionKey="value" optionValue="value" noSelection="['null':'Country']"/>
                             </g:else>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                     <div class="createTitleDiv col-lg-6 col-md-6 col-sm-6 cr1-indx1-mobileTpadding">
                         <label class="col-sm-12 text-color cr-padding-index1">My plan is...</label>
                         <div class="col-sm-12 cr-padding-index1 col-edit-title">
-                            <input class="form-control form-control-no-border cr-myplan-indx1 text-color" name="${${FORMCONSTANTS.TITLE}}" placeholder="Create an impactful and actionable title. Helps donors find campaign." value="${project.title}" id="campaignTitle" maxlength="55">
+                            <input class="form-control form-control-no-border cr-myplan-indx1 text-color" name="${FORMCONSTANTS.TITLE}" placeholder="Create an impactful and actionable title. Helps donors find campaign." value="${project.title}" id="campaignTitle" maxlength="55">
                             <label class="pull-right " id="titleLength"></label>
                         </div>
                     </div>
@@ -455,8 +455,8 @@
                             <div class="col-sm-12">
                                 1. Did you try other fundraising methods ?
                                 <div class="question-ans form-group">
-                                    <p><input type="radio" name="ans1" class="ans1 form-control" value="yes" <g:if test="${qA && qA.ans1 && qA.ans1 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
-                                    <input type="radio" name="ans1" class="ans1 form-control" value="no" <g:if test="${qA && qA.ans1 && qA.ans1 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
+                                    <p><input type="radio" name="ans1" class="ans1" value="yes" <g:if test="${qA && qA.ans1 && qA.ans1 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="ans1" class="ans1" value="no" <g:if test="${qA && qA.ans1 && qA.ans1 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
                                     <textarea class="ansText ansText1 <g:if test="${ans1val}">display-block-text1</g:if><g:else>display-none-text1</g:else>">${ans1val}</textarea>
                                 </div><br>
                                 2. Why do you want to crowdfund ?
@@ -465,15 +465,15 @@
                                 </div><br>
                                 3. Have you crowdfunded before ?
                                 <div class="question-ans form-group">
-                                    <p><input type="radio" name="ans3" class="ans3 form-control" value="yes" <g:if test="${qA && qA.ans3 && qA.ans3 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
-                                    <input type="radio" name="ans3" class="ans3 form-control" value="no" <g:if test="${qA && qA.ans3 && qA.ans3 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
+                                    <p><input type="radio" name="ans3" class="ans3" value="yes" <g:if test="${qA && qA.ans3 && qA.ans3 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
+                                    <input type="radio" name="ans3" class="ans3" value="no" <g:if test="${qA && qA.ans3 && qA.ans3 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
                                     <textarea class="ansText ansText3 form-control <g:if test="${ans3val}">display-block-text3</g:if><g:else>display-none-text3</g:else>">${ans3val}</textarea>
                                 </div><br>
                                 4. If you don't recieve 100% goal what will you do.
                                 <div class="question-ans form-group">
-                                    <p><input type="radio" name="ans4" class="ans4 form-control extend-deadline" value="extend-deadline" <g:if test="${qA && qA.ans4 && qA.ans4 == 'extend-deadline'}">checked="checked"</g:if>>&nbsp;I would extend my deadline.</p>
-                                    <p><input type="radio" name="ans4" class="ans4 form-control personally-raising" value="personally-raising" <g:if test="${qA && qA.ans4 && qA.ans4 == 'personally-raising'}">checked="checked"</g:if>>&nbsp;I will personally start walking towards cause using raised funds.</p>
-                                    <p><input type="radio" name="ans4" class="ans4 form-control contact-admin" value="contact-admin" <g:if test="${qA && qA.ans4 && qA.ans4 == 'contact-admin'}">checked="checked"</g:if>>&nbsp;I will contact crowdera admin.</p>
+                                    <p><input type="radio" name="ans4" class="ans4 extend-deadline" value="extend-deadline" <g:if test="${qA && qA.ans4 && qA.ans4 == 'extend-deadline'}">checked="checked"</g:if>>&nbsp;I would extend my deadline.</p>
+                                    <p><input type="radio" name="ans4" class="ans4 personally-raising" value="personally-raising" <g:if test="${qA && qA.ans4 && qA.ans4 == 'personally-raising'}">checked="checked"</g:if>>&nbsp;I will personally start walking towards cause using raised funds.</p>
+                                    <p><input type="radio" name="ans4" class="ans4 contact-admin" value="contact-admin" <g:if test="${qA && qA.ans4 && qA.ans4 == 'contact-admin'}">checked="checked"</g:if>>&nbsp;I will contact crowdera admin.</p>
                                 </div>
                             </div>
                         </div>
@@ -482,9 +482,9 @@
                     <div class="col-sm-12">
                         <div class="cr-spend-matrix">
                              <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">3 reasons to fund</span></label>
-                             <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
+                             <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide cr-reasons-guide"></label>
                         </div>
-                        <div class="panel panel-body cr-panel-body-spend-matrix">
+                        <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-body">
                              <p class="reasons-p form-group">1. <input type="text" name="reason1" class="reasons reason1 form-control" value="${r1}"></p>
                              <p class="reasons-p form-group">2. <input type="text" name="reason2" class="reasons reason2 form-control" value="${r2}"></p>
                              <p class="reasons-p form-group">3. <input type="text" name="reason3" class="reasons reason3 form-control" value="${r3}"></p>
@@ -496,8 +496,8 @@
                              <label class="col-md-1 col-sm-2 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font"># Tags</span></label>
                              <label class="col-md-11 col-sm-10 hidden-xs cr-panel-spend-matrix-guide"></label>
                         </div>
-                        <div class="panel panel-body cr-panel-body-spend-matrix form-group">
-                            <textarea name="hashtags" class="hashtags ansText form-control">${project.hashtags}</textarea>
+                        <div class="panel panel-body cr-panel-body-spend-matrix form-group cr-panel-body">
+                            <textarea name="hashtags" class="hashtags form-control">${project.hashtags}</textarea>
                         </div>
                     </div>
                </g:if>

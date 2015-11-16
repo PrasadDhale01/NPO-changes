@@ -468,3 +468,19 @@ div.validate-show-div .show-description {
 #validateChecklistmsg {
 	   display: none;
 }
+
+#invitepartner {
+	   max-width: 500px;
+}
+#partner-container {
+	   margin-bottom: 20px;
+}
+
+.invitepartner {
+	   margin-bottom: 20px;
+}
+.partner-tile {
+    width: 182px;
+    margin-left: auto;
+    margin-right: auto;
+}

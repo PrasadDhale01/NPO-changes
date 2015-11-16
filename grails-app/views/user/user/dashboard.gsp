@@ -137,7 +137,7 @@
                     <g:else>
                         <div id="userAvatarUploadIcon">
                             <a id="useravatar">
-                                <img class="dummyprofileimage" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg">
+                                <img class="dummyprofileimage" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg" alt="' '">
                             </a>
                             <div class="defaultprofileimage">
                                 <img class="plus-icon-over" src="https://s3.amazonaws.com/crowdera/assets/plus-icon-over.png" alt="avatar">

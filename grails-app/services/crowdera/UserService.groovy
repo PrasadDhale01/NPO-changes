@@ -29,6 +29,7 @@ class UserService {
     def mandrillService
     def grailsApplication
 	def contributionService
+    def projectService
 
     def getNumberOfUsers() {
         return User.count()
@@ -979,6 +980,20 @@ class UserService {
     
     def getCurrencyById() {
         return Currency.get(1)
+    }
+    
+    def setUserObject(def params) {
+        User user = new User(params)
+        user.confirmCode = UUID.randomUUID().toString()
+        user.enabled = false
+        user.confirmed = false
+        user.password = projectService.getAlphaNumbericRandomUrl()
+        user.username = params.email
+        user.save();
+    }
+    
+    def getPartnerByConfirmCode(def id) {
+        return Partner.findByConfirmCode(id);
     }
     
     @Transactional

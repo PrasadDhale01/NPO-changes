@@ -420,4 +420,43 @@ class UserController {
             render(template: "/user/user/grid", model: model, currentEnv: currentEnv)
         }
     }
+    
+    def managePartner() {
+        List partners = Partner.list()
+        render view:'/user/partner/index', model:[partners: partners]
+    }
+    
+    def addpartner() {
+        User user = userService.getUserByUsername()
+        Partner partner = new Partner()
+        if (!user) {
+            user = userService.setUserObject(params)
+        }
+        partner.user = user
+        if (partner.save()) {
+            redirect action:'managePartner'
+        } else {
+            render(view: 'error', model: [message: 'Error occured while inviting a partner. Please try again.'])
+        }
+    }
+    
+    def confirmPartner(String id) {
+        Partner partner = userService.getPartnerByConfirmCode(id)
+
+        if (partner) {
+            if (partner.enabled) {
+                render(view: 'success', model: [message: 'Your account is successfully confirmed. It seems like you were already confirmed.'])
+
+            } else {
+                partner.enabled = true
+                if (partner.save()) {
+                    render(view: 'success', model: [message: 'Your account is successfully activated.'])
+                } else {
+                    render(view: 'error', model: [message: 'Problem activating account. Please contact the administrator.'])
+                }
+            }
+        } else {
+            render(view: 'error', model: [message: 'Problem activating account. Please check your activation link.'])
+        }
+    }
 }

@@ -37,68 +37,53 @@
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <g:hiddenField name="shareUrl" id="shareUrl" value="${shareUrl}"/>
     <g:hiddenField name="embedTileUrl" id="embedTileUrl" value="${embedTileUrl}"/>
-    <div class="col-sm-12 social sharing-icon-alignment show-share-border-line">
-<%--        <div class="shared pull-left">--%>
-<%--            <span class="TW-show_share-text-margin"><label>SHARE:</label></span>--%>
-<%--        </div>--%>
-        <g:if test="${isPreview}">
-<%--        <a class="fb-like pull-left social fbShareForSmallDevices show-icons">--%>
-<%--            <img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">--%>
-<%--        </a>--%>
-<%--        <a class="fb-like pull-left fbShareForLargeDevices show-icons">--%>
-<%--            <img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">--%>
-<%--        </a>--%>
-        <a class="share-mail pull-left show-icons show-email-hover">
-            <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" class="show-email" alt="Mail Share">
-        </a>
-        <a class="twitter-share pull-left show-icons">
-            <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
-        </a>
-        <a class="pull-left show-icons">
-            <img src="//s3.amazonaws.com/crowdera/assets/show-like-gray.png" class="show-like" alt="campaign-supporter">
-        </a>
-        <a class="social share-linkedin pull-left show-icons" target="_blank" id="share-linkedin">
-            <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
-        </a>
-        <a class="social google-plus-share pull-left show-icons" id="googlePlusShare">
-            <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
-        </a>
-        <span class="pull-left show-icons"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></span>
-        <span class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color"></span>
+    <div class="col-sm-12 social sharing-icon-alignment <g:if test="${isvalidateShow}">validate-share-border</g:if><g:else>show-share-border-line</g:else> hidden-xs">
+
+        <g:if test="${isPreview || isvalidateShow}">
+            <a class="share-mail pull-left show-icons show-email-hover">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" class="show-email" alt="Mail Share">
+            </a>
+            <a class="twitter-share pull-left show-icons">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
+            </a>
+            <a class="pull-left show-icons">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-like-gray.png" class="show-like" alt="campaign-supporter">
+            </a>
+            <a class="social share-linkedin pull-left show-icons" target="_blank" id="share-linkedin">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
+            </a>
+            <a class="social google-plus-share pull-left show-icons" id="googlePlusShare">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
+            </a>
+            <span class="pull-left show-icons"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></span>
+            <span class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color"></span>
         </g:if>
         <g:else>
-<%--        <a target="_blank" class="fb-like pull-left social fbShareForSmallDevices show-icons" href="http://www.facebook.com/sharer/sharer.php?s=100&amp;p[url]=${fbShareUrl}">--%>
-<%--            <img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">--%>
-<%--        </a>--%>
-<%--        <a target="_blank" class="fb-like pull-left fbShareForLargeDevices show-icons" id="fbshare">--%>
-<%--            <img src="//s3.amazonaws.com/crowdera/assets/fb-share-icon.png" alt="Facebook Share">--%>
-<%--        </a>--%>
-        <a class="share-mail pull-left show-icons" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
-            <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" alt="Mail Share" class="show-email">
-        </a>
-        <a class="twitter-share pull-left show-icons" id="twitterShare" data-url="${shareUrl}" target="_blank">
-            <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
-        </a>
-        <g:link absolute="true" uri="/campaign/supporter/${project.id}/${username}" class="pull-left show-icons">
-            <img src="//s3.amazonaws.com/crowdera/assets/show-like-gray.png" class="show-like" alt="campaign-supporter" id="add-campaign-supporter">
-        </g:link>
-        <a class="social share-linkedin pull-left show-icons" href="https://www.linkedin.com/cws/share?url=${shareUrl}" target="_blank" id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-            <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
-        </a>
-        <a class="social google-plus-share pull-left show-icons" id="googlePlusShare" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
-            <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
-        </a>
-        <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left show-icons"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" class="show-embedIcon" alt="embedicon"></a>
-        <g:hiddenField name="urlShortenValue" value="${shareUrl}" id="urlShortenValue"/>
-        <div class="popoverClass">
-            <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color"></span>
-            <div id="popoverConent" class="hidden">
-                <button type="button" class="close">&times;</button>
-                <p>${shareUrl}</p>
+            <a class="share-mail pull-left show-icons" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" alt="Mail Share" class="show-email">
+            </a>
+            <a class="twitter-share pull-left show-icons" id="twitterShare" data-url="${shareUrl}" target="_blank">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
+            </a>
+            <g:link absolute="true" uri="/campaign/supporter/${project.id}/${username}" class="pull-left show-icons">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-like-gray.png" class="show-like" alt="campaign-supporter" id="add-campaign-supporter">
+            </g:link>
+            <a class="social share-linkedin pull-left show-icons" href="https://www.linkedin.com/cws/share?url=${shareUrl}" target="_blank" id="share-linkedin" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
+            </a>
+            <a class="social google-plus-share pull-left show-icons" id="googlePlusShare" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
+            </a>
+            <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left show-icons"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" class="show-embedIcon" alt="embedicon"></a>
+            <g:hiddenField name="urlShortenValue" value="${shareUrl}" id="urlShortenValue"/>
+            <div class="popoverClass">
+                <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color"></span>
+                <div id="popoverConent" class="hidden">
+                    <button type="button" class="close">&times;</button>
+                    <p>${shareUrl}</p>
+                </div>
             </div>
-        </div>
         </g:else>
-
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-12 TW-campaignstory-img-width">

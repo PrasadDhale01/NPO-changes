@@ -1,6 +1,6 @@
 <g:set var="projectService" bean="projectService"/>
 <g:set var="userService" bean="userService"/>
-<% 
+<%
     def beneficiary = project.user
 %>
 <div class="panel panel-default TW-org-panel-height">

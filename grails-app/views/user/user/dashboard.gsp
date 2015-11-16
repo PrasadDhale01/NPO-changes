@@ -1,6 +1,8 @@
 <g:set var="userService" bean="userService"/>
 <%
     def userCommunities = userService.getCommunitiesUserIn()
+    def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+    def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 %>
 <html>
 <head>
@@ -13,7 +15,20 @@
     <g:if test="${user.email == 'campaignadmin@crowdera.co'}">
         <div class="container">
             <g:hiddenField name='currentEnv' value='${environment}' id='currentEnv'/>
-            <h2>User Profile</h2>
+            <g:hiddenField name='baseUrl' value='${base_url}' id='baseUrl'/>
+            <div class="pull-right dashboard-sortByOptions" id="dashboard-sortByOptions">
+                <g:select class="selectpicker text-center" name="sortByOptions" id="sortByOptions" from="${sortByOptions}" optionKey="value" optionValue="value" value="Pending" onchange="campaignsort()"/>
+            </div>
+            <div class="pull-right dashboard-sortByOptions">
+                <g:if test="${environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'}">
+                    <g:select class="selectpicker text-center" name="countryOpts" id="countryOpts" from="${countryOpts}" optionKey="value" optionValue="value" value="India" onchange="campaignsortByCountry()"/>
+                </g:if>
+                <g:else>
+                    <g:select class="selectpicker text-center" name="countryOpts" id="countryOpts" from="${countryOpts}" optionKey="value" optionValue="value" value="USA" onchange="campaignsortByCountry()"/>
+                </g:else>
+            </div>
+            <div class="clear"></div>
+            <h2 class="text-center">Crowdera Admin</h2>
             <g:if test="${flash.user_message}">
                 <div class="alert alert-success" align="center">
                     ${flash.user_message}

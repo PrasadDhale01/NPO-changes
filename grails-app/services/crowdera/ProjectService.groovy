@@ -1326,7 +1326,7 @@ class ProjectService {
         }
         sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
         finalList =  sortedProjects.reverse() + endedProjects.reverse()
-//        return Project.findAllWhere(validated: true,inactive: false)
+        return Project.findAllWhere(validated: true,inactive: false)
 		return finalList
     }
 	
@@ -3049,6 +3049,123 @@ class ProjectService {
                     isValueChanged = true;
                 }
                 break;
+				
+            case 'ans1':
+                if (!varValue.isAllWhitespace()){
+					QA qA = QA.findByProject(project)
+                    if(qA){
+                        qA.ans1 = varValue;
+						qA.save(failOnError:true);
+                    } else {
+                        new QA(
+                           ans1 : varValue,
+                           project:project
+                        ).save(failOnError:true)
+                    }
+                    isValueChanged = true;
+                }
+                break;
+
+           case 'ans2':
+               if (!varValue.isAllWhitespace()){
+				   QA qA = QA.findByProject(project)
+                   if(qA){
+                       qA.ans2 = varValue;
+					   qA.save(failOnError:true);
+                   } else {
+                       new QA(
+                           ans2 : varValue,
+                           project:project
+                       ).save(failOnError:true)
+                   }
+                   isValueChanged = true;
+               }
+               break;
+
+            case 'ans3':
+                if (!varValue.isAllWhitespace()){
+					QA qA = QA.findByProject(project)
+                    if(qA){
+                       qA.ans3 = varValue;
+					   qA.save(failOnError:true);
+                    } else {
+                       new QA(
+                           ans3 : varValue,
+                           project:project
+                       ).save(failOnError:true)
+                    }
+                    isValueChanged = true;
+                }
+                break;
+
+		    case 'ans4':
+               QA qA = QA.findByProject(project)
+			   if(qA){
+				  qA.ans4 = varValue;
+				  qA.save(failOnError:true);
+			   } else {
+				  new QA(
+					  ans4 : varValue,
+					  project:project
+				  ).save(failOnError:true)
+			   }
+			   isValueChanged = true;
+			   break;
+			   
+               case 'reason1':
+                 if (!varValue.isAllWhitespace()){
+                    ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
+                    if (reasonToFund) {
+                        reasonToFund.reason1 = varValue;
+						reasonToFund.save(failOnError:true)
+                    } else {
+                        new ReasonsToFund(
+                            reason1 : varValue,
+                            project : project
+                        ).save(failOnError:true)
+                    }
+                    isValueChanged = true;
+                }
+                break;
+
+            case 'reason2':
+                if (!varValue.isAllWhitespace()){
+                    ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
+                    if (reasonToFund){
+                        reasonToFund.reason2 = varValue;
+						reasonToFund.save(failOnError:true)
+                    } else {
+                        new ReasonsToFund(
+                            reason2 : varValue,
+                            project : project
+                        ).save(failOnError:true)
+                    }
+                    isValueChanged = true;
+                }
+                break;
+
+            case 'reason3':
+                if (!varValue.isAllWhitespace()){
+                    ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
+                    if (reasonToFund){
+                        reasonToFund.reason3 = varValue;
+						reasonToFund.save(failOnError:true)
+                    } else {
+                        new ReasonsToFund(
+                            reason3 : varValue,
+                            project : project
+                        ).save(failOnError:true)
+                    }
+                    isValueChanged = true;
+                }
+                break;
+				
+            case 'hashtags':
+                if (!varValue.isAllWhitespace()){
+                    project.hashtags = varValue
+                    isValueChanged = true;
+                }
+                break;
 
             default :
                isValueChanged = false;
@@ -3636,6 +3753,24 @@ class ProjectService {
 	def getFundsRecieveVal(def fundsRecievedBy, def currentEnv){
 		Map reciever = (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') ? getRecipientOfFundsIndo() : getRecipientOfFunds()
 		return reciever.getAt(fundsRecievedBy)
+	}
+	
+	def getProjectReasonsToFund(Project project){
+		def reasonsToFund = ReasonsToFund.findByProject(project)
+		if (reasonsToFund){
+			return reasonsToFund
+		} else {
+		    return null
+		}
+	}
+	
+	def getProjectQA(Project project){
+		def qA = QA.findByProject(project)
+		if (qA){
+			return qA
+		} else {
+		    return null
+		}
 	}
 
     @Transactional

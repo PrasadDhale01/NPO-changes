@@ -18,6 +18,18 @@
     span.cr-label-spend-matrix{
         width:12%;
     }
+    .cr-impact-analysis{
+         width:10% !important;
+    }
+    .cr-impact-guide{
+         width:90% !important;
+    }
+    .cr-reasons-to-fund{
+         width:20% !important;
+    }
+    .cr-reasons-guide{
+         width:80% !important;
+    }
 }
 @media only screen and (min-width: 1201px) and (max-width: 1280px){
     .helpdeskpadding {

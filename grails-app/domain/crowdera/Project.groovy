@@ -11,7 +11,7 @@ class Project {
     def rewardService
 
     static belongsTo = [user: User]
-    static hasMany = [contributions: Contribution, comments: ProjectComment, rewards: Reward, imageUrl: ImageUrl, projectAdmins: ProjectAdmin,projectUpdates: ProjectUpdate, teams: Team, vanityTitle: VanityTitle, supporters: Supporter, spend:SpendMatrix, qA:QA]
+    static hasMany = [contributions: Contribution, comments: ProjectComment, rewards: Reward, imageUrl: ImageUrl, projectAdmins: ProjectAdmin,projectUpdates: ProjectUpdate, teams: Team, vanityTitle: VanityTitle, supporters: Supporter, spend:SpendMatrix]
 
     Beneficiary beneficiary
     Date created
@@ -53,8 +53,7 @@ class Project {
     String fundsRecievedBy
     String customVanityUrl
     String hashtags
-	String reasonToFund
-
+	
 	boolean payuStatus=false
     boolean validated = false
     boolean inactive = false
@@ -68,7 +67,6 @@ class Project {
         description type: 'text'
         story type: 'text'
     }
-
 
     static constraints = {
         title (nullable: true)
@@ -91,7 +89,6 @@ class Project {
         usedFor(nullable:true)
         fundsRecievedBy(nullable:true)
         customVanityUrl(nullable:true)
-		reasonToFund(nullable:true)
 		hashtags(nullable:true)
     }
 

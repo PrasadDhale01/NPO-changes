@@ -449,7 +449,7 @@ input.editsweb-margin-mobile {
 }
 
 .ansText{
-    width:50%;
+    width:50% !important;
     margin-top: 5px;
 }
 
@@ -458,10 +458,31 @@ input.editsweb-margin-mobile {
     padding-left:20px;
 }
 
-.ansText1{
+.cr-panel-body{
+    margin-right: 0 !important;
+}
+
+.reasons {
+    display: inline !important;
+    width: 90%;
+}
+
+.reasons-p{
+    padding-left: 15px;
+}
+
+.display-block-text1{
+    display:block;
+}
+
+.display-none-text1{
     display:none;
 }
 
-.ansText3{
+.display-block-text3{
+    display:block;
+}
+
+.display-none-text3{
     display:none;
 }

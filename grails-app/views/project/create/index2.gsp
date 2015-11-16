@@ -13,6 +13,17 @@
         spendLastMatrix = spends.last()
         spendLastNumAvail = spendLastMatrix.numberAvailable
     }
+    String ans1val, ans3val, ans2val, r1, r2, r3
+    if (qA){
+        ans1val = (qA.ans1 && qA.ans1 != 'NO')? qA.ans1 : null;
+        ans3val = (qA.ans3 && qA.ans3 != 'NO')? qA.ans3 : null;
+        ans2val = (qA.ans2 && qA.ans2 != 'NO')? qA.ans2 : null;
+    }
+    if(reasonsToFund){
+        r1 = (reasonsToFund.reason1) ? reasonsToFund.reason1 : null;
+        r2 = (reasonsToFund.reason2) ? reasonsToFund.reason2 : null;
+        r3 = (reasonsToFund.reason3) ? reasonsToFund.reason3 : null;
+    }
 %>
 <html>
 <head>
@@ -269,7 +280,7 @@
                                 <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount1" name="spendAmount1">
                             </div>
                             <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
-                            <div class="col-sm-4 col-xs-7 col-input-for form-group">
+                            <div class="col-sm-5 col-xs-7 col-input-for form-group">
                             <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
                             </div>&nbsp;&nbsp;
                             <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
@@ -294,32 +305,32 @@
             
             <div class="col-sm-12">
                 <div class="cr-spend-matrix">
-                    <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Q & A</span></label>
-                    <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
+                    <label class="col-md-1 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Q & A</span></label>
+                    <label class="col-md-11 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
                 </div>
                 <div class="panel panel-body cr-panel-body-spend-matrix">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 form-group">
                         1. Did you try other fundraising methods ?
                         <div class="question-ans">
-                            <p><input type="radio" name="ans1" class="ans1" value="yes">&nbsp;YES&nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="ans1" class="ans1" value="no">&nbsp;NO</p>
-                            <textarea class="ansText ansText1" placeholder=""></textarea>
+                            <p><input type="radio" name="ans1" class="ans1 yes" value="yes" <g:if test="${qA && qA.ans1 && qA.ans1 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="ans1" class="ans1 no" value="no" <g:if test="${qA && qA.ans1 && qA.ans1 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
+                            <textarea class="ansText ansText1 form-control <g:if test="${ans1val}">display-block-text1</g:if><g:else>display-none-text1</g:else>" placeholder="" name="ansText1">${ans1val}</textarea>
                         </div><br>
                         2. Why do you want to crowdfund ?
                         <div class="question-ans">
-                            <textarea class="ansText ansText2" placeholder=""></textarea>
+                            <textarea class="ansText ansText2 form-control" name="ansText2" placeholder="">${ans2val}</textarea>
                         </div><br>
                         3. Have you crowdfunded before ?
                         <div class="question-ans">
-                            <input type="radio" name="ans3" class="ans3" value="yes">&nbsp;YES&nbsp;&nbsp;&nbsp;
-                            <input type="radio" name="ans3" class="ans3" value="no">&nbsp;NO<br>
-                            <textarea class="ansText ansText3" placeholder=""></textarea>
+                            <p><input type="radio" name="ans3" class="ans3 yes" value="yes" <g:if test="${qA && qA.ans3 && qA.ans3 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
+                            <input type="radio" name="ans3" class="ans3 no" value="no" <g:if test="${qA && qA.ans3 && qA.ans3 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
+                            <textarea class="ansText ansText3 form-control <g:if test="${ans3val}">display-block-text3</g:if><g:else>display-none-text3</g:else>" name="ansText3" placeholder="">${ans3val}</textarea>
                         </div><br>
                         4. If you don't recieve 100% goal what will you do.
                         <div class="question-ans">
-                            <p><input type="radio" name="ans4" class="ans4" value="extend-deadline">&nbsp;I would extend my deadline.</p>
-                            <p><input type="radio" name="ans4" class="ans4" value="personel-raising">&nbsp;I will personally start walking towards cause using raised funds.</p>
-                            <p><input type="radio" name="ans4" class="ans4" value="contact-admin">&nbsp;I will contact crowdera admin.</p>
+                            <p><input type="radio" name="ans4" class="ans4 extend-deadline" value="extend-deadline" <g:if test="${qA && qA.ans4 && qA.ans4 == 'extend-deadline'}">checked="checked"</g:if>>&nbsp;I would extend my deadline.</p>
+                            <p><input type="radio" name="ans4" class="ans4 personally-raising" value="personally-raising" <g:if test="${qA && qA.ans4 && qA.ans4 == 'personally-raising'}">checked="checked"</g:if>>&nbsp;I will personally start walking towards cause using raised funds.</p>
+                            <p><input type="radio" name="ans4" class="ans4 contact-admin" value="contact-admin" <g:if test="${qA && qA.ans4 && qA.ans4 == 'contact-admin'}">checked="checked"</g:if>>&nbsp;I will contact crowdera admin.</p>
                         </div>
                     </div>
                 </div>
@@ -327,40 +338,23 @@
             
             <div class="col-sm-12">
                 <div class="cr-spend-matrix">
-                    <label class="col-sm-1 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Impact</span></label>
-                    <label class="col-sm-11 hidden-xs cr-panel-spend-matrix-guide"></label>
+                    <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">3 reasons to fund</span></label>
+                    <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide cr-reasons-guide"></label>
                 </div>
-                <div class="panel panel-body cr-panel-body-spend-matrix">
-                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                        <span class="fa fa-inr cr-currency"></span>
-                    </g:if>
-                    <g:else>
-                        <span class="fa fa-usd cr-currency"></span>
-                    </g:else>
-                    <input type="text" name="impact-amt" class="form-control form-control-no-border-amt form-control-input-width"> &nbsp;
-                    would <span class="impact-text">change a life</span>
+                <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-body">
+                    <p class="reasons-p form-group">1. <input type="text" name="reason1" class="reason1 reasons form-control" value="${r1}"></p>
+                    <p class="reasons-p form-group">2. <input type="text" name="reason2" class="reason2 reasons form-control" value="${r2}"></p>
+                    <p class="reasons-p form-group">3. <input type="text" name="reason3" class="reason3 reasons form-control" value="${r3}"></p>
                 </div>
             </div>
             
             <div class="col-sm-12">
                 <div class="cr-spend-matrix">
-                    <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">3 reasons to fund</span></label>
-                    <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
+                     <label class="col-md-1 col-sm-2 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font"># Tags</span></label>
+                     <label class="col-md-11 col-sm-10 hidden-xs cr-panel-spend-matrix-guide"></label>
                 </div>
-                <div class="panel panel-body cr-panel-body-spend-matrix">
-                    <input type="text" name="reason1" class="reason1">
-                    <input type="text" name="reason2" class="reason2">
-                    <input type="text" name="reason3" class="reason3">
-                </div>
-            </div>
-            
-            <div class="col-sm-12">
-                <div class="cr-spend-matrix">
-                     <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font"># tags</span></label>
-                     <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
-                </div>
-                <div class="panel panel-body cr-panel-body-spend-matrix">
-                    <textarea name="hashtags" class="hashtags ansText">#${project.category}, #${project.usedFor}, #${project.fundRaisedFor}, #{project.beneficiary.city}, #${project.country}</textarea>
+                <div class="panel panel-body cr-panel-body-spend-matrix form-group cr-panel-body">
+                    <textarea name="hashtags" class="hashtags form-control">${project.hashtags}</textarea>
                 </div>
             </div>
             </g:if>

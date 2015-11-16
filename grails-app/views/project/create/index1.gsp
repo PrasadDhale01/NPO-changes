@@ -131,7 +131,7 @@
 	                    </div>
 	                </div>
 	                <div class="col-lg-6 col-md-6 col-sm-6">
-	                    <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1">My Campaign web Address</label>
+	                    <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1">My Campaign Web-address</label>
 	                    <g:if test="${currentEnv == 'development' || currentEnv == 'testIndia' }">
 		                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 cr1-mobile-indx1">
 		                        <div class="cr1-vanityUrl-indx1">
@@ -142,7 +142,7 @@
 		                                crowdera.co/
 		                            </g:else>
 		                        </div>
-	                            <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co" name="customVanityUrl" id="customVanityUrl" placeholder="YourWebsiteUrl">
+	                            <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co" name="customVanityUrl" id="customVanityUrl" placeholder="Your-Website-Url">
 	                        </div>
                         </g:if>
 	                </div>

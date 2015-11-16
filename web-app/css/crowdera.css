@@ -7635,6 +7635,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    .cr-impact-analysis{
+         width:15% !important;
+    }
+    .cr-impact-guide{
+         width:85% !important;
+    }
+    .cr-reasons-to-fund{
+         width:30% !important;
+    }
+    .cr-reasons-guide{
+         width:70% !important;
+    }
     div.edit-tabsMobile-margin {
         margin-left: -14px !important;
         margin-right: -19px !important;
@@ -8830,6 +8842,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	   .cr-reasons-to-fund{
+         width:20% !important;
+    }
+    .cr-reasons-guide{
+         width:80% !important;
+    }
+    .cr-impact-analysis{
+         width:10% !important;
+    }
+    .cr-impact-guide{
+         width:90% !important;
+    }
     div.edit-tabsMobile-margin {
         margin-left: -14px !important;
         margin-right: -19px !important;

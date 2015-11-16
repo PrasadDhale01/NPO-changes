@@ -492,7 +492,14 @@ class ProjectController {
             project.draft = true;
 		    project.beneficiary = beneficiary;
 		    project.beneficiary.email = user.email;
-
+            if (project.usedFor == 'SOCIAL_NEEDS'){
+				project.hashtags = '#SOCIAL-INNOVATION'
+			} else if (project.usedFor == 'PERSONAL_NEEDS'){
+                project.hashtags = '#PERSONAL-NEEDS'
+			} else {
+                project.hashtags = '#'+project.usedFor
+			}
+			
             def currentEnv = Environment.current.getName()
             if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
                 project.payuStatus = true
@@ -500,6 +507,8 @@ class ProjectController {
             } else {
                 project.fundsRecievedBy = "NON-PROFITS"
             }
+			
+			project.hashtags = project.hashtags + ', #' + project.fundsRecievedBy
 			
 		    project.usedFor = params.usedFor;
 		
@@ -560,11 +569,13 @@ class ProjectController {
                 }
 				def recipientOfFund = (project.fundsRecievedBy) ? projectService.getFundsRecieveVal(project.fundsRecievedBy, currentEnv) : null
 				def pieList = projectService.getPieList(project);
+				def reasonsToFund = projectService.getProjectReasonsToFund(project)
+				def qA = projectService.getProjectQA(project)
                 render(view: 'create/index2',
                 model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
                            FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, user:user,campaignEndDate:campaignEndDate, pieList:pieList,
                            vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
-						   recipientOfFund:recipientOfFund])
+                           recipientOfFund:recipientOfFund, reasonsToFund:reasonsToFund, qA:qA])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
@@ -682,12 +693,14 @@ class ProjectController {
 		}
 		if (project) {
 			def beneficiary = project.beneficiary
+            def reasonsToFund = projectService.getProjectReasonsToFund(project)
+            def qA = projectService.getProjectQA(project)
 			render (view: 'edit/index',
 			model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,
                     'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit, 
                     currentEnv: currentEnv,beneficiary:beneficiary,inDays:inDays,
-                    FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,
-                    project:project, user:user,campaignEndDate:campaignEndDate,
+                    FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,qA:qA,
+                    project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
                     vanityTitle: vanityTitle, vanityUsername:vanityUsername,recipientOfFund:recipientOfFund,
                     email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
 		} else {

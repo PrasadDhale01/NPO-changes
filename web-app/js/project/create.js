@@ -420,17 +420,21 @@ $(function() {
             required: true
         });
         
-        $('[name="ansText1"]').rules( "add", {
+        if($('[name="ansText1"]').length > 0){
+        	$('[name="ansText1"]').rules( "add", {
+                required: true
+            });
+        }
+        
+    	$('[name="ansText2"]').rules( "add", {
             required: true
         });
         
-        $('[name="ansText2"]').rules( "add", {
-            required: true
-        });
-        
-        $('[name="ansText3"]').rules( "add", {
-            required: true
-        });
+    	if($('[name="ansText2"]').length > 0){
+    		$('[name="ansText3"]').rules( "add", {
+                required: true
+            });
+    	}
         
         $('[name="ans3"]').rules( "add", {
             required: true
@@ -646,23 +650,12 @@ $(function() {
             required: true
         });
 
-        $( '[name="days"]' ).rules( "add", {
-            required: true
-        });
-        
         $('[name="ans1"]').rules( "add", {
             required: true
         });
         
-        $('[name="ansText1"]').rules( "add", {
-            required: true
-        });
         
         $('[name="ansText2"]').rules( "add", {
-            required: true
-        });
-        
-        $('[name="ansText3"]').rules( "add", {
             required: true
         });
         
@@ -686,15 +679,6 @@ $(function() {
             required: true
         });
         
-        $('[name="impact-amt"]').rules( "add", {
-            required: true,
-            number:true,
-            messages:{
-            	required:'Required',
-            	number:'Digits only'
-            }
-        });
-
         $('.rewardNumberAvailable').each(function () {
             $(this).rules("add", {
                 required: true,
@@ -767,6 +751,27 @@ $(function() {
                     minlength : 5
                 });
            	});
+
+           	if ($('[name="ansText1"]').length > 0){
+           		$('[name="ansText1"]').rules( "add", {
+                    required: true
+                });
+           	}
+
+           	if($('[name="ansText3"]').length > 0){
+           		$('[name="ansText3"]').rules( "add", {
+                    required: true
+                });
+           	}
+
+            $('[name="impact-amt"]').rules( "add", {
+                required: true,
+                number:true,
+                messages:{
+                	required:'Required',
+                	number:'Digits only'
+                }
+            });
         }
         
     	if (validator.form()) {
@@ -854,6 +859,7 @@ $(function() {
     		$('.ansText1').show();
     	} else {
     		$('.ansText1').hide();
+    		autoSave('ans1', 'NO');
     	}
     });
     
@@ -862,9 +868,35 @@ $(function() {
     		$('.ansText3').show();
     	} else {
     		$('.ansText3').hide();
+    		autoSave('ans3', 'NO');
     	}
     });
-     
+    
+    $('.ans4').change(function(){
+    	var ans4 = $(this).val();
+        autoSave('ans4', ans4);
+    });
+    
+    $('.reason1').blur(function(){
+    	var reason1 = $(this).val();
+        autoSave('reason1', reason1);
+    });
+    
+    $('.reason2').blur(function(){
+    	var reason2 = $(this).val();
+        autoSave('reason2', reason2);
+    });
+    
+    $('.reason3').blur(function(){
+    	var reason3 = $(this).val();
+        autoSave('reason3', reason3);
+    });
+
+    $('.hashtags').blur(function(){
+    	var hashtags = $(this).val();
+        autoSave('hashtags', hashtags);
+    });
+
     function renameAndemptyRewardFields(){
     	$('#addNewRewards').find('.rewardsTemplate').attr('id', 'rewardTemplate1');
     	$('#addNewRewards').find('.rewardsTemplate').attr('value', '1');
@@ -2074,12 +2106,40 @@ $(function() {
 //        	$('.impact-text').innerhtml('change a life');
 //    	    break;
 //        }
-        autoSave('category', selectedCategory);
+          var hashtags = $('.hashtags').val();
+          var list = hashtags.split(',');
+          if (list.length > 2){
+        	  list[2] = ' #'+selectedCategory
+        	  $('.hashtags').val(list);
+          } else {
+        	  $('.hashtags').val(hashtags + ', #'+selectedCategory);
+          }
+        autoSave('hashtags', $('.hashtags').val());
+        var delay = 50; //delayed code to prevent error, time in milliseconds
+        setTimeout(function() {
+        	autoSave('category', selectedCategory);
+        }, delay);
     });
    
     $('#country').change(function(){
         var selectedCountry = $(this).val();
-        autoSave('country', selectedCountry);
+        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+        	var hashtags = $('.hashtags').val();
+            var list = hashtags.split(',');
+            if (list.length > 4){
+          	  list[4] = ' #'+selectedCountry
+          	  $('.hashtags').val(list);
+            } else {
+          	  $('.hashtags').val(hashtags + ', #'+selectedCountry);
+            }
+            autoSave('hashtags', $('.hashtags').val());
+            var delay = 50; //delayed code to prevent error, time in milliseconds
+            setTimeout(function() {
+            	autoSave('country', selectedCountry);
+            }, delay);
+        } else {
+        	autoSave('country', selectedCountry);
+        }
     });
     
     $('.recipient').change(function(){
@@ -2246,7 +2306,21 @@ $(function() {
     
     $('.city').blur(function (){
     	var city = $(this).val();
-    	autoSave('city', city);
+    	if (city != ''){
+    	var hashtags = $('.hashtags').val();
+        var list = hashtags.split(',');
+        if (list.length > 3){
+      	  list[3] = ' #'+city
+      	  $('.hashtags').val(list);
+        } else {
+      	  $('.hashtags').val(hashtags + ', #'+city);
+        }
+        autoSave('hashtags', $('.hashtags').val());
+        var delay = 50; //delayed code to prevent error, time in milliseconds
+        setTimeout(function() {
+        	autoSave('city', city);
+        }, delay);
+    	}
     });
     
     $('#impact1').click(function(){
@@ -2263,6 +2337,21 @@ $(function() {
 
     $('#personal1').click(function(){
     	autoSave('usedFor', 'PERSONAL_NEEDS');
+    });
+    
+    $('.ansText1').blur(function(){
+    	var ansText1 = $(this).val();
+    	autoSave('ans1', ansText1);
+    });
+    
+    $('.ansText2').blur(function(){
+    	var ansText2 = $(this).val();
+    	autoSave('ans2', ansText2);
+    });
+    
+    $('.ansText3').blur(function(){
+    	var ansText3 = $(this).val();
+    	autoSave('ans3', ansText3);
     });
     
     $('#deleteVideo').click(function(){

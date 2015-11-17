@@ -15,8 +15,8 @@ class ReasonsToFund {
 	static belongsTo = [project:Project]
 
     static constraints = {
-		reason1 nullable:true
-		reason2 nullable:true
-		reason3 nullable:true
+        reason1 nullable:true
+        reason2 nullable:true
+        reason3 nullable:true
     }
 }

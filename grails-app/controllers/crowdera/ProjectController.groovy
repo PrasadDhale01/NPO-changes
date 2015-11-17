@@ -226,9 +226,9 @@ class ProjectController {
 			def projectComments = projectService.getProjectComments(project)
 			def teamComments = projectService.getTeamComments(currentTeam)
 			def offset = params.int('offset') ?: 0
-            
+
             def multiplier = projectService.getCurrencyConverter();
-			def pieList = projectService.getPieList(project);
+            def pieList = projectService.getPieList(project);
 
 			render (view: 'show/index',
 			model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
@@ -454,8 +454,10 @@ class ProjectController {
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 		
         def amount = params.amount ? params.amount : params.amount1;
-		 
-        def reqUrl = base_url+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}"
+		def currentdays = params.days ? params.days : params.days1
+		def days = Integer.parseInt(currentdays)
+		
+        def reqUrl = base_url+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}&days=${days}&customVanityUrl=${params.customVanityUrl}"
         def user = userService.getCurrentUser()
         if (!user) {
             Cookie cookie = new Cookie("requestUrl", reqUrl)
@@ -491,15 +493,15 @@ class ProjectController {
 		    def user = userService.getCurrentUser()
             project.draft = true;
 		    project.beneficiary = beneficiary;
-		    project.beneficiary.email = user.email;
+            project.beneficiary.email = user.email;
             if (project.usedFor == 'SOCIAL_NEEDS'){
-				project.hashtags = '#SOCIAL-INNOVATION'
-			} else if (project.usedFor == 'PERSONAL_NEEDS'){
+                project.hashtags = '#SOCIAL-INNOVATION'
+            } else if (project.usedFor == 'PERSONAL_NEEDS'){
                 project.hashtags = '#PERSONAL-NEEDS'
-			} else {
+            } else {
                 project.hashtags = '#'+project.usedFor
-			}
-			
+            }
+
             def currentEnv = Environment.current.getName()
             if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
                 project.payuStatus = true
@@ -507,8 +509,8 @@ class ProjectController {
             } else {
                 project.fundsRecievedBy = "NON-PROFITS"
             }
-			
-			project.hashtags = project.hashtags + ', #' + project.fundsRecievedBy
+
+            project.hashtags = project.hashtags + ', #' + project.fundsRecievedBy
 			
 		    project.usedFor = params.usedFor;
 		
@@ -533,7 +535,7 @@ class ProjectController {
             def user = project.user
             def currentUser = userService.getCurrentUser()
             def spends = project.spend
-			spends = spends.sort{it.numberAvailable}
+            spends = spends.sort{it.numberAvailable}
             if (user == currentUser) {
 				def currentEnv = Environment.current.getName()
 				def categoryOptions 
@@ -567,15 +569,15 @@ class ProjectController {
                 } else {
                     payOpts = projectService.getPayment()
                 }
-				def recipientOfFund = (project.fundsRecievedBy) ? projectService.getFundsRecieveVal(project.fundsRecievedBy, currentEnv) : null
-				def pieList = projectService.getPieList(project);
-				def reasonsToFund = projectService.getProjectReasonsToFund(project)
-				def qA = projectService.getProjectQA(project)
+                def recipientOfFund = (project.fundsRecievedBy) ? projectService.getFundsRecieveVal(project.fundsRecievedBy, currentEnv) : null
+                def pieList = projectService.getPieList(project);
+                def reasonsToFund = projectService.getProjectReasonsToFund(project)
+                def qA = projectService.getProjectQA(project)
                 render(view: 'create/index2',
                 model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
                            FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, user:user,campaignEndDate:campaignEndDate, pieList:pieList,
                            vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
-                           recipientOfFund:recipientOfFund, reasonsToFund:reasonsToFund, qA:qA])
+                           recipientOfFund:recipientOfFund, reasonsToFund:reasonsToFund, qA:qA, spends:spends])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
@@ -696,7 +698,7 @@ class ProjectController {
             def reasonsToFund = projectService.getProjectReasonsToFund(project)
             def qA = projectService.getProjectQA(project)
 			render (view: 'edit/index',
-			model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,
+			model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
                     'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit, 
                     currentEnv: currentEnv,beneficiary:beneficiary,inDays:inDays,
                     FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,qA:qA,
@@ -1955,11 +1957,11 @@ class ProjectController {
         render(view:'/project/manageproject/embedTile', model:[project:project, currentFundraiser:currentFundraiser])
     }
 	
-	def saveSpendMatrix(){
-		projectService.getSpendMatrixSaved(params)
-		render''
-	}
-	
+    def saveSpendMatrix(){
+        projectService.getSpendMatrixSaved(params)
+        render''
+    }
+
     def deleteSpendMatrix(){
         projectService.getSpendMatrixDeleted(params)
         render''

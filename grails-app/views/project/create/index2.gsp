@@ -74,10 +74,10 @@
                     <div class="col-sm-3 cr2-width-dropdown2">
                         <div class="cr-dropdown-alignment font-list">
                             <g:if test="${project.beneficiary.country}">
-                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="${project.beneficiary.country}" optionKey="key" optionValue="value" />
+                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="${project.beneficiary.country}" optionKey="value" optionValue="value" />
                             </g:if>
                             <g:else>
-                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="#" optionKey="key" optionValue="value" noSelection="['null':'Country']"/>
+                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="#" optionKey="value" optionValue="value" noSelection="['null':'Country']"/>
                             </g:else>
                         </div>
                     </div>
@@ -109,18 +109,18 @@
                         <div class="cr-dropdown-alignment font-list">
                             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                 <g:if test="${recipientOfFund}">
-                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonIndprofit}" value="#" optionKey="key" optionValue="value"/>
+                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonIndprofit}" value="${recipientOfFund}" optionKey="key" optionValue="value"/>
                                 </g:if>
                                 <g:else>
-                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonIndprofit}" optionKey="key" optionValue="value" noSelection="['null':'Recipient of fund']"/>
+                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonIndprofit}" optionKey="key" optionValue="value" noSelection="['null':'Recipient of fund']"/>
                                 </g:else>
                             </g:if>
                             <g:else>
                                 <g:if test="${recipientOfFund}">
-                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonProfit}" value="#" optionKey="key" optionValue="value"/>
+                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonProfit}" value="${recipientOfFund}" optionKey="key" optionValue="value"/>
                                 </g:if>
                                 <g:else>
-                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" name="#" from="${nonProfit}" optionKey="key" optionValue="value" noSelection="['null':'Recipient of fund']"/>
+                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonProfit}" optionKey="key" optionValue="value" noSelection="['null':'Recipient of fund']"/>
                                 </g:else>
                             </g:else>
                         </div>
@@ -309,25 +309,25 @@
                     <label class="col-md-11 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
                 </div>
                 <div class="panel panel-body cr-panel-body-spend-matrix">
-                    <div class="col-sm-12 form-group">
+                    <div class="col-sm-12">
                         1. Did you try other fundraising methods ?
-                        <div class="question-ans">
+                        <div class="question-ans question-ans-1 form-group">
                             <p><input type="radio" name="ans1" class="ans1 yes" value="yes" <g:if test="${qA && qA.ans1 && qA.ans1 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="ans1" class="ans1 no" value="no" <g:if test="${qA && qA.ans1 && qA.ans1 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
                             <textarea class="ansText ansText1 form-control <g:if test="${ans1val}">display-block-text1</g:if><g:else>display-none-text1</g:else>" placeholder="" name="ansText1">${ans1val}</textarea>
                         </div><br>
                         2. Why do you want to crowdfund ?
-                        <div class="question-ans">
+                        <div class="question-ans form-group">
                             <textarea class="ansText ansText2 form-control" name="ansText2" placeholder="">${ans2val}</textarea>
                         </div><br>
                         3. Have you crowdfunded before ?
-                        <div class="question-ans">
+                        <div class="question-ans question-ans-3 form-group">
                             <p><input type="radio" name="ans3" class="ans3 yes" value="yes" <g:if test="${qA && qA.ans3 && qA.ans3 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
                             <input type="radio" name="ans3" class="ans3 no" value="no" <g:if test="${qA && qA.ans3 && qA.ans3 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
                             <textarea class="ansText ansText3 form-control <g:if test="${ans3val}">display-block-text3</g:if><g:else>display-none-text3</g:else>" name="ansText3" placeholder="">${ans3val}</textarea>
                         </div><br>
                         4. If you don't recieve 100% goal what will you do.
-                        <div class="question-ans">
+                        <div class="question-ans form-group">
                             <p><input type="radio" name="ans4" class="ans4 extend-deadline" value="extend-deadline" <g:if test="${qA && qA.ans4 && qA.ans4 == 'extend-deadline'}">checked="checked"</g:if>>&nbsp;I would extend my deadline.</p>
                             <p><input type="radio" name="ans4" class="ans4 personally-raising" value="personally-raising" <g:if test="${qA && qA.ans4 && qA.ans4 == 'personally-raising'}">checked="checked"</g:if>>&nbsp;I will personally start walking towards cause using raised funds.</p>
                             <p><input type="radio" name="ans4" class="ans4 contact-admin" value="contact-admin" <g:if test="${qA && qA.ans4 && qA.ans4 == 'contact-admin'}">checked="checked"</g:if>>&nbsp;I will contact crowdera admin.</p>

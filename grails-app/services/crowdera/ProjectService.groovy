@@ -906,35 +906,35 @@ class ProjectService {
         ]
         return country
     }
-	
-	def getRecipientOfFunds() {
-	    def recipientOfFunds = [
+
+    def getRecipientOfFunds() {
+        def recipientOfFunds = [
             'PERSON':'Person',
-			'NON-PROFIT':'Non-Profit',
-			'NGO':'NGO',
-			'OTHER':'Other'   	    
-		]
-		return recipientOfFunds
-	}
-	
-	def getRecipientOfFundsIndo(){
-		def RecipientOfIndia = [
-			'INDIVIDUAL': 'Individual',
-			'NGO': 'Indian NGO',
-			'OTHER': 'Other'
-		]
-		return RecipientOfIndia
-	}
-	
-	def getInDays() {
-		def inDays = [
-			    THI:'30',
-				SIX:'60',
-				NIN:'90'  
-			]
-		return inDays
-	}
-	
+            'NON-PROFIT':'Non-Profit',
+            'NGO':'NGO',
+            'OTHER':'Other'   	    
+        ]
+        return recipientOfFunds
+    }
+
+    def getRecipientOfFundsIndo(){
+        def RecipientOfIndia = [
+            'INDIVIDUAL': 'Individual',
+            'NGO': 'Indian NGO',
+            'OTHER': 'Other'
+        ]
+        return RecipientOfIndia
+    }
+
+    def getInDays() {
+        def inDays = [
+            30:'30',
+            60:'60',
+            90:'90' 
+        ]
+        return inDays
+    }
+
     def getPayment(){
         def payment = [
             PAY:'Paypal',
@@ -3044,18 +3044,25 @@ class ProjectService {
 				break;
 
             case 'city':
-                if (!varValue.isAllWhitespace()){
+                if (varValue.isAllWhitespace()){
+                    beneficiary.city = null;
+                } else {
                     beneficiary.city = varValue;
-                    isValueChanged = true;
                 }
+                isValueChanged = true;
                 break;
-				
+
             case 'ans1':
-                if (!varValue.isAllWhitespace()){
-					QA qA = QA.findByProject(project)
+                QA qA = QA.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if(qA){
+                        qA.ans1 = null;
+                        qA.save(failOnError:true);
+                    }
+                } else {
                     if(qA){
                         qA.ans1 = varValue;
-						qA.save(failOnError:true);
+                        qA.save(failOnError:true);
                     } else {
                         new QA(
                            ans1 : varValue,
@@ -3067,11 +3074,16 @@ class ProjectService {
                 break;
 
            case 'ans2':
-               if (!varValue.isAllWhitespace()){
-				   QA qA = QA.findByProject(project)
+               QA qA = QA.findByProject(project)
+               if (varValue.isAllWhitespace()){
+                   if(qA){
+                       qA.ans2 = null;
+                       qA.save(failOnError:true);
+                   }
+               } else {
                    if(qA){
                        qA.ans2 = varValue;
-					   qA.save(failOnError:true);
+                       qA.save(failOnError:true);
                    } else {
                        new QA(
                            ans2 : varValue,
@@ -3083,11 +3095,16 @@ class ProjectService {
                break;
 
             case 'ans3':
-                if (!varValue.isAllWhitespace()){
-					QA qA = QA.findByProject(project)
+                QA qA = QA.findByProject(project)
+                if (varValue.isAllWhitespace()){
                     if(qA){
-                       qA.ans3 = varValue;
-					   qA.save(failOnError:true);
+                        qA.ans3 = null;
+                        qA.save(failOnError:true);
+                    }
+                } else {
+                    if(qA){
+                        qA.ans3 = varValue;
+                        qA.save(failOnError:true);
                     } else {
                        new QA(
                            ans3 : varValue,
@@ -3100,24 +3117,36 @@ class ProjectService {
 
 		    case 'ans4':
                QA qA = QA.findByProject(project)
-			   if(qA){
-				  qA.ans4 = varValue;
-				  qA.save(failOnError:true);
-			   } else {
-				  new QA(
-					  ans4 : varValue,
-					  project:project
-				  ).save(failOnError:true)
-			   }
-			   isValueChanged = true;
+               if (varValue.isAllWhitespace()){
+                   if(qA){
+                       qA.ans4 = null;
+                       qA.save(failOnError:true);
+                   }
+               } else {
+			       if(qA){
+                       qA.ans4 = varValue;
+                       qA.save(failOnError:true);
+			       } else {
+				       new QA(
+					       ans4 : varValue,
+					       project:project
+				       ).save(failOnError:true)
+			       }
+			       isValueChanged = true;
+               }
 			   break;
 			   
                case 'reason1':
-                 if (!varValue.isAllWhitespace()){
-                    ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
+			   ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
+               if (varValue.isAllWhitespace()){
+                   if (reasonToFund){
+                       reasonToFund.reason1 = null;
+                       reasonToFund.save(failOnError:true)
+                   }
+               } else {
                     if (reasonToFund) {
                         reasonToFund.reason1 = varValue;
-						reasonToFund.save(failOnError:true)
+                        reasonToFund.save(failOnError:true)
                     } else {
                         new ReasonsToFund(
                             reason1 : varValue,
@@ -3129,11 +3158,16 @@ class ProjectService {
                 break;
 
             case 'reason2':
-                if (!varValue.isAllWhitespace()){
-                    ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
+                ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (reasonToFund){
+                        reasonToFund.reason2 = null;
+                        reasonToFund.save(failOnError:true)
+                    }
+                } else {
                     if (reasonToFund){
                         reasonToFund.reason2 = varValue;
-						reasonToFund.save(failOnError:true)
+                        reasonToFund.save(failOnError:true)
                     } else {
                         new ReasonsToFund(
                             reason2 : varValue,
@@ -3145,11 +3179,16 @@ class ProjectService {
                 break;
 
             case 'reason3':
-                if (!varValue.isAllWhitespace()){
-                    ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
+                ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (reasonToFund){
+                       reasonToFund.reason3 = null;
+                       reasonToFund.save(failOnError:true)
+                    }
+                } else {
                     if (reasonToFund){
                         reasonToFund.reason3 = varValue;
-						reasonToFund.save(failOnError:true)
+                        reasonToFund.save(failOnError:true)
                     } else {
                         new ReasonsToFund(
                             reason3 : varValue,
@@ -3161,10 +3200,12 @@ class ProjectService {
                 break;
 				
             case 'hashtags':
-                if (!varValue.isAllWhitespace()){
-                    project.hashtags = varValue
-                    isValueChanged = true;
+                if (varValue.isAllWhitespace()){
+                    project.hashtags = null;
+                } else {
+                    project.hashtags = varValue;
                 }
+                isValueChanged = true;
                 break;
 
             default :

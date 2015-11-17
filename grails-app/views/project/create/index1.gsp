@@ -73,7 +73,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 cr1-in-days">
                             <span class="col-lg-12 col-sm-12 col-md-12 cr-padding-index1 cr1-mobile">In Days</span>
                             <div class="cr1-font-list">
-                                <g:select class="selectpicker cr-drop-color" name="${FORMCONSTANTS.DAYS}" from="${inDays}" optionKey="key" optionValue="value" />
+                                <g:select class="selectpicker cr-drop-color" name="days1" from="${inDays}" optionKey="value" optionValue="value" />
                             </div> 
                         </div>
                     </div>

@@ -15,6 +15,6 @@ class SpendMatrix {
 	static belongsTo = [project:Project]
 
     static constraints = {
-		cause nullable:true
+        cause nullable:true
     }
 }

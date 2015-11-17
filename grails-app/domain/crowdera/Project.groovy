@@ -23,7 +23,7 @@ class Project {
     double amount
     int days
     int gmailShareCount
-	int impactAnalysis
+    int impactAnalysis
     List contributions 
     List projectAdmins
     List projectUpdates
@@ -89,7 +89,7 @@ class Project {
         usedFor(nullable:true)
         fundsRecievedBy(nullable:true)
         customVanityUrl(nullable:true)
-		hashtags(nullable:true)
+        hashtags(nullable:true)
     }
 
     def beforeInsert() {

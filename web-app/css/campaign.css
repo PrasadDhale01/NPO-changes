@@ -462,15 +462,6 @@ input.editsweb-margin-mobile {
     margin-right: 0 !important;
 }
 
-.reasons {
-    display: inline !important;
-    width: 90%;
-}
-
-.reasons-p{
-    padding-left: 15px;
-}
-
 .display-block-text1{
     display:block;
 }
@@ -622,4 +613,8 @@ div.validate-show-div .show-description {
 }
 #validateChecklistmsg {
 	   display: none;
+}
+
+.reasons-p .help-block{
+    padding-left:16px;
 }

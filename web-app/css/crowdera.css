@@ -5484,6 +5484,20 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
+
+    .cr2-width-dropdown3 .help-block{
+        margin-left: -15px;
+    }
+
+    .reasons {
+        display: inline !important;
+        width: 90%;
+    }
+
+    .reasons-p{
+        padding-left: 15px;
+    }
+
     .spend-matrix-icon{
         margin-top: 6px;
     }
@@ -9175,6 +9189,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	
+    .reasons {
+        display: inline !important;
+        width: 84%;
+    }
 
     .cr-label-spend-matrix-for{
         padding-left: 19px;
@@ -9253,9 +9272,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 10px;
         margin-bottom: 10px;
     }
-	.feduoutercontent {
-	   margin-top: 120px;
-	}
+	   .feduoutercontent {
+	       margin-top: 120px;
+	   }
 
     #uploadingCampaignOrgIcon{
         padding-top: 20px;

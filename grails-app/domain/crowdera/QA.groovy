@@ -17,8 +17,8 @@ class QA {
 
     static constraints = {
         ans1 nullable:true
-		ans2 nullable:true
-		ans3 nullable:true
-		ans4 nullable:true
+        ans2 nullable:true
+        ans3 nullable:true
+        ans4 nullable:true
     }
 }

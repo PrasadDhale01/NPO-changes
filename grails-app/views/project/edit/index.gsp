@@ -136,7 +136,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-6">
                        <label class="col-sm-12 text-color cr-padding-index1">My Name is...</label>
                        <div class="col-sm-12 cr-padding-index1">
-                           <input type="text" class="form-control form-control-no-border text-color cr1-box-size" id="name" name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name" value="${beneficiaryName}">
+                           <input type="text" class="form-control form-control-no-border text-color cr1-box-size" id="name1" name="${FORMCONSTANTS.FIRSTNAME}" placeholder="Display Name" value="${beneficiaryName}">
                        </div>
                     </div>
                     
@@ -151,7 +151,7 @@
                                 <g:else>
                                     <span class="i-currency-label-indx1">$</span>
                                 </g:else>   
-                                <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount1" value="${project.amount}" id="amount2"> 
+                                <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount1" value="${project.amount.round()}" id="amount1"> 
                                 <span id="errormsg1"></span>
                             </div>
                         </div>
@@ -177,10 +177,10 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 cr1-and-Iwant-tabs-mobile">
                         <div class="btn-group col-sm-12 cr-index1-padding" data-toggle="buttons">
                             <div class="cr1-tab-title">and I want to</div>
-                            <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 active" id="impact"> <input type="radio" value="yes"><span class="cr1-tb-text-sm">Make an</span><br><span class="cr1-tb-text-lg-indx">Impact</span></label> 
-                            <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-indx1-tabs-sm cr1-mob-tb-pd  col-sm-3 col-xs-12" id="passion"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Follow my</span><br><span class="cr1-tb-text-lg-indx">Passion</span></label>
-                            <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12"  id="innovating"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Do Social</span><br><span class="cr1-tb-text-lg-indx">Innovation</span><br></label>
-                            <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="personal"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Fullfill Personal</span><br><span class="cr1-tb-text-lg-indx">Needs</span></label>
+                            <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-mob-tb-pd col-sm-3 col-xs-12 active" id="impact1"> <input type="radio" value="yes"><span class="cr1-tb-text-sm">Make an</span><br><span class="cr1-tb-text-lg-indx">Impact</span></label> 
+                            <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-indx1-tabs-sm cr1-mob-tb-pd  col-sm-3 col-xs-12" id="passion1"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Follow my</span><br><span class="cr1-tb-text-lg-indx">Passion</span></label>
+                            <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12"  id="innovating1"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Do Social</span><br><span class="cr1-tb-text-lg-indx">Innovation</span><br></label>
+                            <label class="btn btn-default cr1-indx1-inovat cr1-check-btn-indx cr1-tb-color cr1-mob-tb-pd  col-sm-3 col-xs-12" id="personal1"> <input type="radio" value="no"><span class="cr1-tb-text-sm">Fullfill Personal</span><br><span class="cr1-tb-text-lg-indx">Needs</span></label>
                             <g:hiddenField name="usedFor" id="usedFor" value="IMPACT" />
                         </div>
                     </div>
@@ -196,7 +196,7 @@
                             <g:else>
                                 <span class="i-currency-label-indx1">$</span>
                             </g:else>   
-                            <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount" value="${project.amount}" id="amount3"> 
+                            <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount" value="${project.amount}" id="amount2"> 
                             <span id="errormsg2"></span>
                         </div>
                     </div>
@@ -221,7 +221,7 @@
                     <div class="createTitleDiv col-lg-6 col-md-6 col-sm-6 cr1-indx1-mobileTpadding">
                         <label class="col-sm-12 text-color cr-padding-index1">My plan is...</label>
                         <div class="col-sm-12 cr-padding-index1 col-edit-title">
-                            <input class="form-control form-control-no-border cr-myplan-indx1 text-color" name="${FORMCONSTANTS.TITLE}" placeholder="Create an impactful and actionable title. Helps donors find campaign." value="${project.title}" id="campaignTitle" maxlength="55">
+                            <input class="form-control form-control-no-border cr-myplan-indx1 text-color" name="${FORMCONSTANTS.TITLE}" placeholder="Create an impactful and actionable title. Helps donors find campaign." value="${project.title}" id="campaignTitle1" maxlength="55">
                             <label class="pull-right " id="titleLength"></label>
                         </div>
                     </div>
@@ -237,7 +237,7 @@
                                         crowdera.co/
                                     </g:else>
                                 </div>
-                                <input class="form-control form-control-no-border editsweb-margin-mobile  cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd" name="customVanityUrl" id="customVanityUrl" placeholder="YourWebsiteUrl">
+                                <input class="form-control form-control-no-border editsweb-margin-mobile  cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd" name="customVanityUrl" value="${project.customVanityUrl}" id="customVanityUrl" placeholder="YourWebsiteUrl">
                             </div>
                         </g:if>
                     </div>
@@ -245,7 +245,7 @@
 
                 <div class="form-group createDescDiv edit-tabsMobile-margin">
                     <div class="col-sm-12 cr1-descriptions-indx1 edit-description">
-                        <textarea class="form-control form-control-no-border text-color" id="descarea" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Campaign Description" maxlength="140"></textarea>
+                        <textarea class="form-control form-control-no-border text-color" id="descarea1" name="${FORMCONSTANTS.DESCRIPTION}" rows="2" placeholder="Campaign Description" maxlength="140">${project.description}</textarea>
                         <label class="pull-right " id="desclength"></label>
                     </div>
                 </div>
@@ -457,17 +457,17 @@
                                 <div class="question-ans form-group">
                                     <p><input type="radio" name="ans1" class="ans1" value="yes" <g:if test="${qA && qA.ans1 && qA.ans1 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
                                     <input type="radio" name="ans1" class="ans1" value="no" <g:if test="${qA && qA.ans1 && qA.ans1 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
-                                    <textarea class="ansText ansText1 <g:if test="${ans1val}">display-block-text1</g:if><g:else>display-none-text1</g:else>">${ans1val}</textarea>
+                                    <textarea name="ansText1" class="ansText ansText1 form-control <g:if test="${ans1val}">display-block-text1</g:if><g:else>display-none-text1</g:else>">${ans1val}</textarea>
                                 </div><br>
                                 2. Why do you want to crowdfund ?
                                 <div class="question-ans form-group">
-                                    <textarea class="ansText ansText2 form-control">${ans2val}</textarea>
+                                    <textarea class="ansText ansText2 form-control" name="ansText2">${ans2val}</textarea>
                                 </div><br>
                                 3. Have you crowdfunded before ?
                                 <div class="question-ans form-group">
                                     <p><input type="radio" name="ans3" class="ans3" value="yes" <g:if test="${qA && qA.ans3 && qA.ans3 != 'NO'}">checked="checked"</g:if>>&nbsp;YES&nbsp;&nbsp;&nbsp;
                                     <input type="radio" name="ans3" class="ans3" value="no" <g:if test="${qA && qA.ans3 && qA.ans3 == 'NO'}">checked="checked"</g:if>>&nbsp;NO</p>
-                                    <textarea class="ansText ansText3 form-control <g:if test="${ans3val}">display-block-text3</g:if><g:else>display-none-text3</g:else>">${ans3val}</textarea>
+                                    <textarea class="ansText ansText3 form-control <g:if test="${ans3val}">display-block-text3</g:if><g:else>display-none-text3</g:else>" name="ansText3">${ans3val}</textarea>
                                 </div><br>
                                 4. If you don't recieve 100% goal what will you do.
                                 <div class="question-ans form-group">

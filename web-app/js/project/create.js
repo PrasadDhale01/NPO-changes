@@ -456,15 +456,6 @@ $(function() {
             required: true
         });
         
-        $('[name="impact-amt"]').rules( "add", {
-            required: true,
-            number:true,
-            messages:{
-            	required:'Required',
-            	number:'Digits only'
-            }
-        });
-
         $( '[name="webAddress"]' ).rules( "add", {
             required: true,
             isWebUrl:true
@@ -472,7 +463,7 @@ $(function() {
         
         $( '[name="city"]' ).rules( "add", {
             required: true,
-            min:3
+            minlength:3
         });
 
         $( '[name="organizationName"]' ).rules( "add", {
@@ -558,6 +549,15 @@ $(function() {
                 minlength: 5
             });
         });
+//        
+//        $('[name="impact-amt"]').rules( "add", {
+//            required: true,
+//            number:true,
+//            messages:{
+//            	required:'Required',
+//            	number:'Digits only'
+//            }
+//        });
 
     	if (validator.form()) {
             if (!storyEmpty){
@@ -577,6 +577,8 @@ $(function() {
         $('#storyRequired').hide();
             storyEmpty = false;
         }
+        
+        $('#isSubmitButton').val(true);
         
        if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
   	      $('.spendAmount').each(function () {
@@ -630,7 +632,7 @@ $(function() {
         
         $( '[name="city"]' ).rules( "add", {
             required: true,
-            min:3
+            minlength:3
         });
         
         $( '[name="checkBox"]' ).rules( "add", {
@@ -764,14 +766,14 @@ $(function() {
                 });
            	}
 
-            $('[name="impact-amt"]').rules( "add", {
-                required: true,
-                number:true,
-                messages:{
-                	required:'Required',
-                	number:'Digits only'
-                }
-            });
+//            $('[name="impact-amt"]').rules( "add", {
+//                required: true,
+//                number:true,
+//                messages:{
+//                	required:'Required',
+//                	number:'Digits only'
+//                }
+//            });
         }
         
     	if (validator.form()) {
@@ -856,18 +858,30 @@ $(function() {
      
     $('.ans1').change(function(){
     	if ($(this).val()=="yes"){
-    		$('.ansText1').show();
+    		$('.ansText1').removeClass('display-none-text1');
+    		if($('.question-ans-1').find('.help-block').length > 0){
+    			$('.question-ans-1').find('.help-block').show();
+    		}
     	} else {
-    		$('.ansText1').hide();
+    		$('.ansText1').addClass('display-none-text1');
+    		if ($('.question-ans-1').find('.help-block').length > 0){
+    			$('.question-ans-1').find('.help-block').hide();
+    		}
     		autoSave('ans1', 'NO');
     	}
     });
     
     $('.ans3').change(function(){
     	if ($(this).val()=="yes"){
-    		$('.ansText3').show();
+    		$('.ansText3').removeClass('display-none-text3');
+    		if($('.question-ans-3').find('.help-block').length > 0){
+    			$('.question-ans-3').find('.help-block').show();
+    		}
     	} else {
-    		$('.ansText3').hide();
+    		$('.ansText3').addClass('display-none-text3');
+    		if($('.question-ans-3').find('.help-block').length > 0){
+    			$('.question-ans-3').find('.help-block').hide();
+    		}
     		autoSave('ans3', 'NO');
     	}
     });
@@ -1722,7 +1736,7 @@ $(function() {
 
     $(document).ready(function (){
         //called when key is pressed in textbox
-        $("#amount,#amount1").keypress(function (e) {
+        $("#amount,#amount1,#amount2").keypress(function (e) {
             //if the letter is not digit then display error and don't type anything
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                 //display error message
@@ -2143,10 +2157,22 @@ $(function() {
     });
     
     $('.recipient').change(function(){
-    	var recipient = $(this).val();
-    	autoSave('fundsRecievedBy', recipient);
+        var recipient = $(this).val();
+        var hashtags = $('.hashtags').val();
+        var list = hashtags.split(',');
+        if (list.length > 1){
+            list[1] = ' #'+recipient
+            $('.hashtags').val(list);
+        } else {
+            $('.hashtags').val(hashtags + ', #'+recipient);
+        }
+        autoSave('hashtags', $('.hashtags').val());
+        var delay = 50; //delayed code to prevent error, time in milliseconds
+        setTimeout(function() {
+        	autoSave('fundsRecievedBy', recipient);
+        }, delay);
     });
-    
+
     $('.days').change(function(){
     	var days = $(this).val();
     	autoSave('days', days);
@@ -2283,7 +2309,14 @@ $(function() {
     
     $('#amount1').blur(function (){
         var amount = $(this).val();
-        if(validator.element( "#amount1") && amount) {
+        if(validator.element("#amount1") && amount) {
+            autoSave('amount', amount);
+        }
+    });
+    
+    $('#amount2').blur(function (){
+        var amount = $(this).val();
+        if(validator.element("#amount2") && amount) {
             autoSave('amount', amount);
         }
     });
@@ -2306,7 +2339,6 @@ $(function() {
     
     $('.city').blur(function (){
     	var city = $(this).val();
-    	if (city != ''){
     	var hashtags = $('.hashtags').val();
         var list = hashtags.split(',');
         if (list.length > 3){
@@ -2320,25 +2352,72 @@ $(function() {
         setTimeout(function() {
         	autoSave('city', city);
         }, delay);
-    	}
     });
     
     $('#impact1').click(function(){
-    	autoSave('usedFor', 'IMPACT');
+        var hashtags = $('.hashtags').val();
+        var list = hashtags.split(',');
+        if (list.length > 0){
+            list[0] = '#IMPACT'
+            $('.hashtags').val(list);
+        } else {
+            $('.hashtags').val('#IMPACT'+ hashtags);
+        }
+        autoSave('hashtags', $('.hashtags').val());
+        var delay = 50; //delayed code to prevent error, time in milliseconds
+        setTimeout(function() {
+            autoSave('usedFor', 'IMPACT');
+        }, delay);
     });
 
     $('#passion1').click(function(){
-    	autoSave('usedFor', 'PASSION');
+        var hashtags = $('.hashtags').val();
+        var list = hashtags.split(',');
+        if (list.length > 0){
+            list[0] = '#PASSION'
+            $('.hashtags').val(list);
+        } else {
+            $('.hashtags').val('#PASSION'+hashtags);
+        }
+        autoSave('hashtags', $('.hashtags').val());
+        var delay = 50; //delayed code to prevent error, time in milliseconds
+        setTimeout(function() {
+            autoSave('usedFor', 'PASSION');
+        }, delay);
     });
 
     $('#innovating1').click(function(){
-    	autoSave('usedFor', 'SOCIAL_NEEDS');
+        var hashtags = $('.hashtags').val();
+        var list = hashtags.split(',');
+        if (list.length > 0){
+            list[0] = '#SOCIAL-INNOVATION'
+            $('.hashtags').val(list);
+        } else {
+            $('.hashtags').val('#SOCIAL-INNOVATION'+hashtags);
+        }
+        autoSave('hashtags', $('.hashtags').val());
+        var delay = 50; //delayed code to prevent error, time in milliseconds
+        setTimeout(function() {
+            autoSave('usedFor', 'SOCIAL-INNOVATION');
+        }, delay);
     });
 
     $('#personal1').click(function(){
-    	autoSave('usedFor', 'PERSONAL_NEEDS');
+        var hashtags = $('.hashtags').val();
+        var list = hashtags.split(',');
+        if (list.length > 0){
+            list[0] = '#PERSONAL-NEEDS'
+            $('.hashtags').val(list);
+        } else {
+            $('.hashtags').val('#PERSONAL-NEEDS'+hashtags);
+        }
+        autoSave('hashtags', $('.hashtags').val());
+        var delay = 50; //delayed code to prevent error, time in milliseconds
+        setTimeout(function() {
+            autoSave('usedFor', 'PERSONAL-NEEDS');
+        }, delay);
     });
-    
+
     $('.ansText1').blur(function(){
     	var ansText1 = $(this).val();
     	autoSave('ans1', ansText1);
@@ -2407,7 +2486,7 @@ $(function() {
      
      $('#previewButton, #previewButtonXS').on('click', function(event){  // capture the click
       	$('#isSubmitButton').val(false);
-       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impact-amt"]').each(function () {
+       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impact-amt"]').each(function () {
              $(this).rules('remove');
          });
        	
@@ -2421,7 +2500,7 @@ $(function() {
 
        	$( "#projectImageFile" ).rules("remove");
  
-       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impact-amt"]"]').each(function () {
+       	$('[name="pay"], [name="checkBox"], [name="iconfile"],[name="organizationName"], [name="thumbnail"],[name="answer"], [name="wel"],[name="charitableId"], [name="webAddress"], [name="paypalEmail"], [name = "payuEmail"], [name = "days"], [name = "telephone"], [name = "email1"], [name = "email2"], [name = "email3"], [name = "customVanityUrl"],[name="city"],[name="ans1"],[name="ans3"],[name="ans4"],[name="ansText1"],[name="ansText2"],[name="ansText3"],[name="reason1"],[name="reason2"],[name="reason3"],[name="impact-amt"]').each(function () {
              $(this).closest('.form-group').removeClass('has-error');
          });
        	

@@ -412,14 +412,30 @@ class UserController {
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def saveFeedback(){
-		new Feedback(params).save()
+		def userId = params.user
+		User user= userService.getUserById(userId)
+		def feedback =userService.getFeedbackByUser(user)
+		if(feedback){
+			userService.setFeedbackByUser(feedback, params , user)
+		}else{
+			new Feedback(params).save()
+		}
 		flash.feedback_message = "Feedback submitted successfully!"
-		redirect url:'/survey'
+		redirect url:'/'
 	}
 	
 	@Secured(['ROLE_ADMIN'])
 	def feedback(){
 		render(view:'/user/survey/index')
+	}
+	
+	@Secured(['ROLE_ADMIN'])
+	def previewUserFeedBack(){
+		def projectId = params.projectId
+		def project = Project.get(projectId)
+		def user = userService.getUserById(project.user.id)
+		def feedback=userService.getFeedbackByUser(user)
+		render( view:"/user/survey/previewuserfeedback.gsp", model:[feedback:feedback, user:user])
 	}
     
     @Secured(['IS_AUTHENTICATED_FULLY'])

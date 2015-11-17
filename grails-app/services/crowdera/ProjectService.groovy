@@ -3431,11 +3431,23 @@ class ProjectService {
 
 	def sendFeedbackEmailToOwners(def project, def  base_url){
 		def owner
+		int emailCount=0
 		def remainingDay=getRemainingDay(project)
 		if(remainingDay>0 && remainingDay<8){
-			owner = project.user
+			def user = userService.getUserById(project.user.id)
+			def feedback=userService.getFeedbackByUser(user)
+			if(feedback){
+				if((feedback.count < 3 & remainingDay == 5) || (feedback.count < 3 & remainingDay == 3)){
+					emailCount = feedback.count + 1
+					owner = project.user
+					feedback.count = emailCount
+					mandrillService.sendFeedBackLinkToOwner(owner, base_url)
+				}
+			}else{
+				owner = project.user
+				mandrillService.sendFeedBackLinkToOwner(owner, base_url)
+			}
 		}
-		mandrillService.sendFeedBackLinkToOwner(owner, base_url)
 	}
     def sendEmailTONonUserContributors() {
         def contributionList = Contribution.list()

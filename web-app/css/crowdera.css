@@ -15277,3 +15277,9 @@ img.home-pg-icons{
 .cr2-padding{
     padding-left: 11px;
 }
+.previewsubmitbtn a{
+	text-decoration:none;
+}
+.answer input{
+	font-size:15px;
+}

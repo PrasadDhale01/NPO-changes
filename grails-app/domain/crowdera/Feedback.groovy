@@ -21,6 +21,7 @@ class Feedback {
 	String answer_9_y6
 	String answer_9_n
 	String rating
+	int count=0
 	
 	static belongTo=User
 	

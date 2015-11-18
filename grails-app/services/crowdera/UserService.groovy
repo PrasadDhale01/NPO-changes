@@ -981,14 +981,14 @@ class UserService {
         return Currency.get(1)
     }
 	def getFeedbackByUser(User user){
-		def feedback = Feedback.findAllWhere(user:user)
-		def feedbackId
-		feedback.each{
-			if(feedback){
-				feedbackId =it
-			}
-		}
-		return feedbackId
+	    def feedback = Feedback.findAllWhere(user:user)
+	    def feedbackId
+	    feedback.each{
+		    if(feedback){
+			    feedbackId =it
+		    }
+	    }
+	    return feedbackId
 	}
 	
 	def setFeedbackByUser(def feedback, def params, User user){

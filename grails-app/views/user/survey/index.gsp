@@ -22,7 +22,6 @@
                            <g:render template='/user/survey/feedbacklist'/>
                        </tbody>
                   </table>
-                  <br>
               </div>
               <br>
           </div>

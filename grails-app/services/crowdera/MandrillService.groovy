@@ -1096,34 +1096,34 @@ class MandrillService {
 		def awesomeImgLink = "https://s3.amazonaws.com/crowdera/assets/awesome.png"
 		
 		def globalMergeVars = [
-            [
-                'name': 'GOODLINK',
-                'content': goodLink
-            ],
-			[
-				'name': 'BADLINK',
-				'content': badLink
-			],
-			[
-				'name': 'AWESOMELINK',
-				'content': awesomeLink
-			],
-			[
-				'name': 'AWESOMEIMAGE',
-				'content': awesomeImgLink
-			],
-			[
-				'name': 'GOODIMAGE',
-				'content': goodImgLink
-			],
-			[
-				'name': 'BADIMAGE',
-				'content': badImgLink
-			],
-            [
-                'name': 'NAME',
-                'content': owner.firstName + ' ' + owner.lastName
-            ]
+		    [
+		        'name': 'GOODLINK',
+		        'content': goodLink
+		    ],
+		    [
+		        'name': 'BADLINK',
+		        'content': badLink
+		    ],
+		    [
+		       'name': 'AWESOMELINK',
+		       'content': awesomeLink
+		    ],
+		    [
+		       'name': 'AWESOMEIMAGE',
+		       'content': awesomeImgLink
+		   ],
+		   [
+		      'name': 'GOODIMAGE',
+		      'content': goodImgLink
+		   ],
+		   [
+		      'name': 'BADIMAGE',
+		      'content': badImgLink
+		   ],
+		   [
+		      'name': 'NAME',
+		      'content': owner.firstName + ' ' + owner.lastName
+		  ]
 		]
 
         def tags = ['feedback-email']

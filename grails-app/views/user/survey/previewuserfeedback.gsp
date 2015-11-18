@@ -9,7 +9,15 @@
   <div class="feducontent body bg-color">
   	<div class="container feedback-container">
   		<div class="row bg-color-white">
-  			<h3 class="col-lg-12 col-md-12 col-sm-12 col-xs-12">Feedback by: ${user.firstName} ${user.lastName}</h3>
+  			<div class="row">
+  				<div class="col-lg-1 col-md-1 col-sm-1 previewsubmitbtnTop">
+		           <g:link controller="user" action="feedback" >Back</g:link>
+		    	</div>
+  				<div class="col-lg-10 col-md-10 col-sm-10">
+  					<h3 class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">Feedback by: ${user.firstName} ${user.lastName}</h3>
+  				</div>
+  				
+  			</div>
   			<div class="questions col-lg-12 col-md-12 col-sm-12 col-xs-12">
   				<div class="question-list">
 	  					<div class="form-group question">

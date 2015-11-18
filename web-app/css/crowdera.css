@@ -7489,7 +7489,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 15.75px;
         overflow-y: hidden;
         overflow-x: scroll;
-        border: 1px solid #DDD;
     }
     
    .influencediv.col-lg-2, .influencediv.col-md-2 {
@@ -9781,7 +9780,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 15.75px;
         overflow-y: hidden;
         overflow-x: scroll;
-        border: 1px solid #DDD;
     }
     
     .dashboard-container{
@@ -9985,7 +9983,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 15.75px;
         overflow-y: hidden;
         overflow-x: scroll;
-        border: 1px solid #DDD;
     }
 	.TW-discover-leftpane-menu ul li a {
 		color: #424242;
@@ -15282,4 +15279,8 @@ img.home-pg-icons{
 }
 .answer input{
 	font-size:15px;
+}
+.col-lg-1.col-md-1.col-sm-1.previewsubmitbtnTop {
+    margin-left: 30px;
+    margin-top: 18px;
 }

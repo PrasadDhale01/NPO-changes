@@ -15,6 +15,7 @@
 		    	</div>
   				<div class="col-lg-10 col-md-10 col-sm-10">
   					<h3 class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">Feedback by: ${user.firstName} ${user.lastName}</h3>
+  					<h4  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">Rating : ${feedback.rating}</h4>
   				</div>
   				
   			</div>
@@ -149,7 +150,7 @@
 	  					</div>
 	  					
 	  					<div class="previewsubmitbtn">
-	  						<g:link controller="user" action="feedback" ><button class="btn btn-default btn-info center-block">Back</button></g:link>
+	  						<g:link controller="user" action="feedback"  class="btn btn-default btn-info center-block" >Back</g:link>
 	  					</div>
 	  					<br>
   				</div>

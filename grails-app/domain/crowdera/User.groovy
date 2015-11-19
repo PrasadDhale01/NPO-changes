@@ -54,7 +54,7 @@ class User {
         city nullable: true
         state nullable: true
         country nullable: true
-		feedbackCount nullable:true
+        feedbackCount nullable:true
     }
 
 	static mapping = {

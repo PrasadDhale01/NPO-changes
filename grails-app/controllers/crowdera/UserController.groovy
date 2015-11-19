@@ -426,7 +426,8 @@ class UserController {
 	
 	@Secured(['ROLE_ADMIN'])
 	def feedback(){
-		render(view:'/user/survey/index')
+		def project =projectService.getValidatedProjects()
+		render(view:'/user/survey/index', model:[project:project])
 	}
 	
 	@Secured(['ROLE_ADMIN'])

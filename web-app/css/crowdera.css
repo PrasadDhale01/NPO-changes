@@ -15275,7 +15275,10 @@ img.home-pg-icons{
     padding-left: 11px;
 }
 .previewsubmitbtn a{
+	color:#fff;
 	text-decoration:none;
+	height:50px;
+	width:100px;
 }
 .answer input{
 	font-size:15px;

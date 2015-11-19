@@ -33,11 +33,11 @@
 	  							<input type="text"  class="form-control input-lg" name="answer_1"> 
 	  						</div>
 	  					</div>
-	  					<div class="form-group question">
+	  					<div class="question">
 	  						<span>2)&nbsp;Have you Crowdfunded in the past?</span>
-	  						<div class="answer-radio">
-	  							<label for="answer_2"><input type="radio" name="answer_2" value="yes">&nbsp;Yes</label>&nbsp;&nbsp;
-								<label for="answer_2"><input type="radio" name="answer_2" value="no">&nbsp;No</label>
+	  						<div class="form-group answer-radio">
+	  							<label for="answer_2"><input type="radio"  id="answer_2" name="answer_2" value="yes">&nbsp;Yes</label>&nbsp;&nbsp;
+								<label for="answer_2n"><input type="radio" id="answer_2n" name="answer_2" value="no">&nbsp;No</label>
 								<span class="ansTwoError"></span> 
 	  						</div>
 	  						<div class="form-group secondQOptOne">
@@ -68,11 +68,11 @@
 	  							<input type="text"  class="form-control input-lg" name="answer_3"> 
 	  						</div>
 	  					</div>
-	  					<div class="form-group question">
+	  					<div class=" question">
 	  						<span>4)&nbsp;Did you use the Team Feature?</span>
-	  						<div class="answer-radio">
-	  							<label for="answer_4"><input type="radio" name="answer_4" value="yes">&nbsp;Yes</label>&nbsp;&nbsp;
-								<label for="answer_4"><input type="radio" name="answer_4" value="no">&nbsp;No</label> 
+	  						<div class="form-group answer-radio">
+	  							<label for="answer_4"><input type="radio" id="answer_4" name="answer_4" value="yes">&nbsp;Yes</label>&nbsp;&nbsp;
+								<label for="answer_4n"><input type="radio" id="answer_4n" name="answer_4" value="no">&nbsp;No</label> 
 								<span class="ansFourError"></span>
 	  						</div>
 	  						<div class="form-group question_4_opt_yes">
@@ -114,11 +114,11 @@
 	  							<input type="text"  class="form-control input-lg" name="answer_8">
 	  						</div>
 	  					</div>
-	  					<div class="form-group question">
+	  					<div class=" question">
 	  						<span>9)&nbsp;Would you like to do a detailed survey for Crowdera?</span>
-	  						<div class="answer-radio">
-	  							<label for="answer_9"><input type="radio" name="answer_9" value="yes">&nbsp;Yes</label>&nbsp;&nbsp;
-								<label for="answer_9"><input type="radio" name="answer_9" value="no">&nbsp;No</label> 
+	  						<div class="form-group answer-radio">
+	  							<label for="answer_9"><input type="radio" id="answer_9" name="answer_9" value="yes">&nbsp;Yes</label>&nbsp;&nbsp;
+								<label for="answer_9n"><input type="radio" id="answer_9n" name="answer_9" value="no">&nbsp;No</label> 
 								<span class="ansNineError"></span>
 	  						</div>
 	  						<div class="form-group question_9_opt_yes">

@@ -409,6 +409,35 @@ class UserController {
             render(view: 'error', model: [message: "Error while updating Currency. Please try again later."])
         }
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def saveFeedback(){
+		def userId = params.user
+		User user= userService.getUserById(userId)
+		def feedback =userService.getFeedbackByUser(user)
+		if(feedback){
+			userService.setFeedbackByUser(feedback, params , user)
+		}else{
+			new Feedback(params).save()
+		}
+		flash.feedback_message = "Feedback submitted successfully!"
+		redirect url:'/'
+	}
+	
+	@Secured(['ROLE_ADMIN'])
+	def feedback(){
+		def project =projectService.getValidatedProjects()
+		render(view:'/user/survey/index', model:[project:project])
+	}
+	
+	@Secured(['ROLE_ADMIN'])
+	def previewUserFeedBack(){
+		def projectId = params.projectId
+		def project = Project.get(projectId)
+		def user = userService.getUserById(project.user.id)
+		def feedback=userService.getFeedbackByUser(user)
+		render( view:"/user/survey/previewuserfeedback.gsp", model:[feedback:feedback, user:user])
+	}
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def getSortedCampaigns() {

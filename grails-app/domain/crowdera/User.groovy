@@ -27,6 +27,7 @@ class User {
     String city
     String state
     String country
+	int feedbackCount=0
 
     Date dateCreated
     Date lastUpdated
@@ -53,6 +54,7 @@ class User {
         city nullable: true
         state nullable: true
         country nullable: true
+        feedbackCount nullable:true
     }
 
 	static mapping = {

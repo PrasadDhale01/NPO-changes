@@ -3405,7 +3405,65 @@ class ProjectService {
         }
         return result
     }
+	
+	def importCSVReportForUserFeedback(def response,Project project){
+		User user =User.get(project.user.id)
+		def feedback = Feedback.findAllWhere(user:user)
+		def feedbackMap =[:]
+		List results = []
+		
+		feedback.each{
+			feedbackMap.put("1) How did you hear about us?", it.answer_1)
+			feedbackMap.put("2a) What others crowdfunding platforms did you use?", it.answer_2_y1)
+			feedbackMap.put("2b) What did you like the best about those platforms?", it.answer_2_y2)
+			feedbackMap.put("2n) What do you like the best about Crowdera?", it.answer_2_n)
+			feedbackMap.put("3) How easy was it to create your campaign on Crowdera?", it.answer_3)
+			feedbackMap.put("4a) How easy was it to Add and Manage Teams?", it.answer_4_y)
+			feedbackMap.put("4n) Is there a reason why you didn't use the Team feature?", it.answer_4_n)
+			feedbackMap.put('5) What other "must have" or "nice to have" feautres would your recommend?', it.answer_5)
+			feedbackMap.put("6) Do you need volunteer or additional help in fundraising?", it.answer_6)
+			feedbackMap.put("7) Did you face any challenge or aberration on our site?", it.answer_7)
+			feedbackMap.put("8) How likely are you to use or recommend Crowdera in the future?", it.answer_8)
+			feedbackMap.put("9a) What is the best way to provide you with more product information?", it.answer_9_y1)
+			feedbackMap.put("9b) Did our platform provided with all the services that you hoped for?", it.answer_9_y2)
+			feedbackMap.put("9c) How visually appealing is our website ?", it.answer_9_y3)
+			feedbackMap.put("9d) Did you take more or less time than you had expected to create your campaign on crowdera?", it.answer_9_y4)
+			feedbackMap.put("9e) Do you have any other suggestions or comments for crowdera?", it.answer_9_y5)
+			feedbackMap.put("9f) If you could change one thing about the entire website of crowdera what would it be?", it.answer_9_y6)
+			feedbackMap.put("9n) Please state the reason for your rating so that we can improve our service in future.", it.answer_9_n)
+		}
+		feedbackMap.each{question , answer ->
+			def rows =[question, answer]
+			results << rows
+		}
+		
+		def result
+		response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll("[,;\\s]",'_')+".csv")
+		result ='Question, Answer, \n'
+		results.each{ row->
+			row.each{
+				col -> result+=col +','
+			}
+			result = result[0..-2]
+			result+="\n"
+		}
+		return result
+	}
 
+	def sendFeedbackEmailToOwners(def project, def  base_url){
+		int emailCount=0
+		def remainingDay=getRemainingDay(project)
+		def user = userService.getUserById(project.user.id)
+		def feedback=userService.getFeedbackByUser(user)
+		if(!feedback){
+			if((user.feedbackCount < 1 & remainingDay == 7) || (user.feedbackCount < 2 & remainingDay == 5) || (user.feedbackCount < 3 & remainingDay == 3)){
+				emailCount = user.feedbackCount + 1
+				def owner = project.user
+				user.feedbackCount = emailCount
+				mandrillService.sendFeedBackLinkToOwner(owner, base_url)
+			}
+		}
+	}
     def sendEmailTONonUserContributors() {
         def contributionList = Contribution.list()
         List nonUserContributors = []

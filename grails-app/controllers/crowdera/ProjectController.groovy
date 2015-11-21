@@ -455,11 +455,11 @@ class ProjectController {
     def saveCampaign() {
         def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
         def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-		
+
         def amount = params.amount ? params.amount : params.amount1;
-		def currentdays = params.days ? params.days : params.days1
-		def days = Integer.parseInt(currentdays)
-		
+        def currentdays = params.days ? params.days : params.days1
+        def days = Integer.parseInt(currentdays)
+
         def reqUrl = base_url+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}&days=${days}&customVanityUrl=${params.customVanityUrl}"
         def user = userService.getCurrentUser()
         if (!user) {
@@ -467,7 +467,7 @@ class ProjectController {
             cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
             cookie.maxAge= 3600  //Cookie expire time in seconds
             response.addCookie(cookie)
-        
+
             def loginSignUpCookie = projectService.setLoginSignUpCookie()
             if (loginSignUpCookie) {
                 response.addCookie(loginSignUpCookie)
@@ -506,14 +506,6 @@ class ProjectController {
 			} else {
 				project.hashtags = '#'+project.usedFor
 			}
-
-            def currentEnv = Environment.current.getName()
-            if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-                project.payuStatus = true
-                project.fundsRecievedBy = "NGO"
-            } else {
-                project.fundsRecievedBy = "NON-PROFITS"
-            }
 
 		    project.usedFor = params.usedFor;
 		
@@ -654,6 +646,19 @@ class ProjectController {
 	def launch() {
 		def vanityTitle = params.title
 		def project = projectService. getProjectFromVanityTitle(vanityTitle)
+		def currentEnv = Environment.current.getName()
+		if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+			project.payuStatus = true
+			if (project.fundsRecievedBy == null){
+				project.fundsRecievedBy = "NGO"
+				project.hashtags = project.hashtags + ", #NGO"
+			}
+		} else {
+			if (project.fundsRecievedBy == null){
+				project.fundsRecievedBy = "NON-PROFIT"
+				project.hashtags = project.hashtags + ", #NON-PROFIT"
+			}
+		}
 		render (view: 'create/justcreated', model:[project:project, FORMCONSTANTS: FORMCONSTANTS, vanityTitle: vanityTitle])
 	}
 	
@@ -1984,6 +1989,15 @@ class ProjectController {
 		Project project = projectService.getProjectById(params.projectId)
 		def result = projectService.importCSVReportForUserFeedback(response, project)
 		render (contentType:"text/csv", text:result)
+	}
+	
+	def getCountryVal(){
+		def country = projectService.getCountryValue(params.country);
+		def variable = request.getParameter("variable")
+		def varValue = request.getParameter("varValue")
+		def projectId = request.getParameter("projectId")
+		projectService.autoSaveProjectDetails(variable, varValue, projectId)
+		render country
 	}
 
 }

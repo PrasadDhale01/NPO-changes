@@ -170,7 +170,19 @@ class ProjectService {
                 project.beneficiary.country = 'US'
             }
         }
-        
+
+		if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+			if (project.fundsRecievedBy == null){
+				project.fundsRecievedBy = "NGO"
+				project.hashtags = project.hashtags + ", #NGO"
+			}
+		} else {
+			if (project.fundsRecievedBy == null){
+				project.fundsRecievedBy = "NON-PROFIT"
+				project.hashtags = project.hashtags + ", #NON-PROFIT"
+			}
+		}
+
         def projectAdmins = project.projectAdmins
         
         projectAdmins.each { projectAdmin ->
@@ -3329,6 +3341,12 @@ class ProjectService {
 
         return [txnid:txnid, hash:hash, furl:furl, surl:surl]
     }
+	
+	def getCountryValue(def country){
+		Map countries = getCountry()
+        def mapValue =  countries.getAt(country)
+		return mapValue
+	}
 
     def setCookie(def requestUrl) {
         Cookie cookie = new Cookie("requestUrl", requestUrl)

@@ -2154,17 +2154,18 @@ $(function() {
     $('#country').change(function(){
         var selectedCountry = $(this).val();
         if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
-        	autoSaveHashTags();
-            var delay = 1000; //delayed code to prevent error, time in milliseconds
-            setTimeout(function() {
-            	if (selectedCountry == 'null')
-            	    autoSave('country', 'United States');
-            	else
-            		autoSave('country', selectedCountry);
-            }, delay);
+        	$.ajax({
+                type:'post',
+                url:$("#b_url").val()+'/project/getCountryVal',
+                data:'country='+selectedCountry+'&projectId='+projectId+'&variable=country'+'&varValue='+selectedCountry,
+                success: function(data) {
+                    $('#selectedCountry').val(data);
+                    autoSaveHashTags();
+                }
+        	});
         } else {
         	if (selectedCountry == 'null')
-        	    autoSave('country', 'India');
+        	    autoSave('country', 'IN');
         	else
         		autoSave('country', selectedCountry);
         }
@@ -2410,22 +2411,22 @@ $(function() {
     
     function autoSaveHashTags(){
     	var category = $('#category').val();
-    	var country = $('#country').val();
-    	var userFor = ($('#usedFor').val() == undefined) ? $('#usedForCreate').val() : $('#usedFor').val();
+    	var country = $('#selectedCountry').val();
+    	var usedFor = ($('#usedFor').val() == undefined) ? $('#usedForCreate').val() : $('#usedFor').val();
     	var fundRaisedBy = $('.recipient').val();
     	var city = $('.city').val();
     	var list;
-    	if (userFor == 'SOCIAL_NEEDS') {
+    	if (usedFor == 'SOCIAL_NEEDS') {
     		list = '#SOCIAL-INNOVATION';
     	} else if (usedFor == 'PERSONAL_NEEDS') {
     		list = '#PERSONAL-NEEDS';
     	} else {
-    		list = '#'+userFor;
+    		list = '#'+usedFor;
     	}
     	(fundRaisedBy != 'null') ? list = list + ', #'+fundRaisedBy : ' ' ;
         (category != 'null') ? list = list + ', #'+category : ' ' ;
         if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
-            (country != 'null') ? list = list + ', #'+country : ' ' ;
+            (country != 'null' && country != null && country != '') ? list = list + ', #'+country : ' ' ;
         }
         (city != '') ? list = list + ', #'+city : ' ' ;
 

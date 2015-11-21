@@ -43,6 +43,7 @@
     <g:hiddenField name="vanityUrlStatus" id="vanityUrlStatus" value="true"/>
     <g:hiddenField name="spendMatrix" value="${spends.amount}" id="spendMatrix"/>
     <g:hiddenField name="usedForCreate" id="usedForCreate" value="${project.usedFor}"/>
+    <g:hiddenField name="selectedCountry" id="selectedCountry" value="${project.beneficiary.country}"/>
 
     <div class="text-center">
         <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
@@ -76,10 +77,10 @@
                     <div class="col-sm-3 cr2-width-dropdown2">
                         <div class="cr-dropdown-alignment font-list">
                             <g:if test="${project.beneficiary.country}">
-                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="${project.beneficiary.country}" optionKey="value" optionValue="value" />
+                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="${project.beneficiary.country}" optionKey="key" optionValue="value" />
                             </g:if>
                             <g:else>
-                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="#" optionKey="value" optionValue="value" noSelection="['null':'Country']"/>
+                                <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown" id="country" name="${FORMCONSTANTS.COUNTRY}" from="${country}" value="#" optionKey="key" optionValue="value" noSelection="['null':'Country']"/>
                             </g:else>
                         </div>
                     </div>

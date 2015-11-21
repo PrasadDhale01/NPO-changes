@@ -188,6 +188,9 @@ class ProjectController {
 			List contributions = []
 			List totalContributions = []
 			
+			/*Send feedback email before campaign end date */
+			projectService.sendFeedbackEmailToOwners(project, base_url)
+			
 			if (project.user == currentTeam.user) {
 				def contribution = projectService.getProjectContributions(params, project)
 				totalContributions = contribution.totalContributions
@@ -1970,7 +1973,7 @@ class ProjectController {
         def currentFundraiser = userService.getUserFromVanityName(params.fr)
         render(view:'/project/manageproject/embedTile', model:[project:project, currentFundraiser:currentFundraiser])
     }
-	
+
     def saveSpendMatrix(){
         projectService.getSpendMatrixSaved(params)
         render''
@@ -1980,5 +1983,11 @@ class ProjectController {
         projectService.getSpendMatrixDeleted(params)
         render''
     }
+
+	def getFeedBackCSV(){
+		Project project = projectService.getProjectById(params.projectId)
+		def result = projectService.importCSVReportForUserFeedback(response, project)
+		render (contentType:"text/csv", text:result)
+	}
 
 }

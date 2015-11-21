@@ -2875,7 +2875,7 @@ p.tile-text-size {
 }
 .show-tile-text-size{
     font-size: 10px;
-    line-height: 5px;
+    line-height: 6px;
     margin-bottom: 0;
     margin-top: 8px;
     padding-left: 24px;
@@ -2894,7 +2894,7 @@ p.tile-text-size {
 span.tile-day-num{
     color: #000 !important;
     font-weight:bold;
-    font-size:15px;
+    font-size:18.3px;
     padding-left: 2px;
 }
 .manage-tiles {
@@ -5522,6 +5522,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+
     .cr-panel-hash-tags-guide{
         margin-bottom: 16px;
         padding-top: 5px;
@@ -5545,6 +5546,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-left: -14px !important;
         margin-right: -34px !important;
     }
+
+    .feedback-container {
+        margin: 0 auto;
+        width: 310px !important;
+    }
+
 	   div.cr2-width-dropdown3 {
         width: 231px;
     }
@@ -7538,7 +7545,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 15.75px;
         overflow-y: hidden;
         overflow-x: scroll;
-        border: 1px solid #DDD;
     }
     
    .influencediv.col-lg-2, .influencediv.col-md-2 {
@@ -7700,6 +7706,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+
     .ansText{
         width:90% !important;
         margin-top: 5px;
@@ -7730,6 +7737,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width:100%
     }
     
+    .feedback-container {
+        margin: 0 auto;
+        width: 750px !important;
+    }
+
     h1.headingtext.how-it-works-title {
         font-size: 40px;
     }
@@ -9593,11 +9605,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 	.TW-discover-pg-tile-width .show-tile-text-size {
            font-size: 10px;
-           line-height: 5px;
+           line-height: 6px;
            margin-bottom: 0;
            margin-top: 8px;
-           padding-left: 18px !important;
-           padding-right: 18px !important;
+           padding-left: 21px !important;
+           padding-right: 21px !important;
 	}
 	.TW-discover-drpdwn-left-border div.bootstrap-select > button.selectpicker {
 	   background-color: #f6f8f8;
@@ -9856,8 +9868,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   line-height: 5px;
 	   margin-bottom: 0;
 	   margin-top: 10px;
-	   padding-left: 16px !important;
-	   padding-right: 17px !important;
+	   padding-left: 23px !important;
+	   padding-right: 23px !important;
 	}
 	.icons-centering {
 		display: block;
@@ -9972,7 +9984,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 15.75px;
         overflow-y: hidden;
         overflow-x: scroll;
-        border: 1px solid #DDD;
     }
     
     .dashboard-container{
@@ -10176,7 +10187,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 15.75px;
         overflow-y: hidden;
         overflow-x: scroll;
-        border: 1px solid #DDD;
     }
 	.TW-discover-leftpane-menu ul li a {
 		color: #424242;
@@ -12862,13 +12872,21 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+
     input.editsweb-margin-mobile {
         height: 45px;
         width: 95% !important;
     }
+
     div.edit-tabsMobile-margin {
         margin-left: -14px !important;
     }
+
+    .feedback-container {
+        margin: 0 auto;
+        width: 310px !important;
+    }
+
     div.cr2-width-dropdown3 {
         width: 231px;
     }
@@ -13594,8 +13612,8 @@ textarea.textarea-embed-video {
     }
     div.show-tile-text-size{
         margin-top: 6px;
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 22px;
+        padding-right: 22px;
     }
 	.TW-termsAndPolicy_cr{
 		float:left;
@@ -14208,7 +14226,7 @@ textarea.textarea-embed-video {
 	}
 	span.tile-day-num {
     	   color: #000 !important;
-    	   font-size: 18px !important;
+    	   font-size: 15px !important;
     	   font-weight: bold;
 	}
 	.lead.show-contribution-amt-tile {
@@ -14225,7 +14243,7 @@ textarea.textarea-embed-video {
 	}
 	.show-tile-text-size {
     	  font-size: 8px !important;
-    	  line-height: 5px;
+    	  line-height: 6px;
     	  margin-bottom: 0;
     	  margin-top: 10px;
     	  padding-left: 22px;
@@ -15397,6 +15415,42 @@ span.abt-founderCo{
 .campaignEndDateError .bootstrap-select.btn-group .dropdown-menu {
     max-width: 100%;
 }
+.feedback-container{
+	width:1000px;
+	margin:0 auto;
+}
+.question {
+    height: 100%;
+    padding: 10px;
+    width: 100%;
+}
+.submitbtn {
+    margin: 15px;
+}
+.feedback-container .row h3{
+	margin: 15px 12px 20px 7px;
+}
+.row.bg-color-white{
+	background-color:#fff;
+}
+.secondQOptOne{
+	display:none;
+}
+.secondQOptTwo{
+	display:none;
+}
+.question_4_opt_yes{
+	display:none;
+}
+.question_4_opt_no{
+	display:none;
+}
+.question_9_opt_yes{
+	display:none;
+}
+.question_9_opt_no{
+	display:none;
+}
 img.home-pg-icons{
 	height:100px;
 }
@@ -15455,4 +15509,17 @@ img.home-pg-icons{
 }
 .cr2-padding{
     padding-left: 11px;
+}
+.previewsubmitbtn a{
+	color:#fff;
+	text-decoration:none;
+	height:50px;
+	width:100px;
+}
+.answer input{
+	font-size:15px;
+}
+.col-lg-1.col-md-1.col-sm-1.previewsubmitbtnTop {
+    margin-left: 30px;
+    margin-top: 18px;
 }

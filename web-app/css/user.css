@@ -740,7 +740,7 @@ div.dashboardtile-min-height {
 .dashboard-sortByOptions .dropdown-menu.open {
     margin-left: -2.1%;
 }
-.dashboard-sortByOptions .btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+.dashboard-sortByOptions .btn-default:hover,.dashboard-sortByOptions .btn-default:focus,.dashboard-sortByOptions .btn-default:active,.dashboard-sortByOptions .btn-default.active,.dashboard-sortByOptions .open .dropdown-toggle.btn-default {
     color: #fff;
     background-color: black;
     border-color: black;

@@ -2947,7 +2947,7 @@ class ProjectService {
                 break;
 
             case 'days':
-                project.days = varValue;
+                project.days = Integer.parseInt(varValue);
                 isValueChanged = true;
                 break;
 				
@@ -3214,7 +3214,7 @@ class ProjectService {
         }
 
         if (isValueChanged){
-            project.save();
+            project.save(failOnError:true);
         }
     }
 	
@@ -3726,6 +3726,15 @@ class ProjectService {
         return amount;
     }
 	
+    def saveLastSpendField(def params){
+        def projectId = params.projectId
+        def savingCount = params.lastSpendField
+        def amount = params.('spendAmount'+savingCount)
+        def cause = params.('spendCause'+savingCount)
+        def spend = [projectId:projectId, savingCount:savingCount, amount:amount, cause:cause]
+        getSpendMatrixSaved(spend)
+    }
+
     def getSpendMatrixSaved(def params){
 		Project project = Project.get(params.projectId)
 		def saveCount = Integer.parseInt(params.savingCount)
@@ -3749,7 +3758,7 @@ class ProjectService {
 			}
 
 		} else {
-            SpendMatrix spend = new SpendMatrix(
+            new SpendMatrix(
                project:project,
                amount : amount,
                cause : params.cause,
@@ -3757,7 +3766,7 @@ class ProjectService {
             ).save(failOnError:true);
 		}
 	}
-	
+
     def getSpendMatrixDeleted(def params){
         Project project = Project.get(params.projectId)
 		def deleteCount = Integer.parseInt(params.deleteCount)

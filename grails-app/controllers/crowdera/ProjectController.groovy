@@ -485,6 +485,7 @@ class ProjectController {
             def cookie = projectService.deleteLoginSignUpCookie()
             response.addCookie(cookie)
         }
+		
         
         def projectTitle
         if (params.title && params.amount && params.description && params.firstName) {
@@ -494,13 +495,14 @@ class ProjectController {
             project.draft = true;
 		    project.beneficiary = beneficiary;
             project.beneficiary.email = user.email;
-            if (project.usedFor == 'SOCIAL_NEEDS'){
-                project.hashtags = '#SOCIAL-INNOVATION'
-            } else if (project.usedFor == 'PERSONAL_NEEDS'){
-                project.hashtags = '#PERSONAL-NEEDS'
-            } else {
-                project.hashtags = '#'+project.usedFor
-            }
+			
+			if (project.usedFor == 'SOCIAL_NEEDS'){
+				project.hashtags = '#SOCIAL-INNOVATION'
+			} else if (project.usedFor == 'PERSONAL_NEEDS'){
+				project.hashtags = '#PERSONAL-NEEDS'
+			} else {
+				project.hashtags = '#'+project.usedFor
+			}
 
             def currentEnv = Environment.current.getName()
             if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
@@ -515,7 +517,7 @@ class ProjectController {
 		    project.usedFor = params.usedFor;
 		
             if(project.save(failOnError: true)){
-                projectTitle = projectService.getProjectVanityTitle(project)
+                projectTitle = (project.customVanityUrl)? projectService.getCustomVanityUrl(project) : projectService.getProjectVanityTitle(project)
                 projectService.getFundRaisersForTeam(project, user)
                 projectService.getdefaultAdmin(project, user)
                 redirect(action:'redirectCreateNow', params:[title:projectTitle])
@@ -544,12 +546,21 @@ class ProjectController {
 				}else{
 					categoryOptions = projectService.getCategoryList()
 				}
-                
+
                 def country = projectService.getCountry()
 				def nonProfit = projectService.getRecipientOfFunds()
 				def nonIndprofit = projectService.getRecipientOfFundsIndo()
                 def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
-                
+
+				def usedForCreate
+				if (project.usedFor == 'SOCIAL_NEEDS'){
+					usedForCreate = 'SOCIAL-INNOVATION'
+				} else if (project.usedFor == 'PERSONAL_NEEDS'){
+					usedForCreate = 'PERSONAL-NEEDS'
+				} else {
+					usedForCreate = project.usedFor
+				}
+
                 def endDate = projectService.getProjectEndDate(project)
                 def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
                 def date = new Date();
@@ -577,7 +588,7 @@ class ProjectController {
                 model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
                            FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, user:user,campaignEndDate:campaignEndDate, pieList:pieList,
                            vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
-                           recipientOfFund:recipientOfFund, reasonsToFund:reasonsToFund, qA:qA, spends:spends])
+                           recipientOfFund:recipientOfFund, reasonsToFund:reasonsToFund, qA:qA, spends:spends, usedForCreate:usedForCreate])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
@@ -599,6 +610,8 @@ class ProjectController {
                         project.payuEmail = params.payuEmail
                     }
                 }
+				
+				projectService.saveLastSpendField(params);
 
                 vanitytitle = (project.customVanityUrl) ? projectService.getCustomVanityUrl(project) : params.title;
 
@@ -717,7 +730,8 @@ class ProjectController {
 		def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
 		if(project) {
 			def vanityTitle = projectService.getProjectUpdateDetails(params, project)
-			rewardService.saveRewardDetails(params);
+            rewardService.saveRewardDetails(params);
+            projectService.saveLastSpendField(params);
 			flash.prj_mngprj_message = "Successfully saved the changes"
 			redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
 		} else {

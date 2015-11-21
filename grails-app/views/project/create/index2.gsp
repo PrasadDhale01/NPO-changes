@@ -41,6 +41,8 @@
     <g:hiddenField name="paypal" value="${project.paypalEmail}"/>
     <g:hiddenField name="projectamount" value="${project.amount}" id="projectamount"/>
     <g:hiddenField name="vanityUrlStatus" id="vanityUrlStatus" value="true"/>
+    <g:hiddenField name="spendMatrix" value="${spends.amount}" id="spendMatrix"/>
+    <g:hiddenField name="usedForCreate" id="usedForCreate" value="${project.usedFor}"/>
 
     <div class="text-center">
         <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
@@ -91,7 +93,7 @@
                     <div class="col-sm-3 cr2-width-dropdown4">
                         <div class="font-list">
                             <g:if test="${project.payuEmail}">
-                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAYU" optionKey="key" optionValue="v" />
+                                <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="PAYU" optionKey="key" optionValue="value" />
                             </g:if>
                             <g:elseif test="${project.charitableId}">
                                 <g:select class="selectpicker cr-start-dropdown-payment cr-drops cr-drop-color cr-all-mobile-dropdown" name="${FORMCONSTANTS.PAYMENT}" from="${payOpts}" id="paymentOpt" value="FIR" optionKey="key" optionValue="value" />
@@ -222,7 +224,7 @@
             </div>
 
             <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
-            <div class="col-sm-12">
+            <div class="col-sm-12 padding-right-xs">
                 <div class="cr-spend-matrix">
                     <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">SPEND MATRIX</span></label>
                     <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
@@ -265,6 +267,7 @@
                                 <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="${spend.numberAvailable}"/>
                             </div>
                         </g:each>
+                        <g:hiddenField name="lastSpendField" id="lastSpendField" value="${spendLastNumAvail}"/>
                     </g:if>
                     <g:else>
                         <div class="spend-matrix-template" id="spend-matrix-template1">
@@ -293,6 +296,7 @@
                         </div>
                         <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="1"/>
                         </div>
+                        <g:hiddenField name="lastSpendField" id="lastSpendField" value="1"/>
                     </g:else>
                     </div>
                     <div class="col-sm-4">
@@ -303,7 +307,7 @@
                 </div>
             </div>
             
-            <div class="col-sm-12">
+            <div class="col-sm-12 padding-right-xs">
                 <div class="cr-spend-matrix">
                     <label class="col-md-1 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Q & A</span></label>
                     <label class="col-md-11 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
@@ -336,10 +340,10 @@
                 </div>
             </div>
             
-            <div class="col-sm-12">
+            <div class="col-sm-12 padding-right-xs">
                 <div class="cr-spend-matrix">
                     <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">3 reasons to fund</span></label>
-                    <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide cr-reasons-guide"></label>
+                    <label class="col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-reasons-guide">Let your contributors know why they should fund your campaign.</label>
                 </div>
                 <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-body">
                     <p class="reasons-p form-group">1. <input type="text" name="reason1" class="reason1 reasons form-control" value="${r1}"></p>
@@ -348,12 +352,14 @@
                 </div>
             </div>
             
-            <div class="col-sm-12">
+            <div class="col-sm-12 padding-right-xs">
                 <div class="cr-spend-matrix">
-                     <label class="col-md-1 col-sm-2 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font"># Tags</span></label>
-                     <label class="col-md-11 col-sm-10 hidden-xs cr-panel-spend-matrix-guide"></label>
+                     <label class="col-md-1 col-sm-2 col-xs-12 text-center cr-panel-spend-matrix cr-panel-hash-tags"><span class="cr-spend-matrix-font"># Tags</span></label>
+                     <label class="col-md-11 col-sm-10 col-xs-12 cr-panel-spend-matrix-guide cr-panel-hash-tags-guide">
+                         Keywords/Hashtags help contributors narrow their search on Crowdera. Provide at least 5 keywords that would make it easy for contributors to find your campaign
+                     </label>
                 </div>
-                <div class="panel panel-body cr-panel-body-spend-matrix form-group cr-panel-body">
+                <div class="panel panel-body cr-panel-body-spend-matrix form-group cr-panel-body cr-hash-tags">
                     <textarea name="hashtags" class="hashtags form-control">${project.hashtags}</textarea>
                 </div>
             </div>
@@ -556,54 +562,6 @@
                                     <g:else>
                                         <input type="tel" id="telephone" class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile" name="${FORMCONSTANTS.TELEPHONE}" placeholder="Phone">
                                     </g:else>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="form-group">
-                                <div class="col-sm-12">
-                                    <g:if test="${currentEnv == 'development'}">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel">localhost:8080/campaigns/</div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxDev">
-                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrl" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}">
-                                    </div>
-                                    </g:if>
-                                    <g:elseif test="${currentEnv == 'test'}">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel">test.crowdera.co/campaigns/</div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxTest ">
-                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlTest" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}">
-                                    </div>
-                                    </g:elseif>
-                                    <g:elseif test="${currentEnv == 'testIndia'}">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel">test.crowdera.in/campaigns/</div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxTest ">
-                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlTest" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}">
-                                    </div>
-                                    </g:elseif>
-                                    <g:elseif test="${currentEnv == 'staging'}">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel customUrlLabelStaging">staging.crowdera.co/campaigns/</div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxStaging ">
-                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlStaging" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}">
-                                    </div>
-                                    </g:elseif>
-                                    <g:elseif test="${currentEnv == 'stagingIndia'}">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel customUrlLabelStaging">staging.crowdera.in/campaigns/</div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxStaging ">
-                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlStaging" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}">
-                                    </div>
-                                    </g:elseif>
-                                    <g:elseif test="${currentEnv == 'production'}">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel">crowdera.co/campaigns/</div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxProd ">
-                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}">
-                                    </div>
-                                    </g:elseif>
-                                    <g:elseif test="${currentEnv == 'prodIndia'}">
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlLabel">crowdera.in/campaigns/</div>
-                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 customUrlTextBoxProd">
-                                        <input class="form-control form-control-no-border cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd" name="customVanityUrl" id="customVanityUrl" placeholder="Custom Vanity Url" value="${project.customVanityUrl}">
-                                    </div>
-                                    </g:elseif>
                                 </div>
                             </div>
                         </div>
@@ -813,9 +771,8 @@
                         <label class="panel-body cr-payments">Payments are sent and received via your choice of Payment Gateway.
                         You keep 100% of the money you raise. Crowdera does not charge any fee to you.</label>
                     </div>
-                    <label class="cr-pad-who">Who will recieve the funds</label>
                 </div>
-            </div>
+            </div><br>
             
             <div class="form-group">
                 <g:if test ="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">

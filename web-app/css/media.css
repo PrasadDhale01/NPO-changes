@@ -30,6 +30,13 @@
     .cr-reasons-guide{
          width:80% !important;
     }
+    .cr-panel-body{
+         margin-left:0px !important;
+    }
+    .ansText{
+        width:50% !important;
+        margin-top: 5px;
+    }
 }
 @media only screen and (min-width: 1201px) and (max-width: 1280px){
     .helpdeskpadding {

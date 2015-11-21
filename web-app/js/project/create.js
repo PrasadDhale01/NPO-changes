@@ -377,12 +377,16 @@ $(function() {
                       required: true,
                       number:true,
                       maxlength: 9,
-               	      minlength:100,
+               	      min:100,
+                      max: function() {
+                          var campaignAmount = $('#projectamount').val();
+                          return Number(campaignAmount);
+                      },
                       messages: {
                   	     required: 'Required',
                   	     number: 'Digits only',
                   	     maxlength: 'max 9 digits',
-                  	     minlength:'min 100rs'
+                  	     min:'min 100rs'
                       }
                   });
               });
@@ -392,6 +396,10 @@ $(function() {
                       required: true,
                       number:true,
                       maxlength: 6,
+                      max: function() {
+                          var campaignAmount = $('#projectamount').val();
+                          return Number(campaignAmount);
+                      },
                       messages: {
                           required: 'Required',
                           number: 'Digits only',
@@ -586,12 +594,16 @@ $(function() {
                     required: true,
                     number:true,
                     maxlength: 9,
-             	    minlength:100,
+             	    min:100,
+                    max: function() {
+                        var campaignAmount = $('#projectamount').val();
+                        return Number(campaignAmount);
+                    },
                     messages: {
                 	     required: 'Required',
                 	     number: 'Digits only',
                 	     maxlength: 'max 9 digits',
-                	     minlength:'min 100rs'
+                	     min:'min 100rs'
                     }
                 });
             });
@@ -601,10 +613,14 @@ $(function() {
                     required: true,
                     number:true,
                     maxlength: 6,
+                    max: function() {
+                    	var campaignAmount = $('#projectamount').val();
+                        return Number(campaignAmount);
+                    },
                     messages: {
                         required: 'Required',
                         number: 'Digits only',
-                        maxlength: 'max 6 digits',
+                        maxlength: 'max 6 digits'
                     }
                 });
             }); 
@@ -859,9 +875,6 @@ $(function() {
     $('.ans1').change(function(){
     	if ($(this).val()=="yes"){
     		$('.ansText1').removeClass('display-none-text1');
-    		if($('.question-ans-1').find('.help-block').length > 0){
-    			$('.question-ans-1').find('.help-block').show();
-    		}
     	} else {
     		$('.ansText1').addClass('display-none-text1');
     		if ($('.question-ans-1').find('.help-block').length > 0){
@@ -874,9 +887,6 @@ $(function() {
     $('.ans3').change(function(){
     	if ($(this).val()=="yes"){
     		$('.ansText3').removeClass('display-none-text3');
-    		if($('.question-ans-3').find('.help-block').length > 0){
-    			$('.question-ans-3').find('.help-block').show();
-    		}
     	} else {
     		$('.ansText3').addClass('display-none-text3');
     		if($('.question-ans-3').find('.help-block').length > 0){
@@ -1222,9 +1232,9 @@ $(function() {
 
      /*******************************Description text length******************** */
     var counter = 1;
-    $('#descarea').on('keydown', function(event) {
+    $('#descarea, #descarea1').on('keydown', function(event) {
         event.altKey==true;
-        var currentString = $('#descarea').val().length;
+        var currentString = $('#descarea, #descarea1').val().length;
         if (currentString >= 9) {
         	$('.createDescDiv').find("span").remove();
             $('.createDescDiv').closest(".form-group").removeClass('has-error');
@@ -1736,7 +1746,7 @@ $(function() {
 
     $(document).ready(function (){
         //called when key is pressed in textbox
-        $("#amount,#amount1,#amount2").keypress(function (e) {
+        $("#amount").keypress(function (e) {
             //if the letter is not digit then display error and don't type anything
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                 //display error message
@@ -1745,7 +1755,7 @@ $(function() {
             } 
         });
         
-        $("#amount2,#amount3").keypress(function (e) {
+        $("#amount2,#amount3,#amount1").keypress(function (e) {
             //if the letter is not digit then display error and don't type anything
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
                 //display error message
@@ -1828,23 +1838,28 @@ $(function() {
                   '<input type="hidden" name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="'+nextCount+'">'+
               '</div>';
               $('.spend-matrix').append(template);
+              var lastSpendField = $('.spenMatrixNumberAvailable:last').val();
+              $('#lastSpendField').val(lastSpendField);
         	  }
           });
 
           function validateSpendMatrix(shippingMatrixCount){
-
         	  if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
         	      $('.spendAmount').each(function () {
                       $(this).rules("add", {
                           required: true,
                           number:true,
                           maxlength: 9,
-                   	      minlength:100,
+                   	      min:100,
+                          max: function() {
+                              var campaignAmount = $('#projectamount').val();
+                              return Number(campaignAmount);
+                          },
                           messages: {
                       	     required: 'Required',
                       	     number: 'Digits only',
                       	     maxlength: 'max 9 digit',
-                      	     minlength:'min 100rs'
+                      	     min:'min 100rs'
                           }
                       });
                   });
@@ -1854,10 +1869,14 @@ $(function() {
                           required: true,
                           number:true,
                           maxlength: 6,
+                          max: function() {
+                              var campaignAmount = $('#projectamount').val();
+                              return Number(campaignAmount);
+                          },
                           messages: {
                               required: 'Required',
                               number: 'Digits only',
-                              maxlength: 'max 6 digit',
+                              maxlength: 'max 6 digit'
                           }
                       });
                   }); 
@@ -1923,6 +1942,8 @@ $(function() {
                   data:'amount='+amount+'&cause='+cause+'&deleteCount='+deleteCount+'&projectId='+projectId,
                   success: function(data) {
                 	  $('.spend-matrix').find('#spend-matrix-template'+deleteCount).remove();
+                	  var lastSpendField = $('.spenMatrixNumberAvailable:last').val();
+                      $('#lastSpendField').val(lastSpendField);
                   }
               }).error(function() {
                   console.log('error occured while deleting spenMarix no.'+savingCount);
@@ -2120,56 +2141,51 @@ $(function() {
 //        	$('.impact-text').innerhtml('change a life');
 //    	    break;
 //        }
-          var hashtags = $('.hashtags').val();
-          var list = hashtags.split(',');
-          if (list.length > 2){
-        	  list[2] = ' #'+selectedCategory
-        	  $('.hashtags').val(list);
-          } else {
-        	  $('.hashtags').val(hashtags + ', #'+selectedCategory);
-          }
-        autoSave('hashtags', $('.hashtags').val());
-        var delay = 50; //delayed code to prevent error, time in milliseconds
+        autoSaveHashTags();
+        var delay = 5000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
-        	autoSave('category', selectedCategory);
+        	if (selectedCategory == 'null')
+        	    autoSave('category', 'OTHER');
+        	else 
+        		autoSave('category', selectedCategory);
         }, delay);
     });
    
     $('#country').change(function(){
         var selectedCountry = $(this).val();
         if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
-        	var hashtags = $('.hashtags').val();
-            var list = hashtags.split(',');
-            if (list.length > 4){
-          	  list[4] = ' #'+selectedCountry
-          	  $('.hashtags').val(list);
-            } else {
-          	  $('.hashtags').val(hashtags + ', #'+selectedCountry);
-            }
-            autoSave('hashtags', $('.hashtags').val());
-            var delay = 50; //delayed code to prevent error, time in milliseconds
+        	autoSaveHashTags();
+            var delay = 5000; //delayed code to prevent error, time in milliseconds
             setTimeout(function() {
-            	autoSave('country', selectedCountry);
+            	if (selectedCountry == 'null')
+            	    autoSave('country', 'United States');
+            	else
+            		autoSave('country', selectedCountry);
             }, delay);
         } else {
-        	autoSave('country', selectedCountry);
+        	if (selectedCountry == 'null')
+        	    autoSave('country', 'India');
+        	else
+        		autoSave('country', selectedCountry);
         }
     });
-    
+
     $('.recipient').change(function(){
         var recipient = $(this).val();
-        var hashtags = $('.hashtags').val();
-        var list = hashtags.split(',');
-        if (list.length > 1){
-            list[1] = ' #'+recipient
-            $('.hashtags').val(list);
-        } else {
-            $('.hashtags').val(hashtags + ', #'+recipient);
-        }
-        autoSave('hashtags', $('.hashtags').val());
-        var delay = 50; //delayed code to prevent error, time in milliseconds
+        autoSaveHashTags();
+        var delay = 5000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
-        	autoSave('fundsRecievedBy', recipient);
+        	if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+        		if (recipient == 'null')
+        			autoSave('fundsRecievedBy', 'NGO');
+        		else 
+        			autoSave('fundsRecievedBy', recipient);
+        	} else {
+        		if (recipient == 'null')
+        			autoSave('fundsRecievedBy', 'NON-PROFIT');
+        		else 
+        			autoSave('fundsRecievedBy', recipient);
+        	}
         }, delay);
     });
 
@@ -2199,12 +2215,12 @@ $(function() {
         }
     });
 
-    $('#customVanityUrl').blur(function (){
+    $('.customVanityUrl').blur(function (){
         var customUrl = $(this).val();
         var delay = 50; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
                 var customUrlStatus = $('#vanityUrlStatus').val();
-                if(validator.element("#customVanityUrl") && customUrlStatus == 'true')
+                if(validator.element(".customVanityUrl") && customUrlStatus == 'true')
                     autoSave('customVanityUrl', customUrl.trim());
             }, delay);
     });
@@ -2309,6 +2325,7 @@ $(function() {
     
     $('#amount1').blur(function (){
         var amount = $(this).val();
+        $('#projectamount').val(amount);
         if(validator.element("#amount1") && amount) {
             autoSave('amount', amount);
         }
@@ -2316,22 +2333,29 @@ $(function() {
     
     $('#amount2').blur(function (){
         var amount = $(this).val();
+        $('#projectamount').val(amount);
         if(validator.element("#amount2") && amount) {
             autoSave('amount', amount);
         }
     });
-    
+
     $('#paypalEmailId').blur(function(){
     	var paypalEmail = $('#paypalEmailId').val();
     	$('#charitable').find('input').val('');
         autoSave('paypalEmailId', paypalEmail);
     });
-    
-    $('.campaignTitle1').blur(function (){
+
+    $('#campaignTitle1').blur(function (){
         var title = $(this).val();
+//        $('#customVanityUrl').val(title.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-'));
         autoSave('campaignTitle', title);
     });
-    
+
+//    $('#campaignTitle').blur(function(){
+//    	var title = $(this).val();
+//        $('#customVanityUrl').val(title.replace(/[^a-z0-9\s]/gi, '').replace(/[_\s]/g, '-'));
+//    });
+
     $('.descarea1').blur(function (){
         var descarea = $(this).val();
         autoSave('descarea', descarea);
@@ -2339,84 +2363,66 @@ $(function() {
     
     $('.city').blur(function (){
     	var city = $(this).val();
-    	var hashtags = $('.hashtags').val();
-        var list = hashtags.split(',');
-        if (list.length > 3){
-      	  list[3] = ' #'+city
-      	  $('.hashtags').val(list);
-        } else {
-      	  $('.hashtags').val(hashtags + ', #'+city);
-        }
-        autoSave('hashtags', $('.hashtags').val());
-        var delay = 50; //delayed code to prevent error, time in milliseconds
+    	autoSaveHashTags();
+        var delay = 5000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
         	autoSave('city', city);
         }, delay);
     });
     
     $('#impact1').click(function(){
-        var hashtags = $('.hashtags').val();
-        var list = hashtags.split(',');
-        if (list.length > 0){
-            list[0] = '#IMPACT'
-            $('.hashtags').val(list);
-        } else {
-            $('.hashtags').val('#IMPACT'+ hashtags);
-        }
-        autoSave('hashtags', $('.hashtags').val());
-        var delay = 50; //delayed code to prevent error, time in milliseconds
+    	$('#usedFor').val('IMPACT');
+    	autoSaveHashTags();
+        var delay = 5000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
             autoSave('usedFor', 'IMPACT');
         }, delay);
     });
 
     $('#passion1').click(function(){
-        var hashtags = $('.hashtags').val();
-        var list = hashtags.split(',');
-        if (list.length > 0){
-            list[0] = '#PASSION'
-            $('.hashtags').val(list);
-        } else {
-            $('.hashtags').val('#PASSION'+hashtags);
-        }
-        autoSave('hashtags', $('.hashtags').val());
-        var delay = 50; //delayed code to prevent error, time in milliseconds
+    	$('#usedFor').val('PASSION');
+    	autoSaveHashTags();
+        var delay = 5000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
             autoSave('usedFor', 'PASSION');
         }, delay);
     });
 
     $('#innovating1').click(function(){
-        var hashtags = $('.hashtags').val();
-        var list = hashtags.split(',');
-        if (list.length > 0){
-            list[0] = '#SOCIAL-INNOVATION'
-            $('.hashtags').val(list);
-        } else {
-            $('.hashtags').val('#SOCIAL-INNOVATION'+hashtags);
-        }
-        autoSave('hashtags', $('.hashtags').val());
-        var delay = 50; //delayed code to prevent error, time in milliseconds
+    	$('#usedFor').val('SOCIAL-INNOVATION');
+    	autoSaveHashTags();
+        var delay = 5000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
             autoSave('usedFor', 'SOCIAL-INNOVATION');
         }, delay);
     });
 
     $('#personal1').click(function(){
-        var hashtags = $('.hashtags').val();
-        var list = hashtags.split(',');
-        if (list.length > 0){
-            list[0] = '#PERSONAL-NEEDS'
-            $('.hashtags').val(list);
-        } else {
-            $('.hashtags').val('#PERSONAL-NEEDS'+hashtags);
-        }
-        autoSave('hashtags', $('.hashtags').val());
-        var delay = 50; //delayed code to prevent error, time in milliseconds
+    	$('#usedFor').val('PERSONAL-NEEDS');
+        autoSaveHashTags();
+        var delay = 5000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
             autoSave('usedFor', 'PERSONAL-NEEDS');
         }, delay);
     });
+    
+    function autoSaveHashTags(){
+    	var category = $('#category').val();
+    	var country = $('#country').val();
+    	var userFor = ($('#usedFor').val() == undefined) ? $('#usedForCreate').val() : $('#usedFor').val();
+    	var fundRaisedBy = $('.recipient').val();
+    	var city = $('.city').val();
+    	var list = '#'+userFor;
+    	(fundRaisedBy != 'null') ? list = list + ', #'+fundRaisedBy : ' ' ;
+        (category != 'null') ? list = list + ', #'+category : ' ' ;
+        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+            (country != 'null') ? list = list + ', #'+country : ' ' ;
+        }
+        (city != '') ? list = list + ', #'+city : ' ' ;
+
+    	$('.hashtags').val(list);
+    	autoSave('hashtags', list);
+    }
 
     $('.ansText1').blur(function(){
     	var ansText1 = $(this).val();

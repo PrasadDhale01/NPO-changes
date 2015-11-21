@@ -386,7 +386,7 @@ $(function() {
                   	     required: 'Required',
                   	     number: 'Digits only',
                   	     maxlength: 'max 9 digits',
-                  	     min:'min 100rs'
+                  	     min:'min 100'
                       }
                   });
               });
@@ -603,7 +603,7 @@ $(function() {
                 	     required: 'Required',
                 	     number: 'Digits only',
                 	     maxlength: 'max 9 digits',
-                	     min:'min 100rs'
+                	     min:'min 100'
                     }
                 });
             });
@@ -1859,7 +1859,7 @@ $(function() {
                       	     required: 'Required',
                       	     number: 'Digits only',
                       	     maxlength: 'max 9 digit',
-                      	     min:'min 100rs'
+                      	     min:'min 100'
                           }
                       });
                   });
@@ -2142,7 +2142,7 @@ $(function() {
 //    	    break;
 //        }
         autoSaveHashTags();
-        var delay = 5000; //delayed code to prevent error, time in milliseconds
+        var delay = 1000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
         	if (selectedCategory == 'null')
         	    autoSave('category', 'OTHER');
@@ -2155,7 +2155,7 @@ $(function() {
         var selectedCountry = $(this).val();
         if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
         	autoSaveHashTags();
-            var delay = 5000; //delayed code to prevent error, time in milliseconds
+            var delay = 1000; //delayed code to prevent error, time in milliseconds
             setTimeout(function() {
             	if (selectedCountry == 'null')
             	    autoSave('country', 'United States');
@@ -2173,18 +2173,20 @@ $(function() {
     $('.recipient').change(function(){
         var recipient = $(this).val();
         autoSaveHashTags();
-        var delay = 5000; //delayed code to prevent error, time in milliseconds
+        var delay = 1000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
         	if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-        		if (recipient == 'null')
+        		if (recipient == 'null') {
         			autoSave('fundsRecievedBy', 'NGO');
-        		else 
+        		} else {
         			autoSave('fundsRecievedBy', recipient);
+        		}
         	} else {
-        		if (recipient == 'null')
+        		if (recipient == 'null') {
         			autoSave('fundsRecievedBy', 'NON-PROFIT');
-        		else 
+        		} else {
         			autoSave('fundsRecievedBy', recipient);
+        		}
         	}
         }, delay);
     });
@@ -2364,7 +2366,7 @@ $(function() {
     $('.city').blur(function (){
     	var city = $(this).val();
     	autoSaveHashTags();
-        var delay = 5000; //delayed code to prevent error, time in milliseconds
+        var delay = 1000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
         	autoSave('city', city);
         }, delay);
@@ -2373,7 +2375,7 @@ $(function() {
     $('#impact1').click(function(){
     	$('#usedFor').val('IMPACT');
     	autoSaveHashTags();
-        var delay = 5000; //delayed code to prevent error, time in milliseconds
+        var delay = 1000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
             autoSave('usedFor', 'IMPACT');
         }, delay);
@@ -2382,7 +2384,7 @@ $(function() {
     $('#passion1').click(function(){
     	$('#usedFor').val('PASSION');
     	autoSaveHashTags();
-        var delay = 5000; //delayed code to prevent error, time in milliseconds
+        var delay = 1000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
             autoSave('usedFor', 'PASSION');
         }, delay);
@@ -2391,7 +2393,7 @@ $(function() {
     $('#innovating1').click(function(){
     	$('#usedFor').val('SOCIAL-INNOVATION');
     	autoSaveHashTags();
-        var delay = 5000; //delayed code to prevent error, time in milliseconds
+        var delay = 1000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
             autoSave('usedFor', 'SOCIAL-INNOVATION');
         }, delay);
@@ -2400,7 +2402,7 @@ $(function() {
     $('#personal1').click(function(){
     	$('#usedFor').val('PERSONAL-NEEDS');
         autoSaveHashTags();
-        var delay = 5000; //delayed code to prevent error, time in milliseconds
+        var delay = 1000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
             autoSave('usedFor', 'PERSONAL-NEEDS');
         }, delay);
@@ -2412,7 +2414,14 @@ $(function() {
     	var userFor = ($('#usedFor').val() == undefined) ? $('#usedForCreate').val() : $('#usedFor').val();
     	var fundRaisedBy = $('.recipient').val();
     	var city = $('.city').val();
-    	var list = '#'+userFor;
+    	var list;
+    	if (userFor == 'SOCIAL_NEEDS') {
+    		list = '#SOCIAL-INNOVATION';
+    	} else if (usedFor == 'PERSONAL_NEEDS') {
+    		list = '#PERSONAL-NEEDS';
+    	} else {
+    		list = '#'+userFor;
+    	}
     	(fundRaisedBy != 'null') ? list = list + ', #'+fundRaisedBy : ' ' ;
         (category != 'null') ? list = list + ', #'+category : ' ' ;
         if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){

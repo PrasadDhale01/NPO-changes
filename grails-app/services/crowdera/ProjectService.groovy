@@ -3796,32 +3796,34 @@ class ProjectService {
     def getSpendMatrixSaved(def params){
 		Project project = Project.get(params.projectId)
 		def saveCount = Integer.parseInt(params.savingCount)
-		def amount = Double.parseDouble(params.amount)
-		SpendMatrix spendMatrix = SpendMatrix.findByNumberAvailableAndProject(saveCount, project)
-		if (spendMatrix) {
-            def isValueChanged = false
+		if (params.amount && params.cause && params.amount.isNumber()) {
+		    def amount = Double.parseDouble(params.amount)
+		    SpendMatrix spendMatrix = SpendMatrix.findByNumberAvailableAndProject(saveCount, project)
+		    if (spendMatrix) {
+                def isValueChanged = false
 
-            if (amount && amount != ' '){
-				spendMatrix.amount = amount
-				isValueChanged = true
-			}
+                if (amount && amount != ' '){
+				    spendMatrix.amount = amount
+				    isValueChanged = true
+			    }
 
-			if (params.cause && params.cause != ' '){
-				spendMatrix.cause = params.cause
-				isValueChanged = true
-			}
+			    if (params.cause && params.cause != ' '){
+				    spendMatrix.cause = params.cause
+				    isValueChanged = true
+			    }
 
-			if (isValueChanged){
-				spendMatrix.save(failOnError: true);
-			}
+			    if (isValueChanged){
+				    spendMatrix.save(failOnError: true);
+			    }
 
-		} else {
-            new SpendMatrix(
-               project:project,
-               amount : amount,
-               cause : params.cause,
-               numberAvailable : saveCount
-            ).save(failOnError:true);
+		    } else {
+                new SpendMatrix(
+                    project:project,
+                    amount : amount,
+                    cause : params.cause,
+                    numberAvailable : saveCount
+                ).save(failOnError:true);
+		    }
 		}
 	}
 
@@ -3857,30 +3859,15 @@ class ProjectService {
         }
 		return pieValueWithPer;
     }
-	
-	def getFundsRecieveVal(def fundsRecievedBy, def currentEnv){
-		Map reciever = (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') ? getRecipientOfFundsIndo() : getRecipientOfFunds()
-		return reciever.getAt(fundsRecievedBy)
-	}
-	
+
 	def getProjectReasonsToFund(Project project){
-		def reasonsToFund = ReasonsToFund.findByProject(project)
-		if (reasonsToFund){
-			return reasonsToFund
-		} else {
-		    return null
-		}
+		return ReasonsToFund.findByProject(project)
 	}
 	
 	def getProjectQA(Project project){
-		def qA = QA.findByProject(project)
-		if (qA){
-			return qA
-		} else {
-		    return null
-		}
+		return QA.findByProject(project)
 	}
-    
+
     def getValidatedProjectsForCampaignAdmin(def condition, def country) {
         List projects = []
         List totalProjects = []

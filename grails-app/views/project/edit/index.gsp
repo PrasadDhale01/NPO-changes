@@ -110,16 +110,16 @@
                     <div class="col-sm-3 cr2-width-dropdown5">
                         <div class="cr-dropdown-alignment font-list">
                             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                <g:if test="${recipientOfFund}">
-                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonIndprofit}" value="${recipientOfFund}" optionKey="key" optionValue="value" />
+                                <g:if test="${project.fundsRecievedBy}">
+                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonIndprofit}" value="${project.fundsRecievedBy}" optionKey="key" optionValue="value" />
                                 </g:if>
                                 <g:else>
                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonIndprofit}" optionKey="key" optionValue="value" noSelection="['null':'Reciepient of fund']"/>
                                 </g:else>
                             </g:if>
                             <g:else>
-                                 <g:if test="${recipientOfFund}">
-                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonProfit}" optionKey="key" optionValue="value" value="${recipientOfFund}"/>
+                                 <g:if test="${project.fundsRecievedBy}">
+                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonProfit}" optionKey="key" optionValue="value" value="${project.fundsRecievedBy}"/>
                                  </g:if>
                                  <g:else>
                                      <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonProfit}" optionKey="key" optionValue="value" noSelection="['null':'Reciepient of fund']"/>
@@ -371,7 +371,7 @@
                 </div>
 
                 <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
                             <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">SPEND MATRIX</span></label>
                             <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
@@ -454,7 +454,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
                             <label class="col-md-1 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Q & A</span></label>
                             <label class="col-md-11 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
@@ -487,7 +487,7 @@
                         </div>
                     </div>
                     
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
                              <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">3 reasons to fund</span></label>
                              <label class="col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-reasons-guide">Let your contributors know why they should fund your campaign.</label>
@@ -499,7 +499,7 @@
                         </div>
                     </div>
                     
-                    <div class="col-sm-12">
+                    <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
                              <label class="col-md-1 col-sm-2 col-xs-12 text-center cr-panel-spend-matrix cr-panel-hash-tags"><span class="cr-spend-matrix-font"># Tags</span></label>
                              <label class="col-md-11 col-sm-10 col-xs-12 cr-panel-spend-matrix-guide cr-panel-hash-tags-guide">

@@ -110,16 +110,16 @@
                     <div class="col-sm-3 cr2-width-dropdown5">
                         <div class="cr-dropdown-alignment font-list">
                             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                                <g:if test="${recipientOfFund}">
-                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonIndprofit}" value="${recipientOfFund}" optionKey="key" optionValue="value"/>
+                                <g:if test="${project.fundsRecievedBy}">
+                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonIndprofit}" value="${project.fundsRecievedBy}" optionKey="key" optionValue="value"/>
                                 </g:if>
                                 <g:else>
                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonIndprofit}" optionKey="key" optionValue="value" noSelection="['null':'Recipient of fund']"/>
                                 </g:else>
                             </g:if>
                             <g:else>
-                                <g:if test="${recipientOfFund}">
-                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonProfit}" value="${recipientOfFund}" optionKey="key" optionValue="value"/>
+                                <g:if test="${project.fundsRecievedBy}">
+                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonProfit}" value="${project.fundsRecievedBy}" optionKey="key" optionValue="value"/>
                                 </g:if>
                                 <g:else>
                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonProfit}" optionKey="key" optionValue="value" noSelection="['null':'Recipient of fund']"/>

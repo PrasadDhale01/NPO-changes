@@ -5522,6 +5522,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	
+     .cr-padding-edit-xs {
+         margin-left: 4px;
+         padding-right: 9px;
+     }
 
     .cr-panel-hash-tags-guide{
         margin-bottom: 16px;
@@ -10507,6 +10512,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+
+    .cr-padding-edit-xs {
+        margin-left: 4px;
+        padding-right: 34px;
+    }
 
     .cr-panel-hash-tags-guide{
         margin-bottom: 16px;

@@ -49,7 +49,7 @@
                     <input name="approveChk[]" type="checkbox"/><label class="control-label"><b>Feasibility</b></label>
                 </li>
                 <li>
-                    <input name="approveChk[]" type="checkbox"/><label class="control-label"><b>Grammer</b></label>
+                    <input name="approveChk[]" type="checkbox"/><label class="control-label"><b>Grammar</b></label>
                 </li>
                 <li>
                     <input name="approveChk[]" type="checkbox"/><label class="control-label"><b>Images</b></label>
@@ -259,7 +259,7 @@
                             <label class="control-label"><b>Feasibility</b></label><input name="approveChk[]" type="checkbox"/>
                         </div>
                         <div class="form-group">
-                            <label class="control-label"><b>Grammer</b></label><input name="approveChk[]" type="checkbox"/>
+                            <label class="control-label"><b>Grammar</b></label><input name="approveChk[]" type="checkbox"/>
                         </div>
                         <div class="form-group">
                             <label class="control-label"><b>Images</b></label><input name="approveChk[]" type="checkbox"/>

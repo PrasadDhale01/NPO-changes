@@ -162,8 +162,8 @@ class ProjectService {
             project.charitableId = params.charitableId
             project.organizationName = params.organizationName
         }
-        
-        if (!project.beneficiary.country) {
+
+        if (project.beneficiary.country == 'null') {
             if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
                 project.beneficiary.country = 'IN'
             } else {

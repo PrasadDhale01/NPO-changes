@@ -494,18 +494,18 @@ class ProjectController {
         if (params.title && params.amount && params.description && params.firstName) {
             def project = projectService.getProjectByParams(params)
             def beneficiary = userService.getBeneficiaryByParams(params)
-		    def user = userService.getCurrentUser()
+            def user = userService.getCurrentUser()
             project.draft = true;
-		    project.beneficiary = beneficiary;
+            project.beneficiary = beneficiary;
             project.beneficiary.email = user.email;
-			
-			if (project.usedFor == 'SOCIAL_NEEDS'){
-				project.hashtags = '#SOCIAL-INNOVATION'
-			} else if (project.usedFor == 'PERSONAL_NEEDS'){
-				project.hashtags = '#PERSONAL-NEEDS'
-			} else {
-				project.hashtags = '#'+project.usedFor
-			}
+            
+            if (project.usedFor == 'SOCIAL_NEEDS'){
+                project.hashtags = '#SOCIAL-INNOVATION'
+            } else if (project.usedFor == 'PERSONAL_NEEDS'){
+                project.hashtags = '#PERSONAL-NEEDS'
+            } else {
+                project.hashtags = '#'+project.usedFor
+            }
 
 		    project.usedFor = params.usedFor;
 		
@@ -532,27 +532,28 @@ class ProjectController {
             def spends = project.spend
             spends = spends.sort{it.numberAvailable}
             if (user == currentUser) {
-				def currentEnv = Environment.current.getName()
-				def categoryOptions 
-				if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
-					categoryOptions = projectService.getIndiaCategoryList()
-				}else{
-					categoryOptions = projectService.getCategoryList()
-				}
+                def currentEnv = Environment.current.getName()
+                def categoryOptions 
+                if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
+                    categoryOptions = projectService.getIndiaCategoryList()
+                }else{
+                    categoryOptions = projectService.getCategoryList()
+                }
 
                 def country = projectService.getCountry()
-				def nonProfit = projectService.getRecipientOfFunds()
-				def nonIndprofit = projectService.getRecipientOfFundsIndo()
+                def nonProfit = projectService.getRecipientOfFunds()
+                def nonIndprofit = projectService.getRecipientOfFundsIndo()
                 def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
 
-				def usedForCreate
-				if (project.usedFor == 'SOCIAL_NEEDS'){
-					usedForCreate = 'SOCIAL-INNOVATION'
-				} else if (project.usedFor == 'PERSONAL_NEEDS'){
-					usedForCreate = 'PERSONAL-NEEDS'
-				} else {
-					usedForCreate = project.usedFor
-				}
+                def usedForCreate
+                if (project.usedFor == 'SOCIAL_NEEDS'){
+                    usedForCreate = 'SOCIAL-INNOVATION'
+                } else if (project.usedFor == 'PERSONAL_NEEDS'){
+                    usedForCreate = 'PERSONAL-NEEDS'
+                } else {
+                usedForCreate = project.usedFor
+                }
+				def selectedCountry = (project.beneficiary.country) ? projectService.getCountryValue(project.beneficiary.country) : null;
 
                 def endDate = projectService.getProjectEndDate(project)
                 def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
@@ -563,6 +564,7 @@ class ProjectController {
                         projectRewards.add(it)
                     }
                 }
+				projectRewards = projectRewards.sort{it.rewardCount}
                 if(campaignEndDate == date.format('MM/dd/yyyy')){
                     campaignEndDate = null
                 }
@@ -580,7 +582,7 @@ class ProjectController {
                 model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
                        FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, user:user,campaignEndDate:campaignEndDate, pieList:pieList,
                        vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
-                       reasonsToFund:reasonsToFund, qA:qA, spends:spends, usedForCreate:usedForCreate])
+                       reasonsToFund:reasonsToFund, qA:qA, spends:spends, usedForCreate:usedForCreate, selectedCountry:selectedCountry])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
@@ -616,7 +618,7 @@ class ProjectController {
 
                 if (params.isSubmitButton == 'true'){
                     project.draft = false;
-                    if (!project.beneficiary.country) {
+                    if (!project.beneficiary.country || project.beneficiary.country == 'null') {
                         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
                             project.beneficiary.country = 'IN'
                         } else {
@@ -642,25 +644,25 @@ class ProjectController {
 		render (view: 'create/saveasdraft', model:[FORMCONSTANTS: FORMCONSTANTS, project:project])
 	}
 	
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def launch() {
-		def vanityTitle = params.title
-		def project = projectService. getProjectFromVanityTitle(vanityTitle)
-		def currentEnv = Environment.current.getName()
-		if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-			project.payuStatus = true
-			if (project.fundsRecievedBy == null){
-				project.fundsRecievedBy = "NGO"
-				project.hashtags = project.hashtags + ", #NGO"
-			}
-		} else {
-			if (project.fundsRecievedBy == null){
-				project.fundsRecievedBy = "NON-PROFIT"
-				project.hashtags = project.hashtags + ", #NON-PROFIT"
-			}
-		}
-		render (view: 'create/justcreated', model:[project:project, FORMCONSTANTS: FORMCONSTANTS, vanityTitle: vanityTitle])
-	}
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def launch() {
+        def vanityTitle = params.title
+        def project = projectService. getProjectFromVanityTitle(vanityTitle)
+        def currentEnv = Environment.current.getName()
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            project.payuStatus = true
+            if (project.fundsRecievedBy == null){
+                project.fundsRecievedBy = "NGO"
+                project.hashtags = project.hashtags + ", #NGO"
+            }
+        } else {
+            if (project.fundsRecievedBy == null){
+                project.fundsRecievedBy = "NON-PROFIT"
+                project.hashtags = project.hashtags + ", #NON-PROFIT"
+            }
+        }
+        render (view: 'create/justcreated', model:[project:project, FORMCONSTANTS: FORMCONSTANTS, vanityTitle: vanityTitle])
+    }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editCampaign(){
@@ -700,6 +702,7 @@ class ProjectController {
 				projectRewards.add(it)
 			}
 		}
+        projectRewards = projectRewards.sort{it.rewardCount}
 		if(campaignEndDate == date.format('MM/dd/yyyy')){
 			campaignEndDate = null
 		}
@@ -710,17 +713,18 @@ class ProjectController {
 		} else {
 			payOpts = projectService.getPayment()
 		}
+        def selectedCountry = (project.beneficiary.country) ? projectService.getCountryValue(project.beneficiary.country) : null;
 		if (project) {
-			def beneficiary = project.beneficiary
+            def beneficiary = project.beneficiary
             def reasonsToFund = projectService.getProjectReasonsToFund(project)
             def qA = projectService.getProjectQA(project)
 			render (view: 'edit/index',
 			model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
-                    'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit, 
+                    'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,
                     currentEnv: currentEnv,beneficiary:beneficiary,inDays:inDays,
                     FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,qA:qA,
                     project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
-                    vanityTitle: vanityTitle, vanityUsername:vanityUsername,
+                    vanityTitle: vanityTitle, vanityUsername:vanityUsername, selectedCountry: selectedCountry,
                     email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
 		} else {
 			flash.prj_edit_message = "Campaign not found."
@@ -1991,13 +1995,13 @@ class ProjectController {
 		render (contentType:"text/csv", text:result)
 	}
 	
-	def getCountryVal(){
-		def country = projectService.getCountryValue(params.country);
-		def variable = request.getParameter("variable")
-		def varValue = request.getParameter("varValue")
-		def projectId = request.getParameter("projectId")
-		projectService.autoSaveProjectDetails(variable, varValue, projectId)
-		render country
-	}
+    def getCountryVal(){
+        def country = projectService.getCountryValue(params.country);
+        def variable = request.getParameter("variable")
+        def varValue = request.getParameter("varValue")
+        def projectId = request.getParameter("projectId")
+        projectService.autoSaveProjectDetails(variable, varValue, projectId)
+        render country
+    }
 
 }

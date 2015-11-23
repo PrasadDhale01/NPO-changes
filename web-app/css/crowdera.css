@@ -5534,6 +5534,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 15px;
         padding-right: 6px;
         height: 113px !important;
+        border: 1px solid #DDD;
     }
     .padding-right-xs{
         padding-right:6px;
@@ -9228,15 +9229,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
-	
+
     .cr-reasons-to-fund, .cr-panel-hash-tags{
          margin-bottom:0;
     }
-    
+
     .cr-reasons-guide{
         padding-top:5px;
         height: 54px !important;
         margin-bottom: 15px;
+        border: 1px solid #DDD;
+        padding-right: 5px;
     }
 
     input.editsweb-margin-mobile {
@@ -10524,6 +10527,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 15px;
         padding-right: 6px;
         height: 133px !important;
+        border: 1px solid #DDD;
     }
     .padding-right-xs{
         padding-left:19px;

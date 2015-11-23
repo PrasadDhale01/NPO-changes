@@ -2396,7 +2396,7 @@ $(function() {
     	autoSaveHashTags();
         var delay = 1000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
-            autoSave('usedFor', 'SOCIAL-INNOVATION');
+            autoSave('usedFor', 'SOCIAL_NEEDS');
         }, delay);
     });
 
@@ -2405,7 +2405,7 @@ $(function() {
         autoSaveHashTags();
         var delay = 1000; //delayed code to prevent error, time in milliseconds
         setTimeout(function() {
-            autoSave('usedFor', 'PERSONAL-NEEDS');
+            autoSave('usedFor', 'PERSONAL_NEEDS');
         }, delay);
     });
     

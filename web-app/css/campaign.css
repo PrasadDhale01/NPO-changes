@@ -329,9 +329,141 @@ textarea.textarea-embed-tile{
 .fedu.thumbnail.c-thumbnail{
     padding: 0;
 }
+
 #campaignthumbnails.col-sm-12 {
     padding-left: 5px;
 }
+
+.cr-story-padding .redactor-box .redactor-editor{
+    min-height: 0px;
+    height: 120px;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.redactor-animate{
+    min-height: 120px !important;
+    height : auto !important;
+}
+
+.cr-panel-spend-matrix-guide{
+    background-color: white;
+    height:48px;;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.cr-panel-spend-matrix{
+    background-color: #889299;
+    border-color: #DDD;
+    color: #FFF;
+    height:48px;
+    padding:11px;
+}
+
+.cr-spend-matrix{
+    height:48px;
+}
+
+.cr-spend-matrix-font{
+    font-size: 18px;
+    font-weight: 900;
+}
+
+.cr-panel-body-spend-matrix{
+    background-color: white;
+    border-color: #dddddd;
+}
+
+div.col-sm-amt{
+   padding-left:0;
+}
+
+span.cr-label-spend-matrix {
+    padding-top: 6px;
+    padding-left: 0;
+    padding-right:0
+}
+
+.cr-label-spend-matrix-for{
+    padding-top: 6px;
+}
+
+.spend-matrix-icons{
+    background-color: #889299;
+    color:white !important;
+    padding-top: 0px;
+    padding-right: 4px;
+    padding-bottom: 0px;
+    padding-left: 3px;
+    margin-top: 5px;
+}
+
+.saved-message{
+    display:none;
+    color:#01BBD3;
+}
+
+.spend-matrix-top{
+    margin-top:45px;
+}
+
+.cr-currency{
+    position: absolute;
+    left: 20px;
+    top: 11px;
+}
+
+.spendAmount {
+    padding-left: 18px !important;
+}
+
+.display-none{
+    display: none;
+}
+
+.glyphicon-size{
+    font-size: 13px;
+    margin-right: 0px !important;
+}
+
+.glyphicon-save{
+    padding-left:2px;
+}
+
+.edit-description{
+    padding-right: 18px !important;
+}
+
+.col-web-url{
+    padding-right: 2px !important;
+}
+
+.question-ans{
+    padding-top: 5px;
+    padding-left:20px;
+}
+
+.cr-panel-body{
+    margin-right: 0 !important;
+}
+
+.display-block-text1{
+    display:block;
+}
+
+.display-none-text1{
+    display:none;
+}
+
+.display-block-text3{
+    display:block;
+}
+
+.display-none-text3{
+    display:none;
+}
+
 .validatecampaignTitle a {
     color: #000 !important;
     font-size: 30px;
@@ -467,4 +599,31 @@ div.validate-show-div .show-description {
 }
 #validateChecklistmsg {
 	   display: none;
+}
+
+.reasons-p .help-block{
+    padding-left:16px;
+}
+
+.cr-hash-tags{
+    margin-left:0px !important;
+}
+
+.cr-reasons-guide{
+    font-size: 14px;
+    margin-bottom: 0px;
+    padding-top: 12px;
+    padding-left: 10px;
+}
+
+.cr-panel-hash-tags-guide{
+    font-size: 14px;
+    margin-bottom: 0px;
+    padding-top: 3px;
+    padding-left: 8px;
+    padding-right: 5px;
+}
+
+#tax-reciept{
+    display:none;
 }

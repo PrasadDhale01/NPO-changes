@@ -152,7 +152,7 @@ class ProjectService {
     }
 
     def getProjectUpdateDetails(def params, def project){
-		def vanitytitle
+        def vanitytitle
         User currentUser = userService.getCurrentUser()
         def fullName = currentUser.firstName + ' ' + currentUser.lastName
         def currentEnv = Environment.current.getName()
@@ -163,11 +163,23 @@ class ProjectService {
             project.organizationName = params.organizationName
         }
         
-        if (!project.beneficiary.country) {
+        if (project.beneficiary.country == 'null') {
             if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
                 project.beneficiary.country = 'IN'
             } else {
                 project.beneficiary.country = 'US'
+            }
+        }
+        
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            if (project.fundsRecievedBy == null){
+                project.fundsRecievedBy = "NGO"
+                project.hashtags = project.hashtags + ", #NGO"
+            }
+        } else {
+            if (project.fundsRecievedBy == null){
+                project.fundsRecievedBy = "NON-PROFIT"
+                project.hashtags = project.hashtags + ", #NON-PROFIT"
             }
         }
         
@@ -179,7 +191,7 @@ class ProjectService {
                 mandrillService.sendUpdateEmailToAdmin(email, fullName, project)
             }
         }
-        
+
         def projectOwner = project.user
         if (projectOwner != currentUser) {
             def projectOwnerEmail = projectOwner.getEmail()
@@ -906,35 +918,35 @@ class ProjectService {
         ]
         return country
     }
-	
-	def getRecipientOfFunds() {
-	    def recipientOfFunds = [
-            PER:'Person',
-			NPT:'Non-Profit',
-			NGO:'NGO',
-			OTH:'Other'   	    
-		]
-		return recipientOfFunds
-	}
-	
-	def getRecipientOfFundsIndo(){
-		def RecipientOfIndia = [
-			IND: 'Individual',
-			INN: 'Indian NGO',
-			OTR: 'Other'
-		]
-		return RecipientOfIndia
-	}
-	
-	def getInDays() {
-		def inDays = [
-			    THI:'30',
-				SIX:'60',
-				NIN:'90'  
-			]
-		return inDays
-	}
-	
+
+    def getRecipientOfFunds() {
+        def recipientOfFunds = [
+            'PERSON':'Person',
+            'NON-PROFIT':'Non-Profit',
+            'NGO':'NGO',
+            'OTHER':'Other'   	    
+        ]
+        return recipientOfFunds
+    }
+
+    def getRecipientOfFundsIndo(){
+        def RecipientOfIndia = [
+            'INDIVIDUAL': 'Individual',
+            'NGO': 'Indian NGO',
+            'OTHER': 'Other'
+        ]
+        return RecipientOfIndia
+    }
+
+    def getInDays() {
+        def inDays = [
+            30:'30',
+            60:'60',
+            90:'90' 
+        ]
+        return inDays
+    }
+
     def getPayment(){
         def payment = [
             PAY:'Paypal',
@@ -1326,7 +1338,7 @@ class ProjectService {
         }
         sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
         finalList =  sortedProjects.reverse() + endedProjects.reverse()
-//        return Project.findAllWhere(validated: true,inactive: false)
+        return Project.findAllWhere(validated: true,inactive: false)
 		return finalList
     }
 	
@@ -2946,8 +2958,8 @@ class ProjectService {
                 isValueChanged = true;
                 break;
 
-            case 'date':
-                getNumberofDays(varValue, project);
+            case 'days':
+                project.days = Integer.parseInt(varValue);
                 isValueChanged = true;
                 break;
 				
@@ -3043,13 +3055,178 @@ class ProjectService {
 				isValueChanged = true;
 				break;
 
+            case 'city':
+                if (varValue.isAllWhitespace()){
+                    beneficiary.city = null;
+                } else {
+                    beneficiary.city = varValue;
+                }
+                isValueChanged = true;
+                break;
+
+            case 'ans1':
+                QA qA = QA.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if(qA){
+                        qA.ans1 = null;
+                        qA.save(failOnError:true);
+                    }
+                } else {
+                    if(qA){
+                        qA.ans1 = varValue;
+                        qA.save(failOnError:true);
+                    } else {
+                        new QA(
+                           ans1 : varValue,
+                           project:project
+                        ).save(failOnError:true)
+                    }
+                    isValueChanged = true;
+                }
+                break;
+
+           case 'ans2':
+               QA qA = QA.findByProject(project)
+               if (varValue.isAllWhitespace()){
+                   if(qA){
+                       qA.ans2 = null;
+                       qA.save(failOnError:true);
+                   }
+               } else {
+                   if(qA){
+                       qA.ans2 = varValue;
+                       qA.save(failOnError:true);
+                   } else {
+                       new QA(
+                           ans2 : varValue,
+                           project:project
+                       ).save(failOnError:true)
+                   }
+                   isValueChanged = true;
+               }
+               break;
+
+            case 'ans3':
+                QA qA = QA.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if(qA){
+                        qA.ans3 = null;
+                        qA.save(failOnError:true);
+                    }
+                } else {
+                    if(qA){
+                        qA.ans3 = varValue;
+                        qA.save(failOnError:true);
+                    } else {
+                       new QA(
+                           ans3 : varValue,
+                           project:project
+                       ).save(failOnError:true)
+                    }
+                    isValueChanged = true;
+                }
+                break;
+
+            case 'ans4':
+                QA qA = QA.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if(qA){
+                        qA.ans4 = null;
+                        qA.save(failOnError:true);
+                    }
+                } else {
+                    if(qA){
+                        qA.ans4 = varValue;
+                        qA.save(failOnError:true);
+                    } else {
+                        new QA(
+                            ans4 : varValue,
+                            project:project
+                        ).save(failOnError:true)
+                    }
+                    isValueChanged = true;
+                }
+               break;
+ 
+            case 'reason1':
+                ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (reasonToFund){
+                        reasonToFund.reason1 = null;
+                        reasonToFund.save(failOnError:true)
+                    }
+                } else {
+                    if (reasonToFund) {
+                        reasonToFund.reason1 = varValue;
+                        reasonToFund.save(failOnError:true)
+                    } else {
+                        new ReasonsToFund(
+                           reason1 : varValue,
+                           project : project
+                        ).save(failOnError:true)
+                    }
+                    isValueChanged = true;
+                }
+                break;
+
+            case 'reason2':
+                ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (reasonToFund){
+                        reasonToFund.reason2 = null;
+                        reasonToFund.save(failOnError:true)
+                    }
+                } else {
+                    if (reasonToFund){
+                        reasonToFund.reason2 = varValue;
+                        reasonToFund.save(failOnError:true)
+                    } else {
+                        new ReasonsToFund(
+                            reason2 : varValue,
+                            project : project
+                        ).save(failOnError:true)
+                    }
+                    isValueChanged = true;
+                }
+                break;
+
+            case 'reason3':
+                ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (reasonToFund){
+                       reasonToFund.reason3 = null;
+                       reasonToFund.save(failOnError:true)
+                    }
+                } else {
+                    if (reasonToFund){
+                        reasonToFund.reason3 = varValue;
+                        reasonToFund.save(failOnError:true)
+                    } else {
+                        new ReasonsToFund(
+                            reason3 : varValue,
+                            project : project
+                        ).save(failOnError:true)
+                    }
+                    isValueChanged = true;
+                }
+                break;
+				
+            case 'hashtags':
+                if (varValue.isAllWhitespace()){
+                    project.hashtags = null;
+                } else {
+                    project.hashtags = varValue;
+                }
+                isValueChanged = true;
+                break;
+
             default :
                isValueChanged = false;
  
         }
 
         if (isValueChanged){
-            project.save();
+            project.save(failOnError:true);
         }
     }
 	
@@ -3163,6 +3340,12 @@ class ProjectService {
         def hash = generateHash("SHA-512",hashstring)
 
         return [txnid:txnid, hash:hash, furl:furl, surl:surl]
+    }
+
+    def getCountryValue(def country){
+        Map countries = getCountry()
+        def mapValue =  countries.getAt(country)
+        return mapValue
     }
 
     def setCookie(def requestUrl) {
@@ -3618,7 +3801,91 @@ class ProjectService {
         }
         return amount;
     }
-    
+	
+    def saveLastSpendField(def params){
+        def projectId = params.projectId
+        def savingCount = params.lastSpendField
+        def amount = params.('spendAmount'+savingCount)
+        def cause = params.('spendCause'+savingCount)
+        def spend = [projectId:projectId, savingCount:savingCount, amount:amount, cause:cause]
+        getSpendMatrixSaved(spend)
+    }
+
+    def getSpendMatrixSaved(def params) {
+        Project project = Project.get(params.projectId)
+        def saveCount = Integer.parseInt(params.savingCount)
+        if (params.amount && params.cause && params.amount.isNumber()) {
+            def amount = Double.parseDouble(params.amount)
+            SpendMatrix spendMatrix = SpendMatrix.findByNumberAvailableAndProject(saveCount, project)
+            if (spendMatrix) {
+                def isValueChanged = false
+                
+                if (amount && amount != ' '){
+                    spendMatrix.amount = amount
+                    isValueChanged = true
+                }
+            
+                if (params.cause && params.cause != ' '){
+                    spendMatrix.cause = params.cause
+                    isValueChanged = true
+                }
+                
+                if (isValueChanged){
+                    spendMatrix.save(failOnError: true);
+                }
+            
+            } else {
+                new SpendMatrix(
+                    project:project,
+                    amount : amount,
+                    cause : params.cause,
+                    numberAvailable : saveCount
+                ).save(failOnError:true);
+            }
+        }
+    }
+
+    def getSpendMatrixDeleted(def params){
+        Project project = Project.get(params.projectId)
+        def deleteCount = Integer.parseInt(params.deleteCount)
+        SpendMatrix spendMatrix = SpendMatrix.findByNumberAvailableAndProject(deleteCount, project)
+        if (spendMatrix){
+            spendMatrix.delete();
+        }
+    }
+
+    def getPieList(Project project) {
+        List pieValueWithPer = [];
+        def spendMatrixs = project.spend;
+        def pieListCount = 0;
+        List sublist1 = [];
+        sublist1.add("'"+'Goal'+"'");
+        sublist1.add(project.amount.round());
+        pieValueWithPer.add(sublist1);
+        def cause
+        spendMatrixs.each{ spendMatrix ->
+            pieListCount++;
+            List sublist = [];
+            cause = "'"+spendMatrix.cause+"'"
+            sublist.add(cause);
+            def percentage = (spendMatrix.amount / project.amount) * 100;
+            sublist.add(percentage.round());
+            if (pieListCount == 1){
+                sublist.add("'"+'blue'+"'")
+            }
+            pieValueWithPer.add(sublist);
+        }
+        return pieValueWithPer;
+    }
+
+    def getProjectReasonsToFund(Project project){
+        return ReasonsToFund.findByProject(project)
+    }
+    	
+    def getProjectQA(Project project){
+        return QA.findByProject(project)
+    }
+
     def getValidatedProjectsForCampaignAdmin(def condition, def country) {
         List projects = []
         List totalProjects = []

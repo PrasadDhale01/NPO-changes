@@ -3703,9 +3703,6 @@ a.btn.btn-primary.btn-colors {
 .manage-Top-tabs-mobile {
   padding-top: 9px;
 }
-span.fa-inr {
-  top: 72px;
-}
 span.cr1-inr-indx1{
     top: 30px;
 }
@@ -5484,18 +5481,84 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
+
+    input.editsweb-margin-mobile {
+        height: 45px;
+        padding-left: 182px;
+        width: 100% !important;
+    }
+    
+    .cr1-vanitypadding-in-co{
+        padding-left: 182px;
+        height: 45px;
+        width: 145% !important;
+    }
+
+    .cr2-width-dropdown3 .help-block{
+        margin-left: -15px;
+    }
+
+    .reasons {
+        display: inline !important;
+        width: 90%;
+    }
+
+    .reasons-p{
+        padding-left: 15px;
+    }
+
+    .spend-matrix-icon{
+        margin-top: 6px;
+    }
+
     ul.nav.navbar-nav.navbar-right.nav-create-button{
         margin-top: 3px;
     }
-   
+    
+    .col-sm-input-group{
+        float:left !important;
+    }
+
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	.feedback-container {
-	  margin: 0 auto;
-	  width: 310px !important;
-	}
-	div.cr2-width-dropdown3 {
+	
+     .cr-padding-edit-xs {
+         margin-left: 4px;
+         padding-right: 9px;
+     }
+
+    .cr-panel-hash-tags-guide{
+        margin-bottom: 16px;
+        padding-top: 5px;
+        padding-left: 15px;
+        padding-right: 6px;
+        height: 113px !important;
+        border: 1px solid #DDD;
+    }
+    .padding-right-xs{
+        padding-right:6px;
+    }
+    .edit-description{
+        width: 98% !important;
+    }
+    .col-web-url {
+        padding-right: 7px !important;
+    }
+    .col-edit-title {
+        padding-right: 9px !important;
+    }
+     div.edit-tabsMobile-margin {
+        margin-left: -14px !important;
+        margin-right: -34px !important;
+    }
+
+    .feedback-container {
+        margin: 0 auto;
+        width: 310px !important;
+    }
+
+	   div.cr2-width-dropdown3 {
         width: 231px;
     }
     div.cr2-width-dropdown4 {
@@ -5554,11 +5617,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.cr1-indx1-mobileTpadding{
         padding-bottom: 15px;
-    }
-    input.cr1-vanitypadding-in-co {
-        height: 45px;
-        padding-left: 104px;
-        width: 100% !important;
     }
     div.cr1-mobile-indx1{
         left: -5px;
@@ -7385,6 +7443,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+.cr-panel-spend-matrix{
+    padding:14px;
+}
+
 	.TW-header-helpTxtLogged {
 	   color: #fff !important;
 	   font-size: 20px !important;
@@ -7650,10 +7712,42 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	.feedback-container {
-	  margin: 0 auto;
-	  width: 750px !important;
-	}
+
+    .ansText{
+        width:90% !important;
+        margin-top: 5px;
+    }
+    .cr-impact-analysis{
+         width:15% !important;
+    }
+    .cr-impact-guide{
+         width:85% !important;
+    }
+    .cr-reasons-to-fund{
+         width:30% !important;
+    }
+    .cr-reasons-guide{
+         width:70% !important;
+    }
+    div.edit-tabsMobile-margin {
+        margin-left: -14px !important;
+        margin-right: -19px !important;
+    }
+    .col-sm-input-group{
+        padding-left:0;
+    }
+    .cr-currency{
+        left:7px;
+    }
+    .cr-label-spend-matrix{
+        width:100%
+    }
+    
+    .feedback-container {
+        margin: 0 auto;
+        width: 750px !important;
+    }
+
     h1.headingtext.how-it-works-title {
         font-size: 40px;
     }
@@ -7707,8 +7801,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-weight: 900;
     }
     input.cr1-vanitypadding-in-co {
-        width: 141% !important;
+        width: 150% !important;
     }
+
     div.abt-img-icons-mobile {
         left: 33px !important;
     }
@@ -8809,7 +8904,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 1024px) {
-
 	.text-primary{
 		text-align:center;
 		width:300px;
@@ -8835,6 +8929,34 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    .ansText{
+        width:50% !important;
+        margin-top: 5px;
+    }
+	   .cr-reasons-to-fund{
+         width:20% !important;
+    }
+    .cr-reasons-guide{
+         width:80% !important;
+    }
+    .cr-impact-analysis{
+         width:10% !important;
+    }
+    .cr-impact-guide{
+         width:90% !important;
+    }
+    div.edit-tabsMobile-margin {
+        margin-left: -14px !important;
+        margin-right: -19px !important;
+    }
+    .col-input-for{
+        padding-left: 0;
+    }
+
+    span.cr-label-spend-matrix{
+        width:11%;
+    }
+
     div.cr2-width-dropdown4 {
         margin-left: -44px;
     }
@@ -9107,6 +9229,76 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+
+    .cr-reasons-to-fund, .cr-panel-hash-tags{
+         margin-bottom:0;
+    }
+
+    .cr-reasons-guide{
+        padding-top:5px;
+        height: 54px !important;
+        margin-bottom: 15px;
+        border: 1px solid #DDD;
+        padding-right: 5px;
+    }
+
+    input.editsweb-margin-mobile {
+        height: 45px;
+        width: 100% !important;
+    }
+    
+    input.cr1-vanitypadding-in-co{
+        height: 45px;
+        width: 100% !important;
+    }
+
+    .cr1-vanitypadding-in-co{
+        height: 45px;
+        width: 145% !important;
+    }
+
+    .ansText{
+        width:82% !important;
+        margin-top: 5px;
+    }
+
+    .reasons {
+        display: inline !important;
+        width: 84%;
+    }
+
+    .cr-label-spend-matrix-for{
+        padding-left: 19px;
+    }
+
+    .spend-matrix {
+        padding-left: 6px !important;
+        padding-right: 0px !important;
+    }
+
+    div.col-sm-amt{
+        padding-right:0;
+    }
+    
+    .col-input-for{
+        margin-bottom: 4px;
+        padding-left: 10px !important;
+    }
+
+    .cr-currency {
+        left:6px;
+    }
+    .col-sm-input-group {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-bottom:4px;
+    }
+    .cr-spend-matrix, .cr-panel-spend-matrix, .cr-panel-spend-matrix-guide{
+        height:46px;
+    }
+    .feduoutercontent {
+        margin-top: 120px;
+    }
 	   .validate-show-div {
         width: 320px;
         margin-left: auto;
@@ -9152,9 +9344,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 10px;
         margin-bottom: 10px;
     }
-	.feduoutercontent {
-	   margin-top: 120px;
-	}
+	   .feduoutercontent {
+	       margin-top: 120px;
+	   }
+
     #uploadingCampaignOrgIcon{
         padding-top: 20px;
     }
@@ -9538,12 +9731,31 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
-	.ebook-container {
-	   display: block;
-	   margin-left: auto;
-	   margin-right: auto;
-	   width: 62% !important;
-	}
+
+    .cr-panel-hash-tags{
+        width:15% !important;
+    }
+
+    .cr-panel-hash-tags-guide{
+        width:85% !important;
+    }
+
+    .cr-panel-spend-matrix{
+        width:25%;
+        padding: 14px;
+    }
+
+    .cr-panel-spend-matrix-guide{
+        width:75%;
+    }
+
+    .ebook-container {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 62% !important;
+    }
+
     div.home-campaign-tile-container{
         margin-left: 46px;
     }
@@ -10303,6 +10515,34 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+
+    .cr-padding-edit-xs {
+        margin-left: 4px;
+        padding-right: 34px;
+    }
+
+    .cr-panel-hash-tags-guide{
+        margin-bottom: 16px;
+        padding-top: 5px;
+        padding-left: 15px;
+        padding-right: 6px;
+        height: 133px !important;
+        border: 1px solid #DDD;
+    }
+    .padding-right-xs{
+        padding-left:19px;
+        padding-right:32px;
+    }
+
+    .edit-description{
+        width: 95% !important;
+    }
+    .col-web-url {
+        padding-right: 20px !important;
+    }
+    .col-edit-title {
+        padding-right: 16px !important;
+    }
     .row-transaction h1{
         font-size: 39px;
         text-align: center;
@@ -11340,6 +11580,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }
 @media only screen and (max-width: 767px){
+	
+.ansText {
+    width: 87%;
+    height: 100px;
+}
 
 #embedTilemodal .modal-dialog.modal-tile{
     margin-left: auto;
@@ -12641,10 +12886,21 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-	.feedback-container {
-	  margin: 0 auto;
-	  width: 310px !important;
-	}
+
+    input.editsweb-margin-mobile {
+        height: 45px;
+        width: 95% !important;
+    }
+
+    div.edit-tabsMobile-margin {
+        margin-left: -14px !important;
+    }
+
+    .feedback-container {
+        margin: 0 auto;
+        width: 310px !important;
+    }
+
     div.cr2-width-dropdown3 {
         width: 231px;
     }
@@ -12710,7 +12966,6 @@ textarea.textarea-embed-video {
 	}
     input.cr1-vanitypadding-in-co {
         height: 45px;
-        padding-left: 104px;
     }
     div.cr1-mobile-indx1{
         left: -5px;
@@ -15134,11 +15389,6 @@ span.abt-founderCo{
     position: absolute;
     padding-top: 11px;
     padding-left: 9px;
-}
-.cr1-vanitypadding-in-co{
-    padding-left: 100px;
-    height: 45px;
-    width: 141% !important;
 }
 .cr1-vanity-label-indx1{
     margin-bottom: 0px;

@@ -169,7 +169,7 @@
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 cr1-in-days">
                             <span class="col-lg-12 col-sm-12 col-md-12 cr-padding-index1 cr1-mobile">In Days</span>
                             <div class="cr1-font-list">
-                                <g:select class="selectpicker cr-drop-color days" name="${FORMCONSTANTS.DAYS}" from="${inDays}" value="${project.days}" optionKey="key" optionValue="value" />
+                                <g:select class="selectpicker cr-drop-color days" name="${FORMCONSTANTS.DAYS}" from="${inDays}" value="${project.days}" optionKey="key" optionValue="value" id="edit-days-mob"/>
                             </div> 
                         </div>
                     </div>
@@ -214,7 +214,7 @@
                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 cr1-in-days">
                         <span class="col-lg-12 col-sm-12 col-md-12 cr-padding-index1 cr1-mobile">In Days</span>
                         <div class="cr1-font-list">
-                            <g:select class="selectpicker cr-drop-color days" name="${FORMCONSTANTS.DAYS}" from="${inDays}" value="${project.days}" optionKey="key" optionValue="value" />
+                            <g:select class="selectpicker cr-drop-color days" name="${FORMCONSTANTS.DAYS}" from="${inDays}" value="${project.days}" optionKey="key" optionValue="value" id="edit-days-desktop"/>
                         </div> 
                     </div>
                 </div>
@@ -1000,6 +1000,7 @@
                             </div>
                         </div>
                     </g:else>
+
                     <div class="col-sm-12 cr-paddingspace text-center" id="save">
 <%--                        <div class="col-sm-4 text-center padding-btn" >--%>
 <%--                            <button type="button" class="btn  btn-primary btn-colors" name="button" id="saveasdraft"  value="draft">Save</button>--%>

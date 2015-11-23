@@ -401,14 +401,11 @@ span.cr-label-spend-matrix {
 
 .saved-message{
     display:none;
+    color:#01BBD3;
 }
 
 .spend-matrix-top{
     margin-top:45px;
-}
-
-.saved-message{
-    color:#01BBD3;
 }
 
 .cr-currency{
@@ -625,4 +622,8 @@ div.validate-show-div .show-description {
     padding-top: 3px;
     padding-left: 8px;
     padding-right: 5px;
+}
+
+#tax-reciept{
+    display:none;
 }

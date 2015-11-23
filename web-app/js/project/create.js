@@ -625,18 +625,18 @@ $(function() {
 				});
 			}); 
 		}
-		
-			$('.spendCause').each(function () {
-				$(this).rules("add", {
-					required: true,
-					minlength: 3,
-					messages: {
+
+		$('.spendCause').each(function () {
+			$(this).rules("add", {
+				required: true,
+				minlength: 3,
+				messages: {
 					required: 'Required',
 					minlength: 'min 3 characters'
 				}
 			});
 		});
-       
+
         if($('#campaignthumbnails').find('#imgdiv').length < 1) {
     		$("#projectImageFile").rules( "add", {
                 required: true,

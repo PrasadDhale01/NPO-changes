@@ -152,7 +152,7 @@ class ProjectService {
     }
 
     def getProjectUpdateDetails(def params, def project){
-		def vanitytitle
+        def vanitytitle
         User currentUser = userService.getCurrentUser()
         def fullName = currentUser.firstName + ' ' + currentUser.lastName
         def currentEnv = Environment.current.getName()
@@ -162,7 +162,7 @@ class ProjectService {
             project.charitableId = params.charitableId
             project.organizationName = params.organizationName
         }
-
+        
         if (project.beneficiary.country == 'null') {
             if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
                 project.beneficiary.country = 'IN'
@@ -170,19 +170,19 @@ class ProjectService {
                 project.beneficiary.country = 'US'
             }
         }
-
-		if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-			if (project.fundsRecievedBy == null){
-				project.fundsRecievedBy = "NGO"
-				project.hashtags = project.hashtags + ", #NGO"
-			}
-		} else {
-			if (project.fundsRecievedBy == null){
-				project.fundsRecievedBy = "NON-PROFIT"
-				project.hashtags = project.hashtags + ", #NON-PROFIT"
-			}
-		}
-
+        
+        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            if (project.fundsRecievedBy == null){
+                project.fundsRecievedBy = "NGO"
+                project.hashtags = project.hashtags + ", #NGO"
+            }
+        } else {
+            if (project.fundsRecievedBy == null){
+                project.fundsRecievedBy = "NON-PROFIT"
+                project.hashtags = project.hashtags + ", #NON-PROFIT"
+            }
+        }
+        
         def projectAdmins = project.projectAdmins
         
         projectAdmins.each { projectAdmin ->
@@ -191,7 +191,7 @@ class ProjectService {
                 mandrillService.sendUpdateEmailToAdmin(email, fullName, project)
             }
         }
-        
+
         def projectOwner = project.user
         if (projectOwner != currentUser) {
             def projectOwnerEmail = projectOwner.getEmail()
@@ -3127,27 +3127,27 @@ class ProjectService {
                 }
                 break;
 
-		    case 'ans4':
-               QA qA = QA.findByProject(project)
-               if (varValue.isAllWhitespace()){
-                   if(qA){
-                       qA.ans4 = null;
-                       qA.save(failOnError:true);
-                   }
-               } else {
-			       if(qA){
-                       qA.ans4 = varValue;
-                       qA.save(failOnError:true);
-			       } else {
-				       new QA(
-					       ans4 : varValue,
-					       project:project
-				       ).save(failOnError:true)
-			       }
-			       isValueChanged = true;
-               }
-			   break;
-			   
+                case 'ans4':
+                QA qA = QA.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if(qA){
+                        qA.ans4 = null;
+                        qA.save(failOnError:true);
+                    }
+                } else {
+                    if(qA){
+                        qA.ans4 = varValue;
+                        qA.save(failOnError:true);
+                    } else {
+                        new QA(
+                            ans4 : varValue,
+                            project:project
+                        ).save(failOnError:true)
+                    }
+                    isValueChanged = true;
+                }
+               break;
+ 
                case 'reason1':
 			   ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
                if (varValue.isAllWhitespace()){

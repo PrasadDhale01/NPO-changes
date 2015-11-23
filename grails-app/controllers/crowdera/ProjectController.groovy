@@ -551,9 +551,9 @@ class ProjectController {
                 } else if (project.usedFor == 'PERSONAL_NEEDS'){
                     usedForCreate = 'PERSONAL-NEEDS'
                 } else {
-                usedForCreate = project.usedFor
+                    usedForCreate = project.usedFor
                 }
-				def selectedCountry = (project.beneficiary.country) ? projectService.getCountryValue(project.beneficiary.country) : null;
+                def selectedCountry = (project.beneficiary.country) ? projectService.getCountryValue(project.beneficiary.country) : null;
 
                 def endDate = projectService.getProjectEndDate(project)
                 def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
@@ -605,7 +605,7 @@ class ProjectController {
                     }
                 }
 				
-				projectService.saveLastSpendField(params);
+                projectService.saveLastSpendField(params);
 
                 vanitytitle = (project.customVanityUrl) ? projectService.getCustomVanityUrl(project) : params.title;
 
@@ -674,64 +674,64 @@ class ProjectController {
 		}
 	}
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def edit() {
-		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
-		def currentEnv = Environment.current.getName()
-		def inDays = projectService.getInDays()
-		def categoryOptions
-		def spends = project.spend
-		spends = spends.sort{it.numberAvailable}
-		if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
-			categoryOptions = projectService.getIndiaCategoryList()
-		}else{
-			categoryOptions = projectService.getCategoryList()
-		}
-		def vanityTitle = params.projectTitle
-		def user = project.user
-		def country = projectService.getCountry()
-		def nonProfit = projectService.getRecipientOfFunds()
-		def nonIndprofit = projectService.getRecipientOfFundsIndo()
-		def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
-		def endDate = projectService.getProjectEndDate(project)
-		def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
-		def date = new Date();
-		List projectRewards = []
-		project.rewards.each {
-			if (it.id != 1) {
-				projectRewards.add(it)
-			}
-		}
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def edit() {
+        def project = projectService.getProjectFromVanityTitle(params.projectTitle)
+        def currentEnv = Environment.current.getName()
+        def inDays = projectService.getInDays()
+        def categoryOptions
+        def spends = project.spend
+        spends = spends.sort{it.numberAvailable}
+        if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
+            categoryOptions = projectService.getIndiaCategoryList()
+        } else {
+            categoryOptions = projectService.getCategoryList()
+        }
+        def vanityTitle = params.projectTitle
+        def user = project.user
+        def country = projectService.getCountry()
+        def nonProfit = projectService.getRecipientOfFunds()
+        def nonIndprofit = projectService.getRecipientOfFundsIndo()
+        def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
+        def endDate = projectService.getProjectEndDate(project)
+        def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
+        def date = new Date();
+        List projectRewards = []
+        project.rewards.each {
+            if (it.id != 1) {
+                projectRewards.add(it)
+            }
+        }
         projectRewards = projectRewards.sort{it.rewardCount}
-		if(campaignEndDate == date.format('MM/dd/yyyy')){
-			campaignEndDate = null
-		}
-		def adminemails = projectService.getAdminEmail(project)
-		def payOpts
-		if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-			payOpts = projectService.getIndiaPaymentGateway()
-		} else {
-			payOpts = projectService.getPayment()
-		}
+        if(campaignEndDate == date.format('MM/dd/yyyy')){
+            campaignEndDate = null
+        }
+        def adminemails = projectService.getAdminEmail(project)
+        def payOpts
+        if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            payOpts = projectService.getIndiaPaymentGateway()
+        } else {
+            payOpts = projectService.getPayment()
+        }
         def selectedCountry = (project.beneficiary.country) ? projectService.getCountryValue(project.beneficiary.country) : null;
-		if (project) {
+        if (project) {
             def beneficiary = project.beneficiary
             def reasonsToFund = projectService.getProjectReasonsToFund(project)
             def qA = projectService.getProjectQA(project)
-			render (view: 'edit/index',
-			model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
-                    'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,
-                    currentEnv: currentEnv,beneficiary:beneficiary,inDays:inDays,
-                    FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,qA:qA,
-                    project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
-                    vanityTitle: vanityTitle, vanityUsername:vanityUsername, selectedCountry: selectedCountry,
-                    email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
-		} else {
-			flash.prj_edit_message = "Campaign not found."
-			render (view: 'edit/editerror')
-			return
-		}
-	}
+            render (view: 'edit/index',
+            model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
+            'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,
+            currentEnv: currentEnv,beneficiary:beneficiary,inDays:inDays,
+            FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,qA:qA,
+            project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
+            vanityTitle: vanityTitle, vanityUsername:vanityUsername, selectedCountry: selectedCountry,
+            email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
+        } else {
+            flash.prj_edit_message = "Campaign not found."
+            render (view: 'edit/editerror')
+            return
+        }
+    }
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def update() {

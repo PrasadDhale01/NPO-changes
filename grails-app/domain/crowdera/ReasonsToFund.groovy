@@ -8,12 +8,12 @@ import groovy.transform.ToString
 
 class ReasonsToFund {
 	
-	String reason1
-	String reason2
-	String reason3
-	
-	static belongsTo = [project:Project]
-
+    String reason1
+    String reason2
+    String reason3
+    
+    static belongsTo = [project:Project]
+    
     static constraints = {
         reason1 nullable:true
         reason2 nullable:true

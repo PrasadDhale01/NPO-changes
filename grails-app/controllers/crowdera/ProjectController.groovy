@@ -733,20 +733,20 @@ class ProjectController {
         }
     }
 
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def update() {
-		def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
-		if(project) {
-			def vanityTitle = projectService.getProjectUpdateDetails(params, project)
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def update() {
+        def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
+        if(project) {
+            def vanityTitle = projectService.getProjectUpdateDetails(params, project)
             rewardService.saveRewardDetails(params);
             projectService.saveLastSpendField(params);
-			flash.prj_mngprj_message = "Successfully saved the changes"
-			redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
-		} else {
-			flash.prj_edit_message = "Campaign not found."
-			render (view: 'edit/editerror')
-		}
-	}
+            flash.prj_mngprj_message = "Successfully saved the changes"
+            redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
+        } else {
+            flash.prj_edit_message = "Campaign not found."
+            render (view: 'edit/editerror')
+        }
+    }
 
 	@Secured(['ROLE_ADMIN'])
 	def importprojects() {

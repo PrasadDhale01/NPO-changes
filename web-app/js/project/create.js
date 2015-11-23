@@ -427,23 +427,23 @@ $(function() {
         $('[name="ans1"]').rules( "add", {
             required: true
         });
-        
+
         if($('[name="ansText1"]').length > 0){
-        	$('[name="ansText1"]').rules( "add", {
+            $('[name="ansText1"]').rules( "add", {
                 required: true
             });
         }
-        
-    	$('[name="ansText2"]').rules( "add", {
+
+        $('[name="ansText2"]').rules( "add", {
             required: true
         });
-        
-    	if($('[name="ansText2"]').length > 0){
-    		$('[name="ansText3"]').rules( "add", {
+
+        if($('[name="ansText2"]').length > 0){
+            $('[name="ansText3"]').rules( "add", {
                 required: true
             });
-    	}
-        
+        }
+
         $('[name="ans3"]').rules( "add", {
             required: true
         });
@@ -588,54 +588,54 @@ $(function() {
         
         $('#isSubmitButton').val(true);
         
-       if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-  	      $('.spendAmount').each(function () {
-                $(this).rules("add", {
-                    required: true,
-                    number:true,
-                    maxlength: 9,
-             	    min:100,
-                    max: function() {
-                        var campaignAmount = $('#projectamount').val();
-                        return Number(campaignAmount);
-                    },
-                    messages: {
-                	     required: 'Required',
-                	     number: 'Digits only',
-                	     maxlength: 'max 9 digits',
-                	     min:'min 100'
-                    }
-                });
-            });
-        } else {
-            $('.spendAmount').each(function () {
-                $(this).rules("add", {
-                    required: true,
-                    number:true,
-                    maxlength: 6,
-                    max: function() {
-                    	var campaignAmount = $('#projectamount').val();
-                        return Number(campaignAmount);
-                    },
-                    messages: {
-                        required: 'Required',
-                        number: 'Digits only',
-                        maxlength: 'max 6 digits'
-                    }
-                });
-            }); 
-        }
-
-        $('.spendCause').each(function () {
-            $(this).rules("add", {
-                required: true,
-                minlength: 3,
-                messages: {
-                	required: 'Required',
-                    minlength: 'min 3 characters'
-                }
-            });
-        });
+		if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+			$('.spendAmount').each(function () {
+				$(this).rules("add", {
+					required: true,
+					number:true,
+					maxlength: 9,
+					min:100,
+					max: function() {
+						var campaignAmount = $('#projectamount').val();
+						return Number(campaignAmount);
+					},
+					messages: {
+						required: 'Required',
+						number: 'Digits only',
+						maxlength: 'max 9 digits',
+						min	:'min 100'
+					}
+				});
+			});
+		} else {
+			$('.spendAmount').each(function () {
+				$(this).rules("add", {
+					required: true,
+					number:true,
+					maxlength: 6,
+					max: function() {
+						var campaignAmount = $('#projectamount').val();
+						return Number(campaignAmount);
+					},
+					messages: {
+						required: 'Required',
+						number: 'Digits only',
+						maxlength: 'max 6 digits'
+					}
+				});
+			}); 
+		}
+		
+			$('.spendCause').each(function () {
+				$(this).rules("add", {
+					required: true,
+					minlength: 3,
+					messages: {
+					required: 'Required',
+					minlength: 'min 3 characters'
+				}
+			});
+		});
        
         if($('#campaignthumbnails').find('#imgdiv').length < 1) {
     		$("#projectImageFile").rules( "add", {
@@ -770,17 +770,17 @@ $(function() {
                 });
            	});
 
-           	if ($('[name="ansText1"]').length > 0){
-           		$('[name="ansText1"]').rules( "add", {
-                    required: true
+            if ($('[name="ansText1"]').length > 0){
+                $('[name="ansText1"]').rules( "add", {
+                   required: true
                 });
-           	}
+            }
 
-           	if($('[name="ansText3"]').length > 0){
-           		$('[name="ansText3"]').rules( "add", {
-                    required: true
-                });
-           	}
+            if($('[name="ansText3"]').length > 0){
+               $('[name="ansText3"]').rules( "add", {
+                  required: true
+               });
+            }
 
 //            $('[name="impact-amt"]').rules( "add", {
 //                required: true,
@@ -871,55 +871,55 @@ $(function() {
             }
         }
     });
-     
-    $('.ans1').change(function(){
-    	if ($(this).val()=="yes"){
-    		$('.ansText1').removeClass('display-none-text1');
-    	} else {
-    		$('.ansText1').addClass('display-none-text1');
-    		if ($('.question-ans-1').find('.help-block').length > 0){
-    			$('.question-ans-1').find('.help-block').hide();
-    		}
-    		autoSave('ans1', 'NO');
-    	}
-    });
-    
-    $('.ans3').change(function(){
-    	if ($(this).val()=="yes"){
-    		$('.ansText3').removeClass('display-none-text3');
-    	} else {
-    		$('.ansText3').addClass('display-none-text3');
-    		if($('.question-ans-3').find('.help-block').length > 0){
-    			$('.question-ans-3').find('.help-block').hide();
-    		}
-    		autoSave('ans3', 'NO');
-    	}
-    });
-    
-    $('.ans4').change(function(){
-    	var ans4 = $(this).val();
-        autoSave('ans4', ans4);
-    });
-    
-    $('.reason1').blur(function(){
-    	var reason1 = $(this).val();
-        autoSave('reason1', reason1);
-    });
-    
-    $('.reason2').blur(function(){
-    	var reason2 = $(this).val();
-        autoSave('reason2', reason2);
-    });
-    
-    $('.reason3').blur(function(){
-    	var reason3 = $(this).val();
-        autoSave('reason3', reason3);
-    });
 
-    $('.hashtags').blur(function(){
-    	var hashtags = $(this).val();
-        autoSave('hashtags', hashtags);
-    });
+	$('.ans1').change(function(){
+		if ($(this).val()=="yes"){
+			$('.ansText1').removeClass('display-none-text1');
+		} else {
+			$('.ansText1').addClass('display-none-text1');
+			if ($('.question-ans-1').find('.help-block').length > 0){
+				$('.question-ans-1').find('.help-block').hide();
+			}
+			autoSave('ans1', 'NO');
+		}
+	});
+
+	$('.ans3').change(function(){
+		if ($(this).val()=="yes"){
+			$('.ansText3').removeClass('display-none-text3');
+		} else {
+			$('.ansText3').addClass('display-none-text3');
+			if($('.question-ans-3').find('.help-block').length > 0){
+				$('.question-ans-3').find('.help-block').hide();
+			}
+			autoSave('ans3', 'NO');
+		}
+	});
+
+	$('.ans4').change(function(){
+		var ans4 = $(this).val();
+		autoSave('ans4', ans4);
+	});
+
+	$('.reason1').blur(function(){
+		var reason1 = $(this).val();
+		autoSave('reason1', reason1);
+	});
+
+	$('.reason2').blur(function(){
+		var reason2 = $(this).val();
+		autoSave('reason2', reason2);
+	});
+
+	$('.reason3').blur(function(){
+		var reason3 = $(this).val();
+		autoSave('reason3', reason3);
+	});
+
+	$('.hashtags').blur(function(){
+		var hashtags = $(this).val();
+		autoSave('hashtags', hashtags);
+	});
 
     function renameAndemptyRewardFields(){
     	$('#addNewRewards').find('.rewardsTemplate').attr('id', 'rewardTemplate1');
@@ -1802,46 +1802,46 @@ $(function() {
             
           });
         
-          $("form").on("click", ".spendMatrixTemplateAdd", function () {
-        	  var shippingMatrixCount = $('.spend-matrix').find('.spenMatrixNumberAvailable:last').val();
-        	  var spendMatrixSaved = validateSpendMatrix(shippingMatrixCount);
-        	  if (spendMatrixSaved){
-              $('.spend-matrix').find('.spendMatrixTemplateAdd:last').addClass('display-none');
-              var nextCount = ++shippingMatrixCount;
-              var template = '<div class="spend-matrix-template" id="spend-matrix-template'+nextCount+'">'+
-                  '<br><br class="hidden-xs"><br class="hidden-xs"><div class="col-sm-amt col-sm-12">'+
-                      '<span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>'+
-                      '<div class="form-group col-sm-3 col-xs-4 col-sm-input-group">';
-                          if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-                        	  template = template +'<span class="fa fa-inr cr-currency"></span>';
-                          } else {
-                        	  template = template +'<span class="fa fa-usd cr-currency"></span>';
-                          }
-                          template = template +'<input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount'+nextCount+'" name="spendAmount'+nextCount+'">'+
-                      '</div>&nbsp;&nbsp;&nbsp;'+
-                      '<span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>'+
-                      '<div class="form-group col-sm-5 col-xs-7 col-input-for">'+
-                          '<input type="text" class="form-control form-control-input-for spendCause" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
-                      '</div>'+
-                      '<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">'+
-                          '<input type="hidden" name="spendFieldSave" value="'+nextCount+'" class="spendFieldSave">'+
-                          '<i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>'+
-                      '</div>&nbsp;'+
-                      '<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateDelete">'+
-                          '<input type="hidden" name="spendFieldDelete" value="'+nextCount+'" class="spendFieldDelete">'+
-                          '<i class="glyphicon glyphicon-trash glyphicon-size"></i>'+
-                      '</div>&nbsp;'+
-                      '<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd" id="spendMatrixTemplateAdd'+nextCount+'">'+
-                          '<i class="glyphicon glyphicon-plus glyphicon-size"></i>'+
-                      '</div>'+
-                  '</div>'+
-                  '<input type="hidden" name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="'+nextCount+'">'+
-              '</div>';
-              $('.spend-matrix').append(template);
-              var lastSpendField = $('.spenMatrixNumberAvailable:last').val();
-              $('#lastSpendField').val(lastSpendField);
-        	  }
-          });
+		$("form").on("click", ".spendMatrixTemplateAdd", function () {
+			var shippingMatrixCount = $('.spend-matrix').find('.spenMatrixNumberAvailable:last').val();
+			var spendMatrixSaved = validateSpendMatrix(shippingMatrixCount);
+			if (spendMatrixSaved){
+				$('.spend-matrix').find('.spendMatrixTemplateAdd:last').addClass('display-none');
+				var nextCount = ++shippingMatrixCount;
+				var template = '<div class="spend-matrix-template" id="spend-matrix-template'+nextCount+'">'+
+				'<br><br class="hidden-xs"><br class="hidden-xs"><div class="col-sm-amt col-sm-12">'+
+				'<span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>'+
+				'<div class="form-group col-sm-3 col-xs-4 col-sm-input-group">';
+				if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+					template = template +'<span class="fa fa-inr cr-currency"></span>';
+				} else {
+					template = template +'<span class="fa fa-usd cr-currency"></span>';
+				}
+				template = template +'<input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount'+nextCount+'" name="spendAmount'+nextCount+'">'+
+				'</div>&nbsp;&nbsp;&nbsp;'+
+				'<span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>'+
+				'<div class="form-group col-sm-5 col-xs-7 col-input-for">'+
+				'<input type="text" class="form-control form-control-input-for spendCause" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
+				'</div>'+
+				'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">'+
+				'<input type="hidden" name="spendFieldSave" value="'+nextCount+'" class="spendFieldSave">'+
+				'<i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>'+
+				'</div>&nbsp;'+
+				'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateDelete">'+
+				'<input type="hidden" name="spendFieldDelete" value="'+nextCount+'" class="spendFieldDelete">'+
+				'<i class="glyphicon glyphicon-trash glyphicon-size"></i>'+
+				'</div>&nbsp;'+
+				'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd" id="spendMatrixTemplateAdd'+nextCount+'">'+
+				'<i class="glyphicon glyphicon-plus glyphicon-size"></i>'+
+				'</div>'+
+				'</div>'+
+				'<input type="hidden" name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="'+nextCount+'">'+
+				'</div>';
+				$('.spend-matrix').append(template);
+				var lastSpendField = $('.spenMatrixNumberAvailable:last').val();
+				$('#lastSpendField').val(lastSpendField);
+			}
+		});
 
           function validateSpendMatrix(shippingMatrixCount){
         	  if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
@@ -2151,52 +2151,52 @@ $(function() {
         }, delay);
     });
    
-    $('#country').change(function(){
-        var selectedCountry = $(this).val();
-        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
-        	$.ajax({
-                type:'post',
-                url:$("#b_url").val()+'/project/getCountryVal',
-                data:'country='+selectedCountry+'&projectId='+projectId+'&variable=country'+'&varValue='+selectedCountry,
-                success: function(data) {
-                    $('#selectedCountry').val(data);
-                    autoSaveHashTags();
-                }
-        	});
-        } else {
-        	if (selectedCountry == 'null')
-        	    autoSave('country', 'IN');
-        	else
-        		autoSave('country', selectedCountry);
-        }
-    });
+	$('#country').change(function(){
+		var selectedCountry = $(this).val();
+		if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+			$.ajax({
+				type:'post',
+				url:$("#b_url").val()+'/project/getCountryVal',
+				data:'country='+selectedCountry+'&projectId='+projectId+'&variable=country'+'&varValue='+selectedCountry,
+				success: function(data) {
+					$('#selectedCountry').val(data);
+					autoSaveHashTags();
+				}
+			});
+		} else {
+			if (selectedCountry == 'null')
+				autoSave('country', 'IN');
+			else
+				autoSave('country', selectedCountry);
+		}
+	});
 
-    $('.recipient').change(function(){
-        var recipient = $(this).val();
-        autoSaveHashTags();
-        var delay = 1000; //delayed code to prevent error, time in milliseconds
-        setTimeout(function() {
-        	if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-        		if (recipient == 'null') {
-        			autoSave('fundsRecievedBy', 'NGO');
-        		} else {
-        			autoSave('fundsRecievedBy', recipient);
-        		}
-        	} else {
-        		if (recipient == 'null') {
-        			autoSave('fundsRecievedBy', 'NON-PROFIT');
-        		} else {
-        			autoSave('fundsRecievedBy', recipient);
-        		}
-        	}
-        }, delay);
-    });
+	$('.recipient').change(function(){
+		var recipient = $(this).val();
+		autoSaveHashTags();
+		var delay = 1000; //delayed code to prevent error, time in milliseconds
+		setTimeout(function() {
+			if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+				if (recipient == 'null') {
+					autoSave('fundsRecievedBy', 'NGO');
+				} else {
+					autoSave('fundsRecievedBy', recipient);
+				}
+			} else {
+				if (recipient == 'null') {
+					('fundsRecievedBy', 'NON-PROFIT');
+				} else {
+					autoSave('fundsRecievedBy', recipient);
+				}
+			}
+		}, delay);
+	});
 
-    $('.days').change(function(){
-    	var days = $(this).val();
-    	autoSave('days', days);
-    });
-    
+	$('.days').change(function(){
+		var days = $(this).val();
+		autoSave('days', days);
+	});
+
     $('#firstadmin').blur(function(){
         var emailValue = $(this).val();
         if(validator.element( "#firstadmin")){

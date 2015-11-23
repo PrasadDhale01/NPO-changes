@@ -3127,7 +3127,7 @@ class ProjectService {
                 }
                 break;
 
-                case 'ans4':
+            case 'ans4':
                 QA qA = QA.findByProject(project)
                 if (varValue.isAllWhitespace()){
                     if(qA){
@@ -3148,21 +3148,21 @@ class ProjectService {
                 }
                break;
  
-               case 'reason1':
-			   ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
-               if (varValue.isAllWhitespace()){
-                   if (reasonToFund){
-                       reasonToFund.reason1 = null;
-                       reasonToFund.save(failOnError:true)
-                   }
-               } else {
+            case 'reason1':
+                ReasonsToFund reasonToFund = ReasonsToFund.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (reasonToFund){
+                        reasonToFund.reason1 = null;
+                        reasonToFund.save(failOnError:true)
+                    }
+                } else {
                     if (reasonToFund) {
                         reasonToFund.reason1 = varValue;
                         reasonToFund.save(failOnError:true)
                     } else {
                         new ReasonsToFund(
-                            reason1 : varValue,
-                            project : project
+                           reason1 : varValue,
+                           project : project
                         ).save(failOnError:true)
                     }
                     isValueChanged = true;
@@ -3341,12 +3341,12 @@ class ProjectService {
 
         return [txnid:txnid, hash:hash, furl:furl, surl:surl]
     }
-	
-	def getCountryValue(def country){
-		Map countries = getCountry()
+
+    def getCountryValue(def country){
+        Map countries = getCountry()
         def mapValue =  countries.getAt(country)
-		return mapValue
-	}
+        return mapValue
+    }
 
     def setCookie(def requestUrl) {
         Cookie cookie = new Cookie("requestUrl", requestUrl)
@@ -3811,80 +3811,80 @@ class ProjectService {
         getSpendMatrixSaved(spend)
     }
 
-    def getSpendMatrixSaved(def params){
-		Project project = Project.get(params.projectId)
-		def saveCount = Integer.parseInt(params.savingCount)
-		if (params.amount && params.cause && params.amount.isNumber()) {
-		    def amount = Double.parseDouble(params.amount)
-		    SpendMatrix spendMatrix = SpendMatrix.findByNumberAvailableAndProject(saveCount, project)
-		    if (spendMatrix) {
+    def getSpendMatrixSaved(def params) {
+        Project project = Project.get(params.projectId)
+        def saveCount = Integer.parseInt(params.savingCount)
+        if (params.amount && params.cause && params.amount.isNumber()) {
+            def amount = Double.parseDouble(params.amount)
+            SpendMatrix spendMatrix = SpendMatrix.findByNumberAvailableAndProject(saveCount, project)
+            if (spendMatrix) {
                 def isValueChanged = false
-
+                
                 if (amount && amount != ' '){
-				    spendMatrix.amount = amount
-				    isValueChanged = true
-			    }
-
-			    if (params.cause && params.cause != ' '){
-				    spendMatrix.cause = params.cause
-				    isValueChanged = true
-			    }
-
-			    if (isValueChanged){
-				    spendMatrix.save(failOnError: true);
-			    }
-
-		    } else {
+                    spendMatrix.amount = amount
+                    isValueChanged = true
+                }
+            
+                if (params.cause && params.cause != ' '){
+                    spendMatrix.cause = params.cause
+                    isValueChanged = true
+                }
+                
+                if (isValueChanged){
+                    spendMatrix.save(failOnError: true);
+                }
+            
+            } else {
                 new SpendMatrix(
                     project:project,
                     amount : amount,
                     cause : params.cause,
                     numberAvailable : saveCount
                 ).save(failOnError:true);
-		    }
-		}
-	}
+            }
+        }
+    }
 
     def getSpendMatrixDeleted(def params){
         Project project = Project.get(params.projectId)
-		def deleteCount = Integer.parseInt(params.deleteCount)
+        def deleteCount = Integer.parseInt(params.deleteCount)
         SpendMatrix spendMatrix = SpendMatrix.findByNumberAvailableAndProject(deleteCount, project)
         if (spendMatrix){
-			spendMatrix.delete();
+            spendMatrix.delete();
         }
     }
 
     def getPieList(Project project) {
         List pieValueWithPer = [];
         def spendMatrixs = project.spend;
-		def pieListCount = 0;
-		List sublist1 = [];
-		sublist1.add("'"+'Goal'+"'");
-		sublist1.add(project.amount.round());
-		pieValueWithPer.add(sublist1);
-		def cause
+        def pieListCount = 0;
+        List sublist1 = [];
+        sublist1.add("'"+'Goal'+"'");
+        sublist1.add(project.amount.round());
+        pieValueWithPer.add(sublist1);
+        def cause
         spendMatrixs.each{ spendMatrix ->
-			pieListCount++;
-			List sublist = [];
-			cause = "'"+spendMatrix.cause+"'"
+            pieListCount++;
+            List sublist = [];
+            cause = "'"+spendMatrix.cause+"'"
             sublist.add(cause);
             def percentage = (spendMatrix.amount / project.amount) * 100;
             sublist.add(percentage.round());
-			if (pieListCount == 1){
-				sublist.add("'"+'blue'+"'")
-			}
+            if (pieListCount == 1){
+                sublist.add("'"+'blue'+"'")
+            }
             pieValueWithPer.add(sublist);
         }
-		return pieValueWithPer;
+        return pieValueWithPer;
     }
 
-	def getProjectReasonsToFund(Project project){
-		return ReasonsToFund.findByProject(project)
-	}
-	
-	def getProjectQA(Project project){
-		return QA.findByProject(project)
-	}
+    def getProjectReasonsToFund(Project project){
+        return ReasonsToFund.findByProject(project)
+    }
+    	
+    def getProjectQA(Project project){
+        return QA.findByProject(project)
+    }
 
     def getValidatedProjectsForCampaignAdmin(def condition, def country) {
         List projects = []

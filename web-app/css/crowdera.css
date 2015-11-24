@@ -5522,7 +5522,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	 button.btn-show-fund {
+    button.btn-show-fund {
        padding-bottom: 10px;
        padding-top: 10px;
     }
@@ -5530,7 +5530,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 0;
         padding-right: 80px;
     }
-	div.sh-thumbnil-tile {
+    div.sh-thumbnil-tile {
         margin: 0;
     }
     div.show-mobile-button {
@@ -7713,7 +7713,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 14px;
         margin-left: -30px;
     }
-	li.sh-button-fund-secandaryheader {
+    li.sh-button-fund-secandaryheader {
         left: 21.2% !important;
         position: absolute;
         top: 8px !important;
@@ -7725,27 +7725,27 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 @media only screen and (min-width:831px) and (max-width: 900px){
-	div.show-submit-tabs button {
+    div.show-submit-tabs button {
         font-size: 14px;
         margin-left: -30px;
     }
-	li.sh-button-fund-secandaryheader {
+    li.sh-button-fund-secandaryheader {
         left: 20.5% !important;
         position: absolute;
         top: 8px !important;
     }
-	header.cr-tabs-link {
+    header.cr-tabs-link {
         font-size: 15px !important;
         padding-left: 65px !important;
         padding-right: 76px !important;
     }
 }
 @media only screen and (min-width:901px) and (max-width: 991px){
-	div.show-submit-tabs button {
+    div.show-submit-tabs button {
         font-size: 14px;
         margin-left: -8px;
     }
-	li.sh-button-fund-secandaryheader {
+    li.sh-button-fund-secandaryheader {
         left: 19.5% !important;
         position: absolute;
         top: 8px !important;
@@ -9840,23 +9840,23 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
-	li.sh-button-fund-secandaryheader {
+    li.sh-button-fund-secandaryheader {
         left: 18.8% !important;
         position: absolute;
         top: 8px !important;
     }
-	div.sh-tabs{
+    div.sh-tabs{
 	    display: none !important;
-	}
-	div.sh-tabs-social{
+    }
+    div.sh-tabs-social{
 	    display: block !important;
-	}
-	.ebook-container {
-	   display: block;
-	   margin-left: auto;
-	   margin-right: auto;
-	   width: 62% !important;
-	}
+    }
+    .ebook-container {
+	    display: block;
+	    margin-left: auto;
+	    margin-right: auto;
+	    width: 62% !important;
+    }
 
     .cr-panel-hash-tags{
         width:15% !important;
@@ -10190,7 +10190,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
-	li.sh-button-fund-secandaryheader {
+    li.sh-button-fund-secandaryheader {
         margin-left: 43px !important;
         position: absolute;
     }
@@ -10216,14 +10216,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         height: 32px;
         width: 32px;
     }
-	div.sh-shareicons-Fixedtophead {
-         display: none;
-         left: 0;
-         margin: 0;
-         position: fixed;
-         top: 48px;
-         width: 100%;
-         z-index: 999;
+    div.sh-shareicons-Fixedtophead {
+        display: none;
+        left: 0;
+        margin: 0;
+        position: fixed;
+        top: 48px;
+        width: 100%;
+        z-index: 999;
     }
     li.sh-button-fund-secandaryheader {
         left: 20.9%;
@@ -15728,18 +15728,18 @@ img.home-pg-icons{
 	float: left;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
-	.show-secandarylog-top{
+    .show-secandarylog-top{
         float: left;
     }
-   ::i-block-chrome, .show-secandarylog-top{
+    ::i-block-chrome, .show-secandarylog-top{
         float: none;
-   }
-   img.sh-safari2header-padding{
+    }
+    img.sh-safari2header-padding{
        padding-right: 0px;
-   }
-   ::i-block-chrome, img.sh-safari2header-padding{
+    }
+    ::i-block-chrome, img.sh-safari2header-padding{
        padding-right: 22px;
-   }
+    }
 }
 /*********IE10+ specifice code***************/
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
@@ -15752,10 +15752,9 @@ img.home-pg-icons{
     }
 }   
 li.sh-button-fund-secandaryheader{
-	left: 19.2%;
-	position:absolute;
-	top: 39px;
-    
+    left: 19.2%;
+    position:absolute;
+    top: 39px;
 }
 .sh-fund-2header{
     margin-top: -32px;
@@ -15769,8 +15768,8 @@ li.sh-button-fund-secandaryheader{
     width: 179px;
 }
 .sh-logo-color{
-	height:44px;
-	margin-top: -9px;
+    height:44px;
+    margin-top: -9px;
 }
 .sh-logo-color:hover,
 .sh-logo-color:focus{
@@ -15784,7 +15783,6 @@ li.sh-button-fund-secandaryheader{
     width: 100%;
     z-index: 999;
     display: none;
-    
 }
 .show-2ndhead-btnFB {
     font-size: 14px;
@@ -15801,18 +15799,18 @@ li.sh-button-fund-secandaryheader{
     padding-right: 5px;
 }
 .show-icons-secandheader img{
-	padding-top: 3px;
-	padding-bottom: 3px;
-	height: 34px;
-	margin: 3px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    height: 34px;
+    margin: 3px;
 }
 .show-share-headerpadding{
     left: 261px;
     padding-top: 4px;
 }
 .show-shortUrlheader-top{
-	top: 6px;
-	padding: 6px;
+    top: 6px;
+    padding: 6px;
 }
 .previewsubmitbtn a{
 	color:#fff;

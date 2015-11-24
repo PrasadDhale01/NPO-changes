@@ -338,7 +338,7 @@ textarea.textarea-embed-tile{
     color: #fff;	
 }
 .show-sharetabs-header{
-	background-color: #fff !important;
+    background-color: #fff !important;
     left: 0;
     bottom: -3%;
     position: fixed;
@@ -352,8 +352,8 @@ textarea.textarea-embed-tile{
     width: 500px;
 }
 .social-header{
-	margin: 0;
-	cursor: pointer;
+    margin: 0;
+    cursor: pointer;
 }
 
 .cr-story-padding .redactor-box .redactor-editor{

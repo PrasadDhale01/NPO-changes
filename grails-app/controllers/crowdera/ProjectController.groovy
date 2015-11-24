@@ -10,6 +10,7 @@ import org.apache.http.client.methods.HttpPost
 import org.apache.http.entity.StringEntity
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.util.EntityUtils
+import org.apache.jasper.compiler.Node.ParamsAction;
 import org.apache.poi.ss.usermodel.Workbook
 import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.codehaus.groovy.grails.web.json.JSONObject
@@ -28,6 +29,7 @@ class ProjectController {
 	def projectService
 	def mandrillService
 	def contributionService
+	def socialAuthService
 
 	def FORMCONSTANTS = [
 		/* Beneficiary */
@@ -1281,7 +1283,28 @@ class ProjectController {
 			redirect (action: 'show', params:['projectTitle':title,'fr':name])
 		}
 	}
-
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def inviteMember(){
+		def page = params.page?params.page : chainModel.page
+		Project project = Project.get(params.projectId)
+		session.setAttribute('projectId', project.id)
+		session.setAttribute('page', params.page)
+		if (page =="manage"){
+		   if(chainModel){
+		       render (view:"/project/manageproject/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList,  provider:chainModel.socialProvider=="constant"?"constant" : "google"])
+		   }else{
+			   render (view:"/project/manageproject/invitemember", model:[project:project])
+		   }
+		}else{
+		   if(chainModel){
+		      render (view:"/project/show/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList, provider:chainModel.socialProvider=="constant"?"constant" : "google"])
+		   }else{
+			  render (view:"/project/show/invitemember", model:[project:project])
+		   }
+		}
+	}
+	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def inviteTeamMember() {
 		def project = projectService.getProjectById(params.id)
@@ -1294,6 +1317,7 @@ class ProjectController {
 		def username = userService.getVanityNameFromUsername(fundraiser, params.id)
 
 		if (params.ismanagepage) {
+			println " manage project " + params.ismanagepage
 			sendEmailToTeam(emails, name, message, project)
 			redirect (action: 'manageproject', params:['projectTitle':title], fragment: 'manageTeam')
 		} else {
@@ -1939,5 +1963,185 @@ class ProjectController {
 		def result = projectService.importCSVReportForUserFeedback(response, project)
 		render (contentType:"text/csv", text:result)
 	}
-
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def importSocialContacts(){
+		String provider=params.socialProvider
+		String email =params.socialContact
+		session['email'] = email
+		session['socialProvider'] = provider
+		def currentEnv = projectService.getCurrentEnvironment()
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+		
+		switch(currentEnv){
+			case 'development':
+				if(provider.equals('google')){
+					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+					def scope = grailsApplication.config.crowdera.gmail.SCOPE
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+				}else if(provider.equals("constant")){
+					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}
+			break;
+			case 'test':
+				if(provider.equals('google')){
+					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+					def scope = grailsApplication.config.crowdera.gmail.SCOPE
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+				}else if(provider.equals("constant")){
+					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}
+			break;
+			case 'staging':
+				if(provider.equals('google')){
+					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+					def scope = grailsApplication.config.crowdera.gmail.SCOPE
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+				}else if(provider.equals("constant")){
+					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}
+			break;
+			case 'production':
+				if(provider.equals('google')){
+					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+					def scope = grailsApplication.config.crowdera.gmail.SCOPE
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+				}else if(provider.equals("constant")){
+					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}
+			break;
+			case 'testIndia':
+				if(provider.equals('google')){
+					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+					def scope = grailsApplication.config.crowdera.gmail.SCOPE
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+				}else if(provider.equals("constant")){
+					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}
+			break;
+			case 'staginIndia':
+				if(provider.equals('google')){
+					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+					def scope = grailsApplication.config.crowdera.gmail.SCOPE
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+				}else if(provider.equals("constant")){
+					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}
+			break;
+			case 'prodIndia':
+				if(provider.equals('google')){
+					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+					def scope = grailsApplication.config.crowdera.gmail.SCOPE
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+				}else if(provider.equals("constant")){
+					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}
+			break;
+		}
+	}
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def getSocialContactsCode(){
+		
+		def email =session.getAttribute("email")
+		def projectId =session.getAttribute("projectId")
+		def provider = session.getAttribute('socialProvider')
+		def page = session.getAttribute("page")
+		def code=params.code
+		def username= params.username
+		def user =userService.getCurrentUser()
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+		def  emailLists
+		if(username!=null){
+			if(code){
+				def tokenJson = socialAuthService.getConstantContactToken(code)
+				def json = socialAuthService.getJsonStringObject(tokenJson)
+				def accessToken= json.access_token
+				def contactJson =socialAuthService.sendConstantContactHTTPGetRequest(accessToken)
+				def jsonString = socialAuthService.getJsonStringObject(contactJson)
+				def constantContactList
+				if(jsonString.error){
+					flash.contact_message="You might already login with different account"
+					Project project = projectService.getProjectById(projectId)
+					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:constantContactList, page:page])
+				}else{
+					constantContactList= jsonString.results.email_addresses.email_address.toString().replace('[', " ").replace(']',' ')
+					if(constantContactList){
+						def socialContacts = SocialContacts.findByUser(user)
+					   if(socialContacts){
+						   socialAuthService.setSocailContactsByUser(socialContacts, constantContactList,  provider)
+					   }else{
+					   	   new SocialContacts(constantContact:constantContactList, gmail:null, mailchimp:null ,user:user).save(failOnError: true)
+					   }
+					}
+					Project project = projectService.getProjectById(projectId)
+				    chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:constantContactList, socialProvider:provider, page:page])
+				}
+			}
+		}else{
+			def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+			def clientSecret=grailsApplication.config.crowdera.gmail.CLIENT_SECRET
+			def redirectUri =base_url +'/project/getSocialContactsCode'
+			def tokenJson = socialAuthService.getGoogleAccessToken(code,clientSecret, redirectUri, clientId)
+			def json = socialAuthService.getJsonStringObject(tokenJson)
+			def accessToken= json.access_token
+			def contactJson = socialAuthService.getGmailContactsByAccessToken(accessToken, email)
+			def jsonString =socialAuthService.getJsonStringObject(contactJson)
+			def gmailList
+			if(jsonString.error){
+				flash.contact_message="You might already login with different account"
+				Project project = projectService.getProjectById(projectId)
+				chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:"", page:page])
+			}else{
+				gmailList= jsonString.feed.entry.gd$email.address.toString().replace('[', " ").replace(']',' ')
+				if(gmailList){
+					def socialContacts = SocialContacts.findByUser(user)
+					if(socialContacts){
+						socialAuthService.setSocailContactsByUser(socialContacts ,gmailList, provider)
+					}else{
+						new SocialContacts(constantContact:null, gmail:gmailList, mailchimp:null ,user:user).save(failOnError: true)
+					}
+					Project project = projectService.getProjectById(projectId)
+					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:gmailList, socialProvider:provider, page:page])
+				}
+			}
+		}
+	}
 }

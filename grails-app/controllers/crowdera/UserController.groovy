@@ -436,7 +436,7 @@ class UserController {
 		def project = Project.get(projectId)
 		def user = userService.getUserById(project.user.id)
 		def feedback=userService.getFeedbackByUser(user)
-		render( view:"/user/survey/previewuserfeedback.gsp", model:[feedback:feedback, user:user])
+		render( view:"/user/survey/previewuserfeedback", model:[feedback:feedback, user:user])
 	}
     
     @Secured(['IS_AUTHENTICATED_FULLY'])

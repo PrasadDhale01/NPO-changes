@@ -9,7 +9,7 @@ import groovy.transform.ToString
 
 class User {
 
-    static hasMany = [projects: Project, contributions: Contribution, comments: ProjectComment, teams: Team, vanityUsername: VanityUsername]
+    static hasMany = [socialContacts: SocialContacts, projects: Project, contributions: Contribution, comments: ProjectComment, teams: Team, vanityUsername: VanityUsername]
 
 	transient springSecurityService
 
@@ -54,7 +54,6 @@ class User {
         city nullable: true
         state nullable: true
         country nullable: true
-        feedbackCount nullable:true
     }
 
 	static mapping = {

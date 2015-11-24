@@ -789,52 +789,50 @@ $(function() {
     });
   
     $('.show-mobilejs').find(function(){
-    	    $('.show-mobilejs').css("margin-bottom","20px");
+        $('.show-mobilejs').css("margin-bottom","20px");
     });
     
     $( document ).ready(function() {
 		function sticky_relocate() {
-		    var window_top = $(window).scrollTop();
-		    var div_top = $("#show-headerid-A").offset().top;
-		    var top_fund = $(".show-A-fund").offset().top;
+            var window_top = $(window).scrollTop();
+            var div_top = $("#show-headerid-A").offset().top;
+            var top_fund = $(".show-A-fund").offset().top;
 		    
-		    var topFb = $('.showfacebooksAA').offset().top;
-		    var topicons = $('.show-socials-iconsA').offset().top;
+            var topFb = $('.showfacebooksAA').offset().top;
+            var topicons = $('.show-socials-iconsA').offset().top;
 		   
 //		    Top header code
-		    if (window_top > div_top) {
-		        $('.show1-Primary').addClass('sh-primery-header-padding');
-		        $('.main-header-gsp').hide();
+            if (window_top > div_top) {
+                $('.show1-Primary').addClass('sh-primery-header-padding');
+                $('.main-header-gsp').hide();
 		        
-		    } else if(window_top < div_top ){
-		        $('.show1-Primary').removeClass('sh-primery-header-padding');
-		        $('.main-header-gsp').show();
-		        
-		    }
-		    if( window_top > top_fund) {
-		    	$('.show-btn-js').show();
-		    	$('.sh-aproval-btn').show();
-		    }else if(window_top < top_fund){
-		    	$('.show-btn-js').hide();
-		    	$('.sh-aproval-btn').hide();
-		    }
+            } else if(window_top < div_top ){
+                $('.show1-Primary').removeClass('sh-primery-header-padding');
+                $('.main-header-gsp').show();
+            }
+            if( window_top > top_fund) {
+                $('.show-btn-js').show();
+                $('.sh-aproval-btn').show();
+            }else if(window_top < top_fund){
+                $('.show-btn-js').hide();
+                $('.sh-aproval-btn').hide();
+            }
 //          End Top header
 		    
-		    if(window_top > topFb){
+            if(window_top > topFb){
                 $('.sh-shareicons-Fixedtophead').show();
-		    }else  if(window_top < topFb){
+            }else  if(window_top < topFb){
                 $('.sh-shareicons-Fixedtophead').hide();
-		    }
-		    if( window_top > topicons) {
+            }
+            if( window_top > topicons) {
                 $('.show-headers-icons').show();
-		    }else if(window_top < topicons){
+            }else if(window_top < topicons){
                 $('.show-headers-icons').hide();
-		    }
-		    
-		}
-		$(window).scroll(sticky_relocate);
-		sticky_relocate();
-	});
+            }
+        }
+        $(window).scroll(sticky_relocate);
+        sticky_relocate();
+    });
     
     $('.shortUrlglyphiconMob').on('shown.bs.popover', function () {
         var popover = $('.shortUrlglyphiconMob').data('bs.popover');

@@ -109,7 +109,7 @@
         </g:else>
     </div>
 
-    <!-----Embed modal----->
+    <!--Embed modal-->
     <div class="modal fade embedTilemodal" id="embedTilemodal" tabindex="-1" role="dialog" aria-hidden="true">
         <g:if test="${project.videoUrl}">
             <div class="modal-dialog modal-embed-with-video">

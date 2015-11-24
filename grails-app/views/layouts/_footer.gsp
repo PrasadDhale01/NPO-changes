@@ -14,9 +14,9 @@
 <!-- Footer -->
 <footer>
     <div class="footer_links">
-        <div class="footer-mobile-border visible-xs"></div>
+        
         <div class="container footer-container">
-	    <div class="visible-xs">
+	    <div class="visible-xs show-mobilejs">
 		<section class="row">  
 	 	    <div class="col-xs-12">
 			<div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a></div>

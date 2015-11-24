@@ -332,3 +332,24 @@ textarea.textarea-embed-tile{
 #campaignthumbnails.col-sm-12 {
     padding-left: 5px;
 }
+.sh-head-fb-over:hover,
+.sh-head-fb-over:focus{
+    color: #fff;	
+}
+.show-sharetabs-header{
+	background-color: #fff !important;
+    left: 0;
+    bottom: -3%;
+    position: fixed;
+    z-index: 1000
+}
+.show-ispriview-headurl{
+	top: 2px;
+}
+.show-headerApproval-tooltip .popover{
+    width: 500px;
+}
+.social-header{
+	margin: 0;
+	cursor: pointer;
+}

@@ -17,7 +17,7 @@
 %>
 <input type="hidden" id="currentEnvironment" value="<%=currentEnv%>" />
 <input type="text" name="search" id="hiddensearch"/>
-<div class="hidden-xs navbar navbar-default navbar-fixed-top header-section home-header-section noScrollHeader" role="navigation">
+<div class="hidden-xs navbar navbar-default navbar-fixed-top header-default-height header-section home-header-section noScrollHeader" role="navigation">
     <div class="header-container">
         <g:if test="${currentEnv == 'test' || currentEnv== 'staging' || currentEnv=='production' || currentEnv== 'development'}">
             <div class="info-banner">Doing good from India? Visit <a href="http://crowdera.in" class="banner-link">www.crowdera.in</a><a href="#" class="banner-close">Close</a>

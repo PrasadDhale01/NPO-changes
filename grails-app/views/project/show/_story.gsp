@@ -37,6 +37,7 @@
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <g:hiddenField name="shareUrl" id="shareUrl" value="${shareUrl}"/>
     <g:hiddenField name="embedTileUrl" id="embedTileUrl" value="${embedTileUrl}"/>
+    <div class="show-socials-iconsA"></div>
     <div class="col-sm-12 social sharing-icon-alignment show-share-border-line">
 <%--        <div class="shared pull-left">--%>
 <%--            <span class="TW-show_share-text-margin"><label>SHARE:</label></span>--%>
@@ -93,7 +94,7 @@
         <div class="popoverClass">
             <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color"></span>
             <div id="popoverConent" class="hidden">
-                <button type="button" class="close">&times;</button>
+                <button type="button" class="close closeStory">&times;</button>
                 <p>${shareUrl}</p>
             </div>
         </div>
@@ -122,7 +123,7 @@
     </div>
 
     <!-----Embed modal----->
-    <div class="modal fade" id="embedTilemodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal fade embedTilemodal" id="embedTilemodal" tabindex="-1" role="dialog" aria-hidden="true">
         <g:if test="${project.videoUrl}">
             <div class="modal-dialog modal-embed-with-video">
                 <div class="modal-content">

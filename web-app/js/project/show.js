@@ -1,4 +1,4 @@
-  $(function() {
+$(function() {
     console.log('show.js initialized');
     /***************Hide/Show label******************************/
     hideShowLabel();
@@ -167,6 +167,18 @@
         }
     });
     
+    $('.approvebtn-md, .approvebtn-sm').click(function(event) {
+        event.preventDefault();
+        var redirectUrl = $(this).attr('href');
+        var length = $('input[name="approveChk[]"]:checked').length;
+        if (length >= 12) {
+            window.location.href = redirectUrl;
+        } else {
+        	$('#validateChecklistmsg').show();
+        	$('#validateChecklistmsg').fadeOut(3000);
+        }
+    });
+    
     $('.redirectCampaign, .redirectCampaignOnPerk a').click(function(event) {
         event.preventDefault();
         var url = $('.redirectUrl a').attr('href');
@@ -221,6 +233,7 @@
                 return false;    		
         return true;
     },"Please add valid emails only");
+    
 
     /************************Hide/Show comments********************/ 
     $("#uniqueId input[type='checkbox']").click(function(){
@@ -378,14 +391,6 @@
            return false;
        } 
     });
-    
-//    $.validator.addMethod('isYoutubeVideo', function (value, element) {
-//        if(value && value.length !=0){
-//           var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-//           return (value.match(p)) ? RegExp.$1 : false;
-//        }
-//        return true;
-//     }, "Please upload a url of Youtube video");
     
     $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
@@ -908,24 +913,24 @@
        }
        
    	$.ajax( { 
-   		url: 'https://freegeoip.net/json/', 
+   		url: 'http://ipinfo.io/json', 
    		type: 'POST', 
    		dataType: 'jsonp',
    		success: function(location) {
    			// If the visitor is browsing from India.
-   			if (location.country_code == 'IN' && currentEnv == 'test') {
+   			if (location.country == 'IN' && currentEnv == 'test') {
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('test.crowdera.in');
 				$('.banner-link').attr('href','http://test.crowdera.in');
-   			} else if(location.country_code == 'IN' && currentEnv == 'staging'){
+   			} else if(location.country == 'IN' && currentEnv == 'staging'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('staging.crowdera.in');
    				$('.banner-link').attr('href','http://staging.crowdera.in');
-   			} else if(location.country_code == 'IN' && currentEnv == 'production'){
+   			} else if(location.country == 'IN' && currentEnv == 'production'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://crowdera.in');
-   			} else if(location.country_code == 'IN' && currentEnv == 'development'){
+   			} else if(location.country == 'IN' && currentEnv == 'development'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://localhost:8080');
@@ -940,6 +945,7 @@
    		$('.home-header-section').removeClass('banner-nav');
    		$('#preview-banner').attr('class','preview-banner-margin');
    	});
+       
 
     $('.video-play').click(function() {
     	$('.choose-error').html('');

@@ -27,6 +27,7 @@ class User {
     String city
     String state
     String country
+	int feedbackCount=0
 
     Date dateCreated
     Date lastUpdated

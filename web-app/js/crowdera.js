@@ -165,6 +165,9 @@ $(function() {
 				    $("#preview-banner").css("margin-top","-104px");
 				 }
 		    }
+        	if($(window).width() > 768){
+        		$('.scrollHeader').css("display","none");
+        	}
         });
         
         /**************On hamburger click**********************************/

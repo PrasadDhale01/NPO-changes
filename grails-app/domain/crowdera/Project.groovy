@@ -11,7 +11,7 @@ class Project {
     def rewardService
 
     static belongsTo = [user: User]
-    static hasMany = [contributions: Contribution, comments: ProjectComment, rewards: Reward, imageUrl: ImageUrl, projectAdmins: ProjectAdmin,projectUpdates: ProjectUpdate, teams: Team, vanityTitle: VanityTitle, supporters: Supporter]
+    static hasMany = [contributions: Contribution, comments: ProjectComment, rewards: Reward, imageUrl: ImageUrl, projectAdmins: ProjectAdmin,projectUpdates: ProjectUpdate, teams: Team, vanityTitle: VanityTitle, supporters: Supporter, spend:SpendMatrix]
 
     Beneficiary beneficiary
     Date created
@@ -23,6 +23,7 @@ class Project {
     double amount
     int days
     int gmailShareCount
+    int impactAnalysis
     List contributions 
     List projectAdmins
     List projectUpdates
@@ -51,7 +52,8 @@ class Project {
     String usedFor
     String fundsRecievedBy
     String customVanityUrl
-
+    String hashtags
+	
 	boolean payuStatus=false
     boolean validated = false
     boolean inactive = false
@@ -65,7 +67,6 @@ class Project {
         description type: 'text'
         story type: 'text'
     }
-
 
     static constraints = {
         title (nullable: true)
@@ -88,6 +89,7 @@ class Project {
         usedFor(nullable:true)
         fundsRecievedBy(nullable:true)
         customVanityUrl(nullable:true)
+        hashtags(nullable:true)
     }
 
     def beforeInsert() {

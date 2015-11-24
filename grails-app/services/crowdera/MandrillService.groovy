@@ -1087,6 +1087,50 @@ class MandrillService {
         sendTemplate(user,'payments-info-email', globalMergeVars, tags)
     }
 	
+	def sendFeedBackLinkToOwner(def owner, def base_url){
+		def goodLink = base_url+'/survey?rating=good'
+		def badLink = base_url+'/survey?rating=bad'
+		def awesomeLink = base_url+'/survey?rating=awesome'
+		def goodImgLink = "https://s3.amazonaws.com/crowdera/assets/good.png"
+		def badImgLink = "https://s3.amazonaws.com/crowdera/assets/sad.png"
+		def awesomeImgLink = "https://s3.amazonaws.com/crowdera/assets/awesome.png"
+		
+		def globalMergeVars = [
+		    [
+		        'name': 'GOODLINK',
+		        'content': goodLink
+		    ],
+		    [
+		        'name': 'BADLINK',
+		        'content': badLink
+		    ],
+		    [
+		       'name': 'AWESOMELINK',
+		       'content': awesomeLink
+		    ],
+		    [
+		       'name': 'AWESOMEIMAGE',
+		       'content': awesomeImgLink
+		   ],
+		   [
+		      'name': 'GOODIMAGE',
+		      'content': goodImgLink
+		   ],
+		   [
+		      'name': 'BADIMAGE',
+		      'content': badImgLink
+		   ],
+		   [
+		      'name': 'NAME',
+		      'content': owner.firstName + ' ' + owner.lastName
+		  ]
+		]
+
+        def tags = ['feedback-email']
+
+        sendTemplate(owner, 'feedback_email', globalMergeVars, tags)
+		
+	}
     def sendEmailToNonUserContributors(List nonUserContributors){
         def beneficiaryName
         def link = grailsLinkGenerator.link(controller: 'login', action: 'register', absolute: true)
@@ -1133,7 +1177,6 @@ class MandrillService {
                 emailMemberList.add(it)
             }
         }
-        def name
         def tags
         def beneficiaryName = (project.beneficiary.lastName) ? project.beneficiary.firstName + ' ' + project.beneficiary.lastName : project.beneficiary.firstName
         def imageUrl = project.organizationIconUrl

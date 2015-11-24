@@ -31,7 +31,7 @@
     }
     
 %>
-<div class="modal-footer tile-footer tileanstitle-goals tileanstitle-goal-margin">
+<div class="modal-footer tile-footer tileanstitle-goals tileanstitle-goal-margin organization-panel">
     <div class="row icons-centering">
         <div class="col-xs-4 col-sm-4 col-md-4 goalIcon">
             <img src="//s3.amazonaws.com/crowdera/assets/goal-icon.png" alt="Goal-Icon">
@@ -45,10 +45,10 @@
                 </div>
             </div>
         </div>
-		<div class="col-xs-4 col-sm-4 col-md-4 daysleftIcon">
-			<img src="//s3.amazonaws.com/crowdera/assets/timeleft.png" alt="daysleft-icon">
-		</div>
-	</div>
+        <div class="col-xs-4 col-sm-4 col-md-4 daysleftIcon">
+            <img src="//s3.amazonaws.com/crowdera/assets/timeleft.png" alt="daysleft-icon">
+        </div>
+    </div>
     <div class="row amount-centering">
         <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
             <span class="text-center tile-goal show-contribution-amt-tile">
@@ -90,7 +90,3 @@
         </g:else>
     </div>
 </div>
-    
-<g:if test="${validatedPage}">
-    <g:render template="/layouts/personaldetails"/>
-</g:if>

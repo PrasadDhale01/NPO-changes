@@ -32,6 +32,28 @@
         margin-right: auto;
         width: 285px !important;
     }
+    span.cr-label-spend-matrix{
+        width:12%;
+    }
+    .cr-impact-analysis{
+         width:10% !important;
+    }
+    .cr-impact-guide{
+         width:90% !important;
+    }
+    .cr-reasons-to-fund{
+         width:20% !important;
+    }
+    .cr-reasons-guide{
+         width:80% !important;
+    }
+    .cr-panel-body{
+         margin-left:0px !important;
+    }
+    .ansText{
+        width:50% !important;
+        margin-top: 5px;
+    }
 }
 @media only screen and (min-width: 1201px) and (max-width: 1280px){
     .helpdeskpadding {
@@ -129,8 +151,11 @@
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px){
-	.whycrowderacol-sm .col-sm-6 ,.whycrowderacol-sm .col-sm-12{
-	    padding-left: 0px !important;
+    div.col-sm-input-group{
+       width: 21% !important;
+    }
+	   .whycrowderacol-sm .col-sm-6 ,.whycrowderacol-sm .col-sm-12{
+        padding-left: 0px !important;
         padding-right: 0px !important;
     }
     .whycrowderacol-sm .whycdradivpadding2 {

@@ -22,31 +22,31 @@ function selectedCampaignCategory(){
 $(document).ready(function(){
 	var currentEnv=$('#currentEnv').val();
 	$.ajax( { 
-		url: 'https://freegeoip.net/json/', 
+		url: 'http://ipinfo.io/json', 
 		type: 'POST', 
 		dataType: 'jsonp',
 		success: function(location) {
 			// If the visitor is browsing from India.
-			if (location.country_code == 'IN' && currentEnv == 'test') {
+			if (location.country == 'IN' && currentEnv == 'test') {
 			// Tell him about the India store.
 					$('.info-banner').css('display','block');
 					$('.banner-link').text('test.crowdera.in');
 					$('.banner-link').attr('href','http://test.crowdera.in');
 					//$('.home-header-section').addClass('banner-nav');
 					$('#TW-discover-banner-padding').addClass('banner-padding');
-			}else if(location.country_code == 'IN' && currentEnv == 'staging'){
+			}else if(location.country == 'IN' && currentEnv == 'staging'){
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('staging.crowdera.in');
 				$('.banner-link').attr('href','http://staging.crowdera.in');
 				//$('.home-header-section').addClass('banner-nav');
 				$('#TW-discover-banner-padding').addClass('banner-padding');
-			}else if(location.country_code == 'IN' && currentEnv == 'production'){
+			}else if(location.country == 'IN' && currentEnv == 'production'){
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('www.crowdera.in');
 				$('.banner-link').attr('href','http://crowdera.in');
 				//$('.home-header-section').addClass('banner-nav');
 				$('#TW-discover-banner-padding').addClass('banner-padding');
-			} else if(location.country_code == 'IN' && currentEnv == 'development'){
+			} else if(location.country == 'IN' && currentEnv == 'development'){
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('www.crowdera.in');
 				$('.banner-link').attr('href','http://localhost:8080');

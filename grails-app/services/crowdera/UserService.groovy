@@ -984,6 +984,39 @@ class UserService {
     def getCurrencyById() {
         return Currency.get(1)
     }
+	def getFeedbackByUser(User user){
+	    def feedback = Feedback.findAllWhere(user:user)
+	    def feedbackId
+	    feedback.each{
+		    if(feedback){
+			    feedbackId =it
+		    }
+	    }
+	    return feedbackId
+	}
+	
+	def setFeedbackByUser(def feedback, def params, User user){
+		feedback.answer_1= params.answer_1
+		feedback.answer_2_y1 = params.answer_2_y1
+		feedback.answer_2_y2 = params.answer_2_y2
+		feedback.answer_2_n = params.answer_2_n
+		feedback.answer_3 = params.answer_3
+		feedback.answer_4_y = params.answer_4_y
+		feedback.answer_4_n =  params.answer_4_n
+		feedback.answer_5 = params.answer_5
+		feedback.answer_6 = params.answer_6
+		feedback.answer_7 = params.answer_7
+		feedback.answer_8 = params.answer_8
+		feedback.answer_9_y1 = params.answer_9_y1
+		feedback.answer_9_y2 = params.answer_9_y2
+		feedback.answer_9_y3 = params.answer_9_y3
+		feedback.answer_9_y4 = params.answer_9_y4
+		feedback. answer_9_y5 = params.answer_9_y5
+		feedback.answer_9_y6 = params.anwer_9_y6
+		feedback.answer_9_n= params.answer_9_n
+		feedback.user = user
+		feedback.rating = params. rating
+	}
     
     def setUserObject(def params) {
         def password = projectService.getAlphaNumbericRandomUrl()

@@ -125,6 +125,10 @@ $(function() {
         errorPlacement: function(error, element) {
             if ( element.is(":checkbox")) {
                 error.appendTo(element.parent());
+            } else if($(element).prop("id") == "amount"){
+            	error.appendTo(document.getElementById("errormsg"));
+            } else {
+            	error.insertAfter(element);
             }
         }
     });

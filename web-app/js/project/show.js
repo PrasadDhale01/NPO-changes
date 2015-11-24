@@ -841,24 +841,24 @@ $(function() {
        }
        
    	$.ajax( { 
-   		url: 'https://freegeoip.net/json/', 
+   		url: 'http://ipinfo.io/json', 
    		type: 'POST', 
    		dataType: 'jsonp',
    		success: function(location) {
    			// If the visitor is browsing from India.
-   			if (location.country_code == 'IN' && currentEnv == 'test') {
+   			if (location.country == 'IN' && currentEnv == 'test') {
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('test.crowdera.in');
 				$('.banner-link').attr('href','http://test.crowdera.in');
-   			} else if(location.country_code == 'IN' && currentEnv == 'staging'){
+   			} else if(location.country == 'IN' && currentEnv == 'staging'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('staging.crowdera.in');
    				$('.banner-link').attr('href','http://staging.crowdera.in');
-   			} else if(location.country_code == 'IN' && currentEnv == 'production'){
+   			} else if(location.country == 'IN' && currentEnv == 'production'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://crowdera.in');
-   			} else if(location.country_code == 'IN' && currentEnv == 'development'){
+   			} else if(location.country == 'IN' && currentEnv == 'development'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://localhost:8080');
@@ -873,6 +873,7 @@ $(function() {
    		$('.home-header-section').removeClass('banner-nav');
    		$('#preview-banner').attr('class','preview-banner-margin');
    	});
+       
 
     $('.video-play').click(function() {
     	$('.choose-error').html('');

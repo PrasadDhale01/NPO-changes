@@ -23,7 +23,10 @@ class UrlMappings {
         /* About Us */
         "/aboutus"(view:'/aboutus/index')
         "/careers"(view:'/aboutus/careers')
-
+		
+		/* Feedback/Survey*/
+		"/survey" (view:'/survey/index')
+		
 		/* Ebook */
 		"/crowdfunding-ebook"(view:'/ebook/index')
 

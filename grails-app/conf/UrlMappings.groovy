@@ -120,5 +120,8 @@ class UrlMappings {
         "/user/contributions"(controller:'user', action:'mycontributions')
         "/user/edit-userInfo"(controller:'user', action:'edituserinfo')
         "/user/edit-location"(controller:'user', action:'editlocation')
+        
+        /*Partner*/
+        "/partner/dashboard"(controller:'user', action:'partnerdashboard')
     }
 }

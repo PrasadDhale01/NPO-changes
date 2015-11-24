@@ -15,6 +15,6 @@ class Partner {
     boolean enabled = false
     
     static constraints = {
-        confirmCode nullable: true
+        confirmCode nullable: false
     }
 }

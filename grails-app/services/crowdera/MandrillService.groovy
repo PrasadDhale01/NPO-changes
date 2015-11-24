@@ -1175,5 +1175,45 @@ class MandrillService {
         }
 
     }
+    
+    public def sendEmailToPartner(User user, Partner partner, def password) {
+        def link = grailsLinkGenerator.link(controller: 'user', action: 'confirmPartner', id: partner.confirmCode, absolute: true)
+
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+        ], [
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ], [
+            'name': 'EMAIL',
+            'content': user.email
+        ], [
+            'name': 'PASSWORD',
+            'content': password
+        ]]
+
+        def tags = ['partner-invitation']
+
+        sendTemplate(user, 'partner-invitation', globalMergeVars, tags)
+    }
+    
+    public def sendInvitationToCampaignOwner(def email, User user, def confirmCode, def message) {
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'createCampaign', id: confirmCode, absolute: true)
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+        ], [
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ], [
+            'name': 'EMAIL',
+            'content': email
+        ]]
+
+        def tags = ['partnerInvitationToCampaignOwner']
+
+        inviteToShare(email, 'partnerInvitationToCampaignOwner', globalMergeVars, tags)
+    }
 	
 }

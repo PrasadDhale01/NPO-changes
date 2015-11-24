@@ -1558,6 +1558,24 @@ class ProjectService {
             return Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false, payuStatus:false)
         }
     }
+    
+    def getNonValidatedProjectsForPartner(User user, Partner partner) {
+        List projects = []
+        def partnerInviteCode = partner.confirmCode
+        List userProjects = Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false, user: user)
+        List projectsByInviteCode = Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false, partnerInviteCode: partnerInviteCode)
+        projects = userProjects + projectsByInviteCode
+        return projects
+    }
+    
+    def getValidatedProjectsForPartner(User user, Partner partner) {
+        List projects = []
+        def partnerInviteCode = partner.confirmCode
+        List userProjects = Project.findAllWhere(validated: true, inactive: false, rejected: false, user: user)
+        List projectsByInviteCode = Project.findAllWhere(validated: true, inactive: false, rejected: false, partnerInviteCode: partnerInviteCode)
+        projects = userProjects + projectsByInviteCode
+        return projects
+    }
 
     def search(String query, def currentEnv) {
         List result = []
@@ -3614,6 +3632,14 @@ class ProjectService {
         }
         
         return projects
+    }
+    
+    def getPartnerCampaigns(User user) {
+        def projects = getAllProjectByUser(user)
+        def projectAdmins = getProjectAdminEmail(user)
+        def teams = getTeamByUserAndEnable(user, true)
+        def campaigns = getProjects(projects, projectAdmins, teams)
+        return campaigns
     }
     
     def getSortingList() {

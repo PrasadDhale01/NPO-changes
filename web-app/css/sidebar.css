@@ -20,11 +20,7 @@
     height: 100%;
     margin-right: -205px;
     overflow-y: auto;
-    background: #000;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    transition: all 0.5s ease;
+    background: #5F676F;
 }
 
 #wrapper.toggled #sidebar-wrapper {

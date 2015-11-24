@@ -241,7 +241,7 @@
                 </g:elseif>
                 <g:elseif test="${activeTab == 'editUserInfo'}">
                     <div class="col-lg-12">
-                       <g:render template="user/userprofile"/>
+                       <g:render template="user/userprofile" model="['userprofile': 'userprofile']"/>
                     </div>
                 </g:elseif>
                 <g:else>

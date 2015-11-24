@@ -972,6 +972,9 @@ class UserService {
                 user.state = params.state
             }
         }
+        if(params.country && user.country != params.country){
+            user.country = params.country
+        }
         if(params.city && user.city != params.city){
             user.city = params.city
         }
@@ -983,17 +986,83 @@ class UserService {
     }
     
     def setUserObject(def params) {
+        def password = projectService.getAlphaNumbericRandomUrl()
+        
         User user = new User(params)
         user.confirmCode = UUID.randomUUID().toString()
-        user.enabled = false
-        user.confirmed = false
-        user.password = projectService.getAlphaNumbericRandomUrl()
+        user.enabled = true
+        user.confirmed = true
+        user.password = password
         user.username = params.email
-        user.save();
+        if (user.save()) {
+            createUserRole(user, roleService)
+            createPartnerRole(user, roleService)
+        }
+        
+        return [password : password, user : user]
     }
     
     def getPartnerByConfirmCode(def id) {
         return Partner.findByConfirmCode(id);
+    }
+    
+    def createPartnerRole(User user, RoleService roleService){
+        UserRole.create(user, roleService.partnerRole())
+    }
+    
+    def isPartner() {
+        if (UserRole.findByUserAndRole(getCurrentUser(), roleService.partnerRole())) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    def isPartner(User user) {
+        if (UserRole.findByUserAndRole(user, roleService.partnerRole())) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    def getPartnerByUser(User user) {
+        return Partner.findByUser(user)
+    }
+    
+    def getPartnerById(def id) {
+        return Partner.get(id)
+    }
+    
+    def inviteCampaignOwner(def params) {
+        User user = getCurrentUser()
+        Partner partner = getPartnerByUser(user)
+        if (partner) {
+            def emails = params.emails
+            def emailList = emails.split(',')
+            emailList = emailList.collect { it.trim() }
+            
+            emailList.each { email ->
+                PartnerInvite invite = PartnerInvite.findByEmail(email)
+                if (invite) {
+                    mandrillService.sendInvitationToCampaignOwner(email, user, partner.confirmCode, params.message)
+                } else {
+                    invite = new PartnerInvite()
+                    invite.email = email
+                    invite.partner = partner
+                    if (invite.save()) {
+                        mandrillService.sendInvitationToCampaignOwner(email, user, partner.confirmCode, params.message)
+                    }
+                }
+                
+            }
+        }
+        
+    }
+    
+    def getTotalNumberOfInvites(partner) {
+        List invites = PartnerInvite.findAllWhere(partner: partner)
+        return invites.size()
     }
     
     @Transactional

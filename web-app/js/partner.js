@@ -1,4 +1,44 @@
 $(function() {
+	
+    function getSelectedCampaignUrl() {
+        return $('#promote-campaigns').find('.list-group-item.active').data('campaignurl');
+    }
+    
+    function getSelectedCampaignTwitterUrl() {
+    	return $('#promote-campaigns').find('.list-group-item.active').attr('id');
+    }
+    
+	$('#promote-campaigns').find('.list-group-item').click(function() {
+        $('#promote-campaigns').find('div.list-group-item').removeClass('active');
+        $(this).addClass('active');
+    });
+	
+	$('#side-menu').find('.li').click(function() {
+		$('#side-menu').find('.li').removeClass('active');
+        $(this).addClass('active');
+    });
+	$('#partner-sec-header').find('span').click(function() {
+		$('#partner-sec-header').find('span').removeClass('active');
+        $(this).addClass('active');
+    });
+	
+	$('.selectpicker').selectpicker({
+        style: 'btn btn-sm btn-default'
+    });
+    
+    $('#state').change(function(event) {
+        var option = $(this).val();
+        if(option == 'other') {
+            $("#ostate").show();
+            $("#dashboard_otherstate").show();
+        } else {
+            $("#ostate").hide();
+            $("#dashboard_otherstate").hide();
+        }
+    });
+	
+	var currentEnv = $('#currentEnv').val();
+	
     $('#invitePartnerModal').find('form').validate({
     	rules: {
     		email : {
@@ -12,5 +52,187 @@ $(function() {
     		}
     	}
     });
+    
+    $('#invite-campaign-owner').find('form').validate({
+    	rules: {
+    		emails : {
+    			required: true,
+    			validateMultipleEmailsCommaSeparated: true
+    		},
+    		name: {
+    			required: true
+    		}
+    	}
+    });
+    
+    $('.dashboarduserprofile').find('form').validate({
+        rules: {
+            firstName: {
+            	minlength: 2,
+                maxlength: 20
+            },
+            lastName: {
+            	minlength: 2,
+                maxlength: 20
+            },
+            password: {
+                minlength: 6
+            },
+            confirmPassword: {
+                isEqualToPassword: true
+            },
+            biography: {
+                minlength: 10,
+                maxlength: 140
+            },
+            city: {
+            	required: true,
+            	minlength: 2,
+                maxlength: 20
+            },
+            state: {
+                maxlength: 20
+            },
+            country: {
+                minlength: 6
+            },
+            otherstate: {
+            	required: true,
+            	minlength: 3
+            }
+        },
+        errorPlacement: function(error, element) {
+            error.insertAfter(element);
+        }
+    });
+    
+    $("#uploadavatar").click(function() {
+        $("#avatar").click();
+    });
+    
+    $('#avatar').change( function(event) {
+    	var file =this.files[0];
+	    if(!file.type.match('image')){
+	        $('#uploadProfilesize').hide();
+	        $('#uploadProfileImg').show();
+	        this.value=null;
+	    } else{
+	        if (file.size > 1024 * 1024 * 3) {
+	        	$('#uploadProfilesize').show();
+		        $('#uploadProfileImg').hide();
+	            $('#avatar').val('');
+	        } else {
+	        	$('#uploadProfilesize').hide();
+		        $('#uploadProfileImg').hide();
+                $("#uploadbutton").click();
+	        }
+	    } 
+    });
+    
+    $("#editavatarbutton").click(function() {
+        $("#editavatar").click();
+    });
+    
+    $('#editavatar').change( function(event) {
+    	var file =this.files[0];
+	    if(!file.type.match('image')){
+	        $('#editProfilesize').hide();
+	        $('#editProfileImg').show();
+	        this.value=null;
+	    } else{
+	        if (file.size > 1024 * 1024 * 3) {
+	        	$('#editProfilesize').show();
+		        $('#editProfileImg').hide();
+	            $('#editavatar').val('');
+	        } else {
+	        	$('#editProfilesize').hide();
+		        $('#editProfileImg').hide();
+		        $("#editbutton").click();
+	        }
+	    } 
+    });
+    
+    $('#userAvatarUploadIcon').hover(function() {
+        $('.partneruploadprofileimage').show();
+    });
+    $('#userAvatarUploadIcon').mouseleave(function() {
+        $('.partneruploadprofileimage').hide();
+    });
+    $('#userAvatarUploadIcon').click(function(event) {
+        event.preventDefault();
+        $("#avatar").click();
+    });
+    $('#partnerImageEditDeleteIcon').hover(function() {
+        $('.partnerprofileeditimage').show();
+    });
+    $('#partnerImageEditDeleteIcon').mouseleave(function() {
+        $('.partnerprofileeditimage').hide();
+    });
+    $('.partnerprofileeditimage').click(function(event) {
+        event.preventDefault();
+        $("#editavatar").click();
+    });
+    
+    $("#fbshare").click(function(){
+    	var selectedUrl = getSelectedCampaignUrl();
+    	if (selectedUrl == undefined) {
+    		$('#campaign-select-alert').show();
+    		$('#campaign-select-alert').fadeOut(3000);
+    	} else {
+            var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent(selectedUrl);
+            window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+            return false;
+    	}
+    });
+    $("#twitterShare").click(function(){
+        var selectedUrl = getSelectedCampaignTwitterUrl();
+        if (selectedUrl == undefined) {
+        	$('#campaign-select-alert').show();
+    		$('#campaign-select-alert').fadeOut(3000);
+    	} else {
+            if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
+                var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+encodeURIComponent(selectedUrl);
+            } else {
+                var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.in!"&url='+encodeURIComponent(selectedUrl);
+            }
+            window.open(url, 'Share on Twitter', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+            return false;
+    	}
+    });
+    $("#linkedinShareUrl").click(function(){
+    	var selectedUrl = getSelectedCampaignTwitterUrl();
+        if (selectedUrl == undefined) {
+    		$('#campaign-select-alert').show();
+    		$('#campaign-select-alert').fadeOut(3000);
+    	} else {
+            var url = 'https://www.linkedin.com/cws/share?url='+ selectedUrl;
+            window.open(url, 'Share on Linkedin', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+            return false;
+    	}
+    });
+    $("#googlePlusShareUrl").click(function(){
+    	var selectedUrl = getSelectedCampaignTwitterUrl();
+        if (selectedUrl == undefined) {
+        	$('#campaign-select-alert').show();
+    		$('#campaign-select-alert').fadeOut(3000);
+    	} else {
+            var url = 'https://plus.google.com/share?url='+ selectedUrl;
+            window.open(url, 'Share on Google Plus', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
+            return false;
+    	}
+    });
+    
+    $.validator.addMethod('validateMultipleEmailsCommaSeparated', function (value, element) {
+        var result = value.split(",");
+        for(var i = 0;i < result.length;i++)
+        if(!validateEmail(result[i])) 
+                return false;    		
+        return true;
+    },"Please add valid emails only");
+    
+    function validateEmail(field) {
+        var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
+        return (regex.test(field)) ? true : false;
+    }
     
 });

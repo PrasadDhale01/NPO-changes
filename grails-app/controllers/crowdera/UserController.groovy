@@ -11,6 +11,7 @@ class UserController {
 	def mandrillService
     def contributionService
     def rewardService
+    def roleService
 
     @Secured(['ROLE_ADMIN'])
     def admindashboard() {
@@ -65,6 +66,8 @@ class UserController {
         def environment = Environment.current.getName()
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
+        } else if(userService.isPartner()) {
+            redirect action: 'partnerdashboard'
         } else {
             def projects
             def projectAdmins
@@ -421,22 +424,42 @@ class UserController {
         }
     }
     
+    @Secured(['ROLE_ADMIN'])
     def managePartner() {
         List partners = Partner.list()
         render view:'/user/partner/index', model:[partners: partners]
     }
     
+    @Secured(['ROLE_ADMIN'])
     def addpartner() {
-        User user = userService.getUserByUsername()
-        Partner partner = new Partner()
-        if (!user) {
-            user = userService.setUserObject(params)
-        }
-        partner.user = user
-        if (partner.save()) {
-            redirect action:'managePartner'
+        User user = userService.getUserByUsername(params.email)
+        def password
+        if (user) {
+            if (!userService.isPartner(user)) {
+                userService.createPartnerRole(user, roleService)
+            }
         } else {
-            render(view: 'error', model: [message: 'Error occured while inviting a partner. Please try again.'])
+            def userObj = userService.setUserObject(params)
+            user = userObj.user
+            password = userObj.password
+        }
+        
+        if (userService.getPartnerByUser(user)) {
+            List partners = Partner.list()
+            flash.alreadyExistMsg = "Partner with this email already exist."
+            render view:'/user/partner/index', model:[partners: partners]
+        } else {
+            Partner partner = new Partner()
+            partner.user = user
+            
+            partner.confirmCode = UUID.randomUUID().toString()
+            if (partner.save()) {
+                mandrillService.sendEmailToPartner(user, partner, password);
+                redirect action:'managePartner'
+            } else {
+                flash.user_err_message = 'Error occured while inviting a partner. Please try again.'
+                render(view: '/usererror')
+            }
         }
     }
     
@@ -445,18 +468,64 @@ class UserController {
 
         if (partner) {
             if (partner.enabled) {
-                render(view: 'success', model: [message: 'Your account is successfully confirmed. It seems like you were already confirmed.'])
-
+                render(view: '/success', model: [sucess_message: 'Your account is successfully confirmed for Partner. It seems like you were already confirmed.'])
             } else {
                 partner.enabled = true
                 if (partner.save()) {
-                    render(view: 'success', model: [message: 'Your account is successfully activated.'])
+                    render(view: '/success', model: [sucess_message: 'Your account is successfully activated for Partner.'])
                 } else {
-                    render(view: 'error', model: [message: 'Problem activating account. Please contact the administrator.'])
+                    flash.user_err_message = 'Problem activating account. Please contact the administrator.'
+                    render(view: '/usererror')
                 }
             }
         } else {
-            render(view: 'error', model: [message: 'Problem activating account. Please check your activation link.'])
+            flash.user_err_message = 'Problem activating account. Please check your activation link'
+            render(view: '/user/user/usererror')
         }
     }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def partnerdashboard() {
+        def currentEnv = Environment.current.getName()
+        def currentUser = userService.getCurrentUser()
+        Partner partner
+        if (params.id) {
+            partner = userService.getPartnerById(params.int('id'))
+        } else {
+            partner = userService.getPartnerByUser(currentUser)
+        }
+        
+        if (partner) {
+            User user = partner.user
+            def projects = projectService.getNonValidatedProjectsForPartner(user, partner)
+            def campaigns = projectService.getValidatedProjectsForPartner(user, partner)
+            def fundRaised = projectService.getTotalFundRaisedByUser(campaigns)
+            def numberOfInvites = userService.getTotalNumberOfInvites(partner)
+            def userCampaigns = projectService.getPartnerCampaigns(user)
+            def country = projectService.getCountry()
+            def state = projectService.getState()
+            
+            def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            
+            if (flash.prj_validate_message) {
+                flash.prj_validate_message = "Campaign validated successfully"
+            }
+            
+            render view:'/user/partner/dashboard', model:[projects: projects, user: user, campaigns: campaigns, baseUrl: baseUrl, currentEnv: currentEnv,
+                                                         fundRaised: fundRaised, numberOfInvites: numberOfInvites, userCampaigns: userCampaigns,
+                                                         country: country, state: state]
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def invite() {
+        if (userService.isPartner()) {
+            userService.inviteCampaignOwner(params)
+            redirect action: 'partnerdashboard'
+        } else {
+            render view:'/401error'
+        }
+    }
+    
 }

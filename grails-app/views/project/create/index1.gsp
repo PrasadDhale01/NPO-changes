@@ -37,8 +37,10 @@
     <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
         <div class="container footer-container" id="campaigncreate">
             <g:uploadForm class="form-horizontal cr-top-spaces" controller="project" action="saveCampaign">
+            
+                <g:hiddenField name="partnerInviteCode" value="${partnerInviteCode}"/>
                
-            <%--Desktop code --%>
+                <%--Desktop code --%>
                 <div class="form-group">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                        <label class="col-sm-12 text-color cr-padding-index1">My Name is...</label>

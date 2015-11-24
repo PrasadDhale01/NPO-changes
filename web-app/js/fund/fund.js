@@ -1,6 +1,5 @@
 $(function() {
-    console.log("fund.js initialized");
-
+	
     function getSelectedRewardId() {
         return $('.list-group-item.active').attr('id');
     }

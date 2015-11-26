@@ -1,5 +1,11 @@
 package crowdera
 
+import groovy.transform.EqualsAndHashCode
+import groovy.transform.ToString
+
+@ToString(includeNames = true, includeFields = true)
+@EqualsAndHashCode
+
 class Feedback {
 	User user
 	String answer_1

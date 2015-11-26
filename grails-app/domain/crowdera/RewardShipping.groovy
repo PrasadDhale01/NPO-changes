@@ -19,6 +19,5 @@ class RewardShipping {
         email nullable: true
         twitter nullable: true
         custom nullable: true
-        reward nullable: true
     }
 }

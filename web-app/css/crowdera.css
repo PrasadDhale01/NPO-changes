@@ -5481,6 +5481,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
+	
+    .col-sm-fcra {
+        padding-left: 33px;
+    }
+	
+    .padding-tax-reciept-xs{
+        padding-right:30px !important;
+    }
 
     input.editsweb-margin-mobile {
         height: 45px;
@@ -5523,6 +5531,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
 	
+     .padding-tax-reciept-xs{
+         padding-right:20px !important;
+     }
+
      .cr-padding-edit-xs {
          margin-left: 4px;
          padding-right: 9px;
@@ -7058,7 +7070,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     input.paypal-create {
         margin-left: -7% !important;
-        width: 107%;
+        width: 105%;
         margin-top: 3px;
     }
     .form-group.col-sm-6.col-xs-11.rewardPriceClass {
@@ -9229,6 +9241,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+    .col-sm-fcra {
+        padding-left: 25px;
+    }
+
+    .col-sm-impact-amount{
+        padding-left: 3px !important;
+        padding-right: 10px !important;
+    }
+
+    .col-sm-impact {
+        padding-top: 0;
+    }
+
+    .form-group-tax-reciept{
+        padding-left: 8px;
+    }
 
     .cr-reasons-to-fund, .cr-panel-hash-tags{
          margin-bottom:0;
@@ -10516,6 +10544,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }    
 @media only screen and (max-width: 640px) {
 
+    .padding-tax-reciept-xs{
+        padding-right:47px !important;
+    }
+
     .cr-padding-edit-xs {
         margin-left: 4px;
         padding-right: 34px;
@@ -11768,10 +11800,6 @@ textarea.textarea-embed-video {
 	}
 }
 @media only screen and (max-width: 640px){
-    input.paypal-create {
-        margin-left: -3% !important;
-        width: 103%;
-    }
     .shippingreward > .btn-primary
     {
        margin-left: 0px !important;
@@ -12231,6 +12259,14 @@ textarea.textarea-embed-video {
 
 }
 @media only screen and (max-width: 414px) {
+    input.paypal-create {
+         margin-left: 0;
+         width: 254px;
+         margin-top: 3px;
+    }
+    .paypalVerification {
+        padding-left: 14px !important;
+    }
     .form-group-termsOfUse {
         margin-left: -12px !important;
     }
@@ -12242,7 +12278,7 @@ textarea.textarea-embed-video {
     }
     input.paypal-create {
         margin-left: -6% !important;
-        width: 106%;
+        width: 94%;
     }
 	.arrow-mobile-css {
 		margin-right: -11px;
@@ -12494,10 +12530,6 @@ textarea.textarea-embed-video {
     }
     .manage-tiles-details {
         width: 55% !important;
-    }
-    input.paypal-create {
-        margin-left: -6% !important;
-        width: 106%;
     }
     .btn-image {
         background-color:#FF7F50;
@@ -13919,11 +13951,6 @@ textarea.textarea-embed-video {
     div.cr-radio-option {
          padding-left: 2px;
          padding-right: 33px;
-    }
-    input.paypal-create {
-         margin-left: 0;
-         width: 254px;
-         margin-top: 3px;
     }
     div.cr-payment-marg{
         padding: 0;

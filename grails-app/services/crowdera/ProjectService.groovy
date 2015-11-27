@@ -1759,7 +1759,44 @@ class ProjectService {
         }
         return ['filelink':tempImageUrl, 'imageId':imageUrl.id]
     }
-	
+    
+    def getTaxRecieptFile(CommonsMultipartFile taxfile, TaxReciept taxReciept) {
+        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+        def awsSecretKey = "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"
+
+        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+        def s3Service = new RestS3Service(awsCredentials);
+
+        def bucketName = "crowdera"
+        def s3Bucket = new S3Bucket(bucketName)
+
+        def Folder = "tax-reciept-files"
+
+        def tempImageUrl
+        def fileUrl = new ImageUrl()
+        if (!taxfile?.empty && taxfile.size < 1024 * 1024 * 3) {
+            try{
+                def file= new File("${taxfile.getOriginalFilename()}")
+                def key = "${Folder}/${taxfile.getOriginalFilename()}"
+                key = key.toLowerCase()
+                taxfile.transferTo(file)
+                def object=new S3Object(file)
+                object.key=key
+
+                tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
+                s3Service.putObject(s3Bucket, object)
+                fileUrl.url = tempImageUrl
+                fileUrl.save()
+                taxReciept.addToFiles(fileUrl)
+                file.delete()
+            }catch(Exception e) {
+                log.error("Error: " + e);
+            }
+        }
+        println "tempImageUrl : "+tempImageUrl
+        return ['filelink':tempImageUrl, 'fileId':fileUrl.id]
+    }
+
     def getMultipleImageUrlsForTeam(CommonsMultipartFile imageFile, Team team){
         def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
         def awsSecretKey = "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"
@@ -3220,6 +3257,317 @@ class ProjectService {
                 isValueChanged = true;
                 break;
 
+            case 'ein':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.ein = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.ein = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.ein = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+
+            case 'taxRecieptHolderCity':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.city = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.city = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.city = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+
+            case 'taxRecieptHolderName':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.name = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.name = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.name = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+
+            case 'taxRecieptHolderState':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.state = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.state = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.state = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+
+            case 'deductibleStatus':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.deductibleStatus = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.deductibleStatus = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.deductibleStatus = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                    taxReciept.save(failOnError:true);
+                }
+                break;
+
+            case 'taxRecieptHolderCountry':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.country = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.country = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.country = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                    taxReciept.save(failOnError:true);
+                }
+                break;
+                
+            case 'regDate':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.regDate = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.regDate = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.regDate = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                    taxReciept.save(failOnError:true);
+                }
+                break;
+                
+            case 'expiryDate':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                    taxReciept.expiryDate = null
+                    taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.expiryDate = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.expiryDate = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                    taxReciept.save(failOnError:true);
+                }
+                break;
+                
+                case 'fcraRegDate':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                    taxReciept.fcraRegDate = null
+                    taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.fcraRegDate = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.fcraRegDate = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                    taxReciept.save(failOnError:true);
+                }
+                break;
+                
+                case 'addressLine1':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                    taxReciept.address = null
+                    taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.address = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.address = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                    taxReciept.save(failOnError:true);
+                }
+                break;
+                
+                case 'addressLine2':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                    taxReciept.addressLine2 = null
+                    taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.addressLine2 = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.addressLine2 = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                    taxReciept.save(failOnError:true);
+                }
+                break;
+                
+                case 'regNum':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                    taxReciept.regNum = null
+                    taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.regNum = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.regNum = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                    taxReciept.save(failOnError:true);
+                }
+                break;
+                
+                case 'panCardNumber':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                    taxReciept.panCardNumber = null
+                    taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.panCardNumber = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.panCardNumber = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                    taxReciept.save(failOnError:true);
+                }
+                break;
+
+                case 'phoneNumber':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                    taxReciept.phone = null
+                    taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.phone = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.phone = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                    taxReciept.save(failOnError:true);
+                }
+                break;
+                
+                case 'fcraRegNum':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                    taxReciept.fcraRegNum = null
+                    taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.fcraRegNum = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.fcraRegNum = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                    taxReciept.save(failOnError:true);
+                }
+                break;
+
             default :
                isValueChanged = false;
  
@@ -3950,6 +4298,27 @@ class ProjectService {
             Rejected: 'Rejected'
         ]
         return sortingOptions
+    }
+
+    def getTaxRecieptOfProject(Project project){
+        return TaxReciept.findByProject(project)
+    }
+
+    def getDeductibleStatusList(){
+        def deductibleStatus = [
+            PC : 'PC (50%)',
+            POF : 'POF (30%)',
+            PF : 'PF (30%)',
+            GROUP : 'GROUP (Depends)',
+            LODGE : 'LODGE (30%)',
+            UNKWN : 'UNKWN (Depends)',
+            EO : 'EO (Depends)',
+            FED : 'FED (50%)',
+            FORGN : 'FORGN (Depends)',
+            SO : 'SO (50%)',
+            SONFI : 'SONFI (50%)',
+            SOUNK : 'SOUNK (50%)'
+        ]
     }
 
     @Transactional

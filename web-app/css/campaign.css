@@ -627,3 +627,57 @@ div.validate-show-div .show-description {
 #tax-reciept{
     display:none;
 }
+
+.col-sm-impact {
+    padding-top: 5px;
+    padding-left: 0px !important;
+}
+
+.cr-impact-currency{
+    position: absolute;
+    left: 20px;
+    top: 11px;
+}
+
+.form-group-selectpicker .dropdown-menu{
+    height:255px;
+    min-height:0;
+    max-height:0;
+}
+
+.clear-tax-reciept{
+    height:10px;
+}
+
+.uploadingFile{
+    display:none;
+}
+
+.col-tax-file-show{
+    padding-top: 7px;
+    padding-left: 0;
+}
+
+.cr-tax-files{
+    position: relative;
+    border: 1px dotted #c9c9c9;
+    margin-left: 10px;
+}
+
+.cr-tax-files .deleteicon {
+    position: absolute;
+    top: -7px;
+    right: -6px;
+}
+
+.col-tax-file-show{
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+}
+
+.delete-image{
+    margin:2px;
+    width:10px;
+    height:10px;
+}

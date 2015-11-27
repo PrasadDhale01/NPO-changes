@@ -170,9 +170,16 @@
     div.paypalVerification span {
         margin-left: -3%;
     }
-    
     .form-group-termsOfUse {
         margin-left: -3px !important;
+    }
+    .paypalVerification {
+        padding-left: 5px !important;
+    }
+    input.paypal-create {
+         margin-left: -3%;
+         width: 258px;
+         margin-top: 3px;
     }
 }
 

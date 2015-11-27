@@ -44,6 +44,9 @@
     <g:hiddenField name="spendMatrix" value="${spends.amount}" id="spendMatrix"/>
     <g:hiddenField name="usedForCreate" id="usedForCreate" value="${project.usedFor}"/>
     <g:hiddenField name="selectedCountry" id="selectedCountry" value="${selectedCountry}"/>
+    <g:if test="${taxReciept}">
+        <g:hiddenField name="taxRecieptId" value="${taxReciept.id}" id="taxRecieptId"/>
+    </g:if>
 
     <div class="text-center">
         <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
@@ -352,7 +355,28 @@
                     <p class="reasons-p form-group">3. <input type="text" name="reason3" class="reason3 reasons form-control" value="${r3}"></p>
                 </div>
             </div>
-            
+       
+            <div class="col-sm-12 padding-right-xs">
+                <div class="cr-spend-matrix">
+                    <label class="col-sm-2 col-xs-12 text-center cr-panel-spend-matrix cr-impact-analysis"><span class="cr-spend-matrix-font">Impact</span></label>
+                    <label class="col-sm-10 hidden-xs cr-panel-spend-matrix-guide cr-impact-guide"></label>
+                </div>
+                <div class="panel panel-body cr-panel-body-spend-matrix">
+                    <div class="col-sm-2 col-xs-4 col-sm-impact-amount">
+                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                        <span class="fa fa-inr cr-impact-currency"></span>
+                    </g:if>
+                    <g:else>
+                        <span class="fa fa-usd cr-impact-currency"></span>
+                    </g:else>
+                    <input type="text" name="impact-amt" class="form-control form-amount-impact spendAmount"> &nbsp;
+                    </div>
+                    <div class="col-sm-10 col-xs-8 col-sm-impact">
+                    would <span class="impact-text">change a life</span>
+                    </div>
+                </div>
+            </div>
+
             <div class="col-sm-12 padding-right-xs">
                 <div class="cr-spend-matrix">
                      <label class="col-md-1 col-sm-2 col-xs-12 text-center cr-panel-spend-matrix cr-panel-hash-tags"><span class="cr-spend-matrix-font"># Tags</span></label>
@@ -852,7 +876,260 @@
                         </div>
                     </div>
                 </g:else>
+
+                <div class="col-sm-12">
+                    <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
+                        <div class="form-group form-group-termsOfUse" id="tax-reciept">
+                            <input type="checkbox" name="tax-reciept-checkbox" class="tax-reciept-checkbox">
+                            Do you want to offer reciept to your contributors. 
+                        </div>
+                    </div>
+                </div>
                 
+                <div class="col-sm-12 padding-tax-reciept-xs">
+                    <div class="cr-spend-matrix">
+                         <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Tax reciepts</span></label>
+                         <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide">
+                         </label>
+                    </div>
+                    <div class="panel panel-body cr-panel-body-spend-matrix form-group cr-panel-body cr-hash-tags">
+                        <g:if test="${currentEnv == 'development' || currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                             <g:if test="${taxReciept}">
+                             <div class="row">
+                             <div class="col-sm-4">
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                      <input type="text" placeholder="Registered Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name" value="${taxReciept.name}">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control datepicker-reg" placeholder="Registration Date" name="reg-date" value="${taxReciept.regDate}">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control addressLine1" placeholder="AddressLine 1" name="addressLine1" value="${taxReciept.address}">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control zip" placeholder="ZIP" name="zip"  value="${taxReciept.zip}">
+                                 </div>
+                             </div>
+                             <div class="col-sm-4">
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" placeholder="Registration Number" class="form-control tax-reciept-registration-num" name="tax-reciept-registration-num" value="${taxReciept.regNum}">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control datepicker-expiry" placeholder="Expiry Date" name="expiry-date" value="${taxReciept.expiryDate}">
+                                 </div>
+                                  <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control addressLine2" placeholder="AddressLine 2" name="addressLine2" value="${taxReciept.addressLine2}">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept form-group-selectpicker">
+                                     <g:select style="width:0px !important;" class="selectpicker form-control selectpicker-state" name="tax-reciept-holder-state" from="${stateInd}" optionKey="value" optionValue="value" value="${taxReciept.state}" noSelection="['OTHER':'State']"/>
+                                 </div>
+                             </div>
+                             <div class="col-sm-4">
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card" value="${taxReciept.panCardNumber}">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}" >
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control tax-reciept-holder-city" placeholder="City" name="tax-reciept-holder-city" value="${taxReciept.city}">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control country" placeholder="Country" name="country" value="India" readonly>
+                                 </div>
+                             </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-sm-12 col-sm-fcra">
+                                     <input type="checkbox" class="fcra-checkbox">&nbsp;&nbsp;You are FCRA registered
+                                 </div>
+                                 <div class="fcra-details">
+                                     <div class = "col-sm-4">
+                                         <div class="col-sm-12 form-group form-group-tax-reciept">
+                                             <input type="text" placeholder="FCRA Registration No." class="form-control fcra-reg-no" name="fcra-reg-no" value="${taxReciept.fcraRegNum}">
+                                         </div>
+                                     </div>
+                                     <div class = "col-sm-4">
+                                         <div class="col-sm-12 form-group form-group-tax-reciept">
+                                             <input type="text" placeholder="FCRA Registration Date" class="form-control fcra-reg-date" name="fcra-reg-date" value="${taxReciept.fcraRegDate}">
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-sm-2 col-add-tax-files">
+                                     <div class="col-sm-12">
+                                         <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
+                                             Add Files
+                                             <input type="file" class="upload taxRecieptFiles" id="taxRecieptFiles" name="taxRecieptFiles">
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-tax-file-show col-sm-10" id="col-tax-file-show">
+                                    <g:each var="file" in="${taxReciept.files}">
+                                        <% def url = file.url
+                                         %>
+                                        <table class="cr-tax-files">
+                                            <tr>
+                                               <td>&nbsp;&nbsp;${url.substring(url.lastIndexOf("/") + 1)}</td>
+                                               <td>
+                                                   <div class="deleteicon">
+                                                       <img src="//s3.amazonaws.com/crowdera/assets/delete.ico" class="delete-image" onclick="deleteTaxRecieptFiles(this, ${file.id}, ${taxReciept.id})">
+                                                   </div>&nbsp;&nbsp;
+                                               </td>
+                                            </tr>
+                                        </table>
+                                    </g:each>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="clear-tax-reciept"></div>
+                                 <div class="col-sm-12 col-file-upload-error-placement col-sm-fcra">
+                                     <label class="docfile-orglogo-css filesize" id="filesize"></label>
+                                     <div class="uploadingFile">Uploading File....</div>
+                                 </div>
+                             </div>
+                             </g:if>
+                             <g:else>
+                             <div class="row">
+                             <div class="col-sm-4">
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                      <input type="text" placeholder="Registered Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control datepicker-reg" placeholder="Registration Date" name="reg-date">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control addressLine1" placeholder="AddressLine 1" name="addressLine1">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control zip" placeholder="ZIP" name="zip">
+                                 </div>
+                             </div>
+                             <div class="col-sm-4">
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" placeholder="Registration Number" class="form-control tax-reciept-registration-num" name="tax-reciept-registration-num">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control datepicker-expiry" placeholder="Expiry Date" name="expiry-date">
+                                 </div>
+                                  <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control addressLine2" placeholder="AddressLine 2" name="addressLine2">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept form-group-selectpicker">
+                                     <g:select style="width:0px !important;" class="selectpicker form-control selectpicker-state" name="tax-reciept-holder-state" from="${stateInd}" optionKey="value" optionValue="value" noSelection="['OTHER':'State']"/>
+                                 </div>
+                             </div>
+                             <div class="col-sm-4">
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control tax-reciept-holder-city" placeholder="City" name="tax-reciept-holder-city">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control country" placeholder="Country" name="country" value="India" readonly>
+                                 </div>
+                             </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-sm-12 col-sm-fcra">
+                                     <input type="checkbox" class="fcra-checkbox">&nbsp;&nbsp;You are FCRA registered
+                                 </div>
+                                 <div class="fcra-details">
+                                     <div class = "col-sm-4">
+                                         <div class="col-sm-12 form-group form-group-tax-reciept">
+                                             <input type="text" placeholder="FCRA Registration No." class="form-control fcra-reg-no" name="fcra-reg-no">
+                                         </div>
+                                     </div>
+                                     <div class = "col-sm-4">
+                                         <div class="col-sm-12 form-group form-group-tax-reciept">
+                                             <input type="text" placeholder="FCRA Registration Date" class="form-control fcra-reg-date" name="fcra-reg-date">
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-sm-2 col-add-tax-files">
+                                     <div class="col-sm-12">
+                                         <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
+                                             Add Files
+                                             <input type="file" class="upload taxRecieptFiles" id="taxRecieptFiles" name="taxRecieptFiles">
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-tax-file-show col-sm-10" id="col-tax-file-show">
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="clear-tax-reciept"></div>
+                                 <div class="col-sm-12 col-file-upload-error-placement col-sm-fcra">
+                                     <label class="docfile-orglogo-css filesize" id="filesize"></label>
+                                     <div class="uploadingFile">Uploading File....</div>
+                                 </div>
+                             </div>
+                             </g:else>
+                        </g:if>
+                        <g:else>
+	                        <g:if test="${taxReciept}">
+	                            <div class="col-sm-4">
+	                                <div class="col-sm-12 form-group form-group-tax-reciept">
+	                                     <input type="text" placeholder="EIN" class="form-control ein" data-fv-ein="true" name="ein" value="${taxReciept.ein}">
+	                                </div>
+	                                <div class="col-sm-12 form-group form-group-tax-reciept">
+	                                    <input type="text" placeholder="City" class="form-control tax-reciept-holder-city" name="tax-reciept-holder-city" value="${taxReciept.city}">
+	                                </div>
+	                            </div>
+	                            <div class="col-sm-4">
+	                                <div class="col-sm-12 form-group form-group-tax-reciept">
+	                                    <input type="text" placeholder="Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name" value="${taxReciept.name}">
+	                                </div>
+	                                <div class="col-sm-12 form-group form-group-tax-reciept">
+	                                    <input type="text" placeholder="State" class="form-control tax-reciept-holder-state" name="tax-reciept-holder-state" value="${taxReciept.state}">
+	                                </div>
+	                            </div>
+	                            <div class="col-sm-4">
+	                                <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <g:select class="selectpicker form-control tax-reciept-deductible-status" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="value" optionValue="value" value="${taxReciept.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
+	                                </div>
+	                                <div class="col-sm-12 form-group form-group-tax-reciept">
+	                                    <g:select style="width:0px !important;" class="selectpicker form-control tax-reciept-holder-country" name="tax-reciept-holder-country" from="${country}" optionKey="value" value="${taxReciept.country}" optionValue="value" noSelection="['null':'Country']"/>
+	                                </div>
+	                            </div>
+	                        </g:if>
+	                        <g:else>
+	                            <div class="col-sm-4">
+	                                <div class="col-sm-12 form-group form-group-tax-reciept">
+	                                     <input type="text" placeholder="EIN" class="form-control ein" data-fv-ein="true" name="ein">
+	                                </div>
+	                                <div class="col-sm-12 form-group form-group-tax-reciept">
+	                                    <input type="text" placeholder="City" class="form-control tax-reciept-holder-city" name="tax-reciept-holder-city">
+	                                </div>
+	                            </div>
+	                            <div class="col-sm-4">
+	                                <div class="col-sm-12 form-group form-group-tax-reciept">
+	                                    <input type="text" placeholder="Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name">
+	                                </div>
+	                                <div class="col-sm-12 form-group form-group-tax-reciept">
+	                                    <input type="text" placeholder="State" class="form-control tax-reciept-holder-state" name="tax-reciept-holder-state">
+	                                </div>
+	                            </div>
+	                            <div class="col-sm-4">
+	                                <div class="col-sm-12 form-group form-group-tax-reciept">
+	                                    <g:select class="selectpicker form-control tax-reciept-deductible-status" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="value" optionValue="value" noSelection="['null':'Deductible Status']"/>
+	                                </div>
+	                                <div class="col-sm-12 form-group form-group-tax-reciept">
+	                                    <g:select class="selectpicker form-control tax-reciept-holder-country" name="tax-reciept-holder-country" from="${country}" optionKey="value" optionValue="value" noSelection="['null':'Country']"/>
+	                                </div>
+	                            </div>
+	                        </g:else>
+                        </g:else>
+                    </div>
+                </div>
+
                 <div class="col-sm-12 cr-paddingspace termsOfUseCheckboxOnCreatePage" id="launch">
                     <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
                         <div class="form-group form-group-termsOfUse">
@@ -927,16 +1204,34 @@
         now.setDate(now.getDate()+91);
         var j = jQuery.noConflict();
         j(function(){
-            j('#datepicker').datepicker({
+            j('.datepicker-reg').datepicker({
                 onRender: function(date) {    
                     if (date.valueOf() < nowTemp.valueOf() || date.valueOf() >= now.valueOf()){
                         return  'disabled';
                     }
                 }
             }).on('changeDate', function(){
-                autoSave('date', $('#datepicker').val());
-                $('.deadline-popover').find("span").remove();
-                $('.campaignEndDateError').closest(".form-group").removeClass('has-error');
+                autoSave('regDate', $('.datepicker-reg').val());
+            });
+            
+            j('.datepicker-expiry').datepicker({
+                onRender: function(date) {    
+                    if (date.valueOf() < nowTemp.valueOf() || date.valueOf() >= now.valueOf()){
+                        return  'disabled';
+                    }
+                }
+            }).on('changeDate', function(){
+                autoSave('expiryDate', $('.datepicker-expiry').val());
+            });
+
+            j('.fcra-reg-date').datepicker({
+                onRender: function(date) {    
+                    if (date.valueOf() < nowTemp.valueOf() || date.valueOf() >= now.valueOf()){
+                        return  'disabled';
+                    }
+                }
+            }).on('changeDate', function(){
+                autoSave('fcraRegDate', $('.fcra-reg-date').val());
             });
         });
 

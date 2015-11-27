@@ -578,11 +578,18 @@ class ProjectController {
                 def pieList = projectService.getPieList(project);
                 def reasonsToFund = projectService.getProjectReasonsToFund(project)
                 def qA = projectService.getProjectQA(project)
+                def taxReciept = projectService.getTaxRecieptOfProject(project)
+                def deductibleStatusList = projectService.getDeductibleStatusList()
+                def stateInd = projectService.getIndianState()
                 render(view: 'create/index2',
-                model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
-                       FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, user:user,campaignEndDate:campaignEndDate, pieList:pieList,
-                       vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
-                       reasonsToFund:reasonsToFund, qA:qA, spends:spends, usedForCreate:usedForCreate, selectedCountry:selectedCountry])
+                model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, 
+                    nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
+                    FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, 
+                    user:user,campaignEndDate:campaignEndDate, pieList:pieList,stateInd:stateInd,
+                    vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, 
+                    email2:adminemails.email2, email3:adminemails.email3,reasonsToFund:reasonsToFund, 
+                    qA:qA, spends:spends, usedForCreate:usedForCreate, selectedCountry:selectedCountry, 
+                    taxReciept:taxReciept, deductibleStatusList:deductibleStatusList])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
@@ -718,14 +725,18 @@ class ProjectController {
             def beneficiary = project.beneficiary
             def reasonsToFund = projectService.getProjectReasonsToFund(project)
             def qA = projectService.getProjectQA(project)
+            def taxReciept = projectService.getTaxRecieptOfProject(project)
+            def deductibleStatusList = projectService.getDeductibleStatusList()
+            def stateInd = projectService.getIndianState()
             render (view: 'edit/index',
             model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
-            'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,
-            currentEnv: currentEnv,beneficiary:beneficiary,inDays:inDays,
-            FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,qA:qA,
-            project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
-            vanityTitle: vanityTitle, vanityUsername:vanityUsername, selectedCountry: selectedCountry,
-            email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
+                'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,
+                currentEnv: currentEnv,beneficiary:beneficiary,inDays:inDays,taxReciept:taxReciept,
+                FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,qA:qA,stateInd:stateInd,
+                project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
+                vanityTitle: vanityTitle, vanityUsername:vanityUsername, selectedCountry: selectedCountry,
+                email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
+                deductibleStatusList:deductibleStatusList])
         } else {
             flash.prj_edit_message = "Campaign not found."
             render (view: 'edit/editerror')
@@ -1791,6 +1802,20 @@ class ProjectController {
         
         render json
     }
+
+    def uploadTaxRecieptFiles(){
+        def file= params.file
+        TaxReciept taxReciept
+        Project project = projectService.getProjectById(params.projectId);
+        if (project){
+            taxReciept = projectService.getTaxRecieptOfProject(project)
+        }
+        JSONObject json = new JSONObject();
+        if (file && taxReciept){
+            json = projectService.getTaxRecieptFile(file, taxReciept)
+        }
+        render json
+    }
     
     def uploadOrganizationIcon() {
         def imageFile= params.file
@@ -2003,5 +2028,5 @@ class ProjectController {
         projectService.autoSaveProjectDetails(variable, varValue, projectId)
         render country
     }
-
+    
 }

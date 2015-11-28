@@ -1,4 +1,5 @@
 <g:set var="rewardService" bean="rewardService"/>
+<%@ page import="java.text.SimpleDateFormat" %>
 <% 
     def iteratorCount = 1
     def lastrewardCount = 1
@@ -26,6 +27,9 @@
         r2 = (reasonsToFund.reason2) ? reasonsToFund.reason2 : null;
         r3 = (reasonsToFund.reason3) ? reasonsToFund.reason3 : null;
     }
+    
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
+    def currentDate = new Date();
 %>
 <html>
 <head>
@@ -510,7 +514,7 @@
                             <label class="col-sm-10 hidden-xs cr-panel-spend-matrix-guide cr-impact-guide"></label>
                         </div>
                         <div class="panel panel-body cr-panel-body-spend-matrix">
-                            <div class="col-sm-2 col-xs-4">
+                            <div class="col-sm-2 col-xs-4 col-sm-impact-amount form-group">
                             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                 <span class="fa fa-inr cr-impact-currency"></span>
                             </g:if>
@@ -1028,14 +1032,14 @@
 
                     <div class="col-sm-12">
                         <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
-                            <div class="form-group form-group-termsOfUse" id="tax-reciept">
-                                <input type="checkbox" name="checkBox" class="tax-reciept-checkbox">
+                            <div class="form-group form-group-termsOfUse <g:if test="${project.fundsRecievedBy != 'NON-PROFIT'}">tax-reciept</g:if>" id="tax-reciept">
+                                <input type="checkbox" name="checkBox" class="tax-reciept-checkbox" <g:if test="${!project.offeringTaxReciept}">checked="checked"</g:if>>
                                 Do you want to offer reciept to your contributors. 
                             </div>
                         </div>
                     </div>
           
-                    <div class="col-sm-12 padding-tax-reciept-xs">
+                    <div class="col-sm-12 padding-tax-reciept-xs <g:if test="${!project.offeringTaxReciept}">col-tax-reciept-panel</g:if>">
                         <div class="cr-spend-matrix">
                             <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Tax reciepts</span></label>
                             <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide">
@@ -1050,10 +1054,10 @@
                                       <input type="text" placeholder="Registered Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name" value="${taxReciept.name}">
                                  </div>
                                  <div class="col-sm-12 form-group form-group-tax-reciept">
-                                     <input type="text" class="form-control datepicker-reg" placeholder="Registration Date" name="reg-date" value="${taxReciept.regDate}">
+                                     <input type="text" class="form-control datepicker-reg text-date" placeholder="Registration Date" name="reg-date" value="${dateFormat.format(taxReciept.regDate)}">
                                  </div>
                                  <div class="col-sm-12 form-group form-group-tax-reciept">
-                                     <input type="text" class="form-control addressLine1" placeholder="AddressLine 1" name="addressLine1" value="${taxReciept.address}">
+                                     <input type="text" class="form-control addressLine1" placeholder="AddressLine 1" name="addressLine1" value="${taxReciept.addressLine1}">
                                  </div>
                                  <div class="col-sm-12 form-group form-group-tax-reciept">
                                      <input type="text" class="form-control zip" placeholder="ZIP" name="zip"  value="${taxReciept.zip}">
@@ -1064,7 +1068,7 @@
                                      <input type="text" placeholder="Registration Number" class="form-control tax-reciept-registration-num" name="tax-reciept-registration-num" value="${taxReciept.regNum}">
                                  </div>
                                  <div class="col-sm-12 form-group form-group-tax-reciept">
-                                     <input type="text" class="form-control datepicker-expiry" placeholder="Expiry Date" name="expiry-date" value="${taxReciept.expiryDate}">
+                                     <input type="text" class="form-control datepicker-expiry text-date" placeholder="Expiry Date" name="expiry-date" value="${dateFormat.format(taxReciept.expiryDate)}">
                                  </div>
                                   <div class="col-sm-12 form-group form-group-tax-reciept">
                                      <input type="text" class="form-control addressLine2" placeholder="AddressLine 2" name="addressLine2" value="${taxReciept.addressLine2}">
@@ -1090,9 +1094,9 @@
                              </div>
                              <div class="row">
                                  <div class="col-sm-12 col-sm-fcra">
-                                     <input type="checkbox" class="fcra-checkbox">&nbsp;&nbsp;You are FCRA registered
+                                     <input type="checkbox" class="fcra-checkbox" <g:if test="${taxReciept.fcraRegNum}">checked="checked"</g:if>>&nbsp;&nbsp;You are FCRA registered
                                  </div>
-                                 <div class="fcra-details">
+                                 <div class="fcra-details <g:if test="${taxReciept.fcraRegNum}">fcra-display-none</g:if>">
                                      <div class = "col-sm-4">
                                          <div class="col-sm-12 form-group form-group-tax-reciept">
                                              <input type="text" placeholder="FCRA Registration No." class="form-control fcra-reg-no" name="fcra-reg-no" value="${taxReciept.fcraRegNum}">
@@ -1100,27 +1104,42 @@
                                      </div>
                                      <div class = "col-sm-4">
                                          <div class="col-sm-12 form-group form-group-tax-reciept">
-                                             <input type="text" placeholder="FCRA Registration Date" class="form-control fcra-reg-date" name="fcra-reg-date" value="${taxReciept.fcraRegDate}">
+                                             <input type="text" placeholder="FCRA Registration Date" class="form-control fcra-reg-date text-date" name="fcra-reg-date" value="${dateFormat.format(taxReciept.fcraRegDate)}">
                                          </div>
                                      </div>
                                  </div>
                              </div>
                              <div class="row">
-                                 <div class="col-sm-2 col-add-tax-files">
-                                     <div class="col-sm-12">
+                                 <div class="col-sm-2 col-xs-12 col-add-tax-files">
+                                     <div class="col-sm-12 col-xs">
                                          <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
                                              Add Files
                                              <input type="file" class="upload taxRecieptFiles" name="taxRecieptFiles">
                                          </div>
                                      </div>
                                  </div>
-                                 <div class="col-tax-file-show col-sm-10" id="col-tax-file-show">
+                                 <div class="col-tax-file-show col-sm-10 col-xs-12" id="col-tax-file-show">
+                                    <g:each var="file" in="${taxReciept.files}">
+                                        <% def url = file.url
+                                         %>
+                                        <table class="cr-tax-files">
+                                            <tr>
+                                               <td>&nbsp;&nbsp;${url.substring(url.lastIndexOf("/") + 1)}</td>
+                                               <td>
+                                                   <div class="deleteicon">
+                                                       <img src="//s3.amazonaws.com/crowdera/assets/delete.ico" class="delete-image" onclick="deleteTaxRecieptFiles(this, ${file.id}, ${taxReciept.id})">
+                                                   </div>&nbsp;&nbsp;
+                                               </td>
+                                            </tr>
+                                        </table>
+                                    </g:each>
                                  </div>
                              </div>
                              <div class="row">
                                  <div class="clear-tax-reciept"></div>
                                  <div class="col-sm-12 col-file-upload-error-placement col-sm-fcra">
                                      <label class="docfile-orglogo-css filesize" id="filesize"></label>
+                                     <label class="docfile-orglogo-css fileempty" id="fileempty"></label>
                                      <div class="uploadingFile">Uploading File....</div>
                                  </div>
                              </div>
@@ -1132,7 +1151,7 @@
                                       <input type="text" placeholder="Registered Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name">
                                  </div>
                                  <div class="col-sm-12 form-group form-group-tax-reciept">
-                                     <input type="text" class="form-control datepicker-reg" placeholder="Registration Date" name="reg-date">
+                                     <input type="text" class="form-control datepicker-reg text-date" placeholder="Registration Date" name="reg-date">
                                  </div>
                                  <div class="col-sm-12 form-group form-group-tax-reciept">
                                      <input type="text" class="form-control addressLine1" placeholder="AddressLine 1" name="addressLine1">
@@ -1146,7 +1165,7 @@
                                      <input type="text" placeholder="Registration Number" class="form-control tax-reciept-registration-num" name="tax-reciept-registration-num">
                                  </div>
                                  <div class="col-sm-12 form-group form-group-tax-reciept">
-                                     <input type="text" class="form-control datepicker-expiry" placeholder="Expiry Date" name="expiry-date">
+                                     <input type="text" class="form-control datepicker-expiry text-date" placeholder="Expiry Date" name="expiry-date">
                                  </div>
                                   <div class="col-sm-12 form-group form-group-tax-reciept">
                                      <input type="text" class="form-control addressLine2" placeholder="AddressLine 2" name="addressLine2">
@@ -1182,27 +1201,28 @@
                                      </div>
                                      <div class = "col-sm-4">
                                          <div class="col-sm-12 form-group form-group-tax-reciept">
-                                             <input type="text" placeholder="FCRA Registration Date" class="form-control fcra-reg-date" name="fcra-reg-date">
+                                             <input type="text" placeholder="FCRA Registration Date" class="form-control fcra-reg-date text-date" name="fcra-reg-date">
                                          </div>
                                      </div>
                                  </div>
                              </div>
                              <div class="row">
-                                 <div class="col-sm-2 col-add-tax-files">
-                                     <div class="col-sm-12">
+                                 <div class="col-sm-2 col-xs-12 col-add-tax-files">
+                                     <div class="col-sm-12 col-xs">
                                          <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
                                              Add Files
                                              <input type="file" class="upload taxRecieptFiles" name="taxRecieptFiles">
                                          </div>
                                      </div>
                                  </div>
-                                 <div class="col-tax-file-show col-sm-10" id="col-tax-file-show">
+                                 <div class="col-tax-file-show col-sm-10 col-xs-12" id="col-tax-file-show">
                                  </div>
                              </div>
                              <div class="row">
                                  <div class="clear-tax-reciept"></div>
                                  <div class="col-sm-12 col-file-upload-error-placement col-sm-fcra">
                                      <label class="docfile-orglogo-css filesize" id="filesize"></label>
+                                     <label class="docfile-orglogo-css fileempty" id="fileempty"></label>
                                      <div class="uploadingFile">Uploading File....</div>
                                  </div>
                              </div>
@@ -1305,7 +1325,7 @@
         </div>
  </div>
  <script src="/js/main.js"></script>
-    <script src="/js/bootstrap-datepicker.js"></script>
+ <script src="/js/bootstrap-datepicker.js"></script>
  <script type="text/javascript">
   var needToConfirm = true;
      window.onbeforeunload = confirmExit;
@@ -1322,22 +1342,22 @@
             $('#iconfile').val(''); 
         }
 
-        var nowTemp = new Date();
-        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-        now.setDate(now.getDate()+91);
         var j = jQuery.noConflict();
         j(function(){
-            j('#datepicker').datepicker({
-                onRender: function(date) {    
-                    if (date.valueOf() < nowTemp.valueOf() || date.valueOf() >= now.valueOf()){
-                        return  'disabled';
-                    }
-                }
+            j('.datepicker-reg').datepicker({          
             }).on('changeDate', function(){
-                autoSave('date', $('#datepicker').val());
-                $('.deadline-popover').find("span").remove();
-                $('.campaignEndDateError').closest(".form-group").removeClass('has-error');
-            });
+            autoSave('regDate', $('.datepicker-reg').val());
+        });
+        
+        j('.datepicker-expiry').datepicker({
+        }).on('changeDate', function(){
+            autoSave('expiryDate', $('.datepicker-expiry').val());
+        });
+
+        j('.fcra-reg-date').datepicker({
+        }).on('changeDate', function(){
+            autoSave('fcraRegDate', $('.fcra-reg-date').val());
+        });
         });
 
         function autoSave(variable, varValue) {
@@ -1397,6 +1417,19 @@
                 }
             }).error(function(){
                 console.log('Error occured on deleting the organization icon.');
+            });
+        }
+
+        function deleteTaxRecieptFiles(current, fileId, taxRecieptId) {
+            $.ajax({
+                type:'post',
+                url:$("#b_url").val()+'/project/deleteTaxRecieptFile',
+                data:'fileId='+fileId+'&taxRecieptId='+taxRecieptId,
+                success: function(data){
+                    $(current).parents('.cr-tax-files').remove();
+                }
+            }).error(function(){
+                 console.log('Error occured on deleting the Tax reciept file');
             });
         }
 

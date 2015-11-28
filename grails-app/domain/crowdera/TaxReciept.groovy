@@ -16,7 +16,7 @@ class TaxReciept {
     String country
     String phone
     String panCardNumber
-    String address
+    String addressLine1
     String regNum
     String zip
     String addressLine2
@@ -40,7 +40,7 @@ class TaxReciept {
         country nullable:true
         panCardNumber nullable:true
         phone nullable:true
-        address nullable:true
+        addressLine1 nullable:true
         regNum nullable:true
         zip nullable:true
         addressLine2 nullable:true

@@ -23,10 +23,16 @@ class ProjectService {
     def mandrillService
     def rewardService
     def grailsApplication
-    
+
     def getProjectById(def projectId){
         if (projectId) {
             return Project.get(projectId)
+        }
+    }
+
+    def getTaxRecieptById(def taxRecieptId){
+        if (taxRecieptId){
+            return TaxReciept.get(taxRecieptId)
         }
     }
 
@@ -1793,7 +1799,6 @@ class ProjectService {
                 log.error("Error: " + e);
             }
         }
-        println "tempImageUrl : "+tempImageUrl
         return ['filelink':tempImageUrl, 'fileId':fileUrl.id]
     }
 
@@ -2956,6 +2961,7 @@ class ProjectService {
         User user = userService.getCurrentUser()
         Beneficiary beneficiary = project.beneficiary;
         def isValueChanged = false; 
+        DateFormat format = new SimpleDateFormat("dd/MM/YYYY", Locale.ENGLISH);
         switch (variable) {
             case 'category':
                 project.category = varValue;
@@ -3387,12 +3393,13 @@ class ProjectService {
                         taxReciept.save(failOnError:true);
                     }
                 } else {
+                Date date = format.parse(string);
                     if (taxReciept){
-                        taxReciept.regDate = varValue
+                        taxReciept.regDate = format.parse(varValue)
                         taxReciept.save(failOnError:true);
                     } else {
                         TaxReciept taxreciept = new TaxReciept()
-                        taxreciept.regDate = varValue
+                        taxreciept.regDate = format.parse(varValue)
                         taxreciept.project = project
                         taxreciept.save(failOnError:true);
                     }
@@ -3409,11 +3416,11 @@ class ProjectService {
                     }
                 } else {
                     if (taxReciept){
-                        taxReciept.expiryDate = varValue
+                        taxReciept.expiryDate = format.parse(varValue)
                         taxReciept.save(failOnError:true);
                     } else {
                         TaxReciept taxreciept = new TaxReciept()
-                        taxreciept.expiryDate = varValue
+                        taxreciept.expiryDate = format.parse(varValue)
                         taxreciept.project = project
                         taxreciept.save(failOnError:true);
                     }
@@ -3430,11 +3437,11 @@ class ProjectService {
                     }
                 } else {
                     if (taxReciept){
-                        taxReciept.fcraRegDate = varValue
+                        taxReciept.fcraRegDate = format.parse(varValue)
                         taxReciept.save(failOnError:true);
                     } else {
                         TaxReciept taxreciept = new TaxReciept()
-                        taxreciept.fcraRegDate = varValue
+                        taxreciept.fcraRegDate = format.parse(varValue)
                         taxreciept.project = project
                         taxreciept.save(failOnError:true);
                     }
@@ -3446,16 +3453,16 @@ class ProjectService {
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
                 if (varValue.isAllWhitespace()){
                     if (taxReciept){
-                    taxReciept.address = null
+                    taxReciept.addressLine1 = null
                     taxReciept.save(failOnError:true);
                     }
                 } else {
                     if (taxReciept){
-                        taxReciept.address = varValue
+                        taxReciept.addressLine1 = varValue
                         taxReciept.save(failOnError:true);
                     } else {
                         TaxReciept taxreciept = new TaxReciept()
-                        taxreciept.address = varValue
+                        taxreciept.addressLine1 = varValue
                         taxreciept.project = project
                         taxreciept.save(failOnError:true);
                     }
@@ -3566,6 +3573,11 @@ class ProjectService {
                     }
                     taxReciept.save(failOnError:true);
                 }
+                break;
+                
+            case 'offeringTaxReciept':
+                project.offeringTaxReciept = (varValue == 'true' || varValue == true) ? true : false;
+                isValueChanged = true
                 break;
 
             default :

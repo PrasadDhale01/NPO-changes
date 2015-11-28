@@ -53,6 +53,7 @@ class Project {
     String fundsRecievedBy
     String customVanityUrl
     String hashtags
+    
 	
 	boolean payuStatus=false
     boolean validated = false
@@ -61,6 +62,7 @@ class Project {
     boolean draft = false
     boolean rejected = false
     boolean touAccepted = false
+    boolean offeringTaxReciept = false
 
     static mapping = {
         id(generator: "uuid")

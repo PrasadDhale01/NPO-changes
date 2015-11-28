@@ -624,13 +624,12 @@ div.validate-show-div .show-description {
     padding-right: 5px;
 }
 
-#tax-reciept{
+.tax-reciept{
     display:none;
 }
 
 .col-sm-impact {
     padding-top: 5px;
-    padding-left: 0px !important;
 }
 
 .cr-impact-currency{
@@ -656,28 +655,45 @@ div.validate-show-div .show-description {
 .col-tax-file-show{
     padding-top: 7px;
     padding-left: 0;
+    padding-right: 0;
 }
 
 .cr-tax-files{
     position: relative;
-    border: 1px dotted #c9c9c9;
-    margin-left: 10px;
+    width:auto;
+    display:inline-block;
+    background-color: #F6F8F8;
+    border: 1px solid #d7d7d7;
+    border-radius: 4px;
+    margin-right: 20px;
+    margin-bottom: 15px;
 }
 
 .cr-tax-files .deleteicon {
     position: absolute;
-    top: -7px;
-    right: -6px;
+    top: 3px;
+    right: 4px;
 }
 
-.col-tax-file-show{
-    padding-left: 0;
-    padding-right: 0;
-    display: flex;
+.cr-tax-files .deleteicon .close{
+    font-size: 16px;
 }
 
 .delete-image{
     margin:2px;
     width:10px;
     height:10px;
+}
+
+.col-file-name{
+    padding-left: 10px;
+    padding-right: 26px;
+}
+
+.col-tax-reciept-panel{
+    display:none;
+}
+
+.fcra-display-none{
+    display:none;	
 }

@@ -371,6 +371,16 @@ class ProjectController {
         render ''
     }
 
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def deleteTaxRecieptFile(){
+        def file = projectService.getImageUrlById(params.fileId)
+        def taxReciept = projectService.getTaxRecieptById(params.taxRecieptId)
+        List files = taxReciept.files
+        files.remove(file)
+        file.delete()
+        render ''
+    }
+
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def deleteCampaignAdmin(){
 		def project = projectService.getProjectById(request.getParameter("projectId"))
@@ -1805,6 +1815,7 @@ class ProjectController {
 
     def uploadTaxRecieptFiles(){
         def file= params.file
+        println "file"
         TaxReciept taxReciept
         Project project = projectService.getProjectById(params.projectId);
         if (project){

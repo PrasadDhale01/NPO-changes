@@ -5481,11 +5481,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
-	
+
     .col-sm-fcra {
         padding-left: 33px;
     }
-	
+
     .padding-tax-reciept-xs{
         padding-right:30px !important;
     }
@@ -5495,7 +5495,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         padding-left: 182px;
         width: 100% !important;
     }
-    
+
     .cr1-vanitypadding-in-co{
         padding-left: 182px;
         height: 45px;
@@ -7724,7 +7724,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-
+    .col-tax-file-show{
+        padding-left: 20px;
+    }
     .ansText{
         width:90% !important;
         margin-top: 5px;
@@ -9241,6 +9243,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+    .col-xs {
+        padding-left: 10px !important;
+    }
+    .col-tax-file-show{
+        padding-left:25px;
+        padding-top: 15px;
+    }
+
     .col-sm-fcra {
         padding-left: 25px;
     }

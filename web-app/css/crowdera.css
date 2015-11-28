@@ -5522,6 +5522,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	button.show-mob-mobile{
+       background-color: #01bbd3 !important;
+       color: #fff;
+    }
+    button.show-mob-mobile:hover,
+    button.show-mob-mobile:focus{
+       background-color: #01bbd3 !important;
+       color: #fff;
+    }
+	button.show-mobile-bg-color{
+        bacground-color: #01bbd3 !important;
+    }
     button.btn-show-fund {
        padding-bottom: 10px;
        padding-top: 10px;
@@ -7760,6 +7772,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.header-scrolled{
+        display: none !important;
+	}
     button.sh-submitaproval-2header {
 /*         margin-left: -42px; */
         margin-top: -1px;
@@ -10189,6 +10204,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 
+@media only screen and (min-width:1025px) and (max-width: 1050px){
+	li.sh-button-fund-secandaryheader {
+        left: 19.6% !important;
+        position: absolute;
+        top: 39px;
+    }
+}
+@media only screen and (min-width:1050px) and (max-width: 1080px){
+    li.sh-button-fund-secandaryheader {
+        left: 19.6% !important;
+        position: absolute;
+        top: 39px;
+    }
+}
+
 @media only screen and (min-width:1025px) and (max-width: 1199px){
     li.sh-button-fund-secandaryheader {
         margin-left: 43px !important;
@@ -10225,11 +10255,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 100%;
         z-index: 999;
     }
-    li.sh-button-fund-secandaryheader {
-        left: 20.9%;
-        position: absolute;
-        top: 39px;
-    }
+    
 	   .validate-show-div .show-tile-text-size.contribution-tile.show-contribution-amt-tile {
         padding-left: 15px !important;
         padding-right: 15px !important;
@@ -13055,6 +13081,15 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	button.show-mob-mobile{
+       background-color: #01bbd3 !important;
+       color: #fff;
+	}
+	button.show-mob-mobile:hover,
+	button.show-mob-mobile:focus{
+       background-color: #01bbd3 !important;
+       color: #fff;
+    }
     button.btn-show-fund {
        padding-bottom: 10px;
        padding-top: 10px;
@@ -15803,6 +15838,7 @@ li.sh-button-fund-secandaryheader{
     padding-bottom: 3px;
     height: 34px;
     margin: 3px;
+    cursor: pointer;
 }
 .show-share-headerpadding{
     left: 261px;
@@ -15811,6 +15847,7 @@ li.sh-button-fund-secandaryheader{
 .show-shortUrlheader-top{
     top: 6px;
     padding: 6px;
+    cursor: pointer;
 }
 .previewsubmitbtn a{
 	color:#fff;

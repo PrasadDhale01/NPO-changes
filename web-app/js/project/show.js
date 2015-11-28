@@ -674,7 +674,21 @@ $(function() {
     $("a.show-tabs-text").click(function(){
     	$('.choose-error').html('');
     	$(".sh-tabs").find("a.show-tabs-text").removeClass('sh-selected');
-    	$(this).addClass('sh-selected');
+    	if ($(this).hasClass('essentials')){
+    		$('.essentials').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('projectupdates')){
+    		$('.projectupdates').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('manageTeam')){
+    		$('.manageTeam').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('contributions')){
+    		$('.contributions').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('comments')){
+    		$('.comments').addClass('sh-selected');
+    	}
     });
     
     $(".twitter-share").click(function(){
@@ -792,14 +806,29 @@ $(function() {
         $('.show-mobilejs').css("margin-bottom","20px");
     });
     
+    /***Show-details-page-tabs-scroll-code****/
+    $('.show-all-icons-header-tabs').click(function(){
+    	 var toptabs = $(".show-ids-header").offset().top;
+    	 window.scrollTo(toptabs,toptabs);
+    });
+    
     $( document ).ready(function() {
-		function sticky_relocate() {
+        function sticky_relocate() {
             var window_top = $(window).scrollTop();
-            var div_top = $("#show-headerid-A").offset().top;
-            var top_fund = $(".show-A-fund").offset().top;
-		    
-            var topFb = $('.showfacebooksAA').offset().top;
-            var topicons = $('.show-socials-iconsA').offset().top;
+            
+            if($("#show-headeridA").length){
+            	var div_top = $("#show-headeridA").offset().top; 
+            }
+            if($(".show-A-fund").length){
+            	 var top_fund = $(".show-A-fund").offset().top; 
+            }
+            if($('.showfacebooksAA').length){
+            	 var topFb = $('.showfacebooksAA').offset().top;
+            }
+            if($('.show-socials-iconsA').length){
+            	var topicons = $('.show-socials-iconsA').offset().top;
+            }
+            
 		   
 //		    Top header code
             if (window_top > div_top) {
@@ -824,11 +853,12 @@ $(function() {
             }else  if(window_top < topFb){
                 $('.sh-shareicons-Fixedtophead').hide();
             }
-            if( window_top > topicons) {
-                $('.show-headers-icons').show();
-            }else if(window_top < topicons){
-                $('.show-headers-icons').hide();
-            }
+
+//            if( window_top > topicons) {
+//                $('.show-headers-icons').show();
+//            }else if(window_top < topicons){
+//                $('.show-headers-icons').hide();
+//            }
         }
         $(window).scroll(sticky_relocate);
         sticky_relocate();

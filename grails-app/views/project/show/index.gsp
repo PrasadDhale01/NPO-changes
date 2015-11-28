@@ -31,6 +31,22 @@
     def currentTeamAmount = currentTeam.amount
     def shareUrl = base_url+'/c/'+shortUrl
     
+    def vimeoInt
+    def campaignVideoUrl
+    
+    if (project.videoUrl){
+        if (project.videoUrl.contains('vimeo.com')) {
+            def video = project.videoUrl.split('/')
+            vimeoInt = video[video.length - 1]
+            campaignVideoUrl = 'https://player.vimeo.com/video/'+vimeoInt
+        } else {
+            campaignVideoUrl = project.videoUrl;
+        }
+    }
+    def embedTileUrl = base_url+'/campaign/'+vanityTitle+'/'+vanityUsername+'/embed/tile'
+    def embedCode = '<iframe width="310px" height="451px" src="'+embedTileUrl+'" scrolling="no" frameborder="0"  class="embedTitleUrl"></iframe>'
+    def embedVideoCode = '<iframe width="480" height="360" frameborder="0" src="'+campaignVideoUrl+'" scrolling="no"></iframe>'
+    
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
 <head>
@@ -171,13 +187,13 @@
                                             </div>
                                         </g:if>
                                         <div class="clear"></div>
-                                        <button class="btn btn-block btn-lg btn-primary sh-submitapproval show-submitapprovalmobile">
+                                        <button class="btn btn-block btn-lg sh-submitapproval show-submitapprovalmobile show-mob-mobile">
                                             <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
                                         </button>
                                     </g:form>
                                 </g:if>
                                 <g:else>
-                                    <button class="btn btn-block btn-lg btn-primary show-submitapprovalmobile" id="submitForApprovalBtnMobile">
+                                    <button class="btn btn-block btn-lg  show-submitapprovalmobile show-mob-mobile" id="submitForApprovalBtnMobile">
                                         <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
                                     </button>
                                 </g:else>
@@ -266,14 +282,14 @@
                             </a>
                         </li>
                         <li><span class="active show-tbs-right-borders  hidden-xs">
-                                <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials">
+                                <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials show-all-icons-header-tabs show-story">
                                     <span class="tab-text sh-tabs-font hidden-xs"> STORY</span>
                                 </a>
                             </span>
                         </li>
                         <g:if test="${!project.projectUpdates.isEmpty() }">
                             <li><span class="show-tbs-right-borders hidden-xs">
-                                    <a href="#projectupdates" data-toggle="tab"  class="show-tabs-text projectupdates">
+                                    <a href="#projectupdates" data-toggle="tab"  class="show-tabs-text projectupdates show-all-icons-header-tabs">
                                         <span class="tab-text sh-tabs-font hidden-xs"> UPDATES</span> 
                                     </a>
                                     <span class="show-tabs-count hidden-xs">
@@ -283,13 +299,13 @@
                             </li>
                         </g:if>
                         <li><span class="show-tbs-right-borders hidden-xs">
-                                <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam">
+                                <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam show-all-icons-header-tabs">
                                     <span class="tab-text sh-tabs-font"> TEAMS</span>
                                 </a>
                             </span>
                         </li>
                         <li><span class="show-tbs-right-borders hidden-xs">
-                                <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions">
+                                <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions show-all-icons-header-tabs">
                                     <span class="tab-text sh-tabs-font"> CONTRIBUTIONS</span>
                                 </a>
                                 <span class="show-tabs-count hidden-xs">
@@ -298,7 +314,7 @@
                             </span>
                         </li>
                         <li><span class="show-comit-lft hidden-xs">
-                               <a href="#comments" data-toggle="tab"  class="show-tabs-text comments">
+                               <a href="#comments" data-toggle="tab"  class="show-tabs-text comments show-all-icons-header-tabs">
                                    <span class="tab-text hidden-xs sh-tabs-font"> COMMENTS</span>
                                </a>
                             </span>
@@ -352,28 +368,27 @@
                     
                <div class="show-socialheads">
                    <div class="navbar navbar-default col-lg-12 hidden-sm col-md-12 sh-tabs hidden-xs sh-shareicons-Fixedtophead">
-                       
-                       <div class="col-lg-6 col-lg-push-3 col-sm-6 col-md-push-3 col-md-6 <g:if test="${project.projectUpdates }">show-share-headerpadding</g:if><g:else>show-headered-without-update</g:else> show-headers-icons">
+                       <div class="col-lg-6 col-lg-push-3 col-sm-6 col-md-push-3 col-md-6 <g:if test="${project.projectUpdates}">show-share-headerpadding</g:if><g:else>show-headered-without-update</g:else> show-headers-icons">
                        
                            <%-- Social features --%>
                            <g:if test="${isPreview}">
-                               <a class="share-mail pull-left show-icons-secandheader show-email-hover">
+                               <a class="share-mail pull-left show-icons-secandheader show-email-hover show-pointer-not">
                                    <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" class="show-email" alt="Mail Share">
                                </a>
-                               <a class=" pull-left show-icons-secandheader">
+                               <a class=" pull-left show-icons-secandheader show-pointer-not">
                                    <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
                                </a>
-                               <a class="pull-left show-icons-secandheader">
+                               <a class="pull-left show-icons-secandheader show-pointer-not">
                                    <img src="//s3.amazonaws.com/crowdera/assets/show-like-gray.png" class="show-like" alt="campaign-supporter">
                                </a>
-                               <a class="social share-linkedin pull-left show-icons-secandheader" target="_blank" id="share-linkedin">
+                               <a class="social share-linkedin pull-left show-icons-secandheader show-pointer-not" target="_blank" id="share-linkedin">
                                    <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
                                </a>
-                               <a class="social google-plus-share pull-left show-icons-secandheader" id="googlePlusShare">
+                               <a class="social google-plus-share pull-left show-icons-secandheader show-pointer-not" id="googlePlusShare">
                                    <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
                                </a>
-                               <span class="pull-left show-icons-secandheader"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></span>
-                               <span class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color show-ispriview-headurl"></span>
+                               <span class="pull-left show-icons-secandheader show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></span>
+                               <span class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color show-ispriview-headurl show-pointer-not"></span>
                            </g:if>
                            <g:else>
                                <a class="share-mail pull-left show-icons-secandheader" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" >
@@ -405,7 +420,7 @@
                             
                        <div class="col-lg-6 col-md-6 hidden-sm show-share-FB">
                            <g:if test="${isPreview}">
-                               <a class="btn btn-block btn-social btn-facebook sh-head-fb-over hidden-xs sho-fb-color show-2ndhead-btnFB ss3">
+                               <a class="btn btn-block btn-social btn-facebook sh-head-fb-over hidden-xs sho-fb-color show-2ndhead-btnFB ss3 show-pointer-not">
                                    <i class="fa fa-facebook fa-facebook-styles sh-fb-icons sh-iconsfb-header"></i> SHARE ON FACEBOOK
                                </a>
                            </g:if>
@@ -417,9 +432,9 @@
                        </div>
                   </div>
                </div>
-                   
-               <!-- Tabs code social ions facebook, whatsapp, twitter -->
-              <!-- <div class="visible-sm hidden-md sh-tabs-social sh-shareicons-Fixedtophead">
+                    
+               <!-- Tabs code social ions facebook, whatsapp, twitter
+             <div class="visible-sm hidden-md sh-tabs-social sh-shareicons-Fixedtophead">
                    <div class="col-sm-4 col-md-4 show-tabs">
                        <g:if test="${isPreview}">
                            <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size hidden-xs">
@@ -458,29 +473,31 @@
                            </a>
                        </g:else>
                   </div>
-           </div> --> 
+           </div>-->
 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders  hidden-xs">
                     <g:set var="screen" id="screen" value="false"></g:set>
                     <ul class="nav nav-pills">
-                          <li id="show-headerid-A"></li> 
+                          <li id="show-headeridA"></li> 
                     </ul>
                     <ul class="nav nav-pills nav-justified nav-justi show-marginbottoms sh-tabs mng-safari-mobile show-new-tabs-alignments<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
                         
-                        <li><span class="active show-tbs-right-borders  hidden-xs">
+                        <li class="show-tabs"><span class="active show-tbs-right-borders  hidden-xs">
                                 <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials">
                                     <span class="tab-text hidden-xs"> STORY</span>
                                 </a>
+                                <span class="show-ids-header"></span>
                             </span>
                         </li>
                         <g:if test="${!project.projectUpdates.isEmpty() }">
                             <li><span class="show-tbs-right-borders hidden-xs">
-                                    <a href="#projectupdates" data-toggle="tab"  class="show-tabs-text projectupdates">
+                                    <a href="#projectupdates" data-toggle="tab" name="updated"  class="show-tabs-text projectupdates">
                                         <span class="tab-text hidden-xs"> UPDATES</span> 
                                     </a>
                                     <span class="show-tabs-count hidden-xs">
                                         <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if>
                                     </span>
+                                    <span class="show-ids-header"></span>
                                 </span>
                             </li>
                         </g:if>
@@ -488,6 +505,7 @@
                                 <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam">
                                     <span class="tab-text"> TEAMS</span>
                                 </a>
+                                <span class="show-ids-header"></span>
                             </span>
                         </li>
                         <li><span class="show-tbs-right-borders hidden-xs">
@@ -497,12 +515,14 @@
                                 <span class="show-tabs-count hidden-xs">
                                     <g:if test="${totalContributions.size() > 0 && screen == 'false'}">${totalContributions.size()}</g:if>
                                 </span>
+                                <span class="show-ids-header"></span>
                             </span>
                        </li>
                        <li><span class="show-comit-lft hidden-xs">
                                <a href="#comments" data-toggle="tab"  class="show-tabs-text comments">
                                    <span class="tab-text hidden-xs"> COMMENTS</span>
                                </a>
+                               <span class="show-ids-header"></span>
                            </span>
                        </li>
                     </ul>
@@ -578,6 +598,96 @@
                         </div>
                     </div>
                 </div>
+                
+                
+                 <!--Embed modal-->
+    <div class="modal fade embedTilemodal" id="embedTilemodal" tabindex="-1" role="dialog" aria-hidden="true">
+        <g:if test="${project.videoUrl}">
+            <div class="modal-dialog modal-embed-with-video">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                        </button>
+                        <h4 class="modal-title text-center"><b>Embed this widget into your website</b></h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-7">
+                                <p>Video preview</p>
+                                    <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
+                                    <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
+                                    <p>After choosing a video size, copy and paste the embed code above.</p>
+                                    <div class="row desktop-video-play">
+                                        <div class="col-sm-2 margin-sm-left video-play video-play-sm video-play-hover selected text-center">
+                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-sm"></span><br>
+                                            <label class="lbl-width">480 x 360</label>
+                                        </div>
+                                        <div class="col-sm-2 margin-md-left video-play video-play-md video-play-hover text-center">
+                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-md"></span><br>
+                                            <label>640 x 480</label>
+                                        </div>
+                                        <div class="col-sm-2 margin-lg-left video-play video-play-lg video-play-hover text-center">
+                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-lg"></span><br>
+                                            <label>800 x 600</label>
+                                        </div>
+                                        <div class="col-sm-4 margin-custom-left video-play video-play-custom video-play-hover">
+                                            <label>Custom size</label><br>
+                                            <input type="text" class="customSizeText video-play-width" value="480"> x <input type="text" class="customSizeText video-play-height" value="360">
+                                        </div>
+                                    </div>
+                                    <div class="tabs-video-play">
+                                        <div class="row">
+                                            <div class="col-sm-offset-1 col-sm-3 video-play video-play-sm video-play-hover selected text-center">
+                                                 <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-sm"></span><br>
+                                                 <label class="lbl-width">480 x 360</label>
+                                            </div>
+                                            <div class="col-sm-4 margin-md-left video-play video-play-md video-play-hover text-center">
+                                                <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-md"></span><br>
+                                                <label>640 x 480</label>
+                                            </div>
+                                            <div class="col-sm-4 margin-md-left video-play video-play-lg video-play-hover text-center">
+                                                <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-lg"></span><br>
+                                                <label>800 x 600</label>
+                                            </div>
+                                            <div class="clear"></div>
+                                            <div class="clear"></div>
+                                            <div class="tab-clear"></div>
+                                            <div class="col-sm-6 margin-custom-left video-play video-play-custom video-play-hover">
+                                                <label>Custom size</label><br>
+                                                <input type="text" class="customSizeText video-play-width" value="480"> x <input type="text" class="customSizeText video-play-height" value="360">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <p>Widget preview</p>
+                                    <textarea class="textarea-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
+                                    <g:render template="manageproject/embedTile"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+          </g:if>
+          <g:else>
+              <div class="modal-dialog modal-tile">
+                  <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">
+                              <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                          </button>
+                          <h4 class="modal-title"><b>Embed this widget into your website</b></h4>
+                      </div>
+                      <div class="modal-body only-tile-embed-modal text-center">
+                          <p>Widget preview</p>
+                          <textarea class="textarea-of-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
+                          <g:render template="manageproject/embedTile"/>
+                      </div>
+                  </div>
+              </div>
+          </g:else>
+      </div>
                
                 <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal">
 
@@ -615,7 +725,7 @@
                         
                         <g:if test="${isPreview}">
                             <div class="showfacebooksAA"></div>
-                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs">
+                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs show-pointer-not">
                                 <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
                             </a>
                         </g:if>
@@ -647,19 +757,18 @@
                             <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
                                 <div class="redirectCampaign">
                                     <div class="show-A-fund"> </div>
-                                    <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs" id="btnFundDesktop">FUND NOW!</button></g:link>
+                                    <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><div class="show-A-fund"> </div><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs" id="btnFundDesktop">FUND NOW!</button></g:link>
                                 </div>
                             </g:if>
                             <g:else>
                                 <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
-                                     <div class="show-A-fund"> </div>
+                                    <div class="show-A-fund"> </div>
                                     <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs" id="btnFundDesktop">FUND NOW!</button>
-                                   
                                 </g:form>
                             </g:else>
                         </g:if>
                         <g:else>
-                            <div class="show-A-fund"> </div>
+                             <div class="show-A-fund"> </div>
                             <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs">FUND NOW!</button>
                         </g:else>
                     </g:else>
@@ -725,3 +834,4 @@
 </div>
 </body>
 </html>
+               

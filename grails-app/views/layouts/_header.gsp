@@ -174,7 +174,7 @@
 </div>
 
 <!--  **********************************************Scrolled Header************************************************* -->
-<div role="navigation" class="navbar navbar-default navbar-fixed-top header-section home-header-section scrollHeader">
+<div role="navigation" class="navbar navbar-default navbar-fixed-top header-section home-header-section scrollHeader header-scrolled">
     <div class="header-container TW-scrollHeaderBackColor">
   
    <div class="info-banner">

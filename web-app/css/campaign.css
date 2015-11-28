@@ -653,3 +653,9 @@ div.validate-show-div .show-description {
     left: 212px;
     padding-top: 4px;
 }
+.show-pointer-not img{
+    cursor: not-allowed !important;
+}
+.show-pointer-not{
+    cursor: not-allowed !important;
+}

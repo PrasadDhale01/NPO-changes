@@ -1,3 +1,6 @@
+<g:set var="projectService" bean="projectService" />
+<g:set var="contributionService" bean="contributionService"/>
+<g:set var="userService" bean="userService"/>
 <r:require module="bootstrapsocialcss"/>
 <div class="col-xs-12" id="promote-social-media">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -19,7 +22,9 @@
         </div>
     </div>
 </div>
-    
+<%
+    def partnerId = partner.id
+%>
 <div class="list-group" id="promote-campaigns">
     <g:each in="${campaigns}" var="campaign">
         <% 
@@ -77,3 +82,22 @@
         
     </g:each>
 </div>
+<div class="clear"></div>
+<div class="promotecampaignpaginate">
+    <g:paginate controller="user" max="6" action="promotecampaigns" total="${totalCampaigns.size()}" params="['partnerId':partnerId]"/>
+</div>
+<script>
+    $("#promotecampaignpaginate").find('.promotecampaignpaginate a').click(function(event) {
+        event.preventDefault();
+        var url = $(this).attr('href');
+        var grid = $(this).parents('#promotecampaignpaginate');
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function(data) {
+                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+            }
+        });
+    });
+</script>

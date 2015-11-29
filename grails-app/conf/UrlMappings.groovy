@@ -126,5 +126,6 @@ class UrlMappings {
         
         /*Partner*/
         "/partner/dashboard"(controller:'user', action:'partnerdashboard')
+        "/partner/dashboard/$id"(controller:'user', action:'partnerdashboard')
     }
 }

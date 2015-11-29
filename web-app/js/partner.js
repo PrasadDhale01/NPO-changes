@@ -1,5 +1,7 @@
 $(function() {
 	
+	var baseUrl = $('#baseUrl').val();
+	
     function getSelectedCampaignUrl() {
         return $('#promote-campaigns').find('.list-group-item.active').data('campaignurl');
     }
@@ -21,6 +23,9 @@ $(function() {
 		$('#partner-sec-header').find('span').removeClass('active');
         $(this).addClass('active');
     });
+	
+	$('.partner-confirmation').fadeOut(30000);
+	$('.success-message').fadeOut(5000);
 	
 	$('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
@@ -233,6 +238,22 @@ $(function() {
     function validateEmail(field) {
         var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
         return (regex.test(field)) ? true : false;
+    }
+    
+    var partnerId = $('#partnerId').val();
+    
+    var validategrid = $('#validatecampaignpaginate');
+    var loadValidateCampaignUrl = baseUrl+'/user/validatecampaigns?partnerId='+partnerId;
+    loadValidateCampaigns(loadValidateCampaignUrl, validategrid);
+    
+    function loadValidateCampaigns(url, grid) {
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function(data) {
+                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+            }
+        });
     }
     
 });

@@ -759,7 +759,13 @@ div.dashboardtile-min-height {
     margin-bottom: 20px;
 }
 .partner-tile {
-    width: 182px;
+    width: 185px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.partner-tile img.partner-profile-img {
+    width: 170px !important;
+    height: 170px !important;
     margin-left: auto;
     margin-right: auto;
 }
@@ -972,4 +978,56 @@ div.dashboardtile-min-height {
     height: 120px;
     margin-top: 6px;
     margin-left: 8px;
+}
+.partner-tile .over.user-tile {
+    margin-left: -12px;
+}
+.validatecampaignpaginate {
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.validatecampaignpaginate a , .validatecampaignpaginate .currentStep {
+    font-size: 13px;
+    text-align: center;
+    padding-left: 15px;
+    color: #31497B !important;
+    font-weight: 700 !important;
+}
+.validatecampaignpaginate .currentStep {
+    color: black !important;
+}
+.partnercampaignpaginate {
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.partnercampaignpaginate a , .partnercampaignpaginate .currentStep {
+    font-size: 13px;
+    text-align: center;
+    padding-left: 15px;
+    color: #31497B !important;
+    font-weight: 700 !important;
+}
+.partnercampaignpaginate .currentStep {
+    color: black !important;
+}
+.promotecampaignpaginate {
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+ 
+}
+.promotecampaignpaginate a , .promotecampaignpaginate .currentStep {
+   font-size: 13px;
+   text-align: center;
+   padding-left: 15px;
+   color: #31497B !important;
+   font-weight: 700 !important;
+}
+.promotecampaignpaginate .currentStep {
+   color: black !important;
 }

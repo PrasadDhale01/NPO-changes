@@ -1,3 +1,9 @@
+<g:set var="projectService" bean="projectService" />
+<g:set var="contributionService" bean="contributionService"/>
+<g:set var="userService" bean="userService"/>
+<% 
+    def partnerId = partner.id
+%>
 <g:each in="${userCampaigns}" var="campaign">
     <% 
         def isFundingOpen = projectService.isFundingOpen(campaign)
@@ -5,6 +11,8 @@
         def percentage = contributionService.getPercentageContributionForProject(campaign)
         def amount= campaign.amount.round()
         def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(campaign, user)
+        def isTeamAdmin = projectService.isTeamAdmin(campaign)
+        
         def username = campaign.user.username
     %>
     <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 campaign-tile-seperator">
@@ -70,3 +78,22 @@
     </div>
     
 </g:each>
+<div class="clear"></div>
+<div class="partnercampaignpaginate">
+    <g:paginate controller="user" max="6" action="partnercampaigns" total="${totalUserCampaigns.size()}" params="['partnerId':partnerId]"/>
+</div>
+<script>
+    $("#partnercampaignpaginate").find('.partnercampaignpaginate a').click(function(event) {
+        event.preventDefault();
+        var url = $(this).attr('href');
+        var grid = $(this).parents('#partnercampaignpaginate');
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function(data) {
+                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+            }
+        });
+    });
+</script>

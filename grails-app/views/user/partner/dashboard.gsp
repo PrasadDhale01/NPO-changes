@@ -1,6 +1,9 @@
 <g:set var="projectService" bean="projectService" />
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="userService" bean="userService"/>
+<%
+    def partnerId = partner.id
+%>
 <html>
 <head>
     <meta name="layout" content="main" />
@@ -9,6 +12,9 @@
 <body>
     <div class="partner-dashboard" id="wrapper">
         <g:hiddenField name="currentEnv" id="currentEnv" value="${currentEnv}"></g:hiddenField>
+        <g:hiddenField name="partnerId" id="partnerId" value="${partnerId}"></g:hiddenField>
+        <g:hiddenField name="baseUrl" value="${baseUrl}" id="baseUrl"></g:hiddenField>
+        
         <div class="navbar navbar-default navbar-fixed-top visible-xs" id="partner-sec-header">
             <div class="navbar-header">
                 <span class="span-space"><a href="#userInfo" data-toggle="tab"><span class="glyphicon glyphicon-pencil"></span>User</a></span>
@@ -156,33 +162,39 @@
 												            </div>
 												        </div>
 												    </div>
-								        
 												    <div class="clear"></div>
+												    <g:if test="${flash.prj_validate_message}">
+		    										    <div class="col-sm-12 text-center success-message">
+                        <div class="alert alert-success">
+                            ${flash.prj_validate_message}
+                        </div>
+                    </div>
+                </g:if>
+                <g:elseif test="${flash.invite_message}">
+                    <div class="col-sm-12 text-center success-message">
+                        <div class="alert alert-success">
+                            ${flash.invite_message}
+                        </div>
+                    </div>
+                </g:elseif>
+												    <g:elseif test="${!partner.enabled}">
+												        <div class="col-sm-12 partner-confirmation">
+                        <div class="alert alert-info">
+                            Your account is yet to confirm. Kindly click <g:link controller="user" target="tab" action= "confirmPartner" id= "${partner.confirmCode}">here</g:link> to confirm your account.
+                        </div>
+                    </div>
+                </g:elseif>
 												    <div class="col-md-12 col-sm-12 col-lg-12" id="vitalseperator">
 												        <hr>
 												    </div>
 				            <div class="tab-content">
 				                <div class="tab-pane tab-pane-active" id="validate">
-				                    <div class="col-sm-12 text-center">
-								                    <g:if test="${flash.prj_validate_message}">
-								                        <div class="alert alert-success">
-								                            ${flash.prj_validate_message}
-								                        </div>
-								                    </g:if>
-								                </div>
 				                    <div class="col-sm-12">
 				                        <h4 class="green-heading"><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-validated.png" alt="Campaigns to be validated"/>&nbsp;<b>Campaigns to be validated</b></h4><br>
 				                    </div>
-				                    <g:if test="${projects.size() > 0}">
-																            <g:render template="/user/partner/validatetile"></g:render>
-																				    </g:if>
-																				    <g:else>
-																				        <div class="col-sm-12">
-																								        <div class="alert alert-info">
-																								            No campaigns to validate.
-																								        </div>
-																				        </div>
-																				    </g:else>
+				                    <div id="validatecampaignpaginate">
+<%--																            <g:render template="/user/partner/validatetile"></g:render>--%>
+																        </div>
 				                </div>
 				                
 				                <div class="tab-pane tab-pane-active hidden-xs" id="invite">
@@ -207,11 +219,15 @@
 				                </div>
 				                
 				                <div class="tab-pane tab-pane-active active" id="myCampaigns">
-				                     <g:render template="/user/partner/tile"/>
+				                     <div id="partnercampaignpaginate">
+				                         <g:render template="/user/partner/tile"/>
+				                     </div>
                     </div>
                     
 				                <div class="tab-pane tab-pane-active" id="promote">
-				                    <g:render template="/user/partner/promote"/>
+				                    <div id="promotecampaignpaginate">
+				                        <g:render template="/user/partner/promote"/>
+				                    </div>
 				                </div>
 				                
 				                <div class="tab-pane tab-pane-active" id="track">

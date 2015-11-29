@@ -9358,7 +9358,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 				}
 				#partner-sec-header.navbar-default {
 				    background-color: #01BBD2;
-				    z-index: 1;
+				    z-index: 51;
 				}
 				#partner-sec-header .navbar-header .span-space{
 				    color: white;

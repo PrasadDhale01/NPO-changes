@@ -455,6 +455,9 @@ class UserController {
     
     @Secured(['ROLE_ADMIN'])
     def managePartner() {
+        if (flash.invitesuccessmsg) {
+            flash.invitesuccessmsg = "Email Sent Successfully"
+        }
         List partners = Partner.list()
         render view:'/user/partner/index', model:[partners: partners]
     }
@@ -484,6 +487,7 @@ class UserController {
             partner.confirmCode = UUID.randomUUID().toString()
             if (partner.save()) {
                 mandrillService.sendEmailToPartner(user, partner, password);
+                flash.invitesuccessmsg = "Email Sent Successfully"
                 redirect action:'managePartner'
             } else {
                 flash.user_err_message = 'Error occured while inviting a partner. Please try again.'
@@ -526,11 +530,11 @@ class UserController {
         
         if (partner) {
             User user = partner.user
-            def projects = projectService.getNonValidatedProjectsForPartner(user, partner)
-            def campaigns = projectService.getValidatedProjectsForPartner(user, partner)
-            def fundRaised = projectService.getTotalFundRaisedByUser(campaigns)
+//            def projects = projectService.getNonValidatedProjectsForPartner(user, partner, params)
+            def projectObj = projectService.getValidatedProjectsForPartner(user, partner, params)
+            def fundRaised = projectService.getTotalFundRaisedByUser(projectObj.totalprojects)
             def numberOfInvites = userService.getTotalNumberOfInvites(partner)
-            def userCampaigns = projectService.getPartnerCampaigns(user)
+            def userCampaign = projectService.getPartnerCampaigns(user, params)
             def country = projectService.getCountry()
             def state = projectService.getState()
             
@@ -538,12 +542,44 @@ class UserController {
             def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
             
             if (flash.prj_validate_message) {
-                flash.prj_validate_message = "Campaign validated successfully"
+                flash.prj_validate_message = "Campaign validated successfully."
+            } else if (flash.invite_message) {
+                flash.invite_message = "Email Sent Successfully."
             }
             
-            render view:'/user/partner/dashboard', model:[projects: projects, user: user, campaigns: campaigns, baseUrl: baseUrl, currentEnv: currentEnv,
-                                                         fundRaised: fundRaised, numberOfInvites: numberOfInvites, userCampaigns: userCampaigns,
-                                                         country: country, state: state]
+            render view:'/user/partner/dashboard', model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl, currentEnv: currentEnv,
+                                                         fundRaised: fundRaised, numberOfInvites: numberOfInvites, userCampaigns: userCampaign.projects, totalUserCampaigns: userCampaign.totalprojects,
+                                                         country: country, state: state, partner: partner]
+        }
+    }
+    
+    def partnercampaigns() {
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        if (partner) {
+            User user = partner.user
+            def projectObj = projectService.getPartnerCampaigns(user, params)
+            def model = [userCampaigns: projectObj.projects, totalUserCampaigns: projectObj.totalprojects, partner: partner, user: user]
+            render template:"/user/partner/tile", model: model
+        }
+    }
+    
+    def promotecampaigns() {
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        if (partner) {
+            User user = partner.user
+            def projectObj = projectService.getValidatedProjectsForPartner(user, partner, params)
+            def model = [campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, partner: partner, user: user]
+            render template:"/user/partner/promote", model: model
+        }
+    }
+    
+    def validatecampaigns() {
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        if (partner) {
+            User user = partner.user
+            def projectObj = projectService.getNonValidatedProjectsForPartner(user, partner, params)
+            def model = [projects: projectObj.projects, totalprojects: projectObj.totalprojects, partner: partner, user: user]
+            render template:'/user/partner/validatetile', model: model
         }
     }
     
@@ -551,6 +587,7 @@ class UserController {
     def invite() {
         if (userService.isPartner()) {
             userService.inviteCampaignOwner(params)
+            flash.invite_message = "Email Sent Successfully."
             redirect action: 'partnerdashboard'
         } else {
             render view:'/401error'

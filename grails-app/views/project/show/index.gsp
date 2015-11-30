@@ -599,93 +599,93 @@
                 </div>             
                 
                 <%--Embed modal--%>
-			    <div class="modal fade embedTilemodal" id="embedTilemodal" tabindex="-1" role="dialog" aria-hidden="true">
-			        <g:if test="${project.videoUrl}">
-			            <div class="modal-dialog modal-embed-with-video">
-			                <div class="modal-content">
-			                    <div class="modal-header">
-			                        <button type="button" class="close" data-dismiss="modal">
-			                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-			                        </button>
-			                        <h4 class="modal-title text-center"><b>Embed this widget into your website</b></h4>
-			                    </div>
-			                    <div class="modal-body">
-			                        <div class="row">
-			                            <div class="col-sm-7">
-			                                <p>Video preview</p>
-			                                    <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
-			                                    <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
-			                                    <p>After choosing a video size, copy and paste the embed code above.</p>
-			                                    <div class="row desktop-video-play">
-			                                        <div class="col-sm-2 margin-sm-left video-play video-play-sm video-play-hover selected text-center">
-			                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-sm"></span><br>
-			                                            <label class="lbl-width">480 x 360</label>
-			                                        </div>
-			                                        <div class="col-sm-2 margin-md-left video-play video-play-md video-play-hover text-center">
-			                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-md"></span><br>
-			                                            <label>640 x 480</label>
-			                                        </div>
-			                                        <div class="col-sm-2 margin-lg-left video-play video-play-lg video-play-hover text-center">
-			                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-lg"></span><br>
-			                                            <label>800 x 600</label>
-			                                        </div>
-			                                        <div class="col-sm-4 margin-custom-left video-play video-play-custom video-play-hover">
-			                                            <label>Custom size</label><br>
-			                                            <input type="text" class="customSizeText video-play-width" value="480"> x <input type="text" class="customSizeText video-play-height" value="360">
-			                                        </div>
-			                                    </div>
-			                                    <div class="tabs-video-play">
-			                                        <div class="row">
-			                                            <div class="col-sm-offset-1 col-sm-3 video-play video-play-sm video-play-hover selected text-center">
-			                                                 <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-sm"></span><br>
-			                                                 <label class="lbl-width">480 x 360</label>
-			                                            </div>
-			                                            <div class="col-sm-4 margin-md-left video-play video-play-md video-play-hover text-center">
-			                                                <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-md"></span><br>
-			                                                <label>640 x 480</label>
-			                                            </div>
-			                                            <div class="col-sm-4 margin-md-left video-play video-play-lg video-play-hover text-center">
-			                                                <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-lg"></span><br>
-			                                                <label>800 x 600</label>
-			                                            </div>
-			                                            <div class="clear"></div>
-			                                            <div class="clear"></div>
-			                                            <div class="tab-clear"></div>
-			                                            <div class="col-sm-6 margin-custom-left video-play video-play-custom video-play-hover">
-			                                                <label>Custom size</label><br>
-			                                                <input type="text" class="customSizeText video-play-width" value="480"> x <input type="text" class="customSizeText video-play-height" value="360">
-			                                            </div>
-			                                        </div>
-			                                    </div>
-			                                </div>
-			                                <div class="col-sm-5">
-			                                    <p>Widget preview</p>
-			                                    <textarea class="textarea-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
-			                                    <g:render template="manageproject/embedTile"/>
-			                                </div>
-			                            </div>
-			                        </div>
-			                    </div>
-			               </div>
-			          </g:if>
+                <div class="modal fade embedTilemodal" id="embedTilemodal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <g:if test="${project.videoUrl}">
+                        <div class="modal-dialog modal-embed-with-video">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h4 class="modal-title text-center"><b>Embed this widget into your website</b></h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <p>Video preview</p>
+                                                <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
+                                                <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
+                                                <p>After choosing a video size, copy and paste the embed code above.</p>
+                                                <div class="row desktop-video-play">
+                                                    <div class="col-sm-2 margin-sm-left video-play video-play-sm video-play-hover selected text-center">
+                                                        <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-sm"></span><br>
+                                                        <label class="lbl-width">480 x 360</label>
+                                                    </div>
+                                                    <div class="col-sm-2 margin-md-left video-play video-play-md video-play-hover text-center">
+                                                        <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-md"></span><br>
+                                                        <label>640 x 480</label>
+                                                    </div>
+                                                    <div class="col-sm-2 margin-lg-left video-play video-play-lg video-play-hover text-center">
+                                                        <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-lg"></span><br>
+                                                        <label>800 x 600</label>
+                                                    </div>
+                                                    <div class="col-sm-4 margin-custom-left video-play video-play-custom video-play-hover">
+                                                        <label>Custom size</label><br>
+                                                        <input type="text" class="customSizeText video-play-width" value="480"> x <input type="text" class="customSizeText video-play-height" value="360">
+                                                    </div>
+                                                </div>
+                                                <div class="tabs-video-play">
+                                                    <div class="row">
+                                                        <div class="col-sm-offset-1 col-sm-3 video-play video-play-sm video-play-hover selected text-center">
+                                                             <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-sm"></span><br>
+                                                             <label class="lbl-width">480 x 360</label>
+                                                        </div>
+                                                        <div class="col-sm-4 margin-md-left video-play video-play-md video-play-hover text-center">
+                                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-md"></span><br>
+                                                            <label>640 x 480</label>
+                                                        </div>
+                                                        <div class="col-sm-4 margin-md-left video-play video-play-lg video-play-hover text-center">
+                                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-lg"></span><br>
+                                                            <label>800 x 600</label>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                        <div class="clear"></div>
+                                                        <div class="tab-clear"></div>
+                                                        <div class="col-sm-6 margin-custom-left video-play video-play-custom video-play-hover">
+                                                            <label>Custom size</label><br>
+                                                            <input type="text" class="customSizeText video-play-width" value="480"> x <input type="text" class="customSizeText video-play-height" value="360">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <p>Widget preview</p>
+                                                <textarea class="textarea-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
+                                                <g:render template="manageproject/embedTile"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                      </g:if>
 			          <g:else>
-			              <div class="modal-dialog modal-tile">
-			                  <div class="modal-content">
-			                      <div class="modal-header">
-			                          <button type="button" class="close" data-dismiss="modal">
-			                              <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-			                          </button>
-			                          <h4 class="modal-title"><b>Embed this widget into your website</b></h4>
-			                      </div>
-			                      <div class="modal-body only-tile-embed-modal text-center">
-			                          <p>Widget preview</p>
-			                          <textarea class="textarea-of-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
-			                          <g:render template="manageproject/embedTile"/>
-			                      </div>
-			                  </div>
-			              </div>
-			          </g:else>
-			      </div>
+                          <div class="modal-dialog modal-tile">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal">
+                                          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                      </button>
+                                      <h4 class="modal-title"><b>Embed this widget into your website</b></h4>
+                                  </div>
+                                  <div class="modal-body only-tile-embed-modal text-center">
+                                      <p>Widget preview</p>
+                                      <textarea class="textarea-of-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
+                                      <g:render template="manageproject/embedTile"/>
+                                  </div>
+                              </div>
+                          </div>
+                      </g:else>
+                  </div>
                
                   <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal">
                       <div class="hidden-xs">

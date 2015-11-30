@@ -5522,7 +5522,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	button.show-mob-mobile{
+    button.show-mob-mobile{
        background-color: #01bbd3 !important;
        color: #fff;
     }
@@ -5531,7 +5531,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
        background-color: #01bbd3 !important;
        color: #fff;
     }
-	button.show-mobile-bg-color{
+    button.show-mobile-bg-color{
         bacground-color: #01bbd3 !important;
     }
     button.btn-show-fund {
@@ -7772,7 +7772,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	div.header-scrolled{
+    div.header-scrolled{
         display: none !important;
 	}
     button.sh-submitaproval-2header {
@@ -10205,7 +10205,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1050px){
-	li.sh-button-fund-secandaryheader {
+    li.sh-button-fund-secandaryheader {
         left: 19.6% !important;
         position: absolute;
         top: 39px;
@@ -13081,12 +13081,12 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-	button.show-mob-mobile{
+    button.show-mob-mobile{
        background-color: #01bbd3 !important;
        color: #fff;
-	}
-	button.show-mob-mobile:hover,
-	button.show-mob-mobile:focus{
+    }
+    button.show-mob-mobile:hover,
+    button.show-mob-mobile:focus{
        background-color: #01bbd3 !important;
        color: #fff;
     }
@@ -13094,7 +13094,7 @@ textarea.textarea-embed-video {
        padding-bottom: 10px;
        padding-top: 10px;
     }
-	div.sh-thumbnil-tile {
+    div.sh-thumbnil-tile {
         margin: 0;
     }
     div.show-mobile-button {
@@ -15760,7 +15760,7 @@ img.home-pg-icons{
     margin-left: 38px;
 }
 .show-secandarylog-top{
-	float: left;
+    float: left;
 }
 @media screen and (-webkit-min-device-pixel-ratio:0) {
     .show-secandarylog-top{

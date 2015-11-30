@@ -433,7 +433,7 @@
                </div>
                     
                <%-- Tabs code social ions facebook, whatsapp, twitter
-             <div class="visible-sm hidden-md sh-tabs-social sh-shareicons-Fixedtophead">
+               <div class="visible-sm hidden-md sh-tabs-social sh-shareicons-Fixedtophead">
                    <div class="col-sm-4 col-md-4 show-tabs">
                        <g:if test="${isPreview}">
                            <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size hidden-xs">
@@ -472,7 +472,7 @@
                            </a>
                        </g:else>
                   </div>
-           </div>--%>
+               </div>--%>
 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders  hidden-xs">
                     <g:set var="screen" id="screen" value="false"></g:set>

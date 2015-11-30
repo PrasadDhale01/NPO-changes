@@ -783,7 +783,7 @@
                           </g:if>
                           <g:else>
                               <div class="showfacebooksAA"></div>
-                              <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color" id="fbshare" href="#">
+                              <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color" id="fbshare">
                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
                               </span>
                           </g:else>

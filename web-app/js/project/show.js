@@ -759,7 +759,7 @@ $(function() {
     $('.shortUrlglyphicon, .shortUrlglyphiconheader').popover({
         html: true,
         placement: 'bottom',
-        content: $("#popoverConent").html()
+        content: $("#popoverConent,.popoverConent").html()
     });
     
     $('.shortUrlglyphiconMob').popover({

@@ -187,13 +187,13 @@
                                             </div>
                                         </g:if>
                                         <div class="clear"></div>
-                                        <button class="btn btn-block btn-lg sh-submitapproval show-submitapprovalmobile show-mob-mobile">
+                                        <button class="btn btn-block btn-lg sh-submitapproval  show-mob-mobile">
                                             <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
                                         </button>
                                     </g:form>
                                 </g:if>
                                 <g:else>
-                                    <button class="btn btn-block btn-lg  show-submitapprovalmobile show-mob-mobile" id="submitForApprovalBtnMobile">
+                                    <button class="btn btn-block btn-lg show-mob-mobile" id="submitForApprovalBtnMobile">
                                         <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
                                     </button>
                                 </g:else>
@@ -407,10 +407,9 @@
                                     <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
                                </a>
                                <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left show-icons-secandheader"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" class="show-embedIcon" alt="embedicon"></a>
-                               <g:hiddenField name="urlShortenValue" value="${shareUrl}"/>
                                <div class="popoverClass">
                                     <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphiconheader glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color show-shortUrlheader-top"></span>
-                                    <div id="popoverConent" class="hidden">
+                                    <div class="hidden popoverConent">
                                         <button type="button" class="close">&times;</button>
                                         <p>${shareUrl}</p>
                                     </div>
@@ -433,7 +432,7 @@
                   </div>
                </div>
                     
-               <!-- Tabs code social ions facebook, whatsapp, twitter
+               <%-- Tabs code social ions facebook, whatsapp, twitter
              <div class="visible-sm hidden-md sh-tabs-social sh-shareicons-Fixedtophead">
                    <div class="col-sm-4 col-md-4 show-tabs">
                        <g:if test="${isPreview}">
@@ -473,7 +472,7 @@
                            </a>
                        </g:else>
                   </div>
-           </div>-->
+           </div>--%>
 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders  hidden-xs">
                     <g:set var="screen" id="screen" value="false"></g:set>
@@ -543,7 +542,7 @@
                
                 <div class="col-xs-12 col-md-8 col-sm-8 Top-tabs-mobile show-tops-corsal">
                 
-                    <!-- Tab panes -->
+                    <%-- Tab panes --%>
                     <div class="tab-content">
                         <div class="tab-pane tab-pane-active active hidden-xs" id="essentials">
                             <g:render template="show/story"/>
@@ -561,9 +560,9 @@
                             <g:render template="show/comments"/>
                         </div>
                     </div>
-                     
+                    
                     <div class="row"> 
-                        <!-- Modal -->
+                    <%-- Modal --%>
                         <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
                             <g:form action="sendemail" id="${project.id}" params="['fr': username]"  class="sendMailForm">
                                 <div class="modal-dialog">
@@ -597,234 +596,228 @@
                             </g:form>
                         </div>
                     </div>
-                </div>
+                </div>             
                 
-                
-                 <!--Embed modal-->
-    <div class="modal fade embedTilemodal" id="embedTilemodal" tabindex="-1" role="dialog" aria-hidden="true">
-        <g:if test="${project.videoUrl}">
-            <div class="modal-dialog modal-embed-with-video">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                        </button>
-                        <h4 class="modal-title text-center"><b>Embed this widget into your website</b></h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="col-sm-7">
-                                <p>Video preview</p>
-                                    <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
-                                    <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
-                                    <p>After choosing a video size, copy and paste the embed code above.</p>
-                                    <div class="row desktop-video-play">
-                                        <div class="col-sm-2 margin-sm-left video-play video-play-sm video-play-hover selected text-center">
-                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-sm"></span><br>
-                                            <label class="lbl-width">480 x 360</label>
-                                        </div>
-                                        <div class="col-sm-2 margin-md-left video-play video-play-md video-play-hover text-center">
-                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-md"></span><br>
-                                            <label>640 x 480</label>
-                                        </div>
-                                        <div class="col-sm-2 margin-lg-left video-play video-play-lg video-play-hover text-center">
-                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-lg"></span><br>
-                                            <label>800 x 600</label>
-                                        </div>
-                                        <div class="col-sm-4 margin-custom-left video-play video-play-custom video-play-hover">
-                                            <label>Custom size</label><br>
-                                            <input type="text" class="customSizeText video-play-width" value="480"> x <input type="text" class="customSizeText video-play-height" value="360">
-                                        </div>
-                                    </div>
-                                    <div class="tabs-video-play">
-                                        <div class="row">
-                                            <div class="col-sm-offset-1 col-sm-3 video-play video-play-sm video-play-hover selected text-center">
-                                                 <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-sm"></span><br>
-                                                 <label class="lbl-width">480 x 360</label>
-                                            </div>
-                                            <div class="col-sm-4 margin-md-left video-play video-play-md video-play-hover text-center">
-                                                <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-md"></span><br>
-                                                <label>640 x 480</label>
-                                            </div>
-                                            <div class="col-sm-4 margin-md-left video-play video-play-lg video-play-hover text-center">
-                                                <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-lg"></span><br>
-                                                <label>800 x 600</label>
-                                            </div>
-                                            <div class="clear"></div>
-                                            <div class="clear"></div>
-                                            <div class="tab-clear"></div>
-                                            <div class="col-sm-6 margin-custom-left video-play video-play-custom video-play-hover">
-                                                <label>Custom size</label><br>
-                                                <input type="text" class="customSizeText video-play-width" value="480"> x <input type="text" class="customSizeText video-play-height" value="360">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5">
-                                    <p>Widget preview</p>
-                                    <textarea class="textarea-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
-                                    <g:render template="manageproject/embedTile"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-               </div>
-          </g:if>
-          <g:else>
-              <div class="modal-dialog modal-tile">
-                  <div class="modal-content">
-                      <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal">
-                              <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                          </button>
-                          <h4 class="modal-title"><b>Embed this widget into your website</b></h4>
+                <%--Embed modal--%>
+			    <div class="modal fade embedTilemodal" id="embedTilemodal" tabindex="-1" role="dialog" aria-hidden="true">
+			        <g:if test="${project.videoUrl}">
+			            <div class="modal-dialog modal-embed-with-video">
+			                <div class="modal-content">
+			                    <div class="modal-header">
+			                        <button type="button" class="close" data-dismiss="modal">
+			                            <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			                        </button>
+			                        <h4 class="modal-title text-center"><b>Embed this widget into your website</b></h4>
+			                    </div>
+			                    <div class="modal-body">
+			                        <div class="row">
+			                            <div class="col-sm-7">
+			                                <p>Video preview</p>
+			                                    <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
+			                                    <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
+			                                    <p>After choosing a video size, copy and paste the embed code above.</p>
+			                                    <div class="row desktop-video-play">
+			                                        <div class="col-sm-2 margin-sm-left video-play video-play-sm video-play-hover selected text-center">
+			                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-sm"></span><br>
+			                                            <label class="lbl-width">480 x 360</label>
+			                                        </div>
+			                                        <div class="col-sm-2 margin-md-left video-play video-play-md video-play-hover text-center">
+			                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-md"></span><br>
+			                                            <label>640 x 480</label>
+			                                        </div>
+			                                        <div class="col-sm-2 margin-lg-left video-play video-play-lg video-play-hover text-center">
+			                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-lg"></span><br>
+			                                            <label>800 x 600</label>
+			                                        </div>
+			                                        <div class="col-sm-4 margin-custom-left video-play video-play-custom video-play-hover">
+			                                            <label>Custom size</label><br>
+			                                            <input type="text" class="customSizeText video-play-width" value="480"> x <input type="text" class="customSizeText video-play-height" value="360">
+			                                        </div>
+			                                    </div>
+			                                    <div class="tabs-video-play">
+			                                        <div class="row">
+			                                            <div class="col-sm-offset-1 col-sm-3 video-play video-play-sm video-play-hover selected text-center">
+			                                                 <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-sm"></span><br>
+			                                                 <label class="lbl-width">480 x 360</label>
+			                                            </div>
+			                                            <div class="col-sm-4 margin-md-left video-play video-play-md video-play-hover text-center">
+			                                                <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-md"></span><br>
+			                                                <label>640 x 480</label>
+			                                            </div>
+			                                            <div class="col-sm-4 margin-md-left video-play video-play-lg video-play-hover text-center">
+			                                                <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-lg"></span><br>
+			                                                <label>800 x 600</label>
+			                                            </div>
+			                                            <div class="clear"></div>
+			                                            <div class="clear"></div>
+			                                            <div class="tab-clear"></div>
+			                                            <div class="col-sm-6 margin-custom-left video-play video-play-custom video-play-hover">
+			                                                <label>Custom size</label><br>
+			                                                <input type="text" class="customSizeText video-play-width" value="480"> x <input type="text" class="customSizeText video-play-height" value="360">
+			                                            </div>
+			                                        </div>
+			                                    </div>
+			                                </div>
+			                                <div class="col-sm-5">
+			                                    <p>Widget preview</p>
+			                                    <textarea class="textarea-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
+			                                    <g:render template="manageproject/embedTile"/>
+			                                </div>
+			                            </div>
+			                        </div>
+			                    </div>
+			               </div>
+			          </g:if>
+			          <g:else>
+			              <div class="modal-dialog modal-tile">
+			                  <div class="modal-content">
+			                      <div class="modal-header">
+			                          <button type="button" class="close" data-dismiss="modal">
+			                              <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+			                          </button>
+			                          <h4 class="modal-title"><b>Embed this widget into your website</b></h4>
+			                      </div>
+			                      <div class="modal-body only-tile-embed-modal text-center">
+			                          <p>Widget preview</p>
+			                          <textarea class="textarea-of-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
+			                          <g:render template="manageproject/embedTile"/>
+			                      </div>
+			                  </div>
+			              </div>
+			          </g:else>
+			      </div>
+               
+                  <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal">
+                      <div class="hidden-xs">
+                          <g:render template="/layouts/orgDetails"/>
                       </div>
-                      <div class="modal-body only-tile-embed-modal text-center">
-                          <p>Widget preview</p>
-                          <textarea class="textarea-of-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
-                          <g:render template="manageproject/embedTile"/>
+                    
+                      <g:if test="${isPreview && !project.validated}">
+                          <div class="submitForApprovalSectionbtm" id="submitForApprovalSectionbtm">
+                              <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                  <g:form controller="project" action="saveasdraft" id="${project.id}">
+                                      <g:if test="${!project.touAccepted}">
+                                          <div class="form-group">
+                                              <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+                                          </div>
+                                      </g:if>
+                                      <div class="clear"></div>
+                                      <div class="show-A-fund"></div>
+                                      <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs">
+                                          <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                      </button>
+                                  </g:form>
+                              </g:if>
+                              <g:else>
+                                  <div class="show-A-fund"></div>
+                                  <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs" id="submitForApprovalBtn">
+                                      <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                  </button>
+                              </g:else>
+                          </div>
+                        
+                          <div class="hidden-xs">
+                              <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                          </div>
+                        
+                          <g:if test="${isPreview}">
+                              <div class="showfacebooksAA"></div>
+                              <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs show-pointer-not">
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
+                              </a>
+                          </g:if>
+                          <g:else>
+                              <div class="showfacebooksAA"></div>
+                              <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs" id="fbshare" href="#">
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
+                              </a>
+                          </g:else>
+                      
+                          <div class="hidden-xs">
+                              <g:if test="${project.rewards.size()>1}">
+                                  <div class="sh-perks-preview">
+                                      <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
+                                  </div>
+                              </g:if>
+                          </div> 
+                      </g:if>
+                      <g:elseif test="${percentage == 999}">
+                          <div class="show-A-fund"> </div>
+                          <button type="button" class="btn btn-success btn-lg btn-block show-campaign-sucessbtn mob-show-sucessend hidden-xs" disabled>SUCCESSFULLY FUNDED!</button>
+                      </g:elseif>
+                      <g:elseif test="${ended}">
+                          <div class="show-A-fund"> </div>
+                          <button type="button" class="btn btn-warning btn-lg btn-block show-campaign-sucess-endedbtn mob-show-sucessend hidden-xs" disabled>CAMPAIGN ENDED!</button>
+                      </g:elseif>
+                      <g:else>
+                          <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                              <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+                                  <div class="redirectCampaign">
+                                      <div class="show-A-fund"> </div>
+                                      <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><div class="show-A-fund"> </div><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs" id="btnFundDesktop">FUND NOW!</button></g:link>
+                                  </div>
+                              </g:if>
+                              <g:else>
+                                  <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
+                                      <div class="show-A-fund"> </div>
+                                      <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs" id="btnFundDesktop">FUND NOW!</button>
+                                  </g:form>
+                              </g:else>
+                          </g:if>
+                          <g:else>
+                              <div class="show-A-fund"> </div>
+                              <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs">FUND NOW!</button>
+                          </g:else>
+                      </g:else>
+
+                      <g:if test="${!isPreview || project.validated}">
+                          <div class="hidden-xs">
+                              <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                          </div>
+                        
+                          <g:if test="${isPreview}">
+                              <div class="showfacebooksAA"></div>
+                              <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color">
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
+                              </span>
+                          </g:if>
+                          <g:else>
+                              <div class="showfacebooksAA"></div>
+                              <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color" id="fbshare" href="#">
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
+                              </span>
+                          </g:else>
+                      </g:if>
+                    
+                      <div class="visible-xs show-mobile-update">
+                          <g:render template="show/projectupdates"/>
+                      </div>
+                    
+                      <div class="visible-xs sh-mobperks">
+                          <g:if test="${isPreview && !project.validated}">
+                              <g:if test="${project.rewards.size()>1}">
+                                  <div class="sh-perks-preview">
+                                      <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
+                                  </div>
+                              </g:if>
+                          </g:if>
+                      </div>
+                    
+                      <div class="sh-mobperks">    
+                          <g:if test="${(project.rewards.size()>1 && !isPreview) || (project.rewards.size()>1 && project.validated) }">
+                              <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                                  <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
+                              </g:if>
+                          </g:if>
+                      </div>
+                    
+                      <div class="visible-xs sh-comments-align">
+                          <div id="comment-mobile">
+                              <g:render template="show/comments"/>
+                          </div>
                       </div>
                   </div>
               </div>
-          </g:else>
-      </div>
-               
-                <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal">
-
-                    <div class="hidden-xs">
-                        <g:render template="/layouts/orgDetails"/>
-                    </div>
-                    
-                    <g:if test="${isPreview && !project.validated}">
-                        <div class="submitForApprovalSectionbtm" id="submitForApprovalSectionbtm">
-                            <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
-                                <g:form controller="project" action="saveasdraft" id="${project.id}">
-                                    <g:if test="${!project.touAccepted}">
-                                        <div class="form-group">
-                                            <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
-                                        </div>
-                                    </g:if>
-                                    <div class="clear"></div>
-                                    <div class="show-A-fund"></div>
-                                    <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs">
-                                        <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-                                    </button>
-                                </g:form>
-                            </g:if>
-                            <g:else>
-                               <div class="show-A-fund"></div>
-                                <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs" id="submitForApprovalBtn">
-                                    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-                                </button>
-                            </g:else>
-                        </div>
-                        
-                        <div class="hidden-xs">
-                            <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
-                        </div>
-                        
-                        <g:if test="${isPreview}">
-                            <div class="showfacebooksAA"></div>
-                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs show-pointer-not">
-                                <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
-                            </a>
-                        </g:if>
-                        <g:else>
-                             <div class="showfacebooksAA"></div>
-                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs" id="fbshare" href="#">
-                                <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
-                            </a>
-                        </g:else>
-                      
-                        <div class="hidden-xs">
-                            <g:if test="${project.rewards.size()>1}">
-                                <div class="sh-perks-preview">
-                                    <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
-                               </div>
-                            </g:if>
-                        </div> 
-                    </g:if>
-                    <g:elseif test="${percentage == 999}">
-                         <div class="show-A-fund"> </div>
-                        <button type="button" class="btn btn-success btn-lg btn-block show-campaign-sucessbtn mob-show-sucessend hidden-xs" disabled>SUCCESSFULLY FUNDED!</button>
-                    </g:elseif>
-                    <g:elseif test="${ended}">
-                        <div class="show-A-fund"> </div>
-                        <button type="button" class="btn btn-warning btn-lg btn-block show-campaign-sucess-endedbtn mob-show-sucessend hidden-xs" disabled>CAMPAIGN ENDED!</button>
-                    </g:elseif>
-                    <g:else>
-                        <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
-                            <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
-                                <div class="redirectCampaign">
-                                    <div class="show-A-fund"> </div>
-                                    <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><div class="show-A-fund"> </div><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs" id="btnFundDesktop">FUND NOW!</button></g:link>
-                                </div>
-                            </g:if>
-                            <g:else>
-                                <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
-                                    <div class="show-A-fund"> </div>
-                                    <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs" id="btnFundDesktop">FUND NOW!</button>
-                                </g:form>
-                            </g:else>
-                        </g:if>
-                        <g:else>
-                             <div class="show-A-fund"> </div>
-                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs">FUND NOW!</button>
-                        </g:else>
-                    </g:else>
-
-                    <g:if test="${!isPreview || project.validated}">
-                        
-                        <div class="hidden-xs">
-                            <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
-                        </div>
-                        
-                        <g:if test="${isPreview}">
-                            <div class="showfacebooksAA"></div>
-                            <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color">
-                                <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
-                            </span>
-                            
-                        </g:if>
-                        <g:else>
-                            <div class="showfacebooksAA"></div>
-                            <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color" id="fbshare" href="#">
-                                <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
-                            </span>
-                            
-                        </g:else>
-                    </g:if>
-                    
-                    <div class="visible-xs show-mobile-update">
-                        <g:render template="show/projectupdates"/>
-                    </div>
-                    
-                    <div class="visible-xs sh-mobperks">
-                        <g:if test="${isPreview && !project.validated}">
-                            <g:if test="${project.rewards.size()>1}">
-                                <div class="sh-perks-preview">
-                                    <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
-                                </div>
-                            </g:if>
-                        </g:if>
-                    </div>
-                    
-                    <div class="sh-mobperks">    
-                        <g:if test="${(project.rewards.size()>1 && !isPreview) || (project.rewards.size()>1 && project.validated) }">
-                            <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
-                                <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
-                            </g:if>
-                        </g:if>
-                    </div>
-                    
-                    <div class="visible-xs sh-comments-align">
-                       <div id="comment-mobile">
-                           <g:render template="show/comments"/>
-                       </div>
-                    </div>
-                    
-                </div>
-            </div>
         </g:if>
         <g:else>
             <h1>Campaign not found</h1>

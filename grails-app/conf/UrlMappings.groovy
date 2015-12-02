@@ -24,6 +24,9 @@ class UrlMappings {
         "/aboutus"(view:'/aboutus/index')
         "/careers"(view:'/aboutus/careers')
 		
+		/*userprofile*/
+		"/user/userprofile"(view:'/user/user/userprofile')
+		
 		/* Feedback/Survey*/
 		"/survey" (view:'/survey/index')
 		
@@ -123,5 +126,6 @@ class UrlMappings {
         "/user/contributions"(controller:'user', action:'mycontributions')
         "/user/edit-userInfo"(controller:'user', action:'edituserinfo')
         "/user/edit-location"(controller:'user', action:'editlocation')
+		"/user/userprofile"(controller:'user', action:'userActivity')
     }
 }

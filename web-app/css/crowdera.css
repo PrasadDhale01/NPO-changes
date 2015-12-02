@@ -5522,6 +5522,36 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.timeline > li > .timeline-panel {
+        padding: 20px 5px 20px 5px !important;
+    }
+	ul.timeline::before {
+	    left: -14px !important;
+	}
+	ul.timeline > li > .timeline-panel {
+    	width: 100% !important;
+	}
+	.userprfl-cmpgn-container {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+        float: none;
+        height: 100px;
+        margin-left: -1px;
+        padding: 10px 5px;
+        text-align: justify;
+       width: 238px;
+    }
+    .col-xs-8.usrPrfl-cmpgn-title {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+	.userprfl-warning {
+	    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+	    float: none;
+	    height: 117px;
+	    padding: 10px 5px;
+	    text-align: center;
+	    width: 215px;
+	}
 	
      .cr-padding-edit-xs {
          margin-left: 4px;
@@ -5976,9 +6006,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .col-md-10.col-xs-8.col-videoUrl-textbox{
         width:73%
-    }
-    ul.nav-justified > li{
-        display: block !important;
     }
     .popoverClass .popover{
         left:120px;
@@ -7289,10 +7316,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         display: table-cell;
         width: 1% !important;
     }
-    .nav-tabs.nav-justified >li {
-        float: none;
-        width: 33.5% !important;
-    }
     .userdashboard-tiles{
         width:230px !important;
     }
@@ -7712,7 +7735,27 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-
+	.usr-prfl-amt {
+        display: inline-block;
+        font-size: 27px;
+        margin: 0;
+    }
+    .usr-prfl-amt .fa-inr {
+        font-size: 24px !important;
+        padding-right: 2px;
+    }
+	.userprfl-cmpgn-container {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+        float: none;
+        height: 100px;
+        margin-left: -3px;
+        padding: 10px 5px;
+        text-align: center;
+        width: 300px;
+    }
+	.TW-userprofile-panel-text-Size{
+		font-size:12px;
+	}
     .ansText{
         width:90% !important;
         margin-top: 5px;
@@ -12886,7 +12929,33 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-
+	.timeline > li > .timeline-panel {
+        padding: 20px 5px 20px 5px !important;
+    }
+	.userprfl-cmpgn-container {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+        float: none;
+        height: 100px;
+        margin-left: -1px;
+        padding: 10px 5px;
+        text-align: justify;
+       	width: 238px;
+    }
+    .col-xs-8.usrPrfl-cmpgn-title {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+	.userprfl-warning {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+        float: none;
+        height: 117px;
+        padding: 10px 5px;
+        text-align: center;
+        width: 215px;
+    }
+	ul.timeline::before {
+	    left: -14px !important;
+	}
     input.editsweb-margin-mobile {
         height: 45px;
         width: 95% !important;
@@ -15237,10 +15306,6 @@ a#downloadEbook{
 	background-color: #f6f8f8;
 	padding-bottom:0px;
 }
-.nav-justified > li {
-    display: table-cell !important;
-    width: 0;
-}
 .nav-justi > li {
     display: unset !important;
     width: 0%;
@@ -15539,4 +15604,30 @@ img.home-pg-icons{
 }
 .divSocialContact{
 	display:none;
+}
+.TW-user-tabs ul{
+	padding-left:0px;
+	padding-right:0px;
+}
+.TW-user-tabs ul li a {
+	background-color: #5fbed5 !important;
+    border: 1px solid #fff;
+    color: #fff !important;
+    padding-left: 0;
+    padding-right: 0;
+}
+.TW-user-tabs ul li.active a:hover {
+	background-color: #5fbed5 !important;
+    border: 1px solid #fff;
+    color: #fff !important;
+    padding-left: 0;
+    padding-right: 0;
+}
+.TW-usrPrfl-header{
+	padding-top:25px;
+}
+.panel-info > .panel-heading.TW-usrprfl-heading{
+    background-color: #5fbed5;
+    border-color: #3db5d8;
+    color: #fff;
 }

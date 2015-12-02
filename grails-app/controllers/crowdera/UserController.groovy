@@ -449,4 +449,34 @@ class UserController {
             render(template: "/user/user/grid", model: model, currentEnv: currentEnv)
         }
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def userActivity(){
+		def userId = params.id
+		def page= params.page
+ 		User user = User.get(userId)
+		def environment= projectService.getCurrentEnvironment()
+		
+		if(user){
+			def projects = projectService.getAllProjectByUser(user, environment)
+			def projectAdmins = projectService.getProjectAdminEmail(user)
+			def teams = projectService.getTeamByUserAndEnable(user, true)
+			def project = projectService.getProjects(projects, projectAdmins, teams, environment)
+			def contributions =projectService.getContibutionByUser(user, environment)
+			def recentActivity = userService.getUserRecentActivity(project, contributions, user)
+			def supporters= userService.getSupportersByUser(user) 
+			def userContribution = userService.getUserContribution(user)
+			def fundRaised = projectService.getTotalFundRaisedByUser(projects)
+			
+			if(params.page){
+				render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, page:page, environment:environment])
+			}else{
+			    render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, environment:environment])
+			}
+			
+		}else{
+			render view:'404error'
+		}
+		
+	}
 }

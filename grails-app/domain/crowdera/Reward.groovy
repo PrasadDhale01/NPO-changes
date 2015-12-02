@@ -7,6 +7,7 @@ import groovy.transform.ToString
 @EqualsAndHashCode
 
 class Reward {
+	Date perkCreatedDate = new Date()
     String title
     String description
 	int numberAvailable
@@ -23,6 +24,7 @@ class Reward {
         image (nullable: true)
         title nullable: true
         description nullable: true
+		perkCreatedDate nullable : true
     }
 
 }

@@ -1013,6 +1013,60 @@ class UserService {
 		feedback.user = user
 		feedback.rating = params. rating
 	}
+	def getSupportersByUser(User user){
+		def supporters = Supporter.findAllWhere(user:user)
+		int i=0
+		supporters.each{
+			if(it==null){
+				i=0
+			}else{
+				i+= it.id
+			}
+		}
+		return i
+	}
+	def getUserContribution(User user){
+		def userContribution = Contribution.findAllByUser(user)
+		int contribution =0  
+		userContribution.each{
+			contribution += it.amount
+		}
+		return contribution
+	}
+	
+	def getUserRecentActivity(def project, def contributions ,User user){
+		def recentActivity =[:]
+		def supporters = Supporter.findAllWhere(user:user)
+		project.each {
+			recentActivity.put("project",it.title +";"+ it.created)
+		}
+		
+		project.rewards.each{
+			if(it.size() > 1){
+				it.each{
+					if(!it.title.equals('No Perk'))
+					recentActivity.put("perk"+it.id, it.title +";"+ it.perkCreatedDate)
+				}
+			}
+		}
+		
+		project.projectUpdates.each {
+			it.each{
+				
+				recentActivity.put("update"+it.id, it.title +";"+ it.updateDate)
+			}
+		}
+		contributions.each{
+			recentActivity.put("contribution"+it.id, it.amount +";"+ it.date)
+		}
+		
+		if(supporters){
+			supporters.each{
+				recentActivity.put("supporter"+it.id, it.project.title +";"+ it.followedDate)
+			}
+		}
+		return  recentActivity.sort{it.value.toString().substring(it.value.toString().indexOf(';') + 1) }
+	}
     
     @Transactional
     def bootstrap() {

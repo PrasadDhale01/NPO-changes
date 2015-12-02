@@ -168,12 +168,20 @@ class ProjectService {
             project.charitableId = params.charitableId
             project.organizationName = params.organizationName
         }
-        
+        def taxReciept = TaxReciept.findByProject(project)
         if (project.beneficiary.country == 'null') {
             if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
                 project.beneficiary.country = 'IN'
+                if (taxReciept){
+                    taxReciept.country = 'India'
+                    taxReciept.save();
+                }
             } else {
                 project.beneficiary.country = 'US'
+                if (taxReciept){
+                    taxReciept.country = (taxReciept.country && taxReciept.country != 'null') ? taxReciept.country : 'United States';
+                    taxReciept.save();
+                }
             }
         }
         
@@ -3360,7 +3368,6 @@ class ProjectService {
                         taxreciept.project = project
                         taxreciept.save(failOnError:true);
                     }
-                    taxReciept.save(failOnError:true);
                 }
                 break;
 
@@ -3381,75 +3388,49 @@ class ProjectService {
                         taxreciept.project = project
                         taxreciept.save(failOnError:true);
                     }
-                    taxReciept.save(failOnError:true);
                 }
                 break;
                 
             case 'regDate':
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
-                if (varValue.isAllWhitespace()){
-                    if (taxReciept){
-                        taxReciept.regDate = null
-                        taxReciept.save(failOnError:true);
-                    }
-                } else {
-                Date date = format.parse(string);
-                    if (taxReciept){
-                        taxReciept.regDate = format.parse(varValue)
-                        taxReciept.save(failOnError:true);
-                    } else {
-                        TaxReciept taxreciept = new TaxReciept()
-                        taxreciept.regDate = format.parse(varValue)
-                        taxreciept.project = project
-                        taxreciept.save(failOnError:true);
-                    }
+                if (taxReciept){
+                    taxReciept.regDate = format.parse(varValue)
                     taxReciept.save(failOnError:true);
+                } else {
+                    TaxReciept taxreciept = new TaxReciept()
+                    taxreciept.regDate = format.parse(varValue)
+                    taxreciept.project = project
+                    taxreciept.save(failOnError:true);
                 }
                 break;
                 
             case 'expiryDate':
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
-                if (varValue.isAllWhitespace()){
-                    if (taxReciept){
-                    taxReciept.expiryDate = null
+                if (taxReciept){
+                    taxReciept.expiryDate = format.parse(varValue)
                     taxReciept.save(failOnError:true);
-                    }
                 } else {
-                    if (taxReciept){
-                        taxReciept.expiryDate = format.parse(varValue)
-                        taxReciept.save(failOnError:true);
-                    } else {
-                        TaxReciept taxreciept = new TaxReciept()
-                        taxreciept.expiryDate = format.parse(varValue)
-                        taxreciept.project = project
-                        taxreciept.save(failOnError:true);
-                    }
-                    taxReciept.save(failOnError:true);
+                    TaxReciept taxreciept = new TaxReciept()
+                    taxreciept.expiryDate = format.parse(varValue)
+                    taxreciept.project = project
+                    taxreciept.save(failOnError:true);
                 }
                 break;
                 
-                case 'fcraRegDate':
+            case 'fcraRegDate':
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
-                if (varValue.isAllWhitespace()){
-                    if (taxReciept){
-                    taxReciept.fcraRegDate = null
+                if (taxReciept){
+                    taxReciept.fcraRegDate = format.parse(varValue)
                     taxReciept.save(failOnError:true);
-                    }
                 } else {
-                    if (taxReciept){
-                        taxReciept.fcraRegDate = format.parse(varValue)
-                        taxReciept.save(failOnError:true);
-                    } else {
-                        TaxReciept taxreciept = new TaxReciept()
-                        taxreciept.fcraRegDate = format.parse(varValue)
-                        taxreciept.project = project
-                        taxreciept.save(failOnError:true);
-                    }
-                    taxReciept.save(failOnError:true);
+                    TaxReciept taxreciept = new TaxReciept()
+                    taxreciept.fcraRegDate = format.parse(varValue)
+                    taxreciept.project = project
+                    taxreciept.save(failOnError:true);
                 }
                 break;
                 
-                case 'addressLine1':
+            case 'addressLine1':
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
                 if (varValue.isAllWhitespace()){
                     if (taxReciept){
@@ -3466,11 +3447,10 @@ class ProjectService {
                         taxreciept.project = project
                         taxreciept.save(failOnError:true);
                     }
-                    taxReciept.save(failOnError:true);
                 }
                 break;
                 
-                case 'addressLine2':
+            case 'addressLine2':
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
                 if (varValue.isAllWhitespace()){
                     if (taxReciept){
@@ -3487,11 +3467,10 @@ class ProjectService {
                         taxreciept.project = project
                         taxreciept.save(failOnError:true);
                     }
-                    taxReciept.save(failOnError:true);
                 }
                 break;
                 
-                case 'regNum':
+            case 'regNum':
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
                 if (varValue.isAllWhitespace()){
                     if (taxReciept){
@@ -3508,11 +3487,10 @@ class ProjectService {
                         taxreciept.project = project
                         taxreciept.save(failOnError:true);
                     }
-                    taxReciept.save(failOnError:true);
                 }
                 break;
                 
-                case 'panCardNumber':
+            case 'panCardNumber':
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
                 if (varValue.isAllWhitespace()){
                     if (taxReciept){
@@ -3529,16 +3507,15 @@ class ProjectService {
                         taxreciept.project = project
                         taxreciept.save(failOnError:true);
                     }
-                    taxReciept.save(failOnError:true);
                 }
                 break;
 
-                case 'phoneNumber':
+            case 'phoneNumber':
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
                 if (varValue.isAllWhitespace()){
                     if (taxReciept){
-                    taxReciept.phone = null
-                    taxReciept.save(failOnError:true);
+                        taxReciept.phone = null
+                        taxReciept.save(failOnError:true);
                     }
                 } else {
                     if (taxReciept){
@@ -3550,16 +3527,15 @@ class ProjectService {
                         taxreciept.project = project
                         taxreciept.save(failOnError:true);
                     }
-                    taxReciept.save(failOnError:true);
                 }
                 break;
                 
-                case 'fcraRegNum':
+            case 'fcraRegNum':
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
                 if (varValue.isAllWhitespace()){
                     if (taxReciept){
-                    taxReciept.fcraRegNum = null
-                    taxReciept.save(failOnError:true);
+                        taxReciept.fcraRegNum = null
+                        taxReciept.save(failOnError:true);
                     }
                 } else {
                     if (taxReciept){
@@ -3571,18 +3547,47 @@ class ProjectService {
                         taxreciept.project = project
                         taxreciept.save(failOnError:true);
                     }
-                    taxReciept.save(failOnError:true);
                 }
                 break;
-                
+
+            case 'zip':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.zip = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.zip = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.zip = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+
             case 'offeringTaxReciept':
                 project.offeringTaxReciept = (varValue == 'true' || varValue == true) ? true : false;
                 isValueChanged = true
                 break;
 
+            case 'impactAmount':
+                project.impactAmount = Integer.parseInt(varValue);
+                isValueChanged = true
+                break;
+                
+            case 'impactNumber':
+                project.impactNumber = Integer.parseInt(varValue);
+                isValueChanged = true
+                break;
+
             default :
                isValueChanged = false;
- 
+
         }
 
         if (isValueChanged){
@@ -4315,6 +4320,13 @@ class ProjectService {
     def getTaxRecieptOfProject(Project project){
         return TaxReciept.findByProject(project)
     }
+    
+    def getTaxRecieptIdByProjectId(def projectId){
+        Project project = Project.get(projectId)
+        def taxreciept = TaxReciept.findByProject(project);
+        def taxrecieptId = (taxreciept) ? taxreciept.id : null;
+        return taxrecieptId
+    }
 
     def getDeductibleStatusList(){
         def deductibleStatus = [
@@ -4331,6 +4343,63 @@ class ProjectService {
             SONFI : 'SONFI (50%)',
             SOUNK : 'SOUNK (50%)'
         ]
+    }
+    
+    def getImpactText(def category){
+        def impactText
+        switch(category){
+            case 'ANIMALS':
+                impactText = 'animal life';
+                break;
+
+            case 'ARTS':
+                impactText = 'art';
+                break;
+
+            case 'CHILDREN':
+                impactText = 'child future';
+                break;
+
+            case 'COMMUNITY':
+                impactText = 'community future';
+                break;
+
+            case 'CIVIC_NEEDS':
+                impactText = 'civic_need help';
+                break;
+
+            case 'EDUCATION':
+                impactText = 'education for child';
+                break;
+
+            case 'ELDERLY':
+                impactText = 'elderly future';
+                break;
+
+            case 'ENVIRONMENT':
+                impactText = 'environment';
+                break;
+
+            case 'FILM':
+                impactText = 'film fame';
+                break;
+
+            case 'HEALTH':
+                impactText = 'person health';
+                break;
+
+            case 'SOCIAL_INNOVATION':
+                impactText = 'social innovation';
+                break;
+
+            case 'RELIGION':
+                impactText = 'religion empowerement';
+                break;
+
+            default :
+                impactText = 'life';
+        }
+        return impactText
     }
 
     @Transactional

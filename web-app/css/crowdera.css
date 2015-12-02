@@ -7724,18 +7724,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    .cr-impact-analysis{
+        width:26% !important;
+    }
+    .cr-impact-guide{
+        width:74% !important;
+    }
+    .col-sm-impact-text {
+        width: 18% !important;
+    }
     .col-tax-file-show{
         padding-left: 20px;
     }
     .ansText{
         width:90% !important;
         margin-top: 5px;
-    }
-    .cr-impact-analysis{
-         width:15% !important;
-    }
-    .cr-impact-guide{
-         width:85% !important;
     }
     .cr-reasons-to-fund{
          width:30% !important;
@@ -8943,6 +8946,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    .col-sm-impact-text {
+        width: 14% !important;
+    }
     .ansText{
         width:50% !important;
         margin-top: 5px;
@@ -8954,10 +8960,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
          width:80% !important;
     }
     .cr-impact-analysis{
-         width:10% !important;
+         width:19% !important;
     }
     .cr-impact-guide{
-         width:90% !important;
+         width:81% !important;
     }
     div.edit-tabsMobile-margin {
         margin-left: -14px !important;
@@ -9243,6 +9249,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+    .col-sm-impact-num {
+        padding-left: 4px !important;
+        padding-right: 10px;
+    }
+    .cr-impact-currency {
+        left:10px;
+    }
     .col-xs {
         padding-left: 10px !important;
     }
@@ -9265,7 +9278,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 
     .form-group-tax-reciept{
-        padding-left: 8px;
+        padding-left: 0px;
+    }
+
+    .form-group-tax-reciept-dropdown {
+        padding-left: 2px !important;
+        margin-right: -18px !important;
     }
 
     .cr-reasons-to-fund, .cr-panel-hash-tags{
@@ -15574,3 +15592,4 @@ img.home-pg-icons{
     margin-left: 30px;
     margin-top: 18px;
 }
+

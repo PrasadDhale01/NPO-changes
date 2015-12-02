@@ -23,7 +23,8 @@ class Project {
     double amount
     int days
     int gmailShareCount
-    int impactAnalysis
+    int impactAmount
+    int impactNumber
     List contributions 
     List projectAdmins
     List projectUpdates

@@ -19,10 +19,10 @@
         width:12%;
     }
     .cr-impact-analysis{
-         width:10% !important;
+         width:19% !important;
     }
     .cr-impact-guide{
-         width:90% !important;
+         width:81% !important;
     }
     .cr-reasons-to-fund{
          width:20% !important;
@@ -36,6 +36,13 @@
     .ansText{
         width:50% !important;
         margin-top: 5px;
+    }
+    .col-sm-impact-text {
+        width: 14% !important;
+    }
+    
+    .col-sm-impact-num {
+        margin-left: 0 !important;
     }
 }
 @media only screen and (min-width: 1201px) and (max-width: 1280px){

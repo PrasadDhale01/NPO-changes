@@ -591,6 +591,7 @@ class ProjectController {
                 def taxReciept = projectService.getTaxRecieptOfProject(project)
                 def deductibleStatusList = projectService.getDeductibleStatusList()
                 def stateInd = projectService.getIndianState()
+                def impactText = projectService.getImpactText(project.category)
                 render(view: 'create/index2',
                 model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, 
                     nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
@@ -599,7 +600,7 @@ class ProjectController {
                     vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, 
                     email2:adminemails.email2, email3:adminemails.email3,reasonsToFund:reasonsToFund, 
                     qA:qA, spends:spends, usedForCreate:usedForCreate, selectedCountry:selectedCountry, 
-                    taxReciept:taxReciept, deductibleStatusList:deductibleStatusList])
+                    taxReciept:taxReciept, deductibleStatusList:deductibleStatusList, impactText:impactText])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
@@ -631,6 +632,16 @@ class ProjectController {
                 
                 if (params.checkBox && !project.touAccepted) {
                     project.touAccepted = true
+                }
+                
+                def taxReciept = TaxReciept.findByProject(project)
+                if(taxReciept) {
+                    if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+                        taxReciept.country = 'India'
+                    } else {
+                        taxReciept.country = (taxReciept.country && taxReciept.country != 'null') ? taxReciept.country : 'United States';
+                    }
+                    taxReciept.save();
                 }
 
                 if (params.isSubmitButton == 'true'){
@@ -738,6 +749,7 @@ class ProjectController {
             def taxReciept = projectService.getTaxRecieptOfProject(project)
             def deductibleStatusList = projectService.getDeductibleStatusList()
             def stateInd = projectService.getIndianState()
+            def impactText = projectService.getImpactText(project.category)
             render (view: 'edit/index',
             model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
                 'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,
@@ -746,7 +758,7 @@ class ProjectController {
                 project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
                 vanityTitle: vanityTitle, vanityUsername:vanityUsername, selectedCountry: selectedCountry,
                 email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
-                deductibleStatusList:deductibleStatusList])
+                deductibleStatusList:deductibleStatusList, impactText:impactText])
         } else {
             flash.prj_edit_message = "Campaign not found."
             render (view: 'edit/editerror')
@@ -1643,16 +1655,17 @@ class ProjectController {
 		}
 		redirect (action:'show', controller:'project', fragment: 'comments', params:[projectTitle:params.projectTitle, fr:vanityUserName])
 	}
-	
+
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def autoSave() {
         def variable = request.getParameter("variable")
         def varValue = request.getParameter("varValue")
         def projectId = request.getParameter("projectId")
         projectService.autoSaveProjectDetails(variable, varValue, projectId)
-        render ''
+        def taxRecieptId = projectService.getTaxRecieptIdByProjectId(projectId)
+        render taxRecieptId
     }
-	
+
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def saveReward() {
         rewardService.autoSaveRewardDetails(params)
@@ -1815,7 +1828,6 @@ class ProjectController {
 
     def uploadTaxRecieptFiles(){
         def file= params.file
-        println "file"
         TaxReciept taxReciept
         Project project = projectService.getProjectById(params.projectId);
         if (project){
@@ -2040,4 +2052,18 @@ class ProjectController {
         render country
     }
     
+    def deleteTaxReciept(){
+        Project project = projectService.getProjectById(params.projectId)
+        TaxReciept taxReciept = projectService.getTaxRecieptOfProject(project)
+        project.offeringTaxReciept = false;
+        if (taxReciept){
+            def files = taxReciept.files
+            if (files){
+                files.removeAll(files)
+            }
+            taxReciept.delete();
+        }
+        render ''
+    }
+
 }

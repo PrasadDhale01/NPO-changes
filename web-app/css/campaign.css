@@ -414,7 +414,7 @@ span.cr-label-spend-matrix {
     top: 11px;
 }
 
-.spendAmount {
+.spendAmount, .impactAmount {
     padding-left: 18px !important;
 }
 
@@ -688,12 +688,53 @@ div.validate-show-div .show-description {
 .col-file-name{
     padding-left: 10px;
     padding-right: 26px;
+    padding-bottom: 2px;
 }
 
-.col-tax-reciept-panel{
+.col-reciept-display-none{
     display:none;
 }
 
 .fcra-display-none{
     display:none;	
 }
+
+.fcra-clear {
+    height: 30px;
+}
+
+.tax-reciept-holder-country .dropdown-menu {
+    max-width: 0px !important;
+}
+
+.tax-reciept-holder-country-edit .dropdown-menu {
+    min-height: 0px !important;
+    height: 180px;
+}
+
+.tax-reciept-dropdown-menu .dropdown-menu {
+    min-height: 0px !important;
+    height: 205px;
+}
+
+.form-group-dropdown div.bootstrap-select > button {
+    background-color: #333 !important;
+    color: white !important;
+}
+
+.col-sm-impact-text {
+    padding-right: 0 !important;
+}
+
+.col-sm-impact-num{
+    padding-left: 0 !important;
+}
+
+.col-impact-text{
+    padding-top: 5px;
+}
+
+.col-sm-impact-amount {
+    margin-bottom: 0px !important;
+}
+

@@ -627,3 +627,46 @@ div.validate-show-div .show-description {
 #tax-reciept{
     display:none;
 }
+.media-stript-container{
+    background-color: #323232 !important;
+    border-top: 2px solid #01bbd2 !important;
+}
+.hm-media-title h3{
+    color: #fff;
+    font-size: 15px;
+    font-weight: 900;
+    margin-bottom: 0;
+    padding-top: 23px;
+}
+.hm-media-padding {
+    width: 109px;
+    border-right: 1px solid #c9c9c9;
+    height: 55px;
+    padding-left: 14px;
+}
+.hm-media-stript-width {
+    width: 1000px !important;
+}
+img.hm-img-bottompadding {
+/*     padding-bottom: 15px; */
+    width: 100px;
+}
+.hm-log-width {
+    width: 125px;
+    padding-left: 15px;
+    padding-top: 9px;
+}
+.hm-allimg-padding {
+    padding: 7px 0;
+}
+img.hm-brodway {
+    height: 46px;
+}
+.hm-renderingimg {
+    margin-top: 13px;
+}
+hr.hm-line-color{
+    border-color: #666666;
+    margin-top: 0;
+    margin-bottom: 52px;
+}

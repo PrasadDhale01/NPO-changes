@@ -418,7 +418,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Footer
 ------------------------- */
 footer {
-    border-top: 2px solid  #01bbd2 !important;
+/*     border-top: 2px solid  #01bbd2 !important; */
     background-color: #323232;
     padding: 30px 0 0 0;
 }
@@ -5522,7 +5522,28 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	
+	hr.hm-line-color {
+        margin-bottom: 13px;
+        margin-top: 17px;
+    }
+    span.hm-media-title h3 {
+        text-align: center;
+        font-size: 15px;    
+    }
+    div.hm-log-width {
+        padding-left: none;
+        padding-top: none;
+        width: 158px;
+        height: 54px;
+    }
+    div.hm-media-padding {
+        border-right: none;
+        height: 55px;
+        width: 100%;
+    }
+    div.hm-media-stript-width {
+        width: 320px !important;
+    }	
      .cr-padding-edit-xs {
          margin-left: 4px;
          padding-right: 9px;
@@ -7712,7 +7733,36 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-
+    hr.hm-line-color {
+        margin-bottom: 10px;
+    }
+    div.hm-allimg-padding {
+        padding: 0px 0 23px;
+    }
+    div.hm-tabs-leftsps1 {
+        margin-left: 34%;
+        padding-top: 20px;
+    }
+    div.hm-tabs-leftsps2 {
+        padding-top: 20px;
+    }
+    div.hm-log-width {
+        width: 125px;
+    }
+    span.hm-media-title h3 {
+        text-align: center;
+        font-size: 15px;
+    }
+    div.hm-media-padding {
+        border-right: none;
+        width: 100%;
+    }
+    div.hm-log-width {
+        height: 54px;
+    }
+    div.hm-media-stript-width {
+        width: 750px !important;
+    }      
     .ansText{
         width:90% !important;
         margin-top: 5px;
@@ -8929,6 +8979,33 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    div.hm-allimg-padding {
+        padding: 15px 0 30px;
+    }
+    img.hm-img-bottompadding {
+        width: 105px;
+    }
+	div.hm-tabs-leftsps1 {
+        margin-left: 34%;
+        padding-top: 20px;
+    }
+    div.hm-tabs-leftsps2 {
+        padding-top: 20px;
+    }
+    div.hm-log-width {
+        width: 166px;
+    }
+    span.hm-media-title h3 {
+        text-align: center;
+        font-size: 15px;
+    }
+    div.hm-media-padding {
+        border-right: none;
+        width: 100%;
+    }
+    div.hm-log-width {
+        height: 54px;
+    }
     .ansText{
         width:50% !important;
         margin-top: 5px;
@@ -12886,7 +12963,28 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-
+    hr.hm-line-color {
+        margin-bottom: 13px;
+        margin-top: 17px;
+    }
+    span.hm-media-title h3 {
+        text-align: center;
+        font-size: 15px;    
+    }
+    div.hm-log-width {
+        padding-left: none;
+        padding-top: none;
+        width: 158px;
+        height: 54px;
+    }
+    div.hm-media-padding {
+        border-right: none;
+        height: 55px;
+        width: 100%;
+    }
+    div.hm-media-stript-width {
+        width: 320px !important;
+    }
     input.editsweb-margin-mobile {
         height: 45px;
         width: 95% !important;

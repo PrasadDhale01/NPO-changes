@@ -333,6 +333,28 @@ textarea.textarea-embed-tile{
 #campaignthumbnails.col-sm-12 {
     padding-left: 5px;
 }
+.sh-head-fb-over:hover,
+.sh-head-fb-over:focus{
+    color: #fff;	
+}
+.show-sharetabs-header{
+    background-color: #fff !important;
+    left: 0;
+    bottom: -3%;
+    position: fixed;
+    z-index: 1000
+}
+.show-ispriview-headurl{
+    top: 5px;
+    padding: 6px;
+}
+.show-headerApproval-tooltip .popover{
+    width: 500px;
+}
+.social-header{
+    margin: 0;
+    cursor: pointer;
+}
 
 .cr-story-padding .redactor-box .redactor-editor{
     min-height: 0px;
@@ -669,4 +691,14 @@ hr.hm-line-color{
     border-color: #666666;
     margin-top: 0;
     margin-bottom: 52px;
+}
+.show-headered-without-update {
+    left: 212px;
+    padding-top: 4px;
+}
+.show-pointer-not img{
+    cursor: not-allowed !important;
+}
+.show-pointer-not{
+    cursor: not-allowed !important;
 }

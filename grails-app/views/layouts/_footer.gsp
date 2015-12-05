@@ -16,57 +16,58 @@
     <div class="footer_links">
         <%--<div class="footer-mobile-border visible-xs"></div>--%>
         <div class="container footer-container">
-        <div class="visible-xs">
-        <section class="row">  
-            <div class="col-xs-12">
-            <div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a></div>
-                <div class="crowdera-menu">
-                <div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
-                    <div class="quicklinks-menu-div">
-                    <ul class="quicklinks-menu">
-                        <li><a href="${resource(dir: '/')}">Home</a></li>
-                        <li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
-                        <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
-                        <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
-                        <li><a href="http://gocrowdera.com" target="_blank">Blog</a></li>
-                    </ul>
-                    </div>
-                </div>
-                <div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
-                    <div class="campaigning-menu-div">
-                    <ul class="campaigning-menu">
-                        <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
-                        <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
-                        <li><a href="${resource(dir: '/crowdfunding-ebook')}">Crowdfunding Ebook</a></li>
-                        <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
-                    </ul>
-                    </div>
-               </div>
-            </div>
-            </div>
-        </section>
-        <!-- ***********************************Section two************************ -->
-        <section class="row">
-            <div class="col-xs-12 footer-first-section-mobile footer-text-align">
-            <p>Hands up for a Better World. See how you can make a difference with Crowdera.</p>
-            <div class="footer-first-section-mobile footer-img-align">
-                <img src="//s3.amazonaws.com/crowdera/assets/hand-image-mobile.png" alt="Crowdera">
-                <g:link controller="project" action="create"><img src="//s3.amazonaws.com/crowdera/assets/start-a-campaign-mobile.png" alt="Crowdera"></g:link>
-            </div>
-            </div>
-        </section>          
-        <!-- ********************************Section three************************* -->
-        <section class="row">
-            <div class="col-xs-12 footer-mid-section footer-p-text-align">
-            <br>
-            <div class="socialicon">
-                <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
-                <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>
-                <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
-                <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
-                <a href="https://instagram.com/gocrowdera"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
-            </div>
-            <br>
+	    <div class="visible-xs show-mobilejs">
+		<section class="row">  
+	 	    <div class="col-xs-12">
+			<div class="crowdera-title"><a href="${resource(dir: '/')}"><img src="//s3.amazonaws.com/crowdera/assets/Crowdera-logo.png" alt="Crowdera"></a></div>
+		 	    <div class="crowdera-menu">
+				<div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
+				    <div class="quicklinks-menu-div">
+					<ul class="quicklinks-menu">
+					    <li><a href="${resource(dir: '/')}">Home</a></li>
+				 	    <li><a href="${resource(dir: '/aboutus')}">About Us</a></li>
+					    <li><a href="${resource(dir: '/campaigns')}" >Explore Campaigns</a></li>
+					    <li><a href="${resource(dir: '/customer-service')}">Contact Us</a></li>
+					    <li><a href="http://gocrowdera.com" target="_blank">Blog</a></li>
+					</ul>
+				    </div>
+				</div>
+				<div class="col-xs-6 footer-mid-section-menu-mobile footer-menu-align">
+				    <div class="campaigning-menu-div">
+					<ul class="campaigning-menu">
+					    <li><g:link controller="project" action="create">Start Your Campaign</g:link></li>
+					    <li><a href="${resource(dir: '/howitworks')}">How it works</a></li>
+						<li><a href="${resource(dir: '/crowdfunding-ebook')}">Crowdfunding Ebook</a></li>
+					    <li><a href="${resource(dir: '/faq')}">FAQ</a></li>
+					</ul>
+				    </div>
+			   </div>
+			</div>
+		    </div>
+		</section>
+		<!-- ***********************************Section two************************ -->
+		<section class="row">
+		    <div class="col-xs-12 footer-first-section-mobile footer-text-align">
+			<p>Hands up for a Better World. See how you can make a difference with Crowdera.</p>
+		 	<div class="footer-first-section-mobile footer-img-align">
+			    <img src="//s3.amazonaws.com/crowdera/assets/hand-image-mobile.png" alt="Crowdera">
+			    <g:link controller="project" action="create"><img src="//s3.amazonaws.com/crowdera/assets/start-a-campaign-mobile.png" alt="Crowdera"></g:link>
+			</div>
+		    </div>
+		</section>      	
+		<!-- ********************************Section three************************* -->
+		<section class="row">
+		    <div class="col-xs-12 footer-mid-section footer-p-text-align">
+			<br>
+			<div class="socialicon">
+			    <a href="http://gocrowdera.com"  target="_blank"><img class="blogsocialicon" src="//s3.amazonaws.com/crowdera/assets/blog-footer.png" alt="blog"></a>
+			    <a href="https://www.facebook.com/crowderainc?ref=hl"  target="_blank"><img class="facebooklink" src="//s3.amazonaws.com/crowdera/assets/facebook-footer.png" alt="facebook"></a>
+			    <a href="https://twitter.com/gocrowdera"  target="_blank"><img class="twittersocialicon" src="//s3.amazonaws.com/crowdera/assets/twitter-footer.png" alt="twitter"></a>
+			    <a href="https://www.linkedin.com/company/fedu"  target="_blank"><img class="linkedin-footer" src="//s3.amazonaws.com/crowdera/assets/linkedin-footer.png" alt="linkedin"></a>
+			    <a href="https://instagram.com/gocrowdera"  target="_blank"><img class="instagram-footer" src="//s3.amazonaws.com/crowdera/assets/instagram-footer.png" alt="instagram"></a>
+			</div>
+			<br>
+
             <div class="thomas-testimonial">
                 <p>"The idea of enabling non-profits to raise funds free enabled Two Cents of Hope to avoid commissions and help more students in need. 
                     I'd recommend Crowdera to every serious fundraiser." <br><br>

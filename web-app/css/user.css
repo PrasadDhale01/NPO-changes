@@ -1031,3 +1031,29 @@ div.dashboardtile-min-height {
 .promotecampaignpaginate .currentStep {
    color: black !important;
 }
+.filespaginate {
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+ 
+}
+.filespaginate a , .filespaginate .currentStep {
+    font-size: 13px;
+    text-align: center;
+    padding-left: 15px;
+    color: #31497B !important;
+    font-weight: 700 !important;
+}
+.filespaginate .currentStep {
+    color: black !important;
+}
+#promote-social-media .btn-social :first-child {
+    border-right: 0px;
+}
+#mobBtnSendinvitation.btn-primary {
+    background-color: #006083 !important;
+    border-color: #006083 !important;
+    font-size: 14px;
+    font-weight: 600;
+}

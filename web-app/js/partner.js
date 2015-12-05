@@ -157,6 +157,15 @@ $(function() {
 	    } 
     });
     
+    $("#insertfile").change(function(event) {
+        var file = this.files[0];
+        if (file.size > 0) {
+        	$('#files').find('form').submit();
+        } else {
+        	
+        }
+    });
+    
     $('#userAvatarUploadIcon').hover(function() {
         $('.partneruploadprofileimage').show();
     });
@@ -255,5 +264,10 @@ $(function() {
             }
         });
     }
+    
+    $('#partner-sec-header .span-space').click(function() {
+   	    var toptabs = $("#partner-tab-content").offset().top;
+   	    window.scrollTo(toptabs,toptabs - 170);
+    });
     
 });

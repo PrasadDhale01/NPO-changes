@@ -51,6 +51,26 @@
 				    </div>
 				</div>
 				</g:each>
+	   <div class="clear"></div>
+				<div class="validatecampaignpaginate">
+				    <g:paginate controller="user" max="6" action="validatecampaigns" total="${totalprojects.size()}" params="['partnerId':partnerId]"/>
+				</div>
+				<script>
+				    $("#validatecampaignpaginate").find('.validatecampaignpaginate a').click(function(event) {
+				        event.preventDefault();
+				        var url = $(this).attr('href');
+				        var grid = $(this).parents('#validatecampaignpaginate');
+				
+				        $.ajax({
+				            type: 'GET',
+				            url: url,
+				            success: function(data) {
+				                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+				            }
+				        });
+				    });
+				    
+				</script>
 </g:if>
 <g:else>
    <div class="col-sm-12">
@@ -59,24 +79,3 @@
        </div>
    </div>
 </g:else>
-
-<div class="clear"></div>
-<div class="validatecampaignpaginate">
-    <g:paginate controller="user" max="6" action="validatecampaigns" total="${totalprojects.size()}" params="['partnerId':partnerId]"/>
-</div>
-<script>
-    $("#validatecampaignpaginate").find('.validatecampaignpaginate a').click(function(event) {
-        event.preventDefault();
-        var url = $(this).attr('href');
-        var grid = $(this).parents('#validatecampaignpaginate');
-
-        $.ajax({
-            type: 'GET',
-            url: url,
-            success: function(data) {
-                $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
-            }
-        });
-    });
-    
-</script>

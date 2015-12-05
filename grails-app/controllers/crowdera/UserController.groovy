@@ -12,6 +12,7 @@ class UserController {
     def contributionService
     def rewardService
     def roleService
+    
 
     @Secured(['ROLE_ADMIN'])
     def admindashboard() {
@@ -530,7 +531,6 @@ class UserController {
         
         if (partner) {
             User user = partner.user
-//            def projects = projectService.getNonValidatedProjectsForPartner(user, partner, params)
             def projectObj = projectService.getValidatedProjectsForPartner(user, partner, params)
             def fundRaised = projectService.getTotalFundRaisedByUser(projectObj.totalprojects)
             def numberOfInvites = userService.getTotalNumberOfInvites(partner)
@@ -563,6 +563,7 @@ class UserController {
         }
     }
     
+    @Secured(['IS_AUTHENTICATED_FULLY'])
     def promotecampaigns() {
         Partner partner = userService.getPartnerById(params.int('partnerId'))
         if (partner) {

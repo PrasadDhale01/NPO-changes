@@ -9358,7 +9358,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 				}
 				#partner-sec-header.navbar-default {
 				    background-color: #01BBD2;
-				    z-index: 51;
+				    z-index: 52;
+				    box-shadow: none;
 				}
 				#partner-sec-header .navbar-header .span-space{
 				    color: white;
@@ -9382,15 +9383,51 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     #partner-sec-header .navbar-header .glyphicon {
         margin-right: 5px;
     }
+    #partner-sec-header.navbar {
+        margin-bottom: 0;
+    }
+    #partner-third-header {
+        top: 90px;
+    }
+    #partner-third-header.navbar-default {
+        background-color: white;
+        z-index: 51;
+        text-align: center;
+    }
+    #partner-third-header .navbar-header .span-space{
+        color: #6D6E6E;
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    #partner-third-header .header-text{
+        font-size: 13px;
+        font-weight: 500;
+    }
+    #partner-third-header .navbar-header {
+        width: 320px;
+    }
+    #partner-third-header .navbar-header { 
+        margin-top: 16px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #partner-third-header .navbar-header .glyphicon {
+        margin-right: 5px;
+    }
+    #partner-third-header.navbar {
+        margin-bottom: 0;
+    }
+    #partner-tab-content {
+        margin-top: 30px;
+    }
     .partner-dashboard .green-heading {
         font-size: 18px;
     }
     .userInfoUpdateBtn.col-md-12 {
         padding-left: 15px;
         padding-right: 15px;
-    }
-    #partner-sec-header.navbar {
-        margin-bottom: 0;
     }
 	.feduoutercontent {
 	   margin-top: 120px;
@@ -12883,6 +12920,9 @@ textarea.textarea-embed-video {
         color: white;
         padding-left: 18px;
         padding-right: 18px;
+    }
+    #partner-third-header {
+        top: 100px;
     }
     .pd-container-width.col-xs-12 {
         padding-left: 0px;

@@ -2,6 +2,7 @@
 <g:set var="contributionService" bean="contributionService"/>
 <g:set var="userService" bean="userService"/>
 <r:require module="bootstrapsocialcss"/>
+<r:require module="partnerjs"/>
 <div class="col-xs-12" id="promote-social-media">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
         <span class="btn btn-block btn-social social-button btn-facebook" id="fbshare"><i class="fa fa-facebook"></i></span>

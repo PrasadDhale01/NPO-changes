@@ -80,7 +80,7 @@
                         <g:select class="selectpicker" name="state" id="state" from="${state}" value="${user.state}" optionKey="key" optionValue="value"/>
                     </g:if>
                     <g:else>
-                        <g:select class="selectpicker" id="state" name="state" from="${state}" optionKey="key" optionValue="value" noSelection="['null':'City']"/>
+                        <g:select class="selectpicker" id="state" name="state" from="${state}" optionKey="key" optionValue="value" noSelection="['null':'State']"/>
                     </g:else>
                 </div>
             </div>

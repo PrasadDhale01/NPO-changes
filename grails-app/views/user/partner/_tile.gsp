@@ -4,6 +4,7 @@
 <% 
     def partnerId = partner.id
 %>
+<g:if test="${userCampaigns.size() > 0}">
 <g:each in="${userCampaigns}" var="campaign">
     <% 
         def isFundingOpen = projectService.isFundingOpen(campaign)
@@ -97,3 +98,11 @@
         });
     });
 </script>
+</g:if>
+<g:else>
+    <div class="col-sm-12">
+        <div class="alert alert-info">
+            You haven't created any campaigns yet. You can create one <g:link controller="project" action="create">here</g:link>.
+        </div>
+    </div>
+</g:else>

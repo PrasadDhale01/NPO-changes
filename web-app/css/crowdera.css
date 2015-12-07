@@ -4015,16 +4015,24 @@ label.text-color {
 	padding-left: 220px;
 }
 .cr-start-dropdown-category.btn-group.bootstrap-select{
-	margin-left: 11px;
-    width: 193px !important;
+	margin-left: 6px;
+    width: 195px !important;
 }
 .cr-start-dropdown-country.btn-group.bootstrap-select{
-	margin-left: 11px;
-    width: 192px !important;
+	margin-left: 8px;
+    width: 194px !important;
 }
 .cr-start-dropdown-payment.btn-group.bootstrap-select{
 	margin-left: 11px;
     width: 196px !important;
+}
+.cr2-funds-drop.btn-group.bootstrap-select{
+    margin-left: 11px;
+    width: 195px !important;    
+}
+.cr2-edit-funds.btn-group.bootstrap-select{
+    margin-left: 11px;
+    width: 191px !important;
 }
 .cr-start-flex{
 	display:flex;
@@ -5328,10 +5336,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	color: white !important;
 }
 
-.campaignTitle {
-	margin-top: 6px;
-	margin-bottom: 8px;
-}
+/* .campaignTitle { */
+/* 	margin-top: 6px; */
+/* 	margin-bottom: 8px; */
+/* } */
 .campaignTitle a {
     color: #000 !important;
     font-size: 30px;
@@ -5522,6 +5530,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	div.cr1-width-inputs{
+        width: 105.2%;
+    }
+	label.cr1-myplane-padding {
+        left: 0;
+    }
 	hr.hm-line-color {
         margin-bottom: 13px;
         margin-top: 17px;
@@ -5650,17 +5664,19 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 85% !important;
     }
     button.cr1-indx1-bg-create-btn {
-        height: 61px;
-        width: 239px;
-        font-size: 24px;
+        height: 45px;
+        width: 157px;
+        font-size: 15px;
         margin-left: 5px;
+        padding-top: 10px;
     }
     button.cr1-indx1-bg-create-btn:hover,
     button.cr1-indx1-bg-create-btn:focus{
-        height: 61px;
-        width: 239px;
-        font-size: 24px;
+        height: 45px;
+        width: 157px;
+        font-size: 15px;
         margin-left: 5px;
+        padding-top: 10px;
     }
     div.cr1-descriptions-indx1{
          width: 96%;
@@ -6548,6 +6564,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-left: 0;
     }
 	div.cr-start-dropdown-payment.btn-group.bootstrap-select{
+        width: 200px !important;
+    }
+    div.cr2-funds-drop.btn-group.bootstrap-select {
+        margin-left: 8px;
+        width: 200px !important;
+    }
+    div.cr2-edit-funds.btn-group.bootstrap-select {
         width: 200px !important;
     }
 	.info-banner{
@@ -7794,6 +7817,26 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.cr2-width-city .help-block {
+        margin-left: -15px;
+    }
+    label.cr1-myplane-padding {
+        left: 2px;
+    }
+    input.cr1-paddings-lft {
+        margin-left: 8px;
+        width: 0;
+    }
+    div.cr1-url-lft {
+        padding-left: 15px !important;
+    }
+    label.cr1-tabs-padding {
+        padding-left: 25px;
+    }
+    input.campaignTitle {
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
     hr.hm-line-color {
         margin-bottom: 10px;
     }
@@ -7967,7 +8010,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
         padding-left: 15px !important;
-        padding-right: 10px !important;
+        padding-right: 0px !important;
     }
     img.cr1-amountInfo-img{
         margin-left: -1px;
@@ -7977,7 +8020,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-weight: 900;
     }
     input.cr1-vanitypadding-in-co {
-        width: 150% !important;
+        width: 147% !important;
     }
 
     div.abt-img-icons-mobile {
@@ -8629,12 +8672,20 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
          width: 135px !important;
     }
     div.cr-start-dropdown-country.btn-group.bootstrap-select{
-        right: 11px !important;
-        width: 135px !important;
+        right: 12px !important;
+        width: 139px !important;
     }
     div.cr-start-dropdown-payment.btn-group.bootstrap-select{
          right: 16px !important;
          width: 143px !important;
+    }
+    div.cr2-funds-drop.btn-group.bootstrap-select {
+        margin-left: -1px;
+        width: 138px !important;
+    }
+    div.cr2-edit-funds.btn-group.bootstrap-select {
+        margin-left: -1px;
+        width: 137px !important;
     }
 	.cr-paypal-image {
         padding-left: 112px !important;
@@ -9105,21 +9156,41 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	div.cr2-width-city .help-block {
+        margin-left: -15px;
+    }
+	label.cr1-myplane-padding {
+        left: 2px;
+    }
+    input.cr1-paddings-lft {
+        margin-left: 8px;
+        width: 142% !important;
+    }
+    div.cr1-url-lft {
+        padding-left: 15px !important;
+    }
+    label.cr1-tabs-padding {
+        padding-left: 25px;
+    }
+    input.campaignTitle {
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
     div.hm-allimg-padding {
         padding: 15px 0 30px;
     }
     img.hm-img-bottompadding {
         width: 105px;
     }
-	div.hm-tabs-leftsps1 {
-        margin-left: 34%;
-        padding-top: 20px;
-    }
+/* 	div.hm-tabs-leftsps1 { */
+/*         margin-left: 34%; */
+/*         padding-top: 20px; */
+/*     } */
     div.hm-tabs-leftsps2 {
         padding-top: 20px;
     }
     div.hm-log-width {
-        width: 166px;
+        width: 124px;
     }
     span.hm-media-title h3 {
         text-align: center;
@@ -9165,7 +9236,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.createDescDiv.has-error .col-sm-12.col-sm-12.cr1-descriptions-indx1 {
         padding-left: 15px !important;
-        padding-right: 10px !important;
+        padding-right: 0px !important;
     }
     div.abt-billy-postion{
         left: 11px;
@@ -9265,11 +9336,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    right: 10%;
 	}
 	div.cr-start-dropdown-country.btn-group.bootstrap-select{
-	     right: 14px;
+	     right: 16px;
 	}
 	div.cr-start-dropdown-payment.btn-group.bootstrap-select{
 	    right: 12px;
 	}
+    div.cr2-funds-drop.btn-group.bootstrap-select {
+        margin-left: -1px;
+        width: 194px !important;
+    }
+    div.cr2-edit-funds.btn-group.bootstrap-select {
+        margin-left: -1px;
+    }
 	.cr-paypal-image {
         padding-left: 209px;
         padding-right: 28px;
@@ -13160,6 +13238,12 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.cr1-width-inputs{
+        width: 105.2%;
+    }
+    label.cr1-myplane-padding {
+        left: 0;
+    }
     hr.hm-line-color {
         margin-bottom: 13px;
         margin-top: 17px;
@@ -13265,17 +13349,19 @@ textarea.textarea-embed-video {
         width: 85% !important;
     }
     button.cr1-indx1-bg-create-btn {
-        height: 61px;
-        width: 239px;
-        font-size: 24px;
+        height: 45px;
+        width: 157px;
+        font-size: 15px;
         margin-left: 5px;
+        padding-top: 10px;
     }
     button.cr1-indx1-bg-create-btn:hover,
     button.cr1-indx1-bg-create-btn:focus{
-        height: 61px;
-        width: 239px;
-        font-size: 24px;
+        height: 45px;
+        width: 157px;
+        font-size: 15px;
         margin-left: 5px;
+        padding-top: 10px;
     }
     div.cr1-descriptions-indx1{
          width: 96%;
@@ -14069,6 +14155,13 @@ textarea.textarea-embed-video {
 	    margin-left: 65px;
 	}
 	div.cr-start-dropdown-payment.btn-group.bootstrap-select{
+        width: 200px !important;
+    }
+    div.cr2-funds-drop.btn-group.bootstrap-select {
+        margin-left: 8px;
+        width: 200px !important;
+    }
+    div.cr2-edit-funds.btn-group.bootstrap-select {
         width: 200px !important;
     }
 	div.edt-mobile-reso{
@@ -15682,6 +15775,9 @@ span.abt-founderCo{
     padding-left: 0px;
     margin-bottom: 0px;
 }
+.cr1-width-inputs{
+    width: 103%;
+}
 .cr-index1-padding{
     padding-right: 0px;
 }
@@ -15826,6 +15922,9 @@ img.home-pg-icons{
 }
 .cr2-width-dropdown3{
 	width: 210px;
+}
+.cr2-width-city .help-block {
+    margin-left: 0;
 }
 .cr2-width-dropdown4{
     width: 184px;

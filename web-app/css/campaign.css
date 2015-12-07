@@ -682,10 +682,15 @@ img.hm-img-bottompadding {
     padding: 7px 0;
 }
 img.hm-brodway {
-    height: 46px;
+    height: 34px;
+    margin-top: 9px;
+}
+img.hm-readio-mirchi {
+    height: 35px;
+    margin-top: 10px;
 }
 .hm-renderingimg {
-    margin-top: 13px;
+/*     margin-top: 13px; */
 }
 hr.hm-line-color{
     border-color: #666666;
@@ -701,4 +706,23 @@ hr.hm-line-color{
 }
 .show-pointer-not{
     cursor: not-allowed !important;
+}
+.cr1-myplane-padding {
+    left: -13px;
+}
+.cr1-paddings-lft {
+    margin-left: 15px;
+    width: 146% !important;
+}
+.cr1-url-lft {
+    padding-left: 25px !important;
+}
+.cr2-text-city {
+    font-weight: 900;
+    text-align: center;
+}
+img.hm-height-width {
+    height: 39px;
+    width: 94px;
+    margin-top: 2px;
 }

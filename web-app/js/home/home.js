@@ -137,44 +137,44 @@ $(function() {
 });
 
 $('.hm-js-hover1').hover(function(){
- 	$('.hm-media-1').attr('src',"//s3.amazonaws.com/crowdera/assets/times-of-india--colour2.png");
+ 	$('.hm-media-1').attr('src',"//s3.amazonaws.com/crowdera/assets/times-of-india-colour-samll-2.png");
  	}).mouseleave(function(){
-     $('.hm-media-1').attr('src',"//s3.amazonaws.com/crowdera/assets/times-of-india--white1.png");
+     $('.hm-media-1').attr('src',"//s3.amazonaws.com/crowdera/assets/times-of-india-white-samll-1.png");
 });
 $('.hm-js-hover2').hover(function(){
- 	$('.hm-media-2').attr('src',"//s3.amazonaws.com/crowdera/assets/the-hitavada-colour2.png");
+ 	$('.hm-media-2').attr('src',"//s3.amazonaws.com/crowdera/assets/the-hitavada-colour-samll-2.png");
  	}).mouseleave(function(){
-     $('.hm-media-2').attr('src',"//s3.amazonaws.com/crowdera/assets/the-hitavada-white1.png");
+     $('.hm-media-2').attr('src',"//s3.amazonaws.com/crowdera/assets/the-hitavada-white-samll-1.png");
 });
 $('.hm-js-hover3').hover(function(){
- 	$('.hm-media-3').attr('src',"//s3.amazonaws.com/crowdera/assets/yahoo-finance-colour2.png");
+ 	$('.hm-media-3').attr('src',"//s3.amazonaws.com/crowdera/assets/yahoo-finance-colour-samll-2.png");
  	}).mouseleave(function(){
-     $('.hm-media-3').attr('src',"//s3.amazonaws.com/crowdera/assets/yahoo-finance-white1.png");
+     $('.hm-media-3').attr('src',"//s3.amazonaws.com/crowdera/assets/yahoo-finance-white-samll-1.png");
 });
 $('.hm-js-hover4').hover(function(){
- 	$('.hm-media-4').attr('src',"//s3.amazonaws.com/crowdera/assets/crowdfund-insider-colour2.png");
+ 	$('.hm-media-4').attr('src',"//s3.amazonaws.com/crowdera/assets/crowdfund-insider-colour-samll-2.png");
  	}).mouseleave(function(){
-     $('.hm-media-4').attr('src',"//s3.amazonaws.com/crowdera/assets/crowdfund-insider-white1.png");
+     $('.hm-media-4').attr('src',"//s3.amazonaws.com/crowdera/assets/crowdfund-insider-white-samll-1.png");
 });
 $('.hm-js-hover5').hover(function(){
- 	$('.hm-media-5').attr('src',"//s3.amazonaws.com/crowdera/assets/broadway-colour2.png");
+ 	$('.hm-media-5').attr('src',"//s3.amazonaws.com/crowdera/assets/broadway-colour-samll-2.png");
  	}).mouseleave(function(){
-     $('.hm-media-5').attr('src',"//s3.amazonaws.com/crowdera/assets/broadway-white1.png");
+     $('.hm-media-5').attr('src',"//s3.amazonaws.com/crowdera/assets/broadway-white-samll-1.png");
 });
 $('.hm-js-hover6').hover(function(){
- 	$('.hm-media-6').attr('src',"//s3.amazonaws.com/crowdera/assets/crowdfund-beat-colour2.png");
+ 	$('.hm-media-6').attr('src',"//s3.amazonaws.com/crowdera/assets/crowdfund-beat-colour-samll-2.png");
  	}).mouseleave(function(){
-     $('.hm-media-6').attr('src',"//s3.amazonaws.com/crowdera/assets/crowdfund-beat-white1.png");
+     $('.hm-media-6').attr('src',"//s3.amazonaws.com/crowdera/assets/crowdfund-beat-white-samll-1.png");
 });
 $('.hm-js-hover7').hover(function(){
- 	$('.hm-media-7').attr('src',"//s3.amazonaws.com/crowdera/assets/midday-colour-2.png");
+ 	$('.hm-media-7').attr('src',"//s3.amazonaws.com/crowdera/assets/midday-colour-samll-2.png");
  	}).mouseleave(function(){
-     $('.hm-media-7').attr('src',"//s3.amazonaws.com/crowdera/assets/midday-white-1.png");
+     $('.hm-media-7').attr('src',"//s3.amazonaws.com/crowdera/assets/midday-white-samll-1.png");
 });
 $('.hm-js-hover8').hover(function(){
- 	$('.hm-media-8').attr('src',"//s3.amazonaws.com/crowdera/assets/radio-mirchi-colour2.png");
+ 	$('.hm-media-8').attr('src',"//s3.amazonaws.com/crowdera/assets/radio-mirchi-colour-samll-2.png");
  	}).mouseleave(function(){
-     $('.hm-media-8').attr('src',"//s3.amazonaws.com/crowdera/assets/radio-mirchi-white1.png");
+     $('.hm-media-8').attr('src',"//s3.amazonaws.com/crowdera/assets/radio-mirchi-white-samll-1.png");
 });
 
 $(window).load(function() {

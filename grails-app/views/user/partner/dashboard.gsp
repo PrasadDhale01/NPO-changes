@@ -16,6 +16,9 @@
         <g:hiddenField name="partnerId" id="partnerId" value="${partnerId}"></g:hiddenField>
         <g:hiddenField name="baseUrl" value="${baseUrl}" id="baseUrl"></g:hiddenField>
         <g:hiddenField name="userId" value="${userId}"></g:hiddenField>
+        <g:hiddenField name="clientId" value="${grailsApplication.config.crowdera.Client_Id}"></g:hiddenField>
+        <g:hiddenField name="apikey" value="${grailsApplication.config.crowdera.api_key}"></g:hiddenField>
+        <g:hiddenField name="alphanumericId" value="${grailsApplication.config.crowdera.Client_Id_alphanumeric}"></g:hiddenField>
         
         <div class="navbar navbar-default navbar-fixed-top visible-xs" id="partner-sec-header">
             <div class="navbar-header">
@@ -90,7 +93,7 @@
                         <a href="${resource(dir: '/campaign/create')}" class="active">Create Campaign</a>
                     </li>
                     <li>
-                        <a href="#userInfo" data-toggle="tab">Manage User</a>
+                        <a href="#userInfo" data-toggle="tab">Manage Profile</a>
                     </li>
                     <li class="active">
                         <a href="#myCampaigns" data-toggle="tab"> My Campaigns</a>
@@ -107,7 +110,7 @@
                     <li class="hidden">
                         <a href="#inbox" data-toggle="tab">INBOX</a>
                     </li>
-                    <li class="hidden">
+                    <li>
                         <a href="#files" data-toggle="tab">Manage Google Drive</a>
                     </li>
                     <li class="hidden">
@@ -122,55 +125,23 @@
         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 pd-container-width">
             <div class="pd-container">
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 hidden-xs">
-                    <div class="panel panel-success">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-2">
-                                    <i class="fa fa-user fa-2x"></i>
-                                </div>
-                                <div class="col-xs-10 text-right">
-                                    <p class="announcement-heading">
-                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="panel panel-info">
                         <div class="panel-footer announcement-bottom">
-                            Amount Raised
+                            Raised <b><g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}</b>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 hidden-xs">
                     <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-2">
-                                    <i class="fa fa-leaf fa-2x"></i>
-                                </div>
-                                <div class="col-xs-10 text-right">
-                                    <p class="announcement-heading">${totalCampaigns.size()}</p>
-                                </div>
-                            </div>
-                        </div>
                         <div class="panel-footer announcement-bottom">
-                            Total # of campaigns
+                            campaigns <b>${totalCampaigns.size()}</b>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 hidden-xs hidden-sm">
-                    <div class="panel panel-warning">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-2">
-                                    <i class="fa fa-users fa-2x"></i>
-                                </div>
-                                <div class="col-xs-10 text-right">
-                                    <p class="announcement-heading">${numberOfInvites}</p>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="panel panel-info">
                         <div class="panel-footer announcement-bottom">
-                            Total # of invites
+                            invites <b>${numberOfInvites}</b>
                         </div>
                     </div>
                 </div>
@@ -252,11 +223,38 @@
                     
 <%--                    <div class="tab-pane tab-pane-active hidden-xs" id="inbox">--%>
 <%--                    </div>--%>
-                    
+                    <div class="tab-pane tab-pane-active" id="files">
+                        <div class="col-sm-12">
+                            <button type="button" class="btn btn-sm btn-primary pull-right" id="pick">Load File</button>
+                            <div id="driveFiles">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane tab-pane-active" id="docs">
+                        
+                    </div>
                 </div>
             </div>
         </div>
 <%--    End of Dashboard Container   --%>
     </div>
+    <script src="/js/filepicker.js" ></script>
+    <script>
+        function initPicker() {
+            var picker = new FilePicker({
+            apiKey: $('#apikey').val(),
+            clientId: $('#clientId').val(),
+            buttonEl: document.getElementById('pick'),
+            onSelect: function(file) {
+                    console.log(file);
+                }
+            });
+        }
+    </script>
+    <% 
+        def loadApiUrl = 'https://www.google.com/jsapi?key='+ grailsApplication.config.crowdera.api_key
+    %>
+    <script src="${loadApiUrl}"></script>
+    <script src="https://apis.google.com/js/client.js?onload=initPicker"></script>
 </body>
 </html>

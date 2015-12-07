@@ -595,4 +595,40 @@ class UserController {
         }
     }
     
+    def loadDriveFiles() {
+        User user = userService.getUserId(params.int('userId'))
+        if (user) {
+            def fileObj = userService.getDriveFiles(user, params)
+            def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            
+            def model = [files: fileObj.files, totalFiles: fileObj.totalFiles, offset: params.offset, user : user, baseUrl: baseUrl]
+            render template:'/user/partner/drivefiles', model: model
+        }
+    }
+    
+    def insertfile() {
+        User user = userService.getUserId(params.int('userId'))
+        if (user) {
+            userService.getGoogleDriveFiles(user, params.fileId, params.title, params.url)
+            def fileObj = userService.getDriveFiles(user, params)
+            def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            
+            def model = [files: fileObj.files, totalFiles: fileObj.totalFiles, offset: params.offset, user : user, baseUrl: baseUrl]
+            render template:'/user/partner/drivefiles', model: model
+        }
+    }
+    
+    def trashdrivefile() {
+        User user = userService.getUserId(params.int('userId'))
+        if (user) {
+            userService.deleteDriveFile(user, params)
+            def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            def fileObj = userService.getDriveFiles(user, params)
+            def model = [files: fileObj.files, totalFiles: fileObj.totalFiles, offset: params.offset, user : user, baseUrl: baseUrl]
+            render template:'/user/partner/drivefiles', model: model
+        }
+    }
 }

@@ -1098,6 +1098,46 @@ class UserService {
         return invites.size()
     }
     
+    def getGoogleDriveFiles(User user, def fileId, def title, def url) {
+        def driveFile = GoogleDrive.findByFileId(fileId)
+        if (driveFile) {
+            if (driveFile.title != title) {
+                driveFile.title = title
+                driveFile.save();
+            }
+        } else {
+            GoogleDrive file = new GoogleDrive (
+                alternateLink: url,
+                fileId: fileId,
+                title : title )
+            user.addToFiles(file).save(failOnError: true)
+        }
+    }
+    
+    def getDriveFiles(User user, def params) {
+        List totalFiles = user.files
+        List files = []
+        def max = Math.min(params.int('max') ?: 10, 100)
+        def offset = params.int('offset') ?: 0
+        def count = totalFiles.size()
+        def maxrange
+        if(offset+max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        files = totalFiles.subList(offset, maxrange)
+        return [totalFiles: totalFiles, files: files]
+    }
+    
+    def deleteDriveFile(User user, def params) {
+        GoogleDrive file = GoogleDrive.get(params.id)
+        if (file) {
+            user.removeFromFiles(file)
+            file.delete()
+        }
+    }
+    
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

@@ -270,4 +270,15 @@ $(function() {
    	    window.scrollTo(toptabs,toptabs - 170);
     });
     
+    var userId = $('#userId').val();
+    var driveFileGrid = $('#driveFiles');
+    var loadFilesUrl = baseUrl+'/user/loadDriveFiles?userId='+userId;
+    $.ajax({
+        type: 'GET',
+        url: loadFilesUrl,
+        success: function(data) {
+            $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+        }
+    });
+    
 });

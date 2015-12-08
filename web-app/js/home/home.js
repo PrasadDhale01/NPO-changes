@@ -137,9 +137,9 @@ $(function() {
 });
 
 $('.hm-js-hover1').hover(function(){
- 	$('.hm-media-1').attr('src',"//s3.amazonaws.com/crowdera/assets/times-of-india-colour-samll-2.png");
+ 	$('.hm-media-1').attr('src',"//s3.amazonaws.com/crowdera/assets/times-of-india-1-gray.png");
  	}).mouseleave(function(){
-     $('.hm-media-1').attr('src',"//s3.amazonaws.com/crowdera/assets/times-of-india-white-samll-1.png");
+     $('.hm-media-1').attr('src',"//s3.amazonaws.com/crowdera/assets/times-of-india-2-colour.png");
 });
 $('.hm-js-hover2').hover(function(){
  	$('.hm-media-2').attr('src',"//s3.amazonaws.com/crowdera/assets/the-hitavada-colour-samll-2.png");
@@ -157,9 +157,9 @@ $('.hm-js-hover4').hover(function(){
      $('.hm-media-4').attr('src',"//s3.amazonaws.com/crowdera/assets/crowdfund-insider-white-samll-1.png");
 });
 $('.hm-js-hover5').hover(function(){
- 	$('.hm-media-5').attr('src',"//s3.amazonaws.com/crowdera/assets/broadway-colour-samll-2.png");
+ 	$('.hm-media-5').attr('src',"//s3.amazonaws.com/crowdera/assets/broadway2-colour.png");
  	}).mouseleave(function(){
-     $('.hm-media-5').attr('src',"//s3.amazonaws.com/crowdera/assets/broadway-white-samll-1.png");
+     $('.hm-media-5').attr('src',"//s3.amazonaws.com/crowdera/assets/broadway1-gray.png");
 });
 $('.hm-js-hover6').hover(function(){
  	$('.hm-media-6').attr('src',"//s3.amazonaws.com/crowdera/assets/crowdfund-beat-colour-samll-2.png");
@@ -172,9 +172,9 @@ $('.hm-js-hover7').hover(function(){
      $('.hm-media-7').attr('src',"//s3.amazonaws.com/crowdera/assets/midday-white-samll-1.png");
 });
 $('.hm-js-hover8').hover(function(){
- 	$('.hm-media-8').attr('src',"//s3.amazonaws.com/crowdera/assets/radio-mirchi-colour-samll-2.png");
+ 	$('.hm-media-8').attr('src',"//s3.amazonaws.com/crowdera/assets/radio-mirch2-colour.png");
  	}).mouseleave(function(){
-     $('.hm-media-8').attr('src',"//s3.amazonaws.com/crowdera/assets/radio-mirchi-white-samll-1.png");
+     $('.hm-media-8').attr('src',"//s3.amazonaws.com/crowdera/assets/radio-mirch1-white.png");
 });
 
 $(window).load(function() {

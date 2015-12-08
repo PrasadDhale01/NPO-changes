@@ -674,23 +674,12 @@ img.hm-img-bottompadding {
     width: 100px;
 }
 .hm-log-width {
-    width: 125px;
-    padding-left: 15px;
+    width: 139px;
+    padding-left: 29px;
     padding-top: 9px;
 }
 .hm-allimg-padding {
     padding: 7px 0;
-}
-img.hm-brodway {
-    height: 34px;
-    margin-top: 9px;
-}
-img.hm-readio-mirchi {
-    height: 35px;
-    margin-top: 10px;
-}
-.hm-renderingimg {
-/*     margin-top: 13px; */
 }
 hr.hm-line-color{
     border-color: #666666;
@@ -725,4 +714,17 @@ img.hm-height-width {
     height: 39px;
     width: 94px;
     margin-top: 2px;
+}
+.hr-brodway-space {
+    width: 107px;
+    margin-left: -27px;
+}
+.hm-spaces {
+    margin-left: -21px;
+}
+.hm-radio-space {
+    margin-left: -36px;
+}
+.hm-toi {
+    top: -5px;
 }

@@ -5530,13 +5530,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	div.cr1-width-inputs{
+    div.cr1-width-inputs{
         width: 105.2%;
     }
-	label.cr1-myplane-padding {
+    label.cr1-myplane-padding {
         left: 0;
     }
-	hr.hm-line-color {
+    hr.hm-line-color {
         margin-bottom: 13px;
         margin-top: 17px;
     }
@@ -7851,9 +7851,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.hm-tabs-leftsps2 {
         padding-top: 20px;
     }
-/*     div.hm-log-width { */
-/*         width: 125px; */
-/*     } */
     span.hm-media-title h3 {
         text-align: center;
         font-size: 15px;
@@ -9165,10 +9162,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
-	div.cr2-width-city .help-block {
+    div.cr2-width-city .help-block {
         margin-left: -15px;
     }
-	label.cr1-myplane-padding {
+    label.cr1-myplane-padding {
         left: 2px;
     }
     input.cr1-paddings-lft {
@@ -9185,19 +9182,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 0px;
         margin-top: 0px;
     }
-/*     div.hm-allimg-padding { */
-/*         padding: 15px 0 30px; */
-/*     } */
     img.hm-img-bottompadding {
         width: 105px;
     }
-/* 	div.hm-tabs-leftsps1 { */
-/*         margin-left: 34%; */
-/*         padding-top: 20px; */
-/*     } */
-/*     div.hm-log-width { */
-/*         width: 124px; */
-/*     } */
     span.hm-media-title h3 {
         text-align: center;
         font-size: 15px;

@@ -110,7 +110,12 @@ class UserController {
             def contributedAmount = projectService.getContributedAmount(contribution.contributions)
             def fundRaised = projectService.getTotalFundRaisedByUser(projects)
             def country = projectService.getCountry()
-            def state = projectService.getState()
+            def state
+            if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+                state = projectService.getIndianState()
+            } else {
+                state = projectService.getState()
+            }
             def multiplier = projectService.getCurrencyConverter();
             def countryOpts = [India: 'INDIA', USA: 'USA']
             
@@ -520,7 +525,7 @@ class UserController {
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def partnerdashboard() {
-        def currentEnv = Environment.current.getName()
+        def currentEnv = projectService.getCurrentEnvironment()
         def currentUser = userService.getCurrentUser()
         Partner partner
         if (params.id) {
@@ -536,7 +541,15 @@ class UserController {
             def userCampaign = projectService.getPartnerCampaigns(user, params)
             def fundRaised = projectService.getTotalFundRaisedByUser(userCampaign.campaigns)
             def country = projectService.getCountry()
-            def state = projectService.getState()
+            def state
+            if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                state = projectService.getIndianState()
+            } else {
+                state = projectService.getState()
+            }
+            
+            def isAdmin = userService.isAdmin()
+            def conversionMultiplier = projectService.getCurrencyConverter();
             
             def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
             def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
@@ -549,7 +562,7 @@ class UserController {
             
             render view:'/user/partner/dashboard', model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl, currentEnv: currentEnv,
                                                          fundRaised: fundRaised, numberOfInvites: numberOfInvites, userCampaigns: userCampaign.projects, totalUserCampaigns: userCampaign.totalprojects,
-                                                         country: country, state: state, partner: partner]
+                                                         country: country, state: state, partner: partner, isAdmin: isAdmin, conversionMultiplier: conversionMultiplier]
         }
     }
     
@@ -558,7 +571,10 @@ class UserController {
         if (partner) {
             User user = partner.user
             def projectObj = projectService.getPartnerCampaigns(user, params)
-            def model = [userCampaigns: projectObj.projects, totalUserCampaigns: projectObj.totalprojects, partner: partner, user: user]
+            def conversionMultiplier = projectService.getCurrencyConverter();
+            def currentEnv = projectService.getCurrentEnvironment()
+            
+            def model = [userCampaigns: projectObj.projects, totalUserCampaigns: projectObj.totalprojects, partner: partner, user: user, conversionMultiplier: conversionMultiplier, currentEnv: currentEnv]
             render template:"/user/partner/tile", model: model
         }
     }

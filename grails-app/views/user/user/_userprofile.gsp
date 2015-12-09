@@ -94,8 +94,10 @@
             </div>
         </div>
         <div class="clear"></div>
-        <div class="col-md-12 userInfoUpdateBtn">
-            <button class="btn btn-primary btn-md pull-right" type="submit" id="userInfoUpdateBtn">Update</button>
-        </div>
+        <g:if test="${!isAdmin}">
+            <div class="col-md-12 userInfoUpdateBtn">
+                <button class="btn btn-primary btn-md pull-right" type="submit" id="userInfoUpdateBtn">Update</button>
+            </div>
+        </g:if>
     </g:form>
 </div>

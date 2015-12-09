@@ -3990,11 +3990,12 @@ class ProjectService {
     }
     
     def getPartnerCampaigns(User user, def params) {
+        def environment = getCurrentEnvironment();
         List projects = []
-        def campaigns = getAllProjectByUser(user)
+        def campaigns = getAllProjectByUser(user, environment)
         def projectAdmins = getProjectAdminEmail(user)
         def teams = getTeamByUserAndEnable(user, true)
-        def totalprojects = getProjects(campaigns, projectAdmins, teams)
+        def totalprojects = getProjects(campaigns, projectAdmins, teams, environment)
         
         def max = Math.min(params.int('max') ?: 6, 100)
         def offset = params.int('offset') ? params.int('offset') : 0

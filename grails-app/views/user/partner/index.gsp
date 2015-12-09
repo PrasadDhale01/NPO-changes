@@ -14,12 +14,12 @@
         </div>
         <div class="clear"></div>
         <g:if test="${flash.alreadyExistMsg}">
-            <div class="col-md-12">
+            <div class="col-md-12 text-center">
                 <div class="alert alert-info">${flash.alreadyExistMsg}</div>
             </div>
         </g:if>
         <g:elseif test="${flash.invitesuccessmsg}">
-            <div class="col-md-12">
+            <div class="col-md-12 text-center">
                 <div class="alert alert-success">${flash.invitesuccessmsg}</div>
             </div>
         </g:elseif>

@@ -27,7 +27,7 @@
                 <span class="span-space"><a href="#validate" data-toggle="tab"><span class="glyphicon glyphicon-ok"></span>Validate</a></span>
                 <span class="span-space"><a href="#invite" data-toggle="tab"><span class="glyphicon glyphicon-envelope"></span>Invite </a></span>
                 <span class="span-space"><a href="#promote" data-toggle="tab">Promote</a></span>
-                <span class="span-space"><a href="#inbox" data-toggle="tab"><span class="glyphicon glyphicon-inbox"></span>Inbox</a></span>
+                <span class="span-space"><a href="#files" data-toggle="tab"><span class="glyphicon glyphicon-inbox"></span>Drive</a></span>
             </div>
         </div>
         <div class="navbar navbar-default navbar-fixed-top visible-xs" id="partner-third-header">
@@ -45,9 +45,11 @@
                             <span id="partnerprofileavatar">
                                 <img src="${user.userImageUrl}" alt="avatar">
                             </span>
-                            <div class="partnerprofileeditimage">
-                                <img src="//s3.amazonaws.com/crowdera/assets/userprofileedit.png" alt="edit icon">
-                            </div>
+                            <g:if test="${!isAdmin}">
+                                <div class="partnerprofileeditimage">
+                                    <img src="//s3.amazonaws.com/crowdera/assets/userprofileedit.png" alt="edit icon">
+                                </div>
+                            </g:if>
                         </div>
                         <g:uploadForm controller="user" action="edit_avatar" id="${user.id}">
                             <button class="btn btn-primary btn-sm hidden" type="button" id="editavatarbutton">Edit Avatar</button>
@@ -65,9 +67,11 @@
                             <span id="useravatar">
                                 <img class="partnerdummyprofileimage" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg" alt="' '">
                             </span>
-                            <div class="partneruploadprofileimage">
-                                <img class="plus-icon-over" src="https://s3.amazonaws.com/crowdera/assets/plus-icon-over.png" alt="avatar">
-                            </div>
+                            <g:if test="${!isAdmin}">
+                                <div class="partneruploadprofileimage">
+                                    <img class="plus-icon-over" src="https://s3.amazonaws.com/crowdera/assets/plus-icon-over.png" alt="avatar">
+                                </div>
+                            </g:if>
                         </div>
                         <g:uploadForm controller="user" action="upload_avatar" id="${user.id}">
                             <input class="hid-input-type-file hidden" type="file" name="avatar" id="avatar" accept="image/*"/>
@@ -89,9 +93,11 @@
                 </div>
                 
                 <ul id="side-menu">
-                    <li>
-                        <a href="${resource(dir: '/campaign/create')}" class="active">Create Campaign</a>
-                    </li>
+                    <g:if test="${!isAdmin}">
+                        <li>
+                            <a href="${resource(dir: '/campaign/create')}" class="active">Create Campaign</a>
+                        </li>
+                    </g:if>
                     <li>
                         <a href="#userInfo" data-toggle="tab">Manage Profile</a>
                     </li>
@@ -124,24 +130,24 @@
 
         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-12 pd-container-width">
             <div class="pd-container">
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 hidden-xs">
+                <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs partner-stats">
                     <div class="panel panel-info">
                         <div class="panel-footer announcement-bottom">
                             Raised <b><g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}</b>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 hidden-xs">
+                <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs partner-stats">
                     <div class="panel panel-info">
                         <div class="panel-footer announcement-bottom">
-                            campaigns <b>${totalUserCampaigns.size()}</b>
+                            Campaigns <b>${totalUserCampaigns.size()}</b>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 hidden-xs hidden-sm">
+                <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs partner-stats">
                     <div class="panel panel-info">
                         <div class="panel-footer announcement-bottom">
-                            invites <b>${numberOfInvites}</b>
+                            Invites <b>${numberOfInvites}</b>
                         </div>
                     </div>
                 </div>
@@ -196,8 +202,10 @@
                                     <label><b>Message (Optional)</b></label>
                                     <textarea class="form-control all-place" name="message" rows="4" placeholder="Message"></textarea>
                                 </div>
-                                <button type="submit" class="btn btn-primary pull-right hidden-xs" id="btnSendinvitation">Invite</button>
-                                <button type="submit" class="btn btn-block btn-sm btn-primary visible-xs" id="mobBtnSendinvitation">Invite</button>
+                                <g:if test="${!isAdmin}">
+                                    <button type="submit" class="btn btn-primary pull-right hidden-xs" id="btnSendinvitation">Invite</button>
+                                    <button type="submit" class="btn btn-block btn-sm btn-primary visible-xs" id="mobBtnSendinvitation">Invite</button>
+                                </g:if>
                             </g:form>
                         </div>
                     </div>
@@ -225,7 +233,9 @@
 <%--                    </div>--%>
                     <div class="tab-pane tab-pane-active" id="files">
                         <div class="col-sm-12">
-                            <button type="button" class="btn btn-sm btn-primary pull-right" id="pick">Load File</button>
+                            <g:if test="${!isAdmin}">
+                                <button type="button" class="btn btn-sm btn-primary pull-right" id="pick">Load File</button>
+                            </g:if>
                             <div id="driveFiles">
                             </div>
                         </div>

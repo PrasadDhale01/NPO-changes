@@ -1,33 +1,33 @@
 $(function() {
 	
-	var baseUrl = $('#baseUrl').val();
+    var baseUrl = $('#baseUrl').val();
 	
     function getSelectedCampaignUrl() {
         return $('#promote-campaigns').find('.list-group-item.active').data('campaignurl');
     }
     
     function getSelectedCampaignTwitterUrl() {
-    	return $('#promote-campaigns').find('.list-group-item.active').attr('id');
+        return $('#promote-campaigns').find('.list-group-item.active').attr('id');
     }
     
-	$('#promote-campaigns').find('.list-group-item').click(function() {
+    $('#promote-campaigns').find('.list-group-item').click(function() {
         $('#promote-campaigns').find('div.list-group-item').removeClass('active');
         $(this).addClass('active');
     });
 	
-	$('#side-menu').find('.li').click(function() {
-		$('#side-menu').find('.li').removeClass('active');
+    $('#side-menu').find('.li').click(function() {
+        $('#side-menu').find('.li').removeClass('active');
         $(this).addClass('active');
     });
-	$('#partner-sec-header').find('span').click(function() {
-		$('#partner-sec-header').find('span').removeClass('active');
+    $('#partner-sec-header').find('span').click(function() {
+        $('#partner-sec-header').find('span').removeClass('active');
         $(this).addClass('active');
     });
-	
-	$('.partner-confirmation').fadeOut(30000);
-	$('.success-message').fadeOut(5000);
-	
-	$('.selectpicker').selectpicker({
+
+    $('.partner-confirmation').fadeOut(30000);
+    $('.success-message').fadeOut(5000);
+
+    $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
     });
     
@@ -42,32 +42,32 @@ $(function() {
         }
     });
 	
-	var currentEnv = $('#currentEnv').val();
-	
+    var currentEnv = $('#currentEnv').val();
+
     $('#invitePartnerModal').find('form').validate({
-    	rules: {
-    		email : {
-    			required: true
-    		},
-    		firstName: {
-    			required: true
-    		},
-    		lastName : {
-    			required: true
-    		}
-    	}
+        rules: {
+            email : {
+                required: true
+            },
+            firstName: {
+                required: true
+            },
+            lastName : {
+                required: true
+            }
+        }
     });
     
     $('#invite-campaign-owner').find('form').validate({
-    	rules: {
-    		emails : {
-    			required: true,
-    			validateMultipleEmailsCommaSeparated: true
-    		},
-    		name: {
-    			required: true
-    		}
-    	}
+        rules: {
+            emails : {
+                required: true,
+                validateMultipleEmailsCommaSeparated: true
+            },
+            name: {
+                required: true
+            }
+        }
     });
     
     $('.dashboarduserprofile').find('form').validate({

@@ -806,8 +806,9 @@ div.dashboardtile-min-height {
 #side-menu > li > a {
     position: relative;
     display: block;
-    padding: 10px 15px;
+    padding: 10px 20px;
     text-decoration: none;
+    font-size: 14px;
 }
 .invite-campaign-owner {
 	   padding: 20px 0;
@@ -1056,4 +1057,7 @@ div.dashboardtile-min-height {
     border-color: #006083 !important;
     font-size: 14px;
     font-weight: 600;
+}
+.campaign-tile-width.thumbnail {
+    padding: 0px;
 }

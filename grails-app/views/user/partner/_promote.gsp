@@ -49,7 +49,7 @@
                             <span>${projectService.getRemainingDay(campaign)}</span>
                         </g:else>
                     </div>
-                    <img alt="${campaign.title}" class="campaign-img" src="${projectService.getProjectImageLink(campaign)}"/>
+                    <img alt="${campaign.title}" class="campaign-img" src="${projectService.getProjectImageLink(campaign)}">
                 </div>
                 <div class="campaign-tile-content">
                     <div class="campaign-title-padding">

@@ -3840,7 +3840,11 @@ class ProjectService {
                     amount = amount + (contributedAmount * conversionMultiplier)
                 }
             } else {
-                amount = amount + contributedAmount
+                if(project.payuStatus) {
+                    amount = amount + (contributedAmount / conversionMultiplier)
+                } else {
+                    amount = amount + contributedAmount
+                }
             }
         }
         return amount;
@@ -4003,7 +4007,7 @@ class ProjectService {
             maxrange = offset + (count - offset)
         }
         projects = totalprojects.subList(offset, maxrange)
-        return [projects: projects, totalprojects: totalprojects]
+        return [projects: projects, totalprojects: totalprojects, campaigns: campaigns]
     }
     
     def getSortingList() {

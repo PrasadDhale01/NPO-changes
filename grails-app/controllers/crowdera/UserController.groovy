@@ -532,9 +532,9 @@ class UserController {
         if (partner) {
             User user = partner.user
             def projectObj = projectService.getValidatedProjectsForPartner(user, partner, params)
-            def fundRaised = projectService.getTotalFundRaisedByUser(projectObj.totalprojects)
             def numberOfInvites = userService.getTotalNumberOfInvites(partner)
             def userCampaign = projectService.getPartnerCampaigns(user, params)
+            def fundRaised = projectService.getTotalFundRaisedByUser(userCampaign.campaigns)
             def country = projectService.getCountry()
             def state = projectService.getState()
             

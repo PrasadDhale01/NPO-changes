@@ -34,7 +34,7 @@
             <div class="navbar-header">
                 <span class="span-space"><span class="header-text">Raised</span> <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}</span>
                 <span class="span-space"><span class="header-text">Invites</span> ${numberOfInvites}</span>
-                <span class="span-space"><span class="header-text">Campaigns</span> ${totalCampaigns.size()}</span>
+                <span class="span-space"><span class="header-text">Campaigns</span> ${totalUserCampaigns.size()}</span>
             </div>
         </div>
         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12 pd-container-width hidden-xs" id="sidebar">
@@ -134,7 +134,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 hidden-xs">
                     <div class="panel panel-info">
                         <div class="panel-footer announcement-bottom">
-                            campaigns <b>${totalCampaigns.size()}</b>
+                            campaigns <b>${totalUserCampaigns.size()}</b>
                         </div>
                     </div>
                 </div>

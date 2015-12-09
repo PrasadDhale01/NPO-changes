@@ -1253,6 +1253,9 @@ class MandrillService {
         ], [
             'name': 'EMAIL',
             'content': email
+        ], [
+            'name': 'MESSAGE',
+            'content': message
         ]]
 
         def tags = ['partnerInvitationToCampaignOwner']

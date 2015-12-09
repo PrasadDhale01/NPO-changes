@@ -47,7 +47,7 @@
             </g:elseif>
             <g:else>
                 <div class="form-group">
-                    <input type="text" name="firstName" required class="form-control all-place" value="${user.firstName}" placeholder="New First name" autofocus>
+                    <input type="text" name="firstName" required class="form-control all-place" value="${user.firstName}" placeholder="New First name">
                 </div>
                 <div class="form-group">
                     <input type="text" name="lastName" required class="form-control all-place" value="${user.lastName}" placeholder="New Last name">
@@ -62,7 +62,7 @@
         </div>
         <div class="col-sm-6 col-md-6 col-xs-12 userseditlocation">
             <div class="form-group">
-                <textarea name="biography" class="form-control all-place" rows="2" placeholder="Bio" autofocus>${user.biography}</textarea>
+                <textarea name="biography" class="form-control all-place" rows="2" placeholder="Bio">${user.biography}</textarea>
             </div>
             <div class="form-group">
                 <div class="input-group col-md-12">
@@ -90,7 +90,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="text" name="city" required class="form-control all-place" value="${user.city}" placeholder="City" autofocus>
+                <input type="text" name="city" required class="form-control all-place" value="${user.city}" placeholder="City">
             </div>
         </div>
         <div class="clear"></div>

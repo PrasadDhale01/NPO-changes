@@ -9479,32 +9479,32 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-bottom: 10px;
     }
     #partner-sec-header {
-				    top: 45px;
-				}
-				#partner-sec-header.navbar-default {
-				    background-color: #01BBD2;
-				    z-index: 52;
-				    box-shadow: none;
-				}
-				#partner-sec-header .navbar-header .span-space{
-				    color: white;
-				    padding-left: 15px;
-				    padding-right: 15px;
-				    font-size: 14px;
+        top: 45px;
+    }
+    #partner-sec-header.navbar-default {
+        background-color: #01BBD2;
+        z-index: 52;
+        box-shadow: none;
+    }
+    #partner-sec-header .navbar-header .span-space{
+        color: white;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 14px;
         font-weight: 600;
-				}
-				div#partner-sec-header .navbar-header .span-space.active {
-				    color: #6D6E6E;
-				}
-				#partner-sec-header .navbar-header a{
-				    color: white;
-				    text-decoration: none;
-				}
-				#partner-sec-header .navbar-header { 
-				    margin-top: 16px;
-				    margin-left: auto;
-				    margin-right: auto;
-				}
+    }
+    div#partner-sec-header .navbar-header .span-space.active {
+        color: #6D6E6E;
+    }
+    #partner-sec-header .navbar-header a{
+        color: white;
+        text-decoration: none;
+    }
+    #partner-sec-header .navbar-header { 
+        margin-top: 16px;
+        margin-left: auto;
+        margin-right: auto;
+    }
     #partner-sec-header .navbar-header .glyphicon {
         margin-right: 5px;
     }

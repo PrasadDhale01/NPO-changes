@@ -75,6 +75,7 @@
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-12 TW-campaignstory-img-width">
+        <p>${hashTags}<p>
         <g:if test="${isCrFrCampBenOrAdmin}">
             <div class="show-description">
                 <p class="campaignDescription justify">${raw(project.description)}</p>
@@ -85,6 +86,129 @@
                 <p class="campaignDescription justify">${raw(currentTeam.description)}</p>
             </div>
         </g:else>
+        
+        <g:if test="${project.impactNumber > 0 && project.impactAmount > 0}">
+            <g:if test="${project.category.toString() == 'ANIMALS'}">
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">Our campaign will benefit  ${project.impactNumber}  animals by providing <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber} animals by providing <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:if>
+            <g:elseif test="${project.category.toString() == 'ARTS'}">
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">Our campaign will benefit  ${project.impactNumber}  individuals by providing <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber} individuals by providing <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:elseif>
+            <g:elseif test="${project.category.toString() == 'CHILDREN'}">
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">Our campaign will impact ${project.impactNumber}  children's life by providing  <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">Our campaign will impact ${project.impactNumber}  children's life by providing  <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:elseif>
+            <g:elseif test="${project.category.toString() == 'COMMUNITY'}">
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">Our campaign will benefit  ${project.impactNumber} community by providing <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber} community by providing <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:elseif>
+            <g:elseif test="${project.category.toString() == 'CIVIC_NEEDS'}">
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">This campaign will affect ${project.impactNumber} neighborhood by <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">This campaign will affect ${project.impactNumber} neighborhood by  <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:elseif>
+            <g:elseif test="${project.category.toString() == 'EDUCATION'}">
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">This campaign will educate ${project.impactNumber} students by providing <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">This campaign will educate ${project.impactNumber} students by providing <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:elseif>
+            <g:elseif test="${project.category.toString() == 'ELDERLY'}">
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber} elderlies by providing <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber} elderlies by providing <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:elseif>
+            <g:elseif test="${project.category.toString() == 'ENVIRONMENT'}">
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber}  lives by providing <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber} lives by providing <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:elseif>
+            <g:elseif test="${project.category.toString() == 'FILM'}">
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">Our film will impact ${project.impactNumber} lives by using <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">Our film will impact ${project.impactNumber} lives by using <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:elseif>
+            <g:elseif test="${project.category.toString() == 'HEALTH'}">
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">Our campaign will save ${project.impactNumber} lives by providing <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">Our campaign will save ${project.impactNumber} lives by providing <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:elseif>
+            <g:elseif test="${project.category.toString() == 'SOCIAL_INNOVATION'}">
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber} individual by innovating <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber} individual by innovating <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:elseif>
+            <g:elseif test="${project.category.toString() == 'RELIGION'}">
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">This campaign will help ${project.impactNumber} religion empowerement by <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">This campaign will help ${project.impactNumber} religion empowerement by <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:elseif>
+            <g:elseif test="${project.category.toString() == 'NON_PROFITS'}">
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">Our non-profit will help ${project.impactNumber} lives by providing <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">Our non-profit will help ${project.impactNumber} lives by providing <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:elseif>
+            <g:else>
+                <g:if test="${project.payuStatus}">
+                <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber} lives by providing <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                </g:if>
+                <g:else>
+                </g:else>
+                <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber} lives by providing <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+            </g:else>
+        </g:if>
+        <g:if test="${reasons}">
+			<p class="campaignStory justify">
+			Why you should fund this campaign ?<br>
+				<g:if test="${reasons.reason1 && reasons.reason1 != ''}">&nbsp;&nbsp;&nbsp;&nbsp;1. ${reasons.reason1}<br></g:if>
+				<g:if test="${reasons.reason2 && reasons.reason2 != ''}">&nbsp;&nbsp;&nbsp;&nbsp;2. ${reasons.reason2}<br></g:if>
+				<g:if test="${reasons.reason3 && reasons.reason3 != ''}">&nbsp;&nbsp;&nbsp;&nbsp;3. ${reasons.reason3}</g:if>
+			</p>
+        </g:if>
         <g:if test="${isCrFrCampBenOrAdmin}">
             <p class="campaignStory justify">${raw(project.story)}</p>
         </g:if>
@@ -92,7 +216,10 @@
             <p class="campaignStory justify">${raw(currentTeam.story)}</p>
             <p class="campaignStory justify">${raw(project.story)}</p>
         </g:else>
+        <g:if test="${remainingTags}">
+            <p>More Tags : ${remainingTags}</p>
+        </g:if>
     </div>
 
-   
+    
 

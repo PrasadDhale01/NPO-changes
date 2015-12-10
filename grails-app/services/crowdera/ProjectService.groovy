@@ -4224,23 +4224,18 @@ class ProjectService {
         def spendMatrixs = project.spend;
         def pieListCount = 0;
         List sublist1 = [];
-        sublist1.add("'"+'Goal'+"'");
-        sublist1.add(project.amount.round());
+        List sublist = [];
         pieValueWithPer.add(sublist1);
         def cause
         spendMatrixs.each{ spendMatrix ->
             pieListCount++;
-            List sublist = [];
+            
             cause = "'"+spendMatrix.cause+"'"
             sublist.add(cause);
             def percentage = (spendMatrix.amount / project.amount) * 100;
-            sublist.add(percentage.round());
-            if (pieListCount == 1){
-                sublist.add("'"+'blue'+"'")
-            }
-            pieValueWithPer.add(sublist);
+            sublist1.add(percentage.round());
         }
-        return pieValueWithPer;
+        return [spendCauseList: sublist, spendAmountPerLIst: sublist1];
     }
 
     def getProjectReasonsToFund(Project project){
@@ -4482,6 +4477,30 @@ class ProjectService {
         (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
         project.hashtags = hashlist
         project.save();
+    }
+ 
+    def getHashTags(def hashtags) {
+        List hashtagsList = hashtags.split(',')
+        hashtagsList = hashtagsList.collect { it.trim() }
+        String firstFiveHashTags
+        String remainingHashTags
+        if (hashtagsList.size() > 5){
+            for(int i=0;i<hashtagsList.size();i++){
+                if (i < 5){
+                    firstFiveHashTags = (i==0) ? hashtagsList[i] :  firstFiveHashTags + ', ' + hashtagsList[i];
+                } else {
+                    remainingHashTags = (i==5) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
+                }
+            }
+        } else {
+            firstFiveHashTags = hashtags
+            remainingHashTags = null
+        }
+        return [firstFiveHashTags:firstFiveHashTags, remainingHashTags:remainingHashTags]
+    }
+
+    def getReasonsToFundFromProject(Project project){
+        return ReasonsToFund.findByProject(project)
     }
 
     @Transactional

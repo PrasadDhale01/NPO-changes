@@ -2531,7 +2531,7 @@ $(function() {
 
 		$.ajax({
 			type:'post',
-			url:$('#url').val()+'/project/saveRecipientAndHashTags',
+			url:$('#b_url').val()+'/project/saveRecipientAndHashTags',
 			data:'recipient='+recipient+'&projectId='+projectId,
 			success: function(data){
 				changeHashTags();

@@ -164,7 +164,7 @@
 		    <input type="text" name="impactNumber" class="form-control form-control-impact-num" placeholder = "Number">
 		</g:else>
 	</div>
-	<span class="impact-text col-impact-text col-impact-text-one col-xs-12 col-sm-2 impact-right-padding" id="impact-text">elderly future by providing</span>
+	<span class="impact-text col-impact-text col-impact-animals-text-two col-xs-12 col-sm-2 impact-right-padding" id="impact-text">elderlies by providing</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group">
 		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 		    <span class="fa fa-inr cr-impact-currency"></span>
@@ -207,7 +207,7 @@
 	</div>
 </g:elseif>
 <g:elseif test="${project.category.toString() == 'FILM'}">
-	<span class="col-sm-3 col-impact-text col-impact-text-one col-xs-12 impact-right-padding">Our campaign will benefit</span>
+	<span class="col-sm-3 col-impact-text col-impact-animals-text-two col-xs-12 impact-right-padding">Our film will impact</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-num form-group">
 		<g:if test="${project.impactNumber > 0}">
             <input type="text" name="impactNumber" class="form-control form-control-impact-num" placeholder = "Number" value="${project.impactNumber}">
@@ -216,7 +216,7 @@
             <input type="text" name="impactNumber" class="form-control form-control-impact-num" placeholder = "Number">
 		</g:else>
 	</div>
-	<span class="impact-text col-impact-text col-impact-text-two col-xs-12 col-sm-2 impact-right-padding" id="impact-text">lives by providing</span>
+	<span class="impact-text col-impact-text col-impact-elderly-text col-xs-12 col-sm-2 impact-right-padding" id="impact-text">lives by using</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group">
 		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
             <span class="fa fa-inr cr-impact-currency"></span>

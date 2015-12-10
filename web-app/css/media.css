@@ -65,7 +65,12 @@
 	span.cr-impact-religion-cr{
 	   left:6px;
 	}
+	
+	span.col-impact-elderly-text{
+        width:12%;
+    }
 }
+
 @media only screen and (min-width: 1201px) and (max-width: 1280px){
     .helpdeskpadding {
         padding-left: 15%;

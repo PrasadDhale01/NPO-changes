@@ -50,7 +50,7 @@
                     </tr>
                     <tr>
                         <td>Beneficiary</td>
-                        <td>${project.user.firstName}&nbsp;${project.user.lastName}</td>
+                        <td>${beneficiaryName}</td>
                     </tr>
                     <g:if test="${fundraiser != project.user}">
                         <tr>

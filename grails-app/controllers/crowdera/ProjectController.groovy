@@ -591,7 +591,6 @@ class ProjectController {
                 def taxReciept = projectService.getTaxRecieptOfProject(project)
                 def deductibleStatusList = projectService.getDeductibleStatusList()
                 def stateInd = projectService.getIndianState()
-                def impactText = projectService.getImpactText(project.category)
                 render(view: 'create/index2',
                 model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, 
                     nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
@@ -600,7 +599,7 @@ class ProjectController {
                     vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, 
                     email2:adminemails.email2, email3:adminemails.email3,reasonsToFund:reasonsToFund, 
                     qA:qA, spends:spends, usedForCreate:usedForCreate, selectedCountry:selectedCountry, 
-                    taxReciept:taxReciept, deductibleStatusList:deductibleStatusList, impactText:impactText])
+                    taxReciept:taxReciept, deductibleStatusList:deductibleStatusList])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
@@ -749,7 +748,6 @@ class ProjectController {
             def taxReciept = projectService.getTaxRecieptOfProject(project)
             def deductibleStatusList = projectService.getDeductibleStatusList()
             def stateInd = projectService.getIndianState()
-            def impactText = projectService.getImpactText(project.category)
             render (view: 'edit/index',
             model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
                 'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,
@@ -758,7 +756,7 @@ class ProjectController {
                 project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
                 vanityTitle: vanityTitle, vanityUsername:vanityUsername, selectedCountry: selectedCountry,
                 email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
-                deductibleStatusList:deductibleStatusList, impactText:impactText])
+                deductibleStatusList:deductibleStatusList])
         } else {
             flash.prj_edit_message = "Campaign not found."
             render (view: 'edit/editerror')
@@ -2045,13 +2043,10 @@ class ProjectController {
 	
     def getCountryVal(){
         def country = projectService.getCountryValue(params.country);
-        def variable = request.getParameter("variable")
-        def varValue = request.getParameter("varValue")
-        def projectId = request.getParameter("projectId")
-        projectService.autoSaveProjectDetails(variable, varValue, projectId)
+        projectService.autoSaveCountryAndHashTags(params)
         render country
     }
-    
+
     def deleteTaxReciept(){
         Project project = projectService.getProjectById(params.projectId)
         TaxReciept taxReciept = projectService.getTaxRecieptOfProject(project)
@@ -2066,4 +2061,36 @@ class ProjectController {
         render ''
     }
 
+    def getImpactText(){
+        Project project = projectService.getProjectById(params.projectId)
+        def currentEnv = projectService.getCurrentEnvironment()
+        projectService.getCategoryAndHashTagsSaved(project, currentEnv, params.selectedCategory)
+        if(request.xhr){
+            render(template: "create/impactAnalysisText", model:[project:project, currentEnv:currentEnv, loadjs:true])
+        }
+    }
+
+    def saveRecipientAndHashTags(){
+        projectService.saveRecipientAndHashTags(params)
+        render''
+    }
+
+    def autoSaveCharitableIdAndOrganisationName(){
+        Project project = projectService.getProjectById(params.projectId)
+        project.organizationName = params.organizationname
+        project.charitableId = params.charitableId
+        project.save()
+        render''
+    }
+
+    def autoSaveCityAndHashTags(){
+        projectService.getCityAndHashTagsSaved(params)
+        render''
+    }
+    
+    def autoSaveUsedForAndHashTags(){
+        projectService.getUsedForAndHashTagsSaved(params)
+        render''
+    }
+    
 }

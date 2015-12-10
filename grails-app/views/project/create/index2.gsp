@@ -368,32 +368,8 @@
                     <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-impact-analysis"><span class="cr-spend-matrix-font">Impact Analysis</span></label>
                     <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide cr-impact-guide"></label>
                 </div>
-                <div class="panel panel-body cr-panel-body-spend-matrix">
-                    <div class="col-sm-2 col-xs-5 col-sm-impact-amount form-group">
-                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-                        <span class="fa fa-inr cr-impact-currency"></span>
-                        </g:if>
-                        <g:else>
-                        <span class="fa fa-usd cr-impact-currency"></span>
-                        </g:else>
-                        <g:if test="${project.impactAmount > 0}">
-                            <input type="text" name="impactAmount" class="form-control form-amount-impact impactAmount" value="${project.impactAmount}"> &nbsp;
-                        </g:if>
-                        <g:else>
-                            <input type="text" name="impactAmount" class="form-control form-amount-impact impactAmount" > &nbsp;
-                        </g:else>
-                    </div>
-                    <span class="col-sm-1 col-sm-impact-text col-impact-text col-xs-7">would change</span>
-                    <div class="clear visible-xs"></div>
-                    <div class="col-sm-2 col-xs-5 col-sm-impact-num form-group">
-                        <g:if test="${project.impactNumber > 0}">
-                            <input type="text" name="impactNumber" class="form-control form-control-impact-num" placeholder = "Number" value="${project.impactNumber}">
-                        </g:if>
-                        <g:else>
-                            <input type="text" name="impactNumber" class="form-control form-control-impact-num" placeholder = "Number">
-                        </g:else>
-                    </div>&nbsp;&nbsp;
-                    <span class="impact-text col-impact-text col-xs-7 col-sm-4" id="impact-text">${impactText}</span>
+                <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-impact-analysis">
+                    <g:render template="create/impactAnalysisText"/>
                 </div>
             </div>
 

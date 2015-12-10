@@ -5481,6 +5481,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
+	
+	.col-sm-impact-religion-amount{
+		padding-left: 0px;
+		left:-6px;
+	}
 
     .col-sm-fcra {
         padding-left: 33px;
@@ -7783,9 +7788,33 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	.col-impact-text-religion-two{
+	   width:32%;
+	}
+    span.cr-impact-religion-cr {
+        left: 15px;
+    }
+	span.col-impact-community-text-two{
+        width:28%;
+	}
+    span.col-impact-arts-text-two{
+        width:27%;
+    }
+    span.col-impact-text-one{
+        width:30%;
+    }
+    span.col-impact-text-two{
+        width:21%;
+    }
+	div.col-sm-impact-education-num {
+	   padding-left: 0px;
+	}
+    .col-sm-impact-amount{
+        padding-left: 8px;
+    }
     div.header-scrolled{
         display: none !important;
-	}
+	   }
     button.sh-submitaproval-2header {
 /*         margin-left: -42px; */
         margin-top: -1px;
@@ -7847,7 +7876,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     li.sh-secandary-header-showpage {
         margin-left: 15px;
     }
-
     .ansText{
         width:90% !important;
         margin-top: 5px;
@@ -7857,9 +7885,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .cr-impact-guide{
         width:74% !important;
-    }
-    .col-sm-impact-text {
-        width: 18% !important;
     }
     .col-tax-file-show{
         padding-left: 20px;
@@ -9074,9 +9099,34 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
-    .col-sm-impact-text {
-        width: 14% !important;
+    span.col-impact-text-one, span.col-impact-education-text-one{
+        width:22%;
     }
+    
+    span.cr-impact-religion-cr{
+        left:6px;
+    }
+
+    span.col-impact-text-two{
+        width:15%;
+    }
+
+    span.col-impact-animals-text-two{
+        width:18%;
+    }
+
+    span.col-impact-arts-text-two{
+        width:20%;
+    }
+    
+    span.col-impact-community-text-two{
+        width:21%;
+    }
+    
+	span.col-impact-education-text-two{
+        width:19%;
+	}
+
     .ansText{
         width:50% !important;
         margin-top: 5px;
@@ -9377,9 +9427,19 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	span.col-impact-education-text-one, span.col-impact-education-text-two{
+       padding-left:17px;
+	}
+	span.cr-impact-education-currency{
+        left:20px;
+	}
     .col-sm-impact-num {
         padding-left: 4px !important;
         padding-right: 10px;
+        margin-bottom: 5px;
+    }
+    .col-impact-text{
+        padding-left: 5px;
     }
     .cr-impact-currency {
         left:10px;

@@ -2447,79 +2447,47 @@ $(function() {
    
    $('.form-amount-impact').blur(function (){
 	   var impactAmount = $(this).val();
-	   if (validator.element( ".form-amount-impact"))
-	       autoSave('impactAmount', impactAmount);
+	   if (validator.element( ".form-amount-impact")){
+		   autoSave('impactAmount', impactAmount);
+	   }
    });
 
    $('.form-control-impact-num').blur(function (){
 	   var impactNumber = $(this).val();
-	   if (validator.element( ".form-control-impact-num"))
-	       autoSave('impactNumber', impactNumber);
+	   if (validator.element( ".form-control-impact-num")){
+		   autoSave('impactNumber', impactNumber);
+	   }
    });
 
     $('#category').change(function(){
         var selectedCategory = $(this).val();
-        switch(selectedCategory){
-        case 'ANIMALS':
-        	document.getElementById("impact-text").innerHTML = 'animal life';
-        	break;
-        case 'ARTS':
-        	document.getElementById("impact-text").innerHTML = 'art';
-        	break;
-        case 'CHILDREN':
-        	document.getElementById("impact-text").innerHTML = 'child future';
-        	break;
-        case 'COMMUNITY':
-        	document.getElementById("impact-text").innerHTML = 'community future';
-        	break;
-        case 'CIVIC_NEEDS':
-        	document.getElementById("impact-text").innerHTML = 'civic_need help';
-        	break;
-        case 'EDUCATION':
-        	document.getElementById("impact-text").innerHTML = 'education for child';
-        	break;
-        case 'ELDERLY':
-        	document.getElementById("impact-text").innerHTML = 'elderly future';
-        	break;
-        case 'ENVIRONMENT':
-        	document.getElementById("impact-text").innerHTML = 'environment';
-        	break;
-        case 'FILM':
-        	document.getElementById("impact-text").innerHTML = 'film fame';
-        	break;
-        case 'HEALTH':
-        	document.getElementById("impact-text").innerHTML = 'person health';
-        	break;
-        case 'SOCIAL_INNOVATION':
-        	document.getElementById("impact-text").innerHTML = 'social innovation';
-        	break;
-        case 'RELIGION':
-        	document.getElementById("impact-text").innerHTML = 'religion empowerement';
-        	break;
-        default :
-        	document.getElementById("impact-text").innerHTML = 'life';
-        }
-        autoSaveHashTags();
-        var delay = 1000; //delayed code to prevent error, time in milliseconds
-        setTimeout(function() {
-        	if (selectedCategory == 'null')
-        	    autoSave('category', 'OTHER');
-        	else 
-        		autoSave('category', selectedCategory);
-        }, delay);
+        var grid = $('.cr-panel-impact-analysis');
+        changeHashTags();
+		$.ajax({
+			type:'post',
+			url:$('#b_url').val()+'/project/getImpactText',
+			data:'selectedCategory='+selectedCategory+'&projectId='+projectId,
+			success: function(data){
+				$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+			}
+		}).error(function(data){
+			console.log('Error occured while autosaving category and hashtags info'+ data);
+		});
     });
-   
+
 	$('#country').change(function(){
 		var selectedCountry = $(this).val();
 		if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
 			$.ajax({
 				type:'post',
 				url:$("#b_url").val()+'/project/getCountryVal',
-				data:'country='+selectedCountry+'&projectId='+projectId+'&variable=country'+'&varValue='+selectedCountry,
+				data:'country='+selectedCountry+'&projectId='+projectId,
 				success: function(data) {
 					$('#selectedCountry').val(data);
-					autoSaveHashTags();
+					changeHashTags()
 				}
+			}).error(function(data){
+				console.log('Error occured while autosaving country and hashtags info'+ data);
 			});
 		} else {
 			if (selectedCountry == 'null')
@@ -2560,23 +2528,17 @@ $(function() {
 				}
 			}
 		}
-		autoSaveHashTags();
-		var delay = 1000; //delayed code to prevent error, time in milliseconds
-		setTimeout(function() {
-			if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-				if (recipient == 'null') {
-					autoSave('fundsRecievedBy', 'NGO');
-				} else {
-					autoSave('fundsRecievedBy', recipient);
-				}
-			} else {
-				if (recipient == 'null') {
-					('fundsRecievedBy', 'NON-PROFIT');
-				} else {
-					autoSave('fundsRecievedBy', recipient);
-				}
+
+		$.ajax({
+			type:'post',
+			url:$('#url').val()+'/project/saveRecipientAndHashTags',
+			data:'recipient='+recipient+'&projectId='+projectId,
+			success: function(data){
+				changeHashTags();
 			}
-		}, delay);
+		}).error(function(data){
+			console.log('Error occured while autosaving recipient and hashtags info'+ data);
+		});
 	});
 	
 	function deleteTaxReciept(){
@@ -2747,11 +2709,19 @@ $(function() {
     	$('#charitable').find('input').val(uuid);
 		$('#organizationName').find('input').val(charityName);
 		$('#paypalemail').find('input').val('');
-		autoSave('charitableId', uuid);
-        var delay = 50; //delayed code to prevent error, time in milliseconds
-        setTimeout(function() {
-            autoSave('organizationname', charityName);
-        }, delay);
+		
+		$.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/autoSaveCharitableIdAndOrganisationName',
+            data:'projectId='+projectId+'&charitableId='+charitableId+'&organizationname='+charityName,
+            success: function(data) {
+                if (data != 'null'){
+                	$('#taxRecieptId').val(data);
+                }
+            }
+        }).error(function() {
+            console.log('Error occured while autosaving charitable Id and organisation name'+ variable + 'value :'+ varValue);
+        });
     });
     
     $('#impact').click(function(){
@@ -2815,50 +2785,75 @@ $(function() {
     
     $('.city').blur(function (){
     	var city = $(this).val();
-    	autoSaveHashTags();
-        var delay = 1000; //delayed code to prevent error, time in milliseconds
-        setTimeout(function() {
-        	autoSave('city', city);
-        }, delay);
+    	$.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/autoSaveCityAndHashTags',
+            data:'projectId='+projectId+'&city='+city,
+            success: function(data) {
+            	changeHashTags();
+            }
+        }).error(function() {
+            console.log('error occured saving city and hashtags info '+data);
+        });
     });
     
     $('#impact1').click(function(){
     	$('#usedFor').val('IMPACT');
-    	autoSaveHashTags();
-        var delay = 1000; //delayed code to prevent error, time in milliseconds
-        setTimeout(function() {
-            autoSave('usedFor', 'IMPACT');
-        }, delay);
+    	$.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/autoSaveUsedForAndHashTags',
+            data:'projectId='+projectId+'&usedFor=IMPACT',
+            success: function(data) {
+            	changeHashTags();
+            }
+        }).error(function() {
+            console.log('error occured saving city and hashtags info '+data);
+        });
     });
 
     $('#passion1').click(function(){
     	$('#usedFor').val('PASSION');
-    	autoSaveHashTags();
-        var delay = 1000; //delayed code to prevent error, time in milliseconds
-        setTimeout(function() {
-            autoSave('usedFor', 'PASSION');
-        }, delay);
+    	$.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/autoSaveUsedForAndHashTags',
+            data:'projectId='+projectId+'&usedFor=PASSION',
+            success: function(data) {
+            	changeHashTags();
+            }
+        }).error(function() {
+            console.log('error occured saving city and hashtags info '+data);
+        });
     });
 
     $('#innovating1').click(function(){
     	$('#usedFor').val('SOCIAL-INNOVATION');
-    	autoSaveHashTags();
-        var delay = 1000; //delayed code to prevent error, time in milliseconds
-        setTimeout(function() {
-            autoSave('usedFor', 'SOCIAL_NEEDS');
-        }, delay);
+    	$.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/autoSaveUsedForAndHashTags',
+            data:'projectId='+projectId+'&usedFor=SOCIAL_NEEDS',
+            success: function(data) {
+            	changeHashTags();
+            }
+        }).error(function() {
+            console.log('error occured saving city and hashtags info '+data);
+        });
     });
 
     $('#personal1').click(function(){
     	$('#usedFor').val('PERSONAL-NEEDS');
-        autoSaveHashTags();
-        var delay = 1000; //delayed code to prevent error, time in milliseconds
-        setTimeout(function() {
-            autoSave('usedFor', 'PERSONAL_NEEDS');
-        }, delay);
+    	$.ajax({
+            type:'post',
+            url:$("#b_url").val()+'/project/autoSaveUsedForAndHashTags',
+            data:'projectId='+projectId+'&usedFor=PERSONAL_NEEDS',
+            success: function(data) {
+            	changeHashTags();
+            }
+        }).error(function() {
+            console.log('error occured saving city and hashtags info '+data);
+        });
     });
-    
-    function autoSaveHashTags(){
+
+    function changeHashTags(){
     	var category = $('#category').val();
     	var country = $('#selectedCountry').val();
     	var usedFor = ($('#usedFor').val() == undefined) ? $('#usedForCreate').val() : $('#usedFor').val();
@@ -2872,15 +2867,14 @@ $(function() {
     	} else {
     		list = '#'+usedFor;
     	}
-    	(fundRaisedBy != 'null') ? list = list + ', #'+fundRaisedBy : ' ' ;
-        (category != 'null') ? list = list + ', #'+category : ' ' ;
+    	(fundRaisedBy && fundRaisedBy != 'null') ? list = list + ', #'+fundRaisedBy : ' ' ;
+        (category && category != 'null') ? list = list + ', #'+category : ' ' ;
         if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
             (country != 'null' && country != null && country != '') ? list = list + ', #'+country : ' ' ;
         }
-        (city != '') ? list = list + ', #'+city : ' ' ;
+        (city && city != '') ? list = list + ', #'+city : ' ' ;
 
     	$('.hashtags').val(list);
-    	autoSave('hashtags', list);
     }
 
     $('.ansText1').blur(function(){

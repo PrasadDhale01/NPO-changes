@@ -4344,62 +4344,144 @@ class ProjectService {
             SOUNK : 'SOUNK (50%)'
         ]
     }
-    
-    def getImpactText(def category){
-        def impactText
-        switch(category){
-            case 'ANIMALS':
-                impactText = 'animal life';
-                break;
 
-            case 'ARTS':
-                impactText = 'art';
-                break;
+    def getCategoryAndHashTagsSaved(Project project, def currentEnv, def selectedCategory){
+        project.category = (selectedCategory) ? selectedCategory : 'OTHER';
 
-            case 'CHILDREN':
-                impactText = 'child future';
-                break;
-
-            case 'COMMUNITY':
-                impactText = 'community future';
-                break;
-
-            case 'CIVIC_NEEDS':
-                impactText = 'civic_need help';
-                break;
-
-            case 'EDUCATION':
-                impactText = 'education for child';
-                break;
-
-            case 'ELDERLY':
-                impactText = 'elderly future';
-                break;
-
-            case 'ENVIRONMENT':
-                impactText = 'environment';
-                break;
-
-            case 'FILM':
-                impactText = 'film fame';
-                break;
-
-            case 'HEALTH':
-                impactText = 'person health';
-                break;
-
-            case 'SOCIAL_INNOVATION':
-                impactText = 'social innovation';
-                break;
-
-            case 'RELIGION':
-                impactText = 'religion empowerement';
-                break;
-
-            default :
-                impactText = 'life';
+        def category = (selectedCategory) ? selectedCategory : null;
+        def country = (project.beneficiary.country) ? getCountryValue(project.beneficiary.country) : null;
+        def usedFor = project.usedFor
+        def fundRaisedBy = project.fundsRecievedBy
+        def city = project.beneficiary.city
+        def hashlist
+        if (usedFor == 'SOCIAL_NEEDS') {
+            hashlist = '#SOCIAL-INNOVATION';
+        } else if (usedFor == 'PERSONAL_NEEDS') {
+            hashlist = '#PERSONAL-NEEDS';
+        } else {
+            hashlist = '#'+usedFor;
         }
-        return impactText
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+fundRaisedBy : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+category : ' ' ;
+        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+            (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
+        }
+        (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+        project.hashtags = hashlist
+
+        project.impactNumber = 0;
+        project.impactAmount = 0;
+
+        project.save();
+    }
+
+    def saveRecipientAndHashTags(def params){
+        Project project = Project.get(params.projectId)
+        project.fundsRecievedBy = params.recipient
+
+        def category = project.category
+        def country = (project.beneficiary.country) ? getCountryValue(project.beneficiary.country) : null;
+        def usedFor = project.usedFor
+        def fundRaisedBy = (params.recipient) ? params.recipient : null;
+        def city = project.beneficiary.city
+        def currentEnv = getCurrentEnvironment()
+        def hashlist
+        if (usedFor == 'SOCIAL_NEEDS') {
+            hashlist = '#SOCIAL-INNOVATION';
+        } else if (usedFor == 'PERSONAL_NEEDS') {
+            hashlist = '#PERSONAL-NEEDS';
+        } else {
+            hashlist = '#'+usedFor;
+        }
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+fundRaisedBy : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+category : ' ' ;
+        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+            (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
+        }
+        (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+        project.hashtags = hashlist
+        project.save();
+    }
+    
+    def getCityAndHashTagsSaved(def params){
+        Project project = Project.get(params.projectId)
+        project.beneficiary.city = params.city
+
+        def category = project.category
+        def country = (project.beneficiary.country) ? getCountryValue(project.beneficiary.country) : null;
+        def usedFor = project.usedFor
+        def fundRaisedBy = project.fundsRecievedBy
+        def city = project.beneficiary.city
+        def currentEnv = getCurrentEnvironment()
+        def hashlist
+        if (usedFor == 'SOCIAL_NEEDS') {
+            hashlist = '#SOCIAL-INNOVATION';
+        } else if (usedFor == 'PERSONAL_NEEDS') {
+            hashlist = '#PERSONAL-NEEDS';
+        } else {
+            hashlist = '#'+usedFor;
+        }
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+fundRaisedBy : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+category : ' ' ;
+        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+            (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
+        }
+        (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+        project.hashtags = hashlist
+        project.save();
+    }
+    
+    def getUsedForAndHashTagsSaved(def params){
+        Project project = Project.get(params.projectId)
+        project.usedFor = params.usedFor
+
+        def category = project.category
+        def country = (project.beneficiary.country) ? getCountryValue(project.beneficiary.country) : null;
+        def usedFor = params.usedFor
+        def fundRaisedBy = project.fundsRecievedBy
+        def city = project.beneficiary.city
+        def currentEnv = getCurrentEnvironment()
+        def hashlist
+        if (usedFor == 'SOCIAL_NEEDS') {
+            hashlist = '#SOCIAL-INNOVATION';
+        } else if (usedFor == 'PERSONAL_NEEDS') {
+            hashlist = '#PERSONAL-NEEDS';
+        } else {
+            hashlist = '#'+usedFor;
+        }
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+fundRaisedBy : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+category : ' ' ;
+        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+            (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
+        }
+        (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+        project.hashtags = hashlist
+        project.save();
+    }
+    
+    def autoSaveCountryAndHashTags(def params){
+        Project project = Project.get(params.projectId)
+        project.beneficiary.country = (params.country && params.country != 'null' && params.country != '') ? params.country : null;
+
+        def category = project.category
+        def country = (params.country) ? getCountryValue(params.country) : null;
+        def usedFor = project.usedFor
+        def fundRaisedBy = project.fundsRecievedBy
+        def city = project.beneficiary.city
+        def hashlist
+        if (usedFor == 'SOCIAL_NEEDS') {
+            hashlist = '#SOCIAL-INNOVATION';
+        } else if (usedFor == 'PERSONAL_NEEDS') {
+            hashlist = '#PERSONAL-NEEDS';
+        } else {
+            hashlist = '#'+usedFor;
+        }
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+fundRaisedBy : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+category : ' ' ;
+        (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
+        (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+        project.hashtags = hashlist
+        project.save();
     }
 
     @Transactional

@@ -37,13 +37,34 @@
         width:50% !important;
         margin-top: 5px;
     }
-    .col-sm-impact-text {
-        width: 14% !important;
+
+    span.col-impact-text-one, span.col-impact-education-text-one{
+        width:23%;
+    }
+
+    span.col-impact-text-two{
+        width:14%;
+    }
+
+    span.col-impact-animals-text-two{
+        width:18%;
+    }
+
+    span.col-impact-arts-text-two{
+        width:20%;
+    }
+
+    span.col-impact-community-text-two{
+        width:21%;
     }
     
-    .col-sm-impact-num {
-        margin-left: 0 !important;
+    span.col-impact-education-text-two{
+        width:19%;
     }
+    
+	span.cr-impact-religion-cr{
+	   left:6px;
+	}
 }
 @media only screen and (min-width: 1201px) and (max-width: 1280px){
     .helpdeskpadding {

@@ -744,16 +744,13 @@ div.validate-show-div .show-description {
     color: white !important;
 }
 
-.col-sm-impact-text {
-    padding-right: 0 !important;
-}
-
 .col-sm-impact-num{
     padding-left: 0 !important;
 }
 
 .col-impact-text{
     padding-top: 5px;
+    padding-right:0;
 }
 
 .col-sm-impact-amount {
@@ -769,4 +766,15 @@ div.validate-show-div .show-description {
 }
 .show-pointer-not{
     cursor: not-allowed !important;
+}
+
+.col-sm-impact-animal-amount{
+    margin-bottom: 0px;
+    padding-left:5px;
+}
+
+.cr-impact-animals-currency{
+    position: absolute;
+    left: 12px;
+    top: 11px;
 }

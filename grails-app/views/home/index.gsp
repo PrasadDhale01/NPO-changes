@@ -76,11 +76,14 @@
         <div class="success-stories-container">
             <g:render template="success-stories"></g:render>
         </div>
-        <div class="proudassociates-container">
-            <g:render template="association"></g:render>
-        </div>
+<%--        <div class="proudassociates-container">--%>
+<%--            <g:render template="association"></g:render>--%>
+<%--        </div>--%>
     </div>
-    
+    <div class="media-stript-container">
+        <g:render template="media-strip"></g:render>
+    </div>
+        
     <div class="customer-support hidden-xs">
         <div class="willSlide customer-support-btn" id="customer-support-btn">
             <a class='customer-support-a btn btn-primary'>Support</a>

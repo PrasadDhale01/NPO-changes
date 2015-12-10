@@ -9,7 +9,7 @@ import groovy.transform.ToString
 
 class User {
 
-    static hasMany = [projects: Project, contributions: Contribution, comments: ProjectComment, teams: Team, vanityUsername: VanityUsername, files: GoogleDrive]
+    static hasMany = [projects: Project, contributions: Contribution, comments: ProjectComment, teams: Team, vanityUsername: VanityUsername, files: GoogleDrive, folders: Folder]
 
 	transient springSecurityService
 
@@ -39,6 +39,7 @@ class User {
 	boolean passwordExpired
     
     List files
+    List folders
 
 	static transients = ['springSecurityService']
 

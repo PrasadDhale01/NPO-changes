@@ -23,6 +23,11 @@ $(function() {
         $('#partner-sec-header').find('span').removeClass('active');
         $(this).addClass('active');
     });
+    
+    $('.nav-tab-doc').find('.tab-data-toggle').click(function() {
+        $('.nav-tab-doc').find('.tab-data-toggle').removeClass('active');
+        $(this).addClass('active');
+    });
 
     $('.partner-confirmation').fadeOut(30000);
     $('.success-message').fadeOut(5000);
@@ -109,6 +114,15 @@ $(function() {
         errorPlacement: function(error, element) {
             error.insertAfter(element);
         }
+    });
+    
+    $('#createNewFolder').find('form').validate({
+    	rules: {
+    		title : {
+    			required: true,
+    			minlength: 3
+    		}
+    	}
     });
     
     $("#uploadavatar").click(function() {
@@ -278,6 +292,24 @@ $(function() {
         url: loadFilesUrl,
         success: function(data) {
             $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+        }
+    });
+    
+    $('#savenewfolderbtn').click(function(event){
+    	event.preventDefault();
+    	if($('#createNewFolder').find('form').valid()){
+    		$('#createNewFolder').modal("hide");
+    		
+    		var userId = $('#userId').val();
+    	    var driveFileGrid = $('#docFiles');
+    	    var loadFilesUrl = baseUrl+'/user/newfolder?userId='+userId+'&title='+$('#folderName').val();
+    	    $.ajax({
+    	        type: 'GET',
+    	        url: loadFilesUrl,
+    	        success: function(data) {
+    	            $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+    	        }
+    	    });
         }
     });
     

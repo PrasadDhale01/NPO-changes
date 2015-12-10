@@ -1138,6 +1138,12 @@ class UserService {
         }
     }
     
+    def setNewFolder(User user, def params) {
+        Folder folder = new Folder (
+            fName: params.title)
+        user.addToFolders(folder).save(failOnError: true)
+    }
+    
     @Transactional
     def bootstrap() {
         def admin = User.findByUsername('admin@fedu.org')

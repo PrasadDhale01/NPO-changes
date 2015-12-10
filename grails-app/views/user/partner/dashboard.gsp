@@ -122,6 +122,9 @@
                     <li class="hidden">
                         <a href="#track" data-toggle="tab">Track Growth</a>
                     </li>
+                    <li>
+                        <a href="#docs" data-toggle="tab">Manage Docs</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -210,7 +213,7 @@
                         </div>
                     </div>
                     
-                    <div class="tab-pane tab-pane-active active" id="myCampaigns">
+                    <div class="tab-pane tab-pane-active" id="myCampaigns">
                          <div id="partnercampaignpaginate">
                              <g:render template="/user/partner/tile"/>
                          </div>
@@ -231,17 +234,19 @@
                     
 <%--                    <div class="tab-pane tab-pane-active hidden-xs" id="inbox">--%>
 <%--                    </div>--%>
-                    <div class="tab-pane tab-pane-active" id="files">
+<%--                    <div class="tab-pane tab-pane-active" id="files">--%>
+<%--                        <div class="col-sm-12">--%>
+<%--                            <g:if test="${!isAdmin}">--%>
+<%--                                <button type="button" class="btn btn-sm btn-primary pull-right" id="pick">Load File</button>--%>
+<%--                            </g:if>--%>
+<%--                            <div id="driveFiles">--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+                    <div class="active tab-pane tab-pane-active" id="docs">
                         <div class="col-sm-12">
-                            <g:if test="${!isAdmin}">
-                                <button type="button" class="btn btn-sm btn-primary pull-right" id="pick">Load File</button>
-                            </g:if>
-                            <div id="driveFiles">
-                            </div>
+                            <g:render template="/user/partner/docs"/>
                         </div>
-                    </div>
-                    <div class="tab-pane tab-pane-active" id="docs">
-                        
                     </div>
                 </div>
             </div>

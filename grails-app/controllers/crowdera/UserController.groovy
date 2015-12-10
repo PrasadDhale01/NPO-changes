@@ -550,6 +550,7 @@ class UserController {
             
             def isAdmin = userService.isAdmin()
             def conversionMultiplier = projectService.getCurrencyConverter();
+            def folders = user.folders
             
             def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
             def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
@@ -562,7 +563,7 @@ class UserController {
             
             render view:'/user/partner/dashboard', model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl, currentEnv: currentEnv,
                                                          fundRaised: fundRaised, numberOfInvites: numberOfInvites, userCampaigns: userCampaign.projects, totalUserCampaigns: userCampaign.totalprojects,
-                                                         country: country, state: state, partner: partner, isAdmin: isAdmin, conversionMultiplier: conversionMultiplier]
+                                                         country: country, state: state, partner: partner, isAdmin: isAdmin, conversionMultiplier: conversionMultiplier, folders: folders]
         }
     }
     
@@ -645,6 +646,16 @@ class UserController {
             def fileObj = userService.getDriveFiles(user, params)
             def model = [files: fileObj.files, totalFiles: fileObj.totalFiles, offset: params.offset, user : user, baseUrl: baseUrl]
             render template:'/user/partner/drivefiles', model: model
+        }
+    }
+    
+    def newfolder() {
+        User user = userService.getUserId(params.int('userId'))
+        if (user) {
+            userService.setNewFolder(user, params)
+            def folders = user.folders
+            def model = [folders: folders]
+            render template : '/user/partner/files', model: model
         }
     }
 }

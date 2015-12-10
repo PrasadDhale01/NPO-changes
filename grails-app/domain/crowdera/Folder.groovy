@@ -1,20 +1,17 @@
 package crowdera
-
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
 @ToString(includeNames = true, includeFields = true)
 @EqualsAndHashCode
 
-class GoogleDrive {
+class Folder {
 
-    String alternateLink
-    String fileId
-    String title
-
+    static hasMany = []
+    
+    String fName
+    
     static constraints = {
-        alternateLink nullable: true
-        fileId nullable: true
-        title nullable: true
+        fName nullable: true
     }
 }

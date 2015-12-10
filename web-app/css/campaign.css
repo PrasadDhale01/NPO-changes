@@ -778,3 +778,29 @@ div.validate-show-div .show-description {
     left: 12px;
     top: 11px;
 }
+#chart-container h1 {
+  background: #26466D;
+  border-radius: 2px;
+  font-size: 14px;
+  margin: 0px;
+  padding: 10px 8px;
+  width: 215px;
+}
+
+#chart-container span {
+  background: #003F87;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 18px;
+  padding: 6px
+}
+
+#chart-container #graph {
+  display: inline-block;
+  height: 250px;
+  margin: 0px;
+  width: 600px;
+}
+#chart-container {
+  color: #eaeaea;
+}

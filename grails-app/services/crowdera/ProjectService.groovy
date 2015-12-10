@@ -4223,17 +4223,15 @@ class ProjectService {
         List pieValueWithPer = [];
         def spendMatrixs = project.spend;
         def pieListCount = 0;
-        List sublist1 = [];
-        List sublist = [];
+        String sublist1;
+        String sublist;
         pieValueWithPer.add(sublist1);
         def cause
         spendMatrixs.each{ spendMatrix ->
             pieListCount++;
-            
-            cause = "'"+spendMatrix.cause+"'"
-            sublist.add(cause);
+            sublist = (sublist) ? sublist + spendMatrix.cause : spendMatrix.cause;
             def percentage = (spendMatrix.amount / project.amount) * 100;
-            sublist1.add(percentage.round());
+            sublist1 = (sublist1) ? sublist1 + percentage.round();
         }
         return [spendCauseList: sublist, spendAmountPerLIst: sublist1];
     }

@@ -158,9 +158,6 @@
                                 <img class="show-location sh-none-pft" alt="location" src="//s3.amazonaws.com/crowdera/assets/show-page-non-profit-icons.png">
                                 <span>${project.fundsRecievedBy}</span>
                             </g:if>
-                            <g:else>
-                            
-                            </g:else>
                         </h4>
                     </div>
                 </g:if>
@@ -431,8 +428,8 @@
                        </div>
                   </div>
                </div>
-                    
-               <%-- Tabs code social ions facebook, whatsapp, twitter
+               <%-- Tabs code social ions facebook, whatsapp, twitter --%>
+               <%-- 
                <div class="visible-sm hidden-md sh-tabs-social sh-shareicons-Fixedtophead">
                    <div class="col-sm-4 col-md-4 show-tabs">
                        <g:if test="${isPreview}">
@@ -473,8 +470,7 @@
                        </g:else>
                   </div>
                </div>--%>
-
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders  hidden-xs">
+               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders  hidden-xs">
                     <g:set var="screen" id="screen" value="false"></g:set>
                     <ul class="nav nav-pills">
                           <li id="show-headeridA"></li> 
@@ -668,7 +664,7 @@
                                 </div>
                             </div>
                       </g:if>
-			          <g:else>
+                      <g:else>
                           <div class="modal-dialog modal-tile">
                               <div class="modal-content">
                                   <div class="modal-header">
@@ -825,6 +821,6 @@
         </g:else>
     </div>
 </div>
+
 </body>
 </html>
-               

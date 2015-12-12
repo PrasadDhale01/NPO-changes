@@ -27,6 +27,8 @@ $(function() {
     $('.nav-tab-doc').find('.tab-data-toggle').click(function() {
         $('.nav-tab-doc').find('.tab-data-toggle').removeClass('active');
         $(this).addClass('active');
+        $('#viewfolder').hide();
+        $('#folderId').val('');
     });
 
     $('.partner-confirmation').fadeOut(30000);
@@ -123,6 +125,17 @@ $(function() {
     			minlength: 3
     		}
     	}
+    });
+    
+    $('#sendReceiptModal').find('form').validate({
+        rules: {
+            email : {
+                required: true
+            },
+            name: {
+                required: true
+            }
+        }
     });
     
     $("#uploadavatar").click(function() {
@@ -301,16 +314,81 @@ $(function() {
     		$('#createNewFolder').modal("hide");
     		
     		var userId = $('#userId').val();
-    	    var driveFileGrid = $('#docFiles');
+    	    var driveFileGrid = $('#docFolders');
     	    var loadFilesUrl = baseUrl+'/user/newfolder?userId='+userId+'&title='+$('#folderName').val();
     	    $.ajax({
     	        type: 'GET',
     	        url: loadFilesUrl,
     	        success: function(data) {
     	            $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+    	            
+    	            $('.nav-tab-doc').find('.tab-data-toggle').removeClass('active');
+    	            $('.doc-tab-files').addClass('active');
+    	            
+    	            $('#partner-doc-content').find('.tab-pane').removeClass('active');
+    	            $('#files').addClass('active');
+    	            $('#folderName').val('');
+    	            $('#folderId').val('');
     	        }
     	    });
         }
     });
     
+    $('#uploaddocfile').click(function(event){
+    	$('#newDocFile').click();
+    });
+    
+    $("#newDocFile").change(function(event) {
+        var file =this.files[0];
+        if (file.size > 0) {
+            var file = this.files[0];
+            var fileName = file.name;
+            var formData = !!window.FormData ? new FormData() : null;
+            var partnerId = $('#partnerId').val();
+            var folderId = $('#folderId').val();
+            formData.append('file', file);
+            formData.append('partnerId', partnerId);
+            formData.append('folderId', folderId);
+
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', $("#b_url").val()+'/user/uploadDocument');
+            xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
+            
+            // complete
+            xhr.onreadystatechange = $.proxy(function() {
+                if (xhr.readyState == 4) {
+                    var data = xhr.responseText;
+                    data = data.replace(/^\[/, '');
+                    data = data.replace(/\]$/, '');
+
+                    var json;
+                    try {
+                        json = (typeof data === 'string' ? $.parseJSON(data) : data);
+                    } catch(err) {
+                        json = { error: true };
+                    }
+                    
+                    if (folderId) {
+                    	var driveFileGrid = $('#viewfolder');
+                        $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                        $('.nav-tab-doc').find('.tab-data-toggle').removeClass('active');
+        	            
+        	            $('#partner-doc-content').find('.tab-pane').removeClass('active');
+        	            $('#viewfolder').addClass('active');
+        	            $('#newDocFile').val('');
+                    } else {
+                    	var driveFileGrid = $('#docFiles');
+                        $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                        $('.nav-tab-doc').find('.tab-data-toggle').removeClass('active');
+        	            $('.doc-tab-files').addClass('active');
+        	            
+        	            $('#partner-doc-content').find('.tab-pane').removeClass('active');
+        	            $('#files').addClass('active');
+        	            $('#newDocFile').val('');
+                    }
+                }
+            }, this);
+            xhr.send(formData);
+        }
+    });
 });

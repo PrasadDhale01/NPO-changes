@@ -1110,7 +1110,9 @@ class UserService {
                 alternateLink: url,
                 fileId: fileId,
                 title : title )
-            user.addToFiles(file).save(failOnError: true)
+            if (file.save()) {
+                user.addToFiles(file).save(failOnError: true)
+            }
         }
     }
     
@@ -1141,7 +1143,94 @@ class UserService {
     def setNewFolder(User user, def params) {
         Folder folder = new Folder (
             fName: params.title)
+        folder.save(failOnError: true)
         user.addToFolders(folder).save(failOnError: true)
+        
+    }
+    
+    def getFolderById(def folderId) {
+        return Folder.get(folderId)
+    }
+    
+    def uploadDocument(CommonsMultipartFile document, def params, Partner partner, def folder) {
+        if (!document?.empty && document.size < 1024 * 1024 * 3) {
+            def docUrl = getDocumentUrl(document)
+            Document doc = new Document()
+            doc.docName = document.getOriginalFilename()
+            doc.docUrl = docUrl
+            if (doc.save()) {
+                if (params.folderId) {
+                    folder.addToDocuments(doc)
+                    folder.save(failOnError: true)
+                } else {
+                    partner.addToDocuments(doc)
+                    partner.save(failOnError: true)
+                }
+            }
+        }
+    }
+    
+    def getFolderDocuments(Folder folder) {
+        return folder.documents
+    }
+    
+    def getPartnerDocuments(Partner partner) {
+        return partner.documents
+    }
+    
+    def getFolders(User user) {
+        return user.folders
+    }
+    
+    def getDocumentUrl(CommonsMultipartFile document) {
+        if (!document?.empty && document.size >0) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "documents"
+
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def s3Bucket = new S3Bucket(bucketName)
+
+            def file = new File("${document.getOriginalFilename()}")
+            def key = "${folder}/${document.getOriginalFilename()}"
+            key = key.toLowerCase()
+
+            document.transferTo(file)
+            def object = new S3Object(file)
+            object.key = key
+
+            s3Service.putObject(s3Bucket, object)
+            file.delete()
+            def docUrl = "//s3.amazonaws.com/crowdera/${key}"
+
+            return docUrl
+        }
+    }
+    
+    def sendReceipt(def params, CommonsMultipartFile document) {
+        User user = getCurrentUser();
+        def docUrl = getDocumentUrl(document)
+        mandrillService.sendReceipt(params, docUrl, user)
+    }
+    
+    def deleteFolderFile(Folder folder, def params) {
+        Document document = Document.get(params.id)
+        if (document) {
+            folder.removeFromDocuments(document)
+            folder.save()
+            document.delete(flush:true)
+        }
+    }
+    
+    def deleteDocFile(Partner partner, def params) {
+        Document document = Document.get(params.id)
+        if (document) {
+            partner.removeFromDocuments(document)
+            partner.save()
+            document.delete(flush:true)
+        }
     }
     
     @Transactional

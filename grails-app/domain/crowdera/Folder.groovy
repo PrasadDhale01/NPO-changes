@@ -7,9 +7,10 @@ import groovy.transform.ToString
 
 class Folder {
 
-    static hasMany = []
+    static hasMany = [documents : Document]
     
     String fName
+    List documents
     
     static constraints = {
         fName nullable: true

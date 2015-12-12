@@ -116,9 +116,6 @@
                     <li class="hidden">
                         <a href="#inbox" data-toggle="tab">INBOX</a>
                     </li>
-                    <li>
-                        <a href="#files" data-toggle="tab">Manage Google Drive</a>
-                    </li>
                     <li class="hidden">
                         <a href="#track" data-toggle="tab">Track Growth</a>
                     </li>
@@ -169,6 +166,13 @@
                         </div>
                     </div>
                 </g:elseif>
+                <g:elseif test="${flash.receipt_sent_msg}">
+                    <div class="col-sm-12 text-center success-message">
+                        <div class="alert alert-success">
+                            ${flash.receipt_sent_msg}
+                        </div>
+                    </div>
+                </g:elseif>
                 <g:elseif test="${!partner.enabled}">
                     <div class="col-sm-12 partner-confirmation">
                         <div class="alert alert-info">
@@ -213,7 +217,7 @@
                         </div>
                     </div>
                     
-                    <div class="tab-pane tab-pane-active" id="myCampaigns">
+                    <div class="active tab-pane tab-pane-active" id="myCampaigns">
                          <div id="partnercampaignpaginate">
                              <g:render template="/user/partner/tile"/>
                          </div>
@@ -224,9 +228,6 @@
                             <g:render template="/user/partner/promote"/>
                         </div>
                     </div>
-                    
-<%--                    <div class="tab-pane tab-pane-active" id="track">--%>
-<%--                    </div>--%>
                     
                     <div class="tab-pane tab-pane-active" id="userInfo">
                          <g:render template="/user/user/userprofile"/>
@@ -243,7 +244,7 @@
 <%--                            </div>--%>
 <%--                        </div>--%>
 <%--                    </div>--%>
-                    <div class="active tab-pane tab-pane-active" id="docs">
+                    <div class="tab-pane tab-pane-active" id="docs">
                         <div class="col-sm-12">
                             <g:render template="/user/partner/docs"/>
                         </div>
@@ -261,12 +262,11 @@
             clientId: $('#clientId').val(),
             buttonEl: document.getElementById('pick'),
             onSelect: function(file) {
-                    console.log(file);
-                }
+                     }
             });
         }
     </script>
-    <% 
+    <%
         def loadApiUrl = 'https://www.google.com/jsapi?key='+ grailsApplication.config.crowdera.api_key
     %>
     <script src="${loadApiUrl}"></script>

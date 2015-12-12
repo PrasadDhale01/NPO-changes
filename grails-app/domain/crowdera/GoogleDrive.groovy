@@ -8,6 +8,8 @@ import groovy.transform.ToString
 
 class GoogleDrive {
 
+    static belongsTo = User
+    
     String alternateLink
     String fileId
     String title

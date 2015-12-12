@@ -891,6 +891,7 @@ div.dashboardtile-min-height {
 .automargin {
 	   margin-left: auto;
 	   margin-right: auto;
+	   box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
 }
 #promote-social-media .btn-social :first-child {
     width: 100%;
@@ -1078,6 +1079,9 @@ div.dashboardtile-min-height {
     text-decoration: none;
     font-weight: 500;
 }
+.nav-tab-doc a:hover {
+    color: #01bbd2;
+}
 .doc-tab-right-border {
     border-right: 2px solid #6d6e6e;
 }
@@ -1095,9 +1099,12 @@ div.dashboardtile-min-height {
     color: #01bbd2;
 }
 .folder {
-    background-color: #f5f5f5;
-    border: 1px solid #d7d7d7;
-    margin-bottom: 7px;
+    background-color: #fff;
+    border: 1px solid #fff;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
+    cursor: pointer;
 }
 
 .folderName {
@@ -1108,4 +1115,27 @@ div.dashboardtile-min-height {
     color: #6d6e6e;
     white-space: pre;
     padding: 8px;
+}
+.folderlist {
+    background-color: #f5f5f5;
+    overflow-y: auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#newDocFile {
+    display: none;
+}
+.uploaddocfile {
+    color: #6d6e6e;
+    font-weight: 500;
+    cursor: pointer;
+}
+.uploaddocfile:hover {
+    color: #01bbd2;
+}
+.folderdirectory {
+    margin-bottom: 20px;
+}
+.folderdirectory a:hover{
+    text-decoration: none;
 }

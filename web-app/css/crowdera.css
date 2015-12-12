@@ -7782,9 +7782,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-    div.header-scrolled{
+    .nav-tab-doc.nav {
+        font-size: 14px !important;
+    }
+    div.header-scrolled {
         display: none !important;
-	}
+    }
     button.sh-submitaproval-2header {
 /*         margin-left: -42px; */
         margin-top: -1px;
@@ -9363,6 +9366,17 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+    ul.nav-tab-doc.nav {
+        font-size: 11px;
+    }
+    .docs-tab-border.col-xs-12 {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .doc-tab-padding {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
     .pd-container {
         width: 320px;
         margin-left: auto;
@@ -11371,7 +11385,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 @media only screen and (max-width: 800px){
-	.manage-tiles {
+   	.manage-tiles {
         width: 65% !important;
     }
     .manage-tiles-details {

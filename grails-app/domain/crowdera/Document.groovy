@@ -6,17 +6,15 @@ import groovy.transform.ToString
 @ToString(includeNames = true, includeFields = true)
 @EqualsAndHashCode
 
-class Partner {
+class Document {
+
+    static belongsTo = Folder, Partner
     
-    static belongsTo = [user: User]
-    static hasMany = [documents : Document]
-    
-    String confirmCode
-    List documents
-    
-    boolean enabled = false
+    String docName
+    String docUrl
     
     static constraints = {
-        confirmCode nullable: false
+        docName nullable: true
+        docUrl nullable: true
     }
 }

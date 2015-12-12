@@ -551,6 +551,7 @@ class UserController {
             def isAdmin = userService.isAdmin()
             def conversionMultiplier = projectService.getCurrencyConverter();
             def folders = user.folders
+            def files = partner.documents
             
             def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
             def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
@@ -559,11 +560,14 @@ class UserController {
                 flash.prj_validate_message = "Campaign validated successfully."
             } else if (flash.invite_message) {
                 flash.invite_message = "Email Sent Successfully."
+            } else if(flash.receipt_sent_msg) {
+                flash.receipt_sent_msg = "Receipt Sent Successfully."
             }
             
             render view:'/user/partner/dashboard', model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl, currentEnv: currentEnv,
                                                          fundRaised: fundRaised, numberOfInvites: numberOfInvites, userCampaigns: userCampaign.projects, totalUserCampaigns: userCampaign.totalprojects,
-                                                         country: country, state: state, partner: partner, isAdmin: isAdmin, conversionMultiplier: conversionMultiplier, folders: folders]
+                                                         country: country, state: state, partner: partner, isAdmin: isAdmin, conversionMultiplier: conversionMultiplier, folders: folders,
+                                                         files: files]
         }
     }
     
@@ -653,9 +657,72 @@ class UserController {
         User user = userService.getUserId(params.int('userId'))
         if (user) {
             userService.setNewFolder(user, params)
-            def folders = user.folders
+            def folders = userService.getFolders(user)
             def model = [folders: folders]
-            render template : '/user/partner/files', model: model
+            render template : '/user/partner/folders', model: model
         }
     }
+    
+    def sendReceipt() {
+        def file = request.getFile('file')
+        userService.sendReceipt(params, file)
+        flash.receipt_sent_msg = "Receipt Sent Successfully."
+        redirect action: 'partnerdashboard'
+    }
+    
+    def uploadDocument() {
+        Partner partner = userService.getPartnerById(params.int('partnerId')) 
+        if (partner) {
+            Folder folder = userService.getFolderById(params.int('folderId'))
+            def file = params.file
+            userService.uploadDocument(file, params, partner, folder)
+            def files
+            def model
+            def requestUrl= request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            if (folder) {
+                files = userService.getFolderDocuments(folder);
+                model = [files: files, folderName : folder.fName, folder: folder, baseUrl: baseUrl]
+                render (template:'/user/partner/files', model: model)
+            } else {
+                files = userService.getPartnerDocuments(partner);
+                model = [files: files, partner: partner, baseUrl: baseUrl]
+                render (template:'/user/partner/files', model: model)
+            }
+        }
+    }
+    
+    def loadFolder() {
+        Folder folder = userService.getFolderById(params.int('id'))
+        if (folder) {
+            def files = folder.documents
+            def requestUrl= request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+
+            def model = [files: files, folderName : folder.fName, folder: folder, baseUrl: baseUrl]
+            render (template:'/user/partner/files', model: model)
+        }
+    }
+    
+    def trashdocfile() {
+        Folder folder = userService.getFolderById(params.int('folderId'))
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        
+        def requestUrl= request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        
+        if (folder) {
+            userService.deleteFolderFile(folder, params)
+            def files = folder.documents
+            def model = [files: files, folderName : folder.fName, folder: folder, baseUrl: baseUrl]
+            render (template:'/user/partner/files', model: model)
+        
+        } else if (partner) {
+            userService.deleteDocFile(partner , params)
+            def files = partner.documents
+            def model = [files: files, partner: partner, baseUrl: baseUrl]
+            render (template:'/user/partner/files', model: model)
+        }
+    }
+    
 }

@@ -232,7 +232,8 @@ class ProjectController {
 
             def multiplier = projectService.getCurrencyConverter();
             def pieList = projectService.getPieList(project);
-            def hasMorTags = projectService.getHashTags(project.hashtags)
+            def hasMorTagsDesktop = projectService.getHashTags(project.hashtags)
+            def hasMorTagsTabs = projectService.getHashTags(project.hashtags)
             def reasons = projectService.getReasonsToFundFromProject(project)
             render (view: 'show/index',
             model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
@@ -240,7 +241,8 @@ class ProjectController {
                     teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
                     isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
                     isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url,
-                    multiplier: multiplier, spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, hashTags:hasMorTags.firstFiveHashTags, remainingTags: hasMorTags.remainingHashTags, reasons:reasons])
+                    multiplier: multiplier, spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, hashTagsDsektop:hasMorTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMorTags.remainingHashTags, 
+hashTagsDesktop:hasMorTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMorTags.remainingHashTags, reasons:reasons])
 		} else {
 		    render(view: '/404error', model: [message: 'This project does not exist.'])
 		}

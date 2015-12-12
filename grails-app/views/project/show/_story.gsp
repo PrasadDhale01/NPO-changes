@@ -72,10 +72,11 @@
                 </div>
             </div>
         </g:else>
+        <span class="showing-hashtags showing-hashtags-desktop">${hashTags}</span>
+        <span class="showing-hashtags showing-hashtags-tabs">${hashTags}</span>
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-12 TW-campaignstory-img-width">
-        <p>${hashTags}<p>
         <g:if test="${isCrFrCampBenOrAdmin}">
             <div class="show-description">
                 <p class="campaignDescription justify">${raw(project.description)}</p>
@@ -226,6 +227,7 @@
             <p class="campaignStory justify">${raw(project.story)}</p>
         </g:else>
         <g:if test="${remainingTags}">
-            <p>More Tags : ${remainingTags}</p>
+            <p class="moretags-desktop">More Tags : ${remainingTags}</p>
+            <p class="moretags-tabs">More Tags : ${remainingTags}</p>
         </g:if>
     </div>

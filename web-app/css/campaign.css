@@ -817,3 +817,11 @@ div.col-sm-pie-left-pdding{
 .clear-height-xs{
 	height:20px;
 }
+
+.showing-hashtags {
+    bottom: 12px;
+    padding: 7px;
+    position: absolute;
+    top: 7px;
+}
+

@@ -240,7 +240,7 @@ class ProjectController {
                     teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
                     isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
                     isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url,
-                    multiplier: multiplier, spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerLIst, hashTags:hasMorTags.firstFiveHashTags, remainingTags: hasMorTags.remainingHashTags, reasons:reasons])
+                    multiplier: multiplier, spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, hashTags:hasMorTags.firstFiveHashTags, remainingTags: hasMorTags.remainingHashTags, reasons:reasons])
 		} else {
 		    render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
@@ -547,7 +547,7 @@ class ProjectController {
                 def categoryOptions 
                 if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
                     categoryOptions = projectService.getIndiaCategoryList()
-                }else{
+                } else {
                     categoryOptions = projectService.getCategoryList()
                 }
 
@@ -600,7 +600,8 @@ class ProjectController {
                     vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, 
                     email2:adminemails.email2, email3:adminemails.email3,reasonsToFund:reasonsToFund, 
                     qA:qA, spends:spends, usedForCreate:usedForCreate, selectedCountry:selectedCountry, 
-                    taxReciept:taxReciept, deductibleStatusList:deductibleStatusList])
+                    taxReciept:taxReciept, deductibleStatusList:deductibleStatusList,
+                    spendAmountPerList:pieList.spendAmountPerList])
             } else {
                 render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
             }
@@ -2027,13 +2028,19 @@ class ProjectController {
     }
 
     def saveSpendMatrix(){
-        projectService.getSpendMatrixSaved(params)
-        render''
+        Project project = projectService.getSpendMatrixSaved(params)
+        def pieList = projectService.getPieList(project);
+        if(request.xhr){
+            render(template: "create/pieChartWithoutLabel", model:[project:project, spendAmountPerList:pieList.spendAmountPerList])
+        }
     }
 
     def deleteSpendMatrix(){
-        projectService.getSpendMatrixDeleted(params)
-        render''
+        Project project = projectService.getSpendMatrixDeleted(params)
+        def pieList = projectService.getPieList(project);
+        if(request.xhr){
+            render(template: "create/pieChartWithoutLabel", model:[project:project, spendAmountPerList:pieList.spendAmountPerList])
+        }
     }
 
 	def getFeedBackCSV(){

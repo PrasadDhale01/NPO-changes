@@ -388,8 +388,8 @@
                             <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">SPEND MATRIX</span></label>
                             <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
                         </div>
-                        <div class="panel panel-body cr-panel-body-spend-matrix">
-                            <div class="col-sm-8 spend-matrix">
+                        <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-spendMatrix-height">
+                            <div class="col-sm-9 col-xs-12 spend-matrix">
                                 <g:if test="${spendCount > 0}">
                                     <g:each in="${spends}" var="spend">
                                         <div class="spend-matrix-template" id="spend-matrix-template${spend.numberAvailable}">
@@ -404,6 +404,7 @@
                                                          <span class="fa fa-usd cr-currency"></span>
                                                     </g:else>
                                                     <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount${spend.numberAvailable}" value="${spend.amount.round()}" name="spendAmount${spend.numberAvailable}">
+                                                    <span class="digitsError"></span>
                                                 </div>
                                                 <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
                                                 <div class="col-sm-5 col-xs-7 col-input-for form-group">
@@ -440,6 +441,7 @@
                                                     <span class="fa fa-usd cr-currency"></span>
                                                 </g:else>
                                                 <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount1" name="spendAmount1">
+                                                <span class="digitsError"></span>
                                             </div>
                                             <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
                                             <div class="col-sm-5 col-xs-7 col-input-for form-group">
@@ -458,10 +460,12 @@
                                     <g:hiddenField name="lastSpendField" id="lastSpendField" value="1"/>
                                 </g:else>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-offset-0 col-sm-3 col-xs-offset-1 col-xs-11 pieChart">
+                                <g:render template="create/pieChartWithoutLabel"/>
                             </div>
-                            <div class="row">
-                               <span class="col-sm-offset-1 col-sm-4 saved-message">Spend field Saved</span>
+                            <div class="clear"></div>
+                            <div class="height-xs">
+                                <span class="saved-message">Spend Saved</span>
                             </div>
                         </div>
                     </div>

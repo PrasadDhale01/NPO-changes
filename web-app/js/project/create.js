@@ -362,6 +362,26 @@ $(function() {
         }
         return true;
     }, "Please enter a valid fullname");
+    
+    $.validator.addMethod('isTotalSpendAmountGreaterThanProjectAmount', function (value, element) {
+        var totalSpendAmount = 0;
+        var projectAmount = $("#projectamount").val();
+        $('.spendAmount').each(function(){
+        	if ($.isNumeric($(this).val())){
+        		totalSpendAmount = totalSpendAmount + parseInt($(this).val());
+        	}
+        });
+        if(totalSpendAmount < parseInt(projectAmount)) {
+        	$('.spendAmount').each(function(){
+        		var id = $(this).attr('id');
+				$('#'+id).parent('.form-group').removeClass('has-error');
+				$('#'+id).siblings('.help-block').remove();
+        	});
+            return  true;
+        }else{
+        	return false;
+        }
+    }, "The total spend amount is exceeding campaign goal");
 
     $('#campaigncreatebtn, #campaigncreatebtnXS').on('click', function() {
         if (validator.form()) {
@@ -397,9 +417,10 @@ $(function() {
                       maxlength: 9,
                	      min:100,
                       max: function() {
-                          var campaignAmount = $('#projectamount').val();
+                          
                           return Number(campaignAmount);
                       },
+                      isTotalSpendAmountGreaterThanProjectAmount : true,
                       messages: {
                   	     required: 'Required',
                   	     number: 'Digits only',
@@ -418,10 +439,13 @@ $(function() {
                           var campaignAmount = $('#projectamount').val();
                           return Number(campaignAmount);
                       },
+                      min:1,
+                      isTotalSpendAmountGreaterThanProjectAmount : true,
                       messages: {
                           required: 'Required',
                           number: 'Digits only',
-                          maxlength: 'max 6 digits'
+                          maxlength: 'max 6 digits',
+                          min:'min $1'
                       }
                   });
               }); 
@@ -705,6 +729,7 @@ $(function() {
 						var campaignAmount = $('#projectamount').val();
 						return Number(campaignAmount);
 					},
+					isTotalSpendAmountGreaterThanProjectAmount : true,
 					messages: {
 						required: 'Required',
 						number: 'Digits only',
@@ -723,10 +748,13 @@ $(function() {
 						var campaignAmount = $('#projectamount').val();
 						return Number(campaignAmount);
 					},
+					min:1,
+					isTotalSpendAmountGreaterThanProjectAmount : true,
 					messages: {
 						required: 'Required',
 						number: 'Digits only',
-						maxlength: 'max 6 digits'
+						maxlength: 'max 6 digits',
+						min:'min $1'
 					}
 				});
 			}); 
@@ -2105,6 +2133,20 @@ $(function() {
             } 
         });
         
+        $("form").on("click", ".spendAmount", function () {
+            $('.spendAmount').each(function () {
+                $(this).keypress(function (e) {
+                  //if the letter is not digit then display error and don't type anything
+                  if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                    //display error message
+                	$(this).siblings(".digitsError").html("Digits Only").show().fadeOut(1000);
+                    return false;
+                  }
+                });
+            });
+            
+          });
+        
         $("#amount2,#amount3,#amount1").keypress(function (e) {
             //if the letter is not digit then display error and don't type anything
             if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -2159,33 +2201,35 @@ $(function() {
 				$('.spend-matrix').find('.spendMatrixTemplateAdd:last').addClass('display-none');
 				var nextCount = ++shippingMatrixCount;
 				var template = '<div class="spend-matrix-template" id="spend-matrix-template'+nextCount+'">'+
-				'<br><br class="hidden-xs"><br class="hidden-xs"><div class="col-sm-amt col-sm-12">'+
-				'<span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>'+
-				'<div class="form-group col-sm-3 col-xs-4 col-sm-input-group">';
-				if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-					template = template +'<span class="fa fa-inr cr-currency"></span>';
-				} else {
-					template = template +'<span class="fa fa-usd cr-currency"></span>';
-				}
-				template = template +'<input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount'+nextCount+'" name="spendAmount'+nextCount+'">'+
-				'</div>&nbsp;&nbsp;&nbsp;'+
-				'<span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>'+
-				'<div class="form-group col-sm-5 col-xs-7 col-input-for">'+
-				'<input type="text" class="form-control form-control-input-for spendCause" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
-				'</div>'+
-				'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">'+
-				'<input type="hidden" name="spendFieldSave" value="'+nextCount+'" class="spendFieldSave">'+
-				'<i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>'+
-				'</div>&nbsp;'+
-				'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateDelete">'+
-				'<input type="hidden" name="spendFieldDelete" value="'+nextCount+'" class="spendFieldDelete">'+
-				'<i class="glyphicon glyphicon-trash glyphicon-size"></i>'+
-				'</div>&nbsp;'+
-				'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd" id="spendMatrixTemplateAdd'+nextCount+'">'+
-				'<i class="glyphicon glyphicon-plus glyphicon-size"></i>'+
-				'</div>'+
-				'</div>'+
-				'<input type="hidden" name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="'+nextCount+'">'+
+					'<br><br class="hidden-xs"><br class="hidden-xs">'+
+					'<div class="col-sm-amt col-sm-12">'+
+						'<span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>'+
+						'<div class="form-group col-sm-3 col-xs-4 col-sm-input-group">';
+							if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+								template = template +'<span class="fa fa-inr cr-currency"></span>';
+							} else {
+								template = template +'<span class="fa fa-usd cr-currency"></span>';
+							}
+							template = template +'<input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount'+nextCount+'" name="spendAmount'+nextCount+'">'+
+							'<span class="digitsError"></span>'+
+						'</div>&nbsp;&nbsp;&nbsp;'+
+						'<span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>'+
+						'<div class="form-group col-sm-5 col-xs-7 col-input-for">'+
+						'	<input type="text" class="form-control form-control-input-for spendCause" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
+						'</div>'+
+						'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">'+
+							'<input type="hidden" name="spendFieldSave" value="'+nextCount+'" class="spendFieldSave">'+
+							'<i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>'+
+						'</div>&nbsp;'+
+						'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateDelete">'+
+							'<input type="hidden" name="spendFieldDelete" value="'+nextCount+'" class="spendFieldDelete">'+
+							'<i class="glyphicon glyphicon-trash glyphicon-size"></i>'+
+						'</div>&nbsp;'+
+						'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd" id="spendMatrixTemplateAdd'+nextCount+'">'+
+							'<i class="glyphicon glyphicon-plus glyphicon-size"></i>'+
+						'</div>'+
+					'</div>'+
+					'<input type="hidden" name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="'+nextCount+'">'+
 				'</div>';
 				$('.spend-matrix').append(template);
 				var lastSpendField = $('.spenMatrixNumberAvailable:last').val();
@@ -2205,6 +2249,7 @@ $(function() {
                               var campaignAmount = $('#projectamount').val();
                               return Number(campaignAmount);
                           },
+                          isTotalSpendAmountGreaterThanProjectAmount : true,
                           messages: {
                       	     required: 'Required',
                       	     number: 'Digits only',
@@ -2223,10 +2268,13 @@ $(function() {
                               var campaignAmount = $('#projectamount').val();
                               return Number(campaignAmount);
                           },
+                          min:1,
+                          isTotalSpendAmountGreaterThanProjectAmount : true,
                           messages: {
                               required: 'Required',
                               number: 'Digits only',
-                              maxlength: 'max 6 digit'
+                              maxlength: 'max 6 digit',
+                              min:'min $1'
                           }
                       });
                   }); 
@@ -2252,17 +2300,18 @@ $(function() {
                   return false;
               }
           }
-          
+
           function saveSpendMatrixField(savingCount){
         	  var amount = $('#spendAmount'+savingCount).val();
         	  var cause = $('#spendCause'+savingCount).val();
+        	  var grid = $('.pieChart');
         	  $.ajax({
               	  cache: true,
                   type:'post',
                   url:$("#b_url").val()+'/project/saveSpendMatrix',
                   data:'amount='+amount+'&cause='+cause+'&savingCount='+savingCount+'&projectId='+projectId,
                   success: function(data) {
-                     $('#test').val('test');
+                	  $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
                   }
               }).error(function() {
                   console.log('error occured while saving spenMarix no.'+savingCount);
@@ -2285,6 +2334,7 @@ $(function() {
           function deleteSpendMatrix(deleteCount){
         	  var amount = $('#spendAmount'+deleteCount).val();
         	  var cause = $('#spendCause'+deleteCount).val();
+        	  var grid = $('.pieChart');
         	  $.ajax({
               	  cache: true,
                   type:'post',
@@ -2294,6 +2344,7 @@ $(function() {
                 	  $('.spend-matrix').find('#spend-matrix-template'+deleteCount).remove();
                 	  var lastSpendField = $('.spenMatrixNumberAvailable:last').val();
                       $('#lastSpendField').val(lastSpendField);
+                      $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
                   }
               }).error(function() {
                   console.log('error occured while deleting spenMarix no.'+savingCount);
@@ -2304,8 +2355,12 @@ $(function() {
               var saveCount = $(this).find('.spendFieldSave').val();
               var isSpendMatrixSaved = validateSpendMatrix(saveCount);
               if (isSpendMatrixSaved){
-            	  $('.saved-message').show();
-            	  $('.saved-message').fadeOut(3000);
+            	  $('.saved-message').show().fadeOut(3000);
+//            	  if (screen.width >767){
+//            		  $('.saved-message-sm').show().fadeOut(2000);
+//            	  } else {
+//            		  $('.saved-message-xs').show().fadeOut(2000);
+//            	  }
               }
           });
 

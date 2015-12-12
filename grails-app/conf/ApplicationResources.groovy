@@ -79,6 +79,7 @@ modules = {
         resource url: 'js/redactor/plugins/fontsize.js'
         resource url: 'js/redactor/plugins/fontfamily.js'
         resource url: 'js/redactor/plugins/fontcolor.js'
+        resource url: 'js/project/pieChartLabeled.js'
     }
     projectlistjs {
         dependsOn 'crowderajs', 'blacknwhitejs'

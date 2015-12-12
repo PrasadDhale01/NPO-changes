@@ -4184,12 +4184,12 @@ class ProjectService {
             SpendMatrix spendMatrix = SpendMatrix.findByNumberAvailableAndProject(saveCount, project)
             if (spendMatrix) {
                 def isValueChanged = false
-                
+
                 if (amount && amount != ' '){
                     spendMatrix.amount = amount
                     isValueChanged = true
                 }
-            
+
                 if (params.cause && params.cause != ' '){
                     spendMatrix.cause = params.cause
                     isValueChanged = true
@@ -4208,6 +4208,7 @@ class ProjectService {
                 ).save(failOnError:true);
             }
         }
+        return project
     }
 
     def getSpendMatrixDeleted(def params){
@@ -4215,8 +4216,9 @@ class ProjectService {
         def deleteCount = Integer.parseInt(params.deleteCount)
         SpendMatrix spendMatrix = SpendMatrix.findByNumberAvailableAndProject(deleteCount, project)
         if (spendMatrix){
-            spendMatrix.delete();
+            spendMatrix.delete(flush:true);
         }
+        return project
     }
 
     def getPieList(Project project) {
@@ -4227,13 +4229,24 @@ class ProjectService {
         String sublist;
         pieValueWithPer.add(sublist1);
         def cause
-        spendMatrixs.each{ spendMatrix ->
-            pieListCount++;
-            sublist = (sublist) ? sublist + spendMatrix.cause : spendMatrix.cause;
-            def percentage = (spendMatrix.amount / project.amount) * 100;
-            sublist1 = (sublist1) ? sublist1 + percentage.round();
+        def total = 0
+        if (spendMatrixs){
+            spendMatrixs.each{ spendMatrix ->
+                pieListCount++;
+                sublist = (sublist) ? sublist + ', ' + spendMatrix.cause : spendMatrix.cause;
+                sublist1 = (sublist1) ? sublist1 + ', ' + spendMatrix.amount.round() : spendMatrix.amount.round();
+                total = total + spendMatrix.amount
+            }
+            if ((project.amount - total) > 0){
+                def totalLeft = (project.amount - total);
+                sublist = sublist + ', ' +'Miscellaneous'
+                sublist1 = sublist1 + ', ' +totalLeft.round()
+            }
+        } else {
+            sublist = null;
+            sublist1 = null;
         }
-        return [spendCauseList: sublist, spendAmountPerLIst: sublist1];
+        return [spendCauseList: sublist, spendAmountPerList: sublist1];
     }
 
     def getProjectReasonsToFund(Project project){
@@ -4500,7 +4513,7 @@ class ProjectService {
     def getReasonsToFundFromProject(Project project){
         return ReasonsToFund.findByProject(project)
     }
-
+    
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

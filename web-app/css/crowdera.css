@@ -5481,7 +5481,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
-	
+	.cr-panel-spendMatrix-height{
+        min-height:300px
+	}
 	.col-sm-impact-religion-amount{
 		padding-left: 0px;
 		left:-6px;
@@ -5535,9 +5537,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-     .padding-tax-reciept-xs{
-         padding-right:20px !important;
-     }
+	#chart-container #graphWithoutLabel{
+	   margin-left: 5px;
+	}
+	.padding-tax-reciept-xs{
+	   padding-right:20px !important;
+	}
     button.show-mob-mobile{
        background-color: #01bbd3 !important;
        color: #fff;
@@ -7788,6 +7793,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    #chart-container #graphWithoutLabel{
+        margin-left:-40px;
+    }
 	.col-impact-text-religion-two{
 	   width:32%;
 	}
@@ -9431,6 +9439,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	.cr-panel-spendMatrix-height{
+        min-height:375px
+    }
 	span.col-impact-education-text-one, span.col-impact-education-text-two{
        padding-left:17px;
 	}
@@ -10834,6 +10845,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+	#chart-container #graphWithoutLabel{
+	   margin-left:-5px;
+	}
 
     .padding-tax-reciept-xs{
         padding-right:47px !important;

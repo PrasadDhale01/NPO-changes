@@ -270,8 +270,7 @@
                    </div>
                 </div>
             
-           <div class="hidden-xs">  
-               <div class="show1-Primary">  
+               <div class="show1-Primary hidden-xs">  
                     <ul class="nav nav-pills nav-justified nav-justi show-marginbottoms sh-primery-header-padding s-fixedHeader sh-tabs mng-safari-mobile show-new-tabs-alignments<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
                         <li class="sh-secandary-header-showpage">        
                             <a class="navbar-brand show-secandarylog-top sh-logo-color" href="/">

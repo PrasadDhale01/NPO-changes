@@ -29,6 +29,23 @@
     }
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+username
     def currentTeamAmount = currentTeam.amount
+    def shareUrl = base_url+'/c/'+shortUrl
+    
+    def vimeoInt
+    def campaignVideoUrl
+    
+    if (project.videoUrl){
+        if (project.videoUrl.contains('vimeo.com')) {
+            def video = project.videoUrl.split('/')
+            vimeoInt = video[video.length - 1]
+            campaignVideoUrl = 'https://player.vimeo.com/video/'+vimeoInt
+        } else {
+            campaignVideoUrl = project.videoUrl;
+        }
+    }
+    def embedTileUrl = base_url+'/campaign/'+vanityTitle+'/'+vanityUsername+'/embed/tile'
+    def embedCode = '<iframe width="310px" height="451px" src="'+embedTileUrl+'" scrolling="no" frameborder="0"  class="embedTitleUrl"></iframe>'
+    def embedVideoCode = '<iframe width="480" height="360" frameborder="0" src="'+campaignVideoUrl+'" scrolling="no"></iframe>'
     
 %>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:og="http://ogp.me/ns#" xmlns:fb="https://www.facebook.com/2008/fbml">
@@ -89,8 +106,11 @@
     </g:if> 
     
     <div class="container show-cmpgn-container">
+
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
-  
+    <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
+    <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
+
         <g:if test="${project}">
             <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>
             <div class="redirectUrl">
@@ -157,26 +177,27 @@
                         <div class="show-tilemobile visible-xs">
                             <g:render template="/user/user/tilemobile" model="['project': project]"></g:render>
                         </div>
-                    
-                        <div class="submitForApprovalSection">
-                            <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
-                                <g:form controller="project" action="saveasdraft" id="${project.id}">
-                                    <g:if test="${!project.touAccepted}">
-                                        <div class="form-group">
-                                            <input type="checkbox" name="submitForApprovalcheckbox" id="agreetoTermsandUse">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
-                                        </div>
-                                    </g:if>
-                                    <div class="clear"></div>
-                                    <button class="btn btn-block btn-lg btn-primary sh-submitapproval show-submitapprovalmobile">
+                        <div class="show-mobile-button">
+                            <div class="submitForApprovalSection">
+                                <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                    <g:form controller="project" action="saveasdraft" id="${project.id}">
+                                        <g:if test="${!project.touAccepted}">
+                                            <div class="form-group">
+                                                <input type="checkbox" name="submitForApprovalcheckbox" id="agreetoTermsandUse">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+                                            </div>
+                                        </g:if>
+                                        <div class="clear"></div>
+                                        <button class="btn btn-block btn-lg sh-submitapproval  show-mob-mobile">
+                                            <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                        </button>
+                                    </g:form>
+                                </g:if>
+                                <g:else>
+                                    <button class="btn btn-block btn-lg show-mob-mobile" id="submitForApprovalBtnMobile">
                                         <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
                                     </button>
-                                </g:form>
-                            </g:if>
-                            <g:else>
-                                <button class="btn btn-block btn-lg btn-primary show-submitapprovalmobile" id="submitForApprovalBtnMobile">
-                                    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-                                </button>
-                            </g:else>
+                                </g:else>
+                            </div>
                         </div>
                         
                         <div class="hidden-xs">
@@ -191,21 +212,23 @@
                         <button type="button" class="btn btn-warning btn-lg btn-block mob-show-sucessend" disabled>CAMPAIGN ENDED!</button>
                     </g:elseif>
                     <g:else>
+                        <div class="show-mobile-button">
                         <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
                             <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
                                 <div class="redirectCampaign">
-                                    <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund" id="btnFundDesktop">FUND NOW!</button></g:link>
+                                    <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund" id="btnFundDesktop">FUND NOW!</button></g:link>
                                 </div>
                             </g:if>
                             <g:else>
                                 <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
-                                    <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund"  id="btnFundMobile">FUND NOW!</button>
+                                    <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund"  id="btnFundMobile">FUND NOW!</button>
                                 </g:form>
                             </g:else>
                         </g:if>
                         <g:else>
-                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block mob-show-fund">FUND NOW!</button>
+                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block mob-show-fund show-mobile-fund">FUND NOW!</button>
                         </g:else>
+                        </div>
                     </g:else>
 
                    <div class="panel-body show-mobile-slogn visible-xs">
@@ -249,20 +272,25 @@
                        </g:if>
                    </div>
                 </div>
-
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders  hidden-xs">
-                    <g:set var="screen" id="screen" value="false"></g:set>
-                    <ul class="nav nav-pills nav-justified nav-justi show-marginbottoms sh-tabs mng-safari-mobile show-new-tabs-alignments<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
+            
+           <div class="hidden-xs">  
+               <div class="show1-Primary">  
+                    <ul class="nav nav-pills nav-justified nav-justi show-marginbottoms sh-primery-header-padding s-fixedHeader sh-tabs mng-safari-mobile show-new-tabs-alignments<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
+                        <li class="sh-secandary-header-showpage">        
+                            <a class="navbar-brand show-secandarylog-top sh-logo-color" href="/">
+                                <img class="sh-safari2header-padding" src="//s3.amazonaws.com/crowdera/assets/crowdera-logo.png" alt="Crowdera">
+                            </a>
+                        </li>
                         <li><span class="active show-tbs-right-borders  hidden-xs">
-                                <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials">
-                                    <span class="tab-text hidden-xs"> STORY</span>
+                                <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials show-all-icons-header-tabs show-story">
+                                    <span class="tab-text sh-tabs-font hidden-xs"> STORY</span>
                                 </a>
                             </span>
                         </li>
                         <g:if test="${!project.projectUpdates.isEmpty() }">
                             <li><span class="show-tbs-right-borders hidden-xs">
-                                    <a href="#projectupdates" data-toggle="tab"  class="show-tabs-text projectupdates">
-                                        <span class="tab-text hidden-xs"> UPDATES</span> 
+                                    <a href="#projectupdates" data-toggle="tab"  class="show-tabs-text projectupdates show-all-icons-header-tabs">
+                                        <span class="tab-text sh-tabs-font hidden-xs"> UPDATES</span> 
                                     </a>
                                     <span class="show-tabs-count hidden-xs">
                                         <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if>
@@ -271,9 +299,212 @@
                             </li>
                         </g:if>
                         <li><span class="show-tbs-right-borders hidden-xs">
+                                <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam show-all-icons-header-tabs">
+                                    <span class="tab-text sh-tabs-font"> TEAMS</span>
+                                </a>
+                            </span>
+                        </li>
+                        <li><span class="show-tbs-right-borders hidden-xs">
+                                <a href="#contributions" data-toggle="tab"  class="show-tabs-text contributions show-all-icons-header-tabs">
+                                    <span class="tab-text sh-tabs-font"> CONTRIBUTIONS</span>
+                                </a>
+                                <span class="show-tabs-count hidden-xs">
+                                    <g:if test="${totalContributions.size() > 0}">${totalContributions.size()}</g:if>
+                                </span>
+                            </span>
+                        </li>
+                        <li><span class="show-comit-lft hidden-xs">
+                               <a href="#comments" data-toggle="tab"  class="show-tabs-text comments show-all-icons-header-tabs">
+                                   <span class="tab-text hidden-xs sh-tabs-font"> COMMENTS</span>
+                               </a>
+                            </span>
+                        </li>
+                        <li class="sh-button-fund-secandaryheader col-lg-push-2 col-sm-push-3 col-md-push-3">
+                            <g:if test="${isPreview && !project.validated}">
+                                <div class="submitForApprovalSectionbtm show-headerApproval-tooltip show-submit-tabs" id="submitForApprovalSectionbtm">
+                                    <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                        <g:form controller="project" action="saveasdraft" id="${project.id}">
+                                            <g:if test="${!project.touAccepted}">
+                                                <div class="form-group">
+                                                    <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+                                                </div>
+                                            </g:if>
+                                            <div class="clear"></div>
+                                            
+                                            <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header sh-aproval-btn hidden-xs">
+                                                <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                            </button>
+                                        </g:form>
+                                    </g:if>
+                                    <g:else>
+                                        <button class="btn btn-block btn-lg btn-primary sh-submitaproval-2header sh-aproval-btn hidden-xs" id="submitForApprovalBtnright">
+                                            <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                        </button>
+                                    </g:else>
+                                </div>
+                            </g:if>
+                            <g:else>
+                            <g:if test="${percentage!=999 && !ended}">
+                                <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                                    <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+                                        <div class="redirectCampaign">
+                                            <g:link class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js" controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" id="btnFundDesktop">FUND NOW</g:link>
+                                        </div>
+                                    </g:if>
+                                    <g:else>
+                                        <g:form controller="fund" action="fund" id="${project.id}" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormMobile">
+                                            <button name="submit" class="btn btn-show-fund btn-lg btn-block mob-show-fund sh-fund-2header show-btn-js">FUND NOW</button>
+                                        </g:form>
+                                    </g:else>
+                                </g:if>
+                                <g:else>
+                                    <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block sh-fund-2header mob-show-fund show-btn-js">FUND NOW</button>
+                                </g:else>
+                            </g:if>
+                            </g:else>
+                        </li>
+                    </ul>
+               </div>
+                    
+               <div class="show-socialheads">
+                   <div class="navbar navbar-default col-lg-12 hidden-sm col-md-12 sh-tabs hidden-xs sh-shareicons-Fixedtophead">
+                       <div class="col-lg-6 col-lg-push-3 col-sm-6 col-md-push-3 col-md-6 <g:if test="${project.projectUpdates}">show-share-headerpadding</g:if><g:else>show-headered-without-update</g:else> show-headers-icons">
+                       
+                           <%-- Social features --%>
+                           <g:if test="${isPreview}">
+                               <a class="share-mail pull-left show-icons-secandheader show-email-hover show-pointer-not">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" class="show-email" alt="Mail Share">
+                               </a>
+                               <a class=" pull-left show-icons-secandheader show-pointer-not">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
+                               </a>
+                               <a class="pull-left show-icons-secandheader show-pointer-not">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/show-like-gray.png" class="show-like" alt="campaign-supporter">
+                               </a>
+                               <a class="social share-linkedin pull-left show-icons-secandheader show-pointer-not" target="_blank" id="share-linkedin">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
+                               </a>
+                               <a class="social google-plus-share pull-left show-icons-secandheader show-pointer-not" id="googlePlusShare">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
+                               </a>
+                               <span class="pull-left show-icons-secandheader show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></span>
+                               <span class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color show-ispriview-headurl show-pointer-not"></span>
+                           </g:if>
+                           <g:else>
+                               <a class="share-mail pull-left show-icons-secandheader" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" >
+                                   <img src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png" alt="Mail Share" class="show-email">
+                               </a>
+                               <a class="twitter-share pull-left show-icons-secandheader" data-url="${shareUrl}" target="_blank">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/show-twitter-gray.png" class="show-twitter" alt="Twitter Share">
+                               </a>
+                               <g:link absolute="true" uri="/campaign/supporter/${project.id}/${username}" class="pull-left show-icons-secandheader">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/show-like-gray.png" class="show-like" alt="campaign-supporter" >
+                               </g:link>
+                               <a class="social-header share-linkedin pull-left show-icons-secandheader" href="https://www.linkedin.com/cws/share?url=${shareUrl}" target="_blank"  onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                                   <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
+                               </a>
+                               <a class="social-header google-plus-share pull-left show-icons-secandheader" href="https://plus.google.com/share?url=${shareUrl}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;">
+                                    <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
+                               </a>
+                               <a href="#" data-toggle="modal" data-target="#embedTilemodal" target="_blank" class="pull-left show-icons-secandheader"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" class="show-embedIcon" alt="embedicon"></a>
+                               <div class="popoverClass">
+                                    <span data-title="Copy this short url and share &nbsp;&nbsp;&nbsp;" class="shortUrlglyphiconheader glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color show-shortUrlheader-top"></span>
+                                    <div class="hidden popoverConent">
+                                        <button type="button" class="close">&times;</button>
+                                        <p>${shareUrl}</p>
+                                    </div>
+                               </div>
+                           </g:else>
+                       </div>
+                            
+                       <div class="col-lg-6 col-md-6 hidden-sm show-share-FB">
+                           <g:if test="${isPreview}">
+                               <a class="btn btn-block btn-social btn-facebook sh-head-fb-over hidden-xs sho-fb-color show-2ndhead-btnFB ss3 show-pointer-not">
+                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons sh-iconsfb-header"></i> SHARE ON FACEBOOK
+                               </a>
+                           </g:if>
+                           <g:else>
+                                <a class="btn btn-block btn-social btn-facebook sh-head-fb-over hidden-xs sho-fb-color show-2ndhead-btnFB ss3 fbshare-header" href="#">
+                                   <i class="fa fa-facebook fa-facebook-styles sh-fb-icons sh-iconsfb-header"></i> SHARE ON FACEBOOK
+                                </a>
+                           </g:else>
+                       </div>
+                  </div>
+               </div>
+                    
+               <%-- Tabs code social ions facebook, whatsapp, twitter
+               <div class="visible-sm hidden-md sh-tabs-social sh-shareicons-Fixedtophead">
+                   <div class="col-sm-4 col-md-4 show-tabs">
+                       <g:if test="${isPreview}">
+                           <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size hidden-xs">
+                                <i class="fa fa-facebook show-tabsfooter-fb"></i> 
+                           </a>
+                       </g:if>
+                       <g:else>
+                           <a class="btn btn-block btn-social btn-facebook sh-head-fb-over show-Allsocialtabs-size hidden-xs fbshare-header" href="#">
+                               <i class="fa fa-facebook show-tabsfooter-fb"></i> 
+                           </a>
+                       </g:else>
+                   </div>
+                      
+                  <div class="col-sm-4 col-md-4 show-tabs">
+                      <g:if test="${isPreview}">
+                          <a class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size hidden-xs">
+                              <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
+                          </a>
+                      </g:if>
+                      <g:else>
+                          <a class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-whatsapp-color show-Allsocialtabs-size hidden-xs" >
+                              <img src="//s3.amazonaws.com/crowdera/assets/show-tabs-whatsapp-icons.png" class=" show-tabsfooter-fb" alt="whatsapp"> 
+                          </a>
+                      </g:else>
+                  </div>
+                      
+                  <div class="col-sm-4 col-md-4 show-tabs">
+                       <g:if test="${isPreview}">
+                           <a class="btn btn-block btn-social btn-facebook sh-head-fb-over shTabs-twitter-color show-Allsocialtabs-size hidden-xs">
+                               <i class="fa fa-fw fa-twitter show-tabsfooter-fb"></i> 
+                           </a>
+                       </g:if>
+                       <g:else>
+                           <a class="btn btn-block btn-social twitter-share btn-facebook sh-head-fb-over shTabs-twitter-color show-Allsocialtabs-size hidden-xs" data-url="${shareUrl}" target="_blank">
+                               <i class="fa fa-fw fa-twitter show-tabsfooter-fb"></i> 
+                           </a>
+                       </g:else>
+                  </div>
+               </div>--%>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 borders  hidden-xs">
+                    <g:set var="screen" id="screen" value="false"></g:set>
+                    <ul class="nav nav-pills">
+                          <li id="show-headeridA"></li> 
+                    </ul>
+                    <ul class="nav nav-pills nav-justified nav-justi show-marginbottoms sh-tabs mng-safari-mobile show-new-tabs-alignments<g:if test="${!project.projectUpdates.isEmpty()}"> TW-show-updateTab-width </g:if><g:else> mng-dt-tabs </g:else>">
+                        
+                        <li class="show-tabs"><span class="active show-tbs-right-borders  hidden-xs">
+                                <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials">
+                                    <span class="tab-text hidden-xs"> STORY</span>
+                                </a>
+                                <span class="show-ids-header"></span>
+                            </span>
+                        </li>
+                        <g:if test="${!project.projectUpdates.isEmpty() }">
+                            <li><span class="show-tbs-right-borders hidden-xs">
+                                    <a href="#projectupdates" data-toggle="tab" name="updated"  class="show-tabs-text projectupdates">
+                                        <span class="tab-text hidden-xs"> UPDATES</span> 
+                                    </a>
+                                    <span class="show-tabs-count hidden-xs">
+                                        <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if>
+                                    </span>
+                                    <span class="show-ids-header"></span>
+                                </span>
+                            </li>
+                        </g:if>
+                        <li><span class="show-tbs-right-borders hidden-xs">
                                 <a href="#manageTeam" data-toggle="tab"  class="show-tabs-text manageTeam">
                                     <span class="tab-text"> TEAMS</span>
                                 </a>
+                                <span class="show-ids-header"></span>
                             </span>
                         </li>
                         <li><span class="show-tbs-right-borders hidden-xs">
@@ -283,12 +514,14 @@
                                 <span class="show-tabs-count hidden-xs">
                                     <g:if test="${totalContributions.size() > 0 && screen == 'false'}">${totalContributions.size()}</g:if>
                                 </span>
+                                <span class="show-ids-header"></span>
                             </span>
                        </li>
                        <li><span class="show-comit-lft hidden-xs">
                                <a href="#comments" data-toggle="tab"  class="show-tabs-text comments">
                                    <span class="tab-text hidden-xs"> COMMENTS</span>
                                </a>
+                               <span class="show-ids-header"></span>
                            </span>
                        </li>
                     </ul>
@@ -306,9 +539,10 @@
                         </a>
                     </span>
                 </div> 
-                       
+               
                 <div class="col-xs-12 col-md-8 col-sm-8 Top-tabs-mobile show-tops-corsal">
-                    <!-- Tab panes -->
+                
+                    <%-- Tab panes --%>
                     <div class="tab-content">
                         <div class="tab-pane tab-pane-active active hidden-xs" id="essentials">
                             <g:render template="show/story"/>
@@ -327,9 +561,8 @@
                         </div>
                     </div>
                     
-                     
                     <div class="row"> 
-                        <!-- Modal -->
+                    <%-- Modal --%>
                         <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
                             <g:form action="sendemail" id="${project.id}" params="['fr': username]"  class="sendMailForm">
                                 <div class="modal-dialog">
@@ -363,131 +596,228 @@
                             </g:form>
                         </div>
                     </div>
-                </div>
+                </div>             
                 
-                <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal">
-
-                    <div class="hidden-xs">
-                        <g:render template="/layouts/orgDetails"/>
-                    </div>
-                    
-                    <g:if test="${isPreview && !project.validated}">
-                        <div class="submitForApprovalSectionbtm" id="submitForApprovalSectionbtm">
-                            <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
-                                <g:form controller="project" action="saveasdraft" id="${project.id}">
-                                    <g:if test="${!project.touAccepted}">
-                                        <div class="form-group">
-                                            <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
-                                        </div>
-                                    </g:if>
-                                    <div class="clear"></div>
-                                    <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs">
-                                        <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                <%--Embed modal--%>
+                <div class="modal fade embedTilemodal" id="embedTilemodal" tabindex="-1" role="dialog" aria-hidden="true">
+                    <g:if test="${project.videoUrl}">
+                        <div class="modal-dialog modal-embed-with-video">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                                     </button>
-                                </g:form>
-                            </g:if>
-                            <g:else>
-                                <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs" id="submitForApprovalBtn">
-                                    <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
-                                </button>
-                            </g:else>
-                        </div>
-                        
-                        <div class="hidden-xs">
-                            <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
-                        </div>
-                        
-                        <g:if test="${isPreview}">
-                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs">
-                                <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
-                            </a>
-                        </g:if>
-                        <g:else>
-                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs" id="fbshare" href="#">
-                                <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
-                            </a>
-                        </g:else>
-                      
-                        <div class="hidden-xs">
-	                        <g:if test="${project.rewards.size()>1}">
-	                            <div class="sh-perks-preview">
-	                                <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
-	                           </div>
-	                        </g:if>
-                        </div> 
-                    </g:if>
-                    <g:elseif test="${percentage == 999}">
-                        <button type="button" class="btn btn-success btn-lg btn-block show-campaign-sucessbtn mob-show-sucessend hidden-xs" disabled>SUCCESSFULLY FUNDED!</button>
-                    </g:elseif>
-                    <g:elseif test="${ended}">
-                        <button type="button" class="btn btn-warning btn-lg btn-block show-campaign-sucess-endedbtn mob-show-sucessend hidden-xs" disabled>CAMPAIGN ENDED!</button>
-                    </g:elseif>
-                    <g:else>
-                        <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
-                            <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
-                                <div class="redirectCampaign">
-                                    <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs" id="btnFundDesktop">FUND NOW!</button></g:link>
+                                    <h4 class="modal-title text-center"><b>Embed this widget into your website</b></h4>
                                 </div>
-                            </g:if>
-                            <g:else>
-                                <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
-                                    <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs" id="btnFundDesktop">FUND NOW!</button>
-                                </g:form>
-                            </g:else>
-                        </g:if>
-                        <g:else>
-                            <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs">FUND NOW!</button>
-                        </g:else>
-                    </g:else>
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="col-sm-7">
+                                            <p>Video preview</p>
+                                                <textarea class="textarea-embed-video form-control" onclick="this.select()">${embedVideoCode}</textarea><br><br>
+                                                <iframe src="${campaignVideoUrl}" class="embed-video-in-modal"></iframe><br>
+                                                <p>After choosing a video size, copy and paste the embed code above.</p>
+                                                <div class="row desktop-video-play">
+                                                    <div class="col-sm-2 margin-sm-left video-play video-play-sm video-play-hover selected text-center">
+                                                        <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-sm"></span><br>
+                                                        <label class="lbl-width">480 x 360</label>
+                                                    </div>
+                                                    <div class="col-sm-2 margin-md-left video-play video-play-md video-play-hover text-center">
+                                                        <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-md"></span><br>
+                                                        <label>640 x 480</label>
+                                                    </div>
+                                                    <div class="col-sm-2 margin-lg-left video-play video-play-lg video-play-hover text-center">
+                                                        <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-lg"></span><br>
+                                                        <label>800 x 600</label>
+                                                    </div>
+                                                    <div class="col-sm-4 margin-custom-left video-play video-play-custom video-play-hover">
+                                                        <label>Custom size</label><br>
+                                                        <input type="text" class="customSizeText video-play-width" value="480"> x <input type="text" class="customSizeText video-play-height" value="360">
+                                                    </div>
+                                                </div>
+                                                <div class="tabs-video-play">
+                                                    <div class="row">
+                                                        <div class="col-sm-offset-1 col-sm-3 video-play video-play-sm video-play-hover selected text-center">
+                                                             <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-sm"></span><br>
+                                                             <label class="lbl-width">480 x 360</label>
+                                                        </div>
+                                                        <div class="col-sm-4 margin-md-left video-play video-play-md video-play-hover text-center">
+                                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-md"></span><br>
+                                                            <label>640 x 480</label>
+                                                        </div>
+                                                        <div class="col-sm-4 margin-md-left video-play video-play-lg video-play-hover text-center">
+                                                            <span class="glyphicon glyphicon-play glyphicon-play-bg-color glyphicon-play-padding-lg"></span><br>
+                                                            <label>800 x 600</label>
+                                                        </div>
+                                                        <div class="clear"></div>
+                                                        <div class="clear"></div>
+                                                        <div class="tab-clear"></div>
+                                                        <div class="col-sm-6 margin-custom-left video-play video-play-custom video-play-hover">
+                                                            <label>Custom size</label><br>
+                                                            <input type="text" class="customSizeText video-play-width" value="480"> x <input type="text" class="customSizeText video-play-height" value="360">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <p>Widget preview</p>
+                                                <textarea class="textarea-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
+                                                <g:render template="manageproject/embedTile"/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                      </g:if>
+			          <g:else>
+                          <div class="modal-dialog modal-tile">
+                              <div class="modal-content">
+                                  <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal">
+                                          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                      </button>
+                                      <h4 class="modal-title"><b>Embed this widget into your website</b></h4>
+                                  </div>
+                                  <div class="modal-body only-tile-embed-modal text-center">
+                                      <p>Widget preview</p>
+                                      <textarea class="textarea-of-embed-tile form-control" onclick="this.select()">${embedCode}</textarea><br><br>
+                                      <g:render template="manageproject/embedTile"/>
+                                  </div>
+                              </div>
+                          </div>
+                      </g:else>
+                  </div>
+               
+                  <div class="col-xs-12 col-md-4 col-sm-4 show-desk-org-tile show-tops-corsal">
+                      <div class="hidden-xs">
+                          <g:render template="/layouts/orgDetails"/>
+                      </div>
+                    
+                      <g:if test="${isPreview && !project.validated}">
+                          <div class="submitForApprovalSectionbtm" id="submitForApprovalSectionbtm">
+                              <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
+                                  <g:form controller="project" action="saveasdraft" id="${project.id}">
+                                      <g:if test="${!project.touAccepted}">
+                                          <div class="form-group">
+                                              <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
+                                          </div>
+                                      </g:if>
+                                      <div class="clear"></div>
+                                      <div class="show-A-fund"></div>
+                                      <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs">
+                                          <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                      </button>
+                                  </g:form>
+                              </g:if>
+                              <g:else>
+                                  <div class="show-A-fund"></div>
+                                  <button class="btn btn-block btn-lg btn-primary sh-submitapproval hidden-xs" id="submitForApprovalBtn">
+                                      <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
+                                  </button>
+                              </g:else>
+                          </div>
+                        
+                          <div class="hidden-xs">
+                              <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                          </div>
+                        
+                          <g:if test="${isPreview}">
+                              <div class="showfacebooksAA"></div>
+                              <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs show-pointer-not">
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
+                              </a>
+                          </g:if>
+                          <g:else>
+                              <div class="showfacebooksAA"></div>
+                              <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb sho-fb-color hidden-xs" id="fbshare" href="#">
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i>SHARE ON FACEBOOK
+                              </a>
+                          </g:else>
+                      
+                          <div class="hidden-xs">
+                              <g:if test="${project.rewards.size()>1}">
+                                  <div class="sh-perks-preview">
+                                      <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
+                                  </div>
+                              </g:if>
+                          </div> 
+                      </g:if>
+                      <g:elseif test="${percentage == 999}">
+                          <div class="show-A-fund"> </div>
+                          <button type="button" class="btn btn-success btn-lg btn-block show-campaign-sucessbtn mob-show-sucessend hidden-xs" disabled>SUCCESSFULLY FUNDED!</button>
+                      </g:elseif>
+                      <g:elseif test="${ended}">
+                          <div class="show-A-fund"> </div>
+                          <button type="button" class="btn btn-warning btn-lg btn-block show-campaign-sucess-endedbtn mob-show-sucessend hidden-xs" disabled>CAMPAIGN ENDED!</button>
+                      </g:elseif>
+                      <g:else>
+                          <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                              <g:if test="${(project.payuStatus == false) && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')}">
+                                  <div class="redirectCampaign">
+                                      <div class="show-A-fund"> </div>
+                                      <g:link controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]"><div class="show-A-fund"> </div><button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs" id="btnFundDesktop">FUND NOW!</button></g:link>
+                                  </div>
+                              </g:if>
+                              <g:else>
+                                  <g:form controller="fund" action="fund" params="['fr': vanityUsername, 'projectTitle':vanityTitle]" class="fundFormDesktop">
+                                      <div class="show-A-fund"> </div>
+                                      <button name="submit" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs" id="btnFundDesktop">FUND NOW!</button>
+                                  </g:form>
+                              </g:else>
+                          </g:if>
+                          <g:else>
+                              <div class="show-A-fund"> </div>
+                              <button name="contributeButton" class="btn btn-show-fund btn-lg btn-block show-fund-size mob-show-fund hidden-xs">FUND NOW!</button>
+                          </g:else>
+                      </g:else>
 
-                    <g:if test="${!isPreview || project.validated}">
+                      <g:if test="${!isPreview || project.validated}">
+                          <div class="hidden-xs">
+                              <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
+                          </div>
                         
-                        <div class="hidden-xs">
-                            <g:render template="/layouts/show_tilesanstitle" model="['currentTeamAmount':currentTeamAmount]"/>
-                        </div>
-                        
-                        <g:if test="${isPreview}">
-                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color">
-                                <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
-                            </a>
-                        </g:if>
-                        <g:else>
-                            <a class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color" id="fbshare" href="#">
-                                <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
-                            </a>
-                        </g:else>
-                    </g:if>
+                          <g:if test="${isPreview}">
+                              <div class="showfacebooksAA"></div>
+                              <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color">
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
+                              </span>
+                          </g:if>
+                          <g:else>
+                              <div class="showfacebooksAA"></div>
+                              <span class="btn btn-block btn-social btn-facebook show-btn-sh-fb hidden-xs sho-fb-color" id="fbshare">
+                                  <i class="fa fa-facebook fa-facebook-styles sh-fb-icons"></i> SHARE ON FACEBOOK
+                              </span>
+                          </g:else>
+                      </g:if>
                     
-                    <div class="visible-xs show-mobile-update">
-                        <g:render template="show/projectupdates"/>
-                    </div>
+                      <div class="visible-xs show-mobile-update">
+                          <g:render template="show/projectupdates"/>
+                      </div>
                     
-                    <div class="visible-xs sh-mobperks">
-	                    <g:if test="${isPreview && !project.validated}">
-                            <g:if test="${project.rewards.size()>1}">
-	                            <div class="sh-perks-preview">
-	                                <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
-	                            </div>
-	                        </g:if>
-	                    </g:if>
-                    </div>
+                      <div class="visible-xs sh-mobperks">
+                          <g:if test="${isPreview && !project.validated}">
+                              <g:if test="${project.rewards.size()>1}">
+                                  <div class="sh-perks-preview">
+                                      <g:render template="show/rewards" model="['username':username, 'isPreview':true]"/>
+                                  </div>
+                              </g:if>
+                          </g:if>
+                      </div>
                     
-                    <div class="sh-mobperks">    
-	                    <g:if test="${(project.rewards.size()>1 && !isPreview) || (project.rewards.size()>1 && project.validated) }">
-	                        <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
-	                            <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
-	                        </g:if>
-	                    </g:if>
-                    </div>
+                      <div class="sh-mobperks">    
+                          <g:if test="${(project.rewards.size()>1 && !isPreview) || (project.rewards.size()>1 && project.validated) }">
+                              <g:if test="${project.paypalEmail || project.charitableId || project.payuEmail}">
+                                  <g:render template="show/rewards" model="['username':username, 'isPreview':false]"/>
+                              </g:if>
+                          </g:if>
+                      </div>
                     
-                    <div class="visible-xs sh-comments-align">
-                       <div id="comment-mobile">
-                           <g:render template="show/comments"/>
-                       </div>
-                    </div>
-                    
-                </div>
-            </div>
+                      <div class="visible-xs sh-comments-align">
+                          <div id="comment-mobile">
+                              <g:render template="show/comments"/>
+                          </div>
+                      </div>
+                  </div>
+              </div>
         </g:if>
         <g:else>
             <h1>Campaign not found</h1>
@@ -497,3 +827,4 @@
 </div>
 </body>
 </html>
+               

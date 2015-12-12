@@ -11,6 +11,8 @@ class UserController {
 	def mandrillService
     def contributionService
     def rewardService
+    def roleService
+    
 
     @Secured(['ROLE_ADMIN'])
     def admindashboard() {
@@ -65,11 +67,28 @@ class UserController {
         def environment = Environment.current.getName()
         if (userService.isAdmin()) {
             redirect action: 'admindashboard'
+        } else if(userService.isPartner()) {
+            redirect action: 'partnerdashboard'
         } else {
-            def projects = projectService.getAllProjectByUser(user, environment)
-            def projectAdmins = projectService.getProjectAdminEmail(user)
-            def teams = projectService.getTeamByUserAndEnable(user, true)
-            def project = projectService.getProjects(projects, projectAdmins, teams, environment)
+            def projects
+            def projectAdmins
+            def teams
+            def project
+            def sortByOptions = []
+            if (user.email == 'campaignadmin@crowdera.co') {
+                if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+                    project = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'INDIA')
+                } else {
+                    project = projectService.getValidatedProjectsForCampaignAdmin('Pending', 'USA')
+                }
+                sortByOptions = projectService.getSortingList()
+            } else {
+                projects = projectService.getAllProjectByUser(user, environment)
+                projectAdmins = projectService.getProjectAdminEmail(user)
+                teams = projectService.getTeamByUserAndEnable(user, true)
+                project = projectService.getProjects(projects, projectAdmins, teams, environment)
+            }
+            
             List totalCampaings = []
             if (activeTab == 'campaigns') {
                 def max = Math.min(params.int('max') ?: 4, 100)
@@ -91,12 +110,18 @@ class UserController {
             def contributedAmount = projectService.getContributedAmount(contribution.contributions)
             def fundRaised = projectService.getTotalFundRaisedByUser(projects)
             def country = projectService.getCountry()
-            def state = projectService.getState()
+            def state
+            if (environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia') {
+                state = projectService.getIndianState()
+            } else {
+                state = projectService.getState()
+            }
             def multiplier = projectService.getCurrencyConverter();
+            def countryOpts = [India: 'INDIA', USA: 'USA']
             
             render view: userViews, model: [user: user, projects: project, totalCampaings: totalCampaings,country: country, fundRaised: fundRaised, state: state,
-                                            activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, multiplier: multiplier,
-                                            contributions: contribution.contributions, totalContributions : contribution.totalContributions]
+                                            activeTab:activeTab, environment: environment, contributedAmount: contributedAmount, multiplier: multiplier, countryOpts: countryOpts,
+                                            contributions: contribution.contributions, totalContributions : contribution.totalContributions, sortByOptions: sortByOptions]
         }
     }
     
@@ -393,4 +418,311 @@ class UserController {
             render(view: 'error', model: [message: "Error while updating Currency. Please try again later."])
         }
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def saveFeedback(){
+		def userId = params.user
+		User user= userService.getUserById(userId)
+		def feedback =userService.getFeedbackByUser(user)
+		if(feedback){
+			userService.setFeedbackByUser(feedback, params , user)
+		}else{
+			new Feedback(params).save()
+		}
+		flash.feedback_message = "Feedback submitted successfully!"
+		redirect url:'/'
+	}
+	
+	@Secured(['ROLE_ADMIN'])
+	def feedback(){
+		def project =projectService.getValidatedProjects()
+		render(view:'/user/survey/index', model:[project:project])
+	}
+	
+	@Secured(['ROLE_ADMIN'])
+	def previewUserFeedBack(){
+		def projectId = params.projectId
+		def project = Project.get(projectId)
+		def user = userService.getUserById(project.user.id)
+		def feedback=userService.getFeedbackByUser(user)
+		render( view:"/user/survey/previewuserfeedback.gsp", model:[feedback:feedback, user:user])
+	}
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def getSortedCampaigns() {
+        def projects = projectService.getValidatedProjectsForCampaignAdmin(params.selectedSortValue, params.country)
+        def multiplier = projectService.getCurrencyConverter();
+        def currentEnv = Environment.current.getName()
+        def model = [projects: projects, multiplier: multiplier]
+        if (request.xhr) {
+            render(template: "/user/user/grid", model: model, currentEnv: currentEnv)
+        }
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def managePartner() {
+        if (flash.invitesuccessmsg) {
+            flash.invitesuccessmsg = "Email Sent Successfully"
+        }
+        List partners = Partner.list()
+        render view:'/user/partner/index', model:[partners: partners]
+    }
+    
+    @Secured(['ROLE_ADMIN'])
+    def addpartner() {
+        User user = userService.getUserByUsername(params.email)
+        def password
+        if (user) {
+            if (!userService.isPartner(user)) {
+                userService.createPartnerRole(user, roleService)
+            }
+        } else {
+            def userObj = userService.setUserObject(params)
+            user = userObj.user
+            password = userObj.password
+        }
+        
+        if (userService.getPartnerByUser(user)) {
+            List partners = Partner.list()
+            flash.alreadyExistMsg = "Partner with this email already exist."
+            render view:'/user/partner/index', model:[partners: partners]
+        } else {
+            Partner partner = new Partner()
+            partner.user = user
+            
+            partner.confirmCode = UUID.randomUUID().toString()
+            if (partner.save()) {
+                mandrillService.sendEmailToPartner(user, partner, password);
+                flash.invitesuccessmsg = "Email Sent Successfully"
+                redirect action:'managePartner'
+            } else {
+                flash.user_err_message = 'Error occured while inviting a partner. Please try again.'
+                render(view: '/usererror')
+            }
+        }
+    }
+    
+    def confirmPartner(String id) {
+        Partner partner = userService.getPartnerByConfirmCode(id)
+
+        if (partner) {
+            if (partner.enabled) {
+                render(view: '/success', model: [sucess_message: 'Your account is successfully confirmed for Partner. It seems like you were already confirmed.'])
+            } else {
+                partner.enabled = true
+                if (partner.save()) {
+                    render(view: '/success', model: [sucess_message: 'Your account is successfully activated for Partner.'])
+                } else {
+                    flash.user_err_message = 'Problem activating account. Please contact the administrator.'
+                    render(view: '/usererror')
+                }
+            }
+        } else {
+            flash.user_err_message = 'Problem activating account. Please check your activation link'
+            render(view: '/user/user/usererror')
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def partnerdashboard() {
+        def currentEnv = projectService.getCurrentEnvironment()
+        def currentUser = userService.getCurrentUser()
+        Partner partner
+        if (params.id) {
+            partner = userService.getPartnerById(params.int('id'))
+        } else {
+            partner = userService.getPartnerByUser(currentUser)
+        }
+        
+        if (partner) {
+            User user = partner.user
+            def projectObj = projectService.getValidatedProjectsForPartner(user, partner, params)
+            def numberOfInvites = userService.getTotalNumberOfInvites(partner)
+            def userCampaign = projectService.getPartnerCampaigns(user, params)
+            def fundRaised = projectService.getTotalFundRaisedByUser(userCampaign.campaigns)
+            def country = projectService.getCountry()
+            def state
+            if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+                state = projectService.getIndianState()
+            } else {
+                state = projectService.getState()
+            }
+            
+            def isAdmin = userService.isAdmin()
+            def conversionMultiplier = projectService.getCurrencyConverter();
+            def folders = user.folders
+            def files = partner.documents
+            
+            def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            
+            if (flash.prj_validate_message) {
+                flash.prj_validate_message = "Campaign validated successfully."
+            } else if (flash.invite_message) {
+                flash.invite_message = "Email Sent Successfully."
+            } else if(flash.receipt_sent_msg) {
+                flash.receipt_sent_msg = "Receipt Sent Successfully."
+            }
+            
+            render view:'/user/partner/dashboard', model:[user: user, campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, baseUrl: baseUrl, currentEnv: currentEnv,
+                                                         fundRaised: fundRaised, numberOfInvites: numberOfInvites, userCampaigns: userCampaign.projects, totalUserCampaigns: userCampaign.totalprojects,
+                                                         country: country, state: state, partner: partner, isAdmin: isAdmin, conversionMultiplier: conversionMultiplier, folders: folders,
+                                                         files: files]
+        }
+    }
+    
+    def partnercampaigns() {
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        if (partner) {
+            User user = partner.user
+            def projectObj = projectService.getPartnerCampaigns(user, params)
+            def conversionMultiplier = projectService.getCurrencyConverter();
+            def currentEnv = projectService.getCurrentEnvironment()
+            
+            def model = [userCampaigns: projectObj.projects, totalUserCampaigns: projectObj.totalprojects, partner: partner, user: user, conversionMultiplier: conversionMultiplier, currentEnv: currentEnv]
+            render template:"/user/partner/tile", model: model
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def promotecampaigns() {
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        if (partner) {
+            User user = partner.user
+            def projectObj = projectService.getValidatedProjectsForPartner(user, partner, params)
+            def model = [campaigns: projectObj.projects, totalCampaigns: projectObj.totalprojects, partner: partner, user: user]
+            render template:"/user/partner/promote", model: model
+        }
+    }
+    
+    def validatecampaigns() {
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        if (partner) {
+            User user = partner.user
+            def projectObj = projectService.getNonValidatedProjectsForPartner(user, partner, params)
+            def model = [projects: projectObj.projects, totalprojects: projectObj.totalprojects, partner: partner, user: user]
+            render template:'/user/partner/validatetile', model: model
+        }
+    }
+    
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def invite() {
+        if (userService.isPartner()) {
+            userService.inviteCampaignOwner(params)
+            flash.invite_message = "Email Sent Successfully."
+            redirect action: 'partnerdashboard'
+        } else {
+            render view:'/401error'
+        }
+    }
+    
+    def loadDriveFiles() {
+        User user = userService.getUserId(params.int('userId'))
+        if (user) {
+            def fileObj = userService.getDriveFiles(user, params)
+            def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            
+            def model = [files: fileObj.files, totalFiles: fileObj.totalFiles, offset: params.offset, user : user, baseUrl: baseUrl]
+            render template:'/user/partner/drivefiles', model: model
+        }
+    }
+    
+    def insertfile() {
+        User user = userService.getUserId(params.int('userId'))
+        if (user) {
+            userService.getGoogleDriveFiles(user, params.fileId, params.title, params.url)
+            def fileObj = userService.getDriveFiles(user, params)
+            def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            
+            def model = [files: fileObj.files, totalFiles: fileObj.totalFiles, offset: params.offset, user : user, baseUrl: baseUrl]
+            render template:'/user/partner/drivefiles', model: model
+        }
+    }
+    
+    def trashdrivefile() {
+        User user = userService.getUserId(params.int('userId'))
+        if (user) {
+            userService.deleteDriveFile(user, params)
+            def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            def fileObj = userService.getDriveFiles(user, params)
+            def model = [files: fileObj.files, totalFiles: fileObj.totalFiles, offset: params.offset, user : user, baseUrl: baseUrl]
+            render template:'/user/partner/drivefiles', model: model
+        }
+    }
+    
+    def newfolder() {
+        User user = userService.getUserId(params.int('userId'))
+        if (user) {
+            userService.setNewFolder(user, params)
+            def folders = userService.getFolders(user)
+            def model = [folders: folders]
+            render template : '/user/partner/folders', model: model
+        }
+    }
+    
+    def sendReceipt() {
+        def file = request.getFile('file')
+        userService.sendReceipt(params, file)
+        flash.receipt_sent_msg = "Receipt Sent Successfully."
+        redirect action: 'partnerdashboard'
+    }
+    
+    def uploadDocument() {
+        Partner partner = userService.getPartnerById(params.int('partnerId')) 
+        if (partner) {
+            Folder folder = userService.getFolderById(params.int('folderId'))
+            def file = params.file
+            userService.uploadDocument(file, params, partner, folder)
+            def files
+            def model
+            def requestUrl= request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+            if (folder) {
+                files = userService.getFolderDocuments(folder);
+                model = [files: files, folderName : folder.fName, folder: folder, baseUrl: baseUrl]
+                render (template:'/user/partner/files', model: model)
+            } else {
+                files = userService.getPartnerDocuments(partner);
+                model = [files: files, partner: partner, baseUrl: baseUrl]
+                render (template:'/user/partner/files', model: model)
+            }
+        }
+    }
+    
+    def loadFolder() {
+        Folder folder = userService.getFolderById(params.int('id'))
+        if (folder) {
+            def files = folder.documents
+            def requestUrl= request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+            def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+
+            def model = [files: files, folderName : folder.fName, folder: folder, baseUrl: baseUrl]
+            render (template:'/user/partner/files', model: model)
+        }
+    }
+    
+    def trashdocfile() {
+        Folder folder = userService.getFolderById(params.int('folderId'))
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        
+        def requestUrl= request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+        def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+        
+        if (folder) {
+            userService.deleteFolderFile(folder, params)
+            def files = folder.documents
+            def model = [files: files, folderName : folder.fName, folder: folder, baseUrl: baseUrl]
+            render (template:'/user/partner/files', model: model)
+        
+        } else if (partner) {
+            userService.deleteDocFile(partner , params)
+            def files = partner.documents
+            def model = [files: files, partner: partner, baseUrl: baseUrl]
+            render (template:'/user/partner/files', model: model)
+        }
+    }
+    
 }

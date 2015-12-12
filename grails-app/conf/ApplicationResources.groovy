@@ -121,12 +121,22 @@ modules = {
         dependsOn 'crowderajs'
         resource url: 'js/user.js'
     }
+	/* Survey/Feedback*/
+	feedbackjs{
+		dependsOn 'crowderajs'
+		resource url: 'js/survey/feedback.js'
+	}
 	
 	/*Ebook*/
 	ebookjs{
 		dependsOn 'crowderajs'
 		resource url: 'js/ebook/ebook.js'
 	}
+    
+    partnerjs {
+        dependsOn 'crowderajs'
+        resource url: 'js/partner.js'
+    }
 
     /* CSS */
     fontawesomecss {
@@ -184,5 +194,9 @@ modules = {
 
     bootswatchyeticss {
         resource url: 'bootswatch-yeti/bootstrap.css', attrs: [media: 'screen']
+    }
+    
+    sidebarcss {
+        resource url: 'css/sidebar.css', attrs: [media: 'screen']
     }
 }

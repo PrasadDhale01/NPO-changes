@@ -29,6 +29,7 @@ class UserService {
     def mandrillService
     def grailsApplication
 	def contributionService
+    def projectService
 
     def getNumberOfUsers() {
         return User.count()
@@ -971,6 +972,9 @@ class UserService {
                 user.state = params.state
             }
         }
+        if(params.country && user.country != params.country){
+            user.country = params.country
+        }
         if(params.city && user.city != params.city){
             user.city = params.city
         }
@@ -979,6 +983,254 @@ class UserService {
     
     def getCurrencyById() {
         return Currency.get(1)
+    }
+	def getFeedbackByUser(User user){
+	    def feedback = Feedback.findAllWhere(user:user)
+	    def feedbackId
+	    feedback.each{
+		    if(feedback){
+			    feedbackId =it
+		    }
+	    }
+	    return feedbackId
+	}
+	
+	def setFeedbackByUser(def feedback, def params, User user){
+		feedback.answer_1= params.answer_1
+		feedback.answer_2_y1 = params.answer_2_y1
+		feedback.answer_2_y2 = params.answer_2_y2
+		feedback.answer_2_n = params.answer_2_n
+		feedback.answer_3 = params.answer_3
+		feedback.answer_4_y = params.answer_4_y
+		feedback.answer_4_n =  params.answer_4_n
+		feedback.answer_5 = params.answer_5
+		feedback.answer_6 = params.answer_6
+		feedback.answer_7 = params.answer_7
+		feedback.answer_8 = params.answer_8
+		feedback.answer_9_y1 = params.answer_9_y1
+		feedback.answer_9_y2 = params.answer_9_y2
+		feedback.answer_9_y3 = params.answer_9_y3
+		feedback.answer_9_y4 = params.answer_9_y4
+		feedback. answer_9_y5 = params.answer_9_y5
+		feedback.answer_9_y6 = params.anwer_9_y6
+		feedback.answer_9_n= params.answer_9_n
+		feedback.user = user
+		feedback.rating = params. rating
+	}
+    
+    def setUserObject(def params) {
+        def password = projectService.getAlphaNumbericRandomUrl()
+        
+        User user = new User(params)
+        user.confirmCode = UUID.randomUUID().toString()
+        user.enabled = true
+        user.confirmed = true
+        user.password = password
+        user.username = params.email
+        if (user.save()) {
+            createUserRole(user, roleService)
+            createPartnerRole(user, roleService)
+        }
+        
+        return [password : password, user : user]
+    }
+    
+    def getPartnerByConfirmCode(def id) {
+        return Partner.findByConfirmCode(id);
+    }
+    
+    def createPartnerRole(User user, RoleService roleService){
+        UserRole.create(user, roleService.partnerRole())
+    }
+    
+    def isPartner() {
+        if (UserRole.findByUserAndRole(getCurrentUser(), roleService.partnerRole())) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    def isPartner(User user) {
+        if (UserRole.findByUserAndRole(user, roleService.partnerRole())) {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    def getPartnerByUser(User user) {
+        return Partner.findByUser(user)
+    }
+    
+    def getPartnerById(def id) {
+        return Partner.get(id)
+    }
+    
+    def inviteCampaignOwner(def params) {
+        User user = getCurrentUser()
+        Partner partner = getPartnerByUser(user)
+        if (partner) {
+            def emails = params.emails
+            def emailList = emails.split(',')
+            emailList = emailList.collect { it.trim() }
+            
+            emailList.each { email ->
+                PartnerInvite invite = PartnerInvite.findByEmail(email)
+                if (invite) {
+                    mandrillService.sendInvitationToCampaignOwner(email, user, partner.confirmCode, params.message)
+                } else {
+                    invite = new PartnerInvite()
+                    invite.email = email
+                    invite.partner = partner
+                    if (invite.save()) {
+                        mandrillService.sendInvitationToCampaignOwner(email, user, partner.confirmCode, params.message)
+                    }
+                }
+                
+            }
+        }
+        
+    }
+    
+    def getTotalNumberOfInvites(partner) {
+        List invites = PartnerInvite.findAllWhere(partner: partner)
+        return invites.size()
+    }
+    
+    def getGoogleDriveFiles(User user, def fileId, def title, def url) {
+        def driveFile = GoogleDrive.findByFileId(fileId)
+        if (driveFile) {
+            if (driveFile.title != title) {
+                driveFile.title = title
+                driveFile.save();
+            }
+        } else {
+            GoogleDrive file = new GoogleDrive (
+                alternateLink: url,
+                fileId: fileId,
+                title : title )
+            if (file.save()) {
+                user.addToFiles(file).save(failOnError: true)
+            }
+        }
+    }
+    
+    def getDriveFiles(User user, def params) {
+        List totalFiles = user.files
+        List files = []
+        def max = Math.min(params.int('max') ?: 10, 100)
+        def offset = params.int('offset') ?: 0
+        def count = totalFiles.size()
+        def maxrange
+        if(offset+max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        files = totalFiles.subList(offset, maxrange)
+        return [totalFiles: totalFiles, files: files]
+    }
+    
+    def deleteDriveFile(User user, def params) {
+        GoogleDrive file = GoogleDrive.get(params.id)
+        if (file) {
+            user.removeFromFiles(file)
+            file.delete()
+        }
+    }
+    
+    def setNewFolder(User user, def params) {
+        Folder folder = new Folder (
+            fName: params.title)
+        folder.save(failOnError: true)
+        user.addToFolders(folder).save(failOnError: true)
+        
+    }
+    
+    def getFolderById(def folderId) {
+        return Folder.get(folderId)
+    }
+    
+    def uploadDocument(CommonsMultipartFile document, def params, Partner partner, def folder) {
+        if (!document?.empty && document.size < 1024 * 1024 * 3) {
+            def docUrl = getDocumentUrl(document)
+            Document doc = new Document()
+            doc.docName = document.getOriginalFilename()
+            doc.docUrl = docUrl
+            if (doc.save()) {
+                if (params.folderId) {
+                    folder.addToDocuments(doc)
+                    folder.save(failOnError: true)
+                } else {
+                    partner.addToDocuments(doc)
+                    partner.save(failOnError: true)
+                }
+            }
+        }
+    }
+    
+    def getFolderDocuments(Folder folder) {
+        return folder.documents
+    }
+    
+    def getPartnerDocuments(Partner partner) {
+        return partner.documents
+    }
+    
+    def getFolders(User user) {
+        return user.folders
+    }
+    
+    def getDocumentUrl(CommonsMultipartFile document) {
+        if (!document?.empty && document.size >0) {
+            def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+            def awsSecretKey = "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"
+            def bucketName = "crowdera"
+            def folder = "documents"
+
+            def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+            def s3Service = new RestS3Service(awsCredentials);
+            def s3Bucket = new S3Bucket(bucketName)
+
+            def file = new File("${document.getOriginalFilename()}")
+            def key = "${folder}/${document.getOriginalFilename()}"
+            key = key.toLowerCase()
+
+            document.transferTo(file)
+            def object = new S3Object(file)
+            object.key = key
+
+            s3Service.putObject(s3Bucket, object)
+            file.delete()
+            def docUrl = "//s3.amazonaws.com/crowdera/${key}"
+
+            return docUrl
+        }
+    }
+    
+    def sendReceipt(def params, CommonsMultipartFile document) {
+        User user = getCurrentUser();
+        def docUrl = getDocumentUrl(document)
+        mandrillService.sendReceipt(params, docUrl, user)
+    }
+    
+    def deleteFolderFile(Folder folder, def params) {
+        Document document = Document.get(params.id)
+        if (document) {
+            folder.removeFromDocuments(document)
+            folder.save()
+            document.delete(flush:true)
+        }
+    }
+    
+    def deleteDocFile(Partner partner, def params) {
+        Document document = Document.get(params.id)
+        if (document) {
+            partner.removeFromDocuments(document)
+            partner.save()
+            document.delete(flush:true)
+        }
     }
     
     @Transactional

@@ -1087,6 +1087,50 @@ class MandrillService {
         sendTemplate(user,'payments-info-email', globalMergeVars, tags)
     }
 	
+	def sendFeedBackLinkToOwner(def owner, def base_url){
+		def goodLink = base_url+'/survey?rating=good'
+		def badLink = base_url+'/survey?rating=bad'
+		def awesomeLink = base_url+'/survey?rating=awesome'
+		def goodImgLink = "https://s3.amazonaws.com/crowdera/assets/good.png"
+		def badImgLink = "https://s3.amazonaws.com/crowdera/assets/sad.png"
+		def awesomeImgLink = "https://s3.amazonaws.com/crowdera/assets/awesome.png"
+		
+		def globalMergeVars = [
+		    [
+		        'name': 'GOODLINK',
+		        'content': goodLink
+		    ],
+		    [
+		        'name': 'BADLINK',
+		        'content': badLink
+		    ],
+		    [
+		       'name': 'AWESOMELINK',
+		       'content': awesomeLink
+		    ],
+		    [
+		       'name': 'AWESOMEIMAGE',
+		       'content': awesomeImgLink
+		   ],
+		   [
+		      'name': 'GOODIMAGE',
+		      'content': goodImgLink
+		   ],
+		   [
+		      'name': 'BADIMAGE',
+		      'content': badImgLink
+		   ],
+		   [
+		      'name': 'NAME',
+		      'content': owner.firstName + ' ' + owner.lastName
+		  ]
+		]
+
+        def tags = ['feedback-email']
+
+        sendTemplate(owner, 'feedback_email', globalMergeVars, tags)
+		
+	}
     def sendEmailToNonUserContributors(List nonUserContributors){
         def beneficiaryName
         def link = grailsLinkGenerator.link(controller: 'login', action: 'register', absolute: true)
@@ -1133,7 +1177,6 @@ class MandrillService {
                 emailMemberList.add(it)
             }
         }
-        def name
         def tags
         def beneficiaryName = (project.beneficiary.lastName) ? project.beneficiary.firstName + ' ' + project.beneficiary.lastName : project.beneficiary.firstName
         def imageUrl = project.organizationIconUrl
@@ -1176,5 +1219,69 @@ class MandrillService {
         }
 
     }
+    
+    public def sendEmailToPartner(User user, Partner partner, def password) {
+        def link = grailsLinkGenerator.link(controller: 'user', action: 'confirmPartner', id: partner.confirmCode, absolute: true)
+
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+        ], [
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ], [
+            'name': 'EMAIL',
+            'content': user.email
+        ], [
+            'name': 'PASSWORD',
+            'content': password
+        ]]
+
+        def tags = ['partner-invitation']
+
+        sendTemplate(user, 'partner-invitation', globalMergeVars, tags)
+    }
+    
+    public def sendInvitationToCampaignOwner(def email, User user, def confirmCode, def message) {
+        def link = grailsLinkGenerator.link(controller: 'project', action: 'createCampaign', id: confirmCode, absolute: true)
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': link
+        ], [
+            'name': 'NAME',
+            'content': user.firstName + ' ' + user.lastName
+        ], [
+            'name': 'EMAIL',
+            'content': email
+        ], [
+            'name': 'MESSAGE',
+            'content': message
+        ]]
+
+        def tags = ['partnerInvitationToCampaignOwner']
+
+        inviteToShare(email, 'partnerInvitationToCampaignOwner', globalMergeVars, tags)
+    }
 	
+    public def sendReceipt(def params, def docUrl, User user) {
+        def url = "https:"+ docUrl
+        def email = params.email
+        def globalMergeVars = [[
+            'name': 'LINK',
+            'content': url
+        ], [
+            'name': 'NAME',
+            'content': params.name
+        ], [
+            'name': 'EMAIL',
+            'content': email
+        ], [
+            'name': 'MESSAGE',
+            'content': params.message
+        ]]
+
+        def tags = ['sendReceipt']
+
+        inviteToShare(email, 'sendReceipt', globalMergeVars, tags)
+    }
 }

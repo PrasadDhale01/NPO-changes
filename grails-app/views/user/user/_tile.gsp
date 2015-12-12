@@ -1,16 +1,10 @@
 <%@ page import="java.text.SimpleDateFormat"%>
 <g:set var="contributionService" bean="contributionService" />
 <g:set var="projectService" bean="projectService" />
+<g:set var="userService" bean="userService" />
 <%
-    def isFundingAchieved = contributionService.isFundingAchievedForProject(project)
     def percentage = contributionService.getPercentageContributionForProject(project)
-    def achievedDate
-    if (isFundingAchieved) {
-        achievedDate = contributionService.getFundingAchievedDate(project)
-    }
-    def endDate = projectService.getProjectEndDate(project)
     boolean ended = projectService.isProjectDeadlineCrossed(project)
-    def isFundingOpen = projectService.isFundingOpen(project)
     def contributedSoFar = contributionService.getTotalContributionForProject(project)
     def contribution = projectService.getDataType(contributedSoFar)
     def amount = projectService.getDataType(project.amount)
@@ -18,7 +12,6 @@
     def user = userService.getCurrentUser()
     def username = user.username
     def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
-	   def team = project.teams
 	   def isTeamAdmin = projectService.isTeamAdmin(project)
     
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
@@ -188,7 +181,7 @@
                         <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${amount}</span></g:if><g:else><span class="lead">${amount * conversionMultiplier}</span></g:else>
                     </g:if>
                     <g:else>
-                        $<span class="lead">${amount}</span>
+                        <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead">${amount}</span>
                     </g:else>
                 </span>
             </div>
@@ -216,7 +209,7 @@
                         <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead">${contribution}</span></g:if><g:else><span class="lead">${contribution * conversionMultiplier}</span></g:else>
                     </g:if>
                     <g:else>
-                        $<span class="lead">${contribution}</span>
+                        <g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else><span class="lead">${contribution}</span>
                     </g:else>
                 </span>
             </div>

@@ -254,4 +254,41 @@ $(function() {
     .focus(showPopover)
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
+    
 });
+
+function campaignsort(){
+	var currency = $('#currency').val();
+	var selectedSortValue = $('#sortByOptions').val();
+	var selectedCountry = $('#countryOpts').val();
+	var grid = $('#adminCampaignGrid');
+	
+	$.ajax({
+		type: 'post',
+		url: $('#baseUrl').val()+'/user/getSortedCampaigns',
+		data: 'selectedSortValue='+selectedSortValue+'&country='+selectedCountry,
+		success: function(data){
+			$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+		}
+	}).error(function(data){
+		console.log('Error occured while fetching campaigns');
+	});
+}
+
+function campaignsortByCountry(){
+	var currency = $('#currency').val();
+	var selectedSortValue = $('#sortByOptions').val();
+	var selectedCountry = $('#countryOpts').val();
+	var grid = $('#adminCampaignGrid');
+	
+	$.ajax({
+		type: 'post',
+		url: $('#baseUrl').val()+'/user/getSortedCampaigns',
+		data: 'selectedSortValue='+selectedSortValue+'&country='+selectedCountry,
+		success: function(data){
+			$(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+		}
+	}).error(function(data){
+		console.log('Error occured while fetching campaigns');
+	});
+}

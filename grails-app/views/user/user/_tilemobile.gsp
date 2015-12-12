@@ -29,7 +29,7 @@
         cents = percentage
     }
 %>
-<div class="fedu thumbnail grow user-tiles-style sh-mobile-tile">
+<div class="fedu thumbnail grow user-tiles-style sh-mobile-tile sh-thumbnil-tile">
     <g:if test="${iscampaignAdmin}">
         <g:if test="${project.draft}">
             <div class="over user-tile sh-tiles-baner">

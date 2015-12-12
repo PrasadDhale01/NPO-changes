@@ -1,4 +1,4 @@
-  $(function() {
+$(function() {
     console.log('show.js initialized');
     /***************Hide/Show label******************************/
     hideShowLabel();
@@ -167,7 +167,19 @@
         }
     });
     
-    $('.redirectCampaign a, .redirectCampaignOnPerk a').click(function(event) {
+    $('.approvebtn-md, .approvebtn-sm').click(function(event) {
+        event.preventDefault();
+        var redirectUrl = $(this).attr('href');
+        var length = $('input[name="approveChk[]"]:checked').length;
+        if (length >= 12) {
+            window.location.href = redirectUrl;
+        } else {
+        	$('#validateChecklistmsg').show();
+        	$('#validateChecklistmsg').fadeOut(3000);
+        }
+    });
+    
+    $('.redirectCampaign, .redirectCampaignOnPerk a').click(function(event) {
         event.preventDefault();
         var url = $('.redirectUrl a').attr('href');
         var redirectUrl;
@@ -221,6 +233,7 @@
                 return false;    		
         return true;
     },"Please add valid emails only");
+    
 
     /************************Hide/Show comments********************/ 
     $("#uniqueId input[type='checkbox']").click(function(){
@@ -378,14 +391,6 @@
            return false;
        } 
     });
-    
-//    $.validator.addMethod('isYoutubeVideo', function (value, element) {
-//        if(value && value.length !=0){
-//           var p = /^https?:\/\/(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-//           return (value.match(p)) ? RegExp.$1 : false;
-//        }
-//        return true;
-//     }, "Please upload a url of Youtube video");
     
     $.validator.addMethod('isYoutubeVideo', function (value, element) {
         if(value && value.length !=0){
@@ -660,7 +665,7 @@
         return false;
     });
     
-    $("#fbshare-mobile").click(function(){
+    $("#fbshare-mobile, .fbshare-header").click(function(){
         var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl').val());
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
@@ -669,10 +674,24 @@
     $("a.show-tabs-text").click(function(){
     	$('.choose-error').html('');
     	$(".sh-tabs").find("a.show-tabs-text").removeClass('sh-selected');
-    	$(this).addClass('sh-selected');
+    	if ($(this).hasClass('essentials')){
+    		$('.essentials').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('projectupdates')){
+    		$('.projectupdates').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('manageTeam')){
+    		$('.manageTeam').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('contributions')){
+    		$('.contributions').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('comments')){
+    		$('.comments').addClass('sh-selected');
+    	}
     });
     
-    $("#twitterShare").click(function(){
+    $(".twitter-share").click(function(){
         var shareUrl = $('#shareUrl').val();
         if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
             var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+shareUrl;
@@ -701,7 +720,7 @@
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
     
-    $('#add-campaign-supporter').popover({
+    $('.show-like').popover({
         content: 'Follow this Campaign',
         trigger: 'manual',
         placement: 'bottom'
@@ -719,6 +738,15 @@
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
     
+    $('#submitForApprovalBtnright').popover({
+        content: 'Sorry, you will not be able to submit your campaign for approval, as you have not filled all the required details. Please fill the details and then proceed with the approval.',
+        trigger: 'manual',
+        placement: 'bottom'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
+    
     $('#endedOfflineContribution').popover({
         content: 'Sine the campaign has been ended, you cannot contribute offline',
         trigger: 'manual',
@@ -728,10 +756,10 @@
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
 
-    $('.shortUrlglyphicon').popover({
+    $('.shortUrlglyphicon, .shortUrlglyphiconheader').popover({
         html: true,
         placement: 'bottom',
-        content: $('#popoverConent').html()
+        content: $("#popoverConent,.popoverConent").html()
     });
     
     $('.shortUrlglyphiconMob').popover({
@@ -752,12 +780,88 @@
         var popover = $('.shortUrlglyphicon').data('bs.popover');
         if (typeof popover !== "undefined") {
             var $tip = popover.tip();
-            
+          
             $tip.find('.close').bind('click', function () {
             	$('.glyphicon-show-link-color').removeClass('glyphicon-show-link-color-hover');
                 popover.hide();
+               
             });
         }
+    });
+    
+    $('.shortUrlglyphiconheader').on('shown.bs.popover', function () {
+        var popover = $('.shortUrlglyphiconheader').data('bs.popover');
+        if (typeof popover !== "undefined") {
+            var $tip = popover.tip();
+          
+            $tip.find('.close').bind('click', function () {
+            	$('.glyphicon-show-link-color').removeClass('glyphicon-show-link-color-hover');
+                popover.hide();
+               
+            });
+        }
+    });
+  
+    $('.show-mobilejs').find(function(){
+        $('.show-mobilejs').css("margin-bottom","20px");
+    });
+    
+    /***Show-details-page-tabs-scroll-code****/
+    $('.show-all-icons-header-tabs').click(function(){
+    	 var toptabs = $(".show-ids-header").offset().top;
+    	 window.scrollTo(toptabs,toptabs);
+    });
+    
+    $( document ).ready(function() {
+        function sticky_relocate() {
+            var window_top = $(window).scrollTop();
+            
+            if($("#show-headeridA").length){
+            	var div_top = $("#show-headeridA").offset().top; 
+            }
+            if($(".show-A-fund").length){
+            	 var top_fund = $(".show-A-fund").offset().top; 
+            }
+            if($('.showfacebooksAA').length){
+            	 var topFb = $('.showfacebooksAA').offset().top;
+            }
+            if($('.show-socials-iconsA').length){
+            	var topicons = $('.show-socials-iconsA').offset().top;
+            }
+            
+		   
+//		    Top header code
+            if (window_top > div_top) {
+                $('.show1-Primary').addClass('sh-primery-header-padding');
+                $('.main-header-gsp').hide();
+		        
+            } else if(window_top < div_top ){
+                $('.show1-Primary').removeClass('sh-primery-header-padding');
+                $('.main-header-gsp').show();
+            }
+            if( window_top > top_fund) {
+                $('.show-btn-js').show();
+                $('.sh-aproval-btn').show();
+            }else if(window_top < top_fund){
+                $('.show-btn-js').hide();
+                $('.sh-aproval-btn').hide();
+            }
+//          End Top header
+		    
+            if(window_top > topFb){
+                $('.sh-shareicons-Fixedtophead').show();
+            }else  if(window_top < topFb){
+                $('.sh-shareicons-Fixedtophead').hide();
+            }
+
+//            if( window_top > topicons) {
+//                $('.show-headers-icons').show();
+//            }else if(window_top < topicons){
+//                $('.show-headers-icons').hide();
+//            }
+        }
+        $(window).scroll(sticky_relocate);
+        sticky_relocate();
     });
     
     $('.shortUrlglyphiconMob').on('shown.bs.popover', function () {
@@ -784,6 +888,7 @@
     });
 
     $(document).ready(function (){
+    	
     	var classActive
     	$('.tab-pane-active').each(function(){
     		if (screen.width >767){
@@ -836,24 +941,24 @@
        }
        
    	$.ajax( { 
-   		url: 'https://freegeoip.net/json/', 
+   		url: 'http://ipinfo.io/json', 
    		type: 'POST', 
    		dataType: 'jsonp',
    		success: function(location) {
    			// If the visitor is browsing from India.
-   			if (location.country_code == 'IN' && currentEnv == 'test') {
+   			if (location.country == 'IN' && currentEnv == 'test') {
 				$('.info-banner').css('display','block');
 				$('.banner-link').text('test.crowdera.in');
 				$('.banner-link').attr('href','http://test.crowdera.in');
-   			} else if(location.country_code == 'IN' && currentEnv == 'staging'){
+   			} else if(location.country == 'IN' && currentEnv == 'staging'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('staging.crowdera.in');
    				$('.banner-link').attr('href','http://staging.crowdera.in');
-   			} else if(location.country_code == 'IN' && currentEnv == 'production'){
+   			} else if(location.country == 'IN' && currentEnv == 'production'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://crowdera.in');
-   			} else if(location.country_code == 'IN' && currentEnv == 'development'){
+   			} else if(location.country == 'IN' && currentEnv == 'development'){
    				$('.info-banner').css('display','block');
    				$('.banner-link').text('www.crowdera.in');
    				$('.banner-link').attr('href','http://localhost:8080');
@@ -868,6 +973,7 @@
    		$('.home-header-section').removeClass('banner-nav');
    		$('#preview-banner').attr('class','preview-banner-margin');
    	});
+       
 
     $('.video-play').click(function() {
     	$('.choose-error').html('');

@@ -17,7 +17,7 @@
             <g:else>
                 <li class="timeline-inverted">
             </g:else>
-                <div class="timeline-badge info"><i class="glyphicon glyphicon-credit-card"></i></div>
+                <div class="timeline-badge info hidden-xs"><i class="glyphicon glyphicon-credit-card"></i></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <h4 class="timeline-title">

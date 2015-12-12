@@ -5522,6 +5522,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.center-usrprfl-img {
+    	display: block;
+    	margin-left: auto;
+    	margin-right: auto;
+	}
 	.timeline > li > .timeline-panel {
         padding: 20px 5px 20px 5px !important;
     }
@@ -5553,6 +5558,36 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	    width: 215px;
 	}
 	
+    button.show-mob-mobile{
+       background-color: #01bbd3 !important;
+       color: #fff;
+    }
+    button.show-mob-mobile:hover,
+    button.show-mob-mobile:focus{
+       background-color: #01bbd3 !important;
+       color: #fff;
+    }
+    button.show-mobile-bg-color{
+        bacground-color: #01bbd3 !important;
+    }
+    button.btn-show-fund {
+       padding-bottom: 10px;
+       padding-top: 10px;
+    }
+    button.show-mobile-fund {
+        padding-left: 0;
+        padding-right: 80px;
+    }
+    div.sh-thumbnil-tile {
+        margin: 0;
+    }
+    div.show-mobile-button {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+    }
      .cr-padding-edit-xs {
          margin-left: 4px;
          padding-right: 9px;
@@ -5587,8 +5622,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin: 0 auto;
         width: 310px !important;
     }
-
-	   div.cr2-width-dropdown3 {
+    div.cr2-width-dropdown3 {
         width: 231px;
     }
     div.cr2-width-dropdown4 {
@@ -6208,7 +6242,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width: 111%;
 	}
     button.mob-show-sucessend {
-        margin-top: -21px;
+/*         margin-top: -21px; */
         width: 111%;
         font-family: Ubuntu Condensed;
     }  
@@ -7464,12 +7498,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 
-
 @media only screen and (min-width:768px) and (max-width: 991px) {
-.cr-panel-spend-matrix{
-    padding:14px;
-}
-
+    button.sh-fund-2header {
+        margin-top: -32px;
+        padding: 0;
+        width: 131px;
+    }
+    .cr-panel-spend-matrix{
+        padding:14px;
+    }
 	.TW-header-helpTxtLogged {
 	   color: #fff !important;
 	   font-size: 20px !important;
@@ -7713,6 +7750,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 @media only screen and (min-width:768px) and (max-width: 830px) {
+    div.show-submit-tabs button {
+        font-size: 14px;
+        margin-left: -30px;
+    }
+    li.sh-button-fund-secandaryheader {
+        left: 21.2% !important;
+        position: absolute;
+        top: 8px !important;
+    }
     header.cr-tabs-link {
 	    padding-left: 44px !important; 
 	    padding-right: 42px !important; 
@@ -7720,10 +7766,30 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 @media only screen and (min-width:831px) and (max-width: 900px){
-	header.cr-tabs-link {
+    div.show-submit-tabs button {
+        font-size: 14px;
+        margin-left: -30px;
+    }
+    li.sh-button-fund-secandaryheader {
+        left: 20.5% !important;
+        position: absolute;
+        top: 8px !important;
+    }
+    header.cr-tabs-link {
         font-size: 15px !important;
         padding-left: 65px !important;
         padding-right: 76px !important;
+    }
+}
+@media only screen and (min-width:901px) and (max-width: 991px){
+    div.show-submit-tabs button {
+        font-size: 14px;
+        margin-left: -8px;
+    }
+    li.sh-button-fund-secandaryheader {
+        left: 19.5% !important;
+        position: absolute;
+        top: 8px !important;
     }
 }
 @media only screen and (min-width:901px) and (max-width: 1024px){
@@ -7735,13 +7801,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	#TW-usrPrfl-li > a {
+	   font-size: 14px !important;
+	   font-weight: bold;
+	}
 	.usr-prfl-amt {
-        display: inline-block;
-        font-size: 27px;
+        font-size: 20px;
         margin: 0;
     }
     .usr-prfl-amt .fa-inr {
-        font-size: 24px !important;
+        font-size: 18px !important;
         padding-right: 2px;
     }
 	.userprfl-cmpgn-container {
@@ -7756,6 +7825,71 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.TW-userprofile-panel-text-Size{
 		font-size:12px;
 	}
+    div.header-scrolled{
+        display: none !important;
+	}
+    button.sh-submitaproval-2header {
+/*         margin-left: -42px; */
+        margin-top: -1px;
+    }
+    div.header-default-height{
+        height: auto;
+    }
+    div.show-tabs {
+        padding: 0;
+    }
+    a.show-Allsocialtabs-size{
+        padding-bottom: 8px;
+        padding-top: 8px;
+    }
+    a.shTabs-whatsapp-color{
+        background-color: #29a628;
+    }
+    a.shTabs-twitter-color{
+        background-color: #2CA8D2;
+    }
+    a.show-whtsapp-color{
+        background-color: #29A628
+    }
+    i.show-tabsfooter-fb {
+        font-size: 30px;
+        font-weight: 900;
+        height: 32px;
+        width: 32px;
+    }
+    div.sh-shareicons-Fixedtophead {
+         display: none;
+         left: 0;
+         bottom: 0;
+         margin: 0;
+         position: fixed;
+         top: auto;
+         width: 100%;
+         z-index: 1000;
+    }
+    a.show-2ndhead-btnFB {
+        font-size: 14px;
+        padding: 3px 10px 3px 31px;
+        width: 187px;
+    }
+    i.sh-iconsfb-header {
+        font-size: 14px;
+        padding-right: 5px;
+    }
+    div.show-share-FB {
+        padding-left: 0;
+    }
+    button.sh-fund-2header {
+        font-size: 20px;
+        margin-top: 2px !important;
+    }
+    span.sh-tabs-font{
+        font-size: 13px;	
+    }
+    li.sh-secandary-header-showpage {
+        margin-left: 15px;
+    }
+
     .ansText{
         width:90% !important;
         margin-top: 5px;
@@ -9774,6 +9908,23 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+    li.sh-button-fund-secandaryheader {
+        left: 18.8% !important;
+        position: absolute;
+        top: 8px !important;
+    }
+    div.sh-tabs{
+	    display: none !important;
+    }
+    div.sh-tabs-social{
+	    display: block !important;
+    }
+    .ebook-container {
+	    display: block;
+	    margin-left: auto;
+	    margin-right: auto;
+	    width: 62% !important;
+    }
 
     .cr-panel-hash-tags{
         width:15% !important;
@@ -10061,6 +10212,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1200px) and (max-width: 1280px){
+    li.sh-button-fund-secandaryheader{
+        left: 19.8% !important;
+    }
     div.about-dasbilly-center {
         left: 293px;
     }
@@ -10103,7 +10257,62 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 
+@media only screen and (min-width:1025px) and (max-width: 1050px){
+    li.sh-button-fund-secandaryheader {
+        left: 19.6% !important;
+        position: absolute;
+        top: 39px;
+    }
+}
+@media only screen and (min-width:1050px) and (max-width: 1080px){
+    li.sh-button-fund-secandaryheader {
+        left: 19.6% !important;
+        position: absolute;
+        top: 39px;
+    }
+}
+
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+	#TW-usrPrfl-li > a {
+	   font-size: 14px !important;
+	   font-weight: bold;
+	}
+    li.sh-button-fund-secandaryheader {
+        margin-left: 43px !important;
+        position: absolute;
+    }
+    div.show-tabs {
+        padding: 0;
+    }
+    a.show-Allsocialtabs-size{
+        padding-bottom: 8px;
+        padding-top: 8px;
+    }
+    a.shTabs-whatsapp-color{
+        background-color: #29a628;
+    }
+    a.shTabs-twitter-color{
+        background-color: #2CA8D2;
+    }
+    a.show-whtsapp-color{
+        background-color: #29A628
+    }
+    i.show-tabsfooter-fb {
+        font-size: 30px;
+        font-weight: 900;
+        height: 32px;
+        width: 32px;
+    }
+    div.sh-shareicons-Fixedtophead {
+        display: none;
+        left: 0;
+        margin: 0;
+        position: fixed;
+        top: 48px;
+        width: 100%;
+        z-index: 999;
+    }
+    
 	   .validate-show-div .show-tile-text-size.contribution-tile.show-contribution-amt-tile {
         padding-left: 15px !important;
         padding-right: 15px !important;
@@ -11386,7 +11595,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /*  		margin: 0px 55px 0 !important; */
 /* 	} */
 	li.dropdown.dropdown-head{
-		width: 111% !important;
+		width: 108% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
 		width: 100% !important;
@@ -11604,7 +11813,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 
 	li.dropdown.dropdown-head{
-		width: 111% !important;
+		width: 108% !important;
 	}
 	ul.dropdown-menu.usr.user-dropdown{
 		width: 100% !important;
@@ -12929,6 +13138,11 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+	.center-usrprfl-img {
+    	display: block;
+    	margin-left: auto;
+    	margin-right: auto;
+	}
 	.timeline > li > .timeline-panel {
         padding: 20px 5px 20px 5px !important;
     }
@@ -12956,6 +13170,30 @@ textarea.textarea-embed-video {
 	ul.timeline::before {
 	    left: -14px !important;
 	}
+    button.show-mob-mobile{
+       background-color: #01bbd3 !important;
+       color: #fff;
+    }
+    button.show-mob-mobile:hover,
+    button.show-mob-mobile:focus{
+       background-color: #01bbd3 !important;
+       color: #fff;
+    }
+    button.btn-show-fund {
+       padding-bottom: 10px;
+       padding-top: 10px;
+    }
+    div.sh-thumbnil-tile {
+        margin: 0;
+    }
+    div.show-mobile-button {
+        bottom: 0;
+        left: 0;
+        position: fixed;
+        width: 100%;
+        z-index: 1000;
+    }
+
     input.editsweb-margin-mobile {
         height: 45px;
         width: 95% !important;
@@ -13561,7 +13799,7 @@ textarea.textarea-embed-video {
         width: 104%;
 	}
     button.mob-show-sucessend {
-        margin-top: -21px;
+/*         margin-top: -21px; */
         width: 104%;
         font-family: Ubuntu Condensed;
     }
@@ -14781,7 +15019,7 @@ textarea.textarea-embed-video {
 .show-new-tabs-alignments{
 	border-right-width: 0;
     line-height: 2;
-    margin-left: -15px;
+    margin-left: -13px;
     margin-right: 0;
     margin-top: 10px;
 /*     width: 400px; */
@@ -15589,6 +15827,113 @@ img.home-pg-icons{
 .cr2-padding{
     padding-left: 11px;
 }
+.sh-primery-header-padding {
+    position: fixed;
+    z-index: 1000;
+    background-color: white;
+    left: 0px;
+    top: 0;
+    display: none;
+    box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.25);
+    display: block;
+    height: 49px;
+    padding-top: 10px;
+    margin:0px;
+    width: 352%;
+}
+.sh-secandary-header-showpage{
+    margin-left: 38px;
+}
+.show-secandarylog-top{
+    float: left;
+}
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    .show-secandarylog-top{
+        float: left;
+    }
+    ::i-block-chrome, .show-secandarylog-top{
+        float: none;
+    }
+    img.sh-safari2header-padding{
+       padding-right: 0px;
+    }
+    ::i-block-chrome, img.sh-safari2header-padding{
+       padding-right: 22px;
+    }
+}
+/*********IE10+ specifice code***************/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .show-secandarylog-top {
+        float: none;
+        top: -8px; 
+    }
+    img.sh-safari2header-padding{
+        padding-right: 22px;
+    }
+}   
+li.sh-button-fund-secandaryheader{
+    left: 19.2%;
+    position:absolute;
+    top: 39px;
+}
+.sh-fund-2header{
+    margin-top: -32px;
+    padding: 0;
+    width: 179px;
+}
+.sh-submitaproval-2header {
+    font-size: 16px;
+    margin-top: -32px;
+    padding: 6px;
+    width: 179px;
+}
+.sh-logo-color{
+    height:44px;
+    margin-top: -9px;
+}
+.sh-logo-color:hover,
+.sh-logo-color:focus{
+	background-color: #fff !important;
+}
+.sh-shareicons-Fixedtophead {
+    background-color: #fff;
+    left: 0;
+    position: fixed;
+    top: 48px;
+    width: 100%;
+    z-index: 999;
+    display: none;
+}
+.show-2ndhead-btnFB {
+    font-size: 14px;
+    width: 181px;
+    padding: 5px 10px;
+}
+.show-share-FB {
+    padding-left: 238px;
+    padding-top: 7px;
+    float: right;
+}
+.sh-iconsfb-header {
+    font-size: 14px;
+    padding-right: 5px;
+}
+.show-icons-secandheader img{
+    padding-top: 3px;
+    padding-bottom: 3px;
+    height: 34px;
+    margin: 3px;
+    cursor: pointer;
+}
+.show-share-headerpadding{
+    left: 261px;
+    padding-top: 4px;
+}
+.show-shortUrlheader-top{
+    top: 6px;
+    padding: 6px;
+    cursor: pointer;
+}
 .previewsubmitbtn a{
 	color:#fff;
 	text-decoration:none;
@@ -15630,4 +15975,11 @@ img.home-pg-icons{
     background-color: #5fbed5;
     border-color: #3db5d8;
     color: #fff;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.mailchimpContact{
+	height:33px;
+	margin-left:3px;
+	width:33px;
 }

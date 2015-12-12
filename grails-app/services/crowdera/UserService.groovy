@@ -1034,18 +1034,39 @@ class UserService {
 		return contribution
 	}
 	
-	def getUserRecentActivity(def project, def contributions ,User user){
+	def getUserCommnet(User user){
+		List comments =[]
+		def projectComments =ProjectComment.findAllWhere(user:user)
+		def teamComments = TeamComment.findAllWhere(user:user)
+		comments.add(projectComments)
+		comments.add(teamComments)
+		return comments
+	}
+	
+	def getUserRecentActivity(def project, def contributions ,def comments, User user, def teams){
 		def recentActivity =[:]
 		def supporters = Supporter.findAllWhere(user:user)
+		
+		teams.each{
+			if(user.username.equals(it.user.username) && !user.username.equals(it.project.user.username) ){
+			    recentActivity.put("team"+it.id, it.project.title +";"+ it.joiningDate)
+			}
+		}
 		project.each {
-			recentActivity.put("project",it.title +";"+ it.created)
+			if(user.username.equals(it.user.username)){
+			    recentActivity.put("project"+it.id,it.title +";"+ it.created)
+			}
 		}
 		
-		project.rewards.each{
-			if(it.size() > 1){
-				it.each{
-					if(!it.title.equals('No Perk'))
-					recentActivity.put("perk"+it.id, it.title +";"+ it.perkCreatedDate)
+		project.each{
+			def projectUser =  it.user
+			it.rewards.each{perks ->
+				perks.each{perk ->
+					if(!perk.title.equals('No Perk')){
+						if(projectUser.username.equals(user.username)){
+							recentActivity.put("perk"+perk.id, perk.title +";" + perk.perkCreatedDate)
+						}
+					}
 				}
 			}
 		}
@@ -1057,15 +1078,21 @@ class UserService {
 			}
 		}
 		contributions.each{
-			recentActivity.put("contribution"+it.id, it.amount +";"+ it.date)
+			recentActivity.put("contribution"+it.id, it.amount.round() +";"+ it.date)
 		}
-		
+		def i =  comments.size()
+		comments.each{
+			it.each{
+			    recentActivity.put("comment"+ --i, it.comment +";"+ it.date)
+			}
+		}
 		if(supporters){
 			supporters.each{
 				recentActivity.put("supporter"+it.id, it.project.title +";"+ it.followedDate)
 			}
 		}
-		return  recentActivity.sort{it.value.toString().substring(it.value.toString().indexOf(';') + 1) }
+		//sort 
+		return recentActivity.sort { a, b -> b.value.toString().substring(b.value.toString().indexOf(';') + 1) <=> a.value.toString().substring(a.value.toString().indexOf(';') + 1) }
 	}
     
     @Transactional

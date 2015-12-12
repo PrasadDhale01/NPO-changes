@@ -183,7 +183,7 @@ $(function() {
         }
     });
     
-    $('.redirectCampaign a, .redirectCampaignOnPerk a').click(function(event) {
+    $('.redirectCampaign, .redirectCampaignOnPerk a').click(function(event) {
         event.preventDefault();
         var url = $('.redirectUrl a').attr('href');
         var redirectUrl;
@@ -669,7 +669,7 @@ $(function() {
         return false;
     });
     
-    $("#fbshare-mobile").click(function(){
+    $("#fbshare-mobile, .fbshare-header").click(function(){
         var url = 'http://www.facebook.com/sharer.php?p[url]='+ encodeURIComponent($('#fbShareUrl').val());
         window.open(url, 'Share on FaceBook', 'left=20,top=20,width=600,height=500,toolbar=0,menubar=0,scrollbars=0,location=0,resizable=1');
         return false;
@@ -678,10 +678,24 @@ $(function() {
     $("a.show-tabs-text").click(function(){
     	$('.choose-error').html('');
     	$(".sh-tabs").find("a.show-tabs-text").removeClass('sh-selected');
-    	$(this).addClass('sh-selected');
+    	if ($(this).hasClass('essentials')){
+    		$('.essentials').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('projectupdates')){
+    		$('.projectupdates').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('manageTeam')){
+    		$('.manageTeam').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('contributions')){
+    		$('.contributions').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('comments')){
+    		$('.comments').addClass('sh-selected');
+    	}
     });
     
-    $("#twitterShare").click(function(){
+    $(".twitter-share").click(function(){
         var shareUrl = $('#shareUrl').val();
         if(currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
             var url = 'https://twitter.com/intent/tweet?text="Check campaign at crowdera.co!"&url='+shareUrl;
@@ -700,6 +714,10 @@ $(function() {
     
     $('.gmailContact').click(function(){
         $('.socialProvider').val("google");
+        $('.divSocialContact').show();
+    });
+    $('.mailchimpContact').click(function(){
+        $('.socialProvider').val("mailchimp");
         $('.divSocialContact').show();
     });
     
@@ -757,7 +775,7 @@ $(function() {
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
     
-    $('#add-campaign-supporter').popover({
+    $('.show-like').popover({
         content: 'Follow this Campaign',
         trigger: 'manual',
         placement: 'bottom'
@@ -775,6 +793,15 @@ $(function() {
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
     
+    $('#submitForApprovalBtnright').popover({
+        content: 'Sorry, you will not be able to submit your campaign for approval, as you have not filled all the required details. Please fill the details and then proceed with the approval.',
+        trigger: 'manual',
+        placement: 'bottom'
+    })
+    .focus(showPopover)
+    .blur(hidePopover)
+    .hover(showPopover, hidePopover);
+    
     $('#endedOfflineContribution').popover({
         content: 'Sine the campaign has been ended, you cannot contribute offline',
         trigger: 'manual',
@@ -784,10 +811,10 @@ $(function() {
     .blur(hidePopover)
     .hover(showPopover, hidePopover);
 
-    $('.shortUrlglyphicon').popover({
+    $('.shortUrlglyphicon, .shortUrlglyphiconheader').popover({
         html: true,
         placement: 'bottom',
-        content: $('#popoverConent').html()
+        content: $("#popoverConent,.popoverConent").html()
     });
     
     $('.shortUrlglyphiconMob').popover({
@@ -808,12 +835,88 @@ $(function() {
         var popover = $('.shortUrlglyphicon').data('bs.popover');
         if (typeof popover !== "undefined") {
             var $tip = popover.tip();
-            
+          
             $tip.find('.close').bind('click', function () {
             	$('.glyphicon-show-link-color').removeClass('glyphicon-show-link-color-hover');
                 popover.hide();
+               
             });
         }
+    });
+    
+    $('.shortUrlglyphiconheader').on('shown.bs.popover', function () {
+        var popover = $('.shortUrlglyphiconheader').data('bs.popover');
+        if (typeof popover !== "undefined") {
+            var $tip = popover.tip();
+          
+            $tip.find('.close').bind('click', function () {
+            	$('.glyphicon-show-link-color').removeClass('glyphicon-show-link-color-hover');
+                popover.hide();
+               
+            });
+        }
+    });
+  
+    $('.show-mobilejs').find(function(){
+        $('.show-mobilejs').css("margin-bottom","20px");
+    });
+    
+    /***Show-details-page-tabs-scroll-code****/
+    $('.show-all-icons-header-tabs').click(function(){
+    	 var toptabs = $(".show-ids-header").offset().top;
+    	 window.scrollTo(toptabs,toptabs);
+    });
+    
+    $( document ).ready(function() {
+        function sticky_relocate() {
+            var window_top = $(window).scrollTop();
+            
+            if($("#show-headeridA").length){
+            	var div_top = $("#show-headeridA").offset().top; 
+            }
+            if($(".show-A-fund").length){
+            	 var top_fund = $(".show-A-fund").offset().top; 
+            }
+            if($('.showfacebooksAA').length){
+            	 var topFb = $('.showfacebooksAA').offset().top;
+            }
+            if($('.show-socials-iconsA').length){
+            	var topicons = $('.show-socials-iconsA').offset().top;
+            }
+            
+		   
+//		    Top header code
+            if (window_top > div_top) {
+                $('.show1-Primary').addClass('sh-primery-header-padding');
+                $('.main-header-gsp').hide();
+		        
+            } else if(window_top < div_top ){
+                $('.show1-Primary').removeClass('sh-primery-header-padding');
+                $('.main-header-gsp').show();
+            }
+            if( window_top > top_fund) {
+                $('.show-btn-js').show();
+                $('.sh-aproval-btn').show();
+            }else if(window_top < top_fund){
+                $('.show-btn-js').hide();
+                $('.sh-aproval-btn').hide();
+            }
+//          End Top header
+		    
+            if(window_top > topFb){
+                $('.sh-shareicons-Fixedtophead').show();
+            }else  if(window_top < topFb){
+                $('.sh-shareicons-Fixedtophead').hide();
+            }
+
+//            if( window_top > topicons) {
+//                $('.show-headers-icons').show();
+//            }else if(window_top < topicons){
+//                $('.show-headers-icons').hide();
+//            }
+        }
+        $(window).scroll(sticky_relocate);
+        sticky_relocate();
     });
     
     $('.shortUrlglyphiconMob').on('shown.bs.popover', function () {
@@ -840,6 +943,7 @@ $(function() {
     });
 
     $(document).ready(function (){
+    	
     	var classActive
     	$('.tab-pane-active').each(function(){
     		if (screen.width >767){

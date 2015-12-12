@@ -820,6 +820,14 @@ div.dashboardtile-min-height {
     margin-left: 18px;
 }
 .usr-prfl-amt .fa-inr {
-    font-size: 34px !important;
+    font-size: 23px !important;
     padding-right: 2px;
+}
+.usr-prfl-amt{
+    font-size: 25px;
+    margin: -6px 0 0;	
+}
+.TW-usrprfl-heading .col-xs-9{
+	padding-left:0px ;
+	padding-right:0px ;
 }

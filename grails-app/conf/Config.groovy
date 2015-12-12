@@ -146,6 +146,12 @@ environments {
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
 		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
 		crowdera.MAILCHIMP.LISTID="e37aea1b78"
+		crowdera.MAILCHIMP.CLIENT_ID='591589688835'
+		crowdera.MAILCHIMP.CLIENT_SECRET='d7078ea09570384facf269d821845078'
+		crowdera.MAILCHIMP.TOKEN_ENDPOINT="https://login.mailchimp.com/oauth2/token"
+		crowdera.MAILCHIMP.OAUTH_URL='https://login.mailchimp.com/oauth2/authorize'
+		crowdea.MAILCHIMP.DC_URL ='https://login.mailchimp.com/oauth2/metadata'
+		crowdera.MAILCHIMP.MEMBER_URL ='.api.mailchimp.com/3.0/lists'
 		
 		/*PayUMoney details*/
 		crowdera.PAYU.BASE_URL = 'http://localhost:8080'
@@ -163,7 +169,7 @@ environments {
 		/*Gmail details*/
 		crowdera.gmail.OAUTH_URL='https://accounts.google.com/o/oauth2/auth?'
 		crowdera.gmail.TOKEN_URL='https://accounts.google.com/o/oauth2/token?'
-		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/tushar@crowdera.co/full?alt=json'
+		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/'
 		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
@@ -234,18 +240,24 @@ environments {
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
 		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
 		crowdera.MAILCHIMP.LISTID="e37aea1b78"
+		crowdera.MAILCHIMP.CLIENT_ID='834416564833'
+		crowdera.MAILCHIMP.CLIENT_SECRET='15cdf65ede4a7af282f3055625051bf5'
+		crowdera.MAILCHIMP.TOKEN_ENDPOINT="https://login.mailchimp.com/oauth2/token"
+		crowdera.MAILCHIMP.OAUTH_URL='https://login.mailchimp.com/oauth2/authorize'
+		crowdea.MAILCHIMP.DC_URL ='https://login.mailchimp.com/oauth2/metadata'
+		crowdera.MAILCHIMP.MEMBER_URL ='.api.mailchimp.com/3.0/lists'
 		
 		/*ConstantContact details*/
 		crowdera.cc.OAUTH_URL='https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&display=page&'
 		crowdera.cc.TOKEN_URL='https://oauth2.constantcontact.com/oauth2/oauth/token?'
 		crowdera.cc.CONTACT_URL='https://api.constantcontact.com/v2/contacts?status=ALL&limit=50&api_key='
-		crowdera.cc.CLIENT_KEY='u9jc9nmmmtptyyz2y75cspry'
-		crowdera.cc.CLIENT_SECRET='fRGDUHAf8tuS74upJgXhctTw'
+		crowdera.cc.CLIENT_KEY='nkge6ryhs6wnwwbjw9rvtzb6'
+		crowdera.cc.CLIENT_SECRET='QCqxhYP7ZHtG6MyCKSqAnNjT'
 		
 		/*Gmail details*/
 		crowdera.gmail.OAUTH_URL='https://accounts.google.com/o/oauth2/auth?'
 		crowdera.gmail.TOKEN_URL='https://accounts.google.com/o/oauth2/token?'
-		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/tushar@crowdera.co/full?alt=json'
+		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/'
 		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
@@ -332,6 +344,12 @@ environments {
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
 		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
 		crowdera.MAILCHIMP.LISTID="e37aea1b78"
+		crowdera.MAILCHIMP.CLIENT_ID='834416564833'
+		crowdera.MAILCHIMP.CLIENT_SECRET='15cdf65ede4a7af282f3055625051bf5'
+		crowdera.MAILCHIMP.TOKEN_ENDPOINT="https://login.mailchimp.com/oauth2/token"
+		crowdera.MAILCHIMP.OAUTH_URL='https://login.mailchimp.com/oauth2/authorize'
+		crowdea.MAILCHIMP.DC_URL ='https://login.mailchimp.com/oauth2/metadata'
+		crowdera.MAILCHIMP.MEMBER_URL ='.api.mailchimp.com/3.0/lists'
 		
 		/*ConstantContact details*/
 		crowdera.cc.OAUTH_URL='https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&display=page&'
@@ -343,7 +361,7 @@ environments {
 		/*Gmail details*/
 		crowdera.gmail.OAUTH_URL='https://accounts.google.com/o/oauth2/auth?'
 		crowdera.gmail.TOKEN_URL='https://accounts.google.com/o/oauth2/token?'
-		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/tushar@crowdera.co/full?alt=json'
+		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/'
 		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
@@ -415,6 +433,12 @@ environments {
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="https://crowdera.us3.list-manage.com/subscribe/post"
 		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
 		crowdera.MAILCHIMP.LISTID="e37aea1b78"
+		crowdera.MAILCHIMP.CLIENT_ID='906881120149'
+		crowdera.MAILCHIMP.CLIENT_SECRET='fec01a52a52ff6c0af693d4a201dc79b'
+		crowdera.MAILCHIMP.TOKEN_ENDPOINT="https://login.mailchimp.com/oauth2/token"
+		crowdera.MAILCHIMP.OAUTH_URL='https://login.mailchimp.com/oauth2/authorize'
+		crowdea.MAILCHIMP.DC_URL ='https://login.mailchimp.com/oauth2/metadata'
+		crowdera.MAILCHIMP.MEMBER_URL ='.api.mailchimp.com/3.0/lists'
 
         /* Stripe live keys */
         /*
@@ -426,13 +450,13 @@ environments {
 		crowdera.cc.OAUTH_URL='https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&display=page&'
 		crowdera.cc.TOKEN_URL='https://oauth2.constantcontact.com/oauth2/oauth/token?'
 		crowdera.cc.CONTACT_URL='https://api.constantcontact.com/v2/contacts?status=ALL&limit=50&api_key='
-		crowdera.cc.CLIENT_KEY='u9jc9nmmmtptyyz2y75cspry'
-		crowdera.cc.CLIENT_SECRET='fRGDUHAf8tuS74upJgXhctTw'
+		crowdera.cc.CLIENT_KEY='s2wnhy3ez6wp6czjaeb7e7q8'
+		crowdera.cc.CLIENT_SECRET='C4Hh6sQQmpvdF27KBUb3mrWe'
 		
 		/*Gmail details*/
 		crowdera.gmail.OAUTH_URL='https://accounts.google.com/o/oauth2/auth?'
 		crowdera.gmail.TOKEN_URL='https://accounts.google.com/o/oauth2/token?'
-		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/tushar@crowdera.co/full?alt=json'
+		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/'
 		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
@@ -520,6 +544,12 @@ environments {
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
 		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
 		crowdera.MAILCHIMP.LISTID="e37aea1b78"
+		crowdera.MAILCHIMP.CLIENT_ID='834416564833'
+		crowdera.MAILCHIMP.CLIENT_SECRET='15cdf65ede4a7af282f3055625051bf5'
+		crowdera.MAILCHIMP.TOKEN_ENDPOINT="https://login.mailchimp.com/oauth2/token"
+		crowdera.MAILCHIMP.OAUTH_URL='https://login.mailchimp.com/oauth2/authorize'
+		crowdea.MAILCHIMP.DC_URL ='https://login.mailchimp.com/oauth2/metadata'
+		crowdera.MAILCHIMP.MEMBER_URL ='.api.mailchimp.com/3.0/lists'
 		
 		/*PayUMoney details*/
 		crowdera.PAYU.BASE_URL = 'http://test.crowdera.in'
@@ -531,13 +561,13 @@ environments {
 		crowdera.cc.OAUTH_URL='https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&display=page&'
 		crowdera.cc.TOKEN_URL='https://oauth2.constantcontact.com/oauth2/oauth/token?'
 		crowdera.cc.CONTACT_URL='https://api.constantcontact.com/v2/contacts?status=ALL&limit=50&api_key='
-		crowdera.cc.CLIENT_KEY='u9jc9nmmmtptyyz2y75cspry'
-		crowdera.cc.CLIENT_SECRET='fRGDUHAf8tuS74upJgXhctTw'
+		crowdera.cc.CLIENT_KEY='nkge6ryhs6wnwwbjw9rvtzb6'
+		crowdera.cc.CLIENT_SECRET='QCqxhYP7ZHtG6MyCKSqAnNjT'
 		
 		/*Gmail details*/
 		crowdera.gmail.OAUTH_URL='https://accounts.google.com/o/oauth2/auth?'
 		crowdera.gmail.TOKEN_URL='https://accounts.google.com/o/oauth2/token?'
-		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/tushar@crowdera.co/full?alt=json'
+		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/'
 		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
@@ -608,6 +638,12 @@ environments {
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="http://crowdera.us3.list-manage.com/subscribe/post"
 		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
 		crowdera.MAILCHIMP.LISTID="e37aea1b78"
+		crowdera.MAILCHIMP.CLIENT_ID='834416564833'
+		crowdera.MAILCHIMP.CLIENT_SECRET='15cdf65ede4a7af282f3055625051bf5'
+		crowdera.MAILCHIMP.TOKEN_ENDPOINT="https://login.mailchimp.com/oauth2/token"
+		crowdera.MAILCHIMP.OAUTH_URL='https://login.mailchimp.com/oauth2/authorize'
+		crowdea.MAILCHIMP.DC_URL ='https://login.mailchimp.com/oauth2/metadata'
+		crowdera.MAILCHIMP.MEMBER_URL ='.api.mailchimp.com/3.0/lists'
 
 		/*PayUMoney details*/
 		crowdera.PAYU.BASE_URL = 'http://staging.crowdera.in'
@@ -625,7 +661,7 @@ environments {
 		/*Gmail details*/
 		crowdera.gmail.OAUTH_URL='https://accounts.google.com/o/oauth2/auth?'
 		crowdera.gmail.TOKEN_URL='https://accounts.google.com/o/oauth2/token?'
-		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/tushar@crowdera.co/full?alt=json'
+		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/'
 		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
@@ -696,6 +732,12 @@ environments {
 		crowdera.MAILCHIMP.SUBSCRIBE_URL="https://crowdera.us3.list-manage.com/subscribe/post"
 		crowdera.MAILCHIMP.USERID="41c633b30eeabc78e88bd090d"
 		crowdera.MAILCHIMP.LISTID="e37aea1b78"
+		crowdera.MAILCHIMP.CLIENT_ID='877301010861'
+		crowdera.MAILCHIMP.CLIENT_SECRET='8aa2b9eddc9042a83c3d559003cebb40'
+		crowdera.MAILCHIMP.TOKEN_ENDPOINT="https://login.mailchimp.com/oauth2/token"
+		crowdera.MAILCHIMP.OAUTH_URL='https://login.mailchimp.com/oauth2/authorize'
+		crowdea.MAILCHIMP.DC_URL ='https://login.mailchimp.com/oauth2/metadata'
+		crowdera.MAILCHIMP.MEMBER_URL ='.api.mailchimp.com/3.0/lists'
 
 		/*PayUMoney details*/
 		crowdera.PAYU.BASE_URL = 'http://crowdera.in'
@@ -707,13 +749,13 @@ environments {
 		crowdera.cc.OAUTH_URL='https://oauth2.constantcontact.com/oauth2/oauth/siteowner/authorize?response_type=code&display=page&'
 		crowdera.cc.TOKEN_URL='https://oauth2.constantcontact.com/oauth2/oauth/token?'
 		crowdera.cc.CONTACT_URL='https://api.constantcontact.com/v2/contacts?status=ALL&limit=50&api_key='
-		crowdera.cc.CLIENT_KEY='u9jc9nmmmtptyyz2y75cspry'
-		crowdera.cc.CLIENT_SECRET='fRGDUHAf8tuS74upJgXhctTw'
+		crowdera.cc.CLIENT_KEY='d2583zc7nq5x9swv7erbnqy3'
+		crowdera.cc.CLIENT_SECRET='kyXpPReQyx2DPwhhkVMThEvM'
 		
 		/*Gmail details*/
 		crowdera.gmail.OAUTH_URL='https://accounts.google.com/o/oauth2/auth?'
 		crowdera.gmail.TOKEN_URL='https://accounts.google.com/o/oauth2/token?'
-		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/tushar@crowdera.co/full?alt=json'
+		crowdera.gmail.CONTACT_URL='https://www.google.com/m8/feeds/contacts/'
 		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'

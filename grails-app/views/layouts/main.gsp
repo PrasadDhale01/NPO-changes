@@ -53,7 +53,10 @@ mixpanel.init("d75cc9b700aea96b693ba0c44fa47bb9");
     }(document, 'script', 'facebook-jssdk'));
     </script>
 
-    <g:render template="/layouts/header"/>
+    <div class="main-header-gsp">
+        <g:render template="/layouts/header"/>
+    </div>
+
     <div class="feduoutercontent">
         <g:layoutBody />
     </div>

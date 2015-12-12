@@ -17,9 +17,9 @@
                     <g:if test="${user.userImageUrl}">
                         <div id="userImage" class="TW-userprofile-img">
                             <a id="userprofileImage">
-                                <img src="${user.userImageUrl}" alt="avatar">
+                                <img src="${user.userImageUrl}" alt="avatar" class="center-usrprfl-img">
                             </a>
-                            <div class="userprofile-caption">
+                            <div class="userprofile-caption center-usrprfl-img">
             					<p>${user.firstName}</p>
         					</div>
                         </div>
@@ -27,7 +27,7 @@
                     <g:else>
                         <div id="userDefaultImage" class="TW-userprofile-img">
                             <a id="userprofileImage-dflt">
-                                <img alt="Default image" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg">
+                                <img alt="Default image" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="center-usrprfl-img">
                             </a>
                         </div>
                     </g:else>
@@ -41,8 +41,8 @@
                     				<div class="col-xs-2">
                         				<i class="fa fa-tint fa-2x"></i>
                     				</div>
-                    				<div class="col-xs-10 text-right">
-                                 		<p class="announcement-heading usr-prfl-amt">
+                    				<div class="col-xs-9 text-right">
+                                 		<p class="usr-prfl-amt">
                                  			<g:if test="${environment=='testIndia' || environment=='stagingIndia' || environment=='prodIndia'}">
                                    				<span class="fa fa-inr"></span>
                               				</g:if>
@@ -64,8 +64,8 @@
                     				<div class="col-xs-2">
                         				<i class="fa fa-tint fa-2x"></i>
                     				</div>
-                    				<div class="col-xs-10 text-right">
-                                 		<p class="announcement-heading usr-prfl-amt">
+                    				<div class="col-xs-9 text-right">
+                                 		<p class="usr-prfl-amt">
                                  			<g:if test="${environment=='testIndia' || environment=='stagingIndia' || environment=='prodIndia'}">
                                    				<span class="fa fa-inr"></span>
                               				</g:if>
@@ -87,8 +87,8 @@
                     				<div class="col-xs-2">
                         				<i class="fa fa-heart fa-2x"></i>
                     				</div>
-                    				<div class="col-xs-10 text-right">
-                                 		<p class="announcement-heading usr-prfl-amt">${supporters}</p>
+                    				<div class="col-xs-9 text-right">
+                                 		<p class="usr-prfl-amt">${supporters}</p>
                     				</div>
                 				</div>
             				</div>
@@ -151,13 +151,13 @@
 	        						</div>
                               	  </div>
                               	   <!-- Shares -->
-                              	  <div id="shares" class="tab-pane">
-                              	  	<div class="row">
-            							<div class="col-md-12">
-               								<g:render template="/user/user/usershares"></g:render>
-            							</div>
-	        						</div>
-                              	  </div>
+<%--                              	  <div id="shares" class="tab-pane">--%>
+<%--                              	  	<div class="row">--%>
+<%--            							<div class="col-md-12">--%>
+<%--               								<g:render template="/user/user/usershares"></g:render>--%>
+<%--            							</div>--%>
+<%--	        						</div>--%>
+<%--                              	  </div>--%>
                               </div>
                           </div>
                       </section>

@@ -14,7 +14,7 @@
         <%
             def index = 0
         %>
-        <g:each in="${contributions}" var="contribution">
+        <g:each in="${contributions.reverse()}" var="contribution">
             <g:if test="${index++ % 2 == 0}">
                 <li>
             </g:if>
@@ -24,10 +24,10 @@
                 <div class="timeline-badge info hidden-xs"><i class="glyphicon glyphicon-credit-card"></i></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
-                        <h4 class="timeline-title">You contributed &nbsp;&nbsp;&nbsp;
+                        <h4 class="timeline-title">Contributed : 
                           <b>
                               <g:if test="${environment=='testIndia' || environment=='stagingIndia' || environment=='prodIndia'}">
-                                  <span class="mycontribution fa fa-inr"></span>
+                                  <span class="fa fa-inr"></span>
                               </g:if>
                               <g:else>$</g:else>
                               ${projectService.getDataType(contribution.amount)}
@@ -38,7 +38,7 @@
                         </small></p>
                     </div>
                     <div class="timeline-body">
-                    	<g:link controller="project" action="showCampaign" id="${contribution.project.id}"  params="['fr':'user@example.com']">
+                    	<g:link controller="project" action="showCampaign" id="${contribution.project.id}"  params="['fr':contribution.fundRaiser]">
 	                    	<div class="row userprfl-cmpgn-container">
 	                    		<div class="col-xs-4 usrPrfl-cmpgn-img">
 	                    			<img class="img-responsive" src="${projectService.getProjectImageLink(contribution.project)}" alt="Campaign Image" >

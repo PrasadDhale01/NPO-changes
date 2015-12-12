@@ -20,7 +20,7 @@
         </g:if>
   		<div class="row bg-color-white">
   			<div class="col-sm-12" id="inviteTeamMember">
-	  			<g:form	controller="project" action="inviteTeamMember" id="${project.id}"  class="inviteTeamMember">
+	  			<g:form	controller="project" action="inviteTeamMember" id="${project.id}" method="POST" class="inviteTeamMember">
 	  				<g:hiddenField name="amount" value="${project.amount}"/>
                     <div class="form-group">
                         <label>Name</label>
@@ -31,6 +31,7 @@
                     	<div class="socialImg" style="display:inline-flex;">
                     		<a href="#"><img class="constantContact img-responsive" alt="Constantcontact" src="//s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png"></a>&nbsp;
                     		<a href="#"><img class="gmailContact img-responsive" alt="Gmail" src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png"></a>
+                    		<a href="#"><img class="mailchimpContact img-responsive" alt="Gmail" src="//s3.amazonaws.com/crowdera/assets/mailchimp.png"></a>
                     	</div>
                     	<g:if test="${email}">
                     		<div class="row divSocialContacts">

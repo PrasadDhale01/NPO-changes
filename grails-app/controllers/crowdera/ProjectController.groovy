@@ -1337,13 +1337,15 @@ class ProjectController {
 		session.setAttribute('page', params.page)
 		if (page =="manage"){
 			if(chainModel){
-				render (view:"/project/manageproject/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList,  provider:chainModel.socialProvider=="constant"?"constant" : "google"])
+				def provider = session.getAttribute('socialProvider')
+				render (view:"/project/manageproject/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList,  provider:provider])
 			}else{
 				render (view:"/project/manageproject/invitemember", model:[project:project])
 			}
 		}else{
 			if(chainModel){
-				render (view:"/project/show/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList, provider:chainModel.socialProvider=="constant"?"constant" : "google"])
+				def provider = session.getAttribute('socialProvider')
+				render (view:"/project/show/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList, provider:provider])
 			}else{
 				render (view:"/project/show/invitemember", model:[project:project])
 			}
@@ -2027,7 +2029,6 @@ class ProjectController {
 		def currentEnv = projectService.getCurrentEnvironment()
 		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-
 		switch(currentEnv){
 			case 'development':
 				if(provider.equals('google')){
@@ -2041,6 +2042,11 @@ class ProjectController {
 					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
 					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
 					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}else if(provider.equals('mailchimp')){
+					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+					def redirectUri='http://127.0.0.1:8080/project/getSocialContactsCode'
+					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
 				}
 				break;
 			case 'test':
@@ -2053,8 +2059,13 @@ class ProjectController {
 				}else if(provider.equals("constant")){
 					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
 					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
-					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
+					def redirectUri='http%3A%2F%2ftest%2Ecrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
 					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}else if(provider.equals('mailchimp')){
+					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
 				}
 				break;
 			case 'staging':
@@ -2067,8 +2078,13 @@ class ProjectController {
 				}else if(provider.equals("constant")){
 					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
 					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
-					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
+					def redirectUri='http%3A%2F%2fstaging%2Ecrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
 					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}else if(provider.equals('mailchimp')){
+					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
 				}
 				break;
 			case 'production':
@@ -2081,36 +2097,13 @@ class ProjectController {
 				}else if(provider.equals("constant")){
 					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
 					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
-					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
+					def redirectUri='http%3A%2F%2fcrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
 					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
-				}
-				break;
-			case 'testIndia':
-				if(provider.equals('google')){
-					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
-					def scope = grailsApplication.config.crowdera.gmail.SCOPE
+				}else if(provider.equals('mailchimp')){
+					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
 					def redirectUri=base_url+'/project/getSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
-				}else if(provider.equals("constant")){
-					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
-					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
-				}
-				break;
-			case 'staginIndia':
-				if(provider.equals('google')){
-					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
-					def scope = grailsApplication.config.crowdera.gmail.SCOPE
-					def redirectUri=base_url+'/project/getSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
-				}else if(provider.equals("constant")){
-					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
-					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
-					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
-					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
 				}
 				break;
 			case 'prodIndia':
@@ -2123,8 +2116,13 @@ class ProjectController {
 				}else if(provider.equals("constant")){
 					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
 					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
-					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
+					def redirectUri='http%3A%2F%2fcrowdrera%2Ein%2Fproject%2FgetSocialContactsCode'
 					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}else if(provider.equals('mailchimp')){
+					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
 				}
 				break;
 		}
@@ -2132,7 +2130,7 @@ class ProjectController {
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def getSocialContactsCode(){
-
+		
 		def email =session.getAttribute("email")
 		def projectId =session.getAttribute("projectId")
 		def provider = session.getAttribute('socialProvider')
@@ -2143,16 +2141,57 @@ class ProjectController {
 		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
 		def  emailLists
-		if(username!=null){
-			if(code){
-				def tokenJson = socialAuthService.getConstantContactToken(code)
+		switch(provider){
+			case 'mailchimp':
+				def endpoint= grailsApplication.config.crowdera.MAILCHIMP.TOKEN_ENDPOINT
+				def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+				def clientSecret= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_SECRET
+				def dcUrl = grailsApplication.config.crowdea.MAILCHIMP.DC_URL
+				def redirectUri =base_url +'/project/getSocialContactsCode'
+				def tokenJson = socialAuthService.getAccessToken(code, endpoint, clientSecret, redirectUri, clientId, provider)
 				def json = socialAuthService.getJsonStringObject(tokenJson)
 				def accessToken= json.access_token
-				def contactJson =socialAuthService.sendConstantContactHTTPGetRequest(accessToken)
+				def mailchimpDC = socialAuthService.getRequestData(accessToken, dcUrl)
+				def jsonDC = socialAuthService.getJsonStringObject(mailchimpDC)
+				def listUrl = 'https://'+ jsonDC.dc + grailsApplication.config.crowdera.MAILCHIMP.MEMBER_URL
+				def mailchimpListID = socialAuthService.getRequestData(accessToken, listUrl)
+				def jsonMailchimpList = socialAuthService.getJsonStringObject(mailchimpListID)
+				def listId = jsonMailchimpList.lists.id
+				def contactJson = socialAuthService.getMailchimpContactsByListId(accessToken, listId , listUrl)
+				def mailchimpList
+				if(contactJson == null){
+					flash.contact_message="You might already login with different account."
+					Project project = projectService.getProjectById(projectId)
+					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:"", page:page])
+				}else{
+					mailchimpList= contactJson.toString().replace('[', " ").replace(']',' ')
+					if(mailchimpList){
+						def socialContacts = SocialContacts.findByUser(user)
+						if(socialContacts){
+							socialAuthService.setSocailContactsByUser(socialContacts ,mailchimpList, provider)
+						}else{
+							new SocialContacts(constantContact:null, gmail:null, mailchimp:mailchimpList ,user:user).save(failOnError: true)
+						}
+						Project project = projectService.getProjectById(projectId)
+						chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:mailchimpList, socialProvider:provider, page:page])
+					}
+				}
+			break;
+			case 'constant':
+				def token_endpoint =grailsApplication.config.crowdera.cc.TOKEN_URL
+				def apiKey = grailsApplication.config.crowdera.cc.CLIENT_KEY
+				def clientSecret= grailsApplication.config.crowdera.cc.CLIENT_SECRET
+				def contactsUrl = grailsApplication.config.crowdera.cc.CONTACT_URL + apiKey
+				def redirectUri =base_url +'/project/getSocialContactsCode'
+				def tokenJson = socialAuthService.getAccessToken(code,token_endpoint, clientSecret, redirectUri, apiKey, provider)
+				def json = socialAuthService.getJsonStringObject(tokenJson)
+				def accessToken= json.access_token
+				def contactJson =socialAuthService.getRequestData(accessToken, contactsUrl)
 				def jsonString = socialAuthService.getJsonStringObject(contactJson)
+				
 				def constantContactList
 				if(jsonString.error){
-					flash.contact_message="You might already login with different account"
+					flash.contact_message="You might already login with different account."
 					Project project = projectService.getProjectById(projectId)
 					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:constantContactList, page:page])
 				}else{
@@ -2168,34 +2207,37 @@ class ProjectController {
 					Project project = projectService.getProjectById(projectId)
 					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:constantContactList, socialProvider:provider, page:page])
 				}
-			}
-		}else{
-			def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
-			def clientSecret=grailsApplication.config.crowdera.gmail.CLIENT_SECRET
-			def redirectUri =base_url +'/project/getSocialContactsCode'
-			def tokenJson = socialAuthService.getGoogleAccessToken(code,clientSecret, redirectUri, clientId)
-			def json = socialAuthService.getJsonStringObject(tokenJson)
-			def accessToken= json.access_token
-			def contactJson = socialAuthService.getGmailContactsByAccessToken(accessToken, email)
-			def jsonString =socialAuthService.getJsonStringObject(contactJson)
-			def gmailList
-			if(jsonString.error){
-				flash.contact_message="You might already login with different account"
-				Project project = projectService.getProjectById(projectId)
-				chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:"", page:page])
-			}else{
-				gmailList= jsonString.feed.entry.gd$email.address.toString().replace('[', " ").replace(']',' ')
-				if(gmailList){
-					def socialContacts = SocialContacts.findByUser(user)
-					if(socialContacts){
-						socialAuthService.setSocailContactsByUser(socialContacts ,gmailList, provider)
-					}else{
-						new SocialContacts(constantContact:null, gmail:gmailList, mailchimp:null ,user:user).save(failOnError: true)
-					}
+			break;
+			case 'google':
+				def tokenEndpoint =grailsApplication.config.crowdera.gmail.TOKEN_URL
+				def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+				def clientSecret=grailsApplication.config.crowdera.gmail.CLIENT_SECRET
+				def contactUrl= grailsApplication.config.crowdera.gmail.CONTACT_URL+ email +'/full?alt=json'
+				def redirectUri =base_url +'/project/getSocialContactsCode'
+				def tokenJson = socialAuthService.getAccessToken(code,tokenEndpoint, clientSecret, redirectUri, clientId, provider)
+				def json = socialAuthService.getJsonStringObject(tokenJson)
+				def accessToken= json.access_token
+				def contactJson = socialAuthService.getRequestData(accessToken, contactUrl)
+				def jsonString =socialAuthService.getJsonStringObject(contactJson)
+				def gmailList
+				if(jsonString.error){
+					flash.contact_message="You might already login with different account."
 					Project project = projectService.getProjectById(projectId)
-					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:gmailList, socialProvider:provider, page:page])
+					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:"", page:page])
+				}else{
+					gmailList= jsonString.feed.entry.gd$email.address.toString().replace('[', " ").replace(']',' ')
+					if(gmailList){
+						def socialContacts = SocialContacts.findByUser(user)
+						if(socialContacts){
+							socialAuthService.setSocailContactsByUser(socialContacts ,gmailList, provider)
+						}else{
+							new SocialContacts(constantContact:null, gmail:gmailList, mailchimp:null ,user:user).save(failOnError: true)
+						}
+						Project project = projectService.getProjectById(projectId)
+						chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:gmailList, socialProvider:provider, page:page])
+					}
 				}
-			}
+			break;
 		}
 	}
 	def getCountryVal(){

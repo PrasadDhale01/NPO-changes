@@ -420,7 +420,7 @@ class UserController {
 		}else{
 			new Feedback(params).save()
 		}
-		flash.feedback_message = "Feedback submitted successfully!"
+		flash.feedback_message = "Feedback submitted successfully"
 		redirect url:'/'
 	}
 	
@@ -458,12 +458,13 @@ class UserController {
 		def environment= projectService.getCurrentEnvironment()
 		
 		if(user){
+			def comments = userService.getUserCommnet(user)
 			def projects = projectService.getAllProjectByUser(user, environment)
 			def projectAdmins = projectService.getProjectAdminEmail(user)
 			def teams = projectService.getTeamByUserAndEnable(user, true)
 			def project = projectService.getProjects(projects, projectAdmins, teams, environment)
 			def contributions =projectService.getContibutionByUser(user, environment)
-			def recentActivity = userService.getUserRecentActivity(project, contributions, user)
+			def recentActivity = userService.getUserRecentActivity(project, contributions,comments, user, teams)
 			def supporters= userService.getSupportersByUser(user) 
 			def userContribution = userService.getUserContribution(user)
 			def fundRaised = projectService.getTotalFundRaisedByUser(projects)

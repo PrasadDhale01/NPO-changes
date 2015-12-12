@@ -5530,6 +5530,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    #partner-sec-header .navbar-header { 
+        width: 600px;
+    }
     div.cr1-width-inputs{
         width: 105.2%;
     }
@@ -7516,6 +7519,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    .partner-stats.col-sm-4, #vitalseperator.col-sm-12 {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
     button.sh-fund-2header {
         margin-top: -32px;
         padding: 0;
@@ -7581,6 +7588,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     .list-group-item{
         height: 290px;
+    }
+    .partner-dashboard .list-group-item {
+        height: auto;
     }
 	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	   width: 71.1% !important;
@@ -7818,6 +7828,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    .nav-tab-doc.nav {
+        font-size: 14px !important;
+    }
     div.cr2-width-city .help-block {
         margin-left: -15px;
     }
@@ -7873,9 +7886,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     div.hm-media-stript-width {
         width: 750px !important;
     }      
-    div.header-scrolled{
+    div.header-scrolled {
         display: none !important;
-	}
+    }
     button.sh-submitaproval-2header {
 /*         margin-left: -42px; */
         margin-top: -1px;
@@ -9503,7 +9516,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
-
+    ul.nav-tab-doc.nav {
+        font-size: 11px;
+    }
+    .docs-tab-border.col-xs-12 {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    .doc-tab-padding {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .pd-container {
+        width: 320px;
+        margin-left: auto;
+        margin-right: auto;
+    }
     .cr-reasons-to-fund, .cr-panel-hash-tags{
          margin-bottom:0;
     }
@@ -9618,6 +9646,85 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 10px;
         margin-bottom: 10px;
     }
+    #partner-sec-header {
+        top: 45px;
+    }
+    #partner-sec-header.navbar-default {
+        background-color: #01BBD2;
+        z-index: 52;
+        box-shadow: none;
+    }
+    #partner-sec-header .navbar-header .span-space{
+        color: white;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    div#partner-sec-header .navbar-header .span-space.active {
+        color: #6D6E6E;
+    }
+    #partner-sec-header .navbar-header a{
+        color: white;
+        text-decoration: none;
+    }
+    #partner-sec-header .navbar-header { 
+        margin-top: 16px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #partner-sec-header .navbar-header .glyphicon {
+        margin-right: 5px;
+    }
+    #partner-sec-header.navbar {
+        margin-bottom: 0;
+    }
+    #partner-third-header {
+        top: 90px;
+    }
+    #partner-third-header.navbar-default {
+        background-color: white;
+        z-index: 51;
+        text-align: center;
+    }
+    #partner-third-header .navbar-header .span-space{
+        color: #6D6E6E;
+        padding-left: 8px;
+        padding-right: 8px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+    #partner-third-header .header-text{
+        font-size: 13px;
+        font-weight: 500;
+    }
+    #partner-third-header .navbar-header {
+        width: 320px;
+    }
+    #partner-third-header .navbar-header { 
+        margin-top: 16px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    #partner-third-header .navbar-header .glyphicon {
+        margin-right: 5px;
+    }
+    #partner-third-header.navbar {
+        margin-bottom: 0;
+    }
+    #partner-tab-content {
+        margin-top: 30px;
+    }
+    .partner-dashboard .green-heading {
+        font-size: 18px;
+    }
+    .userInfoUpdateBtn.col-md-12 {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+	.feduoutercontent {
+	   margin-top: 120px;
+	}
 	   .feduoutercontent {
 	       margin-top: 120px;
 	   }
@@ -11428,7 +11535,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
 }
 @media only screen and (max-width: 800px){
-	.manage-tiles {
+   	.manage-tiles {
         width: 65% !important;
     }
     .manage-tiles-details {
@@ -13126,6 +13233,15 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 481px) and (max-width: 640px){
+    #partner-sec-header .navbar-header { 
+        width: 480px;
+    }
+    #partner-sec-header .navbar-header .span-space {
+        padding-left: 9px;
+        padding-right: 9px;
+        font-size: 12px;
+        font-weight: 600;
+    }
 	h1.headingtext {
         color: #015f85;
         font-size: 24px !important;
@@ -13153,6 +13269,29 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
+    #partner-sec-header .navbar-header {
+        width: 320px;
+        height: 75px;
+    }
+	    #partner-sec-header.navbar-default {
+        height: 60px;
+        line-height: 1.8;
+    }
+    #partner-sec-header .navbar-header {
+        margin-top: 6px;
+    }
+    #partner-sec-header .navbar-header .span-space {
+        color: white;
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+    #partner-third-header {
+        top: 100px;
+    }
+    .pd-container-width.col-xs-12 {
+        padding-left: 0px;
+        padding-right: 0px;
+    }
 	h1.headingtext {
         color: #015f85;
         font-size: 22px !important;

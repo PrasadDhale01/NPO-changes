@@ -1,6 +1,4 @@
 $(function() {
-    console.log("create.js initialized");
-    
     $('#iconfile').val('');
 
     $("#sendEmailButton").click(function(){

@@ -24,9 +24,6 @@ class UrlMappings {
         "/aboutus"(view:'/aboutus/index')
         "/careers"(view:'/aboutus/careers')
 		
-		/*userprofile*/
-//		"/user/userprofile/$id/$page?"(view:'/user/user/userprofile')
-		
 		/* Feedback/Survey*/
 		"/survey" (view:'/survey/index')
 		
@@ -94,8 +91,7 @@ class UrlMappings {
         "/campaign/$projectTitle/update/edit/$id"(controller:'project', action:'editUpdate')
         "/campaign/supporter/$projectId/$fundRaiser"(controller:'project', action:'addcampaignsupporter')
         "/campaign/$projectTitle/$fr/embed/tile"(controller:'project', action:'embedTile')
-		"/campaign/inviteMember/$projectId/$page"(controller:'project', action:'inviteMember')
-		"/campaign/inviteMember/$projectId"(controller:'project', action:'inviteMember')
+		"/campaign/inviteMember/$projectId/$page?"(controller:'project', action:'inviteMember')
 
         /* Admin */
         "/admin/dashboard"(controller:'user', action:'admindashboard')
@@ -128,6 +124,7 @@ class UrlMappings {
         "/user/contributions"(controller:'user', action:'mycontributions')
         "/user/edit-userInfo"(controller:'user', action:'edituserinfo')
         "/user/edit-location"(controller:'user', action:'editlocation')
-		"/user/userprofile/$page?/$id?"(controller:'user', action:'userActivity')
+		"/user/userprofile/$page?/$id"(controller:'user', action:'userActivity')
+		"/user/userprofile/$amount?/$id"(controller:'user', action:'userActivity')
     }
 }

@@ -455,6 +455,7 @@ class UserController {
 		def userId = params.id
 		def page= params.page
  		User user = User.get(userId)
+		def username
 		def environment= projectService.getCurrentEnvironment()
 		
 		if(user){
@@ -468,11 +469,21 @@ class UserController {
 			def supporters= userService.getSupportersByUser(user) 
 			def userContribution = userService.getUserContribution(user)
 			def fundRaised = projectService.getTotalFundRaisedByUser(projects)
-			
-			if(params.page){
-				render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, page:page, environment:environment])
+			if(user.id == 3){
+				contributions.each{
+					def amt = it.amount.round()
+					if(amt == params.int("amount")){
+						username = it.contributorName.toString().replace('[', '').replace(']', '')
+					}
+				}
 			}else{
-			    render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, environment:environment])
+				username = user.firstName
+			}
+					
+			if(params.page){
+				render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, page:page, environment:environment, username:username])
+			}else{
+			    render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, environment:environment, username:username])
 			}
 			
 		}else{

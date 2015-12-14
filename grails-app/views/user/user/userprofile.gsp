@@ -20,7 +20,7 @@
                                 <img src="${user.userImageUrl}" alt="avatar" class="center-usrprfl-img">
                             </a>
                             <div class="userprofile-caption center-usrprfl-img">
-            					<p>${user.firstName}</p>
+            					<p>${username}</p>
         					</div>
                         </div>
                     </g:if>
@@ -29,6 +29,9 @@
                             <a id="userprofileImage-dflt">
                                 <img alt="Default image" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg" class="center-usrprfl-img">
                             </a>
+                            <div class="userprofile-caption center-usrprfl-img">
+            					<p>${username}</p>
+        					</div>
                         </div>
                     </g:else>
   			</div>

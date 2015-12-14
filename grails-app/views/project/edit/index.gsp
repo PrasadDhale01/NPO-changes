@@ -96,9 +96,9 @@
                         </div>
                     </div>
                     
-                   <div class="col-sm-3 cr2-width-dropdown3">
+                   <div class="col-sm-3 cr2-width-dropdown3 cr2-width-city">
                         <div class="input-group enddate">
-                            <input class="cr2-width-height-city cr-mob-datepicker form-control cr2-input-placeholder city" name="city" value="${project.beneficiary.city}" placeholder="City"> 
+                            <input class="cr2-width-height-city cr-mob-datepicker form-control cr2-input-placeholder city cr2-text-city" name="city" value="${project.beneficiary.city}" placeholder="City"> 
                         </div>
                     </div>
                     
@@ -123,18 +123,18 @@
                         <div class="cr-dropdown-alignment font-list">
                             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                 <g:if test="${project.fundsRecievedBy}">
-                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonIndprofit}" value="${project.fundsRecievedBy}" optionKey="key" optionValue="value" />
+                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color  cr-all-mobile-dropdown recipient cr2-edit-funds" name="#" from="${nonIndprofit}" value="${project.fundsRecievedBy}" optionKey="key" optionValue="value" />
                                 </g:if>
                                 <g:else>
-                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonIndprofit}" optionKey="key" optionValue="value" noSelection="['null':'Reciepient of fund']"/>
+                                    <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-all-mobile-dropdown recipient cr2-edit-funds" name="#" from="${nonIndprofit}" optionKey="key" optionValue="value" noSelection="['null':'Reciepient of fund']"/>
                                 </g:else>
                             </g:if>
                             <g:else>
                                  <g:if test="${project.fundsRecievedBy}">
-                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonProfit}" optionKey="key" optionValue="value" value="${project.fundsRecievedBy}"/>
+                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-all-mobile-dropdown recipient cr2-edit-funds" name="#" from="${nonProfit}" optionKey="key" optionValue="value" value="${project.fundsRecievedBy}"/>
                                  </g:if>
                                  <g:else>
-                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-start-dropdown-country cr-all-mobile-dropdown recipient" name="#" from="${nonProfit}" optionKey="key" optionValue="value" noSelection="['null':'Reciepient of fund']"/>
+                                     <g:select style="width:0px !important;" class="selectpicker cr-drops cr-drop-color cr-all-mobile-dropdown recipient cr2-edit-funds" name="#" from="${nonProfit}" optionKey="key" optionValue="value" noSelection="['null':'Reciepient of fund']"/>
                                  </g:else>
                             </g:else>
                         </div>
@@ -143,7 +143,7 @@
             </div>
         
              <%--Desktop code --%>
-             <div class="col-lg-12">
+             <div class="col-lg-12 col-md-12 col-sm-12">
                 <div class="form-group edit-tabsMobile-margin">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                        <label class="col-sm-12 text-color cr-padding-index1">My Name is...</label>

@@ -475,6 +475,7 @@ class UserController {
 			def project = projectService.getProjects(projects, projectAdmins, teams, environment)
 			def contributions =projectService.getContibutionByUser(user, environment)
 			def recentActivity = userService.getUserRecentActivity(project, contributions,comments, user, teams)
+			def supporterList = userService.getSupporterListActivity(project, user, teams)
 			def supporters= userService.getSupportersByUser(user) 
 			def userContribution = userService.getUserContribution(user)
 			def fundRaised = projectService.getTotalFundRaisedByUser(projects)
@@ -490,9 +491,9 @@ class UserController {
 			}
 					
 			if(params.page){
-				render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, page:page, environment:environment, username:username])
+				render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, page:page, environment:environment, username:username, supporterList:supporterList])
 			}else{
-			    render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, environment:environment, username:username])
+			    render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, environment:environment, username:username,  supporterList:supporterList])
 			}
 			
 		}else{

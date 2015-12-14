@@ -1024,11 +1024,12 @@ class UserService {
 			if(it==null){
 				i=0
 			}else{
-				i+= it.id
+				i++
 			}
 		}
 		return i
 	}
+	
 	def getUserContribution(User user){
 		def userContribution = Contribution.findAllByUser(user)
 		int contribution =0  
@@ -1045,6 +1046,34 @@ class UserService {
 		comments.add(projectComments)
 		comments.add(teamComments)
 		return comments
+	}
+	
+	def getSupporterListActivity(def project, User user, def teams){
+		def supporterList =[:]
+		def supporters = Supporter.findAllWhere(user:user)
+		
+		teams.each{
+			if(user.username.equals(it.user.username) && !user.username.equals(it.project.user.username) ){
+				supporterList.put("team"+it.id, it.project.title +";"+ it.joiningDate)
+			}
+		}
+		project.each {
+			if(user.username.equals(it.user.username)){
+				supporterList.put("project"+it.id,it.title +";"+ it.created)
+			}
+			if(isCampaignAdmin(it, user.email)){
+				supporterList.put("co-owner"+it.id,it.title +";"+ it.created)
+			}
+		}
+		
+		
+		if(supporters){
+			supporters.each{
+				supporterList.put("supporter"+it.id, it.project.title +";"+ it.followedDate)
+			}
+		}
+		//sort
+		return supporterList.sort { a, b -> b.value.toString().substring(b.value.toString().indexOf(';') + 1) <=> a.value.toString().substring(a.value.toString().indexOf(';') + 1) }
 	}
 	
 	def getUserRecentActivity(def project, def contributions ,def comments, User user, def teams){
@@ -1077,7 +1106,6 @@ class UserService {
 		
 		project.projectUpdates.each {
 			it.each{
-				
 				recentActivity.put("update"+it.id, it.title +";"+ it.updateDate)
 			}
 		}

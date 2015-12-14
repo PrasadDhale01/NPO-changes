@@ -9,7 +9,7 @@
         <%
             def index = 0
         %>
-        <g:each in="${recentActivity}" var="project">
+        <g:each in="${recentActivity}" var="rctActivity">
         	
             <g:if test="${index++ % 2 == 0}">
            <li>
@@ -21,24 +21,24 @@
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <h4 class="timeline-title">
-                        	<g:if test='${project.key.contains('project')}'>Created campaign : <br> <h5>${project.value.substring(0, project.value.indexOf(';'))}</h5></g:if>
-                        	<g:elseif test='${project.key.contains('update')}'>Updated a campaign : <h5>${project.value.substring(0, project.value.indexOf(';'))}</h5></g:elseif>
-                        	<g:elseif test='${project.key.contains('contribution')}'>Contributed : 
+                        	<g:if test='${rctActivity.key.contains('project')}'>Created campaign : <br> <h5>${rctActivity.value.substring(0, rctActivity.value.indexOf(';'))}</h5></g:if>
+                        	<g:elseif test='${rctActivity.key.contains('update')}'>Updated a campaign : <h5>${rctActivity.value.substring(0, rctActivity.value.indexOf(';'))}</h5></g:elseif>
+                        	<g:elseif test='${rctActivity.key.contains('contribution')}'>Contributed : 
                         	    <b>
                         	        <g:if test="${environment=='testIndia' || environment=='stagingIndia' || environment=='prodIndia'}">
                                         <span class="fa fa-inr"></span>
                                     </g:if>
-                                    <g:else>$ </g:else>${project.value.substring(0, project.value.indexOf(';'))}
+                                    <g:else>$ </g:else>${rctActivity.value.substring(0, rctActivity.value.indexOf(';'))}
                                 </b>
                              </g:elseif>
-                        	<g:elseif test='${project.key.contains('perk')}'>Created perk : <br> <h5>${project.value.substring(0, project.value.indexOf(';'))}</h5></g:elseif>
-                        	<g:elseif test='${project.key.contains('supporter')}'>Supported campaign : <br> <h5>${project.value.substring(0, project.value.indexOf(';'))}</h5></g:elseif>
-                        	<g:elseif test='${project.key.contains('team')}'>Joined campaign : <br> <h5>${project.value.substring(0, project.value.indexOf(';'))}</h5></g:elseif>
-                        	<g:elseif test='${project.key.contains('comment')}'>Comment : <br> <h5>${project.value.substring(0, project.value.indexOf(';'))}</h5></g:elseif>
+                        	<g:elseif test='${rctActivity.key.contains('perk')}'>Created perk : <br> <h5>${rctActivity.value.substring(0, rctActivity.value.indexOf(';'))}</h5></g:elseif>
+                        	<g:elseif test='${rctActivity.key.contains('supporter')}'>Supported campaign : <br> <h5>${rctActivity.value.substring(0, rctActivity.value.indexOf(';'))}</h5></g:elseif>
+                        	<g:elseif test='${rctActivity.key.contains('team')}'>Joined campaign : <br> <h5>${rctActivity.value.substring(0, rctActivity.value.indexOf(';'))}</h5></g:elseif>
+                        	<g:elseif test='${rctActivity.key.contains('comment')}'>Comment : <br> <h5>${rctActivity.value.substring(0, rctActivity.value.indexOf(';'))}</h5></g:elseif>
                         </h4>
                         
                         <p><small class="text-muted">
-                            <i class="glyphicon glyphicon-time"></i> On ${project.value.substring(project.value.indexOf(';') + 1 )}
+                            <i class="glyphicon glyphicon-time"></i> On ${rctActivity.value.substring(rctActivity.value.indexOf(';') + 1 )}
                         </small></p>
                     </div>
                     <div class="timeline-body setting-user-contributions">

@@ -1,4 +1,4 @@
-<g:if test="${supporters == 0 }">
+<g:if test="${supporterList.isEmpty()}">
     <div class="center-block col-xs-12 userprfl-warning">
         You haven't supported to any campaign yet. You can start supporting now.<br>
         <g:link controller="project" action="list" class="btn btn-default btn-sm btn-info">Support</g:link>
@@ -9,10 +9,9 @@
         <%
             def index = 0
         %>
-        <g:each in="${recentActivity}" var="project">
-            <g:if test='${project.key.contains('supporter')}'>
+        <g:each in="${supporterList}" var="supportList">
             <g:if test="${index++ % 2 == 0}">
-           <li>
+                <li>
             </g:if>
             <g:else>
                 <li class="timeline-inverted">
@@ -21,18 +20,20 @@
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <h4 class="timeline-title">
-                        	<g:if test='${project.key.contains('supporter')}'>You supported : <br> <h5>${project.value.substring(0, project.value.indexOf(';'))}</h5></g:if>
+                        	<g:if test='${supportList.key.contains('supporter')}'>Supported campaign : <br> <h5>${supportList.value.substring(0, supportList.value.indexOf(';'))}</h5></g:if>
+                        	<g:elseif test='${supportList.key.contains('project')}'>Created campaign : <br> <h5>${supportList.value.substring(0, supportList.value.indexOf(';'))}</h5></g:elseif>
+                        	<g:elseif test='${supportList.key.contains('team')}'>Joined campaign : <br> <h5>${supportList.value.substring(0, supportList.value.indexOf(';'))}</h5></g:elseif>
+                        	<g:elseif test='${supportList.key.contains('co-owner')}'>Campaign co-owner : <br> <h5>${supportList.value.substring(0, supportList.value.indexOf(';'))}</h5></g:elseif>
                         </h4>
                         
                         <p><small class="text-muted">
-                            <i class="glyphicon glyphicon-time"></i>${i} On ${project.value.substring(project.value.indexOf(';') + 1 )}
-                        </small></p>
+                            <i class="glyphicon glyphicon-time"></i> On ${supportList.value.substring(supportList.value.indexOf(';') + 1 )}
+                        </small></p> 
                     </div>
                     <div class="timeline-body setting-user-contributions">
                     </div>
                 </div>
             </li>
-           </g:if>
         </g:each>
     </ul>
 </g:else>

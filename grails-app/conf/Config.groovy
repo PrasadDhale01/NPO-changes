@@ -173,8 +173,12 @@ environments {
 		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
-		
-
+        
+        /*Google client details*/
+        crowdera.Client_Id = '837867811198'
+        crowdera.Client_Id_alphanumeric = '-pjgbmmqbalu9ddqtq6ijtk54u8f6kiuu.apps.googleusercontent.com'
+        crowdera.api_key = 'AIzaSyA6USGi0-RoCLFCDWhnYz8CUa-pF93Z0r4'
+        
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
         }
@@ -261,6 +265,11 @@ environments {
 		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
+        
+        /*Google client details*/
+        crowdera.Client_Id = '837867811198'
+        crowdera.Client_Id_alphanumeric = '-t23m00r907r9o4ubsdr3dlsse38gooqd.apps.googleusercontent.com'
+        crowdera.api_key = 'AIzaSyA6USGi0-RoCLFCDWhnYz8CUa-pF93Z0r4'
 
         mandrill {
             apiKey = "R28ZHu6_5IkJWLFunpsJbw"
@@ -571,6 +580,11 @@ environments {
 		crowdera.gmail.CLIENT_KEY='264232108471-98vs4ujo7vtsf9tsqhhrurlbnobc2c1a.apps.googleusercontent.com'
 		crowdera.gmail.CLIENT_SECRET='LrTLoWIgcQYaw0MmclzCG0Zi'
 		crowdera.gmail.SCOPE='profile https://www.google.com/m8/feeds'
+        
+        /*Google client details*/
+        crowdera.Client_Id = '837867811198'
+        crowdera.Client_Id_alphanumeric = '-l7ajlniufpo6vovi53ujcrfvq8u86fba.apps.googleusercontent.com'
+        crowdera.api_key = 'AIzaSyA6USGi0-RoCLFCDWhnYz8CUa-pF93Z0r4'
 
 		mandrill {
 			apiKey = "R28ZHu6_5IkJWLFunpsJbw"

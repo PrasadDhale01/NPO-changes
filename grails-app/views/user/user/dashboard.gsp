@@ -137,7 +137,7 @@
                     <g:else>
                         <div id="userAvatarUploadIcon">
                             <a id="useravatar">
-                                <img class="dummyprofileimage" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg">
+                                <img class="dummyprofileimage" src="https://s3.amazonaws.com/crowdera/assets/profile_image.jpg" alt="' '">
                             </a>
                             <div class="defaultprofileimage">
                                 <img class="plus-icon-over" src="https://s3.amazonaws.com/crowdera/assets/plus-icon-over.png" alt="avatar">
@@ -247,7 +247,7 @@
                 </g:elseif>
                 <g:elseif test="${activeTab == 'editUserInfo'}">
                     <div class="col-lg-12">
-                       <g:render template="user/userprofile"/>
+                       <g:render template="user/userprofile" model="['userprofile': 'userprofile']"/>
                     </div>
                 </g:elseif>
                 <g:else>

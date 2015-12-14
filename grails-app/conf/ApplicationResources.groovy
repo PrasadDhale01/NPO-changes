@@ -132,6 +132,11 @@ modules = {
 		dependsOn 'crowderajs'
 		resource url: 'js/ebook/ebook.js'
 	}
+    
+    partnerjs {
+        dependsOn 'crowderajs'
+        resource url: 'js/partner.js'
+    }
 
     /* CSS */
     fontawesomecss {

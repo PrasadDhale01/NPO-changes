@@ -126,5 +126,9 @@ class UrlMappings {
         "/user/edit-location"(controller:'user', action:'editlocation')
 		"/user/userprofile/$page?/$id"(controller:'user', action:'userActivity')
 		"/user/userprofile/$amount?/$id"(controller:'user', action:'userActivity')
+        
+        /*Partner*/
+        "/partner/dashboard"(controller:'user', action:'partnerdashboard')
+        "/partner/dashboard/$id"(controller:'user', action:'partnerdashboard')
     }
 }

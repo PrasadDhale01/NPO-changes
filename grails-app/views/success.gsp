@@ -12,6 +12,11 @@
                         ${flash.success_message}
                     </div>
                 </g:if>
+                <g:elseif test="${sucess_message}">
+                    <div class="alert alert-success">
+                        ${sucess_message}
+                    </div>
+                </g:elseif>
                 <g:else>
                     <div class="alert alert-success">
                         Success.

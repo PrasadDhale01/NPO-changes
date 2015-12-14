@@ -52,6 +52,7 @@ class Project {
     String usedFor
     String fundsRecievedBy
     String customVanityUrl
+    String partnerInviteCode
     String hashtags
 	
 	boolean payuStatus=false
@@ -89,6 +90,7 @@ class Project {
         usedFor(nullable:true)
         fundsRecievedBy(nullable:true)
         customVanityUrl(nullable:true)
+        partnerInviteCode (nullable: true)
         hashtags(nullable:true)
     }
 

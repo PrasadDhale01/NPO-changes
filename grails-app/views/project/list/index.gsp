@@ -11,7 +11,7 @@
 </head>
 <body>
     <div class="bg-color" id="TW-discover-banner-padding">
-        <div class="container discover-container">
+        <div class="container discover-container hidden-xs">
         	<div class="row" >
         		<g:render template="list/discoverbanner"></g:render>
         	</div>

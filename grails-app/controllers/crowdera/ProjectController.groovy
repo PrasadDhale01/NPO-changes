@@ -253,7 +253,7 @@ class ProjectController {
 		redirect (controller: 'project', action: 'show', params:['projectTitle':vanityTitle,'fr': params.fr, teamOffset: params.teamOffset], fragment: 'manageTeam')
 	}
 
-	@Secured(['ROLE_ADMIN'])
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def validateShowCampaign(){
 		def title = projectService.getVanityTitleFromId(params.id)
 		def name = userService.getVanityNameFromUsername(params.fr, params.id)
@@ -264,74 +264,86 @@ class ProjectController {
 		}
 	}
 
-	@Secured(['ROLE_ADMIN'])
-	def validateshow() {
-		def projectId
-		if (params.projectTitle){
-			projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
-		} else {
-			projectId = params.id
-		}
-		def project = projectService.getProjectById(projectId)
-		if (project) {
-			User user = project.user
-			def currentUser = userService.getCurrentUser()
-			def currentFundraiser = project.user
-			def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
-			def totalContribution = contributionService.getTotalContributionForProject(project)
-			def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
-			def teamContribution
-			def teamPercentage
-			if (currentTeam) {
-                        teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
-                        teamPercentage = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
-			}
-			def isCrFrCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)
-			def isCrUserCampBenOrAdmin
-			def isTeamExist
-			if (currentUser) {
-				isCrUserCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
-				isTeamExist = userService.isValidatedTeamExist(project, currentUser)
-			}
-			def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)
-			def teamOffset = teamObj.maxrange
-			def teams = teamObj.teamList
-			def totalteams = teamObj.teams
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def validateshow() {
+        if (userService.isAdmin() || userService.isPartner()) {
+            def projectId
+            if (params.projectTitle){
+                projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+            } else {
+                projectId = params.id
+            }
+            
+            def project = projectService.getProjectById(projectId)
+            if (project) {
+                User user = project.user
+                def currentUser = userService.getCurrentUser()
+                def currentFundraiser = project.user
+                def currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
+                def totalContribution = contributionService.getTotalContributionForProject(project)
+                def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+                def teamContribution
+                def teamPercentage
+                if (currentTeam) {
+                    teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
+                    teamPercentage = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
+                }
+                def isCrFrCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentFundraiser)
+                def isCrUserCampBenOrAdmin
+                def isTeamExist
+                if (currentUser) {
+                    isCrUserCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
+                    isTeamExist = userService.isValidatedTeamExist(project, currentUser)
+                }
+                def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)
+                def teamOffset = teamObj.maxrange
+                def teams = teamObj.teamList
+                def totalteams = teamObj.teams
+        
+                boolean ended = projectService.isProjectDeadlineCrossed(project)
+                boolean isFundingOpen = projectService.isFundingOpen(project)
+                def rewards = rewardService.getSortedRewards(project);
+                def day= projectService.getRemainingDay(project)
+                def endDate = projectService.getProjectEndDate(project)
+                def webUrl = projectService.getWebUrl(project)
+                def validatedPage = true
+                def projectComments = projectService.getProjectComments(project)
+                def teamComments = projectService.getTeamComments(currentTeam)
+                List totalContributions = []
+                List contributions = []
+                def multiplier = projectService.getCurrencyConverter();
+        
+                if(project.validated == false) {
+                    render (view: 'validate/validateshow',
+                            model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,projectComments: projectComments,totalteams: totalteams,
+                            	totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, webUrl: webUrl, teamComments: teamComments, teamOffset: teamOffset,
+                            	teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,totalContributions: totalContributions,contributions: contributions,
+                            	isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
+                            	validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS, multiplier: multiplier])
+                }
+            } else {
+            	render (view: '404error')
+            }
+        }
+    }
 
-			boolean ended = projectService.isProjectDeadlineCrossed(project)
-			boolean isFundingOpen = projectService.isFundingOpen(project)
-			def rewards = rewardService.getSortedRewards(project);
-			def day= projectService.getRemainingDay(project)
-			def endDate = projectService.getProjectEndDate(project)
-			def webUrl = projectService.getWebUrl(project)
-			def validatedPage = true
-			def projectComments = projectService.getProjectComments(project)
-			def teamComments = projectService.getTeamComments(currentTeam)
-			List totalContributions = []
-			List contributions = []
-            def multiplier = projectService.getCurrencyConverter();
-
-			if(project.validated == false) {
-
-				render (view: 'validate/validateshow',
-				model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,projectComments: projectComments,totalteams: totalteams,
-					totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, webUrl: webUrl, teamComments: teamComments, teamOffset: teamOffset,
-					teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,totalContributions: totalContributions,contributions: contributions,
-					isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
-					validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS, multiplier: multiplier])
-			}
-		} else {
-			render (view: '404error')
-		}
-	}
-
-	@Secured(['ROLE_ADMIN'])
+	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def updateValidation() {
-		if (params.id) {
-			projectService.getUpdateValidationDetails(params)
-		}
-		flash.prj_validate_message= "Campaign validated successfully"
-		redirect (action:'validateList')
+        if (userService.isAdmin()) {
+            if (params.id) {
+                projectService.getUpdateValidationDetails(params)
+            }
+            flash.prj_validate_message= "Campaign validated successfully"
+            redirect (action:'validateList')
+        } else if (userService.isPartner()) {
+            if (params.id) {
+                projectService.getUpdateValidationDetails(params)
+            }
+            flash.prj_validate_message= "Campaign validated successfully"
+            redirect (action:'partnerdashboard', controller:'user')
+        } else {
+            render view:'/401error'
+        }
 	}
 
 	@Secured(['ROLE_ADMIN'])
@@ -431,6 +443,9 @@ class ProjectController {
 	def validateList() {
         def currentEnv = Environment.current.getName()
 		def projects = projectService.getNonValidatedProjects(currentEnv)
+        if (flash.prj_validate_message) {
+            flash.prj_validate_message = "Campaign validated successfully"
+        }
 		render(view: 'validate/index', model: [projects: projects])
 	}
 
@@ -458,11 +473,21 @@ class ProjectController {
 		}
 		render ""
 	}
+    
+    def createCampaign() {
+        Cookie cookie = new Cookie("inviteCode", params.id)
+        cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
+        cookie.maxAge= 60  //Cookie expire time in seconds
+        response.addCookie(cookie)
+        
+        redirect action:'create'
+    }
 
-	def create() {
+	def create(String id) {
         def currentEnv = Environment.current.getName()
+        String partnerInviteCode = g.cookie(name: 'inviteCode')
         def inDays = projectService.getInDays()
-		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv, inDays:inDays])
+		render(view: 'create/index1', model: [FORMCONSTANTS: FORMCONSTANTS, currentEnv: currentEnv, partnerInviteCode: partnerInviteCode, inDays:inDays])
 	}
     
     def saveCampaign() {
@@ -473,8 +498,9 @@ class ProjectController {
         def currentdays = params.days ? params.days : params.days1
         def days = Integer.parseInt(currentdays)
 
-        def reqUrl = base_url+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}&days=${days}&customVanityUrl=${params.customVanityUrl}"
+        def reqUrl = base_url+"/project/createNow?firstName=${params.firstName}&amount=${amount}&title=${params.title}&description=${params.description}&usedFor=${params.usedFor}&days=${days}&customVanityUrl=${params.customVanityUrl}&partnerInviteCode=${params.partnerInviteCode}"
         def user = userService.getCurrentUser()
+        
         if (!user) {
             Cookie cookie = new Cookie("requestUrl", reqUrl)
             cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
@@ -1136,7 +1162,7 @@ class ProjectController {
 			List emailList= projectService.getProjectAdminEmailList(project)
 			mandrillService.sendCampaignDeleteEmailsToOwner(emailList, project, currentUser)
 			flash.user_message= "Campaign Discarded Successfully"
-			redirect (action:'myproject' , controller:'user')
+			redirect (action:'mycampaigns' , controller:'user')
 		} else {
 			flash.prj_mngprj_message = 'Campaign Not Found'
 			render (view: 'manageproject/error', model: [project: project])

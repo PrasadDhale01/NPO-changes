@@ -1584,6 +1584,50 @@ class ProjectService {
             return Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false, payuStatus:false)
         }
     }
+    
+    def getNonValidatedProjectsForPartner(User user, Partner partner, def params) {
+        List projects = []
+        List totalprojects = []
+        def partnerInviteCode = partner.confirmCode
+        List userProjects = Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false, user: user)
+        List projectsByInviteCode = Project.findAllWhere(validated: false, inactive: false, draft: false, rejected: false, partnerInviteCode: partnerInviteCode)
+        totalprojects = userProjects + projectsByInviteCode
+        
+        def max = Math.min(params.int('max') ?: 6, 100)
+        def offset = params.int('offset') ? params.int('offset') : 0
+        def count = totalprojects.size()
+        def maxrange
+
+        if(offset + max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        projects = totalprojects.subList(offset, maxrange)
+        return [projects: projects, totalprojects: totalprojects]
+    }
+    
+    def getValidatedProjectsForPartner(User user, Partner partner, def params) {
+        List totalprojects = []
+        List projects = []
+        def partnerInviteCode = partner.confirmCode
+        List userProjects = Project.findAllWhere(validated: true, inactive: false, rejected: false, user: user)
+        List projectsByInviteCode = Project.findAllWhere(validated: true, inactive: false, rejected: false, partnerInviteCode: partnerInviteCode)
+        totalprojects = userProjects + projectsByInviteCode
+        
+        def max = Math.min(params.int('max') ?: 6, 100)
+        def offset = params.int('offset') ? params.int('offset') : 0
+        def count = totalprojects.size()
+        def maxrange
+
+        if(offset + max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        projects = totalprojects.subList(offset, maxrange)
+        return [projects: projects, totalprojects: totalprojects]
+    }
 
     def search(String query, def currentEnv) {
         List result = []
@@ -4161,7 +4205,11 @@ class ProjectService {
                     amount = amount + (contributedAmount * conversionMultiplier)
                 }
             } else {
-                amount = amount + contributedAmount
+                if(project.payuStatus) {
+                    amount = amount + (contributedAmount / conversionMultiplier)
+                } else {
+                    amount = amount + contributedAmount
+                }
             }
         }
         return amount;
@@ -4310,6 +4358,28 @@ class ProjectService {
         }
         
         return projects
+    }
+    
+    def getPartnerCampaigns(User user, def params) {
+        def environment = getCurrentEnvironment();
+        List projects = []
+        def campaigns = getAllProjectByUser(user, environment)
+        def projectAdmins = getProjectAdminEmail(user)
+        def teams = getTeamByUserAndEnable(user, true)
+        def totalprojects = getProjects(campaigns, projectAdmins, teams, environment)
+        
+        def max = Math.min(params.int('max') ?: 6, 100)
+        def offset = params.int('offset') ? params.int('offset') : 0
+        def count = totalprojects.size()
+        def maxrange
+
+        if(offset + max <= count) {
+            maxrange = offset + max
+        } else {
+            maxrange = offset + (count - offset)
+        }
+        projects = totalprojects.subList(offset, maxrange)
+        return [projects: projects, totalprojects: totalprojects, campaigns: campaigns]
     }
     
     def getSortingList() {

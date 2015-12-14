@@ -23,11 +23,12 @@
     </g:elseif>
 </div>
 <div class="dashboarduserprofile">
-    
-    <div class="my-campaign-heading text-center hidden-xs"><h1><img src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="' '"> <b>Edit User</b></h1></div>
-    <div class="my-campaign-heading text-center visible-xs"><h3><img src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="' '"> <b>Edit User</b></h3></div>
+    <g:if test="${userprofile}">
+        <div class="my-campaign-heading text-center hidden-xs"><h1><img src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="' '"> <b>Edit User</b></h1></div>
+        <div class="my-campaign-heading text-center visible-xs"><h3><img src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="' '"> <b>Edit User</b></h3></div>
+    </g:if>
     <g:form controller="user" action="update">
-        <div class="col-sm-6 col-md-6 col-xs-6">
+        <div class="col-sm-6 col-md-6 col-xs-12">
             <g:if test="${fbUser && !isAccountMerged}">
                 <div class="form-group">
                     <input type="text" name="firstName" class="form-control all-place" value="${user.firstName}" readonly>
@@ -46,7 +47,7 @@
             </g:elseif>
             <g:else>
                 <div class="form-group">
-                    <input type="text" name="firstName" required class="form-control all-place" value="${user.firstName}" placeholder="New First name" autofocus>
+                    <input type="text" name="firstName" required class="form-control all-place" value="${user.firstName}" placeholder="New First name">
                 </div>
                 <div class="form-group">
                     <input type="text" name="lastName" required class="form-control all-place" value="${user.lastName}" placeholder="New Last name">
@@ -59,9 +60,9 @@
                 <input type="password" name="confirmPassword" class="form-control all-place" placeholder="Confirm Password">
             </div>
         </div>
-        <div class="col-sm-6 col-md-6 col-xs-6 userseditlocation">
+        <div class="col-sm-6 col-md-6 col-xs-12 userseditlocation">
             <div class="form-group">
-                <textarea name="biography" class="form-control all-place" rows="2" placeholder="Bio" autofocus>${user.biography}</textarea>
+                <textarea name="biography" class="form-control all-place" rows="2" placeholder="Bio">${user.biography}</textarea>
             </div>
             <div class="form-group">
                 <div class="input-group col-md-12">
@@ -69,13 +70,18 @@
                         <g:select class="selectpicker" name="country" from="${country}" value="${user.country}" optionKey="key" optionValue="value"/>
                     </g:if>
                     <g:else>
-                        <g:select class="selectpicker" id="country" name="country" from="${country}" value="#" optionKey="key" optionValue="value" noSelection="['null':'Country']"/>
+                        <g:select class="selectpicker" id="country" name="country" from="${country}" optionKey="key" optionValue="value" noSelection="['null':'Country']"/>
                     </g:else>
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group col-md-12">
-                    <g:select class="selectpicker" name="state" id="state" from="${state}" optionKey="key" optionValue="value"/>
+                    <g:if test="${user.state}">
+                        <g:select class="selectpicker" name="state" id="state" from="${state}" value="${user.state}" optionKey="key" optionValue="value"/>
+                    </g:if>
+                    <g:else>
+                        <g:select class="selectpicker" id="state" name="state" from="${state}" optionKey="key" optionValue="value" noSelection="['null':'State']"/>
+                    </g:else>
                 </div>
             </div>
             <div class="form-group" id="ostate">
@@ -84,12 +90,14 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="text" name="city" required class="form-control all-place" value="${user.city}" placeholder="City" autofocus>
+                <input type="text" name="city" required class="form-control all-place" value="${user.city}" placeholder="City">
             </div>
         </div>
         <div class="clear"></div>
-        <div class="col-md-12 userInfoUpdateBtn">
-            <button class="btn btn-primary btn-md pull-right" type="submit" id="userInfoUpdateBtn">Update</button>
-        </div>
+        <g:if test="${!isAdmin}">
+            <div class="col-md-12 userInfoUpdateBtn">
+                <button class="btn btn-primary btn-md pull-right" type="submit" id="userInfoUpdateBtn">Update</button>
+            </div>
+        </g:if>
     </g:form>
 </div>

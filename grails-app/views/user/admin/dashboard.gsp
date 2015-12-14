@@ -183,6 +183,20 @@
                     </div>
                 </div>
             </g:if>
+            <g:if test="${environment == 'development' || environment == 'test' || environment == 'testIndia'}">
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center">
+                            <i class="glyphicon glyphicon-tint"></i> Manage Partners.
+                        </div>
+                        <div class="panel-footer">
+                            <g:link controller="user" action="managePartner" class="TW-text-decoration">
+                                <button class="btn btn-block btn-primary"><i class="glyphicon glyphicon-tint"></i> Manage Partners </button>
+                            </g:link>
+                        </div>
+                    </div>
+                </div>
+            </g:if>
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                  <div class="panel panel-default">
                      <div class="panel-body text-center">

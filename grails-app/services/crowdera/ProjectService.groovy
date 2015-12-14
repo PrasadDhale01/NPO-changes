@@ -1631,13 +1631,21 @@ class ProjectService {
 
     def search(String query, def currentEnv) {
         List result = []
-        List project = getValidatedProjects(currentEnv)
-        project.each { 
-            if( it.title.toLowerCase().contains(query.toLowerCase()) || it.description.toLowerCase().contains(query.toLowerCase()) ){
-                result.add(it)
-            } else if (it.story){
-                if (it.story.toLowerCase().contains(query.toLowerCase()))
-                    result.add(it)
+        List projects = getValidatedProjects(currentEnv)
+        projects.each {project->
+            if( project.title.toLowerCase().contains(query.toLowerCase()) || project.description.toLowerCase().contains(query.toLowerCase()) ){
+                result.add(project)
+            } else if (project.story){
+                if (project.story.toLowerCase().contains(query.toLowerCase()))
+                    result.add(project)
+            } else if (project.hashtags){
+                List hashtagsList = it.hashtags.split(',')
+                hashtagsList = hashtagsList.collect { it.trim() }
+                hashtagsList.each{hashtag->
+                    if (hashtag.toLowerCase().contains(query.toLowerCase())){
+                        result.add(project)
+                    }
+                }
             }
         }
         return result
@@ -4272,15 +4280,12 @@ class ProjectService {
     def getPieList(Project project) {
         List pieValueWithPer = [];
         def spendMatrixs = project.spend;
-        def pieListCount = 0;
         String sublist1;
         String sublist;
-        pieValueWithPer.add(sublist1);
         def cause
         def total = 0
         if (spendMatrixs){
             spendMatrixs.each{ spendMatrix ->
-                pieListCount++;
                 sublist = (sublist) ? sublist + ', ' + spendMatrix.cause : spendMatrix.cause;
                 sublist1 = (sublist1) ? sublist1 + ', ' + spendMatrix.amount.round() : spendMatrix.amount.round();
                 total = total + spendMatrix.amount
@@ -4565,12 +4570,12 @@ class ProjectService {
         hashtagsList = hashtagsList.collect { it.trim() }
         String firstFiveHashTags
         String remainingHashTags
-        if (hashtagsList.size() > 5){
+        if (hashtagsList.size() > 4){
             for(int i=0;i<hashtagsList.size();i++){
-                if (i < 5){
+                if (i < 4){
                     firstFiveHashTags = (i==0) ? hashtagsList[i] :  firstFiveHashTags + ', ' + hashtagsList[i];
                 } else {
-                    remainingHashTags = (i==5) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
+                    remainingHashTags = (i==4) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
                 }
             }
         } else {
@@ -4579,7 +4584,27 @@ class ProjectService {
         }
         return [firstFiveHashTags:firstFiveHashTags, remainingHashTags:remainingHashTags]
     }
-
+    
+    def getHashTagsTabs(def hashtags) {
+        List hashtagsList = hashtags.split(',')
+        hashtagsList = hashtagsList.collect { it.trim() }
+        String firstFiveHashTags
+        String remainingHashTags
+        if (hashtagsList.size() > 2){
+            for(int i=0;i<hashtagsList.size();i++){
+                if (i < 2){
+                    firstFiveHashTags = (i==0) ? hashtagsList[i] :  firstFiveHashTags + ', ' + hashtagsList[i];
+                } else {
+                    remainingHashTags = (i==2) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
+                }
+            }
+        } else {
+            firstFiveHashTags = hashtags
+            remainingHashTags = null
+        }
+        return [firstFiveHashTags:firstFiveHashTags, remainingHashTags:remainingHashTags]
+    }
+    
     def getReasonsToFundFromProject(Project project){
         return ReasonsToFund.findByProject(project)
     }

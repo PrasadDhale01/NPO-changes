@@ -2914,12 +2914,14 @@ $(function() {
     	var city = $('.city').val();
     	var list;
     	if (usedFor == 'SOCIAL_NEEDS') {
-    		list = '#SOCIAL-INNOVATION';
+    		list = '#Social-Innovation';
     	} else if (usedFor == 'PERSONAL_NEEDS') {
-    		list = '#PERSONAL-NEEDS';
-    	} else {
-    		list = '#'+usedFor;
-    	}
+    		list = '#Personal-Needs';
+    	} else if (usedFor == 'IMPACT'){
+    		list = '#Impact'
+        } else if (usedFor == 'PASSION'){
+        	list = '#Passion'
+        }
     	(fundRaisedBy && fundRaisedBy != 'null') ? list = list + ', #'+fundRaisedBy : ' ' ;
         (category && category != 'null') ? list = list + ', #'+category : ' ' ;
         if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){

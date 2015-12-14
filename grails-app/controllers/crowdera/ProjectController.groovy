@@ -232,8 +232,8 @@ class ProjectController {
 
             def multiplier = projectService.getCurrencyConverter();
             def pieList = projectService.getPieList(project);
-            def hasMorTagsDesktop = projectService.getHashTags(project.hashtags)
-            def hasMorTagsTabs = projectService.getHashTagsTabs(project.hashtags)
+            def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
+            def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
             def reasons = projectService.getReasonsToFundFromProject(project)
             render (view: 'show/index',
             model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
@@ -241,8 +241,8 @@ class ProjectController {
                     teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
                     isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
                     isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url,
-                    multiplier: multiplier, spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, hashTagsDesktop:hasMorTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMorTags.remainingHashTags, 
-                    hashTagsTabs:hasMorTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMorTagsTabs.remainingHashTags, reasons:reasons])
+                    multiplier: multiplier, spendCauseList:pieList.spendCauseList, spendAmountPerList:pieList.spendAmountPerList, hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, 
+                    hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons])
 		} else {
 		    render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
@@ -299,7 +299,7 @@ class ProjectController {
                 def teamOffset = teamObj.maxrange
                 def teams = teamObj.teamList
                 def totalteams = teamObj.teams
-        
+                
                 boolean ended = projectService.isProjectDeadlineCrossed(project)
                 boolean isFundingOpen = projectService.isFundingOpen(project)
                 def rewards = rewardService.getSortedRewards(project);
@@ -312,17 +312,25 @@ class ProjectController {
                 List totalContributions = []
                 List contributions = []
                 def multiplier = projectService.getCurrencyConverter();
-        
+                def pieList = projectService.getPieList(project);
+                def hasMoreTags = projectService.getHashTagsTabs(project.hashtags)
+                def reasons = projectService.getReasonsToFundFromProject(project)
+                
                 if(project.validated == false) {
                     render (view: 'validate/validateshow',
-                            model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate,projectComments: projectComments,totalteams: totalteams,
-                            	totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, webUrl: webUrl, teamComments: teamComments, teamOffset: teamOffset,
-                            	teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day,totalContributions: totalContributions,contributions: contributions,
-                            	isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards,
-                            	validatedPage: validatedPage, isTeamExist: isTeamExist, FORMCONSTANTS: FORMCONSTANTS, multiplier: multiplier])
+                    model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, 
+                    endDate: endDate,projectComments: projectComments,totalteams: totalteams,totalContribution: totalContribution, 
+                    percentage:percentage, teamContribution: teamContribution, webUrl: webUrl,teamComments: teamComments, 
+                    teamOffset: teamOffset,teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, 
+                    day: day,totalContributions: totalContributions,contributions: contributions,
+                    isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
+                    isFundingOpen: isFundingOpen, rewards: rewards,validatedPage: validatedPage, isTeamExist: isTeamExist, 
+                    FORMCONSTANTS: FORMCONSTANTS, multiplier: multiplier,spendCauseList:pieList.spendCauseList, 
+                    spendAmountPerList:pieList.spendAmountPerList, hashTags:hasMoreTags.firstFiveHashTags, 
+                    remainingTags: hasMoreTags.remainingHashTags, reasons:reasons])
                 }
             } else {
-            	render (view: '404error')
+                render (view: '404error')
             }
         }
     }
@@ -539,7 +547,7 @@ class ProjectController {
             project.beneficiary.email = user.email;
             
             if (project.usedFor == 'SOCIAL_NEEDS'){
-                project.hashtags = '#SOCIAL-INNOVATION'
+                project.hashtags = '#Social-Innovtion'
             } else if (project.usedFor == 'PERSONAL_NEEDS'){
                 project.hashtags = '#PERSONAL-NEEDS'
             } else {
@@ -584,14 +592,7 @@ class ProjectController {
                 def nonIndprofit = projectService.getRecipientOfFundsIndo()
                 def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
 
-                def usedForCreate
-                if (project.usedFor == 'SOCIAL_NEEDS'){
-                    usedForCreate = 'SOCIAL-INNOVATION'
-                } else if (project.usedFor == 'PERSONAL_NEEDS'){
-                    usedForCreate = 'PERSONAL-NEEDS'
-                } else {
-                    usedForCreate = project.usedFor
-                }
+                def usedForCreate = project.usedFor
                 def selectedCountry = (project.beneficiary.country) ? projectService.getCountryValue(project.beneficiary.country) : null;
 
                 def endDate = projectService.getProjectEndDate(project)
@@ -778,6 +779,7 @@ class ProjectController {
             def taxReciept = projectService.getTaxRecieptOfProject(project)
             def deductibleStatusList = projectService.getDeductibleStatusList()
             def stateInd = projectService.getIndianState()
+            def pieList = projectService.getPieList(project);
             render (view: 'edit/index',
             model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
                 'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,
@@ -786,7 +788,7 @@ class ProjectController {
                 project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
                 vanityTitle: vanityTitle, vanityUsername:vanityUsername, selectedCountry: selectedCountry,
                 email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
-                deductibleStatusList:deductibleStatusList])
+                deductibleStatusList:deductibleStatusList,spendAmountPerList:pieList.spendAmountPerList])
         } else {
             flash.prj_edit_message = "Campaign not found."
             render (view: 'edit/editerror')

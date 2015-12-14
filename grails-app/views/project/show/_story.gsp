@@ -24,7 +24,6 @@
     <g:hiddenField name="shareUrl" id="shareUrl" value="${shareUrl}"/>
     <g:hiddenField name="embedTileUrl" id="embedTileUrl" value="${embedTileUrl}"/>
 
-   
     <div class="col-sm-12 social sharing-icon-alignment <g:if test="${isvalidateShow}">validate-share-border</g:if><g:else>show-share-border-line</g:else> hidden-xs">
         <a class="show-socials-iconsA"></a>
         <g:if test="${isPreview || isvalidateShow}">
@@ -72,8 +71,13 @@
                 </div>
             </div>
         </g:else>
-        <span class="showing-hashtags showing-hashtags-desktop">${hashTags}</span>
-        <span class="showing-hashtags showing-hashtags-tabs">${hashTags}</span>
+		<g:if test="${isvalidateShow}">
+			<span class="showing-hashtags">${hashTags}</span>
+		</g:if>
+		<g:else>
+			<span class="showing-hashtags showing-hashtags-desktop">${hashTagsDesktop}</span>
+			<span class="showing-hashtags showing-hashtags-tabs">${hashTagsTabs}</span>
+		</g:else>
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-12 TW-campaignstory-img-width">
@@ -88,14 +92,14 @@
             </div>
         </g:else>
         <g:if test="${spendCauseList && spendAmountPerList}">
-			<script src="https://rawgithub.com/DmitryBaranovskiy/raphael/300aa589f5a0ba7fce667cd62c7cdda0bd5ad904/raphael-min.js"></script>
-			<script src="https://rawgithub.com/DmitryBaranovskiy/g.raphael/master/g.raphael.js"></script>
-			<script src="https://rawgithub.com/DmitryBaranovskiy/g.raphael/master/g.pie.js"></script>
 			<div id="chart-container">
 				<g:hiddenField name="spendCauseList" value="${spendCauseList}" id="spendCauseList"/>
 				<g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>
 				<div id="graph"></div>
 			</div>
+			<script src="/js/raphel-pie/raphael-min.js"></script>
+            <script src="/js/raphel-pie/g.raphael.js"></script>
+            <script src="/js/raphel-pie/g.pie.js"></script>
 		</g:if>
         <g:if test="${project.impactNumber > 0 && project.impactAmount > 0}">
             <g:if test="${project.category.toString() == 'ANIMALS'}">
@@ -226,8 +230,13 @@
             <p class="campaignStory justify">${raw(currentTeam.story)}</p>
             <p class="campaignStory justify">${raw(project.story)}</p>
         </g:else>
-        <g:if test="${remainingTags}">
-            <p class="moretags-desktop">More Tags : ${remainingTags}</p>
-            <p class="moretags-tabs">More Tags : ${remainingTags}</p>
+		<g:if test="${remainingTags}">
+            <p>More Tags : ${remainingTags}</p>
+		</g:if>
+        <g:if test="${remainingTagsDesktop}">
+            <p class="moretags-desktop">More Tags : ${remainingTagsDesktop}</p>
+        </g:if>
+        <g:if test="${remainingTagsTabs}">
+            <p class="moretags-tabs">More Tags : ${remainingTagsTabs}</p>
         </g:if>
     </div>

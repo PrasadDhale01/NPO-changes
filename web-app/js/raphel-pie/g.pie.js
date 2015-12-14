@@ -45,7 +45,6 @@
 
     function Piechart(paper, cx, cy, r, values, opts) {
         opts = opts || {};
-
         var chartinst = this,
             sectors = [],
             covers = paper.set(),
@@ -105,31 +104,42 @@
                     cut = i;
                     defcut = false;
                 }
-
-                if (i > cut) {
-                    defcut = false;
-                    values[cut].value += values[i];
-                    values[cut].others = true;
-                    others = values[cut].value;
-                }
+//                if (i > cut) {
+//                    defcut = false;
+//                    values[cut].value += values[i];
+//                    values[cut].others = true;
+//                    others = values[cut].value;
+//                }
             }
 
-            len = Math.min(cut + 1, values.length);
-            others && values.splice(len) && (values[cut].others = true);
-
+            //len = Math.min(cut + 1, values.length);
+            //others && values.splice(len) && (values[cut].others = true);
+            var minValue = total/100;
             for (i = 0; i < len; i++) {
-                var mangle = angle - 360 * values[i] / total / 2;
-
+            	var mangle,	ipath, path;
+            	if (values[i] < minValue){
+            		mangle = angle - 360 *  minValue / total / 2;
+            	} else {
+            		mangle = angle - 360 * values[i] / total / 2;
+            	}
                 if (!i) {
                     angle = 90 - mangle;
                     mangle = angle - 360 * values[i] / total / 2;
                 }
 
                 if (opts.init) {
-                    var ipath = sector(cx, cy, 1, angle, angle - 360 * values[i] / total).join(",");
+                	if (values[i] < minValue){
+                		ipath = sector(cx, cy, 1, angle, angle - 360 * minValue / total).join(",");
+                	} else {
+            			ipath = sector(cx, cy, 1, angle, angle - 360 * values[i] / total).join(",");
+                	}
                 }
 
-                var path = sector(cx, cy, r, angle, angle -= 360 * values[i] / total);
+                if (values[i] < minValue){
+                	path = sector(cx, cy, r, angle, angle -= 360 * minValue / total);
+                } else {
+                	path = sector(cx, cy, r, angle, angle -= 360 * values[i] / total);
+                }
                 var j = (opts.matchColors && opts.matchColors == true) ? values[i].order : i;
                 var p = paper.path(opts.init ? ipath : path).attr({ fill: opts.colors && opts.colors[j] || chartinst.colors[j] || "#666", stroke: opts.stroke || "#fff", "stroke-width": (opts.strokewidth == null ? 1 : opts.strokewidth), "stroke-linejoin": "round" });
 

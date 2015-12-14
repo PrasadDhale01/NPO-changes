@@ -9204,6 +9204,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 1024px) {
+	.showing-hashtags{
+	   left:52%;
+	}
+	.showing-hashtags-desktop{
+	   display:none;
+	}
+	.showing-hashtags-tabs{
+	   display:block;
+	}
+	.moretags-desktop{
+	   display:none;
+	}
+	.moretags-tabs{
+	   display:block;
+	}
 	.text-primary{
 		text-align:center;
 		width:300px;
@@ -9229,6 +9244,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	.showing-hashtags{
+	   left:44%;
+	}
+	.showing-hashtags-desktop{
+	   display:block;
+	}
+	.showing-hashtags-tabs{
+	   display:none;
+	}
+	.moretags-desktop{
+	   display:block;
+	}
+	.moretags-tabs{
+	   display:none;
+	}
     span.col-impact-text-one, span.col-impact-education-text-one{
         width:22%;
     }

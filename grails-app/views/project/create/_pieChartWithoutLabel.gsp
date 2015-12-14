@@ -1,4 +1,5 @@
 <div id="chart-container">
+    ${spendAmountPerList }
 	<g:if test="${spendAmountPerList}">
 		<g:hiddenField name="miscellaneous" value="hasOtherValues" id="miscellaneous"/>
 		<g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>

@@ -1,4 +1,19 @@
 @media only screen and (min-width: 1281px){
+	.showing-hashtags{
+	   left:44%;
+	}
+	.showing-hashtags-desktop{
+	   display:block;
+	}
+	.showing-hashtags-tabs{
+	   display:none;
+	}
+	.moretags-desktop{
+	   display:block;
+	}
+	.moretags-tabs{
+	   display:none;
+	}
     .paypalVerification span {
         margin-left: 0 !important;
     }

@@ -170,7 +170,7 @@
                         <a href="/user/edit-userInfo" class="dashboardtabheading btn btn-primary btn-md btn-block">Edit User Info</a>
                    </g:if>
                    <div>
-                   		<g:link controller="user" action="userActivity" id="${user.id}" params="['page':'page']" class="dashboardtabheading btn btn-primary btn-md btn-block">User Profile</g:link>
+                       <g:link controller="user" action="userActivity" id="${user.id}" params="['page':'page']" class="dashboardtabheading btn btn-primary btn-md btn-block">User Profile</g:link>
                    </div>
                     
                     <a href="#" class="btn btn-block btn-social social-button btn-facebook hidden"><i class="fa fa-facebook"></i> Connect</a>
@@ -228,7 +228,7 @@
                     </a>
                 </div>
                 <div class="col-xs-6">
-                   		<g:link controller="user" action="userActivity" id="${user.id}" params="['page':'page']" class="mob-campaigns-btn btn btn-primary">User Profile</g:link>
+                    <g:link controller="user" action="userActivity" id="${user.id}" params="['page':'page']" class="mob-campaigns-btn btn btn-primary">User Profile</g:link>
                 </div>
             </div>
             

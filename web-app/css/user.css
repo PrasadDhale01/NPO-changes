@@ -782,7 +782,7 @@ div.dashboardtile-min-height {
     font-weight:bold;
 }
 .userprfl-warning{
-	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
     float: none;
     height: 100px;
     padding: 10px 5px;
@@ -790,7 +790,7 @@ div.dashboardtile-min-height {
     width: 300px;
 }
 .userprfl-cmpgn-container{
-	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
     float: none;
     height: 100px;
     margin-left:0px;
@@ -799,20 +799,20 @@ div.dashboardtile-min-height {
     width: 300px;
 }
 .TW-userprofile-img #userprofileImage-dflt img{
-	box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
     height: 140px;
     margin-bottom:5px;
     width: 178px;
 }
 .usrPrfl-cmpgn-img{
-	padding:0px;
-	height:80px;	
+    padding:0px;
+    height:80px;	
 }
 .usrPrfl-cmpgn-img img{
 	height:80px;	
 }
 .usrPrfl-cmpgn-title p{
-	color: #000000;
+    color: #000000;
     font-size: 14px;
     text-align: justify;
 }
@@ -829,8 +829,8 @@ div.dashboardtile-min-height {
     margin: -6px 0 0;	
 }
 .TW-usrprfl-heading .col-xs-9{
-	padding-left:0px ;
-	padding-right:0px ;
+    padding-left:0px ;
+    padding-right:0px ;
 }
 
 #invitepartner {

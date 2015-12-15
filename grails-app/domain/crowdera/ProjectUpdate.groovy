@@ -14,13 +14,13 @@ class ProjectUpdate {
     List imageUrls
     String story
     String title
-	Date updateDate = new Date()
+    Date updateDate = new Date()
     
     static constraints = {
         imageUrls (nullable: true)
         story (nullable: true)
         title (nullable: true)
-		updateDate (nullable:true)
+        updateDate (nullable:true)
     }
     
     static mapping = {

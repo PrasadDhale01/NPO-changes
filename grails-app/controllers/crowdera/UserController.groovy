@@ -461,45 +461,44 @@ class UserController {
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def userActivity(){
-		def userId = params.id
-		def page= params.page
- 		User user = User.get(userId)
-		def username
-		def environment= projectService.getCurrentEnvironment()
+	    def userId = params.id
+	    def page= params.page
+ 	    User user = User.get(userId)
+	    def username
+	    def environment= projectService.getCurrentEnvironment()
 		
-		if(user){
-			def comments = userService.getUserCommnet(user)
-			def projects = projectService.getAllProjectByUser(user, environment)
-			def projectAdmins = projectService.getProjectAdminEmail(user)
-			def teams = projectService.getTeamByUserAndEnable(user, true)
-			def project = projectService.getProjects(projects, projectAdmins, teams, environment)
-			def contributions =projectService.getContibutionByUser(user, environment)
-			def recentActivity = userService.getUserRecentActivity(project, contributions,comments, user, teams)
-			def supporterList = userService.getSupporterListActivity(project, user, teams)
-			def supporters= userService.getSupportersByUser(user) 
-			def userContribution = userService.getUserContribution(user)
-			def fundRaised = projectService.getTotalFundRaisedByUser(projects)
-			if(user.id == 3){
-				contributions.each{
-					def amt = it.amount.round()
-					if(amt == params.int("amount")){
-						username = it.contributorName.toString().replace('[', '').replace(']', '')
-					}
-				}
-			}else{
-				username = user.firstName
-			}
+	    if(user){
+		    def comments = userService.getUserCommnet(user)
+		    def projects = projectService.getAllProjectByUser(user, environment)
+		    def projectAdmins = projectService.getProjectAdminEmail(user)
+		    def teams = projectService.getTeamByUserAndEnable(user, true)
+		    def project = projectService.getProjects(projects, projectAdmins, teams, environment)
+		    def contributions =projectService.getContibutionByUser(user, environment)
+		    def recentActivity = userService.getUserRecentActivity(project, contributions,comments, user, teams)
+		    def supporterList = userService.getSupporterListActivity(project, user, teams)
+		    def supporters= userService.getSupportersByUser(user) 
+		    def userContribution = userService.getUserContribution(user)
+		    def fundRaised = projectService.getTotalFundRaisedByUser(projects)
+		    if(user.id == 3){
+			    contributions.each{
+				    def amt = it.amount.round()
+				    if(amt == params.int("amount")){
+					   username = it.contributorName.toString().replace('[', '').replace(']', '')
+				    }
+			    }
+		    }else{
+			    username = user.firstName
+		    }
 					
-			if(params.page){
-				render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, page:page, environment:environment, username:username, supporterList:supporterList])
-			}else{
+		    if(params.page){
+			    render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, page:page, environment:environment, username:username, supporterList:supporterList])
+		    }else{
 			    render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, environment:environment, username:username,  supporterList:supporterList])
-			}
+		    }
 			
-		}else{
-			render view:'404error'
+	    }else{
+		    render view:'/404error'
 		}
-		
 	}
     
     @Secured(['ROLE_ADMIN'])

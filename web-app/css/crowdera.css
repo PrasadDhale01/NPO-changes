@@ -5530,41 +5530,41 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-	.center-usrprfl-img {
-    	display: block;
-    	margin-left: auto;
-    	margin-right: auto;
-	}
-	.timeline > li > .timeline-panel {
+    .center-usrprfl-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .timeline > li > .timeline-panel {
         padding: 20px 5px 20px 5px !important;
     }
-	ul.timeline::before {
-	    left: -14px !important;
-	}
-	ul.timeline > li > .timeline-panel {
-    	width: 100% !important;
-	}
-	.userprfl-cmpgn-container {
+    ul.timeline::before {
+        left: -14px !important;
+    }
+    ul.timeline > li > .timeline-panel {
+        width: 100% !important;
+    }
+    .userprfl-cmpgn-container {
         box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
         float: none;
         height: 100px;
         margin-left: -1px;
         padding: 10px 5px;
         text-align: justify;
-       width: 238px;
+        width: 238px;
     }
     .col-xs-8.usrPrfl-cmpgn-title {
         padding-left: 5px;
         padding-right: 5px;
     }
-	.userprfl-warning {
-	    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
-	    float: none;
-	    height: 117px;
-	    padding: 10px 5px;
-	    text-align: center;
-	    width: 215px;
-	}
+    .userprfl-warning {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+        float: none;
+        height: 117px;
+        padding: 10px 5px;
+        text-align: center;
+        width: 215px;
+    }
 	
     #partner-sec-header .navbar-header { 
         width: 600px;
@@ -7857,11 +7857,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	#TW-usrPrfl-ul  li.TW-usrPrfl-li > a {
-	   font-size: 14px !important;
-	   font-weight: bold;
-	}
-	.usr-prfl-amt {
+    #TW-usrPrfl-ul  li.TW-usrPrfl-li > a {
+        font-size: 14px !important;
+        font-weight: bold;
+    }
+    .usr-prfl-amt {
         font-size: 20px;
         margin: 0;
     }
@@ -7869,7 +7869,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         font-size: 18px !important;
         padding-right: 2px;
     }
-	.userprfl-cmpgn-container {
+    .userprfl-cmpgn-container {
         box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
         float: none;
         height: 100px;
@@ -7878,9 +7878,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         text-align: center;
         width: 300px;
     }
-	.TW-userprofile-panel-text-Size{
-		font-size:12px;
-	}
+    .TW-userprofile-panel-text-Size{
+        font-size:12px;
+    }
     .nav-tab-doc.nav {
         font-size: 14px !important;
     }
@@ -13427,28 +13427,28 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
-	.center-usrprfl-img {
-    	display: block;
-    	margin-left: auto;
-    	margin-right: auto;
-	}
-	.timeline > li > .timeline-panel {
+    .center-usrprfl-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .timeline > li > .timeline-panel {
         padding: 20px 5px 20px 5px !important;
     }
-	.userprfl-cmpgn-container {
+    .userprfl-cmpgn-container {
         box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
         float: none;
         height: 100px;
         margin-left: -1px;
         padding: 10px 5px;
         text-align: justify;
-       	width: 238px;
+        width: 238px;
     }
     .col-xs-8.usrPrfl-cmpgn-title {
         padding-left: 5px;
         padding-right: 5px;
     }
-	.userprfl-warning {
+    .userprfl-warning {
         box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
         float: none;
         height: 117px;
@@ -13456,9 +13456,9 @@ textarea.textarea-embed-video {
         text-align: center;
         width: 215px;
     }
-	ul.timeline::before {
-	    left: -14px !important;
-	}
+    ul.timeline::before {
+        left: -14px !important;
+    }
     div.cr1-width-inputs{
         width: 105.2%;
     }
@@ -16281,35 +16281,35 @@ li.sh-button-fund-secandaryheader{
     margin-top: 18px;
 }
 .divSocialContact{
-	display:none;
+    display:none;
 }
 .TW-user-tabs ul{
-	padding-left:0px;
-	padding-right:0px;
+    padding-left:0px;
+    padding-right:0px;
 }
 .TW-user-tabs ul li a {
-	background-color: #5fbed5 !important;
+    background-color: #5fbed5 !important;
     border: 1px solid #fff;
     color: #fff !important;
     padding-left: 0;
     padding-right: 0;
 }
 .TW-user-tabs ul li.active a:hover {
-	background-color: #5fbed5 !important;
+    background-color: #5fbed5 !important;
     border: 1px solid #fff;
     color: #fff !important;
     padding-left: 0;
     padding-right: 0;
 }
 .TW-user-tabs ul li.active a {
-	background-color: #a2b5d1  !important;
+    background-color: #a2b5d1  !important;
     border: 1px solid #fff;
     color: #fff !important;
     padding-left: 0;
     padding-right: 0;
 }
 .TW-usrPrfl-header{
-	padding-top:25px;
+    padding-top:25px;
 }
 .panel-info > .panel-heading.TW-usrprfl-heading{
     background-color: #5fbed5;
@@ -16319,7 +16319,7 @@ li.sh-button-fund-secandaryheader{
     padding-right: 5px;
 }
 .mailchimpContact{
-	height:33px;
-	margin-left:3px;
-	width:33px;
+    height:33px;
+    margin-left:3px;
+    width:33px;
 }

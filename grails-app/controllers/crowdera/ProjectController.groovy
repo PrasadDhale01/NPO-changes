@@ -1372,9 +1372,9 @@ class ProjectController {
 		}else{
 			if(chainModel){
 				def provider = session.getAttribute('socialProvider')
-				render (view:"/project/show/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList, provider:provider])
+				render (view:"/project/show/invitemember",params:[page:page], model:[project:project, email:chainModel.email, contactList:chainModel.contactList, provider:provider])
 			}else{
-				render (view:"/project/show/invitemember", model:[project:project])
+				render (view:"/project/show/invitemember", params:[page:page], model:[project:project])
 			}
 		}
 	}
@@ -2186,7 +2186,7 @@ class ProjectController {
 				def mailchimpList
 				if(contactJson == null){
 					flash.contact_message="You might already login with different account."
-					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:"", page:page])
+					chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:"", page:page])
 				}else{
 					mailchimpList= contactJson.toString().replace('[', " ").replace(']',' ')
 					if(mailchimpList){
@@ -2196,7 +2196,7 @@ class ProjectController {
 						}else{
 							new SocialContacts(constantContact:null, gmail:null, mailchimp:mailchimpList ,user:user).save(failOnError: true)
 						}
-						chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:mailchimpList, socialProvider:provider, page:page])
+						chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:mailchimpList, socialProvider:provider, page:page])
 					}
 				}
 			break;
@@ -2214,7 +2214,7 @@ class ProjectController {
 				def constantContactList
 				if(jsonString.error){
 					flash.contact_message="You might already login with different account."
-					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:constantContactList, page:page])
+					chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:constantContactList, page:page])
 				}else{
 					constantContactList= jsonString.results.email_addresses.email_address.toString().replace('[', " ").replace(']',' ')
 					if(constantContactList){
@@ -2225,7 +2225,7 @@ class ProjectController {
 							new SocialContacts(constantContact:constantContactList, gmail:null, mailchimp:null ,user:user).save(failOnError: true)
 						}
 					}
-					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:constantContactList, socialProvider:provider, page:page])
+					chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:constantContactList, socialProvider:provider, page:page])
 				}
 			break;
 			case 'google':
@@ -2242,7 +2242,7 @@ class ProjectController {
 				def gmailList
 				if(jsonString.error){
 					flash.contact_message="You might already login with different account."
-					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:"", page:page])
+					chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:"", page:page])
 				}else{
 					gmailList= jsonString.feed.entry.gd$email.address.toString().replace('[', " ").replace(']',' ')
 					if(gmailList){
@@ -2252,7 +2252,7 @@ class ProjectController {
 						}else{
 							new SocialContacts(constantContact:null, gmail:gmailList, mailchimp:null ,user:user).save(failOnError: true)
 						}
-						chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:gmailList, socialProvider:provider, page:page])
+						chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:gmailList, socialProvider:provider, page:page])
 					}
 				}
 			break;

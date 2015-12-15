@@ -53,5 +53,4 @@
             </li>
         </g:each>
     </ul>
-                       
 </g:else>

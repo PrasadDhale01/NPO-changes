@@ -710,15 +710,18 @@ $(function() {
     $('.constantContact').click(function(){
         $('.socialProvider').val("constant");
         $('.divSocialContact').show();
+        $('#socialContact').val('');
     });
     
     $('.gmailContact').click(function(){
         $('.socialProvider').val("google");
         $('.divSocialContact').show();
+        $('#socialContact').val('');
     });
     $('.mailchimpContact').click(function(){
         $('.socialProvider').val("mailchimp");
         $('.divSocialContact').show();
+        $('#socialContact').val('');
     });
     
     $('.socialContact').change(function(){

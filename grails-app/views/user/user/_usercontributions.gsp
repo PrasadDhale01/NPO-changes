@@ -21,7 +21,7 @@
             <g:else>
                 <li class="timeline-inverted">
             </g:else>
-                <div class="timeline-badge info hidden-xs"><i class="glyphicon glyphicon-credit-card"></i></div>
+                <div class="timeline-badge info hidden-xs"><i class="fa fa-credit-card"></i></div>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <h4 class="timeline-title">Contributed : 
@@ -38,7 +38,7 @@
                         </small></p>
                     </div>
                     <div class="timeline-body">
-                    	<g:link controller="project" action="showCampaign" id="${contribution.project.id}"  params="['fr':contribution.fundRaiser]">
+                    	<g:link controller="project" action="showCampaign" id="${contribution.project.id}"  params="['fr':contribution.fundRaiser]" fragment="contributions">
 	                    	<div class="row userprfl-cmpgn-container">
 	                    		<div class="col-xs-4 usrPrfl-cmpgn-img">
 	                    			<img class="img-responsive" src="${projectService.getProjectImageLink(contribution.project)}" alt="Campaign Image" >

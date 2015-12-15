@@ -16301,6 +16301,13 @@ li.sh-button-fund-secandaryheader{
     padding-left: 0;
     padding-right: 0;
 }
+.TW-user-tabs ul li.active a {
+	background-color: #a2b5d1  !important;
+    border: 1px solid #fff;
+    color: #fff !important;
+    padding-left: 0;
+    padding-right: 0;
+}
 .TW-usrPrfl-header{
 	padding-top:25px;
 }

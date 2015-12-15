@@ -17,7 +17,13 @@
             <g:else>
                 <li class="timeline-inverted">
             </g:else>
-                <div class="timeline-badge info hidden-xs"><i class="glyphicon glyphicon-credit-card"></i></div>
+            	<g:if test='${rctActivity.key.contains('project')}'><div class="timeline-badge info hidden-xs"><i class="fa fa-leaf"></i></div></g:if>
+            	<g:if test='${rctActivity.key.contains('contribution')}'><div class="timeline-badge info hidden-xs"><i class="fa fa-credit-card"></i></div></g:if>
+            	<g:if test='${rctActivity.key.contains('team')}'><div class="timeline-badge info hidden-xs"><i class="fa fa-users"></i></div></g:if>
+            	<g:if test='${rctActivity.key.contains('comment')}'><div class="timeline-badge info hidden-xs"><i class="fa fa-comment"></i></div></g:if>
+            	<g:if test='${rctActivity.key.contains('update')}'><div class="timeline-badge info hidden-xs"><i class="fa fa-asterisk"></i></div></g:if>
+            	<g:if test='${rctActivity.key.contains('perk')}'><div class="timeline-badge info hidden-xs"><i class="fa fa-gift fa-lg"></i></div></g:if>
+            	<g:if test='${rctActivity.key.contains('supporter')}'><div class="timeline-badge info hidden-xs"><i class="fa fa-heart"></i></div></g:if>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
                         <h4 class="timeline-title">

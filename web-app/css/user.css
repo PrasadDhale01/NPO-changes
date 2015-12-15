@@ -777,8 +777,8 @@ div.dashboardtile-min-height {
 .userprofile-panel-border{
 	border-width:0px;	
 }
-#TW-usrPrfl-li > a {
-    font-size: 14px;
+#TW-usrPrfl-ul li.TW-usrPrfl-li > a {
+    font-size: 14px !important;
     font-weight:bold;
 }
 .userprfl-warning{

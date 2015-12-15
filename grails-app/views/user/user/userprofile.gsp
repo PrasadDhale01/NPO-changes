@@ -106,20 +106,20 @@
   		<div class="row TW-user-tabs bg-color-white">
   			<div class="col-lg-12">
   				
-                              <ul class="nav nav-tabs nav-justified">
-                                  <li class="TW-userTimeline active" id="TW-usrPrfl-li">
+                              <ul class="nav nav-tabs nav-justified" id="TW-usrPrfl-ul">
+                                  <li class="TW-userTimeline active TW-usrPrfl-li">
                                       <a data-toggle="tab" href="#timeline">
                                           <i class="icon-home"></i>
                                          Timeline
                                       </a>
                                   </li>
-                                  <li class="TW-userCamapaign" id="TW-usrPrfl-li">
+                                  <li class="TW-userCamapaign TW-usrPrfl-li">
                                       <a data-toggle="tab" href="#campaigns">
                                           <i class="icon-envelope"></i>
                                           Campaign Supported
                                       </a>
                                   </li>
-                                  <li class="TW-userContribution" id="TW-usrPrfl-li">
+                                  <li class="TW-userContribution TW-usrPrfl-li">
                                       <a data-toggle="tab" href="#contribution">
                                           <i class="icon-envelope"></i>
                                           Contribution

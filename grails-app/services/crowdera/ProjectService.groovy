@@ -1339,7 +1339,7 @@ class ProjectService {
         sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
         finalList =  sortedProjects.reverse() + endedProjects.reverse()
         return Project.findAllWhere(validated: true,inactive: false)
-		return finalList
+		//return finalList
     }
 	
     def getValidatedProjects(def currentEnv) {
@@ -3683,7 +3683,7 @@ class ProjectService {
 		def user = userService.getUserById(project.user.id)
 		def feedback=userService.getFeedbackByUser(user)
 		if(!feedback){
-			if((user.feedbackCount < 1 & remainingDay == 7) || (user.feedbackCount < 2 & remainingDay == 5) || (user.feedbackCount < 3 & remainingDay == 3)){
+			if((user.feedbackCount < 1 && remainingDay == 7) || (user.feedbackCount < 2 && remainingDay == 5) || (user.feedbackCount < 3 && remainingDay == 3)){
 				emailCount = user.feedbackCount + 1
 				def owner = project.user
 				user.feedbackCount = emailCount

@@ -2163,11 +2163,9 @@ class ProjectController {
 		def provider = session.getAttribute('socialProvider')
 		def page = session.getAttribute("page")
 		def code=params.code
-		def username= params.username
 		def user =userService.getCurrentUser()
 		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
 		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-		def  emailLists
 		switch(provider){
 			case 'mailchimp':
 				def endpoint= grailsApplication.config.crowdera.MAILCHIMP.TOKEN_ENDPOINT
@@ -2188,7 +2186,6 @@ class ProjectController {
 				def mailchimpList
 				if(contactJson == null){
 					flash.contact_message="You might already login with different account."
-					Project project = projectService.getProjectById(projectId)
 					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:"", page:page])
 				}else{
 					mailchimpList= contactJson.toString().replace('[', " ").replace(']',' ')
@@ -2199,7 +2196,6 @@ class ProjectController {
 						}else{
 							new SocialContacts(constantContact:null, gmail:null, mailchimp:mailchimpList ,user:user).save(failOnError: true)
 						}
-						Project project = projectService.getProjectById(projectId)
 						chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:mailchimpList, socialProvider:provider, page:page])
 					}
 				}
@@ -2215,11 +2211,9 @@ class ProjectController {
 				def accessToken= json.access_token
 				def contactJson =socialAuthService.getRequestData(accessToken, contactsUrl)
 				def jsonString = socialAuthService.getJsonStringObject(contactJson)
-				
 				def constantContactList
 				if(jsonString.error){
 					flash.contact_message="You might already login with different account."
-					Project project = projectService.getProjectById(projectId)
 					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:constantContactList, page:page])
 				}else{
 					constantContactList= jsonString.results.email_addresses.email_address.toString().replace('[', " ").replace(']',' ')
@@ -2231,7 +2225,6 @@ class ProjectController {
 							new SocialContacts(constantContact:constantContactList, gmail:null, mailchimp:null ,user:user).save(failOnError: true)
 						}
 					}
-					Project project = projectService.getProjectById(projectId)
 					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:constantContactList, socialProvider:provider, page:page])
 				}
 			break;
@@ -2249,7 +2242,6 @@ class ProjectController {
 				def gmailList
 				if(jsonString.error){
 					flash.contact_message="You might already login with different account."
-					Project project = projectService.getProjectById(projectId)
 					chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:"", page:page])
 				}else{
 					gmailList= jsonString.feed.entry.gd$email.address.toString().replace('[', " ").replace(']',' ')
@@ -2260,7 +2252,6 @@ class ProjectController {
 						}else{
 							new SocialContacts(constantContact:null, gmail:gmailList, mailchimp:null ,user:user).save(failOnError: true)
 						}
-						Project project = projectService.getProjectById(projectId)
 						chain (action:"inviteMember",params:[projectId:projectId] , model:[ email:email,contactList:gmailList, socialProvider:provider, page:page])
 					}
 				}

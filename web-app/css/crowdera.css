@@ -7857,7 +7857,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
-	#TW-usrPrfl-li > a {
+	#TW-usrPrfl-ul  li.TW-usrPrfl-li > a {
 	   font-size: 14px !important;
 	   font-weight: bold;
 	}
@@ -10530,7 +10530,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
-	#TW-usrPrfl-li > a {
+	#TW-usrPrfl-ul li.TW-usrPrfl-li > a {
 	   font-size: 14px !important;
 	   font-weight: bold;
 	}

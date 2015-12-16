@@ -1355,7 +1355,12 @@ class ProjectController {
 			redirect (action: 'show', params:['projectTitle':title,'fr':name])
 		}
 	}
-
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def redirectToInviteMember(){
+		redirect (action:'inviteMember', params:[projectId:params.projectId, page: params.page ])
+	}
+	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def inviteMember(){
 		def page = params.page?params.page : chainModel.page
@@ -1372,9 +1377,9 @@ class ProjectController {
 		}else{
 			if(chainModel){
 				def provider = session.getAttribute('socialProvider')
-				render (view:"/project/show/invitemember",params:[page:page], model:[project:project, email:chainModel.email, contactList:chainModel.contactList, provider:provider])
+				render (view:"/project/show/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList, provider:provider])
 			}else{
-				render (view:"/project/show/invitemember", params:[page:page], model:[project:project])
+				render (view:"/project/show/invitemember", model:[project:project])
 			}
 		}
 	}

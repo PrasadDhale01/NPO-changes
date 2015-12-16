@@ -460,9 +460,13 @@ class UserController {
     }
 	
 	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def userActivity(){
-	    def userId = params.id
-	    def page= params.page
+	def userActivity1(){
+		userActivity('page', params.id)
+	}
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def userActivity(String page, String id){
+	    def userId = id
  	    User user = User.get(userId)
 	    def username
 	    def environment= projectService.getCurrentEnvironment()
@@ -490,7 +494,7 @@ class UserController {
 			    username = user.firstName
 		    }
 					
-		    if(params.page){
+		    if(page){
 			    render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, page:page, environment:environment, username:username, supporterList:supporterList])
 		    }else{
 			    render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, environment:environment, username:username,  supporterList:supporterList])

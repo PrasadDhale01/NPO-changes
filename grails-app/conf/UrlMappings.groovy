@@ -124,8 +124,8 @@ class UrlMappings {
         "/user/contributions"(controller:'user', action:'mycontributions')
         "/user/edit-userInfo"(controller:'user', action:'edituserinfo')
         "/user/edit-location"(controller:'user', action:'editlocation')
-        "/user/userprofile/$page?/$id"(controller:'user', action:'userActivity')
-        "/user/userprofile/$amount?/$id"(controller:'user', action:'userActivity')
+        "/user/userprofile/$id"(controller:'user', action:'userActivity1')
+        "/user/userprofile/$amount/$id"(controller:'user', action:'userActivity')
         
         /*Partner*/
         "/partner/dashboard"(controller:'user', action:'partnerdashboard')

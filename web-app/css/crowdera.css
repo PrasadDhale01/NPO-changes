@@ -16343,24 +16343,10 @@ li.sh-button-fund-secandaryheader{
     margin-bottom:10px;
 }
 .gmailContact{
-    background-image: url("https://s3.amazonaws.com/crowdera/assets/show-google-gray.png");
-    background-repeat: no-repeat;
     height: 33px;
     width: 33px;
-}
-.gmailContact:hover{
-    background-image:url("https://s3.amazonaws.com/crowdera/assets/show-original-google-color.png");
-    height:33px;
-    width:33px;	
 }
 .constantContact{
-    background-image:url("https://s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png");
-    background-repeat: no-repeat;
     height: 33px;
     width: 33px;
-}
-.constantContact:hover{
-    background-image:url("https://s3.amazonaws.com/crowdera/assets/show-original-email-color.png");
-    height:33px;
-    width:33px;	
 }

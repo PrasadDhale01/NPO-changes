@@ -1,7 +1,7 @@
 <g:set var="projectService" bean="projectService" />
 <%@ page import="java.text.SimpleDateFormat" %>
 <%
-    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
 %>
 <g:if test="${contributions.size() == 0}">
     <div class="center-block col-xs-12 userprfl-warning">
@@ -34,11 +34,11 @@
                            </b>
                         </h4>
                         <p><small class="text-muted">
-                            <i class="glyphicon glyphicon-time"></i> on ${dateFormat.format(contribution.date)}, towards
+                            <i class="glyphicon glyphicon-time"></i> on ${dateFormat.format(contribution.date)}
                         </small></p>
                     </div>
                     <div class="timeline-body">
-                    	<g:link controller="project" action="showCampaign" id="${contribution.project.id}"  params="['fr':contribution.fundRaiser]" fragment="contributions">
+                    	<g:link controller="project" action="showCampaign" id="${contribution.project.id}"  params="['fr':contribution.fundRaiser]" fragment="contributions" target="_blank">
 	                    	<div class="row userprfl-cmpgn-container">
 	                    		<div class="col-xs-4 usrPrfl-cmpgn-img">
 	                    			<img class="img-responsive" src="${projectService.getProjectImageLink(contribution.project)}" alt="Campaign Image" >

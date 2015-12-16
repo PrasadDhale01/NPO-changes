@@ -1,6 +1,14 @@
 package crowdera
 
 import grails.transaction.Transactional
+
+import java.security.InvalidKeyException
+import java.security.NoSuchAlgorithmException
+import java.text.SimpleDateFormat
+
+import javax.crypto.Mac
+import javax.crypto.spec.SecretKeySpec
+
 import org.apache.commons.validator.EmailValidator
 import org.apache.http.HttpEntity
 import org.apache.http.HttpResponse
@@ -10,15 +18,10 @@ import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.message.BasicNameValuePair
-import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
-import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
-import java.security.NoSuchAlgorithmException;
-import java.security.InvalidKeyException;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
+import org.jets3t.service.security.AWSCredentials
+import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 
 class UserService {
@@ -1049,26 +1052,27 @@ class UserService {
 	}
 	
 	def getSupporterListActivity(def project, User user, def teams){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
         def supporterList =[:]
         def supporters = Supporter.findAllWhere(user:user)
 
         teams.each{
             if(user.username.equals(it.user.username) && !user.username.equals(it.project.user.username) ){
-                 supporterList.put("team"+it.id, it.project.title +";"+ it.joiningDate)
+                 supporterList.put("team"+it.id, it.project.title +";"+ dateFormat.format(it.joiningDate))
             }
         }
         project.each {
             if(user.username.equals(it.user.username)){
-                supporterList.put("project"+it.id,it.title +";"+ it.created)
+                supporterList.put("project"+it.id,it.title +";"+ dateFormat.format(it.created))
             }
             if(isCampaignAdmin(it, user.email)){
-                supporterList.put("co-owner"+it.id,it.title +";"+ it.created)
+                supporterList.put("co-owner"+it.id,it.title +";"+ dateFormat.format(it.created))
             }
         }
 
        if(supporters){
            supporters.each{
-               supporterList.put("supporter"+it.id, it.project.title +";"+ it.followedDate)
+               supporterList.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
            }
        }
        //sort
@@ -1076,17 +1080,18 @@ class UserService {
 	}
 	
 	def getUserRecentActivity(def project, def contributions ,def comments, User user, def teams){
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
         def recentActivity =[:]
         def supporters = Supporter.findAllWhere(user:user)
 
         teams.each{
             if(user.username.equals(it.user.username) && !user.username.equals(it.project.user.username) ){
-                recentActivity.put("team"+it.id, it.project.title +";"+ it.joiningDate)
+                recentActivity.put("team"+it.id, it.project.title +";"+ dateFormat.format(it.joiningDate))
             }
        }
        project.each {
            if(user.username.equals(it.user.username)){
-                recentActivity.put("project"+it.id,it.title +";"+ it.created)
+                recentActivity.put("project"+it.id,it.title +";"+ dateFormat.format(it.created))
            }
        }
 
@@ -1096,7 +1101,7 @@ class UserService {
                perks.each{perk ->
                    if(!perk.title.equals('No Perk')){
                         if(projectUser.username.equals(user.username)){
-                             recentActivity.put("perk"+perk.id, perk.title +";" + perk.perkCreatedDate)
+                             recentActivity.put("perk"+perk.id, perk.title +";" + dateFormat.format(perk.perkCreatedDate))
                         }
                    }
                }
@@ -1105,21 +1110,21 @@ class UserService {
 
        project.projectUpdates.each {
             it.each{
-                recentActivity.put("update"+it.id, it.title +";"+ it.updateDate)
+                recentActivity.put("update"+it.id, it.title +";"+ dateFormat.format(it.updateDate))
             }
       }
       contributions.each{
-           recentActivity.put("contribution"+it.id, it.amount.round() +";"+ it.date)
+           recentActivity.put("contribution"+it.id, it.amount.round() +";"+ dateFormat.format(it.date))
       }
       def i =  comments.size()
       comments.each{
           it.each{
-              recentActivity.put("comment"+ --i, it.comment +";"+ it.date)
+              recentActivity.put("comment"+ --i, it.comment +";"+ dateFormat.format(it.date))
          }
       }
       if(supporters){
           supporters.each{
-              recentActivity.put("supporter"+it.id, it.project.title +";"+ it.followedDate)
+              recentActivity.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
           }
       }
       //sort 

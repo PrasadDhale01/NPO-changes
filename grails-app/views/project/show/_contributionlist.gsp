@@ -42,7 +42,7 @@
             %>
             <g:if test="${!contribution.isContributionOffline}">
                 <div class="col-sm-6 col-lg-6 col-md-6 top-pan">
-                	<g:link controller="user" action="userActivity" id="${contribution.user.id}" params="[amount:amount]">
+                	<g:link controller="user" action="userActivity" id="${contribution.user.id}" params="[amount:amount]" target="_blank">
                     <div <g:if test='${contribution.isAnonymous}'>class ="pan alphabet-A"</g:if><g:else>class ="pan ${alphabet}"</g:else>>
                         <div class ="col-sm-4 col-xs-4 img-panel">
                             <g:if test="${contribution.isAnonymous}">
@@ -112,7 +112,7 @@
             </g:if>
             <g:else>
                 <div class="col-sm-6 col-lg-6 col-md-6 top-pan">
-                	<g:link controller="user" action="userActivity" id="${contribution.user.id}" params="[amount:amount]">
+                	<g:link controller="user" action="userActivity" id="${contribution.user.id}" params="[amount:amount]" target="_blank">
                     <div class ="pan ${alphabet}">
                         <div class ="col-sm-4 col-xs-4 img-panel">
                             <img class="user-img-header" src="${imageUrl}" alt="alphabet">

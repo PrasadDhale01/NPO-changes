@@ -5551,6 +5551,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.pieChart-edit #chart-container #graphWithoutLabel{
        margin-left: -10px;
     }
+	.cr-panel-qa .cr-spend-matrix-font{
+	   font-size: 16px;
+	}
 	#chart-container #graphWithoutLabel{
 	   margin-left: 5px;
 	}
@@ -7877,7 +7880,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width:21%;
     }
 	span.col-impact-env-text-two{
-	   width:33%;
+	   width:34%;
 	}
 	div.col-sm-impact-education-num {
 	   padding-left: 0px;
@@ -9306,10 +9309,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width:12%;
 	}
 	
-	span.col-impact-env-text-two{
-	   width:24%;
-	}
-
     div.cr2-width-city .help-block {
         margin-left: -15px;
     }
@@ -9651,6 +9650,16 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	label.cr-spend-guide-text {
+		height: 115px;
+		border: 1px solid #DDD;
+		padding-right: 6px;
+	}
+
+	label.cr-panel-spend-xs{
+	   margin-bottom: 0;
+	}
+
 	#chart-container #graph{
        margin-left: -220px;
     }
@@ -10300,6 +10309,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	label.cr-panel-qa{
+	   width:50%;
+	}
+	label.cr-panel-qa-guide{
+	   width:50%;
+	}
     li.sh-button-fund-secandaryheader {
         left: 18.8% !important;
         position: absolute;
@@ -11160,22 +11175,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+	.cr-panel-qa .cr-spend-matrix-font{
+	   font-size: 14px;
+	}
 	.pieChart-edit #chart-container #graphWithoutLabel{
        margin-left: -20px;
     }
 	#chart-container #graphWithoutLabel{
 	   margin-left:-5px;
 	}
-
     .padding-tax-reciept-xs{
         padding-right:47px !important;
     }
-
     .cr-padding-edit-xs {
         margin-left: 4px;
         padding-right: 34px;
     }
-
     .cr-panel-hash-tags-guide{
         margin-bottom: 16px;
         padding-top: 5px;
@@ -12235,7 +12250,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }
 @media only screen and (max-width: 767px){
-	
+
 .ansText {
     width: 87%;
     height: 100px;

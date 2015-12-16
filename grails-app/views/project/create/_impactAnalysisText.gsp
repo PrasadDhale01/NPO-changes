@@ -112,13 +112,13 @@
              <input type="text" name="impactNumber" class="form-control form-control-impact-num" placeholder = "Number">
         </g:else>
     </div>
-    <span class="impact-text col-impact-text col-impact-text-two col-xs-12 col-sm-2 impact-right-padding" id="impact-text">neighborhood by</span>
-	<div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group">
+    <span class="impact-text col-impact-text col-impact-animals-text-two col-xs-12 col-sm-3 impact-right-padding" id="impact-text">neighbourhood/s by</span>
+	<div class="col-sm-2 col-xs-12 col-sm-impact-animal-amount form-group">
 		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-		    <span class="fa fa-inr cr-impact-currency"></span>
+		    <span class="fa fa-inr cr-impact-animals-currency"></span>
 		</g:if>
 		<g:else>
-		    <span class="fa fa-usd cr-impact-currency"></span>
+		    <span class="fa fa-usd cr-impact-animals-currency"></span>
 		</g:else>
 		<g:if test="${project.impactAmount > 0}">
 		    <input type="text" name="impactAmount" class="form-control form-amount-impact impactAmount" value="${project.impactAmount}" placeholder="Amount"> &nbsp;
@@ -190,7 +190,7 @@
             <input type="text" name="impactNumber" class="form-control form-control-impact-num" placeholder = "Number">
 		</g:else>
 	</div>
-	<span class="impact-text col-impact-text col-impact-env-text-two col-xs-12 col-sm-2 impact-right-padding" id="impact-text">neighborhood/s by providing</span>
+	<span class="impact-text col-impact-text col-impact-env-text-two col-xs-12 col-sm-3 impact-right-padding" id="impact-text">neighbourhood/s by providing</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group">
 		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
             <span class="fa fa-inr cr-impact-currency"></span>

@@ -901,3 +901,10 @@ img.hm-height-width {
 .hashtags-padding-left{
     padding-left: 40px;
 }
+
+label.cr-spend-guide-text{
+	padding-top: 5px;
+	padding-left: 10px;
+	margin-bottom: 0px;
+	font-size: 14px;
+}

@@ -2559,11 +2559,16 @@ $(function() {
 				} else {
 					$('#tax-reciept').hide();
 					if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
-						if (confirm("Are you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
-							$('.tax-reciept-checkbox').attr('checked', false);
+						if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
 							$('.col-tax-reciept-panel').hide();
 							$('#taxRecieptId').val(null);
 							deleteTaxReciept();
+						} else {
+							$(this).val('NGO');
+							$('#tax-reciept').show();
+							$('.recipient li').removeClass('selected');
+							$(".recipient li:eq('1')").addClass('selected');
+							$('.recipient ').find('span.filter-option').text('NGO');
 						}
 					}
 				}
@@ -2573,11 +2578,17 @@ $(function() {
 				} else {
 					$('#tax-reciept').hide();
 					if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
-						if (confirm("Are you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
+						if (confirm("If you will change the recipient of fund you will not be liable to offer tax reciept. \nAre you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
 							$('.tax-reciept-checkbox').attr('checked', false);
 							$('.col-tax-reciept-panel').hide();
 							$('#taxRecieptId').val(null);
 							deleteTaxReciept();
+						} else {
+							$(this).val('NON-PROFIT');
+							$('#tax-reciept').show();
+							$('.recipient li').removeClass('selected');
+							$(".recipient li:eq('1')").addClass('selected');
+							$('.recipient ').find('span.filter-option').text('Non-Profit');
 						}
 					}
 				}
@@ -2641,6 +2652,8 @@ $(function() {
 				$('.col-tax-reciept-panel').hide();
 				$('#taxRecieptId').val(null);
 				deleteTaxReciept();
+			} else {
+				$('#tax-reciept-checkbox').prop('checked', true);
 			}
 		}
 	});

@@ -385,8 +385,8 @@
                 <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
                     <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
-                            <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">SPEND MATRIX</span></label>
-                            <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
+                            <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-panel-spend-xs"><span class="cr-spend-matrix-font">Spend Matrix</span></label>
+                            <label class="col-md-10 col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-spend-guide-text">The matrix will be displayed as a pie chart on your campaign page for your contributors to know how the contributions or funds raised will be utilized</label>
                         </div>
                         <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-spendMatrix-height">
                             <div class="col-sm-9 col-xs-12 spend-matrix">
@@ -472,8 +472,8 @@
 
                     <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
-                            <label class="col-md-1 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Q & A</span></label>
-                            <label class="col-md-11 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
+                            <label class="col-md-4 col-sm-6 col-xs-12 text-center cr-panel-spend-matrix cr-panel-qa"><span class="cr-spend-matrix-font">Your Contributors Want to Know</span></label>
+                            <label class="col-md-8 col-sm-6 hidden-xs cr-panel-spend-matrix-guide cr-panel-qa-guide"></label>
                         </div>
                         <div class="panel panel-body cr-panel-body-spend-matrix">
                             <div class="col-sm-12">
@@ -505,7 +505,7 @@
                     
                     <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
-                             <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">3 reasons to fund</span></label>
+                             <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">3 Reason to Fund</span></label>
                              <label class="col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-reasons-guide">Let your contributors know why they should fund your campaign.</label>
                         </div>
                         <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-body">

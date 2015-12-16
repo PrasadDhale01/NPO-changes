@@ -1,5 +1,6 @@
 var spendCauseList = $('#spendCauseList').val();
 var spendAmountPerList = $('#spendAmountPerList').val();
+var payuStatus = $('#payuStatus').val();
 var list1 = spendCauseList.split(",");
 var list2 = spendAmountPerList.split(",");
 var percentageList = []
@@ -15,8 +16,16 @@ var barcolors      = ['#99E5E5','#D1FF19', '#FFAA2B', '#5EFF36', '#FF2626', '#FF
 
 var pheight = parseInt($container.css('height')),
     pwidth  = parseInt($container.css('width')),
-    radius  = pwidth < pheight ? pwidth/2.5 : pheight/2.5;
-    bgcolor = jQuery('body').css('background-color');
+    bgcolor = jQuery('body').css('background-color'),
+    radius;
+
+if (screen.width > 1025){
+	radius  = pwidth < pheight ? pwidth/2.2 : pheight/2.2;
+} else if (screen.width > 767 && screen.width < 1025){
+	radius  = pwidth < pheight ? pwidth/2.8 : pheight/2.8;
+} else {
+	radius  = pwidth < pheight ? pwidth/3.2 : pheight/3.2;
+}
 
 var paper = new Raphael($container[0], pwidth, pheight);
 
@@ -41,10 +50,10 @@ pie.hover(function () {
     this.label[0].stop();
     this.label[0].attr({ r: 8.5 });
     this.label[1].attr({ "font-weight": 800 });
-    if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
-    	center_label.attr('text', '$'+this.value.value);
-    } else {
+    if (payuStatus == true || payuStatus == 'true'){
     	center_label.attr('text', 'Rs. '+this.value.value);
+    } else {
+    	center_label.attr('text', '$'+this.value.value);
     }
     center_label.animate({ 'opacity': 1.0 }, 500);
   }

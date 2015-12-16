@@ -24,7 +24,7 @@
     <g:hiddenField name="shareUrl" id="shareUrl" value="${shareUrl}"/>
     <g:hiddenField name="embedTileUrl" id="embedTileUrl" value="${embedTileUrl}"/>
 
-    <div class="col-sm-12 social sharing-icon-alignment <g:if test="${isvalidateShow}">validate-share-border</g:if><g:else>show-share-border-line</g:else> hidden-xs">
+    <div class="col-sm-12 social sharing-icon-alignment <g:if test="${hashTagsDesktop || hashTagsTabs}"></g:if><g:else>sharing-icons-padding-left</g:else> <g:if test="${isvalidateShow}">validate-share-border</g:if><g:else>show-share-border-line</g:else> hidden-xs">
         <a class="show-socials-iconsA"></a>
         <g:if test="${isPreview || isvalidateShow}">
             <a class="share-mail pull-left show-icons show-email-hover show-pointer-not">
@@ -44,6 +44,8 @@
             </a>
             <span class="pull-left show-icons show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></span>
             <span class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color show-pointer-not"></span>
+			<span class="showing-hashtags <g:if test="${isvalidateShow}">hashtag-font-size</g:if> showing-hashtags-desktop">${hashTagsDesktop}</span>
+			<span class="showing-hashtags showing-hashtags-tabs">${hashTagsTabs}</span>
         </g:if>
         <g:else>
             <a class="share-mail pull-left show-icons" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
@@ -70,14 +72,9 @@
                     <p>${shareUrl}</p>
                 </div>
             </div>
+			<span class="showing-hashtags showing-hashtags-desktop hashtags-padding-left">${hashTagsDesktop}</span>
+			<span class="showing-hashtags showing-hashtags-tabs hashtags-padding-left">${hashTagsTabs}</span>
         </g:else>
-		<g:if test="${isvalidateShow}">
-			<span class="showing-hashtags">${hashTags}</span>
-		</g:if>
-		<g:else>
-			<span class="showing-hashtags showing-hashtags-desktop">${hashTagsDesktop}</span>
-			<span class="showing-hashtags showing-hashtags-tabs">${hashTagsTabs}</span>
-		</g:else>
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-12 TW-campaignstory-img-width">
@@ -92,9 +89,11 @@
             </div>
         </g:else>
         <g:if test="${spendCauseList && spendAmountPerList}">
+        <p>Campaign money will be used as</p>
 			<div id="chart-container">
 				<g:hiddenField name="spendCauseList" value="${spendCauseList}" id="spendCauseList"/>
 				<g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>
+				<g:hiddenField name="payuStatus" id="payuStatus" value="${project.payuStatus}"/>
 				<div id="graph"></div>
 			</div>
 			<script src="/js/raphel-pie/raphael-min.js"></script>
@@ -230,9 +229,6 @@
             <p class="campaignStory justify">${raw(currentTeam.story)}</p>
             <p class="campaignStory justify">${raw(project.story)}</p>
         </g:else>
-		<g:if test="${remainingTags}">
-            <p>More Tags : ${remainingTags}</p>
-		</g:if>
         <g:if test="${remainingTagsDesktop}">
             <p class="moretags-desktop">More Tags : ${remainingTagsDesktop}</p>
         </g:if>

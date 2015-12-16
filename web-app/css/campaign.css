@@ -513,7 +513,6 @@ span.cr-label-spend-matrix {
     border-top: 2px solid #e3e3e3;
     margin-top: 20px;
     width: 100%;
-    padding-left: 30%;
 }
 .validate-panel-height {
 	   height: 300px;
@@ -821,7 +820,6 @@ hr.hm-line-color{
 #chart-container #graph {
   display: inline-block;
   height: 250px;
-  margin-left: -100px;
   margin-right:0px;
   margin-top:0px;
   margin-bottom:0px;
@@ -894,4 +892,12 @@ img.hm-height-width {
 }
 .hm-toi {
     top: -5px;
+}
+
+.sharing-icons-padding-left{
+	padding-left: 30%;
+}
+
+.hashtags-padding-left{
+    padding-left: 40px;
 }

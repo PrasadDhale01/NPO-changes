@@ -1634,18 +1634,18 @@ class ProjectService {
         List projects = getValidatedProjects(currentEnv)
         projects.each {project->
             if( project.title.toLowerCase().contains(query.toLowerCase()) || project.description.toLowerCase().contains(query.toLowerCase()) ){
-                result.add(project)
-            } else if (project.story){
-                if (project.story.toLowerCase().contains(query.toLowerCase()))
-                    result.add(project)
+                 result.add(project)
             } else if (project.hashtags){
-                List hashtagsList = it.hashtags.split(',')
+                List hashtagsList = project.hashtags.split(',')
                 hashtagsList = hashtagsList.collect { it.trim() }
                 hashtagsList.each{hashtag->
                     if (hashtag.toLowerCase().contains(query.toLowerCase())){
                         result.add(project)
                     }
                 }
+            } else if (project.story){
+                if (project.story.toLowerCase().contains(query.toLowerCase()))
+                    result.add(project)
             }
         }
         return result
@@ -4436,18 +4436,33 @@ class ProjectService {
         def city = project.beneficiary.city
         def hashlist
         if (usedFor == 'SOCIAL_NEEDS') {
-            hashlist = '#SOCIAL-INNOVATION';
+            hashlist = '#Social-Innovation';
         } else if (usedFor == 'PERSONAL_NEEDS') {
-            hashlist = '#PERSONAL-NEEDS';
-        } else {
-            hashlist = '#'+usedFor;
+            hashlist = '#Personal-Needs';
+        } else if (usedFor == 'IMPACT'){
+            hashlist = '#Impact';
+        } else if (usedFor == 'PASSION'){
+            hashlist = '#Passion';
         }
-        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+fundRaisedBy : ' ' ;
-        (category && category != 'null') ? hashlist = hashlist + ', #'+category : ' ' ;
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(fundRaisedBy) : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(category.toString()) : ' ' ;
         if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
             (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
         }
         (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+
+        if (project.hashtags){
+            def remainingList
+            def hashtagsList = project.hashtags.split(',');
+            hashtagsList = hashtagsList.collect { it.trim() }
+            if (hashtagsList.size() > 5){
+                for (int i=5; i<hashtagsList.size(); i++){
+                    remainingList = (i == 5) ? hashtagsList[i] : remainingList + ', ' + hashtagsList[i];
+                }
+                hashlist = hashlist + ', ' + remainingList;
+            }
+        }
+
         project.hashtags = hashlist
 
         project.impactNumber = 0;
@@ -4468,18 +4483,33 @@ class ProjectService {
         def currentEnv = getCurrentEnvironment()
         def hashlist
         if (usedFor == 'SOCIAL_NEEDS') {
-            hashlist = '#SOCIAL-INNOVATION';
+            hashlist = '#Social-Innovation';
         } else if (usedFor == 'PERSONAL_NEEDS') {
-            hashlist = '#PERSONAL-NEEDS';
-        } else {
-            hashlist = '#'+usedFor;
+            hashlist = '#Personal-Needs';
+        } else if (usedFor == 'IMPACT'){
+            hashlist = '#Impact';
+        } else if (usedFor == 'PASSION'){
+            hashlist = '#Passion';
         }
-        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+fundRaisedBy : ' ' ;
-        (category && category != 'null') ? hashlist = hashlist + ', #'+category : ' ' ;
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(fundRaisedBy) : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(category.toString()) : ' ' ;
         if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
             (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
         }
         (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+        
+        if (project.hashtags){
+            def remainingList
+            def hashtagsList = project.hashtags.split(',');
+            hashtagsList = hashtagsList.collect { it.trim() }
+            if (hashtagsList.size() > 5){
+                for (int i=5; i<hashtagsList.size(); i++){
+                    remainingList = (i == 5) ? hashtagsList[i] : remainingList + ', ' + hashtagsList[i];
+                }
+                hashlist = hashlist + ', ' + remainingList;
+            }
+        }
+
         project.hashtags = hashlist
         project.save();
     }
@@ -4496,22 +4526,53 @@ class ProjectService {
         def currentEnv = getCurrentEnvironment()
         def hashlist
         if (usedFor == 'SOCIAL_NEEDS') {
-            hashlist = '#SOCIAL-INNOVATION';
+            hashlist = '#Social-Innovation';
         } else if (usedFor == 'PERSONAL_NEEDS') {
-            hashlist = '#PERSONAL-NEEDS';
-        } else {
-            hashlist = '#'+usedFor;
+            hashlist = '#Personal-Needs';
+        } else if (usedFor == 'IMPACT'){
+            hashlist = '#Impact';
+        } else if (usedFor == 'PASSION'){
+            hashlist = '#Passion';
         }
-        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+fundRaisedBy : ' ' ;
-        (category && category != 'null') ? hashlist = hashlist + ', #'+category : ' ' ;
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(fundRaisedBy) : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(category.toString()) : ' ' ;
         if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
             (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
         }
         (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+        
+        if (project.hashtags){
+            def remainingList
+            def hashtagsList = project.hashtags.split(',');
+            hashtagsList = hashtagsList.collect { it.trim() }
+            if (hashtagsList.size() > 5){
+                for (int i=5; i<hashtagsList.size(); i++){
+                    remainingList = (i == 5) ? hashtagsList[i] : remainingList + ', ' + hashtagsList[i];
+                }
+                hashlist = hashlist + ', ' + remainingList;
+            }
+        }
+
         project.hashtags = hashlist
         project.save();
     }
-    
+
+    def getStringCapitalise(String string){
+        if (string == 'CIVIC_NEEDS'){
+            return 'Civic-Needs';
+        } else if (string == 'NON_PROFITS'){
+            return 'Non-Profits';
+        } else if (string == 'SOCIAL_INNOVATION'){
+            return 'Social-Innovation';
+        } else if (string == 'NON-PROFIT'){
+            return 'Non-Profit';
+        } else if (string == 'NGO'){
+            return 'NGO';
+        } else {
+            return string.capitalize();
+        }
+    }
+
     def getUsedForAndHashTagsSaved(def params){
         Project project = Project.get(params.projectId)
         project.usedFor = params.usedFor
@@ -4524,18 +4585,33 @@ class ProjectService {
         def currentEnv = getCurrentEnvironment()
         def hashlist
         if (usedFor == 'SOCIAL_NEEDS') {
-            hashlist = '#SOCIAL-INNOVATION';
+            hashlist = '#Social-Innovation';
         } else if (usedFor == 'PERSONAL_NEEDS') {
-            hashlist = '#PERSONAL-NEEDS';
-        } else {
-            hashlist = '#'+usedFor;
+            hashlist = '#Personal-Needs';
+        } else if (usedFor == 'IMPACT'){
+            hashlist = '#Impact';
+        } else if (usedFor == 'PASSION'){
+            hashlist = '#Passion';
         }
-        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+fundRaisedBy : ' ' ;
-        (category && category != 'null') ? hashlist = hashlist + ', #'+category : ' ' ;
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(fundRaisedBy) : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(category.toString()) : ' ' ;
         if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
             (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
         }
         (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+        
+        if (project.hashtags){
+            def remainingList
+            def hashtagsList = project.hashtags.split(',');
+            hashtagsList = hashtagsList.collect { it.trim() }
+            if (hashtagsList.size() > 5){
+                for (int i=5; i<hashtagsList.size(); i++){
+                    remainingList = (i == 5) ? hashtagsList[i] : remainingList + ', ' + hashtagsList[i];
+                }
+                hashlist = hashlist + ', ' + remainingList;
+            }
+        }
+
         project.hashtags = hashlist
         project.save();
     }
@@ -4551,16 +4627,31 @@ class ProjectService {
         def city = project.beneficiary.city
         def hashlist
         if (usedFor == 'SOCIAL_NEEDS') {
-            hashlist = '#SOCIAL-INNOVATION';
+            hashlist = '#Social-Innovation';
         } else if (usedFor == 'PERSONAL_NEEDS') {
-            hashlist = '#PERSONAL-NEEDS';
-        } else {
-            hashlist = '#'+usedFor;
+            hashlist = '#Personal-Needs';
+        } else if (usedFor == 'IMPACT'){
+            hashlist = '#Impact';
+        } else if (usedFor == 'PASSION'){
+            hashlist = '#Passion';
         }
-        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+fundRaisedBy : ' ' ;
-        (category && category != 'null') ? hashlist = hashlist + ', #'+category : ' ' ;
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(fundRaisedBy) : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(category.toString()) : ' ' ;
         (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
         (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+
+        if (project.hashtags){
+            def remainingList
+            def hashtagsList = project.hashtags.split(',');
+            hashtagsList = hashtagsList.collect { it.trim() }
+            if (hashtagsList.size() > 5){
+                for (int i=5; i<hashtagsList.size(); i++){
+                    remainingList = (i == 5) ? hashtagsList[i] : remainingList + ', ' + hashtagsList[i];
+                }
+                hashlist = hashlist + ', ' + remainingList;
+            }
+        }
+
         project.hashtags = hashlist
         project.save();
     }
@@ -4570,12 +4661,12 @@ class ProjectService {
         hashtagsList = hashtagsList.collect { it.trim() }
         String firstFiveHashTags
         String remainingHashTags
-        if (hashtagsList.size() > 4){
+        if (hashtagsList.size() > 5){
             for(int i=0;i<hashtagsList.size();i++){
-                if (i < 4){
+                if (i < 5){
                     firstFiveHashTags = (i==0) ? hashtagsList[i] :  firstFiveHashTags + ', ' + hashtagsList[i];
                 } else {
-                    remainingHashTags = (i==4) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
+                    remainingHashTags = (i==5) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
                 }
             }
         } else {
@@ -4590,12 +4681,12 @@ class ProjectService {
         hashtagsList = hashtagsList.collect { it.trim() }
         String firstFiveHashTags
         String remainingHashTags
-        if (hashtagsList.size() > 2){
+        if (hashtagsList.size() > 3){
             for(int i=0;i<hashtagsList.size();i++){
-                if (i < 2){
+                if (i < 3){
                     firstFiveHashTags = (i==0) ? hashtagsList[i] :  firstFiveHashTags + ', ' + hashtagsList[i];
                 } else {
-                    remainingHashTags = (i==2) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
+                    remainingHashTags = (i==3) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
                 }
             }
         } else {

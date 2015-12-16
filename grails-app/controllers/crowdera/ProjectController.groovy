@@ -313,7 +313,8 @@ class ProjectController {
                 List contributions = []
                 def multiplier = projectService.getCurrencyConverter();
                 def pieList = projectService.getPieList(project);
-                def hasMoreTags = projectService.getHashTagsTabs(project.hashtags)
+                def hasMoreTagsDesktop = projectService.getHashTags(project.hashtags)
+                def hasMoreTagsTabs = projectService.getHashTagsTabs(project.hashtags)
                 def reasons = projectService.getReasonsToFundFromProject(project)
                 
                 if(project.validated == false) {
@@ -326,8 +327,9 @@ class ProjectController {
                     isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, 
                     isFundingOpen: isFundingOpen, rewards: rewards,validatedPage: validatedPage, isTeamExist: isTeamExist, 
                     FORMCONSTANTS: FORMCONSTANTS, multiplier: multiplier,spendCauseList:pieList.spendCauseList, 
-                    spendAmountPerList:pieList.spendAmountPerList, hashTags:hasMoreTags.firstFiveHashTags, 
-                    remainingTags: hasMoreTags.remainingHashTags, reasons:reasons])
+                    spendAmountPerList:pieList.spendAmountPerList, hashTagsDesktop:hasMoreTagsDesktop.firstFiveHashTags, 
+                    remainingTagsDesktop: hasMoreTagsDesktop.remainingHashTags, hashTagsTabs:hasMoreTagsTabs.firstFiveHashTags, 
+                    remainingTagsTabs: hasMoreTagsTabs.remainingHashTags, reasons:reasons])
                 }
             } else {
                 render (view: '404error')

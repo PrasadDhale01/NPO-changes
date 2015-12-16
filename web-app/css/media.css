@@ -3,7 +3,7 @@
 	   left:44%;
 	}
 	.showing-hashtags-desktop{
-	   display:block;
+	   display:inline;
 	}
 	.showing-hashtags-tabs{
 	   display:none;
@@ -51,10 +51,10 @@
         width:12%;
     }
     .cr-impact-analysis{
-         width:19% !important;
+         width:21% !important;
     }
     .cr-impact-guide{
-         width:81% !important;
+         width:79% !important;
     }
     .cr-reasons-to-fund{
          width:20% !important;
@@ -75,7 +75,7 @@
     }
 
     span.col-impact-text-two{
-        width:14%;
+        width:15%;
     }
 
     span.col-impact-animals-text-two{
@@ -101,6 +101,14 @@
 	span.col-impact-elderly-text{
         width:12%;
     }
+
+	span.col-impact-env-text-two{
+	   width:24%;
+	}
+	
+	.cr-panel-impact-analysis .form-group{
+	   margin-left: 0px;
+	}
 }
 
 @media only screen and (min-width: 1201px) and (max-width: 1280px){
@@ -436,7 +444,6 @@
     .menu-top {
         margin-left: -131px;
     }
-    
     .whycrowderacol-sm .col-xs-12 {
         padding-left: 0px !important;
         padding-right: 0px !important;

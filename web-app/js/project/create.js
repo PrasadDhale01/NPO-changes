@@ -2552,31 +2552,33 @@ $(function() {
 
 	$('.recipient').change(function(){
 		var recipient = $(this).val();
-		if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-			if (recipient == 'NGO'){
-				$('#tax-reciept').show();
-			} else {
-				$('#tax-reciept').hide();
-				if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
-					if (confirm("Are you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
-						$('.tax-reciept-checkbox').attr('checked', false);
-						$('.col-tax-reciept-panel').hide();
-						$('#taxRecieptId').val(null);
-						deleteTaxReciept();
+		if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'){
+			if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+				if (recipient == 'NGO'){
+					$('#tax-reciept').show();
+				} else {
+					$('#tax-reciept').hide();
+					if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
+						if (confirm("Are you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
+							$('.tax-reciept-checkbox').attr('checked', false);
+							$('.col-tax-reciept-panel').hide();
+							$('#taxRecieptId').val(null);
+							deleteTaxReciept();
+						}
 					}
 				}
-			}
-		} else {
-			if (recipient == 'NON-PROFIT'){
-				$('#tax-reciept').show();
 			} else {
-				$('#tax-reciept').hide();
-				if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
-					if (confirm("Are you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
-						$('.tax-reciept-checkbox').attr('checked', false);
-						$('.col-tax-reciept-panel').hide();
-						$('#taxRecieptId').val(null);
-						deleteTaxReciept();
+				if (recipient == 'NON-PROFIT'){
+					$('#tax-reciept').show();
+				} else {
+					$('#tax-reciept').hide();
+					if ($('#offeringTaxReciept').val() == 'true' || $('#offeringTaxReciept').val() == true){
+						if (confirm("Are you sure you don't want to offer tax reciept to your contributors.It may delete all tax reciept data")){
+							$('.tax-reciept-checkbox').attr('checked', false);
+							$('.col-tax-reciept-panel').hide();
+							$('#taxRecieptId').val(null);
+							deleteTaxReciept();
+						}
 					}
 				}
 			}
@@ -2918,18 +2920,45 @@ $(function() {
     	} else if (usedFor == 'PERSONAL_NEEDS') {
     		list = '#Personal-Needs';
     	} else if (usedFor == 'IMPACT'){
-    		list = '#Impact'
+    		list = '#Impact';
         } else if (usedFor == 'PASSION'){
-        	list = '#Passion'
+        	list = '#Passion';
         }
-    	(fundRaisedBy && fundRaisedBy != 'null') ? list = list + ', #'+fundRaisedBy : ' ' ;
-        (category && category != 'null') ? list = list + ', #'+category : ' ' ;
+    	(fundRaisedBy && fundRaisedBy != 'null') ? list = list + ', #'+getStringCaptalised(fundRaisedBy) : ' ' ;
+        (category && category != 'null') ? list = list + ', #'+getStringCaptalised(category) : ' ' ;
         if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
             (country != 'null' && country != null && country != '') ? list = list + ', #'+country : ' ' ;
         }
         (city && city != '') ? list = list + ', #'+city : ' ' ;
 
+        if ($('.hashtags').val()){
+	        var remainingList
+	    	var hashtagsList = $('.hashtags').val().split(',');
+	    	if (hashtagsList.length > 5){
+	    		for (var i=5; i<hashtagsList.length; i++){
+	    			remainingList = (i == 5) ? hashtagsList[i].trim() : remainingList + ', ' + hashtagsList[i].trim();
+	    		}
+	    		list = list + ', ' + remainingList;
+	    	}
+        }
+
     	$('.hashtags').val(list);
+    }
+
+    function getStringCaptalised(string){
+    	if (string == 'CIVIC_NEEDS'){
+    		return 'Civic-Needs';
+    	} else if (string == 'NON_PROFITS'){
+    		return 'Non-Profits';
+    	} else if (string == 'SOCIAL_INNOVATION'){
+    		return 'Social-Innovation';
+    	} else if (string == 'NON-PROFIT'){
+    		return 'Non-Profit';
+    	} else if (string == 'NGO'){
+    		return 'NGO';
+    	} else {
+    		return string.charAt(0).toUpperCase() + string.toLowerCase().slice(1);
+    	}
     }
 
     $('.ansText1').blur(function(){

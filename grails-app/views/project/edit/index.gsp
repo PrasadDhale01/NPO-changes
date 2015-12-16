@@ -460,7 +460,7 @@
                                     <g:hiddenField name="lastSpendField" id="lastSpendField" value="1"/>
                                 </g:else>
                             </div>
-                            <div class="col-sm-offset-0 col-sm-3 col-xs-offset-1 col-xs-11 pieChart">
+                            <div class="col-sm-offset-0 col-sm-3 col-xs-offset-1 col-xs-11 pieChart pieChart-edit">
                                 <g:render template="create/pieChartWithoutLabel"/>
                             </div>
                             <div class="clear"></div>
@@ -517,7 +517,7 @@
 
                     <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
-                            <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-impact-analysis"><span class="cr-spend-matrix-font">Impact Analysis</span></label>
+                            <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-impact-analysis"><span class="cr-spend-matrix-font">Impact Assessment</span></label>
                             <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide cr-impact-guide"></label>
                         </div>
                         <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-impact-analysis">
@@ -1030,14 +1030,14 @@
                         <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
                             <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')) || (project.fundsRecievedBy != 'NON-PROFIT' && (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'))}">tax-reciept</g:if>" id="tax-reciept">
                                 <input type="checkbox" name="tax-reciept-checkbox" class="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
-                                Do you want to offer reciept to your contributors. 
+                                Do you want to offer receipt to your contributors.
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-12 padding-tax-reciept-xs col-tax-reciept-panel <g:if test="${!project.offeringTaxReciept}">col-reciept-display-none</g:if>">
                         <div class="cr-spend-matrix">
-                            <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Tax reciepts</span></label>
+                            <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Tax receipts</span></label>
                             <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide">
                             </label>
                         </div>

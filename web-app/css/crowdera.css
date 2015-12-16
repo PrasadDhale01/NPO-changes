@@ -5489,6 +5489,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
+	#chart-container #graph{
+	   margin-left: -100px;
+	}
 	.cr-panel-spendMatrix-height{
         min-height:300px
 	}
@@ -5545,6 +5548,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.pieChart-edit #chart-container #graphWithoutLabel{
+       margin-left: -10px;
+    }
 	#chart-container #graphWithoutLabel{
 	   margin-left: 5px;
 	}
@@ -7870,6 +7876,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     span.col-impact-text-two{
         width:21%;
     }
+	span.col-impact-env-text-two{
+	   width:33%;
+	}
 	div.col-sm-impact-education-num {
 	   padding-left: 0px;
 	}
@@ -8003,10 +8012,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         margin-top: 5px;
     }
     .cr-impact-analysis{
-        width:26% !important;
+        width:30% !important;
     }
     .cr-impact-guide{
-        width:74% !important;
+        width:70% !important;
     }
     .col-tax-file-show{
         padding-left: 20px;
@@ -9204,14 +9213,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 1024px) {
-	.showing-hashtags{
-	   left:52%;
-	}
 	.showing-hashtags-desktop{
 	   display:none;
 	}
 	.showing-hashtags-tabs{
-	   display:block;
+	   display:inline;
 	}
 	.moretags-desktop{
 	   display:none;
@@ -9219,6 +9225,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.moretags-tabs{
 	   display:block;
 	}
+	.remaining-hashtags-tabs{
+       display:inline;
+    }
+    .remaining-hashtags-desktop{
+       display:none;
+    }
+    .validate-show-desktop-hashtags{
+       display:none;
+    }
+    .validate-show-tabs-hashtags{
+       display:inline;
+    }
 	.text-primary{
 		text-align:center;
 		width:300px;
@@ -9244,11 +9262,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
-	.showing-hashtags{
-	   left:44%;
-	}
 	.showing-hashtags-desktop{
-	   display:block;
+	   display:inline;
 	}
 	.showing-hashtags-tabs{
 	   display:none;
@@ -9289,6 +9304,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	
 	span.col-impact-elderly-text{
         width:12%;
+	}
+	
+	span.col-impact-env-text-two{
+	   width:24%;
 	}
 
     div.cr2-width-city .help-block {
@@ -9336,10 +9355,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
          width:80% !important;
     }
     .cr-impact-analysis{
-         width:19% !important;
+         width:21% !important;
     }
     .cr-impact-guide{
-         width:81% !important;
+         width:79% !important;
     }
     div.edit-tabsMobile-margin {
         margin-left: -14px !important;
@@ -9632,6 +9651,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+	#chart-container #graph{
+       margin-left: -220px;
+    }
 	.cr-panel-spendMatrix-height{
         min-height:375px
     }
@@ -10633,8 +10655,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         position: absolute;
         top: 39px;
     }
+    
+	.hashtag-font-size{
+	   font-size: 14px;
+	   top:10px !important;
+	}
 }
-@media only screen and (min-width:1050px) and (max-width: 1080px){
+@media only screen and (min-width:1051px) and (max-width: 1080px){
     li.sh-button-fund-secandaryheader {
         left: 19.6% !important;
         position: absolute;
@@ -11133,6 +11160,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+	.pieChart-edit #chart-container #graphWithoutLabel{
+       margin-left: -20px;
+    }
 	#chart-container #graphWithoutLabel{
 	   margin-left:-5px;
 	}
@@ -15395,7 +15425,6 @@ textarea.textarea-embed-video {
     border-top: 2px solid #e3e3e3;
     margin-top: 20px;
     width: 970px;
-    padding-left: 30%;
 }
 .show-icons img{
 	height: 50px;

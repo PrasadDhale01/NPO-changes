@@ -110,6 +110,7 @@
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
+    <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
 
         <g:if test="${project}">
             <g:hiddenField name="currentEnv" value="${currentEnv}" id="currentEnv"/>

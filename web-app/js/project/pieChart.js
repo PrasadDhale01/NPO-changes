@@ -1,5 +1,6 @@
 var miscellaneous = $('#miscellaneous').val();
 var spendAmountPerList = $('#spendAmountPerList').val();
+var projectAmount = $('#projectamount').val();
 var percentageList = [];
 var currentEnv=$('#currentEnv').val();
 if (miscellaneous == 'hasOtherValues'){
@@ -11,7 +12,7 @@ if (miscellaneous == 'hasOtherValues'){
 	percentageList.push(parseInt(spendAmountPerList));
 }
 var $container = jQuery('#graphWithoutLabel');
-var barcolors      = ['#99E5E5','#D1FF19', '#FFAA2B', '#5EFF36', '#FF2626', '#FFFF2A', '#DDA0DD', '#FDC6C0'],
+var barcolors      = ['#99E5E5','#D1FF19', '#FFAA2B', '#5EFF36', '#FF2626', '#FFFF2A', '#DDA0DD', '#FDC6C0', '#BF6666', '#FDBC80', '#FDDF5B', '#FF2626', '#DDA0DD', '#5EFF36', '#FFFF2A', '#FDC6C0', '#D1FF19', '#FFAA2B'],
     highlightcolor = '#FFF68F',
     data           = percentageList;
 
@@ -41,12 +42,21 @@ pie.hover(function () {
     } else {
     	center_label.attr('text', 'Rs. '+this.value.value);
     }
-    center_label.animate({ 'opacity': 1.0 }, 500);
+//    center_label.attr({ 'opacity': 1 });
+//    center_label.animate({ 'opacity': 1.0 }, 500);
   }, function () {
     this.sector.animate({ transform: 's1 1 ' + this.cx + ' ' + this.cy }, 500, "bounce");
     this.sector.animate({ 'stroke': bgcolor }, 400);
       //center_label.attr('text','');
-      center_label.animate({ 'opacity': 0.0 }, 500);
+//      center_label.animate({ 'opacity': 0.0 }, 500);
+});
+
+pie.mouseout(function (){
+	if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
+    	center_label.attr('text', '$'+projectAmount);
+    } else {
+    	center_label.attr('text', 'Rs. '+projectAmount);
+    }
 });
 
 // blank circle in center to create donut hole effect
@@ -54,4 +64,10 @@ paper.circle(pwidth/2, pheight/2, radius*0.5)
   .attr({'fill': bgcolor, 'stroke': bgcolor});
 
 var center_label = paper.text(pwidth/2, pheight/2, '')
-  .attr({'fill': 'black', 'font-size': '12', "font-weight": 800, 'opacity': 0.0 });
+  .attr({'fill': 'black', 'font-size': '12', "font-weight": 800, 'opacity': 1 });
+
+if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
+	center_label.attr('text', '$'+projectAmount);
+} else {
+	center_label.attr('text', 'Rs. '+projectAmount);
+}

@@ -931,7 +931,7 @@
                                      <input type="text" class="form-control addressLine2" placeholder="AddressLine 2" name="addressLine2" value="${taxReciept.addressLine2}">
                                  </div>
                                  <div class="col-sm-12 form-group form-group-tax-reciept form-group-selectpicker form-group-dropdown">
-                                     <g:select class="selectpicker form-control selectpicker-state tax-reciept-dropdown-menu" name="tax-reciept-holder-state" from="${stateInd}" optionKey="value" optionValue="value" value="${taxReciept.state}" noSelection="['OTHER':'State']"/>
+                                     <g:select class="selectpicker form-control selectpicker-state tax-reciept-dropdown-menu" name="tax-reciept-holder-state" from="${stateInd}" optionKey="value" optionValue="value" value="${taxReciept.taxRecieptHolderState}" noSelection="['OTHER':'State']"/>
                                  </div>
                              </div>
                              <div class="col-sm-4">
@@ -1102,12 +1102,12 @@
                                      <input type="text" placeholder="Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name" value="${taxReciept.name}">
                                  </div>
                                  <div class="col-sm-12 form-group form-group-tax-reciept">
-                                     <input type="text" placeholder="State" class="form-control tax-reciept-holder-state" name="tax-reciept-holder-state" value="${taxReciept.state}">
+                                     <input type="text" placeholder="State" class="form-control tax-reciept-holder-state" name="tax-reciept-holder-state" value="${taxReciept.taxRecieptHolderState}">
                                  </div>
                              </div>
                              <div class="col-sm-4">
                                  <div class="col-sm-12 form-group form-group-tax-reciept-dropdown form-group-dropdown">
-                                     <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="value" optionValue="value" value="${taxReciept.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
+                                     <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" value="${taxReciept.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
                                  </div>
                                  <div class="col-sm-12 form-group form-group-tax-reciept-dropdown form-group-dropdown">
                                      <g:select class="selectpicker form-control tax-reciept-holder-country tax-reciept-dropdown-menu" name="tax-reciept-holder-country" from="${country}" optionKey="value" value="${taxReciept.country}" optionValue="value" noSelection="['null':'Country']"/>
@@ -1133,7 +1133,7 @@
                              </div>
                              <div class="col-sm-4">
                                  <div class="col-sm-12 form-group form-group-tax-reciept-dropdown form-group-dropdown">
-                                     <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="value" optionValue="value" noSelection="['null':'Deductible Status']"/>
+                                     <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" noSelection="['null':'Deductible Status']"/>
                                  </div>
                                  <div class="col-sm-12 form-group form-group-tax-reciept-dropdown form-group-dropdown">
                                      <g:select class="selectpicker form-control tax-reciept-holder-country tax-reciept-dropdown-menu" name="tax-reciept-holder-country" from="${country}" optionKey="value" optionValue="value" noSelection="['null':'Country']"/>

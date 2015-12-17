@@ -3387,16 +3387,16 @@ class ProjectService {
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
                 if (varValue.isAllWhitespace()){
                     if (taxReciept){
-                        taxReciept.state = null
+                        taxReciept.taxRecieptHolderState = null
                         taxReciept.save(failOnError:true);
                     }
                 } else {
                     if (taxReciept){
-                        taxReciept.state = varValue
+                        taxReciept.taxRecieptHolderState = varValue
                         taxReciept.save(failOnError:true);
                     } else {
                         TaxReciept taxreciept = new TaxReciept()
-                        taxreciept.state = varValue
+                        taxreciept.taxRecieptHolderState = varValue
                         taxreciept.project = project
                         taxreciept.save(failOnError:true);
                     }
@@ -4655,45 +4655,53 @@ class ProjectService {
         project.hashtags = hashlist
         project.save();
     }
- 
+
     def getHashTags(def hashtags) {
-        List hashtagsList = hashtags.split(',')
-        hashtagsList = hashtagsList.collect { it.trim() }
-        String firstFiveHashTags
-        String remainingHashTags
-        if (hashtagsList.size() > 5){
-            for(int i=0;i<hashtagsList.size();i++){
-                if (i < 5){
-                    firstFiveHashTags = (i==0) ? hashtagsList[i] :  firstFiveHashTags + ', ' + hashtagsList[i];
-                } else {
-                    remainingHashTags = (i==5) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
+        if (hashtags) {
+            List hashtagsList = hashtags.split(',')
+            hashtagsList = hashtagsList.collect { it.trim() }
+            String firstFiveHashTags
+            String remainingHashTags
+            if (hashtagsList.size() > 5){
+                for(int i=0;i<hashtagsList.size();i++){
+                    if (i < 5){
+                        firstFiveHashTags = (i==0) ? hashtagsList[i] :  firstFiveHashTags + ', ' + hashtagsList[i];
+                    } else {
+                        remainingHashTags = (i==5) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
+                    }
                 }
+            } else {
+                firstFiveHashTags = hashtags
+                remainingHashTags = null
             }
+            return [firstFiveHashTags:firstFiveHashTags, remainingHashTags:remainingHashTags]
         } else {
-            firstFiveHashTags = hashtags
-            remainingHashTags = null
+            return [firstFiveHashTags:null, remainingHashTags:null]
         }
-        return [firstFiveHashTags:firstFiveHashTags, remainingHashTags:remainingHashTags]
     }
-    
+
     def getHashTagsTabs(def hashtags) {
-        List hashtagsList = hashtags.split(',')
-        hashtagsList = hashtagsList.collect { it.trim() }
-        String firstFiveHashTags
-        String remainingHashTags
-        if (hashtagsList.size() > 3){
-            for(int i=0;i<hashtagsList.size();i++){
-                if (i < 3){
-                    firstFiveHashTags = (i==0) ? hashtagsList[i] :  firstFiveHashTags + ', ' + hashtagsList[i];
-                } else {
-                    remainingHashTags = (i==3) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
+        if (hashtags){
+            List hashtagsList = hashtags.split(',')
+            hashtagsList = hashtagsList.collect { it.trim() }
+            String firstFiveHashTags
+            String remainingHashTags
+            if (hashtagsList.size() > 3){
+                for(int i=0;i<hashtagsList.size();i++){
+                    if (i < 3){
+                        firstFiveHashTags = (i==0) ? hashtagsList[i] :  firstFiveHashTags + ', ' + hashtagsList[i];
+                    } else {
+                        remainingHashTags = (i==3) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
+                    }
                 }
+            } else {
+                firstFiveHashTags = hashtags
+                remainingHashTags = null
             }
+            return [firstFiveHashTags:firstFiveHashTags, remainingHashTags:remainingHashTags]
         } else {
-            firstFiveHashTags = hashtags
-            remainingHashTags = null
+            return [firstFiveHashTags:null, remainingHashTags:null]
         }
-        return [firstFiveHashTags:firstFiveHashTags, remainingHashTags:remainingHashTags]
     }
     
     def getReasonsToFundFromProject(Project project){

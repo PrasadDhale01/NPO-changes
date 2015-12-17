@@ -11,7 +11,7 @@ class TaxReciept {
     String ein
     String city
     String name
-    String state
+    String taxRecieptHolderState
     String deductibleStatus
     String country
     String phone
@@ -35,7 +35,7 @@ class TaxReciept {
         ein nullable:true, unique:true
         city nullable:true
         name nullable:true
-        state nullable:true
+        taxRecieptHolderState nullable:true
         deductibleStatus nullable:true
         country nullable:true
         panCardNumber nullable:true

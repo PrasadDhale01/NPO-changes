@@ -191,7 +191,7 @@
                 <span class="fa fa-inr"></span><span class="show-mob-goal-amt"><b><g:if test="${project.payuStatus}">${goal}</g:if><g:else>${goal * conversionMultiplier}</g:else></b><span class="show-mobfont-goal">&nbsp;&nbsp;Goal</span></span>
             </g:if>
             <g:else>
-                 $<span class="show-mob-goal-amt"><b>${goal}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Goal</span></span>
+                 <span class="show-mob-goal-amt">$<b>${goal}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Goal</span></span>
             </g:else>
         </div>
         <div class="mobile-show-team">
@@ -199,7 +199,7 @@
                 <span class="fa fa-inr"></span><span class="show-mob-goal-amt"><b><g:if test="${project.payuStatus}">${amount}</g:if><g:else>${amount * conversionMultiplier}</g:else></b><span class="show-mobfont-goal">&nbsp;&nbsp;Raised</span></span>
             </g:if>
             <g:else>
-                $<span class="show-mob-goal-amt"><b>${amount}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Raised</span></span>
+                <span class="show-mob-goal-amt">$<b>${amount}</b><span class="show-mobfont-goal">&nbsp;&nbsp;Raised</span></span>
             </g:else>
         </div>
     </div>

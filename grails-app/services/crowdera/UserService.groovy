@@ -1034,25 +1034,25 @@ class UserService {
 	}
 	
 	def getUserContribution(User user){
-        def userContribution = Contribution.findAllByUser(user)
-        int contribution =0  
-        userContribution.each{
-            contribution += it.amount
-        }
-        return contribution
+            def userContribution = Contribution.findAllByUser(user)
+            int contribution =0  
+            userContribution.each{
+                contribution += it.amount
+            }
+            return contribution
 	}
 	
 	def getUserCommnet(User user){
-        List comments =[]
-        def projectComments =ProjectComment.findAllWhere(user:user)
-        def teamComments = TeamComment.findAllWhere(user:user)
-        comments.add(projectComments)
-        comments.add(teamComments)
-        return comments
+            List comments =[]
+            def projectComments =ProjectComment.findAllWhere(user:user)
+            def teamComments = TeamComment.findAllWhere(user:user)
+            comments.add(projectComments)
+            comments.add(teamComments)
+            return comments
 	}
 	
 	def getSupporterListActivity(def project, User user, def teams){
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
         def supporterList =[:]
         def supporters = Supporter.findAllWhere(user:user)
 
@@ -1080,7 +1080,7 @@ class UserService {
 	}
 	
 	def getUserRecentActivity(def project, def contributions ,def comments, User user, def teams){
-		SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
         def recentActivity =[:]
         def supporters = Supporter.findAllWhere(user:user)
 
@@ -1129,7 +1129,7 @@ class UserService {
       }
       //sort 
       return recentActivity.sort { a, b -> b.value.toString().substring(b.value.toString().indexOf(';') + 1) <=> a.value.toString().substring(a.value.toString().indexOf(';') + 1) }
-	}
+   }
     
     def setUserObject(def params) {
         def password = projectService.getAlphaNumbericRandomUrl()

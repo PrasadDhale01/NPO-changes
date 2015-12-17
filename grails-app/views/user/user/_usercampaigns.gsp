@@ -5,7 +5,7 @@
     </div>
 </g:if>
 <g:else>
-<ul class="timeline">
+    <ul class="timeline">
         <%
             def index = 0
         %>

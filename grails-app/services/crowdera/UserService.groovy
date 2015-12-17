@@ -1021,16 +1021,16 @@ class UserService {
 		feedback.rating = params. rating
 	}
 	def getSupportersByUser(User user){
-        def supporters = Supporter.findAllWhere(user:user)
-        int i=0
-        supporters.each{
-            if(it==null){
-	            i=0
-            }else{
-	            i++
-            }
-       }
-       return i
+          def supporters = Supporter.findAllWhere(user:user)
+          int i=0
+          supporters.each{
+              if(it==null){
+	              i=0
+              }else{
+	              i++
+              }
+         }
+         return i
 	}
 	
 	def getUserContribution(User user){
@@ -1052,83 +1052,83 @@ class UserService {
 	}
 	
 	def getSupporterListActivity(def project, User user, def teams){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
-        def supporterList =[:]
-        def supporters = Supporter.findAllWhere(user:user)
+          SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
+          def supporterList =[:]
+          def supporters = Supporter.findAllWhere(user:user)
 
-        teams.each{
-            if(user.username.equals(it.user.username) && !user.username.equals(it.project.user.username) ){
-                 supporterList.put("team"+it.id, it.project.title +";"+ dateFormat.format(it.joiningDate))
-            }
-        }
-        project.each {
-            if(user.username.equals(it.user.username)){
-                supporterList.put("project"+it.id,it.title +";"+ dateFormat.format(it.created))
-            }
-            if(isCampaignAdmin(it, user.email)){
-                supporterList.put("co-owner"+it.id,it.title +";"+ dateFormat.format(it.created))
-            }
-        }
+          teams.each{
+              if(user.username.equals(it.user.username) && !user.username.equals(it.project.user.username) ){
+                   supporterList.put("team"+it.id, it.project.title +";"+ dateFormat.format(it.joiningDate))
+              }
+          }
+          project.each {
+              if(user.username.equals(it.user.username)){
+                  supporterList.put("project"+it.id,it.title +";"+ dateFormat.format(it.created))
+              }
+              if(isCampaignAdmin(it, user.email)){
+                  supporterList.put("co-owner"+it.id,it.title +";"+ dateFormat.format(it.created))
+              }
+          }
 
-       if(supporters){
-           supporters.each{
-               supporterList.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
-           }
-       }
-       //sort
-       return supporterList.sort { a, b -> b.value.toString().substring(b.value.toString().indexOf(';') + 1) <=> a.value.toString().substring(a.value.toString().indexOf(';') + 1) }
+         if(supporters){
+             supporters.each{
+                 supporterList.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
+             }
+         }
+         //sort
+         return supporterList.sort { a, b -> b.value.toString().substring(b.value.toString().indexOf(';') + 1) <=> a.value.toString().substring(a.value.toString().indexOf(';') + 1) }
 	}
 	
 	def getUserRecentActivity(def project, def contributions ,def comments, User user, def teams){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
-        def recentActivity =[:]
-        def supporters = Supporter.findAllWhere(user:user)
+          SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
+          def recentActivity =[:]
+          def supporters = Supporter.findAllWhere(user:user)
 
-        teams.each{
-            if(user.username.equals(it.user.username) && !user.username.equals(it.project.user.username) ){
-                recentActivity.put("team"+it.id, it.project.title +";"+ dateFormat.format(it.joiningDate))
-            }
-       }
-       project.each {
-           if(user.username.equals(it.user.username)){
-                recentActivity.put("project"+it.id,it.title +";"+ dateFormat.format(it.created))
-           }
-       }
-
-       project.each{
-           def projectUser =  it.user
-           it.rewards.each{perks ->
-               perks.each{perk ->
-                   if(!perk.title.equals('No Perk')){
-                        if(projectUser.username.equals(user.username)){
-                             recentActivity.put("perk"+perk.id, perk.title +";" + dateFormat.format(perk.perkCreatedDate))
-                        }
-                   }
-               }
-           }
-       }
-
-       project.projectUpdates.each {
-            it.each{
-                recentActivity.put("update"+it.id, it.title +";"+ dateFormat.format(it.updateDate))
-            }
-      }
-      contributions.each{
-           recentActivity.put("contribution"+it.id, it.amount.round() +";"+ dateFormat.format(it.date))
-      }
-      def i =  comments.size()
-      comments.each{
-          it.each{
-              recentActivity.put("comment"+ --i, it.comment +";"+ dateFormat.format(it.date))
+          teams.each{
+              if(user.username.equals(it.user.username) && !user.username.equals(it.project.user.username) ){
+                  recentActivity.put("team"+it.id, it.project.title +";"+ dateFormat.format(it.joiningDate))
+              }
          }
-      }
-      if(supporters){
-          supporters.each{
-              recentActivity.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
-          }
-      }
-      //sort 
-      return recentActivity.sort { a, b -> b.value.toString().substring(b.value.toString().indexOf(';') + 1) <=> a.value.toString().substring(a.value.toString().indexOf(';') + 1) }
+         project.each {
+             if(user.username.equals(it.user.username)){
+                  recentActivity.put("project"+it.id,it.title +";"+ dateFormat.format(it.created))
+             }
+         }
+
+         project.each{
+             def projectUser =  it.user
+             it.rewards.each{perks ->
+                 perks.each{perk ->
+                     if(!perk.title.equals('No Perk')){
+                          if(projectUser.username.equals(user.username)){
+                               recentActivity.put("perk"+perk.id, perk.title +";" + dateFormat.format(perk.perkCreatedDate))
+                          }
+                     }
+                 }
+             }
+         }
+
+         project.projectUpdates.each {
+              it.each{
+                  recentActivity.put("update"+it.id, it.title +";"+ dateFormat.format(it.updateDate))
+              }
+        }
+        contributions.each{
+             recentActivity.put("contribution"+it.id, it.amount.round() +";"+ dateFormat.format(it.date))
+        }
+        def i =  comments.size()
+        comments.each{
+            it.each{
+                recentActivity.put("comment"+ --i, it.comment +";"+ dateFormat.format(it.date))
+           }
+        }
+        if(supporters){
+            supporters.each{
+                recentActivity.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
+            }
+        }
+        //sort 
+        return recentActivity.sort { a, b -> b.value.toString().substring(b.value.toString().indexOf(';') + 1) <=> a.value.toString().substring(a.value.toString().indexOf(';') + 1) }
    }
     
     def setUserObject(def params) {

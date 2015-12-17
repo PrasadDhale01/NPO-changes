@@ -111,7 +111,7 @@ div.progress {
 .userprofile-days {
     position: absolute;
     top: 0px;
-    width: 75px;
+    width: 80px;
     height: 20px;
     line-height: 20px;
     text-align: right;
@@ -121,9 +121,10 @@ div.progress {
     cursor: pointer;
     background-color: #f6f8f8;
     border: none;
-    opacity: 0.7;
+    opacity: 0.8;
     filter: alpha(opacity=60);
     font-size: 12px;
+    font-weight: 600;
     padding-right: 3px;
 }
 .dashboard-container{
@@ -744,4 +745,397 @@ div.dashboardtile-min-height {
     color: #fff;
     background-color: black;
     border-color: black;
+}
+
+
+#invitepartner {
+    max-width: 500px;
+}
+#partner-container {
+    margin-bottom: 20px;
+}
+
+.invitepartner {
+    margin-bottom: 20px;
+}
+.partner-tile {
+    width: 185px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.partner-tile img.partner-profile-img {
+    width: 170px !important;
+    height: 170px !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.partner-panel {
+	   background-color: #f6f8f8;
+}
+
+
+#sidebar.col-sm-3, #sidebar.col-md-3, #sidebar.col-lg-3 {
+	   padding-left: 0px;
+	   padding-right: 0px;
+}
+#sidebar {
+	   height: 100%;
+}
+.pd-container {
+    padding-top: 20px;
+    margin-bottom: 10px;
+}
+#side-menu > li:hover{
+	   background-color: #5a6771;
+}
+#side-menu > li:hover a {
+    color: white;
+}
+#side-menu {
+    margin-bottom: 0;
+    padding-left: 0;
+    list-style: none;
+    padding-top: 10px;
+}
+#side-menu > li {
+    position: relative;
+    display: block;
+    margin-bottom: 1px;
+}
+#side-menu > li > a {
+    position: relative;
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 14px;
+}
+.invite-campaign-owner {
+	   padding: 20px 0;
+}
+#invite-campaign-owner {
+	   padding: 0 15px;
+}
+
+.partner-dashboard .sidebar-nav {
+    height: 625px;
+    width: 200px;
+    background-color: #f6f8f8;
+    padding-top: 15px;
+}
+#vitalseperator hr{
+	   margin-top: 0px;
+}
+.partner-dashboard .green-heading {
+    text-align: center;
+    margin-bottom: 5px;
+}
+.partner-dashboard .green-heading img{
+    width: 45px;
+}
+.partner-dashboard div.list-group-item.active, .partner-dashboard div.list-group-item.active:hover, .partner-dashboard div.list-group-item.active:focus {
+    z-index: 2;
+    color: #000 !important;
+    border: 1px solid #01bbd2;
+    background-color: #fff !important;
+}
+.partner-dashboard .campaign-img {
+	   max-height: 125px;
+    min-height: 125px;
+    width: 100%;
+}
+.partner-dashboard .list-group-item {
+    padding: 0;
+    overflow-y: auto;
+}
+.partner-dashboard {
+	   overflow-y: auto;
+}
+/* .partner-select-campaign.col-md-4 , .partner-select-campaign.col-md-8, .partner-select-campaign.col-sm-4 , .partner-select-campaign.col-sm-8, .partner-select-campaign.col-xs-4 , .partner-select-campaign.col-xs-8 { */
+/* 	   padding-left: 5px; */
+/* 	   padding-right: 5px; */
+/* } */
+/* .partner-select-campaign { */
+/*     font-size: 18px; */
+/*     font-weight: 500; */
+/* } */
+
+.partner-dashboard .campaign-tile-width {
+	   width: 220px;
+	   margin-left: auto;
+	   margin-right: auto;
+}
+.campaign-title-padding {
+    color: black !important;
+    font-size: 14px;
+    font-weight: bold;
+    word-wrap: break-word;
+    height: 4.5em;
+    margin-top: 2px;
+    text-align: left;
+}
+.partner-dashboard .progress {
+    border: 0px;
+    height: 15px;
+    width: 100%;
+}
+.campaign-tile-content {
+	   padding: 5px;
+}
+.campaign-tile-content .lead {
+    font-size: 16px !important;
+}
+.campaign-tile-seperator {
+	   margin-bottom: 25px;
+}
+.automargin {
+	   margin-left: auto;
+	   margin-right: auto;
+	   box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
+}
+#promote-social-media .btn-social :first-child {
+    width: 100%;
+    line-height: 41px;
+}
+#promote-social-media {
+	   height: 100px;
+}
+#promote-social-media .btn {
+    padding: 20px 28px;
+}
+#promote-social-media.col-xs-12 {
+	   padding-left: 0px;
+	   padding-right: 0px;
+}
+#campaign-select-alert {
+	   display: none;
+}
+#campaign-select-alert.alert {
+  padding: 10px;
+  margin-top: 10px;
+}
+.partner-dashboard .announcement-heading {
+  font-size: 30px;
+}
+.campaign-title-padding a, 
+.campaign-title-padding a:hover, 
+.campaign-title-padding a:active {
+   	color: black;
+   	text-decoration: none;
+}
+.partner-dashboard #side-menu > li.active {
+    background-color: #5a6771;
+}
+.partner-dashboard #side-menu > li.active a {
+    color: white;
+}
+.partnerprofilediv {
+    overflow: hidden;
+    height: auto;
+    width: 160px;
+    background-color: white;
+    margin-top: 5px;
+}
+.partnerprofileeditimage {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    line-height: 30px;
+    text-align: right;
+    right: 0;
+    color: white;
+    z-index: 50;
+    cursor: pointer;
+    border: none;
+    display: none;
+}
+#partnerprofileavatar img{
+	   width: 146px;
+    height: 140px;
+    margin-top: 6px;
+    margin-left: 8px;
+}
+#partnerImageEditDeleteIcon {
+	   width: 160px;
+    position: relative;
+}
+.partneruploadprofileimage {
+    position: absolute;
+    top: 56px;
+    width: 100%;
+    line-height: 30px;
+    text-align: center;
+    right: 5px;
+    color: white;
+    z-index: 50;
+    cursor: pointer;
+    border: none;
+    display: none;
+}
+.partner-information-bio {
+    padding: 5px;
+}
+.partnerdummyprofileimage {
+	   width: 146px;
+    height: 120px;
+    margin-top: 6px;
+    margin-left: 8px;
+}
+.partner-tile .over.user-tile {
+    margin-left: -12px;
+}
+.validatecampaignpaginate {
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.validatecampaignpaginate a , .validatecampaignpaginate .currentStep {
+    font-size: 13px;
+    text-align: center;
+    padding-left: 15px;
+    color: #31497B !important;
+    font-weight: 700 !important;
+}
+.validatecampaignpaginate .currentStep {
+    color: black !important;
+}
+.partnercampaignpaginate {
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+.partnercampaignpaginate a , .partnercampaignpaginate .currentStep {
+    font-size: 13px;
+    text-align: center;
+    padding-left: 15px;
+    color: #31497B !important;
+    font-weight: 700 !important;
+}
+.partnercampaignpaginate .currentStep {
+    color: black !important;
+}
+.promotecampaignpaginate {
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+ 
+}
+.promotecampaignpaginate a , .promotecampaignpaginate .currentStep {
+   font-size: 13px;
+   text-align: center;
+   padding-left: 15px;
+   color: #31497B !important;
+   font-weight: 700 !important;
+}
+.promotecampaignpaginate .currentStep {
+   color: black !important;
+}
+.filespaginate {
+    margin-top: 10px;
+    padding-left: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+ 
+}
+.filespaginate a , .filespaginate .currentStep {
+    font-size: 13px;
+    text-align: center;
+    padding-left: 15px;
+    color: #31497B !important;
+    font-weight: 700 !important;
+}
+.filespaginate .currentStep {
+    color: black !important;
+}
+#promote-social-media .btn-social :first-child {
+    border-right: 0px;
+}
+#mobBtnSendinvitation.btn-primary {
+    background-color: #006083 !important;
+    border-color: #006083 !important;
+    font-size: 14px;
+    font-weight: 600;
+}
+.campaign-tile-width.thumbnail {
+    padding: 0px;
+}
+.partner-stats .panel-footer {
+    padding: 10px 5px;
+}
+
+.docs-tab-border {
+    border-bottom: 2px solid #e3e3e3;
+    border-top: 2px solid #e3e3e3;
+}
+.nav-tab-doc {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.nav-tab-doc a {
+    color: #6d6e6e;
+    text-decoration: none;
+    font-weight: 500;
+}
+.nav-tab-doc a:hover {
+    color: #01bbd2;
+}
+.doc-tab-right-border {
+    border-right: 2px solid #6d6e6e;
+}
+.doc-tab-padding {
+    padding-left: 8px;
+    padding-right: 10px;
+}
+#partner-doc-content {
+    margin-top: 20px;
+}
+#partner-sec-header span.active {
+    color: #6d6e6e;
+}
+.nav-tab-doc a.active{
+    color: #01bbd2;
+}
+.folder {
+    background-color: #fff;
+    border: 1px solid #fff;
+    margin-bottom: 6px;
+    margin-top: 6px;
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
+    cursor: pointer;
+}
+
+.folderName {
+    text-overflow: ellipsis;
+    -o-text-overow: ellipsis;
+    word-wrap: normal;
+    overflow: hidden;
+    color: #6d6e6e;
+    white-space: pre;
+    padding: 8px;
+}
+.folderlist {
+    background-color: #f5f5f5;
+    overflow-y: auto;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+#newDocFile {
+    display: none;
+}
+.uploaddocfile {
+    color: #6d6e6e;
+    font-weight: 500;
+    cursor: pointer;
+}
+.uploaddocfile:hover {
+    color: #01bbd2;
+}
+.folderdirectory {
+    margin-bottom: 20px;
+}
+.folderdirectory a:hover{
+    text-decoration: none;
 }

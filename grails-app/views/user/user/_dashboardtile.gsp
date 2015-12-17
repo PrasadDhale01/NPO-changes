@@ -24,12 +24,6 @@
         def isTeamAdmin = projectService.isTeamAdmin(project)
         
         SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");
-        def cents
-        if(percentage >= 100) {
-            cents = 100
-        } else {
-            cents = percentage
-        }
         
         def currentEnv = projectService.getCurrentEnvironment()
         def conversionMultiplier = projectService.getCurrencyConverter();

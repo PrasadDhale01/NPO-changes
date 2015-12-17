@@ -12,7 +12,6 @@
     def user = userService.getCurrentUser()
     def username = user.username
     def iscampaignAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
-	   def team = project.teams
 	   def isTeamAdmin = projectService.isTeamAdmin(project)
     
     SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d");

@@ -728,3 +728,99 @@ img.hm-height-width {
 .hm-toi {
     top: -5px;
 }
+.manage-container-page{
+	width: 1000px;
+}
+.mange-borders{
+    border-bottom: 2px solid #e3e3e3;
+    border-top: 2px solid #e3e3e3;
+    width: 969px;
+    margin-left: 15px;
+}
+.manage-bottom-top{
+    border-right-width: 0;
+    line-height: 2;
+    margin: 10px 0 10px -13px;
+}
+.manage-org-bottomMargin{
+    margin-bottom: 0px;
+}
+.manage-btn-width {
+    margin-left: 14px;
+    padding-bottom: 11px;
+    padding-top: 11px;
+    width: 91.5%;
+}
+.manage-deletebtn-width{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 14px;
+    width: 91.5%;	
+}
+@-moz-document url-prefix() { 
+    .manage-btn-width {
+         margin-left: 14px;
+         padding-bottom: 9px;
+         padding-top: 8px;
+         width: 91.5%;
+    }
+    .manage-deletebtn-width{
+         padding-top: 9px;
+         padding-bottom: 11px;
+         margin-left: 14px;
+         width: 91.5%;   
+    }
+}
+.manage-btn-width-aft-validated{
+	height: 100%;
+    margin-left: 15px;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    width: 91.2%; 
+}
+.manage-tiletitile-top{
+    margin-top: 0 !important;
+}
+.manage-fb-color,
+.manage-fb-color:hover,
+.manage-fb-color:focus {
+    background-color: rgb(118, 134, 179);
+    color: #fff;
+}
+.mange-size-FBbtn {
+    height: 100%;
+    padding: 12px;
+    width: 100%;
+}
+@-moz-document url-prefix() { 
+    .mange-size-FBbtn {
+        height: 100%;
+        padding: 9px;
+        width: 100%;
+    }
+}
+.manage-social{
+    border-bottom: 2px solid #e3e3e3;
+    border-top: 2px solid #e3e3e3;
+    margin-left: 14px;
+    margin-top: 10px;
+    padding-bottom: 6px;
+    padding-left: 238px;
+    padding-top: 6px;
+    width: 97.1%;
+}
+.manage-btn-back-color,
+.manage-btn-back-color:hover,
+.manage-btn-back-color:focus {
+    background-color: #01bbd3;
+    color: #fff;
+    font-weight: bold;
+}
+.manage-tbs-right-borders{
+    border-right: 2px solid #6d6e6e;
+    padding-left: 8px;
+    padding-right: 10px;
+}
+.manage-comit-lft{
+    padding-left: 7px;
+}

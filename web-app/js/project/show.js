@@ -689,6 +689,17 @@ $(function() {
     	if ($(this).hasClass('comments')){
     		$('.comments').addClass('sh-selected');
     	}
+    	
+    	/****manage page*****/
+    	if ($(this).hasClass('rewards')){
+    		$('.rewards').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('payments')){
+    		$('.payments').addClass('sh-selected');
+    	}
+    	if ($(this).hasClass('manageTeams')){
+    		$('.manageTeams').addClass('sh-selected');
+    	}
     });
     
     $(".twitter-share").click(function(){
@@ -909,6 +920,14 @@ $(function() {
     	    	    }
     	        }
     		}
+    	});
+    	
+    	var activeClass
+    	$('.mange-pane-active').each(function(){
+    		if($(this).hasClass('active')){
+    			activeClass = $(this).attr('id');
+	    	    $('.'+activeClass).addClass('sh-selected');
+	        }
     	});
     	
      /*************************Edit video for team*************************/

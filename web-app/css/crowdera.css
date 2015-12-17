@@ -2310,8 +2310,8 @@ a.footerlink {
 	border-right:1px solid #dddddd;
 }
 .show-contri-tile.progressBarIcon {
-    border-left:1px solid #dddddd;
-    border-right:1px solid #dddddd;
+/*     border-left:1px solid #dddddd; */
+/*     border-right:1px solid #dddddd; */
     padding-left: 27px;
     padding-right: 27px;
 }
@@ -2410,7 +2410,7 @@ a.footerlink {
 	overflow: hidden;
 }
 .managedetails-edit{
-	padding: 0; 
+	padding: 0 !important; 
 	margin-top: 10px;
 }
 .managedetails-footer{
@@ -2449,9 +2449,9 @@ a.footerlink {
     	border-top-width: 0px;
     	background-color: #e7e7e7;
     	border-color: #dadada #dadada #b2b2b2 #c9c9c9;
-	margin-top: 0px;
+	margin-top: -3px;
 	text-align: left;
-	height: 88px;
+	height: 90px;
 }
 .perks-supporters{
 	border: 5px solid rgba(231, 231, 231, 0.73);
@@ -2886,8 +2886,8 @@ p.tile-text-size {
     line-height: 6px;
     margin-bottom: 0;
     margin-top: 8px;
-    padding-left: 24px;
-    padding-right: 24px;
+    padding-left: 21px;
+    padding-right: 16px;
     border-left: 1px solid #e3e3e3;
     border-right: 1px solid #e3e3e3;
 }
@@ -5530,6 +5530,45 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.manage-edit-mobilebtns {
+        bottom: 0;
+        left: -15px;
+        position: fixed;
+        width: 111%;
+        z-index: 1000;
+    }
+    ul.manage-bottom-top {
+        margin: 14px 0 14px -13px;
+    }
+    iframe.imagestyle {
+        height: 200px;
+    }
+    span.manage-tbs-right-borders{
+        border-right: none;
+        padding-left: 8px;
+        padding-right: 10px;
+    }
+    button.mange-submitapp-margin{
+        margin-top: -21px;   
+    }	
+    img.imagestyle{
+        height: 200px !important;
+        border:none;
+    }
+    button.manage-btn-width-aft-validated {
+        margin-left: 15px;
+        width: 90.7%;
+    }
+    ul.mobile-justified li{
+        display: flex !important;
+        width: 50px;
+    }
+	div.mange-borders {
+        width: 292px;
+    }
+	div.manage-container-page{
+        width: 320px;
+    }
     div.cr1-width-inputs{
         width: 105.2%;
     }
@@ -6044,9 +6083,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .col-md-10.col-xs-8.col-videoUrl-textbox{
         width:73%
     }
-    ul.nav-justified > li{
-        display: block !important;
-    }
+/*     ul.nav-justified > li{ */
+/*         display: block !important; */
+/*     } */
     .popoverClass .popover{
         left:120px;
         width:250px;
@@ -6981,14 +7020,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     	    width:248px !important;
 	}
 	.show-contri-tile.progressBarIcon {
-    	   border-left: 1px solid #dddddd;
-    	   border-right: 1px solid #dddddd;
+/*     	   border-left: 1px solid #dddddd; */
+/*     	   border-right: 1px solid #dddddd; */
     	   padding-left: 24px !important;
     	   padding-right: 24px !important;
 	}
 	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
     	   font-size: 10px;
-    	   line-height: 5px;
+    	   line-height: 8px;
     	   margin-bottom: 0;
     	   margin-top: 5px;
     	   padding-left: 17px;
@@ -7020,8 +7059,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     	  line-height: 5px;
     	  margin-bottom: 0;
     	  margin-top: 10px;
-    	  padding-left: 22px !important;
-    	  padding-right: 22px !important;
+    	  padding-left: 16px !important;
+    	  padding-right: 12px !important;
 	}
 	.footer-input-align .text-email {
     	  width: 130% !important;
@@ -7516,6 +7555,31 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    span.manage-btn-width {
+        padding-bottom: 20px;
+        padding-top: 19px;
+        width: 88.5%;
+    }
+    button.manage-deletebtn-width {
+        padding-top: 18px;
+        padding-bottom: 18px;
+    }
+    @-moz-document url-prefix() { 
+        button.manage-deletebtn-width {
+            padding-bottom: 16px;
+            padding-top: 16px;
+        }
+        span.mange-size-FBbtn {
+            padding: 17px !important;
+        } 
+    }
+    span.mange-size-FBbtn {
+        padding: 20px;
+    }
+    button.manage-btn-width-aft-validated {
+        padding-top: 19px;
+        padding-bottom: 17px;
+    }
     button.sh-fund-2header {
         margin-top: -32px;
         padding: 0;
@@ -7818,6 +7882,48 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.manage-social {
+        padding-left: 150px;
+    }
+    li.manage-team-btn-tabsmargin{
+        margin-right: 14px !important; 
+        margin-left: 21px !important;   
+    }
+    button.manage-btn-width {
+        margin-left: 15px;
+        width: 88.3%;
+    }
+    button.manage-deletebtn-width {
+        margin-left: 15px;
+        width: 88.3%;
+    }
+    span.manage-btn-width-aft-validated {
+        margin-left: 15px;
+        width: 88.1%;
+        padding-bottom: 21px;
+        padding-top: 18px;
+    }
+    div.manage-tileIcons-width{
+        width: 208px !important;
+    }
+    div.manage-tabs-width{
+        padding-left: 0;
+    }
+    div.manage-org-title h4{
+        margin-top: 0;      
+    }
+    div.mange-tabs-font{
+        font-size: 12px;
+        padding-right: 2px;
+        padding-left: 5px;
+        height: 54px;
+    }
+    div.mange-borders {
+        width: 718px;
+    }
+    div.manage-container-page{
+        width: 750px;
+    }
     div.cr2-width-city .help-block {
         margin-left: -15px;
     }
@@ -8914,10 +9020,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     	   width:248px !important;
 	}
 	.show-contri-tile.progressBarIcon {
-    	   border-left: 1px solid #dddddd;
-    	   border-right: 1px solid #dddddd;
-    	   padding-left: 24px !important;
-    	   padding-right: 24px !important;
+/*     	   border-left: 1px solid #dddddd; */
+/*     	   border-right: 1px solid #dddddd; */
+    	   padding-left: 17px !important;
+    	   padding-right: 17px !important;
 	}
 	.show-tile-text-size.contribution-tile.show-contribution-amt-tile {
     	  font-size: 10px;
@@ -8953,8 +9059,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     	  line-height: 5px;
     	  margin-bottom: 0;
     	  margin-top: 10px;
-    	  padding-left: 21px !important;
-    	  padding-right: 21px !important;
+    	  padding-left: 17px !important;
+    	  padding-right: 5px !important;
 	}
 	.footer-newsletter .help-block {
     	color: #f04124;
@@ -10005,6 +10111,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+    button.manage-btn-width-aft-validated {
+        padding-bottom: 15px;
+        padding-top: 15px;
+    }
+    button.manage-btn-width {
+        padding-bottom: 11px;
+        padding-top: 13px;
+    }
+    button.manage-deletebtn-width {
+        padding-top: 13px;
+        padding-bottom: 15px;
+    }
+    div.manage-contribution-md-tabs{
+        width: 50%;    
+    }
     li.sh-button-fund-secandaryheader {
         left: 18.8% !important;
         position: absolute;
@@ -10167,8 +10288,8 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   line-height: 5px;
 	   margin-bottom: 0;
 	   margin-top: 10px;
-	   padding-left: 23px !important;
-	   padding-right: 23px !important;
+	   padding-left: 14px !important;
+	   padding-right: 10px !important;
 	}
 	.icons-centering {
 		display: block;
@@ -10183,10 +10304,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 		width: 218px !important;
 	}
 	.show-contri-tile.progressBarIcon {
-		border-left: 1px solid #dddddd;
-		border-right: 1px solid #dddddd;
-		padding-left: 20px !important;
-		padding-right: 20px !important;
+/* 		border-left: 1px solid #dddddd; */
+/* 		border-right: 1px solid #dddddd; */
+		padding-left: 15px !important;
+		padding-right: 15px !important;
 	}
 	.leftcard-column-two .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn),.leftcard-column-three .bootstrap-select:not([class*="span"]):not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
 	   width: 69.1% !important;
@@ -10370,6 +10491,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:1025px) and (max-width: 1199px){
+    li.manage-team-btn-tabsmargin{
+        margin-left: 64px !important;   
+    }
     li.sh-button-fund-secandaryheader {
         margin-left: 43px !important;
         position: absolute;
@@ -12447,10 +12571,6 @@ textarea.textarea-embed-video {
 	    margin-top: 0px;
 	    margin-left:0;
 	}
-	.imagestyle{
-	    height: 200px !important;
-	    border:none;
-	}
     .glyphicon { margin-right: 10px;}
     .featured-non-profits{
         display: none;
@@ -13153,6 +13273,9 @@ textarea.textarea-embed-video {
 }
 
 @media only screen and (min-width: 320px) and (max-width: 480px){
+    div.edit-delete-fund .close {
+        margin-left: 0 !important;
+    }
 	h1.headingtext {
         color: #015f85;
         font-size: 22px !important;
@@ -13231,6 +13354,48 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.manage-edit-mobilebtns {
+        bottom: 0;
+        left: -15px;
+        position: fixed;
+        width: 111%;
+        z-index: 1000;
+    }
+    ul.manage-bottom-top {
+        margin: 14px 0 14px -13px;
+    }
+    iframe.imagestyle {
+        height: 200px;
+    }
+    span.manage-tbs-right-borders{
+        border-right: none;
+        padding-left: 8px;
+        padding-right: 10px;
+    }
+    button.mange-submitapp-margin{
+        margin-top: -21px;   
+    }
+	img.imagestyle{
+        height: 200px !important;
+        border:none;
+    }
+    li.manage-team-btn-tabsmargin {
+        margin-left: 0 !important;
+    }
+    button.manage-btn-width-aft-validated {
+        margin-left: 15px;
+        width: 90.7%;
+    }
+    ul.mobile-justified li{
+        display: flex !important;
+        width: 50px;
+    }
+	div.mange-borders {
+        width: 292px;
+    }
+    div.manage-container-page{
+        width: 320px;
+    }
     div.cr1-width-inputs{
         width: 105.2%;
     }
@@ -13691,10 +13856,6 @@ textarea.textarea-embed-video {
         background-color: #015F85;
         border-color: #015F85;
     }
-	   ul.nav-justified > li{
-        display: block !important;
-    }
-
 	a.show-tbs-right-borders {
         border-right: 2px solid #6d6e6e;
         margin-left: -22px;
@@ -14623,8 +14784,8 @@ textarea.textarea-embed-video {
     	   width:248px !important;
 	}
 	.show-contri-tile.progressBarIcon {
-    	   border-left: 1px solid #dddddd;
-    	   border-right: 1px solid #dddddd;
+/*     	   border-left: 1px solid #dddddd; */
+/*     	   border-right: 1px solid #dddddd; */
     	   padding-left: 24px !important;
     	   padding-right: 24px !important;
 	}

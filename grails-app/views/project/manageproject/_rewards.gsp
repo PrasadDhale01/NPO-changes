@@ -31,11 +31,11 @@
                             </g:if>
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control all-place" name="title" placeholder="Title"/>
+                                <input type="text" class="form-control all-place" name="title" placeholder="Title">
                             </div>
                             <div class="form-group">
                                 <label for="title">Number available</label>
-                                <input type="text" class="form-control all-place" name="numberAvailable" placeholder="Number available"/>
+                                <input type="text" class="form-control all-place" name="numberAvailable" placeholder="Number available">
                             </div>
                             <div class="form-group descriptionDiv createDescDiv">
                                 <label for="description">Description</label>
@@ -45,7 +45,7 @@
                             <div class="clear"></div>
                             <div class="form-group">
                                 <label for="price">Price (<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                                <input type="text" class="form-control perkPrice all-place" name="price" id="perkPrice" placeholder="Price"/>
+                                <input type="text" class="form-control perkPrice all-place" name="price" id="perkPrice" placeholder="Price">
                                 <span id="errormsg"></span>
                             </div>
                             <div class="form-group">
@@ -54,7 +54,7 @@
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="address" value="true">Mailing address</label>
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="email" value="true">Email address</label>
                                     <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 shipping-margin"><input type="checkbox" class="shippingInfo" name="twitter" value="true">Twitter handle</label>
-                                    <input type="text" class="form-control shippingInfo cutom-perks-border col-lg-3 col-xs-6 col-md-3 col-sm-4" name="custom" placeholder="Custom"/>
+                                    <input type="text" class="form-control shippingInfo cutom-perks-border col-lg-3 col-xs-6 col-md-3 col-sm-4" name="custom" placeholder="Custom">
                                 </div>
                                 <div class="shippingError"></div>
                             </div>

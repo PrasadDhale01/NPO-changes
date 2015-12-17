@@ -11,12 +11,12 @@
     <g:if test="${!teams.isEmpty()}">
         <g:if test="${isCampaignOwnerOrAdmin}">
 		    <ul class="nav nav-pills nav-pills-manageteam">
-                <li data-toggle="tab" class="active team-footer col-md-3 col-sm-6 col-xs-12">
+                <li data-toggle="tab" class="active team-footer col-md-3 col-sm-4 col-xs-12 manage-team-btn-tabsmargin">
                     <a href="#manageTeam" class="text-center teammembers" id="loadTeamPage">
                         ${totalteams.size()}&nbsp;&nbsp;Teams <g:if test="${discardedTeam.size() > 0}">&nbsp;&nbsp;(${discardedTeam.size()}&nbsp;&nbsp;Disabled)</g:if>
                     </a>
                 </li>
-                <li data-toggle="tab" class="col-md-3 col-sm-6 col-xs-12 button-team-footer">
+                <li data-toggle="tab" class="col-md-3 col-sm-4 col-xs-12 button-team-footer manage-mobile-btn">
                     <a class="col-md-12 col-sm-12 col-xs-12 btn btn-default btn-md inviteteammember activitydropdown dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                         Activity <span class="caret"></span>
                     </a>

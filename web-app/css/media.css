@@ -378,10 +378,10 @@
         padding-left: 5% !important;
         padding-right: 5% !important;
     }
-    .offline-contribution-pans.col-xs-12{
-        padding-left: 0px !important;
-        padding-right: 0px !important;
-    }
+/*     .offline-contribution-pans.col-xs-12{ */
+/*         padding-left: 0px !important; */
+/*         padding-right: 0px !important; */
+/*     } */
     .edit-delete-fund .close {
         margin-left: 2px !important;
     }

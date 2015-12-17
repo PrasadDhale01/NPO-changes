@@ -50,7 +50,7 @@
 <body>
 	<g:hiddenField id="b_url" name="b_url" value="${base_url}"/>
 	<div class="feducontent">
-		<div class="container">
+		<div class="container manage-container-page">
 			<g:if test="${project}">
 				<div class="row">
 					<g:if test="${flash.prj_mngprj_message}">
@@ -101,51 +101,74 @@
                             <h4 class="green-heading"> by ${fundRaiserName}</h4>
                         </div>
                     </g:if>
-                    <div class="col-md-12 manage-Top-tabs-mobile">
-                        <ul class="nav nav-tabs manage-projects nav-justified mng-safari-mobile mng-safari-tabs" style="margin-bottom: 10px;">
-                            <li class="active"><a href="#essentials" data-toggle="tab">
-                                <span class="glyphicon glyphicon-leaf"></span> <span class="tab-text hidden-xs"> Story</span>
-                            </a></li>
-                            <li><a href="#projectupdates" data-toggle="tab"> <span class="glyphicon glyphicon-asterisk"></span> <span class="tab-text hidden-xs"> Updates <g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if></span>
-                            </a></li>
-                            <li><a href="#manageTeam" data-toggle="tab"> <span class="fa fa-users"></span><span class="tab-text hidden-xs"> Teams</span>
-                            </a></li>
-                            <li><a href="#rewards" data-toggle="tab"> <i class="fa fa-gift fa-lg"></i> <span class="tab-text hidden-xs"> Perks</span>
-                            </a></li>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  mange-borders">
+                        <ul class="nav nav-pills manage-projects nav-justified mobile-justified sh-tabs nav-justi mng-safari-mobile mng-safari-tabs manage-bottom-top">
+                            <li class="active show-tabs"><span class="manage-tbs-right-borders ">
+                                    <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials"><span class="hidden-xs">STORY</span> 
+                                    <span class="glyphicon glyphicon-leaf visible-xs show-tab-right-border"></span></a>
+                                </span>
+                            </li>
+                            <li><span class="manage-tbs-right-borders ">
+                                    <a href="#projectupdates" data-toggle="tab" class="show-tabs-text projectupdates"><span class="hidden-xs">UPDATES</span> 
+                                    <span class="glyphicon glyphicon-asterisk visible-xs"></span></a>
+                                    <span class="show-tabs-count hidden-xs"><g:if test="${project.projectUpdates.size() > 0}">${project.projectUpdates.size()}</g:if></span>
+                                </span>
+                            </li>
+                            <li><span class="manage-tbs-right-borders ">
+                                    <a href="#manageTeams" data-toggle="tab" class="show-tabs-text manageTeams"><span class="hidden-xs">TEAMS</span>
+                                    <span class="fa fa-users visible-xs"></span></a> 
+                                </span>
+                            </li>
+                            <li><span class="manage-tbs-right-borders ">
+                                    <a href="#rewards" data-toggle="tab" class="show-tabs-text rewards"><span class="hidden-xs">PERKS</span>
+                                    <span class="fa fa-gift fa-lg visible-xs"></span></a>
+                                </span>
+                            </li>
                             <g:if test="${project.payuStatus}">
-                                <li><a href="#payments" data-toggle="tab">
-                                    <span class="glyphicon glyphicon-credit-card"></span><span class="tab-text hidden-xs"> Payments</span>
-                                </a></li>
+                                <li><span class="manage-tbs-right-borders ">
+                                        <a href="#payments" data-toggle="tab" class="show-tabs-text payments"><span class="hidden-xs">PAYMENTS</span>
+                                        <span class="glyphicon glyphicon-credit-card visible-xs"></span></a>
+                                    </span>
+                                </li>
                             </g:if>
-                            <li><a href="#contributions" data-toggle="tab"> <span class="glyphicon glyphicon-tint"></span> <span class="tab-text hidden-xs"> Contributions <g:if test="${project.contributions.size() > 0}">${project.contributions.size()}</g:if></span>
-                            </a></li>
-                            <li><a href="#comments" data-toggle="tab"> <span class="glyphicon glyphicon-comment"></span> <span class="tab-text hidden-xs"> Comments</span>
-                            </a></li>
+                            <li><span class="manage-tbs-right-borders ">
+                                    <a href="#contributions" data-toggle="tab" class="show-tabs-text contributions"><span class="hidden-xs">CONTRIBUTIONS</span>
+                                    <span class="glyphicon glyphicon-tint visible-xs"></span></a> 
+                                    <span class="show-tabs-count hidden-xs"><g:if test="${project.contributions.size() > 0}">${project.contributions.size()}</g:if></span>
+                                </span>
+                            </li>
+                            <li><span class="manage-comit-lft">
+                                    <a href="#comments" data-toggle="tab" class="show-tabs-text comments"><span class="hidden-xs">COMMENTS</span>
+                                    <span class="glyphicon glyphicon-comment visible-xs"></span></a> 
+                                </span>
+                            </li>
                         </ul>
-
+                        </div>
+                    
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 manage-Top-tabs-mobile ">
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div class="tab-pane active row" id="essentials">
+                            <div class="tab-pane active mange-pane-active row" id="essentials">
                                 <g:render template="/project/manageproject/essentials" />
                             </div>
-                            <div class="tab-pane row" id="projectupdates">
+                            <div class="tab-pane mange-pane-active row" id="projectupdates">
                                 <g:render template="/project/manageproject/projectupdates" />
                             </div>
-                            <div class="tab-pane" id="manageTeam">
+                            <div class="tab-pane mange-pane-active" id="manageTeams">
                                 <g:render template="/project/manageproject/manageteam" />
                             </div>
-                            <div class="tab-pane" id="rewards">
+                            <div class="tab-pane mange-pane-active" id="rewards">
                                 <g:render template="/project/manageproject/rewards" />
                             </div>
                             <g:if test="${project.payuStatus}">
-                                <div class="tab-pane" id="payments">
+                                <div class="tab-pane mange-pane-active" id="payments">
                                     <g:render template="/project/manageproject/payments"/>
                                 </div>
                             </g:if>
-                            <div class="tab-pane" id="contributions">
+                            <div class="tab-pane mange-pane-active" id="contributions">
                                 <g:render template="/project/manageproject/contributions" />
                             </div>
-                            <div class="tab-pane" id="comments">
+                            <div class="tab-pane mange-pane-active" id="comments">
                                 <g:render template="/project/manageproject/comments" />
                             </div>
                         </div>

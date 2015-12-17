@@ -7,7 +7,7 @@
     <span><b>Update #${i}</b></span>&nbsp;&nbsp;&nbsp;&nbsp;<b>${projectUpdate.title}</b>
 </div>
 <g:if test="${manageProject}">
-    <div class="col-md-6 col-sm-6 col-xs-6">
+    <div class="col-md-6 col-sm-6 col-xs-12">
 	    <span>
 	        <g:form controller="project" action="editCampaignUpdate" method="post"  id="${projectUpdate.id}" params="['projectId': projectId]">
                 <button class="projectedit close"  aria-label="Edit project" id="editproject">

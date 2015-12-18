@@ -50,7 +50,7 @@
 				       <li>
 				           <g:if test="${!ended}">
 				               <g:if test="${currentFundraiser == currentUser || isCrUserCampBenOrAdmin}">
-				                   <a class="list" href="#inviteTeamMember" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
+				                   <a class="list" href="/project/redirectToInviteMember?projectId=${project.id}&page=show" data-toggle="modal"><span class="glyphicon glyphicon-user"></span> &nbsp;&nbsp;Invite Members </a>
     		               </g:if>
 				           </g:if>
 				           <g:else>

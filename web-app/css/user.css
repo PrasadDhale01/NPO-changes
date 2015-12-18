@@ -305,19 +305,19 @@ div.dashboardtile-min-height {
     min-height: 132px !important;
 }
 .timeline > li > .timeline-panel {
-    padding: 20px 0px 20px 0px !important;
+    padding: 20px 10px 20px 10px !important;
 }
 #userDashboardcontributions {
     margin-top: 0px;
 }
 #userDashboardcontributions .over.user-tile {
-				display: block;
-				left: auto;
-				margin-left: -8px;
-				margin-right: auto;
-				position: absolute;
-				top: 87px;
-				z-index: 1;
+	display: block;
+	left: auto;
+	margin-left: -8px;
+	margin-right: auto;
+	position: absolute;
+	top: 87px;
+	z-index: 1;
 }
 .contributiontimeline {
     width: 230px;
@@ -746,7 +746,92 @@ div.dashboardtile-min-height {
     background-color: black;
     border-color: black;
 }
-
+.userprofile-caption {
+    background: transparent none repeat scroll 0 0;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+    font-family: Open Sans;
+    font-size: 15px;
+    font-weight: bolder;
+    height: 45px;
+    left: 16px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    padding: 15px;
+    text-align: center;
+    top: 72%;
+    width: 178px;
+}
+.userprofile-caption p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#userprofileImage img {
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+    height: 140px;
+    width: 178px;
+}
+.TW-userprofile-img {
+    margin-left: 3px;
+}
+.userprofile-panel-border{
+	border-width:0px;	
+}
+#TW-usrPrfl-ul li.TW-usrPrfl-li > a {
+    font-size: 14px !important;
+    font-weight:bold;
+}
+.userprfl-warning{
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+    float: none;
+    height: 100px;
+    padding: 10px 5px;
+    text-align: center;
+    width: 300px;
+}
+.userprfl-cmpgn-container{
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+    float: none;
+    height: 100px;
+    margin-left:0px;
+    padding: 10px 5px;
+    text-align: center;
+    width: 300px;
+}
+.TW-userprofile-img #userprofileImage-dflt img{
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+    height: 140px;
+    margin-bottom:5px;
+    width: 178px;
+}
+.usrPrfl-cmpgn-img{
+    padding:0px;
+    height:80px;	
+}
+.usrPrfl-cmpgn-img img{
+	height:80px;	
+}
+.usrPrfl-cmpgn-title p{
+    color: #000000;
+    font-size: 14px;
+    text-align: justify;
+}
+.userprofile-back {
+    margin-bottom: 15px;
+    margin-left: 18px;
+}
+.usr-prfl-amt .fa-inr {
+    font-size: 23px !important;
+    padding-right: 2px;
+}
+.usr-prfl-amt{
+    font-size: 25px;
+    margin: -6px 0 0;	
+}
+.TW-usrprfl-heading .col-xs-9{
+    padding-left:0px ;
+    padding-right:0px ;
+}
 
 #invitepartner {
     max-width: 500px;
@@ -1268,4 +1353,19 @@ div.dashboardtile-min-height {
     height: 60px;
     border-radius: 50%;
     outline: 0px;
+}
+.userprfl-warning a {
+    margin-top: 4px;
+}
+.otherprfl-warning {
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+    float: none;
+    height: 100px;
+    padding: 26px 5px;
+    text-align: center;
+    width: 300px;
+}
+.timeline-title-font span{
+	font-size:16px;
+	line-height:2;
 }

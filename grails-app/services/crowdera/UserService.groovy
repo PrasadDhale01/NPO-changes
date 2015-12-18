@@ -1,6 +1,14 @@
 package crowdera
 
 import grails.transaction.Transactional
+
+import java.security.InvalidKeyException
+import java.security.NoSuchAlgorithmException
+import java.text.SimpleDateFormat
+
+import javax.crypto.Mac
+import javax.crypto.spec.SecretKeySpec
+
 import org.apache.commons.validator.EmailValidator
 import org.apache.http.HttpEntity
 import org.apache.http.HttpResponse
@@ -10,15 +18,10 @@ import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.message.BasicNameValuePair
-import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
-import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
-import java.security.NoSuchAlgorithmException;
-import java.security.InvalidKeyException;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
+import org.jets3t.service.security.AWSCredentials
+import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 
 class UserService {
@@ -1017,6 +1020,117 @@ class UserService {
 		feedback.user = user
 		feedback.rating = params. rating
 	}
+	def getSupportersByUser(User user){
+          def supporters = Supporter.findAllWhere(user:user)
+          int i=0
+          supporters.each{
+              if(it==null){
+	              i=0
+              }else{
+	              i++
+              }
+         }
+         return i
+	}
+	
+	def getUserContribution(User user){
+            def userContribution = Contribution.findAllByUser(user)
+            int contribution =0  
+            userContribution.each{
+                contribution += it.amount
+            }
+            return contribution
+	}
+	
+	def getUserCommnet(User user){
+            List comments =[]
+            def projectComments =ProjectComment.findAllWhere(user:user)
+            def teamComments = TeamComment.findAllWhere(user:user)
+            comments.add(projectComments)
+            comments.add(teamComments)
+            return comments
+	}
+	
+	def getSupporterListActivity(def project, User user, def teams){
+          SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
+          def supporterList =[:]
+          def supporters = Supporter.findAllWhere(user:user)
+
+          teams.each{
+              if(user.username.equals(it.user.username) && !user.username.equals(it.project.user.username) ){
+                   supporterList.put("team"+it.id, it.project.title +";"+ dateFormat.format(it.joiningDate))
+              }
+          }
+          project.each {
+              if(user.username.equals(it.user.username)){
+                  supporterList.put("project"+it.id,it.title +";"+ dateFormat.format(it.created))
+              }
+              if(isCampaignAdmin(it, user.email)){
+                  supporterList.put("co-owner"+it.id,it.title +";"+ dateFormat.format(it.created))
+              }
+          }
+
+         if(supporters){
+             supporters.each{
+                 supporterList.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
+             }
+         }
+         //sort
+         return supporterList.sort { a, b -> b.value.toString().substring(b.value.toString().indexOf(';') + 1) <=> a.value.toString().substring(a.value.toString().indexOf(';') + 1) }
+	}
+	
+	def getUserRecentActivity(def project, def contributions ,def comments, User user, def teams){
+          SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
+          def recentActivity =[:]
+          def supporters = Supporter.findAllWhere(user:user)
+
+          teams.each{
+              if(user.username.equals(it.user.username) && !user.username.equals(it.project.user.username) ){
+                  recentActivity.put("team"+it.id, it.project.title +";"+ dateFormat.format(it.joiningDate))
+              }
+         }
+         project.each {
+             if(user.username.equals(it.user.username)){
+                  recentActivity.put("project"+it.id,it.title +";"+ dateFormat.format(it.created))
+             }
+         }
+
+         project.each{
+             def projectUser =  it.user
+             it.rewards.each{perks ->
+                 perks.each{perk ->
+                     if(!perk.title.equals('No Perk')){
+                          if(projectUser.username.equals(user.username)){
+                               recentActivity.put("perk"+perk.id, perk.title +";" + dateFormat.format(perk.perkCreatedDate))
+                          }
+                     }
+                 }
+             }
+         }
+
+         project.projectUpdates.each {
+              it.each{
+                  recentActivity.put("update"+it.id, it.title +";"+ dateFormat.format(it.updateDate))
+              }
+        }
+        contributions.each{
+            if(!it.isAnonymous && !it.isContributionOffline)
+                recentActivity.put("contribution"+it.id, it.amount.round() +";"+ dateFormat.format(it.date))
+        }
+        def i =  comments.size()
+        comments.each{
+            it.each{
+                recentActivity.put("comment"+ --i, it.comment +";"+ dateFormat.format(it.date))
+           }
+        }
+        if(supporters){
+            supporters.each{
+                recentActivity.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
+            }
+        }
+        //sort 
+        return recentActivity.sort { a, b -> b.value.toString().substring(b.value.toString().indexOf(';') + 1) <=> a.value.toString().substring(a.value.toString().indexOf(';') + 1) }
+   }
     
     def setUserObject(def params) {
         def password = projectService.getAlphaNumbericRandomUrl()

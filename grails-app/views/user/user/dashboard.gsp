@@ -169,6 +169,9 @@
                     <g:if test="${activeTab != 'editUserInfo'}">
                         <a href="/user/edit-userInfo" class="dashboardtabheading btn btn-primary btn-md btn-block">Edit User Info</a>
                    </g:if>
+                   <div>
+                       <g:link controller="user" action="userActivity1" id="${user.id}" class="dashboardtabheading btn btn-primary btn-md btn-block">User Profile</g:link>
+                   </div>
                     
                     <a href="#" class="btn btn-block btn-social social-button btn-facebook hidden"><i class="fa fa-facebook"></i> Connect</a>
                     <a href="#" class="btn btn-block btn-social social-button btn-linkedin hidden"><i class="fa fa-linkedin"></i> Connect</a>
@@ -223,6 +226,9 @@
                             Do More Good
                         </span>
                     </a>
+                </div>
+                <div class="col-xs-6">
+                    <g:link controller="user" action="userActivity1" id="${user.id}" class="mob-campaigns-btn btn btn-primary">User Profile</g:link>
                 </div>
             </div>
             

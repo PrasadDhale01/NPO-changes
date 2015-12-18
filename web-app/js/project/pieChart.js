@@ -66,6 +66,7 @@ paper.circle(pwidth/2, pheight/2, radius*0.5)
 var center_label = paper.text(pwidth/2, pheight/2, '')
   .attr({'fill': 'black', 'font-size': '12', "font-weight": 800, 'opacity': 1 });
 
+//to show campaign amount at center on page load
 if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
 	center_label.attr('text', '$'+projectAmount);
 } else {

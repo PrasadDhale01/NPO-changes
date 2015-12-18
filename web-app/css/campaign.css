@@ -469,6 +469,7 @@ span.cr-label-spend-matrix {
 
 .cr-panel-body{
     margin-right: 0 !important;
+    margin-left: 0px !important;
 }
 
 .display-block-text1{
@@ -682,13 +683,11 @@ div.validate-show-div .show-description {
 
 .cr-tax-files{
     position: relative;
-    width:auto;
     display:inline-block;
     background-color: #F6F8F8;
     border: 1px solid #d7d7d7;
     border-radius: 4px;
-    margin-right: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .cr-tax-files .deleteicon {
@@ -711,6 +710,10 @@ div.validate-show-div .show-description {
     padding-left: 10px;
     padding-right: 26px;
     padding-bottom: 2px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	word-wrap: normal;
+	white-space: pre;
 }
 
 .col-reciept-display-none{
@@ -896,10 +899,6 @@ img.hm-height-width {
 
 .sharing-icons-padding-left{
 	padding-left: 30%;
-}
-
-.hashtags-padding-left{
-    padding-left: 40px;
 }
 
 label.cr-spend-guide-text{

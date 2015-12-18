@@ -984,11 +984,13 @@
                                  <div class="col-tax-file-show col-sm-10 col-xs-12" id="col-tax-file-show">
                                     <g:each var="file" in="${taxReciept.files}">
                                         <% def url = file.url %>
-                                        <div class="cr-tax-files">
-                                            <div class="col-file-name">${url.substring(url.lastIndexOf("/") + 1)}</div>
-                                            <div class="deleteicon">
-                                                <button type="button" class="close" onclick="deleteTaxRecieptFiles(this, ${file.id}, ${taxReciept.id})">&times;</button>
-                                            </div>
+                                        <div class="col-sm-3 col-sm-tax-reciept">
+	                                        <div class="cr-tax-files">
+	                                            <div class="col-file-name">${url.substring(url.lastIndexOf("/") + 1)}</div>
+	                                            <div class="deleteicon">
+	                                                <button type="button" class="close" onclick="deleteTaxRecieptFiles(this, ${file.id}, ${taxReciept.id})">&times;</button>
+	                                            </div>
+	                                        </div>
                                         </div>
                                     </g:each>
                                  </div>

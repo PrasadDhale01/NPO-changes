@@ -106,7 +106,7 @@ $(function() {
                 	console.log('Error occured while session timeout');
                 });
                 window.location.href =$("#b_url").val()+"/logout";   
-             }   
+             }
        }
     /*********************************************************************/
 
@@ -1139,7 +1139,7 @@ $(function() {
 		var hashtags = $(this).val();
 		autoSave('hashtags', hashtags);
 	});
-	
+
     $('.ein').blur(function(){
         var ein = $(this).val();
         autoSave('ein', ein);
@@ -1726,8 +1726,8 @@ $(function() {
                     }
                     var output = document.getElementById("col-tax-file-show");
                     var div = document.createElement("div");
-                    div.className = "cr-tax-files";
-                    div.innerHTML = "<div class=\"col-file-name\">"+file.name +"</div><div class=\"deleteicon\"><button type=\"button\" class=\"close\" onClick=\"deleteTaxRecieptFiles(this,'"+json.fileId+"','"+taxRecieptId+"');\">&times;</button></div>";
+                    div.className = "col-sm-3 col-sm-tax-reciept";
+                    div.innerHTML = "<div class=\"cr-tax-files\"><div class=\"col-file-name\">"+file.name +"</div><div class=\"deleteicon\"><button type=\"button\" class=\"close\" onClick=\"deleteTaxRecieptFiles(this,'"+json.fileId+"','"+taxRecieptId+"');\">&times;</button></div></div>";
 
                     output.insertBefore(div, null);
                     $('.uploadingFile').hide();

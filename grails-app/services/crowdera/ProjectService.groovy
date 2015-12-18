@@ -3021,7 +3021,7 @@ class ProjectService {
         User user = userService.getCurrentUser()
         Beneficiary beneficiary = project.beneficiary;
         def isValueChanged = false; 
-        DateFormat format = new SimpleDateFormat("dd/MM/YYYY", Locale.ENGLISH);
+        DateFormat format = new SimpleDateFormat("MM/dd/YYYY", Locale.ENGLISH);
         switch (variable) {
             case 'category':
                 project.category = varValue;

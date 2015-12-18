@@ -538,7 +538,6 @@ class ProjectController {
             response.addCookie(cookie)
         }
 		
-        
         def projectTitle
         if (params.title && params.amount && params.description && params.firstName) {
             def project = projectService.getProjectByParams(params)
@@ -547,17 +546,24 @@ class ProjectController {
             project.draft = true;
             project.beneficiary = beneficiary;
             project.beneficiary.email = user.email;
-            
+
             if (project.usedFor == 'SOCIAL_NEEDS'){
                 project.hashtags = '#Social-Innovtion'
             } else if (project.usedFor == 'PERSONAL_NEEDS'){
-                project.hashtags = '#PERSONAL-NEEDS'
-            } else {
-                project.hashtags = '#'+project.usedFor
+                project.hashtags = '#Personal-Needs'
+            } else if (usedFor == 'IMPACT'){
+                project.hashtags = '#Impact';
+            } else if (usedFor == 'PASSION'){
+                project.hashtags = '#Passion';
             }
 
 		    project.usedFor = params.usedFor;
-		
+
+            def currentEnv = projectService.getCurrentEnvironment()
+            if (currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
+                project.payuStatus = true
+            }
+
             if(project.save(failOnError: true)){
                 projectTitle = (project.customVanityUrl)? projectService.getCustomVanityUrl(project) : projectService.getProjectVanityTitle(project)
                 projectService.getFundRaisersForTeam(project, user)
@@ -710,7 +716,6 @@ class ProjectController {
         def project = projectService. getProjectFromVanityTitle(vanityTitle)
         def currentEnv = Environment.current.getName()
         if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-            project.payuStatus = true
             if (project.fundsRecievedBy == null){
                 project.fundsRecievedBy = "NGO"
                 project.hashtags = project.hashtags + ", #NGO"

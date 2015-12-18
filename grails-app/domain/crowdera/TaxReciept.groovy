@@ -32,7 +32,7 @@ class TaxReciept {
     List files
 
     static constraints = {
-        ein nullable:true, unique:true
+        ein nullable:true
         city nullable:true
         name nullable:true
         taxRecieptHolderState nullable:true

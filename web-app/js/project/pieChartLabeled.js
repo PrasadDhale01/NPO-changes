@@ -70,10 +70,10 @@ pie.hover(function () {
 });
 
 pie.mouseout(function (){
-	if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
-    	center_label.attr('text', '$'+projectAmount);
-    } else {
+	if (payuStatus == true || payuStatus == 'true'){
     	center_label.attr('text', 'Rs. '+projectAmount);
+    } else {
+    	center_label.attr('text', '$'+projectAmount);
     }
 });
 
@@ -84,8 +84,9 @@ paper.circle(pwidth/2, pheight/2, radius*0.5)
 var center_label = paper.text(pwidth/2, pheight/2, '')
   .attr({'fill': 'black', 'font-size': '12', "font-weight": 800, 'opacity': 1 });
 
-if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
-	center_label.attr('text', '$'+projectAmount);
-} else {
+//to show campaign amount at center on page load
+if (payuStatus == true || payuStatus == 'true'){
 	center_label.attr('text', 'Rs. '+projectAmount);
+} else {
+	center_label.attr('text', '$'+projectAmount);
 }

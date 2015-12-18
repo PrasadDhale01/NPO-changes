@@ -1,4 +1,10 @@
 @media only screen and (min-width: 1281px){
+	.cr-tax-files{
+        width:170px;
+    }
+	.col-add-tax-files {
+	   width: 15%;
+	}
 	.showing-hashtags{
 	   left:44%;
 	}
@@ -105,6 +111,10 @@
 	.cr-panel-impact-analysis .form-group{
 	   margin-left: 0px;
 	}
+
+	.hashtags-padding-left{
+       left:26%;
+    }
 }
 
 @media only screen and (min-width: 1201px) and (max-width: 1280px){

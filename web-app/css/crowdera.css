@@ -5548,6 +5548,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+	.cr-tax-files{
+        width:200px;
+    }
 	.pieChart-edit #chart-container #graphWithoutLabel{
        margin-left: -10px;
     }
@@ -7858,6 +7861,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.col-sm-tax-reciept {
+	   width: 32%;
+	}
+	.cr-tax-files{
+        width:157px;
+    }
     #chart-container #graphWithoutLabel{
         margin-left:-40px;
     }
@@ -9216,6 +9225,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 1024px) {
+	.cr-story-padding .redactor-box .redactor-editor{
+	   height:136px;
+	}
+	.hashtags-padding-left{
+	   left:35%;
+	}
 	.showing-hashtags-desktop{
 	   display:none;
 	}
@@ -9265,6 +9280,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+	.cr-tax-files{
+        width:170px;
+    }
+	.col-add-tax-files {
+	   width: 15%;
+	}
+	.hashtags-padding-left{
+	   left:26%;
+	}
 	.showing-hashtags-desktop{
 	   display:inline;
 	}
@@ -9684,7 +9708,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         left:10px;
     }
     .col-xs {
-        padding-left: 10px !important;
+        padding-left: 3px !important;
     }
     .col-tax-file-show{
         padding-left:25px;
@@ -11175,6 +11199,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
+	.cr-tax-files{
+        width:170px;
+    }
 	.cr-panel-qa .cr-spend-matrix-font{
 	   font-size: 14px;
 	}

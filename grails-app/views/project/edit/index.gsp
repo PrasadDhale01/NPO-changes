@@ -1029,7 +1029,7 @@
                     <div class="col-sm-12">
                         <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
                             <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')) || (project.fundsRecievedBy != 'NON-PROFIT' && (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'))}">tax-reciept</g:if>" id="tax-reciept">
-                                <input type="checkbox" name="tax-reciept-checkbox" class="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
+                                <input type="checkbox" name="tax-reciept-checkbox" id="tax-reciept-checkbox" class="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
                                 Do you want to offer receipt to your contributors.
                             </div>
                         </div>
@@ -1133,11 +1133,13 @@
                                  <div class="col-tax-file-show col-sm-10 col-xs-12" id="col-tax-file-show">
                                     <g:each var="file" in="${taxReciept.files}">
                                         <% def url = file.url %>
-                                        <div class="cr-tax-files">
-                                           <div class="col-file-name">${url.substring(url.lastIndexOf("/") + 1)}</div>
-                                           <div class="deleteicon">
-                                               <button type="button" class="close" onclick="deleteTaxRecieptFiles(this, ${file.id}, ${taxReciept.id})">&times;</button>
-                                           </div>
+                                        <div class="col-sm-3 col-sm-tax-reciept">
+	                                        <div class="cr-tax-files">
+	                                           <div class="col-file-name">${url.substring(url.lastIndexOf("/") + 1)}</div>
+	                                           <div class="deleteicon">
+	                                               <button type="button" class="close" onclick="deleteTaxRecieptFiles(this, ${file.id}, ${taxReciept.id})">&times;</button>
+	                                           </div>
+	                                        </div>
                                         </div>
                                     </g:each>
                                  </div>

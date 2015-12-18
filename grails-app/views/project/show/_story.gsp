@@ -159,10 +159,10 @@
             </g:elseif>
             <g:elseif test="${project.category.toString() == 'ENVIRONMENT'}">
                 <g:if test="${project.payuStatus}">
-                    <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber}  lives by providing <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                    <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber}  neighbourhood/s by providing <span class="fa fa-inr"></span> ${project.impactAmount}</p>
                 </g:if>
                 <g:else>
-                    <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber} lives by providing <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+                    <p class="campaignStory justify">Our campaign will benefit ${project.impactNumber} neighbourhood/s by providing <span class="fa fa-usd"></span> ${project.impactAmount}</p>
                 </g:else>
             </g:elseif>
             <g:elseif test="${project.category.toString() == 'FILM'}">

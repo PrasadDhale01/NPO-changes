@@ -258,7 +258,7 @@
 <%--    End of Dashboard Container   --%>
     </div>
     <div class="loadinggif text-center" id="loading-gif">
-        <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="' '" id="loading-gif-img">
+        <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
     </div>
     <script src="/js/filepicker.js" ></script>
     <script>

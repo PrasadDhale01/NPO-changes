@@ -147,10 +147,6 @@
 }
 
 @media (max-width: 767px) {
-    ul.timeline:before {
-        left: 40px;
-    }
-
     ul.timeline > li > .timeline-panel {
         width: calc(100% - 90px);
         width: -moz-calc(100% - 90px);

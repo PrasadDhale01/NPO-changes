@@ -429,7 +429,7 @@ class UserController {
 		}else{
 			new Feedback(params).save()
 		}
-		flash.feedback_message = "Feedback submitted successfully!"
+		flash.feedback_message = "Feedback submitted successfully"
 		redirect url:'/'
 	}
 	
@@ -445,7 +445,7 @@ class UserController {
 		def project = Project.get(projectId)
 		def user = userService.getUserById(project.user.id)
 		def feedback=userService.getFeedbackByUser(user)
-		render( view:"/user/survey/previewuserfeedback.gsp", model:[feedback:feedback, user:user])
+		render( view:"/user/survey/previewuserfeedback", model:[feedback:feedback, user:user])
 	}
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -458,6 +458,54 @@ class UserController {
             render(template: "/user/user/grid", model: model, currentEnv: currentEnv)
         }
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def userActivity1(){
+		userActivity('page', params.id)
+	}
+	
+	def userActivity(String page, String id){
+	    def userId = id
+ 	    User user = User.get(userId)
+        def currentUser = userService.getCurrentUser()
+	    def username
+	    def environment= projectService.getCurrentEnvironment()
+		
+	    if(user){
+              def comments = userService.getUserCommnet(user)
+              def projects = projectService.getAllProjectByUser(user, environment)
+              def projectAdmins = projectService.getProjectAdminEmail(user)
+              def teams = projectService.getTeamByUserAndEnable(user, true)
+              def project = projectService.getProjects(projects, projectAdmins, teams, environment)
+              def contributions =projectService.getContibutionByUser(user, environment)
+              def recentActivity = userService.getUserRecentActivity(project, contributions,comments, user, teams)
+              def supporterList = userService.getSupporterListActivity(project, user, teams)
+              def supporters= userService.getSupportersByUser(user) 
+              def userContribution = userService.getUserContribution(user)
+              def fundRaised = projectService.getTotalFundRaisedByUser(projects)
+              if(user.id == 3){
+                  contributions.each{
+                      if(!it.isAnonymous && !it.isContributionOffline){
+                           def amt = it.amount.round()
+                           if(amt == params.int("amount")){
+                                username = it.contributorName.toString().replace('[', '').replace(']', '')
+                           }
+                      }
+                  }
+              }else{
+                  username = user.firstName
+              }
+		
+              if(page){
+                  render(view:'/user/user/userprofile', model:[currentUser:currentUser, user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, page:page, environment:environment, username:username, supporterList:supporterList])
+              }else{
+                  render(view:'/user/user/userprofile', model:[currentUser:currentUser, user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, environment:environment, username:username,  supporterList:supporterList])
+              }
+	
+          }else{
+              render view:'/404error'
+          }
+	}
     
     @Secured(['ROLE_ADMIN'])
     def managePartner() {
@@ -724,5 +772,4 @@ class UserController {
             render (template:'/user/partner/files', model: model)
         }
     }
-    
 }

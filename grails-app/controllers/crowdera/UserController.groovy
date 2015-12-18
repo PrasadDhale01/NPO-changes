@@ -644,7 +644,7 @@ class UserController {
     def trashdrivefile() {
         User user = userService.getUserId(params.int('userId'))
         if (user) {
-            userService.deleteDriveFile(user, params)
+            userService.deleteDriveFile(params)
             def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
             def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
             def fileObj = userService.getDriveFiles(user, params)
@@ -729,7 +729,7 @@ class UserController {
         Partner partner = userService.getPartnerById(params.int('partnerId'))
         if (partner) {
             User user = partner.user
-            userService.trashFolders(params, user);
+            userService.trashFolders(params);
             def folders = userService.getFolders(user)
             def model = [folders: folders]
             render template : '/user/partner/folders', model: model

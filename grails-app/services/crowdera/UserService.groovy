@@ -1108,7 +1108,7 @@ class UserService {
             }
             isSelected = true;
         } else {
-            GoogleDrive file = new GoogleDrive (
+            new GoogleDrive (
                 alternateLink: url,
                 fileId: fileId,
                 title : title,
@@ -1133,7 +1133,7 @@ class UserService {
         return [totalFiles: totalFiles, files: files]
     }
     
-    def deleteDriveFile(User user, def params) {
+    def deleteDriveFile(def params) {
         GoogleDrive file = GoogleDrive.get(params.id)
         if (file) {
             file.delete(flush: true)
@@ -1141,7 +1141,7 @@ class UserService {
     }
     
     def setNewFolder(User user, def params) {
-        Folder folder = new Folder (
+        new Folder (
             fName: params.title,
             user: user).save(failOnError: true)
     }
@@ -1210,7 +1210,7 @@ class UserService {
     def sendReceipt(def params, CommonsMultipartFile document) {
         User user = getCurrentUser();
         def docUrl = getDocumentUrl(document)
-        mandrillService.sendReceipt(params, docUrl, user)
+        mandrillService.sendReceipt(params, docUrl)
     }
     
     def deleteFolderFile(Folder folder, def params) {
@@ -1231,12 +1231,11 @@ class UserService {
         }
     }
     
-    def trashFolders(def params, User user) {
+    def trashFolders(def params) {
         Folder folder = Folder.get(params.int('folderId'))
         if (folder) {
             List documents = folder.documents
         
-            Document document
             List tempDocuments = documents
         
             if (!documents.isEmpty()) {

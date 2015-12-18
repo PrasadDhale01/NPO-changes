@@ -1263,7 +1263,7 @@ class MandrillService {
         inviteToShare(email, 'partnerInvitationToCampaignOwner', globalMergeVars, tags)
     }
 	
-    public def sendReceipt(def params, def docUrl, User user) {
+    public def sendReceipt(def params, def docUrl) {
         def url = "https:"+ docUrl
         def email = params.email
         def globalMergeVars = [[

@@ -39,7 +39,7 @@
         </div>
         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12 pd-container-width hidden-xs" id="sidebar">
             <div class="sidebar-nav">
-                <div class="partnerprofilediv automargin" class="blacknwhite">
+                <div class="partnerprofilediv automargin blacknwhite">
                     <g:if test="${user.userImageUrl}">
                         <div id="partnerImageEditDeleteIcon">
                             <span id="partnerprofileavatar">

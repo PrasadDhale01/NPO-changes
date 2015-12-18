@@ -24,7 +24,7 @@
 </div>
 <!-- Modal -->
 <div class="modal fade" id="createNewFolder" aria-hidden="true">
-    <g:form action="newfolder" id="" name="" class="">
+    <g:form action="newfolder" name="newfolder">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -71,7 +71,7 @@
                         <textarea class="form-control all-place" name="message" rows="4" placeholder="Message"></textarea>
                     </div>
                     <div class="form-group">
-                        <div class="fileUpload btn btn-info btn-sm cr-btn-color">
+                        <div class="fileUpload btn btn-info btn-sm cr-btn-color" id="receiptUploadBtn">
                             Upload File
                             <input type="file" class="upload" name="file">
                         </div>

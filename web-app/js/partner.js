@@ -471,24 +471,24 @@ $(function() {
     });
     
     $( document ).ready(function() {
-    	function sticky_relocate() {
-		    var div_top = $('#footermarker').offset().top;
-		    var marker = $('#add-docs-fixed-btn').offset().top;
-		    if ((marker + 20) >= div_top) {
-		    	$('#dropupbtn').hide();
-		    	$('#remove-folder').hide();
-		    	$('#remove-file').hide();
-		    	$('#remove-drive-file').hide();
-		    	$("#add-docs-fixed-btn.dropup.open").removeClass("open");
-		    } else if(marker  < div_top){
-		    	$('#dropupbtn').show();
-		    	$('#remove-folder').show();
-		    	$('#remove-file').show();
-		    	$('#remove-drive-file').show();
-		    }
-		}
-		$(window).scroll(sticky_relocate);
-		sticky_relocate();
+        function sticky_relocate() {
+            var div_top = $('#footermarker').offset().top;
+            var marker = $('#add-docs-fixed-btn').offset().top;
+            if ((marker + 20) >= div_top) {
+                $('#dropupbtn').hide();
+                $('#remove-folder').hide();
+                $('#remove-file').hide();
+                $('#remove-drive-file').hide();
+                $("#add-docs-fixed-btn.dropup.open").removeClass("open");
+            } else if(marker  < div_top){
+                $('#dropupbtn').show();
+                $('#remove-folder').show();
+                $('#remove-file').show();
+                $('#remove-drive-file').show();
+            }
+        }
+        $(window).scroll(sticky_relocate);
+        sticky_relocate();
     });
     
 });

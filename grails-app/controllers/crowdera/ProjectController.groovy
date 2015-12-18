@@ -1,7 +1,13 @@
 package crowdera
 
 import grails.plugin.springsecurity.annotation.Secured
+import grails.util.Environment
 import groovy.json.JsonSlurper
+import groovyx.net.http.ContentType
+import groovyx.net.http.HTTPBuilder
+import groovyx.net.http.Method
+
+import javax.servlet.http.Cookie
 
 import org.apache.http.HttpEntity
 import org.apache.http.HttpResponse
@@ -15,11 +21,6 @@ import org.apache.poi.ss.usermodel.WorkbookFactory
 import org.codehaus.groovy.grails.web.json.JSONObject
 import org.springframework.web.multipart.MultipartHttpServletRequest
 import org.springframework.web.multipart.commons.CommonsMultipartFile
-import grails.util.Environment
-import javax.servlet.http.Cookie
-import groovyx.net.http.ContentType
-import groovyx.net.http.HTTPBuilder
-import groovyx.net.http.Method
 
 class ProjectController {
 	def userService
@@ -28,6 +29,7 @@ class ProjectController {
 	def projectService
 	def mandrillService
 	def contributionService
+	def socialAuthService
 
 	def FORMCONSTANTS = [
 		/* Beneficiary */
@@ -63,13 +65,13 @@ class ProjectController {
 		PAYUEMAIL:'payuEmail',
 		PAYUSTATUS:'payuStatus',
 		SECRETKEY:'secretKey',
-        FACEBOOKURl:'facebookUrl',
-        TWITTERURl:'twitterUrl',
-        LINKEDINURL:'linkedinUrl'
-    ]
+		FACEBOOKURl:'facebookUrl',
+		TWITTERURl:'twitterUrl',
+		LINKEDINURL:'linkedinUrl'
+	]
 
-    def list = {
-        def countryOptions = projectService.getCountry()
+	def list = {
+		def countryOptions = projectService.getCountry()
 		def currentEnv = Environment.current.getName()
 		def discoverLeftCategoryOptions
 		if(currentEnv =="testIndia" || currentEnv=="stagingIndia" || currentEnv=="prodIndia"){
@@ -77,20 +79,20 @@ class ProjectController {
 		}else{
 			discoverLeftCategoryOptions=projectService.getCategory()
 		}
-        def sortsOptions = projectService.getSorts()
-        
-        def projects = projectService.getValidatedProjects(currentEnv)
-        def selectedCategory = "All Categories"
-        def multiplier = projectService.getCurrencyConverter();
-        
-        if (projects.size < 1) {
-            flash.catmessage="There are no campaigns"
-            render (view: 'list/index', model: [countryOptions: countryOptions, sortsOptions: sortsOptions,discoverLeftCategoryOptions: discoverLeftCategoryOptions, multiplier: multiplier])
-        } else {
-            render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv, countryOptions: countryOptions, sortsOptions: sortsOptions, 
-                                                discoverLeftCategoryOptions:discoverLeftCategoryOptions, multiplier: multiplier])
-        }
-    }
+		def sortsOptions = projectService.getSorts()
+
+		def projects = projectService.getValidatedProjects(currentEnv)
+		def selectedCategory = "All Categories"
+		def multiplier = projectService.getCurrencyConverter();
+
+		if (projects.size < 1) {
+			flash.catmessage="There are no campaigns"
+			render (view: 'list/index', model: [countryOptions: countryOptions, sortsOptions: sortsOptions,discoverLeftCategoryOptions: discoverLeftCategoryOptions, multiplier: multiplier])
+		} else {
+			render (view: 'list/index', model: [projects: projects,selectedCategory: selectedCategory, currentEnv: currentEnv, countryOptions: countryOptions, sortsOptions: sortsOptions,
+				discoverLeftCategoryOptions:discoverLeftCategoryOptions, multiplier: multiplier])
+		}
+	}
 
 	def listwidget = {
 		def projects = projectService.getValidatedProjects()
@@ -98,7 +100,7 @@ class ProjectController {
 	}
 
 	def search () {
-        def currentEnv = Environment.current.getName()
+		def currentEnv = Environment.current.getName()
 		def query = params.q
 		def countryOptions = projectService.getCountry()
 		def discoverLeftCategoryOptions
@@ -127,13 +129,13 @@ class ProjectController {
 		def name = userService.getVanityNameFromUsername(params.fr, params.id)
 		if(title && name){
 			if(params.isPreview){
-                if(params.tile){
-                    redirect (action :'previewTile', params:['projectTitle':title, 'fr':name]);
-                }else{
-                    redirect (action :'preview', params:['projectTitle':title, 'fr':name]);
-                }
+				if(params.tile){
+					redirect (action :'previewTile', params:['projectTitle':title, 'fr':name]);
+				}else{
+					redirect (action :'preview', params:['projectTitle':title, 'fr':name]);
+				}
 			} else {
-                redirect (action:'show', params:['projectTitle':title,'fr':name])
+				redirect (action:'show', params:['projectTitle':title,'fr':name])
 			}
 		} else {
 			render(view: '/404error', model: [message: 'This project does not exist.'])
@@ -150,28 +152,28 @@ class ProjectController {
 		forward(action:'show', params:['projectTitle':params.projectTitle,'fr':params.name, 'isPreview':true, 'tile':false])
 	}
 
-    def show() {
-        def projectId
-        def username
-        if (params.projectTitle){
-            projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
-            username = userService.getUsernameFromVanityName(params.fr)
-        } else {
-            projectId = params.id
-            username = params.fr
-        }
-        Project project = projectService.getProjectById(projectId)
-        if (project) {
-            def shortUrl = projectService.getShortenUrl(project.id, params.fr)
-            def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-            def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-            User user = userService.getUserByUsername(username)
-            def currentUser = userService.getCurrentUser()
-            def currentEnv = projectService.getCurrentEnvironment()
-            def currentFundraiser = userService.getCurrentFundRaiser(user, project)
-            Team currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
-            def totalContribution = contributionService.getTotalContributionForProject(project)
-            def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+	def show() {
+		def projectId
+		def username
+		if (params.projectTitle){
+			projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+			username = userService.getUsernameFromVanityName(params.fr)
+		} else {
+			projectId = params.id
+			username = params.fr
+		}
+		Project project = projectService.getProjectById(projectId)
+		if (project) {
+			def shortUrl = projectService.getShortenUrl(project.id, params.fr)
+			def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+			def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+			User user = userService.getUserByUsername(username)
+			def currentUser = userService.getCurrentUser()
+			def currentEnv = projectService.getCurrentEnvironment()
+			def currentFundraiser = userService.getCurrentFundRaiser(user, project)
+			Team currentTeam = projectService.getCurrentTeam(project,currentFundraiser)
+			def totalContribution = contributionService.getTotalContributionForProject(project)
+			def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
 
 			def teamContribution = contributionService.getTotalContributionForUser(currentTeam.contributions)
 			def teamPercentage = contributionService.getPercentageContributionForTeam(teamContribution, currentTeam)
@@ -187,31 +189,31 @@ class ProjectController {
 
 			List contributions = []
 			List totalContributions = []
-			
+
 			/*Send feedback email before campaign end date */
 			projectService.sendFeedbackEmailToOwners(project, base_url)
-			
+
 			if (project.user == currentTeam.user) {
 				def contribution = projectService.getProjectContributions(params, project)
 				totalContributions = contribution.totalContributions
 				contributions = contribution.contributions
 			} else {
-			    def contribution = projectService.getTeamContributions(params, currentTeam)
+				def contribution = projectService.getTeamContributions(params, currentTeam)
 				totalContributions = contribution.totalContributions
 				contributions = contribution.contributions
 			}
-            
+
 			if (currentUser) {
 				isCrUserCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
 				isTeamExist = userService.isValidatedTeamExist(project, currentUser)
 				CurrentUserTeam = userService.getTeamByUser(currentUser, project)
 			}
-			
+
 			def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)
 			def teamOffset = teamObj.maxrange
 			def teams = teamObj.teamList
 			def totalteams = teamObj.teams
-			
+
 			boolean ended = projectService.isProjectDeadlineCrossed(project)
 			boolean isFundingOpen = projectService.isFundingOpen(project)
 			def rewards = rewardService.getSortedRewards(project);
@@ -226,25 +228,25 @@ class ProjectController {
 				teamcomment = projectService.getTeamCommentById(params.long('teamCommentId'))
 			}
 
-            def projectComments = projectService.getProjectComments(project)
-            def teamComments = projectService.getTeamComments(currentTeam)
-            def offset = params.int('offset') ?: 0
+			def projectComments = projectService.getProjectComments(project)
+			def teamComments = projectService.getTeamComments(currentTeam)
+			def offset = params.int('offset') ?: 0
 
-            def multiplier = projectService.getCurrencyConverter();
-            def pieList = projectService.getPieList(project);
+			def multiplier = projectService.getCurrencyConverter();
+			def pieList = projectService.getPieList(project);
 
-            render (view: 'show/index',
-            model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
-                    totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
-                    teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
-                    isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
-                    isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url,
-                    multiplier: multiplier, pieList:pieList])
+			render (view: 'show/index',
+			model: [project: project, user: user,currentFundraiser: currentFundraiser, currentTeam: currentTeam, endDate: endDate, isCampaignAdmin: isCampaignAdmin, projectComments: projectComments, totalteams: totalteams,
+				totalContribution: totalContribution, percentage:percentage, teamContribution: teamContribution, contributions: contributions, webUrl: webUrl, teamComments: teamComments, totalContributions:totalContributions,
+				teamPercentage: teamPercentage, ended: ended, teams: teams, currentUser: currentUser, day: day, CurrentUserTeam: CurrentUserTeam, isEnabledTeamExist: isEnabledTeamExist, offset: offset, teamOffset: teamOffset,
+				isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin, isFundingOpen: isFundingOpen, rewards: rewards, projectComment: projectComment, teamcomment: teamcomment,currentEnv: currentEnv,
+				isTeamExist: isTeamExist, vanityTitle: params.projectTitle, vanityUsername: params.fr, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, tile:params.tile, shortUrl:shortUrl, base_url:base_url,
+				multiplier: multiplier, pieList:pieList])
 		} else {
-		    render(view: '/404error', model: [message: 'This project does not exist.'])
+			render(view: '/404error', model: [message: 'This project does not exist.'])
 		}
 	}
-	
+
 	def showMoreteam() {
 		def vanityTitle = params.projectTitle
 		redirect (controller: 'project', action: 'show', params:['projectTitle':vanityTitle,'fr': params.fr, teamOffset: params.teamOffset], fragment: 'manageTeam')
@@ -356,32 +358,32 @@ class ProjectController {
 		}
 	}
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def deleteProjectImage(){
-        def imageUrl = projectService.getImageUrlById(request.getParameter("imgst"))
-        def project = projectService.getProjectById(request.getParameter("projectId"))
-        List imageUrls = project.imageUrl
-        imageUrls.remove(imageUrl)
-        imageUrl.delete()
-        render ''
-    }
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def deleteProjectImage(){
+		def imageUrl = projectService.getImageUrlById(request.getParameter("imgst"))
+		def project = projectService.getProjectById(request.getParameter("projectId"))
+		List imageUrls = project.imageUrl
+		imageUrls.remove(imageUrl)
+		imageUrl.delete()
+		render ''
+	}
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def deleteTeamImage(){
-        def imageUrl = projectService.getImageUrlById(request.getParameter("imgst"))
-        def team = projectService.getTeamById(request.getParameter("teamId"))
-        List imageUrls = team.imageUrl
-        imageUrls.remove(imageUrl)
-        imageUrl.delete()
-        render ''
-    }
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def deleteTeamImage(){
+		def imageUrl = projectService.getImageUrlById(request.getParameter("imgst"))
+		def team = projectService.getTeamById(request.getParameter("teamId"))
+		List imageUrls = team.imageUrl
+		imageUrls.remove(imageUrl)
+		imageUrl.delete()
+		render ''
+	}
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def deleteOrganizationLogo(){
-        def project = projectService.getProjectById(request.getParameter("projectId"))
-        project.organizationIconUrl = null
-        render ''
-    }
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def deleteOrganizationLogo(){
+		def project = projectService.getProjectById(request.getParameter("projectId"))
+		project.organizationIconUrl = null
+		render ''
+	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def deleteCampaignAdmin(){
@@ -412,12 +414,12 @@ class ProjectController {
 		def title = projectService.getVanityTitleFromId(params.id)
 		if(project.draft) {
 			project.draft = false
-            if (params.submitForApprovalcheckbox && !project.touAccepted) {
-                project.touAccepted = true
-            }
-            if (params.submitForApprovalcheckbox1 && !project.touAccepted) {
-                project.touAccepted = true
-            }
+			if (params.submitForApprovalcheckbox && !project.touAccepted) {
+				project.touAccepted = true
+			}
+			if (params.submitForApprovalcheckbox1 && !project.touAccepted) {
+				project.touAccepted = true
+			}
 			flash.prj_mngprj_message="Campaign has been submitted for approval."
 			redirect(action:'manageproject', params:['projectTitle':title])
 		} else {
@@ -428,7 +430,7 @@ class ProjectController {
 
 	@Secured(['ROLE_ADMIN'])
 	def validateList() {
-        def currentEnv = Environment.current.getName()
+		def currentEnv = Environment.current.getName()
 		def projects = projectService.getNonValidatedProjects(currentEnv)
         if (flash.prj_validate_message) {
             flash.prj_validate_message = "Campaign validated successfully"
@@ -469,6 +471,7 @@ class ProjectController {
         
         redirect action:'create'
     }
+
 
 	def create(String id) {
         def currentEnv = Environment.current.getName()
@@ -591,105 +594,105 @@ class ProjectController {
                     }
                 }
 				projectRewards = projectRewards.sort{it.rewardCount}
-                if(campaignEndDate == date.format('MM/dd/yyyy')){
-                    campaignEndDate = null
-                }
-                def adminemails = projectService.getAdminEmail(project)
-                def payOpts
-                if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-                    payOpts = projectService.getIndiaPaymentGateway()
-                } else {
-                    payOpts = projectService.getPayment()
-                }
-                def pieList = projectService.getPieList(project);
-                def reasonsToFund = projectService.getProjectReasonsToFund(project)
-                def qA = projectService.getProjectQA(project)
-                render(view: 'create/index2',
-                model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
-                       FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, user:user,campaignEndDate:campaignEndDate, pieList:pieList,
-                       vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
-                       reasonsToFund:reasonsToFund, qA:qA, spends:spends, usedForCreate:usedForCreate, selectedCountry:selectedCountry])
-            } else {
-                render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
-            }
-        } else {
-            render(view: '/404error', model: [message: 'This project does not exist.'])
-        }
-    }
-	
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def campaignOnDraftAndLaunch() {
-        Project project = projectService.getProjectById(params.projectId)
-        def vanitytitle
-        if (project) {
-            User user = userService.getCurrentUser()
-            if (project.user == user) {
-                def currentEnv = Environment.current.getName()
-                if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
-                    if(params.payuEmail){
-                        project.payuEmail = params.payuEmail
-                    }
-                }
-				
-                projectService.saveLastSpendField(params);
+				if(campaignEndDate == date.format('MM/dd/yyyy')){
+					campaignEndDate = null
+				}
+				def adminemails = projectService.getAdminEmail(project)
+				def payOpts
+				if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+					payOpts = projectService.getIndiaPaymentGateway()
+				} else {
+					payOpts = projectService.getPayment()
+				}
+				def pieList = projectService.getPieList(project);
+				def reasonsToFund = projectService.getProjectReasonsToFund(project)
+				def qA = projectService.getProjectQA(project)
+				render(view: 'create/index2',
+				model: ['categoryOptions': categoryOptions, 'payOpts':payOpts, 'country': country, nonIndprofit:nonIndprofit, nonProfit:nonProfit , currentEnv: currentEnv,
+					FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards, project:project, user:user,campaignEndDate:campaignEndDate, pieList:pieList,
+					vanityTitle: vanityTitle, vanityUsername:vanityUsername, email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3,
+					reasonsToFund:reasonsToFund, qA:qA, spends:spends, usedForCreate:usedForCreate, selectedCountry:selectedCountry])
+			} else {
+				render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
+			}
+		} else {
+			render(view: '/404error', model: [message: 'This project does not exist.'])
+		}
+	}
 
-                vanitytitle = (project.customVanityUrl) ? projectService.getCustomVanityUrl(project) : params.title;
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def campaignOnDraftAndLaunch() {
+		Project project = projectService.getProjectById(params.projectId)
+		def vanitytitle
+		if (project) {
+			User user = userService.getCurrentUser()
+			if (project.user == user) {
+				def currentEnv = Environment.current.getName()
+				if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+					if(params.payuEmail){
+						project.payuEmail = params.payuEmail
+					}
+				}
 
-                rewardService.saveRewardDetails(params);
-                project.story = params.story
-                
-                if (params.checkBox && !project.touAccepted) {
-                    project.touAccepted = true
-                }
+				projectService.saveLastSpendField(params);
 
-                if (params.isSubmitButton == 'true'){
-                    project.draft = false;
-                    if (!project.beneficiary.country || project.beneficiary.country == 'null') {
-                        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
-                            project.beneficiary.country = 'IN'
-                        } else {
-                            project.beneficiary.country = 'US'
-                        }
-                    }
-                    redirect (action:'launch' ,  params:[title:vanitytitle])
-                } else {
-                    redirect (action:'showCampaign' ,  params:[id:project.id, isPreview:true])
-                }
-            } else {
-                render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
-            }
-        } else {
-            render(view: '/404error', model: [message: 'This project does not exist.'])
-        }
-    }
-	
+				vanitytitle = (project.customVanityUrl) ? projectService.getCustomVanityUrl(project) : params.title;
+
+				rewardService.saveRewardDetails(params);
+				project.story = params.story
+
+				if (params.checkBox && !project.touAccepted) {
+					project.touAccepted = true
+				}
+
+				if (params.isSubmitButton == 'true'){
+					project.draft = false;
+					if (!project.beneficiary.country || project.beneficiary.country == 'null') {
+						if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
+							project.beneficiary.country = 'IN'
+						} else {
+							project.beneficiary.country = 'US'
+						}
+					}
+					redirect (action:'launch' ,  params:[title:vanitytitle])
+				} else {
+					redirect (action:'showCampaign' ,  params:[id:project.id, isPreview:true])
+				}
+			} else {
+				render(view: '/401error', model: [message: 'Sorry, you are not authorized to view this page.'])
+			}
+		} else {
+			render(view: '/404error', model: [message: 'This project does not exist.'])
+		}
+	}
+
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def campaignOnDraft() {
 		def vanityTitle = params.title
 		def project = projectService.getProjectFromVanityTitle(vanityTitle)
 		render (view: 'create/saveasdraft', model:[FORMCONSTANTS: FORMCONSTANTS, project:project])
 	}
-	
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def launch() {
-        def vanityTitle = params.title
-        def project = projectService. getProjectFromVanityTitle(vanityTitle)
-        def currentEnv = Environment.current.getName()
-        if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-            project.payuStatus = true
-            if (project.fundsRecievedBy == null){
-                project.fundsRecievedBy = "NGO"
-                project.hashtags = project.hashtags + ", #NGO"
-            }
-        } else {
-            if (project.fundsRecievedBy == null){
-                project.fundsRecievedBy = "NON-PROFIT"
-                project.hashtags = project.hashtags + ", #NON-PROFIT"
-            }
-        }
-        render (view: 'create/justcreated', model:[project:project, FORMCONSTANTS: FORMCONSTANTS, vanityTitle: vanityTitle])
-    }
-	
+
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def launch() {
+		def vanityTitle = params.title
+		def project = projectService. getProjectFromVanityTitle(vanityTitle)
+		def currentEnv = Environment.current.getName()
+		if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+			project.payuStatus = true
+			if (project.fundsRecievedBy == null){
+				project.fundsRecievedBy = "NGO"
+				project.hashtags = project.hashtags + ", #NGO"
+			}
+		} else {
+			if (project.fundsRecievedBy == null){
+				project.fundsRecievedBy = "NON-PROFIT"
+				project.hashtags = project.hashtags + ", #NON-PROFIT"
+			}
+		}
+		render (view: 'create/justcreated', model:[project:project, FORMCONSTANTS: FORMCONSTANTS, vanityTitle: vanityTitle])
+	}
+
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editCampaign(){
 		def title = projectService.getVanityTitleFromId(params.id)
@@ -700,79 +703,79 @@ class ProjectController {
 		}
 	}
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def edit() {
-        def project = projectService.getProjectFromVanityTitle(params.projectTitle)
-        def currentEnv = Environment.current.getName()
-        def inDays = projectService.getInDays()
-        def categoryOptions
-        def spends = project.spend
-        spends = spends.sort{it.numberAvailable}
-        if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
-            categoryOptions = projectService.getIndiaCategoryList()
-        } else {
-            categoryOptions = projectService.getCategoryList()
-        }
-        def vanityTitle = params.projectTitle
-        def user = project.user
-        def country = projectService.getCountry()
-        def nonProfit = projectService.getRecipientOfFunds()
-        def nonIndprofit = projectService.getRecipientOfFundsIndo()
-        def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
-        def endDate = projectService.getProjectEndDate(project)
-        def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
-        def date = new Date();
-        List projectRewards = []
-        project.rewards.each {
-            if (it.id != 1) {
-                projectRewards.add(it)
-            }
-        }
-        projectRewards = projectRewards.sort{it.rewardCount}
-        if(campaignEndDate == date.format('MM/dd/yyyy')){
-            campaignEndDate = null
-        }
-        def adminemails = projectService.getAdminEmail(project)
-        def payOpts
-        if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
-            payOpts = projectService.getIndiaPaymentGateway()
-        } else {
-            payOpts = projectService.getPayment()
-        }
-        def selectedCountry = (project.beneficiary.country) ? projectService.getCountryValue(project.beneficiary.country) : null;
-        if (project) {
-            def beneficiary = project.beneficiary
-            def reasonsToFund = projectService.getProjectReasonsToFund(project)
-            def qA = projectService.getProjectQA(project)
-            render (view: 'edit/index',
-            model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
-            'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,
-            currentEnv: currentEnv,beneficiary:beneficiary,inDays:inDays,
-            FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,qA:qA,
-            project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
-            vanityTitle: vanityTitle, vanityUsername:vanityUsername, selectedCountry: selectedCountry,
-            email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
-        } else {
-            flash.prj_edit_message = "Campaign not found."
-            render (view: 'edit/editerror')
-            return
-        }
-    }
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def edit() {
+		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
+		def currentEnv = Environment.current.getName()
+		def inDays = projectService.getInDays()
+		def categoryOptions
+		def spends = project.spend
+		spends = spends.sort{it.numberAvailable}
+		if(currentEnv =='testIndia' || currentEnv =='stagingIndia' || currentEnv =='prodIndia'){
+			categoryOptions = projectService.getIndiaCategoryList()
+		} else {
+			categoryOptions = projectService.getCategoryList()
+		}
+		def vanityTitle = params.projectTitle
+		def user = project.user
+		def country = projectService.getCountry()
+		def nonProfit = projectService.getRecipientOfFunds()
+		def nonIndprofit = projectService.getRecipientOfFundsIndo()
+		def vanityUsername = userService.getVanityNameFromUsername(user.username, project.id)
+		def endDate = projectService.getProjectEndDate(project)
+		def campaignEndDate = endDate.getTime().format('MM/dd/yyyy')
+		def date = new Date();
+		List projectRewards = []
+		project.rewards.each {
+			if (it.id != 1) {
+				projectRewards.add(it)
+			}
+		}
+		projectRewards = projectRewards.sort{it.rewardCount}
+		if(campaignEndDate == date.format('MM/dd/yyyy')){
+			campaignEndDate = null
+		}
+		def adminemails = projectService.getAdminEmail(project)
+		def payOpts
+		if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+			payOpts = projectService.getIndiaPaymentGateway()
+		} else {
+			payOpts = projectService.getPayment()
+		}
+		def selectedCountry = (project.beneficiary.country) ? projectService.getCountryValue(project.beneficiary.country) : null;
+		if (project) {
+			def beneficiary = project.beneficiary
+			def reasonsToFund = projectService.getProjectReasonsToFund(project)
+			def qA = projectService.getProjectQA(project)
+			render (view: 'edit/index',
+			model: ['categoryOptions': categoryOptions, 'payOpts':payOpts,spends:spends,
+				'country': country, nonProfit:nonProfit, nonIndprofit:nonIndprofit,
+				currentEnv: currentEnv,beneficiary:beneficiary,inDays:inDays,
+				FORMCONSTANTS: FORMCONSTANTS,projectRewards:projectRewards,qA:qA,
+				project:project, user:user,campaignEndDate:campaignEndDate,reasonsToFund:reasonsToFund,
+				vanityTitle: vanityTitle, vanityUsername:vanityUsername, selectedCountry: selectedCountry,
+				email1:adminemails.email1, email2:adminemails.email2, email3:adminemails.email3])
+		} else {
+			flash.prj_edit_message = "Campaign not found."
+			render (view: 'edit/editerror')
+			return
+		}
+	}
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def update() {
-        def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
-        if(project) {
-            def vanityTitle = projectService.getProjectUpdateDetails(params, project)
-            rewardService.saveRewardDetails(params);
-            projectService.saveLastSpendField(params);
-            flash.prj_mngprj_message = "Successfully saved the changes"
-            redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
-        } else {
-            flash.prj_edit_message = "Campaign not found."
-            render (view: 'edit/editerror')
-        }
-    }
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def update() {
+		def project = projectService.getProjectFromVanityTitle(params.vanityTitle)
+		if(project) {
+			def vanityTitle = projectService.getProjectUpdateDetails(params, project)
+			rewardService.saveRewardDetails(params);
+			projectService.saveLastSpendField(params);
+			flash.prj_mngprj_message = "Successfully saved the changes"
+			redirect (action: 'manageproject', params:['projectTitle':vanityTitle])
+		} else {
+			flash.prj_edit_message = "Campaign not found."
+			render (view: 'edit/editerror')
+		}
+	}
 
 	@Secured(['ROLE_ADMIN'])
 	def importprojects() {
@@ -925,111 +928,111 @@ class ProjectController {
 	}
 
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def save() {
-        def environment = Environment.current.getName()
-        Project project
-        Beneficiary beneficiary
-        User user = userService.getCurrentUser()
-        project = projectService.getProjectByParams(params)
-        beneficiary = userService.getBeneficiaryByParams(params)
-        def amount=project.amount
-        def boolPerk=false
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def save() {
+		def environment = Environment.current.getName()
+		Project project
+		Beneficiary beneficiary
+		User user = userService.getCurrentUser()
+		project = projectService.getProjectByParams(params)
+		beneficiary = userService.getBeneficiaryByParams(params)
+		def amount=project.amount
+		def boolPerk=false
 
-        def button = params.isSubmitButton
-        if (button == 'true') {
-            project.draft = true
-        }
+		def button = params.isSubmitButton
+		if (button == 'true') {
+			project.draft = true
+		}
 
-        if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
-            if(params.payuEmail) {
-                project.payuStatus=true
-            }
+		if(environment == 'testIndia' || environment == 'stagingIndia' || environment == 'prodIndia'){
+			if(params.payuEmail) {
+				project.payuStatus=true
+			}
 
-            if(params.(FORMCONSTANTS.COUNTRY) != "IN"){
-                beneficiary.stateOrProvince = params.otherstate
-            }
-        } else{
-            if(params.(FORMCONSTANTS.COUNTRY) != "US"){
-                beneficiary.stateOrProvince = params.otherstate
-            }
-        }
+			if(params.(FORMCONSTANTS.COUNTRY) != "IN"){
+				beneficiary.stateOrProvince = params.otherstate
+			}
+		} else{
+			if(params.(FORMCONSTANTS.COUNTRY) != "US"){
+				beneficiary.stateOrProvince = params.otherstate
+			}
+		}
 
-        def rewardLength=Integer.parseInt(params.rewardCount)
-        if (rewardLength >= 1) {
-            def rewardTitle = new Object[rewardLength]
-            def rewardPrice = new Object[rewardLength]
-            def rewardDescription = new Object[rewardLength]
-            def mailingAddress = new Object[rewardLength]
-            def emailAddress = new Object[rewardLength]
-            def twitter = new Object[rewardLength]
-            def custom = new Object[rewardLength]
+		def rewardLength=Integer.parseInt(params.rewardCount)
+		if (rewardLength >= 1) {
+			def rewardTitle = new Object[rewardLength]
+			def rewardPrice = new Object[rewardLength]
+			def rewardDescription = new Object[rewardLength]
+			def mailingAddress = new Object[rewardLength]
+			def emailAddress = new Object[rewardLength]
+			def twitter = new Object[rewardLength]
+			def custom = new Object[rewardLength]
 
-            for(def icount=0; icount< rewardLength; icount++){
-                rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
-                rewardPrice[icount] = params.("rewardPrice"+(icount+1))
-                rewardDescription[icount] = params.("rewardDescription"+(icount+1))
-                mailingAddress[icount] = params.("mailingAddress"+(icount+1))
-                emailAddress[icount] = params.("emailAddress"+(icount+1))
-                twitter[icount] = params.("twitter"+(icount+1))
-                custom[icount] = params.("custom"+(icount+1))
-                if(rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount])>amount){
-                    boolPerk=true;
-                }
-                if (mailingAddress[icount]==null && emailAddress[icount]==null && twitter[icount]==null && custom[icount]==null) {
-                    emailAddress[icount]=true
-                }
-            }
-            if(boolPerk==true){
-                flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
-                render (view: 'manageproject/error')
-                return
-            } else {
-                rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
-            }
-        }
+			for(def icount=0; icount< rewardLength; icount++){
+				rewardTitle[icount] = params.("rewardTitle"+ (icount+1))
+				rewardPrice[icount] = params.("rewardPrice"+(icount+1))
+				rewardDescription[icount] = params.("rewardDescription"+(icount+1))
+				mailingAddress[icount] = params.("mailingAddress"+(icount+1))
+				emailAddress[icount] = params.("emailAddress"+(icount+1))
+				twitter[icount] = params.("twitter"+(icount+1))
+				custom[icount] = params.("custom"+(icount+1))
+				if(rewardPrice[icount]==null || Double.parseDouble(rewardPrice[icount])>amount){
+					boolPerk=true;
+				}
+				if (mailingAddress[icount]==null && emailAddress[icount]==null && twitter[icount]==null && custom[icount]==null) {
+					emailAddress[icount]=true
+				}
+			}
+			if(boolPerk==true){
+				flash.prj_mngprj_message = "Enter a perk price less than Campaign amount: ${amount}"
+				render (view: 'manageproject/error')
+				return
+			} else {
+				rewardService.getMultipleRewards(project, rewardTitle, rewardPrice, rewardDescription, mailingAddress, emailAddress, twitter, custom)
+			}
+		}
 
-        def iconFile = request.getFile('iconfile')
-        if(!iconFile.isEmpty()) {
-            def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
-            project.organizationIconUrl = uploadedFileUrl
-        }
+		def iconFile = request.getFile('iconfile')
+		if(!iconFile.isEmpty()) {
+			def uploadedFileUrl = projectService.getorganizationIconUrl(iconFile)
+			project.organizationIconUrl = uploadedFileUrl
+		}
 
-        def imageFiles = request.getFiles('thumbnail[]')
-        if (!imageFiles.isEmpty()) {
-            projectService.getMultipleImageUrls(imageFiles, project)
-        }
+		def imageFiles = request.getFiles('thumbnail[]')
+		if (!imageFiles.isEmpty()) {
+			projectService.getMultipleImageUrls(imageFiles, project)
+		}
 
-        String email1 = params.email1
-        String email2 = params.email2
-        String email3 = params.email3
+		String email1 = params.email1
+		String email2 = params.email2
+		String email3 = params.email3
 
-        project.user = user
+		project.user = user
 
-        def days = params.days
-        projectService.getNumberofDays(days, project)
+		def days = params.days
+		projectService.getNumberofDays(days, project)
 
-        project.beneficiary = beneficiary
+		project.beneficiary = beneficiary
 
-        if (project.save()) {
-            projectService.getYoutubeUrlChanged(params.videoUrl, project)
-            projectService.getFundRaisersForTeam(project, user)
-            projectService.getdefaultAdmin(project, user)
-            projectService.getAdminForProjects(email1, project, user)
-            projectService.getAdminForProjects(email2, project, user)
-            projectService.getAdminForProjects(email3, project, user)
-            def projectTitle = projectService.getProjectVanityTitle(project)
-            userService.getProjectVanityUsername(user)
+		if (project.save()) {
+			projectService.getYoutubeUrlChanged(params.videoUrl, project)
+			projectService.getFundRaisersForTeam(project, user)
+			projectService.getdefaultAdmin(project, user)
+			projectService.getAdminForProjects(email1, project, user)
+			projectService.getAdminForProjects(email2, project, user)
+			projectService.getAdminForProjects(email3, project, user)
+			def projectTitle = projectService.getProjectVanityTitle(project)
+			userService.getProjectVanityUsername(user)
 
-            if(button == 'true') {
-                redirect(action:'draftProject', params:['projectTitle': projectTitle])
-            } else {
-                redirect(action:'saveProject', params:['projectTitle': projectTitle])
-            }
-        } else {
-            render (view: 'create/createerror', model: [project: project])
-        }
-    }
+			if(button == 'true') {
+				redirect(action:'draftProject', params:['projectTitle': projectTitle])
+			} else {
+				redirect(action:'saveProject', params:['projectTitle': projectTitle])
+			}
+		} else {
+			render (view: 'create/createerror', model: [project: project])
+		}
+	}
 
 	def draftProject() {
 		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
@@ -1042,77 +1045,77 @@ class ProjectController {
 		render (view: 'create/justcreated', model: [project: project])
 	}
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def manageCampaign() {
-        def title = projectService.getVanityTitleFromId(params.id)
-        if(title) {
-            redirect (action:'manageproject', params:['projectTitle':title])
-        } else {
-            render view:'404error'
-        }
-    }
-	
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def manageproject() {
-        def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
-        Project project = projectService.getProjectById(projectId)
-        User user = userService.getCurrentUser()
-        if (project) {
-            def shortUrl = projectService.getShortenUrl(project.id, params.fr)
-            def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-            def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-            def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
-            def totalContribution = contributionService.getTotalContributionForProject(project)
-            def currentEnv = projectService.getCurrentEnvironment()
-            def projectimages = projectService.getProjectImageLinks(project)
-            def vanityUsername = userService.getVanityNameFromUsername(project.user.username, project.id)
- 
-            def teamObj = projectService.getValidatedTeam(project, params)
-            def teamOffset = teamObj.maxrange
-            def validatedTeam = teamObj.teamList
-            def totalteams = teamObj.teams
-			
-            def unValidatedTeam = projectService.getTeamToBeValidated(project)
-            def discardedTeam = projectService.getDiscardedTeams(project)
-            boolean ended = projectService.isProjectDeadlineCrossed(project)
-            boolean isFundingOpen = projectService.isFundingOpen(project)
-            def rewards = rewardService.getSortedRewards(project);
-            def endDate = projectService.getProjectEndDate(project)
-            def isCampaignAdmin = userService.isCampaignAdmin(project, user.username)
-            def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
-            
-            Team currentTeam = projectService.getCurrentTeam(project,user)
-            def isCrFrCampBenOrAdmin = isCampaignOwnerOrAdmin
-            def webUrl = projectService.getWebUrl(project)
-            def isEnabledTeamExist = userService.isTeamEnabled(project, user)
-			
-            List totalContributions = []
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def manageCampaign() {
+		def title = projectService.getVanityTitleFromId(params.id)
+		if(title) {
+			redirect (action:'manageproject', params:['projectTitle':title])
+		} else {
+			render view:'404error'
+		}
+	}
+
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def manageproject() {
+		def projectId = projectService.getProjectIdFromVanityTitle(params.projectTitle)
+		Project project = projectService.getProjectById(projectId)
+		User user = userService.getCurrentUser()
+		if (project) {
+			def shortUrl = projectService.getShortenUrl(project.id, params.fr)
+			def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+			def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+			def isCampaignOwnerOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project, user)
+			def totalContribution = contributionService.getTotalContributionForProject(project)
+			def currentEnv = projectService.getCurrentEnvironment()
+			def projectimages = projectService.getProjectImageLinks(project)
+			def vanityUsername = userService.getVanityNameFromUsername(project.user.username, project.id)
+
+			def teamObj = projectService.getValidatedTeam(project, params)
+			def teamOffset = teamObj.maxrange
+			def validatedTeam = teamObj.teamList
+			def totalteams = teamObj.teams
+
+			def unValidatedTeam = projectService.getTeamToBeValidated(project)
+			def discardedTeam = projectService.getDiscardedTeams(project)
+			boolean ended = projectService.isProjectDeadlineCrossed(project)
+			boolean isFundingOpen = projectService.isFundingOpen(project)
+			def rewards = rewardService.getSortedRewards(project);
+			def endDate = projectService.getProjectEndDate(project)
+			def isCampaignAdmin = userService.isCampaignAdmin(project, user.username)
+			def percentage = contributionService.getPercentageContributionForProject(totalContribution, project)
+
+			Team currentTeam = projectService.getCurrentTeam(project,user)
+			def isCrFrCampBenOrAdmin = isCampaignOwnerOrAdmin
+			def webUrl = projectService.getWebUrl(project)
+			def isEnabledTeamExist = userService.isTeamEnabled(project, user)
+
+			List totalContributions = []
 			List contributions = []
 			def contribution = projectService.getProjectContributions(params, project)
 			totalContributions = contribution.totalContributions
 			contributions = contribution.contributions
 			def offset = params.int('offset') ?: 0
 			def bankInfo = projectService.getBankInfoByProject(project)
-            
-            def day = projectService.getRemainingDay(project)
-            def multiplier = projectService.getCurrencyConverter();
 
-            if(project.user==user || isCampaignOwnerOrAdmin){
-                render (view: 'manageproject/index',
-                        model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
-                                discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,
-                                ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
-                                unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, vanityUsername:vanityUsername, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo, 
-								tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier])
-            } else {
-                flash.prj_mngprj_message = 'Campaign Not Found'
-                render (view: 'manageproject/error', model: [project: project])
-            }
-        } else {
-            render(view: '/404error', model: [message: 'This project does not exist.'])
-        }
-    }
-	
+			def day = projectService.getRemainingDay(project)
+			def multiplier = projectService.getCurrencyConverter();
+
+			if(project.user==user || isCampaignOwnerOrAdmin){
+				render (view: 'manageproject/index',
+				model: [project: project, isCampaignOwnerOrAdmin: isCampaignOwnerOrAdmin, validatedTeam: validatedTeam, percentage: percentage, currentTeam: currentTeam,totalContributions:totalContributions, totalteams: totalteams,
+					discardedTeam : discardedTeam, totalContribution: totalContribution, projectimages: projectimages,isCampaignAdmin: isCampaignAdmin, webUrl: webUrl,contributions: contributions, offset: offset, day: day,
+					ended: ended, isFundingOpen: isFundingOpen, rewards: rewards, endDate: endDate, user : user, isCrFrCampBenOrAdmin: isCrFrCampBenOrAdmin,isEnabledTeamExist: isEnabledTeamExist, teamOffset: teamOffset,
+					unValidatedTeam: unValidatedTeam, vanityTitle: params.projectTitle, vanityUsername:vanityUsername, FORMCONSTANTS: FORMCONSTANTS, isPreview:params.isPreview, currentEnv: currentEnv, bankInfo: bankInfo,
+					tile:params.tile, shortUrl:shortUrl, base_url:base_url, multiplier: multiplier])
+			} else {
+				flash.prj_mngprj_message = 'Campaign Not Found'
+				render (view: 'manageproject/error', model: [project: project])
+			}
+		} else {
+			render(view: '/404error', model: [message: 'This project does not exist.'])
+		}
+	}
+
 	def showteams() {
 		def vanityTitle = params.projectTitle
 		redirect (controller: 'project', action: 'manageproject', params:['projectTitle':vanityTitle, teamOffset: params.teamOffset], fragment: 'manageTeam')
@@ -1192,18 +1195,18 @@ class ProjectController {
 		}
 	}
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def editUpdate() {
-        def projectUpdate = projectService.getProjectUpdateById(params.id)
-        def project = projectService.getProjectFromVanityTitle(params.projectTitle)
-        def projectUpdates = project.projectUpdates
-        if (projectUpdates.contains(projectUpdate)) {
-            flash.editUpdateSuccessMsg = "Campaign Update Edited Successfully"
-            render (view:'editupdate/index', model:[projectUpdate: projectUpdate, project: project, FORMCONSTANTS: FORMCONSTANTS])
-        } else {
-            render (view: 'manageproject/error')
-        }
-    }
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def editUpdate() {
+		def projectUpdate = projectService.getProjectUpdateById(params.id)
+		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
+		def projectUpdates = project.projectUpdates
+		if (projectUpdates.contains(projectUpdate)) {
+			flash.editUpdateSuccessMsg = "Campaign Update Edited Successfully"
+			render (view:'editupdate/index', model:[projectUpdate: projectUpdate, project: project, FORMCONSTANTS: FORMCONSTANTS])
+		} else {
+			render (view: 'manageproject/error')
+		}
+	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def saveEditUpdate() {
@@ -1215,17 +1218,17 @@ class ProjectController {
 		redirect(controller: 'project', action: 'manageproject', params:['projectTitle':title], fragment: 'projectupdates')
 	}
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def deleteProjectUpdateImage() {
-        def imageUrl = ImageUrl.get(request.getParameter("imageId"))
-        def projectUpdate = projectService.getProjectUpdateById(request.getParameter("projectUpdateId"))
-        List imageUrls = projectUpdate.imageUrls
-        imageUrls.remove(imageUrl)
-        if (imageUrl) {
-            imageUrl.delete()
-        }
-        render ''
-    }
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def deleteProjectUpdateImage() {
+		def imageUrl = ImageUrl.get(request.getParameter("imageId"))
+		def projectUpdate = projectService.getProjectUpdateById(request.getParameter("projectUpdateId"))
+		List imageUrls = projectUpdate.imageUrls
+		imageUrls.remove(imageUrl)
+		if (imageUrl) {
+			imageUrl.delete()
+		}
+		render ''
+	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def updatesave() {
@@ -1240,7 +1243,7 @@ class ProjectController {
 				User user = userService.getCurrentUser()
 
 				projectUpdate.story = story
-                projectUpdate.title = params.title
+				projectUpdate.title = params.title
 				projectService.getUpdatedImageUrls(params.imageList, projectUpdate)
 
 				project.addToProjectUpdates(projectUpdate)
@@ -1260,24 +1263,24 @@ class ProjectController {
 	def category (){
 		def category
 		if(params.category){
-		    if(params.category.equalsIgnoreCase("Campaign category")){
-			    redirect(action:'list', controller:'project')
-		    }else{
-			    category=params.category.replace(' ', '-')
-			    redirect(url:'/campaigns/category/'+ category)
-		    }
+			if(params.category.equalsIgnoreCase("Campaign category")){
+				redirect(action:'list', controller:'project')
+			}else{
+				category=params.category.replace(' ', '-')
+				redirect(url:'/campaigns/category/'+ category)
+			}
 		}else if(params.usedfor){
 			category=params.usedfor
 			redirect(action: 'categoryFilter', controller:'project',params:[usedfor: category])
 		}else if(params.country){
 			if(params.country.equalsIgnoreCase("Country")){
-				redirect(action:'list', controller:'project')	
+				redirect(action:'list', controller:'project')
 			}else{
 				category = params.country.replace(' ', '-')
 				redirect(action: 'categoryFilter', controller:'project',params:[country: category])
 			}
 		}
-		
+
 	}
 
 	def categoryFilter() {
@@ -1298,7 +1301,7 @@ class ProjectController {
 		}else if(params.country){
 			category=params.country
 		}
-		
+
 		def project
 		if (category == "Social-Innovation"){
 			project = projectService.filterByCategory("SOCIAL_INNOVATION", currentEnv)
@@ -1311,31 +1314,31 @@ class ProjectController {
 		} else {
 			project = projectService.filterByCategory(category, currentEnv)
 		}
-        flash.catmessage = (project) ? "" : "No campaign found."
-        render (view: 'list/index', model: [projects: project, selectedCategory:category.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
+		flash.catmessage = (project) ? "" : "No campaign found."
+		render (view: 'list/index', model: [projects: project, selectedCategory:category.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
 	}
 
-    def addTeam() {
-        def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
-        def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
-       
-        def reqUrl = base_url+"/project/addFundRaiser?id=${params.id}"
-        Cookie cookie = new Cookie("requestUrl", reqUrl)
-        cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
-        cookie.maxAge= 3600  //Cookie expire time in seconds
-        response.addCookie(cookie)
-        
-        redirect (url: reqUrl)
-    }
-    
+	def addTeam() {
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+
+		def reqUrl = base_url+"/project/addFundRaiser?id=${params.id}"
+		Cookie cookie = new Cookie("requestUrl", reqUrl)
+		cookie.path = '/'    // Save Cookie to local path to access it throughout the domain
+		cookie.maxAge= 3600  //Cookie expire time in seconds
+		response.addCookie(cookie)
+
+		redirect (url: reqUrl)
+	}
+
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def addFundRaiser(){
-        String requestUrl = g.cookie(name: 'requestUrl')  //get Cookie
-        if (requestUrl) {
-            def cookie = projectService.setCookie(requestUrl)
-            response.addCookie(cookie)
-        }
-        
+		String requestUrl = g.cookie(name: 'requestUrl')  //get Cookie
+		if (requestUrl) {
+			def cookie = projectService.setCookie(requestUrl)
+			response.addCookie(cookie)
+		}
+
 		def project = projectService.getProjectById(params.id)
 		User user = userService.getCurrentUser()
 		def fundraiser = project.user.username
@@ -1350,6 +1353,34 @@ class ProjectController {
 		} else {
 			flash.prj_mngprj_message = message
 			redirect (action: 'show', params:['projectTitle':title,'fr':name])
+		}
+	}
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def redirectToInviteMember(){
+		redirect (action:'inviteMember', params:[projectId:params.projectId, page: params.page ])
+	}
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def inviteMember(){
+		def page = params.page?params.page : chainModel.page
+		Project project = Project.get(params.projectId)
+		session.setAttribute('projectId', project.id)
+		session.setAttribute('page', params.page)
+		if (page =="manage"){
+			if(chainModel){
+				def provider = session.getAttribute('socialProvider')
+				render (view:"/project/manageproject/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList,  provider:provider])
+			}else{
+				render (view:"/project/manageproject/invitemember", model:[project:project])
+			}
+		}else{
+			if(chainModel){
+				def provider = session.getAttribute('socialProvider')
+				render (view:"/project/show/invitemember", model:[project:project, email:chainModel.email, contactList:chainModel.contactList, provider:provider])
+			}else{
+				render (view:"/project/show/invitemember", model:[project:project])
+			}
 		}
 	}
 
@@ -1467,7 +1498,7 @@ class ProjectController {
 		if (params.manageCampaign) {
 			redirect (controller: 'project',action: 'manageproject', params:['projectTitle':title, offset: params.offset], fragment: 'contributions')
 		} else {
-		    redirect (controller: 'project', action: 'show', params:['projectTitle':title,'fr':username, offset: params.offset], fragment: 'contributions')
+			redirect (controller: 'project', action: 'show', params:['projectTitle':title,'fr':username, offset: params.offset], fragment: 'contributions')
 		}
 	}
 
@@ -1502,11 +1533,11 @@ class ProjectController {
 
 	def campaignsSorts(){
 		def sorts = params.sorts.replace(' ','-')
-		
+
 		if(sorts.equalsIgnoreCase('Sort-by')){
 			redirect(action:'list', controller:'project')
 		}else{
-		 redirect(action:'sortCampaign', controller: 'project',params:[query: sorts])
+			redirect(action:'sortCampaign', controller: 'project',params:[query: sorts])
 		}
 	}
 
@@ -1515,15 +1546,15 @@ class ProjectController {
 		def environment = Environment.current.getName()
 		def discoverLeftCategoryOptions
 		if(environment =="testIndia" || environment=="stagingIndia" || environment=="prodIndia"){
-			discoverLeftCategoryOptions = projectService.getIndiaCategory()	
+			discoverLeftCategoryOptions = projectService.getIndiaCategory()
 		}else{
 			discoverLeftCategoryOptions=projectService.getCategory()
 		}
 		def sortsOptions = projectService.getSorts()
 		def sorts = params.query.replace(' ','-')
-		
+
 		def campaignsorts = projectService.isCampaignsorts(sorts, environment)
-		
+
 		if(!campaignsorts){
 			flash.catmessage="No campaign found."
 			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
@@ -1531,7 +1562,7 @@ class ProjectController {
 			render (view: 'list/index', model: [projects: campaignsorts,sorts: sorts.replace('-',' '), countryOptions:countryOptions, sortsOptions:sortsOptions, discoverLeftCategoryOptions:discoverLeftCategoryOptions])
 		}
 	}
-    
+
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def customrewardedit() {
 		def isPerkPriceLess = rewardService.editCustomReward(params)
@@ -1601,17 +1632,17 @@ class ProjectController {
 		render ack
 	}
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def getRedactorImage() {
-        def imageFile= params.file
-        def fileUrl
-        if (imageFile) {
-            fileUrl = projectService.getRedactorImageUrl(imageFile)
-        }
-        JSONObject json = new JSONObject();
-        json.put("filelink",fileUrl);
-        render json
-    }
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def getRedactorImage() {
+		def imageFile= params.file
+		def fileUrl
+		if (imageFile) {
+			fileUrl = projectService.getRedactorImageUrl(imageFile)
+		}
+		JSONObject json = new JSONObject();
+		json.put("filelink",fileUrl);
+		render json
+	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def editComment() {
@@ -1648,102 +1679,102 @@ class ProjectController {
 		}
 		redirect (action:'show', controller:'project', fragment: 'comments', params:[projectTitle:params.projectTitle, fr:vanityUserName])
 	}
-	
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def autoSave() {
-        def variable = request.getParameter("variable")
-        def varValue = request.getParameter("varValue")
-        def projectId = request.getParameter("projectId")
-        projectService.autoSaveProjectDetails(variable, varValue, projectId)
-        render ''
-    }
-	
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def saveReward() {
-        rewardService.autoSaveRewardDetails(params)
-        render ''
-    }
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def deleteReward(){
-        rewardService.deleteReward(params)
-        render ''
-    }
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def autoSave() {
+		def variable = request.getParameter("variable")
+		def varValue = request.getParameter("varValue")
+		def projectId = request.getParameter("projectId")
+		projectService.autoSaveProjectDetails(variable, varValue, projectId)
+		render ''
+	}
 
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def deleteAllRewards(){
-        rewardService.deleteAllRewards(params)
-        render ''
-    }
-   
-    def contributionList() {
-        def username
-        if (params.projectId && params.fr){
-            username = userService.getUsernameFromVanityName(params.fr)
-            User user = userService.getUserByUsername(username)
-            Project project = projectService.getProjectById(params.projectId)
-            Team currentTeam = projectService.getCurrentTeam(project,user)
-            def currentUser = userService.getCurrentUser()
-            List contributions = []
-            List totalContributions = []
-            
-            def isCrUserCampBenOrAdmin
-            def CurrentUserTeam
-            if (currentUser) {
-                isCrUserCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
-                CurrentUserTeam = userService.getTeamByUser(currentUser, project)
-            }
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def saveReward() {
+		rewardService.autoSaveRewardDetails(params)
+		render ''
+	}
 
-            if (project.user == user) {
-                def contribution = projectService.getProjectContributions(params, project)
-                totalContributions = contribution.totalContributions
-                contributions = contribution.contributions
-            } else {
-                def contribution = projectService.getTeamContributions(params, currentTeam)
-                totalContributions = contribution.totalContributions
-                contributions = contribution.contributions
-            }
-            
-            def multiplier = projectService.getCurrencyConverter();
-            def model = [totalContributions : totalContributions, CurrentUserTeam: CurrentUserTeam,isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, contributions: contributions, project: project,
-                         team: currentTeam, multiplier: multiplier, vanityUsername:params.fr, currentUser: currentUser]
-            if (request.xhr) {
-                render(template: "show/contributionlist", model: model)
-            }
-       } else {
-            render ''
-       }
-    }
-    
-    def teamsList() {
-        if (params.projectId && params.fr){
-            Project project = projectService.getProjectById(params.projectId)
-            
-            def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)
-            def teamOffset = teamObj.maxrange
-            def teams = teamObj.teamList
-            def totalteams = teamObj.teams
-            def multiplier = projectService.getCurrencyConverter();
-            
-            def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr, multiplier: multiplier]
-            if (request.xhr) {
-                render(template: "show/teamgrid", model: model)
-            }
-        } else {
-            render ''
-        }
-    }
-	
-	def teamsMobileList() {
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def deleteReward(){
+		rewardService.deleteReward(params)
+		render ''
+	}
+
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def deleteAllRewards(){
+		rewardService.deleteAllRewards(params)
+		render ''
+	}
+
+	def contributionList() {
+		def username
+		if (params.projectId && params.fr){
+			username = userService.getUsernameFromVanityName(params.fr)
+			User user = userService.getUserByUsername(username)
+			Project project = projectService.getProjectById(params.projectId)
+			Team currentTeam = projectService.getCurrentTeam(project,user)
+			def currentUser = userService.getCurrentUser()
+			List contributions = []
+			List totalContributions = []
+
+			def isCrUserCampBenOrAdmin
+			def CurrentUserTeam
+			if (currentUser) {
+				isCrUserCampBenOrAdmin = userService.isCampaignBeneficiaryOrAdmin(project,currentUser)
+				CurrentUserTeam = userService.getTeamByUser(currentUser, project)
+			}
+
+			if (project.user == user) {
+				def contribution = projectService.getProjectContributions(params, project)
+				totalContributions = contribution.totalContributions
+				contributions = contribution.contributions
+			} else {
+				def contribution = projectService.getTeamContributions(params, currentTeam)
+				totalContributions = contribution.totalContributions
+				contributions = contribution.contributions
+			}
+
+			def multiplier = projectService.getCurrencyConverter();
+			def model = [totalContributions : totalContributions, CurrentUserTeam: CurrentUserTeam,isCrUserCampBenOrAdmin: isCrUserCampBenOrAdmin, contributions: contributions, project: project,
+				team: currentTeam, multiplier: multiplier, vanityUsername:params.fr, currentUser: currentUser]
+			if (request.xhr) {
+				render(template: "show/contributionlist", model: model)
+			}
+		} else {
+			render ''
+		}
+	}
+
+	def teamsList() {
 		if (params.projectId && params.fr){
 			Project project = projectService.getProjectById(params.projectId)
-			
+
 			def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)
 			def teamOffset = teamObj.maxrange
 			def teams = teamObj.teamList
 			def totalteams = teamObj.teams
-            def multiplier = projectService.getCurrencyConverter();
-			
+			def multiplier = projectService.getCurrencyConverter();
+
+			def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr, multiplier: multiplier]
+			if (request.xhr) {
+				render(template: "show/teamgrid", model: model)
+			}
+		} else {
+			render ''
+		}
+	}
+
+	def teamsMobileList() {
+		if (params.projectId && params.fr){
+			Project project = projectService.getProjectById(params.projectId)
+
+			def teamObj = projectService.getEnabledAndValidatedTeamsForCampaign(project, params)
+			def teamOffset = teamObj.maxrange
+			def teams = teamObj.teamList
+			def totalteams = teamObj.teams
+			def multiplier = projectService.getCurrencyConverter();
+
 			def model = [teamOffset : teamOffset, teams: teams, totalteams: totalteams, project: project, vanityUsername:params.fr, multiplier: multiplier]
 			if (request.xhr) {
 				render(template: "show/teamgridmobile", model: model)
@@ -1752,53 +1783,53 @@ class ProjectController {
 			render ''
 		}
 	}
-    
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def contributionsList() {
-        if (params.projectId){
-            Project project = projectService.getProjectById(params.projectId)
-            def user = userService.getCurrentUser();
-            List contributions = []
-            List totalContributions = []
-            
-            def contribution = projectService.getProjectContributions(params, project)
-            totalContributions = contribution.totalContributions
-            contributions = contribution.contributions
-            def multiplier = projectService.getCurrencyConverter();
-            
-            def model = [totalContributions : totalContributions, contributions: contributions, project: project, user:user, multiplier: multiplier]
-            if (request.xhr) {
-                render(template: "manageproject/contributionlist", model: model)
-            }
-       } else {
-            render ''
-       }
-    }
-    
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def teamList() {
-        if (params.projectId){
-            Project project = projectService.getProjectById(params.projectId)
-            def teamObj = projectService.getValidatedTeam(project, params)
-            def teamOffset = teamObj.maxrange
-            def validatedTeam = teamObj.teamList
-            def totalteams = teamObj.teams
-            def multiplier = projectService.getCurrencyConverter();
-            
-            def model = [teamOffset : teamOffset, validatedTeam: validatedTeam, totalteams: totalteams, project: project, multiplier: multiplier]
-            if (request.xhr) {
-                render(template: "manageproject/teamgrid", model: model)
-            }
-        } else {
-            render ''
-        }
-    }
-    
-    @Secured(['ROLE_ADMIN'])
-    def paymentslist() {
-        def bankInfos = userService.getBankInfoList()
-        render (view:'/user/payments/index', model:[bankInfos: bankInfos])
-    }
+
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def contributionsList() {
+		if (params.projectId){
+			Project project = projectService.getProjectById(params.projectId)
+			def user = userService.getCurrentUser();
+			List contributions = []
+			List totalContributions = []
+
+			def contribution = projectService.getProjectContributions(params, project)
+			totalContributions = contribution.totalContributions
+			contributions = contribution.contributions
+			def multiplier = projectService.getCurrencyConverter();
+
+			def model = [totalContributions : totalContributions, contributions: contributions, project: project, user:user, multiplier: multiplier]
+			if (request.xhr) {
+				render(template: "manageproject/contributionlist", model: model)
+			}
+		} else {
+			render ''
+		}
+	}
+
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def teamList() {
+		if (params.projectId){
+			Project project = projectService.getProjectById(params.projectId)
+			def teamObj = projectService.getValidatedTeam(project, params)
+			def teamOffset = teamObj.maxrange
+			def validatedTeam = teamObj.teamList
+			def totalteams = teamObj.teams
+			def multiplier = projectService.getCurrencyConverter();
+
+			def model = [teamOffset : teamOffset, validatedTeam: validatedTeam, totalteams: totalteams, project: project, multiplier: multiplier]
+			if (request.xhr) {
+				render(template: "manageproject/teamgrid", model: model)
+			}
+		} else {
+			render ''
+		}
+	}
+
+	@Secured(['ROLE_ADMIN'])
+	def paymentslist() {
+		def bankInfos = userService.getBankInfoList()
+		render (view:'/user/payments/index', model:[bankInfos: bankInfos])
+	}
 
 	def saveStory (){
 		def projectId = params.projectId
@@ -1806,228 +1837,438 @@ class ProjectController {
 		projectService.autoSaveProjectDetails('story', varValue, projectId)
 		render ''
 	}
-    
-    def uploadImage() {
-        def imageFile= params.file
-        Project project = projectService.getProjectById(params.projectId);
-        JSONObject json = new JSONObject();
-        if (project && imageFile) {
-            json = projectService.getMultipleImageUrls(imageFile, project)
-        }
-        
-        render json
-    }
-    
-    def uploadOrganizationIcon() {
-        def imageFile= params.file
-        Project project = projectService.getProjectById(params.projectId);
-        JSONObject json = new JSONObject();
-        if (project && imageFile) {
-            def iconUrl = projectService.getorganizationIconUrl(imageFile, project)
-            json.put('filelink',iconUrl)
-        }
-        render json
-    }
-    
-    def uploadTeamImage() {
-        def imageFile= params.file
-        Team team = projectService.getTeamById(params.teamId);
-        
-        JSONObject json = new JSONObject();
-        if (team && imageFile) {
-            json = projectService.getMultipleImageUrlsForTeam(imageFile, team)
-        }
-        render json
-    }
-    
-    def uploadUpdateEditImage() {
-        def imageFile= params.file
-        ProjectUpdate projectUpdate = projectService.getProjectUpdateById(params.projectUpdateId);
-        
-        JSONObject json = new JSONObject();
-        if (projectUpdate && imageFile) {
-            json = projectService.getUpdatEditImageUrls(imageFile, projectUpdate)
-        }
-        render json
-    }
-    
-    def uploadUpdateImage() {
-        def imageFile= params.file
-        
-        JSONObject json = new JSONObject();
-        if (imageFile) {
-            def iconUrl = projectService.getSavedImageUrl(imageFile)
-            json.put('filelink',iconUrl)
-        }
-        render json
-    }
 
-    def deleteCampaignUpdateImage() {
-        def imageUrl = projectService.getImageUrlById(request.getParameter("imageId"))
-        imageUrl.delete()
-        render ''
-    }
-    
-    @Secured(['ROLE_ADMIN'])
-    def campaignHistory() {
-        Project project = projectService.getProjectById(params.projectId)
-        if (project) {
-            def numberOfContributions = project.contributions.size()
-            def percentageContribution = contributionService.getPercentageContributionForProject(project)
-            def numberOFPerks = project.rewards.size()
-            def maxSelectedPerkAmount = rewardService.getMostSelectedPerkAmountForCampaign(project)
-            def numberOfComments = project.comments.size()
-            def numberOfUpdates = project.projectUpdates.size()
-            def numberOfTeams = projectService.getEnabledTeam(project)
-            def disabledTeams = projectService.getDiscardedTeams(project)
-            def highestContribution = contributionService.getHighestContributionDay(project)
-            def campaignSupporterCount = projectService.getCampaignSupporterCount(project)
-            
-            def campaignUrl = projectService.getCampaignShareUrl(project)
-            
-            def shareCount = getViewAndShareCount(project, campaignUrl)
-            
-            def model = [project: project, numberOfContributions: numberOfContributions, percentageContribution: percentageContribution, numberOFPerks: numberOFPerks,
-                         maxSelectedPerkAmount: maxSelectedPerkAmount, numberOfComments: numberOfComments, numberOfUpdates: numberOfUpdates, 
-                         numberOfTeams: numberOfTeams.size(), highestContributionDay: highestContribution.highestContributionDay,highestContributionHour: highestContribution.highestContributionHour ,
-                         ytViewCount: shareCount.ytViewCount, campaignUrl: campaignUrl, facebookCount: shareCount.facebookCount, linkedinCount: shareCount.linkedinCount, twitterCount: shareCount.twitterCount, campaignSupporterCount: campaignSupporterCount,
-                         disabledTeams: disabledTeams.size()]
-            
-            if (request.xhr) {
-                render(template: "/user/metrics/campaignhistory", model: model)
-            }
-        }
-        
-    }
-    
-    @Secured(['ROLE_ADMIN'])
-    def campaignsList() {
-        def projectObj = projectService.getProjectList(params)
-        def model = [sortedCampaigns: projectObj.projects, totalCampaigns: projectObj.totalCampaigns]
-        if (request.xhr) {
-            render(template: "/user/metrics/campaigns", model: model)
-        }
-    }
-    
-    @Secured(['ROLE_ADMIN'])
-    def campaignSearch() {
-        def projectObj = projectService.getCampaignBySearchQuery(params)
-        def model = [sortedCampaigns: projectObj.projects, totalCampaigns: projectObj.totalCampaigns, searchresultmessage: projectObj.message]
-        if (request.xhr) {
-            render(template: "/user/metrics/campaigns", model: model)
-        }
-    }
-    
-    @Secured(['IS_AUTHENTICATED_FULLY'])
-    def generateCampaignCSV() {
-        Project project = projectService.getProjectById(params.projectId)
-        def campaignUrl = projectService.getCampaignShareUrl(project)
-        
-        def shareCount = getViewAndShareCount(project, campaignUrl)
-        def ytViewCount = shareCount.ytViewCount
-        def facebookCount = shareCount.facebookCount
-        def twitterCount = shareCount.twitterCount
-        def linkedinCount = shareCount.linkedinCount
-        
-        def result = projectService.generateCSVReportForCampaign(response, project, ytViewCount, linkedinCount, twitterCount, facebookCount)
-        render (contentType:"text/csv", text:result)
-    }
+	def uploadImage() {
+		def imageFile= params.file
+		Project project = projectService.getProjectById(params.projectId);
+		JSONObject json = new JSONObject();
+		if (project && imageFile) {
+			json = projectService.getMultipleImageUrls(imageFile, project)
+		}
 
-    def isCustomVanityUrlUnique(){
-	    def vanityUrl = request.getParameter("vanityUrl")
-	    def projectId = request.getParameter("projectId")
-	    def status = projectService.isCustomUrUnique(vanityUrl, projectId)
-	    render status
-    }
-    
-    def getViewAndShareCount(Project project, def campaignUrl) {
-        // Video Count
-        def ytViewCount = 0, facebookCount = 0, twitterCount = 0, linkedinCount = 0
-        
-        if (project.videoUrl) {
-            def videoUrls = project.videoUrl.split('=')
-            videoUrls = videoUrls.collect { it.trim() }
-            String ytVideoId = videoUrls.last()
-            if (ytVideoId.length() == 11) {
-                def http = new HTTPBuilder('https://www.googleapis.com/youtube/v3/videos?part=statistics&id='+ytVideoId+'&key=AIzaSyAKICKCeRbrUAwk4pXjbU6hgsSEH8nGw28')
-                http.request(Method.GET, ContentType.JSON) {
-                    response.success = { resp, reader ->
-                        def statistics = reader.items.statistics
-                        ytViewCount = statistics.viewCount[0]
-                    }
-                }
-            }
-        }
-        
-        // FaceBook Share Count
-        def httpFb = new HTTPBuilder('http://graph.facebook.com/?id=' + campaignUrl)
-        httpFb.request(Method.GET, ContentType.JSON) {
-            response.success = { resp, reader ->
-                facebookCount = reader.shares
-            }
-        }
-       
-        // Twitter Share Count
-        def httptwit = new HTTPBuilder('http://cdn.api.twitter.com/1/urls/count.json?url=' + campaignUrl + '&callback=?')
-        httptwit.request(Method.GET, ContentType.JSON) {
-            response.success = { resp, reader ->
-                twitterCount = reader.count
-            }
-        }
-        // Linkedin Share Count
-        def httpLink = new HTTPBuilder('http://www.linkedin.com/countserv/count/share?url=' + campaignUrl + '&format=json')
-        httpLink.request(Method.GET, ContentType.JSON) {
-            response.success = { resp, reader ->
-                linkedinCount = reader.count
-            }
-        }
-        return [ytViewCount : ytViewCount, facebookCount: facebookCount, twitterCount: twitterCount, linkedinCount: linkedinCount]
-    }
-	
-    def sendEmailToNonUserContributors(){
-        projectService.sendEmailTONonUserContributors()
-        Cookie messageCookie = new Cookie("message", 'Email send to all non registered contributors')
-        messageCookie.path = '/'
-        messageCookie.maxAge= 3600
-        response.addCookie(messageCookie)
-        redirect (action : 'list', controller:'user')
-    }
-	
-    def getCampaignFromShortUrl(){
-        def url = params.url
-        def projectDetails = projectService.getCampaignFromUrl(url)
-        redirect (action:'show', params:[projectTitle:projectDetails.projectTitle, fr: projectDetails.fr])
-    }
-	
-    def embedTile(){
-        def project = projectService.getProjectFromVanityTitle(params.projectTitle)
-        def currentFundraiser = userService.getUserFromVanityName(params.fr)
-        render(view:'/project/manageproject/embedTile', model:[project:project, currentFundraiser:currentFundraiser])
-    }
+		render json
+	}
 
-    def saveSpendMatrix(){
-        projectService.getSpendMatrixSaved(params)
-        render''
-    }
+	def uploadOrganizationIcon() {
+		def imageFile= params.file
+		Project project = projectService.getProjectById(params.projectId);
+		JSONObject json = new JSONObject();
+		if (project && imageFile) {
+			def iconUrl = projectService.getorganizationIconUrl(imageFile, project)
+			json.put('filelink',iconUrl)
+		}
+		render json
+	}
 
-    def deleteSpendMatrix(){
-        projectService.getSpendMatrixDeleted(params)
-        render''
-    }
+	def uploadTeamImage() {
+		def imageFile= params.file
+		Team team = projectService.getTeamById(params.teamId);
+
+		JSONObject json = new JSONObject();
+		if (team && imageFile) {
+			json = projectService.getMultipleImageUrlsForTeam(imageFile, team)
+		}
+		render json
+	}
+
+	def uploadUpdateEditImage() {
+		def imageFile= params.file
+		ProjectUpdate projectUpdate = projectService.getProjectUpdateById(params.projectUpdateId);
+
+		JSONObject json = new JSONObject();
+		if (projectUpdate && imageFile) {
+			json = projectService.getUpdatEditImageUrls(imageFile, projectUpdate)
+		}
+		render json
+	}
+
+	def uploadUpdateImage() {
+		def imageFile= params.file
+
+		JSONObject json = new JSONObject();
+		if (imageFile) {
+			def iconUrl = projectService.getSavedImageUrl(imageFile)
+			json.put('filelink',iconUrl)
+		}
+		render json
+	}
+
+	def deleteCampaignUpdateImage() {
+		def imageUrl = projectService.getImageUrlById(request.getParameter("imageId"))
+		imageUrl.delete()
+		render ''
+	}
+
+	@Secured(['ROLE_ADMIN'])
+	def campaignHistory() {
+		Project project = projectService.getProjectById(params.projectId)
+		if (project) {
+			def numberOfContributions = project.contributions.size()
+			def percentageContribution = contributionService.getPercentageContributionForProject(project)
+			def numberOFPerks = project.rewards.size()
+			def maxSelectedPerkAmount = rewardService.getMostSelectedPerkAmountForCampaign(project)
+			def numberOfComments = project.comments.size()
+			def numberOfUpdates = project.projectUpdates.size()
+			def numberOfTeams = projectService.getEnabledTeam(project)
+			def disabledTeams = projectService.getDiscardedTeams(project)
+			def highestContribution = contributionService.getHighestContributionDay(project)
+			def campaignSupporterCount = projectService.getCampaignSupporterCount(project)
+
+			def campaignUrl = projectService.getCampaignShareUrl(project)
+
+			def shareCount = getViewAndShareCount(project, campaignUrl)
+
+			def model = [project: project, numberOfContributions: numberOfContributions, percentageContribution: percentageContribution, numberOFPerks: numberOFPerks,
+				maxSelectedPerkAmount: maxSelectedPerkAmount, numberOfComments: numberOfComments, numberOfUpdates: numberOfUpdates,
+				numberOfTeams: numberOfTeams.size(), highestContributionDay: highestContribution.highestContributionDay,highestContributionHour: highestContribution.highestContributionHour ,
+				ytViewCount: shareCount.ytViewCount, campaignUrl: campaignUrl, facebookCount: shareCount.facebookCount, linkedinCount: shareCount.linkedinCount, twitterCount: shareCount.twitterCount, campaignSupporterCount: campaignSupporterCount,
+				disabledTeams: disabledTeams.size()]
+
+			if (request.xhr) {
+				render(template: "/user/metrics/campaignhistory", model: model)
+			}
+		}
+
+	}
+
+	@Secured(['ROLE_ADMIN'])
+	def campaignsList() {
+		def projectObj = projectService.getProjectList(params)
+		def model = [sortedCampaigns: projectObj.projects, totalCampaigns: projectObj.totalCampaigns]
+		if (request.xhr) {
+			render(template: "/user/metrics/campaigns", model: model)
+		}
+	}
+
+	@Secured(['ROLE_ADMIN'])
+	def campaignSearch() {
+		def projectObj = projectService.getCampaignBySearchQuery(params)
+		def model = [sortedCampaigns: projectObj.projects, totalCampaigns: projectObj.totalCampaigns, searchresultmessage: projectObj.message]
+		if (request.xhr) {
+			render(template: "/user/metrics/campaigns", model: model)
+		}
+	}
+
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def generateCampaignCSV() {
+		Project project = projectService.getProjectById(params.projectId)
+		def campaignUrl = projectService.getCampaignShareUrl(project)
+
+		def shareCount = getViewAndShareCount(project, campaignUrl)
+		def ytViewCount = shareCount.ytViewCount
+		def facebookCount = shareCount.facebookCount
+		def twitterCount = shareCount.twitterCount
+		def linkedinCount = shareCount.linkedinCount
+
+		def result = projectService.generateCSVReportForCampaign(response, project, ytViewCount, linkedinCount, twitterCount, facebookCount)
+		render (contentType:"text/csv", text:result)
+	}
+
+	def isCustomVanityUrlUnique(){
+		def vanityUrl = request.getParameter("vanityUrl")
+		def projectId = request.getParameter("projectId")
+		def status = projectService.isCustomUrUnique(vanityUrl, projectId)
+		render status
+	}
+
+	def getViewAndShareCount(Project project, def campaignUrl) {
+		// Video Count
+		def ytViewCount = 0, facebookCount = 0, twitterCount = 0, linkedinCount = 0
+
+		if (project.videoUrl) {
+			def videoUrls = project.videoUrl.split('=')
+			videoUrls = videoUrls.collect { it.trim() }
+			String ytVideoId = videoUrls.last()
+			if (ytVideoId.length() == 11) {
+				def http = new HTTPBuilder('https://www.googleapis.com/youtube/v3/videos?part=statistics&id='+ytVideoId+'&key=AIzaSyAKICKCeRbrUAwk4pXjbU6hgsSEH8nGw28')
+				http.request(Method.GET, ContentType.JSON) {
+					response.success = { resp, reader ->
+						def statistics = reader.items.statistics
+						ytViewCount = statistics.viewCount[0]
+					}
+				}
+			}
+		}
+
+		// FaceBook Share Count
+		def httpFb = new HTTPBuilder('http://graph.facebook.com/?id=' + campaignUrl)
+		httpFb.request(Method.GET, ContentType.JSON) {
+			response.success = { resp, reader ->
+				facebookCount = reader.shares
+			}
+		}
+
+		// Twitter Share Count
+		def httptwit = new HTTPBuilder('http://cdn.api.twitter.com/1/urls/count.json?url=' + campaignUrl + '&callback=?')
+		httptwit.request(Method.GET, ContentType.JSON) {
+			response.success = { resp, reader ->
+				twitterCount = reader.count
+			}
+		}
+		// Linkedin Share Count
+		def httpLink = new HTTPBuilder('http://www.linkedin.com/countserv/count/share?url=' + campaignUrl + '&format=json')
+		httpLink.request(Method.GET, ContentType.JSON) {
+			response.success = { resp, reader ->
+				linkedinCount = reader.count
+			}
+		}
+		return [ytViewCount : ytViewCount, facebookCount: facebookCount, twitterCount: twitterCount, linkedinCount: linkedinCount]
+	}
+
+	def sendEmailToNonUserContributors(){
+		projectService.sendEmailTONonUserContributors()
+		Cookie messageCookie = new Cookie("message", 'Email send to all non registered contributors')
+		messageCookie.path = '/'
+		messageCookie.maxAge= 3600
+		response.addCookie(messageCookie)
+		redirect (action : 'list', controller:'user')
+	}
+
+	def getCampaignFromShortUrl(){
+		def url = params.url
+		def projectDetails = projectService.getCampaignFromUrl(url)
+		redirect (action:'show', params:[projectTitle:projectDetails.projectTitle, fr: projectDetails.fr])
+	}
+
+	def embedTile(){
+		def project = projectService.getProjectFromVanityTitle(params.projectTitle)
+		def currentFundraiser = userService.getUserFromVanityName(params.fr)
+		render(view:'/project/manageproject/embedTile', model:[project:project, currentFundraiser:currentFundraiser])
+	}
+
+	def saveSpendMatrix(){
+		projectService.getSpendMatrixSaved(params)
+		render''
+	}
+
+	def deleteSpendMatrix(){
+		projectService.getSpendMatrixDeleted(params)
+		render''
+	}
 
 	def getFeedBackCSV(){
 		Project project = projectService.getProjectById(params.projectId)
 		def result = projectService.importCSVReportForUserFeedback(response, project)
 		render (contentType:"text/csv", text:result)
 	}
-	
-    def getCountryVal(){
-        def country = projectService.getCountryValue(params.country);
-        def variable = request.getParameter("variable")
-        def varValue = request.getParameter("varValue")
-        def projectId = request.getParameter("projectId")
-        projectService.autoSaveProjectDetails(variable, varValue, projectId)
-        render country
-    }
 
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def importSocialContacts(){
+		String provider=params.socialProvider
+		String email =params.socialContact
+		session['email'] = email
+		session['socialProvider'] = provider
+		def currentEnv = projectService.getCurrentEnvironment()
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+		switch(currentEnv){
+			case 'development':
+				if(provider.equals('google')){
+					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+					def scope = grailsApplication.config.crowdera.gmail.SCOPE
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+				}else if(provider.equals("constant")){
+					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+					def redirectUri='http%3A%2F%2flocalhost%3A8080%2Fproject%2FgetSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}else if(provider.equals('mailchimp')){
+					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+					def redirectUri='http://127.0.0.1:8080/project/getSocialContactsCode'
+					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
+				}
+				break;
+			case 'test':
+				if(provider.equals('google')){
+					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+					def scope = grailsApplication.config.crowdera.gmail.SCOPE
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+				}else if(provider.equals("constant")){
+					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+					def redirectUri='http%3A%2F%2ftest%2Ecrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}else if(provider.equals('mailchimp')){
+					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
+				}
+				break;
+			case 'staging':
+				if(provider.equals('google')){
+					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+					def scope = grailsApplication.config.crowdera.gmail.SCOPE
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+				}else if(provider.equals("constant")){
+					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+					def redirectUri='http%3A%2F%2fstaging%2Ecrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}else if(provider.equals('mailchimp')){
+					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
+				}
+				break;
+			case 'production':
+				if(provider.equals('google')){
+					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+					def scope = grailsApplication.config.crowdera.gmail.SCOPE
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+				}else if(provider.equals("constant")){
+					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+					def redirectUri='http%3A%2F%2fcrowdera%2Eco%2Fproject%2FgetSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}else if(provider.equals('mailchimp')){
+					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
+				}
+				break;
+			case 'prodIndia':
+				if(provider.equals('google')){
+					def oauthUrl=grailsApplication.config.crowdera.gmail.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+					def scope = grailsApplication.config.crowdera.gmail.SCOPE
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&scope='+scope+'&redirect_uri='+redirectUri+'&response_type=code'
+				}else if(provider.equals("constant")){
+					def oauthUrl=grailsApplication.config.crowdera.cc.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.cc.CLIENT_KEY
+					def redirectUri='http%3A%2F%2fcrowdrera%2Ein%2Fproject%2FgetSocialContactsCode'
+					render oauthUrl+'client_id='+clientId+'&redirect_uri='+redirectUri
+				}else if(provider.equals('mailchimp')){
+					def oauthUrl=grailsApplication.config.crowdera.MAILCHIMP.OAUTH_URL
+					def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+					def redirectUri=base_url+'/project/getSocialContactsCode'
+					render oauthUrl+'?response_type=code&client_id='+clientId+'&redirect_uri='+redirectUri
+				}
+				break;
+		}
+	}
+
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def getSocialContactsCode(){
+		
+		def email =session.getAttribute("email")
+		def projectId =session.getAttribute("projectId")
+		def provider = session.getAttribute('socialProvider')
+		def page = session.getAttribute("page")
+		def code=params.code
+		def user =userService.getCurrentUser()
+		def request_url=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
+		def base_url = (request_url.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
+		switch(provider){
+			case 'mailchimp':
+				def endpoint= grailsApplication.config.crowdera.MAILCHIMP.TOKEN_ENDPOINT
+				def clientId= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_ID
+				def clientSecret= grailsApplication.config.crowdera.MAILCHIMP.CLIENT_SECRET
+				def dcUrl = grailsApplication.config.crowdea.MAILCHIMP.DC_URL
+				def redirectUri =base_url +'/project/getSocialContactsCode'
+				def tokenJson = socialAuthService.getAccessToken(code, endpoint, clientSecret, redirectUri, clientId, provider)
+				def json = socialAuthService.getJsonStringObject(tokenJson)
+				def accessToken= json.access_token
+				def mailchimpDC = socialAuthService.getRequestData(accessToken, dcUrl)
+				def jsonDC = socialAuthService.getJsonStringObject(mailchimpDC)
+				def listUrl = 'https://'+ jsonDC.dc + grailsApplication.config.crowdera.MAILCHIMP.MEMBER_URL
+				def mailchimpListID = socialAuthService.getRequestData(accessToken, listUrl)
+				def jsonMailchimpList = socialAuthService.getJsonStringObject(mailchimpListID)
+				def listId = jsonMailchimpList.lists.id
+				def contactJson = socialAuthService.getMailchimpContactsByListId(accessToken, listId , listUrl)
+				def mailchimpList
+				if(contactJson == null){
+					flash.contact_message="You might already login with different account."
+					chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:"", page:page])
+				}else{
+					mailchimpList= contactJson.toString().replace('[', " ").replace(']',' ')
+					if(mailchimpList){
+						def socialContacts = SocialContacts.findByUser(user)
+						if(socialContacts){
+							socialAuthService.setSocailContactsByUser(socialContacts ,mailchimpList, provider)
+						}else{
+							new SocialContacts(constantContact:null, gmail:null, mailchimp:mailchimpList ,user:user).save(failOnError: true)
+						}
+						chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:mailchimpList, socialProvider:provider, page:page])
+					}
+				}
+			break;
+			case 'constant':
+				def token_endpoint =grailsApplication.config.crowdera.cc.TOKEN_URL
+				def apiKey = grailsApplication.config.crowdera.cc.CLIENT_KEY
+				def clientSecret= grailsApplication.config.crowdera.cc.CLIENT_SECRET
+				def contactsUrl = grailsApplication.config.crowdera.cc.CONTACT_URL + apiKey
+				def redirectUri =base_url +'/project/getSocialContactsCode'
+				def tokenJson = socialAuthService.getAccessToken(code,token_endpoint, clientSecret, redirectUri, apiKey, provider)
+				def json = socialAuthService.getJsonStringObject(tokenJson)
+				def accessToken= json.access_token
+				def contactJson =socialAuthService.getRequestData(accessToken, contactsUrl)
+				def jsonString = socialAuthService.getJsonStringObject(contactJson)
+				def constantContactList
+				if(jsonString.error){
+					flash.contact_message="You might already login with different account."
+					chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:constantContactList, page:page])
+				}else{
+					constantContactList= jsonString.results.email_addresses.email_address.toString().replace('[', " ").replace(']',' ')
+					if(constantContactList){
+						def socialContacts = SocialContacts.findByUser(user)
+						if(socialContacts){
+							socialAuthService.setSocailContactsByUser(socialContacts, constantContactList,  provider)
+						}else{
+							new SocialContacts(constantContact:constantContactList, gmail:null, mailchimp:null ,user:user).save(failOnError: true)
+						}
+					}
+					chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:constantContactList, socialProvider:provider, page:page])
+				}
+			break;
+			case 'google':
+				def tokenEndpoint =grailsApplication.config.crowdera.gmail.TOKEN_URL
+				def clientId= grailsApplication.config.crowdera.gmail.CLIENT_KEY
+				def clientSecret=grailsApplication.config.crowdera.gmail.CLIENT_SECRET
+				def contactUrl= grailsApplication.config.crowdera.gmail.CONTACT_URL+ email +'/full?alt=json'
+				def redirectUri =base_url +'/project/getSocialContactsCode'
+				def tokenJson = socialAuthService.getAccessToken(code,tokenEndpoint, clientSecret, redirectUri, clientId, provider)
+				def json = socialAuthService.getJsonStringObject(tokenJson)
+				def accessToken= json.access_token
+				def contactJson = socialAuthService.getRequestData(accessToken, contactUrl)
+				def jsonString =socialAuthService.getJsonStringObject(contactJson)
+				def gmailList
+				if(jsonString.error){
+					flash.contact_message="You might already login with different account."
+					chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:"", page:page])
+				}else{
+					gmailList= jsonString.feed.entry.gd$email.address.toString().replace('[', " ").replace(']',' ')
+					if(gmailList){
+						def socialContacts = SocialContacts.findByUser(user)
+						if(socialContacts){
+							socialAuthService.setSocailContactsByUser(socialContacts ,gmailList, provider)
+						}else{
+							new SocialContacts(constantContact:null, gmail:gmailList, mailchimp:null ,user:user).save(failOnError: true)
+						}
+						chain (action:"inviteMember",params:[projectId:projectId, page:page] , model:[ email:email,contactList:gmailList, socialProvider:provider, page:page])
+					}
+				}
+			break;
+		}
+	}
+	def getCountryVal(){
+		def country = projectService.getCountryValue(params.country);
+		def variable = request.getParameter("variable")
+		def varValue = request.getParameter("varValue")
+		def projectId = request.getParameter("projectId")
+		projectService.autoSaveProjectDetails(variable, varValue, projectId)
+		render country
+	}
 }

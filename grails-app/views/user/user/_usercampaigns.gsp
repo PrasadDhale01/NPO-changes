@@ -29,11 +29,11 @@
             	<g:if test='${supportList.key.contains('supporter')}'><div class="timeline-badge info hidden-xs"><i class="fa fa-heart"></i></div></g:if>
                 <div class="timeline-panel">
                     <div class="timeline-heading">
-                        <h4 class="timeline-title">
-                        	<g:if test='${supportList.key.contains('supporter')}'>Supported campaign : <br> <h5>${supportList.value.substring(0, supportList.value.indexOf(';'))}</h5></g:if>
-                        	<g:elseif test='${supportList.key.contains('project')}'>Created campaign : <br> <h5>${supportList.value.substring(0, supportList.value.indexOf(';'))}</h5></g:elseif>
-                        	<g:elseif test='${supportList.key.contains('team')}'>Joined campaign : <br> <h5>${supportList.value.substring(0, supportList.value.indexOf(';'))}</h5></g:elseif>
-                        	<g:elseif test='${supportList.key.contains('co-owner')}'>Campaign co-owner : <br> <h5>${supportList.value.substring(0, supportList.value.indexOf(';'))}</h5></g:elseif>
+                        <h4 class="timeline-title timeline-title-font">
+                        	<g:if test='${supportList.key.contains('supporter')}'>Supported campaign : <br> <span>${supportList.value.substring(0, supportList.value.indexOf(';'))}</span></g:if>
+                        	<g:elseif test='${supportList.key.contains('project')}'>Created campaign : <br> <span>${supportList.value.substring(0, supportList.value.indexOf(';'))}</span></g:elseif>
+                        	<g:elseif test='${supportList.key.contains('team')}'>Joined campaign : <br> <span>${supportList.value.substring(0, supportList.value.indexOf(';'))}</span></g:elseif>
+                        	<g:elseif test='${supportList.key.contains('co-owner')}'>Campaign co-owner : <br> <span>${supportList.value.substring(0, supportList.value.indexOf(';'))}</span></g:elseif>
                         </h4>
                         
                         <p><small class="text-muted">

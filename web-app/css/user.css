@@ -1235,3 +1235,7 @@ div.dashboardtile-min-height {
     text-align: center;
     width: 300px;
 }
+.timeline-title-font span{
+	font-size:16px;
+	line-height:2;
+}

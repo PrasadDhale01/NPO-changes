@@ -1,8 +1,15 @@
 <g:if test="${supporterList.isEmpty()}">
-    <div class="center-block col-xs-12 userprfl-warning">
-        You haven't supported to any campaign yet. You can start supporting now.<br>
-        <g:link controller="project" action="list" class="btn btn-default btn-sm btn-info">Support</g:link>
-    </div>
+    <g:if test="${user == currentUser }">
+        <div class="center-block col-xs-12 userprfl-warning">
+            You haven't supported to any campaign yet. You can start supporting now.<br>
+            <g:link controller="project" action="list" class="btn btn-default btn-sm btn-info">Support</g:link>
+        </div>
+    </g:if>
+    <g:else>
+        <div class="center-block col-xs-12 otherprfl-warning">
+           Not supported to any campaign yet. Start supporting now.<br>
+        </div>
+    </g:else>
 </g:if>
 <g:else>
     <ul class="timeline">

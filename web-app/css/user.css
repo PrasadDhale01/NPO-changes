@@ -1224,3 +1224,14 @@ div.dashboardtile-min-height {
 .folderdirectory a:hover{
     text-decoration: none;
 }
+.userprfl-warning a {
+    margin-top: 4px;
+}
+.otherprfl-warning {
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+    float: none;
+    height: 100px;
+    padding: 26px 5px;
+    text-align: center;
+    width: 300px;
+}

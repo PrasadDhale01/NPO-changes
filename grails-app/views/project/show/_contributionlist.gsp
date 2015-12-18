@@ -42,7 +42,75 @@
             %>
             <g:if test="${!contribution.isContributionOffline}">
                 <div class="col-sm-6 col-lg-6 col-md-6 top-pan">
-                	<g:link controller="user" action="userActivity" id="${contribution.user.id}" params="[amount:amount]" target="_blank">
+                    <g:if test="${!contribution.isAnonymous}">
+                	   <g:link controller="user" action="userActivity" id="${contribution.user.id}" params="[amount:amount]" target="_blank">
+                	       <div <g:if test='${contribution.isAnonymous}'>class ="pan alphabet-A"</g:if><g:else>class ="pan ${alphabet}"</g:else>>
+                        <div class ="col-sm-4 col-xs-4 img-panel">
+                            <g:if test="${contribution.isAnonymous}">
+                                <img class="user-img-header" src="//s3.amazonaws.com/crowdera/assets/alphabet-A.png" alt="alphabet">
+                            </g:if>
+                            <g:else>
+                                <img class="user-img-header" src="${imageUrl}" alt="alphabet">
+                            </g:else>
+                        </div>
+                        <div class="col-sm-8 col-xs-8 pn-word contribution-inr">
+                            <g:if test="${contribution.isAnonymous}">
+                                <g:if test="${isCrUserCampBenOrAdmin && CurrentUserTeam && currentFundraiser == team}">
+                                    <h4>${contribution.contributorName}</h4> 
+                                    <span class="sso">
+                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                            <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        </g:if>
+                                        <g:else>
+                                            $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                        </g:else>
+                                    </span>
+                                    <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
+                                </g:if>
+                                <g:else>
+                                    <h4 class="anonymous-top">Anonymous Good Soul</h4>
+                                    <span class="sso">
+                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                            <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        </g:if>
+                                        <g:else>
+                                            $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                        </g:else>
+                                    </span>
+                                    <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
+                                </g:else>
+                            </g:if>
+                            <g:else>
+                                <g:if test="${contribution.contributorName}">
+                                    <h4>${contribution.contributorName}</h4>
+                                    <span class="sso">
+                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                            <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        </g:if>
+                                        <g:else>
+                                            $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                        </g:else>
+                                    </span>
+                                    <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
+                                </g:if>
+                                <g:else>
+                                    <h4>${friendlyName}</h4>
+                                    <span class="sso">
+                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                            <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><b>${amount}</b></g:if><g:else><b>${amount * conversionMultiplier}</b></g:else><span class="font-usd">&nbsp;&nbsp;INR</span>
+                                        </g:if>
+                                        <g:else>
+                                            $<b>${amount}</b><span class="font-usd">&nbsp;&nbsp;USD</span>
+                                        </g:else>
+                                    </span>
+                                    <div class="font-days"><g:if test="${numberOfDays >1}">${numberOfDays}&nbsp;&nbsp;Days Ago</g:if><g:elseif test="${numberOfDays == 1}">${numberOfDays}&nbsp;&nbsp;Day Ago</g:elseif><g:else>Today</g:else></div>
+                                </g:else>
+                            </g:else>
+                        </div>
+                    </div>
+                	   </g:link>
+                	</g:if>
+                	<g:else>
                     <div <g:if test='${contribution.isAnonymous}'>class ="pan alphabet-A"</g:if><g:else>class ="pan ${alphabet}"</g:else>>
                         <div class ="col-sm-4 col-xs-4 img-panel">
                             <g:if test="${contribution.isAnonymous}">
@@ -107,12 +175,11 @@
                             </g:else>
                         </div>
                     </div>
-                    </g:link>
+                    </g:else>
                 </div>
             </g:if>
             <g:else>
                 <div class="col-sm-6 col-lg-6 col-md-6 top-pan">
-                	<g:link controller="user" action="userActivity" id="${contribution.user.id}" params="[amount:amount]" target="_blank">
                     <div class ="pan ${alphabet}">
                         <div class ="col-sm-4 col-xs-4 img-panel">
                             <img class="user-img-header" src="${imageUrl}" alt="alphabet">
@@ -188,7 +255,6 @@
                             </div>
                         </g:form>
                     </div>
-                    </g:link>
                 </div>
             </g:else>
         </g:each>

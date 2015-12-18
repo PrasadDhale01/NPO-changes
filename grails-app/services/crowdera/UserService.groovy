@@ -1114,7 +1114,8 @@ class UserService {
               }
         }
         contributions.each{
-             recentActivity.put("contribution"+it.id, it.amount.round() +";"+ dateFormat.format(it.date))
+            if(!it.isAnonymous && !it.isContributionOffline)
+                recentActivity.put("contribution"+it.id, it.amount.round() +";"+ dateFormat.format(it.date))
         }
         def i =  comments.size()
         comments.each{

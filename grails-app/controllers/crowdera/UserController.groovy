@@ -464,10 +464,10 @@ class UserController {
 		userActivity('page', params.id)
 	}
 	
-	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def userActivity(String page, String id){
 	    def userId = id
  	    User user = User.get(userId)
+        def currentUser = userService.getCurrentUser()
 	    def username
 	    def environment= projectService.getCurrentEnvironment()
 		
@@ -485,9 +485,11 @@ class UserController {
               def fundRaised = projectService.getTotalFundRaisedByUser(projects)
               if(user.id == 3){
                   contributions.each{
-                      def amt = it.amount.round()
-                      if(amt == params.int("amount")){
-                          username = it.contributorName.toString().replace('[', '').replace(']', '')
+                      if(!it.isAnonymous && !it.isContributionOffline){
+                           def amt = it.amount.round()
+                           if(amt == params.int("amount")){
+                                username = it.contributorName.toString().replace('[', '').replace(']', '')
+                           }
                       }
                   }
               }else{
@@ -495,9 +497,9 @@ class UserController {
               }
 		
               if(page){
-                  render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, page:page, environment:environment, username:username, supporterList:supporterList])
+                  render(view:'/user/user/userprofile', model:[currentUser:currentUser, user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, page:page, environment:environment, username:username, supporterList:supporterList])
               }else{
-                  render(view:'/user/user/userprofile', model:[user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, environment:environment, username:username,  supporterList:supporterList])
+                  render(view:'/user/user/userprofile', model:[currentUser:currentUser, user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, environment:environment, username:username,  supporterList:supporterList])
               }
 	
           }else{

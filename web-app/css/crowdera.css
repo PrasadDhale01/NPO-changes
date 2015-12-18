@@ -5565,6 +5565,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         text-align: center;
         width: 215px;
     }
+    .otherprfl-warning {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+        float: none;
+        height: 100px;
+        padding: 16px 5px;
+        text-align: center;
+        width: 215px;
+    }
 	
     #partner-sec-header .navbar-header { 
         width: 600px;
@@ -13455,6 +13463,14 @@ textarea.textarea-embed-video {
         padding: 10px 5px;
         text-align: center;
         width: 215px;
+    }
+    .otherprfl-warning {
+	    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+	    float: none;
+	    height: 100px;
+	    padding: 16px 5px;
+	    text-align: center;
+	    width: 215px;
     }
     ul.timeline::before {
         left: -14px !important;

@@ -1,8 +1,15 @@
 <g:if test="${recentActivity.isEmpty()}">
-    <div class="center-block col-xs-12 userprfl-warning">
-        You haven't done any activity yet. You can start doing now.<br>
-        <g:link controller="project" action="list" class="btn btn-default btn-sm btn-info">Activity</g:link>
-    </div>
+    <g:if test="${user == currentUser }">
+        <div class="center-block col-xs-12 userprfl-warning">
+           You haven't done any activity yet. You can start doing now.<br>
+           <g:link controller="project" action="list" class="btn btn-default btn-sm btn-info">Activity</g:link>
+        </div>
+    </g:if>
+    <g:else>
+        <div class="center-block col-xs-12 otherprfl-warning">
+           Not done any activity yet. Start doing now.<br>
+        </div>
+    </g:else>
 </g:if>
 <g:else>
    <ul class="timeline">

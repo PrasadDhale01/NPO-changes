@@ -1181,7 +1181,8 @@ $(function() {
                 var fileName = file.name;
                 var fileSize = file.size;
                
-               $('#uploadingCampaignOrgIcon').show();
+//               $('#uploadingCampaignOrgIcon').show();
+                $('#loading-gif').show();
 
                var formData = !!window.FormData ? new FormData() : null;
                var name = 'file';
@@ -1217,7 +1218,8 @@ $(function() {
                        $('#imgIcon').attr('src',json.filelink);
                        $('#delIcon').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
                        $('#logoDelete').attr('src',"//s3.amazonaws.com/crowdera/assets/delete.ico");
-                       $('#uploadingCampaignOrgIcon').hide();
+//                       $('#uploadingCampaignOrgIcon').hide();
+                       $('#loading-gif').hide();
                    }
                }, this);
                xhr.send(formData);
@@ -1425,7 +1427,8 @@ $(function() {
                 }
             	if ($('#campaignthumbnails').find('.pr-thumb-div').length <= 4){
                     isvalidsize =  true;
-                    $('#uploadingCampaignImage').show();
+//                    $('#uploadingCampaignImage').show();
+                    $('#loading-gif').show();
 
                     var formData = !!window.FormData ? new FormData() : null;
                     var name = 'file';
@@ -1458,7 +1461,8 @@ $(function() {
                                         + file.name + "'/><div class=\"deleteicon\"><img onClick=\"deleteProjectImage(this,'"+json.imageId+"','"+projectId+"');\" src=\"//s3.amazonaws.com/crowdera/assets/delete.ico\" style=\"margin:2px;width:10px;height:10px;\"/></div>";
 
                             output.insertBefore(div, null);
-                            $('#uploadingCampaignImage').hide();
+//                            $('#uploadingCampaignImage').hide();
+                            $('#loading-gif').hide();
                         }
                     }, this);
                     xhr.send(formData);

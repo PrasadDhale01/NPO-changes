@@ -1099,27 +1099,28 @@ class UserService {
     }
     
     def getGoogleDriveFiles(User user, def fileId, def title, def url) {
-        def driveFile = GoogleDrive.findByFileId(fileId)
+        boolean isSelected = false;
+        def driveFile = GoogleDrive.findByFileId(fileId, user)
         if (driveFile) {
             if (driveFile.title != title) {
                 driveFile.title = title
                 driveFile.save();
             }
+            isSelected = true;
         } else {
             GoogleDrive file = new GoogleDrive (
                 alternateLink: url,
                 fileId: fileId,
-                title : title )
-            if (file.save()) {
-                user.addToFiles(file).save(failOnError: true)
-            }
+                title : title,
+                user: user ).save(failOnError: true)
         }
+        return isSelected
     }
     
     def getDriveFiles(User user, def params) {
-        List totalFiles = user.files
+        List totalFiles = GoogleDrive.findAllWhere(user : user)
         List files = []
-        def max = Math.min(params.int('max') ?: 10, 100)
+        def max = Math.min(params.int('max') ?: 8, 100)
         def offset = params.int('offset') ?: 0
         def count = totalFiles.size()
         def maxrange
@@ -1135,17 +1136,14 @@ class UserService {
     def deleteDriveFile(User user, def params) {
         GoogleDrive file = GoogleDrive.get(params.id)
         if (file) {
-            user.removeFromFiles(file)
-            file.delete()
+            file.delete(flush: true)
         }
     }
     
     def setNewFolder(User user, def params) {
         Folder folder = new Folder (
-            fName: params.title)
-        folder.save(failOnError: true)
-        user.addToFolders(folder).save(failOnError: true)
-        
+            fName: params.title,
+            user: user).save(failOnError: true)
     }
     
     def getFolderById(def folderId) {
@@ -1179,7 +1177,7 @@ class UserService {
     }
     
     def getFolders(User user) {
-        return user.folders
+        return Folder.findAllWhere(user: user)
     }
     
     def getDocumentUrl(CommonsMultipartFile document) {
@@ -1230,6 +1228,24 @@ class UserService {
             partner.removeFromDocuments(document)
             partner.save()
             document.delete(flush:true)
+        }
+    }
+    
+    def trashFolders(def params, User user) {
+        Folder folder = Folder.get(params.int('folderId'))
+        if (folder) {
+            List documents = folder.documents
+        
+            Document document
+            List tempDocuments = documents
+        
+            if (!documents.isEmpty()) {
+                documents.removeAll(documents)
+                tempDocuments.each {
+                    it.delete(flush:true);
+                }
+            }
+            folder.delete(flush:true)
         }
     }
     

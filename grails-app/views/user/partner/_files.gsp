@@ -16,42 +16,38 @@
             folderId = folder.id
         }
     %>
-    <div class="table table-responsive table-xs-left" class="doc-files-list" id="<g:if test="${folder}">folder-file-list</g:if><g:else>doc-files-list</g:else>">
-        <table class="table table-bordered">
-            <thead>
-                <tr class="alert alert-title">
-                    <th>Sr. No.</th>
-                    <th class="col-sm-8">Name</th>
-                    <th class="col-sm-2">Download</th>
-                    <th class="col-sm-1">Trash</th>
-                </tr>
-            </thead>
-            <tbody>
-                <g:each in="${files}" var="file">
-                    <%
-                        def trashUrl = baseUrl+'/user/trashdocfile?id='+file.id+'&partnerId='+partnerId+'&folderId='+folderId
-                    %>
-                    <tr>
-                        <td class="col-sm-1">${++index}</td>
-                        <td class="col-sm-8"><g:if test="${file.docName}">${file.docName}</g:if><g:else>Untitled</g:else></td>
-                        <td class="col-sm-2"><a href="${file.docUrl}" target="_self">Download</a></td>
-                        <td class="col-sm-1 text-center doc-file-trash"><a href="${trashUrl}"><i class="glyphicon glyphicon-trash"></i></a></td>
-                    </tr>
-                </g:each>
-            </tbody>
-        </table>
+    
+    <div class="folderlist">
+        <g:each in="${files}" var="file">
+            <%
+                def trashUrl = baseUrl+'/user/trashdocfile?id='+file.id+'&partnerId='+partnerId+'&folderId='+folderId
+            %>
+            <div class="col-sm-4 col-md-3 col-lg-3 col-xs-6 text-center file-thumbnail-div">
+                <div class="file-thumbnail-container" data-trashurl="${trashUrl}">
+                    <div class="file-thumbnail">
+                        <span class="glyphicon glyphicon-file"></span>
+                    </div>
+                    <div class="fileName-text" data-url="${file.docUrl}">
+                        ${file.docName}
+                    </div>
+                </div>
+            </div>
+        </g:each>
     </div>
 </g:if>
-<g:elseif test="${folderName}">
+<g:else>
     <div class="alert alert-info text-center">
-        This folder is empty. Click upload to upload the documents.
+        This folder is empty. Click add button to upload the documents.
     </div>
-</g:elseif>
+</g:else>
 <script>
     $('.folderdirectory').find('.tab-data-toggle').click(function() {
         $('#viewfolder').hide();
         $('.doc-tab-files').addClass('active');
         $('#folderId').val('');
+        $('.folderlist').find('.folder').removeClass('active');
+        $('#remove-folder').val('');
+        $('.trash-docs-fixed-btn').hide();
     });
 
     $("#doc-files-list, #folder-file-list").find('.doc-file-trash a').click(function(event) {
@@ -76,5 +72,25 @@
                 }
             });
         }
+    });
+
+    $('.file-thumbnail-container').dblclick(function(event){
+    	var url = $(this).find('.fileName-text').data('url');
+    	$('.file-thumbnail-container').removeClass('active');
+    	$('#remove-file').val('');
+    	$('.trash-file-fixed-btn').show();
+    	window.open(url, '_self');
+    });
+
+    $('.file-thumbnail-container').click(function(event){
+        var trashUrl = $(this).data('trashurl');
+        
+        $('.file-thumbnail-container').removeClass('active');
+        $('.folderlist').find('.folder').removeClass('active');
+        $('#remove-folder').val('');
+        $('.trash-docs-fixed-btn').hide();
+        $('#remove-file').val(trashUrl);
+        $('.trash-file-fixed-btn').show();
+        $(this).addClass('active');
     });
 </script>

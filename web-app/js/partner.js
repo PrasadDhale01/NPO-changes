@@ -13,6 +13,8 @@ $(function() {
     $('#promote-campaigns').find('.list-group-item').click(function() {
         $('#promote-campaigns').find('div.list-group-item').removeClass('active');
         $(this).addClass('active');
+        $('#campaign-select-msg').show();
+		$('#campaign-select-msg').fadeOut(3500);
     });
 	
     $('#side-menu').find('.li').click(function() {
@@ -29,10 +31,16 @@ $(function() {
         $(this).addClass('active');
         $('#viewfolder').hide();
         $('#folderId').val('');
+        $('#remove-folder').val('');
+        $('.trash-docs-fixed-btn').hide();
+        $('.trash-file-fixed-btn').hide();
+        $('.trash-drivefile-fixed-btn').hide();
+        $('.folderlist').find('.folder').removeClass('active');
+        $('.file-thumbnail-container').removeClass('active');
     });
 
     $('.partner-confirmation').fadeOut(30000);
-    $('.success-message').fadeOut(5000);
+    $('.success-message').fadeOut(10000);
 
     $('.selectpicker').selectpicker({
         style: 'btn btn-sm btn-default'
@@ -334,8 +342,70 @@ $(function() {
         }
     });
     
-    $('#uploaddocfile').click(function(event){
-    	$('#newDocFile').click();
+    $("#remove-folder").click(function(event) {
+        if (confirm('Are you sure you want to discard this folder?')) {
+            var folderId = $(this).val();
+            var baseUrl = $('#baseUrl').val();
+            var partnerId = $('#partnerId').val();
+            var grid = $('#docFolders');
+            
+            $.ajax({
+                type: 'GET',
+                url: baseUrl+'/user/trashFolder?partnerId='+partnerId+'&folderId='+folderId,
+                success: function(data) {
+                    $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                    $('.nav-tab-doc').find('.tab-data-toggle').removeClass('active');
+                    $('.doc-tab-files').addClass('active');
+                    $('#viewfolder').hide();
+                    $('#partner-doc-content').find('.tab-pane').removeClass('active');
+                    $('#files').addClass('active');
+                    $('#folderId').val('');
+                    $('#remove-folder').val('');
+                    $('.trash-docs-fixed-btn').hide();
+                }
+            });
+        }
+    });
+    
+    $("#remove-file").click(function(event) {
+    	if (confirm('Are you sure you want to discard this file?')) {
+            var url = $("#remove-file").val();
+            var folderId = $('#folderId').val();
+
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function(data) {
+                    if (folderId) {
+                        var driveFileGrid = $('#viewfolder');
+                        $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                        $('.trash-file-fixed-btn').hide();
+                        $('#remove-file').val('');
+                    } else {
+                        var driveFileGrid = $('#docFiles');
+                        $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                        $('.trash-file-fixed-btn').hide();
+                        $('#remove-file').val('');
+                    }
+                }
+            });
+        }
+    });
+    
+    $("#remove-drive-file").click(function(event) {
+    	if (confirm('Are you sure you want to discard this file?')) {
+            var url = $("#remove-drive-file").val();
+            var grid = $('#driveFiles');
+            $.ajax({
+                type: 'GET',
+                url: url,
+                success: function(data) {
+                    $(grid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+                    $('.trash-drivefile-fixed-btn').hide();
+                    $('#remove-drive-file').val('');
+                }
+            });
+        }
     });
     
     $("#newDocFile").change(function(event) {
@@ -349,7 +419,7 @@ $(function() {
             formData.append('file', file);
             formData.append('partnerId', partnerId);
             formData.append('folderId', folderId);
-
+            $('#loading-gif').show();
             var xhr = new XMLHttpRequest();
             xhr.open('POST', $("#b_url").val()+'/user/uploadDocument');
             xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
@@ -386,9 +456,39 @@ $(function() {
         	            $('#files').addClass('active');
         	            $('#newDocFile').val('');
                     }
+                    $('#loading-gif').hide();
                 }
             }, this);
             xhr.send(formData);
         }
     });
+    
+    $('#add-docs-fixed-btn').find('.dropdown-menu .dropdown-doc-padding').click(function() {
+    	var opts = $(this).attr('id');
+    	if(opts == 'first') {
+    		$('#newDocFile').click();
+    	}
+    });
+    
+    $( document ).ready(function() {
+    	function sticky_relocate() {
+		    var div_top = $('#footermarker').offset().top;
+		    var marker = $('#add-docs-fixed-btn').offset().top;
+		    if ((marker + 20) >= div_top) {
+		    	$('#dropupbtn').hide();
+		    	$('#remove-folder').hide();
+		    	$('#remove-file').hide();
+		    	$('#remove-drive-file').hide();
+		    	$("#add-docs-fixed-btn.dropup.open").removeClass("open");
+		    } else if(marker  < div_top){
+		    	$('#dropupbtn').show();
+		    	$('#remove-folder').show();
+		    	$('#remove-file').show();
+		    	$('#remove-drive-file').show();
+		    }
+		}
+		$(window).scroll(sticky_relocate);
+		sticky_relocate();
+    });
+    
 });

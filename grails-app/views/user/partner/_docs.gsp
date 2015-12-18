@@ -4,22 +4,7 @@
     <ul class="nav nav-pills nav-tab-doc">
         <li><span class="active doc-tab-right-border doc-tab-padding">
             <a href="#files" data-toggle="tab" class="active tab-data-toggle doc-tab-files">
-                Files
-            </a>
-            </span>
-        </li>
-        <li><span class="doc-tab-right-border doc-tab-padding">
-                <g:if test="${!isAdmin}">
-                    <span class="uploaddocfile" id="uploaddocfile">Upload</span>
-                </g:if>
-                <g:else>
-                    <span class="uploaddocfile">Upload</span>
-                </g:else>
-            </span>
-        </li>
-        <li><span class="doc-tab-right-border doc-tab-padding">
-            <a href="#" data-toggle="modal" data-target="#createNewFolder">
-                New Folder
+                My Storage
             </a>
             </span>
         </li>
@@ -73,34 +58,34 @@
                     <h3 class="modal-title text-center"><b>Send Receipt</b></h3>
                 </div>
                 <div class="modal-body">
-												        <div class="form-group">
-												            <label><b>Your Name</b></label> 
-												            <input type="text" class="form-control all-place" name="name" placeholder="Name" value="${user.firstName}"/>
-												        </div>
-												        <div class="form-group">
-												            <label><b>Recipient Email</b></label>
-												            <input type="text" class="form-control all-place" name="email" placeholder="Email"/>
-												        </div>
-												        <div class="form-group">
-												            <label><b>Message (Optional)</b></label>
-												            <textarea class="form-control all-place" name="message" rows="4" placeholder="Message"></textarea>
-												        </div>
-												        <div class="form-group">
-												            <div class="fileUpload btn btn-info btn-sm cr-btn-color">
+                    <div class="form-group">
+                        <label><b>Your Name</b></label> 
+                        <input type="text" class="form-control all-place" name="name" placeholder="Name" value="${user.firstName}"/>
+                    </div>
+                    <div class="form-group">
+                        <label><b>Recipient Email</b></label>
+                        <input type="text" class="form-control all-place" name="email" placeholder="Email"/>
+                    </div>
+                    <div class="form-group">
+                        <label><b>Message (Optional)</b></label>
+                        <textarea class="form-control all-place" name="message" rows="4" placeholder="Message"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div class="fileUpload btn btn-info btn-sm cr-btn-color">
                             Upload File
                             <input type="file" class="upload" name="file">
                         </div>
-												        </div>
-												    </div>
-												    <g:if test="${!isAdmin}">
-												        <div class="modal-footer">
+                    </div>
+                </div>
+                <g:if test="${!isAdmin}">
+                    <div class="modal-footer">
                         <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-sm btn-primary" id="sendReceiptBtn">send</button>
+                        <button type="submit" class="btn btn-sm btn-primary" id="sendReceiptBtn">Send</button>
                     </div>
                 </g:if>
-												    
-												</div>
-								</div>
+				
+            </div>
+        </div>
     </g:uploadForm>
 </div>
 
@@ -113,12 +98,26 @@
         <div class="docFiles" id="docFiles">
             <g:render template="/user/partner/files"/>
         </div>
+        <g:if test="${!isAdmin}">
+            <div class="trash-docs-fixed-btn" id="trash-docs-fixed-btn">
+                <button class="btn btn-danger btn-round" type="button" id="remove-folder">
+                    <span class="fa fa-trash"></span>
+                </button>
+            </div>
+        </g:if>
     </div>
     <div class="tab-pane tab-pane-active" id="drive">
         <div class="col-sm-12">
             <g:if test="${!isAdmin}">
                 <button type="button" class="btn btn-sm btn-primary pull-right" id="pick">Load File</button>
+                
+                <div class="trash-drivefile-fixed-btn" id="trash-drivefile-fixed-btn">
+                    <button class="btn btn-danger btn-round" type="button" id="remove-drive-file">
+                        <span class="fa fa-trash"></span>
+                    </button>
+                </div>
             </g:if>
+            <div class="clear"></div>
             <div id="driveFiles">
             </div>
         </div>
@@ -130,3 +129,22 @@
         
     </div>
 </div>
+<g:if test="${!isAdmin}">
+    <div class="dropup add-docs-fixed-btn" id="add-docs-fixed-btn">
+        <button class="btn btn-primary btn-round dropdown-toggle" type="button" data-toggle="dropdown" id="dropupbtn">
+            <span class="glyphicon glyphicon-plus"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-right">
+            <li class="dropdown-doc-padding" id="first"><span class="fileUpload">
+                <span class="uploaddocfile" id="uploaddocfile">Upload File</span>
+            </span></li>
+            <li class="divider"></li>
+            <li class="dropdown-doc-padding" id="third" data-toggle="modal" data-target="#createNewFolder">New Folder</li>
+        </ul>
+    </div>
+    <div class="trash-file-fixed-btn" id="trash-file-fixed-btn">
+        <button class="btn btn-danger btn-round" type="button" id="remove-file">
+            <span class="fa fa-trash"></span>
+        </button>
+    </div>
+</g:if>

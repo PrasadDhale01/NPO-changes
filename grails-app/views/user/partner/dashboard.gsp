@@ -27,7 +27,7 @@
                 <span class="span-space"><a href="#validate" data-toggle="tab"><span class="glyphicon glyphicon-ok"></span>Validate</a></span>
                 <span class="span-space"><a href="#invite" data-toggle="tab"><span class="glyphicon glyphicon-envelope"></span>Invite </a></span>
                 <span class="span-space"><a href="#promote" data-toggle="tab">Promote</a></span>
-                <span class="span-space"><a href="#files" data-toggle="tab"><span class="glyphicon glyphicon-inbox"></span>Drive</a></span>
+                <span class="span-space"><a href="#docs" data-toggle="tab"><span class="glyphicon glyphicon-inbox"></span>Docs</a></span>
             </div>
         </div>
         <div class="navbar navbar-default navbar-fixed-top visible-xs" id="partner-third-header">
@@ -111,17 +111,22 @@
                         <a href="#invite" data-toggle="tab"> Invite Campaign Owner</a>
                     </li>
                     <li>
-                        <a href="#promote" data-toggle="tab">PROMOTE</a>
+                        <a href="#docs" data-toggle="tab">Manage Docs</a>
+                    </li>
+                    <li>
+                        <a href="#promote" data-toggle="tab">Promote</a>
                     </li>
                     <li class="hidden">
-                        <a href="#inbox" data-toggle="tab">INBOX</a>
+                        <a href="#inbox" data-toggle="tab">Inbox</a>
                     </li>
                     <li class="hidden">
                         <a href="#track" data-toggle="tab">Track Growth</a>
                     </li>
-                    <li>
-                        <a href="#docs" data-toggle="tab">Manage Docs</a>
-                    </li>
+                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'development' || currentEnv == 'test'}">
+                        <li>
+                            <a href="#upgrade" data-toggle="tab">Upgrade Plans</a>
+                        </li>
+                    </g:if>
                 </ul>
             </div>
         </div>
@@ -132,21 +137,21 @@
             <div class="pd-container">
                 <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs partner-stats">
                     <div class="panel panel-info">
-                        <div class="panel-footer announcement-bottom">
+                        <div class="panel-footer announcement-bottom text-center">
                             Raised <b><g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>${fundRaised.round()}</b>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs partner-stats">
                     <div class="panel panel-info">
-                        <div class="panel-footer announcement-bottom">
+                        <div class="panel-footer announcement-bottom text-center">
                             Campaigns <b>${totalUserCampaigns.size()}</b>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-4 col-sm-4 hidden-xs partner-stats">
                     <div class="panel panel-info">
-                        <div class="panel-footer announcement-bottom">
+                        <div class="panel-footer announcement-bottom text-center">
                             Invites <b>${numberOfInvites}</b>
                         </div>
                     </div>
@@ -233,26 +238,27 @@
                          <g:render template="/user/user/userprofile"/>
                     </div>
                     
-<%--                    <div class="tab-pane tab-pane-active hidden-xs" id="inbox">--%>
-<%--                    </div>--%>
-<%--                    <div class="tab-pane tab-pane-active" id="files">--%>
-<%--                        <div class="col-sm-12">--%>
-<%--                            <g:if test="${!isAdmin}">--%>
-<%--                                <button type="button" class="btn btn-sm btn-primary pull-right" id="pick">Load File</button>--%>
-<%--                            </g:if>--%>
-<%--                            <div id="driveFiles">--%>
-<%--                            </div>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
                     <div class="tab-pane tab-pane-active" id="docs">
                         <div class="col-sm-12">
                             <g:render template="/user/partner/docs"/>
                         </div>
                     </div>
+                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'development' || currentEnv == 'test'}">
+                        <div class="tab-pane tab-pane-active" id="upgrade">
+                            <div class="col-sm-12">
+                                <div class="alert alert-info">
+                                    This feature is yet to implement.
+                                </div>
+                            </div>
+                        </div>
+                    </g:if>
                 </div>
             </div>
         </div>
 <%--    End of Dashboard Container   --%>
+    </div>
+    <div class="loadinggif text-center" id="loading-gif">
+        <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="' '" id="loading-gif-img">
     </div>
     <script src="/js/filepicker.js" ></script>
     <script>

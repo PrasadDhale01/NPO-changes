@@ -1722,7 +1722,6 @@ class ProjectController {
 		}
 		redirect (action:'show', controller:'project', fragment: 'comments', params:[projectTitle:params.projectTitle, fr:vanityUserName])
 	}
-<<<<<<< HEAD
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def autoSave() {
@@ -1739,23 +1738,6 @@ class ProjectController {
         rewardService.autoSaveRewardDetails(params)
         render ''
     }
-=======
->>>>>>> upstream/master
-
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def autoSave() {
-		def variable = request.getParameter("variable")
-		def varValue = request.getParameter("varValue")
-		def projectId = request.getParameter("projectId")
-		projectService.autoSaveProjectDetails(variable, varValue, projectId)
-		render ''
-	}
-
-	@Secured(['IS_AUTHENTICATED_FULLY'])
-	def saveReward() {
-		rewardService.autoSaveRewardDetails(params)
-		render ''
-	}
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def deleteReward(){
@@ -1899,7 +1881,6 @@ class ProjectController {
 		projectService.autoSaveProjectDetails('story', varValue, projectId)
 		render ''
 	}
-<<<<<<< HEAD
     
     def uploadImage() {
         def imageFile= params.file
@@ -1969,21 +1950,7 @@ class ProjectController {
         }
         render json
     }
-=======
->>>>>>> upstream/master
 
-	def uploadImage() {
-		def imageFile= params.file
-		Project project = projectService.getProjectById(params.projectId);
-		JSONObject json = new JSONObject();
-		if (project && imageFile) {
-			json = projectService.getMultipleImageUrls(imageFile, project)
-		}
-
-		render json
-	}
-
-<<<<<<< HEAD
     def saveSpendMatrix(){
         Project project = projectService.getSpendMatrixSaved(params)
         def pieList = projectService.getPieList(project);
@@ -1999,50 +1966,6 @@ class ProjectController {
             render(template: "create/pieChartWithoutLabel", model:[project:project, spendAmountPerList:pieList.spendAmountPerList])
         }
     }
-=======
-	def uploadOrganizationIcon() {
-		def imageFile= params.file
-		Project project = projectService.getProjectById(params.projectId);
-		JSONObject json = new JSONObject();
-		if (project && imageFile) {
-			def iconUrl = projectService.getorganizationIconUrl(imageFile, project)
-			json.put('filelink',iconUrl)
-		}
-		render json
-	}
-
-	def uploadTeamImage() {
-		def imageFile= params.file
-		Team team = projectService.getTeamById(params.teamId);
-
-		JSONObject json = new JSONObject();
-		if (team && imageFile) {
-			json = projectService.getMultipleImageUrlsForTeam(imageFile, team)
-		}
-		render json
-	}
-
-	def uploadUpdateEditImage() {
-		def imageFile= params.file
-		ProjectUpdate projectUpdate = projectService.getProjectUpdateById(params.projectUpdateId);
-
-		JSONObject json = new JSONObject();
-		if (projectUpdate && imageFile) {
-			json = projectService.getUpdatEditImageUrls(imageFile, projectUpdate)
-		}
-		render json
-	}
-
-	def uploadUpdateImage() {
-		def imageFile= params.file
-
-		JSONObject json = new JSONObject();
-		if (imageFile) {
-			def iconUrl = projectService.getSavedImageUrl(imageFile)
-			json.put('filelink',iconUrl)
-		}
-		render json
-	}
 
 	def deleteCampaignUpdateImage() {
 		def imageUrl = projectService.getImageUrlById(request.getParameter("imageId"))
@@ -2187,30 +2110,12 @@ class ProjectController {
 		render(view:'/project/manageproject/embedTile', model:[project:project, currentFundraiser:currentFundraiser])
 	}
 
-	def saveSpendMatrix(){
-		projectService.getSpendMatrixSaved(params)
-		render''
-	}
-
-	def deleteSpendMatrix(){
-		projectService.getSpendMatrixDeleted(params)
-		render''
-	}
->>>>>>> upstream/master
-
 	def getFeedBackCSV(){
 		Project project = projectService.getProjectById(params.projectId)
 		def result = projectService.importCSVReportForUserFeedback(response, project)
 		render (contentType:"text/csv", text:result)
 	}
-<<<<<<< HEAD
 	
-    def getCountryVal(){
-        def country = projectService.getCountryValue(params.country);
-        projectService.autoSaveCountryAndHashTags(params)
-        render country
-    }
-
     def deleteTaxReciept(){
         Project project = projectService.getProjectById(params.projectId)
         TaxReciept taxReciept = projectService.getTaxRecieptOfProject(project)
@@ -2256,8 +2161,6 @@ class ProjectController {
         projectService.getUsedForAndHashTagsSaved(params)
         render''
     }
-    
-=======
 
 	@Secured(['IS_AUTHENTICATED_FULLY'])
 	def importSocialContacts(){
@@ -2470,6 +2373,7 @@ class ProjectController {
 			break;
 		}
 	}
+
 	def getCountryVal(){
 		def country = projectService.getCountryValue(params.country);
 		def variable = request.getParameter("variable")
@@ -2478,5 +2382,5 @@ class ProjectController {
 		projectService.autoSaveProjectDetails(variable, varValue, projectId)
 		render country
 	}
->>>>>>> upstream/master
+
 }

@@ -3021,7 +3021,6 @@ class ProjectService {
         User user = userService.getCurrentUser()
         Beneficiary beneficiary = project.beneficiary;
         def isValueChanged = false; 
-        DateFormat format = new SimpleDateFormat("MM/dd/YYYY", Locale.ENGLISH);
         switch (variable) {
             case 'category':
                 project.category = varValue;
@@ -3446,24 +3445,25 @@ class ProjectService {
             case 'regDate':
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
                 if (taxReciept){
-                    taxReciept.regDate = format.parse(varValue)
+                    
+                    taxReciept.regDate = Date.parse("MM/dd/yyyy", varValue)
                     taxReciept.save(failOnError:true);
                 } else {
                     TaxReciept taxreciept = new TaxReciept()
-                    taxreciept.regDate = format.parse(varValue)
+                    taxreciept.regDate = Date.parse("MM/dd/yyyy", varValue)
                     taxreciept.project = project
                     taxreciept.save(failOnError:true);
-                }
+                } 
                 break;
                 
             case 'expiryDate':
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
                 if (taxReciept){
-                    taxReciept.expiryDate = format.parse(varValue)
+                    taxReciept.expiryDate = Date.parse("MM/dd/yyyy", varValue)
                     taxReciept.save(failOnError:true);
                 } else {
                     TaxReciept taxreciept = new TaxReciept()
-                    taxreciept.expiryDate = format.parse(varValue)
+                    taxreciept.expiryDate = Date.parse("MM/dd/yyyy", varValue)
                     taxreciept.project = project
                     taxreciept.save(failOnError:true);
                 }
@@ -3472,16 +3472,16 @@ class ProjectService {
             case 'fcraRegDate':
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
                 if (taxReciept){
-                    taxReciept.fcraRegDate = format.parse(varValue)
+                    taxReciept.fcraRegDate = Date.parse("MM/dd/yyyy", varValue)
                     taxReciept.save(failOnError:true);
                 } else {
                     TaxReciept taxreciept = new TaxReciept()
-                    taxreciept.fcraRegDate = format.parse(varValue)
+                    taxreciept.fcraRegDate = Date.parse("MM/dd/yyyy", varValue)
                     taxreciept.project = project
                     taxreciept.save(failOnError:true);
                 }
                 break;
-                
+
             case 'addressLine1':
                 TaxReciept taxReciept = TaxReciept.findByProject(project)
                 if (varValue.isAllWhitespace()){

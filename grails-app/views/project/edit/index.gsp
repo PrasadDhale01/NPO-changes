@@ -28,7 +28,7 @@
         r3 = (reasonsToFund.reason3) ? reasonsToFund.reason3 : null;
     }
     
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     def currentDate = new Date();
     def taxRecieptId = null
     if (taxReciept){

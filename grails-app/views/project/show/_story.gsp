@@ -88,8 +88,8 @@
                 <p class="campaignDescription justify">${raw(currentTeam.description)}</p>
             </div>
         </g:else>
-        <g:if test="${spendCauseList && spendAmountPerList}">
-        <p>Campaign money will be used as</p>
+		<g:if test="${spendCauseList && spendAmountPerList}">
+			<p>Campaign money will be used as</p>
 			<div id="chart-container">
 				<g:hiddenField name="spendCauseList" value="${spendCauseList}" id="spendCauseList"/>
 				<g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>
@@ -97,8 +97,8 @@
 				<div id="graph"></div>
 			</div>
 			<script src="/js/raphel-pie/raphael-min.js"></script>
-            <script src="/js/raphel-pie/g.raphael.js"></script>
-            <script src="/js/raphel-pie/g.pie.js"></script>
+			<script src="/js/raphel-pie/g.raphael.js"></script>
+			<script src="/js/raphel-pie/g.pie.js"></script>
 		</g:if>
         <g:if test="${project.impactNumber > 0 && project.impactAmount > 0}">
             <g:if test="${project.category.toString() == 'ANIMALS'}">

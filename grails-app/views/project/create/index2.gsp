@@ -26,7 +26,7 @@
         r3 = (reasonsToFund.reason3) ? reasonsToFund.reason3 : null;
     }
     
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/YYYY");
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
     def currentDate = new Date();
     def taxRecieptId = null
     if (taxReciept){
@@ -242,83 +242,83 @@
                 </div>
                 <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-spendMatrix-height">
                     <div class="col-sm-9 col-xs-12 spend-matrix">
-	                    <g:if test="${spendCount > 0}">
-	                        <g:each in="${spends}" var="spend">
-	                            <div class="spend-matrix-template" id="spend-matrix-template${spend.numberAvailable}">
-	                                <g:if test="${spend.numberAvailable > 1}"><br class="hidden-lg hidden-md hidden-sm"></g:if>
-	                                <div class="col-sm-amt col-sm-12">
-	                                    <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
-	                                    <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
-	                                        <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-	                                             <span class="fa fa-inr cr-currency"></span>
-	                                        </g:if>
-	                                        <g:else>
-	                                             <span class="fa fa-usd cr-currency"></span>
-	                                        </g:else>
-	                                        <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount${spend.numberAvailable}" value="${spend.amount.round()}" name="spendAmount${spend.numberAvailable}">
-	                                        <span class="digitsError"></span>
-	                                    </div>
-	                                    <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
-	                                    <div class="col-sm-5 col-xs-7 col-input-for form-group">
-	                                        <input type="text" class="form-control form-control-input-for spendCause" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
-	                                    </div>&nbsp;&nbsp;
-	                                    <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
-	                                        <g:hiddenField name="spendFieldSave" value="${spend.numberAvailable}" class="spendFieldSave"/>
-	                                        <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
-	                                    </div>
-	                                    <g:if test="${spend.numberAvailable != 1}">
-	                                        <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateDelete">
-	                                            <input type="hidden" name="spendFieldDelete" value="${spend.numberAvailable}" class="spendFieldDelete">
-	                                            <i class="glyphicon glyphicon-trash glyphicon-size"></i>
-	                                        </div>
-	                                    </g:if>
-	                                    <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd <g:if test="${spend.numberAvailable != spendLastNumAvail}">display-none</g:if>" id="spendMatrixTemplateAdd${spend.numberAvailable}">
-	                                        <i class="glyphicon glyphicon-plus glyphicon-size"></i>
-	                                    </div>
-	                                </div>
-	                                <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="${spend.numberAvailable}"/>
-	                            </div>
-	                        </g:each>
-	                        <g:hiddenField name="lastSpendField" id="lastSpendField" value="${spendLastNumAvail}"/>
-	                    </g:if>
-	                    <g:else>
-	                        <div class="spend-matrix-template" id="spend-matrix-template1">
-	                        <div class="col-sm-amt col-sm-12">
-	                            <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
-	                            <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
-	                                <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
-	                                    <span class="fa fa-inr cr-currency"></span>
-	                                </g:if>
-	                                <g:else>
-	                                    <span class="fa fa-usd cr-currency"></span>
-	                                </g:else>
-	                                <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount1" name="spendAmount1">
-	                                <span class="digitsError"></span>
-	                            </div>
-	                            <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
-	                            <div class="col-sm-5 col-xs-7 col-input-for form-group">
-	                            <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
-	                            </div>&nbsp;&nbsp;
-	                            <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
-	                                <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave"/>
-	                                <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
-	                            </div>
-	                            <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd" id="spendMatrixTemplateAdd1">
-	                                <i class="glyphicon glyphicon-plus glyphicon-size"></i>
-	                            </div>
-	                        </div>
-	                        <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="1"/>
-	                        </div>
-	                        <g:hiddenField name="lastSpendField" id="lastSpendField" value="1"/>
-	                    </g:else>
+                        <g:if test="${spendCount > 0}">
+                            <g:each in="${spends}" var="spend">
+                                <div class="spend-matrix-template" id="spend-matrix-template${spend.numberAvailable}">
+                                    <g:if test="${spend.numberAvailable > 1}"><br class="hidden-lg hidden-md hidden-sm"></g:if>
+                                    <div class="col-sm-amt col-sm-12">
+                                        <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
+                                        <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
+                                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                                 <span class="fa fa-inr cr-currency"></span>
+                                            </g:if>
+                                            <g:else>
+                                                 <span class="fa fa-usd cr-currency"></span>
+                                            </g:else>
+                                            <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount${spend.numberAvailable}" value="${spend.amount.round()}" name="spendAmount${spend.numberAvailable}">
+                                            <span class="digitsError"></span>
+                                        </div>
+                                        <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
+                                        <div class="col-sm-5 col-xs-7 col-input-for form-group">
+                                            <input type="text" class="form-control form-control-input-for spendCause" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
+                                        </div>&nbsp;&nbsp;
+                                        <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
+                                            <g:hiddenField name="spendFieldSave" value="${spend.numberAvailable}" class="spendFieldSave"/>
+                                            <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
+                                        </div>
+                                        <g:if test="${spend.numberAvailable != 1}">
+                                            <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateDelete">
+                                                <input type="hidden" name="spendFieldDelete" value="${spend.numberAvailable}" class="spendFieldDelete">
+                                                <i class="glyphicon glyphicon-trash glyphicon-size"></i>
+                                            </div>
+                                        </g:if>
+                                        <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd <g:if test="${spend.numberAvailable != spendLastNumAvail}">display-none</g:if>" id="spendMatrixTemplateAdd${spend.numberAvailable}">
+                                            <i class="glyphicon glyphicon-plus glyphicon-size"></i>
+                                        </div>
+                                    </div>
+                                    <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="${spend.numberAvailable}"/>
+                                </div>
+                            </g:each>
+                            <g:hiddenField name="lastSpendField" id="lastSpendField" value="${spendLastNumAvail}"/>
+                        </g:if>
+                        <g:else>
+                            <div class="spend-matrix-template" id="spend-matrix-template1">
+                            <div class="col-sm-amt col-sm-12">
+                                <span class="cr-label-spend-matrix col-sm-2 col-xs-12">I require</span>
+                                <div class="form-group col-sm-3 col-xs-4 col-sm-input-group">
+                                    <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                                        <span class="fa fa-inr cr-currency"></span>
+                                    </g:if>
+                                    <g:else>
+                                        <span class="fa fa-usd cr-currency"></span>
+                                    </g:else>
+                                    <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount1" name="spendAmount1">
+                                    <span class="digitsError"></span>
+                                </div>
+                                <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
+                                <div class="col-sm-5 col-xs-7 col-input-for form-group">
+                                <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
+                                </div>&nbsp;&nbsp;
+                                <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
+                                    <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave"/>
+                                    <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
+                                </div>
+                                <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd" id="spendMatrixTemplateAdd1">
+                                    <i class="glyphicon glyphicon-plus glyphicon-size"></i>
+                                </div>
+                            </div>
+                            <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="1"/>
+                            </div>
+                            <g:hiddenField name="lastSpendField" id="lastSpendField" value="1"/>
+                        </g:else>
                     </div>
                     <div class="col-sm-offset-0 col-sm-3 col-xs-offset-1 col-xs-11 col-sm-pie-left-pdding pieChart">
-						<g:render template="create/pieChartWithoutLabel"/>
+                        <g:render template="create/pieChartWithoutLabel"/>
                     </div>
                     <div class="clear"></div>
-					<div class="height-xs">
-					   <span class="saved-message">Spend Saved</span>
-					</div>
+                    <div class="height-xs">
+                       <span class="saved-message">Spend Saved</span>
+                    </div>
                 </div>
             </div>
 
@@ -985,12 +985,12 @@
                                     <g:each var="file" in="${taxReciept.files}">
                                         <% def url = file.url %>
                                         <div class="col-sm-3 col-sm-tax-reciept">
-	                                        <div class="cr-tax-files">
-	                                            <div class="col-file-name">${url.substring(url.lastIndexOf("/") + 1)}</div>
-	                                            <div class="deleteicon">
-	                                                <button type="button" class="close" onclick="deleteTaxRecieptFiles(this, ${file.id}, ${taxReciept.id})">&times;</button>
-	                                            </div>
-	                                        </div>
+                                            <div class="cr-tax-files">
+                                                <div class="col-file-name">${url.substring(url.lastIndexOf("/") + 1)}</div>
+                                                <div class="deleteicon">
+                                                    <button type="button" class="close" onclick="deleteTaxRecieptFiles(this, ${file.id}, ${taxReciept.id})">&times;</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </g:each>
                                  </div>
@@ -1199,7 +1199,7 @@
     
     <script src="/js/main.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>
-    <script type="text/javascript">
+    <script>
     var needToConfirm = true;
     window.onbeforeunload = confirmExit;
     function confirmExit() {
@@ -1235,6 +1235,7 @@
 
     function autoSave(variable, varValue) {
         var projectId = $('#projectId').val();
+        alert(varValue);
         $.ajax({
             type:'post',
             url:$("#b_url").val()+'/project/autoSave',

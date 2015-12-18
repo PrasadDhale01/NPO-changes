@@ -360,26 +360,26 @@ $(function() {
         }
         return true;
     }, "Please enter a valid fullname");
-    
-    $.validator.addMethod('isTotalSpendAmountGreaterThanProjectAmount', function (value, element) {
-        var totalSpendAmount = 0;
-        var projectAmount = $("#projectamount").val();
-        $('.spendAmount').each(function(){
-        	if ($.isNumeric($(this).val())){
-        		totalSpendAmount = totalSpendAmount + parseInt($(this).val());
-        	}
-        });
-        if(totalSpendAmount < parseInt(projectAmount)) {
-        	$('.spendAmount').each(function(){
-        		var id = $(this).attr('id');
+
+	$.validator.addMethod('isTotalSpendAmountGreaterThanProjectAmount', function (value, element) {
+		var totalSpendAmount = 0;
+		var projectAmount = $("#projectamount").val();
+		$('.spendAmount').each(function(){
+		if ($.isNumeric($(this).val())){
+			totalSpendAmount = totalSpendAmount + parseInt($(this).val());
+		}
+		});
+		if(totalSpendAmount < parseInt(projectAmount)) {
+			$('.spendAmount').each(function(){
+				var id = $(this).attr('id');
 				$('#'+id).parent('.form-group').removeClass('has-error');
 				$('#'+id).siblings('.help-block').remove();
-        	});
-            return  true;
-        }else{
-        	return false;
-        }
-    }, "The total spend amount is exceeding campaign goal");
+			});
+			return  true;
+		} else {
+			return false;
+		}
+	}, "The total spend amount is exceeding campaign goal");
 
     $('#campaigncreatebtn, #campaigncreatebtnXS').on('click', function() {
         if (validator.form()) {
@@ -639,11 +639,11 @@ $(function() {
         });
         
         if (currentEnv =='development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
-        	$( '[name="ein"]' ).rules( "add", {
-                required: true,
-                minlength:9
-            });
-            
+			$( '[name="ein"]' ).rules( "add", {
+				required: true,
+				minlength:9
+			});
+
             $( '[name="tax-reciept-deductible-status"]' ).rules( "add", {
                 required: true,
                 minlength:2
@@ -654,9 +654,9 @@ $(function() {
                 minlength:2
             });
         } else {
-        	$( '[name="reg-date"]' ).rules( "add", {
-                required: true
-            });
+			$( '[name="reg-date"]' ).rules( "add", {
+				required: true
+			});
             
             $( '[name="addressLine1"]' ).rules( "add", {
                 required: true,
@@ -2606,42 +2606,42 @@ $(function() {
 			console.log('Error occured while autosaving recipient and hashtags info'+ data);
 		});
 	});
-	
+
 	function deleteTaxReciept(){
 		$.ajax({
-            type:'post',
-            url:$("#b_url").val()+'/project/deleteTaxReciept',
-            data:'projectId='+projectId,
-            success: function(data) {
-            	$('#offeringTaxReciept').val(false);
-    			$('.tax-reciept-checkbox').attr('checked', false);
-    			$('.fcra-details').hide();
-    			$('.fcra-reg-no').val('');
-                $('.tax-reciept-holder-city').val('');
-                $('.tax-reciept-holder-name').val('');
-                $('.tax-reciept-holder-state').val('');
-                if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
-                	$('.ein').val('');
-                    $('.tax-reciept-holder-country').val('');
-                    $('.tax-reciept-deductible-status').val('');
-                } else {
-                	$('.addressLine1').val('');
-                	$('.addressLine2').val('');
-                	$('.zip').val('');
-                    $('.tax-reciept-registration-num').val('');
-                    $('.tax-reciept-holder-pan-card').val('');
-                    $('.tax-reciept-holder-phone').val('');
-                    $('.fcra-reg-no').val('');
-                    $('.text-date').val('');
-                    $('#taxRecieptFiles').val('');
-                    $('.col-tax-file-show').find('.cr-tax-files').remove();
-                }
-            }
-        }).error(function() {
-            console.log('Error occured while autosaving field'+ variable + 'value :'+ varValue);
-        });
+			type:'post',
+			url:$("#b_url").val()+'/project/deleteTaxReciept',
+			data:'projectId='+projectId,
+			success: function(data) {
+				$('#offeringTaxReciept').val(false);
+				$('.tax-reciept-checkbox').attr('checked', false);
+				$('.fcra-details').hide();
+				$('.fcra-reg-no').val('');
+				$('.tax-reciept-holder-city').val('');
+				$('.tax-reciept-holder-name').val('');
+				$('.tax-reciept-holder-state').val('');
+				if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+					$('.ein').val('');
+					$('.tax-reciept-holder-country').val('');
+					$('.tax-reciept-deductible-status').val('');
+				} else {
+					$('.addressLine1').val('');
+					$('.addressLine2').val('');
+					$('.zip').val('');
+					$('.tax-reciept-registration-num').val('');
+					$('.tax-reciept-holder-pan-card').val('');
+					$('.tax-reciept-holder-phone').val('');
+					$('.fcra-reg-no').val('');
+					$('.text-date').val('');
+					$('#taxRecieptFiles').val('');
+					$('.col-tax-file-show').find('.cr-tax-files').remove();
+				}
+			}
+		}).error(function() {
+			console.log('Error occured while autosaving field'+ variable + 'value :'+ varValue);
+		});
 	}
-	
+
 	$('.tax-reciept-checkbox').click(function (){
 		if ($('input[name="tax-reciept-checkbox"]:checked').length > 0){
 			$('.col-tax-reciept-panel').show();
@@ -2657,7 +2657,7 @@ $(function() {
 			}
 		}
 	});
-	
+
 	$('.fcra-checkbox').click(function(){
 		if ($('input[name="fcra-checkbox"]:checked').length > 0){
 			$('.fcra-details').show();
@@ -2770,28 +2770,28 @@ $(function() {
             console.log('Error occured while autosaving field'+ variable + 'value :'+ varValue);
         });
      }
-    
-    $('#saveCharitableId').click(function (){
-    	var uuid = $('#uuid').val();
-    	var charityName = $('#charity_name').val();
-    	$('#charitable').find('input').val(uuid);
+
+	$('#saveCharitableId').click(function (){
+		var uuid = $('#uuid').val();
+		var charityName = $('#charity_name').val();
+		$('#charitable').find('input').val(uuid);
 		$('#organizationName').find('input').val(charityName);
 		$('#paypalemail').find('input').val('');
 		
 		$.ajax({
-            type:'post',
-            url:$("#b_url").val()+'/project/autoSaveCharitableIdAndOrganisationName',
-            data:'projectId='+projectId+'&charitableId='+charitableId+'&organizationname='+charityName,
-            success: function(data) {
-                if (data != 'null'){
-                	$('#taxRecieptId').val(data);
-                }
-            }
-        }).error(function() {
-            console.log('Error occured while autosaving charitable Id and organisation name'+ variable + 'value :'+ varValue);
-        });
-    });
-    
+			type:'post',
+			url:$("#b_url").val()+'/project/autoSaveCharitableIdAndOrganisationName',
+			data:'projectId='+projectId+'&charitableId='+charitableId+'&organizationname='+charityName,
+			success: function(data) {
+				if (data != 'null'){
+					$('#taxRecieptId').val(data);
+				}
+			}
+		}).error(function() {
+			console.log('Error occured while autosaving charitable Id and organisation name'+ variable + 'value :'+ varValue);
+		});
+	});
+
     $('#impact').click(function(){
         $('#usedFor').val('IMPACT');
     });
@@ -2921,42 +2921,42 @@ $(function() {
         });
     });
 
-    function changeHashTags(){
-    	var category = $('#category').val();
-    	var country = $('#selectedCountry').val();
-    	var usedFor = ($('#usedFor').val() == undefined) ? $('#usedForCreate').val() : $('#usedFor').val();
-    	var fundRaisedBy = $('.recipient').val();
-    	var city = $('.city').val();
-    	var list;
-    	if (usedFor == 'SOCIAL_NEEDS') {
-    		list = '#Social-Innovation';
-    	} else if (usedFor == 'PERSONAL_NEEDS') {
-    		list = '#Personal-Needs';
-    	} else if (usedFor == 'IMPACT'){
-    		list = '#Impact';
-        } else if (usedFor == 'PASSION'){
-        	list = '#Passion';
-        }
-    	(fundRaisedBy && fundRaisedBy != 'null') ? list = list + ', #'+getStringCaptalised(fundRaisedBy) : ' ' ;
-        (category && category != 'null') ? list = list + ', #'+getStringCaptalised(category) : ' ' ;
-        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
-            (country != 'null' && country != null && country != '') ? list = list + ', #'+country : ' ' ;
-        }
-        (city && city != '') ? list = list + ', #'+city : ' ' ;
-
-        if ($('.hashtags').val()){
-	        var remainingList
-	    	var hashtagsList = $('.hashtags').val().split(',');
-	    	if (hashtagsList.length > 5){
-	    		for (var i=5; i<hashtagsList.length; i++){
-	    			remainingList = (i == 5) ? hashtagsList[i].trim() : remainingList + ', ' + hashtagsList[i].trim();
-	    		}
-	    		list = list + ', ' + remainingList;
-	    	}
-        }
-
-    	$('.hashtags').val(list);
-    }
+	function changeHashTags(){
+		var category = $('#category').val();
+		var country = $('#selectedCountry').val();
+		var usedFor = ($('#usedFor').val() == undefined) ? $('#usedForCreate').val() : $('#usedFor').val();
+		var fundRaisedBy = $('.recipient').val();
+		var city = $('.city').val();
+		var list;
+		if (usedFor == 'SOCIAL_NEEDS') {
+			list = '#Social-Innovation';
+		} else if (usedFor == 'PERSONAL_NEEDS') {
+			list = '#Personal-Needs';
+		} else if (usedFor == 'IMPACT'){
+			list = '#Impact';
+		} else if (usedFor == 'PASSION'){
+			list = '#Passion';
+		}
+		(fundRaisedBy && fundRaisedBy != 'null') ? list = list + ', #'+getStringCaptalised(fundRaisedBy) : ' ' ;
+		(category && category != 'null') ? list = list + ', #'+getStringCaptalised(category) : ' ' ;
+		if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+			(country != 'null' && country != null && country != '') ? list = list + ', #'+country : ' ' ;
+		}
+		(city && city != '') ? list = list + ', #'+city : ' ' ;
+		
+		if ($('.hashtags').val()){
+			var remainingList
+			var hashtagsList = $('.hashtags').val().split(',');
+			if (hashtagsList.length > 5){
+				for (var i=5; i<hashtagsList.length; i++){
+					remainingList = (i == 5) ? hashtagsList[i].trim() : remainingList + ', ' + hashtagsList[i].trim();
+				}
+				list = list + ', ' + remainingList;
+			}
+		}
+		
+		$('.hashtags').val(list);
+	}
 
     function getStringCaptalised(string){
     	if (string == 'CIVIC_NEEDS'){

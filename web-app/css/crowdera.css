@@ -5492,9 +5492,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	#chart-container #graph{
 	   margin-left: -100px;
 	}
+
 	.cr-panel-spendMatrix-height{
-        min-height:300px
+	   min-height:300px
 	}
+
 	.col-sm-impact-religion-amount{
 		padding-left: 0px;
 		left:-6px;
@@ -5549,11 +5551,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
 	.cr-tax-files{
-        width:200px;
-    }
+	   width:200px;
+	}
 	.pieChart-edit #chart-container #graphWithoutLabel{
-       margin-left: -10px;
-    }
+	   margin-left: -10px;
+	}
 	.cr-panel-qa .cr-spend-matrix-font{
 	   font-size: 16px;
 	}
@@ -7865,38 +7867,38 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   width: 32%;
 	}
 	.cr-tax-files{
-        width:157px;
-    }
-    #chart-container #graphWithoutLabel{
-        margin-left:-40px;
-    }
+	   width:157px;
+	}
+	#chart-container #graphWithoutLabel{
+	   margin-left:-40px;
+	}
 	.col-impact-text-religion-two{
 	   width:32%;
 	}
-    span.cr-impact-religion-cr {
-        left: 15px;
-    }
-	span.col-impact-community-text-two{
-        width:28%;
+	span.cr-impact-religion-cr {
+	   left: 15px;
 	}
-    span.col-impact-arts-text-two{
-        width:27%;
-    }
-    span.col-impact-text-one{
-        width:30%;
-    }
-    span.col-impact-text-two{
-        width:21%;
-    }
+	span.col-impact-community-text-two{
+	   width:28%;
+	}
+	span.col-impact-arts-text-two{
+	   width:27%;
+	}
+	span.col-impact-text-one{
+	   width:30%;
+	}
+	span.col-impact-text-two{
+	   width:21%;
+	}
 	span.col-impact-env-text-two{
 	   width:34%;
 	}
 	div.col-sm-impact-education-num {
 	   padding-left: 0px;
 	}
-    .col-sm-impact-amount{
-        padding-left: 8px;
-    }
+	.col-sm-impact-amount{
+	   padding-left: 8px;
+	}
     .nav-tab-doc.nav {
         font-size: 14px !important;
     }

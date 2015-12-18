@@ -9,16 +9,16 @@ import groovy.transform.ToString
 class Project {
 
     def rewardService
-
+    
     static belongsTo = [user: User]
     static hasMany = [contributions: Contribution, comments: ProjectComment, rewards: Reward, imageUrl: ImageUrl, projectAdmins: ProjectAdmin,projectUpdates: ProjectUpdate, teams: Team, vanityTitle: VanityTitle, supporters: Supporter, spend:SpendMatrix]
-
+    
     Beneficiary beneficiary
     Date created
-
+    
     /* Why */
     Category category
-
+    
     /* How much & when */
     double amount
     int days
@@ -38,26 +38,26 @@ class Project {
     String story
     String videoUrl
     Image image
-	List imageUrl
+    List imageUrl
     String organizationIconUrl
     List rewards
-
+    
     /* More */
     List comments
     String charitableId
     String organizationName
     String webAddress
     String paypalEmail
-	String payuEmail 
-	String secretKey
+    String payuEmail 
+    String secretKey
     String usedFor
     String fundsRecievedBy
     String customVanityUrl
     String partnerInviteCode
     String hashtags
     
-	
-	boolean payuStatus=false
+    
+    boolean payuStatus=false
     boolean validated = false
     boolean inactive = false
     boolean send_mail = false
@@ -65,13 +65,13 @@ class Project {
     boolean rejected = false
     boolean touAccepted = false
     boolean offeringTaxReciept = false
-
+    
     static mapping = {
         id(generator: "uuid")
         description type: 'text'
         story type: 'text'
     }
-
+    
     static constraints = {
         title (nullable: true)
         image (nullable: true)
@@ -87,7 +87,7 @@ class Project {
         organizationIconUrl (nullable: true)
         projectAdmins(nullable: true)
         paypalEmail(nullable: true)
-		payuEmail(nullable:true)
+        payuEmail(nullable:true)
         projectUpdates(nullable: true)
         secretKey(nullable: true)
         usedFor(nullable:true)
@@ -96,7 +96,7 @@ class Project {
         partnerInviteCode (nullable: true)
         hashtags(nullable:true)
     }
-
+    
     def beforeInsert() {
         /* If the $0 reward (which has id 1) isn't in the list, add it. */
         Reward reward = rewards.find {
@@ -106,20 +106,20 @@ class Project {
             addToRewards(rewardService.getNoReward())
         }
     }
-
+    
     enum Category {
-		CATEGORY,
+        CATEGORY,
         ANIMALS,
         ARTS,
         CHILDREN,
         COMMUNITY,
-		CIVIC_NEEDS,
+        CIVIC_NEEDS,
         EDUCATION,
         ELDERLY,
         ENVIRONMENT,
-		FILM,
+        FILM,
         HEALTH,
-		NON_PROFITS,
+        NON_PROFITS,
         SOCIAL_INNOVATION,
         RELIGION,
         OTHER

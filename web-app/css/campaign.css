@@ -707,9 +707,9 @@ div.validate-show-div .show-description {
 }
 
 .col-file-name{
-    padding-left: 10px;
-    padding-right: 26px;
-    padding-bottom: 2px;
+	padding-left: 10px;
+	padding-right: 26px;
+	padding-bottom: 2px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	word-wrap: normal;
@@ -821,16 +821,16 @@ hr.hm-line-color{
 }
 
 #chart-container #graph {
-  display: inline-block;
-  height: 250px;
-  margin-right:0px;
-  margin-top:0px;
-  margin-bottom:0px;
-  width: 600px;
+	display: inline-block;
+	height: 250px;
+	margin-right:0px;
+	margin-top:0px;
+	margin-bottom:0px;
+	width: 600px;
 }
 
 #chart-container {
-  color: #eaeaea;
+    color: #eaeaea;
 }
 
 .digitsError{
@@ -840,21 +840,21 @@ hr.hm-line-color{
 }
 
 #chart-container #graphWithoutLabel {
-  height: 250px;
-  margin:0px;
-  width: 200px;
+	height: 250px;
+	margin:0px;
+	width: 200px;
 }
 
 div.col-sm-pie-left-pdding{
-	padding-left: 0px;
+    padding-left: 0px;
 }
 
 .height-xs{
-	height:25px;
+    height:25px;
 }
 
 .clear-height-xs{
-	height:20px;
+    height:20px;
 }
 
 .showing-hashtags {
@@ -898,7 +898,7 @@ img.hm-height-width {
 }
 
 .sharing-icons-padding-left{
-	padding-left: 30%;
+    padding-left: 30%;
 }
 
 label.cr-spend-guide-text{

@@ -1072,7 +1072,8 @@ class UserService {
 
          if(supporters){
              supporters.each{
-                 supporterList.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
+                 if(it.followedDate!=null)
+                     supporterList.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
              }
          }
          //sort
@@ -1099,7 +1100,7 @@ class UserService {
              def projectUser =  it.user
              it.rewards.each{perks ->
                  perks.each{perk ->
-                     if(!perk.title.equals('No Perk')){
+                     if(!perk.title.equals('No Perk') && perk.perkCreatedDate!=null){
                           if(projectUser.username.equals(user.username)){
                                recentActivity.put("perk"+perk.id, perk.title +";" + dateFormat.format(perk.perkCreatedDate))
                           }
@@ -1110,7 +1111,8 @@ class UserService {
 
          project.projectUpdates.each {
               it.each{
-                  recentActivity.put("update"+it.id, it.title +";"+ dateFormat.format(it.updateDate))
+                  if(it.updateDate!=null)
+                      recentActivity.put("update"+it.id, it.title +";"+ dateFormat.format(it.updateDate))
               }
         }
         contributions.each{
@@ -1125,7 +1127,8 @@ class UserService {
         }
         if(supporters){
             supporters.each{
-                recentActivity.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
+                if(it.followedDate!=null)
+                    recentActivity.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
             }
         }
         //sort 
@@ -1267,14 +1270,26 @@ class UserService {
     def uploadDocument(CommonsMultipartFile document, def params, Partner partner, def folder) {
         if (!document?.empty && document.size < 1024 * 1024 * 3) {
             def docUrl = getDocumentUrl(document)
+            def docName = document.getOriginalFilename()
             Document doc = new Document()
-            doc.docName = document.getOriginalFilename()
+            doc.docName = docName
             doc.docUrl = docUrl
+            def docCount = 0
             if (doc.save()) {
                 if (params.folderId) {
+                    def docs = folder.documents
+                    docs.each {
+                        docCount = (it.docName.equalsIgnoreCase(docName)) ? docCount + 1 : docCount ;
+                    }
+                    doc.docCount = docCount
                     folder.addToDocuments(doc)
                     folder.save(failOnError: true)
                 } else {
+                    def docs = partner.documents
+                    docs.each {
+                        docCount = (it.docName.equalsIgnoreCase(docName)) ? docCount + 1 : docCount ;
+                    }
+                    doc.docCount = docCount
                     partner.addToDocuments(doc)
                     partner.save(failOnError: true)
                 }
@@ -1312,7 +1327,8 @@ class UserService {
             document.transferTo(file)
             def object = new S3Object(file)
             object.key = key
-
+            def contenType = document.contentType
+            object.setContentType(contenType);
             s3Service.putObject(s3Bucket, object)
             file.delete()
             def docUrl = "//s3.amazonaws.com/crowdera/${key}"

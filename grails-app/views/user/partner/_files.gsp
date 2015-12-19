@@ -79,7 +79,7 @@
     	$('.file-thumbnail-container').removeClass('active');
     	$('#remove-file').val('');
     	$('.trash-file-fixed-btn').show();
-    	window.open(url, '_self');
+    	window.open(url, '_blank');
     });
 
     $('.file-thumbnail-container').click(function(event){

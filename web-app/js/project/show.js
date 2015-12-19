@@ -81,6 +81,10 @@ $(function() {
             emailIds: {
                 required: true,
                 validateMultipleEmailsCommaSeparated: true
+            },
+            socialcontact:{
+            	required:true,
+            	email:true
             }
         }
     });
@@ -713,6 +717,73 @@ $(function() {
         return false;
     });
 
+    /***********************Social contacts******************************************/
+    $('.constantContact').click(function(){
+        $('.socialProvider').val("constant");
+        $('.divSocialContact').show();
+        $('#socialContact').val('');
+    });
+    
+	$('.constantContact').hover(function(){
+	    $('.constantContact').attr('src', "https://s3.amazonaws.com/crowdera/assets/show-original-email-color.png");
+	}).mouseleave(function(){
+	    $('.constantContact').attr('src',"https://s3.amazonaws.com/crowdera/assets/show-e-mail-light-gray.png");
+	});
+	
+	$('.gmailContact').hover(function(){
+	    $('.gmailContact').attr('src',"https://s3.amazonaws.com/crowdera/assets/show-original-google-color.png");
+	}).mouseleave(function(){
+	    $('.gmailContact').attr('src',"https://s3.amazonaws.com/crowdera/assets/show-google-gray.png");
+	});
+    
+    
+    $('.gmailContact').click(function(){
+        $('.socialProvider').val("google");
+        $('.divSocialContact').show();
+        $('#socialContact').val('');
+    });
+    $('.mailchimpContact').click(function(){
+        $('.socialProvider').val("mailchimp");
+        $('.divSocialContact').show();
+        $('#socialContact').val('');
+    });
+    
+    $('.socialContact').change(function(){
+        var regex=/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b/i;
+        var socialContact= $('.socialContact').val();
+        var status =(socialContact.match(regex)) ? true : false;
+        if(status==true){
+            $('.socialContactDiv').removeClass("has-error");
+        }else{
+            return false;
+        }
+    });
+    
+    $('.btnSocialContacts').click(function(){
+        var socialProvider=$('.socialProvider').val();
+        var socialContact= $('.socialContact').val();
+        if(socialContact==null || socialContact==""){
+            $('.socialContactDiv').addClass("has-error");
+            $('.socialContact').focus();
+        }
+        if($('.socialContactDiv').hasClass("has-error")){
+            return false;
+        }else{
+            $.ajax({
+                 type:'post',
+                 url:$("#b_url").val()+'/project/importSocialContacts',
+                 data:'socialProvider='+socialProvider+'&socialContact='+socialContact,
+                 success: function(data){
+	                 if(data){
+		                 $(location).attr("href",data);
+    	             }
+                 }
+            });
+        }
+    });
+    
+    
+    
     /* Show pop-over tooltip on hover for some fields. */
     var showPopover = function () {
             $(this).popover('show');

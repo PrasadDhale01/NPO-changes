@@ -5608,6 +5608,49 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	div.manage-container-page{
         width: 320px;
 	}
+    .center-usrprfl-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .timeline > li > .timeline-panel {
+        padding: 20px 5px 20px 5px !important;
+    }
+    ul.timeline::before {
+        left: -14px !important;
+    }
+    ul.timeline > li > .timeline-panel {
+        width: 100% !important;
+    }
+    .userprfl-cmpgn-container {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+        float: none;
+        height: 100px;
+        margin-left: -1px;
+        padding: 10px 5px;
+        text-align: justify;
+        width: 238px;
+    }
+    .col-xs-8.usrPrfl-cmpgn-title {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .userprfl-warning {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+        float: none;
+        height: 117px;
+        padding: 10px 5px;
+        text-align: center;
+        width: 215px;
+    }
+    .otherprfl-warning {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+        float: none;
+        height: 100px;
+        padding: 16px 5px;
+        text-align: center;
+        width: 215px;
+    }
     #partner-sec-header .navbar-header { 
         width: 600px;
     }
@@ -7444,10 +7487,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         display: table-cell;
         width: 1% !important;
     }
-    .nav-tabs.nav-justified >li {
-        float: none;
-        width: 33.5% !important;
-    }
     .userdashboard-tiles{
         width:230px !important;
     }
@@ -7986,6 +8025,30 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     div.manage-container-page{
         width: 750px;
+    }
+    #TW-usrPrfl-ul  li.TW-usrPrfl-li > a {
+        font-size: 14px !important;
+        font-weight: bold;
+    }
+    .usr-prfl-amt {
+        font-size: 20px;
+        margin: 0;
+    }
+    .usr-prfl-amt .fa-inr {
+        font-size: 18px !important;
+        padding-right: 2px;
+    }
+    .userprfl-cmpgn-container {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+        float: none;
+        height: 100px;
+        margin-left: -3px;
+        padding: 10px 5px;
+        text-align: center;
+        width: 300px;
+    }
+    .TW-userprofile-panel-text-Size{
+        font-size:12px;
     }
     .nav-tab-doc.nav {
         font-size: 14px !important;
@@ -10668,6 +10731,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     li.manage-team-btn-tabsmargin{
         margin-left: 64px !important;   
     }
+	#TW-usrPrfl-ul li.TW-usrPrfl-li > a {
+	   font-size: 14px !important;
+	   font-weight: bold;
+	}
     li.sh-button-fund-secandaryheader {
         margin-left: 43px !important;
         position: absolute;
@@ -13645,6 +13712,46 @@ textarea.textarea-embed-video {
     div.manage-container-page{
         width: 320px;
     }
+    .center-usrprfl-img {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .timeline > li > .timeline-panel {
+        padding: 20px 5px 20px 5px !important;
+    }
+    .userprfl-cmpgn-container {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+        float: none;
+        height: 100px;
+        margin-left: -1px;
+        padding: 10px 5px;
+        text-align: justify;
+        width: 238px;
+    }
+    .col-xs-8.usrPrfl-cmpgn-title {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+    .userprfl-warning {
+        box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+        float: none;
+        height: 117px;
+        padding: 10px 5px;
+        text-align: center;
+        width: 215px;
+    }
+    .otherprfl-warning {
+	    box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.25);
+	    float: none;
+	    height: 100px;
+	    padding: 16px 5px;
+	    text-align: center;
+	    width: 215px;
+    }
+    ul.timeline::before {
+        left: -14px !important;
+    }
     div.cr1-width-inputs{
         width: 105.2%;
     }
@@ -16053,10 +16160,6 @@ a#downloadEbook{
 	background-color: #f6f8f8;
 	padding-bottom:0px;
 }
-.nav-justified > li {
-    display: table-cell !important;
-    width: 0;
-}
 .nav-justi > li {
     display: unset !important;
     width: 0%;
@@ -16465,4 +16568,74 @@ li.sh-button-fund-secandaryheader{
 .col-lg-1.col-md-1.col-sm-1.previewsubmitbtnTop {
     margin-left: 30px;
     margin-top: 18px;
+}
+.divSocialContact{
+    display:none;
+}
+.TW-user-tabs ul{
+    padding-left:0px;
+    padding-right:0px;
+}
+.TW-user-tabs ul li a {
+    background-color: #5fbed5 !important;
+    border: 1px solid #fff;
+    color: #fff !important;
+    padding-left: 0;
+    padding-right: 0;
+}
+.TW-user-tabs ul li.active a:hover {
+    background-color: #5fbed5 !important;
+    border: 1px solid #fff;
+    color: #fff !important;
+    padding-left: 0;
+    padding-right: 0;
+}
+.TW-user-tabs ul li.active a {
+    background-color: #a2b5d1  !important;
+    border: 1px solid #fff;
+    color: #fff !important;
+    padding-left: 0;
+    padding-right: 0;
+}
+.TW-usrPrfl-header{
+    padding-top:25px;
+}
+.panel-info > .panel-heading.TW-usrprfl-heading{
+    background-color: #5fbed5;
+    border-color: #3db5d8;
+    color: #fff;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.mailchimpContact{
+    height:33px;
+    margin-left:3px;
+    width:33px;
+    filter:grayscale(90%);
+    -webkit-filter:grayscale(90%);
+    -ms-filter: grayscale(90%)
+}
+.mailchimpContact:hover{
+    filter:grayscale(0%);
+    -webkit-filter:grayscale(0%);
+    -ms-filter: grayscale(0%);
+    height:33px;
+    margin-left:3px;
+    width:33px;
+}
+.socialContactsImg{
+    display:inline-flex;
+    display: -webkit-box; /*safari*/ 
+}
+.socialContactsImg a img{
+    display:inline-block;
+    margin-bottom:10px;
+}
+.gmailContact{
+    height: 33px;
+    width: 33px;
+}
+.constantContact{
+    height: 33px;
+    width: 33px;
 }

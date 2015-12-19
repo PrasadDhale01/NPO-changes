@@ -23,8 +23,8 @@
 <div class="col-xs-12 col-md-4 col-sm-4 mobileview-top">
     <g:render template="/project/manageproject/tilesanstitle" />
     <g:if test="${project.validated}">
-        <span class="btn btn-default fbShareForSmallDevices manage-fb-color fbshare-header">
-            <i class="fa fa-facebook"></i> SHARE ON FACEBOOK
+        <span class="btn btn-default fbShareForSmallDevices manage-fb-color fbshare-header mange-mobile-fb">
+            <i class="fa fa-facebook manage-fb-padding"></i> SHARE ON FACEBOOK
         </span>
     </g:if>
     <g:if test="${project.draft}">
@@ -32,7 +32,7 @@
             <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                 <g:form controller="project" action="saveasdraft" id="${project.id}">
                     <g:if test="${!project.touAccepted}">
-                        <div class="form-group">
+                        <div class="form-group manage-check-box-ondraft">
                             <input type="checkbox" name="submitForApprovalcheckbox" id="agreetoTermsandUse">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
                         </div>
                     </g:if><br/>
@@ -62,7 +62,7 @@
     <g:render template="/project/manageproject/tilesanstitle" />
     <g:if test="${project.validated}">
         <span class="btn btn-default fbShareForLargeDevices manage-fb-color mange-size-FBbtn" id="fbshare">
-            <i class="fa fa-facebook"></i> SHARE ON FACEBOOK
+            <i class="fa fa-facebook manage-fb-padding"></i> SHARE ON FACEBOOK
         </span>
     </g:if>
     <g:if test="${project.draft}">
@@ -70,7 +70,7 @@
             <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                 <g:form controller="project" action="saveasdraft" id="${project.id}">
                     <g:if test="${!project.touAccepted}">
-                        <div class="form-group">
+                        <div class="form-group manage-check-box-ondraft">
                             <input type="checkbox" name="submitForApprovalcheckbox1">  I accept <a href="${resource(dir: '/termsofuse')}">Terms of Use</a> and <a href="${resource(dir: '/privacypolicy')}">Privacy Policy</a>
                         </div>
                     </g:if>
@@ -134,7 +134,7 @@
     </div>
     </g:if>
 
-    <div class="col-md-8 col-sm-8 col-xs-12">
+    <div class="col-md-8 col-sm-8 col-xs-12 mange-story-imgs">
         <p class="campaignDescription justify">${raw(project.description)}</p>
         <p class="campaignStory justify">${raw(project.story)}</p>
     </div>

@@ -5,7 +5,7 @@
     def projectId=project.id
     def manageCampaign = "manageCampaign"
 %>
-<div class="<g:if test="${project.comments.empty}">col-md-12</g:if><g:else>col-md-offset-1 col-md-10</g:else> col-sm-12 col-xs-12">
+<div class="<g:if test="${project.comments.empty}">col-md-12</g:if><g:else>col-md-offset-1 col-md-10</g:else> col-sm-12 col-xs-12 mange-comments-bottom">
 	<g:if test="${!project.comments.empty}">
         <br>
         <div class="commentsoncampaign">

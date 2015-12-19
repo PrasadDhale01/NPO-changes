@@ -102,7 +102,7 @@
                         </div>
                     </g:if>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12  mange-borders">
-                        <ul class="nav nav-pills manage-projects nav-justified mobile-justified sh-tabs nav-justi mng-safari-mobile mng-safari-tabs manage-bottom-top">
+                        <ul class="nav nav-pills manage-projects nav-justified mobile-justified sh-tabs nav-justi mng-safari-mobile mng-safari-tabs <g:if test="${!project.payuStatus}"> manage-bottom-top</g:if><g:else>mange-tabs-payu</g:else>">
                             <li class="active show-tabs"><span class="manage-tbs-right-borders ">
                                     <a href="#essentials" data-toggle="tab" class="show-tabs-text essentials"><span class="hidden-xs">STORY</span> 
                                     <span class="glyphicon glyphicon-leaf visible-xs show-tab-right-border"></span></a>

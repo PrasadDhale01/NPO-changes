@@ -2070,7 +2070,7 @@ button.projectedit.close{
 .panel-primary > .panel-heading{
      background-color: #006083;
      border-color: #006083;
-     height: 48px;
+     height: 40px;
      word-wrap: break-word;
 }
 .containrewards{
@@ -5530,7 +5530,42 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
-
+    span.mange-mobile-fb {
+        font-weight: 900;
+    }	
+	div.mange-update-btns{
+         margin-left: 10%;
+    }
+    div.mange-editupdate-btns {
+        margin-left: 6%;
+    }
+    ul.mange-active-teams-mobile{
+        margin-right: 6px;
+        padding-left: 5px;
+    }
+    div.manage-panel-mobile-size {
+        height: 100px;
+        margin-bottom: 15px;
+        margin-left: -11px;
+        width: 280px;
+    }
+    a.mange-contribution-mobile{
+        font-size: 11px;
+        margin-top: 6px;
+        padding-left: 5px;
+        width: 68%;
+    }
+    a.mange-contributionreport-mobile{
+        width: 29%;
+    }
+    h2.crowderasupport {
+        margin-top: 5px;
+        margin-bottom: 20px;
+        font-size: 121%;
+    }
+    div.mange-team-bottem > h2 {
+        font-size: 20px;
+    }
     div.manage-edit-mobilebtns {
         bottom: 0;
         left: -15px;
@@ -5539,7 +5574,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         z-index: 1000;
     }
     ul.manage-bottom-top {
-        margin: 14px 0 14px -13px;
+        margin: 14px 0 14px 5px;
+    }
+    ul.mange-tabs-payu {
+        margin: 14px 0 14px 5px;
     }
     iframe.imagestyle {
         height: 200px;
@@ -7559,6 +7597,11 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+    span.manage-btn-width-aft-validated {
+        width: 88.1%;
+        padding-bottom: 18px;
+        padding-top: 18px;
+    }
     span.manage-btn-width {
         padding-bottom: 20px;
         padding-top: 19px;
@@ -7893,6 +7936,21 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    i.manage-fb-padding {
+        font-size: 19px;
+        padding-right: 12px;
+    }
+    div.show-submit-margin {
+        font-size: 13px;
+        margin-bottom: 8px;
+        margin-top: 7px;
+    }    
+    button.show-submitapproval-in-check-box {
+        font-size: 14px;
+        height: 39px !important;
+        margin-bottom: 0 !important;
+        padding-top: 8px;
+    }
     div.manage-social {
         padding-left: 150px;
     }
@@ -7907,12 +7965,6 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     button.manage-deletebtn-width {
         margin-left: 15px;
         width: 88.3%;
-    }
-    span.manage-btn-width-aft-validated {
-        margin-left: 15px;
-        width: 88.1%;
-        padding-bottom: 21px;
-        padding-top: 18px;
     }
     div.manage-tileIcons-width{
         width: 208px !important;
@@ -10219,13 +10271,27 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	span.manage-btn-width-aft-validated {
+        margin-left: 15px;
+        width: 88.1%;
+        padding-bottom: 15px;
+        padding-top: 16px;
+    }
     button.manage-btn-width-aft-validated {
         padding-bottom: 15px;
         padding-top: 15px;
     }
-    button.manage-btn-width {
-        padding-bottom: 11px;
+    span.manage-btn-width {
+        padding-bottom: 12px;
         padding-top: 13px;
+        width: 88.9%;
+    }
+    @-moz-document url-prefix() { 
+        span.manage-btn-width {
+            padding-bottom: 12px;
+            padding-top: 11px;
+            width: 88.9%;
+        }
     }
     button.manage-deletebtn-width {
         padding-top: 13px;
@@ -12679,7 +12745,7 @@ textarea.textarea-embed-video {
 	    margin-top: 0px;
 	    margin-left:0;
 	}
-    .glyphicon { margin-right: 10px;}
+/*     .glyphicon { margin-right: 10px;} */
     .featured-non-profits{
         display: none;
     }
@@ -13494,6 +13560,46 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    span.mange-mobile-fb {
+        font-weight: 900;
+    }
+    div.mange-update-btns{
+         margin-left: 10%;
+    }
+    div.mange-editupdate-btns {
+        margin-left: 6%;
+    }
+    input.manage-title-editupdate{
+        width: 93%;
+    }
+    input.manage-mobile-title {
+        width: 94%;
+    }
+    ul.mange-active-teams-mobile{
+        margin-right: 6px;
+        padding-left: 5px;
+    }
+    div.manage-panel-mobile-size {
+        height: 100px;
+        margin-bottom: 15px;
+        margin-left: -11px;
+        width: 280px;
+    }
+    div.manage-report-offline-lft {
+        left: 11px;
+    }
+    a.mange-contribution-mobile{
+        font-size: 11px;
+        margin-top: 6px;
+        padding-left: 5px;
+        width: 68%;
+    }
+    a.mange-contributionreport-mobile{
+        width: 29%;
+    }
+    div.mange-team-bottem > h2 {
+        font-size: 20px;
+    }
     div.manage-edit-mobilebtns {
         bottom: 0;
         left: -15px;
@@ -13502,7 +13608,10 @@ textarea.textarea-embed-video {
         z-index: 1000;
     }
     ul.manage-bottom-top {
-        margin: 14px 0 14px -13px;
+        margin: 14px 0 14px 4px;
+    }
+    ul.mange-tabs-payu{
+         margin: 14px 0 14px 3px;
     }
     iframe.imagestyle {
         height: 200px;

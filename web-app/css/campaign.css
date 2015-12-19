@@ -742,11 +742,15 @@ img.hm-height-width {
     line-height: 2;
     margin: 10px 0 10px -13px;
 }
+.mange-tabs-payu{
+    border-right-width: 0;
+    line-height: 2;
+    margin: 10px 0 10px -13px;
+}
 .manage-org-bottomMargin{
     margin-bottom: 0px;
 }
 .manage-btn-width {
-    margin-left: 14px;
     padding-bottom: 11px;
     padding-top: 11px;
     width: 91.5%;
@@ -757,9 +761,11 @@ img.hm-height-width {
     margin-left: 14px;
     width: 91.5%;	
 }
+.manage-edit-draft-left {
+    margin-left: 14px;
+}
 @-moz-document url-prefix() { 
     .manage-btn-width {
-         margin-left: 14px;
          padding-bottom: 9px;
          padding-top: 8px;
          width: 91.5%;
@@ -773,10 +779,12 @@ img.hm-height-width {
 }
 .manage-btn-width-aft-validated{
 	height: 100%;
-    margin-left: 15px;
     padding-top: 8px;
     padding-bottom: 10px;
     width: 91.2%; 
+}
+.manage-edit-left{
+    margin-left: 15px;
 }
 .manage-tiletitile-top{
     margin-top: 0 !important;
@@ -791,12 +799,14 @@ img.hm-height-width {
     height: 100%;
     padding: 12px;
     width: 100%;
+    font-weight: 900;
 }
 @-moz-document url-prefix() { 
     .mange-size-FBbtn {
         height: 100%;
         padding: 9px;
         width: 100%;
+        font-weight: 900;
     }
 }
 .manage-social{
@@ -823,4 +833,43 @@ img.hm-height-width {
 }
 .manage-comit-lft{
     padding-left: 7px;
+}
+.show-submitapproval-in-check-box{
+    height: 52px !important;
+    margin-bottom: 0 !important;
+    padding-top: 11px;
+}
+.show-submit-margin {
+    margin-bottom: 8px;
+    margin-top: 7px;
+}
+.manage-check-box-ondraft{
+    margin-bottom: 8px;
+    margin-top: 7px;	
+}
+.manage-table-bottom {
+    margin-bottom: 25px !important;
+}
+.mange-comments-bottom {
+    margin-bottom: 25px;
+}
+.mange-team-bottem{
+    margin-bottom: 25px;
+}
+.mange-rewards-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre;
+    padding-bottom: 5px;
+    word-wrap: normal;
+}
+.manage-fb-padding {
+    font-size: 19px;
+    padding-right: 30px;
+}
+.mange-story-imgs img{
+    width: 100%;	
+}
+.mange-story-imgs iframe{
+    width: 100% !important;
 }

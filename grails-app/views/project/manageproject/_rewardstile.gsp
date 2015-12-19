@@ -17,7 +17,7 @@
             <h3 class="panel-title"><b>I just want to help.</b></h3>
         </g:if>
         <g:else>
-            <h3 class="panel-title"><b>${reward.title}</b></h3>
+            <h3 class="panel-title mange-rewards-title"><b>${reward.title}</b></h3>
         </g:else>
     </div>
 	   <div class="panel-body perktile">

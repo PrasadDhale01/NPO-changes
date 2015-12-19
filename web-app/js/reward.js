@@ -5,7 +5,8 @@ $(function() {
         rules: {
             title: {
             	required: true,
-                minlength: 2
+                minlength: 2,
+                maxlength: 55
             },
             numberAvailable: {
                 required: true,

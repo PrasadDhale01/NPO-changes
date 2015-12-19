@@ -10,9 +10,9 @@
 <g:if test="${project.validated}">
     <g:if test="${!teams.isEmpty()}">
         <g:if test="${isCampaignOwnerOrAdmin}">
-		    <ul class="nav nav-pills nav-pills-manageteam">
+		    <ul class="nav nav-pills nav-pills-manageteam  mange-active-teams-mobile">
                 <li data-toggle="tab" class="active team-footer col-md-3 col-sm-4 col-xs-12 manage-team-btn-tabsmargin">
-                    <a href="#manageTeam" class="text-center teammembers" id="loadTeamPage">
+                    <a href="#manageTeams" class="text-center teammembers" id="loadTeamPage">
                         ${totalteams.size()}&nbsp;&nbsp;Teams <g:if test="${discardedTeam.size() > 0}">&nbsp;&nbsp;(${discardedTeam.size()}&nbsp;&nbsp;Disabled)</g:if>
                     </a>
                 </li>

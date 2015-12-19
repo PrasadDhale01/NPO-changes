@@ -2218,7 +2218,7 @@ $(function() {
 						'	<input type="text" class="form-control form-control-input-for spendCause" id="spendCause'+nextCount+'" name="spendCause'+nextCount+'">'+
 						'</div>'+
 						'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">'+
-							'<input type="hidden" name="spendFieldSave" value="'+nextCount+'" class="spendFieldSave">'+
+							'<input type="hidden" name="spendFieldSave" value="'+nextCount+'" class="spendFieldSave" id="spendFieldSave'+nextCount+'">'+
 							'<i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>'+
 						'</div>&nbsp;'+
 						'<div class="btn btn-circle spend-matrix-icons spendMatrixTemplateDelete">'+
@@ -2229,7 +2229,7 @@ $(function() {
 							'<i class="glyphicon glyphicon-plus glyphicon-size"></i>'+
 						'</div>'+
 					'</div>'+
-					'<input type="hidden" name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="'+nextCount+'">'+
+					'<input type="hidden" name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="'+nextCount+'" id="spenMatrixNumberAvailable'+nextCount+'">'+
 				'</div>';
 				$('.spend-matrix').append(template);
 				var lastSpendField = $('.spenMatrixNumberAvailable:last').val();

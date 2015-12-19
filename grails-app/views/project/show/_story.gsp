@@ -20,7 +20,6 @@
 </div>
     <br>
     <%-- Social features --%>
-    <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <g:hiddenField name="shareUrl" id="shareUrl" value="${shareUrl}"/>
     <g:hiddenField name="embedTileUrl" id="embedTileUrl" value="${embedTileUrl}"/>
 
@@ -36,10 +35,10 @@
             <a class="pull-left show-icons show-pointer-not">
                 <img src="//s3.amazonaws.com/crowdera/assets/show-like-gray.png" class="show-like" alt="campaign-supporter">
             </a>
-            <a class="social share-linkedin pull-left show-icons show-pointer-not" target="_blank" id="share-linkedin">
+            <a class="social share-linkedin pull-left show-icons show-pointer-not" target="_blank">
                 <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
             </a>
-            <a class="social google-plus-share pull-left show-icons show-pointer-not" id="googlePlusShare">
+            <a class="social google-plus-share pull-left show-icons show-pointer-not">
                 <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
             </a>
             <span class="pull-left show-icons show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></span>

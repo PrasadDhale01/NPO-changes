@@ -411,7 +411,7 @@
                                                     <input type="text" class="form-control form-control-input-for spendCause" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
                                                 </div>&nbsp;&nbsp;
                                                 <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
-                                                    <g:hiddenField name="spendFieldSave" value="${spend.numberAvailable}" class="spendFieldSave"/>
+                                                    <g:hiddenField name="spendFieldSave" value="${spend.numberAvailable}" class="spendFieldSave" id="spendFieldSave${spend.numberAvailable}"/>
                                                     <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
                                                 </div>
                                                 <g:if test="${spend.numberAvailable != 1}">
@@ -424,7 +424,7 @@
                                                     <i class="glyphicon glyphicon-plus glyphicon-size"></i>
                                                 </div>
                                             </div>
-                                            <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="${spend.numberAvailable}"/>
+                                            <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="${spend.numberAvailable}" id="spenMatrixNumberAvailable${spend.numberAvailable}"/>
                                         </div>
                                     </g:each>
                                     <g:hiddenField name="lastSpendField" id="lastSpendField" value="${spendLastNumAvail}"/>
@@ -448,14 +448,14 @@
                                                 <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
                                             </div>&nbsp;&nbsp;
                                             <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
-                                                <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave"/>
+                                                <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave" id="spendFieldSave1"/>
                                                 <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
                                             </div>
                                             <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd" id="spendMatrixTemplateAdd1">
                                                 <i class="glyphicon glyphicon-plus glyphicon-size"></i>
                                             </div>
                                         </div>
-                                        <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="1"/>
+                                        <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="1" id="spenMatrixNumberAvailable1"/>
                                     </div>
                                     <g:hiddenField name="lastSpendField" id="lastSpendField" value="1"/>
                                 </g:else>

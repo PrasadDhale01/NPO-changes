@@ -109,7 +109,6 @@
 
     <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <g:hiddenField name="pieList" value="${pieList}" id="pieList"/>
-    <g:hiddenField name="fbShareUrl" id="fbShareUrl" value="${fbShareUrl}"/>
     <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
 
         <g:if test="${project}">
@@ -136,7 +135,7 @@
                 <g:if test="${isPreview}">
                     <g:if test="${tile == 'false'}">
                         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12 backToCreatePage">
-                            <a href="/campaign/start/${vanityTitle}"><< Back to Create Page</a>
+                            <a href="/campaign/start/${vanityTitle}">&lt;&lt; Back to Create Page</a>
                         </div>
                     </g:if>
                     <div class="<g:if test="${tile == 'false'}">col-lg-8 col-md-8 col-sm-8 col-xs-12 hidden-xs </g:if>green-heading text-center campaignTitle">
@@ -318,7 +317,7 @@
                         </li>
                         <li class="sh-button-fund-secandaryheader col-lg-push-2 col-sm-push-3 col-md-push-3">
                             <g:if test="${isPreview && !project.validated}">
-                                <div class="submitForApprovalSectionbtm show-headerApproval-tooltip show-submit-tabs" id="submitForApprovalSectionbtm">
+                                <div class="submitForApprovalSectionbtn show-headerApproval-tooltip show-submit-tabs">
                                     <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                                         <g:form controller="project" action="saveasdraft" id="${project.id}">
                                             <g:if test="${!project.touAccepted}">
@@ -378,10 +377,10 @@
                                <a class="pull-left show-icons-secandheader show-pointer-not">
                                    <img src="//s3.amazonaws.com/crowdera/assets/show-like-gray.png" class="show-like" alt="campaign-supporter">
                                </a>
-                               <a class="social share-linkedin pull-left show-icons-secandheader show-pointer-not" target="_blank" id="share-linkedin">
+                               <a class="social share-linkedin pull-left show-icons-secandheader show-pointer-not" target="_blank">
                                    <img src="//s3.amazonaws.com/crowdera/assets/show-linkedin-gray.png" class="show-linkedin" alt="LinkedIn Share">
                                </a>
-                               <a class="social google-plus-share pull-left show-icons-secandheader show-pointer-not" id="googlePlusShare">
+                               <a class="social google-plus-share pull-left show-icons-secandheader show-pointer-not">
                                    <img src="//s3.amazonaws.com/crowdera/assets/show-google-gray.png" class="show-google" alt="Google+ Share">
                                </a>
                                <span class="pull-left show-icons-secandheader show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></span>
@@ -689,7 +688,7 @@
                       </div>
                     
                       <g:if test="${isPreview && !project.validated}">
-                          <div class="submitForApprovalSectionbtm" id="submitForApprovalSectionbtm">
+                          <div class="submitForApprovalSectionbtn">
                               <g:if test="${project.organizationIconUrl && project.webAddress && (project.charitableId || project.paypalEmail || project.payuEmail) && (!project.imageUrl.isEmpty()) && project.organizationName && project.beneficiary.country && (projectService.getRemainingDay(project) > 0)}">
                                   <g:form controller="project" action="saveasdraft" id="${project.id}">
                                       <g:if test="${!project.touAccepted}">

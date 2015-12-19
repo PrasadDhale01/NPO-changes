@@ -77,14 +77,14 @@
     </div>
 
     <div class="col-md-12 col-sm-12 col-xs-12 TW-campaignstory-img-width">
-        <g:if test="${isCrFrCampBenOrAdmin}">
-            <div class="show-description">
-                <p class="campaignDescription justify">${raw(project.description)}</p>
-            </div>
-        </g:if>
+		<g:if test="${isCrFrCampBenOrAdmin}">
+			<div class="show-description">
+	            <p class="campaignDescription justify">${raw(project.description)}</p>
+			</div>
+		</g:if>
 		<g:else>
 			<div class="show-description">
-			<p class="campaignDescription justify">${raw(currentTeam.description)}</p>
+	            <p class="campaignDescription justify">${raw(currentTeam.description)}</p>
 			</div>
 		</g:else>
 		<g:if test="${spendCauseList && spendAmountPerList}">
@@ -93,7 +93,7 @@
 				<g:hiddenField name="spendCauseList" value="${spendCauseList}" id="spendCauseList"/>
 				<g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>
 				<g:hiddenField name="payuStatus" id="payuStatus" value="${project.payuStatus}"/>
-                <div id="graph"></div>
+				<div id="graph"></div>
 			</div>
 			<script src="/js/raphel-pie/raphael-min.js"></script>
 			<script src="/js/raphel-pie/g.raphael.js"></script>

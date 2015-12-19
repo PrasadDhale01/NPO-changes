@@ -191,10 +191,10 @@
             </g:elseif>
             <g:elseif test="${project.category.toString() == 'RELIGION'}">
                 <g:if test="${project.payuStatus}">
-                    <p class="campaignStory justify">This campaign will help ${project.impactNumber} religion empowerement by <span class="fa fa-inr"></span> ${project.impactAmount}</p>
+                    <p class="campaignStory justify">This campaign will help ${project.impactNumber} religion empowerment by <span class="fa fa-inr"></span> ${project.impactAmount}</p>
                 </g:if>
                 <g:else>
-                    <p class="campaignStory justify">This campaign will help ${project.impactNumber} religion empowerement by <span class="fa fa-usd"></span> ${project.impactAmount}</p>
+                    <p class="campaignStory justify">This campaign will help ${project.impactNumber} religion empowerment by <span class="fa fa-usd"></span> ${project.impactAmount}</p>
                 </g:else>
             </g:elseif>
             <g:elseif test="${project.category.toString() == 'NON_PROFITS'}">
@@ -230,9 +230,9 @@
             <p class="campaignStory justify">${raw(project.story)}</p>
         </g:else>
         <g:if test="${remainingTagsDesktop}">
-            <p class="moretags-desktop">More Tags : ${remainingTagsDesktop}</p>
+            <p class="moretags-desktop"><b>More Tags</b> : ${remainingTagsDesktop}</p>
         </g:if>
         <g:if test="${remainingTagsTabs}">
-            <p class="moretags-tabs">More Tags : ${remainingTagsTabs}</p>
+            <p class="moretags-tabs"><b>More Tags</b> : ${remainingTagsTabs}</p>
         </g:if>
     </div>

@@ -543,20 +543,20 @@ class ProjectController {
 		
         def projectTitle
         if (params.title && params.amount && params.description && params.firstName) {
-            def project = projectService.getProjectByParams(params)
+            Project project = projectService.getProjectByParams(params)
             def beneficiary = userService.getBeneficiaryByParams(params)
             def user = userService.getCurrentUser()
             project.draft = true;
             project.beneficiary = beneficiary;
             project.beneficiary.email = user.email;
 
-            if (project.usedFor == 'SOCIAL_NEEDS'){
+            if (params.usedFor == 'SOCIAL_NEEDS'){
                 project.hashtags = '#Social-Innovtion'
-            } else if (project.usedFor == 'PERSONAL_NEEDS'){
+            } else if (params.usedFor == 'PERSONAL_NEEDS'){
                 project.hashtags = '#Personal-Needs'
-            } else if (usedFor == 'IMPACT'){
+            } else if (params.usedFor == 'IMPACT'){
                 project.hashtags = '#Impact';
-            } else if (usedFor == 'PASSION'){
+            } else if (params.usedFor == 'PASSION'){
                 project.hashtags = '#Passion';
             }
 

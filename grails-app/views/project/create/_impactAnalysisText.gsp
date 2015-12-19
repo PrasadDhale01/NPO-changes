@@ -164,7 +164,7 @@
 		    <input type="text" name="impactNumber" class="form-control form-control-impact-num" placeholder = "Number">
 		</g:else>
 	</div>
-	<span class="impact-text col-impact-text col-impact-animals-text-two col-xs-12 col-sm-2 impact-right-padding" id="impact-text">elderlies by providing</span>
+	<span class="impact-text col-impact-text col-impact-elderly-text-two col-xs-12 col-sm-2 impact-right-padding" id="impact-text">elderlies by providing</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group">
 		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
 		    <span class="fa fa-inr cr-impact-currency"></span>
@@ -294,7 +294,7 @@
             <input type="text" name="impactNumber" class="form-control form-control-impact-num" placeholder = "Number">
 		</g:else>
 	</div>
-	<span class="impact-text col-impact-text col-xs-12 col-sm-3 impact-right-padding col-impact-text-religion-two" id="impact-text">religion empowerement by</span>
+	<span class="impact-text col-impact-text col-xs-12 col-sm-3 impact-right-padding col-impact-text-religion-two" id="impact-text">religion empowerment by</span>
 	<div class="col-sm-2 col-xs-12 col-sm-impact-amount form-group col-sm-impact-religion-amount">
 		<g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
             <span class="fa fa-inr cr-impact-currency cr-impact-religion-cr"></span>

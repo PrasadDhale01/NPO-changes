@@ -881,7 +881,7 @@
                     <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
                         <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')) || (project.fundsRecievedBy != 'NON-PROFIT' && (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'))}">tax-reciept</g:if>" id="tax-reciept">
                             <input type="checkbox" name="tax-reciept-checkbox" class="tax-reciept-checkbox" id="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
-                            Do you want to offer receipt to your contributors.
+                            Do you want to offer receipt to your contributors?
                         </div>
                     </div>
                 </div>
@@ -951,7 +951,7 @@
                              </div>
                              <div class="row">
                                  <div class="col-sm-12 col-sm-fcra">
-                                     <input type="checkbox" name="fcra-checkbox" class="fcra-checkbox" <g:if test="${taxReciept.fcraRegNum}">checked="checked"</g:if>>&nbsp;&nbsp;Are you FCRA registered
+                                     <input type="checkbox" name="fcra-checkbox" class="fcra-checkbox" <g:if test="${taxReciept.fcraRegNum}">checked="checked"</g:if>>&nbsp;&nbsp;Are you FCRA registered ?
                                  </div>
                                  <div class="fcra-clear"></div>
                                  <div class="fcra-details <g:if test="${!taxReciept.fcraRegNum}">fcra-display-none</g:if>">
@@ -1051,7 +1051,7 @@
                              </div>
                              <div class="row">
                                  <div class="col-sm-12 col-sm-fcra">
-                                     <input type="checkbox" name="fcra-checkbox" class="fcra-checkbox">&nbsp;&nbsp;You are FCRA registered
+                                     <input type="checkbox" name="fcra-checkbox" class="fcra-checkbox">&nbsp;&nbsp;Are you FCRA registered ?
                                  </div>
                                  <div class="fcra-clear"></div>
                                  <div class="fcra-details fcra-display-none">

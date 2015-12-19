@@ -5558,7 +5558,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	   margin-left: -10px;
 	}
 	.cr-panel-qa .cr-spend-matrix-font{
-	   font-size: 16px;
+	   font-size: 15px;
 	}
 	#chart-container #graphWithoutLabel{
 	   margin-left: 5px;
@@ -7914,6 +7914,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.col-impact-text-religion-two{
 	   width:32%;
 	}
+	span.col-impact-elderly-text-two{
+	   width:25%;
+	}
 	span.cr-impact-religion-cr {
 	   left: 15px;
 	}
@@ -9366,6 +9369,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	.moretags-tabs{
 	   display:none;
 	}
+
     span.col-impact-text-one, span.col-impact-education-text-one{
         width:22%;
     }
@@ -9378,7 +9382,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         width:15%;
     }
 
-    span.col-impact-animals-text-two{
+    span.col-impact-animals-text-two, span.col-impact-elderly-text-two{
         width:18%;
     }
 

@@ -675,10 +675,11 @@ $(function() {
                 required: true,
                 minlength:10
             });
-            
+
             $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
                 required: true,
-                minlength:9
+                minlength:9,
+                number:true
             });
 
             $( '[name="expiry-date"]' ).rules( "add", {
@@ -995,7 +996,8 @@ $(function() {
                 
                 $( '[name="tax-reciept-holder-phone"]' ).rules( "add", {
                     required: true,
-                    minlength:9
+                    minlength:9,
+                    number:true
                 });
 
                 $( '[name="expiry-date"]' ).rules( "add", {

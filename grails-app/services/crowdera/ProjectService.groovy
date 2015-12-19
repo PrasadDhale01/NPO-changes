@@ -4278,11 +4278,9 @@ class ProjectService {
     }
 
     def getPieList(Project project) {
-        List pieValueWithPer = [];
         def spendMatrixs = project.spend;
         String sublist1;
         String sublist;
-        def cause
         def total = 0
         if (spendMatrixs){
             spendMatrixs.each{ spendMatrix ->
@@ -4424,6 +4422,7 @@ class ProjectService {
             SONFI : 'SONFI (50%)',
             SOUNK : 'SOUNK (50%)'
         ]
+        return deductibleStatus
     }
 
     def getCategoryAndHashTagsSaved(Project project, def currentEnv, def selectedCategory){

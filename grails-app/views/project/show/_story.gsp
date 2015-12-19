@@ -43,8 +43,8 @@
             </a>
             <span class="pull-left show-icons show-pointer-not"><img src="//s3.amazonaws.com/crowdera/assets/embedicon-grey.png" alt="embedicon" class="show-embedIcon"></span>
             <span class="shortUrlglyphicon glyphicon glyphicon-link glyphicon-show-design glyphicon-show-link-color show-pointer-not"></span>
-			<span class="showing-hashtags <g:if test="${isvalidateShow}">hashtag-font-size</g:if> showing-hashtags-desktop">${hashTagsDesktop}</span>
-			<span class="showing-hashtags showing-hashtags-tabs">${hashTagsTabs}</span>
+            <span class="showing-hashtags <g:if test="${isvalidateShow}">hashtag-font-size</g:if> showing-hashtags-desktop">${hashTagsDesktop}</span>
+            <span class="showing-hashtags showing-hashtags-tabs">${hashTagsTabs}</span>
         </g:if>
         <g:else>
             <a class="share-mail pull-left show-icons" href="#" data-toggle="modal" data-target="#sendmailmodal" target="_blank" id="share-mail">
@@ -87,18 +87,18 @@
 	            <p class="campaignDescription justify">${raw(currentTeam.description)}</p>
 			</div>
 		</g:else>
-		<g:if test="${spendCauseList && spendAmountPerList}">
-			<p>Campaign money will be used as</p>
-			<div id="chart-container">
-				<g:hiddenField name="spendCauseList" value="${spendCauseList}" id="spendCauseList"/>
-				<g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>
-				<g:hiddenField name="payuStatus" id="payuStatus" value="${project.payuStatus}"/>
-				<div id="graph"></div>
-			</div>
-			<script src="/js/raphel-pie/raphael-min.js"></script>
-			<script src="/js/raphel-pie/g.raphael.js"></script>
-			<script src="/js/raphel-pie/g.pie.js"></script>
-		</g:if>
+        <g:if test="${spendCauseList && spendAmountPerList}">
+             <p>Campaign money will be used as</p>
+             <div id="chart-container">
+                 <g:hiddenField name="spendCauseList" value="${spendCauseList}" id="spendCauseList"/>
+                 <g:hiddenField name="spendAmountPerList" value="${spendAmountPerList}" id="spendAmountPerList"/>
+                 <g:hiddenField name="payuStatus" id="payuStatus" value="${project.payuStatus}"/>
+                 <div id="graph"></div>
+             </div>
+             <script src="/js/raphel-pie/raphael-min.js"></script>
+             <script src="/js/raphel-pie/g.raphael.js"></script>
+             <script src="/js/raphel-pie/g.pie.js"></script>
+        </g:if>
         <g:if test="${project.impactNumber > 0 && project.impactAmount > 0}">
             <g:if test="${project.category.toString() == 'ANIMALS'}">
                 <g:if test="${project.payuStatus}">

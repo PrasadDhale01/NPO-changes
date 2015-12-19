@@ -100,20 +100,20 @@
         width:19%;
     }
     
-	span.cr-impact-religion-cr{
-	   left:6px;
-	}
-	
-	span.col-impact-elderly-text{
+    span.cr-impact-religion-cr{
+        left:6px;
+    }
+
+    span.col-impact-elderly-text{
         width:12%;
     }
 
-	.cr-panel-impact-analysis .form-group{
-	   margin-left: 0px;
-	}
+    .cr-panel-impact-analysis .form-group{
+        margin-left: 0px;
+    }
 
-	.hashtags-padding-left{
-       left:26%;
+    .hashtags-padding-left{
+        left:26%;
     }
 }
 

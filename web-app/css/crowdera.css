@@ -5489,18 +5489,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
-	#chart-container #graph{
-	   margin-left: -100px;
-	}
+    #chart-container #graph{
+        margin-left: -100px;
+    }
 
-	.cr-panel-spendMatrix-height{
-	   min-height:300px
-	}
+    .cr-panel-spendMatrix-height{
+        min-height:300px
+    }
 
-	.col-sm-impact-religion-amount{
-		padding-left: 0px;
-		left:-6px;
-	}
+    .col-sm-impact-religion-amount{
+        padding-left: 0px;
+        left:-6px;
+    }
 
     .col-sm-fcra {
         padding-left: 33px;
@@ -9293,26 +9293,26 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 1024px) {
-	.cr-story-padding .redactor-box .redactor-editor{
-	   height:136px;
-	}
-	.hashtags-padding-left{
-	   left:35%;
-	}
-	.showing-hashtags-desktop{
-	   display:none;
-	}
-	.showing-hashtags-tabs{
-	   display:inline;
-	}
-	.moretags-desktop{
-	   display:none;
-	}
-	.moretags-tabs{
-	   display:block;
-	}
-	.remaining-hashtags-tabs{
-       display:inline;
+    .cr-story-padding .redactor-box .redactor-editor{
+        height:136px;
+    }
+    .hashtags-padding-left{
+        left:35%;
+    }
+    .showing-hashtags-desktop{
+        display:none;
+    }
+    .showing-hashtags-tabs{
+        display:inline;
+    }
+    .moretags-desktop{
+        display:none;
+    }
+    .moretags-tabs{
+        display:block;
+    }
+    .remaining-hashtags-tabs{
+        display:inline;
     }
     .remaining-hashtags-desktop{
        display:none;
@@ -9348,27 +9348,27 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
-	.cr-tax-files{
+    .cr-tax-files{
         width:170px;
     }
-	.col-add-tax-files {
-	   width: 15%;
-	}
-	.hashtags-padding-left{
-	   left:26%;
-	}
-	.showing-hashtags-desktop{
-	   display:inline;
-	}
-	.showing-hashtags-tabs{
-	   display:none;
-	}
-	.moretags-desktop{
-	   display:block;
-	}
-	.moretags-tabs{
-	   display:none;
-	}
+    .col-add-tax-files {
+        width: 15%;
+    }
+    .hashtags-padding-left{
+        left:26%;
+    }
+    .showing-hashtags-desktop{
+        display:inline;
+    }
+    .showing-hashtags-tabs{
+        display:none;
+    }
+    .moretags-desktop{
+        display:block;
+    }
+    .moretags-tabs{
+        display:none;
+    }
 
     span.col-impact-text-one, span.col-impact-education-text-one{
         width:22%;
@@ -9743,28 +9743,28 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
-	label.cr-spend-guide-text {
-		height: 115px;
-		border: 1px solid #DDD;
-		padding-right: 6px;
-	}
-
-	label.cr-panel-spend-xs{
-	   margin-bottom: 0;
-	}
-
-	#chart-container #graph{
-       margin-left: -220px;
+    label.cr-spend-guide-text {
+        height: 115px;
+        border: 1px solid #DDD;
+        padding-right: 6px;
     }
-	.cr-panel-spendMatrix-height{
+
+    label.cr-panel-spend-xs{
+        margin-bottom: 0;
+    }
+
+    #chart-container #graph{
+        margin-left: -220px;
+    }
+    .cr-panel-spendMatrix-height{
         min-height:375px
     }
-	span.col-impact-education-text-one, span.col-impact-education-text-two{
-       padding-left:17px;
-	}
-	span.cr-impact-education-currency{
+    span.col-impact-education-text-one, span.col-impact-education-text-two{
+        padding-left:17px;
+    }
+    span.cr-impact-education-currency{
         left:20px;
-	}
+    }
     .col-sm-impact-num {
         padding-left: 4px !important;
         padding-right: 10px;

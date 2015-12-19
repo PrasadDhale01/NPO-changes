@@ -1235,7 +1235,6 @@
 
     function autoSave(variable, varValue) {
         var projectId = $('#projectId').val();
-        alert(varValue);
         $.ajax({
             type:'post',
             url:$("#b_url").val()+'/project/autoSave',

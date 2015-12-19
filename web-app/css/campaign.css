@@ -707,13 +707,13 @@ div.validate-show-div .show-description {
 }
 
 .col-file-name{
-	padding-left: 10px;
-	padding-right: 26px;
-	padding-bottom: 2px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	word-wrap: normal;
-	white-space: pre;
+    padding-left: 10px;
+    padding-right: 26px;
+    padding-bottom: 2px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    white-space: pre;
 }
 
 .col-reciept-display-none{
@@ -821,12 +821,12 @@ hr.hm-line-color{
 }
 
 #chart-container #graph {
-	display: inline-block;
-	height: 250px;
-	margin-right:0px;
-	margin-top:0px;
-	margin-bottom:0px;
-	width: 600px;
+    display: inline-block;
+    height: 250px;
+    margin-right:0px;
+    margin-top:0px;
+    margin-bottom:0px;
+    width: 600px;
 }
 
 #chart-container {
@@ -834,15 +834,15 @@ hr.hm-line-color{
 }
 
 .digitsError{
-	color: #F04124;
-	font-size: 12px;
-	font-weight: normal;
+    color: #F04124;
+    font-size: 12px;
+    font-weight: normal;
 }
 
 #chart-container #graphWithoutLabel {
-	height: 250px;
-	margin:0px;
-	width: 200px;
+    height: 250px;
+    margin:0px;
+    width: 200px;
 }
 
 div.col-sm-pie-left-pdding{

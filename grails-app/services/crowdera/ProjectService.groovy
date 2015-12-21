@@ -1354,6 +1354,7 @@ class ProjectService {
 		List usEndedCampaign = []
 		List sortIndiaCampaign = []
 		List sortUsCampaign = []
+        List sortedCampaignByPercentage = []
         if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
             finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
             finalList.each { project ->
@@ -1377,10 +1378,16 @@ class ProjectService {
                     openProjects.add(project)
                 }
             }
-        sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
-        finalList =  sortedProjects.reverse() + endedProjects.reverse()
+            sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
+            finalList =  sortedProjects.reverse() + endedProjects.reverse()
         }
-        return finalList
+        finalList.each{
+            def percentage = contributionService.getPercentageContributionForProject(it)
+            if(percentage >= 17){
+                sortedCampaignByPercentage.add(it)
+            }
+        }
+        return sortedCampaignByPercentage
     }
 
     def isPayuProject(Project project){

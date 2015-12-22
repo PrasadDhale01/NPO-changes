@@ -5489,13 +5489,33 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 /**********************Start of Media CSS*******************************/
 
 @media only screen and (min-width: 768px){
+    #chart-container #graph{
+        margin-left: -100px;
+    }
+
+    .cr-panel-spendMatrix-height{
+        min-height:300px
+    }
+
+    .col-sm-impact-religion-amount{
+        padding-left: 0px;
+        left:-6px;
+    }
+
+    .col-sm-fcra {
+        padding-left: 33px;
+    }
+
+    .padding-tax-reciept-xs{
+        padding-right:30px !important;
+    }
 
     input.editsweb-margin-mobile {
         height: 45px;
         padding-left: 182px;
         width: 100% !important;
     }
-    
+
     .cr1-vanitypadding-in-co{
         padding-left: 182px;
         height: 45px;
@@ -5530,6 +5550,23 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+
+	.cr-tax-files{
+	   width:200px;
+	}
+	.pieChart-edit #chart-container #graphWithoutLabel{
+	   margin-left: -10px;
+	}
+	.cr-panel-qa .cr-spend-matrix-font{
+	   font-size: 15px;
+	}
+	#chart-container #graphWithoutLabel{
+	   margin-left: 5px;
+	}
+	.padding-tax-reciept-xs{
+	   padding-right:20px !important;
+	}
+
     .center-usrprfl-img {
         display: block;
         margin-left: auto;
@@ -7176,7 +7213,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     }
     input.paypal-create {
         margin-left: -7% !important;
-        width: 107%;
+        width: 105%;
         margin-top: 3px;
     }
     .form-group.col-sm-6.col-xs-11.rewardPriceClass {
@@ -7865,6 +7902,45 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+	div.col-sm-tax-reciept {
+	   width: 32%;
+	}
+	.cr-tax-files{
+	   width:157px;
+	}
+	#chart-container #graphWithoutLabel{
+	   margin-left:-40px;
+	}
+	.col-impact-text-religion-two{
+	   width:32%;
+	}
+	span.col-impact-elderly-text-two{
+	   width:25%;
+	}
+	span.cr-impact-religion-cr {
+	   left: 15px;
+	}
+	span.col-impact-community-text-two{
+	   width:28%;
+	}
+	span.col-impact-arts-text-two{
+	   width:27%;
+	}
+	span.col-impact-text-one{
+	   width:30%;
+	}
+	span.col-impact-text-two{
+	   width:21%;
+	}
+	span.col-impact-env-text-two{
+	   width:34%;
+	}
+	div.col-sm-impact-education-num {
+	   padding-left: 0px;
+	}
+	.col-sm-impact-amount{
+	   padding-left: 8px;
+	}
     #TW-usrPrfl-ul  li.TW-usrPrfl-li > a {
         font-size: 14px !important;
         font-weight: bold;
@@ -8011,16 +8087,22 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     li.sh-secandary-header-showpage {
         margin-left: 15px;
     }
-
     .ansText{
         width:90% !important;
         margin-top: 5px;
     }
     .cr-impact-analysis{
-         width:15% !important;
+        width:30% !important;
     }
     .cr-impact-guide{
-         width:85% !important;
+        width:70% !important;
+    }
+    .col-tax-file-show{
+        padding-left: 20px;
+    }
+    .ansText{
+        width:90% !important;
+        margin-top: 5px;
     }
     .cr-reasons-to-fund{
          width:30% !important;
@@ -9211,6 +9293,36 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 1024px) {
+    .cr-story-padding .redactor-box .redactor-editor{
+        height:136px;
+    }
+    .hashtags-padding-left{
+        left:35%;
+    }
+    .showing-hashtags-desktop{
+        display:none;
+    }
+    .showing-hashtags-tabs{
+        display:inline;
+    }
+    .moretags-desktop{
+        display:none;
+    }
+    .moretags-tabs{
+        display:block;
+    }
+    .remaining-hashtags-tabs{
+        display:inline;
+    }
+    .remaining-hashtags-desktop{
+       display:none;
+    }
+    .validate-show-desktop-hashtags{
+       display:none;
+    }
+    .validate-show-tabs-hashtags{
+       display:inline;
+    }
 	.text-primary{
 		text-align:center;
 		width:300px;
@@ -9236,6 +9348,60 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 /* Screen resolution 1025 x 1280*/
 @media only screen and (min-width:1025px) and (max-width: 1280px) {
+    .cr-tax-files{
+        width:170px;
+    }
+    .col-add-tax-files {
+        width: 15%;
+    }
+    .hashtags-padding-left{
+        left:26%;
+    }
+    .showing-hashtags-desktop{
+        display:inline;
+    }
+    .showing-hashtags-tabs{
+        display:none;
+    }
+    .moretags-desktop{
+        display:block;
+    }
+    .moretags-tabs{
+        display:none;
+    }
+
+    span.col-impact-text-one, span.col-impact-education-text-one{
+        width:22%;
+    }
+    
+    span.cr-impact-religion-cr{
+        left:6px;
+    }
+
+    span.col-impact-text-two{
+        width:15%;
+    }
+
+    span.col-impact-animals-text-two, span.col-impact-elderly-text-two{
+        width:18%;
+    }
+
+    span.col-impact-arts-text-two{
+        width:20%;
+    }
+    
+    span.col-impact-community-text-two{
+        width:21%;
+    }
+
+    span.col-impact-education-text-two{
+        width:19%;
+    }
+
+    span.col-impact-elderly-text{
+        width:12%;
+    }
+
     div.cr2-width-city .help-block {
         margin-left: -15px;
     }
@@ -9281,10 +9447,10 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
          width:80% !important;
     }
     .cr-impact-analysis{
-         width:10% !important;
+         width:21% !important;
     }
     .cr-impact-guide{
-         width:90% !important;
+         width:79% !important;
     }
     div.edit-tabsMobile-margin {
         margin-left: -14px !important;
@@ -9577,9 +9743,74 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (max-width: 767px){
+
+    label.cr-spend-guide-text {
+        height: 115px;
+        border: 1px solid #DDD;
+        padding-right: 6px;
+    }
+
+    label.cr-panel-spend-xs{
+        margin-bottom: 0;
+    }
+
+    #chart-container #graph{
+        margin-left: -220px;
+    }
+    .cr-panel-spendMatrix-height{
+        min-height:375px
+    }
+    span.col-impact-education-text-one, span.col-impact-education-text-two{
+        padding-left:17px;
+    }
+    span.cr-impact-education-currency{
+        left:20px;
+    }
+    .col-sm-impact-num {
+        padding-left: 4px !important;
+        padding-right: 10px;
+        margin-bottom: 5px;
+    }
+    .col-impact-text{
+        padding-left: 5px;
+    }
+    .cr-impact-currency {
+        left:10px;
+    }
+    .col-xs {
+        padding-left: 3px !important;
+    }
+    .col-tax-file-show{
+        padding-left:25px;
+        padding-top: 15px;
+    }
+
+    .col-sm-fcra {
+        padding-left: 25px;
+    }
+
+    .col-sm-impact-amount{
+        padding-left: 3px !important;
+        padding-right: 10px !important;
+    }
+
+    .col-sm-impact {
+        padding-top: 0;
+    }
+
+    .form-group-tax-reciept{
+        padding-left: 0px;
+    }
+
+    .form-group-tax-reciept-dropdown {
+        padding-left: 2px !important;
+        margin-right: -18px !important;
+    }
+
     .file-thumbnail {
         height: 120px;
     }
+
     ul.nav-tab-doc.nav {
         font-size: 13px !important;
     }
@@ -10176,6 +10407,12 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 	}
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
+	label.cr-panel-qa{
+	   width:50%;
+	}
+	label.cr-panel-qa-guide{
+	   width:50%;
+	}
     li.sh-button-fund-secandaryheader {
         left: 18.8% !important;
         position: absolute;
@@ -10531,8 +10768,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
         position: absolute;
         top: 39px;
     }
+    
+	.hashtag-font-size{
+	   font-size: 14px;
+	   top:10px !important;
+	}
 }
-@media only screen and (min-width:1050px) and (max-width: 1080px){
+@media only screen and (min-width:1051px) and (max-width: 1080px){
     li.sh-button-fund-secandaryheader {
         left: 19.6% !important;
         position: absolute;
@@ -11035,12 +11277,25 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
-
+    .cr-tax-files{
+        width:170px;
+    }
+    .cr-panel-qa .cr-spend-matrix-font{
+        font-size: 14px;
+    }
+    .pieChart-edit #chart-container #graphWithoutLabel{
+        margin-left: -20px;
+    }
+    #chart-container #graphWithoutLabel{
+        margin-left:-5px;
+    }
+    .padding-tax-reciept-xs{
+        padding-right:47px !important;
+    }
     .cr-padding-edit-xs {
         margin-left: 4px;
         padding-right: 34px;
     }
-
     .cr-panel-hash-tags-guide{
         margin-bottom: 16px;
         padding-top: 5px;
@@ -12100,7 +12355,7 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }
 @media only screen and (max-width: 767px){
-	
+
 .ansText {
     width: 87%;
     height: 100px;
@@ -12288,10 +12543,6 @@ textarea.textarea-embed-video {
 	}
 }
 @media only screen and (max-width: 640px){
-    input.paypal-create {
-        margin-left: -3% !important;
-        width: 103%;
-    }
     .shippingreward > .btn-primary
     {
        margin-left: 0px !important;
@@ -12751,6 +13002,14 @@ textarea.textarea-embed-video {
 
 }
 @media only screen and (max-width: 414px) {
+    input.paypal-create {
+         margin-left: 0;
+         width: 254px;
+         margin-top: 3px;
+    }
+    .paypalVerification {
+        padding-left: 14px !important;
+    }
     .form-group-termsOfUse {
         margin-left: -12px !important;
     }
@@ -12762,7 +13021,7 @@ textarea.textarea-embed-video {
     }
     input.paypal-create {
         margin-left: -6% !important;
-        width: 106%;
+        width: 94%;
     }
 	.arrow-mobile-css {
 		margin-right: -11px;
@@ -13014,10 +13273,6 @@ textarea.textarea-embed-video {
     }
     .manage-tiles-details {
         width: 55% !important;
-    }
-    input.paypal-create {
-        margin-left: -6% !important;
-        width: 106%;
     }
     .btn-image {
         background-color:#FF7F50;
@@ -14573,11 +14828,6 @@ textarea.textarea-embed-video {
          padding-left: 2px;
          padding-right: 33px;
     }
-    input.paypal-create {
-         margin-left: 0;
-         width: 254px;
-         margin-top: 3px;
-    }
     div.cr-payment-marg{
         padding: 0;
     }
@@ -15335,7 +15585,6 @@ textarea.textarea-embed-video {
     border-top: 2px solid #e3e3e3;
     margin-top: 20px;
     width: 970px;
-    padding-left: 30%;
 }
 .show-icons img{
 	height: 50px;

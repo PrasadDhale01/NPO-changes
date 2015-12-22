@@ -9,13 +9,8 @@ import groovy.transform.ToString
 class ImageUrl {
 	String url
 
-	static belongsTo = Project, ProjectUpdate, CustomerService
+	static belongsTo = Project, ProjectUpdate, CustomerService, TaxReciept
 
 	static hasMany = [projects: Project]
 
-	static mapping = {
-		
-	}
-    static constraints = {
-    }
 }

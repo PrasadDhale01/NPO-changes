@@ -1,4 +1,25 @@
 @media only screen and (min-width: 1281px){
+	.cr-tax-files{
+        width:170px;
+    }
+	.col-add-tax-files {
+	   width: 15%;
+	}
+	.showing-hashtags{
+	   left:44%;
+	}
+	.showing-hashtags-desktop{
+	   display:inline;
+	}
+	.showing-hashtags-tabs{
+	   display:none;
+	}
+	.moretags-desktop{
+	   display:block;
+	}
+	.moretags-tabs{
+	   display:none;
+	}
     .paypalVerification span {
         margin-left: 0 !important;
     }
@@ -36,10 +57,10 @@
         width:12%;
     }
     .cr-impact-analysis{
-         width:10% !important;
+         width:21% !important;
     }
     .cr-impact-guide{
-         width:90% !important;
+         width:79% !important;
     }
     .cr-reasons-to-fund{
          width:20% !important;
@@ -54,7 +75,48 @@
         width:50% !important;
         margin-top: 5px;
     }
+
+    span.col-impact-text-one, span.col-impact-education-text-one{
+        width:23%;
+    }
+
+    span.col-impact-text-two{
+        width:15%;
+    }
+
+    span.col-impact-animals-text-two, span.col-impact-elderly-text-two{
+        width:18%;
+    }
+
+    span.col-impact-arts-text-two{
+        width:20%;
+    }
+
+    span.col-impact-community-text-two{
+        width:21%;
+    }
+    
+    span.col-impact-education-text-two{
+        width:19%;
+    }
+    
+    span.cr-impact-religion-cr{
+        left:6px;
+    }
+
+    span.col-impact-elderly-text{
+        width:12%;
+    }
+
+    .cr-panel-impact-analysis .form-group{
+        margin-left: 0px;
+    }
+
+    .hashtags-padding-left{
+        left:26%;
+    }
 }
+
 @media only screen and (min-width: 1201px) and (max-width: 1280px){
     .helpdeskpadding {
         padding-left: 15%;
@@ -192,9 +254,16 @@
     div.paypalVerification span {
         margin-left: -3%;
     }
-    
     .form-group-termsOfUse {
         margin-left: -3px !important;
+    }
+    .paypalVerification {
+        padding-left: 5px !important;
+    }
+    input.paypal-create {
+         margin-left: -3%;
+         width: 258px;
+         margin-top: 3px;
     }
 }
 
@@ -417,7 +486,6 @@
     .menu-top {
         margin-left: -131px;
     }
-    
     .whycrowderacol-sm .col-xs-12 {
         padding-left: 0px !important;
         padding-right: 0px !important;

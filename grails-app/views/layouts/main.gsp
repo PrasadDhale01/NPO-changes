@@ -68,6 +68,6 @@ mixpanel.init("d75cc9b700aea96b693ba0c44fa47bb9");
     
     <script src="/js/main.js" type="application/x-javascript"></script>
 
-    <r:layoutResources />
+    <r:layoutResources/>
 </body>
 </html>

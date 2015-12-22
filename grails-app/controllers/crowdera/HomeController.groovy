@@ -1,10 +1,7 @@
 package crowdera
-import grails.plugin.springsecurity.annotation.Secured
 import grails.util.Environment
 
 import javax.servlet.http.Cookie
-
-import org.hibernate.SessionFactory;
 
 class HomeController {
 	def projectService

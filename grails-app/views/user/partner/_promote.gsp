@@ -21,6 +21,9 @@
         <div class="alert alert-info" id="campaign-select-alert">
             Kindly select a campaign to share.
         </div>
+        <div class="alert alert-info" id="campaign-select-msg">
+            Share this campaign on social media.
+        </div>
     </div>
 </div>
 <%

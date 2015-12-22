@@ -1196,6 +1196,9 @@
         </g:uploadForm> 
         </div>
     </div>
+    <div class="loadinggif text-center" id="loading-gif">
+        <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
+    </div>
     
     <script src="/js/main.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>

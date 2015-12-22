@@ -8,6 +8,7 @@ import groovy.transform.ToString
 class Folder {
 
     static hasMany = [documents : Document]
+    static belongsTo = [user: User]
     
     String fName
     List documents

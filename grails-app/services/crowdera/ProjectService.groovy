@@ -1381,13 +1381,13 @@ class ProjectService {
             sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
             finalList =  sortedProjects.reverse() + endedProjects.reverse()
         }
-        finalList.each{
-            def percentage = contributionService.getPercentageContributionForProject(it)
-            if(percentage >= 17){
-                sortedCampaignByPercentage.add(it)
-            }
-        }
-        return sortedCampaignByPercentage
+//        finalList.each{
+//            def percentage = contributionService.getPercentageContributionForProject(it)
+//            if(percentage >= 17){
+//                sortedCampaignByPercentage.add(it)
+//            }
+//        }
+        return finalList
     }
 
     def isPayuProject(Project project){

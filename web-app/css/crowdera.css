@@ -9393,15 +9393,15 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     span.col-impact-community-text-two{
         width:21%;
     }
-    
-	span.col-impact-education-text-two{
+
+    span.col-impact-education-text-two{
         width:19%;
-	}
-	
-	span.col-impact-elderly-text{
+    }
+
+    span.col-impact-elderly-text{
         width:12%;
-	}
-	
+    }
+
     div.cr2-width-city .help-block {
         margin-left: -15px;
     }
@@ -11272,18 +11272,18 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 
 }    
 @media only screen and (max-width: 640px) {
-	.cr-tax-files{
+    .cr-tax-files{
         width:170px;
     }
-	.cr-panel-qa .cr-spend-matrix-font{
-	   font-size: 14px;
-	}
-	.pieChart-edit #chart-container #graphWithoutLabel{
-       margin-left: -20px;
+    .cr-panel-qa .cr-spend-matrix-font{
+        font-size: 14px;
     }
-	#chart-container #graphWithoutLabel{
-	   margin-left:-5px;
-	}
+    .pieChart-edit #chart-container #graphWithoutLabel{
+        margin-left: -20px;
+    }
+    #chart-container #graphWithoutLabel{
+        margin-left:-5px;
+    }
     .padding-tax-reciept-xs{
         padding-right:47px !important;
     }

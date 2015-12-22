@@ -52,23 +52,23 @@ pie.hover(function () {
 });
 
 pie.mouseout(function (){
-	if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
-    	center_label.attr('text', '$'+projectAmount);
+    if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
+        center_label.attr('text', '$'+projectAmount);
     } else {
-    	center_label.attr('text', 'Rs. '+projectAmount);
+        center_label.attr('text', 'Rs. '+projectAmount);
     }
 });
 
 // blank circle in center to create donut hole effect
 paper.circle(pwidth/2, pheight/2, radius*0.5)
-  .attr({'fill': bgcolor, 'stroke': bgcolor});
+    .attr({'fill': bgcolor, 'stroke': bgcolor});
 
 var center_label = paper.text(pwidth/2, pheight/2, '')
-  .attr({'fill': 'black', 'font-size': '12', "font-weight": 800, 'opacity': 1 });
+    .attr({'fill': 'black', 'font-size': '12', "font-weight": 800, 'opacity': 1 });
 
 //to show campaign amount at center on page load
 if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
-	center_label.attr('text', '$'+projectAmount);
+    center_label.attr('text', '$'+projectAmount);
 } else {
-	center_label.attr('text', 'Rs. '+projectAmount);
+    center_label.attr('text', 'Rs. '+projectAmount);
 }

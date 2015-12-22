@@ -83,7 +83,7 @@ class ProjectController {
         
         def projects
         if(currentEnv =="testIndia" || currentEnv=="test"){
-		    projects = projectService.getValidatedProjectsByPercentage(currentEnv)
+            projects = projectService.getValidatedProjectsByPercentage(currentEnv)
         }else{
             projects = projectService.getValidatedProjects(currentEnv)
         }

@@ -7,7 +7,6 @@ $(function() {
                 email: true
             }
         },
-        
         // Specify the validation error messages
         messages: {
             loginEmail: "Please enter a valid email address",

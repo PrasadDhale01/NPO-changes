@@ -3,9 +3,9 @@
 <g:set var="projectService" bean="projectService"/>
 <g:set var="userService" bean="userService"/>
 <%
-	def currentEnv = projectService.getCurrentEnvironment()
+    def currentEnv = projectService.getCurrentEnvironment()
     def base_url = grailsApplication.config.crowdera.BASE_URL
-	def ebookUrl=base_url + "/crowdfunding-ebook"
+    def ebookUrl=base_url + "/crowdfunding-ebook"
     def user= userService.getCurrentUser()
 %>
 <html>
@@ -600,34 +600,34 @@
   		  </div>
  		
   		<!-- *****************************************Modal start ********************************** -->
-		    <div id="ebookModal" class="modal fade" role="dialog">
-		        <g:form controller="home" action="getEbookEmail" class="ebookform" name="ebookForm">
-		            <input type="hidden" name="userId" id="userId" <g:if test='${!user}'> value="3"</g:if><g:else>value="${user.id}"</g:else> > 
-		            <div class="modal-dialog">
-		                <div class="modal-content">
-		                    <div class="modal-header">
-		                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-		                        <h4 class="modal-title text-center"><b>Information</b></h4>
-		                    </div>
-		                    <div class="modal-body">
-		                        <div class="row">
-		                            <div class="col-sm-10 col-xs-8">
-		                                <div class="form-group">
-		                                    <input type="text" class="form-control loginInput"  placeholder="Enter your email " id="ebookEmailInput" name="loginEmail"/>
-		                                </div>
-		                            </div>
-		                            <div class="col-sm-2 col-xs-2">
-		                                <button type="button" class="btn btn-info btn-sm addEbookEmail" id="addEmail">Add</button>
-		                            </div>
-		                        </div>
-		                    </div>
-		                    <div class="modal-footer">
-		                        <button type="button" class="btn btn-default btn-sm btn-info" data-dismiss="modal">Close</button>
-		                    </div>
-		                </div>
-		            </div>
-		        </g:form>
-		    </div>
+	    <div id="ebookModal" class="modal fade" role="dialog">
+	        <g:form controller="home" action="getEbookEmail" class="ebookform" name="ebookForm">
+	            <input type="hidden" name="userId" id="userId" <g:if test='${!user}'> value="3"</g:if><g:else>value="${user.id}"</g:else> > 
+	            <div class="modal-dialog">
+	                <div class="modal-content">
+	                    <div class="modal-header">
+	                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                        <h4 class="modal-title text-center"><b>Information</b></h4>
+	                    </div>
+	                    <div class="modal-body">
+	                        <div class="row">
+	                            <div class="col-sm-10 col-xs-8">
+	                                <div class="form-group">
+	                                    <input type="text" class="form-control loginInput"  placeholder="Enter your email " id="ebookEmailInput" name="loginEmail"/>
+	                                </div>
+	                            </div>
+	                            <div class="col-sm-2 col-xs-2">
+	                                <button type="button" class="btn btn-info btn-sm addEbookEmail" id="addEmail">Add</button>
+	                            </div>
+	                        </div>
+	                    </div>
+	                    <div class="modal-footer">
+	                        <button type="button" class="btn btn-default btn-sm btn-info" data-dismiss="modal">Close</button>
+	                    </div>
+	                </div>
+	            </div>
+	        </g:form>
+	    </div>
   	    
 		<!-- ******************************************Modal end************************************* -->
        </div><!-- Body -->

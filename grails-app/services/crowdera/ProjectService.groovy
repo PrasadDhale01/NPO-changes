@@ -1064,12 +1064,12 @@ class ProjectService {
 	
 	def getSorts(){
 		def sortsOptions = [
-			Live_Campaigns: "Live",
-             Latest_Campaigns: "Latest",
-			Ending_Soon: "Ending Soon",
-			Successful_Campaigns:"Most Funded",
-			Ended_Campaign:"Ended",
-			OFFERING_PERKS:"Offering Perks"
+            Live_Campaigns: "Live",
+            Latest_Campaigns: "Latest",
+            Ending_Soon: "Ending Soon",
+            Successful_Campaigns:"Most Funded",
+            Ended_Campaign:"Ended",
+            OFFERING_PERKS:"Offering Perks"
 		]
 		return sortsOptions
 	}

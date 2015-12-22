@@ -1,6 +1,5 @@
 package crowdera
 import grails.util.Environment
-
 import javax.servlet.http.Cookie
 
 class HomeController {

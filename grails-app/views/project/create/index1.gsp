@@ -57,7 +57,7 @@
 	                            </g:if>
 	                            <g:else>
 	                                <span class="i-currency-label-indx1">$</span>
-	                            </g:else>   
+	                            </g:else>
                                 <input class="form-control form-control-no-border-amt cr-amt-indx1" name="amount1" id="amount2"> 
                                 <span id="errormsg1"></span>
                             </div>
@@ -132,7 +132,7 @@
 	                    </div>
 	               </div>
 	               <div class="col-lg-6 col-md-6 col-sm-6">
-	                    <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs cr1-tabs-padding">My Campaign Web-address</label>
+	                    <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs cr1-tabs-padding">My campaign web address</label>
                      <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 visible-xs">
                          <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                              crowdera.in/campaigns/
@@ -141,7 +141,6 @@
                              crowdera.co/campaigns/
                          </g:else>
                      </label>
-	                    <g:if test="${currentEnv == 'development' || currentEnv == 'testIndia' }">
 		                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 cr1-mobile-indx1 form-group">
 		                        <div class="cr1-vanityUrl-indx1 cr1-url-lft hidden-xs">
 		                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
@@ -153,7 +152,6 @@
 		                        </div>
 	                            <input class="form-control form-control-no-border cr1-indx-mobile cr-placeholder cr-chrome-place text-color cr-marg-mobile customVanityUrlProd cr1-vanitypadding-in-co cr1-paddings-lft" name="customVanityUrl" id="customVanityUrl" placeholder="Your-Campaign-Web-Url">
 	                        </div>
-                        </g:if>
 	               </div>
                 <div class="clear"></div><br>
 

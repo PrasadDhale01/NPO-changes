@@ -227,7 +227,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
-                        <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs">My Campaign web Address</label>
+                        <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs">My campaign web address</label>
                         <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 visible-xs">
                             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                 crowdera.in/campaigns/
@@ -1038,6 +1038,9 @@
             </g:uploadForm>
             </div>
         </div>
+        <div class="loadinggif text-center" id="loading-gif">
+            <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
+        </div>
  </div>
  <script src="/js/main.js"></script>
     <script src="/js/bootstrap-datepicker.js"></script>
@@ -1138,4 +1141,3 @@
     </script>
 </body>
 </html>
-                                    

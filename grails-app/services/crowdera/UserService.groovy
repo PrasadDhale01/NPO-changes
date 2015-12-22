@@ -1,6 +1,14 @@
 package crowdera
 
 import grails.transaction.Transactional
+
+import java.security.InvalidKeyException
+import java.security.NoSuchAlgorithmException
+import java.text.SimpleDateFormat
+
+import javax.crypto.Mac
+import javax.crypto.spec.SecretKeySpec
+
 import org.apache.commons.validator.EmailValidator
 import org.apache.http.HttpEntity
 import org.apache.http.HttpResponse
@@ -10,15 +18,10 @@ import org.apache.http.client.entity.UrlEncodedFormEntity
 import org.apache.http.client.methods.HttpPost
 import org.apache.http.impl.client.DefaultHttpClient
 import org.apache.http.message.BasicNameValuePair
-import org.springframework.web.multipart.commons.CommonsMultipartFile
 import org.jets3t.service.impl.rest.httpclient.RestS3Service
-import org.jets3t.service.security.AWSCredentials
 import org.jets3t.service.model.*
-import java.security.NoSuchAlgorithmException;
-import java.security.InvalidKeyException;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
+import org.jets3t.service.security.AWSCredentials
+import org.springframework.web.multipart.commons.CommonsMultipartFile
 
 
 class UserService {
@@ -1017,6 +1020,120 @@ class UserService {
 		feedback.user = user
 		feedback.rating = params. rating
 	}
+	def getSupportersByUser(User user){
+          def supporters = Supporter.findAllWhere(user:user)
+          int i=0
+          supporters.each{
+              if(it==null){
+	              i=0
+              }else{
+	              i++
+              }
+         }
+         return i
+	}
+	
+	def getUserContribution(User user){
+            def userContribution = Contribution.findAllByUser(user)
+            int contribution =0  
+            userContribution.each{
+                contribution += it.amount
+            }
+            return contribution
+	}
+	
+	def getUserCommnet(User user){
+            List comments =[]
+            def projectComments =ProjectComment.findAllWhere(user:user)
+            def teamComments = TeamComment.findAllWhere(user:user)
+            comments.add(projectComments)
+            comments.add(teamComments)
+            return comments
+	}
+	
+	def getSupporterListActivity(def project, User user, def teams){
+          SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
+          def supporterList =[:]
+          def supporters = Supporter.findAllWhere(user:user)
+
+          teams.each{
+              if(user.username.equals(it.user.username) && !user.username.equals(it.project.user.username) ){
+                   supporterList.put("team"+it.id, it.project.title +";"+ dateFormat.format(it.joiningDate))
+              }
+          }
+          project.each {
+              if(user.username.equals(it.user.username)){
+                  supporterList.put("project"+it.id,it.title +";"+ dateFormat.format(it.created))
+              }
+              if(isCampaignAdmin(it, user.email)){
+                  supporterList.put("co-owner"+it.id,it.title +";"+ dateFormat.format(it.created))
+              }
+          }
+
+         if(supporters){
+             supporters.each{
+                 if(it.followedDate!=null)
+                     supporterList.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
+             }
+         }
+         //sort
+         return supporterList.sort { a, b -> b.value.toString().substring(b.value.toString().indexOf(';') + 1) <=> a.value.toString().substring(a.value.toString().indexOf(';') + 1) }
+	}
+	
+	def getUserRecentActivity(def project, def contributions ,def comments, User user, def teams){
+          SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d YYYY, hh:mm a")
+          def recentActivity =[:]
+          def supporters = Supporter.findAllWhere(user:user)
+
+          teams.each{
+              if(user.username.equals(it.user.username) && !user.username.equals(it.project.user.username) ){
+                  recentActivity.put("team"+it.id, it.project.title +";"+ dateFormat.format(it.joiningDate))
+              }
+         }
+         project.each {
+             if(user.username.equals(it.user.username)){
+                  recentActivity.put("project"+it.id,it.title +";"+ dateFormat.format(it.created))
+             }
+         }
+
+         project.each{
+             def projectUser =  it.user
+             it.rewards.each{perks ->
+                 perks.each{perk ->
+                     if(!perk.title.equals('No Perk') && perk.perkCreatedDate!=null){
+                          if(projectUser.username.equals(user.username)){
+                               recentActivity.put("perk"+perk.id, perk.title +";" + dateFormat.format(perk.perkCreatedDate))
+                          }
+                     }
+                 }
+             }
+         }
+
+         project.projectUpdates.each {
+              it.each{
+                  if(it.updateDate!=null)
+                      recentActivity.put("update"+it.id, it.title +";"+ dateFormat.format(it.updateDate))
+              }
+        }
+        contributions.each{
+            if(!it.isAnonymous && !it.isContributionOffline)
+                recentActivity.put("contribution"+it.id, it.amount.round() +";"+ dateFormat.format(it.date))
+        }
+        def i =  comments.size()
+        comments.each{
+            it.each{
+                recentActivity.put("comment"+ --i, it.comment +";"+ dateFormat.format(it.date))
+           }
+        }
+        if(supporters){
+            supporters.each{
+                if(it.followedDate!=null)
+                    recentActivity.put("supporter"+it.id, it.project.title +";"+ dateFormat.format(it.followedDate))
+            }
+        }
+        //sort 
+        return recentActivity.sort { a, b -> b.value.toString().substring(b.value.toString().indexOf(';') + 1) <=> a.value.toString().substring(a.value.toString().indexOf(';') + 1) }
+   }
     
     def setUserObject(def params) {
         def password = projectService.getAlphaNumbericRandomUrl()
@@ -1099,27 +1216,28 @@ class UserService {
     }
     
     def getGoogleDriveFiles(User user, def fileId, def title, def url) {
-        def driveFile = GoogleDrive.findByFileId(fileId)
+        boolean isSelected = false;
+        def driveFile = GoogleDrive.findByFileId(fileId, user)
         if (driveFile) {
             if (driveFile.title != title) {
                 driveFile.title = title
                 driveFile.save();
             }
+            isSelected = true;
         } else {
-            GoogleDrive file = new GoogleDrive (
+            new GoogleDrive (
                 alternateLink: url,
                 fileId: fileId,
-                title : title )
-            if (file.save()) {
-                user.addToFiles(file).save(failOnError: true)
-            }
+                title : title,
+                user: user ).save(failOnError: true)
         }
+        return isSelected
     }
     
     def getDriveFiles(User user, def params) {
-        List totalFiles = user.files
+        List totalFiles = GoogleDrive.findAllWhere(user : user)
         List files = []
-        def max = Math.min(params.int('max') ?: 10, 100)
+        def max = Math.min(params.int('max') ?: 8, 100)
         def offset = params.int('offset') ?: 0
         def count = totalFiles.size()
         def maxrange
@@ -1132,20 +1250,17 @@ class UserService {
         return [totalFiles: totalFiles, files: files]
     }
     
-    def deleteDriveFile(User user, def params) {
+    def deleteDriveFile(def params) {
         GoogleDrive file = GoogleDrive.get(params.id)
         if (file) {
-            user.removeFromFiles(file)
-            file.delete()
+            file.delete(flush: true)
         }
     }
     
     def setNewFolder(User user, def params) {
-        Folder folder = new Folder (
-            fName: params.title)
-        folder.save(failOnError: true)
-        user.addToFolders(folder).save(failOnError: true)
-        
+        new Folder (
+            fName: params.title,
+            user: user).save(failOnError: true)
     }
     
     def getFolderById(def folderId) {
@@ -1155,14 +1270,26 @@ class UserService {
     def uploadDocument(CommonsMultipartFile document, def params, Partner partner, def folder) {
         if (!document?.empty && document.size < 1024 * 1024 * 3) {
             def docUrl = getDocumentUrl(document)
+            def docName = document.getOriginalFilename()
             Document doc = new Document()
-            doc.docName = document.getOriginalFilename()
+            doc.docName = docName
             doc.docUrl = docUrl
+            def docCount = 0
             if (doc.save()) {
                 if (params.folderId) {
+                    def docs = folder.documents
+                    docs.each {
+                        docCount = (it.docName.equalsIgnoreCase(docName)) ? docCount + 1 : docCount ;
+                    }
+                    doc.docCount = docCount
                     folder.addToDocuments(doc)
                     folder.save(failOnError: true)
                 } else {
+                    def docs = partner.documents
+                    docs.each {
+                        docCount = (it.docName.equalsIgnoreCase(docName)) ? docCount + 1 : docCount ;
+                    }
+                    doc.docCount = docCount
                     partner.addToDocuments(doc)
                     partner.save(failOnError: true)
                 }
@@ -1179,7 +1306,7 @@ class UserService {
     }
     
     def getFolders(User user) {
-        return user.folders
+        return Folder.findAllWhere(user: user)
     }
     
     def getDocumentUrl(CommonsMultipartFile document) {
@@ -1200,7 +1327,8 @@ class UserService {
             document.transferTo(file)
             def object = new S3Object(file)
             object.key = key
-
+            def contenType = document.contentType
+            object.setContentType(contenType);
             s3Service.putObject(s3Bucket, object)
             file.delete()
             def docUrl = "//s3.amazonaws.com/crowdera/${key}"
@@ -1212,7 +1340,7 @@ class UserService {
     def sendReceipt(def params, CommonsMultipartFile document) {
         User user = getCurrentUser();
         def docUrl = getDocumentUrl(document)
-        mandrillService.sendReceipt(params, docUrl, user)
+        mandrillService.sendReceipt(params, docUrl)
     }
     
     def deleteFolderFile(Folder folder, def params) {
@@ -1230,6 +1358,23 @@ class UserService {
             partner.removeFromDocuments(document)
             partner.save()
             document.delete(flush:true)
+        }
+    }
+    
+    def trashFolders(def params) {
+        Folder folder = Folder.get(params.int('folderId'))
+        if (folder) {
+            List documents = folder.documents
+        
+            List tempDocuments = documents
+        
+            if (!documents.isEmpty()) {
+                documents.removeAll(documents)
+                tempDocuments.each {
+                    it.delete(flush:true);
+                }
+            }
+            folder.delete(flush:true)
         }
     }
     

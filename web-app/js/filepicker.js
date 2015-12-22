@@ -78,8 +78,11 @@
 			        url: insertFileUrl,
 			        success: function(data) {
 			            $(driveFileGrid).fadeOut('fast', function() {$(this).html(data).fadeIn('fast');});
+			            $('#loading-gif').hide();
 			        }
-			    });
+			    }).error(function() {
+	                console.log('error occured while loading file');
+	            });
 			}
 		},
 		

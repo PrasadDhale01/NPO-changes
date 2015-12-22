@@ -429,7 +429,7 @@ class UserController {
 		}else{
 			new Feedback(params).save()
 		}
-		flash.feedback_message = "Feedback submitted successfully!"
+		flash.feedback_message = "Feedback submitted successfully"
 		redirect url:'/'
 	}
 	
@@ -445,7 +445,7 @@ class UserController {
 		def project = Project.get(projectId)
 		def user = userService.getUserById(project.user.id)
 		def feedback=userService.getFeedbackByUser(user)
-		render( view:"/user/survey/previewuserfeedback.gsp", model:[feedback:feedback, user:user])
+		render( view:"/user/survey/previewuserfeedback", model:[feedback:feedback, user:user])
 	}
     
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -458,6 +458,54 @@ class UserController {
             render(template: "/user/user/grid", model: model, currentEnv: currentEnv)
         }
     }
+	
+	@Secured(['IS_AUTHENTICATED_FULLY'])
+	def userActivity1(){
+		userActivity('page', params.id)
+	}
+	
+	def userActivity(String page, String id){
+	    def userId = id
+ 	    User user = User.get(userId)
+        def currentUser = userService.getCurrentUser()
+	    def username
+	    def environment= projectService.getCurrentEnvironment()
+		
+	    if(user){
+              def comments = userService.getUserCommnet(user)
+              def projects = projectService.getAllProjectByUser(user, environment)
+              def projectAdmins = projectService.getProjectAdminEmail(user)
+              def teams = projectService.getTeamByUserAndEnable(user, true)
+              def project = projectService.getProjects(projects, projectAdmins, teams, environment)
+              def contributions =projectService.getContibutionByUser(user, environment)
+              def recentActivity = userService.getUserRecentActivity(project, contributions,comments, user, teams)
+              def supporterList = userService.getSupporterListActivity(project, user, teams)
+              def supporters= userService.getSupportersByUser(user) 
+              def userContribution = userService.getUserContribution(user)
+              def fundRaised = projectService.getTotalFundRaisedByUser(projects)
+              if(user.id == 3){
+                  contributions.each{
+                      if(!it.isAnonymous && !it.isContributionOffline){
+                           def amt = it.amount.round()
+                           if(amt == params.int("amount")){
+                                username = it.contributorName.toString().replace('[', '').replace(']', '')
+                           }
+                      }
+                  }
+              }else{
+                  username = user.firstName
+              }
+		
+              if(page){
+                  render(view:'/user/user/userprofile', model:[currentUser:currentUser, user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, page:page, environment:environment, username:username, supporterList:supporterList])
+              }else{
+                  render(view:'/user/user/userprofile', model:[currentUser:currentUser, user:user, project:project, projects:projects, teams:teams, contributions:contributions, recentActivity: recentActivity, supporters:supporters, userContribution:userContribution, fundraised: fundRaised, environment:environment, username:username,  supporterList:supporterList])
+              }
+	
+          }else{
+              render view:'/404error'
+          }
+	}
     
     @Secured(['ROLE_ADMIN'])
     def managePartner() {
@@ -550,7 +598,7 @@ class UserController {
             
             def isAdmin = userService.isAdmin()
             def conversionMultiplier = projectService.getCurrencyConverter();
-            def folders = user.folders
+            def folders = userService.getFolders(user)
             def files = partner.documents
             
             def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
@@ -631,12 +679,12 @@ class UserController {
     def insertfile() {
         User user = userService.getUserId(params.int('userId'))
         if (user) {
-            userService.getGoogleDriveFiles(user, params.fileId, params.title, params.url)
+            boolean isSelected = userService.getGoogleDriveFiles(user, params.fileId, params.title, params.url)
             def fileObj = userService.getDriveFiles(user, params)
             def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
             def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
             
-            def model = [files: fileObj.files, totalFiles: fileObj.totalFiles, offset: params.offset, user : user, baseUrl: baseUrl]
+            def model = [files: fileObj.files, totalFiles: fileObj.totalFiles, offset: params.offset, user : user, baseUrl: baseUrl, isSelected: isSelected]
             render template:'/user/partner/drivefiles', model: model
         }
     }
@@ -644,7 +692,7 @@ class UserController {
     def trashdrivefile() {
         User user = userService.getUserId(params.int('userId'))
         if (user) {
-            userService.deleteDriveFile(user, params)
+            userService.deleteDriveFile(params)
             def requestUrl=request.getRequestURL().substring(0,request.getRequestURL().indexOf("/", 8))
             def baseUrl = (requestUrl.contains('www')) ? grailsApplication.config.crowdera.BASE_URL1 : grailsApplication.config.crowdera.BASE_URL
             def fileObj = userService.getDriveFiles(user, params)
@@ -722,6 +770,17 @@ class UserController {
             def files = partner.documents
             def model = [files: files, partner: partner, baseUrl: baseUrl]
             render (template:'/user/partner/files', model: model)
+        }
+    }
+    
+    def trashFolder() {
+        Partner partner = userService.getPartnerById(params.int('partnerId'))
+        if (partner) {
+            User user = partner.user
+            userService.trashFolders(params);
+            def folders = userService.getFolders(user)
+            def model = [folders: folders]
+            render template : '/user/partner/folders', model: model
         }
     }
     

@@ -199,6 +199,12 @@
 }
 
 @media only screen and (min-width: 668px) and (max-width: 767px){
+	.picker.modal-dialog {
+        max-width: 550px !important;
+    }
+    .picker.modal-dialog-content.picker-dialog-content{
+        max-width: 550px !important;
+    }
     .whycrowderacol-sm .col-xs-3 {
         width: 25% !important;
     }
@@ -224,6 +230,12 @@
 }
 
 @media only screen and (min-width: 568px) and (max-width: 667px){
+	.picker.modal-dialog {
+        max-width: 500px !important;
+    }
+    .picker.modal-dialog-content.picker-dialog-content{
+        max-width: 500px !important;
+    }
     .whycrowderacol-sm .col-xs-3 {
         width: 25% !important;
     }
@@ -241,6 +253,12 @@
 }
 
 @media only screen and (min-width: 480px) and (max-width: 567px){
+	.picker.modal-dialog {
+        max-width: 420px !important;
+    }
+    .picker.modal-dialog-content.picker-dialog-content{
+        max-width: 420px !important;
+    }
 	.whycrowderacol-sm .col-xs-12 {
 	    padding-left: 0px !important;
         padding-right: 0px !important;
@@ -262,6 +280,12 @@
 }
 
 @media only screen and (min-width: 468px) and (max-width: 479px){
+	.picker.modal-dialog {
+        max-width: 400px !important;
+    }
+    .picker.modal-dialog-content.picker-dialog-content{
+        max-width: 400px !important;
+    }
 	.whycrowderacol-sm.col-xs-12 {
 	    padding-left: 0px !important;
         padding-right: 0px !important;
@@ -292,6 +316,12 @@
     }
 }
 @media only screen and (min-width: 385px) and (max-width: 467px){
+	.picker.modal-dialog {
+        max-width: 320px !important;
+    }
+    .picker.modal-dialog-content.picker-dialog-content{
+        max-width: 320px !important;
+    }
 	.whycrowderacol-sm .col-xs-12 {
 	    padding-left: 0px !important;
         padding-right: 0px !important;
@@ -378,6 +408,12 @@
 }
 
 @media only screen and (min-width: 320px) and (max-width: 384px){
+	.picker.modal-dialog {
+        max-width: 280px !important;
+    }
+    .picker.modal-dialog-content.picker-dialog-content{
+        max-width: 280px !important;
+    }
     .menu-top {
         margin-left: -131px;
     }

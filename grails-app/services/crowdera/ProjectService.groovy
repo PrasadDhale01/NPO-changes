@@ -1064,7 +1064,8 @@ class ProjectService {
 	
 	def getSorts(){
 		def sortsOptions = [
-			Live_Campaigns: "Latest",
+			Live_Campaigns: "Live",
+             Latest_Campaigns: "Latest",
 			Ending_Soon: "Ending Soon",
 			Successful_Campaigns:"Most Funded",
 			Ended_Campaign:"Ended",
@@ -1085,6 +1086,14 @@ class ProjectService {
             }
         }
         if(sorts == 'Latest') {
+            projects.each {project ->
+                def percentage = contributionService.getPercentageContributionForProject(project)
+                if(percentage <= 16){
+                    p.add(project)
+                }
+            }
+        }
+        if(sorts == 'Live') {
             projects.each {project ->
                 boolean ended = isProjectDeadlineCrossed(project)
                 if(project.validated && ended ==false){
@@ -1354,7 +1363,6 @@ class ProjectService {
 		List usEndedCampaign = []
 		List sortIndiaCampaign = []
 		List sortUsCampaign = []
-        List sortedCampaignByPercentage = []
         if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
             finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
             finalList.each { project ->
@@ -1381,13 +1389,59 @@ class ProjectService {
             sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
             finalList =  sortedProjects.reverse() + endedProjects.reverse()
         }
-//        finalList.each{
-//            def percentage = contributionService.getPercentageContributionForProject(it)
-//            if(percentage >= 17){
-//                sortedCampaignByPercentage.add(it)
-//            }
-//        }
         return finalList
+    }
+    
+    def getValidatedProjectsByPercentage(def currentEnv) {
+        def popularProjectsList = getPopularProjects()
+        def finalList
+        List endedProjects = []
+        List openProjects = []
+        List sortedProjects = []
+        List indiaOpenCampaign = []
+        List usOpenCampaign = []
+        List indiaEndedCampaign = []
+        List usEndedCampaign = []
+        List sortIndiaCampaign = []
+        List sortUsCampaign = []
+        List sortedCampaignByPercentage = []
+        if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
+            finalList.each { project ->
+                boolean ended = isProjectDeadlineCrossed(project)
+                if(ended) {
+                    (project.payuStatus) ? indiaEndedCampaign.add(project) : usEndedCampaign.add(project)
+                } else {
+                    (project.payuStatus) ? indiaOpenCampaign.add(project) : usOpenCampaign.add(project)
+                }
+            }
+            sortIndiaCampaign = indiaOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+            sortUsCampaign = usOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+            finalList = sortIndiaCampaign.reverse() + sortUsCampaign.reverse() + indiaEndedCampaign.reverse() + usEndedCampaign.reverse()
+        } else {
+            finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false, payuStatus: false) - popularProjectsList)
+            finalList.each { project ->
+                boolean ended = isProjectDeadlineCrossed(project)
+                if(ended) {
+                    endedProjects.add(project)
+                } else {
+                    openProjects.add(project)
+                }
+            }
+            sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
+            finalList =  sortedProjects.reverse() + endedProjects.reverse()
+        }
+        if(currentEnv == 'testIndia' || currentEnv == 'test'){
+            finalList.each{
+                def percentage = contributionService.getPercentageContributionForProject(it)
+                if(percentage >= 17){
+                    sortedCampaignByPercentage.add(it)
+                }
+            }
+            return sortedCampaignByPercentage
+        }else{
+            return finalList
+        }
     }
 
     def isPayuProject(Project project){

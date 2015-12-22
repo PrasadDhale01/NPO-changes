@@ -47,7 +47,7 @@ $(function() {
         if(ebookFormValidate){
             $.ajax({
                 type:'post',
-                url:$("#b_url").val()+'/home/getEbookEmail',
+                url:$("#b_url").val()+'/home/EbookEmail',
                 data:'loginEmail='+ ebookEmailVal+'&userId='+userId,
                 success: function(data){
                     if(data){

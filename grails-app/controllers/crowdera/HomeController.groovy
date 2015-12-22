@@ -63,7 +63,7 @@ class HomeController {
     }
 	
     
-    def getEbookEmail(){
+    def EbookEmail(){
         def ebookEmail = params.loginEmail
         User user = User.get(params.int('userId'))
         if(ebookEmail && user){

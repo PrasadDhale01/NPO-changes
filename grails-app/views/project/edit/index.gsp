@@ -1,4 +1,5 @@
 <g:set var="rewardService" bean="rewardService"/>
+<%@ page import="java.text.SimpleDateFormat" %>
 <% 
     def iteratorCount = 1
     def lastrewardCount = 1
@@ -26,6 +27,13 @@
         r2 = (reasonsToFund.reason2) ? reasonsToFund.reason2 : null;
         r3 = (reasonsToFund.reason3) ? reasonsToFund.reason3 : null;
     }
+    
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+    def currentDate = new Date();
+    def taxRecieptId = null
+    if (taxReciept){
+        taxRecieptId = taxReciept.id
+    }
 %>
 <html>
 <head>
@@ -40,10 +48,13 @@
     <input type="hidden" name="url" value="${currentEnv}" id="currentEnv"/>
     <g:hiddenField name="payfir" value="${project.charitableId}" id="payfir"/>
     <g:hiddenField name="paypal" value="${project.paypalEmail}"/>
-    <g:hiddenField name="projectamount" value="${project.amount}" id="projectamount"/>
+    <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
     <g:hiddenField name="vanityUrlStatus" id="vanityUrlStatus" value="true"/>
     <g:hiddenField name="selectedCountry" id="selectedCountry" value="${selectedCountry}"/>
     <input type="hidden" class="campaigndate" value="<%=numberOfDays%>"/>
+    <g:hiddenField name="taxRecieptId" value="${taxRecieptId}" id="taxRecieptId"/>
+    <g:hiddenField name="offeringTaxReciept" id="offeringTaxReciept" value="${project.offeringTaxReciept}"/>
+
     <div class="edit-container">
         <div class="text-center">
              <header class="col-sm-12 col-xs-12 cr-tabs-link cr-ancher-tab">
@@ -227,7 +238,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
-                        <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs">My Campaign web Address</label>
+                        <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 hidden-xs">My campaign web address</label>
                         <label class="col-sm-12 text-color cr1-vanity-label-indx1 cr1-vanity-label-indx1 visible-xs">
                             <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                                 crowdera.in/campaigns/
@@ -295,7 +306,7 @@
                             <div class="col-sm-12 pad-result" id="campaignthumbnails">
                                 <g:each var="imgurl" in="${project.imageUrl}">
                                     <div id="imgdiv" class="pr-thumb-div">
-                                        <img alt="image" class='pr-thumbnail' src='${imgurl.url }' id="imgThumb${imgurl.id}">
+                                        <img alt="image" class='pr-thumbnail' src='${imgurl.url}' id="imgThumb${imgurl.id}">
                                         <div class="deleteicon pictures-edit-deleteicon">
                                             <img alt="cross" onClick="deleteProjectImage(this,'${imgurl.id}','${project.id}');" src="//s3.amazonaws.com/crowdera/assets/delete.ico">
                                         </div>
@@ -374,11 +385,11 @@
                 <g:if test="${currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'testIndia'}">
                     <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
-                            <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">SPEND MATRIX</span></label>
-                            <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
+                            <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-panel-spend-xs"><span class="cr-spend-matrix-font">Spend Matrix</span></label>
+                            <label class="col-md-10 col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-spend-guide-text">The matrix will be displayed as a pie chart on your campaign page for your contributors to know how the contributions or funds raised will be utilized</label>
                         </div>
-                        <div class="panel panel-body cr-panel-body-spend-matrix">
-                            <div class="col-sm-8 spend-matrix">
+                        <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-spendMatrix-height">
+                            <div class="col-sm-9 col-xs-12 spend-matrix">
                                 <g:if test="${spendCount > 0}">
                                     <g:each in="${spends}" var="spend">
                                         <div class="spend-matrix-template" id="spend-matrix-template${spend.numberAvailable}">
@@ -393,13 +404,14 @@
                                                          <span class="fa fa-usd cr-currency"></span>
                                                     </g:else>
                                                     <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount${spend.numberAvailable}" value="${spend.amount.round()}" name="spendAmount${spend.numberAvailable}">
+                                                    <span class="digitsError"></span>
                                                 </div>
                                                 <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
                                                 <div class="col-sm-5 col-xs-7 col-input-for form-group">
                                                     <input type="text" class="form-control form-control-input-for spendCause" id="spendCause${spend.numberAvailable}" name="spendCause${spend.numberAvailable}" value="${spend.cause}">
                                                 </div>&nbsp;&nbsp;
                                                 <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
-                                                    <g:hiddenField name="spendFieldSave" value="${spend.numberAvailable}" class="spendFieldSave"/>
+                                                    <g:hiddenField name="spendFieldSave" value="${spend.numberAvailable}" class="spendFieldSave" id="spendFieldSave${spend.numberAvailable}"/>
                                                     <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
                                                 </div>
                                                 <g:if test="${spend.numberAvailable != 1}">
@@ -412,7 +424,7 @@
                                                     <i class="glyphicon glyphicon-plus glyphicon-size"></i>
                                                 </div>
                                             </div>
-                                            <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="${spend.numberAvailable}"/>
+                                            <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="${spend.numberAvailable}" id="spenMatrixNumberAvailable${spend.numberAvailable}"/>
                                         </div>
                                     </g:each>
                                     <g:hiddenField name="lastSpendField" id="lastSpendField" value="${spendLastNumAvail}"/>
@@ -429,36 +441,39 @@
                                                     <span class="fa fa-usd cr-currency"></span>
                                                 </g:else>
                                                 <input type="text" class="form-control form-control-no-border-amt form-control-input-width spendAmount" id="spendAmount1" name="spendAmount1">
+                                                <span class="digitsError"></span>
                                             </div>
                                             <span class="cr-label-spend-matrix-for col-sm-1 col-xs-1">for</span>
                                             <div class="col-sm-5 col-xs-7 col-input-for form-group">
                                                 <input type="text" class="form-control form-control-input-for spendCause" id="spendCause1" name="spendCause1">
                                             </div>&nbsp;&nbsp;
                                             <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateSave">
-                                                <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave"/>
+                                                <g:hiddenField name="spendFieldSave" value="1" class="spendFieldSave" id="spendFieldSave1"/>
                                                 <i class="glyphicon glyphicon-floppy-save glyphicon-size glyphicon-save"></i>
                                             </div>
                                             <div class="btn btn-circle spend-matrix-icons spendMatrixTemplateAdd" id="spendMatrixTemplateAdd1">
                                                 <i class="glyphicon glyphicon-plus glyphicon-size"></i>
                                             </div>
                                         </div>
-                                        <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="1"/>
+                                        <g:hiddenField name="spenMatrixNumberAvailable" class="spenMatrixNumberAvailable" value="1" id="spenMatrixNumberAvailable1"/>
                                     </div>
                                     <g:hiddenField name="lastSpendField" id="lastSpendField" value="1"/>
                                 </g:else>
                             </div>
-                            <div class="col-sm-4">
+                            <div class="col-sm-offset-0 col-sm-3 col-xs-offset-1 col-xs-11 pieChart pieChart-edit">
+                                <g:render template="create/pieChartWithoutLabel"/>
                             </div>
-                            <div class="row">
-                               <span class="col-sm-offset-1 col-sm-4 saved-message">Spend field Saved</span>
+                            <div class="clear"></div>
+                            <div class="height-xs">
+                                <span class="saved-message">Spend Saved</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
-                            <label class="col-md-1 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Q & A</span></label>
-                            <label class="col-md-11 col-sm-9 hidden-xs cr-panel-spend-matrix-guide"></label>
+                            <label class="col-md-4 col-sm-6 col-xs-12 text-center cr-panel-spend-matrix cr-panel-qa"><span class="cr-spend-matrix-font">Your Contributors Want to Know</span></label>
+                            <label class="col-md-8 col-sm-6 hidden-xs cr-panel-spend-matrix-guide cr-panel-qa-guide"></label>
                         </div>
                         <div class="panel panel-body cr-panel-body-spend-matrix">
                             <div class="col-sm-12">
@@ -490,7 +505,7 @@
                     
                     <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
-                             <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">3 reasons to fund</span></label>
+                             <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-reasons-to-fund"><span class="cr-spend-matrix-font">3 Reason to Fund</span></label>
                              <label class="col-sm-9 col-xs-12 cr-panel-spend-matrix-guide cr-reasons-guide">Let your contributors know why they should fund your campaign.</label>
                         </div>
                         <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-body">
@@ -499,7 +514,17 @@
                              <p class="reasons-p form-group">3. <input type="text" name="reason3" class="reasons reason3 form-control" value="${r3}"></p>
                         </div>
                     </div>
-                    
+
+                    <div class="col-sm-12 cr-padding-edit-xs">
+                        <div class="cr-spend-matrix">
+                            <label class="col-sm-3 col-xs-12 text-center cr-panel-spend-matrix cr-impact-analysis"><span class="cr-spend-matrix-font">Impact Assessment</span></label>
+                            <label class="col-sm-9 hidden-xs cr-panel-spend-matrix-guide cr-impact-guide"></label>
+                        </div>
+                        <div class="panel panel-body cr-panel-body-spend-matrix cr-panel-impact-analysis">
+                            <g:render template="create/impactAnalysisText"/>
+                        </div>
+                    </div>
+
                     <div class="col-sm-12 cr-padding-edit-xs">
                         <div class="cr-spend-matrix">
                              <label class="col-md-1 col-sm-2 col-xs-12 text-center cr-panel-spend-matrix cr-panel-hash-tags"><span class="cr-spend-matrix-font"># Tags</span></label>
@@ -1001,6 +1026,276 @@
                         </div>
                     </g:else>
 
+                    <div class="col-sm-12">
+                        <div class="col-md-offset-4 col-md-8 col-sm-offset-3 col-sm-9">
+                            <div class="form-group form-group-termsOfUse <g:if test="${(project.fundsRecievedBy != 'NGO' && (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia')) || (project.fundsRecievedBy != 'NON-PROFIT' && (currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production' || currentEnv == 'development'))}">tax-reciept</g:if>" id="tax-reciept">
+                                <input type="checkbox" name="tax-reciept-checkbox" id="tax-reciept-checkbox" class="tax-reciept-checkbox" <g:if test="${project.offeringTaxReciept}">checked="checked"</g:if>>
+                                Do you want to offer receipt to your contributors?
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 padding-tax-reciept-xs col-tax-reciept-panel <g:if test="${!project.offeringTaxReciept}">col-reciept-display-none</g:if>">
+                        <div class="cr-spend-matrix">
+                            <label class="col-md-2 col-sm-3 col-xs-12 text-center cr-panel-spend-matrix"><span class="cr-spend-matrix-font">Tax receipts</span></label>
+                            <label class="col-md-10 col-sm-9 hidden-xs cr-panel-spend-matrix-guide">
+                            </label>
+                        </div>
+                        <div class="panel panel-body cr-panel-body-spend-matrix form-group cr-panel-body">
+                            <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
+                            <g:if test="${taxReciept}">
+                             <div class="row">
+                             <div class="col-sm-4">
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                      <input type="text" placeholder="Registered Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name" value="${taxReciept.name}">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <g:if test="${dateFormat.format(taxReciept.regDate) == dateFormat.format(currentDate)}">
+                                         <input type="text" class="form-control datepicker-reg text-date" placeholder="Registration Date" name="reg-date">
+                                     </g:if>
+                                     <g:else>
+                                         <input type="text" class="form-control datepicker-reg text-date" placeholder="Registration Date" name="reg-date" value="${dateFormat.format(taxReciept.regDate)}">
+                                     </g:else>
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control addressLine1" placeholder="AddressLine 1" name="addressLine1" value="${taxReciept.addressLine1}">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control zip" placeholder="ZIP" name="zip"  value="${taxReciept.zip}">
+                                 </div>
+                             </div>
+                             <div class="col-sm-4">
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" placeholder="Registration Number" class="form-control tax-reciept-registration-num" name="tax-reciept-registration-num" value="${taxReciept.regNum}">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <g:if test="${dateFormat.format(taxReciept.expiryDate) == dateFormat.format(currentDate)}">
+                                         <input type="text" class="form-control datepicker-expiry text-date" placeholder="Expiry Date" name="expiry-date">
+                                     </g:if>
+                                     <g:else>
+                                         <input type="text" class="form-control datepicker-expiry text-date" placeholder="Expiry Date" name="expiry-date" value="${dateFormat.format(taxReciept.expiryDate)}">
+                                     </g:else>
+                                 </div>
+                                  <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control addressLine2" placeholder="AddressLine 2" name="addressLine2" value="${taxReciept.addressLine2}">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept form-group-selectpicker form-group-dropdown">
+                                     <g:select class="selectpicker form-control selectpicker-state tax-reciept-dropdown-menu" name="tax-reciept-holder-state" from="${stateInd}" optionKey="value" optionValue="value" value="${taxReciept.taxRecieptHolderState}" noSelection="['OTHER':'State']"/>
+                                 </div>
+                             </div>
+                             <div class="col-sm-4">
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card" value="${taxReciept.panCardNumber}">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone" value="${taxReciept.phone}" >
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control tax-reciept-holder-city" placeholder="City" name="tax-reciept-holder-city" value="${taxReciept.city}">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control country" placeholder="Country" name="country" value="India" readonly>
+                                 </div>
+                             </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-sm-12 col-sm-fcra">
+                                     <input type="checkbox" name="fcra-checkbox" class="fcra-checkbox" <g:if test="${taxReciept.fcraRegNum}">checked="checked"</g:if>>&nbsp;&nbsp;Are you FCRA registered ?
+                                 </div>
+                                 <div class="fcra-clear"></div>
+                                 <div class="fcra-details <g:if test="${!taxReciept.fcraRegNum}">fcra-display-none</g:if>">
+                                     <div class = "col-sm-4">
+                                         <div class="col-sm-12 form-group form-group-tax-reciept">
+                                             <input type="text" placeholder="FCRA Registration No." class="form-control fcra-reg-no" name="fcra-reg-no" value="${taxReciept.fcraRegNum}">
+                                         </div>
+                                     </div>
+                                     <div class = "col-sm-4">
+                                         <div class="col-sm-12 form-group form-group-tax-reciept">
+                                             <g:if test="${dateFormat.format(taxReciept.fcraRegDate) == dateFormat.format(currentDate)}">
+                                                 <input type="text" placeholder="FCRA Registration Date" class="form-control fcra-reg-date text-date" name="fcra-reg-date">
+                                             </g:if>
+                                             <g:else>
+                                                 <input type="text" placeholder="FCRA Registration Date" class="form-control fcra-reg-date text-date" name="fcra-reg-date" value="${dateFormat.format(taxReciept.fcraRegDate)}">
+                                             </g:else>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-sm-2 col-xs-12 col-add-tax-files">
+                                     <div class="col-sm-12 col-xs">
+                                         <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
+                                             Add Files
+                                             <input type="file" class="upload taxRecieptFiles" name="taxRecieptFiles">
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-tax-file-show col-sm-10 col-xs-12" id="col-tax-file-show">
+                                    <g:each var="file" in="${taxReciept.files}">
+                                        <% def url = file.url %>
+                                        <div class="col-sm-3 col-sm-tax-reciept">
+	                                        <div class="cr-tax-files">
+	                                           <div class="col-file-name">${url.substring(url.lastIndexOf("/") + 1)}</div>
+	                                           <div class="deleteicon">
+	                                               <button type="button" class="close" onclick="deleteTaxRecieptFiles(this, ${file.id}, ${taxReciept.id})">&times;</button>
+	                                           </div>
+	                                        </div>
+                                        </div>
+                                    </g:each>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="clear-tax-reciept"></div>
+                                 <div class="col-sm-12 col-file-upload-error-placement col-sm-fcra">
+                                     <label class="docfile-orglogo-css filesize" id="filesize"></label>
+                                     <label class="docfile-orglogo-css fileempty" id="fileempty"></label>
+                                     <div class="uploadingFile">Uploading File....</div>
+                                 </div>
+                             </div>
+                             </g:if>
+                             <g:else>
+                             <div class="row">
+                             <div class="col-sm-4">
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                      <input type="text" placeholder="Registered Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control datepicker-reg text-date" placeholder="Registration Date" name="reg-date">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control addressLine1" placeholder="AddressLine 1" name="addressLine1">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control zip" placeholder="ZIP" name="zip">
+                                 </div>
+                             </div>
+                             <div class="col-sm-4">
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" placeholder="Registration Number" class="form-control tax-reciept-registration-num" name="tax-reciept-registration-num">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control datepicker-expiry text-date" placeholder="Expiry Date" name="expiry-date">
+                                 </div>
+                                  <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control addressLine2" placeholder="AddressLine 2" name="addressLine2">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept form-group-selectpicker form-group-dropdown">
+                                     <g:select class="selectpicker form-control selectpicker-state tax-reciept-dropdown-menu" name="tax-reciept-holder-state" from="${stateInd}" optionKey="value" optionValue="value" noSelection="['OTHER':'State']"/>
+                                 </div>
+                             </div>
+                             <div class="col-sm-4">
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" placeholder="PAN Card Number" class="form-control tax-reciept-holder-pan-card" name="tax-reciept-holder-pan-card">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" placeholder="Phone Number" class="form-control tax-reciept-holder-phone" name="tax-reciept-holder-phone">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control tax-reciept-holder-city" placeholder="City" name="tax-reciept-holder-city">
+                                 </div>
+                                 <div class="col-sm-12 form-group form-group-tax-reciept">
+                                     <input type="text" class="form-control country" placeholder="Country" name="country" value="India" readonly>
+                                 </div>
+                             </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-sm-12 col-sm-fcra">
+                                     <input type="checkbox" name="fcra-checkbox" class="fcra-checkbox">&nbsp;&nbsp;Are you FCRA registered ?
+                                 </div>
+                                 <div class="fcra-clear"></div>
+                                 <div class="fcra-details fcra-display-none">
+                                     <div class = "col-sm-4">
+                                         <div class="col-sm-12 form-group form-group-tax-reciept">
+                                             <input type="text" placeholder="FCRA Registration No." class="form-control fcra-reg-no" name="fcra-reg-no">
+                                         </div>
+                                     </div>
+                                     <div class = "col-sm-4">
+                                         <div class="col-sm-12 form-group form-group-tax-reciept">
+                                             <input type="text" placeholder="FCRA Registration Date" class="form-control fcra-reg-date text-date" name="fcra-reg-date">
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="col-sm-2 col-xs-12 col-add-tax-files">
+                                     <div class="col-sm-12 col-xs">
+                                         <div class="fileUpload btn btn-info btn-sm cr-btn-color ">
+                                             Add Files
+                                             <input type="file" class="upload taxRecieptFiles" name="taxRecieptFiles">
+                                         </div>
+                                     </div>
+                                 </div>
+                                 <div class="col-tax-file-show col-sm-10 col-xs-12" id="col-tax-file-show">
+                                 </div>
+                             </div>
+                             <div class="row">
+                                 <div class="clear-tax-reciept"></div>
+                                 <div class="col-sm-12 col-file-upload-error-placement col-sm-fcra">
+                                     <label class="docfile-orglogo-css filesize" id="filesize"></label>
+                                     <label class="docfile-orglogo-css fileempty" id="fileempty"></label>
+                                     <div class="uploadingFile">Uploading File....</div>
+                                 </div>
+                             </div>
+                             </g:else>
+                            </g:if>
+                            <g:else>
+                             <g:if test="${taxReciept}">
+                                 <div class="col-sm-4">
+                                     <div class="col-sm-12 form-group form-group-tax-reciept">
+                                         <input type="text" placeholder="EIN" class="form-control ein" name="ein" value="${taxReciept.ein}">
+                                     </div>
+                                     <div class="col-sm-12 form-group form-group-tax-reciept">
+                                         <input type="text" placeholder="City" class="form-control tax-reciept-holder-city" name="tax-reciept-holder-city" value="${taxReciept.city}">
+                                     </div>
+                                 </div>
+                                 <div class="col-sm-4">
+                                     <div class="col-sm-12 form-group form-group-tax-reciept">
+                                         <input type="text" placeholder="Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name" value="${taxReciept.name}">
+                                     </div>
+                                     <div class="col-sm-12 form-group form-group-tax-reciept">
+                                         <input type="text" placeholder="State" class="form-control tax-reciept-holder-state" name="tax-reciept-holder-state" value="${taxReciept.taxRecieptHolderState}">
+                                     </div>
+                                 </div>
+                                 <div class="col-sm-4">
+                                     <div class="col-sm-12 form-group form-group-tax-reciept-dropdown form-group-dropdown">
+                                         <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" value="${taxReciept.deductibleStatus}" noSelection="['null':'Deductible Status']"/>
+                                     </div>
+                                     <div class="col-sm-12 form-group form-group-tax-reciept-dropdown form-group-dropdown">
+                                         <g:select class="selectpicker form-control tax-reciept-holder-country-edit tax-reciept-holder-country" name="tax-reciept-holder-country" from="${country}" optionKey="value" value="${taxReciept.country}" optionValue="value" noSelection="['null':'Country']"/>
+                                     </div>
+                                 </div>
+                             </g:if>
+                             <g:else>
+                                 <div class="col-sm-4">
+                                     <div class="col-sm-12 form-group form-group-tax-reciept">
+                                         <input type="text" placeholder="EIN" class="form-control ein" name="ein">
+                                     </div>
+                                     <div class="col-sm-12 form-group form-group-tax-reciept">
+                                         <input type="text" placeholder="City" class="form-control tax-reciept-holder-city" name="tax-reciept-holder-city">
+                                     </div>
+                                 </div>
+                                 <div class="col-sm-4">
+                                     <div class="col-sm-12 form-group form-group-tax-reciept">
+                                         <input type="text" placeholder="Name" class="form-control tax-reciept-holder-name" name="tax-reciept-holder-name">
+                                     </div>
+                                     <div class="col-sm-12 form-group form-group-tax-reciept">
+                                         <input type="text" placeholder="State" class="form-control tax-reciept-holder-state" name="tax-reciept-holder-state">
+                                     </div>
+                                 </div>
+                                 <div class="col-sm-4">
+                                     <div class="col-sm-12 form-group form-group-tax-reciept-dropdown form-group-dropdown">
+                                         <g:select class="selectpicker form-control tax-reciept-deductible-status tax-reciept-dropdown-menu" name="tax-reciept-deductible-status" from="${deductibleStatusList}" optionKey="key" optionValue="value" noSelection="['null':'Deductible Status']"/>
+                                     </div>
+                                     <div class="col-sm-12 form-group form-group-tax-reciept-dropdown form-group-dropdown">
+                                         <g:select class="selectpicker form-control tax-reciept-holder-country tax-reciept-holder-country-edit" name="tax-reciept-holder-country" from="${country}" optionKey="value" optionValue="value" noSelection="['null':'Country']"/>
+                                     </div>
+                                 </div>
+                             </g:else>
+                            </g:else>
+                        </div>
+                   </div>
+
+
                     <div class="col-sm-12 cr-paddingspace text-center" id="save">
 <%--                        <div class="col-sm-4 text-center padding-btn" >--%>
 <%--                            <button type="button" class="btn  btn-primary btn-colors" name="button" id="saveasdraft"  value="draft">Save</button>--%>
@@ -1038,9 +1333,12 @@
             </g:uploadForm>
             </div>
         </div>
+        <div class="loadinggif text-center" id="loading-gif">
+            <img src="//s3.amazonaws.com/crowdera/documents/loading.gif" alt="'loadingImage'" id="loading-gif-img">
+        </div>
  </div>
  <script src="/js/main.js"></script>
-    <script src="/js/bootstrap-datepicker.js"></script>
+ <script src="/js/bootstrap-datepicker.js"></script>
  <script type="text/javascript">
   var needToConfirm = true;
      window.onbeforeunload = confirmExit;
@@ -1057,22 +1355,22 @@
             $('#iconfile').val(''); 
         }
 
-        var nowTemp = new Date();
-        var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-        now.setDate(now.getDate()+91);
         var j = jQuery.noConflict();
         j(function(){
-            j('#datepicker').datepicker({
-                onRender: function(date) {    
-                    if (date.valueOf() < nowTemp.valueOf() || date.valueOf() >= now.valueOf()){
-                        return  'disabled';
-                    }
-                }
+            j('.datepicker-reg').datepicker({          
             }).on('changeDate', function(){
-                autoSave('date', $('#datepicker').val());
-                $('.deadline-popover').find("span").remove();
-                $('.campaignEndDateError').closest(".form-group").removeClass('has-error');
-            });
+            autoSave('regDate', $('.datepicker-reg').val());
+        });
+        
+        j('.datepicker-expiry').datepicker({
+        }).on('changeDate', function(){
+            autoSave('expiryDate', $('.datepicker-expiry').val());
+        });
+
+        j('.fcra-reg-date').datepicker({
+        }).on('changeDate', function(){
+            autoSave('fcraRegDate', $('.fcra-reg-date').val());
+        });
         });
 
         function autoSave(variable, varValue) {
@@ -1135,7 +1433,19 @@
             });
         }
 
+        function deleteTaxRecieptFiles(current, fileId, taxRecieptId) {
+            $.ajax({
+                type:'post',
+                url:$("#b_url").val()+'/project/deleteTaxRecieptFile',
+                data:'fileId='+fileId+'&taxRecieptId='+taxRecieptId,
+                success: function(data){
+                    $(current).parents('.cr-tax-files').remove();
+                }
+            }).error(function(){
+                 console.log('Error occured on deleting the Tax reciept file');
+            });
+        }
+
     </script>
 </body>
 </html>
-                                    

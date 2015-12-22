@@ -29,97 +29,99 @@
     }
 %>
 <div class="fedu thumbnail grow user-tiles-style">
-	<g:if test="${iscampaignAdmin}">
-		<g:if test="${project.draft}">
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/Draft-tag.png" alt="draft"/>
-			</div>
-		</g:if>
-		<g:elseif test="${project.rejected}">
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/Rejected-tag.png"  alt="rejected"/>
-			</div>
-		</g:elseif>
-		<g:elseif test="${!project.validated}">
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/Pending-tag.png" alt="PENDING"/>
-			</div>
-		</g:elseif>
-		<g:elseif test="${ended}">
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/ended-tag.png" alt="ended"/>
-			</div>
-		</g:elseif>
-		<g:elseif test="${percentage >= 75}">
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/Funded-Tag.png" alt="Funded"/>
-			</div>
-		</g:elseif>
-		<g:elseif test="${project.validated}">
-			<g:if test="${user == project.user}">
-				<div class="over user-tile">
-					<img src="//s3.amazonaws.com/crowdera/assets/owner-tag.png" alt="Owner"/>
-				</div>
-			</g:if>
-			<g:elseif test="${isTeamAdmin}">
-				<div class="over user-tile">
-					<img src="//s3.amazonaws.com/crowdera/assets/Co-owner-tag.png" alt="co-owner"/>
-				</div>
-			</g:elseif>
-			<g:else>
-				<div class="over user-tile">
-					<img src="//s3.amazonaws.com/crowdera/assets/Pending-tag.png" alt="Pending"/>
-				</div>
-			</g:else>
-		</g:elseif>
-		<g:elseif test="${isTeamAdmin}">
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/owner-tag.png" alt="Owner"/>
-			</div>
-		</g:elseif>
-		<g:else>
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/Team-tag.png" alt="Team top"/>
-			</div>
-		</g:else>
-	</g:if>
-	<g:else>
-		<g:if test="${project.draft}">
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/Draft-tag.png" alt="draft"/>
-			</div>
-		</g:if>
-		<g:elseif test="${project.rejected}">
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/Rejected-tag.png" alt="rejected"/>
-			</div>
-		</g:elseif>
-		<g:elseif test="${!project.validated}">
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/Pending-tag.png" alt="Pending"/>
-			</div>
-		</g:elseif>
-		<g:elseif test="${ended}">
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/ended-tag.png" alt="ended"/>
-			</div>
-		</g:elseif>
-		<g:elseif test="${percentage >= 75}">
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/Funded-Tag.png" alt="Funded"/>
-			</div>
-		</g:elseif>
-		<g:if test="${isTeamAdmin}">
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/owner-tag.png" alt="Owner"/>
-			</div>
-		</g:if>
-		<g:else>
-			<div class="over user-tile">
-				<img src="//s3.amazonaws.com/crowdera/assets/Team-tag.png" alt="Team top"/>
-			</div>
-		</g:else>
-	</g:else>
+    <g:if test="${iscampaignAdmin}">
+        <g:if test="${project.draft}">
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/Draft-tag.png" alt="draft"/>
+            </div>
+        </g:if>
+        <g:elseif test="${project.rejected}">
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/Rejected-tag.png"  alt="rejected"/>
+            </div>
+        </g:elseif>
+        <g:elseif test="${!project.validated}">
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/Pending-tag.png" alt="PENDING"/>
+            </div>
+        </g:elseif>
+        <g:elseif test="${ended}">
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/ended-tag.png" alt="ended"/>
+            </div>
+        </g:elseif>
+        <g:elseif test="${percentage >= 75}">
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/Funded-Tag.png" alt="Funded"/>
+            </div>
+        </g:elseif>
+        <g:elseif test="${project.validated}">
+            <g:if test="${user == project.user}">
+                <div class="over user-tile">
+                    <img src="//s3.amazonaws.com/crowdera/assets/owner-tag.png" alt="Owner"/>
+                </div>
+            </g:if>
+            <g:elseif test="${isTeamAdmin}">
+                <div class="over user-tile">
+                    <img src="//s3.amazonaws.com/crowdera/assets/Co-owner-tag.png" alt="co-owner"/>
+                </div>
+            </g:elseif>
+            <g:else>
+                <div class="over user-tile">
+                    <img src="//s3.amazonaws.com/crowdera/assets/Pending-tag.png" alt="Pending"/>
+                </div>
+            </g:else>
+        </g:elseif>
+        <g:elseif test="${isTeamAdmin}">
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/owner-tag.png" alt="Owner"/>
+            </div>
+        </g:elseif>
+        <g:else>
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/Team-tag.png" alt="Team top"/>
+            </div>
+        </g:else>
+    </g:if>
+    <g:else>
+        <g:if test="${project.draft}">
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/Draft-tag.png" alt="draft"/>
+            </div>
+        </g:if>
+        <g:elseif test="${project.rejected}">
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/Rejected-tag.png" alt="rejected"/>
+            </div>
+        </g:elseif>
+        <g:elseif test="${!project.validated}">
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/Pending-tag.png" alt="Pending"/>
+            </div>
+        </g:elseif>
+        <g:elseif test="${ended}">
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/ended-tag.png" alt="ended"/>
+            </div>
+        </g:elseif>
+        <g:elseif test="${percentage >= 75}">
+            <div class="over user-tile">
+                <img src="//s3.amazonaws.com/crowdera/assets/Funded-Tag.png" alt="Funded"/>
+            </div>
+        </g:elseif>
+        <g:elseif test="${project.validated}">
+            <g:if test="${isTeamAdmin}">
+                <div class="over user-tile">
+                    <img src="//s3.amazonaws.com/crowdera/assets/owner-tag.png" alt="Owner"/>
+                </div>
+            </g:if>
+            <g:else>
+                <div class="over user-tile">
+                    <img src="//s3.amazonaws.com/crowdera/assets/Team-tag.png" alt="Team top"/>
+                </div>
+            </g:else>
+        </g:elseif>
+    </g:else>
     <div class="blacknwhite tile">
         <g:if test="${iscampaignAdmin}">
             <g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">

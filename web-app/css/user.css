@@ -847,6 +847,7 @@ div.dashboardtile-min-height {
     width: 185px;
     margin-left: auto;
     margin-right: auto;
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
 }
 .partner-tile img.partner-profile-img {
     width: 170px !important;
@@ -903,7 +904,7 @@ div.dashboardtile-min-height {
 }
 
 .partner-dashboard .sidebar-nav {
-    height: 625px;
+    height: 700px;
     width: 200px;
     background-color: #f6f8f8;
     padding-top: 15px;
@@ -921,7 +922,7 @@ div.dashboardtile-min-height {
 .partner-dashboard div.list-group-item.active, .partner-dashboard div.list-group-item.active:hover, .partner-dashboard div.list-group-item.active:focus {
     z-index: 2;
     color: #000 !important;
-    border: 1px solid #01bbd2;
+    border: 2px solid #01bbd2;
     background-color: #fff !important;
 }
 .partner-dashboard .campaign-img {
@@ -995,7 +996,10 @@ div.dashboardtile-min-height {
 #campaign-select-alert {
 	   display: none;
 }
-#campaign-select-alert.alert {
+#campaign-select-msg {
+    display: none;
+}
+#campaign-select-alert.alert , #campaign-select-msg.alert{
   padding: 10px;
   margin-top: 10px;
 }
@@ -1191,7 +1195,10 @@ div.dashboardtile-min-height {
     box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
     cursor: pointer;
 }
-
+.folder.active {
+    background-color: #01bbd2;
+    border: 1px solid #01bbd2;
+}
 .folderName {
     text-overflow: ellipsis;
     -o-text-overow: ellipsis;
@@ -1200,6 +1207,9 @@ div.dashboardtile-min-height {
     color: #6d6e6e;
     white-space: pre;
     padding: 8px;
+}
+.folder.active .folderName {
+    color: #fff;
 }
 .folderlist {
     background-color: #f5f5f5;
@@ -1211,18 +1221,138 @@ div.dashboardtile-min-height {
     display: none;
 }
 .uploaddocfile {
-    color: #6d6e6e;
     font-weight: 500;
     cursor: pointer;
 }
 .uploaddocfile:hover {
-    color: #01bbd2;
+    color: white;
 }
 .folderdirectory {
     margin-bottom: 20px;
 }
 .folderdirectory a:hover{
     text-decoration: none;
+}
+.add-docs-fixed-btn {
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+.add-docs-fixed-btn .btn-round {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    outline: 0px;
+}
+.add-docs-fixed-btn .btn , .trash-docs-fixed-btn .btn, .trash-file-fixed-btn .btn, .trash-drivefile-fixed-btn .btn{
+    padding: 10px 22px;
+}
+.add-docs-fixed-btn .btn-primary {
+    background-color: #006083 !important;
+    border-color: #006083 !important;
+}
+.add-docs-fixed-btn .dropdown-menu .divider {
+    height: 1px;
+    margin: 0.5px 0px;
+}
+.dropdown-doc-padding {
+    padding: 12px 15px;
+}
+.dropdown-doc-padding:hover {
+    background-color: #006083;
+    color: white;
+}
+.dropdown-doc-padding {
+    color: #6d6e6e;
+    font-weight: 500;
+    cursor: pointer;
+}
+.trash-docs-fixed-btn {
+    position: fixed;
+    bottom: 52px;
+    right: 120px;
+}
+.trash-docs-fixed-btn .btn-round{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    outline: 0px;
+}
+.trash-docs-fixed-btn {
+    display: none;
+}
+.partner-stats .announcement-bottom {
+    box-shadow: 0 1px 4px rgba(0,0,0,.37);
+    font-size: 16px;
+}
+.partner-stats .panel-info {
+    border-color: #f6f8f8;
+}
+.partner-fileUpload-btn {
+    background-color: #fff !important;
+    border-color: #fff !important;
+    color: #6d6e6e;
+}
+.partner-fileUpload-btn:hover {
+    background-color: #006083 !important;
+    border-color: #006083 !important;
+    color: #fff;
+}
+.file-thumbnail {
+    height: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
+    text-align: center;
+    vertical-align: center;
+}
+.file-thumbnail .glyphicon-file {
+    font-size: 40px;
+    top: 35%;
+    color: #4285f4;
+}
+.file-thumbnail-div {
+    margin-bottom: 20px;
+}
+.fileName-text {
+    text-overflow: ellipsis;
+    -o-text-overow: ellipsis;
+    word-wrap: normal;
+    overflow: hidden;
+    color: #6d6e6e;
+    white-space: nowrap;
+    text-align: center;
+    padding: 5px;
+    cursor: pointer;
+}
+.file-thumbnail-container.active .fileName-text{
+    color: #fff;
+    background-color: #6d6e6e;
+}
+.trash-file-fixed-btn {
+    position: fixed;
+    bottom: 52px;
+    right: 120px;
+    display: none;
+}
+.trash-file-fixed-btn .btn-round{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    outline: 0px;
+}
+.trash-drivefile-fixed-btn {
+    position: fixed;
+    bottom: 52px;
+    right: 120px;
+    display: none;
+}
+.trash-drivefile-fixed-btn .btn-round{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    outline: 0px;
 }
 .userprfl-warning a {
     margin-top: 4px;

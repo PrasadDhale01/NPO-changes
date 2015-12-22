@@ -18,6 +18,7 @@
 </head>
 <body>
     <div class="validate-show-div">
+    <g:hiddenField name="projectamount" value="${project.amount.round()}" id="projectamount"/>
     
         <div id="wrapper">
 

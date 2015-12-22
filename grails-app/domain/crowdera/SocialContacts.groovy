@@ -14,8 +14,14 @@ class SocialContacts {
      static belongsTo =  [user: User]
 
      static constraints = {
-         gmail maxSize:65535 ,nullable: true
-         constantContact maxSize:65535 ,nullable:true
-         mailchimp maxSize:65535 , nullable:true
+         gmail  nullable: true
+         constantContact nullable:true
+         mailchimp nullable:true
+    }
+     
+    static mapping = {
+         gmail type:'text'
+         constantContact type:'text'
+         mailchimp type:'text'    
     }
 }

@@ -38,9 +38,8 @@
             <g:else>Achieved</g:else>
         </td>
     </g:else>
-    <td class="teamStatusButton" id="teamStatusButton">
+    <td class="teamStatusButton">
         <input type="checkbox" name="link" id="${team.id}" value="${team.id}" 
         <% if(!team.enable) { %> checked="checked" <% } %> <% if(team.user == project.user) { %> disabled="true" <% } %>><span id="checkteam${team.id}"> Disable</span>
-        </input>
     </td>
 </tr>

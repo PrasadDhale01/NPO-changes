@@ -66,7 +66,7 @@
         </div>
 	</div>
     <div class="row amount-centering manage-tileIcons-width">
-        <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center">
+        <div class="col-xs-4 col-sm-4 col-md-4 amount-alignment amount-text-align text-center manage-amt-tile-mobile">
             <span class="text-center tile-goal show-contribution-amt-tile">
                 <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                     <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead show-contribution-amt-tile">${amount}</span></g:if><g:else><span class="lead show-contribution-amt-tile">${amount * conversionMultiplier}</span></g:else>
@@ -99,7 +99,7 @@
            </div>
         </g:else>
         
-        <div class="col-md-4 col-xs-4 amount-alignment amount-text-align text-center">
+        <div class="col-md-4 col-xs-4 amount-alignment amount-text-align text-center mange-contri-mobiletile">
             <span class="text-center tile-goal show-contribution-amt-tile">
                 <g:if test="${currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'}">
                     <span class="fa fa-inr"></span><g:if test="${project.payuStatus}"><span class="lead show-contribution-amt-tile">${totalContribution}</span></g:if><g:else><span class="lead show-contribution-amt-tile">${totalContribution * conversionMultiplier}</span></g:else>

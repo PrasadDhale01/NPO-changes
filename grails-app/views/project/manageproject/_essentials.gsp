@@ -1,4 +1,4 @@
-<!-- Comments -->
+<%-- Comments --%>
 <%
     def base_url = grailsApplication.config.crowdera.BASE_URL
     def fbShareUrl = base_url+"/campaigns/"+project.id+"?fr="+project.user.username
@@ -43,7 +43,7 @@
                 </g:form>
             </g:if>
             <g:else>
-                <button class="btn btn-block btn-primary mange-submitapp-margin" id="submitForApprovalBtnMobile">
+                <button class="btn btn-block btn-primary" id="submitForApprovalBtnMobile">
                     <i class="glyphicon glyphicon-check"></i>&nbsp;Submit for approval
                 </button>
             </g:else>
@@ -139,7 +139,7 @@
         <p class="campaignStory justify">${raw(project.story)}</p>
     </div>
 
-    <!-----Embed modal----->
+    <%--   Embed modal--%>
     <div class="modal fade" id="embedTilemodal" tabindex="-1" role="dialog" aria-hidden="true">
         <g:if test="${project.videoUrl}">
             <div class="modal-dialog modal-embed-with-video hidden-xs">
@@ -228,42 +228,43 @@
           </g:else>
       </div>
 
-	<div class="col-sm-12">
-	    <!-- Modal -->
-		<div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
-			<g:form action="sendemail" id="${project.id}" class="sendMailFormMng">
-		        <div class="modal-dialog">
-				    <div class="modal-content">
-					    <div class="modal-header">
-					        <button type="button" class="close" data-dismiss="modal">
-							    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-							</button>
-							<h4 class="modal-title">Recipient Email ID's</h4>
-						</div>
-						<div class="modal-body">
-						    <g:hiddenField name="amount" value="${project.amount}" />
-						    <g:hiddenField name="ismanagepage" value="managepage" />
-						    <g:hiddenField name="fr" value="${fundRaiser}" />
+    <div class="col-sm-12">
+        <%--  Modal --%>
+        <div class="modal fade" id="sendmailmodal" tabindex="-1" role="dialog" aria-hidden="true">
+            <g:form action="sendemail" id="${project.id}" class="sendMailFormMng">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                            </button>
+                            <h4 class="modal-title">Recipient Email ID's</h4>
+                        </div>
+                        <div class="modal-body">
+                            <g:hiddenField name="amount" value="${project.amount}" />
+                            <g:hiddenField name="ismanagepage" value="managepage" />
+                            <g:hiddenField name="fr" value="${fundRaiser}" />
                                                    <g:hiddenField name="vanityTitle" value="${vanityTitle}"/>
-						    <div class="form-group">
-							    <label>Your Name</label> <input type="text" class="form-control all-place" name="name" placeholder="Name" />
-						    </div>
-							<div class="form-group">
-						        <label>Email ID's (separated by comma)</label>
-								<textarea class="form-control all-place" name="emails" rows="4" placeholder="Email ID's"></textarea>
-							</div>
-							<div class="form-group">
-							    <label>Message (Optional)</label>
-								<textarea class="form-control all-place" name="message" rows="4" placeholder="Message"></textarea>
-							</div>
-						</div>
-						<div class="modal-footer">
-						    <button type="submit" class="btn btn-primary btn-block" id="btnSendMailMng">Send Email</button>
-						</div>
-				    </div>
-			    </div>
-	        </g:form>
-		</div>
-	</div>
+                            <div class="form-group">
+                                <label>Your Name</label> <input type="text" class="form-control all-place" name="name" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label>Email ID's (separated by comma)</label>
+                                <textarea class="form-control all-place" name="emails" rows="4" placeholder="Email ID's"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Message (Optional)</label>
+                                <textarea class="form-control all-place" name="message" rows="4" placeholder="Message"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-block" id="btnSendMailMng">Send Email</button>
+                        </div>
+                    </div>
+                </div>
+            </g:form>
+        </div>
+    </div>
 
 
+   

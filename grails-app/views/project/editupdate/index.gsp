@@ -19,13 +19,13 @@
             <div class="clear"></div>
             
             <g:uploadForm class="form-horizontal editForm" controller="project" action="saveEditUpdate" method="post" role="form" id="${projectUpdate.id}" params="['projectId': projectId]">
-                <input type="hidden" id="baseUrl" value="${baseUrl}"/>
+                <input type="hidden" id="baseUrl" value="${baseUrl}">
                 <g:hiddenField name="projectUpdateId" value="${projectUpdate.id}"/>
                 
                 <div class="form-group">
                     <label class="col-sm-1 col-md-1 control-label"><b>Title</b></label>
                     <div class="col-sm-10 col-md-10">
-                        <input class="form-control manage-title-editupdate" name="${FORMCONSTANTS.TITLE}" id="${FORMCONSTANTS.TITLE}" value="${projectUpdate.title}"/>
+                        <input class="form-control manage-title-editupdate" name="${FORMCONSTANTS.TITLE}" id="${FORMCONSTANTS.TITLE}" value="${projectUpdate.title}">
                     </div>
                 </div><br/>
                 <div class="form-group">

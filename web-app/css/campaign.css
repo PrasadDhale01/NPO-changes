@@ -873,3 +873,6 @@ img.hm-height-width {
 .mange-story-imgs iframe{
     width: 100% !important;
 }
+.errormsg {
+    color: red;
+}

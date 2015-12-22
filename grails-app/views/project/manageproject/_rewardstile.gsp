@@ -77,7 +77,7 @@
 
 </div>
 <g:if test="${!validatedPage}">
-<div class="modal fade editperks" id="editperks${reward.id}" tabindex="-1" role="dialog" aria-labelledby="#editperks${reward.id}" aria-hidden="true">
+<div class="modal fade editperks" id="editperks${reward.id}" tabindex="-1" aria-hidden="true">
     <g:form controller="project" action="customrewardedit" id="${reward.id}">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -86,29 +86,29 @@
                     <h4 class="modal-title">Edit The Perk</h4>
                 </div>
                 <div class="modal-body">
-                    <g:hiddenField name="amount" value="${project.amount}" id="cAmount"/>
-                    <g:hiddenField name="projectId" value="${project.id}"/>
-                    <g:if test="${project.payuStatus}">
-                        <g:hiddenField name="isINR" value="${project.payuStatus}" id="isINR"/>
-                    </g:if>
+                    <g:hiddenField name="amount" value="${project.amount}" id="cAmount${reward.id}"/>
+                    <g:hiddenField name="projectId" value="${project.id}" id="campaign${reward.id}"/>
+<%--                    <g:if test="${project.payuStatus}">--%>
+<%--                        <g:hiddenField name="isINR" value="${project.payuStatus}" id="isINR"/>--%>
+<%--                    </g:if>--%>
                     <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control all-place" name="title" value="${reward.title}" placeholder="Title"/>
+                        <label>Title</label>
+                        <input type="text" class="form-control all-place" name="title" value="${reward.title}" placeholder="Title">
                     </div>
                     <div class="form-group">
-                        <label for="title">Number available</label>
-                        <input type="text" class="form-control all-place" name="numberAvailable" value="${reward.numberAvailable}" placeholder="Number available"/>
+                        <label>Number available</label>
+                        <input type="text" class="form-control all-place" name="numberAvailable" value="${reward.numberAvailable}" placeholder="Number available">
                     </div>
                     <div class="form-group descriptionDiv createDescDiv">
-                        <label for="description">Description</label>
-                        <textarea class="form-control all-place" id="rewarddescarea" name="description" maxlength="250" rows="4" placeholder="Description">${reward.description}</textarea>
-                        <label class="pull-right " id="desclength"></label>
+                        <label>Description</label>
+                        <textarea class="form-control all-place rewarddescarea" name="description" maxlength="250" rows="4" placeholder="Description">${reward.description}</textarea>
+<%--                        <label class="pull-right" id="desclength"></label>--%>
                     </div>
                     <div class="clear"></div>
                     <div class="form-group">
-                        <label for="price">Price (<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
-                        <input type="text" class="form-control perkPrice all-place" name="price" value="${reward.price.round()}" id="perkPrice" placeholder="Price"/>
-                        <span id="errormsg" class="errormsg"></span>
+                        <label>Price (<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                        <input type="text" class="form-control perkPrice all-place" name="price" value="${reward.price.round()}" placeholder="Price">
+                        <span class="errormsg"></span>
                     </div>
                     <div class="form-group">
                         <label class="control-label">Which of the following is necessary to fulfill this perk:</label>
@@ -117,10 +117,10 @@
                         %>
                         <g:if test="${rewarShipping}">
                         <div class="editShippingreward shipping-inline col-lg-12 col-xs-12 col-md-12 col-sm-12">
-                            <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 editshipping-margin"><input type="checkbox" class="editShippingInfo" name="address" value="true" id="mailaddcheckbox" <g:if test="${rewarShipping.address}">checked="checked"</g:if> >Mailing address</label>
-                            <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 editshipping-margin"><input type="checkbox" class="editShippingInfo" name="email" value="true" id="emailcheckbox" <g:if test="${rewarShipping.email}">checked="checked"</g:if>>Email address</label>
-                            <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 editshipping-margin"><input type="checkbox" class="editShippingInfo" name="twitter" value="true" id="twittercheckbox" <g:if test="${rewarShipping.twitter}">checked="checked"</g:if>>Twitter handle</label>
-                            <input type="text" class="editShippingInfo col-lg-3 col-xs-6 col-md-3 col-sm-4 cutom-perks-border form-control" name="custom" value="${rewarShipping.custom}" id="custombox" placeholder="Custom"/>
+                            <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 editshipping-margin"><input type="checkbox" class="editShippingInfo" name="address" value="true" <g:if test="${rewarShipping.address}">checked="checked"</g:if> >Mailing address</label>
+                            <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 editshipping-margin"><input type="checkbox" class="editShippingInfo" name="email" value="true" <g:if test="${rewarShipping.email}">checked="checked"</g:if>>Email address</label>
+                            <label class="btn btn-primary btn-sm checkbox-inline control-label col-lg-3 col-xs-6 col-md-3 col-sm-4 editshipping-margin"><input type="checkbox" class="editShippingInfo" name="twitter" value="true" <g:if test="${rewarShipping.twitter}">checked="checked"</g:if>>Twitter handle</label>
+                            <input type="text" class="editShippingInfo col-lg-3 col-xs-6 col-md-3 col-sm-4 cutom-perks-border form-control" name="custom" value="${rewarShipping.custom}" placeholder="Custom">
                         </div>
                         <div class="editShippingError"></div>
                         </g:if>

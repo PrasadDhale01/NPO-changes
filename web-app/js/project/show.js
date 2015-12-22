@@ -277,7 +277,7 @@ $(function() {
     
     /***********************Enable or Disable a Team********************************/
     
-    $("#teamStatusButton input[type='checkbox']").click(function(){
+    $(".teamStatusButton input[type='checkbox']").click(function(){
         
         if($(this).prop("checked") == true){
              enableOrDisableTeam(this,true);
@@ -290,7 +290,7 @@ $(function() {
      });
     
      function changeTeamStatus() {
-         $('#teamStatusButton input[type="checkbox"]').each(function(index, value) {
+         $('.teamStatusButton input[type="checkbox"]').each(function(index, value) {
              if ($(this).prop("checked") == true) {
                  $('#checkteam'+(index+1)).text(' Enable');
              } else {

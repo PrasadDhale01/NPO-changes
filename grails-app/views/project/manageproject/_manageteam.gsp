@@ -57,35 +57,35 @@
 </g:else>
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="inviteTeamMember" tabindex="-1" role="dialog" aria-hidden="true">
-    <g:form action="inviteTeamMember" id="${project.id}" class="mng-inviteTeamMember">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">Invite Team Members</h4>
-                </div>
-                <div class="modal-body">
-                    <g:hiddenField name="amount" value="${project.amount}"/>
-                    <g:hiddenField name="ismanagepage" value="managepage" />
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" class="form-control all-place" name="username" value="${userName}" placeholder="Name"/>
-                    </div>
-                    <div class="form-group">
-                        <label>Email ID's (separated by comma)</label>
-                        <textarea class="form-control all-place" name="emailIds" rows="4" placeholder="Email ID's"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Message (Optional)</label>
-                        <textarea class="form-control all-place" name="teammessage" rows="4" placeholder="Message"></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-block" id="btnSendInvitationMng">Send Invitation</button>
-                </div>
-            </div>
-        </div>
-    </g:form>
-</div>
+<%-- Modal --%>
+<%--<div class="modal fade" id="inviteTeamMember" tabindex="-1" role="dialog" aria-hidden="true">--%>
+<%--    <g:form action="inviteTeamMember" id="${project.id}" class="mng-inviteTeamMember">--%>
+<%--        <div class="modal-dialog">--%>
+<%--            <div class="modal-content">--%>
+<%--                <div class="modal-header">--%>
+<%--                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>--%>
+<%--                    <h4 class="modal-title">Invite Team Members</h4>--%>
+<%--                </div>--%>
+<%--                <div class="modal-body">--%>
+<%--                    <g:hiddenField name="amount" value="${project.amount}"/>--%>
+<%--                    <g:hiddenField name="ismanagepage" value="managepage" />--%>
+<%--                    <div class="form-group">--%>
+<%--                        <label>Name</label>--%>
+<%--                        <input type="text" class="form-control all-place" name="username" value="${userName}" placeholder="Name">--%>
+<%--                    </div>--%>
+<%--                    <div class="form-group">--%>
+<%--                        <label>Email ID's (separated by comma)</label>--%>
+<%--                        <textarea class="form-control all-place" name="emailIds" rows="4" placeholder="Email ID's"></textarea>--%>
+<%--                    </div>--%>
+<%--                    <div class="form-group">--%>
+<%--                        <label>Message (Optional)</label>--%>
+<%--                        <textarea class="form-control all-place" name="teammessage" rows="4" placeholder="Message"></textarea>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="modal-footer">--%>
+<%--                    <button type="submit" class="btn btn-primary btn-block" id="btnSendInvitationMng">Send Invitation</button>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </g:form>--%>
+<%--</div>--%>

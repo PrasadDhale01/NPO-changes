@@ -12,7 +12,7 @@
     <div class="feducontent">
         <div class="container editUpdateForm campaignUpdateContainer">
             <g:uploadForm class="form-horizontal editForm" controller="project" action="updatesave" id="${project.id}" role="form">
-                <input type="hidden" id="baseUrl" value="${baseUrl}"/>
+                <input type="hidden" id="baseUrl" value="${baseUrl}">
                 <div class="row">
                     <div class="text-center">
                         <h1 class="hidden-xs"><img class="img-circle" src="//s3.amazonaws.com/crowdera/assets/icon-edit.png" alt="Edit Campaign"/> Campaign Update</h1>
@@ -22,7 +22,7 @@
                     <div class="form-group">
                         <label class="col-sm-1 control-label"><b>Title</b></label>
                         <div class="col-sm-10">
-                            <input class="form-control manage-mobile-title" name="${FORMCONSTANTS.TITLE}" id="${FORMCONSTANTS.TITLE}" />
+                            <input class="form-control manage-mobile-title" name="${FORMCONSTANTS.TITLE}" id="${FORMCONSTANTS.TITLE}">
                         </div>
                     </div><br/>
                     <div class="form-group">

@@ -1,7 +1,7 @@
 <g:set var="projectService" bean="projectService"/>
 <g:if test="${images.size()>1}">
 <div id="carousel-examplee-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
+    <%-- Indicators --%>
  	<ol class="carousel-indicators manage-carousel" id="updateindicators">
     	<g:each in="${images}" var="img" status="count">
         	<g:if test="${count == 0}">
@@ -13,7 +13,7 @@
         </g:each>
     </ol>
 
-    <!-- Wrapper for slides -->
+    <%-- Wrapper for slides --%>
     <div class="carousel-inner TW_project_update_carousel">
         <g:each in="${images}" var="img" status="count">
         	<g:if test="${count == 0}">
@@ -42,7 +42,7 @@
         	</g:else>
         </g:each>
     </div>
-    <!-- Controls -->
+    <%--  Controls --%>
     <div id="updatenavigators" class="manage-carousel">
 	    <a class="left carousel-control fixCarousel" href="#carousel-examplee-generic" role="button" data-slide="prev">
 	        <span class="glyphicon glyphicon-chevron-left"></span>

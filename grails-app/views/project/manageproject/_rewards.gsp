@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-xs-12">
         
-        <!-- Button trigger modal -->
+        <%-- Button trigger modal --%>
         <g:if test="${!ended}">
 	        <a href="#" class="btn btn-primary btn-sm btn-circle pull-right" data-toggle="modal" data-target="#createRewardModal" model="['project': project]">
 	            <i class="fa fa-plus-circle"></i> Create Perk
@@ -15,8 +15,8 @@
             </g:if>
         </g:else>
         
-        <!-- Modal -->
-        <div class="modal fade" id="createRewardModal" tabindex="-1" role="dialog" aria-labelledby="createRewardModal" aria-hidden="true">
+        <%-- Modal --%>
+        <div class="modal fade" id="createRewardModal" tabindex="-1" aria-hidden="true">
             <g:form action="customrewardsave" id="${project.id}" class="perkForm">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -30,21 +30,21 @@
                                 <g:hiddenField name="isINR" value="${project.payuStatus}" id="isINR"/>
                             </g:if>
                             <div class="form-group">
-                                <label for="title">Title</label>
+                                <label>Title</label>
                                 <input type="text" class="form-control all-place" name="title" placeholder="Title">
                             </div>
                             <div class="form-group">
-                                <label for="title">Number available</label>
+                                <label>Number available</label>
                                 <input type="text" class="form-control all-place" name="numberAvailable" placeholder="Number available">
                             </div>
                             <div class="form-group descriptionDiv createDescDiv">
-                                <label for="description">Description</label>
+                                <label>Description</label>
                                 <textarea class="form-control all-place" id="rewarddescarea" name="description" maxlength="250" rows="4" placeholder="Description"></textarea>
-                                <label class="pull-right " id="desclength"></label>
+                                <label class="pull-right desclength" id="desclength"></label>
                             </div>
                             <div class="clear"></div>
                             <div class="form-group">
-                                <label for="price">Price (<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
+                                <label>Price (<g:if test="${project.payuStatus}"><span class="fa fa-inr"></span></g:if><g:else>$</g:else>)</label>
                                 <input type="text" class="form-control perkPrice all-place" name="price" id="perkPrice" placeholder="Price">
                                 <span id="errormsg"></span>
                             </div>

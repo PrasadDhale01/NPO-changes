@@ -2065,12 +2065,12 @@ class ProjectController {
 		}
 
 		// FaceBook Share Count
-//		def httpFb = new HTTPBuilder('http://graph.facebook.com/?id=' + campaignUrl)
-//		httpFb.request(Method.GET, ContentType.JSON) {
-//			response.success = { resp, reader ->
-//				facebookCount = reader.shares
-//			}
-//		}
+		def httpFb = new HTTPBuilder('http://graph.facebook.com/?id=' + campaignUrl)
+		httpFb.request(Method.GET, ContentType.JSON) {
+			response.success = { resp, reader ->
+				facebookCount = reader.shares
+			}
+		}
 
 		// Twitter Share Count
 		def httptwit = new HTTPBuilder('http://opensharecount.com/count.json?url=' + campaignUrl)

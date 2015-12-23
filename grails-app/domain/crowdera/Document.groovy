@@ -12,7 +12,7 @@ class Document {
     
     String docName
     String docUrl
-    int docCount
+    int numberOfDocs
     
     static constraints = {
         docName nullable: true

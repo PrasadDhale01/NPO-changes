@@ -1278,22 +1278,25 @@ class UserService {
             Document doc = new Document()
             doc.docName = docName
             doc.docUrl = docUrl
-            def docCount = 0
+            def documentCount = 0
+            if (params.folderId) {
+                def docs = folder.documents
+                docs.each {
+                    documentCount = (it.docName.equalsIgnoreCase(docName)) ? documentCount + 1 : documentCount ;
+                }
+                doc.numberOfDocs = documentCount
+            } else {
+                def docs = partner.documents
+                docs.each {
+                    documentCount = (it.docName.equalsIgnoreCase(docName)) ? documentCount + 1 : documentCount ;
+                }
+                doc.numberOfDocs = documentCount
+            }
             if (doc.save()) {
                 if (params.folderId) {
-                    def docs = folder.documents
-                    docs.each {
-                        docCount = (it.docName.equalsIgnoreCase(docName)) ? docCount + 1 : docCount ;
-                    }
-                    doc.docCount = docCount
                     folder.addToDocuments(doc)
                     folder.save(failOnError: true)
                 } else {
-                    def docs = partner.documents
-                    docs.each {
-                        docCount = (it.docName.equalsIgnoreCase(docName)) ? docCount + 1 : docCount ;
-                    }
-                    doc.docCount = docCount
                     partner.addToDocuments(doc)
                     partner.save(failOnError: true)
                 }

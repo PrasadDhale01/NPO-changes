@@ -46,6 +46,7 @@
 	<meta name="layout" content="main" />
 	<r:require modules="projectshowjs" />
 	<r:require modules="rewardjs" />
+	
 </head>
 <body>
 	<g:hiddenField id="b_url" name="b_url" value="${base_url}"/>
@@ -86,12 +87,12 @@
 					</g:if>
                     <div class="col-md-12">
                         <g:if test="${!project.validated}">
-                            <div class="campaignTitle">
+                            <div class="mange-campaigntitle-mobile">
                                 <h1 class="green-heading text-center"><g:link controller="project" action="manageCampaign" id="${project.id}" title="${project.title}">${projectTitle}</g:link></h1>
                             </div>
                         </g:if>
                         <g:else>
-                            <div class="campaignTitle">
+                            <div class="mange-campaigntitle-mobile">
                                 <h1 class="green-heading text-center"><g:link controller="project" action="showCampaign" id="${project.id}" title="${project.title}" params="['fr': username]">${project.title}</g:link></h1>
                             </div>
                         </g:else>

@@ -5559,6 +5559,13 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 641 x 767*/
 @media only screen and (min-width: 641px) and (max-width: 767px){
+    div.mange-campaigntitle-mobile a{
+        font-size: 15px;
+        line-height: 0;
+        text-decoration: none;
+        color: #000;
+        font-weight: 900;
+    }
     div.manage-amt-tile-mobile {
         margin-top: 3px;
     }
@@ -13918,6 +13925,13 @@ textarea.textarea-embed-video {
 
 /* Screen resolution 320 x 640*/
 @media only screen and (min-width: 320px) and (max-width: 640px){
+    div.mange-campaigntitle-mobile a{
+        font-size: 15px;
+        line-height: 0;
+        text-decoration: none;
+        color: #000;
+        font-weight: 900;
+    }
     span.mange-mobile-fb {
         font-weight: 900;
     }

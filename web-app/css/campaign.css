@@ -1057,3 +1057,11 @@ label.cr-spend-guide-text{
 .manage-org-height {
     height: 139px;
 }
+.mange-campaigntitle-mobile a{
+    color: #000 !important;
+    font-size: 30px;
+    font-family: Verdana;
+    font-weight: 900;
+    font-variant: normal;
+    text-decoration: none;
+}

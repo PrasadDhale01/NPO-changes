@@ -1088,7 +1088,8 @@ class ProjectService {
         if(sorts == 'Latest') {
             projects.each {project ->
                 def percentage = contributionService.getPercentageContributionForProject(project)
-                if(percentage <= 16){
+                boolean ended = isProjectDeadlineCrossed(project)
+                if(percentage <= 16 && (project.validated && ended == false)){
                     p.add(project)
                 }
             }

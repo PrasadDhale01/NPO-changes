@@ -1318,6 +1318,15 @@ footer .footerbottomsection {
     padding-top: 25px;
 }
 
+.manage-organization-details h4 {
+    margin-bottom: 0;
+    padding-top: 12px;
+}
+
+.manage-organization-details{
+	position: relative;
+}
+
 .sh-pan-height{
 	height: 144px;
     margin-bottom: 0;
@@ -7446,9 +7455,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
     .fbShareForSmallDevices {
         display: block !important;
     }
-    .fbShareForLargeDevices {
-        display: none !important;
-    }
+/*     .fbShareForLargeDevices { */
+/*         display: none !important; */
+/*     } */
 
     .manage-tiles {
         width: 65% !important;
@@ -7679,25 +7688,25 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 @media only screen and (min-width:768px) and (max-width: 991px) {
     span.manage-btn-width-aft-validated {
         width: 88.1%;
-        padding-bottom: 18px;
-        padding-top: 18px;
+        padding-bottom: 15px;
+        padding-top: 13px;
     }
     span.manage-btn-width {
-        padding-bottom: 20px;
-        padding-top: 19px;
+        padding-bottom: 19px;
+        padding-top: 18px;
         width: 88.5%;
     }
     button.manage-deletebtn-width {
-        padding-top: 18px;
-        padding-bottom: 18px;
+        padding-top: 15px;
+        padding-bottom: 17px;
     }
     @-moz-document url-prefix() { 
         button.manage-deletebtn-width {
-            padding-bottom: 16px;
-            padding-top: 16px;
+            padding-bottom: 15px;
+            padding-top: 14px;
         }
         span.mange-size-FBbtn {
-            padding: 17px !important;
+            padding: 18px !important;
         } 
     }
     span.mange-size-FBbtn {
@@ -8016,6 +8025,14 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 /* Screen resolution 768 x 1024*/
 @media only screen and (min-width:768px) and (max-width: 1024px) {
+    div.manage-organization-details h4 {
+        font-size: 14px;
+        margin-bottom: 0;
+        padding-top: 12px;
+    }
+    div.manage-org-height {
+        height: 125px;
+    }
     i.manage-fb-padding {
         font-size: 19px;
         padding-right: 12px;
@@ -10573,30 +10590,36 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 @media only screen and (min-width: 992px) and (max-width: 1024px){
 	span.manage-btn-width-aft-validated {
-        margin-left: 15px;
+/*         margin-left: 15px; */
         width: 88.1%;
-        padding-bottom: 15px;
-        padding-top: 16px;
+        padding-bottom: 18px;
+        padding-top: 18px;
+    }
+    span.mange-size-FBbtn {
+        height: 100%;
+        padding: 16px;
+        width: 100%;
+        font-weight: 900;
     }
     button.manage-btn-width-aft-validated {
         padding-bottom: 15px;
         padding-top: 15px;
     }
     span.manage-btn-width {
-        padding-bottom: 12px;
-        padding-top: 13px;
+        padding-bottom: 17px;
+        padding-top: 18px;
         width: 88.9%;
     }
     @-moz-document url-prefix() { 
         span.manage-btn-width {
-            padding-bottom: 12px;
-            padding-top: 11px;
+            padding-bottom: 16px;
+            padding-top: 17px;
             width: 88.9%;
         }
     }
     button.manage-deletebtn-width {
-        padding-top: 13px;
-        padding-bottom: 15px;
+        padding-bottom: 17px;
+        padding-top: 16px;
     }
     div.manage-contribution-md-tabs{
         width: 50%;    
@@ -16327,6 +16350,10 @@ a#downloadEbook{
 .TW-org-title-font-size{
     padding-left: 5px;
     padding-right: 5px;
+}
+.TW-org-title-font-size-manage{
+    padding-left: 6px;
+    padding-right: 6px;
 }
 .sh-fb-icons{
     font-size: 23px;

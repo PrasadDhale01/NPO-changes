@@ -13,9 +13,9 @@
         </g:else>
     </div>
 
-   	<div class="organization-details text-center manage-org-title">
+   	<div class="manage-organization-details text-center manage-org-title manage-org-height">
    		<br><br>
-   	    <h4><b class="TW-org-title-font-size">${project.organizationName}</b></h4>
+   	    <h4><b class="TW-org-title-font-size-manage">${project.organizationName}</b></h4>
 <%--   	    <g:if test="${!isCrFrCampBenOrAdmin}">--%>
 <%--   	    	<g:if test="${currentTeam.user.userImageUrl}">--%>
 <%--   	        	<div class="col-sm-12">--%>

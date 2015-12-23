@@ -103,11 +103,11 @@
                                 <g:if test="${!ended}">
                                 <div class="col-sm-4 col-xs-4 edit-delete-fund manage-editdel-width">
                                     <div class="offline-edit-delete-btn">
-                                       <button class="projectedit close manage-contribution-delete"  data-toggle="modal" data-target="#contributionedit${contribution.id}" model="['project': project,'contribution': contribution]">
+                                       <button class="projectedit close manage-contribution-delete"  data-toggle="modal" data-target="#contributionedit${contribution.id}">
                                            <i class="glyphicon glyphicon-edit" ></i>
                                        </button>
 
-                                       <g:form name="ContributionDelete-form" controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]">
+                                       <g:form controller="project" action="contributiondelete" method="post" id="${contribution.id}" params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]">
                                            <g:hiddenField name="manageCampaign" value="${manageCampaign}" id="manageCampaign${contribution.id}"></g:hiddenField>
                                            <button class="projectedit close" onclick="return confirm(&#39;Are you sure you want to discard this contribution?&#39;);">
                                                <i class="glyphicon glyphicon-trash" ></i>
@@ -123,7 +123,7 @@
                        
                    <%-- EditContributionModal --%>
                    <div class="modal fade offlineContributionModal contributionedit" id="contributionedit${contribution.id}" tabindex="-1" aria-hidden="true">
-                       <g:form name="contributionEdit-form" action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]">
+                       <g:form action="contributionedit" controller="project" id="${contribution.id}"  params="['projectId':projectId, 'fr': fundRaiser, 'offset': offset]">
                            <div class="modal-dialog">
                                <div class="modal-content">
                                    <div class="modal-body">

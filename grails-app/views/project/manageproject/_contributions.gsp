@@ -21,7 +21,7 @@
     <g:if test="${project.validated}">
         <div class="col-md-12 col-md-12 col-sm-12 col-xs-12 manage-report-offline-lft">
             <g:if test="${project.payuStatus == false && !ended}">
-                <a href="#" class="btn btn-primary btn-sm pull-right managecontribution mange-contribution-mobile" data-toggle="modal" data-target="#offlineContributionModal" model="['project': project]">
+                <a href="#" class="btn btn-primary btn-sm pull-right managecontribution mange-contribution-mobile" data-toggle="modal" data-target="#offlineContributionModal">
                     Manage Offline Contribution
                 </a>
             </g:if>
@@ -31,7 +31,7 @@
                 </a>
             </g:elseif>
             <g:if test="${!totalContributions.empty}">
-                <a href="#"class="btn btn-primary btn-sm btn-circle pull-right mngReportCls mange-contributionreport-mobile" data-toggle="modal" data-target="#reportModal">
+                <a href="#" class="btn btn-primary btn-sm btn-circle pull-right mngReportCls mange-contributionreport-mobile" data-toggle="modal" data-target="#reportModal">
                     Report
                 </a>
             </g:if>
@@ -201,7 +201,7 @@
             </g:else>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" class="btnGenerateCSV">Generate CSV
+            <button type="submit" class="btn btn-primary btnGenerateCSV" >Export CSV
             </button>
          </div>
       </div><%-- /.modal-dialog--%>

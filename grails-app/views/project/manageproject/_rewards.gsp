@@ -5,7 +5,7 @@
         
         <%-- Button trigger modal --%>
         <g:if test="${!ended}">
-	        <a href="#" class="btn btn-primary btn-sm btn-circle pull-right" data-toggle="modal" data-target="#createRewardModal" model="['project': project]">
+	        <a href="#" class="btn btn-primary btn-sm btn-circle pull-right" data-toggle="modal" data-target="#createRewardModal">
 	            <i class="fa fa-plus-circle"></i> Create Perk
 	        </a>
         </g:if>

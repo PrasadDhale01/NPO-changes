@@ -408,6 +408,14 @@ $(function() {
         }
     });
     
+    $("#deletePartner").click(function(event) {
+    	event.preventDefault();
+        if (confirm('Are you sure you want to discard this partner?')) {
+        	var deleteUrl = $(this).attr('href');
+        	window.location.href = deleteUrl;
+        }
+    });
+    
     $("#newDocFile").change(function(event) {
         var file =this.files[0];
         if (file.size > 0) {

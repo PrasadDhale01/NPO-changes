@@ -98,7 +98,7 @@ class ProjectService {
         def LiveProjects = 0
         def endedProjects = 0
         projects.each { project->
-            if (isProjectDeadlineCrossed(project)) {
+            if (getRemainingDay(project) > 0) {
                 LiveProjects = LiveProjects + 1
             } else {
                 endedProjects = endedProjects + 1
@@ -3988,14 +3988,39 @@ class ProjectService {
         def highestContribution = contributionService.getHighestContributionDay(project)
         def campaignSupporterCount = getCampaignSupporterCount(project)
         def usedFor = (project.usedFor) ? project.usedFor : 'IMPACT'
+        String highestContributionHour = highestContribution.highestContributionHour + ' hr'
         
         List results = []
         
-        def rows = [project.title.replaceAll("[,;]",' '), project.amount.round(), usedFor, numberOfContributions, percentageContribution, numberOFPerks, maxSelectedPerkAmount , project.comments.size() , project.projectUpdates.size(), numberOfTeams.size(), disabledTeams.size(), ytViewCount, highestContribution.highestContributionDay, highestContribution.highestContributionHour,facebookCount, twitterCount ,linkedinCount, project.gmailShareCount, campaignSupporterCount]
-        results << rows
-        def result
+        def campaignMetricsMap =[:]
+        campaignMetricsMap.put('CAMPAIGN', project.title.replaceAll("[,;]",' '))
+        campaignMetricsMap.put('CAMPAIGN GOAL', project.amount.round())
+        campaignMetricsMap.put('RAISED FUND FOR', usedFor)
+        campaignMetricsMap.put('TOTAL NUMBER OF CONTRIBUTIONS', numberOfContributions)
+        campaignMetricsMap.put('PERCENTAGE GOAL RAISED', percentageContribution)
+        campaignMetricsMap.put('NUMBER OF PERKS OFFERED', numberOFPerks)
+        campaignMetricsMap.put('MOST SELECTED PERK AMOUNT', maxSelectedPerkAmount)
+        campaignMetricsMap.put('TOTAL NUMBER OF COMMENTS', project.comments.size())
+        campaignMetricsMap.put('TOTAL NUMBER OF UPDATES', project.projectUpdates.size())
+        campaignMetricsMap.put('TOTAL NUMBER OF ENABLED TEAMS', numberOfTeams.size())
+        campaignMetricsMap.put('TOTAL NUMBER OF DISABLED TEAMS', disabledTeams.size())
+        campaignMetricsMap.put('NUMBER OF VIDEO VIEWERS', ytViewCount)
+        campaignMetricsMap.put('HIGHEST CONTRIBUTION DAY', highestContribution.highestContributionDay)
+        campaignMetricsMap.put('HIGHEST CONTRIBUTION HOUR', highestContributionHour)
+        campaignMetricsMap.put('FACEBOOK SHARE COUNT', facebookCount)
+        campaignMetricsMap.put('TWITTER SHARE COUNT', twitterCount)
+        campaignMetricsMap.put('LINKEDIN SHARE COUNT', linkedinCount)
+        campaignMetricsMap.put('EMAIL SHARE COUNT', project.gmailShareCount)
+        campaignMetricsMap.put('TOTAL NUMBER OF SUPPORTERS', campaignSupporterCount)
+
+        def result = ''
         response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll("[,;\\s]",'_')+".csv")
-        result = 'CAMPAIGN, CAMPAIGN GOAL, RAISED FUND FOR, TOTAL NUMBER OF CONTRIBUTIONS , PERCENTAGE GOAL RAISED, NUMBER OF PERKS OFFERED, MOST SELECTED PERK AMOUNT, Total NUMBER OF COMMENTS, TOTAL NUMBER OF UPDATES, TOTAL NUMBER OF ENABLED TEAMS, TOTAL NUMBER OF DISABLED TEAMS, NUMBER OF VIDEO VIEWERS, HIGHEST CONTRIBUTION DAY, HIGHEST CONTRIBUTION HOUR, FACEBOOK SHARE COUNT, TWITTER SHARE COUNT, LINKEDIN SHARE COUNT, EMAIL SHARE COUNT, TOTAL NUMBER OF SUPPORTERS, \n'
+        
+        campaignMetricsMap.each{campaignFeature , value ->
+            def rows =[campaignFeature , value]
+            results << rows
+        }
+        
         results.each{ row->
             row.each{
                 col -> result+=col +','

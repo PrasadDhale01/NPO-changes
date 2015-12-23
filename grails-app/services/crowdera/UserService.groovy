@@ -1144,7 +1144,7 @@ class UserService {
         user.confirmed = true
         user.password = password
         user.username = params.email
-        if (user.save()) {
+        if (user.save(failOnError:true)) {
             createUserRole(user, roleService)
             createPartnerRole(user, roleService)
         }
@@ -1158,6 +1158,10 @@ class UserService {
     
     def createPartnerRole(User user, RoleService roleService){
         UserRole.create(user, roleService.partnerRole())
+    }
+    
+    def getPartners() {
+        return Partner.findAllWhere(discarded: false)
     }
     
     def isPartner() {
@@ -1376,6 +1380,20 @@ class UserService {
             }
             folder.delete(flush:true)
         }
+    }
+    
+    def deletePartner(def params, Partner partner) {
+        User user = User.get(params.int('userId'))
+        UserRole userRole = UserRole.findByUserAndRole(user, roleService.partnerRole())
+        boolean isDeleted = false
+        if (userRole) {
+            userRole.delete(flush: true)
+            partner.discarded = true
+            partner.save()
+            isDeleted = true
+            mandrillService.sendEmailToPartner(partner.user)
+        }
+        return isDeleted
     }
     
     @Transactional

@@ -20,7 +20,7 @@
     </div><br>
 </div>
 <div class="row domainUsersPagination" id="domainUsersPagination">
-    <g:paginate controller="user" max="12" action="usersList" total="${totalUsers.size()}"/>
+    <g:paginate controller="user" max="12" maxsteps="5" action="usersList" total="${totalUsers.size()}"/>
 </div>
 
 <script>

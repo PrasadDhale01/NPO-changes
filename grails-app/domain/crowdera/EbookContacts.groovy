@@ -5,12 +5,10 @@ import groovy.transform.ToString
 
 @ToString(includeNames = true, includeFields = true)
 @EqualsAndHashCode
-
-class ImageUrl {
-	String url
-
-	static belongsTo = Project, ProjectUpdate, CustomerService, TaxReciept
-
-	static hasMany = [projects: Project]
-
+class EbookContacts {
+    User user
+    String email
+    static constraints = {
+        email nullable:true
+    }
 }

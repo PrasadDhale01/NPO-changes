@@ -15,6 +15,7 @@ class Partner {
     List documents
     
     boolean enabled = false
+    boolean discarded = false
     
     static constraints = {
         confirmCode nullable: false

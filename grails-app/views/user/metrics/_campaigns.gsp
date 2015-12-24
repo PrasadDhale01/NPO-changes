@@ -32,7 +32,7 @@
         </div>
         <div class="clear"></div>
         <div class="campaignsPagination" id="campaignsPagination">
-            <g:paginate controller="project" max="12" action="campaignsList" total="${totalCampaigns.size()}"/>
+            <g:paginate controller="project" max="12" maxsteps="5" action="campaignsList" total="${totalCampaigns.size()}"/>
         </div>
     </div>
     <div class="col-lg-8 col-md-8 col-sm-6" id="campaignhistory">

@@ -59,20 +59,6 @@ $(function() {
 	
     var currentEnv = $('#currentEnv').val();
 
-    $('#invitePartnerModal').find('form').validate({
-        rules: {
-            email : {
-                required: true
-            },
-            firstName: {
-                required: true
-            },
-            lastName : {
-                required: true
-            }
-        }
-    });
-    
     $('#invite-campaign-owner').find('form').validate({
         rules: {
             emails : {
@@ -405,6 +391,14 @@ $(function() {
                     $('#remove-drive-file').val('');
                 }
             });
+        }
+    });
+    
+    $("#deletePartner").click(function(event) {
+    	event.preventDefault();
+        if (confirm('Are you sure you want to discard this partner?')) {
+        	var deleteUrl = $(this).attr('href');
+        	window.location.href = deleteUrl;
         }
     });
     

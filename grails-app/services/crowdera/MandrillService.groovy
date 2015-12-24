@@ -1284,4 +1284,15 @@ class MandrillService {
 
         inviteToShare(email, 'sendReceipt', globalMergeVars, tags)
     }
+    
+    public def sendEmailToPartner(User user) {
+        def globalMergeVars = [[
+            'name': 'NAME',
+            'content': user.firstName + ' '+ user.lastName
+        ]]
+
+        def tags = ['partner-discard']
+
+        inviteToShare(user.email, 'partner-discard', globalMergeVars, tags)
+    }
 }

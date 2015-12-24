@@ -23,10 +23,16 @@ class ProjectService {
     def mandrillService
     def rewardService
     def grailsApplication
-    
+
     def getProjectById(def projectId){
         if (projectId) {
             return Project.get(projectId)
+        }
+    }
+
+    def getTaxRecieptById(def taxRecieptId){
+        if (taxRecieptId){
+            return TaxReciept.get(taxRecieptId)
         }
     }
 
@@ -92,7 +98,7 @@ class ProjectService {
         def LiveProjects = 0
         def endedProjects = 0
         projects.each { project->
-            if (isProjectDeadlineCrossed(project)) {
+            if (getRemainingDay(project) > 0) {
                 LiveProjects = LiveProjects + 1
             } else {
                 endedProjects = endedProjects + 1
@@ -162,12 +168,20 @@ class ProjectService {
             project.charitableId = params.charitableId
             project.organizationName = params.organizationName
         }
-        
+        def taxReciept = TaxReciept.findByProject(project)
         if (project.beneficiary.country == 'null') {
             if(currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia') {
                 project.beneficiary.country = 'IN'
+                if (taxReciept){
+                    taxReciept.country = 'India'
+                    taxReciept.save();
+                }
             } else {
                 project.beneficiary.country = 'US'
+                if (taxReciept){
+                    taxReciept.country = (taxReciept.country && taxReciept.country != 'null') ? taxReciept.country : 'United States';
+                    taxReciept.save();
+                }
             }
         }
         
@@ -1063,14 +1077,15 @@ class ProjectService {
 	}
 	
 	def getSorts(){
-		def sortsOptions = [
-			Live_Campaigns: "Latest",
-			Ending_Soon: "Ending Soon",
-			Successful_Campaigns:"Most Funded",
-			Ended_Campaign:"Ended",
-			OFFERING_PERKS:"Offering Perks"
-		]
-		return sortsOptions
+        def sortsOptions = [
+            Live_Campaigns: "Live",
+            Latest_Campaigns: "Latest",
+            Ending_Soon: "Ending Soon",
+            Successful_Campaigns:"Most Funded",
+            Ended_Campaign:"Ended",
+            OFFERING_PERKS:"Offering Perks"
+        ]
+        return sortsOptions
 	}
 	
     def isCampaignsorts(def sorts ,def currentEnv) {
@@ -1085,6 +1100,15 @@ class ProjectService {
             }
         }
         if(sorts == 'Latest') {
+            projects.each {project ->
+                def percentage = contributionService.getPercentageContributionForProject(project)
+                boolean ended = isProjectDeadlineCrossed(project)
+                if(percentage <= 16 && (project.validated && ended == false)){
+                    p.add(project)
+                }
+            }
+        }
+        if(sorts == 'Live') {
             projects.each {project ->
                 boolean ended = isProjectDeadlineCrossed(project)
                 if(project.validated && ended ==false){
@@ -1377,10 +1401,62 @@ class ProjectService {
                     openProjects.add(project)
                 }
             }
-        sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
-        finalList =  sortedProjects.reverse() + endedProjects.reverse()
+            sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
+            finalList =  sortedProjects.reverse() + endedProjects.reverse()
         }
         return finalList
+    }
+    
+    def getValidatedProjectsByPercentage(def currentEnv) {
+        def popularProjectsList = getPopularProjects()
+        def finalList
+        List endedProjects = []
+        List openProjects = []
+        List sortedProjects = []
+        List indiaOpenCampaign = []
+        List usOpenCampaign = []
+        List indiaEndedCampaign = []
+        List usEndedCampaign = []
+        List sortIndiaCampaign = []
+        List sortUsCampaign = []
+        List sortedCampaignByPercentage = []
+        if (currentEnv == 'testIndia' || currentEnv == 'stagingIndia' || currentEnv == 'prodIndia'){
+            finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false) - popularProjectsList)
+            finalList.each { project ->
+                boolean ended = isProjectDeadlineCrossed(project)
+                if(ended) {
+                    (project.payuStatus) ? indiaEndedCampaign.add(project) : usEndedCampaign.add(project)
+                } else {
+                    (project.payuStatus) ? indiaOpenCampaign.add(project) : usOpenCampaign.add(project)
+                }
+            }
+            sortIndiaCampaign = indiaOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+            sortUsCampaign = usOpenCampaign.sort {contributionService.getPercentageContributionForProject(it)}
+            finalList = sortIndiaCampaign.reverse() + sortUsCampaign.reverse() + indiaEndedCampaign.reverse() + usEndedCampaign.reverse()
+        } else {
+            finalList = popularProjectsList + (Project.findAllWhere(validated: true,inactive: false, payuStatus: false) - popularProjectsList)
+            finalList.each { project ->
+                boolean ended = isProjectDeadlineCrossed(project)
+                if(ended) {
+                    endedProjects.add(project)
+                } else {
+                    openProjects.add(project)
+                }
+            }
+            sortedProjects = openProjects.sort {contributionService.getPercentageContributionForProject(it)}
+            finalList =  sortedProjects.reverse() + endedProjects.reverse()
+        }
+        if(currentEnv == 'testIndia' || currentEnv == 'test'){
+            finalList.each{
+                def percentage = contributionService.getPercentageContributionForProject(it)
+                if(percentage >= 17){
+                    sortedCampaignByPercentage.add(it)
+                }
+            }
+            return sortedCampaignByPercentage
+        }else{
+            return finalList
+        }
     }
 
     def isPayuProject(Project project){
@@ -1617,13 +1693,21 @@ class ProjectService {
 
     def search(String query, def currentEnv) {
         List result = []
-        List project = getValidatedProjects(currentEnv)
-        project.each { 
-            if( it.title.toLowerCase().contains(query.toLowerCase()) || it.description.toLowerCase().contains(query.toLowerCase()) ){
-                result.add(it)
-            } else if (it.story){
-                if (it.story.toLowerCase().contains(query.toLowerCase()))
-                    result.add(it)
+        List projects = getValidatedProjects(currentEnv)
+        projects.each {project->
+            if( project.title.toLowerCase().contains(query.toLowerCase()) || project.description.toLowerCase().contains(query.toLowerCase()) ){
+                 result.add(project)
+            } else if (project.hashtags){
+                List hashtagsList = project.hashtags.split(',')
+                hashtagsList = hashtagsList.collect { it.trim() }
+                hashtagsList.each{hashtag->
+                    if (hashtag.toLowerCase().contains(query.toLowerCase())){
+                        result.add(project)
+                    }
+                }
+            } else if (project.story){
+                if (project.story.toLowerCase().contains(query.toLowerCase()))
+                    result.add(project)
             }
         }
         return result
@@ -1803,7 +1887,43 @@ class ProjectService {
         }
         return ['filelink':tempImageUrl, 'imageId':imageUrl.id]
     }
-	
+    
+    def getTaxRecieptFile(CommonsMultipartFile taxfile, TaxReciept taxReciept) {
+        def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
+        def awsSecretKey = "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"
+
+        def awsCredentials = new AWSCredentials(awsAccessKey, awsSecretKey);
+        def s3Service = new RestS3Service(awsCredentials);
+
+        def bucketName = "crowdera"
+        def s3Bucket = new S3Bucket(bucketName)
+
+        def Folder = "tax-reciept-files"
+
+        def tempImageUrl
+        def fileUrl = new ImageUrl()
+        if (!taxfile?.empty && taxfile.size < 1024 * 1024 * 3) {
+            try{
+                def file= new File("${taxfile.getOriginalFilename()}")
+                def key = "${Folder}/${taxfile.getOriginalFilename()}"
+                key = key.toLowerCase()
+                taxfile.transferTo(file)
+                def object=new S3Object(file)
+                object.key=key
+
+                tempImageUrl = "//s3.amazonaws.com/crowdera/${key}"
+                s3Service.putObject(s3Bucket, object)
+                fileUrl.url = tempImageUrl
+                fileUrl.save()
+                taxReciept.addToFiles(fileUrl)
+                file.delete()
+            }catch(Exception e) {
+                log.error("Error: " + e);
+            }
+        }
+        return ['filelink':tempImageUrl, 'fileId':fileUrl.id]
+    }
+
     def getMultipleImageUrlsForTeam(CommonsMultipartFile imageFile, Team team){
         def awsAccessKey = "AKIAIAZDDDNXF3WLSRXQ"
         def awsSecretKey = "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"
@@ -3264,9 +3384,324 @@ class ProjectService {
                 isValueChanged = true;
                 break;
 
+            case 'ein':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.ein = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.ein = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.ein = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+
+            case 'taxRecieptHolderCity':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.city = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.city = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.city = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+
+            case 'taxRecieptHolderName':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.name = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.name = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.name = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+
+            case 'taxRecieptHolderState':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.taxRecieptHolderState = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.taxRecieptHolderState = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.taxRecieptHolderState = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+
+            case 'deductibleStatus':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.deductibleStatus = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.deductibleStatus = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.deductibleStatus = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+
+            case 'taxRecieptHolderCountry':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.country = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.country = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.country = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+                
+            case 'regDate':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (taxReciept){
+                    
+                    taxReciept.regDate = Date.parse("MM/dd/yyyy", varValue)
+                    taxReciept.save(failOnError:true);
+                } else {
+                    TaxReciept taxreciept = new TaxReciept()
+                    taxreciept.regDate = Date.parse("MM/dd/yyyy", varValue)
+                    taxreciept.project = project
+                    taxreciept.save(failOnError:true);
+                } 
+                break;
+                
+            case 'expiryDate':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (taxReciept){
+                    taxReciept.expiryDate = Date.parse("MM/dd/yyyy", varValue)
+                    taxReciept.save(failOnError:true);
+                } else {
+                    TaxReciept taxreciept = new TaxReciept()
+                    taxreciept.expiryDate = Date.parse("MM/dd/yyyy", varValue)
+                    taxreciept.project = project
+                    taxreciept.save(failOnError:true);
+                }
+                break;
+                
+            case 'fcraRegDate':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (taxReciept){
+                    taxReciept.fcraRegDate = Date.parse("MM/dd/yyyy", varValue)
+                    taxReciept.save(failOnError:true);
+                } else {
+                    TaxReciept taxreciept = new TaxReciept()
+                    taxreciept.fcraRegDate = Date.parse("MM/dd/yyyy", varValue)
+                    taxreciept.project = project
+                    taxreciept.save(failOnError:true);
+                }
+                break;
+
+            case 'addressLine1':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                    taxReciept.addressLine1 = null
+                    taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.addressLine1 = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.addressLine1 = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+                
+            case 'addressLine2':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                    taxReciept.addressLine2 = null
+                    taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.addressLine2 = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.addressLine2 = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+                
+            case 'regNum':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                    taxReciept.regNum = null
+                    taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.regNum = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.regNum = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+                
+            case 'panCardNumber':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                    taxReciept.panCardNumber = null
+                    taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.panCardNumber = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.panCardNumber = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+
+            case 'phoneNumber':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.phone = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.phone = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.phone = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+                
+            case 'fcraRegNum':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.fcraRegNum = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.fcraRegNum = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.fcraRegNum = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+
+            case 'zip':
+                TaxReciept taxReciept = TaxReciept.findByProject(project)
+                if (varValue.isAllWhitespace()){
+                    if (taxReciept){
+                        taxReciept.zip = null
+                        taxReciept.save(failOnError:true);
+                    }
+                } else {
+                    if (taxReciept){
+                        taxReciept.zip = varValue
+                        taxReciept.save(failOnError:true);
+                    } else {
+                        TaxReciept taxreciept = new TaxReciept()
+                        taxreciept.zip = varValue
+                        taxreciept.project = project
+                        taxreciept.save(failOnError:true);
+                    }
+                }
+                break;
+
+            case 'offeringTaxReciept':
+                project.offeringTaxReciept = (varValue == 'true' || varValue == true) ? true : false;
+                isValueChanged = true
+                break;
+
+            case 'impactAmount':
+                project.impactAmount = Integer.parseInt(varValue);
+                isValueChanged = true
+                break;
+                
+            case 'impactNumber':
+                project.impactNumber = Integer.parseInt(varValue);
+                isValueChanged = true
+                break;
+
             default :
                isValueChanged = false;
- 
+
         }
 
         if (isValueChanged){
@@ -3615,14 +4050,39 @@ class ProjectService {
         def highestContribution = contributionService.getHighestContributionDay(project)
         def campaignSupporterCount = getCampaignSupporterCount(project)
         def usedFor = (project.usedFor) ? project.usedFor : 'IMPACT'
+        String highestContributionHour = highestContribution.highestContributionHour + ' hr'
         
         List results = []
         
-        def rows = [project.title.replaceAll("[,;]",' '), project.amount.round(), usedFor, numberOfContributions, percentageContribution, numberOFPerks, maxSelectedPerkAmount , project.comments.size() , project.projectUpdates.size(), numberOfTeams.size(), disabledTeams.size(), ytViewCount, highestContribution.highestContributionDay, highestContribution.highestContributionHour,facebookCount, twitterCount ,linkedinCount, project.gmailShareCount, campaignSupporterCount]
-        results << rows
-        def result
+        def campaignMetricsMap =[:]
+        campaignMetricsMap.put('CAMPAIGN', project.title.replaceAll("[,;]",' '))
+        campaignMetricsMap.put('CAMPAIGN GOAL', project.amount.round())
+        campaignMetricsMap.put('RAISED FUND FOR', usedFor)
+        campaignMetricsMap.put('TOTAL NUMBER OF CONTRIBUTIONS', numberOfContributions)
+        campaignMetricsMap.put('PERCENTAGE GOAL RAISED', percentageContribution)
+        campaignMetricsMap.put('NUMBER OF PERKS OFFERED', numberOFPerks)
+        campaignMetricsMap.put('MOST SELECTED PERK AMOUNT', maxSelectedPerkAmount)
+        campaignMetricsMap.put('TOTAL NUMBER OF COMMENTS', project.comments.size())
+        campaignMetricsMap.put('TOTAL NUMBER OF UPDATES', project.projectUpdates.size())
+        campaignMetricsMap.put('TOTAL NUMBER OF ENABLED TEAMS', numberOfTeams.size())
+        campaignMetricsMap.put('TOTAL NUMBER OF DISABLED TEAMS', disabledTeams.size())
+        campaignMetricsMap.put('NUMBER OF VIDEO VIEWERS', ytViewCount)
+        campaignMetricsMap.put('HIGHEST CONTRIBUTION DAY', highestContribution.highestContributionDay)
+        campaignMetricsMap.put('HIGHEST CONTRIBUTION HOUR', highestContributionHour)
+        campaignMetricsMap.put('FACEBOOK SHARE COUNT', facebookCount)
+        campaignMetricsMap.put('TWITTER SHARE COUNT', twitterCount)
+        campaignMetricsMap.put('LINKEDIN SHARE COUNT', linkedinCount)
+        campaignMetricsMap.put('EMAIL SHARE COUNT', project.gmailShareCount)
+        campaignMetricsMap.put('TOTAL NUMBER OF SUPPORTERS', campaignSupporterCount)
+
+        def result = ''
         response.setHeader("Content-disposition", "attachment; filename= Crowdera_report-"+project.title.replaceAll("[,;\\s]",'_')+".csv")
-        result = 'CAMPAIGN, CAMPAIGN GOAL, RAISED FUND FOR, TOTAL NUMBER OF CONTRIBUTIONS , PERCENTAGE GOAL RAISED, NUMBER OF PERKS OFFERED, MOST SELECTED PERK AMOUNT, Total NUMBER OF COMMENTS, TOTAL NUMBER OF UPDATES, TOTAL NUMBER OF ENABLED TEAMS, TOTAL NUMBER OF DISABLED TEAMS, NUMBER OF VIDEO VIEWERS, HIGHEST CONTRIBUTION DAY, HIGHEST CONTRIBUTION HOUR, FACEBOOK SHARE COUNT, TWITTER SHARE COUNT, LINKEDIN SHARE COUNT, EMAIL SHARE COUNT, TOTAL NUMBER OF SUPPORTERS, \n'
+        
+        campaignMetricsMap.each{campaignFeature , value ->
+            def rows =[campaignFeature , value]
+            results << rows
+        }
+        
         results.each{ row->
             row.each{
                 col -> result+=col +','
@@ -3867,12 +4327,12 @@ class ProjectService {
             SpendMatrix spendMatrix = SpendMatrix.findByNumberAvailableAndProject(saveCount, project)
             if (spendMatrix) {
                 def isValueChanged = false
-                
+
                 if (amount && amount != ' '){
                     spendMatrix.amount = amount
                     isValueChanged = true
                 }
-            
+
                 if (params.cause && params.cause != ' '){
                     spendMatrix.cause = params.cause
                     isValueChanged = true
@@ -3891,6 +4351,7 @@ class ProjectService {
                 ).save(failOnError:true);
             }
         }
+        return project
     }
 
     def getSpendMatrixDeleted(def params){
@@ -3898,32 +4359,32 @@ class ProjectService {
         def deleteCount = Integer.parseInt(params.deleteCount)
         SpendMatrix spendMatrix = SpendMatrix.findByNumberAvailableAndProject(deleteCount, project)
         if (spendMatrix){
-            spendMatrix.delete();
+            spendMatrix.delete(flush:true);
         }
+        return project
     }
 
     def getPieList(Project project) {
-        List pieValueWithPer = [];
         def spendMatrixs = project.spend;
-        def pieListCount = 0;
-        List sublist1 = [];
-        sublist1.add("'"+'Goal'+"'");
-        sublist1.add(project.amount.round());
-        pieValueWithPer.add(sublist1);
-        def cause
-        spendMatrixs.each{ spendMatrix ->
-            pieListCount++;
-            List sublist = [];
-            cause = "'"+spendMatrix.cause+"'"
-            sublist.add(cause);
-            def percentage = (spendMatrix.amount / project.amount) * 100;
-            sublist.add(percentage.round());
-            if (pieListCount == 1){
-                sublist.add("'"+'blue'+"'")
+        String sublist1;
+        String sublist;
+        def total = 0
+        if (spendMatrixs){
+            spendMatrixs.each{ spendMatrix ->
+                sublist = (sublist) ? sublist + ', ' + spendMatrix.cause : spendMatrix.cause;
+                sublist1 = (sublist1) ? sublist1 + ', ' + spendMatrix.amount.round() : spendMatrix.amount.round();
+                total = total + spendMatrix.amount
             }
-            pieValueWithPer.add(sublist);
+            if ((project.amount - total) > 0){
+                def totalLeft = (project.amount - total);
+                sublist = sublist + ', ' +'Miscellaneous'
+                sublist1 = sublist1 + ', ' +totalLeft.round()
+            }
+        } else {
+            sublist = null;
+            sublist1 = null;
         }
-        return pieValueWithPer;
+        return [spendCauseList: sublist, spendAmountPerList: sublist1];
     }
 
     def getProjectReasonsToFund(Project project){
@@ -4022,6 +4483,317 @@ class ProjectService {
         return sortingOptions
     }
 
+    def getTaxRecieptOfProject(Project project){
+        return TaxReciept.findByProject(project)
+    }
+    
+    def getTaxRecieptIdByProjectId(def projectId){
+        Project project = Project.get(projectId)
+        def taxreciept = TaxReciept.findByProject(project);
+        def taxrecieptId = (taxreciept) ? taxreciept.id : null;
+        return taxrecieptId
+    }
+
+    def getDeductibleStatusList(){
+        def deductibleStatus = [
+            PC : 'PC (50%)',
+            POF : 'POF (30%)',
+            PF : 'PF (30%)',
+            GROUP : 'GROUP (Depends)',
+            LODGE : 'LODGE (30%)',
+            UNKWN : 'UNKWN (Depends)',
+            EO : 'EO (Depends)',
+            FED : 'FED (50%)',
+            FORGN : 'FORGN (Depends)',
+            SO : 'SO (50%)',
+            SONFI : 'SONFI (50%)',
+            SOUNK : 'SOUNK (50%)'
+        ]
+        return deductibleStatus
+    }
+
+    def getCategoryAndHashTagsSaved(Project project, def currentEnv, def selectedCategory){
+        project.category = (selectedCategory) ? selectedCategory : 'OTHER';
+
+        def category = (selectedCategory) ? selectedCategory : null;
+        def country = (project.beneficiary.country) ? getCountryValue(project.beneficiary.country) : null;
+        def usedFor = project.usedFor
+        def fundRaisedBy = project.fundsRecievedBy
+        def city = project.beneficiary.city
+        def hashlist
+        if (usedFor == 'SOCIAL_NEEDS') {
+            hashlist = '#Social-Innovation';
+        } else if (usedFor == 'PERSONAL_NEEDS') {
+            hashlist = '#Personal-Needs';
+        } else if (usedFor == 'IMPACT'){
+            hashlist = '#Impact';
+        } else if (usedFor == 'PASSION'){
+            hashlist = '#Passion';
+        }
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(fundRaisedBy) : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(category.toString()) : ' ' ;
+        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+            (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
+        }
+        (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+
+        if (project.hashtags){
+            def remainingList
+            def hashtagsList = project.hashtags.split(',');
+            hashtagsList = hashtagsList.collect { it.trim() }
+            if (hashtagsList.size() > 5){
+                for (int i=5; i<hashtagsList.size(); i++){
+                    remainingList = (i == 5) ? hashtagsList[i] : remainingList + ', ' + hashtagsList[i];
+                }
+                hashlist = hashlist + ', ' + remainingList;
+            }
+        }
+
+        project.hashtags = hashlist
+
+        project.impactNumber = 0;
+        project.impactAmount = 0;
+
+        project.save();
+    }
+
+    def saveRecipientAndHashTags(def params){
+        Project project = Project.get(params.projectId)
+        project.fundsRecievedBy = params.recipient
+
+        def category = project.category
+        def country = (project.beneficiary.country) ? getCountryValue(project.beneficiary.country) : null;
+        def usedFor = project.usedFor
+        def fundRaisedBy = (params.recipient) ? params.recipient : null;
+        def city = project.beneficiary.city
+        def currentEnv = getCurrentEnvironment()
+        def hashlist
+        if (usedFor == 'SOCIAL_NEEDS') {
+            hashlist = '#Social-Innovation';
+        } else if (usedFor == 'PERSONAL_NEEDS') {
+            hashlist = '#Personal-Needs';
+        } else if (usedFor == 'IMPACT'){
+            hashlist = '#Impact';
+        } else if (usedFor == 'PASSION'){
+            hashlist = '#Passion';
+        }
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(fundRaisedBy) : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(category.toString()) : ' ' ;
+        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+            (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
+        }
+        (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+        
+        if (project.hashtags){
+            def remainingList
+            def hashtagsList = project.hashtags.split(',');
+            hashtagsList = hashtagsList.collect { it.trim() }
+            if (hashtagsList.size() > 5){
+                for (int i=5; i<hashtagsList.size(); i++){
+                    remainingList = (i == 5) ? hashtagsList[i] : remainingList + ', ' + hashtagsList[i];
+                }
+                hashlist = hashlist + ', ' + remainingList;
+            }
+        }
+
+        project.hashtags = hashlist
+        project.save();
+    }
+    
+    def getCityAndHashTagsSaved(def params){
+        Project project = Project.get(params.projectId)
+        project.beneficiary.city = params.city
+
+        def category = project.category
+        def country = (project.beneficiary.country) ? getCountryValue(project.beneficiary.country) : null;
+        def usedFor = project.usedFor
+        def fundRaisedBy = project.fundsRecievedBy
+        def city = project.beneficiary.city
+        def currentEnv = getCurrentEnvironment()
+        def hashlist
+        if (usedFor == 'SOCIAL_NEEDS') {
+            hashlist = '#Social-Innovation';
+        } else if (usedFor == 'PERSONAL_NEEDS') {
+            hashlist = '#Personal-Needs';
+        } else if (usedFor == 'IMPACT'){
+            hashlist = '#Impact';
+        } else if (usedFor == 'PASSION'){
+            hashlist = '#Passion';
+        }
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(fundRaisedBy) : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(category.toString()) : ' ' ;
+        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+            (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
+        }
+        (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+        
+        if (project.hashtags){
+            def remainingList
+            def hashtagsList = project.hashtags.split(',');
+            hashtagsList = hashtagsList.collect { it.trim() }
+            if (hashtagsList.size() > 5){
+                for (int i=5; i<hashtagsList.size(); i++){
+                    remainingList = (i == 5) ? hashtagsList[i] : remainingList + ', ' + hashtagsList[i];
+                }
+                hashlist = hashlist + ', ' + remainingList;
+            }
+        }
+
+        project.hashtags = hashlist
+        project.save();
+    }
+
+    def getStringCapitalise(String string){
+        if (string == 'CIVIC_NEEDS'){
+            return 'Civic-Needs';
+        } else if (string == 'NON_PROFITS'){
+            return 'Non-Profits';
+        } else if (string == 'SOCIAL_INNOVATION'){
+            return 'Social-Innovation';
+        } else if (string == 'NON-PROFIT'){
+            return 'Non-Profit';
+        } else if (string == 'NGO'){
+            return 'NGO';
+        } else {
+            return string.capitalize();
+        }
+    }
+
+    def getUsedForAndHashTagsSaved(def params){
+        Project project = Project.get(params.projectId)
+        project.usedFor = params.usedFor
+
+        def category = project.category
+        def country = (project.beneficiary.country) ? getCountryValue(project.beneficiary.country) : null;
+        def usedFor = params.usedFor
+        def fundRaisedBy = project.fundsRecievedBy
+        def city = project.beneficiary.city
+        def currentEnv = getCurrentEnvironment()
+        def hashlist
+        if (usedFor == 'SOCIAL_NEEDS') {
+            hashlist = '#Social-Innovation';
+        } else if (usedFor == 'PERSONAL_NEEDS') {
+            hashlist = '#Personal-Needs';
+        } else if (usedFor == 'IMPACT'){
+            hashlist = '#Impact';
+        } else if (usedFor == 'PASSION'){
+            hashlist = '#Passion';
+        }
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(fundRaisedBy) : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(category.toString()) : ' ' ;
+        if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'staging' || currentEnv == 'production'){
+            (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
+        }
+        (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+        
+        if (project.hashtags){
+            def remainingList
+            def hashtagsList = project.hashtags.split(',');
+            hashtagsList = hashtagsList.collect { it.trim() }
+            if (hashtagsList.size() > 5){
+                for (int i=5; i<hashtagsList.size(); i++){
+                    remainingList = (i == 5) ? hashtagsList[i] : remainingList + ', ' + hashtagsList[i];
+                }
+                hashlist = hashlist + ', ' + remainingList;
+            }
+        }
+
+        project.hashtags = hashlist
+        project.save();
+    }
+    
+    def autoSaveCountryAndHashTags(def params){
+        Project project = Project.get(params.projectId)
+        project.beneficiary.country = (params.country && params.country != 'null' && params.country != '') ? params.country : null;
+
+        def category = project.category
+        def country = (params.country) ? getCountryValue(params.country) : null;
+        def usedFor = project.usedFor
+        def fundRaisedBy = project.fundsRecievedBy
+        def city = project.beneficiary.city
+        def hashlist
+        if (usedFor == 'SOCIAL_NEEDS') {
+            hashlist = '#Social-Innovation';
+        } else if (usedFor == 'PERSONAL_NEEDS') {
+            hashlist = '#Personal-Needs';
+        } else if (usedFor == 'IMPACT'){
+            hashlist = '#Impact';
+        } else if (usedFor == 'PASSION'){
+            hashlist = '#Passion';
+        }
+        (fundRaisedBy && fundRaisedBy != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(fundRaisedBy) : ' ' ;
+        (category && category != 'null') ? hashlist = hashlist + ', #'+getStringCapitalise(category.toString()) : ' ' ;
+        (country != 'null' && country != null && country != '') ? hashlist = hashlist + ', #'+country : ' ' ;
+        (city && city != '') ? hashlist = hashlist + ', #'+city : ' ' ;
+
+        if (project.hashtags){
+            def remainingList
+            def hashtagsList = project.hashtags.split(',');
+            hashtagsList = hashtagsList.collect { it.trim() }
+            if (hashtagsList.size() > 5){
+                for (int i=5; i<hashtagsList.size(); i++){
+                    remainingList = (i == 5) ? hashtagsList[i] : remainingList + ', ' + hashtagsList[i];
+                }
+                hashlist = hashlist + ', ' + remainingList;
+            }
+        }
+
+        project.hashtags = hashlist
+        project.save();
+    }
+
+    def getHashTags(def hashtags) {
+        if (hashtags) {
+            List hashtagsList = hashtags.split(',')
+            hashtagsList = hashtagsList.collect { it.trim() }
+            String firstFiveHashTags
+            String remainingHashTags
+            if (hashtagsList.size() > 5){
+                for(int i=0;i<hashtagsList.size();i++){
+                    if (i < 5){
+                        firstFiveHashTags = (i==0) ? hashtagsList[i] :  firstFiveHashTags + ', ' + hashtagsList[i];
+                    } else {
+                        remainingHashTags = (i==5) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
+                    }
+                }
+            } else {
+                firstFiveHashTags = hashtags
+                remainingHashTags = null
+            }
+            return [firstFiveHashTags:firstFiveHashTags, remainingHashTags:remainingHashTags]
+        } else {
+            return [firstFiveHashTags:null, remainingHashTags:null]
+        }
+    }
+
+    def getHashTagsTabs(def hashtags) {
+        if (hashtags){
+            List hashtagsList = hashtags.split(',')
+            hashtagsList = hashtagsList.collect { it.trim() }
+            String firstFiveHashTags
+            String remainingHashTags
+            if (hashtagsList.size() > 3){
+                for(int i=0;i<hashtagsList.size();i++){
+                    if (i < 3){
+                        firstFiveHashTags = (i==0) ? hashtagsList[i] :  firstFiveHashTags + ', ' + hashtagsList[i];
+                    } else {
+                        remainingHashTags = (i==3) ? hashtagsList[i] : remainingHashTags + ', ' + hashtagsList[i]
+                    }
+                }
+            } else {
+                firstFiveHashTags = hashtags
+                remainingHashTags = null
+            }
+            return [firstFiveHashTags:firstFiveHashTags, remainingHashTags:remainingHashTags]
+        } else {
+            return [firstFiveHashTags:null, remainingHashTags:null]
+        }
+    }
+    
+    def getReasonsToFundFromProject(Project project){
+        return ReasonsToFund.findByProject(project)
+    }
+    
     @Transactional
     def bootstrap() {
         DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy")

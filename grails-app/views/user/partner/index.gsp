@@ -1,7 +1,7 @@
 <html>
 <head>
     <meta name="layout" content="main" />
-    <r:require module="partnerjs"/>
+    <r:require module="userjs"/>
 </head>
 <body>
 <div class="feducontent">

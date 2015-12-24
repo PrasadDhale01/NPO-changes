@@ -1310,7 +1310,7 @@ div.dashboardtile-min-height {
     text-align: center;
     vertical-align: center;
 }
-.file-thumbnail .glyphicon-file {
+.file-thumbnail .glyphicon-file, .tax-receipt-thumbnail .glyphicon-file{
     font-size: 40px;
     top: 35%;
     color: #4285f4;
@@ -1374,4 +1374,24 @@ div.dashboardtile-min-height {
 }
 .visible-reciept-md{
     display:none;
+}
+.tax-receipt-thumbnail{
+	height: 120px;
+	margin-left: auto;
+	margin-right: auto;
+	background-color: #fff;
+	box-shadow: 0 0 8px 0 rgba(0,0,0,0.25);
+	text-align: center;
+	vertical-align: center;
+}
+
+.tax-receipt-thumbnail-container:hover .tax-reciept-project-title{
+	background-color: #E7E7E7;
+	color: black;
+}
+
+.tax-receipt-background {
+    background-color: #f6f8f8;
+    overflow: auto;
+    padding-top: 20px;
 }

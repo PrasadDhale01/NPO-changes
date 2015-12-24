@@ -113,10 +113,10 @@
             <div class="my-campaign-heading text-center hidden-xs"><h1><b>Campaigns Supported</b></h1></div>
         </g:elseif>
         <g:elseif test="${activeTab == 'exporttaxReciept'}">
-            <div class="my-campaign-heading text-center hidden-xs"><h1><b>Export Tax Receipts</b></h1></div>
+            <div class="my-campaign-heading text-center hidden-xs"><h1><b>Export Tax Receipt</b></h1></div>
         </g:elseif>
         <g:elseif test="${activeTab == 'sendtaxReciept'}">
-            <div class="my-campaign-heading text-center hidden-xs"><h1><b>Send Tax Receipts</b></h1></div>
+            <div class="my-campaign-heading text-center hidden-xs"><h1><b>Send Tax Receipt</b></h1></div>
         </g:elseif>
 
         <div class="container newUserdashboard dashboard-container">

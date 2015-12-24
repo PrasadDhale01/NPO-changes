@@ -80,8 +80,14 @@ class ProjectController {
 			discoverLeftCategoryOptions=projectService.getCategory()
 		}
 		def sortsOptions = projectService.getSorts()
-
-		def projects = projectService.getValidatedProjects(currentEnv)
+        
+        def projects
+        if(currentEnv =="testIndia" || currentEnv=="test"){
+            projects = projectService.getValidatedProjectsByPercentage(currentEnv)
+        }else{
+            projects = projectService.getValidatedProjects(currentEnv)
+        }
+        
 		def selectedCategory = "All Categories"
 		def multiplier = projectService.getCurrencyConverter();
 

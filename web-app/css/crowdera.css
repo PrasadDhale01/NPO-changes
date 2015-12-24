@@ -7593,6 +7593,9 @@ div.intutive-glyphicon, div.intutive-glyphicon:hover, div.intutive-glyphicon:act
 }
 
 @media only screen and (min-width:768px) and (max-width: 991px) {
+	br.visible-reciept-md{
+        display:block;
+    }
     .partner-stats.col-sm-4, #vitalseperator.col-sm-12 {
         padding-left: 5px;
         padding-right: 5px;

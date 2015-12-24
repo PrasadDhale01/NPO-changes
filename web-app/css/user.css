@@ -439,7 +439,7 @@ div.dashboardtile-min-height {
 .userdashboard-tiles .progress-bar {
     height: 15px;
 }
-.dashboardtabheading.btn-primary {
+.dashboardtabheading.btn-primary, .dashboardtaxReceipttabheading.btn-primary {
     background-color: #e7e7e7 !important;
     border-color: #f6f8f8 !important;
     color: #404040;
@@ -451,6 +451,9 @@ div.dashboardtile-min-height {
 }
 .dashboardtabheading.btn {
     padding: 8px 28px;
+}
+.dashboardtaxReceipttabheading.btn {
+    padding: 8px 16px;
 }
 .amountSection-Font {
     font-size: 24px;
@@ -1368,4 +1371,7 @@ div.dashboardtile-min-height {
 .timeline-title-font span{
 	font-size:16px;
 	line-height:2;
+}
+.visible-reciept-md{
+    display:none;
 }

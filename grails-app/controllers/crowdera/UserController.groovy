@@ -12,7 +12,6 @@ class UserController {
     def contributionService
     def rewardService
     def roleService
-    
 
     @Secured(['ROLE_ADMIN'])
     def admindashboard() {
@@ -388,6 +387,34 @@ class UserController {
     @Secured(['IS_AUTHENTICATED_FULLY'])
     def editlocation() {
         userprofile('user/dashboard','editLocation')
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+    def sendTaxReceipt() {
+        User user = (User)userService.getCurrentUser()
+        def environment = projectService.getCurrentEnvironment()
+        def projects = projectService.getAllProjectByUser(user, environment)
+        def contributions = projectService.getContibutionByUser(user, environment)
+        def contributedAmount = projectService.getContributedAmount(contributions)
+        def fundRaised = projectService.getTotalFundRaisedByUser(projects)
+
+        render view: 'user/dashboard',
+        model: [user: user, fundRaised: fundRaised, environment: environment, contributedAmount: contributedAmount,
+                contributions: contributions, projects:projects, activeTab:'sendtaxReciept']
+    }
+
+    @Secured(['IS_AUTHENTICATED_FULLY'])
+        def exportTaxReceipt() {
+        User user = (User)userService.getCurrentUser()
+        def environment = projectService.getCurrentEnvironment()
+        def projects = projectService.getAllProjectByUser(user, environment)
+        def contributions = projectService.getContibutionByUser(user, environment)
+        def contributedAmount = projectService.getContributedAmount(contributions)
+        def fundRaised = projectService.getTotalFundRaisedByUser(projects)
+
+        render view: 'user/dashboard',
+        model: [user: user, fundRaised: fundRaised, environment: environment, contributedAmount: contributedAmount,
+                contributions: contributions, projects:projects, activeTab:'exporttaxReciept']
     }
 
     @Secured(['IS_AUTHENTICATED_FULLY'])
@@ -784,4 +811,10 @@ class UserController {
         }
     }
     
+    def exportTaxReceiptpdf() {
+        response.setContentType("application/pdf")
+        response.setHeader("Content-Disposition", "attachment; filename=taxreceipt.pdf")
+        renderPdf(template:"/user/user/taxReceipt", model:[pdfRendering:true])
+    }
+
 }

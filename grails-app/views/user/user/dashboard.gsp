@@ -112,7 +112,13 @@
         <g:elseif test="${activeTab == 'contributions'}">
             <div class="my-campaign-heading text-center hidden-xs"><h1><b>Campaigns Supported</b></h1></div>
         </g:elseif>
-        
+        <g:elseif test="${activeTab == 'exporttaxReciept'}">
+            <div class="my-campaign-heading text-center hidden-xs"><h1><b>Export Tax Receipts</b></h1></div>
+        </g:elseif>
+        <g:elseif test="${activeTab == 'sendtaxReciept'}">
+            <div class="my-campaign-heading text-center hidden-xs"><h1><b>Send Tax Receipts</b></h1></div>
+        </g:elseif>
+
         <div class="container newUserdashboard dashboard-container">
             <div class="influencediv col-md-2 col-lg-2 col-sm-2 col-xs-6">
                 <div class="updateprofilediv" class="blacknwhite">
@@ -172,13 +178,19 @@
                    <div>
                        <g:link controller="user" action="userActivity1" id="${user.id}" class="dashboardtabheading btn btn-primary btn-md btn-block">User Profile</g:link>
                    </div>
-                    
+                   <g:if test="${activeTab != 'sendtaxReciept'}">
+                       <g:link controller="user" action="sendTaxReceipt" class="dashboardtaxReceipttabheading btn btn-primary btn-md btn-block">Send <br class="visible-reciept-md"> Tax Receipt</g:link>
+                   </g:if>
+                   <g:if test="${activeTab != 'exporttaxReciept'}">
+                       <g:link controller="user" action="exportTaxReceipt" class="dashboardtaxReceipttabheading btn btn-primary btn-md btn-block">Export <br class="visible-reciept-md"> Tax Receipt</g:link>
+                   </g:if>
+
                     <a href="#" class="btn btn-block btn-social social-button btn-facebook hidden"><i class="fa fa-facebook"></i> Connect</a>
                     <a href="#" class="btn btn-block btn-social social-button btn-linkedin hidden"><i class="fa fa-linkedin"></i> Connect</a>
                     <a href="#" class="btn btn-block btn-social social-button btn-google-plus hidden"><i class="fa fa-google-plus"></i> Connect</a>
                     <a href="#" class="hidden"><img src="//s3.amazonaws.com/crowdera/assets/dashboardpaypal.png" alt="paypal"></a>
                 </div>
-                
+
                 <div class="connectsection hidden-md hidden-lg hidden-xs hidden-sm">
                     <a href="#" class="btn btn-block btn-social social-button btn-facebook"><i class="fa fa-facebook"></i> Connect</a>
                     <a href="#" class="btn btn-block btn-social social-button btn-linkedin"><i class="fa fa-linkedin"></i> Connect</a>
@@ -230,8 +242,14 @@
                 <div class="col-xs-6">
                     <g:link controller="user" action="userActivity1" id="${user.id}" class="mob-campaigns-btn btn btn-primary">User Profile</g:link>
                 </div>
+                <div class="col-xs-6">
+                    <g:link controller="user" action="sendTaxReceipt" class="mob-campaigns-btn btn btn-primary">Send <br> Tax Receipt</g:link>
+                </div>
+                <div class="col-xs-6">
+                    <g:link controller="user" action="exportTaxReceipt" class="mob-campaigns-btn btn btn-primary">Export <br> Tax Receipt</g:link>
+                </div>
             </div>
-            
+
             <div class="col-desktop-padding col-md-8 col-lg-8 col-sm-8 col-xs-12 text-center userdashboardcontainer">
                 <g:if test="${activeTab == 'campaigns'}">
                     <div class="my-campaign-heading text-center visible-xs"><h3><b>My Campaigns</b></h3></div>
@@ -247,9 +265,19 @@
                 </g:elseif>
                 <g:elseif test="${activeTab == 'editUserInfo'}">
                     <div class="col-lg-12">
-                       <g:render template="user/userprofile" model="['userprofile': 'userprofile']"/>
+                        <g:render template="user/userprofile" model="['userprofile': 'userprofile']"/>
                     </div>
                 </g:elseif>
+				<g:elseif test="${activeTab == 'sendtaxReciept'}">
+					<div class="col-lg-12">
+                        <g:render template="user/sendTaxReceipt" model="['userprofile': 'userprofile', 'projects':projects]"/>
+					</div>
+				</g:elseif>
+				<g:elseif test="${activeTab == 'exporttaxReciept'}">
+					<div class="col-lg-12">
+                        <g:render template="user/exportTaxReceipt" model="['userprofile': 'userprofile', 'contributions':contributions]"/>
+					</div>
+				</g:elseif>
                 <g:else>
                     <div class="col-desktop-padding-right col-lg-offset-1 col-md-offset-1 col-lg-5 col-md-5 col-sm-6 col-xs-12">
                         <a href="/user/campaigns" class="dashboardtab btn btn-primary btn-md hidden-xs">My Campaigns</a>

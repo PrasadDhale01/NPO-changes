@@ -62,7 +62,7 @@ pie.hover(function () {
     this.sector.animate({ 'stroke': bgcolor }, 400);
       //center_label.attr('text','');
 //	      center_label.animate({ 'opacity': 0.0 }, 500);
-    if (currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
+    if (currentEnv == 'development' || currentEnv == 'test' || currentEnv == 'production' || currentEnv == 'staging'){
         center_label.attr('text', '$'+projectAmount);
     } else {
         center_label.attr('text', 'Rs. '+projectAmount);

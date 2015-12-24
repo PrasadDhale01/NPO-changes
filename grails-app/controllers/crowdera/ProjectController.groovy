@@ -2079,7 +2079,7 @@ class ProjectController {
 		}
 
 		// Twitter Share Count
-		def httptwit = new HTTPBuilder('http://cdn.api.twitter.com/1/urls/count.json?url=' + campaignUrl + '&callback=?')
+		def httptwit = new HTTPBuilder('http://opensharecount.com/count.json?url=' + campaignUrl)
 		httptwit.request(Method.GET, ContentType.JSON) {
 			response.success = { resp, reader ->
 				twitterCount = reader.count

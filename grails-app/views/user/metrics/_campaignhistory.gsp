@@ -2,7 +2,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <g:form controller="project" action="generateCampaignCSV">
             <g:hiddenField name="projectId" value="${project.id}"/>
-            <button type="submit" class="btn btn-primary btn-sm">Generate CSV</button><br>
+            <button type="submit" class="btn btn-primary btn-sm">Export CSV</button><br>
         </g:form>
     </div>
 </div>
@@ -189,7 +189,7 @@
                         <i class="fa fa-tint fa-2x"></i>
                     </div>
                     <div class="col-xs-10 text-right">
-                        <p class="metrics-campaigns-heading" id="ytViewcount"><g:if test="${project.videoUrl}">${ytViewCount}</g:if><g:else>No Video</g:else></p>
+                        <p class="metrics-campaigns-heading" id="ytViewcount"><g:if test="${project.videoUrl}">${ytViewCount}</g:if><g:else>0</g:else></p>
                     </div>
                 </div>
             </div>

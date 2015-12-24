@@ -127,6 +127,11 @@
                             <a href="#upgrade" data-toggle="tab">Upgrade Plans</a>
                         </li>
                     </g:if>
+                    <g:if test="${isAdmin}">
+                        <li>
+                            <a href="/user/deletePartner?userId=${user.id}&partnerId=${partnerId}" class="active" id="deletePartner">Delete</a>
+                        </li>
+                    </g:if>
                 </ul>
             </div>
         </div>
